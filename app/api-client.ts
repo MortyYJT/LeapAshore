@@ -29,10 +29,10 @@ type LoginResponse = {
   access_token: string;
 };
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, "");
+// Same-origin is the production default; Sites gracefully falls back when /api is absent.
+const API_URL = (process.env.NEXT_PUBLIC_API_URL ?? "/api").replace(/\/$/, "");
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
-  if (!API_URL) throw new Error("FastAPI URL is not configured");
   const response = await fetch(`${API_URL}${path}`, {
     ...init,
     headers: { "Content-Type": "application/json", ...init?.headers },

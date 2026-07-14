@@ -1,5 +1,10 @@
-"""Vercel Services entrypoint; the application itself remains in app.main."""
+"""Vercel Services entrypoint; public traffic retains its /api path prefix."""
 
-from app.main import app
+from fastapi import FastAPI
 
-__all__ = ["app"]
+from app.main import app as offerpilot_api
+
+app = FastAPI(title="OfferPilot Service Router")
+app.mount("/api", offerpilot_api)
+
+__all__ = ["app", "offerpilot_api"]

@@ -137,10 +137,10 @@ SQLite 适配器会自动建表，并通过 `user_id` 隔离 Profile 与 Agent R
 
 仓库根目录的 `vercel.json` 使用 Vercel `services` 配置定义两个同域服务：
 
-- `/` → Next.js Web
-- `/api` → FastAPI
+- `/` → Next.js Web service
+- `/api/*` → FastAPI service（服务入口保留并挂载 `/api` 前缀）
 
-Vercel Services 会向前端注入 `NEXT_PUBLIC_API_URL=/api`，因此线上请求不需要额外 CORS。部署项目需要在 Vercel 中选择 **Services** Framework Preset。现有 Sites 链接继续作为无需后端的稳定产品预览。
+前端默认请求同域 `/api`，因此线上请求不需要额外 CORS；如需拆分部署，仍可用 `NEXT_PUBLIC_API_URL` 覆盖。部署项目需要在 Vercel 中选择 **Services** Framework Preset。现有 Sites 链接继续作为无需后端的稳定产品预览。
 
 ## API
 

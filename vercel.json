@@ -1,15 +1,19 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "pnpm run build:next",
   "services": {
     "web": {
-      "entrypoint": ".",
-      "routePrefix": "/"
+      "root": ".",
+      "framework": "nextjs",
+      "buildCommand": "pnpm run build:next"
     },
     "api": {
-      "entrypoint": "api/main.py",
-      "routePrefix": "/api",
-      "includeFiles": ["api/app/**"]
+      "root": "api/",
+      "framework": "fastapi",
+      "entrypoint": "main:app"
     }
-  }
+  },
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": { "service": "api" } },
+    { "source": "/(.*)", "destination": { "service": "web" } }
+  ]
 }

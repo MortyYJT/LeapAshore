@@ -8,7 +8,9 @@ client = TestClient(app)
 
 
 def test_vercel_service_entrypoint_exports_the_application() -> None:
-    assert service_app is app
+    response = TestClient(service_app).get("/api/health")
+    assert response.status_code == 200
+    assert response.json() == {"status": "ok"}
 
 
 def test_health() -> None:
