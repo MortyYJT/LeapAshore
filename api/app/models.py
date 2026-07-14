@@ -1,3 +1,4 @@
+from datetime import datetime
 from typing import Literal
 
 from pydantic import BaseModel, Field
@@ -51,7 +52,7 @@ class Program(BaseModel):
 class ToolTrace(BaseModel):
     step: int
     tool: str
-    status: Literal["completed", "needs_input"]
+    status: Literal["completed", "needs_input", "failed", "skipped"]
     summary: str
     evidence_ids: list[str] = []
 
@@ -70,10 +71,51 @@ class ProgramRecommendation(BaseModel):
 class AgentRecommendationResponse(BaseModel):
     run_id: str
     workflow_version: str
+    agent_mode: Literal["deterministic-demo", "llm-assisted"] = "deterministic-demo"
     summary: str
     missing_information: list[str]
     tool_trace: list[ToolTrace]
     recommendations: list[ProgramRecommendation]
+
+
+class LoginRequest(BaseModel):
+    email: str = Field(min_length=3, max_length=160)
+    password: str = Field(min_length=6, max_length=128)
+
+
+class DemoUser(BaseModel):
+    id: str
+    email: str
+    display_name: str
+
+
+class AuthResponse(BaseModel):
+    access_token: str
+    token_type: Literal["bearer"] = "bearer"
+    user: DemoUser
+
+
+class RecommendationRunSummary(BaseModel):
+    run_id: str
+    created_at: datetime
+    workflow_version: str
+    target_field: str
+    intake: str
+    recommendation_count: int
+    summary: str
+
+
+class ActionPlanItem(BaseModel):
+    id: str
+    title: str
+    detail: str
+    priority: Literal["P0", "P1", "P2"]
+    status: Literal["待开始", "进行中", "已完成"] = "待开始"
+
+
+class ActionPlanResponse(BaseModel):
+    run_id: str
+    items: list[ActionPlanItem]
 
 
 class Recommendation(BaseModel):

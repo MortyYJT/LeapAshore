@@ -12,6 +12,7 @@ from ..models import (
 )
 from ..program_data import PROGRAMS
 from .recommender import normalize_gpa
+from .model_provider import ModelProviderError, configured_agent_mode, generate_grounded_summary
 
 
 COGNATE_KEYWORDS = {
@@ -108,7 +109,7 @@ def run_recommendation_agent(profile: ApplicantProfile) -> AgentRecommendationRe
     ]
 
     eligible = sum(item.eligibility == "满足基础门槛" for item in results)
-    return AgentRecommendationResponse(
+    result = AgentRecommendationResponse(
         run_id=f"run_{uuid4().hex[:10]}",
         workflow_version="agent-0.2.0",
         summary=f"Agent 完成 {len(programs)} 个项目核验，其中 {eligible} 个满足当前可验证的基础门槛。",
@@ -116,3 +117,26 @@ def run_recommendation_agent(profile: ApplicantProfile) -> AgentRecommendationRe
         tool_trace=trace,
         recommendations=results,
     )
+    if configured_agent_mode() == "llm-assisted":
+        try:
+            result.summary = generate_grounded_summary(profile, result)
+            result.agent_mode = "llm-assisted"
+            result.tool_trace.append(
+                ToolTrace(
+                    step=6,
+                    tool="llm_grounded_explainer",
+                    status="completed",
+                    summary="模型基于已验证工具结果生成总结，未参与硬门槛判断。",
+                    evidence_ids=evidence_ids,
+                )
+            )
+        except ModelProviderError:
+            result.tool_trace.append(
+                ToolTrace(
+                    step=6,
+                    tool="llm_grounded_explainer",
+                    status="skipped",
+                    summary="模型不可用，已安全降级为 deterministic-demo。",
+                )
+            )
+    return result
