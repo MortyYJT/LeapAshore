@@ -1,6 +1,6 @@
 # OfferPilot 留学申请规划 Agent — 一天版 PRD
 
-版本：v0.2  
+版本：v0.3
 日期：2026-07-14  
 产品形态：桌面优先的完整 Web 产品 Demo  
 项目目标：作为大厂 Agent / 大模型应用实习的简历项目
@@ -36,6 +36,7 @@ OfferPilot 是一个面向澳洲计算机类硕士申请者的申请规划 Agent
 - 前后端均有基础测试和失败状态。
 - GitHub 保持多次语义化提交，README 能让陌生人运行项目。
 - 在线 Demo 可完整体验；若 Python API 未单独部署，前端使用同规则 Demo fallback，并明确标注。
+- 仓库提供 Next.js + FastAPI 同域部署结构，并可选启用 SQLite 持久化。
 
 ## 3. 目标用户与核心场景
 
@@ -136,7 +137,7 @@ OfferPilot 是一个面向澳洲计算机类硕士申请者的申请规划 Agent
 - 记录申请轮次和截止日期
 - 准备简历、文书、推荐信和成绩单
 
-任务包含优先级和状态。一天版可使用内存存储，刷新后丢失必须有明确提示。
+任务包含优先级和状态。默认 Demo 可使用内存存储；配置 SQLite 后，用户资料和 Run History 必须跨 API 重启保留。
 
 ### 4.8 历史记录
 
@@ -236,20 +237,21 @@ OfferPilot 是一个面向澳洲计算机类硕士申请者的申请规划 Agent
 
 ## 8. 数据与存储策略
 
-### 一天版
+### 当前版本
 
 - 使用 Repository/Store 抽象。
-- Demo Auth、Profile、Run History 和 Action Plan 可使用进程内存储。
-- README 明确说明刷新或服务重启会清空数据。
+- 未配置数据库时，Demo Auth、Profile 和 Run History 使用进程内存储。
+- 配置 `DATABASE_PATH` 时，使用自动建表的 SQLite Adapter。
+- SQLite 数据必须按 `user_id` 隔离，并有重启持久化测试。
+- Action Plan 从已保存的 Agent Run 确定性派生。
 
 ### 后续生产化
 
-- Supabase Auth
-- PostgreSQL
-- SQLAlchemy 2 + Alembic
+- Supabase Auth 或 Clerk
+- 托管 PostgreSQL 与迁移机制
 - Row Level Security 或严格的 user_id 数据归属校验
 
-一天版不得为了“看起来完整”伪装成已经使用真实数据库。
+不得把 SQLite 单机适配器描述为无状态云函数的生产数据库。
 
 ## 9. 非功能要求
 

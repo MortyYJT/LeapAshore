@@ -34,7 +34,7 @@ flowchart LR
     RULES --> DATA
     CITE --> DATA
     ORCH -. 可选 .-> LLM[LLM Grounded Explainer]
-    API --> STORE[Demo Store: Profile / Runs / Plans]
+    API --> STORE[Store Adapter: Memory / SQLite]
 ```
 
 核心设计原则：
@@ -95,7 +95,8 @@ OPENAI_MODEL=gpt-4.1-mini
 - API：FastAPI、Pydantic v2
 - Agent：显式 Plan-and-Execute 工作流 + 可插拔模型 Provider
 - 测试：Node Test Runner、pytest、固定 Agent Eval
-- 工程化：GitHub Actions、Sites 部署
+- 持久化：Repository 抽象、进程内 Demo Store、可选 SQLite Store
+- 工程化：GitHub Actions、Sites 前端部署、Vercel Services 全栈配置
 
 ## 本地运行
 
@@ -123,6 +124,23 @@ cp .env.example .env.local
 ```
 
 前端配置 `NEXT_PUBLIC_API_URL=http://localhost:8000` 后会连接 FastAPI。连接失败时界面会明确显示 `Demo fallback`，并继续使用同规则的浏览器会话演示。
+
+如需让 API 重启后继续保留资料和推荐历史，配置：
+
+```env
+DATABASE_PATH=./data/offerpilot.db
+```
+
+SQLite 适配器会自动建表，并通过 `user_id` 隔离 Profile 与 Agent Run。它适合本地 Demo、单机部署和面试演示；无状态云函数应改接托管 PostgreSQL。
+
+## 全栈部署结构
+
+仓库根目录的 `vercel.json` 定义了两个同域服务：
+
+- `/` → Next.js Web
+- `/api` → FastAPI
+
+Vercel Services 会向前端注入 `NEXT_PUBLIC_API_URL=/api`，因此线上请求不需要额外 CORS。部署项目需要在 Vercel 中选择 **Services** Framework Preset。现有 Sites 链接继续作为无需后端的稳定产品预览。
 
 ## API
 
@@ -157,10 +175,11 @@ PYTHONPATH=. .venv/bin/python evals/run_eval.py
 ## Demo 限制
 
 - 当前登录是明确标注的 Demo Auth，不是生产级身份系统。
-- Profile、历史记录和行动计划使用进程内 Store；API 重启会清空。
+- 未配置 `DATABASE_PATH` 时，Profile、历史记录和行动计划使用进程内 Store；API 重启会清空。
+- SQLite 可跨进程重启保留数据，但不适合作为无状态云函数的共享生产数据库。
 - 在线站点在 FastAPI 未单独部署时使用浏览器会话 fallback，刷新会清空。
 - 当前没有 PDF/OCR 成绩单解析、自动爬虫、文书生成和录取概率预测。
-- 正式版本应替换为 Supabase Auth、PostgreSQL、SQLAlchemy/Alembic，并增加来源变更监控。
+- 正式版本应替换 Demo Auth，并把 SQLite Adapter 扩展为托管 PostgreSQL，同时增加迁移和来源变更监控。
 
 完整一天版产品规格见 [PRD.md](./PRD.md)。
 
