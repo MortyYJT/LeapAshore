@@ -245,3 +245,18 @@ class ProgramSourceStatus(BaseModel):
     verified_at: str
     status: Literal["已核验", "需要复核"]
     reason: str
+
+
+class AgentRunAudit(BaseModel):
+    id: str
+    thread_id: str
+    message_id: str
+    provider: Literal["openai", "deterministic-fallback"]
+    model: str
+    prompt_version: str
+    workflow_version: str
+    latency_ms: int
+    input_tokens: int | None = None
+    output_tokens: int | None = None
+    tools: list[str]
+    created_at: datetime

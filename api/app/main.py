@@ -9,6 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from .data import UNIVERSITIES
 from .models import (
     ActionPlanResponse,
+    AgentRunAudit,
     ApplicationTask,
     AdvisorMessage,
     AdvisorMessageRequest,
@@ -253,6 +254,11 @@ def get_advisor_thread(thread_id: str, user: Annotated[DemoUser, Depends(current
     return thread
 
 
+@app.get("/me/advisor/audits", response_model=list[AgentRunAudit])
+def list_advisor_audits(user: Annotated[DemoUser, Depends(current_user)]) -> list[AgentRunAudit]:
+    return store.list_audits(user.id)
+
+
 @app.post("/me/advisor/threads/{thread_id}/messages", response_model=AdvisorReply)
 def send_advisor_message(
     thread_id: str,
@@ -308,4 +314,12 @@ def send_advisor_message(
     thread.messages.extend([user_message, assistant_message])
     thread.updated_at = assistant_message.created_at
     store.save_thread(user.id, thread)
+    store.save_audit(user.id, AgentRunAudit(
+        id=f"audit_{uuid4().hex[:10]}", thread_id=thread.id, message_id=assistant_message.id,
+        provider=metadata["provider"], model=metadata["model"], prompt_version="advisor-1.0.0",
+        workflow_version=recommendation_run.workflow_version if recommendation_run else "advisor-tools-1.0.0",
+        latency_ms=metadata["latency_ms"], input_tokens=metadata["input_tokens"],
+        output_tokens=metadata["output_tokens"], tools=[action.tool for action in actions],
+        created_at=assistant_message.created_at,
+    ))
     return AdvisorReply(thread=thread, profile=profile, recommendation_run=recommendation_run, **metadata)

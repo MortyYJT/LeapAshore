@@ -154,6 +154,10 @@ def test_advisor_conversation_updates_profile_and_reruns_recommendations() -> No
         "update_profile",
         "run_recommendation",
     ]
+    audits = client.get("/me/advisor/audits", headers=headers).json()
+    assert audits[0]["provider"] == "deterministic-fallback"
+    assert audits[0]["tools"] == ["update_profile", "run_recommendation"]
+    assert audits[0]["prompt_version"] == "advisor-1.0.0"
 
 
 def test_transcript_analysis_maps_courses_to_program_prerequisites() -> None:

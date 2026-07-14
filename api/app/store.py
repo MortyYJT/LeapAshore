@@ -10,7 +10,7 @@ import sqlite3
 from threading import Lock
 from typing import Protocol
 
-from .models import ApplicationTask, AdvisorThread, AgentRecommendationResponse, ApplicantProfile, DemoUser, RecommendationRunSummary
+from .models import AgentRunAudit, ApplicationTask, AdvisorThread, AgentRecommendationResponse, ApplicantProfile, DemoUser, RecommendationRunSummary
 
 
 class Store(Protocol):
@@ -29,6 +29,8 @@ class Store(Protocol):
     def save_task(self, user_id: str, task: ApplicationTask) -> ApplicationTask: ...
     def list_tasks(self, user_id: str) -> list[ApplicationTask]: ...
     def get_task(self, user_id: str, task_id: str) -> ApplicationTask | None: ...
+    def save_audit(self, user_id: str, audit: AgentRunAudit) -> AgentRunAudit: ...
+    def list_audits(self, user_id: str) -> list[AgentRunAudit]: ...
 
 
 class DemoStore:
@@ -43,6 +45,7 @@ class DemoStore:
         self._runs: dict[str, list[tuple[RecommendationRunSummary, AgentRecommendationResponse]]] = {}
         self._threads: dict[str, list[AdvisorThread]] = {}
         self._tasks: dict[str, list[ApplicationTask]] = {}
+        self._audits: dict[str, list[AgentRunAudit]] = {}
 
     def login(self, email: str, password: str) -> tuple[str, DemoUser]:
         normalized = email.strip().lower()
@@ -129,6 +132,15 @@ class DemoStore:
         with self._lock:
             return next((item for item in self._tasks.get(user_id, []) if item.id == task_id), None)
 
+    def save_audit(self, user_id: str, audit: AgentRunAudit) -> AgentRunAudit:
+        with self._lock:
+            self._audits.setdefault(user_id, []).insert(0, audit)
+        return audit
+
+    def list_audits(self, user_id: str) -> list[AgentRunAudit]:
+        with self._lock:
+            return list(self._audits.get(user_id, []))
+
 
 class SQLiteStore:
     """Durable local adapter with the same contract as the in-memory demo store."""
@@ -186,6 +198,14 @@ class SQLiteStore:
                 );
                 CREATE INDEX IF NOT EXISTS idx_tasks_user_updated
                     ON application_tasks(user_id, updated_at DESC);
+                CREATE TABLE IF NOT EXISTS agent_run_audits (
+                    audit_id TEXT PRIMARY KEY,
+                    user_id TEXT NOT NULL REFERENCES users(id),
+                    payload TEXT NOT NULL,
+                    created_at TEXT NOT NULL
+                );
+                CREATE INDEX IF NOT EXISTS idx_audits_user_created
+                    ON agent_run_audits(user_id, created_at DESC);
                 """
             )
             columns = {row[1] for row in self._connection.execute("PRAGMA table_info(users)").fetchall()}
@@ -359,6 +379,21 @@ class SQLiteStore:
                 "SELECT payload FROM application_tasks WHERE user_id = ? AND task_id = ?", (user_id, task_id)
             ).fetchone()
         return ApplicationTask.model_validate_json(row["payload"]) if row else None
+
+    def save_audit(self, user_id: str, audit: AgentRunAudit) -> AgentRunAudit:
+        with self._lock, self._connection:
+            self._connection.execute(
+                "INSERT OR REPLACE INTO agent_run_audits (audit_id, user_id, payload, created_at) VALUES (?, ?, ?, ?)",
+                (audit.id, user_id, audit.model_dump_json(), audit.created_at.isoformat()),
+            )
+        return audit
+
+    def list_audits(self, user_id: str) -> list[AgentRunAudit]:
+        with self._lock:
+            rows = self._connection.execute(
+                "SELECT payload FROM agent_run_audits WHERE user_id = ? ORDER BY created_at DESC", (user_id,)
+            ).fetchall()
+        return [AgentRunAudit.model_validate_json(row["payload"]) for row in rows]
 
 
 def create_store() -> Store:
