@@ -69,6 +69,15 @@ def health() -> dict[str, str]:
     return {"status": "ok"}
 
 
+@app.get("/health/readiness")
+def readiness() -> dict[str, str]:
+    return {
+        "status": "ready",
+        "llm": "configured" if llm_is_configured() else "fallback",
+        "storage": store.__class__.__name__,
+    }
+
+
 @app.get("/llm/status", response_model=LLMStatus)
 def llm_status() -> LLMStatus:
     return LLMStatus(configured=llm_is_configured(), model=configured_model())

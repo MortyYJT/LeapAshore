@@ -397,12 +397,14 @@ class SQLiteStore:
 
 
 def create_store() -> Store:
-    """Select durable SQLite only when configured, keeping tests stateless by default."""
+    """Select PostgreSQL in production, SQLite locally, or memory for isolated tests."""
+    database_url = os.getenv("DATABASE_URL")
+    if database_url:
+        from .postgres_store import PostgresStore
+
+        return PostgresStore(database_url)
     database_path = os.getenv("DATABASE_PATH")
     return SQLiteStore(database_path) if database_path else DemoStore()
-
-
-store = create_store()
 
 
 class InvalidCredentialsError(ValueError):
@@ -426,3 +428,6 @@ def verify_password(password: str, encoded: str) -> bool:
         return hmac.compare_digest(candidate.hex(), digest_hex)
     except (ValueError, TypeError):
         return False
+
+
+store = create_store()

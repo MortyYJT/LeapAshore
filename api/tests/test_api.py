@@ -15,6 +15,8 @@ def test_vercel_service_entrypoint_exports_the_application() -> None:
 
 def test_health() -> None:
     assert client.get("/health").json() == {"status": "ok"}
+    readiness = client.get("/health/readiness").json()
+    assert readiness == {"status": "ready", "llm": "fallback", "storage": "DemoStore"}
 
 
 def test_llm_status_never_exposes_the_api_key() -> None:
