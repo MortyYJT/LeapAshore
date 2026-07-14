@@ -21,8 +21,8 @@ test("server-renders login as the mandatory first page", async () => {
 
   const html = await response.text();
   assert.match(html, /<title>OfferPilot/);
-  assert.match(html, /体验登录/);
-  assert.match(html, /进入申请工作台/);
+  assert.match(html, /账户登录/);
+  assert.match(html, /继续你的申请规划/);
   assert.match(html, /请先登录/);
   assert.doesNotMatch(html, /不只推荐学校/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/);
@@ -33,9 +33,10 @@ test("keeps authenticated navigation and logo home behavior explicit", async () 
 
   assert.match(page, /useState<View>\("login"\)/);
   assert.match(page, /aria-current=\{active \? "page"/);
-  assert.match(page, /当前页面/);
+  assert.doesNotMatch(page, /当前页面/);
   assert.match(page, /handleBrandClick/);
   assert.match(page, /navigateTo\("landing"\)/);
+  assert.match(page, /togglePlanItem/);
 });
 
 test("keeps program-level sources, agent tools, and disclaimers in source", async () => {
@@ -47,6 +48,6 @@ test("keeps program-level sources, agent tools, and disclaimers in source", asyn
   for (const tool of tools) assert.match(page, new RegExp(tool));
   assert.match(page, /匹配分/);
   assert.match(page, /不是录取概率/);
-  assert.match(page, /Demo fallback/);
-  assert.match(page, /官方项目页/);
+  assert.doesNotMatch(page, /FastAPI connected|Demo fallback|grounded agent report/);
+  assert.match(page, /查看项目官方要求/);
 });
