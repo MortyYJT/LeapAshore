@@ -1,9 +1,11 @@
 from __future__ import annotations
 
-from datetime import UTC, datetime
-from hashlib import sha256
+from datetime import UTC, datetime, timedelta
+from hashlib import scrypt, sha256
+import hmac
 import os
 from pathlib import Path
+import secrets
 import sqlite3
 from threading import Lock
 from typing import Protocol
@@ -14,7 +16,7 @@ from .models import ApplicationTask, AdvisorThread, AgentRecommendationResponse,
 class Store(Protocol):
     """Persistence contract used by the API and its storage adapters."""
 
-    def login(self, email: str) -> tuple[str, DemoUser]: ...
+    def login(self, email: str, password: str) -> tuple[str, DemoUser]: ...
     def user_for_token(self, token: str) -> DemoUser | None: ...
     def save_profile(self, user_id: str, profile: ApplicantProfile) -> ApplicantProfile: ...
     def get_profile(self, user_id: str) -> ApplicantProfile | None: ...
@@ -35,26 +37,33 @@ class DemoStore:
     def __init__(self) -> None:
         self._lock = Lock()
         self._users: dict[str, DemoUser] = {}
-        self._tokens: dict[str, str] = {}
+        self._tokens: dict[str, tuple[str, datetime]] = {}
+        self._passwords: dict[str, str] = {}
         self._profiles: dict[str, ApplicantProfile] = {}
         self._runs: dict[str, list[tuple[RecommendationRunSummary, AgentRecommendationResponse]]] = {}
         self._threads: dict[str, list[AdvisorThread]] = {}
         self._tasks: dict[str, list[ApplicationTask]] = {}
 
-    def login(self, email: str) -> tuple[str, DemoUser]:
+    def login(self, email: str, password: str) -> tuple[str, DemoUser]:
         normalized = email.strip().lower()
         user_id = f"usr_{sha256(normalized.encode()).hexdigest()[:10]}"
-        token = f"demo_{sha256((normalized + ':offerpilot').encode()).hexdigest()}"
+        token = f"op_{secrets.token_urlsafe(32)}"
         user = DemoUser(id=user_id, email=normalized, display_name=normalized.split("@", 1)[0])
         with self._lock:
+            stored_hash = self._passwords.get(user_id)
+            if stored_hash and not verify_password(password, stored_hash):
+                raise InvalidCredentialsError("邮箱或密码不正确")
             self._users[user_id] = user
-            self._tokens[token] = user_id
+            self._passwords.setdefault(user_id, hash_password(password))
+            self._tokens[token] = (user_id, datetime.now(UTC) + timedelta(hours=session_hours()))
         return token, user
 
     def user_for_token(self, token: str) -> DemoUser | None:
         with self._lock:
-            user_id = self._tokens.get(token)
-            return self._users.get(user_id) if user_id else None
+            session = self._tokens.get(token)
+            if not session or session[1] <= datetime.now(UTC):
+                return None
+            return self._users.get(session[0])
 
     def save_profile(self, user_id: str, profile: ApplicantProfile) -> ApplicantProfile:
         with self._lock:
@@ -140,7 +149,12 @@ class SQLiteStore:
                     id TEXT PRIMARY KEY,
                     email TEXT NOT NULL UNIQUE,
                     display_name TEXT NOT NULL,
-                    token TEXT NOT NULL UNIQUE
+                    password_hash TEXT
+                );
+                CREATE TABLE IF NOT EXISTS sessions (
+                    token TEXT PRIMARY KEY,
+                    user_id TEXT NOT NULL REFERENCES users(id),
+                    expires_at TEXT NOT NULL
                 );
                 CREATE TABLE IF NOT EXISTS profiles (
                     user_id TEXT PRIMARY KEY REFERENCES users(id),
@@ -174,31 +188,50 @@ class SQLiteStore:
                     ON application_tasks(user_id, updated_at DESC);
                 """
             )
+            columns = {row[1] for row in self._connection.execute("PRAGMA table_info(users)").fetchall()}
+            if "password_hash" not in columns:
+                self._connection.execute("ALTER TABLE users ADD COLUMN password_hash TEXT")
+            self._legacy_token_column = "token" in columns
 
-    def login(self, email: str) -> tuple[str, DemoUser]:
+    def login(self, email: str, password: str) -> tuple[str, DemoUser]:
         normalized = email.strip().lower()
         user_id = f"usr_{sha256(normalized.encode()).hexdigest()[:10]}"
-        token = f"demo_{sha256((normalized + ':offerpilot').encode()).hexdigest()}"
+        token = f"op_{secrets.token_urlsafe(32)}"
         user = DemoUser(id=user_id, email=normalized, display_name=normalized.split("@", 1)[0])
         with self._lock, self._connection:
+            existing = self._connection.execute("SELECT password_hash FROM users WHERE id = ?", (user_id,)).fetchone()
+            if existing and existing["password_hash"] and not verify_password(password, existing["password_hash"]):
+                raise InvalidCredentialsError("邮箱或密码不正确")
+            password_hash = existing["password_hash"] if existing and existing["password_hash"] else hash_password(password)
+            if self._legacy_token_column:
+                self._connection.execute(
+                    """INSERT INTO users (id, email, display_name, password_hash, token) VALUES (?, ?, ?, ?, ?)
+                    ON CONFLICT(id) DO UPDATE SET email = excluded.email, display_name = excluded.display_name,
+                    password_hash = excluded.password_hash, token = excluded.token""",
+                    (user.id, user.email, user.display_name, password_hash, token),
+                )
+            else:
+                self._connection.execute(
+                    """INSERT INTO users (id, email, display_name, password_hash) VALUES (?, ?, ?, ?)
+                    ON CONFLICT(id) DO UPDATE SET email = excluded.email, display_name = excluded.display_name,
+                    password_hash = excluded.password_hash""",
+                    (user.id, user.email, user.display_name, password_hash),
+                )
             self._connection.execute(
-                """
-                INSERT INTO users (id, email, display_name, token) VALUES (?, ?, ?, ?)
-                ON CONFLICT(id) DO UPDATE SET
-                    email = excluded.email,
-                    display_name = excluded.display_name,
-                    token = excluded.token
-                """,
-                (user.id, user.email, user.display_name, token),
+                "INSERT INTO sessions (token, user_id, expires_at) VALUES (?, ?, ?)",
+                (token, user.id, (datetime.now(UTC) + timedelta(hours=session_hours())).isoformat()),
             )
         return token, user
 
     def user_for_token(self, token: str) -> DemoUser | None:
         with self._lock:
             row = self._connection.execute(
-                "SELECT id, email, display_name FROM users WHERE token = ?", (token,)
+                """SELECT users.id, users.email, users.display_name, sessions.expires_at
+                FROM sessions JOIN users ON users.id = sessions.user_id WHERE sessions.token = ?""", (token,)
             ).fetchone()
-        return DemoUser(**dict(row)) if row else None
+        if not row or datetime.fromisoformat(row["expires_at"]) <= datetime.now(UTC):
+            return None
+        return DemoUser(id=row["id"], email=row["email"], display_name=row["display_name"])
 
     def save_profile(self, user_id: str, profile: ApplicantProfile) -> ApplicantProfile:
         with self._lock, self._connection:
@@ -335,3 +368,26 @@ def create_store() -> Store:
 
 
 store = create_store()
+
+
+class InvalidCredentialsError(ValueError):
+    pass
+
+
+def session_hours() -> int:
+    return max(1, int(os.getenv("SESSION_TTL_HOURS", "168")))
+
+
+def hash_password(password: str) -> str:
+    salt = secrets.token_bytes(16)
+    digest = scrypt(password.encode(), salt=salt, n=2**14, r=8, p=1, dklen=32)
+    return f"{salt.hex()}${digest.hex()}"
+
+
+def verify_password(password: str, encoded: str) -> bool:
+    try:
+        salt_hex, digest_hex = encoded.split("$", 1)
+        candidate = scrypt(password.encode(), salt=bytes.fromhex(salt_hex), n=2**14, r=8, p=1, dklen=32)
+        return hmac.compare_digest(candidate.hex(), digest_hex)
+    except (ValueError, TypeError):
+        return False

@@ -37,7 +37,7 @@ from .services.agent import run_recommendation_agent
 from .services.model_provider import configured_model, llm_is_configured
 from .services.recommender import generate_recommendations
 from .services.transcript import analyze_transcript
-from .store import store
+from .store import InvalidCredentialsError, store
 
 app = FastAPI(
     title="OfferPilot API",
@@ -75,7 +75,10 @@ def llm_status() -> LLMStatus:
 
 @app.post("/auth/login", response_model=AuthResponse)
 def login(payload: LoginRequest) -> AuthResponse:
-    token, user = store.login(payload.email)
+    try:
+        token, user = store.login(payload.email, payload.password)
+    except InvalidCredentialsError as error:
+        raise HTTPException(status_code=401, detail=str(error)) from error
     return AuthResponse(access_token=token, user=user)
 
 

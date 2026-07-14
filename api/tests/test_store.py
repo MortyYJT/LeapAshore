@@ -22,7 +22,7 @@ def sample_profile() -> ApplicantProfile:
 def test_sqlite_store_survives_adapter_restart(tmp_path) -> None:
     database_path = str(tmp_path / "offerpilot.db")
     first = SQLiteStore(database_path)
-    token, user = first.login("Demo@OfferPilot.cn")
+    token, user = first.login("Demo@OfferPilot.cn", "demo1234")
     profile = first.save_profile(user.id, sample_profile())
     result = run_recommendation_agent(profile)
     first.save_run(user.id, profile, result)
@@ -47,8 +47,8 @@ def test_sqlite_store_survives_adapter_restart(tmp_path) -> None:
 
 def test_sqlite_store_keeps_users_runs_isolated(tmp_path) -> None:
     store = SQLiteStore(str(tmp_path / "offerpilot.db"))
-    _, first_user = store.login("first@example.com")
-    _, second_user = store.login("second@example.com")
+    _, first_user = store.login("first@example.com", "demo1234")
+    _, second_user = store.login("second@example.com", "demo1234")
     profile = store.save_profile(first_user.id, sample_profile())
     result = run_recommendation_agent(profile)
     store.save_run(first_user.id, profile, result)

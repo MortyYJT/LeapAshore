@@ -24,6 +24,11 @@ def test_llm_status_never_exposes_the_api_key() -> None:
     assert "key" not in body
 
 
+def test_login_rejects_a_wrong_password_after_account_creation() -> None:
+    assert client.post("/auth/login", json={"email": "secure@offerpilot.cn", "password": "first-pass"}).status_code == 200
+    assert client.post("/auth/login", json={"email": "secure@offerpilot.cn", "password": "wrong-pass"}).status_code == 401
+
+
 def test_recommendations_return_all_go8_members() -> None:
     response = client.post(
         "/recommendations",
