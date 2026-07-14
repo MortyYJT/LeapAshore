@@ -17,6 +17,13 @@ def test_health() -> None:
     assert client.get("/health").json() == {"status": "ok"}
 
 
+def test_llm_status_never_exposes_the_api_key() -> None:
+    body = client.get("/llm/status").json()
+    assert body["api"] == "responses"
+    assert body["model"] == "gpt-5-mini"
+    assert "key" not in body
+
+
 def test_recommendations_return_all_go8_members() -> None:
     response = client.post(
         "/recommendations",
@@ -108,3 +115,36 @@ def test_complete_authenticated_product_flow() -> None:
     action_plan = client.get(f"/me/recommendation-runs/{run_id}/action-plan", headers=headers)
     assert action_plan.status_code == 200
     assert len(action_plan.json()["items"]) == 5
+
+
+def test_advisor_conversation_updates_profile_and_reruns_recommendations() -> None:
+    login = client.post("/auth/login", json={"email": "advisor@offerpilot.cn", "password": "demo1234"})
+    headers = {"Authorization": f"Bearer {login.json()['access_token']}"}
+    profile = {
+        "undergraduate_school": "示例大学",
+        "school_tier": "双非",
+        "undergraduate_major": "软件工程",
+        "gpa": 82,
+        "gpa_scale": 100,
+        "target_field": "计算机与数据",
+        "intake": "2027 S1",
+    }
+    client.put("/me/profile", json=profile, headers=headers)
+    created = client.post("/me/advisor/threads", headers=headers)
+    assert created.status_code == 200
+
+    reply = client.post(
+        f"/me/advisor/threads/{created.json()['id']}/messages",
+        json={"content": "雅思 7.0，每年预算 50 万，悉尼优先，请重新推荐学校"},
+        headers=headers,
+    )
+    assert reply.status_code == 200
+    body = reply.json()
+    assert body["provider"] == "deterministic-fallback"
+    assert body["profile"]["english_score"] == "IELTS 7.0"
+    assert body["profile"]["annual_budget_aud"] == 500000
+    assert body["recommendation_run"] is not None
+    assert [item["tool"] for item in body["thread"]["messages"][-1]["actions"]] == [
+        "update_profile",
+        "run_recommendation",
+    ]

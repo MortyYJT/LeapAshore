@@ -8,7 +8,7 @@ import sqlite3
 from threading import Lock
 from typing import Protocol
 
-from .models import AgentRecommendationResponse, ApplicantProfile, DemoUser, RecommendationRunSummary
+from .models import AdvisorThread, AgentRecommendationResponse, ApplicantProfile, DemoUser, RecommendationRunSummary
 
 
 class Store(Protocol):
@@ -21,6 +21,9 @@ class Store(Protocol):
     def save_run(self, user_id: str, profile: ApplicantProfile, result: AgentRecommendationResponse) -> RecommendationRunSummary: ...
     def list_runs(self, user_id: str) -> list[RecommendationRunSummary]: ...
     def get_run(self, user_id: str, run_id: str) -> AgentRecommendationResponse | None: ...
+    def save_thread(self, user_id: str, thread: AdvisorThread) -> AdvisorThread: ...
+    def list_threads(self, user_id: str) -> list[AdvisorThread]: ...
+    def get_thread(self, user_id: str, thread_id: str) -> AdvisorThread | None: ...
 
 
 class DemoStore:
@@ -32,6 +35,7 @@ class DemoStore:
         self._tokens: dict[str, str] = {}
         self._profiles: dict[str, ApplicantProfile] = {}
         self._runs: dict[str, list[tuple[RecommendationRunSummary, AgentRecommendationResponse]]] = {}
+        self._threads: dict[str, list[AdvisorThread]] = {}
 
     def login(self, email: str) -> tuple[str, DemoUser]:
         normalized = email.strip().lower()
@@ -82,6 +86,21 @@ class DemoStore:
                     return result
         return None
 
+    def save_thread(self, user_id: str, thread: AdvisorThread) -> AdvisorThread:
+        with self._lock:
+            threads = self._threads.setdefault(user_id, [])
+            threads[:] = [item for item in threads if item.id != thread.id]
+            threads.insert(0, thread)
+        return thread
+
+    def list_threads(self, user_id: str) -> list[AdvisorThread]:
+        with self._lock:
+            return list(self._threads.get(user_id, []))
+
+    def get_thread(self, user_id: str, thread_id: str) -> AdvisorThread | None:
+        with self._lock:
+            return next((item for item in self._threads.get(user_id, []) if item.id == thread_id), None)
+
 
 class SQLiteStore:
     """Durable local adapter with the same contract as the in-memory demo store."""
@@ -118,6 +137,14 @@ class SQLiteStore:
                 );
                 CREATE INDEX IF NOT EXISTS idx_runs_user_created
                     ON recommendation_runs(user_id, created_at DESC);
+                CREATE TABLE IF NOT EXISTS advisor_threads (
+                    thread_id TEXT PRIMARY KEY,
+                    user_id TEXT NOT NULL REFERENCES users(id),
+                    payload TEXT NOT NULL,
+                    updated_at TEXT NOT NULL
+                );
+                CREATE INDEX IF NOT EXISTS idx_threads_user_updated
+                    ON advisor_threads(user_id, updated_at DESC);
                 """
             )
 
@@ -215,6 +242,36 @@ class SQLiteStore:
                 (user_id, run_id),
             ).fetchone()
         return AgentRecommendationResponse.model_validate_json(row["result_payload"]) if row else None
+
+    def save_thread(self, user_id: str, thread: AdvisorThread) -> AdvisorThread:
+        with self._lock, self._connection:
+            self._connection.execute(
+                """
+                INSERT INTO advisor_threads (thread_id, user_id, payload, updated_at)
+                VALUES (?, ?, ?, ?)
+                ON CONFLICT(thread_id) DO UPDATE SET
+                    payload = excluded.payload,
+                    updated_at = excluded.updated_at
+                """,
+                (thread.id, user_id, thread.model_dump_json(), thread.updated_at.isoformat()),
+            )
+        return thread
+
+    def list_threads(self, user_id: str) -> list[AdvisorThread]:
+        with self._lock:
+            rows = self._connection.execute(
+                "SELECT payload FROM advisor_threads WHERE user_id = ? ORDER BY updated_at DESC",
+                (user_id,),
+            ).fetchall()
+        return [AdvisorThread.model_validate_json(row["payload"]) for row in rows]
+
+    def get_thread(self, user_id: str, thread_id: str) -> AdvisorThread | None:
+        with self._lock:
+            row = self._connection.execute(
+                "SELECT payload FROM advisor_threads WHERE user_id = ? AND thread_id = ?",
+                (user_id, thread_id),
+            ).fetchone()
+        return AdvisorThread.model_validate_json(row["payload"]) if row else None
 
 
 def create_store() -> Store:

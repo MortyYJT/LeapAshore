@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import Literal
+from typing import Any, Literal
 
 from pydantic import BaseModel, Field
 
@@ -135,3 +135,49 @@ class RecommendationResponse(BaseModel):
     algorithm_version: str
     disclaimer: str
     recommendations: list[Recommendation]
+
+
+class AdvisorAction(BaseModel):
+    tool: Literal["update_profile", "run_recommendation", "create_task", "answer"]
+    summary: str
+    arguments: dict[str, Any] = {}
+    status: Literal["completed", "needs_confirmation", "skipped"] = "completed"
+
+
+class AdvisorMessage(BaseModel):
+    id: str
+    role: Literal["user", "assistant"]
+    content: str
+    created_at: datetime
+    actions: list[AdvisorAction] = []
+
+
+class AdvisorThread(BaseModel):
+    id: str
+    title: str
+    messages: list[AdvisorMessage]
+    created_at: datetime
+    updated_at: datetime
+
+
+class AdvisorMessageRequest(BaseModel):
+    content: str = Field(min_length=1, max_length=4000)
+
+
+class AdvisorReply(BaseModel):
+    thread: AdvisorThread
+    profile: ApplicantProfile
+    recommendation_run: AgentRecommendationResponse | None = None
+    model: str
+    provider: Literal["openai", "deterministic-fallback"]
+    latency_ms: int
+    input_tokens: int | None = None
+    output_tokens: int | None = None
+    prompt_version: str = "advisor-1.0.0"
+
+
+class LLMStatus(BaseModel):
+    configured: bool
+    provider: str = "openai"
+    model: str
+    api: str = "responses"
