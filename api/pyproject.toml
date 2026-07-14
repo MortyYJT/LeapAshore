@@ -1,3 +1,13 @@
+[project]
+name = "offerpilot-api"
+version = "0.2.0"
+description = "FastAPI service for the OfferPilot recommendation agent"
+requires-python = ">=3.12"
+dependencies = [
+    "fastapi>=0.115,<1.0",
+    "pydantic>=2.10,<3.0",
+]
+
 [tool.pytest.ini_options]
 pythonpath = ["."]
 testpaths = ["tests"]

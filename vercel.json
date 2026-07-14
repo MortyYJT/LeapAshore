@@ -1,0 +1,15 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "pnpm run build:next",
+  "experimentalServices": {
+    "web": {
+      "entrypoint": ".",
+      "routePrefix": "/"
+    },
+    "api": {
+      "entrypoint": "api/main.py",
+      "routePrefix": "/api",
+      "includeFiles": ["api/app/**"]
+    }
+  }
+}

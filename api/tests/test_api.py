@@ -1,9 +1,14 @@
 from fastapi.testclient import TestClient
 
 from app.main import app
+from main import app as service_app
 
 
 client = TestClient(app)
+
+
+def test_vercel_service_entrypoint_exports_the_application() -> None:
+    assert service_app is app
 
 
 def test_health() -> None:
