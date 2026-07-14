@@ -15,6 +15,7 @@ import {
 
 type View = "landing" | "login" | "profile" | "agent" | "results" | "program" | "plan" | "history";
 type Tier = "冲刺" | "匹配" | "稳妥" | "暂不推荐";
+type NavSection = "landing" | "profile" | "results" | "plan" | "history";
 
 type Profile = {
   school: string;
@@ -133,8 +134,23 @@ function getProgramRecommendation(program: Program, profile: Profile) {
 
 const tierOrder: Record<Tier, number> = { 匹配: 0, 稳妥: 1, 冲刺: 2, 暂不推荐: 3 };
 
+const navItems: { section: NavSection; label: string }[] = [
+  { section: "landing", label: "主界面" },
+  { section: "profile", label: "我的背景" },
+  { section: "results", label: "Agent 报告" },
+  { section: "plan", label: "行动计划" },
+  { section: "history", label: "历史记录" },
+];
+
+function activeNavSection(view: View): NavSection | null {
+  if (view === "agent" || view === "program") return "results";
+  if (view === "login") return null;
+  return view;
+}
+
 export default function Home() {
-  const [view, setView] = useState<View>("landing");
+  const [view, setView] = useState<View>("login");
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [profile, setProfile] = useState<Profile>(initialProfile);
   const [email, setEmail] = useState("demo@offerpilot.cn");
   const [password, setPassword] = useState("demo1234");
@@ -186,8 +202,18 @@ export default function Home() {
       setApiMode("demo-fallback");
     } finally {
       setIsSubmitting(false);
+      setIsAuthenticated(true);
       setView("profile");
     }
+  }
+
+  function navigateTo(section: NavSection) {
+    setError("");
+    setView(isAuthenticated ? section : "login");
+  }
+
+  function handleBrandClick() {
+    navigateTo("landing");
   }
 
   function handleProfile(event: FormEvent<HTMLFormElement>) {
@@ -251,15 +277,20 @@ export default function Home() {
   return (
     <main className="app-shell">
       <header className="site-header">
-        <button className="brand" onClick={() => setView("landing")} aria-label="返回首页">
+        <button className="brand" onClick={handleBrandClick} aria-label={isAuthenticated ? "返回主界面" : "返回登录页"}>
           <span className="brand-mark">O</span><span>OfferPilot</span><small>申请规划 Agent</small>
         </button>
-        <nav aria-label="主要导航">
-          <button onClick={() => setView("landing")}>首页</button>
-          <button onClick={() => setView("profile")}>我的背景</button>
-          <button onClick={() => setView("results")}>Agent 报告</button><button onClick={() => setView("history")}>历史记录</button>
-        </nav>
-        <button className="account-pill" onClick={() => setView("login")}><span>D</span>体验账户</button>
+        {isAuthenticated && <nav aria-label="主要导航">
+          {navItems.map((item) => {
+            const active = activeNavSection(view) === item.section;
+            return <button key={item.section} className={active ? "active" : ""} aria-current={active ? "page" : undefined} onClick={() => navigateTo(item.section)}>
+              <span>{item.label}</span>{active && <small>当前页面</small>}
+            </button>;
+          })}
+        </nav>}
+        {isAuthenticated
+          ? <button className="account-pill" onClick={() => setView("login")}><span>D</span>体验账户</button>
+          : <span className="login-required">请先登录</span>}
       </header>
 
       {view === "landing" && (
@@ -269,7 +300,7 @@ export default function Home() {
             <h1>不只推荐学校，<br />还告诉你依据。</h1>
             <p className="hero-subtitle">OfferPilot 会检索具体项目、调用确定性工具检查 GPA 与先修课，再生成带官方来源的申请组合。Agent 负责规划，规则负责守住事实。</p>
             <div className="hero-actions">
-              <button className="primary-button" onClick={() => setView("login")}>运行申请 Agent <span>→</span></button>
+              <button className="primary-button" onClick={() => setView("profile")}>运行申请 Agent <span>→</span></button>
               <button className="text-button" onClick={() => setView("results")}>查看完整示例</button>
             </div>
             <div className="trust-row"><div><strong>6</strong><span>个具体项目</span></div><div><strong>5</strong><span>个 Agent 工具</span></div><div><strong>100%</strong><span>官方来源引用</span></div></div>

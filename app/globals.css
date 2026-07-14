@@ -12,11 +12,15 @@ button { color: inherit; }
 .brand { display: flex; align-items: baseline; gap: 9px; border: 0; background: none; cursor: pointer; font-size: 20px; font-weight: 800; letter-spacing: -.7px; }
 .brand-mark { width: 29px; height: 29px; display: grid; place-items: center; border: 2px solid var(--orange); color: var(--orange); border-radius: 50%; font-size: 15px; }
 .brand small { font-size: 11px; font-weight: 500; color: var(--muted); letter-spacing: .08em; }
-.site-header nav { display: flex; gap: 34px; }
+.site-header nav { align-self: stretch; display: flex; gap: 20px; }
 .site-header nav button, .account-pill { border: 0; background: none; cursor: pointer; font-size: 13px; }
-.site-header nav button:hover { color: var(--orange); }
+.site-header nav button { min-width: 74px; padding: 15px 8px 10px; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: var(--muted); }
+.site-header nav button:hover, .site-header nav button.active { color: var(--ink); }
+.site-header nav button.active::after { content: ""; position: absolute; left: 8px; right: 8px; bottom: 0; height: 3px; border-radius: 3px 3px 0 0; background: var(--orange); }
+.site-header nav button small { color: var(--orange); font-size: 8px; font-weight: 800; letter-spacing: .08em; }
 .account-pill { display: flex; align-items: center; gap: 8px; padding: 8px 13px; border: 1px solid var(--line); border-radius: 999px; }
 .account-pill span { width: 25px; height: 25px; display: grid; place-items: center; border-radius: 50%; background: var(--green); color: white; font-size: 11px; font-weight: 700; }
+.login-required { color: var(--muted); font-size: 11px; padding: 8px 13px; border: 1px solid var(--line); border-radius: 999px; }
 .landing { min-height: calc(100vh - 76px); padding: 7vh 5.2vw 0; display: grid; grid-template-columns: 47% 53%; position: relative; overflow: hidden; }
 .hero-copy { padding: 2vh 0 140px; position: relative; z-index: 2; }
 .eyebrow { color: var(--green); text-transform: uppercase; font-size: 12px; font-weight: 700; letter-spacing: .12em; display: flex; align-items: center; gap: 9px; margin: 0 0 26px; }

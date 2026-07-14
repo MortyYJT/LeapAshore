@@ -14,18 +14,28 @@ async function render() {
   );
 }
 
-test("server-renders the OfferPilot landing page", async () => {
+test("server-renders login as the mandatory first page", async () => {
   const response = await render();
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
   assert.match(html, /<title>OfferPilot/);
-  assert.match(html, /不只推荐学校/);
-  assert.match(html, /运行申请 Agent/);
-  assert.match(html, /可验证 RAG/);
-  assert.match(html, /官方来源引用/);
+  assert.match(html, /体验登录/);
+  assert.match(html, /进入申请工作台/);
+  assert.match(html, /请先登录/);
+  assert.doesNotMatch(html, /不只推荐学校/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/);
+});
+
+test("keeps authenticated navigation and logo home behavior explicit", async () => {
+  const page = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
+
+  assert.match(page, /useState<View>\("login"\)/);
+  assert.match(page, /aria-current=\{active \? "page"/);
+  assert.match(page, /当前页面/);
+  assert.match(page, /handleBrandClick/);
+  assert.match(page, /navigateTo\("landing"\)/);
 });
 
 test("keeps program-level sources, agent tools, and disclaimers in source", async () => {
