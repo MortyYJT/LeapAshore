@@ -148,3 +148,28 @@ def test_advisor_conversation_updates_profile_and_reruns_recommendations() -> No
         "update_profile",
         "run_recommendation",
     ]
+
+
+def test_transcript_analysis_maps_courses_to_program_prerequisites() -> None:
+    login = client.post("/auth/login", json={"email": "transcript@offerpilot.cn", "password": "demo1234"})
+    headers = {"Authorization": f"Bearer {login.json()['access_token']}"}
+    profile = {
+        "undergraduate_school": "示例大学",
+        "school_tier": "双非",
+        "undergraduate_major": "软件工程",
+        "gpa": 82,
+        "gpa_scale": 100,
+        "target_field": "计算机与数据",
+    }
+    client.put("/me/profile", json=profile, headers=headers)
+    response = client.post(
+        "/me/transcript/analyze",
+        json={"transcript_text": "高等数学 88\n线性代数 85\n数据结构 90\nPython 程序设计 92\n数据库系统 87"},
+        headers=headers,
+    )
+    assert response.status_code == 200
+    body = response.json()
+    assert len(body["courses"]) == 5
+    uq = next(item for item in body["program_matches"] if item["program_slug"] == "uq-master-data-science")
+    assert uq["status"] == "满足"
+    assert client.get("/me/profile", headers=headers).json()["coursework_summary"].startswith("高等数学")

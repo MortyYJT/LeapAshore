@@ -181,3 +181,28 @@ class LLMStatus(BaseModel):
     provider: str = "openai"
     model: str
     api: str = "responses"
+
+
+class TranscriptAnalysisRequest(BaseModel):
+    transcript_text: str = Field(min_length=3, max_length=30000)
+    save_to_profile: bool = True
+
+
+class TranscriptCourse(BaseModel):
+    name: str
+    category: Literal["数学与统计", "编程", "算法与数据结构", "数据库", "计算机基础", "其他"]
+
+
+class ProgramPrerequisiteMatch(BaseModel):
+    program_slug: str
+    program_name: str
+    matched: list[str]
+    missing: list[str]
+    status: Literal["满足", "部分满足", "无需指定先修课"]
+
+
+class TranscriptAnalysisResponse(BaseModel):
+    courses: list[TranscriptCourse]
+    program_matches: list[ProgramPrerequisiteMatch]
+    academic_summary: str
+    warnings: list[str]

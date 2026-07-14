@@ -22,6 +22,8 @@ from .models import (
     Program,
     RecommendationResponse,
     RecommendationRunSummary,
+    TranscriptAnalysisRequest,
+    TranscriptAnalysisResponse,
     University,
 )
 from .program_data import PROGRAMS
@@ -30,6 +32,7 @@ from .services.advisor import plan_turn
 from .services.agent import run_recommendation_agent
 from .services.model_provider import configured_model, llm_is_configured
 from .services.recommender import generate_recommendations
+from .services.transcript import analyze_transcript
 from .store import store
 
 app = FastAPI(
@@ -101,6 +104,21 @@ def get_my_profile(user: Annotated[DemoUser, Depends(current_user)]) -> Applican
 @app.put("/me/profile", response_model=ApplicantProfile)
 def save_my_profile(profile: ApplicantProfile, user: Annotated[DemoUser, Depends(current_user)]) -> ApplicantProfile:
     return store.save_profile(user.id, profile)
+
+
+@app.post("/me/transcript/analyze", response_model=TranscriptAnalysisResponse)
+def analyze_my_transcript(
+    payload: TranscriptAnalysisRequest,
+    user: Annotated[DemoUser, Depends(current_user)],
+) -> TranscriptAnalysisResponse:
+    profile = store.get_profile(user.id)
+    if not profile:
+        raise HTTPException(status_code=409, detail="请先保存申请背景")
+    result = analyze_transcript(payload.transcript_text)
+    if payload.save_to_profile and result.courses:
+        profile.coursework_summary = "、".join(course.name for course in result.courses)
+        store.save_profile(user.id, profile)
+    return result
 
 
 @app.post("/recommendations", response_model=RecommendationResponse)
