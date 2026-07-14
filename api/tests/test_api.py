@@ -115,6 +115,7 @@ def test_complete_authenticated_product_flow() -> None:
     action_plan = client.get(f"/me/recommendation-runs/{run_id}/action-plan", headers=headers)
     assert action_plan.status_code == 200
     assert len(action_plan.json()["items"]) == 5
+    assert len(client.get("/me/tasks", headers=headers).json()) == 5
 
 
 def test_advisor_conversation_updates_profile_and_reruns_recommendations() -> None:
@@ -173,3 +174,40 @@ def test_transcript_analysis_maps_courses_to_program_prerequisites() -> None:
     uq = next(item for item in body["program_matches"] if item["program_slug"] == "uq-master-data-science")
     assert uq["status"] == "满足"
     assert client.get("/me/profile", headers=headers).json()["coursework_summary"].startswith("高等数学")
+
+
+def test_tasks_can_be_created_and_progressed() -> None:
+    login = client.post("/auth/login", json={"email": "tasks@offerpilot.cn", "password": "demo1234"})
+    headers = {"Authorization": f"Bearer {login.json()['access_token']}"}
+    created = client.post(
+        "/me/tasks",
+        json={"title": "预约雅思考试", "detail": "选择两个月后的场次", "category": "语言", "priority": "P0"},
+        headers=headers,
+    )
+    assert created.status_code == 200
+    updated = client.put(f"/me/tasks/{created.json()['id']}", json={"status": "已完成"}, headers=headers)
+    assert updated.json()["status"] == "已完成"
+    assert client.get("/me/tasks", headers=headers).json()[0]["title"] == "预约雅思考试"
+
+
+def test_advisor_can_create_an_application_task() -> None:
+    login = client.post("/auth/login", json={"email": "advisor-task@offerpilot.cn", "password": "demo1234"})
+    headers = {"Authorization": f"Bearer {login.json()['access_token']}"}
+    client.put("/me/profile", json={
+        "undergraduate_school": "示例大学", "school_tier": "双非", "undergraduate_major": "软件工程",
+        "gpa": 82, "gpa_scale": 100, "target_field": "计算机与数据",
+    }, headers=headers)
+    thread = client.post("/me/advisor/threads", headers=headers).json()
+    response = client.post(
+        f"/me/advisor/threads/{thread['id']}/messages",
+        json={"content": "提醒我准备英文成绩单"}, headers=headers,
+    )
+    assert response.status_code == 200
+    assert client.get("/me/tasks", headers=headers).json()[0]["title"] == "准备英文成绩单"
+
+
+def test_program_sources_expose_review_freshness() -> None:
+    response = client.get("/program-sources/status")
+    assert response.status_code == 200
+    assert len(response.json()) >= 6
+    assert all(item["url"].startswith("https://") for item in response.json())

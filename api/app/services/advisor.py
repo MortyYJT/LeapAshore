@@ -33,6 +33,10 @@ def _fallback_plan(message: str, profile: ApplicantProfile) -> dict[str, Any]:
         actions.append({"tool": "update_profile", "summary": "已根据你的说明更新申请档案", "arguments": updates})
         actions.append({"tool": "run_recommendation", "summary": "按新条件重新评估选校组合", "arguments": {}})
         reply = "我已记录你的新条件，并重新评估选校组合。你可以继续告诉我更看重城市、预算、课程匹配还是就业方向。"
+    elif any(word in message for word in ["提醒我", "加入待办", "创建任务"]):
+        title = re.sub(r"^(请|帮我)?(提醒我|加入待办|创建任务)", "", message).strip("：: ，,") or "跟进申请事项"
+        actions.append({"tool": "create_task", "summary": "已加入申请待办", "arguments": {"title": title[:80], "category": "其他", "priority": "P1"}})
+        reply = f"好的，已把“{title[:80]}”加入申请待办。你可以继续补充具体截止日期。"
     elif any(word in message for word in ["推荐", "选校", "学校", "项目", "方案"]):
         actions.append({"tool": "run_recommendation", "summary": "重新评估选校组合", "arguments": {}})
         reply = "我会先按公开硬门槛排除明显不匹配项目，再结合课程、城市、预算和职业目标给出冲刺、匹配与稳妥组合。"

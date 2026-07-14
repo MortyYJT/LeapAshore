@@ -9,6 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from .data import UNIVERSITIES
 from .models import (
     ActionPlanResponse,
+    ApplicationTask,
     AdvisorMessage,
     AdvisorMessageRequest,
     AdvisorReply,
@@ -20,10 +21,13 @@ from .models import (
     LoginRequest,
     LLMStatus,
     Program,
+    ProgramSourceStatus,
     RecommendationResponse,
     RecommendationRunSummary,
     TranscriptAnalysisRequest,
     TranscriptAnalysisResponse,
+    TaskCreateRequest,
+    TaskUpdateRequest,
     University,
 )
 from .program_data import PROGRAMS
@@ -121,6 +125,31 @@ def analyze_my_transcript(
     return result
 
 
+@app.get("/me/tasks", response_model=list[ApplicationTask])
+def list_my_tasks(user: Annotated[DemoUser, Depends(current_user)]) -> list[ApplicationTask]:
+    return store.list_tasks(user.id)
+
+
+@app.post("/me/tasks", response_model=ApplicationTask)
+def create_my_task(payload: TaskCreateRequest, user: Annotated[DemoUser, Depends(current_user)]) -> ApplicationTask:
+    now = datetime.now(UTC)
+    task = ApplicationTask(id=f"task_{uuid4().hex[:10]}", created_at=now, updated_at=now, **payload.model_dump())
+    return store.save_task(user.id, task)
+
+
+@app.put("/me/tasks/{task_id}", response_model=ApplicationTask)
+def update_my_task(
+    task_id: str,
+    payload: TaskUpdateRequest,
+    user: Annotated[DemoUser, Depends(current_user)],
+) -> ApplicationTask:
+    task = store.get_task(user.id, task_id)
+    if not task:
+        raise HTTPException(status_code=404, detail="申请任务不存在")
+    task = task.model_copy(update={**payload.model_dump(exclude_unset=True), "updated_at": datetime.now(UTC)})
+    return store.save_task(user.id, task)
+
+
 @app.post("/recommendations", response_model=RecommendationResponse)
 def recommendations(profile: ApplicantProfile) -> RecommendationResponse:
     return generate_recommendations(profile)
@@ -138,7 +167,31 @@ def create_recommendation_run(user: Annotated[DemoUser, Depends(current_user)]) 
         raise HTTPException(status_code=409, detail="请先保存申请背景")
     result = run_recommendation_agent(profile)
     store.save_run(user.id, profile, result)
+    now = datetime.now(UTC)
+    categories = {"verify-transcript": "成绩单", "verify-language": "语言", "shortlist": "选校", "deadlines": "截止日期", "materials": "材料"}
+    for item in build_action_plan(result).items:
+        store.save_task(user.id, ApplicationTask(
+            id=f"task_{result.run_id}_{item.id}", title=item.title, detail=item.detail,
+            category=categories.get(item.id, "其他"), priority=item.priority, status=item.status,
+            source_run_id=result.run_id, created_at=now, updated_at=now,
+        ))
     return result
+
+
+@app.get("/program-sources/status", response_model=list[ProgramSourceStatus])
+def program_source_status() -> list[ProgramSourceStatus]:
+    today = datetime.now(UTC).date()
+    statuses = []
+    for program in PROGRAMS:
+        age = (today - datetime.fromisoformat(program.source.verified_at).date()).days
+        needs_review = age > 30
+        statuses.append(ProgramSourceStatus(
+            source_id=program.source.id, program_slug=program.slug, title=program.source.title,
+            url=program.source.url, verified_at=program.source.verified_at,
+            status="需要复核" if needs_review else "已核验",
+            reason=f"距上次人工核验已 {age} 天" if needs_review else "仍在 30 天复核周期内",
+        ))
+    return statuses
 
 
 @app.get("/me/recommendation-runs", response_model=list[RecommendationRunSummary])
@@ -227,6 +280,24 @@ def send_advisor_message(
         elif action.tool == "run_recommendation":
             recommendation_run = run_recommendation_agent(profile)
             store.save_run(user.id, profile, recommendation_run)
+        elif action.tool == "create_task":
+            now = datetime.now(UTC)
+            arguments = action.arguments
+            try:
+                request = TaskCreateRequest.model_validate({
+                    "title": arguments.get("title", action.summary),
+                    "detail": arguments.get("detail", "由 AI 申请顾问创建"),
+                    "category": arguments.get("category", "其他"),
+                    "priority": arguments.get("priority", "P1"),
+                    "due_at": arguments.get("due_at"),
+                    "reminder_at": arguments.get("reminder_at"),
+                })
+                store.save_task(user.id, ApplicationTask(
+                    id=f"task_{uuid4().hex[:10]}", created_at=now, updated_at=now, **request.model_dump()
+                ))
+            except ValueError:
+                action.status = "skipped"
+                action.summary = "待办信息格式不完整，暂未创建"
 
     assistant_message = AdvisorMessage(
         id=f"msg_{uuid4().hex[:10]}", role="assistant", content=reply_text, created_at=datetime.now(UTC), actions=actions

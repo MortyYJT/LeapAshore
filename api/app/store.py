@@ -8,7 +8,7 @@ import sqlite3
 from threading import Lock
 from typing import Protocol
 
-from .models import AdvisorThread, AgentRecommendationResponse, ApplicantProfile, DemoUser, RecommendationRunSummary
+from .models import ApplicationTask, AdvisorThread, AgentRecommendationResponse, ApplicantProfile, DemoUser, RecommendationRunSummary
 
 
 class Store(Protocol):
@@ -24,6 +24,9 @@ class Store(Protocol):
     def save_thread(self, user_id: str, thread: AdvisorThread) -> AdvisorThread: ...
     def list_threads(self, user_id: str) -> list[AdvisorThread]: ...
     def get_thread(self, user_id: str, thread_id: str) -> AdvisorThread | None: ...
+    def save_task(self, user_id: str, task: ApplicationTask) -> ApplicationTask: ...
+    def list_tasks(self, user_id: str) -> list[ApplicationTask]: ...
+    def get_task(self, user_id: str, task_id: str) -> ApplicationTask | None: ...
 
 
 class DemoStore:
@@ -36,6 +39,7 @@ class DemoStore:
         self._profiles: dict[str, ApplicantProfile] = {}
         self._runs: dict[str, list[tuple[RecommendationRunSummary, AgentRecommendationResponse]]] = {}
         self._threads: dict[str, list[AdvisorThread]] = {}
+        self._tasks: dict[str, list[ApplicationTask]] = {}
 
     def login(self, email: str) -> tuple[str, DemoUser]:
         normalized = email.strip().lower()
@@ -101,6 +105,21 @@ class DemoStore:
         with self._lock:
             return next((item for item in self._threads.get(user_id, []) if item.id == thread_id), None)
 
+    def save_task(self, user_id: str, task: ApplicationTask) -> ApplicationTask:
+        with self._lock:
+            tasks = self._tasks.setdefault(user_id, [])
+            tasks[:] = [item for item in tasks if item.id != task.id]
+            tasks.append(task)
+        return task
+
+    def list_tasks(self, user_id: str) -> list[ApplicationTask]:
+        with self._lock:
+            return sorted(self._tasks.get(user_id, []), key=lambda item: (item.status == "已完成", item.priority, item.created_at))
+
+    def get_task(self, user_id: str, task_id: str) -> ApplicationTask | None:
+        with self._lock:
+            return next((item for item in self._tasks.get(user_id, []) if item.id == task_id), None)
+
 
 class SQLiteStore:
     """Durable local adapter with the same contract as the in-memory demo store."""
@@ -145,6 +164,14 @@ class SQLiteStore:
                 );
                 CREATE INDEX IF NOT EXISTS idx_threads_user_updated
                     ON advisor_threads(user_id, updated_at DESC);
+                CREATE TABLE IF NOT EXISTS application_tasks (
+                    task_id TEXT PRIMARY KEY,
+                    user_id TEXT NOT NULL REFERENCES users(id),
+                    payload TEXT NOT NULL,
+                    updated_at TEXT NOT NULL
+                );
+                CREATE INDEX IF NOT EXISTS idx_tasks_user_updated
+                    ON application_tasks(user_id, updated_at DESC);
                 """
             )
 
@@ -272,6 +299,33 @@ class SQLiteStore:
                 (user_id, thread_id),
             ).fetchone()
         return AdvisorThread.model_validate_json(row["payload"]) if row else None
+
+    def save_task(self, user_id: str, task: ApplicationTask) -> ApplicationTask:
+        with self._lock, self._connection:
+            self._connection.execute(
+                """
+                INSERT INTO application_tasks (task_id, user_id, payload, updated_at)
+                VALUES (?, ?, ?, ?)
+                ON CONFLICT(task_id) DO UPDATE SET payload = excluded.payload, updated_at = excluded.updated_at
+                """,
+                (task.id, user_id, task.model_dump_json(), task.updated_at.isoformat()),
+            )
+        return task
+
+    def list_tasks(self, user_id: str) -> list[ApplicationTask]:
+        with self._lock:
+            rows = self._connection.execute(
+                "SELECT payload FROM application_tasks WHERE user_id = ? ORDER BY updated_at DESC", (user_id,)
+            ).fetchall()
+        tasks = [ApplicationTask.model_validate_json(row["payload"]) for row in rows]
+        return sorted(tasks, key=lambda item: (item.status == "已完成", item.priority, item.created_at))
+
+    def get_task(self, user_id: str, task_id: str) -> ApplicationTask | None:
+        with self._lock:
+            row = self._connection.execute(
+                "SELECT payload FROM application_tasks WHERE user_id = ? AND task_id = ?", (user_id, task_id)
+            ).fetchone()
+        return ApplicationTask.model_validate_json(row["payload"]) if row else None
 
 
 def create_store() -> Store:

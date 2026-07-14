@@ -206,3 +206,42 @@ class TranscriptAnalysisResponse(BaseModel):
     program_matches: list[ProgramPrerequisiteMatch]
     academic_summary: str
     warnings: list[str]
+
+
+class ApplicationTask(BaseModel):
+    id: str
+    title: str
+    detail: str
+    category: Literal["选校", "成绩单", "语言", "材料", "截止日期", "其他"]
+    priority: Literal["P0", "P1", "P2"]
+    status: Literal["待开始", "进行中", "已完成"] = "待开始"
+    due_at: datetime | None = None
+    reminder_at: datetime | None = None
+    source_run_id: str | None = None
+    created_at: datetime
+    updated_at: datetime
+
+
+class TaskCreateRequest(BaseModel):
+    title: str = Field(min_length=1, max_length=160)
+    detail: str = Field(default="", max_length=1000)
+    category: Literal["选校", "成绩单", "语言", "材料", "截止日期", "其他"] = "其他"
+    priority: Literal["P0", "P1", "P2"] = "P1"
+    due_at: datetime | None = None
+    reminder_at: datetime | None = None
+
+
+class TaskUpdateRequest(BaseModel):
+    status: Literal["待开始", "进行中", "已完成"] | None = None
+    due_at: datetime | None = None
+    reminder_at: datetime | None = None
+
+
+class ProgramSourceStatus(BaseModel):
+    source_id: str
+    program_slug: str
+    title: str
+    url: str
+    verified_at: str
+    status: Literal["已核验", "需要复核"]
+    reason: str
