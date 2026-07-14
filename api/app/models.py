@@ -13,7 +13,11 @@ class ApplicantProfile(BaseModel):
     target_field: Literal["计算机与数据", "商科与金融", "工程", "教育与社会科学", "生命科学"]
     intake: str = "2027 S1"
     english_score: str | None = None
+    coursework_summary: str | None = None
     experience_summary: str | None = None
+    career_goal: str | None = None
+    location_preferences: str | None = None
+    annual_budget_aud: float | None = Field(default=None, gt=0)
 
 
 class University(BaseModel):

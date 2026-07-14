@@ -94,10 +94,14 @@ def run_recommendation_agent(profile: ApplicantProfile) -> AgentRecommendationRe
     missing: list[str] = []
     if not profile.english_score:
         missing.append("语言成绩")
-    if any(program.prerequisites for program in programs):
-        missing.append("用于核验先修课的成绩单课程列表")
+    if any(program.prerequisites for program in programs) and not profile.coursework_summary:
+        missing.append("用于确认先修课的成绩单课程列表")
     if not profile.experience_summary:
         missing.append("相关实习、科研或项目经历")
+    if not profile.career_goal:
+        missing.append("毕业后的职业目标")
+    if not profile.annual_budget_aud:
+        missing.append("年度留学预算")
 
     evidence_ids = [program.source.id for program in programs]
     trace = [
@@ -112,7 +116,7 @@ def run_recommendation_agent(profile: ApplicantProfile) -> AgentRecommendationRe
     result = AgentRecommendationResponse(
         run_id=f"run_{uuid4().hex[:10]}",
         workflow_version="agent-0.2.0",
-        summary=f"Agent 完成 {len(programs)} 个项目核验，其中 {eligible} 个满足当前可验证的基础门槛。",
+        summary=f"已对照 {len(programs)} 个具体项目，其中 {eligible} 个达到当前公开的基础申请要求。",
         missing_information=missing,
         tool_trace=trace,
         recommendations=results,

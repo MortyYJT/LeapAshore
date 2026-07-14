@@ -77,7 +77,7 @@ def test_agent_flags_missing_language_and_prerequisite_evidence() -> None:
 
     body = response.json()
     assert "语言成绩" in body["missing_information"]
-    assert "用于核验先修课的成绩单课程列表" in body["missing_information"]
+    assert "用于确认先修课的成绩单课程列表" in body["missing_information"]
     assert any(item["tier"] == "暂不推荐" for item in body["recommendations"])
 
 
