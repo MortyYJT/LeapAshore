@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "OfferPilot 留学罗盘｜澳洲八大选校规划",
-  description: "输入你的背景，获得可解释的澳洲八大冲刺、匹配与稳妥选校方案。",
+  title: "OfferPilot｜可验证的留学申请规划 Agent",
+  description: "检索具体项目、调用确定性工具核验申请门槛，并生成带官方来源的申请组合与行动计划。",
   icons: { icon: "/favicon.svg", shortcut: "/favicon.svg" },
 };
 

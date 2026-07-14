@@ -21,18 +21,22 @@ test("server-renders the OfferPilot landing page", async () => {
 
   const html = await response.text();
   assert.match(html, /<title>OfferPilot/);
-  assert.match(html, /选校不靠猜/);
-  assert.match(html, /免费生成方案/);
-  assert.match(html, /覆盖澳洲 Group of Eight/);
+  assert.match(html, /不只推荐学校/);
+  assert.match(html, /运行申请 Agent/);
+  assert.match(html, /可验证 RAG/);
+  assert.match(html, /官方来源引用/);
   assert.doesNotMatch(html, /codex-preview|Your site is taking shape/);
 });
 
-test("keeps all eight Go8 members and recommendation disclaimers in source", async () => {
+test("keeps program-level sources, agent tools, and disclaimers in source", async () => {
   const page = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
-  const members = ["unimelb", "anu", "unsw", "usyd", "monash", "uq", "uwa", "adelaide"];
+  const programSlugs = ["unsw-master-it", "usyd-master-cs", "monash-master-ai", "monash-master-cs", "uq-master-data-science", "uwa-master-it"];
+  const tools = ["normalize_gpa", "retrieve_programs", "check_hard_constraints", "rank_portfolio", "validate_citations"];
 
-  for (const slug of members) assert.match(page, new RegExp(`slug: \\\"${slug}\\\"`));
+  for (const slug of programSlugs) assert.match(page, new RegExp(`slug: \\\"${slug}\\\"`));
+  for (const tool of tools) assert.match(page, new RegExp(tool));
   assert.match(page, /匹配分/);
-  assert.match(page, /不构成录取承诺/);
-  assert.match(page, /Demo 登录/);
+  assert.match(page, /不是录取概率/);
+  assert.match(page, /Demo fallback/);
+  assert.match(page, /官方项目页/);
 });
