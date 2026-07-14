@@ -33,7 +33,7 @@ flowchart LR
     RET --> DATA[官方项目数据]
     RULES --> DATA
     CITE --> DATA
-    ORCH <--> LLM[OpenAI Responses API]
+    ORCH <--> LLM[Ollama · Qwen2.5 0.5B]
     ORCH --> TASKS[任务与提醒工具]
     ORCH --> TRANSCRIPT[成绩单课程核验工具]
     API --> STORE[Store Adapter: Memory / SQLite / PostgreSQL]
@@ -54,13 +54,13 @@ flowchart LR
 
 ### `llm-assisted`
 
-配置 OpenAI 密钥后自动启用 Responses API。模型输出受严格 JSON Schema 约束，服务器只允许白名单工具和档案字段；硬门槛和排序仍由确定性工具完成。请求失败会安全降级。
+服务端通过 Ollama 自托管 Qwen2.5 0.5B，不需要任何模型 API Key。模型输出受 JSON Schema 约束，服务器只允许白名单工具和档案字段；硬门槛和排序仍由确定性工具完成。模型服务不可用时会安全降级。
 
 ```env
 AGENT_MODE=llm-assisted
-OPENAI_API_KEY=your-key
-OPENAI_BASE_URL=https://api.openai.com/v1
-OPENAI_MODEL=gpt-5-mini
+LLM_PROVIDER=ollama
+OLLAMA_BASE_URL=http://localhost:11434
+OLLAMA_MODEL=qwen2.5:0.5b
 ```
 
 ## 首批项目数据
@@ -95,12 +95,12 @@ OPENAI_MODEL=gpt-5-mini
 
 - 前端：Next.js App Router、React 19、TypeScript、Tailwind CSS
 - API：FastAPI、Pydantic v2
-- Agent：OpenAI Responses API + Structured Outputs + 服务端白名单工具执行
+- Agent：Ollama + Qwen2.5 0.5B + Structured Outputs + 服务端白名单工具执行
 - 测试：Node Test Runner、pytest、固定 Agent Eval
 - 持久化：Repository 抽象、进程内 Demo Store、SQLite、PostgreSQL JSONB
 - 安全：scrypt 密码哈希、随机过期会话、服务端密钥、逐请求鉴权
 - 可观测性：模型/Provider、Prompt 与 Workflow 版本、耗时、Token、工具轨迹
-- 工程化：GitHub Actions、Sites 前端部署、Vercel Services 全栈配置
+- 工程化：GitHub Actions、Docker Compose、Caddy、Sites/Vercel 前端预览
 
 ## 本地运行
 
@@ -129,6 +129,13 @@ cp .env.example .env.local
 
 前端配置 `NEXT_PUBLIC_API_URL=http://localhost:8000` 后会连接 FastAPI。连接失败时界面会明确显示 `Demo fallback`，并继续使用同规则的浏览器会话演示。
 
+如需在本机启用真实小模型，安装 Ollama 后执行：
+
+```bash
+ollama pull qwen2.5:0.5b
+LLM_PROVIDER=ollama OLLAMA_BASE_URL=http://localhost:11434 uvicorn app.main:app --reload
+```
+
 如需让 API 重启后继续保留资料和推荐历史，配置：
 
 ```env
@@ -145,14 +152,38 @@ DATABASE_URL=postgresql://user:password@host:5432/offerpilot
 
 PostgreSQL 适配器将 Profile、顾问会话、方案、任务和运行审计存入 JSONB，允许模型与工作流 Schema 继续演进。
 
-## 全栈部署结构
+## 无 Key 全栈部署
 
-仓库根目录的 `vercel.json` 使用 Vercel `services` 配置定义两个同域服务：
+推荐在任意支持 Docker Compose 的 Linux 服务器上运行：
+
+```bash
+docker compose up -d --build
+```
+
+首次启动会自动拉取约 398MB 的 Qwen2.5 0.5B 模型。浏览器访问 `http://服务器地址:8080`。完整拓扑为：
+
+- Caddy：唯一公开入口，同域转发 Web 与 `/api`
+- Next.js：产品界面
+- FastAPI：认证、Agent 编排、专业工具与审计
+- Ollama：仅在 Docker 内网提供模型推理，不暴露端口
+- PostgreSQL：持久化账户、档案、会话、任务与审计
+
+生产环境至少应设置独立数据库密码：
+
+```bash
+POSTGRES_PASSWORD='replace-with-a-strong-password' docker compose up -d --build
+```
+
+这里的数据库密码是服务器基础设施配置，不需要任何普通用户填写，也不是模型 API Key。
+
+## Vercel 前端预览
+
+仓库根目录仍保留 `vercel.json`，用于 Web 与普通 FastAPI 的在线预览：
 
 - `/` → Next.js Web service
 - `/api/*` → FastAPI service（服务入口保留并挂载 `/api` 前缀）
 
-前端默认请求同域 `/api`，因此线上请求不需要额外 CORS；如需拆分部署，仍可用 `NEXT_PUBLIC_API_URL` 覆盖。部署项目需要在 Vercel 中选择 **Services** Framework Preset。现有 Sites 链接继续作为无需后端的稳定产品预览。
+Vercel Serverless 不适合常驻加载 Ollama 模型，因此无 Key 的完整 Agent 版本应使用上面的 Docker Compose 部署；现有 Sites 链接继续作为无需后端的稳定产品预览。
 
 ## API
 

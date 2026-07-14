@@ -35,7 +35,7 @@ from .program_data import PROGRAMS
 from .services.action_plan import build_action_plan
 from .services.advisor import plan_turn
 from .services.agent import run_recommendation_agent
-from .services.model_provider import configured_model, llm_is_configured
+from .services.model_provider import configured_model, configured_provider, llm_is_configured
 from .services.recommender import generate_recommendations
 from .services.transcript import analyze_transcript
 from .store import InvalidCredentialsError, store
@@ -80,7 +80,13 @@ def readiness() -> dict[str, str]:
 
 @app.get("/llm/status", response_model=LLMStatus)
 def llm_status() -> LLMStatus:
-    return LLMStatus(configured=llm_is_configured(), model=configured_model())
+    provider = configured_provider()
+    return LLMStatus(
+        configured=llm_is_configured(),
+        provider=provider,
+        model=configured_model(),
+        api="ollama-chat" if provider == "ollama" else "responses",
+    )
 
 
 @app.post("/auth/login", response_model=AuthResponse)

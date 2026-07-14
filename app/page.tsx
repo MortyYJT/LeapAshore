@@ -334,7 +334,7 @@ export default function Home() {
       try {
         const reply = await sendAdvisorMessage(token, advisorThread.id, content);
         setAdvisorThread(reply.thread);
-        setAdvisorProvider(reply.provider === "openai" ? "OpenAI · 在线" : "安全降级模式");
+        setAdvisorProvider(reply.provider === "ollama" ? "Qwen · 服务端" : reply.provider === "openai" ? "OpenAI · 在线" : "安全降级模式");
         setActionPlan(await fetchTasks(token));
       } catch {
         setAdvisorProvider("暂时无法连接，请稍后重试");

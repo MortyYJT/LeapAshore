@@ -17,23 +17,33 @@ class ModelProviderError(RuntimeError):
 @dataclass
 class ModelResult:
     payload: dict[str, Any]
+    provider: str
     model: str
     input_tokens: int | None
     output_tokens: int | None
 
 
 def configured_agent_mode() -> str:
-    if os.getenv("OPENAI_API_KEY"):
+    if configured_provider() in {"openai", "ollama"}:
         return "llm-assisted"
     return os.getenv("AGENT_MODE", "deterministic-demo")
 
 
 def configured_model() -> str:
-    return os.getenv("OPENAI_MODEL", "gpt-5-mini")
+    if configured_provider() == "openai":
+        return os.getenv("OPENAI_MODEL", "gpt-5-mini")
+    return os.getenv("OLLAMA_MODEL", "qwen2.5:0.5b")
+
+
+def configured_provider() -> str:
+    provider = os.getenv("LLM_PROVIDER", "deterministic").lower()
+    if provider == "openai" and not os.getenv("OPENAI_API_KEY"):
+        return "deterministic"
+    return provider if provider in {"openai", "ollama"} else "deterministic"
 
 
 def llm_is_configured() -> bool:
-    return bool(os.getenv("OPENAI_API_KEY"))
+    return configured_provider() in {"openai", "ollama"}
 
 
 def _output_text(body: dict[str, Any]) -> str:
@@ -48,9 +58,9 @@ def _output_text(body: dict[str, Any]) -> str:
 
 def plan_advisor_turn(context: dict[str, Any]) -> ModelResult:
     """Ask the model for a constrained plan; server-side code executes every mutation."""
-    api_key = os.getenv("OPENAI_API_KEY")
-    if not api_key:
-        raise ModelProviderError("OPENAI_API_KEY is not configured")
+    provider = configured_provider()
+    if provider == "deterministic":
+        raise ModelProviderError("no model provider is configured")
     model = configured_model()
     argument_properties: dict[str, Any] = {
         "undergraduate_school": {"type": ["string", "null"]},
@@ -99,14 +109,38 @@ def plan_advisor_turn(context: dict[str, Any]) -> ModelResult:
         },
         "required": ["reply", "actions"],
     }
+    instructions = (
+        "你是 OfferPilot 澳洲硕士申请顾问。基于用户档案和已验证项目数据回答。"
+        "主动指出缺失信息；不承诺录取，不编造截止日期、费用或要求。"
+        "需要修改档案时调用 update_profile；需要重算选校时调用 run_recommendation；"
+        "需要加入待办时调用 create_task。一次最多 3 个动作。"
+    )
+    if provider == "ollama":
+        base_url = os.getenv("OLLAMA_BASE_URL", "http://ollama:11434").rstrip("/")
+        try:
+            with httpx.Client(timeout=60) as client:
+                response = client.post(f"{base_url}/api/chat", json={
+                    "model": model,
+                    "messages": [
+                        {"role": "system", "content": instructions},
+                        {"role": "user", "content": json.dumps(context, ensure_ascii=False)},
+                    ],
+                    "format": schema,
+                    "stream": False,
+                    "keep_alive": "30m",
+                    "options": {"temperature": 0, "num_ctx": 4096},
+                })
+                response.raise_for_status()
+            body = response.json()
+            parsed = json.loads(body["message"]["content"])
+            return ModelResult(parsed, "ollama", model, body.get("prompt_eval_count"), body.get("eval_count"))
+        except (httpx.HTTPError, json.JSONDecodeError, KeyError, TypeError) as error:
+            raise ModelProviderError("ollama request failed") from error
+
+    api_key = os.getenv("OPENAI_API_KEY")
     payload = {
         "model": model,
-        "instructions": (
-            "你是 OfferPilot 澳洲硕士申请顾问。基于用户档案和已验证项目数据回答。"
-            "主动指出缺失信息；不承诺录取，不编造截止日期、费用或要求。"
-            "需要修改档案时调用 update_profile；需要重算选校时调用 run_recommendation；"
-            "需要加入待办时调用 create_task。一次最多 3 个动作。"
-        ),
+        "instructions": instructions,
         "input": json.dumps(context, ensure_ascii=False),
         "text": {"format": {"type": "json_schema", "name": "advisor_turn", "strict": True, "schema": schema}},
         "store": False,
@@ -123,16 +157,16 @@ def plan_advisor_turn(context: dict[str, Any]) -> ModelResult:
         body = response.json()
         parsed = json.loads(_output_text(body))
         usage = body.get("usage", {})
-        return ModelResult(parsed, model, usage.get("input_tokens"), usage.get("output_tokens"))
+        return ModelResult(parsed, "openai", model, usage.get("input_tokens"), usage.get("output_tokens"))
     except (httpx.HTTPError, json.JSONDecodeError, KeyError, TypeError) as error:
         raise ModelProviderError("model provider request failed") from error
 
 
 def generate_grounded_summary(profile: ApplicantProfile, result: AgentRecommendationResponse) -> str:
     """Generate wording only; eligibility and ranking remain deterministic tool output."""
-    api_key = os.getenv("OPENAI_API_KEY")
-    if not api_key:
-        raise ModelProviderError("OPENAI_API_KEY is not configured")
+    provider = configured_provider()
+    if provider == "deterministic":
+        raise ModelProviderError("no model provider is configured")
 
     base_url = os.getenv("OPENAI_BASE_URL", "https://api.openai.com/v1").rstrip("/")
     model = configured_model()
@@ -147,10 +181,31 @@ def generate_grounded_summary(profile: ApplicantProfile, result: AgentRecommenda
         }
         for item in result.recommendations
     ]
+    instructions = "你是留学申请规划 Agent 的解释层。只能根据工具结果写两句中文总结；不得修改档位、门槛、分数或引用，不得声称录取概率。"
+    grounded_input = json.dumps({"profile": profile.model_dump(), "missing_information": result.missing_information, "tool_results": evidence}, ensure_ascii=False)
+    if provider == "ollama":
+        try:
+            with httpx.Client(timeout=60) as client:
+                response = client.post(
+                    f"{os.getenv('OLLAMA_BASE_URL', 'http://ollama:11434').rstrip('/')}/api/chat",
+                    json={"model": model, "messages": [
+                        {"role": "system", "content": instructions},
+                        {"role": "user", "content": grounded_input},
+                    ], "stream": False, "keep_alive": "30m", "options": {"temperature": 0}},
+                )
+                response.raise_for_status()
+            content = response.json()["message"]["content"].strip()
+        except (httpx.HTTPError, KeyError, TypeError) as error:
+            raise ModelProviderError("ollama request failed") from error
+        if not content:
+            raise ModelProviderError("ollama returned an empty summary")
+        return content
+
+    api_key = os.getenv("OPENAI_API_KEY")
     payload = {
         "model": model,
-        "instructions": "你是留学申请规划 Agent 的解释层。只能根据工具结果写两句中文总结；不得修改档位、门槛、分数或引用，不得声称录取概率。",
-        "input": json.dumps({"profile": profile.model_dump(), "missing_information": result.missing_information, "tool_results": evidence}, ensure_ascii=False),
+        "instructions": instructions,
+        "input": grounded_input,
         "store": False,
     }
 

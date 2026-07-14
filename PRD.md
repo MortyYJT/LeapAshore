@@ -160,7 +160,7 @@ OfferPilot 是一个面向澳洲计算机类硕士申请者的申请规划 Agent
 需要支持两种模式：
 
 1. `deterministic-demo`：无模型密钥时运行，保证在线 Demo 稳定。
-2. `llm-assisted`：配置兼容 OpenAI 的模型后，由模型负责规划/解释，但硬门槛仍调用同一组工具。
+2. `llm-assisted`：服务端 Ollama/Qwen 模型负责规划与解释，硬门槛仍调用同一组工具，用户无需模型密钥。
 
 不得在 README 中把 `deterministic-demo` 冒充为真实 LLM Agent。面试时应能解释两种模式为什么共用同一套工具和输出 Schema。
 
@@ -248,7 +248,7 @@ OfferPilot 是一个面向澳洲计算机类硕士申请者的申请规划 Agent
 ### 后续生产化
 
 - Supabase Auth 或 Clerk
-- 托管 PostgreSQL 与迁移机制
+- PostgreSQL 与迁移机制
 - Row Level Security 或严格的 user_id 数据归属校验
 
 不得把 SQLite 单机适配器描述为无状态云函数的生产数据库。
@@ -320,7 +320,7 @@ OfferPilot 是一个面向澳洲计算机类硕士申请者的申请规划 Agent
 
 ### 第 3 阶段：LLM 模式与评测（1.5 小时）
 
-- 增加模型 Provider Adapter 和 `llm-assisted` 模式。
+- 增加 Ollama 模型 Provider Adapter 和 `llm-assisted` 模式。
 - 硬门槛继续走确定性工具。
 - 跑 10 个固定 Eval 案例并记录真实指标。
 

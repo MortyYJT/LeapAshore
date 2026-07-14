@@ -55,7 +55,7 @@ def _fallback_plan(message: str, profile: ApplicantProfile) -> dict[str, Any]:
 
 def plan_turn(message: str, profile: ApplicantProfile, history: list[dict[str, str]]) -> tuple[str, list[AdvisorAction], dict[str, Any]]:
     started = perf_counter()
-    provider = "openai"
+    provider = "deterministic-fallback"
     tokens: dict[str, Any] = {"input_tokens": None, "output_tokens": None}
     try:
         model_result = plan_advisor_turn({
@@ -64,6 +64,7 @@ def plan_turn(message: str, profile: ApplicantProfile, history: list[dict[str, s
             "user_message": message,
         })
         raw = model_result.payload
+        provider = model_result.provider
         model = model_result.model
         tokens = {"input_tokens": model_result.input_tokens, "output_tokens": model_result.output_tokens}
     except ModelProviderError:

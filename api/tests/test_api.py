@@ -19,11 +19,14 @@ def test_health() -> None:
     assert readiness == {"status": "ready", "llm": "fallback", "storage": "DemoStore"}
 
 
-def test_llm_status_never_exposes_the_api_key() -> None:
+def test_llm_status_never_exposes_the_api_key(monkeypatch) -> None:
     body = client.get("/llm/status").json()
     assert body["api"] == "responses"
-    assert body["model"] == "gpt-5-mini"
+    assert body["model"] == "qwen2.5:0.5b"
     assert "key" not in body
+    monkeypatch.setenv("LLM_PROVIDER", "ollama")
+    ollama = client.get("/llm/status").json()
+    assert ollama == {"configured": True, "provider": "ollama", "model": "qwen2.5:0.5b", "api": "ollama-chat"}
 
 
 def test_login_rejects_a_wrong_password_after_account_creation() -> None:

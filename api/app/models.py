@@ -169,7 +169,7 @@ class AdvisorReply(BaseModel):
     profile: ApplicantProfile
     recommendation_run: AgentRecommendationResponse | None = None
     model: str
-    provider: Literal["openai", "deterministic-fallback"]
+    provider: Literal["openai", "ollama", "deterministic-fallback"]
     latency_ms: int
     input_tokens: int | None = None
     output_tokens: int | None = None
@@ -251,7 +251,7 @@ class AgentRunAudit(BaseModel):
     id: str
     thread_id: str
     message_id: str
-    provider: Literal["openai", "deterministic-fallback"]
+    provider: Literal["openai", "ollama", "deterministic-fallback"]
     model: str
     prompt_version: str
     workflow_version: str
