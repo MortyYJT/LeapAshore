@@ -135,7 +135,7 @@ SQLite 适配器会自动建表，并通过 `user_id` 隔离 Profile 与 Agent R
 
 ## 全栈部署结构
 
-仓库根目录的 `vercel.json` 定义了两个同域服务：
+仓库根目录的 `vercel.json` 使用 Vercel `services` 配置定义两个同域服务：
 
 - `/` → Next.js Web
 - `/api` → FastAPI
