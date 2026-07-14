@@ -2,7 +2,9 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from .data import UNIVERSITIES
-from .models import ApplicantProfile, RecommendationResponse, University
+from .models import AgentRecommendationResponse, ApplicantProfile, Program, RecommendationResponse, University
+from .program_data import PROGRAMS
+from .services.agent import run_recommendation_agent
 from .services.recommender import generate_recommendations
 
 app = FastAPI(
@@ -30,6 +32,16 @@ def list_universities() -> list[University]:
     return UNIVERSITIES
 
 
+@app.get("/programs", response_model=list[Program])
+def list_programs() -> list[Program]:
+    return PROGRAMS
+
+
 @app.post("/recommendations", response_model=RecommendationResponse)
 def recommendations(profile: ApplicantProfile) -> RecommendationResponse:
     return generate_recommendations(profile)
+
+
+@app.post("/agent/recommendations", response_model=AgentRecommendationResponse)
+def agent_recommendations(profile: ApplicantProfile) -> AgentRecommendationResponse:
+    return run_recommendation_agent(profile)

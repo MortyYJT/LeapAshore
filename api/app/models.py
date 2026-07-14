@@ -25,6 +25,57 @@ class University(BaseModel):
     note: str
 
 
+class SourceCitation(BaseModel):
+    id: str
+    title: str
+    url: str
+    excerpt: str
+    verified_at: str = "2026-07-14"
+
+
+class Program(BaseModel):
+    slug: str
+    university: str
+    name: str
+    city: str
+    field: str
+    minimum_mark: float
+    non_211_minimum_mark: float | None = None
+    requires_cognate: bool = False
+    prerequisites: list[str] = []
+    english_requirement: str
+    duration: str
+    source: SourceCitation
+
+
+class ToolTrace(BaseModel):
+    step: int
+    tool: str
+    status: Literal["completed", "needs_input"]
+    summary: str
+    evidence_ids: list[str] = []
+
+
+class ProgramRecommendation(BaseModel):
+    program: Program
+    tier: Literal["冲刺", "匹配", "稳妥", "暂不推荐"]
+    eligibility: Literal["满足基础门槛", "需要人工核验", "存在门槛缺口"]
+    match_score: int
+    reasons: list[str]
+    risks: list[str]
+    next_action: str
+    citations: list[SourceCitation]
+
+
+class AgentRecommendationResponse(BaseModel):
+    run_id: str
+    workflow_version: str
+    summary: str
+    missing_information: list[str]
+    tool_trace: list[ToolTrace]
+    recommendations: list[ProgramRecommendation]
+
+
 class Recommendation(BaseModel):
     university: University
     tier: Literal["冲刺", "匹配", "稳妥"]

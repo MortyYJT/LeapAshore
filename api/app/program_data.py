@@ -1,0 +1,120 @@
+from .models import Program, SourceCitation
+
+
+def source(source_id: str, title: str, url: str, excerpt: str) -> SourceCitation:
+    return SourceCitation(id=source_id, title=title, url=url, excerpt=excerpt)
+
+
+# A deliberately small, auditable seed set. Every rule below points to the
+# official course page that a reviewer can open from the API response.
+PROGRAMS = [
+    Program(
+        slug="unsw-master-it",
+        university="新南威尔士大学",
+        name="Master of Information Technology",
+        city="悉尼",
+        field="计算机与数据",
+        minimum_mark=65,
+        non_211_minimum_mark=70,
+        requires_cognate=False,
+        prerequisites=[],
+        english_requirement="按 UNSW 英语语言要求核验",
+        duration="2 年",
+        source=source(
+            "UNSW-MIT-2026",
+            "UNSW Master of Information Technology",
+            "https://www.unsw.edu.au/study/postgraduate/master-of-information-technology?studentType=International",
+            "相关背景通常要求 65% 均分；非 211 中国院校通常要求 70%，非相关背景可走衔接路径。",
+        ),
+    ),
+    Program(
+        slug="usyd-master-cs",
+        university="悉尼大学",
+        name="Master of Computer Science",
+        city="悉尼",
+        field="计算机与数据",
+        minimum_mark=65,
+        requires_cognate=False,
+        prerequisites=[],
+        english_requirement="按悉尼大学课程页英语要求核验",
+        duration="2 年",
+        source=source(
+            "USYD-MCS-2026",
+            "University of Sydney Master of Computer Science",
+            "https://www.sydney.edu.au/content/courses/courses/pc/master-of-computer-science.html",
+            "申请人需具有任意学科本科学位并达到 credit average（65%）或同等水平。",
+        ),
+    ),
+    Program(
+        slug="monash-master-ai",
+        university="蒙纳士大学",
+        name="Master of Artificial Intelligence",
+        city="墨尔本",
+        field="计算机与数据",
+        minimum_mark=60,
+        requires_cognate=False,
+        prerequisites=[],
+        english_requirement="需同时满足 Monash 英语要求",
+        duration="1.5–2 年",
+        source=source(
+            "MONASH-MAI-2026",
+            "Monash Master of Artificial Intelligence",
+            "https://www.monash.edu/study/courses/find-a-course/artificial-intelligence-c6007",
+            "2 年路径接受非 IT 本科，通常要求 60% 均分；相关背景可能满足 1.5 年路径。",
+        ),
+    ),
+    Program(
+        slug="monash-master-cs",
+        university="蒙纳士大学",
+        name="Master of Computer Science",
+        city="墨尔本",
+        field="计算机与数据",
+        minimum_mark=60,
+        requires_cognate=True,
+        prerequisites=["编程", "算法或数据结构"],
+        english_requirement="需同时满足 Monash 英语要求",
+        duration="1.5–2 年",
+        source=source(
+            "MONASH-MCS-2026",
+            "Monash Master of Computer Science",
+            "https://www.monash.edu/study/courses/find-a-course/computer-science-c6008",
+            "不同入学路径取决于既往计算机学习背景，课程页列出对应资格要求。",
+        ),
+    ),
+    Program(
+        slug="uq-master-data-science",
+        university="昆士兰大学",
+        name="Master of Data Science",
+        city="布里斯班",
+        field="计算机与数据",
+        minimum_mark=71.4,
+        requires_cognate=True,
+        prerequisites=["微积分或高等数学", "线性代数与统计，或编程与数据库"],
+        english_requirement="IELTS 6.5，单项不低于 6.0",
+        duration="1.5–2 年",
+        source=source(
+            "UQ-MDS-2027",
+            "UQ Master of Data Science",
+            "https://study.uq.edu.au/study-options/programs/master-data-science-5660",
+            "通常要求 UQ 7 分制 GPA 5.0，并满足相关学科或指定数学、统计及计算机课程要求。",
+        ),
+    ),
+    Program(
+        slug="uwa-master-it",
+        university="西澳大学",
+        name="Master of Information Technology",
+        city="珀斯",
+        field="计算机与数据",
+        minimum_mark=65,
+        requires_cognate=False,
+        prerequisites=["Mathematics Methods ATAR 或同等数学基础"],
+        english_requirement="IELTS 6.5，单项不低于 6.0",
+        duration="1.5–2 年",
+        source=source(
+            "UWA-MIT-2026",
+            "UWA Master of Information Technology",
+            "https://www.uwa.edu.au/study/courses/master-of-information-technology",
+            "通常要求受认可本科学位、至少 65% UWA 等值均分，并具备规定的数学基础。",
+        ),
+    ),
+]

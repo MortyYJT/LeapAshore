@@ -27,3 +27,48 @@ def test_recommendations_return_all_go8_members() -> None:
     body = response.json()
     assert body["algorithm_version"] == "0.1.0"
     assert len(body["recommendations"]) == 8
+
+
+def test_agent_returns_programs_tools_and_citations() -> None:
+    response = client.post(
+        "/agent/recommendations",
+        json={
+            "undergraduate_school": "示例大学",
+            "school_tier": "双非",
+            "undergraduate_major": "软件工程",
+            "gpa": 82,
+            "gpa_scale": 100,
+            "target_field": "计算机与数据",
+            "intake": "2027 S1",
+            "english_score": "IELTS 6.5",
+            "experience_summary": "后端开发实习",
+        },
+    )
+
+    assert response.status_code == 200
+    body = response.json()
+    assert body["workflow_version"] == "agent-0.2.0"
+    assert len(body["tool_trace"]) == 5
+    assert len(body["recommendations"]) >= 6
+    assert all(item["citations"] for item in body["recommendations"])
+    assert all(item["program"]["source"]["url"].startswith("https://") for item in body["recommendations"])
+
+
+def test_agent_flags_missing_language_and_prerequisite_evidence() -> None:
+    response = client.post(
+        "/agent/recommendations",
+        json={
+            "undergraduate_school": "示例大学",
+            "school_tier": "双非",
+            "undergraduate_major": "市场营销",
+            "gpa": 68,
+            "gpa_scale": 100,
+            "target_field": "计算机与数据",
+            "intake": "2027 S1",
+        },
+    )
+
+    body = response.json()
+    assert "语言成绩" in body["missing_information"]
+    assert "用于核验先修课的成绩单课程列表" in body["missing_information"]
+    assert any(item["tier"] == "暂不推荐" for item in body["recommendations"])
