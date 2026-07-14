@@ -74,6 +74,7 @@ def plan_turn(message: str, profile: ApplicantProfile, history: list[dict[str, s
     actions = []
     for item in raw.get("actions", [])[:3]:
         arguments = item.get("arguments") if isinstance(item.get("arguments"), dict) else {}
+        arguments = {key: value for key, value in arguments.items() if value is not None}
         if item.get("tool") == "update_profile":
             arguments = {key: value for key, value in arguments.items() if key in PROFILE_FIELDS}
         actions.append(AdvisorAction(tool=item.get("tool", "answer"), summary=item.get("summary", "已处理"), arguments=arguments))

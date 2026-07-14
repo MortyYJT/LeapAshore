@@ -52,6 +52,27 @@ def plan_advisor_turn(context: dict[str, Any]) -> ModelResult:
     if not api_key:
         raise ModelProviderError("OPENAI_API_KEY is not configured")
     model = configured_model()
+    argument_properties: dict[str, Any] = {
+        "undergraduate_school": {"type": ["string", "null"]},
+        "school_tier": {"enum": ["985", "211/双一流", "双非", "海外重点", "其他", None]},
+        "undergraduate_major": {"type": ["string", "null"]},
+        "gpa": {"type": ["number", "null"]},
+        "gpa_scale": {"type": ["number", "null"]},
+        "target_field": {"enum": ["计算机与数据", "商科与金融", "工程", "教育与社会科学", "生命科学", None]},
+        "intake": {"type": ["string", "null"]},
+        "english_score": {"type": ["string", "null"]},
+        "coursework_summary": {"type": ["string", "null"]},
+        "experience_summary": {"type": ["string", "null"]},
+        "career_goal": {"type": ["string", "null"]},
+        "location_preferences": {"type": ["string", "null"]},
+        "annual_budget_aud": {"type": ["number", "null"]},
+        "title": {"type": ["string", "null"]},
+        "detail": {"type": ["string", "null"]},
+        "category": {"enum": ["选校", "成绩单", "语言", "材料", "截止日期", "其他", None]},
+        "priority": {"enum": ["P0", "P1", "P2", None]},
+        "due_at": {"type": ["string", "null"]},
+        "reminder_at": {"type": ["string", "null"]},
+    }
     schema = {
         "type": "object",
         "additionalProperties": False,
@@ -65,7 +86,12 @@ def plan_advisor_turn(context: dict[str, Any]) -> ModelResult:
                     "properties": {
                         "tool": {"type": "string", "enum": ["update_profile", "run_recommendation", "create_task", "answer"]},
                         "summary": {"type": "string"},
-                        "arguments": {"type": "object", "additionalProperties": True},
+                        "arguments": {
+                            "type": "object",
+                            "additionalProperties": False,
+                            "properties": argument_properties,
+                            "required": list(argument_properties),
+                        },
                     },
                     "required": ["tool", "summary", "arguments"],
                 },

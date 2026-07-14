@@ -16,6 +16,35 @@ export type ApiActionItem = {
   detail: string;
   priority: "P0" | "P1" | "P2";
   status: "待开始" | "进行中" | "已完成";
+  category?: string;
+  due_at?: string | null;
+};
+
+export type AdvisorAction = {
+  tool: "update_profile" | "run_recommendation" | "create_task" | "answer";
+  summary: string;
+  status: "completed" | "needs_confirmation" | "skipped";
+};
+
+export type AdvisorMessage = {
+  id: string;
+  role: "user" | "assistant";
+  content: string;
+  created_at: string;
+  actions: AdvisorAction[];
+};
+
+export type AdvisorThread = {
+  id: string;
+  title: string;
+  messages: AdvisorMessage[];
+};
+
+export type TranscriptAnalysis = {
+  academic_summary: string;
+  warnings: string[];
+  courses: { name: string; category: string }[];
+  program_matches: { program_slug: string; program_name: string; matched: string[]; missing: string[]; status: string }[];
 };
 
 export type ApiAgentRun = {
@@ -78,4 +107,36 @@ export async function fetchActionPlan(token: string, runId: string): Promise<Api
     headers: { Authorization: `Bearer ${token}` },
   });
   return response.items;
+}
+
+export async function createAdvisorThread(token: string): Promise<AdvisorThread> {
+  return request<AdvisorThread>("/me/advisor/threads", { method: "POST", headers: { Authorization: `Bearer ${token}` } });
+}
+
+export async function sendAdvisorMessage(token: string, threadId: string, content: string): Promise<{ thread: AdvisorThread; provider: string }> {
+  return request(`/me/advisor/threads/${threadId}/messages`, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${token}` },
+    body: JSON.stringify({ content }),
+  });
+}
+
+export async function analyzeTranscript(token: string, transcriptText: string): Promise<TranscriptAnalysis> {
+  return request<TranscriptAnalysis>("/me/transcript/analyze", {
+    method: "POST",
+    headers: { Authorization: `Bearer ${token}` },
+    body: JSON.stringify({ transcript_text: transcriptText, save_to_profile: true }),
+  });
+}
+
+export async function fetchTasks(token: string): Promise<ApiActionItem[]> {
+  return request<ApiActionItem[]>("/me/tasks", { headers: { Authorization: `Bearer ${token}` } });
+}
+
+export async function updateTask(token: string, taskId: string, status: ApiActionItem["status"]): Promise<ApiActionItem> {
+  return request<ApiActionItem>(`/me/tasks/${taskId}`, {
+    method: "PUT",
+    headers: { Authorization: `Bearer ${token}` },
+    body: JSON.stringify({ status }),
+  });
 }
