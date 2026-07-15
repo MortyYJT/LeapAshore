@@ -51,3 +51,16 @@ test("keeps program-level sources, agent tools, and disclaimers in source", asyn
   assert.doesNotMatch(page, /FastAPI connected|Demo fallback|grounded agent report/);
   assert.match(page, /查看项目官方要求/);
 });
+
+test("supports all degree levels and exposes honest catalog fallbacks", async () => {
+  const page = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
+  const levels = ["本科", "授课型硕士", "研究型硕士", "博士"];
+  const areas = ["计算机与数据", "商科与金融", "工程", "医学与健康", "法律与犯罪学", "环境与农业"];
+
+  for (const level of levels) assert.match(page, new RegExp(`\\"${level}\\"`));
+  for (const area of areas) assert.match(page, new RegExp(`\\"${area}\\"`));
+  assert.match(page, /目前还没有完成课程级要求核验/);
+  assert.match(page, /programsandcourses\.anu\.edu\.au\/Search/);
+  assert.match(page, /adelaideuni\.edu\.au\/study\/degrees/);
+  assert.match(page, /filteredResults\.length === 0/);
+});
