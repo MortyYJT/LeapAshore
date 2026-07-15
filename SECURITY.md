@@ -7,7 +7,7 @@
 ## Beta security baseline
 
 - 密码使用 scrypt 加盐哈希保存。
-- 会话、邮箱验证和密码重置令牌只保存 SHA-256 哈希，并设置有效期。
+- 会话、邮箱验证和密码重置令牌只保存 SHA-256 哈希，并设置有效期；浏览器会话使用 HttpOnly、SameSite Cookie。
 - 邮箱验证和密码重置链接单次使用；重置密码会撤销全部旧会话。
 - 管理员接口在 API 层重新校验角色，不依赖前端隐藏。
 - 生产配置缺少 PostgreSQL、SMTP、HTTPS 域名或安全 CORS 时拒绝启动。

@@ -4,7 +4,7 @@ from datetime import UTC, datetime
 from typing import Annotated, Any
 from uuid import uuid4
 
-from fastapi import Depends, FastAPI, Header, HTTPException, Query
+from fastapi import Cookie, Depends, FastAPI, Header, HTTPException, Query, Response
 from fastapi.middleware.cors import CORSMiddleware
 
 from .data import UNIVERSITIES
@@ -95,10 +95,14 @@ app.add_middleware(
 )
 
 
-def current_user(authorization: Annotated[str | None, Header()] = None) -> DemoUser:
-    if not authorization or not authorization.lower().startswith("bearer "):
+def current_user(
+    authorization: Annotated[str | None, Header()] = None,
+    session_cookie: Annotated[str | None, Cookie(alias="offerpilot_session")] = None,
+) -> DemoUser:
+    token = authorization.split(" ", 1)[1] if authorization and authorization.lower().startswith("bearer ") else session_cookie
+    if not token:
         raise HTTPException(status_code=401, detail="缺少 Bearer token")
-    user = store.user_for_token(authorization.split(" ", 1)[1])
+    user = store.user_for_token(token)
     if not user:
         raise HTTPException(status_code=401, detail="登录已失效")
     return user
@@ -147,7 +151,7 @@ def llm_status() -> LLMStatus:
 
 
 @app.post("/auth/login", response_model=AuthResponse)
-def login(payload: LoginRequest) -> AuthResponse:
+def login(payload: LoginRequest, response: Response) -> AuthResponse:
     validate_password_strength(payload.password)
     try:
         token, user = store.login(payload.email, payload.password)
@@ -157,6 +161,10 @@ def login(payload: LoginRequest) -> AuthResponse:
         raise HTTPException(status_code=403, detail=str(error)) from error
     except AccountSuspendedError as error:
         raise HTTPException(status_code=403, detail=str(error)) from error
+    response.set_cookie(
+        "offerpilot_session", token, max_age=60 * 60 * int(os.getenv("SESSION_TTL_HOURS", "168")),
+        httponly=True, secure=os.getenv("APP_ENV", "development") == "production", samesite="lax", path="/",
+    )
     return AuthResponse(access_token=token, user=user)
 
 
@@ -218,10 +226,14 @@ def reset_password(payload: PasswordResetRequest) -> MessageResponse:
 @app.post("/auth/logout", response_model=MessageResponse)
 def logout(
     _: Annotated[DemoUser, Depends(current_user)],
+    response: Response,
     authorization: Annotated[str | None, Header()] = None,
+    session_cookie: Annotated[str | None, Cookie(alias="offerpilot_session")] = None,
 ) -> MessageResponse:
-    if authorization:
-        store.logout(authorization.split(" ", 1)[1])
+    token = authorization.split(" ", 1)[1] if authorization and authorization.lower().startswith("bearer ") else session_cookie
+    if token:
+        store.logout(token)
+    response.delete_cookie("offerpilot_session", path="/", secure=os.getenv("APP_ENV", "development") == "production", samesite="lax")
     return MessageResponse(message="已安全退出")
 
 

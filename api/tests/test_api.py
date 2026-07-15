@@ -63,6 +63,15 @@ def test_registration_requires_verification_and_logout_revokes_session() -> None
     assert client.get("/me", headers=headers).status_code == 401
 
 
+def test_http_only_cookie_restores_same_origin_session() -> None:
+    login = registered_login("cookie-session@offerpilot.cn")
+    assert "httponly" in login.headers["set-cookie"].lower()
+    assert "samesite=lax" in login.headers["set-cookie"].lower()
+    assert client.get("/me").json()["email"] == "cookie-session@offerpilot.cn"
+    assert client.post("/auth/logout").status_code == 200
+    assert client.get("/me").status_code == 401
+
+
 def test_admin_can_review_feedback_and_suspend_users() -> None:
     user_login = registered_login("feedback-user@offerpilot.cn")
     user_headers = {"Authorization": f"Bearer {user_login.json()['access_token']}"}
@@ -140,8 +149,9 @@ def test_agent_returns_programs_tools_and_citations() -> None:
 
     assert response.status_code == 200
     body = response.json()
-    assert body["workflow_version"] == "agent-0.3.0"
-    assert len(body["tool_trace"]) == 5
+    assert body["workflow_version"] == "agent-0.4.0"
+    assert len(body["tool_trace"]) == 6
+    assert len(body["catalog_options"]) == 8
     assert len(body["recommendations"]) >= 6
     assert all(item["citations"] for item in body["recommendations"])
     assert all(item["program"]["source"]["url"].startswith("https://") for item in body["recommendations"])
@@ -165,6 +175,31 @@ def test_agent_flags_missing_language_and_prerequisite_evidence() -> None:
     assert "语言成绩" in body["missing_information"]
     assert "用于确认先修课的成绩单课程列表" in body["missing_information"]
     assert any(item["tier"] == "暂不推荐" for item in body["recommendations"])
+
+
+def test_agent_covers_every_go8_degree_and_study_area_without_inventing_rules() -> None:
+    facets = client.get("/catalog/facets").json()
+    assert facets["coverage_cells"] == 384
+    for degree_level in facets["degree_levels"]:
+        for field in facets["study_areas"]:
+            response = client.post("/agent/recommendations", json={
+                "current_education_level": "本科",
+                "undergraduate_school": "示例大学",
+                "school_tier": "双非",
+                "undergraduate_major": "示例专业",
+                "gpa": 80,
+                "gpa_scale": 100,
+                "target_degree_level": degree_level,
+                "target_field": field,
+                "intake": "2027 S1",
+            })
+            assert response.status_code == 200
+            body = response.json()
+            assert len(body["catalog_options"]) == 8
+            assert {item["degree_level"] for item in body["catalog_options"]} == {degree_level}
+            assert {item["field"] for item in body["catalog_options"]} == {field}
+            if not body["recommendations"]:
+                assert "暂不生成录取分档" in body["summary"]
 
 
 def test_complete_authenticated_product_flow() -> None:

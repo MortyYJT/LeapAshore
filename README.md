@@ -105,7 +105,7 @@ OLLAMA_MODEL=qwen2.5:0.5b
 - Agent：Ollama + Qwen2.5 0.5B + Structured Outputs + 服务端白名单工具执行
 - 测试：Node Test Runner、pytest、固定 Agent Eval
 - 持久化：Repository 抽象、进程内 Demo Store、SQLite、PostgreSQL JSONB
-- 安全：scrypt 密码哈希、随机过期会话、服务端密钥、逐请求鉴权
+- 安全：scrypt 密码哈希、HttpOnly/SameSite 会话 Cookie、哈希令牌、限流、安全响应头、服务端密钥、逐请求鉴权
 - 账户：邮箱验证、密码重置、会话撤销、账户停用、数据导出与删除
 - 可观测性：请求 ID、结构化访问日志、可选 Sentry、模型/Prompt/Workflow 版本、耗时、Token 与工具轨迹
 - 工程化：GitHub Actions、Docker Compose、Caddy、Sites/Vercel 前端预览
@@ -252,9 +252,11 @@ Vercel Serverless 不适合常驻加载 Ollama 模型，因此无 Key 的完整 
 ```bash
 pnpm run lint
 pnpm test
+pnpm audit --prod
 
 cd api
 .venv/bin/pytest -q
+.venv/bin/pip-audit --local
 PYTHONPATH=. .venv/bin/python evals/run_eval.py
 ```
 

@@ -106,6 +106,7 @@ class AgentRecommendationResponse(BaseModel):
     summary: str
     missing_information: list[str]
     tool_trace: list[ToolTrace]
+    catalog_options: list[CatalogCoverage] = Field(default_factory=list)
     recommendations: list[ProgramRecommendation]
 
 

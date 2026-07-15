@@ -10,6 +10,7 @@ from ..models import (
     ProgramRecommendation,
     ToolTrace,
 )
+from ..catalog_data import CATALOG_COVERAGE
 from ..program_data import PROGRAMS
 from .recommender import normalize_gpa
 from .model_provider import ModelProviderError, configured_agent_mode, generate_grounded_summary
@@ -101,6 +102,10 @@ def run_recommendation_agent(profile: ApplicantProfile) -> AgentRecommendationRe
         if program.field == profile.target_field and program.degree_level == profile.target_degree_level
     ]
     results = [recommend_program(program, profile) for program in programs]
+    catalog_options = [
+        item for item in CATALOG_COVERAGE
+        if item.degree_level == profile.target_degree_level and item.field == profile.target_field
+    ]
     order = {"匹配": 0, "稳妥": 1, "冲刺": 2, "暂不推荐": 3}
     results.sort(key=lambda item: (order[item.tier], -item.match_score))
 
@@ -123,6 +128,12 @@ def run_recommendation_agent(profile: ApplicantProfile) -> AgentRecommendationRe
         ToolTrace(step=1, tool="normalize_gpa", status="completed", summary=f"将成绩换算为 {gpa}/100。"),
         ToolTrace(
             step=2,
+            tool="retrieve_official_catalogs",
+            status="completed",
+            summary=f"已连接 {len(catalog_options)} 所澳洲八大的{profile.target_degree_level} · {profile.target_field}官方课程目录。",
+        ),
+        ToolTrace(
+            step=3,
             tool="retrieve_programs",
             status="completed" if programs else "needs_input",
             summary=(
@@ -132,15 +143,15 @@ def run_recommendation_agent(profile: ApplicantProfile) -> AgentRecommendationRe
             ),
             evidence_ids=evidence_ids,
         ),
-        ToolTrace(step=3, tool="check_hard_constraints", status="completed" if programs else "skipped", summary="逐项检查均分、专业背景、先修课和语言门槛。" if programs else "没有课程级门槛，未执行硬条件判断。", evidence_ids=evidence_ids),
-        ToolTrace(step=4, tool="rank_portfolio", status="completed" if programs else "skipped", summary="按可解释规则生成冲刺、匹配、稳妥和暂不推荐分层。" if programs else "没有已核验项目，未生成误导性分档。"),
-        ToolTrace(step=5, tool="validate_citations", status="completed" if programs else "skipped", summary=f"{len(results)}/{len(results)} 条推荐均绑定官方来源。" if programs else "没有推荐结果需要引用校验。", evidence_ids=evidence_ids),
+        ToolTrace(step=4, tool="check_hard_constraints", status="completed" if programs else "skipped", summary="逐项检查均分、专业背景、先修课和语言门槛。" if programs else "没有课程级门槛，未执行硬条件判断。", evidence_ids=evidence_ids),
+        ToolTrace(step=5, tool="rank_portfolio", status="completed" if programs else "skipped", summary="按可解释规则生成冲刺、匹配、稳妥和暂不推荐分层。" if programs else "没有已核验项目，未生成误导性分档。"),
+        ToolTrace(step=6, tool="validate_citations", status="completed" if programs else "skipped", summary=f"{len(results)}/{len(results)} 条推荐均绑定官方来源。" if programs else "没有推荐结果需要引用校验。", evidence_ids=evidence_ids),
     ]
 
     eligible = sum(item.eligibility == "满足基础门槛" for item in results)
     result = AgentRecommendationResponse(
         run_id=f"run_{uuid4().hex[:10]}",
-        workflow_version="agent-0.3.0",
+        workflow_version="agent-0.4.0",
         summary=(
             f"已对照 {len(programs)} 个{profile.target_degree_level}具体项目，其中 {eligible} 个达到当前公开的基础申请要求。"
             if programs else
@@ -148,6 +159,7 @@ def run_recommendation_agent(profile: ApplicantProfile) -> AgentRecommendationRe
         ),
         missing_information=missing,
         tool_trace=trace,
+        catalog_options=catalog_options,
         recommendations=results,
     )
     if programs and configured_agent_mode() == "llm-assisted":
@@ -156,7 +168,7 @@ def run_recommendation_agent(profile: ApplicantProfile) -> AgentRecommendationRe
             result.agent_mode = "llm-assisted"
             result.tool_trace.append(
                 ToolTrace(
-                    step=6,
+                    step=7,
                     tool="llm_grounded_explainer",
                     status="completed",
                     summary="模型基于已验证工具结果生成总结，未参与硬门槛判断。",
@@ -166,7 +178,7 @@ def run_recommendation_agent(profile: ApplicantProfile) -> AgentRecommendationRe
         except ModelProviderError:
             result.tool_trace.append(
                 ToolTrace(
-                    step=6,
+                    step=7,
                     tool="llm_grounded_explainer",
                     status="skipped",
                     summary="模型不可用，已安全降级为 deterministic-demo。",

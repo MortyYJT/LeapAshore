@@ -16,6 +16,7 @@ jobs:
           cache: pnpm
       - run: corepack enable
       - run: pnpm install --frozen-lockfile
+      - run: pnpm audit --prod
       - run: pnpm run lint
       - run: pnpm run build:next
       - run: pnpm test
@@ -45,8 +46,10 @@ jobs:
         with:
           python-version: "3.12"
           cache: pip
-          cache-dependency-path: api/requirements.txt
-      - run: pip install -r requirements.txt
+          cache-dependency-path: api/requirements-dev.txt
+      - run: python -m pip install --upgrade pip==26.1.2
+      - run: pip install -r requirements-dev.txt
+      - run: pip-audit --local
       - run: pytest -q
       - run: PYTHONPATH=. python evals/run_eval.py
       - run: DATABASE_URL=postgresql://offerpilot:offerpilot_test@localhost:5432/offerpilot_test alembic upgrade head

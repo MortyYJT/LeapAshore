@@ -170,6 +170,8 @@ button { color: inherit; }
 .auth-links { display: flex; justify-content: space-between; margin-top: 14px; }
 .auth-links button { border: 0; background: transparent; color: var(--green); padding: 4px 0; cursor: pointer; font-size: 11px; }
 .fine-print button { border: 0; border-bottom: 1px solid currentColor; background: transparent; color: var(--green); padding: 0; cursor: pointer; font: inherit; }
+.auth-form .consent-field { flex-direction: row; align-items: center; gap: 9px; margin: 0 0 16px; color: var(--muted); font-weight: 500; }
+.auth-form .consent-field input { width: 16px; height: 16px; margin: 0; accent-color: var(--green); }
 .legal-page { max-width: 760px; min-height: calc(100vh - 76px); margin: 0 auto; padding: 60px 24px 100px; }
 .legal-page h1 { font-family: Georgia, "Songti SC", serif; font-size: 44px; font-weight: 500; margin: 12px 0; }.legal-page h2 { margin-top: 34px; font-size: 17px; }.legal-page p { color: var(--muted); font-size: 12px; line-height: 1.9; }
 .outline-button.wide { width: 100%; margin-top: 10px; }

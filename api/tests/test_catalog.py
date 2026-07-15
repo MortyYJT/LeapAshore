@@ -69,6 +69,8 @@ def test_agent_returns_an_honest_empty_state_for_unverified_scope() -> None:
     body = response.json()
     assert body["recommendations"] == []
     assert "暂不生成录取分档" in body["summary"]
-    assert body["tool_trace"][1]["status"] == "needs_input"
+    assert body["tool_trace"][1]["tool"] == "retrieve_official_catalogs"
+    assert body["tool_trace"][1]["status"] == "completed"
+    assert body["tool_trace"][2]["status"] == "needs_input"
     assert body["tool_trace"][3]["status"] == "skipped"
     assert "该学位层次与专业方向的课程级核验数据" in body["missing_information"]

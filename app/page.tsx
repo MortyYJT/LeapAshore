@@ -21,6 +21,7 @@ import {
   fetchAdminStats,
   fetchAdminUsers,
   fetchAdminProgramSources,
+  fetchCurrentUser,
   fetchActionPlan,
   fetchHistory,
   fetchTasks,
@@ -234,6 +235,7 @@ export default function Home() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
+  const [acceptedTerms, setAcceptedTerms] = useState(false);
   const [authMode, setAuthMode] = useState<AuthMode>("login");
   const [authNotice, setAuthNotice] = useState("");
   const [debugVerificationToken, setDebugVerificationToken] = useState<string | null>(null);
@@ -289,6 +291,17 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    fetchCurrentUser()
+      .then((user) => {
+        setCurrentUser(user);
+        setToken("cookie");
+        setIsAuthenticated(true);
+        setView((current) => current === "login" ? "profile" : current);
+      })
+      .catch(() => undefined);
+  }, []);
+
+  useEffect(() => {
     if (view === "feedback" && token) {
       void fetchMyFeedback(token).then(setMyFeedback).catch(() => setError("暂时无法读取反馈记录"));
     }
@@ -332,7 +345,9 @@ export default function Home() {
     setIsSubmitting(true);
     try {
       const session = await loginWithAccount(email, password);
-      setToken(session.access_token);
+      // The browser session lives in an HttpOnly cookie. Keep only a presence
+      // marker in React so the real credential is never retained by UI state.
+      setToken("cookie");
       setCurrentUser(session.user);
       setIsAuthenticated(true);
       setView("profile");
@@ -350,7 +365,7 @@ export default function Home() {
     setAuthNotice("");
     setIsSubmitting(true);
     try {
-      const result = await registerAccount(email, password, displayName);
+      const result = await registerAccount(email, password, displayName, acceptedTerms);
       setAuthNotice(result.message);
       setDebugVerificationToken(result.debug_token ?? null);
     } catch (reason) {
@@ -520,7 +535,7 @@ export default function Home() {
     setHistory((items) => [{
       run_id: localRunId,
       created_at: new Date().toISOString(),
-      workflow_version: "agent-0.3.0",
+      workflow_version: "agent-0.4.0",
       target_field: profile.target,
       intake: profile.intake,
       recommendation_count: results.length,
@@ -629,12 +644,13 @@ export default function Home() {
             {authMode !== "forgot" && <label>{authMode === "login" ? "密码" : "密码（至少 8 位，包含字母和数字）"}<input type="password" value={password} onChange={(event) => setPassword(event.target.value)} autoComplete={authMode === "login" ? "current-password" : "new-password"} /></label>}
             {authNotice && <p className="form-success">{authNotice}</p>}
             {error && <p className="form-error">{error}</p>}
-            <button className="primary-button wide" type="submit" disabled={isSubmitting}>{isSubmitting ? "正在处理…" : authMode === "login" ? "登录" : authMode === "register" ? "注册并验证邮箱" : authMode === "forgot" ? "发送重置邮件" : "更新密码"} <span>→</span></button>
+            {authMode === "register" && <label className="consent-field"><input type="checkbox" checked={acceptedTerms} onChange={(event) => setAcceptedTerms(event.target.checked)} /><span>我已阅读并同意服务条款与隐私说明</span></label>}
+            <button className="primary-button wide" type="submit" disabled={isSubmitting || (authMode === "register" && !acceptedTerms)}>{isSubmitting ? "正在处理…" : authMode === "login" ? "登录" : authMode === "register" ? "注册并验证邮箱" : authMode === "forgot" ? "发送重置邮件" : "更新密码"} <span>→</span></button>
             {debugVerificationToken && <button className="outline-button wide" type="button" onClick={() => void completeLocalVerification()}>本地环境：完成邮箱验证</button>}
             {authMode === "login" && <div className="auth-links"><button type="button" onClick={() => { setAuthMode("register"); setError(""); setAuthNotice(""); }}>注册账户</button><button type="button" onClick={() => { setAuthMode("forgot"); setError(""); setAuthNotice(""); }}>忘记密码</button></div>}
             {authMode === "register" && <div className="auth-links"><button type="button" onClick={() => void handleResendVerification()}>重新发送验证邮件</button><button type="button" onClick={() => setAuthMode("login")}>已有账户，去登录</button></div>}
             {(authMode === "forgot" || authMode === "reset") && <div className="auth-links"><button type="button" onClick={() => setAuthMode("login")}>返回登录</button></div>}
-            <p className="fine-print">注册即表示同意 <button type="button" onClick={() => setView("terms")}>服务条款</button> 与 <button type="button" onClick={() => setView("privacy")}>隐私说明</button>。你的资料仅用于生成和保存申请规划。</p>
+            <p className="fine-print">请在注册前阅读 <button type="button" onClick={() => setView("terms")}>服务条款</button> 与 <button type="button" onClick={() => setView("privacy")}>隐私说明</button>。你的资料仅用于生成和保存申请规划。</p>
           </form>
         </div></section>
       )}

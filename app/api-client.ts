@@ -111,15 +111,27 @@ export type ApiAgentRun = {
 const API_URL = (process.env.NEXT_PUBLIC_API_URL ?? "/api").replace(/\/$/, "");
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
+  const headers = new Headers({ "Content-Type": "application/json", ...init?.headers });
+  if (headers.get("Authorization") === "Bearer cookie") headers.delete("Authorization");
   const response = await fetch(`${API_URL}${path}`, {
     ...init,
-    headers: { "Content-Type": "application/json", ...init?.headers },
+    credentials: "include",
+    headers,
   });
   if (!response.ok) {
-    const body = await response.json().catch(() => null) as { detail?: string } | null;
-    throw new Error(body?.detail ?? `API request failed: ${response.status}`);
+    const body = await response.json().catch(() => null) as {
+      detail?: string | Array<{ msg?: string }>;
+    } | null;
+    const detail = Array.isArray(body?.detail)
+      ? body.detail.map((item) => item.msg).filter(Boolean).join("；")
+      : body?.detail;
+    throw new Error(detail || `请求失败（${response.status}）`);
   }
   return response.json() as Promise<T>;
+}
+
+export async function fetchCurrentUser(): Promise<ApiUser> {
+  return request<ApiUser>("/me");
 }
 
 export async function loginWithAccount(email: string, password: string): Promise<AuthSession> {
@@ -129,10 +141,15 @@ export async function loginWithAccount(email: string, password: string): Promise
   });
 }
 
-export async function registerAccount(email: string, password: string, displayName: string): Promise<RegistrationResult> {
+export async function registerAccount(
+  email: string,
+  password: string,
+  displayName: string,
+  acceptedTerms: boolean,
+): Promise<RegistrationResult> {
   return request<RegistrationResult>("/auth/register", {
     method: "POST",
-    body: JSON.stringify({ email, password, display_name: displayName, accepted_terms: true }),
+    body: JSON.stringify({ email, password, display_name: displayName, accepted_terms: acceptedTerms }),
   });
 }
 
