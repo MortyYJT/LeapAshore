@@ -1,5 +1,48 @@
 export type ApiMode = "fastapi" | "demo-fallback";
 
+export type ApiUser = {
+  id: string;
+  email: string;
+  display_name: string;
+  role: "user" | "admin";
+  email_verified: boolean;
+  status: "active" | "suspended";
+  created_at?: string | null;
+  last_login_at?: string | null;
+};
+
+export type AuthSession = { access_token: string; user: ApiUser };
+
+export type RegistrationResult = {
+  message: string;
+  user: ApiUser;
+  delivery: "smtp" | "console" | "disabled";
+  debug_token?: string | null;
+};
+
+export type FeedbackItem = {
+  id: string;
+  user_id: string;
+  user_email: string;
+  category: "问题" | "建议" | "数据错误" | "其他";
+  message: string;
+  page?: string | null;
+  status: "new" | "reviewing" | "resolved";
+  created_at: string;
+  updated_at: string;
+};
+
+export type AdminStats = {
+  users: number;
+  verified_users: number;
+  active_sessions: number;
+  recommendation_runs: number;
+  advisor_threads: number;
+  open_feedback: number;
+  verified_programs: number;
+  catalog_coverage_cells: number;
+};
+
 export type ApiHistoryItem = {
   run_id: string;
   created_at: string;
@@ -54,10 +97,6 @@ export type ApiAgentRun = {
   summary: string;
 };
 
-type LoginResponse = {
-  access_token: string;
-};
-
 // Same-origin is the production default; Sites gracefully falls back when /api is absent.
 const API_URL = (process.env.NEXT_PUBLIC_API_URL ?? "/api").replace(/\/$/, "");
 
@@ -73,12 +112,50 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
   return response.json() as Promise<T>;
 }
 
-export async function loginWithDemoAccount(email: string, password: string): Promise<string> {
-  const response = await request<LoginResponse>("/auth/login", {
+export async function loginWithAccount(email: string, password: string): Promise<AuthSession> {
+  return request<AuthSession>("/auth/login", {
     method: "POST",
     body: JSON.stringify({ email, password }),
   });
-  return response.access_token;
+}
+
+export async function registerAccount(email: string, password: string, displayName: string): Promise<RegistrationResult> {
+  return request<RegistrationResult>("/auth/register", {
+    method: "POST",
+    body: JSON.stringify({ email, password, display_name: displayName, accepted_terms: true }),
+  });
+}
+
+export async function verifyEmail(token: string): Promise<string> {
+  const response = await request<{ message: string }>("/auth/verify-email", {
+    method: "POST", body: JSON.stringify({ token }),
+  });
+  return response.message;
+}
+
+export async function resendVerification(email: string): Promise<string> {
+  const response = await request<{ message: string }>("/auth/resend-verification", {
+    method: "POST", body: JSON.stringify({ email }),
+  });
+  return response.message;
+}
+
+export async function requestPasswordReset(email: string): Promise<string> {
+  const response = await request<{ message: string }>("/auth/forgot-password", {
+    method: "POST", body: JSON.stringify({ email }),
+  });
+  return response.message;
+}
+
+export async function resetPassword(token: string, password: string): Promise<string> {
+  const response = await request<{ message: string }>("/auth/reset-password", {
+    method: "POST", body: JSON.stringify({ token, password }),
+  });
+  return response.message;
+}
+
+export async function logoutAccount(token: string): Promise<void> {
+  await request("/auth/logout", { method: "POST", headers: { Authorization: `Bearer ${token}` } });
 }
 
 export async function saveProfile(token: string, profile: Record<string, unknown>): Promise<void> {
@@ -138,5 +215,42 @@ export async function updateTask(token: string, taskId: string, status: ApiActio
     method: "PUT",
     headers: { Authorization: `Bearer ${token}` },
     body: JSON.stringify({ status }),
+  });
+}
+
+export async function createFeedback(
+  token: string,
+  payload: { category: FeedbackItem["category"]; message: string; page?: string },
+): Promise<FeedbackItem> {
+  return request<FeedbackItem>("/me/feedback", {
+    method: "POST", headers: { Authorization: `Bearer ${token}` }, body: JSON.stringify(payload),
+  });
+}
+
+export async function fetchMyFeedback(token: string): Promise<FeedbackItem[]> {
+  return request<FeedbackItem[]>("/me/feedback", { headers: { Authorization: `Bearer ${token}` } });
+}
+
+export async function fetchAdminStats(token: string): Promise<AdminStats> {
+  return request<AdminStats>("/admin/stats", { headers: { Authorization: `Bearer ${token}` } });
+}
+
+export async function fetchAdminUsers(token: string): Promise<ApiUser[]> {
+  return request<ApiUser[]>("/admin/users", { headers: { Authorization: `Bearer ${token}` } });
+}
+
+export async function updateAdminUser(token: string, userId: string, status: ApiUser["status"]): Promise<ApiUser> {
+  return request<ApiUser>(`/admin/users/${userId}`, {
+    method: "PUT", headers: { Authorization: `Bearer ${token}` }, body: JSON.stringify({ status }),
+  });
+}
+
+export async function fetchAdminFeedback(token: string): Promise<FeedbackItem[]> {
+  return request<FeedbackItem[]>("/admin/feedback", { headers: { Authorization: `Bearer ${token}` } });
+}
+
+export async function updateAdminFeedback(token: string, feedbackId: string, status: FeedbackItem["status"]): Promise<FeedbackItem> {
+  return request<FeedbackItem>(`/admin/feedback/${feedbackId}`, {
+    method: "PUT", headers: { Authorization: `Bearer ${token}` }, body: JSON.stringify({ status }),
   });
 }

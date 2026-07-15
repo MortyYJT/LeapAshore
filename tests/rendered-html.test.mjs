@@ -64,3 +64,16 @@ test("supports all degree levels and exposes honest catalog fallbacks", async ()
   assert.match(page, /adelaideuni\.edu\.au\/study\/degrees/);
   assert.match(page, /filteredResults\.length === 0/);
 });
+
+test("exposes verified account, feedback, and admin product flows", async () => {
+  const page = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
+  const client = await readFile(new URL("../app/api-client.ts", import.meta.url), "utf8");
+
+  for (const label of ["注册账户", "忘记密码", "注册并验证邮箱", "退出登录", "产品反馈", "运营后台"]) {
+    assert.match(page, new RegExp(label));
+  }
+  for (const endpoint of ["/auth/register", "/auth/verify-email", "/auth/forgot-password", "/auth/reset-password", "/auth/logout", "/admin/stats", "/admin/users", "/admin/feedback"]) {
+    assert.match(client, new RegExp(endpoint.replaceAll("/", "\\/")));
+  }
+  assert.match(page, /currentUser\?\.role === "admin"/);
+});

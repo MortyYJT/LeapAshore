@@ -4,24 +4,41 @@ import { FormEvent, useEffect, useMemo, useState } from "react";
 
 import {
   AdvisorThread,
+  AdminStats,
   ApiActionItem,
   ApiHistoryItem,
+  ApiUser,
+  FeedbackItem,
   TranscriptAnalysis,
   analyzeTranscript,
   createAdvisorThread,
   createAgentRun,
+  createFeedback,
+  fetchAdminFeedback,
+  fetchAdminStats,
+  fetchAdminUsers,
   fetchActionPlan,
   fetchHistory,
   fetchTasks,
-  loginWithDemoAccount,
+  fetchMyFeedback,
+  loginWithAccount,
+  logoutAccount,
+  registerAccount,
+  requestPasswordReset,
+  resendVerification,
+  resetPassword,
   saveProfile,
   sendAdvisorMessage,
   updateTask,
+  updateAdminFeedback,
+  updateAdminUser,
+  verifyEmail,
 } from "./api-client";
 
-type View = "landing" | "login" | "profile" | "agent" | "advisor" | "results" | "program" | "plan" | "history";
+type View = "landing" | "login" | "profile" | "agent" | "advisor" | "results" | "program" | "plan" | "history" | "feedback" | "admin";
 type Tier = "冲刺" | "匹配" | "稳妥" | "暂不推荐";
-type NavSection = "landing" | "profile" | "advisor" | "results" | "plan" | "history";
+type NavSection = "landing" | "profile" | "advisor" | "results" | "plan" | "history" | "feedback" | "admin";
+type AuthMode = "login" | "register" | "forgot" | "reset";
 
 type Profile = {
   currentEducation: string;
@@ -195,6 +212,7 @@ const navItems: { section: NavSection; label: string }[] = [
   { section: "results", label: "选校方案" },
   { section: "plan", label: "行动计划" },
   { section: "history", label: "历史记录" },
+  { section: "feedback", label: "产品反馈" },
 ];
 
 function activeNavSection(view: View): NavSection | null {
@@ -208,8 +226,14 @@ export default function Home() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [profileStep, setProfileStep] = useState<1 | 2>(1);
   const [profile, setProfile] = useState<Profile>(initialProfile);
-  const [email, setEmail] = useState("demo@offerpilot.cn");
-  const [password, setPassword] = useState("demo1234");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [displayName, setDisplayName] = useState("");
+  const [authMode, setAuthMode] = useState<AuthMode>("login");
+  const [authNotice, setAuthNotice] = useState("");
+  const [debugVerificationToken, setDebugVerificationToken] = useState<string | null>(null);
+  const [resetToken, setResetToken] = useState("");
+  const [currentUser, setCurrentUser] = useState<ApiUser | null>(null);
   const [error, setError] = useState("");
   const [selected, setSelected] = useState<Program | null>(null);
   const [tierFilter, setTierFilter] = useState<"全部" | Tier>("全部");
@@ -225,6 +249,12 @@ export default function Home() {
   const [advisorProvider, setAdvisorProvider] = useState("正在连接顾问");
   const [transcriptText, setTranscriptText] = useState("");
   const [transcriptResult, setTranscriptResult] = useState<TranscriptAnalysis | null>(null);
+  const [feedbackCategory, setFeedbackCategory] = useState<FeedbackItem["category"]>("建议");
+  const [feedbackMessage, setFeedbackMessage] = useState("");
+  const [myFeedback, setMyFeedback] = useState<FeedbackItem[]>([]);
+  const [adminStats, setAdminStats] = useState<AdminStats | null>(null);
+  const [adminUsers, setAdminUsers] = useState<ApiUser[]>([]);
+  const [adminFeedback, setAdminFeedback] = useState<FeedbackItem[]>([]);
 
   const results = useMemo(
     () => profile.targetDegree === "授课型硕士" && profile.target === "计算机与数据"
@@ -235,6 +265,32 @@ export default function Home() {
   const filteredResults = results.filter((item) => tierFilter === "全部" || item.tier === tierFilter);
   const readiness = [profile.school, profile.major, profile.gpa, profile.english, profile.coursework, profile.experience, profile.careerGoal, profile.annualBudget]
     .filter((value) => value.trim()).length * 12.5;
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const verification = params.get("verify_token");
+    const passwordReset = params.get("reset_token");
+    if (verification) {
+      verifyEmail(verification)
+        .then((message) => { setAuthNotice(message); setAuthMode("login"); })
+        .catch((reason: Error) => setError(reason.message));
+      window.history.replaceState({}, "", window.location.pathname);
+    } else if (passwordReset) {
+      Promise.resolve().then(() => { setResetToken(passwordReset); setAuthMode("reset"); });
+      window.history.replaceState({}, "", window.location.pathname);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (view === "feedback" && token) {
+      void fetchMyFeedback(token).then(setMyFeedback).catch(() => setError("暂时无法读取反馈记录"));
+    }
+    if (view === "admin" && token && currentUser?.role === "admin") {
+      void Promise.all([fetchAdminStats(token), fetchAdminUsers(token), fetchAdminFeedback(token)])
+        .then(([stats, users, feedback]) => { setAdminStats(stats); setAdminUsers(users); setAdminFeedback(feedback); })
+        .catch(() => setError("暂时无法读取运营后台数据"));
+    }
+  }, [view, token, currentUser]);
   useEffect(() => {
     if (view !== "agent") return;
     let current = 0;
@@ -261,23 +317,128 @@ export default function Home() {
 
   async function handleLogin(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (!email.includes("@") || password.length < 6) {
-      setError("请输入有效邮箱，密码至少 6 位。");
+    if (!email.includes("@") || password.length < 8) {
+      setError("请输入有效邮箱，密码至少 8 位。");
       return;
     }
     setError("");
     setIsSubmitting(true);
     try {
-      const accessToken = await loginWithDemoAccount(email, password);
-      setToken(accessToken);
+      const session = await loginWithAccount(email, password);
+      setToken(session.access_token);
+      setCurrentUser(session.user);
       setIsAuthenticated(true);
       setView("profile");
-    } catch {
+    } catch (reason) {
       setToken(null);
-      setError("邮箱或密码不正确，请检查后重试。");
+      setError(reason instanceof Error ? reason.message : "登录失败，请稍后重试。");
     } finally {
       setIsSubmitting(false);
     }
+  }
+
+  async function handleRegister(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setError("");
+    setAuthNotice("");
+    setIsSubmitting(true);
+    try {
+      const result = await registerAccount(email, password, displayName);
+      setAuthNotice(result.message);
+      setDebugVerificationToken(result.debug_token ?? null);
+    } catch (reason) {
+      setError(reason instanceof Error ? reason.message : "注册失败，请稍后重试。");
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
+  async function handleForgotPassword(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setError("");
+    setIsSubmitting(true);
+    try {
+      setAuthNotice(await requestPasswordReset(email));
+    } catch (reason) {
+      setError(reason instanceof Error ? reason.message : "暂时无法发送重置邮件");
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
+  async function handleResendVerification() {
+    setError("");
+    try {
+      setAuthNotice(await resendVerification(email));
+    } catch (reason) {
+      setError(reason instanceof Error ? reason.message : "暂时无法发送验证邮件");
+    }
+  }
+
+  async function handleResetPassword(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setError("");
+    setIsSubmitting(true);
+    try {
+      setAuthNotice(await resetPassword(resetToken, password));
+      setAuthMode("login");
+    } catch (reason) {
+      setError(reason instanceof Error ? reason.message : "密码重置失败");
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
+  async function completeLocalVerification() {
+    if (!debugVerificationToken) return;
+    setIsSubmitting(true);
+    try {
+      setAuthNotice(await verifyEmail(debugVerificationToken));
+      setDebugVerificationToken(null);
+      setAuthMode("login");
+    } catch (reason) {
+      setError(reason instanceof Error ? reason.message : "验证失败");
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
+  async function handleLogout() {
+    if (token) await logoutAccount(token).catch(() => undefined);
+    setToken(null);
+    setCurrentUser(null);
+    setIsAuthenticated(false);
+    setView("login");
+    setAuthMode("login");
+  }
+
+  async function handleFeedback(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    if (!token || feedbackMessage.trim().length < 3) return;
+    setIsSubmitting(true);
+    try {
+      const item = await createFeedback(token, { category: feedbackCategory, message: feedbackMessage.trim(), page: view });
+      setMyFeedback((items) => [item, ...items]);
+      setFeedbackMessage("");
+      setAuthNotice("反馈已提交，我们会在后台跟进处理。");
+    } catch (reason) {
+      setError(reason instanceof Error ? reason.message : "反馈提交失败");
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
+
+  async function changeUserStatus(userId: string, status: ApiUser["status"]) {
+    if (!token) return;
+    const updated = await updateAdminUser(token, userId, status);
+    setAdminUsers((users) => users.map((user) => user.id === updated.id ? updated : user));
+  }
+
+  async function changeFeedbackStatus(feedbackId: string, status: FeedbackItem["status"]) {
+    if (!token) return;
+    const updated = await updateAdminFeedback(token, feedbackId, status);
+    setAdminFeedback((items) => items.map((item) => item.id === updated.id ? updated : item));
+    setAdminStats(await fetchAdminStats(token));
   }
 
   function navigateTo(section: NavSection) {
@@ -396,9 +557,10 @@ export default function Home() {
               <span>{item.label}</span>
             </button>;
           })}
+          {currentUser?.role === "admin" && <button className={activeNavSection(view) === "admin" ? "active" : ""} aria-current={activeNavSection(view) === "admin" ? "page" : undefined} onClick={() => navigateTo("admin")}><span>运营后台</span></button>}
         </nav>}
         {isAuthenticated
-          ? <button className="account-pill" onClick={() => setView("login")}><span>{email.slice(0, 1).toUpperCase()}</span>我的账户</button>
+          ? <button className="account-pill" onClick={() => void handleLogout()}><span>{currentUser?.display_name.slice(0, 1).toUpperCase() || "U"}</span>退出登录</button>
           : <span className="login-required">请先登录</span>}
       </header>
 
@@ -430,7 +592,21 @@ export default function Home() {
       {view === "login" && (
         <section className="center-stage"><div className="auth-panel">
           <div className="auth-intro"><p className="eyebrow"><span /> OfferPilot</p><h2>把复杂申请，<br />拆成清晰步骤</h2><p>保存你的申请背景、选校方案和材料进度，随时回来继续推进。</p><blockquote>先确认要求，再确定组合；先补关键缺口，再投入申请材料。</blockquote></div>
-          <form className="auth-form" onSubmit={handleLogin}><div className="step-kicker">账户登录</div><h3>继续你的申请规划</h3><label>邮箱<input type="email" value={email} onChange={(event) => setEmail(event.target.value)} /></label><label>密码<input type="password" value={password} onChange={(event) => setPassword(event.target.value)} /></label>{error && <p className="form-error">{error}</p>}<button className="primary-button wide" type="submit" disabled={isSubmitting}>{isSubmitting ? "正在登录…" : "登录"} <span>→</span></button><p className="fine-print">你的资料仅用于生成和保存申请规划。</p></form>
+          <form className="auth-form" onSubmit={authMode === "login" ? handleLogin : authMode === "register" ? handleRegister : authMode === "forgot" ? handleForgotPassword : handleResetPassword}>
+            <div className="step-kicker">{authMode === "login" ? "账户登录" : authMode === "register" ? "创建账户" : authMode === "forgot" ? "找回密码" : "设置新密码"}</div>
+            <h3>{authMode === "login" ? "继续你的申请规划" : authMode === "register" ? "开始建立申请档案" : authMode === "forgot" ? "接收密码重置邮件" : "为账户设置新密码"}</h3>
+            {authMode === "register" && <label>你的称呼<input value={displayName} onChange={(event) => setDisplayName(event.target.value)} autoComplete="name" /></label>}
+            {authMode !== "reset" && <label>邮箱<input type="email" value={email} onChange={(event) => setEmail(event.target.value)} autoComplete="email" /></label>}
+            {authMode !== "forgot" && <label>{authMode === "login" ? "密码" : "密码（至少 8 位，包含字母和数字）"}<input type="password" value={password} onChange={(event) => setPassword(event.target.value)} autoComplete={authMode === "login" ? "current-password" : "new-password"} /></label>}
+            {authNotice && <p className="form-success">{authNotice}</p>}
+            {error && <p className="form-error">{error}</p>}
+            <button className="primary-button wide" type="submit" disabled={isSubmitting}>{isSubmitting ? "正在处理…" : authMode === "login" ? "登录" : authMode === "register" ? "注册并验证邮箱" : authMode === "forgot" ? "发送重置邮件" : "更新密码"} <span>→</span></button>
+            {debugVerificationToken && <button className="outline-button wide" type="button" onClick={() => void completeLocalVerification()}>本地环境：完成邮箱验证</button>}
+            {authMode === "login" && <div className="auth-links"><button type="button" onClick={() => { setAuthMode("register"); setError(""); setAuthNotice(""); }}>注册账户</button><button type="button" onClick={() => { setAuthMode("forgot"); setError(""); setAuthNotice(""); }}>忘记密码</button></div>}
+            {authMode === "register" && <div className="auth-links"><button type="button" onClick={() => void handleResendVerification()}>重新发送验证邮件</button><button type="button" onClick={() => setAuthMode("login")}>已有账户，去登录</button></div>}
+            {(authMode === "forgot" || authMode === "reset") && <div className="auth-links"><button type="button" onClick={() => setAuthMode("login")}>返回登录</button></div>}
+            <p className="fine-print">注册即表示同意服务条款与隐私说明。你的资料仅用于生成和保存申请规划。</p>
+          </form>
         </div></section>
       )}
 
@@ -517,6 +693,27 @@ export default function Home() {
 
       {view === "plan" && (
         <section className="product-page"><div className="product-page-header"><div><p className="eyebrow"><span /> 申请路线图</p><h1>你的申请行动计划</h1><p>按照申请依赖关系与重要程度排列</p></div><button className="outline-button" onClick={() => setView("results")}>返回选校方案</button></div><div className="plan-guidance"><strong>建议顺序</strong><span>先完成成绩单与语言确认，再锁定项目组合，最后集中准备文书和推荐信。点击任务可更新进度。</span></div><div className="plan-list">{actionPlan.map((item, index) => <button type="button" className="plan-item" key={item.id} onClick={() => togglePlanItem(item.id)}><span className={`priority priority-${item.priority}`}>{index + 1}</span><div><h3>{item.title}</h3><p>{item.detail}</p></div><em>{item.status}</em></button>)}</div></section>
+      )}
+
+      {view === "feedback" && (
+        <section className="product-page">
+          <div className="product-page-header"><div><p className="eyebrow"><span /> Beta 反馈</p><h1>帮助我们把产品做得更可靠</h1><p>问题、建议和课程数据错误都会进入运营后台处理。</p></div></div>
+          <div className="operations-grid">
+            <form className="operations-card" onSubmit={handleFeedback}><p className="step-kicker">提交反馈</p><h3>告诉我们哪里需要改进</h3><label>反馈类型<select value={feedbackCategory} onChange={(event) => setFeedbackCategory(event.target.value as FeedbackItem["category"])}><option>问题</option><option>建议</option><option>数据错误</option><option>其他</option></select></label><label>具体情况<textarea value={feedbackMessage} onChange={(event) => setFeedbackMessage(event.target.value)} placeholder="请描述你当时要完成什么、遇到了什么，以及你期待的结果。" /></label>{authNotice && <p className="form-success">{authNotice}</p>}{error && <p className="form-error">{error}</p>}<button className="primary-button" disabled={isSubmitting || feedbackMessage.trim().length < 3}>提交反馈</button></form>
+            <div className="operations-card"><p className="step-kicker">处理记录</p><h3>我的反馈</h3>{myFeedback.length ? <div className="compact-list">{myFeedback.map((item) => <div key={item.id}><span className={`status-chip status-${item.status}`}>{item.status === "new" ? "待处理" : item.status === "reviewing" ? "处理中" : "已解决"}</span><strong>{item.category}</strong><p>{item.message}</p><small>{new Date(item.created_at).toLocaleString("zh-CN")}</small></div>)}</div> : <p className="muted-copy">还没有提交过反馈。</p>}</div>
+          </div>
+        </section>
+      )}
+
+      {view === "admin" && currentUser?.role === "admin" && (
+        <section className="product-page admin-page">
+          <div className="product-page-header"><div><p className="eyebrow"><span /> OfferPilot Operations</p><h1>运营后台</h1><p>查看 Beta 用户、产品使用、反馈处理与数据覆盖情况。</p></div><button className="outline-button" onClick={() => { if (token) void Promise.all([fetchAdminStats(token), fetchAdminUsers(token), fetchAdminFeedback(token)]).then(([stats, users, feedback]) => { setAdminStats(stats); setAdminUsers(users); setAdminFeedback(feedback); }); }}>刷新数据</button></div>
+          {adminStats ? <div className="admin-metrics"><div><span>注册用户</span><strong>{adminStats.users}</strong><small>{adminStats.verified_users} 已验证</small></div><div><span>活跃会话</span><strong>{adminStats.active_sessions}</strong><small>当前有效</small></div><div><span>选校方案</span><strong>{adminStats.recommendation_runs}</strong><small>{adminStats.advisor_threads} 个顾问会话</small></div><div><span>待处理反馈</span><strong>{adminStats.open_feedback}</strong><small>需要运营跟进</small></div><div><span>目录覆盖</span><strong>{adminStats.catalog_coverage_cells}</strong><small>{adminStats.verified_programs} 个已核验项目</small></div></div> : <div className="empty-state">正在加载运营数据…</div>}
+          <div className="admin-sections">
+            <article className="operations-card"><p className="step-kicker">用户管理</p><h3>Beta 用户</h3><div className="admin-table">{adminUsers.map((user) => <div className="admin-row" key={user.id}><div><strong>{user.display_name}</strong><span>{user.email}</span></div><span>{user.email_verified ? "邮箱已验证" : "待验证"}</span><span>{user.role === "admin" ? "管理员" : "用户"}</span><button className="text-button" disabled={user.id === currentUser.id} onClick={() => void changeUserStatus(user.id, user.status === "active" ? "suspended" : "active")}>{user.status === "active" ? "停用" : "恢复"}</button></div>)}</div></article>
+            <article className="operations-card"><p className="step-kicker">反馈队列</p><h3>用户反馈</h3><div className="compact-list">{adminFeedback.map((item) => <div key={item.id}><span className={`status-chip status-${item.status}`}>{item.status}</span><strong>{item.category} · {item.user_email}</strong><p>{item.message}</p><select value={item.status} onChange={(event) => void changeFeedbackStatus(item.id, event.target.value as FeedbackItem["status"])}><option value="new">待处理</option><option value="reviewing">处理中</option><option value="resolved">已解决</option></select></div>)}{adminFeedback.length === 0 && <p className="muted-copy">暂无用户反馈。</p>}</div></article>
+          </div>
+        </section>
       )}
 
       {view === "history" && (
