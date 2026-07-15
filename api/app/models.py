@@ -3,14 +3,18 @@ from typing import Any, Literal
 
 from pydantic import BaseModel, Field
 
+from .taxonomy import DegreeLevel, EducationLevel, StudyArea
+
 
 class ApplicantProfile(BaseModel):
+    current_education_level: EducationLevel = "本科"
     undergraduate_school: str = Field(min_length=1, max_length=120)
-    school_tier: Literal["985", "211/双一流", "双非", "海外重点", "其他"]
+    school_tier: Literal["高中/国际课程", "985", "211/双一流", "双非", "海外重点", "其他"]
     undergraduate_major: str = Field(min_length=1, max_length=120)
     gpa: float = Field(gt=0)
     gpa_scale: float = Field(gt=0)
-    target_field: Literal["计算机与数据", "商科与金融", "工程", "教育与社会科学", "生命科学"]
+    target_degree_level: DegreeLevel = "授课型硕士"
+    target_field: StudyArea
     intake: str = "2027 S1"
     english_score: str | None = None
     coursework_summary: str | None = None
@@ -43,14 +47,37 @@ class Program(BaseModel):
     university: str
     name: str
     city: str
-    field: str
-    minimum_mark: float
+    degree_level: DegreeLevel = "授课型硕士"
+    field: StudyArea
+    minimum_mark: float | None = None
     non_211_minimum_mark: float | None = None
     requires_cognate: bool = False
     prerequisites: list[str] = []
     english_requirement: str
     duration: str
+    requires_supervisor: bool = False
+    research_proposal_required: bool = False
+    verification_status: Literal["已核验", "待复核"] = "已核验"
     source: SourceCitation
+
+
+class CatalogCoverage(BaseModel):
+    university_slug: str
+    university: str
+    city: str
+    degree_level: DegreeLevel
+    field: StudyArea
+    catalog_url: str
+    source_title: str
+    status: Literal["目录已接入，待课程级核验"] = "目录已接入，待课程级核验"
+
+
+class CatalogFacets(BaseModel):
+    universities: list[str]
+    degree_levels: list[DegreeLevel]
+    study_areas: list[StudyArea]
+    coverage_cells: int
+    verified_programs: int
 
 
 class ToolTrace(BaseModel):

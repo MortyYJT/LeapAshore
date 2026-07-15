@@ -8,6 +8,7 @@ from typing import Any
 import httpx
 
 from ..models import AgentRecommendationResponse, ApplicantProfile
+from ..taxonomy import DEGREE_LEVELS, STUDY_AREAS
 
 
 class ModelProviderError(RuntimeError):
@@ -63,12 +64,14 @@ def plan_advisor_turn(context: dict[str, Any]) -> ModelResult:
         raise ModelProviderError("no model provider is configured")
     model = configured_model()
     argument_properties: dict[str, Any] = {
+        "current_education_level": {"enum": ["高中", "本科", "硕士", "其他", None]},
         "undergraduate_school": {"type": ["string", "null"]},
-        "school_tier": {"enum": ["985", "211/双一流", "双非", "海外重点", "其他", None]},
+        "school_tier": {"enum": ["高中/国际课程", "985", "211/双一流", "双非", "海外重点", "其他", None]},
         "undergraduate_major": {"type": ["string", "null"]},
         "gpa": {"type": ["number", "null"]},
         "gpa_scale": {"type": ["number", "null"]},
-        "target_field": {"enum": ["计算机与数据", "商科与金融", "工程", "教育与社会科学", "生命科学", None]},
+        "target_degree_level": {"enum": [*DEGREE_LEVELS, None]},
+        "target_field": {"enum": [*STUDY_AREAS, None]},
         "intake": {"type": ["string", "null"]},
         "english_score": {"type": ["string", "null"]},
         "coursework_summary": {"type": ["string", "null"]},
@@ -110,8 +113,9 @@ def plan_advisor_turn(context: dict[str, Any]) -> ModelResult:
         "required": ["reply", "actions"],
     }
     instructions = (
-        "你是 OfferPilot 澳洲硕士申请顾问。基于用户档案和已验证项目数据回答。"
+        "你是 OfferPilot 澳洲留学申请顾问，覆盖本科、授课型硕士、研究型硕士和博士。基于用户档案和已验证项目数据回答。"
         "主动指出缺失信息；不承诺录取，不编造截止日期、费用或要求。"
+        "研究型申请需要额外考虑研究经历、研究计划和导师匹配；本科申请需要考虑高中课程与成绩体系。"
         "需要修改档案时调用 update_profile；需要重算选校时调用 run_recommendation；"
         "需要加入待办时调用 create_task。一次最多 3 个动作。"
     )

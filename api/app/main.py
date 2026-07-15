@@ -3,10 +3,11 @@ from datetime import UTC, datetime
 from typing import Annotated
 from uuid import uuid4
 
-from fastapi import Depends, FastAPI, Header, HTTPException
+from fastapi import Depends, FastAPI, Header, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 
 from .data import UNIVERSITIES
+from .catalog_data import CATALOG_COVERAGE
 from .models import (
     ActionPlanResponse,
     AgentRunAudit,
@@ -18,6 +19,8 @@ from .models import (
     AgentRecommendationResponse,
     ApplicantProfile,
     AuthResponse,
+    CatalogCoverage,
+    CatalogFacets,
     DemoUser,
     LoginRequest,
     LLMStatus,
@@ -32,6 +35,7 @@ from .models import (
     University,
 )
 from .program_data import PROGRAMS
+from .taxonomy import DEGREE_LEVELS, STUDY_AREAS, DegreeLevel, StudyArea
 from .services.action_plan import build_action_plan
 from .services.advisor import plan_turn
 from .services.agent import run_recommendation_agent
@@ -42,8 +46,8 @@ from .store import InvalidCredentialsError, store
 
 app = FastAPI(
     title="OfferPilot API",
-    description="澳洲八大留学申请规划 Demo API",
-    version="0.1.0",
+    description="澳洲八大全层次课程探索与申请规划 API",
+    version="0.3.0",
 )
 
 app.add_middleware(
@@ -103,9 +107,46 @@ def list_universities() -> list[University]:
     return UNIVERSITIES
 
 
+@app.get("/catalog/facets", response_model=CatalogFacets)
+def catalog_facets() -> CatalogFacets:
+    return CatalogFacets(
+        universities=[item.name for item in UNIVERSITIES],
+        degree_levels=list(DEGREE_LEVELS),
+        study_areas=list(STUDY_AREAS),
+        coverage_cells=len(CATALOG_COVERAGE),
+        verified_programs=sum(program.verification_status == "已核验" for program in PROGRAMS),
+    )
+
+
+@app.get("/catalog/coverage", response_model=list[CatalogCoverage])
+def catalog_coverage(
+    university: str | None = Query(default=None),
+    degree_level: DegreeLevel | None = Query(default=None),
+    field: StudyArea | None = Query(default=None),
+) -> list[CatalogCoverage]:
+    return [
+        item for item in CATALOG_COVERAGE
+        if (not university or item.university_slug == university or item.university == university)
+        and (not degree_level or item.degree_level == degree_level)
+        and (not field or item.field == field)
+    ]
+
+
 @app.get("/programs", response_model=list[Program])
-def list_programs() -> list[Program]:
-    return PROGRAMS
+def list_programs(
+    university: str | None = Query(default=None),
+    degree_level: DegreeLevel | None = Query(default=None),
+    field: StudyArea | None = Query(default=None),
+    q: str | None = Query(default=None, max_length=120),
+) -> list[Program]:
+    needle = q.casefold().strip() if q else None
+    return [
+        program for program in PROGRAMS
+        if (not university or program.university == university)
+        and (not degree_level or program.degree_level == degree_level)
+        and (not field or program.field == field)
+        and (not needle or needle in f"{program.university} {program.name} {program.field}".casefold())
+    ]
 
 
 @app.get("/programs/{slug}", response_model=Program)

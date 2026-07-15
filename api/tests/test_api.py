@@ -71,7 +71,7 @@ def test_agent_returns_programs_tools_and_citations() -> None:
 
     assert response.status_code == 200
     body = response.json()
-    assert body["workflow_version"] == "agent-0.2.0"
+    assert body["workflow_version"] == "agent-0.3.0"
     assert len(body["tool_trace"]) == 5
     assert len(body["recommendations"]) >= 6
     assert all(item["citations"] for item in body["recommendations"])
