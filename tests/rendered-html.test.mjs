@@ -36,7 +36,23 @@ test("keeps authenticated navigation and logo home behavior explicit", async () 
   assert.doesNotMatch(page, /当前页面/);
   assert.match(page, /handleBrandClick/);
   assert.match(page, /navigateTo\("landing"\)/);
-  assert.match(page, /togglePlanItem/);
+  assert.match(page, /RoadmapView/);
+  assert.match(page, /PortfolioControls/);
+});
+
+test("connects application portfolio and roadmap product flows", async () => {
+  const page = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
+  const client = await readFile(new URL("../app/api-client.ts", import.meta.url), "utf8");
+  const roadmap = await readFile(new URL("../app/roadmap-view.tsx", import.meta.url), "utf8");
+  const portfolio = await readFile(new URL("../app/portfolio-controls.tsx", import.meta.url), "utf8");
+
+  for (const endpoint of ["/portfolio", "/roadmap"]) {
+    assert.match(client, new RegExp(endpoint.replaceAll("/", "\\/")));
+  }
+  for (const label of ["待定", "确定申请", "不考虑", "首选项目"]) assert.match(page + roadmap + portfolio, new RegExp(label));
+  assert.match(roadmap, /横向申请路线图/);
+  assert.match(roadmap, /学校官方截止日期|官方期限/);
+  assert.match(roadmap, /系统按入学季倒推建议/);
 });
 
 test("keeps program-level sources, agent tools, and disclaimers in source", async () => {

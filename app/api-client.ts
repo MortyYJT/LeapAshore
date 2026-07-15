@@ -73,6 +73,50 @@ export type ApiActionItem = {
   status: "待开始" | "进行中" | "已完成";
   category?: string;
   due_at?: string | null;
+  reminder_at?: string | null;
+  source_run_id?: string | null;
+  phase?: "selection" | "academic" | "language" | "specialized" | "submission" | "decision";
+  program_slug?: string | null;
+  dependencies?: string[];
+  schedule_origin?: "system_suggestion" | "official" | "user";
+};
+
+export type ApplicationChoice = {
+  run_id: string;
+  program_slug: string;
+  status: "considering" | "applying" | "excluded";
+  is_primary: boolean;
+  official_deadline?: string | null;
+  deadline_source_url?: string | null;
+  updated_at: string;
+};
+
+export type RoadmapPhase = {
+  id: "selection" | "academic" | "language" | "specialized" | "submission" | "decision";
+  title: string;
+  detail: string;
+  suggested_at: string;
+  status: "pending" | "in_progress" | "completed" | "overdue";
+  tasks: ApiActionItem[];
+};
+
+export type ApplicationRoadmap = {
+  run_id: string;
+  intake: string;
+  anchor_at: string;
+  generated_at: string;
+  phases: RoadmapPhase[];
+  program_branches: Array<{
+    program_slug: string;
+    program_name: string;
+    university: string;
+    is_primary: boolean;
+    official_deadline?: string | null;
+    deadline_source_url?: string | null;
+    tasks: ApiActionItem[];
+  }>;
+  completed_tasks: number;
+  total_tasks: number;
 };
 
 export type AdvisorAction = {
@@ -226,6 +270,34 @@ export async function fetchActionPlan(token: string, runId: string): Promise<Api
   return response.items;
 }
 
+export async function fetchPortfolio(token: string, runId: string): Promise<ApplicationChoice[]> {
+  return request<ApplicationChoice[]>(`/me/recommendation-runs/${runId}/portfolio`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+}
+
+export async function updatePortfolioChoice(
+  token: string,
+  runId: string,
+  programSlug: string,
+  payload: Pick<ApplicationChoice, "status" | "is_primary"> & {
+    official_deadline?: string | null;
+    deadline_source_url?: string | null;
+  },
+): Promise<ApplicationChoice> {
+  return request<ApplicationChoice>(`/me/recommendation-runs/${runId}/portfolio/${programSlug}`, {
+    method: "PUT",
+    headers: { Authorization: `Bearer ${token}` },
+    body: JSON.stringify(payload),
+  });
+}
+
+export async function fetchRoadmap(token: string, runId: string): Promise<ApplicationRoadmap> {
+  return request<ApplicationRoadmap>(`/me/recommendation-runs/${runId}/roadmap`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+}
+
 export async function createAdvisorThread(token: string): Promise<AdvisorThread> {
   return request<AdvisorThread>("/me/advisor/threads", { method: "POST", headers: { Authorization: `Bearer ${token}` } });
 }
@@ -255,6 +327,18 @@ export async function updateTask(token: string, taskId: string, status: ApiActio
     method: "PUT",
     headers: { Authorization: `Bearer ${token}` },
     body: JSON.stringify({ status }),
+  });
+}
+
+export async function updateTaskDetails(
+  token: string,
+  taskId: string,
+  payload: { status?: ApiActionItem["status"]; due_at?: string | null; reminder_at?: string | null },
+): Promise<ApiActionItem> {
+  return request<ApiActionItem>(`/me/tasks/${taskId}`, {
+    method: "PUT",
+    headers: { Authorization: `Bearer ${token}` },
+    body: JSON.stringify(payload),
   });
 }
 

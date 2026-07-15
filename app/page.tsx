@@ -6,6 +6,8 @@ import {
   AdvisorThread,
   AdminStats,
   ApiActionItem,
+  ApplicationChoice,
+  ApplicationRoadmap,
   ApiHistoryItem,
   ApiUser,
   FeedbackItem,
@@ -22,9 +24,9 @@ import {
   fetchAdminUsers,
   fetchAdminProgramSources,
   fetchCurrentUser,
-  fetchActionPlan,
   fetchHistory,
-  fetchTasks,
+  fetchPortfolio,
+  fetchRoadmap,
   fetchMyFeedback,
   loginWithAccount,
   logoutAccount,
@@ -34,11 +36,14 @@ import {
   resetPassword,
   saveProfile,
   sendAdvisorMessage,
-  updateTask,
+  updateTaskDetails,
+  updatePortfolioChoice,
   updateAdminFeedback,
   updateAdminUser,
   verifyEmail,
 } from "./api-client";
+import { PortfolioControls } from "./portfolio-controls";
+import { RoadmapView } from "./roadmap-view";
 
 type View = "landing" | "login" | "profile" | "agent" | "advisor" | "results" | "program" | "plan" | "history" | "feedback" | "admin" | "account" | "terms" | "privacy";
 type Tier = "冲刺" | "匹配" | "稳妥" | "暂不推荐";
@@ -155,14 +160,6 @@ const initialProfile: Profile = {
   annualBudget: "45",
 };
 
-const fallbackActionPlan: ApiActionItem[] = [
-  { id: "verify-transcript", title: "确认成绩单与先修课程", detail: "整理中英文成绩单，逐项确认数学、算法、编程与数据库课程。", priority: "P0", status: "待开始" },
-  { id: "verify-language", title: "确认语言成绩与小分", detail: "对照每个项目的英语要求，记录总分、单项和考试日期。", priority: "P0", status: "进行中" },
-  { id: "shortlist", title: "确认最终申请组合", detail: "选择 2 个冲刺、2–3 个匹配和 1 个稳妥项目。", priority: "P1", status: "待开始" },
-  { id: "deadlines", title: "建立申请截止日期日历", detail: "记录开放时间、轮次和材料截止日期。", priority: "P1", status: "待开始" },
-  { id: "materials", title: "准备申请材料", detail: "整理简历、个人陈述、推荐信和官方成绩单。", priority: "P2", status: "待开始" },
-];
-
 function profileToApi(profile: Profile): Record<string, unknown> {
   return {
     current_education_level: profile.currentEducation,
@@ -248,7 +245,9 @@ export default function Home() {
   const [token, setToken] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [runSummary, setRunSummary] = useState("已完成项目要求对照，并根据你的背景生成申请组合。");
-  const [actionPlan, setActionPlan] = useState<ApiActionItem[]>(fallbackActionPlan);
+  const [activeRunId, setActiveRunId] = useState<string | null>(null);
+  const [portfolio, setPortfolio] = useState<ApplicationChoice[]>([]);
+  const [roadmap, setRoadmap] = useState<ApplicationRoadmap | null>(null);
   const [history, setHistory] = useState<ApiHistoryItem[]>([]);
   const [advisorThread, setAdvisorThread] = useState<AdvisorThread | null>(null);
   const [advisorInput, setAdvisorInput] = useState("");
@@ -272,6 +271,9 @@ export default function Home() {
     [profile],
   );
   const filteredResults = results.filter((item) => tierFilter === "全部" || item.tier === tierFilter);
+  const portfolioBySlug = useMemo(() => new Map(portfolio.map((choice) => [choice.program_slug, choice])), [portfolio]);
+  const applyingChoices = portfolio.filter((choice) => choice.status === "applying");
+  const primaryChoice = applyingChoices.find((choice) => choice.is_primary) ?? null;
   const readiness = [profile.school, profile.major, profile.gpa, profile.english, profile.coursework, profile.experience, profile.careerGoal, profile.annualBudget]
     .filter((value) => value.trim()).length * 12.5;
 
@@ -311,6 +313,12 @@ export default function Home() {
         .catch(() => setError("暂时无法读取运营后台数据"));
     }
   }, [view, token, currentUser]);
+  useEffect(() => {
+    if (!token || !activeRunId || !["results", "program", "plan"].includes(view)) return;
+    void Promise.all([fetchPortfolio(token, activeRunId), fetchRoadmap(token, activeRunId)])
+      .then(([choices, nextRoadmap]) => { setPortfolio(choices); setRoadmap(nextRoadmap); })
+      .catch(() => setError("暂时无法读取申请组合"));
+  }, [view, token, activeRunId]);
   useEffect(() => {
     if (view !== "agent") return;
     let current = 0;
@@ -518,20 +526,24 @@ export default function Home() {
       try {
         await saveProfile(token, backendProfile);
         const run = await createAgentRun(token);
+        setActiveRunId(run.run_id);
         setRunSummary(run.summary);
-        await fetchActionPlan(token, run.run_id);
-        setActionPlan(await fetchTasks(token));
+        const [nextPortfolio, nextRoadmap] = await Promise.all([
+          fetchPortfolio(token, run.run_id), fetchRoadmap(token, run.run_id),
+        ]);
+        setPortfolio(nextPortfolio);
+        setRoadmap(nextRoadmap);
         setHistory(await fetchHistory(token));
         return;
       } catch {
       }
     }
     const localRunId = `run_demo_${normalizeGpa(profile)}_${history.length + 1}`;
+    setActiveRunId(localRunId);
     const localSummary = results.length
       ? `已完成 ${results.length} 个${profile.targetDegree}项目的申请要求对照，并生成建议组合。`
       : `已接入${profile.targetDegree} · ${profile.target}的官方目录入口；课程级要求仍在核验中，暂不生成录取分档。`;
     setRunSummary(localSummary);
-    setActionPlan(fallbackActionPlan);
     setHistory((items) => [{
       run_id: localRunId,
       created_at: new Date().toISOString(),
@@ -548,13 +560,61 @@ export default function Home() {
     setView("program");
   }
 
-  function togglePlanItem(itemId: string) {
-    const nextStatus = { 待开始: "进行中", 进行中: "已完成", 已完成: "待开始" } as const;
-    const item = actionPlan.find((candidate) => candidate.id === itemId);
-    if (!item) return;
-    const status = nextStatus[item.status];
-    setActionPlan((items) => items.map((candidate) => candidate.id === itemId ? { ...candidate, status } : candidate));
-    if (token && itemId.startsWith("task_")) void updateTask(token, itemId, status).catch(() => undefined);
+  function choiceFor(programSlug: string): ApplicationChoice {
+    return portfolioBySlug.get(programSlug) ?? {
+      run_id: activeRunId ?? "demo",
+      program_slug: programSlug,
+      status: "considering",
+      is_primary: false,
+      updated_at: new Date().toISOString(),
+    };
+  }
+
+  async function changePortfolioChoice(programSlug: string, payload: {
+    status: ApplicationChoice["status"];
+    is_primary: boolean;
+    official_deadline?: string | null;
+    deadline_source_url?: string | null;
+  }) {
+    if (!token || !activeRunId || activeRunId.startsWith("run_demo_")) {
+      setPortfolio((choices) => {
+        const next = choices.map((choice) => payload.is_primary ? { ...choice, is_primary: false } : choice)
+          .filter((choice) => choice.program_slug !== programSlug);
+        return [...next, { run_id: activeRunId ?? "demo", program_slug: programSlug, updated_at: new Date().toISOString(), ...payload }];
+      });
+      return;
+    }
+    setError("");
+    try {
+      await updatePortfolioChoice(token, activeRunId, programSlug, payload);
+      const [choices, nextRoadmap] = await Promise.all([fetchPortfolio(token, activeRunId), fetchRoadmap(token, activeRunId)]);
+      setPortfolio(choices);
+      setRoadmap(nextRoadmap);
+    } catch (reason) {
+      setError(reason instanceof Error ? reason.message : "申请组合更新失败");
+    }
+  }
+
+  async function updateRoadmapTask(taskId: string, payload: {
+    status?: ApiActionItem["status"];
+    due_at?: string | null;
+    reminder_at?: string | null;
+  }) {
+    if (!token || !activeRunId) return;
+    await updateTaskDetails(token, taskId, payload);
+    const nextRoadmap = await fetchRoadmap(token, activeRunId);
+    setRoadmap(nextRoadmap);
+  }
+
+  async function openHistoryRun(item: ApiHistoryItem) {
+    setRunSummary(item.summary);
+    setActiveRunId(item.run_id);
+    if (token) {
+      const [choices, nextRoadmap] = await Promise.all([fetchPortfolio(token, item.run_id), fetchRoadmap(token, item.run_id)]);
+      setPortfolio(choices);
+      setRoadmap(nextRoadmap);
+    }
+    setView("results");
   }
 
   async function handleAdvisorMessage(event: FormEvent<HTMLFormElement>) {
@@ -568,7 +628,6 @@ export default function Home() {
         const reply = await sendAdvisorMessage(token, advisorThread.id, content);
         setAdvisorThread(reply.thread);
         setAdvisorProvider(reply.provider === "ollama" ? "Qwen · 服务端" : reply.provider === "openai" ? "OpenAI · 在线" : "安全降级模式");
-        setActionPlan(await fetchTasks(token));
       } catch {
         setAdvisorProvider("暂时无法连接，请稍后重试");
       }
@@ -729,19 +788,32 @@ export default function Home() {
           <div className="results-header"><div><p className="eyebrow"><span /> 个性化选校方案</p><h1>{profile.targetDegree} · {profile.target} · {profile.intake}</h1><p>{profile.school} · {profile.major} · 成绩 {profile.gpa}/{profile.gpaScale}</p><p className="preference-summary">职业目标：{profile.careerGoal || "待补充"} · 城市偏好：{profile.cityPreference || "不限"} · 年度预算：{profile.annualBudget ? `${profile.annualBudget} 万元` : "待补充"}</p></div><div className="header-actions"><button className="outline-button" onClick={() => setView("plan")}>查看行动计划</button><button className="outline-button" onClick={() => { setProfileStep(1); setView("profile"); }}>修改申请背景</button></div></div>
           <div className="insight-banner"><div className="insight-score"><strong>{results.filter((item) => item.eligibility === "满足基础门槛").length}</strong><span>达到公开基线</span></div><div><p className="step-kicker">方案摘要</p><h3>{runSummary.replace("Agent ", "")}</h3><p>优先确认匹配项目；涉及专业背景和先修课程的项目仍需结合正式成绩单判断。</p></div><div className="legend"><span><i className="match" />匹配</span><span><i className="reach" />冲刺</span><span><i className="safe" />稳妥</span></div></div>
           <div className="evidence-overview"><div><span>项目范围</span><strong>{results.length}</strong><small>已核验具体项目</small></div><div><span>推荐组合</span><strong>{results.filter((item) => item.tier !== "暂不推荐").length}</strong><small>值得继续评估</small></div><div><span>语言状态</span><strong>{profile.english ? "已填写" : "待补充"}</strong><small>{profile.english || "补充总分与单项"}</small></div><div><span>资料完整度</span><strong>{Math.round(readiness)}%</strong><small>{readiness >= 85 ? "可进入选校阶段" : "仍有信息需要补充"}</small></div></div>
+          <div className="portfolio-summary">
+            <div><span>当前申请组合</span><strong>{applyingChoices.length} 个确定申请</strong><small>{primaryChoice ? `首选：${programs.find((item) => item.slug === primaryChoice.program_slug)?.university ?? primaryChoice.program_slug}` : "还没有设置首选项目"}</small></div>
+            <p>先把项目放入“确定申请”，再选一个首选。它们会自动生成到行动路线图的学校分支中。</p>
+            <button className="outline-button" onClick={() => setView("plan")}>打开路线图 →</button>
+          </div>
           <div className="result-toolbar"><div>{(["全部", "匹配", "冲刺", "稳妥", "暂不推荐"] as const).map((tier) => <button key={tier} className={tierFilter === tier ? "active" : ""} onClick={() => setTierFilter(tier)}>{tier}</button>)}</div><span>点击项目查看具体要求和下一步准备</span></div>
-          <div className="result-list">{filteredResults.map(({ program, tier, score, eligibility, risks }) => <article className="result-card program-result-card" key={program.slug} role="button" tabIndex={0} onClick={() => openProgram(program)} onKeyDown={(event) => { if (event.key === "Enter") openProgram(program); }}><div className="uni-monogram" style={{ background: program.accent }}>{program.short.slice(0, 2)}</div><div className="uni-main"><div className="uni-title"><div><h3>{program.name}</h3><p>{program.university} · {program.city} · {program.duration}</p></div><span className={`tier tier-${tier}`}>{tier}</span></div><p className="uni-note">{program.source.excerpt}</p><div className="reason-row"><span>✓ {eligibility}</span><span>{profile.cityPreference.includes(program.city) ? "✓ 符合城市偏好" : "○ 城市偏好待权衡"}</span><span className={risks.length ? "warning" : ""}>{risks.length ? `! ${risks[0]}` : "✓ 暂无明显材料缺口"}</span></div><a className="citation-chip" href={program.source.url} target="_blank" rel="noreferrer" onClick={(event) => event.stopPropagation()}>查看项目官方要求 ↗</a></div><div className="match-score"><strong>{score}</strong><span>综合匹配度</span><button aria-label={`查看 ${program.name} 详情`}>→</button></div></article>)}{filteredResults.length === 0 && <div className="empty-state"><strong>这个方向已接入官方课程目录</strong><p>目前还没有完成课程级要求核验，因此不会生成可能误导你的录取分档。你可以先浏览八大官方目录，或让 AI 顾问帮你整理需要核验的学校与材料。</p><div className="reason-row">{officialCatalogs.map(([name, url]) => <a className="citation-chip" href={url} target="_blank" rel="noreferrer" key={name}>{name}课程目录 ↗</a>)}</div><button className="primary-button" onClick={() => setView("advisor")}>咨询 AI 申请顾问</button></div>}</div>
+          <div className="result-list">{filteredResults.map(({ program, tier, score, eligibility, risks }) => (
+            <article className="result-card program-result-card" key={program.slug} role="button" tabIndex={0} onClick={() => openProgram(program)} onKeyDown={(event) => { if (event.key === "Enter") openProgram(program); }}>
+              <div className="uni-monogram" style={{ background: program.accent }}>{program.short.slice(0, 2)}</div>
+              <div className="uni-main"><div className="uni-title"><div><h3>{program.name}</h3><p>{program.university} · {program.city} · {program.duration}</p></div><span className={`tier tier-${tier}`}>{tier}</span></div><p className="uni-note">{program.source.excerpt}</p><div className="reason-row"><span>✓ {eligibility}</span><span>{profile.cityPreference.includes(program.city) ? "✓ 符合城市偏好" : "○ 城市偏好待权衡"}</span><span className={risks.length ? "warning" : ""}>{risks.length ? `! ${risks[0]}` : "✓ 暂无明显材料缺口"}</span></div><a className="citation-chip" href={program.source.url} target="_blank" rel="noreferrer" onClick={(event) => event.stopPropagation()}>查看项目官方要求 ↗</a><PortfolioControls choice={choiceFor(program.slug)} onChange={(payload) => changePortfolioChoice(program.slug, payload)} /></div>
+              <div className="match-score"><strong>{score}</strong><span>综合匹配度</span><button aria-label={`查看 ${program.name} 详情`}>→</button></div>
+            </article>
+          ))}{filteredResults.length === 0 && <div className="empty-state"><strong>这个方向已接入官方课程目录</strong><p>目前还没有完成课程级要求核验，因此不会生成可能误导你的录取分档。你可以先浏览八大官方目录，或让 AI 顾问帮你整理需要核验的学校与材料。</p><div className="reason-row">{officialCatalogs.map(([name, url]) => <a className="citation-chip" href={url} target="_blank" rel="noreferrer" key={name}>{name}课程目录 ↗</a>)}</div><button className="primary-button" onClick={() => setView("advisor")}>咨询 AI 申请顾问</button></div>}</div>
           <p className="data-disclaimer">匹配分不是录取概率；最低门槛、名额和课程信息可能变化，最终以项目官网及学校正式审核为准。</p>
         </section>
       )}
 
       {view === "program" && selected && (() => {
         const recommendation = getProgramRecommendation(selected, profile);
-        return <section className="school-page"><button className="back-button" onClick={() => setView("results")}>← 返回选校方案</button><div className="school-hero"><div className="uni-monogram large" style={{ background: selected.accent }}>{selected.short.slice(0, 2)}</div><div><p>{selected.university} · {selected.city}</p><h1>{selected.name}</h1><span className={`tier tier-${recommendation.tier}`}>{recommendation.tier}</span></div><a href={selected.source.url} target="_blank" rel="noreferrer" className="outline-button">查看项目官网 ↗</a></div><div className="school-grid"><article className="analysis-card primary-analysis"><p className="step-kicker">申请要求对照</p><h2>为什么归入“{recommendation.tier}”？</h2><div className="big-score"><strong>{recommendation.score}</strong><span>/ 100 综合匹配度</span></div><ul><li><span>01</span><div><strong>学术成绩</strong><p>你的成绩换算为 {normalizeGpa(profile)}/100；当前项目公开成绩基线按 {recommendation.threshold}% 评估。</p></div></li><li><span>02</span><div><strong>专业背景</strong><p>你的“{profile.major}”背景初步判断为{recommendation.cognate ? "相关" : "非相关或需要进一步确认"}；正式结果需要结合完整成绩单。</p></div></li><li><span>03</span><div><strong>核心课程</strong><p>{selected.prerequisites.length ? `重点确认：${selected.prerequisites.join("、")}。你填写的课程包括：${profile.coursework || "尚未填写"}。` : "项目页面暂未列出明确的专业先修课程限制。"}</p></div></li><li><span>04</span><div><strong>英语要求</strong><p>{selected.english}；你的当前情况：{profile.english || "尚未填写语言成绩"}。</p></div></li></ul></article><aside><article className="analysis-card"><p className="step-kicker">申请前确认</p><h3>这个项目还需要</h3><ol className="checklist"><li><span>1</span>确认成绩换算口径</li><li><span>2</span>逐项核对成绩单课程</li><li><span>3</span>确认语言总分与单项</li><li><span>4</span>查看当前开放轮次与截止日期</li></ol></article><article className="source-card"><span>项目要求来源</span><p>{selected.source.excerpt}</p><a href={selected.source.url} target="_blank" rel="noreferrer">{selected.source.title} ↗</a><small>信息更新：2026-07-14 · 请以官网最新说明为准</small></article></aside></div></section>;
+        return <section className="school-page"><button className="back-button" onClick={() => setView("results")}>← 返回选校方案</button><div className="school-hero"><div className="uni-monogram large" style={{ background: selected.accent }}>{selected.short.slice(0, 2)}</div><div><p>{selected.university} · {selected.city}</p><h1>{selected.name}</h1><span className={`tier tier-${recommendation.tier}`}>{recommendation.tier}</span></div><a href={selected.source.url} target="_blank" rel="noreferrer" className="outline-button">查看项目官网 ↗</a></div><div className="school-grid"><article className="analysis-card primary-analysis"><p className="step-kicker">申请要求对照</p><h2>为什么归入“{recommendation.tier}”？</h2><div className="big-score"><strong>{recommendation.score}</strong><span>/ 100 综合匹配度</span></div><ul><li><span>01</span><div><strong>学术成绩</strong><p>你的成绩换算为 {normalizeGpa(profile)}/100；当前项目公开成绩基线按 {recommendation.threshold}% 评估。</p></div></li><li><span>02</span><div><strong>专业背景</strong><p>你的“{profile.major}”背景初步判断为{recommendation.cognate ? "相关" : "非相关或需要进一步确认"}；正式结果需要结合完整成绩单。</p></div></li><li><span>03</span><div><strong>核心课程</strong><p>{selected.prerequisites.length ? `重点确认：${selected.prerequisites.join("、")}。你填写的课程包括：${profile.coursework || "尚未填写"}。` : "项目页面暂未列出明确的专业先修课程限制。"}</p></div></li><li><span>04</span><div><strong>英语要求</strong><p>{selected.english}；你的当前情况：{profile.english || "尚未填写语言成绩"}。</p></div></li></ul></article><aside><article className="analysis-card application-choice-card"><p className="step-kicker">申请决策</p><h3>把项目放进申请组合</h3><PortfolioControls choice={choiceFor(selected.slug)} showDeadline onChange={(payload) => changePortfolioChoice(selected.slug, payload)} /></article><article className="analysis-card"><p className="step-kicker">申请前确认</p><h3>这个项目还需要</h3><ol className="checklist"><li><span>1</span>确认成绩换算口径</li><li><span>2</span>逐项核对成绩单课程</li><li><span>3</span>确认语言总分与单项</li><li><span>4</span>查看当前开放轮次与截止日期</li></ol></article><article className="source-card"><span>项目要求来源</span><p>{selected.source.excerpt}</p><a href={selected.source.url} target="_blank" rel="noreferrer">{selected.source.title} ↗</a><small>信息更新：2026-07-14 · 请以官网最新说明为准</small></article></aside></div></section>;
       })()}
 
       {view === "plan" && (
-        <section className="product-page"><div className="product-page-header"><div><p className="eyebrow"><span /> 申请路线图</p><h1>你的申请行动计划</h1><p>按照申请依赖关系与重要程度排列</p></div><button className="outline-button" onClick={() => setView("results")}>返回选校方案</button></div><div className="plan-guidance"><strong>建议顺序</strong><span>先完成成绩单与语言确认，再锁定项目组合，最后集中准备文书和推荐信。点击任务可更新进度。</span></div><div className="plan-list">{actionPlan.map((item, index) => <button type="button" className="plan-item" key={item.id} onClick={() => togglePlanItem(item.id)}><span className={`priority priority-${item.priority}`}>{index + 1}</span><div><h3>{item.title}</h3><p>{item.detail}</p></div><em>{item.status}</em></button>)}</div></section>
+        roadmap
+          ? <RoadmapView roadmap={roadmap} onBack={() => setView("results")} onUpdateTask={updateRoadmapTask} />
+          : <section className="product-page"><div className="product-page-header"><div><p className="eyebrow"><span /> 申请路线图</p><h1>正在生成你的路线图</h1><p>读取申请组合、入学季与已有任务…</p></div><button className="outline-button" onClick={() => setView("results")}>返回选校方案</button></div></section>
       )}
 
       {view === "feedback" && (
@@ -777,7 +849,7 @@ export default function Home() {
       )}
 
       {view === "history" && (
-        <section className="product-page"><div className="product-page-header"><div><p className="eyebrow"><span /> 我的方案</p><h1>历史选校方案</h1><p>对比不同背景和目标下生成的申请组合</p></div><button className="primary-button" onClick={() => { setProfileStep(1); setView("profile"); }}>新建方案 <span>→</span></button></div>{history.length ? <div className="history-list">{history.map((item) => <button key={item.run_id} onClick={() => { setRunSummary(item.summary); setView("results"); }}><span className="history-date">{new Date(item.created_at).toLocaleDateString("zh-CN")}</span><div><strong>{item.target_field} · {item.intake}</strong><span>{item.summary.replace("Agent ", "")}</span></div><small>{item.recommendation_count} 个项目<br />查看方案 →</small></button>)}</div> : <div className="empty-state"><strong>还没有选校方案</strong><p>完成申请档案后，你的项目组合、风险提示和行动计划会保存在这里。</p><button className="primary-button" onClick={() => { setProfileStep(1); setView("profile"); }}>建立申请档案</button></div>}</section>
+        <section className="product-page"><div className="product-page-header"><div><p className="eyebrow"><span /> 我的方案</p><h1>历史选校方案</h1><p>对比不同背景和目标下生成的申请组合</p></div><button className="primary-button" onClick={() => { setProfileStep(1); setView("profile"); }}>新建方案 <span>→</span></button></div>{history.length ? <div className="history-list">{history.map((item) => <button key={item.run_id} onClick={() => void openHistoryRun(item)}><span className="history-date">{new Date(item.created_at).toLocaleDateString("zh-CN")}</span><div><strong>{item.target_field} · {item.intake}</strong><span>{item.summary.replace("Agent ", "")}</span></div><small>{item.recommendation_count} 个项目<br />查看方案 →</small></button>)}</div> : <div className="empty-state"><strong>还没有选校方案</strong><p>完成申请档案后，你的项目组合、风险提示和行动计划会保存在这里。</p><button className="primary-button" onClick={() => { setProfileStep(1); setView("profile"); }}>建立申请档案</button></div>}</section>
       )}
     </main>
   );
