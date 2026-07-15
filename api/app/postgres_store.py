@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 from datetime import UTC, datetime, timedelta
-from hashlib import sha256
 import secrets
 from threading import Lock
 from typing import Any, TypeVar
@@ -15,9 +14,23 @@ from .models import (
     AdvisorThread,
     ApplicantProfile,
     DemoUser,
+    FeedbackItem,
     RecommendationRunSummary,
 )
-from .store import InvalidCredentialsError, hash_password, session_hours, verify_password
+from .store import (
+    AccountExistsError,
+    InvalidAuthTokenError,
+    InvalidCredentialsError,
+    ensure_login_allowed,
+    hash_password,
+    new_auth_token,
+    normalize_email,
+    role_for_email,
+    session_hours,
+    token_hash,
+    user_id_for_email,
+    verify_password,
+)
 
 
 ModelT = TypeVar("ModelT", bound=BaseModel)
@@ -38,10 +51,13 @@ class PostgresStore:
             cursor.execute(
                 """
                 CREATE TABLE IF NOT EXISTS users (
-                    id TEXT PRIMARY KEY, email TEXT NOT NULL UNIQUE, display_name TEXT NOT NULL, password_hash TEXT NOT NULL
+                    id TEXT PRIMARY KEY, email TEXT NOT NULL UNIQUE, display_name TEXT NOT NULL, password_hash TEXT NOT NULL,
+                    email_verified_at TIMESTAMPTZ, role TEXT NOT NULL DEFAULT 'user', status TEXT NOT NULL DEFAULT 'active',
+                    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(), last_login_at TIMESTAMPTZ
                 );
                 CREATE TABLE IF NOT EXISTS sessions (
-                    token TEXT PRIMARY KEY, user_id TEXT NOT NULL REFERENCES users(id), expires_at TIMESTAMPTZ NOT NULL
+                    token TEXT PRIMARY KEY, user_id TEXT NOT NULL REFERENCES users(id), expires_at TIMESTAMPTZ NOT NULL,
+                    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
                 );
                 CREATE INDEX IF NOT EXISTS idx_sessions_user ON sessions(user_id);
                 CREATE TABLE IF NOT EXISTS entities (
@@ -51,44 +67,133 @@ class PostgresStore:
                 );
                 CREATE INDEX IF NOT EXISTS idx_entities_user_kind_updated
                     ON entities(user_id, kind, updated_at DESC);
+                CREATE TABLE IF NOT EXISTS auth_tokens (
+                    token_hash TEXT PRIMARY KEY, user_id TEXT NOT NULL REFERENCES users(id), purpose TEXT NOT NULL,
+                    expires_at TIMESTAMPTZ NOT NULL, used_at TIMESTAMPTZ, created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+                );
+                CREATE INDEX IF NOT EXISTS idx_auth_tokens_user_purpose
+                    ON auth_tokens(user_id, purpose, expires_at DESC);
+                CREATE TABLE IF NOT EXISTS feedback (
+                    feedback_id TEXT PRIMARY KEY, user_id TEXT NOT NULL REFERENCES users(id), payload JSONB NOT NULL,
+                    created_at TIMESTAMPTZ NOT NULL, updated_at TIMESTAMPTZ NOT NULL
+                );
+                ALTER TABLE users ADD COLUMN IF NOT EXISTS email_verified_at TIMESTAMPTZ;
+                ALTER TABLE users ADD COLUMN IF NOT EXISTS role TEXT NOT NULL DEFAULT 'user';
+                ALTER TABLE users ADD COLUMN IF NOT EXISTS status TEXT NOT NULL DEFAULT 'active';
+                ALTER TABLE users ADD COLUMN IF NOT EXISTS created_at TIMESTAMPTZ NOT NULL DEFAULT NOW();
+                ALTER TABLE users ADD COLUMN IF NOT EXISTS last_login_at TIMESTAMPTZ;
+                ALTER TABLE sessions ADD COLUMN IF NOT EXISTS created_at TIMESTAMPTZ NOT NULL DEFAULT NOW();
                 """
             )
 
-    def login(self, email: str, password: str) -> tuple[str, DemoUser]:
-        normalized = email.strip().lower()
+    def register(self, email: str, password: str, display_name: str) -> tuple[DemoUser, str]:
+        normalized = normalize_email(email)
+        now = datetime.now(UTC)
         user = DemoUser(
-            id=f"usr_{sha256(normalized.encode()).hexdigest()[:10]}",
-            email=normalized,
-            display_name=normalized.split("@", 1)[0],
+            id=user_id_for_email(normalized), email=normalized, display_name=display_name.strip(),
+            role=role_for_email(normalized), email_verified=False, status="active", created_at=now,
         )
+        raw_token = new_auth_token()
+        with self._lock, self._connection.cursor() as cursor:
+            cursor.execute("SELECT 1 FROM users WHERE email = %s", (normalized,))
+            if cursor.fetchone():
+                raise AccountExistsError("该邮箱已注册")
+            cursor.execute(
+                """INSERT INTO users
+                (id, email, display_name, password_hash, email_verified_at, role, status, created_at)
+                VALUES (%s, %s, %s, %s, NULL, %s, 'active', %s)""",
+                (user.id, user.email, user.display_name, hash_password(password), user.role, now),
+            )
+            self._save_auth_token(cursor, user.id, "verify_email", raw_token, now + timedelta(hours=24))
+        return user, raw_token
+
+    def verify_email(self, token: str) -> DemoUser:
+        with self._lock, self._connection.cursor() as cursor:
+            user_id = self._consume_auth_token(cursor, token, "verify_email")
+            cursor.execute("UPDATE users SET email_verified_at = NOW() WHERE id = %s RETURNING *", (user_id,))
+            row = cursor.fetchone()
+        return postgres_user(row)
+
+    def create_email_verification(self, email: str) -> tuple[DemoUser, str] | None:
+        with self._lock, self._connection.cursor() as cursor:
+            cursor.execute("SELECT * FROM users WHERE email = %s", (normalize_email(email),))
+            row = cursor.fetchone()
+            if not row or row["email_verified_at"]:
+                return None
+            raw_token = new_auth_token()
+            self._save_auth_token(cursor, row["id"], "verify_email", raw_token, datetime.now(UTC) + timedelta(hours=24))
+        return postgres_user(row), raw_token
+
+    def login(self, email: str, password: str) -> tuple[str, DemoUser]:
+        normalized = normalize_email(email)
         token = f"op_{secrets.token_urlsafe(32)}"
         with self._lock, self._connection.cursor() as cursor:
-            cursor.execute("SELECT password_hash FROM users WHERE id = %s", (user.id,))
+            cursor.execute("SELECT * FROM users WHERE email = %s", (normalized,))
             existing = cursor.fetchone()
-            if existing and not verify_password(password, existing["password_hash"]):
+            if not existing or not verify_password(password, existing["password_hash"]):
                 raise InvalidCredentialsError("邮箱或密码不正确")
-            password_hash = existing["password_hash"] if existing else hash_password(password)
-            cursor.execute(
-                """INSERT INTO users (id, email, display_name, password_hash) VALUES (%s, %s, %s, %s)
-                ON CONFLICT (id) DO UPDATE SET email = EXCLUDED.email, display_name = EXCLUDED.display_name""",
-                (user.id, user.email, user.display_name, password_hash),
-            )
+            user = postgres_user(existing)
+            ensure_login_allowed(user)
+            now = datetime.now(UTC)
             cursor.execute(
                 "INSERT INTO sessions (token, user_id, expires_at) VALUES (%s, %s, %s)",
-                (token, user.id, datetime.now(UTC) + timedelta(hours=session_hours())),
+                (token_hash(token), user.id, now + timedelta(hours=session_hours())),
             )
+            cursor.execute("UPDATE users SET last_login_at = %s WHERE id = %s", (now, user.id))
+            user = user.model_copy(update={"last_login_at": now})
         return token, user
+
+    def logout(self, token: str) -> None:
+        with self._lock, self._connection.cursor() as cursor:
+            cursor.execute("DELETE FROM sessions WHERE token = %s", (token_hash(token),))
+
+    def create_password_reset(self, email: str) -> tuple[DemoUser, str] | None:
+        with self._lock, self._connection.cursor() as cursor:
+            cursor.execute("SELECT * FROM users WHERE email = %s", (normalize_email(email),))
+            row = cursor.fetchone()
+            if not row:
+                return None
+            raw_token = new_auth_token()
+            self._save_auth_token(cursor, row["id"], "reset_password", raw_token, datetime.now(UTC) + timedelta(minutes=30))
+        return postgres_user(row), raw_token
+
+    def reset_password(self, token: str, password: str) -> None:
+        with self._lock, self._connection.cursor() as cursor:
+            user_id = self._consume_auth_token(cursor, token, "reset_password")
+            cursor.execute("UPDATE users SET password_hash = %s WHERE id = %s", (hash_password(password), user_id))
+            cursor.execute("DELETE FROM sessions WHERE user_id = %s", (user_id,))
+
+    @staticmethod
+    def _save_auth_token(cursor: Any, user_id: str, purpose: str, raw_token: str, expires_at: datetime) -> None:
+        cursor.execute("DELETE FROM auth_tokens WHERE user_id = %s AND purpose = %s", (user_id, purpose))
+        cursor.execute(
+            "INSERT INTO auth_tokens (token_hash, user_id, purpose, expires_at) VALUES (%s, %s, %s, %s)",
+            (token_hash(raw_token), user_id, purpose, expires_at),
+        )
+
+    @staticmethod
+    def _consume_auth_token(cursor: Any, raw_token: str, purpose: str) -> str:
+        cursor.execute(
+            """UPDATE auth_tokens SET used_at = NOW()
+            WHERE token_hash = %s AND purpose = %s AND used_at IS NULL AND expires_at > NOW()
+            RETURNING user_id""",
+            (token_hash(raw_token), purpose),
+        )
+        row = cursor.fetchone()
+        if not row:
+            raise InvalidAuthTokenError("链接无效或已过期")
+        return row["user_id"]
 
     def user_for_token(self, token: str) -> DemoUser | None:
         with self._lock, self._connection.cursor() as cursor:
             cursor.execute(
-                """SELECT users.id, users.email, users.display_name FROM sessions
+                """SELECT users.* FROM sessions
                 JOIN users ON users.id = sessions.user_id
-                WHERE sessions.token = %s AND sessions.expires_at > NOW()""",
-                (token,),
+                WHERE sessions.token = %s AND sessions.expires_at > NOW() AND users.status = 'active'""",
+                (token_hash(token),),
             )
             row = cursor.fetchone()
-        return DemoUser(**row) if row else None
+        return postgres_user(row) if row else None
 
     def _save_entity(self, user_id: str, kind: str, entity_id: str, model: BaseModel, created_at: datetime | None = None) -> None:
         from psycopg.types.json import Jsonb
@@ -171,3 +276,68 @@ class PostgresStore:
 
     def list_audits(self, user_id: str) -> list[AgentRunAudit]:
         return self._list_entities(user_id, "agent_audit", AgentRunAudit)
+
+    def save_feedback(self, feedback: FeedbackItem) -> FeedbackItem:
+        from psycopg.types.json import Jsonb
+
+        with self._lock, self._connection.cursor() as cursor:
+            cursor.execute(
+                """INSERT INTO feedback (feedback_id, user_id, payload, created_at, updated_at)
+                VALUES (%s, %s, %s, %s, %s)
+                ON CONFLICT (feedback_id) DO UPDATE SET payload = EXCLUDED.payload, updated_at = EXCLUDED.updated_at""",
+                (feedback.id, feedback.user_id, Jsonb(feedback.model_dump(mode="json")), feedback.created_at, feedback.updated_at),
+            )
+        return feedback
+
+    def list_feedback(self, user_id: str | None = None) -> list[FeedbackItem]:
+        with self._lock, self._connection.cursor() as cursor:
+            if user_id:
+                cursor.execute("SELECT payload FROM feedback WHERE user_id = %s ORDER BY created_at DESC", (user_id,))
+            else:
+                cursor.execute("SELECT payload FROM feedback ORDER BY created_at DESC")
+            rows = cursor.fetchall()
+        return [FeedbackItem.model_validate(row["payload"]) for row in rows]
+
+    def get_feedback(self, feedback_id: str) -> FeedbackItem | None:
+        with self._lock, self._connection.cursor() as cursor:
+            cursor.execute("SELECT payload FROM feedback WHERE feedback_id = %s", (feedback_id,))
+            row = cursor.fetchone()
+        return FeedbackItem.model_validate(row["payload"]) if row else None
+
+    def list_users(self) -> list[DemoUser]:
+        with self._lock, self._connection.cursor() as cursor:
+            cursor.execute("SELECT * FROM users ORDER BY created_at DESC")
+            rows = cursor.fetchall()
+        return [postgres_user(row) for row in rows]
+
+    def update_user_status(self, user_id: str, status: str) -> DemoUser | None:
+        with self._lock, self._connection.cursor() as cursor:
+            cursor.execute("UPDATE users SET status = %s WHERE id = %s RETURNING *", (status, user_id))
+            row = cursor.fetchone()
+            if row and status == "suspended":
+                cursor.execute("DELETE FROM sessions WHERE user_id = %s", (user_id,))
+        return postgres_user(row) if row else None
+
+    def admin_counts(self) -> dict[str, int]:
+        queries = {
+            "users": "SELECT COUNT(*) AS count FROM users",
+            "verified_users": "SELECT COUNT(*) AS count FROM users WHERE email_verified_at IS NOT NULL",
+            "active_sessions": "SELECT COUNT(*) AS count FROM sessions WHERE expires_at > NOW()",
+            "recommendation_runs": "SELECT COUNT(*) AS count FROM entities WHERE kind = 'recommendation_result'",
+            "advisor_threads": "SELECT COUNT(*) AS count FROM entities WHERE kind = 'advisor_thread'",
+            "open_feedback": "SELECT COUNT(*) AS count FROM feedback WHERE payload->>'status' != 'resolved'",
+        }
+        counts: dict[str, int] = {}
+        with self._lock, self._connection.cursor() as cursor:
+            for name, query in queries.items():
+                cursor.execute(query)
+                counts[name] = int(cursor.fetchone()["count"])
+        return counts
+
+
+def postgres_user(row: dict[str, Any]) -> DemoUser:
+    return DemoUser(
+        id=row["id"], email=row["email"], display_name=row["display_name"],
+        role=row.get("role", "user"), email_verified=bool(row.get("email_verified_at")),
+        status=row.get("status", "active"), created_at=row.get("created_at"), last_login_at=row.get("last_login_at"),
+    )

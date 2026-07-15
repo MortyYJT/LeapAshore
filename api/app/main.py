@@ -1,4 +1,5 @@
 import os
+from contextlib import asynccontextmanager
 from datetime import UTC, datetime
 from typing import Annotated
 from uuid import uuid4
@@ -19,10 +20,21 @@ from .models import (
     AgentRecommendationResponse,
     ApplicantProfile,
     AuthResponse,
+    AdminStats,
+    AdminUserUpdateRequest,
     CatalogCoverage,
     CatalogFacets,
     DemoUser,
+    EmailRequest,
+    EmailTokenRequest,
+    FeedbackCreateRequest,
+    FeedbackItem,
+    FeedbackUpdateRequest,
     LoginRequest,
+    MessageResponse,
+    PasswordResetRequest,
+    RegisterRequest,
+    RegistrationResponse,
     LLMStatus,
     Program,
     ProgramSourceStatus,
@@ -34,6 +46,8 @@ from .models import (
     TaskUpdateRequest,
     University,
 )
+from .mailer import send_password_reset_email, send_verification_email
+from .middleware import RateLimitMiddleware, SecurityHeadersMiddleware
 from .program_data import PROGRAMS
 from .taxonomy import DEGREE_LEVELS, STUDY_AREAS, DegreeLevel, StudyArea
 from .services.action_plan import build_action_plan
@@ -42,13 +56,31 @@ from .services.agent import run_recommendation_agent
 from .services.model_provider import configured_model, configured_provider, llm_is_configured
 from .services.recommender import generate_recommendations
 from .services.transcript import analyze_transcript
-from .store import InvalidCredentialsError, store
+from .settings import validate_runtime_configuration
+from .store import (
+    AccountExistsError,
+    AccountSuspendedError,
+    EmailNotVerifiedError,
+    InvalidAuthTokenError,
+    InvalidCredentialsError,
+    store,
+)
+
+
+@asynccontextmanager
+async def lifespan(_: FastAPI):
+    validate_runtime_configuration()
+    yield
 
 app = FastAPI(
     title="OfferPilot API",
     description="澳洲八大全层次课程探索与申请规划 API",
-    version="0.3.0",
+    version="0.4.0",
+    lifespan=lifespan,
 )
+
+app.add_middleware(SecurityHeadersMiddleware)
+app.add_middleware(RateLimitMiddleware)
 
 app.add_middleware(
     CORSMiddleware,
@@ -66,6 +98,17 @@ def current_user(authorization: Annotated[str | None, Header()] = None) -> DemoU
     if not user:
         raise HTTPException(status_code=401, detail="登录已失效")
     return user
+
+
+def current_admin(user: Annotated[DemoUser, Depends(current_user)]) -> DemoUser:
+    if user.role != "admin":
+        raise HTTPException(status_code=403, detail="需要管理员权限")
+    return user
+
+
+def validate_password_strength(password: str) -> None:
+    if not any(character.isalpha() for character in password) or not any(character.isdigit() for character in password):
+        raise HTTPException(status_code=422, detail="密码至少 8 位，并同时包含字母和数字")
 
 
 @app.get("/health")
@@ -95,11 +138,86 @@ def llm_status() -> LLMStatus:
 
 @app.post("/auth/login", response_model=AuthResponse)
 def login(payload: LoginRequest) -> AuthResponse:
+    validate_password_strength(payload.password)
     try:
         token, user = store.login(payload.email, payload.password)
     except InvalidCredentialsError as error:
         raise HTTPException(status_code=401, detail=str(error)) from error
+    except EmailNotVerifiedError as error:
+        raise HTTPException(status_code=403, detail=str(error)) from error
+    except AccountSuspendedError as error:
+        raise HTTPException(status_code=403, detail=str(error)) from error
     return AuthResponse(access_token=token, user=user)
+
+
+@app.post("/auth/register", response_model=RegistrationResponse, status_code=201)
+def register(payload: RegisterRequest) -> RegistrationResponse:
+    if not payload.accepted_terms:
+        raise HTTPException(status_code=422, detail="请先同意服务条款与隐私说明")
+    validate_password_strength(payload.password)
+    try:
+        user, token = store.register(payload.email, payload.password, payload.display_name)
+    except AccountExistsError as error:
+        raise HTTPException(status_code=409, detail=str(error)) from error
+    delivery = send_verification_email(user.email, user.display_name, token)
+    return RegistrationResponse(
+        message="注册成功，请检查邮箱完成验证",
+        user=user,
+        delivery=delivery,
+        debug_token=token if os.getenv("APP_ENV", "development") != "production" else None,
+    )
+
+
+@app.post("/auth/verify-email", response_model=MessageResponse)
+def verify_email(payload: EmailTokenRequest) -> MessageResponse:
+    try:
+        store.verify_email(payload.token)
+    except InvalidAuthTokenError as error:
+        raise HTTPException(status_code=400, detail=str(error)) from error
+    return MessageResponse(message="邮箱验证成功，现在可以登录")
+
+
+@app.post("/auth/resend-verification", response_model=MessageResponse)
+def resend_verification(payload: EmailRequest) -> MessageResponse:
+    result = store.create_email_verification(payload.email)
+    if result:
+        user, token = result
+        send_verification_email(user.email, user.display_name, token)
+    return MessageResponse(message="如果该邮箱已注册且尚未验证，我们已发送新的验证邮件")
+
+
+@app.post("/auth/forgot-password", response_model=MessageResponse)
+def forgot_password(payload: EmailRequest) -> MessageResponse:
+    result = store.create_password_reset(payload.email)
+    if result:
+        user, token = result
+        send_password_reset_email(user.email, user.display_name, token)
+    return MessageResponse(message="如果该邮箱已注册，我们已发送密码重置邮件")
+
+
+@app.post("/auth/reset-password", response_model=MessageResponse)
+def reset_password(payload: PasswordResetRequest) -> MessageResponse:
+    validate_password_strength(payload.password)
+    try:
+        store.reset_password(payload.token, payload.password)
+    except InvalidAuthTokenError as error:
+        raise HTTPException(status_code=400, detail=str(error)) from error
+    return MessageResponse(message="密码已更新，请重新登录")
+
+
+@app.post("/auth/logout", response_model=MessageResponse)
+def logout(
+    _: Annotated[DemoUser, Depends(current_user)],
+    authorization: Annotated[str | None, Header()] = None,
+) -> MessageResponse:
+    if authorization:
+        store.logout(authorization.split(" ", 1)[1])
+    return MessageResponse(message="已安全退出")
+
+
+@app.get("/me", response_model=DemoUser)
+def get_me(user: Annotated[DemoUser, Depends(current_user)]) -> DemoUser:
+    return user
 
 
 @app.get("/universities", response_model=list[University])
@@ -208,6 +326,69 @@ def update_my_task(
         raise HTTPException(status_code=404, detail="申请任务不存在")
     task = task.model_copy(update={**payload.model_dump(exclude_unset=True), "updated_at": datetime.now(UTC)})
     return store.save_task(user.id, task)
+
+
+@app.get("/me/feedback", response_model=list[FeedbackItem])
+def list_my_feedback(user: Annotated[DemoUser, Depends(current_user)]) -> list[FeedbackItem]:
+    return store.list_feedback(user.id)
+
+
+@app.post("/me/feedback", response_model=FeedbackItem, status_code=201)
+def create_feedback(
+    payload: FeedbackCreateRequest,
+    user: Annotated[DemoUser, Depends(current_user)],
+) -> FeedbackItem:
+    now = datetime.now(UTC)
+    return store.save_feedback(FeedbackItem(
+        id=f"feedback_{uuid4().hex[:12]}", user_id=user.id, user_email=user.email,
+        created_at=now, updated_at=now, **payload.model_dump(),
+    ))
+
+
+@app.get("/admin/stats", response_model=AdminStats)
+def admin_stats(_: Annotated[DemoUser, Depends(current_admin)]) -> AdminStats:
+    counts = store.admin_counts()
+    return AdminStats(
+        **counts,
+        verified_programs=sum(program.verification_status == "已核验" for program in PROGRAMS),
+        catalog_coverage_cells=len(CATALOG_COVERAGE),
+    )
+
+
+@app.get("/admin/users", response_model=list[DemoUser])
+def admin_users(_: Annotated[DemoUser, Depends(current_admin)]) -> list[DemoUser]:
+    return store.list_users()
+
+
+@app.put("/admin/users/{user_id}", response_model=DemoUser)
+def admin_update_user(
+    user_id: str,
+    payload: AdminUserUpdateRequest,
+    admin: Annotated[DemoUser, Depends(current_admin)],
+) -> DemoUser:
+    if user_id == admin.id and payload.status == "suspended":
+        raise HTTPException(status_code=409, detail="不能停用当前管理员账户")
+    user = store.update_user_status(user_id, payload.status)
+    if not user:
+        raise HTTPException(status_code=404, detail="用户不存在")
+    return user
+
+
+@app.get("/admin/feedback", response_model=list[FeedbackItem])
+def admin_feedback(_: Annotated[DemoUser, Depends(current_admin)]) -> list[FeedbackItem]:
+    return store.list_feedback()
+
+
+@app.put("/admin/feedback/{feedback_id}", response_model=FeedbackItem)
+def admin_update_feedback(
+    feedback_id: str,
+    payload: FeedbackUpdateRequest,
+    _: Annotated[DemoUser, Depends(current_admin)],
+) -> FeedbackItem:
+    item = store.get_feedback(feedback_id)
+    if not item:
+        raise HTTPException(status_code=404, detail="反馈不存在")
+    return store.save_feedback(item.model_copy(update={"status": payload.status, "updated_at": datetime.now(UTC)}))
 
 
 @app.post("/recommendations", response_model=RecommendationResponse)

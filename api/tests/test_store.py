@@ -22,6 +22,8 @@ def sample_profile() -> ApplicantProfile:
 def test_sqlite_store_survives_adapter_restart(tmp_path) -> None:
     database_path = str(tmp_path / "offerpilot.db")
     first = SQLiteStore(database_path)
+    _, verification = first.register("Demo@OfferPilot.cn", "demo1234", "Demo")
+    first.verify_email(verification)
     token, user = first.login("Demo@OfferPilot.cn", "demo1234")
     profile = first.save_profile(user.id, sample_profile())
     result = run_recommendation_agent(profile)
@@ -47,6 +49,10 @@ def test_sqlite_store_survives_adapter_restart(tmp_path) -> None:
 
 def test_sqlite_store_keeps_users_runs_isolated(tmp_path) -> None:
     store = SQLiteStore(str(tmp_path / "offerpilot.db"))
+    _, first_verification = store.register("first@example.com", "demo1234", "First")
+    _, second_verification = store.register("second@example.com", "demo1234", "Second")
+    store.verify_email(first_verification)
+    store.verify_email(second_verification)
     _, first_user = store.login("first@example.com", "demo1234")
     _, second_user = store.login("second@example.com", "demo1234")
     profile = store.save_profile(first_user.id, sample_profile())
@@ -55,3 +61,16 @@ def test_sqlite_store_keeps_users_runs_isolated(tmp_path) -> None:
 
     assert store.list_runs(second_user.id) == []
     assert store.get_run(second_user.id, result.run_id) is None
+
+
+def test_sqlite_password_reset_is_single_use_and_revokes_sessions(tmp_path) -> None:
+    store = SQLiteStore(str(tmp_path / "offerpilot.db"))
+    _, verification = store.register("reset@example.com", "before123", "Reset")
+    store.verify_email(verification)
+    session, _ = store.login("reset@example.com", "before123")
+    _, reset_token = store.create_password_reset("reset@example.com") or (None, None)
+
+    assert reset_token is not None
+    store.reset_password(reset_token, "after1234")
+    assert store.user_for_token(session) is None
+    assert store.login("reset@example.com", "after1234")[1].email == "reset@example.com"

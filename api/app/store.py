@@ -10,13 +10,28 @@ import sqlite3
 from threading import Lock
 from typing import Protocol
 
-from .models import AgentRunAudit, ApplicationTask, AdvisorThread, AgentRecommendationResponse, ApplicantProfile, DemoUser, RecommendationRunSummary
+from .models import (
+    AgentRunAudit,
+    AgentRecommendationResponse,
+    ApplicationTask,
+    AdvisorThread,
+    ApplicantProfile,
+    DemoUser,
+    FeedbackItem,
+    RecommendationRunSummary,
+)
 
 
 class Store(Protocol):
     """Persistence contract used by the API and its storage adapters."""
 
+    def register(self, email: str, password: str, display_name: str) -> tuple[DemoUser, str]: ...
+    def verify_email(self, token: str) -> DemoUser: ...
+    def create_email_verification(self, email: str) -> tuple[DemoUser, str] | None: ...
     def login(self, email: str, password: str) -> tuple[str, DemoUser]: ...
+    def logout(self, token: str) -> None: ...
+    def create_password_reset(self, email: str) -> tuple[DemoUser, str] | None: ...
+    def reset_password(self, token: str, password: str) -> None: ...
     def user_for_token(self, token: str) -> DemoUser | None: ...
     def save_profile(self, user_id: str, profile: ApplicantProfile) -> ApplicantProfile: ...
     def get_profile(self, user_id: str) -> ApplicantProfile | None: ...
@@ -31,6 +46,12 @@ class Store(Protocol):
     def get_task(self, user_id: str, task_id: str) -> ApplicationTask | None: ...
     def save_audit(self, user_id: str, audit: AgentRunAudit) -> AgentRunAudit: ...
     def list_audits(self, user_id: str) -> list[AgentRunAudit]: ...
+    def save_feedback(self, feedback: FeedbackItem) -> FeedbackItem: ...
+    def list_feedback(self, user_id: str | None = None) -> list[FeedbackItem]: ...
+    def get_feedback(self, feedback_id: str) -> FeedbackItem | None: ...
+    def list_users(self) -> list[DemoUser]: ...
+    def update_user_status(self, user_id: str, status: str) -> DemoUser | None: ...
+    def admin_counts(self) -> dict[str, int]: ...
 
 
 class DemoStore:
@@ -40,33 +61,99 @@ class DemoStore:
         self._lock = Lock()
         self._users: dict[str, DemoUser] = {}
         self._tokens: dict[str, tuple[str, datetime]] = {}
+        self._auth_tokens: dict[str, tuple[str, str, datetime]] = {}
         self._passwords: dict[str, str] = {}
         self._profiles: dict[str, ApplicantProfile] = {}
         self._runs: dict[str, list[tuple[RecommendationRunSummary, AgentRecommendationResponse]]] = {}
         self._threads: dict[str, list[AdvisorThread]] = {}
         self._tasks: dict[str, list[ApplicationTask]] = {}
         self._audits: dict[str, list[AgentRunAudit]] = {}
+        self._feedback: dict[str, FeedbackItem] = {}
+
+    def register(self, email: str, password: str, display_name: str) -> tuple[DemoUser, str]:
+        normalized = normalize_email(email)
+        user_id = user_id_for_email(normalized)
+        raw_token = new_auth_token()
+        now = datetime.now(UTC)
+        user = DemoUser(
+            id=user_id, email=normalized, display_name=display_name.strip(), role=role_for_email(normalized),
+            email_verified=False, created_at=now,
+        )
+        with self._lock:
+            if user_id in self._users:
+                raise AccountExistsError("该邮箱已注册")
+            self._users[user_id] = user
+            self._passwords[user_id] = hash_password(password)
+            self._auth_tokens[token_hash(raw_token)] = (user_id, "verify_email", now + timedelta(hours=24))
+        return user, raw_token
+
+    def verify_email(self, token: str) -> DemoUser:
+        with self._lock:
+            user_id = self._consume_auth_token(token, "verify_email")
+            user = self._users[user_id].model_copy(update={"email_verified": True})
+            self._users[user_id] = user
+        return user
+
+    def create_email_verification(self, email: str) -> tuple[DemoUser, str] | None:
+        user_id = user_id_for_email(normalize_email(email))
+        with self._lock:
+            user = self._users.get(user_id)
+            if not user or user.email_verified:
+                return None
+            raw_token = new_auth_token()
+            self._auth_tokens[token_hash(raw_token)] = (user_id, "verify_email", datetime.now(UTC) + timedelta(hours=24))
+        return user, raw_token
 
     def login(self, email: str, password: str) -> tuple[str, DemoUser]:
-        normalized = email.strip().lower()
-        user_id = f"usr_{sha256(normalized.encode()).hexdigest()[:10]}"
+        normalized = normalize_email(email)
+        user_id = user_id_for_email(normalized)
         token = f"op_{secrets.token_urlsafe(32)}"
-        user = DemoUser(id=user_id, email=normalized, display_name=normalized.split("@", 1)[0])
         with self._lock:
+            user = self._users.get(user_id)
             stored_hash = self._passwords.get(user_id)
-            if stored_hash and not verify_password(password, stored_hash):
+            if not user or not stored_hash or not verify_password(password, stored_hash):
                 raise InvalidCredentialsError("邮箱或密码不正确")
+            ensure_login_allowed(user)
+            now = datetime.now(UTC)
+            user = user.model_copy(update={"last_login_at": now})
             self._users[user_id] = user
-            self._passwords.setdefault(user_id, hash_password(password))
-            self._tokens[token] = (user_id, datetime.now(UTC) + timedelta(hours=session_hours()))
+            self._tokens[token_hash(token)] = (user_id, now + timedelta(hours=session_hours()))
         return token, user
+
+    def logout(self, token: str) -> None:
+        with self._lock:
+            self._tokens.pop(token_hash(token), None)
+
+    def create_password_reset(self, email: str) -> tuple[DemoUser, str] | None:
+        user_id = user_id_for_email(normalize_email(email))
+        with self._lock:
+            user = self._users.get(user_id)
+            if not user:
+                return None
+            raw_token = new_auth_token()
+            self._auth_tokens[token_hash(raw_token)] = (user_id, "reset_password", datetime.now(UTC) + timedelta(minutes=30))
+        return user, raw_token
+
+    def reset_password(self, token: str, password: str) -> None:
+        with self._lock:
+            user_id = self._consume_auth_token(token, "reset_password")
+            self._passwords[user_id] = hash_password(password)
+            self._tokens = {key: value for key, value in self._tokens.items() if value[0] != user_id}
+
+    def _consume_auth_token(self, token: str, purpose: str) -> str:
+        key = token_hash(token)
+        record = self._auth_tokens.pop(key, None)
+        if not record or record[1] != purpose or record[2] <= datetime.now(UTC):
+            raise InvalidAuthTokenError("链接无效或已过期")
+        return record[0]
 
     def user_for_token(self, token: str) -> DemoUser | None:
         with self._lock:
-            session = self._tokens.get(token)
+            session = self._tokens.get(token_hash(token))
             if not session or session[1] <= datetime.now(UTC):
                 return None
-            return self._users.get(session[0])
+            user = self._users.get(session[0])
+            return user if user and user.status == "active" else None
 
     def save_profile(self, user_id: str, profile: ApplicantProfile) -> ApplicantProfile:
         with self._lock:
@@ -141,6 +228,46 @@ class DemoStore:
         with self._lock:
             return list(self._audits.get(user_id, []))
 
+    def save_feedback(self, feedback: FeedbackItem) -> FeedbackItem:
+        with self._lock:
+            self._feedback[feedback.id] = feedback
+        return feedback
+
+    def list_feedback(self, user_id: str | None = None) -> list[FeedbackItem]:
+        with self._lock:
+            items = [item for item in self._feedback.values() if user_id is None or item.user_id == user_id]
+        return sorted(items, key=lambda item: item.created_at, reverse=True)
+
+    def get_feedback(self, feedback_id: str) -> FeedbackItem | None:
+        with self._lock:
+            return self._feedback.get(feedback_id)
+
+    def list_users(self) -> list[DemoUser]:
+        with self._lock:
+            return sorted(self._users.values(), key=lambda user: user.created_at or datetime.min.replace(tzinfo=UTC), reverse=True)
+
+    def update_user_status(self, user_id: str, status: str) -> DemoUser | None:
+        with self._lock:
+            user = self._users.get(user_id)
+            if not user:
+                return None
+            updated = user.model_copy(update={"status": status})
+            self._users[user_id] = updated
+            if status == "suspended":
+                self._tokens = {key: value for key, value in self._tokens.items() if value[0] != user_id}
+            return updated
+
+    def admin_counts(self) -> dict[str, int]:
+        with self._lock:
+            return {
+                "users": len(self._users),
+                "verified_users": sum(user.email_verified for user in self._users.values()),
+                "active_sessions": sum(expires > datetime.now(UTC) for _, expires in self._tokens.values()),
+                "recommendation_runs": sum(len(items) for items in self._runs.values()),
+                "advisor_threads": sum(len(items) for items in self._threads.values()),
+                "open_feedback": sum(item.status != "resolved" for item in self._feedback.values()),
+            }
+
 
 class SQLiteStore:
     """Durable local adapter with the same contract as the in-memory demo store."""
@@ -161,7 +288,12 @@ class SQLiteStore:
                     id TEXT PRIMARY KEY,
                     email TEXT NOT NULL UNIQUE,
                     display_name TEXT NOT NULL,
-                    password_hash TEXT
+                    password_hash TEXT,
+                    email_verified_at TEXT,
+                    role TEXT NOT NULL DEFAULT 'user',
+                    status TEXT NOT NULL DEFAULT 'active',
+                    created_at TEXT,
+                    last_login_at TEXT
                 );
                 CREATE TABLE IF NOT EXISTS sessions (
                     token TEXT PRIMARY KEY,
@@ -206,52 +338,142 @@ class SQLiteStore:
                 );
                 CREATE INDEX IF NOT EXISTS idx_audits_user_created
                     ON agent_run_audits(user_id, created_at DESC);
+                CREATE TABLE IF NOT EXISTS auth_tokens (
+                    token_hash TEXT PRIMARY KEY,
+                    user_id TEXT NOT NULL REFERENCES users(id),
+                    purpose TEXT NOT NULL,
+                    expires_at TEXT NOT NULL,
+                    used_at TEXT,
+                    created_at TEXT NOT NULL
+                );
+                CREATE INDEX IF NOT EXISTS idx_auth_tokens_user_purpose
+                    ON auth_tokens(user_id, purpose, expires_at DESC);
+                CREATE TABLE IF NOT EXISTS feedback (
+                    feedback_id TEXT PRIMARY KEY,
+                    user_id TEXT NOT NULL REFERENCES users(id),
+                    payload TEXT NOT NULL,
+                    created_at TEXT NOT NULL,
+                    updated_at TEXT NOT NULL
+                );
                 """
             )
             columns = {row[1] for row in self._connection.execute("PRAGMA table_info(users)").fetchall()}
             if "password_hash" not in columns:
                 self._connection.execute("ALTER TABLE users ADD COLUMN password_hash TEXT")
+            for name, definition in {
+                "email_verified_at": "TEXT",
+                "role": "TEXT NOT NULL DEFAULT 'user'",
+                "status": "TEXT NOT NULL DEFAULT 'active'",
+                "created_at": "TEXT",
+                "last_login_at": "TEXT",
+            }.items():
+                if name not in columns:
+                    self._connection.execute(f"ALTER TABLE users ADD COLUMN {name} {definition}")
             self._legacy_token_column = "token" in columns
 
-    def login(self, email: str, password: str) -> tuple[str, DemoUser]:
-        normalized = email.strip().lower()
-        user_id = f"usr_{sha256(normalized.encode()).hexdigest()[:10]}"
-        token = f"op_{secrets.token_urlsafe(32)}"
-        user = DemoUser(id=user_id, email=normalized, display_name=normalized.split("@", 1)[0])
+    def register(self, email: str, password: str, display_name: str) -> tuple[DemoUser, str]:
+        normalized = normalize_email(email)
+        user_id = user_id_for_email(normalized)
+        now = datetime.now(UTC)
+        raw_token = new_auth_token()
+        user = DemoUser(
+            id=user_id, email=normalized, display_name=display_name.strip(), role=role_for_email(normalized),
+            email_verified=False, status="active", created_at=now,
+        )
         with self._lock, self._connection:
-            existing = self._connection.execute("SELECT password_hash FROM users WHERE id = ?", (user_id,)).fetchone()
-            if existing and existing["password_hash"] and not verify_password(password, existing["password_hash"]):
+            if self._connection.execute("SELECT 1 FROM users WHERE email = ?", (normalized,)).fetchone():
+                raise AccountExistsError("该邮箱已注册")
+            self._connection.execute(
+                """INSERT INTO users
+                (id, email, display_name, password_hash, email_verified_at, role, status, created_at)
+                VALUES (?, ?, ?, ?, NULL, ?, 'active', ?)""",
+                (user.id, user.email, user.display_name, hash_password(password), user.role, now.isoformat()),
+            )
+            self._save_auth_token(user.id, "verify_email", raw_token, now + timedelta(hours=24))
+        return user, raw_token
+
+    def verify_email(self, token: str) -> DemoUser:
+        with self._lock, self._connection:
+            user_id = self._consume_auth_token(token, "verify_email")
+            self._connection.execute("UPDATE users SET email_verified_at = ? WHERE id = ?", (datetime.now(UTC).isoformat(), user_id))
+            row = self._connection.execute("SELECT * FROM users WHERE id = ?", (user_id,)).fetchone()
+        return sqlite_user(row)
+
+    def create_email_verification(self, email: str) -> tuple[DemoUser, str] | None:
+        with self._lock, self._connection:
+            row = self._connection.execute("SELECT * FROM users WHERE email = ?", (normalize_email(email),)).fetchone()
+            if not row or row["email_verified_at"]:
+                return None
+            raw_token = new_auth_token()
+            self._save_auth_token(row["id"], "verify_email", raw_token, datetime.now(UTC) + timedelta(hours=24))
+        return sqlite_user(row), raw_token
+
+    def login(self, email: str, password: str) -> tuple[str, DemoUser]:
+        normalized = normalize_email(email)
+        token = f"op_{secrets.token_urlsafe(32)}"
+        with self._lock, self._connection:
+            existing = self._connection.execute("SELECT * FROM users WHERE email = ?", (normalized,)).fetchone()
+            if not existing or not existing["password_hash"] or not verify_password(password, existing["password_hash"]):
                 raise InvalidCredentialsError("邮箱或密码不正确")
-            password_hash = existing["password_hash"] if existing and existing["password_hash"] else hash_password(password)
-            if self._legacy_token_column:
-                self._connection.execute(
-                    """INSERT INTO users (id, email, display_name, password_hash, token) VALUES (?, ?, ?, ?, ?)
-                    ON CONFLICT(id) DO UPDATE SET email = excluded.email, display_name = excluded.display_name,
-                    password_hash = excluded.password_hash, token = excluded.token""",
-                    (user.id, user.email, user.display_name, password_hash, token),
-                )
-            else:
-                self._connection.execute(
-                    """INSERT INTO users (id, email, display_name, password_hash) VALUES (?, ?, ?, ?)
-                    ON CONFLICT(id) DO UPDATE SET email = excluded.email, display_name = excluded.display_name,
-                    password_hash = excluded.password_hash""",
-                    (user.id, user.email, user.display_name, password_hash),
-                )
+            user = sqlite_user(existing)
+            ensure_login_allowed(user)
+            now = datetime.now(UTC)
             self._connection.execute(
                 "INSERT INTO sessions (token, user_id, expires_at) VALUES (?, ?, ?)",
-                (token, user.id, (datetime.now(UTC) + timedelta(hours=session_hours())).isoformat()),
+                (token_hash(token), user.id, (now + timedelta(hours=session_hours())).isoformat()),
             )
+            self._connection.execute("UPDATE users SET last_login_at = ? WHERE id = ?", (now.isoformat(), user.id))
+            user = user.model_copy(update={"last_login_at": now})
         return token, user
+
+    def logout(self, token: str) -> None:
+        with self._lock, self._connection:
+            self._connection.execute("DELETE FROM sessions WHERE token = ?", (token_hash(token),))
+
+    def create_password_reset(self, email: str) -> tuple[DemoUser, str] | None:
+        with self._lock, self._connection:
+            row = self._connection.execute("SELECT * FROM users WHERE email = ?", (normalize_email(email),)).fetchone()
+            if not row:
+                return None
+            raw_token = new_auth_token()
+            self._save_auth_token(row["id"], "reset_password", raw_token, datetime.now(UTC) + timedelta(minutes=30))
+        return sqlite_user(row), raw_token
+
+    def reset_password(self, token: str, password: str) -> None:
+        with self._lock, self._connection:
+            user_id = self._consume_auth_token(token, "reset_password")
+            self._connection.execute("UPDATE users SET password_hash = ? WHERE id = ?", (hash_password(password), user_id))
+            self._connection.execute("DELETE FROM sessions WHERE user_id = ?", (user_id,))
+
+    def _save_auth_token(self, user_id: str, purpose: str, raw_token: str, expires_at: datetime) -> None:
+        self._connection.execute("DELETE FROM auth_tokens WHERE user_id = ? AND purpose = ?", (user_id, purpose))
+        self._connection.execute(
+            "INSERT INTO auth_tokens (token_hash, user_id, purpose, expires_at, created_at) VALUES (?, ?, ?, ?, ?)",
+            (token_hash(raw_token), user_id, purpose, expires_at.isoformat(), datetime.now(UTC).isoformat()),
+        )
+
+    def _consume_auth_token(self, raw_token: str, purpose: str) -> str:
+        row = self._connection.execute(
+            "SELECT * FROM auth_tokens WHERE token_hash = ? AND purpose = ? AND used_at IS NULL",
+            (token_hash(raw_token), purpose),
+        ).fetchone()
+        if not row or datetime.fromisoformat(row["expires_at"]) <= datetime.now(UTC):
+            raise InvalidAuthTokenError("链接无效或已过期")
+        self._connection.execute("UPDATE auth_tokens SET used_at = ? WHERE token_hash = ?", (datetime.now(UTC).isoformat(), row["token_hash"]))
+        return row["user_id"]
 
     def user_for_token(self, token: str) -> DemoUser | None:
         with self._lock:
             row = self._connection.execute(
                 """SELECT users.id, users.email, users.display_name, sessions.expires_at
-                FROM sessions JOIN users ON users.id = sessions.user_id WHERE sessions.token = ?""", (token,)
+                FROM sessions JOIN users ON users.id = sessions.user_id WHERE sessions.token = ?""", (token_hash(token),)
             ).fetchone()
         if not row or datetime.fromisoformat(row["expires_at"]) <= datetime.now(UTC):
             return None
-        return DemoUser(id=row["id"], email=row["email"], display_name=row["display_name"])
+        with self._lock:
+            user_row = self._connection.execute("SELECT * FROM users WHERE id = ?", (row["id"],)).fetchone()
+        user = sqlite_user(user_row)
+        return user if user.status == "active" else None
 
     def save_profile(self, user_id: str, profile: ApplicantProfile) -> ApplicantProfile:
         with self._lock, self._connection:
@@ -395,6 +617,57 @@ class SQLiteStore:
             ).fetchall()
         return [AgentRunAudit.model_validate_json(row["payload"]) for row in rows]
 
+    def save_feedback(self, feedback: FeedbackItem) -> FeedbackItem:
+        with self._lock, self._connection:
+            self._connection.execute(
+                """INSERT INTO feedback (feedback_id, user_id, payload, created_at, updated_at)
+                VALUES (?, ?, ?, ?, ?)
+                ON CONFLICT(feedback_id) DO UPDATE SET payload = excluded.payload, updated_at = excluded.updated_at""",
+                (feedback.id, feedback.user_id, feedback.model_dump_json(), feedback.created_at.isoformat(), feedback.updated_at.isoformat()),
+            )
+        return feedback
+
+    def list_feedback(self, user_id: str | None = None) -> list[FeedbackItem]:
+        query = "SELECT payload FROM feedback"
+        params: tuple[str, ...] = ()
+        if user_id:
+            query += " WHERE user_id = ?"
+            params = (user_id,)
+        query += " ORDER BY created_at DESC"
+        with self._lock:
+            rows = self._connection.execute(query, params).fetchall()
+        return [FeedbackItem.model_validate_json(row["payload"]) for row in rows]
+
+    def get_feedback(self, feedback_id: str) -> FeedbackItem | None:
+        with self._lock:
+            row = self._connection.execute("SELECT payload FROM feedback WHERE feedback_id = ?", (feedback_id,)).fetchone()
+        return FeedbackItem.model_validate_json(row["payload"]) if row else None
+
+    def list_users(self) -> list[DemoUser]:
+        with self._lock:
+            rows = self._connection.execute("SELECT * FROM users ORDER BY created_at DESC").fetchall()
+        return [sqlite_user(row) for row in rows]
+
+    def update_user_status(self, user_id: str, status: str) -> DemoUser | None:
+        with self._lock, self._connection:
+            self._connection.execute("UPDATE users SET status = ? WHERE id = ?", (status, user_id))
+            if status == "suspended":
+                self._connection.execute("DELETE FROM sessions WHERE user_id = ?", (user_id,))
+            row = self._connection.execute("SELECT * FROM users WHERE id = ?", (user_id,)).fetchone()
+        return sqlite_user(row) if row else None
+
+    def admin_counts(self) -> dict[str, int]:
+        with self._lock:
+            scalar = lambda query, params=(): int(self._connection.execute(query, params).fetchone()[0])
+            return {
+                "users": scalar("SELECT COUNT(*) FROM users"),
+                "verified_users": scalar("SELECT COUNT(*) FROM users WHERE email_verified_at IS NOT NULL"),
+                "active_sessions": scalar("SELECT COUNT(*) FROM sessions WHERE expires_at > ?", (datetime.now(UTC).isoformat(),)),
+                "recommendation_runs": scalar("SELECT COUNT(*) FROM recommendation_runs"),
+                "advisor_threads": scalar("SELECT COUNT(*) FROM advisor_threads"),
+                "open_feedback": scalar("SELECT COUNT(*) FROM feedback WHERE json_extract(payload, '$.status') != 'resolved'"),
+            }
+
 
 def create_store() -> Store:
     """Select PostgreSQL in production, SQLite locally, or memory for isolated tests."""
@@ -409,6 +682,63 @@ def create_store() -> Store:
 
 class InvalidCredentialsError(ValueError):
     pass
+
+
+class AccountExistsError(ValueError):
+    pass
+
+
+class EmailNotVerifiedError(ValueError):
+    pass
+
+
+class AccountSuspendedError(ValueError):
+    pass
+
+
+class InvalidAuthTokenError(ValueError):
+    pass
+
+
+def normalize_email(email: str) -> str:
+    return email.strip().lower()
+
+
+def user_id_for_email(email: str) -> str:
+    return f"usr_{sha256(email.encode()).hexdigest()[:16]}"
+
+
+def role_for_email(email: str) -> str:
+    admins = {item.strip().lower() for item in os.getenv("ADMIN_EMAILS", "").split(",") if item.strip()}
+    return "admin" if email in admins else "user"
+
+
+def token_hash(token: str) -> str:
+    return sha256(token.encode()).hexdigest()
+
+
+def new_auth_token() -> str:
+    return secrets.token_urlsafe(32)
+
+
+def ensure_login_allowed(user: DemoUser) -> None:
+    if user.status != "active":
+        raise AccountSuspendedError("账户已停用，请联系管理员")
+    if not user.email_verified:
+        raise EmailNotVerifiedError("请先完成邮箱验证")
+
+
+def sqlite_user(row: sqlite3.Row) -> DemoUser:
+    return DemoUser(
+        id=row["id"],
+        email=row["email"],
+        display_name=row["display_name"],
+        role=row["role"] or "user",
+        email_verified=bool(row["email_verified_at"]),
+        status=row["status"] or "active",
+        created_at=datetime.fromisoformat(row["created_at"]) if row["created_at"] else None,
+        last_login_at=datetime.fromisoformat(row["last_login_at"]) if row["last_login_at"] else None,
+    )
 
 
 def session_hours() -> int:

@@ -7,6 +7,16 @@ from main import app as service_app
 client = TestClient(app)
 
 
+def registered_login(email: str, password: str = "demo1234"):
+    registered = client.post("/auth/register", json={
+        "email": email, "password": password, "display_name": "测试用户", "accepted_terms": True,
+    })
+    assert registered.status_code == 201
+    token = registered.json()["debug_token"]
+    assert client.post("/auth/verify-email", json={"token": token}).status_code == 200
+    return client.post("/auth/login", json={"email": email, "password": password})
+
+
 def test_vercel_service_entrypoint_exports_the_application() -> None:
     response = TestClient(service_app).get("/api/health")
     assert response.status_code == 200
@@ -30,8 +40,50 @@ def test_llm_status_never_exposes_the_api_key(monkeypatch) -> None:
 
 
 def test_login_rejects_a_wrong_password_after_account_creation() -> None:
-    assert client.post("/auth/login", json={"email": "secure@offerpilot.cn", "password": "first-pass"}).status_code == 200
-    assert client.post("/auth/login", json={"email": "secure@offerpilot.cn", "password": "wrong-pass"}).status_code == 401
+    assert registered_login("secure@offerpilot.cn", "first-pass1").status_code == 200
+    assert client.post("/auth/login", json={"email": "secure@offerpilot.cn", "password": "wrong-pass1"}).status_code == 401
+
+
+def test_registration_requires_verification_and_logout_revokes_session() -> None:
+    registered = client.post("/auth/register", json={
+        "email": "lifecycle@offerpilot.cn", "password": "secure123", "display_name": "Lifecycle", "accepted_terms": True,
+    })
+    assert registered.status_code == 201
+    assert registered.json()["user"]["email_verified"] is False
+    assert client.post("/auth/login", json={"email": "lifecycle@offerpilot.cn", "password": "secure123"}).status_code == 403
+
+    verification = registered.json()["debug_token"]
+    assert client.post("/auth/verify-email", json={"token": verification}).status_code == 200
+    login = client.post("/auth/login", json={"email": "lifecycle@offerpilot.cn", "password": "secure123"})
+    headers = {"Authorization": f"Bearer {login.json()['access_token']}"}
+    assert client.get("/me", headers=headers).status_code == 200
+    assert client.post("/auth/logout", headers=headers).status_code == 200
+    assert client.get("/me", headers=headers).status_code == 401
+
+
+def test_admin_can_review_feedback_and_suspend_users() -> None:
+    user_login = registered_login("feedback-user@offerpilot.cn")
+    user_headers = {"Authorization": f"Bearer {user_login.json()['access_token']}"}
+    feedback = client.post("/me/feedback", headers=user_headers, json={
+        "category": "建议", "message": "希望增加奖学金筛选", "page": "results",
+    })
+    assert feedback.status_code == 201
+    assert client.get("/admin/stats", headers=user_headers).status_code == 403
+
+    admin_login = registered_login("admin@offerpilot.cn")
+    admin_headers = {"Authorization": f"Bearer {admin_login.json()['access_token']}"}
+    stats = client.get("/admin/stats", headers=admin_headers)
+    assert stats.status_code == 200
+    assert stats.json()["open_feedback"] >= 1
+    reviewed = client.put(
+        f"/admin/feedback/{feedback.json()['id']}", headers=admin_headers, json={"status": "resolved"},
+    )
+    assert reviewed.json()["status"] == "resolved"
+    suspended = client.put(
+        f"/admin/users/{feedback.json()['user_id']}", headers=admin_headers, json={"status": "suspended"},
+    )
+    assert suspended.json()["status"] == "suspended"
+    assert client.get("/me", headers=user_headers).status_code == 401
 
 
 def test_recommendations_return_all_go8_members() -> None:
@@ -99,7 +151,7 @@ def test_agent_flags_missing_language_and_prerequisite_evidence() -> None:
 
 
 def test_complete_authenticated_product_flow() -> None:
-    login = client.post("/auth/login", json={"email": "demo@offerpilot.cn", "password": "demo1234"})
+    login = registered_login("demo@offerpilot.cn")
     assert login.status_code == 200
     headers = {"Authorization": f"Bearer {login.json()['access_token']}"}
 
@@ -129,7 +181,7 @@ def test_complete_authenticated_product_flow() -> None:
 
 
 def test_advisor_conversation_updates_profile_and_reruns_recommendations() -> None:
-    login = client.post("/auth/login", json={"email": "advisor@offerpilot.cn", "password": "demo1234"})
+    login = registered_login("advisor@offerpilot.cn")
     headers = {"Authorization": f"Bearer {login.json()['access_token']}"}
     profile = {
         "undergraduate_school": "示例大学",
@@ -166,7 +218,7 @@ def test_advisor_conversation_updates_profile_and_reruns_recommendations() -> No
 
 
 def test_transcript_analysis_maps_courses_to_program_prerequisites() -> None:
-    login = client.post("/auth/login", json={"email": "transcript@offerpilot.cn", "password": "demo1234"})
+    login = registered_login("transcript@offerpilot.cn")
     headers = {"Authorization": f"Bearer {login.json()['access_token']}"}
     profile = {
         "undergraduate_school": "示例大学",
@@ -191,7 +243,7 @@ def test_transcript_analysis_maps_courses_to_program_prerequisites() -> None:
 
 
 def test_tasks_can_be_created_and_progressed() -> None:
-    login = client.post("/auth/login", json={"email": "tasks@offerpilot.cn", "password": "demo1234"})
+    login = registered_login("tasks@offerpilot.cn")
     headers = {"Authorization": f"Bearer {login.json()['access_token']}"}
     created = client.post(
         "/me/tasks",
@@ -205,7 +257,7 @@ def test_tasks_can_be_created_and_progressed() -> None:
 
 
 def test_advisor_can_create_an_application_task() -> None:
-    login = client.post("/auth/login", json={"email": "advisor-task@offerpilot.cn", "password": "demo1234"})
+    login = registered_login("advisor-task@offerpilot.cn")
     headers = {"Authorization": f"Bearer {login.json()['access_token']}"}
     client.put("/me/profile", json={
         "undergraduate_school": "示例大学", "school_tier": "双非", "undergraduate_major": "软件工程",

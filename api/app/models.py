@@ -111,19 +111,92 @@ class AgentRecommendationResponse(BaseModel):
 
 class LoginRequest(BaseModel):
     email: str = Field(min_length=3, max_length=160)
-    password: str = Field(min_length=6, max_length=128)
+    password: str = Field(min_length=8, max_length=128)
+
+
+class RegisterRequest(BaseModel):
+    email: str = Field(min_length=3, max_length=160)
+    password: str = Field(min_length=8, max_length=128)
+    display_name: str = Field(min_length=1, max_length=80)
+    accepted_terms: bool
+
+
+class EmailTokenRequest(BaseModel):
+    token: str = Field(min_length=20, max_length=512)
+
+
+class EmailRequest(BaseModel):
+    email: str = Field(min_length=3, max_length=160)
+
+
+class PasswordResetRequest(BaseModel):
+    token: str = Field(min_length=20, max_length=512)
+    password: str = Field(min_length=8, max_length=128)
 
 
 class DemoUser(BaseModel):
     id: str
     email: str
     display_name: str
+    role: Literal["user", "admin"] = "user"
+    email_verified: bool = False
+    status: Literal["active", "suspended"] = "active"
+    created_at: datetime | None = None
+    last_login_at: datetime | None = None
 
 
 class AuthResponse(BaseModel):
     access_token: str
     token_type: Literal["bearer"] = "bearer"
     user: DemoUser
+
+
+class RegistrationResponse(BaseModel):
+    message: str
+    user: DemoUser
+    delivery: Literal["smtp", "console", "disabled"]
+    debug_token: str | None = None
+
+
+class MessageResponse(BaseModel):
+    message: str
+
+
+class FeedbackCreateRequest(BaseModel):
+    category: Literal["问题", "建议", "数据错误", "其他"]
+    message: str = Field(min_length=3, max_length=4000)
+    page: str | None = Field(default=None, max_length=200)
+
+
+class FeedbackItem(BaseModel):
+    id: str
+    user_id: str
+    user_email: str
+    category: Literal["问题", "建议", "数据错误", "其他"]
+    message: str
+    page: str | None = None
+    status: Literal["new", "reviewing", "resolved"] = "new"
+    created_at: datetime
+    updated_at: datetime
+
+
+class FeedbackUpdateRequest(BaseModel):
+    status: Literal["new", "reviewing", "resolved"]
+
+
+class AdminStats(BaseModel):
+    users: int
+    verified_users: int
+    active_sessions: int
+    recommendation_runs: int
+    advisor_threads: int
+    open_feedback: int
+    verified_programs: int
+    catalog_coverage_cells: int
+
+
+class AdminUserUpdateRequest(BaseModel):
+    status: Literal["active", "suspended"]
 
 
 class RecommendationRunSummary(BaseModel):
