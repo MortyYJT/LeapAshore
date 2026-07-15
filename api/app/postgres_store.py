@@ -17,7 +17,7 @@ from .models import (
     FeedbackItem,
     RecommendationRunSummary,
 )
-from .store import (
+from .auth import (
     AccountExistsError,
     InvalidAuthTokenError,
     InvalidCredentialsError,
