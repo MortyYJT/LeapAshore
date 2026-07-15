@@ -33,17 +33,24 @@ services:
     image: postgres:16-alpine
     environment:
       PGPASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD}
+      DB_HOST: postgres
+      DB_USER: offerpilot
+      DB_NAME: offerpilot
+      BACKUP_RETENTION_DAYS: ${BACKUP_RETENTION_DAYS:-7}
+      BACKUP_INTERVAL_SECONDS: ${BACKUP_INTERVAL_SECONDS:-86400}
     volumes:
       - postgres_backups:/backups
-    command: >-
-      sh -c 'while true; do
-      pg_dump -h postgres -U offerpilot -d offerpilot -Fc -f /backups/offerpilot-$$(date +%Y%m%d-%H%M%S).dump;
-      find /backups -type f -mtime +7 -delete;
-      sleep 86400;
-      done'
+      - ./deploy/backup.sh:/usr/local/bin/offerpilot-backup:ro
+    command: ["/bin/sh", "/usr/local/bin/offerpilot-backup"]
     depends_on:
       postgres:
         condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "find /backups -type f -name 'offerpilot-*.dump' -mmin -1500 | grep -q ."]
+      interval: 5m
+      timeout: 5s
+      retries: 3
+      start_period: 2m
     restart: unless-stopped
 
 volumes:

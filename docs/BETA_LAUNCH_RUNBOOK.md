@@ -55,7 +55,7 @@ docker compose --env-file .env.production -f compose.yaml -f compose.production.
 
 ## 4. 备份与恢复
 
-生产 Compose 每天生成 PostgreSQL custom-format 备份，保留 7 天，存放在 `postgres_backups` volume。
+生产 Compose 每天生成 PostgreSQL custom-format 备份，保留 7 天，存放在 `postgres_backups` volume。备份先写入 `.incomplete` 临时文件，只有 `pg_dump` 成功后才原子改名；容器健康检查要求存在 25 小时内生成的完整备份。
 
 手动备份：
 
