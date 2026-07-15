@@ -63,3 +63,20 @@ jobs:
       - run: PYTHONPATH=. python evals/run_eval.py
       - run: DATABASE_URL=postgresql://offerpilot:offerpilot_test@localhost:5432/offerpilot_test alembic upgrade head
       - run: DATABASE_URL=postgresql://offerpilot:offerpilot_test@localhost:5432/offerpilot_test pytest -q tests/test_postgres_store.py
+
+  deployment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      POSTGRES_PASSWORD: ci-only-password-with-at-least-32-characters
+      DOMAIN: beta.example.com
+      ADMIN_EMAILS: admin@offerpilot.example
+      SMTP_HOST: smtp.offerpilot.example
+      SMTP_FROM: OfferPilot <no-reply@offerpilot.example>
+    steps:
+      - uses: actions/checkout@v6
+      - run: shellcheck deploy/backup.sh deploy/preflight.sh
+      - run: docker compose -f compose.yaml -f compose.production.yaml config >/dev/null
+      - run: docker compose -f compose.yaml -f compose.mailpit.yaml config >/dev/null
+      - run: docker build --tag offerpilot-web-ci .
+      - run: docker build --tag offerpilot-api-ci ./api

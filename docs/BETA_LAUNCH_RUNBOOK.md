@@ -17,6 +17,12 @@ chmod 600 .env.production
 
 生产环境会拒绝以下配置：缺少数据库、SMTP、域名或管理员邮箱；使用 HTTP 的 `APP_URL`；包含 localhost 或通配符的 CORS。
 
+填写完成后先运行发布预检；它会拒绝示例占位值、弱数据库密码、错误域名和无法解析的生产 Compose：
+
+```bash
+sh deploy/preflight.sh .env.production
+```
+
 在接入真实邮件服务前，先用本地 Mailpit 完成可重复的 SMTP 预验收：
 
 ```bash
