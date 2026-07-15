@@ -17,12 +17,13 @@ def fallback_plan(message: str, profile: ApplicantProfile) -> dict[str, Any]:
     budget = re.search(r"(?:预算|每年).*?(\d{2,3})(?:\s*万)", message)
     if budget:
         updates["annual_budget_aud"] = float(budget.group(1)) * 10000
-    ielts = re.search(r"(?:ielts|雅思)\s*(\d(?:\.\d)?)", message, re.I)
+    ielts = re.search(r"(?:ielts|雅思)(?:成绩)?(?:是|为|[:：])?\s*(\d(?:\.\d)?)", message, re.I)
     if ielts:
         updates["english_score"] = f"IELTS {ielts.group(1)}"
-    intake = re.search(r"(20\d{2})\s*(?:年)?\s*(S[12]|[12]月|[27]月)", message, re.I)
+    intake = re.search(r"(20\d{2})\s*(?:年)?\s*(S[12]|[127]\s*月)", message, re.I)
     if intake:
-        semester = "S1" if intake.group(2).upper() in {"S1", "2月"} else "S2"
+        intake_period = intake.group(2).upper().replace(" ", "")
+        semester = "S1" if intake_period in {"S1", "1月", "2月"} else "S2"
         updates["intake"] = f"{intake.group(1)} {semester}"
     city_names = [city for city in ["悉尼", "墨尔本", "布里斯班", "珀斯", "阿德莱德", "堪培拉"] if city in message]
     if city_names and any(word in message for word in ["想去", "优先", "城市", "偏好"]):

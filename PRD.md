@@ -157,12 +157,13 @@ OfferPilot 是一个面向澳洲计算机类硕士申请者的申请规划 Agent
 
 ### 5.2 运行模式
 
-需要支持两种模式：
+需要支持三种模式：
 
 1. `deterministic-demo`：无模型密钥时运行，保证在线 Demo 稳定。
-2. `llm-assisted`：服务端 Ollama/Qwen 模型负责规划与解释，硬门槛仍调用同一组工具，用户无需模型密钥。
+2. `deepseek`：默认服务端云模型，使用部署者的 `DEEPSEEK_API_KEY`、最小化脱敏上下文与 SSE 流式回答；用户无需模型密钥。
+3. `ollama`：部署者明确启用的可选离线模式，不作为 DeepSeek 失败后的隐式回退。
 
-不得在 README 中把 `deterministic-demo` 冒充为真实 LLM Agent。面试时应能解释两种模式为什么共用同一套工具和输出 Schema。
+不得在 README 中把 `deterministic-demo` 冒充为真实 LLM Agent。面试时应能解释三种模式为什么共用同一套确定性工具、白名单写操作和输出约束。
 
 ### 5.3 Agent 输入
 
@@ -227,6 +228,10 @@ OfferPilot 是一个面向澳洲计算机类硕士申请者的申请规划 Agent
 - `GET /me/recommendation-runs`
 - `GET /me/recommendation-runs/{run_id}`
 - `GET /me/recommendation-runs/{run_id}/action-plan`
+- `GET|PUT /me/recommendation-runs/{run_id}/portfolio[/{program_slug}]`
+- `GET /me/recommendation-runs/{run_id}/roadmap`
+- `GET|POST /me/advisor/consent`
+- `POST /me/advisor/threads/{thread_id}/messages/stream`
 
 ### 接口要求
 

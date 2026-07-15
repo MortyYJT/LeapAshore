@@ -47,15 +47,29 @@ flowchart LR
 - 每条推荐绑定官方项目页、来源编号、摘录和核验日期。
 - 工具或模型不可用时显式降级，不静默伪造结论。
 
-## 两种运行模式
+## 顾问运行模式
 
 ### `deterministic-demo`
 
 无模型密钥时自动启用。完整执行同一组确定性工具与引用校验，顾问仍能识别常见偏好变更和任务指令。
 
-### `llm-assisted`
+### `deepseek`（服务端默认）
 
-服务端通过 Ollama 自托管 Qwen2.5 0.5B，不需要任何模型 API Key。模型输出受 JSON Schema 约束，服务器只允许白名单工具和档案字段；硬门槛和排序仍由确定性工具完成。模型服务不可用时会安全降级。
+部署者在服务器配置一次 `DEEPSEEK_API_KEY`，普通用户不接触 Key。首次使用云端顾问时，产品会单独征求数据处理同意；只发送脱敏档案、已核验项目事实、申请组合、路线图和最近对话，不发送姓名、邮箱、账户 ID、本科学校名称或原始成绩单。回答通过 SSE 流式返回，首 Token 超过 8 秒、总时限超过 25 秒、429、余额不足或服务异常时会明确进入确定性降级，不再隐式等待本地模型。
+
+```env
+AGENT_MODE=llm-assisted
+LLM_PROVIDER=deepseek
+DEEPSEEK_API_KEY=your-server-side-key
+DEEPSEEK_BASE_URL=https://api.deepseek.com
+DEEPSEEK_MODEL=deepseek-v4-flash
+```
+
+网页免费聊天登录不能代替 API Key；API 按开放平台的赠送/充值余额与 Token 计费，不保证永久免费。参见 [DeepSeek API 文档](https://api-docs.deepseek.com/) 与 [价格说明](https://api-docs.deepseek.com/quick_start/pricing)。
+
+### `ollama`（可选离线模式）
+
+服务端通过 Ollama 自托管 Qwen2.5 0.5B，不需要模型 API Key。它只会在部署者明确设置 `LLM_PROVIDER=ollama` 时启用，不是 DeepSeek 失败后的隐式回退。
 
 ```env
 AGENT_MODE=llm-assisted
@@ -182,12 +196,13 @@ docker compose -f compose.yaml -f compose.mailpit.yaml up -d --build
 api/.venv/bin/python api/evals/email_e2e.py
 ```
 
-首次启动会自动拉取约 398MB 的 Qwen2.5 0.5B 模型。浏览器访问 `http://服务器地址:8080`。完整拓扑为：
+默认启动不会下载本地模型。浏览器访问 `http://服务器地址:8080`。完整拓扑为：
 
 - Caddy：唯一公开入口，同域转发 Web 与 `/api`
 - Next.js：产品界面
 - FastAPI：认证、Agent 编排、专业工具与审计
-- Ollama：仅在 Docker 内网提供模型推理，不暴露端口
+- DeepSeek：由 FastAPI 使用服务端 Key 调用，浏览器永远拿不到 Key
+- Ollama：仅通过 `docker compose --profile offline` 显式启用的可选离线推理
 - PostgreSQL：持久化账户、档案、会话、任务与审计
 
 生产环境至少应设置独立数据库密码：
@@ -196,7 +211,7 @@ api/.venv/bin/python api/evals/email_e2e.py
 POSTGRES_PASSWORD='replace-with-a-strong-password' docker compose up -d --build
 ```
 
-这里的数据库密码是服务器基础设施配置，不需要任何普通用户填写，也不是模型 API Key。
+数据库密码和 DeepSeek Key 都是服务器基础设施配置，不需要任何普通用户填写。
 
 正式封闭 Beta 使用生产覆盖配置：
 
@@ -214,7 +229,7 @@ docker compose --env-file .env.production -f compose.yaml -f compose.production.
 - `/` → Next.js Web service
 - `/api/*` → FastAPI service（服务入口保留并挂载 `/api` 前缀）
 
-Vercel Serverless 不适合常驻加载 Ollama 模型，因此无 Key 的完整 Agent 版本应使用上面的 Docker Compose 部署；现有 Sites 链接继续作为无需后端的稳定产品预览。
+Vercel Serverless 不适合常驻加载 Ollama 模型；云端顾问需在 API service 配置服务端 `DEEPSEEK_API_KEY`。现有静态预览仍可作为无需后端的界面演示。
 
 ## API
 
@@ -246,8 +261,12 @@ Vercel Serverless 不适合常驻加载 Ollama 模型，因此无 Key 的完整 
 - `GET /me/recommendation-runs`
 - `GET /me/recommendation-runs/{run_id}`
 - `GET /me/recommendation-runs/{run_id}/action-plan`
+- `GET|PUT /me/recommendation-runs/{run_id}/portfolio[/{program_slug}]`
+- `GET /me/recommendation-runs/{run_id}/roadmap`
 - `POST /me/advisor/threads`
 - `POST /me/advisor/threads/{thread_id}/messages`
+- `GET|POST /me/advisor/consent`
+- `POST /me/advisor/threads/{thread_id}/messages/stream`
 - `GET /me/advisor/audits`
 - `POST /me/transcript/analyze`
 - `GET|POST /me/tasks`
@@ -272,6 +291,14 @@ cd api
 .venv/bin/pytest -q
 .venv/bin/pip-audit --local
 PYTHONPATH=. .venv/bin/python evals/run_eval.py
+PYTHONPATH=. .venv/bin/python evals/run_advisor_eval.py
+```
+
+配置真实服务端 Key 后，可选运行延迟 smoke test（不会在 CI 中消耗真实额度）：
+
+```bash
+cd api
+DEEPSEEK_API_KEY=... LLM_PROVIDER=deepseek PYTHONPATH=. .venv/bin/python evals/deepseek_smoke.py
 ```
 
 ## 当前边界

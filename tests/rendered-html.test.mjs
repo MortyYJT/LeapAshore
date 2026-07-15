@@ -93,3 +93,15 @@ test("exposes verified account, feedback, and admin product flows", async () => 
   }
   assert.match(page, /currentUser\?\.role === "admin"/);
 });
+
+test("exposes consented streaming DeepSeek advisor without a client key", async () => {
+  const page = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
+  const client = await readFile(new URL("../app/api-client.ts", import.meta.url), "utf8");
+
+  for (const endpoint of ["/me/advisor/consent", "/messages/stream"]) assert.match(client, new RegExp(endpoint.replaceAll("/", "\\/")));
+  for (const event of ["status", "delta", "actions", "state", "done", "error"]) assert.match(client + page, new RegExp(`"${event}"`));
+  assert.match(page, /是否使用 DeepSeek 顾问/);
+  assert.match(page, /不会发送：姓名、邮箱、账户 ID/);
+  assert.match(page, /规则顾问 · 快速降级/);
+  assert.doesNotMatch(client, /DEEPSEEK_API_KEY/);
+});

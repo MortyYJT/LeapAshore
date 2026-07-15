@@ -31,3 +31,19 @@ def test_production_configuration_requires_https_and_restricted_cors(monkeypatch
     monkeypatch.setenv("APP_URL", "https://beta.example.com")
     with pytest.raises(RuntimeError, match="CORS_ORIGINS"):
         validate_runtime_configuration()
+
+
+def test_production_deepseek_requires_a_server_side_key(monkeypatch) -> None:
+    values = {
+        "APP_ENV": "production", "DATABASE_URL": "postgresql://example", "SMTP_HOST": "smtp.example.com",
+        "SMTP_FROM": "no-reply@example.com", "APP_URL": "https://beta.example.com",
+        "ADMIN_EMAILS": "owner@example.com", "CORS_ORIGINS": "https://beta.example.com", "LLM_PROVIDER": "deepseek",
+    }
+    for name, value in values.items():
+        monkeypatch.setenv(name, value)
+    monkeypatch.delenv("DEEPSEEK_API_KEY", raising=False)
+    with pytest.raises(RuntimeError, match="DEEPSEEK_API_KEY"):
+        validate_runtime_configuration()
+
+    monkeypatch.setenv("DEEPSEEK_API_KEY", "server-only")
+    validate_runtime_configuration()

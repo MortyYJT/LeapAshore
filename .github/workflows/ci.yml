@@ -61,6 +61,7 @@ jobs:
       - run: pip-audit --local
       - run: pytest -q
       - run: PYTHONPATH=. python evals/run_eval.py
+      - run: PYTHONPATH=. python evals/run_advisor_eval.py
       - run: DATABASE_URL=postgresql://offerpilot:offerpilot_test@localhost:5432/offerpilot_test alembic upgrade head
       - run: DATABASE_URL=postgresql://offerpilot:offerpilot_test@localhost:5432/offerpilot_test pytest -q tests/test_postgres_store.py
 
@@ -73,6 +74,7 @@ jobs:
       ADMIN_EMAILS: admin@offerpilot.example
       SMTP_HOST: smtp.offerpilot.example
       SMTP_FROM: OfferPilot <no-reply@offerpilot.example>
+      DEEPSEEK_API_KEY: ci-only-placeholder-not-a-real-key
     steps:
       - uses: actions/checkout@v6
       - run: shellcheck deploy/backup.sh deploy/preflight.sh
