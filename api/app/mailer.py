@@ -5,6 +5,10 @@ import os
 import smtplib
 
 
+class EmailDeliveryError(RuntimeError):
+    """Raised when an SMTP provider cannot accept a transactional email."""
+
+
 def app_url() -> str:
     return os.getenv("APP_URL", "http://localhost:8080").rstrip("/")
 
@@ -45,10 +49,13 @@ def _send(recipient: str, subject: str, body: str) -> str:
     username = os.getenv("SMTP_USERNAME")
     password = os.getenv("SMTP_PASSWORD")
     use_tls = os.getenv("SMTP_USE_TLS", "true").lower() == "true"
-    with smtplib.SMTP(host, port, timeout=15) as client:
-        if use_tls:
-            client.starttls()
-        if username:
-            client.login(username, password or "")
-        client.send_message(message)
+    try:
+        with smtplib.SMTP(host, port, timeout=15) as client:
+            if use_tls:
+                client.starttls()
+            if username:
+                client.login(username, password or "")
+            client.send_message(message)
+    except (OSError, smtplib.SMTPException) as error:
+        raise EmailDeliveryError("SMTP provider did not accept the message") from error
     return "smtp"

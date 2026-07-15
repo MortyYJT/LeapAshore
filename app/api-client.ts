@@ -9,6 +9,8 @@ export type ApiUser = {
   status: "active" | "suspended";
   created_at?: string | null;
   last_login_at?: string | null;
+  terms_accepted_at?: string | null;
+  terms_version?: string | null;
 };
 
 export type AuthSession = { access_token: string; user: ApiUser };

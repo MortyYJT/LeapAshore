@@ -8,6 +8,9 @@ import secrets
 from .models import DemoUser
 
 
+TERMS_VERSION = "2026-07-15"
+
+
 class InvalidCredentialsError(ValueError):
     pass
 

@@ -1,6 +1,8 @@
 from unittest.mock import MagicMock, patch
 
-from app.mailer import send_password_reset_email, send_verification_email
+import pytest
+
+from app.mailer import EmailDeliveryError, send_password_reset_email, send_verification_email
 
 
 def test_verification_email_uses_public_app_url_and_authenticated_smtp(monkeypatch) -> None:
@@ -37,3 +39,10 @@ def test_password_reset_email_supports_private_smtp_without_tls(monkeypatch) -> 
     smtp.starttls.assert_not_called()
     smtp.login.assert_not_called()
     assert "?reset_token=reset-token" in smtp.send_message.call_args.args[0].get_content()
+
+
+def test_smtp_transport_errors_have_a_stable_application_exception(monkeypatch) -> None:
+    monkeypatch.setenv("SMTP_HOST", "unavailable.example.com")
+    with patch("app.mailer.smtplib.SMTP", side_effect=OSError("connection refused")):
+        with pytest.raises(EmailDeliveryError, match="did not accept"):
+            send_verification_email("user@example.com", "Test User", "verification-token")

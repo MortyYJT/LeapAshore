@@ -1,3 +1,4 @@
+import logging
 import os
 from contextlib import asynccontextmanager
 from datetime import UTC, datetime
@@ -47,7 +48,7 @@ from .models import (
     TaskUpdateRequest,
     University,
 )
-from .mailer import send_password_reset_email, send_verification_email
+from .mailer import EmailDeliveryError, send_password_reset_email, send_verification_email
 from .middleware import RateLimitMiddleware, SecurityHeadersMiddleware
 from .observability import configure_error_reporting
 from .program_data import PROGRAMS
@@ -69,6 +70,7 @@ from .store import (
 )
 
 configure_error_reporting()
+logger = logging.getLogger("offerpilot.mail")
 
 
 @asynccontextmanager
@@ -177,9 +179,17 @@ def register(payload: RegisterRequest) -> RegistrationResponse:
         user, token = store.register(payload.email, payload.password, payload.display_name)
     except AccountExistsError as error:
         raise HTTPException(status_code=409, detail=str(error)) from error
-    delivery = send_verification_email(user.email, user.display_name, token)
+    try:
+        delivery = send_verification_email(user.email, user.display_name, token)
+    except EmailDeliveryError:
+        logger.exception("verification_email_delivery_failed")
+        delivery = "disabled"
     return RegistrationResponse(
-        message="注册成功，请检查邮箱完成验证",
+        message=(
+            "注册成功，请检查邮箱完成验证"
+            if delivery != "disabled" else
+            "账户已创建，但验证邮件暂未送达，请稍后点击重新发送"
+        ),
         user=user,
         delivery=delivery,
         debug_token=token if os.getenv("APP_ENV", "development") != "production" else None,
@@ -200,7 +210,10 @@ def resend_verification(payload: EmailRequest) -> MessageResponse:
     result = store.create_email_verification(payload.email)
     if result:
         user, token = result
-        send_verification_email(user.email, user.display_name, token)
+        try:
+            send_verification_email(user.email, user.display_name, token)
+        except EmailDeliveryError:
+            logger.exception("verification_email_redelivery_failed")
     return MessageResponse(message="如果该邮箱已注册且尚未验证，我们已发送新的验证邮件")
 
 
@@ -209,7 +222,10 @@ def forgot_password(payload: EmailRequest) -> MessageResponse:
     result = store.create_password_reset(payload.email)
     if result:
         user, token = result
-        send_password_reset_email(user.email, user.display_name, token)
+        try:
+            send_password_reset_email(user.email, user.display_name, token)
+        except EmailDeliveryError:
+            logger.exception("password_reset_email_delivery_failed")
     return MessageResponse(message="如果该邮箱已注册，我们已发送密码重置邮件")
 
 

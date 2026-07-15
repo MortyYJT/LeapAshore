@@ -17,6 +17,15 @@ chmod 600 .env.production
 
 生产环境会拒绝以下配置：缺少数据库、SMTP、域名或管理员邮箱；使用 HTTP 的 `APP_URL`；包含 localhost 或通配符的 CORS。
 
+在接入真实邮件服务前，先用本地 Mailpit 完成可重复的 SMTP 预验收：
+
+```bash
+docker compose -f compose.yaml -f compose.mailpit.yaml up -d --build
+api/.venv/bin/python api/evals/email_e2e.py
+```
+
+验收脚本必须同时通过验证邮件、密码重置邮件、旧密码失效与新密码登录。
+
 ## 2. 首次部署
 
 ```bash
@@ -38,7 +47,7 @@ docker compose --env-file .env.production -f compose.yaml -f compose.production.
 人工完成以下流程：
 
 1. 使用管理员邮箱注册，收到验证邮件并完成验证。
-2. 登录后确认导航中出现“运营后台”。
+2. 登录后确认导航中出现“运营后台”，且用户列表记录了当前服务条款版本。
 3. 建立申请背景并生成一次方案。
 4. 提交一条产品反馈，在运营后台把状态改为“已解决”。
 5. 使用另一个邮箱测试忘记密码，确认旧会话在重置后失效。

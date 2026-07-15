@@ -14,6 +14,8 @@ def test_postgres_verified_account_and_hashed_session_lifecycle() -> None:
     email = f"integration-{uuid4().hex}@example.com"
     user, verification = store.register(email, "secure123", "Integration")
     assert user.email_verified is False
+    assert user.terms_version == "2026-07-15"
+    assert user.terms_accepted_at is not None
     verified = store.verify_email(verification)
     assert verified.email_verified is True
 

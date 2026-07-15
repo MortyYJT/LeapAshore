@@ -21,6 +21,7 @@ from .auth import (
     AccountExistsError,
     InvalidAuthTokenError,
     InvalidCredentialsError,
+    TERMS_VERSION,
     ensure_login_allowed,
     hash_password,
     new_auth_token,
@@ -53,7 +54,8 @@ class PostgresStore:
                 CREATE TABLE IF NOT EXISTS users (
                     id TEXT PRIMARY KEY, email TEXT NOT NULL UNIQUE, display_name TEXT NOT NULL, password_hash TEXT NOT NULL,
                     email_verified_at TIMESTAMPTZ, role TEXT NOT NULL DEFAULT 'user', status TEXT NOT NULL DEFAULT 'active',
-                    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(), last_login_at TIMESTAMPTZ
+                    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(), last_login_at TIMESTAMPTZ,
+                    terms_accepted_at TIMESTAMPTZ, terms_version TEXT
                 );
                 CREATE TABLE IF NOT EXISTS sessions (
                     token TEXT PRIMARY KEY, user_id TEXT NOT NULL REFERENCES users(id), expires_at TIMESTAMPTZ NOT NULL,
@@ -82,6 +84,8 @@ class PostgresStore:
                 ALTER TABLE users ADD COLUMN IF NOT EXISTS status TEXT NOT NULL DEFAULT 'active';
                 ALTER TABLE users ADD COLUMN IF NOT EXISTS created_at TIMESTAMPTZ NOT NULL DEFAULT NOW();
                 ALTER TABLE users ADD COLUMN IF NOT EXISTS last_login_at TIMESTAMPTZ;
+                ALTER TABLE users ADD COLUMN IF NOT EXISTS terms_accepted_at TIMESTAMPTZ;
+                ALTER TABLE users ADD COLUMN IF NOT EXISTS terms_version TEXT;
                 ALTER TABLE sessions ADD COLUMN IF NOT EXISTS created_at TIMESTAMPTZ NOT NULL DEFAULT NOW();
                 """
             )
@@ -92,6 +96,7 @@ class PostgresStore:
         user = DemoUser(
             id=user_id_for_email(normalized), email=normalized, display_name=display_name.strip(),
             role=role_for_email(normalized), email_verified=False, status="active", created_at=now,
+            terms_accepted_at=now, terms_version=TERMS_VERSION,
         )
         raw_token = new_auth_token()
         with self._lock, self._connection.cursor() as cursor:
@@ -100,9 +105,10 @@ class PostgresStore:
                 raise AccountExistsError("该邮箱已注册")
             cursor.execute(
                 """INSERT INTO users
-                (id, email, display_name, password_hash, email_verified_at, role, status, created_at)
-                VALUES (%s, %s, %s, %s, NULL, %s, 'active', %s)""",
-                (user.id, user.email, user.display_name, hash_password(password), user.role, now),
+                (id, email, display_name, password_hash, email_verified_at, role, status, created_at,
+                 terms_accepted_at, terms_version)
+                VALUES (%s, %s, %s, %s, NULL, %s, 'active', %s, %s, %s)""",
+                (user.id, user.email, user.display_name, hash_password(password), user.role, now, now, TERMS_VERSION),
             )
             self._save_auth_token(cursor, user.id, "verify_email", raw_token, now + timedelta(hours=24))
         return user, raw_token
@@ -357,4 +363,5 @@ def postgres_user(row: dict[str, Any]) -> DemoUser:
         id=row["id"], email=row["email"], display_name=row["display_name"],
         role=row.get("role", "user"), email_verified=bool(row.get("email_verified_at")),
         status=row.get("status", "active"), created_at=row.get("created_at"), last_login_at=row.get("last_login_at"),
+        terms_accepted_at=row.get("terms_accepted_at"), terms_version=row.get("terms_version"),
     )

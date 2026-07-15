@@ -52,6 +52,8 @@ def test_registration_requires_verification_and_logout_revokes_session() -> None
     })
     assert registered.status_code == 201
     assert registered.json()["user"]["email_verified"] is False
+    assert registered.json()["user"]["terms_version"] == "2026-07-15"
+    assert registered.json()["user"]["terms_accepted_at"] is not None
     assert client.post("/auth/login", json={"email": "lifecycle@offerpilot.cn", "password": "secure123"}).status_code == 403
 
     verification = registered.json()["debug_token"]
@@ -61,6 +63,24 @@ def test_registration_requires_verification_and_logout_revokes_session() -> None
     assert client.get("/me", headers=headers).status_code == 200
     assert client.post("/auth/logout", headers=headers).status_code == 200
     assert client.get("/me", headers=headers).status_code == 401
+
+
+def test_registration_recovers_when_transactional_email_is_temporarily_unavailable(monkeypatch) -> None:
+    from app.mailer import EmailDeliveryError
+
+    def fail_delivery(*_: object) -> str:
+        raise EmailDeliveryError("provider unavailable")
+
+    monkeypatch.setattr("app.main.send_verification_email", fail_delivery)
+    response = client.post("/auth/register", json={
+        "email": "smtp-outage@offerpilot.cn",
+        "password": "secure123",
+        "display_name": "SMTP Outage",
+        "accepted_terms": True,
+    })
+    assert response.status_code == 201
+    assert response.json()["delivery"] == "disabled"
+    assert "稍后点击重新发送" in response.json()["message"]
 
 
 def test_http_only_cookie_restores_same_origin_session() -> None:

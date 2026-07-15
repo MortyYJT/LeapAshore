@@ -149,6 +149,8 @@ class DemoUser(BaseModel):
     status: Literal["active", "suspended"] = "active"
     created_at: datetime | None = None
     last_login_at: datetime | None = None
+    terms_accepted_at: datetime | None = None
+    terms_version: str | None = None
 
 
 class AuthResponse(BaseModel):

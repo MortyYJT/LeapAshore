@@ -14,6 +14,7 @@ from .auth import (
     EmailNotVerifiedError,
     InvalidAuthTokenError,
     InvalidCredentialsError,
+    TERMS_VERSION,
     ensure_login_allowed,
     hash_password,
     new_auth_token,
@@ -93,7 +94,7 @@ class DemoStore:
         now = datetime.now(UTC)
         user = DemoUser(
             id=user_id, email=normalized, display_name=display_name.strip(), role=role_for_email(normalized),
-            email_verified=False, created_at=now,
+            email_verified=False, created_at=now, terms_accepted_at=now, terms_version=TERMS_VERSION,
         )
         with self._lock:
             if user_id in self._users:
@@ -328,7 +329,9 @@ class SQLiteStore:
                     role TEXT NOT NULL DEFAULT 'user',
                     status TEXT NOT NULL DEFAULT 'active',
                     created_at TEXT,
-                    last_login_at TEXT
+                    last_login_at TEXT,
+                    terms_accepted_at TEXT,
+                    terms_version TEXT
                 );
                 CREATE TABLE IF NOT EXISTS sessions (
                     token TEXT PRIMARY KEY,
@@ -401,6 +404,8 @@ class SQLiteStore:
                 "status": "TEXT NOT NULL DEFAULT 'active'",
                 "created_at": "TEXT",
                 "last_login_at": "TEXT",
+                "terms_accepted_at": "TEXT",
+                "terms_version": "TEXT",
             }.items():
                 if name not in columns:
                     self._connection.execute(f"ALTER TABLE users ADD COLUMN {name} {definition}")
@@ -414,15 +419,18 @@ class SQLiteStore:
         user = DemoUser(
             id=user_id, email=normalized, display_name=display_name.strip(), role=role_for_email(normalized),
             email_verified=False, status="active", created_at=now,
+            terms_accepted_at=now, terms_version=TERMS_VERSION,
         )
         with self._lock, self._connection:
             if self._connection.execute("SELECT 1 FROM users WHERE email = ?", (normalized,)).fetchone():
                 raise AccountExistsError("该邮箱已注册")
             self._connection.execute(
                 """INSERT INTO users
-                (id, email, display_name, password_hash, email_verified_at, role, status, created_at)
-                VALUES (?, ?, ?, ?, NULL, ?, 'active', ?)""",
-                (user.id, user.email, user.display_name, hash_password(password), user.role, now.isoformat()),
+                (id, email, display_name, password_hash, email_verified_at, role, status, created_at,
+                 terms_accepted_at, terms_version)
+                VALUES (?, ?, ?, ?, NULL, ?, 'active', ?, ?, ?)""",
+                (user.id, user.email, user.display_name, hash_password(password), user.role, now.isoformat(),
+                 now.isoformat(), TERMS_VERSION),
             )
             self._save_auth_token(user.id, "verify_email", raw_token, now + timedelta(hours=24))
         return user, raw_token
@@ -738,6 +746,8 @@ def sqlite_user(row: sqlite3.Row) -> DemoUser:
         status=row["status"] or "active",
         created_at=datetime.fromisoformat(row["created_at"]) if row["created_at"] else None,
         last_login_at=datetime.fromisoformat(row["last_login_at"]) if row["last_login_at"] else None,
+        terms_accepted_at=datetime.fromisoformat(row["terms_accepted_at"]) if row["terms_accepted_at"] else None,
+        terms_version=row["terms_version"],
     )
 
 
