@@ -26,7 +26,9 @@ def test_vercel_service_entrypoint_exports_the_application() -> None:
 def test_health() -> None:
     assert client.get("/health").json() == {"status": "ok"}
     readiness = client.get("/health/readiness").json()
-    assert readiness == {"status": "ready", "llm": "fallback", "storage": "DemoStore"}
+    assert readiness == {
+        "status": "ready", "llm": "fallback", "storage": "DemoStore", "database": "connected", "email": "console",
+    }
 
 
 def test_llm_status_never_exposes_the_api_key(monkeypatch) -> None:
@@ -75,6 +77,7 @@ def test_admin_can_review_feedback_and_suspend_users() -> None:
     stats = client.get("/admin/stats", headers=admin_headers)
     assert stats.status_code == 200
     assert stats.json()["open_feedback"] >= 1
+    assert len(client.get("/admin/program-sources", headers=admin_headers).json()) >= 6
     reviewed = client.put(
         f"/admin/feedback/{feedback.json()['id']}", headers=admin_headers, json={"status": "resolved"},
     )
@@ -84,6 +87,20 @@ def test_admin_can_review_feedback_and_suspend_users() -> None:
     )
     assert suspended.json()["status"] == "suspended"
     assert client.get("/me", headers=user_headers).status_code == 401
+
+
+def test_user_can_export_and_delete_account_data() -> None:
+    login = registered_login("data-rights@offerpilot.cn")
+    headers = {"Authorization": f"Bearer {login.json()['access_token']}"}
+    client.post("/me/feedback", headers=headers, json={"category": "其他", "message": "export me"})
+
+    exported = client.get("/me/export", headers=headers)
+    assert exported.status_code == 200
+    assert exported.json()["account"]["email"] == "data-rights@offerpilot.cn"
+    assert len(exported.json()["feedback"]) == 1
+    assert client.request("DELETE", "/me", headers=headers, json={"password": "wrong123", "confirmation": "DELETE"}).status_code == 401
+    assert client.request("DELETE", "/me", headers=headers, json={"password": "demo1234", "confirmation": "DELETE"}).status_code == 200
+    assert client.get("/me", headers=headers).status_code == 401
 
 
 def test_recommendations_return_all_go8_members() -> None:

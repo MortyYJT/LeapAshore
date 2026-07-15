@@ -22,6 +22,20 @@ jobs:
 
   api:
     runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_DB: offerpilot_test
+          POSTGRES_USER: offerpilot
+          POSTGRES_PASSWORD: offerpilot_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U offerpilot -d offerpilot_test"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
     defaults:
       run:
         working-directory: api
@@ -35,3 +49,5 @@ jobs:
       - run: pip install -r requirements.txt
       - run: pytest -q
       - run: PYTHONPATH=. python evals/run_eval.py
+      - run: DATABASE_URL=postgresql://offerpilot:offerpilot_test@localhost:5432/offerpilot_test alembic upgrade head
+      - run: DATABASE_URL=postgresql://offerpilot:offerpilot_test@localhost:5432/offerpilot_test pytest -q tests/test_postgres_store.py

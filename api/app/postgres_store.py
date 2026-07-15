@@ -163,6 +163,18 @@ class PostgresStore:
             cursor.execute("UPDATE users SET password_hash = %s WHERE id = %s", (hash_password(password), user_id))
             cursor.execute("DELETE FROM sessions WHERE user_id = %s", (user_id,))
 
+    def delete_account(self, user_id: str, password: str) -> None:
+        with self._lock, self._connection.cursor() as cursor:
+            cursor.execute("SELECT password_hash FROM users WHERE id = %s", (user_id,))
+            row = cursor.fetchone()
+            if not row or not verify_password(password, row["password_hash"]):
+                raise InvalidCredentialsError("密码不正确")
+            cursor.execute("DELETE FROM feedback WHERE user_id = %s", (user_id,))
+            cursor.execute("DELETE FROM entities WHERE user_id = %s", (user_id,))
+            cursor.execute("DELETE FROM auth_tokens WHERE user_id = %s", (user_id,))
+            cursor.execute("DELETE FROM sessions WHERE user_id = %s", (user_id,))
+            cursor.execute("DELETE FROM users WHERE id = %s", (user_id,))
+
     @staticmethod
     def _save_auth_token(cursor: Any, user_id: str, purpose: str, raw_token: str, expires_at: datetime) -> None:
         cursor.execute("DELETE FROM auth_tokens WHERE user_id = %s AND purpose = %s", (user_id, purpose))
@@ -333,6 +345,11 @@ class PostgresStore:
                 cursor.execute(query)
                 counts[name] = int(cursor.fetchone()["count"])
         return counts
+
+    def healthcheck(self) -> bool:
+        with self._lock, self._connection.cursor() as cursor:
+            cursor.execute("SELECT 1 AS ok")
+            return cursor.fetchone()["ok"] == 1
 
 
 def postgres_user(row: dict[str, Any]) -> DemoUser:

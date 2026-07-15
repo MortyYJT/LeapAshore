@@ -32,6 +32,7 @@ class Store(Protocol):
     def logout(self, token: str) -> None: ...
     def create_password_reset(self, email: str) -> tuple[DemoUser, str] | None: ...
     def reset_password(self, token: str, password: str) -> None: ...
+    def delete_account(self, user_id: str, password: str) -> None: ...
     def user_for_token(self, token: str) -> DemoUser | None: ...
     def save_profile(self, user_id: str, profile: ApplicantProfile) -> ApplicantProfile: ...
     def get_profile(self, user_id: str) -> ApplicantProfile | None: ...
@@ -52,6 +53,7 @@ class Store(Protocol):
     def list_users(self) -> list[DemoUser]: ...
     def update_user_status(self, user_id: str, status: str) -> DemoUser | None: ...
     def admin_counts(self) -> dict[str, int]: ...
+    def healthcheck(self) -> bool: ...
 
 
 class DemoStore:
@@ -139,6 +141,22 @@ class DemoStore:
             user_id = self._consume_auth_token(token, "reset_password")
             self._passwords[user_id] = hash_password(password)
             self._tokens = {key: value for key, value in self._tokens.items() if value[0] != user_id}
+
+    def delete_account(self, user_id: str, password: str) -> None:
+        with self._lock:
+            encoded = self._passwords.get(user_id)
+            if not encoded or not verify_password(password, encoded):
+                raise InvalidCredentialsError("密码不正确")
+            self._users.pop(user_id, None)
+            self._passwords.pop(user_id, None)
+            self._profiles.pop(user_id, None)
+            self._runs.pop(user_id, None)
+            self._threads.pop(user_id, None)
+            self._tasks.pop(user_id, None)
+            self._audits.pop(user_id, None)
+            self._tokens = {key: value for key, value in self._tokens.items() if value[0] != user_id}
+            self._auth_tokens = {key: value for key, value in self._auth_tokens.items() if value[0] != user_id}
+            self._feedback = {key: value for key, value in self._feedback.items() if value.user_id != user_id}
 
     def _consume_auth_token(self, token: str, purpose: str) -> str:
         key = token_hash(token)
@@ -267,6 +285,9 @@ class DemoStore:
                 "advisor_threads": sum(len(items) for items in self._threads.values()),
                 "open_feedback": sum(item.status != "resolved" for item in self._feedback.values()),
             }
+
+    def healthcheck(self) -> bool:
+        return True
 
 
 class SQLiteStore:
@@ -444,6 +465,15 @@ class SQLiteStore:
             user_id = self._consume_auth_token(token, "reset_password")
             self._connection.execute("UPDATE users SET password_hash = ? WHERE id = ?", (hash_password(password), user_id))
             self._connection.execute("DELETE FROM sessions WHERE user_id = ?", (user_id,))
+
+    def delete_account(self, user_id: str, password: str) -> None:
+        with self._lock, self._connection:
+            row = self._connection.execute("SELECT password_hash FROM users WHERE id = ?", (user_id,)).fetchone()
+            if not row or not verify_password(password, row["password_hash"]):
+                raise InvalidCredentialsError("密码不正确")
+            for table in ["feedback", "auth_tokens", "sessions", "profiles", "recommendation_runs", "advisor_threads", "application_tasks", "agent_run_audits"]:
+                self._connection.execute(f"DELETE FROM {table} WHERE user_id = ?", (user_id,))
+            self._connection.execute("DELETE FROM users WHERE id = ?", (user_id,))
 
     def _save_auth_token(self, user_id: str, purpose: str, raw_token: str, expires_at: datetime) -> None:
         self._connection.execute("DELETE FROM auth_tokens WHERE user_id = ? AND purpose = ?", (user_id, purpose))
@@ -667,6 +697,10 @@ class SQLiteStore:
                 "advisor_threads": scalar("SELECT COUNT(*) FROM advisor_threads"),
                 "open_feedback": scalar("SELECT COUNT(*) FROM feedback WHERE json_extract(payload, '$.status') != 'resolved'"),
             }
+
+    def healthcheck(self) -> bool:
+        with self._lock:
+            return self._connection.execute("SELECT 1").fetchone()[0] == 1
 
 
 def create_store() -> Store:

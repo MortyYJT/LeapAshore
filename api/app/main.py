@@ -1,7 +1,7 @@
 import os
 from contextlib import asynccontextmanager
 from datetime import UTC, datetime
-from typing import Annotated
+from typing import Annotated, Any
 from uuid import uuid4
 
 from fastapi import Depends, FastAPI, Header, HTTPException, Query
@@ -25,6 +25,7 @@ from .models import (
     CatalogCoverage,
     CatalogFacets,
     DemoUser,
+    DeleteAccountRequest,
     EmailRequest,
     EmailTokenRequest,
     FeedbackCreateRequest,
@@ -48,6 +49,7 @@ from .models import (
 )
 from .mailer import send_password_reset_email, send_verification_email
 from .middleware import RateLimitMiddleware, SecurityHeadersMiddleware
+from .observability import configure_error_reporting
 from .program_data import PROGRAMS
 from .taxonomy import DEGREE_LEVELS, STUDY_AREAS, DegreeLevel, StudyArea
 from .services.action_plan import build_action_plan
@@ -65,6 +67,8 @@ from .store import (
     InvalidCredentialsError,
     store,
 )
+
+configure_error_reporting()
 
 
 @asynccontextmanager
@@ -86,7 +90,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[origin.strip() for origin in os.getenv("CORS_ORIGINS", "http://localhost:3000").split(",")],
     allow_credentials=True,
-    allow_methods=["GET", "POST", "PUT"],
+    allow_methods=["GET", "POST", "PUT", "DELETE"],
     allow_headers=["*"],
 )
 
@@ -118,10 +122,16 @@ def health() -> dict[str, str]:
 
 @app.get("/health/readiness")
 def readiness() -> dict[str, str]:
+    try:
+        database = "connected" if store.healthcheck() else "unavailable"
+    except Exception as error:
+        raise HTTPException(status_code=503, detail="数据库暂不可用") from error
     return {
         "status": "ready",
         "llm": "configured" if llm_is_configured() else "fallback",
         "storage": store.__class__.__name__,
+        "database": database,
+        "email": "smtp" if os.getenv("SMTP_HOST") else "console",
     }
 
 
@@ -218,6 +228,32 @@ def logout(
 @app.get("/me", response_model=DemoUser)
 def get_me(user: Annotated[DemoUser, Depends(current_user)]) -> DemoUser:
     return user
+
+
+@app.get("/me/export")
+def export_my_data(user: Annotated[DemoUser, Depends(current_user)]) -> dict[str, Any]:
+    return {
+        "exported_at": datetime.now(UTC).isoformat(),
+        "account": user.model_dump(mode="json"),
+        "profile": profile.model_dump(mode="json") if (profile := store.get_profile(user.id)) else None,
+        "recommendation_runs": [item.model_dump(mode="json") for item in store.list_runs(user.id)],
+        "advisor_threads": [item.model_dump(mode="json") for item in store.list_threads(user.id)],
+        "tasks": [item.model_dump(mode="json") for item in store.list_tasks(user.id)],
+        "feedback": [item.model_dump(mode="json") for item in store.list_feedback(user.id)],
+        "agent_audits": [item.model_dump(mode="json") for item in store.list_audits(user.id)],
+    }
+
+
+@app.delete("/me", response_model=MessageResponse)
+def delete_my_account(
+    payload: DeleteAccountRequest,
+    user: Annotated[DemoUser, Depends(current_user)],
+) -> MessageResponse:
+    try:
+        store.delete_account(user.id, payload.password)
+    except InvalidCredentialsError as error:
+        raise HTTPException(status_code=401, detail=str(error)) from error
+    return MessageResponse(message="账户和关联数据已删除")
 
 
 @app.get("/universities", response_model=list[University])
@@ -433,6 +469,11 @@ def program_source_status() -> list[ProgramSourceStatus]:
             reason=f"距上次人工核验已 {age} 天" if needs_review else "仍在 30 天复核周期内",
         ))
     return statuses
+
+
+@app.get("/admin/program-sources", response_model=list[ProgramSourceStatus])
+def admin_program_source_status(_: Annotated[DemoUser, Depends(current_admin)]) -> list[ProgramSourceStatus]:
+    return program_source_status()
 
 
 @app.get("/me/recommendation-runs", response_model=list[RecommendationRunSummary])

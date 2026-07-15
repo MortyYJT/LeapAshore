@@ -2,9 +2,12 @@ from __future__ import annotations
 
 from collections import defaultdict, deque
 from datetime import UTC, datetime, timedelta
+import json
+import logging
 import os
 from threading import Lock
 from uuid import uuid4
+from time import perf_counter
 
 from fastapi import Request
 from fastapi.responses import JSONResponse
@@ -12,10 +15,19 @@ from starlette.middleware.base import BaseHTTPMiddleware, RequestResponseEndpoin
 from starlette.responses import Response
 
 
+logger = logging.getLogger("offerpilot.request")
+
+
 class SecurityHeadersMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next: RequestResponseEndpoint) -> Response:
         request_id = request.headers.get("x-request-id", f"req_{uuid4().hex[:16]}")[:80]
-        if int(request.headers.get("content-length", "0") or 0) > 1_000_000:
+        request.state.request_id = request_id
+        started = perf_counter()
+        try:
+            content_length = int(request.headers.get("content-length", "0") or 0)
+        except ValueError:
+            content_length = 1_000_001
+        if content_length > 1_000_000:
             return JSONResponse({"detail": "请求内容过大"}, status_code=413, headers={"X-Request-ID": request_id})
         response = await call_next(request)
         response.headers["X-Request-ID"] = request_id
@@ -24,6 +36,11 @@ class SecurityHeadersMiddleware(BaseHTTPMiddleware):
         response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
         response.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
         response.headers["Cache-Control"] = "no-store" if request.url.path.startswith(("/auth", "/me", "/admin")) else "no-cache"
+        logger.info(json.dumps({
+            "event": "http_request", "request_id": request_id, "method": request.method,
+            "path": request.url.path, "status": response.status_code,
+            "duration_ms": round((perf_counter() - started) * 1000, 2),
+        }, ensure_ascii=False))
         return response
 
 

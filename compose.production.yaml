@@ -1,0 +1,50 @@
+services:
+  postgres:
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD}
+
+  api:
+    environment:
+      DATABASE_URL: postgresql://offerpilot:${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD}@postgres:5432/offerpilot
+      APP_ENV: production
+      APP_URL: https://${DOMAIN:?Set DOMAIN}
+      CORS_ORIGINS: https://${DOMAIN:?Set DOMAIN}
+      ADMIN_EMAILS: ${ADMIN_EMAILS:?Set ADMIN_EMAILS}
+      SMTP_HOST: ${SMTP_HOST:?Set SMTP_HOST}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SMTP_USERNAME: ${SMTP_USERNAME:-}
+      SMTP_PASSWORD: ${SMTP_PASSWORD:-}
+      SMTP_FROM: ${SMTP_FROM:?Set SMTP_FROM}
+      SMTP_USE_TLS: ${SMTP_USE_TLS:-true}
+      AUTH_RATE_LIMIT_PER_MINUTE: ${AUTH_RATE_LIMIT_PER_MINUTE:-10}
+      RATE_LIMIT_PER_MINUTE: ${RATE_LIMIT_PER_MINUTE:-120}
+      SENTRY_DSN: ${SENTRY_DSN:-}
+      SENTRY_TRACES_SAMPLE_RATE: ${SENTRY_TRACES_SAMPLE_RATE:-0.1}
+      APP_RELEASE: ${APP_RELEASE:-offerpilot-api@0.4.0}
+
+  gateway:
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      DOMAIN: ${DOMAIN:?Set DOMAIN}
+
+  backup:
+    image: postgres:16-alpine
+    environment:
+      PGPASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD}
+    volumes:
+      - postgres_backups:/backups
+    command: >-
+      sh -c 'while true; do
+      pg_dump -h postgres -U offerpilot -d offerpilot -Fc -f /backups/offerpilot-$$(date +%Y%m%d-%H%M%S).dump;
+      find /backups -type f -mtime +7 -delete;
+      sleep 86400;
+      done'
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  postgres_backups:

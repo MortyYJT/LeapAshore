@@ -134,6 +134,11 @@ class PasswordResetRequest(BaseModel):
     password: str = Field(min_length=8, max_length=128)
 
 
+class DeleteAccountRequest(BaseModel):
+    password: str = Field(min_length=8, max_length=128)
+    confirmation: Literal["DELETE"]
+
+
 class DemoUser(BaseModel):
     id: str
     email: str

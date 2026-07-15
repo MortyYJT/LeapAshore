@@ -43,6 +43,16 @@ export type AdminStats = {
   catalog_coverage_cells: number;
 };
 
+export type ProgramSourceStatus = {
+  source_id: string;
+  program_slug: string;
+  title: string;
+  url: string;
+  verified_at: string;
+  status: "已核验" | "需要复核";
+  reason: string;
+};
+
 export type ApiHistoryItem = {
   run_id: string;
   created_at: string;
@@ -158,6 +168,17 @@ export async function logoutAccount(token: string): Promise<void> {
   await request("/auth/logout", { method: "POST", headers: { Authorization: `Bearer ${token}` } });
 }
 
+export async function exportAccountData(token: string): Promise<Record<string, unknown>> {
+  return request<Record<string, unknown>>("/me/export", { headers: { Authorization: `Bearer ${token}` } });
+}
+
+export async function deleteAccount(token: string, password: string): Promise<void> {
+  await request("/me", {
+    method: "DELETE", headers: { Authorization: `Bearer ${token}` },
+    body: JSON.stringify({ password, confirmation: "DELETE" }),
+  });
+}
+
 export async function saveProfile(token: string, profile: Record<string, unknown>): Promise<void> {
   await request("/me/profile", {
     method: "PUT",
@@ -247,6 +268,10 @@ export async function updateAdminUser(token: string, userId: string, status: Api
 
 export async function fetchAdminFeedback(token: string): Promise<FeedbackItem[]> {
   return request<FeedbackItem[]>("/admin/feedback", { headers: { Authorization: `Bearer ${token}` } });
+}
+
+export async function fetchAdminProgramSources(token: string): Promise<ProgramSourceStatus[]> {
+  return request<ProgramSourceStatus[]>("/admin/program-sources", { headers: { Authorization: `Bearer ${token}` } });
 }
 
 export async function updateAdminFeedback(token: string, feedbackId: string, status: FeedbackItem["status"]): Promise<FeedbackItem> {

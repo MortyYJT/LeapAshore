@@ -169,6 +169,9 @@ button { color: inherit; }
 .form-success { color: #256747; background: #e8f4ec; padding: 10px 12px; font-size: 12px; border-left: 3px solid #4f9a6c; }
 .auth-links { display: flex; justify-content: space-between; margin-top: 14px; }
 .auth-links button { border: 0; background: transparent; color: var(--green); padding: 4px 0; cursor: pointer; font-size: 11px; }
+.fine-print button { border: 0; border-bottom: 1px solid currentColor; background: transparent; color: var(--green); padding: 0; cursor: pointer; font: inherit; }
+.legal-page { max-width: 760px; min-height: calc(100vh - 76px); margin: 0 auto; padding: 60px 24px 100px; }
+.legal-page h1 { font-family: Georgia, "Songti SC", serif; font-size: 44px; font-weight: 500; margin: 12px 0; }.legal-page h2 { margin-top: 34px; font-size: 17px; }.legal-page p { color: var(--muted); font-size: 12px; line-height: 1.9; }
 .outline-button.wide { width: 100%; margin-top: 10px; }
 .operations-grid, .admin-sections { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 28px; }
 .operations-card { background: white; border: 1px solid var(--line); padding: 28px; }
@@ -188,9 +191,13 @@ button { color: inherit; }
 .admin-metrics div { display: flex; flex-direction: column; gap: 5px; padding: 18px; background: var(--green); color: white; }
 .admin-metrics span, .admin-metrics small { color: rgba(255,255,255,.65); font-size: 9px; }.admin-metrics strong { font-family: Georgia, serif; font-size: 28px; font-weight: 500; }
 .admin-sections { grid-template-columns: 1.2fr .8fr; }
+.admin-sources { grid-column: 1 / -1; }
+.source-row { grid-template-columns: 1.5fr .45fr 1fr 50px; }
 .admin-table { display: flex; flex-direction: column; }
 .admin-row { display: grid; grid-template-columns: 1.5fr .8fr .5fr 50px; gap: 12px; align-items: center; padding: 13px 0; border-top: 1px solid #eee; font-size: 10px; }
 .admin-row div { display: flex; flex-direction: column; gap: 4px; }.admin-row div span { color: var(--muted); }
+.account-details { margin: 10px 0 24px; }.account-details div { display: flex; justify-content: space-between; gap: 15px; padding: 13px 0; border-top: 1px solid #eee; font-size: 11px; }.account-details span { color: var(--muted); }
+.danger-zone { margin-top: 28px; padding: 18px; border: 1px solid #e7bbb3; background: #fff5f2; }.danger-zone > strong { color: #9b3f2d; font-size: 12px; }.danger-zone p { color: var(--muted); font-size: 10px; }.danger-zone input { width: 100%; padding: 12px; border: 1px solid #e0c4be; background: white; }.danger-zone button { margin-top: 10px; border: 0; background: #a63f2f; color: white; padding: 10px 14px; cursor: pointer; }
 @media (max-width: 900px) { .site-header nav { display: none; }.landing { grid-template-columns: 1fr; padding-top: 5vh; }.hero-copy { padding-bottom: 30px; }.hero-visual { min-height: 560px; }.go8-strip { display: none; }.auth-panel { grid-template-columns: 1fr; }.auth-intro { display: none; }.workspace { grid-template-columns: 1fr; }.side-rail { display: none; }.profile-form { padding: 45px 6vw; }.results-page { padding-top: 35px; }.insight-banner { grid-template-columns: 90px 1fr; }.legend { display: none; }.school-grid { grid-template-columns: 1fr; } }
 @media (max-width: 620px) { .site-header { padding: 0 18px; }.brand small, .account-pill { display: none; }.hero-copy h1 { font-size: 49px; }.trust-row { gap: 22px; }.hero-visual { transform: scale(.83); margin: -45px -50px; }.form-grid { grid-template-columns: 1fr; }.form-grid label.full { grid-column: auto; }.results-header { align-items: flex-start; }.results-header h1 { font-size: 34px; }.insight-banner { grid-template-columns: 1fr; }.insight-score { display: none; }.result-card { grid-template-columns: 48px 1fr; padding: 18px; }.uni-monogram { width: 45px; height: 45px; }.match-score { display: none; }.reason-row { flex-wrap: wrap; gap: 8px; }.result-toolbar { align-items: flex-start; gap: 10px; flex-direction: column; }.school-hero { grid-template-columns: 65px 1fr; }.school-hero .outline-button { grid-column: 1 / -1; text-align: center; }.uni-monogram.large { width: 62px; height: 62px; }.school-hero h1 { font-size: 30px; } }
 @media (max-width: 900px) { .evidence-overview { grid-template-columns: 1fr 1fr; }.product-page-header { align-items: flex-start; }.history-list button { grid-template-columns: 120px 1fr; }.history-list small { grid-column: 2; text-align: left; } }

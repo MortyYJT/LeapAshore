@@ -45,6 +45,11 @@ services:
       OLLAMA_MODEL: qwen2.5:0.5b
       SESSION_TTL_HOURS: 168
       CORS_ORIGINS: http://localhost:8080
+      APP_ENV: development
+      APP_URL: http://localhost:8080
+      ADMIN_EMAILS: ${ADMIN_EMAILS:-admin@offerpilot.local}
+      AUTH_RATE_LIMIT_PER_MINUTE: 20
+      RATE_LIMIT_PER_MINUTE: 120
     depends_on:
       postgres:
         condition: service_healthy
@@ -68,8 +73,13 @@ services:
     image: caddy:2-alpine
     ports:
       - "${PORT:-8080}:80"
+      - "${HTTPS_PORT:-8443}:443"
+    environment:
+      DOMAIN: ${DOMAIN:-:80}
     volumes:
       - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
     depends_on:
       - web
       - api
@@ -78,3 +88,5 @@ services:
 volumes:
   postgres_data:
   ollama_data:
+  caddy_data:
+  caddy_config:
