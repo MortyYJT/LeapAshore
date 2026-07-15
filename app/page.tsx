@@ -24,11 +24,13 @@ type Tier = "冲刺" | "匹配" | "稳妥" | "暂不推荐";
 type NavSection = "landing" | "profile" | "advisor" | "results" | "plan" | "history";
 
 type Profile = {
+  currentEducation: string;
   school: string;
   schoolTier: string;
   major: string;
   gpa: string;
   gpaScale: string;
+  targetDegree: string;
   target: string;
   intake: string;
   english: string;
@@ -38,6 +40,12 @@ type Profile = {
   cityPreference: string;
   annualBudget: string;
 };
+
+const degreeLevels = ["本科", "授课型硕士", "研究型硕士", "博士"] as const;
+const studyAreas = [
+  "计算机与数据", "商科与金融", "工程", "教育与社会科学", "生命科学", "医学与健康",
+  "法律与犯罪学", "自然科学与数学", "人文与语言", "建筑规划与设计", "传媒艺术与音乐", "环境与农业",
+] as const;
 
 type Source = {
   id: string;
@@ -91,18 +99,20 @@ const programs: Program[] = [
 
 const agentSteps = [
   { tool: "normalize_gpa", label: "换算学术成绩", detail: "统一不同学校和满分制的成绩口径" },
-  { tool: "retrieve_programs", label: "匹配目标项目", detail: "结合方向与入学时间筛选具体硕士项目" },
+  { tool: "retrieve_programs", label: "匹配目标项目", detail: "结合学位、方向与入学时间筛选已核验项目" },
   { tool: "check_hard_constraints", label: "评估申请要求", detail: "对照均分、专业背景、先修课程和语言要求" },
   { tool: "rank_portfolio", label: "规划申请组合", detail: "平衡冲刺、匹配和稳妥项目" },
   { tool: "validate_citations", label: "整理风险与材料", detail: "生成待确认事项和申请准备顺序" },
 ];
 
 const initialProfile: Profile = {
+  currentEducation: "本科",
   school: "广东工业大学",
   schoolTier: "双非",
   major: "软件工程",
   gpa: "82",
   gpaScale: "100",
+  targetDegree: "授课型硕士",
   target: "计算机与数据",
   intake: "2027 S1",
   english: "IELTS 6.5",
@@ -123,11 +133,13 @@ const fallbackActionPlan: ApiActionItem[] = [
 
 function profileToApi(profile: Profile): Record<string, unknown> {
   return {
+    current_education_level: profile.currentEducation,
     undergraduate_school: profile.school,
     school_tier: profile.schoolTier,
     undergraduate_major: profile.major,
     gpa: Number(profile.gpa),
     gpa_scale: Number(profile.gpaScale),
+    target_degree_level: profile.targetDegree,
     target_field: profile.target,
     intake: profile.intake,
     english_score: profile.english || null,
@@ -205,7 +217,9 @@ export default function Home() {
   const [transcriptResult, setTranscriptResult] = useState<TranscriptAnalysis | null>(null);
 
   const results = useMemo(
-    () => programs.map((program) => ({ program, ...getProgramRecommendation(program, profile) })).sort((a, b) => tierOrder[a.tier] - tierOrder[b.tier] || b.score - a.score),
+    () => profile.targetDegree === "授课型硕士" && profile.target === "计算机与数据"
+      ? programs.map((program) => ({ program, ...getProgramRecommendation(program, profile) })).sort((a, b) => tierOrder[a.tier] - tierOrder[b.tier] || b.score - a.score)
+      : [],
     [profile],
   );
   const filteredResults = results.filter((item) => tierFilter === "全部" || item.tier === tierFilter);
@@ -269,7 +283,7 @@ export default function Home() {
   function handleProfile(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (profileStep === 1 && (!profile.school.trim() || !profile.major.trim() || !profile.gpa.trim())) {
-      setError("请先补全本科院校、专业和 GPA。");
+      setError("请先补全当前或最高学历、专业（课程体系）和学术成绩。");
       return;
     }
     if (profileStep === 1) {
@@ -298,15 +312,19 @@ export default function Home() {
       }
     }
     const localRunId = `run_demo_${normalizeGpa(profile)}_${history.length + 1}`;
+    const localSummary = results.length
+      ? `已完成 ${results.length} 个${profile.targetDegree}项目的申请要求对照，并生成建议组合。`
+      : `已接入${profile.targetDegree} · ${profile.target}的官方目录入口；课程级要求仍在核验中，暂不生成录取分档。`;
+    setRunSummary(localSummary);
     setActionPlan(fallbackActionPlan);
     setHistory((items) => [{
       run_id: localRunId,
       created_at: new Date().toISOString(),
-      workflow_version: "agent-0.2.0",
+      workflow_version: "agent-0.3.0",
       target_field: profile.target,
       intake: profile.intake,
-      recommendation_count: programs.length,
-      summary: "已完成 6 个项目的申请要求对照，并生成建议组合。",
+      recommendation_count: results.length,
+      summary: localSummary,
     }, ...items]);
   }
 
@@ -377,14 +395,14 @@ export default function Home() {
       {view === "landing" && (
         <section className="landing">
           <div className="hero-copy">
-            <p className="eyebrow"><span /> 澳洲硕士 · 个性化选校 · 申请规划</p>
+            <p className="eyebrow"><span /> 澳洲八大 · 本硕博 · 个性化申请规划</p>
             <h1>从你的背景出发，<br />规划每一步申请。</h1>
             <p className="hero-subtitle">填写学术背景、目标方向和申请偏好，获得具体项目建议、要求对照、风险提示与按优先级整理的材料计划。</p>
             <div className="hero-actions">
               <button className="primary-button" onClick={() => { setProfileStep(1); setView("profile"); }}>开始申请规划 <span>→</span></button>
               <button className="text-button" onClick={() => setView("results")}>查看选校示例</button>
             </div>
-            <div className="trust-row"><div><strong>6</strong><span>个首批硕士项目</span></div><div><strong>4</strong><span>类申请要求对照</span></div><div><strong>1</strong><span>份线性行动计划</span></div></div>
+            <div className="trust-row"><div><strong>384</strong><span>个目录覆盖组合</span></div><div><strong>12</strong><span>个专业大类</span></div><div><strong>4</strong><span>个学位层次</span></div></div>
           </div>
           <div className="hero-visual" aria-label="申请方案预览">
             <div className="orbit orbit-one" /><div className="orbit orbit-two" />
@@ -393,9 +411,9 @@ export default function Home() {
               {agentSteps.slice(0, 4).map((step, index) => <div className="mini-tool" key={step.tool}><span>0{index + 1}</span><div><strong>{step.label}</strong><small>{step.detail}</small></div><em>✓</em></div>)}
               <div className="next-step"><span>下一步</span><strong>确认先修课程并建立申请时间表</strong></div>
             </div>
-            <div className="floating-note note-one"><span>✓</span> 学术背景已评估</div><div className="floating-note note-two"><span>6</span> 个项目已对照</div>
+            <div className="floating-note note-one"><span>✓</span> 学术背景已评估</div><div className="floating-note note-two"><span>8</span> 所学校目录已接入</div>
           </div>
-          <div className="go8-strip"><span>首批覆盖项目</span>{programs.map((program) => <b key={program.slug}>{program.short}</b>)}</div>
+          <div className="go8-strip"><span>首批已核验项目</span>{programs.map((program) => <b key={program.slug}>{program.short}</b>)}</div>
         </section>
       )}
 
@@ -411,12 +429,14 @@ export default function Home() {
           <aside className="side-rail"><p className="step-kicker">申请档案</p><h2>建立你的申请画像</h2><p>信息越完整，项目要求对照和后续材料建议越准确。</p><ol><li className="active"><span>{profileStep > 1 ? "✓" : "1"}</span><div><strong>学术背景</strong><small>学校、专业与成绩</small></div></li><li className={profileStep === 2 ? "active" : ""}><span>2</span><div><strong>目标与偏好</strong><small>方向、课程、预算与职业目标</small></div></li><li><span>3</span><div><strong>生成选校方案</strong><small>要求对照、组合与行动计划</small></div></li></ol><div className="privacy-note"><span>{Math.round(readiness)}%</span><p><strong>资料完整度</strong><br />建议补全语言、课程和职业目标。</p></div></aside>
           <form className="profile-form" onSubmit={handleProfile}><div className="form-heading"><div><p>步骤 {profileStep} / 2</p><h2>{profileStep === 1 ? "学术背景" : "申请目标与个人偏好"}</h2></div><span>{Math.round(readiness)}% 已完成</span></div><div className="progress"><i style={{ width: profileStep === 1 ? "50%" : "100%" }} /></div><div className="form-grid">
             {profileStep === 1 ? <>
-              <label className="full">本科院校名称 *<input value={profile.school} onChange={(event) => setProfile({ ...profile, school: event.target.value })} /></label>
-              <label>院校背景<select value={profile.schoolTier} onChange={(event) => setProfile({ ...profile, schoolTier: event.target.value })}><option>985</option><option>211/双一流</option><option>双非</option><option>海外重点</option><option>其他</option></select></label>
-              <label>本科专业 *<input value={profile.major} onChange={(event) => setProfile({ ...profile, major: event.target.value })} /></label>
-              <label>GPA *<div className="joined-input"><input value={profile.gpa} onChange={(event) => setProfile({ ...profile, gpa: event.target.value })} /><select value={profile.gpaScale} onChange={(event) => setProfile({ ...profile, gpaScale: event.target.value })}><option value="100">/ 100</option><option value="4">/ 4.0</option><option value="5">/ 5.0</option></select></div></label>
+              <label>当前或最高学历<select value={profile.currentEducation} onChange={(event) => setProfile({ ...profile, currentEducation: event.target.value })}><option>高中</option><option>本科</option><option>硕士</option><option>其他</option></select></label>
+              <label>院校或课程体系<select value={profile.schoolTier} onChange={(event) => setProfile({ ...profile, schoolTier: event.target.value })}><option>高中/国际课程</option><option>985</option><option>211/双一流</option><option>双非</option><option>海外重点</option><option>其他</option></select></label>
+              <label className="full">当前或最高学历院校 *<input value={profile.school} onChange={(event) => setProfile({ ...profile, school: event.target.value })} /></label>
+              <label>专业或课程体系 *<input value={profile.major} onChange={(event) => setProfile({ ...profile, major: event.target.value })} placeholder="例如软件工程、A-Level" /></label>
+              <label>当前学术成绩 *<div className="joined-input"><input value={profile.gpa} onChange={(event) => setProfile({ ...profile, gpa: event.target.value })} /><select value={profile.gpaScale} onChange={(event) => setProfile({ ...profile, gpaScale: event.target.value })}><option value="100">/ 100</option><option value="4">/ 4.0</option><option value="5">/ 5.0</option></select></div></label>
             </> : <>
-              <label>目标方向<select value={profile.target} onChange={(event) => setProfile({ ...profile, target: event.target.value })}><option>计算机与数据</option></select></label>
+              <label>目标学位<select value={profile.targetDegree} onChange={(event) => setProfile({ ...profile, targetDegree: event.target.value })}>{degreeLevels.map((level) => <option key={level}>{level}</option>)}</select></label>
+              <label>目标方向<select value={profile.target} onChange={(event) => setProfile({ ...profile, target: event.target.value })}>{studyAreas.map((area) => <option key={area}>{area}</option>)}</select></label>
               <label>计划入学<select value={profile.intake} onChange={(event) => setProfile({ ...profile, intake: event.target.value })}><option>2027 S1</option><option>2027 S2</option></select></label>
               <label>语言成绩<input value={profile.english} onChange={(event) => setProfile({ ...profile, english: event.target.value })} placeholder="例如 IELTS 6.5（单项 6.0）" /></label>
               <label>年度预算（万元人民币）<input inputMode="numeric" value={profile.annualBudget} onChange={(event) => setProfile({ ...profile, annualBudget: event.target.value })} placeholder="例如 45" /></label>
@@ -445,7 +465,7 @@ export default function Home() {
           </div>
           <div className="advisor-layout">
             <article className="advisor-chat">
-              <div className="chat-context"><span>{profile.target}</span><span>{profile.intake}</span><span>GPA {profile.gpa}/{profile.gpaScale}</span></div>
+              <div className="chat-context"><span>{profile.targetDegree}</span><span>{profile.target}</span><span>{profile.intake}</span><span>成绩 {profile.gpa}/{profile.gpaScale}</span></div>
               <div className="message-list" aria-live="polite">
                 {(advisorThread?.messages ?? []).map((message) => <div key={message.id} className={`chat-message ${message.role}`}>
                   <small>{message.role === "assistant" ? "OfferPilot 顾问" : "你"}</small>
@@ -471,11 +491,11 @@ export default function Home() {
 
       {view === "results" && (
         <section className="results-page">
-          <div className="results-header"><div><p className="eyebrow"><span /> 个性化选校方案</p><h1>{profile.target} · {profile.intake}</h1><p>{profile.school} · {profile.major} · GPA {profile.gpa}/{profile.gpaScale}</p><p className="preference-summary">职业目标：{profile.careerGoal || "待补充"} · 城市偏好：{profile.cityPreference || "不限"} · 年度预算：{profile.annualBudget ? `${profile.annualBudget} 万元` : "待补充"}</p></div><div className="header-actions"><button className="outline-button" onClick={() => setView("plan")}>查看行动计划</button><button className="outline-button" onClick={() => { setProfileStep(1); setView("profile"); }}>修改申请背景</button></div></div>
+          <div className="results-header"><div><p className="eyebrow"><span /> 个性化选校方案</p><h1>{profile.targetDegree} · {profile.target} · {profile.intake}</h1><p>{profile.school} · {profile.major} · 成绩 {profile.gpa}/{profile.gpaScale}</p><p className="preference-summary">职业目标：{profile.careerGoal || "待补充"} · 城市偏好：{profile.cityPreference || "不限"} · 年度预算：{profile.annualBudget ? `${profile.annualBudget} 万元` : "待补充"}</p></div><div className="header-actions"><button className="outline-button" onClick={() => setView("plan")}>查看行动计划</button><button className="outline-button" onClick={() => { setProfileStep(1); setView("profile"); }}>修改申请背景</button></div></div>
           <div className="insight-banner"><div className="insight-score"><strong>{results.filter((item) => item.eligibility === "满足基础门槛").length}</strong><span>达到公开基线</span></div><div><p className="step-kicker">方案摘要</p><h3>{runSummary.replace("Agent ", "")}</h3><p>优先确认匹配项目；涉及专业背景和先修课程的项目仍需结合正式成绩单判断。</p></div><div className="legend"><span><i className="match" />匹配</span><span><i className="reach" />冲刺</span><span><i className="safe" />稳妥</span></div></div>
-          <div className="evidence-overview"><div><span>项目范围</span><strong>{results.length}</strong><small>具体硕士项目</small></div><div><span>推荐组合</span><strong>{results.filter((item) => item.tier !== "暂不推荐").length}</strong><small>值得继续评估</small></div><div><span>语言状态</span><strong>{profile.english ? "已填写" : "待补充"}</strong><small>{profile.english || "补充总分与单项"}</small></div><div><span>资料完整度</span><strong>{Math.round(readiness)}%</strong><small>{readiness >= 85 ? "可进入选校阶段" : "仍有信息需要补充"}</small></div></div>
+          <div className="evidence-overview"><div><span>项目范围</span><strong>{results.length}</strong><small>已核验具体项目</small></div><div><span>推荐组合</span><strong>{results.filter((item) => item.tier !== "暂不推荐").length}</strong><small>值得继续评估</small></div><div><span>语言状态</span><strong>{profile.english ? "已填写" : "待补充"}</strong><small>{profile.english || "补充总分与单项"}</small></div><div><span>资料完整度</span><strong>{Math.round(readiness)}%</strong><small>{readiness >= 85 ? "可进入选校阶段" : "仍有信息需要补充"}</small></div></div>
           <div className="result-toolbar"><div>{(["全部", "匹配", "冲刺", "稳妥", "暂不推荐"] as const).map((tier) => <button key={tier} className={tierFilter === tier ? "active" : ""} onClick={() => setTierFilter(tier)}>{tier}</button>)}</div><span>点击项目查看具体要求和下一步准备</span></div>
-          <div className="result-list">{filteredResults.map(({ program, tier, score, eligibility, risks }) => <article className="result-card program-result-card" key={program.slug} role="button" tabIndex={0} onClick={() => openProgram(program)} onKeyDown={(event) => { if (event.key === "Enter") openProgram(program); }}><div className="uni-monogram" style={{ background: program.accent }}>{program.short.slice(0, 2)}</div><div className="uni-main"><div className="uni-title"><div><h3>{program.name}</h3><p>{program.university} · {program.city} · {program.duration}</p></div><span className={`tier tier-${tier}`}>{tier}</span></div><p className="uni-note">{program.source.excerpt}</p><div className="reason-row"><span>✓ {eligibility}</span><span>{profile.cityPreference.includes(program.city) ? "✓ 符合城市偏好" : "○ 城市偏好待权衡"}</span><span className={risks.length ? "warning" : ""}>{risks.length ? `! ${risks[0]}` : "✓ 暂无明显材料缺口"}</span></div><a className="citation-chip" href={program.source.url} target="_blank" rel="noreferrer" onClick={(event) => event.stopPropagation()}>查看项目官方要求 ↗</a></div><div className="match-score"><strong>{score}</strong><span>综合匹配度</span><button aria-label={`查看 ${program.name} 详情`}>→</button></div></article>)}</div>
+          <div className="result-list">{filteredResults.map(({ program, tier, score, eligibility, risks }) => <article className="result-card program-result-card" key={program.slug} role="button" tabIndex={0} onClick={() => openProgram(program)} onKeyDown={(event) => { if (event.key === "Enter") openProgram(program); }}><div className="uni-monogram" style={{ background: program.accent }}>{program.short.slice(0, 2)}</div><div className="uni-main"><div className="uni-title"><div><h3>{program.name}</h3><p>{program.university} · {program.city} · {program.duration}</p></div><span className={`tier tier-${tier}`}>{tier}</span></div><p className="uni-note">{program.source.excerpt}</p><div className="reason-row"><span>✓ {eligibility}</span><span>{profile.cityPreference.includes(program.city) ? "✓ 符合城市偏好" : "○ 城市偏好待权衡"}</span><span className={risks.length ? "warning" : ""}>{risks.length ? `! ${risks[0]}` : "✓ 暂无明显材料缺口"}</span></div><a className="citation-chip" href={program.source.url} target="_blank" rel="noreferrer" onClick={(event) => event.stopPropagation()}>查看项目官方要求 ↗</a></div><div className="match-score"><strong>{score}</strong><span>综合匹配度</span><button aria-label={`查看 ${program.name} 详情`}>→</button></div></article>)}{filteredResults.length === 0 && <div className="empty-state"><strong>这个方向已接入官方课程目录</strong><p>目前还没有完成课程级要求核验，因此不会生成可能误导你的录取分档。你可以修改目标，或让 AI 顾问先帮你整理需要核验的学校与材料。</p><button className="primary-button" onClick={() => setView("advisor")}>咨询 AI 申请顾问</button></div>}</div>
           <p className="data-disclaimer">匹配分不是录取概率；最低门槛、名额和课程信息可能变化，最终以项目官网及学校正式审核为准。</p>
         </section>
       )}
