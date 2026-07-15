@@ -1,6 +1,6 @@
 from datetime import UTC, datetime
 
-from app.models import ApplicationChoice, AdvisorMessage, AdvisorThread, ApplicantProfile
+from app.models import AIConsent, ApplicationChoice, AdvisorMessage, AdvisorThread, ApplicantProfile
 from app.services.agent import run_recommendation_agent
 from app.store import SQLiteStore
 
@@ -41,6 +41,7 @@ def test_sqlite_store_survives_adapter_restart(tmp_path) -> None:
         run_id=result.run_id, program_slug=result.recommendations[0].program.slug,
         status="applying", is_primary=True, updated_at=now,
     ))
+    consent = first.save_ai_consent(user.id, AIConsent(accepted=True, updated_at=now))
 
     restarted = SQLiteStore(database_path)
     assert restarted.user_for_token(token) == user
@@ -51,6 +52,7 @@ def test_sqlite_store_survives_adapter_restart(tmp_path) -> None:
     assert restarted.list_threads(user.id) == [thread]
     assert restarted.get_choice(user.id, result.run_id, choice.program_slug) == choice
     assert restarted.list_choices(user.id, result.run_id) == [choice]
+    assert restarted.get_ai_consent(user.id) == consent
 
 
 def test_sqlite_store_keeps_users_runs_isolated(tmp_path) -> None:

@@ -25,7 +25,7 @@ class ModelResult:
 
 
 def configured_agent_mode() -> str:
-    if configured_provider() in {"openai", "ollama"}:
+    if configured_provider() in {"openai", "ollama", "deepseek"}:
         return "llm-assisted"
     return os.getenv("AGENT_MODE", "deterministic-demo")
 
@@ -33,6 +33,8 @@ def configured_agent_mode() -> str:
 def configured_model() -> str:
     if configured_provider() == "openai":
         return os.getenv("OPENAI_MODEL", "gpt-5-mini")
+    if configured_provider() == "deepseek":
+        return os.getenv("DEEPSEEK_MODEL", "deepseek-v4-flash")
     return os.getenv("OLLAMA_MODEL", "qwen2.5:0.5b")
 
 
@@ -40,11 +42,13 @@ def configured_provider() -> str:
     provider = os.getenv("LLM_PROVIDER", "deterministic").lower()
     if provider == "openai" and not os.getenv("OPENAI_API_KEY"):
         return "deterministic"
-    return provider if provider in {"openai", "ollama"} else "deterministic"
+    if provider == "deepseek" and not os.getenv("DEEPSEEK_API_KEY"):
+        return "deterministic"
+    return provider if provider in {"openai", "ollama", "deepseek"} else "deterministic"
 
 
 def llm_is_configured() -> bool:
-    return configured_provider() in {"openai", "ollama"}
+    return configured_provider() in {"openai", "ollama", "deepseek"}
 
 
 def _output_text(body: dict[str, Any]) -> str:
@@ -141,6 +145,33 @@ def plan_advisor_turn(context: dict[str, Any]) -> ModelResult:
         except (httpx.HTTPError, json.JSONDecodeError, KeyError, TypeError) as error:
             raise ModelProviderError("ollama request failed") from error
 
+    if provider == "deepseek":
+        base_url = os.getenv("DEEPSEEK_BASE_URL", "https://api.deepseek.com").rstrip("/")
+        try:
+            with httpx.Client(timeout=25) as client:
+                response = client.post(
+                    f"{base_url}/chat/completions",
+                    headers={"Authorization": f"Bearer {os.environ['DEEPSEEK_API_KEY']}"},
+                    json={
+                        "model": model,
+                        "messages": [
+                            {"role": "system", "content": instructions + "只输出合法 JSON。"},
+                            {"role": "user", "content": json.dumps(context, ensure_ascii=False)},
+                        ],
+                        "response_format": {"type": "json_object"},
+                        "thinking": {"type": "disabled"},
+                        "stream": False,
+                        "temperature": 0,
+                    },
+                )
+                response.raise_for_status()
+            body = response.json()
+            parsed = json.loads(body["choices"][0]["message"]["content"])
+            usage = body.get("usage", {})
+            return ModelResult(parsed, "deepseek", model, usage.get("prompt_tokens"), usage.get("completion_tokens"))
+        except (httpx.HTTPError, json.JSONDecodeError, KeyError, TypeError) as error:
+            raise ModelProviderError("deepseek request failed") from error
+
     api_key = os.getenv("OPENAI_API_KEY")
     payload = {
         "model": model,
@@ -203,6 +234,31 @@ def generate_grounded_summary(profile: ApplicantProfile, result: AgentRecommenda
             raise ModelProviderError("ollama request failed") from error
         if not content:
             raise ModelProviderError("ollama returned an empty summary")
+        return content
+
+    if provider == "deepseek":
+        try:
+            with httpx.Client(timeout=15) as client:
+                response = client.post(
+                    f"{os.getenv('DEEPSEEK_BASE_URL', 'https://api.deepseek.com').rstrip('/')}/chat/completions",
+                    headers={"Authorization": f"Bearer {os.environ['DEEPSEEK_API_KEY']}"},
+                    json={
+                        "model": model,
+                        "messages": [
+                            {"role": "system", "content": instructions},
+                            {"role": "user", "content": grounded_input},
+                        ],
+                        "thinking": {"type": "disabled"},
+                        "stream": False,
+                        "temperature": 0,
+                    },
+                )
+                response.raise_for_status()
+            content = response.json()["choices"][0]["message"]["content"].strip()
+        except (httpx.HTTPError, KeyError, TypeError) as error:
+            raise ModelProviderError("deepseek request failed") from error
+        if not content:
+            raise ModelProviderError("deepseek returned an empty summary")
         return content
 
     api_key = os.getenv("OPENAI_API_KEY")

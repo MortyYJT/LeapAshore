@@ -9,6 +9,7 @@ from pydantic import BaseModel
 
 from .models import (
     AgentRunAudit,
+    AIConsent,
     AgentRecommendationResponse,
     ApplicationChoice,
     ApplicationTask,
@@ -307,6 +308,13 @@ class PostgresStore:
     def list_audits(self, user_id: str) -> list[AgentRunAudit]:
         return self._list_entities(user_id, "agent_audit", AgentRunAudit)
 
+    def save_ai_consent(self, user_id: str, consent: AIConsent) -> AIConsent:
+        self._save_entity(user_id, "ai_consent", "deepseek", consent, consent.updated_at)
+        return consent
+
+    def get_ai_consent(self, user_id: str) -> AIConsent | None:
+        return self._get_entity(user_id, "ai_consent", "deepseek", AIConsent)
+
     def save_feedback(self, feedback: FeedbackItem) -> FeedbackItem:
         from psycopg.types.json import Jsonb
 
@@ -363,6 +371,26 @@ class PostgresStore:
                 cursor.execute(query)
                 counts[name] = int(cursor.fetchone()["count"])
         return counts
+
+    def admin_model_metrics(self) -> dict[str, int | float]:
+        with self._lock, self._connection.cursor() as cursor:
+            cursor.execute(
+                """SELECT COUNT(*) AS calls,
+                COALESCE(AVG((payload->>'latency_ms')::INTEGER), 0) AS latency,
+                COUNT(*) FILTER (WHERE payload->>'provider' = 'deterministic-fallback') AS fallbacks,
+                COALESCE(SUM((payload->>'input_tokens')::INTEGER), 0) AS input_tokens,
+                COALESCE(SUM((payload->>'output_tokens')::INTEGER), 0) AS output_tokens
+                FROM entities WHERE kind = 'agent_audit' AND created_at >= CURRENT_DATE"""
+            )
+            row = cursor.fetchone()
+        calls = int(row["calls"])
+        return {
+            "llm_calls_today": calls,
+            "llm_average_latency_ms": round(float(row["latency"])),
+            "llm_fallback_rate": round(int(row["fallbacks"]) / calls, 4) if calls else 0,
+            "llm_input_tokens_today": int(row["input_tokens"]),
+            "llm_output_tokens_today": int(row["output_tokens"]),
+        }
 
     def healthcheck(self) -> bool:
         with self._lock, self._connection.cursor() as cursor:

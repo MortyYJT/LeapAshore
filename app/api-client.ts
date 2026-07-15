@@ -43,6 +43,11 @@ export type AdminStats = {
   open_feedback: number;
   verified_programs: number;
   catalog_coverage_cells: number;
+  llm_calls_today: number;
+  llm_average_latency_ms: number;
+  llm_fallback_rate: number;
+  llm_input_tokens_today: number;
+  llm_output_tokens_today: number;
 };
 
 export type ProgramSourceStatus = {
@@ -120,7 +125,7 @@ export type ApplicationRoadmap = {
 };
 
 export type AdvisorAction = {
-  tool: "update_profile" | "run_recommendation" | "create_task" | "answer";
+  tool: "update_profile" | "run_recommendation" | "create_task" | "set_application_choice" | "update_task" | "answer";
   summary: string;
   status: "completed" | "needs_confirmation" | "skipped";
 };
@@ -138,6 +143,21 @@ export type AdvisorThread = {
   title: string;
   messages: AdvisorMessage[];
 };
+
+export type AIConsent = {
+  accepted: boolean;
+  provider: "deepseek";
+  version: string;
+  updated_at: string;
+};
+
+export type AdvisorStreamEvent =
+  | { event: "status"; data: { message: string; provider: string } }
+  | { event: "delta"; data: { content: string } }
+  | { event: "actions"; data: AdvisorAction[] }
+  | { event: "state"; data: { thread: AdvisorThread; portfolio: ApplicationChoice[]; roadmap: ApplicationRoadmap | null } }
+  | { event: "done"; data: { provider: string; model: string; latency_ms: number } }
+  | { event: "error"; data: { message: string; fallback: boolean } };
 
 export type TranscriptAnalysis = {
   academic_summary: string;
@@ -308,6 +328,51 @@ export async function sendAdvisorMessage(token: string, threadId: string, conten
     headers: { Authorization: `Bearer ${token}` },
     body: JSON.stringify({ content }),
   });
+}
+
+export async function fetchAIConsent(token: string): Promise<AIConsent | null> {
+  return request<AIConsent | null>("/me/advisor/consent", { headers: { Authorization: `Bearer ${token}` } });
+}
+
+export async function saveAIConsent(token: string, accepted: boolean): Promise<AIConsent> {
+  return request<AIConsent>("/me/advisor/consent", {
+    method: "POST",
+    headers: { Authorization: `Bearer ${token}` },
+    body: JSON.stringify({ accepted }),
+  });
+}
+
+export async function streamAdvisorMessage(
+  token: string,
+  threadId: string,
+  content: string,
+  onEvent: (event: AdvisorStreamEvent) => void,
+): Promise<void> {
+  const response = await fetch(`${API_URL}/me/advisor/threads/${threadId}/messages/stream`, {
+    method: "POST",
+    credentials: "include",
+    headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+    body: JSON.stringify({ content }),
+  });
+  if (!response.ok || !response.body) {
+    const body = await response.json().catch(() => null) as { detail?: string } | null;
+    throw new Error(body?.detail || `顾问请求失败（${response.status}）`);
+  }
+  const reader = response.body.getReader();
+  const decoder = new TextDecoder();
+  let buffer = "";
+  while (true) {
+    const { done, value } = await reader.read();
+    buffer += decoder.decode(value, { stream: !done }).replaceAll("\r\n", "\n");
+    const blocks = buffer.split("\n\n");
+    buffer = blocks.pop() ?? "";
+    for (const block of blocks) {
+      const event = block.split("\n").find((line) => line.startsWith("event:"))?.slice(6).trim();
+      const data = block.split("\n").filter((line) => line.startsWith("data:")).map((line) => line.slice(5).trim()).join("\n");
+      if (event && data) onEvent({ event, data: JSON.parse(data) } as AdvisorStreamEvent);
+    }
+    if (done) break;
+  }
 }
 
 export async function analyzeTranscript(token: string, transcriptText: string): Promise<TranscriptAnalysis> {

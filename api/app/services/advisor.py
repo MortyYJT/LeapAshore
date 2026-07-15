@@ -11,7 +11,7 @@ from .model_provider import ModelProviderError, configured_model, plan_advisor_t
 PROFILE_FIELDS = set(ApplicantProfile.model_fields)
 
 
-def _fallback_plan(message: str, profile: ApplicantProfile) -> dict[str, Any]:
+def fallback_plan(message: str, profile: ApplicantProfile) -> dict[str, Any]:
     """Small, predictable fallback keeps the product usable without a paid model key."""
     updates: dict[str, Any] = {}
     budget = re.search(r"(?:预算|每年).*?(\d{2,3})(?:\s*万)", message)
@@ -68,7 +68,7 @@ def plan_turn(message: str, profile: ApplicantProfile, history: list[dict[str, s
         model = model_result.model
         tokens = {"input_tokens": model_result.input_tokens, "output_tokens": model_result.output_tokens}
     except ModelProviderError:
-        raw = _fallback_plan(message, profile)
+        raw = fallback_plan(message, profile)
         model = configured_model()
         provider = "deterministic-fallback"
 

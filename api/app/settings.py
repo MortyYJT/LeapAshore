@@ -13,3 +13,5 @@ def validate_runtime_configuration() -> None:
     cors = os.getenv("CORS_ORIGINS", "")
     if "localhost" in cors or "*" in cors:
         raise RuntimeError("生产环境 CORS_ORIGINS 不能使用 localhost 或通配符")
+    if os.getenv("LLM_PROVIDER", "deterministic").lower() == "deepseek" and not os.getenv("DEEPSEEK_API_KEY"):
+        raise RuntimeError("生产环境启用 DeepSeek 时必须配置服务端 DEEPSEEK_API_KEY")

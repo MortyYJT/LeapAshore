@@ -4,6 +4,7 @@ import { FormEvent, useEffect, useMemo, useState } from "react";
 
 import {
   AdvisorThread,
+  AIConsent,
   AdminStats,
   ApiActionItem,
   ApplicationChoice,
@@ -23,6 +24,7 @@ import {
   fetchAdminStats,
   fetchAdminUsers,
   fetchAdminProgramSources,
+  fetchAIConsent,
   fetchCurrentUser,
   fetchHistory,
   fetchPortfolio,
@@ -35,7 +37,8 @@ import {
   resendVerification,
   resetPassword,
   saveProfile,
-  sendAdvisorMessage,
+  saveAIConsent,
+  streamAdvisorMessage,
   updateTaskDetails,
   updatePortfolioChoice,
   updateAdminFeedback,
@@ -253,6 +256,9 @@ export default function Home() {
   const [advisorInput, setAdvisorInput] = useState("");
   const [advisorBusy, setAdvisorBusy] = useState(false);
   const [advisorProvider, setAdvisorProvider] = useState("正在连接顾问");
+  const [cloudConsent, setCloudConsent] = useState<AIConsent | null | undefined>(undefined);
+  const [showCloudConsent, setShowCloudConsent] = useState(false);
+  const [pendingAdvisorMessage, setPendingAdvisorMessage] = useState("");
   const [transcriptText, setTranscriptText] = useState("");
   const [transcriptResult, setTranscriptResult] = useState<TranscriptAnalysis | null>(null);
   const [feedbackCategory, setFeedbackCategory] = useState<FeedbackItem["category"]>("建议");
@@ -336,6 +342,12 @@ export default function Home() {
   useEffect(() => {
     if (view !== "advisor" || !token || advisorThread) return;
     let cancelled = false;
+    void fetchAIConsent(token).then((consent) => {
+      if (!cancelled) {
+        setCloudConsent(consent);
+        setAdvisorProvider(consent?.accepted ? "DeepSeek V4 Flash · 云端" : consent ? "规则顾问 · 云端处理已关闭" : "顾问已就绪");
+      }
+    }).catch(() => { if (!cancelled) setCloudConsent(null); });
     saveProfile(token, profileToApi(profile))
       .then(() => createAdvisorThread(token))
       .then((thread) => { if (!cancelled) setAdvisorThread(thread); })
@@ -621,18 +633,64 @@ export default function Home() {
     event.preventDefault();
     const content = advisorInput.trim();
     if (!content || advisorBusy) return;
+    if (cloudConsent == null) {
+      setPendingAdvisorMessage(content);
+      setShowCloudConsent(true);
+      return;
+    }
+    await submitAdvisorMessage(content);
+  }
+
+  async function submitAdvisorMessage(content: string) {
+    if (!token || !advisorThread || advisorBusy) return;
     setAdvisorInput("");
     setAdvisorBusy(true);
-    if (token && advisorThread) {
-      try {
-        const reply = await sendAdvisorMessage(token, advisorThread.id, content);
-        setAdvisorThread(reply.thread);
-        setAdvisorProvider(reply.provider === "ollama" ? "Qwen · 服务端" : reply.provider === "openai" ? "OpenAI · 在线" : "安全降级模式");
-      } catch {
-        setAdvisorProvider("暂时无法连接，请稍后重试");
-      }
+    const temporaryUserId = `temp-user-${Date.now()}`;
+    const temporaryAssistantId = `temp-assistant-${Date.now()}`;
+    setAdvisorThread((thread) => thread ? {
+      ...thread,
+      messages: [...thread.messages,
+        { id: temporaryUserId, role: "user", content, created_at: new Date().toISOString(), actions: [] },
+        { id: temporaryAssistantId, role: "assistant", content: "", created_at: new Date().toISOString(), actions: [] },
+      ],
+    } : thread);
+    try {
+      await streamAdvisorMessage(token, advisorThread.id, content, ({ event, data }) => {
+        if (event === "status") setAdvisorProvider(data.message);
+        if (event === "error") setAdvisorProvider(data.message);
+        if (event === "delta") setAdvisorThread((thread) => thread ? {
+          ...thread,
+          messages: thread.messages.map((message) => message.id === temporaryAssistantId ? { ...message, content: message.content + data.content } : message),
+        } : thread);
+        if (event === "actions") setAdvisorThread((thread) => thread ? {
+          ...thread,
+          messages: thread.messages.map((message) => message.id === temporaryAssistantId ? { ...message, actions: data } : message),
+        } : thread);
+        if (event === "state") {
+          setAdvisorThread(data.thread);
+          setPortfolio(data.portfolio);
+          setRoadmap(data.roadmap);
+        }
+        if (event === "done") setAdvisorProvider(data.provider === "deepseek" ? `DeepSeek V4 Flash · ${data.latency_ms}ms` : "规则顾问 · 快速降级");
+      });
+    } catch (reason) {
+      setAdvisorProvider(reason instanceof Error ? reason.message : "暂时无法连接，请稍后重试");
     }
     setAdvisorBusy(false);
+  }
+
+  async function decideCloudConsent(accepted: boolean) {
+    if (!token) return;
+    try {
+      const consent = await saveAIConsent(token, accepted);
+      setCloudConsent(consent);
+      setShowCloudConsent(false);
+      const content = pendingAdvisorMessage;
+      setPendingAdvisorMessage("");
+      if (content) await submitAdvisorMessage(content);
+    } catch (reason) {
+      setError(reason instanceof Error ? reason.message : "数据处理选择保存失败");
+    }
   }
 
   async function handleTranscriptAnalysis() {
@@ -716,7 +774,7 @@ export default function Home() {
 
       {view === "terms" && <section className="legal-page"><button className="back-button" onClick={() => setView("login")}>← 返回登录</button><p className="eyebrow"><span /> 服务条款</p><h1>OfferPilot Beta 服务条款</h1><p>生效日期：2026 年 7 月 15 日</p><h2>产品用途</h2><p>OfferPilot 用于辅助整理学校公开信息、申请偏好和准备任务，不是学校、招生代理或录取决定机构。</p><h2>结果边界</h2><p>匹配分不是录取概率。课程要求、名额、费用和截止日期可能变化，用户应在提交申请前通过学校官网或学校正式渠道复核。</p><h2>账户与使用</h2><p>用户应提供真实且有权处理的资料，妥善保管账户，不得滥用服务、干扰系统或上传侵犯他人权益的内容。</p><h2>Beta 阶段</h2><p>封闭测试期间功能可能调整。我们会尽力保持数据与服务可靠，但不承诺服务永不中断或建议适用于所有情况。</p><h2>联系我们</h2><p>账户、安全或数据问题请通过产品内“产品反馈”提交。</p></section>}
 
-      {view === "privacy" && <section className="legal-page"><button className="back-button" onClick={() => setView("login")}>← 返回登录</button><p className="eyebrow"><span /> 隐私说明</p><h1>OfferPilot Beta 隐私说明</h1><p>生效日期：2026 年 7 月 15 日</p><h2>收集的信息</h2><p>我们处理账户邮箱、申请背景、成绩与课程描述、目标偏好、顾问对话、任务进度、反馈和必要的安全日志。</p><h2>使用目的</h2><p>这些信息用于身份验证、生成申请规划、保存进度、改进产品、排查故障和防止滥用，不用于出售个人资料。</p><h2>存储与安全</h2><p>密码使用加盐哈希保存；验证、重置和会话令牌以哈希形式保存；生产数据存储在受控 PostgreSQL 中并执行备份。</p><h2>数据权利</h2><p>用户可以在“账户设置”中导出个人数据，或输入当前密码永久删除账户与关联资料；需要更正或帮助时可通过产品内反馈联系运营人员。</p><h2>第三方处理</h2><p>邮件服务商负责投递验证与重置邮件；自托管模型仅在服务端处理必要上下文。上线前会在此处公布实际服务商。</p></section>}
+      {view === "privacy" && <section className="legal-page"><button className="back-button" onClick={() => setView("login")}>← 返回登录</button><p className="eyebrow"><span /> 隐私说明</p><h1>OfferPilot Beta 隐私说明</h1><p>生效日期：2026 年 7 月 15 日</p><h2>收集的信息</h2><p>我们处理账户邮箱、申请背景、成绩与课程描述、目标偏好、顾问对话、任务进度、反馈和必要的安全日志。</p><h2>使用目的</h2><p>这些信息用于身份验证、生成申请规划、保存进度、改进产品、排查故障和防止滥用，不用于出售个人资料。</p><h2>存储与安全</h2><p>密码使用加盐哈希保存；验证、重置和会话令牌以哈希形式保存；生产数据存储在受控 PostgreSQL 中并执行备份。</p><h2>数据权利</h2><p>用户可以在“账户设置”中导出个人数据，或输入当前密码永久删除账户与关联资料；需要更正或帮助时可通过产品内反馈联系运营人员。</p><h2>DeepSeek 云端顾问</h2><p>首次使用前会单独征求同意。经同意后，仅发送脱敏申请画像、已核验选校事实、申请组合、路线图任务和最近对话；不发送姓名、邮箱、账户 ID、本科学校名称、原始成绩单或认证信息。拒绝后仍可使用规则顾问。</p><h2>第三方处理</h2><p>邮件服务商负责投递验证与重置邮件；DeepSeek 开放平台在用户单独同意后处理最小化顾问上下文。服务端 API Key 不会发送到浏览器或写入用户数据。</p></section>}
 
       {view === "profile" && (
         <section className="workspace">
@@ -777,7 +835,8 @@ export default function Home() {
             </article>
             <aside className="advisor-tools">
               <div className="profile-snapshot"><p className="step-kicker">当前申请画像</p><h3>{profile.school}</h3><dl><div><dt>专业</dt><dd>{profile.major}</dd></div><div><dt>语言</dt><dd>{profile.english || "待补充"}</dd></div><div><dt>城市</dt><dd>{profile.cityPreference || "不限"}</dd></div><div><dt>资料完整度</dt><dd>{Math.round(readiness)}%</dd></div></dl><button className="text-button" onClick={() => { setProfileStep(1); setView("profile"); }}>修改档案 →</button></div>
-              <div className="transcript-tool"><p className="step-kicker">成绩单课程核验</p><h3>粘贴成绩单文本</h3><p>识别数学、编程、算法与数据库课程，并逐项目检查先修要求。</p><textarea value={transcriptText} onChange={(event) => setTranscriptText(event.target.value)} placeholder={"高等数学 88\n数据结构 90\n数据库系统 87"} /><button className="outline-button" disabled={!transcriptText.trim() || advisorBusy} onClick={handleTranscriptAnalysis}>分析课程匹配</button>{transcriptResult && <div className="transcript-result"><strong>{transcriptResult.academic_summary}</strong><span>{transcriptResult.program_matches.filter((item) => item.status === "满足").length} 个项目的已列先修课可初步满足</span>{transcriptResult.warnings.map((warning) => <small key={warning}>! {warning}</small>)}</div>}</div>
+              <div className="transcript-tool"><p className="step-kicker">成绩单课程核验</p><h3>粘贴成绩单文本</h3><p>识别数学、编程、算法与数据库课程，并逐项目检查先修要求。原始文本不会发送给 DeepSeek。</p><textarea value={transcriptText} onChange={(event) => setTranscriptText(event.target.value)} placeholder={"高等数学 88\n数据结构 90\n数据库系统 87"} /><button className="outline-button" disabled={!transcriptText.trim() || advisorBusy} onClick={handleTranscriptAnalysis}>分析课程匹配</button>{transcriptResult && <div className="transcript-result"><strong>{transcriptResult.academic_summary}</strong><span>{transcriptResult.program_matches.filter((item) => item.status === "满足").length} 个项目的已列先修课可初步满足</span>{transcriptResult.warnings.map((warning) => <small key={warning}>! {warning}</small>)}</div>}</div>
+              {cloudConsent && <div className="ai-data-setting"><span>云端 AI 数据处理</span><strong>{cloudConsent.accepted ? "已同意 · 最小化脱敏" : "已拒绝 · 使用规则顾问"}</strong><button className="text-button" onClick={() => setShowCloudConsent(true)}>修改选择</button></div>}
             </aside>
           </div>
         </section>
@@ -839,7 +898,7 @@ export default function Home() {
       {view === "admin" && currentUser?.role === "admin" && (
         <section className="product-page admin-page">
           <div className="product-page-header"><div><p className="eyebrow"><span /> OfferPilot Operations</p><h1>运营后台</h1><p>查看 Beta 用户、产品使用、反馈处理与数据覆盖情况。</p></div><button className="outline-button" onClick={() => { if (token) void Promise.all([fetchAdminStats(token), fetchAdminUsers(token), fetchAdminFeedback(token), fetchAdminProgramSources(token)]).then(([stats, users, feedback, sources]) => { setAdminStats(stats); setAdminUsers(users); setAdminFeedback(feedback); setAdminSources(sources); }); }}>刷新数据</button></div>
-          {adminStats ? <div className="admin-metrics"><div><span>注册用户</span><strong>{adminStats.users}</strong><small>{adminStats.verified_users} 已验证</small></div><div><span>活跃会话</span><strong>{adminStats.active_sessions}</strong><small>当前有效</small></div><div><span>选校方案</span><strong>{adminStats.recommendation_runs}</strong><small>{adminStats.advisor_threads} 个顾问会话</small></div><div><span>待处理反馈</span><strong>{adminStats.open_feedback}</strong><small>需要运营跟进</small></div><div><span>目录覆盖</span><strong>{adminStats.catalog_coverage_cells}</strong><small>{adminStats.verified_programs} 个已核验项目</small></div></div> : <div className="empty-state">正在加载运营数据…</div>}
+          {adminStats ? <div className="admin-metrics"><div><span>注册用户</span><strong>{adminStats.users}</strong><small>{adminStats.verified_users} 已验证</small></div><div><span>活跃会话</span><strong>{adminStats.active_sessions}</strong><small>当前有效</small></div><div><span>选校方案</span><strong>{adminStats.recommendation_runs}</strong><small>{adminStats.advisor_threads} 个顾问会话</small></div><div><span>待处理反馈</span><strong>{adminStats.open_feedback}</strong><small>需要运营跟进</small></div><div><span>目录覆盖</span><strong>{adminStats.catalog_coverage_cells}</strong><small>{adminStats.verified_programs} 个已核验项目</small></div><div><span>今日顾问调用</span><strong>{adminStats.llm_calls_today}</strong><small>平均 {adminStats.llm_average_latency_ms}ms</small></div><div><span>确定性降级率</span><strong>{Math.round(adminStats.llm_fallback_rate * 100)}%</strong><small>{adminStats.llm_input_tokens_today + adminStats.llm_output_tokens_today} tokens</small></div></div> : <div className="empty-state">正在加载运营数据…</div>}
           <div className="admin-sections">
             <article className="operations-card"><p className="step-kicker">用户管理</p><h3>Beta 用户</h3><div className="admin-table">{adminUsers.map((user) => <div className="admin-row" key={user.id}><div><strong>{user.display_name}</strong><span>{user.email}</span></div><span>{user.email_verified ? "邮箱已验证" : "待验证"}</span><span>{user.terms_version ? `条款 ${user.terms_version}` : "条款待补录"}</span><span>{user.role === "admin" ? "管理员" : "用户"}</span><button className="text-button" disabled={user.id === currentUser.id} onClick={() => void changeUserStatus(user.id, user.status === "active" ? "suspended" : "active")}>{user.status === "active" ? "停用" : "恢复"}</button></div>)}</div></article>
             <article className="operations-card"><p className="step-kicker">反馈队列</p><h3>用户反馈</h3><div className="compact-list">{adminFeedback.map((item) => <div key={item.id}><span className={`status-chip status-${item.status}`}>{item.status}</span><strong>{item.category} · {item.user_email}</strong><p>{item.message}</p><select value={item.status} onChange={(event) => void changeFeedbackStatus(item.id, event.target.value as FeedbackItem["status"])}><option value="new">待处理</option><option value="reviewing">处理中</option><option value="resolved">已解决</option></select></div>)}{adminFeedback.length === 0 && <p className="muted-copy">暂无用户反馈。</p>}</div></article>
@@ -850,6 +909,18 @@ export default function Home() {
 
       {view === "history" && (
         <section className="product-page"><div className="product-page-header"><div><p className="eyebrow"><span /> 我的方案</p><h1>历史选校方案</h1><p>对比不同背景和目标下生成的申请组合</p></div><button className="primary-button" onClick={() => { setProfileStep(1); setView("profile"); }}>新建方案 <span>→</span></button></div>{history.length ? <div className="history-list">{history.map((item) => <button key={item.run_id} onClick={() => void openHistoryRun(item)}><span className="history-date">{new Date(item.created_at).toLocaleDateString("zh-CN")}</span><div><strong>{item.target_field} · {item.intake}</strong><span>{item.summary.replace("Agent ", "")}</span></div><small>{item.recommendation_count} 个项目<br />查看方案 →</small></button>)}</div> : <div className="empty-state"><strong>还没有选校方案</strong><p>完成申请档案后，你的项目组合、风险提示和行动计划会保存在这里。</p><button className="primary-button" onClick={() => { setProfileStep(1); setView("profile"); }}>建立申请档案</button></div>}</section>
+      )}
+      {showCloudConsent && (
+        <div className="consent-overlay" role="presentation">
+          <section className="cloud-consent-dialog" role="dialog" aria-modal="true" aria-labelledby="cloud-consent-title">
+            <p className="eyebrow"><span /> 云端 AI 数据处理</p>
+            <h2 id="cloud-consent-title">是否使用 DeepSeek 顾问？</h2>
+            <p>同意后，OfferPilot 会把最少量的脱敏申请上下文发送到 DeepSeek 开放平台，以生成更自然、更专业的回答。</p>
+            <ul><li>会发送：学校层级、专业、归一化成绩、目标、选校事实、申请组合、路线图与最近对话</li><li>不会发送：姓名、邮箱、账户 ID、本科学校名称、原始成绩单、密码或认证信息</li><li>所有申请组合和任务修改仍由服务端白名单工具校验</li></ul>
+            <p className="consent-note">拒绝不影响其他功能，顾问会立即使用本地确定性规则回答。你之后可以随时修改选择。</p>
+            <div className="consent-actions"><button className="outline-button" onClick={() => void decideCloudConsent(false)}>拒绝并使用规则顾问</button><button className="primary-button" onClick={() => void decideCloudConsent(true)}>同意使用 DeepSeek</button></div>
+          </section>
+        </div>
       )}
     </main>
   );

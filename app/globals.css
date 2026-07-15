@@ -172,6 +172,18 @@ button { color: inherit; }
 .fine-print button { border: 0; border-bottom: 1px solid currentColor; background: transparent; color: var(--green); padding: 0; cursor: pointer; font: inherit; }
 .auth-form .consent-field { flex-direction: row; align-items: center; gap: 9px; margin: 0 0 16px; color: var(--muted); font-weight: 500; }
 .auth-form .consent-field input { width: 16px; height: 16px; margin: 0; accent-color: var(--green); }
+
+.ai-data-setting { border: 1px solid var(--line); border-radius: 14px; padding: 16px; background: #fff; display: grid; gap: 6px; }
+.ai-data-setting span { color: var(--muted); font-size: 12px; }
+.ai-data-setting strong { font-size: 14px; }
+.ai-data-setting .text-button { justify-self: start; padding: 4px 0; }
+.consent-overlay { position: fixed; z-index: 100; inset: 0; display: grid; place-items: center; padding: 24px; background: rgba(11, 20, 16, .58); backdrop-filter: blur(7px); }
+.cloud-consent-dialog { width: min(620px, 100%); max-height: calc(100vh - 48px); overflow: auto; padding: 34px; border-radius: 24px; background: #fff; box-shadow: 0 28px 90px rgba(0, 0, 0, .22); }
+.cloud-consent-dialog h2 { margin: 10px 0 12px; font-size: clamp(25px, 4vw, 34px); }
+.cloud-consent-dialog > p { color: var(--muted); line-height: 1.7; }
+.cloud-consent-dialog ul { margin: 22px 0; padding-left: 20px; display: grid; gap: 10px; color: #314039; line-height: 1.6; }
+.cloud-consent-dialog .consent-note { padding: 14px 16px; border-radius: 12px; background: var(--cream); font-size: 13px; }
+.consent-actions { display: flex; justify-content: flex-end; gap: 10px; margin-top: 22px; flex-wrap: wrap; }
 .legal-page { max-width: 760px; min-height: calc(100vh - 76px); margin: 0 auto; padding: 60px 24px 100px; }
 .legal-page h1 { font-family: Georgia, "Songti SC", serif; font-size: 44px; font-weight: 500; margin: 12px 0; }.legal-page h2 { margin-top: 34px; font-size: 17px; }.legal-page p { color: var(--muted); font-size: 12px; line-height: 1.9; }
 .outline-button.wide { width: 100%; margin-top: 10px; }

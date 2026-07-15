@@ -393,6 +393,85 @@ def test_advisor_can_create_an_application_task() -> None:
     assert client.get("/me/tasks", headers=headers).json()[0]["title"] == "准备英文成绩单"
 
 
+def test_deepseek_stream_is_consented_redacted_and_persisted(monkeypatch) -> None:
+    import importlib
+    import json
+
+    main_module = importlib.import_module("app.main")
+    login = registered_login("deepseek-stream@offerpilot.cn")
+    headers = {"Authorization": f"Bearer {login.json()['access_token']}"}
+    client.put("/me/profile", json={
+        "undergraduate_school": "隐私大学", "school_tier": "双非", "undergraduate_major": "软件工程",
+        "gpa": 82, "gpa_scale": 100, "target_field": "计算机与数据", "intake": "2027 S1",
+    }, headers=headers)
+    client.post("/me/recommendation-runs", headers=headers)
+    thread = client.post("/me/advisor/threads", headers=headers).json()
+    assert client.get("/me/advisor/consent", headers=headers).json() is None
+    assert client.post("/me/advisor/consent", json={"accepted": True}, headers=headers).json()["accepted"] is True
+
+    captured = {}
+
+    async def fake_stream(context):
+        captured.update(context)
+        yield "delta", "建议先比较课程匹配与城市成本。"
+        yield "usage", {"prompt_tokens": 120, "completion_tokens": 18}
+
+    monkeypatch.setenv("LLM_PROVIDER", "deepseek")
+    monkeypatch.setenv("DEEPSEEK_API_KEY", "never-sent-to-client")
+    monkeypatch.setattr(main_module, "stream_deepseek", fake_stream)
+    response = client.post(
+        f"/me/advisor/threads/{thread['id']}/messages/stream",
+        json={"content": "请比较这些项目的取舍"}, headers=headers,
+    )
+    assert response.status_code == 200
+    assert "event: status" in response.text
+    assert "event: delta" in response.text
+    assert "event: actions" in response.text
+    assert "event: state" in response.text
+    assert "event: done" in response.text
+    assert "deepseek" in response.text
+    serialized = json.dumps(captured, ensure_ascii=False)
+    for forbidden in ["deepseek-stream@offerpilot.cn", "测试用户", "隐私大学", "never-sent-to-client"]:
+        assert forbidden not in serialized
+    audits = client.get("/me/advisor/audits", headers=headers).json()
+    assert audits[0]["provider"] == "deepseek"
+    assert audits[0]["input_tokens"] == 120
+    assert audits[0]["prompt_version"] == "advisor-2.0.0-redacted"
+
+
+def test_deepseek_stream_failure_is_explicit_and_never_falls_back_to_ollama(monkeypatch) -> None:
+    import importlib
+
+    from app.services.deepseek_advisor import DeepSeekStreamError
+
+    main_module = importlib.import_module("app.main")
+    login = registered_login("deepseek-fallback@offerpilot.cn")
+    headers = {"Authorization": f"Bearer {login.json()['access_token']}"}
+    client.put("/me/profile", json={
+        "undergraduate_school": "示例大学", "school_tier": "双非", "undergraduate_major": "软件工程",
+        "gpa": 82, "gpa_scale": 100, "target_field": "计算机与数据",
+    }, headers=headers)
+    thread = client.post("/me/advisor/threads", headers=headers).json()
+    client.post("/me/advisor/consent", json={"accepted": True}, headers=headers)
+    monkeypatch.setenv("LLM_PROVIDER", "deepseek")
+    monkeypatch.setenv("DEEPSEEK_API_KEY", "server-only")
+
+    async def failed_stream(_context):
+        if False:
+            yield "delta", ""
+        raise DeepSeekStreamError("429 or zero balance")
+
+    monkeypatch.setattr(main_module, "stream_deepseek", failed_stream)
+    response = client.post(
+        f"/me/advisor/threads/{thread['id']}/messages/stream",
+        json={"content": "我下一步做什么"}, headers=headers,
+    )
+    assert response.status_code == 200
+    assert "event: error" in response.text
+    assert "规则顾问" in response.text
+    assert "ollama" not in response.text.lower()
+
+
 def test_program_sources_expose_review_freshness() -> None:
     response = client.get("/program-sources/status")
     assert response.status_code == 200

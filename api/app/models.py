@@ -201,6 +201,11 @@ class AdminStats(BaseModel):
     open_feedback: int
     verified_programs: int
     catalog_coverage_cells: int
+    llm_calls_today: int = 0
+    llm_average_latency_ms: int = 0
+    llm_fallback_rate: float = 0
+    llm_input_tokens_today: int = 0
+    llm_output_tokens_today: int = 0
 
 
 class AdminUserUpdateRequest(BaseModel):
@@ -263,7 +268,7 @@ class RecommendationResponse(BaseModel):
 
 
 class AdvisorAction(BaseModel):
-    tool: Literal["update_profile", "run_recommendation", "create_task", "answer"]
+    tool: Literal["update_profile", "run_recommendation", "create_task", "set_application_choice", "update_task", "answer"]
     summary: str
     arguments: dict[str, Any] = {}
     status: Literal["completed", "needs_confirmation", "skipped"] = "completed"
@@ -294,7 +299,7 @@ class AdvisorReply(BaseModel):
     profile: ApplicantProfile
     recommendation_run: AgentRecommendationResponse | None = None
     model: str
-    provider: Literal["openai", "ollama", "deterministic-fallback"]
+    provider: Literal["openai", "ollama", "deepseek", "deterministic-fallback"]
     latency_ms: int
     input_tokens: int | None = None
     output_tokens: int | None = None
@@ -306,6 +311,17 @@ class LLMStatus(BaseModel):
     provider: str = "openai"
     model: str
     api: str = "responses"
+
+
+class AIConsentRequest(BaseModel):
+    accepted: bool
+
+
+class AIConsent(BaseModel):
+    accepted: bool
+    provider: Literal["deepseek"] = "deepseek"
+    version: str = "deepseek-data-1.0"
+    updated_at: datetime
 
 
 class TranscriptAnalysisRequest(BaseModel):
@@ -410,7 +426,7 @@ class AgentRunAudit(BaseModel):
     id: str
     thread_id: str
     message_id: str
-    provider: Literal["openai", "ollama", "deterministic-fallback"]
+    provider: Literal["openai", "ollama", "deepseek", "deterministic-fallback"]
     model: str
     prompt_version: str
     workflow_version: str

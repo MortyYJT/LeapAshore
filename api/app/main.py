@@ -1,3 +1,5 @@
+import asyncio
+import json
 import logging
 import os
 from contextlib import asynccontextmanager
@@ -7,6 +9,7 @@ from uuid import uuid4
 
 from fastapi import Cookie, Depends, FastAPI, Header, HTTPException, Query, Response
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import StreamingResponse
 
 from .data import UNIVERSITIES
 from .catalog_data import CATALOG_COVERAGE
@@ -14,6 +17,8 @@ from .models import (
     ActionPlanResponse,
     ActionPlanItem,
     AgentRunAudit,
+    AIConsent,
+    AIConsentRequest,
     ApplicationChoice,
     ApplicationChoiceUpdate,
     ApplicationRoadmap,
@@ -58,6 +63,13 @@ from .observability import configure_error_reporting
 from .program_data import PROGRAMS
 from .taxonomy import DEGREE_LEVELS, STUDY_AREAS, DegreeLevel, StudyArea
 from .services.advisor import plan_turn
+from .services.advisor import fallback_plan
+from .services.deepseek_advisor import (
+    DeepSeekStreamError,
+    build_redacted_context,
+    safe_tool_actions,
+    stream_deepseek,
+)
 from .services.agent import run_recommendation_agent
 from .services.model_provider import configured_model, configured_provider, llm_is_configured
 from .services.roadmap import build_roadmap, merge_tasks, task_templates
@@ -75,6 +87,7 @@ from .store import (
 
 configure_error_reporting()
 logger = logging.getLogger("offerpilot.mail")
+deepseek_slots = asyncio.Semaphore(4)
 
 
 def portfolio_for_run(user_id: str, result: AgentRecommendationResponse) -> list[ApplicationChoice]:
@@ -100,6 +113,87 @@ def sync_roadmap(
     for task in merged:
         store.save_task(user_id, task)
     return build_roadmap(profile, result, portfolio, merged)
+
+
+def execute_advisor_actions(
+    user_id: str,
+    profile: ApplicantProfile,
+    actions: list,
+) -> tuple[ApplicantProfile, AgentRecommendationResponse | None]:
+    """Execute only the server whitelist; model text never mutates product state directly."""
+    recommendation_run = None
+    for action in actions:
+        if action.tool == "update_profile" and action.arguments:
+            try:
+                profile = ApplicantProfile.model_validate({**profile.model_dump(), **action.arguments})
+                store.save_profile(user_id, profile)
+            except ValueError:
+                action.status = "skipped"
+                action.summary = "档案更新值未通过格式检查，已保留原数据"
+        elif action.tool == "run_recommendation":
+            recommendation_run = run_recommendation_agent(profile)
+            store.save_run(user_id, profile, recommendation_run)
+            sync_roadmap(user_id, profile, recommendation_run)
+        elif action.tool == "create_task":
+            now = datetime.now(UTC)
+            arguments = action.arguments
+            try:
+                request = TaskCreateRequest.model_validate({
+                    "title": arguments.get("title", action.summary),
+                    "detail": arguments.get("detail", "由 AI 申请顾问创建"),
+                    "category": arguments.get("category", "其他"),
+                    "priority": arguments.get("priority", "P1"),
+                    "due_at": arguments.get("due_at"),
+                    "reminder_at": arguments.get("reminder_at"),
+                })
+                store.save_task(user_id, ApplicationTask(
+                    id=f"task_{uuid4().hex[:10]}", created_at=now, updated_at=now, **request.model_dump()
+                ))
+            except ValueError:
+                action.status = "skipped"
+                action.summary = "待办信息格式不完整，暂未创建"
+        elif action.tool == "set_application_choice":
+            arguments = action.arguments
+            result = store.get_run(user_id, str(arguments.get("run_id", "")))
+            slug = str(arguments.get("program_slug", ""))
+            if not result or slug not in {item.program.slug for item in result.recommendations}:
+                action.status = "skipped"
+                action.summary = "项目不在当前选校方案中，未修改申请组合"
+                continue
+            is_primary = bool(arguments.get("is_primary"))
+            status = str(arguments.get("status", "considering"))
+            if status not in {"considering", "applying", "excluded"}:
+                action.status = "skipped"
+                continue
+            if is_primary:
+                status = "applying"
+                for choice in store.list_choices(user_id, result.run_id):
+                    if choice.is_primary and choice.program_slug != slug:
+                        store.save_choice(user_id, choice.model_copy(update={"is_primary": False, "updated_at": datetime.now(UTC)}))
+            existing = store.get_choice(user_id, result.run_id, slug)
+            store.save_choice(user_id, ApplicationChoice(
+                run_id=result.run_id,
+                program_slug=slug,
+                status=status,
+                is_primary=is_primary and status == "applying",
+                official_deadline=existing.official_deadline if existing else None,
+                deadline_source_url=existing.deadline_source_url if existing else None,
+                updated_at=datetime.now(UTC),
+            ))
+            sync_roadmap(user_id, profile, result)
+        elif action.tool == "update_task":
+            task = store.get_task(user_id, str(action.arguments.get("task_id", "")))
+            status = action.arguments.get("status")
+            if not task or status not in {"待开始", "进行中", "已完成"}:
+                action.status = "skipped"
+                action.summary = "没有找到可修改的路线图任务"
+                continue
+            store.save_task(user_id, task.model_copy(update={"status": status, "updated_at": datetime.now(UTC)}))
+    return profile, recommendation_run
+
+
+def sse_event(event: str, payload: Any) -> str:
+    return f"event: {event}\ndata: {json.dumps(payload, ensure_ascii=False, default=str)}\n\n"
 
 
 @asynccontextmanager
@@ -177,7 +271,7 @@ def llm_status() -> LLMStatus:
         configured=llm_is_configured(),
         provider=provider,
         model=configured_model(),
-        api="ollama-chat" if provider == "ollama" else "responses",
+        api="ollama-chat" if provider == "ollama" else "chat-completions" if provider == "deepseek" else "responses",
     )
 
 
@@ -295,6 +389,7 @@ def export_my_data(user: Annotated[DemoUser, Depends(current_user)]) -> dict[str
         "profile": profile.model_dump(mode="json") if (profile := store.get_profile(user.id)) else None,
         "recommendation_runs": [item.model_dump(mode="json") for item in store.list_runs(user.id)],
         "application_choices": [item.model_dump(mode="json") for item in store.list_choices(user.id)],
+        "ai_advisor_consent": store.get_ai_consent(user.id).model_dump(mode="json") if store.get_ai_consent(user.id) else None,
         "advisor_threads": [item.model_dump(mode="json") for item in store.list_threads(user.id)],
         "tasks": [item.model_dump(mode="json") for item in store.list_tasks(user.id)],
         "feedback": [item.model_dump(mode="json") for item in store.list_feedback(user.id)],
@@ -446,7 +541,7 @@ def create_feedback(
 def admin_stats(_: Annotated[DemoUser, Depends(current_admin)]) -> AdminStats:
     counts = store.admin_counts()
     return AdminStats(
-        **counts,
+        **counts, **store.admin_model_metrics(),
         verified_programs=sum(program.verification_status == "已核验" for program in PROGRAMS),
         catalog_coverage_cells=len(CATALOG_COVERAGE),
     )
@@ -657,6 +752,19 @@ def list_advisor_audits(user: Annotated[DemoUser, Depends(current_user)]) -> lis
     return store.list_audits(user.id)
 
 
+@app.get("/me/advisor/consent", response_model=AIConsent | None)
+def get_advisor_consent(user: Annotated[DemoUser, Depends(current_user)]) -> AIConsent | None:
+    return store.get_ai_consent(user.id)
+
+
+@app.post("/me/advisor/consent", response_model=AIConsent)
+def save_advisor_consent(
+    payload: AIConsentRequest,
+    user: Annotated[DemoUser, Depends(current_user)],
+) -> AIConsent:
+    return store.save_ai_consent(user.id, AIConsent(accepted=payload.accepted, updated_at=datetime.now(UTC)))
+
+
 @app.post("/me/advisor/threads/{thread_id}/messages", response_model=AdvisorReply)
 def send_advisor_message(
     thread_id: str,
@@ -675,36 +783,7 @@ def send_advisor_message(
     history = [{"role": item.role, "content": item.content} for item in thread.messages]
     reply_text, actions, metadata = plan_turn(payload.content, profile, history)
 
-    recommendation_run = None
-    for action in actions:
-        if action.tool == "update_profile" and action.arguments:
-            try:
-                profile = ApplicantProfile.model_validate({**profile.model_dump(), **action.arguments})
-                store.save_profile(user.id, profile)
-            except ValueError:
-                action.status = "skipped"
-                action.summary = "档案更新值未通过格式检查，已保留原数据"
-        elif action.tool == "run_recommendation":
-            recommendation_run = run_recommendation_agent(profile)
-            store.save_run(user.id, profile, recommendation_run)
-        elif action.tool == "create_task":
-            now = datetime.now(UTC)
-            arguments = action.arguments
-            try:
-                request = TaskCreateRequest.model_validate({
-                    "title": arguments.get("title", action.summary),
-                    "detail": arguments.get("detail", "由 AI 申请顾问创建"),
-                    "category": arguments.get("category", "其他"),
-                    "priority": arguments.get("priority", "P1"),
-                    "due_at": arguments.get("due_at"),
-                    "reminder_at": arguments.get("reminder_at"),
-                })
-                store.save_task(user.id, ApplicationTask(
-                    id=f"task_{uuid4().hex[:10]}", created_at=now, updated_at=now, **request.model_dump()
-                ))
-            except ValueError:
-                action.status = "skipped"
-                action.summary = "待办信息格式不完整，暂未创建"
+    profile, recommendation_run = execute_advisor_actions(user.id, profile, actions)
 
     assistant_message = AdvisorMessage(
         id=f"msg_{uuid4().hex[:10]}", role="assistant", content=reply_text, created_at=datetime.now(UTC), actions=actions
@@ -721,3 +800,119 @@ def send_advisor_message(
         created_at=assistant_message.created_at,
     ))
     return AdvisorReply(thread=thread, profile=profile, recommendation_run=recommendation_run, **metadata)
+
+
+@app.post("/me/advisor/threads/{thread_id}/messages/stream")
+async def stream_advisor_message(
+    thread_id: str,
+    payload: AdvisorMessageRequest,
+    user: Annotated[DemoUser, Depends(current_user)],
+) -> StreamingResponse:
+    thread = store.get_thread(user.id, thread_id)
+    profile = store.get_profile(user.id)
+    if not thread:
+        raise HTTPException(status_code=404, detail="顾问会话不存在")
+    if not profile:
+        raise HTTPException(status_code=409, detail="请先保存申请背景")
+
+    today = datetime.now(UTC).date()
+    if sum(audit.created_at.date() == today for audit in store.list_audits(user.id)) >= int(os.getenv("ADVISOR_DAILY_LIMIT", "30")):
+        raise HTTPException(status_code=429, detail="今日 AI 顾问请求次数已用完，请明天继续")
+
+    async def events():
+        started = asyncio.get_running_loop().time()
+        yield sse_event("status", {"message": "正在读取你的申请组合与路线图", "provider": "deepseek"})
+        run_summaries = store.list_runs(user.id)
+        latest_result = store.get_run(user.id, run_summaries[0].run_id) if run_summaries else None
+        choices = portfolio_for_run(user.id, latest_result) if latest_result else []
+        current_roadmap = sync_roadmap(user.id, profile, latest_result, choices) if latest_result else None
+        actions = safe_tool_actions(payload.content, profile, latest_result, store.list_tasks(user.id))
+        updated_profile, action_run = execute_advisor_actions(user.id, profile, actions)
+        if action_run:
+            latest_result = action_run
+        choices = portfolio_for_run(user.id, latest_result) if latest_result else []
+        current_roadmap = sync_roadmap(user.id, updated_profile, latest_result, choices) if latest_result else None
+        yield sse_event("actions", [action.model_dump(mode="json") for action in actions])
+
+        history = [{"role": item.role, "content": item.content} for item in thread.messages]
+        context = build_redacted_context(
+            updated_profile, latest_result, choices, current_roadmap, history, payload.content,
+            [user.email, user.display_name, user.id, profile.undergraduate_school],
+        )
+        consent = store.get_ai_consent(user.id)
+        cloud_allowed = bool(consent and consent.accepted and configured_provider() == "deepseek")
+        provider = "deepseek" if cloud_allowed else "deterministic-fallback"
+        model = configured_model()
+        input_tokens = None
+        output_tokens = None
+        reply_parts: list[str] = []
+
+        if cloud_allowed:
+            try:
+                async with asyncio.timeout(25):
+                    async with deepseek_slots:
+                        iterator = stream_deepseek(context).__aiter__()
+                        first_delta = False
+                        while not first_delta:
+                            kind, value = await asyncio.wait_for(anext(iterator), timeout=8)
+                            if kind == "usage":
+                                input_tokens = value.get("prompt_tokens")
+                                output_tokens = value.get("completion_tokens")
+                            elif kind == "delta":
+                                first_delta = True
+                                reply_parts.append(str(value))
+                                yield sse_event("delta", {"content": value})
+                        async for kind, value in iterator:
+                            if kind == "usage":
+                                input_tokens = value.get("prompt_tokens")
+                                output_tokens = value.get("completion_tokens")
+                            elif kind == "delta":
+                                reply_parts.append(str(value))
+                                yield sse_event("delta", {"content": value})
+                if not reply_parts:
+                    raise DeepSeekStreamError("DeepSeek 返回了空内容")
+            except (DeepSeekStreamError, TimeoutError, StopAsyncIteration, asyncio.TimeoutError):
+                provider = "deterministic-fallback"
+                yield sse_event("error", {"message": "DeepSeek 暂时不可用、限流或余额不足，已切换到规则顾问", "fallback": True})
+        else:
+            reason = "你尚未同意云端 AI 数据处理，当前使用规则顾问" if not consent or not consent.accepted else "DeepSeek 尚未配置，当前使用规则顾问"
+            yield sse_event("status", {"message": reason, "provider": "deterministic-fallback"})
+
+        if provider == "deterministic-fallback":
+            fallback = fallback_plan(payload.content, updated_profile)["reply"]
+            reply_parts = [fallback]
+            yield sse_event("delta", {"content": fallback})
+
+        assistant_text = "".join(reply_parts)
+        now = datetime.now(UTC)
+        user_message = AdvisorMessage(id=f"msg_{uuid4().hex[:10]}", role="user", content=payload.content, created_at=now)
+        assistant_message = AdvisorMessage(
+            id=f"msg_{uuid4().hex[:10]}", role="assistant", content=assistant_text,
+            actions=actions, created_at=datetime.now(UTC),
+        )
+        thread.messages.extend([user_message, assistant_message])
+        thread.updated_at = assistant_message.created_at
+        store.save_thread(user.id, thread)
+        latency_ms = round((asyncio.get_running_loop().time() - started) * 1000)
+        store.save_audit(user.id, AgentRunAudit(
+            id=f"audit_{uuid4().hex[:10]}", thread_id=thread.id, message_id=assistant_message.id,
+            provider=provider, model=model, prompt_version="advisor-2.0.0-redacted",
+            workflow_version=latest_result.workflow_version if latest_result else "advisor-tools-2.0.0",
+            latency_ms=latency_ms, input_tokens=input_tokens, output_tokens=output_tokens,
+            tools=[action.tool for action in actions], created_at=assistant_message.created_at,
+        ))
+        yield sse_event("state", {
+            "thread": thread.model_dump(mode="json"),
+            "profile": updated_profile.model_dump(mode="json"),
+            "portfolio": [choice.model_dump(mode="json") for choice in choices],
+            "roadmap": current_roadmap.model_dump(mode="json") if current_roadmap else None,
+        })
+        yield sse_event("done", {
+            "provider": provider, "model": model, "latency_ms": latency_ms,
+            "input_tokens": input_tokens, "output_tokens": output_tokens,
+        })
+
+    return StreamingResponse(
+        events(), media_type="text/event-stream",
+        headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no", "Connection": "keep-alive"},
+    )

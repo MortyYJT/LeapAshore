@@ -27,6 +27,7 @@ from .auth import (
 )
 from .models import (
     AgentRunAudit,
+    AIConsent,
     AgentRecommendationResponse,
     ApplicationChoice,
     ApplicationTask,
@@ -66,12 +67,15 @@ class Store(Protocol):
     def get_task(self, user_id: str, task_id: str) -> ApplicationTask | None: ...
     def save_audit(self, user_id: str, audit: AgentRunAudit) -> AgentRunAudit: ...
     def list_audits(self, user_id: str) -> list[AgentRunAudit]: ...
+    def save_ai_consent(self, user_id: str, consent: AIConsent) -> AIConsent: ...
+    def get_ai_consent(self, user_id: str) -> AIConsent | None: ...
     def save_feedback(self, feedback: FeedbackItem) -> FeedbackItem: ...
     def list_feedback(self, user_id: str | None = None) -> list[FeedbackItem]: ...
     def get_feedback(self, feedback_id: str) -> FeedbackItem | None: ...
     def list_users(self) -> list[DemoUser]: ...
     def update_user_status(self, user_id: str, status: str) -> DemoUser | None: ...
     def admin_counts(self) -> dict[str, int]: ...
+    def admin_model_metrics(self) -> dict[str, int | float]: ...
     def healthcheck(self) -> bool: ...
 
 
@@ -90,6 +94,7 @@ class DemoStore:
         self._threads: dict[str, list[AdvisorThread]] = {}
         self._tasks: dict[str, list[ApplicationTask]] = {}
         self._audits: dict[str, list[AgentRunAudit]] = {}
+        self._ai_consents: dict[str, AIConsent] = {}
         self._feedback: dict[str, FeedbackItem] = {}
 
     def register(self, email: str, password: str, display_name: str) -> tuple[DemoUser, str]:
@@ -175,6 +180,7 @@ class DemoStore:
             self._threads.pop(user_id, None)
             self._tasks.pop(user_id, None)
             self._audits.pop(user_id, None)
+            self._ai_consents.pop(user_id, None)
             self._tokens = {key: value for key, value in self._tokens.items() if value[0] != user_id}
             self._auth_tokens = {key: value for key, value in self._auth_tokens.items() if value[0] != user_id}
             self._feedback = {key: value for key, value in self._feedback.items() if value.user_id != user_id}
@@ -284,6 +290,15 @@ class DemoStore:
         with self._lock:
             return list(self._audits.get(user_id, []))
 
+    def save_ai_consent(self, user_id: str, consent: AIConsent) -> AIConsent:
+        with self._lock:
+            self._ai_consents[user_id] = consent
+        return consent
+
+    def get_ai_consent(self, user_id: str) -> AIConsent | None:
+        with self._lock:
+            return self._ai_consents.get(user_id)
+
     def save_feedback(self, feedback: FeedbackItem) -> FeedbackItem:
         with self._lock:
             self._feedback[feedback.id] = feedback
@@ -323,6 +338,20 @@ class DemoStore:
                 "advisor_threads": sum(len(items) for items in self._threads.values()),
                 "open_feedback": sum(item.status != "resolved" for item in self._feedback.values()),
             }
+
+    def admin_model_metrics(self) -> dict[str, int | float]:
+        today = datetime.now(UTC).date()
+        with self._lock:
+            audits = [audit for items in self._audits.values() for audit in items if audit.created_at.date() == today]
+        calls = len(audits)
+        fallbacks = sum(audit.provider == "deterministic-fallback" for audit in audits)
+        return {
+            "llm_calls_today": calls,
+            "llm_average_latency_ms": round(sum(audit.latency_ms for audit in audits) / calls) if calls else 0,
+            "llm_fallback_rate": round(fallbacks / calls, 4) if calls else 0,
+            "llm_input_tokens_today": sum(audit.input_tokens or 0 for audit in audits),
+            "llm_output_tokens_today": sum(audit.output_tokens or 0 for audit in audits),
+        }
 
     def healthcheck(self) -> bool:
         return True
@@ -409,6 +438,11 @@ class SQLiteStore:
                 );
                 CREATE INDEX IF NOT EXISTS idx_audits_user_created
                     ON agent_run_audits(user_id, created_at DESC);
+                CREATE TABLE IF NOT EXISTS ai_consents (
+                    user_id TEXT PRIMARY KEY REFERENCES users(id),
+                    payload TEXT NOT NULL,
+                    updated_at TEXT NOT NULL
+                );
                 CREATE TABLE IF NOT EXISTS auth_tokens (
                     token_hash TEXT PRIMARY KEY,
                     user_id TEXT NOT NULL REFERENCES users(id),
@@ -526,7 +560,7 @@ class SQLiteStore:
             row = self._connection.execute("SELECT password_hash FROM users WHERE id = ?", (user_id,)).fetchone()
             if not row or not verify_password(password, row["password_hash"]):
                 raise InvalidCredentialsError("密码不正确")
-            for table in ["feedback", "auth_tokens", "sessions", "profiles", "recommendation_runs", "advisor_threads", "application_choices", "application_tasks", "agent_run_audits"]:
+            for table in ["feedback", "auth_tokens", "sessions", "profiles", "recommendation_runs", "advisor_threads", "application_choices", "application_tasks", "agent_run_audits", "ai_consents"]:
                 self._connection.execute(f"DELETE FROM {table} WHERE user_id = ?", (user_id,))
             self._connection.execute("DELETE FROM users WHERE id = ?", (user_id,))
 
@@ -732,6 +766,20 @@ class SQLiteStore:
             ).fetchall()
         return [AgentRunAudit.model_validate_json(row["payload"]) for row in rows]
 
+    def save_ai_consent(self, user_id: str, consent: AIConsent) -> AIConsent:
+        with self._lock, self._connection:
+            self._connection.execute(
+                """INSERT INTO ai_consents (user_id, payload, updated_at) VALUES (?, ?, ?)
+                ON CONFLICT(user_id) DO UPDATE SET payload = excluded.payload, updated_at = excluded.updated_at""",
+                (user_id, consent.model_dump_json(), consent.updated_at.isoformat()),
+            )
+        return consent
+
+    def get_ai_consent(self, user_id: str) -> AIConsent | None:
+        with self._lock:
+            row = self._connection.execute("SELECT payload FROM ai_consents WHERE user_id = ?", (user_id,)).fetchone()
+        return AIConsent.model_validate_json(row["payload"]) if row else None
+
     def save_feedback(self, feedback: FeedbackItem) -> FeedbackItem:
         with self._lock, self._connection:
             self._connection.execute(
@@ -782,6 +830,27 @@ class SQLiteStore:
                 "advisor_threads": scalar("SELECT COUNT(*) FROM advisor_threads"),
                 "open_feedback": scalar("SELECT COUNT(*) FROM feedback WHERE json_extract(payload, '$.status') != 'resolved'"),
             }
+
+    def admin_model_metrics(self) -> dict[str, int | float]:
+        today = datetime.now(UTC).date().isoformat()
+        with self._lock:
+            row = self._connection.execute(
+                """SELECT COUNT(*) AS calls,
+                COALESCE(AVG(CAST(json_extract(payload, '$.latency_ms') AS INTEGER)), 0) AS latency,
+                COALESCE(SUM(CASE WHEN json_extract(payload, '$.provider') = 'deterministic-fallback' THEN 1 ELSE 0 END), 0) AS fallbacks,
+                COALESCE(SUM(CAST(json_extract(payload, '$.input_tokens') AS INTEGER)), 0) AS input_tokens,
+                COALESCE(SUM(CAST(json_extract(payload, '$.output_tokens') AS INTEGER)), 0) AS output_tokens
+                FROM agent_run_audits WHERE substr(created_at, 1, 10) = ?""",
+                (today,),
+            ).fetchone()
+        calls = int(row["calls"])
+        return {
+            "llm_calls_today": calls,
+            "llm_average_latency_ms": round(float(row["latency"])),
+            "llm_fallback_rate": round(int(row["fallbacks"]) / calls, 4) if calls else 0,
+            "llm_input_tokens_today": int(row["input_tokens"]),
+            "llm_output_tokens_today": int(row["output_tokens"]),
+        }
 
     def healthcheck(self) -> bool:
         with self._lock:
