@@ -28,9 +28,22 @@ services:
   model-init:
     image: ollama/ollama:latest
     entrypoint: ["/bin/sh", "-c"]
-    command: ["until ollama list >/dev/null 2>&1; do sleep 2; done; ollama pull qwen2.5:0.5b"]
+    command:
+      - >-
+        until ollama list >/dev/null 2>&1; do sleep 2; done;
+        ollama show "$$OLLAMA_MODEL" >/dev/null 2>&1 && exit 0;
+        attempt=0;
+        until ollama pull "$$OLLAMA_MODEL"; do
+          attempt=$$((attempt + 1));
+          if [ "$$attempt" -ge 5 ]; then
+            echo "Model download unavailable; API will use its deterministic fallback.";
+            exit 0;
+          fi;
+          sleep 5;
+        done
     environment:
       OLLAMA_HOST: http://ollama:11434
+      OLLAMA_MODEL: qwen2.5:0.5b
     depends_on:
       ollama:
         condition: service_healthy
