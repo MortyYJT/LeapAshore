@@ -10,6 +10,7 @@ from pydantic import BaseModel
 from .models import (
     AgentRunAudit,
     AgentRecommendationResponse,
+    ApplicationChoice,
     ApplicationTask,
     AdvisorThread,
     ApplicantProfile,
@@ -266,6 +267,17 @@ class PostgresStore:
 
     def get_run(self, user_id: str, run_id: str) -> AgentRecommendationResponse | None:
         return self._get_entity(user_id, "recommendation_result", run_id, AgentRecommendationResponse)
+
+    def save_choice(self, user_id: str, choice: ApplicationChoice) -> ApplicationChoice:
+        self._save_entity(user_id, "application_choice", f"{choice.run_id}:{choice.program_slug}", choice)
+        return choice
+
+    def list_choices(self, user_id: str, run_id: str | None = None) -> list[ApplicationChoice]:
+        choices = self._list_entities(user_id, "application_choice", ApplicationChoice)
+        return [choice for choice in choices if run_id is None or choice.run_id == run_id]
+
+    def get_choice(self, user_id: str, run_id: str, program_slug: str) -> ApplicationChoice | None:
+        return self._get_entity(user_id, "application_choice", f"{run_id}:{program_slug}", ApplicationChoice)
 
     def save_thread(self, user_id: str, thread: AdvisorThread) -> AdvisorThread:
         self._save_entity(user_id, "advisor_thread", thread.id, thread, thread.created_at)

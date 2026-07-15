@@ -230,6 +230,23 @@ class ActionPlanResponse(BaseModel):
     items: list[ActionPlanItem]
 
 
+class ApplicationChoice(BaseModel):
+    run_id: str
+    program_slug: str
+    status: Literal["considering", "applying", "excluded"] = "considering"
+    is_primary: bool = False
+    official_deadline: datetime | None = None
+    deadline_source_url: str | None = Field(default=None, max_length=500)
+    updated_at: datetime
+
+
+class ApplicationChoiceUpdate(BaseModel):
+    status: Literal["considering", "applying", "excluded"]
+    is_primary: bool = False
+    official_deadline: datetime | None = None
+    deadline_source_url: str | None = Field(default=None, max_length=500)
+
+
 class Recommendation(BaseModel):
     university: University
     tier: Literal["冲刺", "匹配", "稳妥"]
@@ -326,6 +343,10 @@ class ApplicationTask(BaseModel):
     due_at: datetime | None = None
     reminder_at: datetime | None = None
     source_run_id: str | None = None
+    phase: Literal["selection", "academic", "language", "specialized", "submission", "decision"] = "specialized"
+    program_slug: str | None = None
+    dependencies: list[str] = Field(default_factory=list)
+    schedule_origin: Literal["system_suggestion", "official", "user"] = "system_suggestion"
     created_at: datetime
     updated_at: datetime
 
@@ -343,6 +364,36 @@ class TaskUpdateRequest(BaseModel):
     status: Literal["待开始", "进行中", "已完成"] | None = None
     due_at: datetime | None = None
     reminder_at: datetime | None = None
+
+
+class RoadmapPhase(BaseModel):
+    id: Literal["selection", "academic", "language", "specialized", "submission", "decision"]
+    title: str
+    detail: str
+    suggested_at: datetime
+    status: Literal["pending", "in_progress", "completed", "overdue"]
+    tasks: list[ApplicationTask] = Field(default_factory=list)
+
+
+class ProgramRoadmapBranch(BaseModel):
+    program_slug: str
+    program_name: str
+    university: str
+    is_primary: bool
+    official_deadline: datetime | None = None
+    deadline_source_url: str | None = None
+    tasks: list[ApplicationTask] = Field(default_factory=list)
+
+
+class ApplicationRoadmap(BaseModel):
+    run_id: str
+    intake: str
+    anchor_at: datetime
+    generated_at: datetime
+    phases: list[RoadmapPhase]
+    program_branches: list[ProgramRoadmapBranch]
+    completed_tasks: int
+    total_tasks: int
 
 
 class ProgramSourceStatus(BaseModel):

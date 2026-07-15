@@ -28,6 +28,7 @@ from .auth import (
 from .models import (
     AgentRunAudit,
     AgentRecommendationResponse,
+    ApplicationChoice,
     ApplicationTask,
     AdvisorThread,
     ApplicantProfile,
@@ -54,6 +55,9 @@ class Store(Protocol):
     def save_run(self, user_id: str, profile: ApplicantProfile, result: AgentRecommendationResponse) -> RecommendationRunSummary: ...
     def list_runs(self, user_id: str) -> list[RecommendationRunSummary]: ...
     def get_run(self, user_id: str, run_id: str) -> AgentRecommendationResponse | None: ...
+    def save_choice(self, user_id: str, choice: ApplicationChoice) -> ApplicationChoice: ...
+    def list_choices(self, user_id: str, run_id: str | None = None) -> list[ApplicationChoice]: ...
+    def get_choice(self, user_id: str, run_id: str, program_slug: str) -> ApplicationChoice | None: ...
     def save_thread(self, user_id: str, thread: AdvisorThread) -> AdvisorThread: ...
     def list_threads(self, user_id: str) -> list[AdvisorThread]: ...
     def get_thread(self, user_id: str, thread_id: str) -> AdvisorThread | None: ...
@@ -82,6 +86,7 @@ class DemoStore:
         self._passwords: dict[str, str] = {}
         self._profiles: dict[str, ApplicantProfile] = {}
         self._runs: dict[str, list[tuple[RecommendationRunSummary, AgentRecommendationResponse]]] = {}
+        self._choices: dict[str, list[ApplicationChoice]] = {}
         self._threads: dict[str, list[AdvisorThread]] = {}
         self._tasks: dict[str, list[ApplicationTask]] = {}
         self._audits: dict[str, list[AgentRunAudit]] = {}
@@ -166,6 +171,7 @@ class DemoStore:
             self._passwords.pop(user_id, None)
             self._profiles.pop(user_id, None)
             self._runs.pop(user_id, None)
+            self._choices.pop(user_id, None)
             self._threads.pop(user_id, None)
             self._tasks.pop(user_id, None)
             self._audits.pop(user_id, None)
@@ -221,6 +227,23 @@ class DemoStore:
                 if summary.run_id == run_id:
                     return result
         return None
+
+    def save_choice(self, user_id: str, choice: ApplicationChoice) -> ApplicationChoice:
+        with self._lock:
+            choices = self._choices.setdefault(user_id, [])
+            choices[:] = [item for item in choices if not (
+                item.run_id == choice.run_id and item.program_slug == choice.program_slug
+            )]
+            choices.append(choice)
+        return choice
+
+    def list_choices(self, user_id: str, run_id: str | None = None) -> list[ApplicationChoice]:
+        with self._lock:
+            return [item for item in self._choices.get(user_id, []) if run_id is None or item.run_id == run_id]
+
+    def get_choice(self, user_id: str, run_id: str, program_slug: str) -> ApplicationChoice | None:
+        with self._lock:
+            return next((item for item in self._choices.get(user_id, []) if item.run_id == run_id and item.program_slug == program_slug), None)
 
     def save_thread(self, user_id: str, thread: AdvisorThread) -> AdvisorThread:
         with self._lock:
@@ -368,6 +391,16 @@ class SQLiteStore:
                 );
                 CREATE INDEX IF NOT EXISTS idx_tasks_user_updated
                     ON application_tasks(user_id, updated_at DESC);
+                CREATE TABLE IF NOT EXISTS application_choices (
+                    user_id TEXT NOT NULL REFERENCES users(id),
+                    run_id TEXT NOT NULL,
+                    program_slug TEXT NOT NULL,
+                    payload TEXT NOT NULL,
+                    updated_at TEXT NOT NULL,
+                    PRIMARY KEY (user_id, run_id, program_slug)
+                );
+                CREATE INDEX IF NOT EXISTS idx_choices_user_run
+                    ON application_choices(user_id, run_id, updated_at DESC);
                 CREATE TABLE IF NOT EXISTS agent_run_audits (
                     audit_id TEXT PRIMARY KEY,
                     user_id TEXT NOT NULL REFERENCES users(id),
@@ -493,7 +526,7 @@ class SQLiteStore:
             row = self._connection.execute("SELECT password_hash FROM users WHERE id = ?", (user_id,)).fetchone()
             if not row or not verify_password(password, row["password_hash"]):
                 raise InvalidCredentialsError("密码不正确")
-            for table in ["feedback", "auth_tokens", "sessions", "profiles", "recommendation_runs", "advisor_threads", "application_tasks", "agent_run_audits"]:
+            for table in ["feedback", "auth_tokens", "sessions", "profiles", "recommendation_runs", "advisor_threads", "application_choices", "application_tasks", "agent_run_audits"]:
                 self._connection.execute(f"DELETE FROM {table} WHERE user_id = ?", (user_id,))
             self._connection.execute("DELETE FROM users WHERE id = ?", (user_id,))
 
@@ -596,6 +629,36 @@ class SQLiteStore:
                 (user_id, run_id),
             ).fetchone()
         return AgentRecommendationResponse.model_validate_json(row["result_payload"]) if row else None
+
+    def save_choice(self, user_id: str, choice: ApplicationChoice) -> ApplicationChoice:
+        with self._lock, self._connection:
+            self._connection.execute(
+                """INSERT INTO application_choices (user_id, run_id, program_slug, payload, updated_at)
+                VALUES (?, ?, ?, ?, ?)
+                ON CONFLICT(user_id, run_id, program_slug) DO UPDATE SET
+                    payload = excluded.payload, updated_at = excluded.updated_at""",
+                (user_id, choice.run_id, choice.program_slug, choice.model_dump_json(), choice.updated_at.isoformat()),
+            )
+        return choice
+
+    def list_choices(self, user_id: str, run_id: str | None = None) -> list[ApplicationChoice]:
+        query = "SELECT payload FROM application_choices WHERE user_id = ?"
+        params: tuple[str, ...] = (user_id,)
+        if run_id is not None:
+            query += " AND run_id = ?"
+            params = (user_id, run_id)
+        query += " ORDER BY updated_at DESC"
+        with self._lock:
+            rows = self._connection.execute(query, params).fetchall()
+        return [ApplicationChoice.model_validate_json(row["payload"]) for row in rows]
+
+    def get_choice(self, user_id: str, run_id: str, program_slug: str) -> ApplicationChoice | None:
+        with self._lock:
+            row = self._connection.execute(
+                "SELECT payload FROM application_choices WHERE user_id = ? AND run_id = ? AND program_slug = ?",
+                (user_id, run_id, program_slug),
+            ).fetchone()
+        return ApplicationChoice.model_validate_json(row["payload"]) if row else None
 
     def save_thread(self, user_id: str, thread: AdvisorThread) -> AdvisorThread:
         with self._lock, self._connection:

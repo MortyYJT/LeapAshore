@@ -12,7 +12,11 @@ from .data import UNIVERSITIES
 from .catalog_data import CATALOG_COVERAGE
 from .models import (
     ActionPlanResponse,
+    ActionPlanItem,
     AgentRunAudit,
+    ApplicationChoice,
+    ApplicationChoiceUpdate,
+    ApplicationRoadmap,
     ApplicationTask,
     AdvisorMessage,
     AdvisorMessageRequest,
@@ -53,10 +57,10 @@ from .middleware import RateLimitMiddleware, SecurityHeadersMiddleware
 from .observability import configure_error_reporting
 from .program_data import PROGRAMS
 from .taxonomy import DEGREE_LEVELS, STUDY_AREAS, DegreeLevel, StudyArea
-from .services.action_plan import build_action_plan
 from .services.advisor import plan_turn
 from .services.agent import run_recommendation_agent
 from .services.model_provider import configured_model, configured_provider, llm_is_configured
+from .services.roadmap import build_roadmap, merge_tasks, task_templates
 from .services.recommender import generate_recommendations
 from .services.transcript import analyze_transcript
 from .settings import validate_runtime_configuration
@@ -71,6 +75,31 @@ from .store import (
 
 configure_error_reporting()
 logger = logging.getLogger("offerpilot.mail")
+
+
+def portfolio_for_run(user_id: str, result: AgentRecommendationResponse) -> list[ApplicationChoice]:
+    persisted = {choice.program_slug: choice for choice in store.list_choices(user_id, result.run_id)}
+    now = datetime.now(UTC)
+    return [
+        persisted.get(item.program.slug) or ApplicationChoice(
+            run_id=result.run_id, program_slug=item.program.slug, updated_at=now,
+        )
+        for item in result.recommendations
+    ]
+
+
+def sync_roadmap(
+    user_id: str,
+    profile: ApplicantProfile,
+    result: AgentRecommendationResponse,
+    choices: list[ApplicationChoice] | None = None,
+) -> ApplicationRoadmap:
+    portfolio = choices if choices is not None else portfolio_for_run(user_id, result)
+    templates = task_templates(profile, result, portfolio)
+    merged = merge_tasks(templates, store.list_tasks(user_id))
+    for task in merged:
+        store.save_task(user_id, task)
+    return build_roadmap(profile, result, portfolio, merged)
 
 
 @asynccontextmanager
@@ -265,6 +294,7 @@ def export_my_data(user: Annotated[DemoUser, Depends(current_user)]) -> dict[str
         "account": user.model_dump(mode="json"),
         "profile": profile.model_dump(mode="json") if (profile := store.get_profile(user.id)) else None,
         "recommendation_runs": [item.model_dump(mode="json") for item in store.list_runs(user.id)],
+        "application_choices": [item.model_dump(mode="json") for item in store.list_choices(user.id)],
         "advisor_threads": [item.model_dump(mode="json") for item in store.list_threads(user.id)],
         "tasks": [item.model_dump(mode="json") for item in store.list_tasks(user.id)],
         "feedback": [item.model_dump(mode="json") for item in store.list_feedback(user.id)],
@@ -388,7 +418,10 @@ def update_my_task(
     task = store.get_task(user.id, task_id)
     if not task:
         raise HTTPException(status_code=404, detail="申请任务不存在")
-    task = task.model_copy(update={**payload.model_dump(exclude_unset=True), "updated_at": datetime.now(UTC)})
+    updates = payload.model_dump(exclude_unset=True)
+    if "due_at" in updates:
+        updates["schedule_origin"] = "user"
+    task = task.model_copy(update={**updates, "updated_at": datetime.now(UTC)})
     return store.save_task(user.id, task)
 
 
@@ -472,14 +505,7 @@ def create_recommendation_run(user: Annotated[DemoUser, Depends(current_user)]) 
         raise HTTPException(status_code=409, detail="请先保存申请背景")
     result = run_recommendation_agent(profile)
     store.save_run(user.id, profile, result)
-    now = datetime.now(UTC)
-    categories = {"verify-transcript": "成绩单", "verify-language": "语言", "shortlist": "选校", "deadlines": "截止日期", "materials": "材料"}
-    for item in build_action_plan(result).items:
-        store.save_task(user.id, ApplicationTask(
-            id=f"task_{result.run_id}_{item.id}", title=item.title, detail=item.detail,
-            category=categories.get(item.id, "其他"), priority=item.priority, status=item.status,
-            source_run_id=result.run_id, created_at=now, updated_at=now,
-        ))
+    sync_roadmap(user.id, profile, result, [])
     return result
 
 
@@ -522,7 +548,73 @@ def get_action_plan(run_id: str, user: Annotated[DemoUser, Depends(current_user)
     result = store.get_run(user.id, run_id)
     if not result:
         raise HTTPException(status_code=404, detail="推荐记录不存在")
-    return build_action_plan(result)
+    profile = store.get_profile(user.id)
+    if not profile:
+        raise HTTPException(status_code=409, detail="请先保存申请背景")
+    roadmap = sync_roadmap(user.id, profile, result)
+    return ActionPlanResponse(
+        run_id=run_id,
+        items=[
+            ActionPlanItem.model_validate(task.model_dump())
+            for task in (
+                [item for phase in roadmap.phases for item in phase.tasks]
+                + [item for branch in roadmap.program_branches for item in branch.tasks]
+            )
+        ],
+    )
+
+
+@app.get("/me/recommendation-runs/{run_id}/portfolio", response_model=list[ApplicationChoice])
+def get_portfolio(run_id: str, user: Annotated[DemoUser, Depends(current_user)]) -> list[ApplicationChoice]:
+    result = store.get_run(user.id, run_id)
+    if not result:
+        raise HTTPException(status_code=404, detail="推荐记录不存在")
+    return portfolio_for_run(user.id, result)
+
+
+@app.put("/me/recommendation-runs/{run_id}/portfolio/{program_slug}", response_model=ApplicationChoice)
+def update_portfolio_choice(
+    run_id: str,
+    program_slug: str,
+    payload: ApplicationChoiceUpdate,
+    user: Annotated[DemoUser, Depends(current_user)],
+) -> ApplicationChoice:
+    result = store.get_run(user.id, run_id)
+    if not result:
+        raise HTTPException(status_code=404, detail="推荐记录不存在")
+    if program_slug not in {item.program.slug for item in result.recommendations}:
+        raise HTTPException(status_code=404, detail="该项目不在当前选校方案中")
+    if payload.deadline_source_url and not payload.deadline_source_url.startswith(("https://", "http://")):
+        raise HTTPException(status_code=422, detail="截止日期来源必须是有效网页地址")
+    status = "applying" if payload.is_primary else payload.status
+    now = datetime.now(UTC)
+    if payload.is_primary:
+        for existing in store.list_choices(user.id, run_id):
+            if existing.is_primary and existing.program_slug != program_slug:
+                store.save_choice(user.id, existing.model_copy(update={"is_primary": False, "updated_at": now}))
+    choice = ApplicationChoice(
+        run_id=run_id, program_slug=program_slug, status=status,
+        is_primary=payload.is_primary and status == "applying",
+        official_deadline=payload.official_deadline,
+        deadline_source_url=payload.deadline_source_url,
+        updated_at=now,
+    )
+    store.save_choice(user.id, choice)
+    profile = store.get_profile(user.id)
+    if profile:
+        sync_roadmap(user.id, profile, result)
+    return choice
+
+
+@app.get("/me/recommendation-runs/{run_id}/roadmap", response_model=ApplicationRoadmap)
+def get_roadmap(run_id: str, user: Annotated[DemoUser, Depends(current_user)]) -> ApplicationRoadmap:
+    result = store.get_run(user.id, run_id)
+    if not result:
+        raise HTTPException(status_code=404, detail="推荐记录不存在")
+    profile = store.get_profile(user.id)
+    if not profile:
+        raise HTTPException(status_code=409, detail="请先保存申请背景")
+    return sync_roadmap(user.id, profile, result)
 
 
 @app.post("/me/advisor/threads", response_model=AdvisorThread)

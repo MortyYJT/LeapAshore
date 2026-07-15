@@ -248,8 +248,57 @@ def test_complete_authenticated_product_flow() -> None:
 
     action_plan = client.get(f"/me/recommendation-runs/{run_id}/action-plan", headers=headers)
     assert action_plan.status_code == 200
-    assert len(action_plan.json()["items"]) == 5
-    assert len(client.get("/me/tasks", headers=headers).json()) == 5
+    assert len(action_plan.json()["items"]) == 6
+    assert len(client.get("/me/tasks", headers=headers).json()) == 6
+
+
+def test_portfolio_enforces_one_primary_and_builds_program_branches() -> None:
+    login = registered_login("portfolio@offerpilot.cn")
+    headers = {"Authorization": f"Bearer {login.json()['access_token']}"}
+    profile = {
+        "undergraduate_school": "示例大学", "school_tier": "双非", "undergraduate_major": "软件工程",
+        "gpa": 82, "gpa_scale": 100, "target_field": "计算机与数据", "intake": "2027 S1",
+    }
+    assert client.put("/me/profile", json=profile, headers=headers).status_code == 200
+    run = client.post("/me/recommendation-runs", headers=headers).json()
+    run_id = run["run_id"]
+    slugs = [item["program"]["slug"] for item in client.get(f"/me/recommendation-runs/{run_id}", headers=headers).json()["recommendations"]]
+
+    first = client.put(
+        f"/me/recommendation-runs/{run_id}/portfolio/{slugs[0]}", headers=headers,
+        json={"status": "applying", "is_primary": True},
+    )
+    assert first.status_code == 200
+    second = client.put(
+        f"/me/recommendation-runs/{run_id}/portfolio/{slugs[1]}", headers=headers,
+        json={"status": "applying", "is_primary": True},
+    )
+    assert second.status_code == 200
+    portfolio = client.get(f"/me/recommendation-runs/{run_id}/portfolio", headers=headers).json()
+    assert sum(item["is_primary"] for item in portfolio) == 1
+    assert next(item for item in portfolio if item["program_slug"] == slugs[1])["is_primary"] is True
+    assert next(item for item in portfolio if item["program_slug"] == slugs[0])["status"] == "applying"
+
+    roadmap = client.get(f"/me/recommendation-runs/{run_id}/roadmap", headers=headers)
+    assert roadmap.status_code == 200
+    assert len(roadmap.json()["phases"]) == 6
+    assert {item["program_slug"] for item in roadmap.json()["program_branches"]} == {slugs[0], slugs[1]}
+    assert len(client.get("/me/tasks", headers=headers).json()) == 8
+
+
+def test_portfolio_rejects_programs_outside_the_users_run() -> None:
+    login = registered_login("portfolio-isolation@offerpilot.cn")
+    headers = {"Authorization": f"Bearer {login.json()['access_token']}"}
+    client.put("/me/profile", headers=headers, json={
+        "undergraduate_school": "示例大学", "school_tier": "双非", "undergraduate_major": "软件工程",
+        "gpa": 82, "gpa_scale": 100, "target_field": "计算机与数据", "intake": "2027 S1",
+    })
+    run_id = client.post("/me/recommendation-runs", headers=headers).json()["run_id"]
+    response = client.put(
+        f"/me/recommendation-runs/{run_id}/portfolio/not-in-this-run", headers=headers,
+        json={"status": "applying", "is_primary": False},
+    )
+    assert response.status_code == 404
 
 
 def test_advisor_conversation_updates_profile_and_reruns_recommendations() -> None:
