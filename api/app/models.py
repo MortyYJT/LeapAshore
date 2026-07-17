@@ -422,6 +422,33 @@ class ProgramSourceStatus(BaseModel):
     reason: str
 
 
+class KnowledgeSearchRequest(BaseModel):
+    query: str = Field(min_length=2, max_length=500)
+    target_degree_level: DegreeLevel | None = None
+    target_field: StudyArea | None = None
+    program_slugs: list[str] = Field(default_factory=list, max_length=20)
+    top_k: int = Field(default=5, ge=1, le=8)
+
+
+class KnowledgeEvidence(BaseModel):
+    chunk_id: str
+    program_slug: str
+    university: str
+    program_name: str
+    section: Literal["项目概览", "学术与背景", "先修课与语言"]
+    content: str
+    relevance_score: float = Field(ge=0)
+    source: SourceCitation
+
+
+class KnowledgeSearchResponse(BaseModel):
+    query: str
+    retrieval_version: str
+    generated_at: datetime
+    hits: list[KnowledgeEvidence]
+    coverage_notice: str
+
+
 class AgentRunAudit(BaseModel):
     id: str
     thread_id: str

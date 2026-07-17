@@ -13,6 +13,7 @@ import {
   ApiHistoryItem,
   ApiProgram,
   ApiProgramRecommendation,
+  KnowledgeEvidence,
   ApiUser,
   FeedbackItem,
   ProgramSourceStatus,
@@ -42,6 +43,7 @@ import {
   resetPassword,
   saveProfile,
   saveAIConsent,
+  searchOfficialKnowledge,
   streamAdvisorMessage,
   updateTaskDetails,
   updatePortfolioChoice,
@@ -205,6 +207,9 @@ export default function Home() {
   const [pendingAdvisorMessage, setPendingAdvisorMessage] = useState("");
   const [transcriptText, setTranscriptText] = useState("");
   const [transcriptResult, setTranscriptResult] = useState<TranscriptAnalysis | null>(null);
+  const [knowledgeQuery, setKnowledgeQuery] = useState("UQ 数据科学的雅思和数学先修要求");
+  const [knowledgeHits, setKnowledgeHits] = useState<KnowledgeEvidence[]>([]);
+  const [knowledgeBusy, setKnowledgeBusy] = useState(false);
   const [feedbackCategory, setFeedbackCategory] = useState<FeedbackItem["category"]>("建议");
   const [feedbackMessage, setFeedbackMessage] = useState("");
   const [myFeedback, setMyFeedback] = useState<FeedbackItem[]>([]);
@@ -644,6 +649,25 @@ export default function Home() {
     }
   }
 
+  async function handleKnowledgeSearch() {
+    if (!token || knowledgeQuery.trim().length < 2 || knowledgeBusy) return;
+    setKnowledgeBusy(true);
+    setError("");
+    try {
+      const response = await searchOfficialKnowledge(token, knowledgeQuery.trim(), {
+        target_degree_level: profile.targetDegree,
+        target_field: profile.target,
+        program_slugs: results.map((item) => item.program.slug),
+        top_k: 4,
+      });
+      setKnowledgeHits(response.hits);
+    } catch (reason) {
+      setError(reason instanceof Error ? reason.message : "官方资料检索暂时不可用");
+    } finally {
+      setKnowledgeBusy(false);
+    }
+  }
+
   return (
     <main className="app-shell">
       <header className="site-header">
@@ -766,7 +790,7 @@ export default function Home() {
                 {!advisorThread && <div className="chat-loading">正在读取你的申请档案并建立顾问会话…</div>}
                 {advisorBusy && advisorThread && <div className="chat-loading">顾问正在分析，并调用申请工具…</div>}
               </div>
-              <div className="quick-prompts">{["帮我重新评估选校组合", "我更想去悉尼，预算每年 50 万", "提醒我准备英文成绩单"].map((prompt) => <button key={prompt} onClick={() => setAdvisorInput(prompt)}>{prompt}</button>)}</div>
+              <div className="quick-prompts">{["UQ 数据科学的雅思和数学先修要求", "帮我重新评估选校组合", "我更想去悉尼，预算每年 50 万", "提醒我准备英文成绩单"].map((prompt) => <button key={prompt} onClick={() => setAdvisorInput(prompt)}>{prompt}</button>)}</div>
               <form className="advisor-composer" onSubmit={handleAdvisorMessage}>
                 <textarea value={advisorInput} onChange={(event) => setAdvisorInput(event.target.value)} placeholder="例如：我想把入学时间改到 2027 S2，哪些项目需要重新考虑？" />
                 <button className="primary-button" disabled={!advisorThread || advisorBusy || !advisorInput.trim()}>发送 <span>→</span></button>
@@ -774,6 +798,7 @@ export default function Home() {
             </article>
             <aside className="advisor-tools">
               <div className="profile-snapshot"><p className="step-kicker">当前申请画像</p><h3>{profile.school}</h3><dl><div><dt>专业</dt><dd>{profile.major}</dd></div><div><dt>语言</dt><dd>{profile.english || "待补充"}</dd></div><div><dt>城市</dt><dd>{profile.cityPreference || "不限"}</dd></div><div><dt>资料完整度</dt><dd>{Math.round(readiness)}%</dd></div></dl><button className="text-button" onClick={() => { setProfileStep(1); setView("profile"); }}>修改档案 →</button></div>
+              <div className="knowledge-tool"><p className="step-kicker">官方知识库 · RAG</p><h3>检索已核验要求</h3><p>只检索已人工核验的项目事实，每条结果都能回到学校官方页面。</p><textarea value={knowledgeQuery} onChange={(event) => setKnowledgeQuery(event.target.value)} placeholder="例如：UQ 数据科学需要哪些数学课程？" /><button className="outline-button" disabled={knowledgeQuery.trim().length < 2 || knowledgeBusy} onClick={handleKnowledgeSearch}>{knowledgeBusy ? "正在检索…" : "检索官方资料"}</button>{knowledgeHits.length > 0 && <div className="knowledge-results">{knowledgeHits.map((hit) => <article key={hit.chunk_id}><span>{hit.section} · 相关度 {hit.relevance_score.toFixed(1)}</span><strong>{hit.university} · {hit.program_name}</strong><p>{hit.content}</p><a href={hit.source.url} target="_blank" rel="noreferrer">{hit.source.title} ↗</a><small>核验日期 {hit.source.verified_at}</small></article>)}</div>}</div>
               <div className="transcript-tool"><p className="step-kicker">成绩单课程核验</p><h3>粘贴成绩单文本</h3><p>识别数学、编程、算法与数据库课程，并逐项目检查先修要求。原始文本不会发送给 DeepSeek。</p><textarea value={transcriptText} onChange={(event) => setTranscriptText(event.target.value)} placeholder={"高等数学 88\n数据结构 90\n数据库系统 87"} /><button className="outline-button" disabled={!transcriptText.trim() || advisorBusy} onClick={handleTranscriptAnalysis}>分析课程匹配</button>{transcriptResult && <div className="transcript-result"><strong>{transcriptResult.academic_summary}</strong><span>{transcriptResult.program_matches.filter((item) => item.status === "满足").length} 个项目的已列先修课可初步满足</span>{transcriptResult.warnings.map((warning) => <small key={warning}>! {warning}</small>)}</div>}</div>
               {cloudConsent && <div className="ai-data-setting"><span>云端 AI 数据处理</span><strong>{cloudConsent.accepted ? "已同意 · 最小化脱敏" : "已拒绝 · 使用规则顾问"}</strong><button className="text-button" onClick={() => setShowCloudConsent(true)}>修改选择</button></div>}
             </aside>

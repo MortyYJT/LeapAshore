@@ -20,3 +20,11 @@ test("the recommendation API client retains evidence needed by the product UI", 
   }
   assert.match(apiClientSource, /fetchAgentRun/);
 });
+
+test("the RAG product surface exposes only source-backed official knowledge", () => {
+  for (const marker of ["官方知识库 · RAG", "检索已核验要求", "hit.source.url", "hit.source.verified_at"]) {
+    assert.match(pageSource, new RegExp(marker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  }
+  assert.match(apiClientSource, /\/me\/knowledge\/search/);
+  assert.match(apiClientSource, /relevance_score/);
+});

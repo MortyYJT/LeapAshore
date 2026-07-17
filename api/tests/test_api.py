@@ -526,3 +526,31 @@ def test_program_sources_expose_review_freshness() -> None:
     assert response.status_code == 200
     assert len(response.json()) >= 6
     assert all(item["url"].startswith("https://") for item in response.json())
+
+
+def test_authenticated_rag_search_and_advisor_fallback_share_cited_evidence() -> None:
+    login = registered_login("rag-product@offerpilot.cn")
+    headers = {"Authorization": f"Bearer {login.json()['access_token']}"}
+    client.put("/me/profile", json={
+        "undergraduate_school": "示例大学", "school_tier": "双非", "undergraduate_major": "软件工程",
+        "gpa": 82, "gpa_scale": 100, "target_field": "计算机与数据", "target_degree_level": "授课型硕士",
+    }, headers=headers)
+
+    search = client.post(
+        "/me/knowledge/search", json={"query": "UQ 数据科学雅思和数学先修要求", "top_k": 3}, headers=headers,
+    )
+    assert search.status_code == 200
+    assert search.json()["hits"][0]["program_slug"] == "uq-master-data-science"
+    assert search.json()["hits"][0]["source"]["url"].startswith("https://")
+
+    thread = client.post("/me/advisor/threads", headers=headers).json()
+    reply = client.post(
+        f"/me/advisor/threads/{thread['id']}/messages/stream",
+        json={"content": "UQ 数据科学雅思和数学先修要求是什么"}, headers=headers,
+    )
+    assert reply.status_code == 200
+    assert "official-knowledge-rag" in reply.text
+    assert "study.uq.edu.au" in reply.text
+    assert "不是录取承诺" in reply.text
+    audits = client.get("/me/advisor/audits", headers=headers).json()
+    assert "retrieve_official_knowledge" in audits[0]["tools"]

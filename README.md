@@ -28,10 +28,12 @@ flowchart LR
     API --> ORCH[Agent Orchestrator]
     ORCH --> GPA[normalize_gpa]
     ORCH --> RET[retrieve_programs]
+    ORCH --> RAG[retrieve_official_knowledge]
     ORCH --> RULES[check_hard_constraints]
     ORCH --> RANK[rank_portfolio]
     ORCH --> CITE[validate_citations]
     RET --> DATA[官方项目数据]
+    RAG --> KB[可引用官方知识块]
     RULES --> DATA
     CITE --> DATA
     ORCH <--> LLM[Ollama · Qwen2.5 0.5B]
@@ -45,6 +47,7 @@ flowchart LR
 - Agent 负责编排、补充信息判断和解释。
 - 硬门槛由可测试的 Python 工具处理，LLM 不能修改档位、分数或引用。
 - 每条推荐绑定官方项目页、来源编号、摘录和核验日期。
+- 顾问先检索已核验知识块，再回答项目要求；检索命中始终保留官方 URL、来源编号和核验日期。
 - 工具或模型不可用时显式降级，不静默伪造结论。
 
 ## 顾问运行模式
@@ -112,11 +115,23 @@ OLLAMA_MODEL=qwen2.5:0.5b
 
 以上结果由 `api/evals/run_eval.py` 在 2026-07-14 实际运行得到；CI 会重新运行质量门槛。小型固定集只用于防止规则回归，不代表真实录取预测能力。
 
+官方知识 RAG 另有 12 条固定检索 Eval，覆盖学校别名、中英文项目名、均分、非 211、专业背景、先修课程和 IELTS 查询。当前小型已核验语料上的项目 Top-1、章节 Top-1、Recall@3 与引用覆盖率均为 100%。该结果只证明固定知识集不会发生基础检索回归，不代表开放网页检索质量。
+
+### 官方知识 RAG
+
+- 语料只来自 `api/app/program_data.py` 中已经人工核验的具体项目，不把 384 个目录入口伪装成已核验要求。
+- 每个项目拆成“项目概览、学术与背景、先修课与语言”三个知识块，并保留原始来源元数据。
+- 当前小语料使用支持中英文别名与中文双字切分的 BM25 检索，无模型 Key、无额外下载，适合一键本地演示。
+- DeepSeek 后续接入时只接收 RAG 命中的脱敏证据；无云模型时，规则顾问也能基于同一批证据生成带来源回答。
+- 当已核验项目扩展到数百个、开始接入 PDF/网页正文后，再增加 pgvector 语义召回并与 BM25 做混合排序；当前不为 18 个知识块引入虚假的向量复杂度。
+
+详细设计和演进门槛见 [RAG 架构说明](./docs/RAG_ARCHITECTURE.md)。
+
 ## 技术栈
 
 - 前端：Next.js App Router、React 19、TypeScript、Tailwind CSS
 - API：FastAPI、Pydantic v2
-- Agent：Ollama + Qwen2.5 0.5B + Structured Outputs + 服务端白名单工具执行
+- Agent：确定性专业工具 + 官方知识 RAG + 服务端白名单工具执行；DeepSeek/Ollama 为可选解释层
 - 测试：Node Test Runner、pytest、固定 Agent Eval
 - 持久化：Repository 抽象、进程内 Demo Store、SQLite、PostgreSQL JSONB
 - 安全：scrypt 密码哈希、HttpOnly/SameSite 会话 Cookie、哈希令牌、限流、安全响应头、服务端密钥、逐请求鉴权
@@ -292,6 +307,7 @@ cd api
 .venv/bin/pip-audit --local
 PYTHONPATH=. .venv/bin/python evals/run_eval.py
 PYTHONPATH=. .venv/bin/python evals/run_advisor_eval.py
+PYTHONPATH=. .venv/bin/python evals/run_rag_eval.py
 ```
 
 配置真实服务端 Key 后，可选运行延迟 smoke test（不会在 CI 中消耗真实额度）：

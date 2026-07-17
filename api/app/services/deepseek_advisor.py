@@ -15,6 +15,7 @@ from ..models import (
     ApplicationRoadmap,
     ApplicationTask,
     AdvisorAction,
+    KnowledgeEvidence,
 )
 from .advisor import fallback_plan
 
@@ -24,7 +25,7 @@ class DeepSeekStreamError(RuntimeError):
 
 
 SYSTEM_PROMPT = """你是 OfferPilot 的澳洲留学申请顾问，覆盖本科、授课型硕士、研究型硕士和博士。
-只能使用上下文中的已核验项目事实和引用；不得编造门槛、截止日期、费用或录取概率。
+只能使用上下文中的已核验项目事实、knowledge_evidence 和引用；回答项目事实时必须指出对应来源；不得编造门槛、截止日期、费用或录取概率。
 Python 工具已经负责 GPA、硬门槛、项目排序和所有写操作，你不能改变这些结果。
 回答应直接、专业、可执行；缺少事实时明确说需要去学校官网核验。不要索取姓名、邮箱、账号或原始成绩单。"""
 
@@ -45,6 +46,7 @@ def build_redacted_context(
     history: list[dict[str, str]],
     user_message: str,
     sensitive_values: list[str],
+    knowledge_hits: list[KnowledgeEvidence] | None = None,
 ) -> dict[str, Any]:
     """Create the only payload allowed to leave the service boundary."""
     safe_profile = {
@@ -94,6 +96,7 @@ def build_redacted_context(
         "recommendations": recommendations,
         "application_portfolio": [choice.model_dump(mode="json") for choice in choices],
         "roadmap_tasks": tasks,
+        "knowledge_evidence": [hit.model_dump(mode="json") for hit in (knowledge_hits or [])],
         "recent_messages": history[-10:],
         "user_message": user_message,
     }

@@ -230,6 +230,25 @@ export type ApiAgentRun = {
   recommendations: ApiProgramRecommendation[];
 };
 
+export type KnowledgeEvidence = {
+  chunk_id: string;
+  program_slug: string;
+  university: string;
+  program_name: string;
+  section: "项目概览" | "学术与背景" | "先修课与语言";
+  content: string;
+  relevance_score: number;
+  source: ApiProgramSource;
+};
+
+export type KnowledgeSearchResponse = {
+  query: string;
+  retrieval_version: string;
+  generated_at: string;
+  hits: KnowledgeEvidence[];
+  coverage_notice: string;
+};
+
 // Same-origin is the production default; Sites gracefully falls back when /api is absent.
 const API_URL = (process.env.NEXT_PUBLIC_API_URL ?? "/api").replace(/\/$/, "");
 
@@ -337,6 +356,18 @@ export async function createAgentRun(token: string): Promise<ApiAgentRun> {
 export async function fetchAgentRun(token: string, runId: string): Promise<ApiAgentRun> {
   return request<ApiAgentRun>(`/me/recommendation-runs/${runId}`, {
     headers: { Authorization: `Bearer ${token}` },
+  });
+}
+
+export async function searchOfficialKnowledge(
+  token: string,
+  query: string,
+  filters?: { target_degree_level?: string; target_field?: string; program_slugs?: string[]; top_k?: number },
+): Promise<KnowledgeSearchResponse> {
+  return request<KnowledgeSearchResponse>("/me/knowledge/search", {
+    method: "POST",
+    headers: { Authorization: `Bearer ${token}` },
+    body: JSON.stringify({ query, top_k: 5, ...filters }),
   });
 }
 

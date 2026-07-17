@@ -47,6 +47,8 @@ from .models import (
     RegisterRequest,
     RegistrationResponse,
     LLMStatus,
+    KnowledgeSearchRequest,
+    KnowledgeSearchResponse,
     Program,
     ProgramSourceStatus,
     RecommendationResponse,
@@ -72,6 +74,7 @@ from .services.deepseek_advisor import (
 )
 from .services.agent import run_recommendation_agent
 from .services.model_provider import configured_model, configured_provider, llm_is_configured
+from .services.knowledge_rag import grounded_fallback_answer, retrieve_official_knowledge
 from .services.roadmap import build_roadmap, merge_tasks, task_templates
 from .services.recommender import generate_recommendations
 from .services.transcript import analyze_transcript
@@ -620,6 +623,20 @@ def program_source_status() -> list[ProgramSourceStatus]:
     return statuses
 
 
+@app.post("/me/knowledge/search", response_model=KnowledgeSearchResponse)
+def search_official_knowledge(
+    payload: KnowledgeSearchRequest,
+    user: Annotated[DemoUser, Depends(current_user)],
+) -> KnowledgeSearchResponse:
+    profile = store.get_profile(user.id)
+    if profile:
+        payload = payload.model_copy(update={
+            "target_degree_level": payload.target_degree_level or profile.target_degree_level,
+            "target_field": payload.target_field or profile.target_field,
+        })
+    return retrieve_official_knowledge(payload)
+
+
 @app.get("/admin/program-sources", response_model=list[ProgramSourceStatus])
 def admin_program_source_status(_: Annotated[DemoUser, Depends(current_admin)]) -> list[ProgramSourceStatus]:
     return program_source_status()
@@ -834,10 +851,23 @@ async def stream_advisor_message(
         current_roadmap = sync_roadmap(user.id, updated_profile, latest_result, choices) if latest_result else None
         yield sse_event("actions", [action.model_dump(mode="json") for action in actions])
 
+        knowledge = retrieve_official_knowledge(KnowledgeSearchRequest(
+            query=payload.content,
+            target_degree_level=updated_profile.target_degree_level,
+            target_field=updated_profile.target_field,
+            program_slugs=[item.program.slug for item in latest_result.recommendations] if latest_result else [],
+            top_k=4,
+        ))
+        yield sse_event("status", {
+            "message": f"已检索 {len(knowledge.hits)} 条可引用的官方项目证据" if knowledge.hits else "当前问题没有命中已核验项目证据",
+            "provider": "official-knowledge-rag",
+        })
+
         history = [{"role": item.role, "content": item.content} for item in thread.messages]
         context = build_redacted_context(
             updated_profile, latest_result, choices, current_roadmap, history, payload.content,
             [user.email, user.display_name, user.id, profile.undergraduate_school],
+            knowledge.hits,
         )
         consent = store.get_ai_consent(user.id)
         cloud_allowed = bool(consent and consent.accepted and configured_provider() == "deepseek")
@@ -879,7 +909,7 @@ async def stream_advisor_message(
             yield sse_event("status", {"message": reason, "provider": "deterministic-fallback"})
 
         if provider == "deterministic-fallback":
-            fallback = fallback_plan(payload.content, updated_profile)["reply"]
+            fallback = grounded_fallback_answer(payload.content, knowledge.hits) or fallback_plan(payload.content, updated_profile)["reply"]
             reply_parts = [fallback]
             yield sse_event("delta", {"content": fallback})
 
@@ -899,7 +929,8 @@ async def stream_advisor_message(
             provider=provider, model=model, prompt_version="advisor-2.0.0-redacted",
             workflow_version=latest_result.workflow_version if latest_result else "advisor-tools-2.0.0",
             latency_ms=latency_ms, input_tokens=input_tokens, output_tokens=output_tokens,
-            tools=[action.tool for action in actions], created_at=assistant_message.created_at,
+            tools=(["retrieve_official_knowledge"] if knowledge.hits else []) + [action.tool for action in actions],
+            created_at=assistant_message.created_at,
         ))
         yield sse_event("state", {
             "thread": thread.model_dump(mode="json"),
