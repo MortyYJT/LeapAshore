@@ -15,10 +15,15 @@ test("the browser renders persisted backend recommendations instead of duplicati
 });
 
 test("the recommendation API client retains evidence needed by the product UI", () => {
-  for (const field of ["recommendations", "tool_trace", "missing_information", "citations", "verified_at"]) {
+  for (const field of ["recommendations", "tool_trace", "missing_information", "citations", "verified_at", "profile_snapshot"]) {
     assert.match(apiClientSource, new RegExp(`\\b${field}\\b`));
   }
   assert.match(apiClientSource, /fetchAgentRun/);
+});
+
+test("historical runs restore the profile snapshot used for that decision", () => {
+  assert.match(pageSource, /run\.profile_snapshot/);
+  assert.match(pageSource, /setProfile\(profileFromApi\(run\.profile_snapshot\)\)/);
 });
 
 test("the Agent progress view renders backend trace instead of a fake timer", () => {

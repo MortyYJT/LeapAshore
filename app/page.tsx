@@ -594,6 +594,7 @@ export default function Home() {
         fetchAgentRun(token, item.run_id), fetchPortfolio(token, item.run_id), fetchRoadmap(token, item.run_id),
       ]);
       setAgentRun(run);
+      if (run.profile_snapshot) setProfile(profileFromApi(run.profile_snapshot));
       setPortfolio(choices);
       setRoadmap(nextRoadmap);
     }

@@ -226,6 +226,7 @@ export type ApiAgentRun = {
   run_id: string;
   workflow_version: string;
   agent_mode: "deterministic-demo" | "llm-assisted";
+  profile_snapshot?: ApiApplicantProfile | null;
   summary: string;
   missing_information: string[];
   tool_trace: Array<{

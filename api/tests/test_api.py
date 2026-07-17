@@ -170,6 +170,7 @@ def test_agent_returns_programs_tools_and_citations() -> None:
     assert response.status_code == 200
     body = response.json()
     assert body["workflow_version"] == "agent-0.5.0"
+    assert body["profile_snapshot"]["undergraduate_school"] == "示例大学"
     assert len(body["tool_trace"]) == 6
     assert len(body["catalog_options"]) == 8
     assert len(body["recommendations"]) >= 6

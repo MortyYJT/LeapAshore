@@ -205,6 +205,7 @@ def run_recommendation_agent(profile: ApplicantProfile) -> AgentRecommendationRe
     result = AgentRecommendationResponse(
         run_id=f"run_{uuid4().hex[:10]}",
         workflow_version="agent-0.5.0",
+        profile_snapshot=profile.model_copy(deep=True),
         summary=(
             f"已对照 {len(programs)} 个{profile.target_degree_level}具体项目，其中 {eligible} 个达到当前公开的基础申请要求。"
             if programs else

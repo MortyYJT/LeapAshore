@@ -107,6 +107,7 @@ class AgentRecommendationResponse(BaseModel):
     run_id: str
     workflow_version: str
     agent_mode: Literal["deterministic-demo", "llm-assisted"] = "deterministic-demo"
+    profile_snapshot: ApplicantProfile | None = None
     summary: str
     missing_information: list[str]
     tool_trace: list[ToolTrace]
