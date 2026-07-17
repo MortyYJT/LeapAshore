@@ -83,6 +83,18 @@ def test_registration_recovers_when_transactional_email_is_temporarily_unavailab
     assert "稍后点击重新发送" in response.json()["message"]
 
 
+def test_registration_debug_token_requires_an_explicit_local_opt_in(monkeypatch) -> None:
+    monkeypatch.setenv("EXPOSE_DEBUG_TOKENS", "false")
+    response = client.post("/auth/register", json={
+        "email": "no-debug-token@offerpilot.cn",
+        "password": "secure123",
+        "display_name": "No Debug Token",
+        "accepted_terms": True,
+    })
+    assert response.status_code == 201
+    assert response.json()["debug_token"] is None
+
+
 def test_http_only_cookie_restores_same_origin_session() -> None:
     login = registered_login("cookie-session@offerpilot.cn")
     assert "httponly" in login.headers["set-cookie"].lower()

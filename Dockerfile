@@ -10,7 +10,8 @@ RUN pnpm build
 FROM node:22-slim AS runtime
 WORKDIR /app
 RUN corepack enable
-COPY --from=build /app ./
+COPY --chown=node:node --from=build /app ./
 ENV NODE_ENV=production
+USER node
 EXPOSE 3000
 CMD ["pnpm", "start"]

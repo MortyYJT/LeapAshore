@@ -28,7 +28,7 @@ for key in DOMAIN POSTGRES_PASSWORD ADMIN_EMAILS SMTP_HOST SMTP_FROM; do
 done
 
 llm_provider="$(read_value LLM_PROVIDER)"
-if [ "${llm_provider:-deepseek}" = "deepseek" ]; then
+if [ "${llm_provider:-deterministic}" = "deepseek" ]; then
     deepseek_key="$(read_value DEEPSEEK_API_KEY)"
     [ -n "$deepseek_key" ] || fail "LLM_PROVIDER=deepseek 时必须填写 DEEPSEEK_API_KEY"
     case "$deepseek_key" in *replace-with*) fail "DEEPSEEK_API_KEY 仍是示例占位值" ;; esac
