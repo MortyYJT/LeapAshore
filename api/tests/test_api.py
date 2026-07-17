@@ -301,6 +301,26 @@ def test_portfolio_rejects_programs_outside_the_users_run() -> None:
     assert response.status_code == 404
 
 
+def test_roadmap_getters_do_not_write_tasks(monkeypatch) -> None:
+    import importlib
+
+    main_module = importlib.import_module("app.main")
+    login = registered_login("roadmap-readonly@offerpilot.cn")
+    headers = {"Authorization": f"Bearer {login.json()['access_token']}"}
+    client.put("/me/profile", json={
+        "undergraduate_school": "示例大学", "school_tier": "双非", "undergraduate_major": "软件工程",
+        "gpa": 82, "gpa_scale": 100, "target_field": "计算机与数据", "intake": "2027 S1",
+    }, headers=headers)
+    run_id = client.post("/me/recommendation-runs", headers=headers).json()["run_id"]
+
+    def forbidden_write(*_args, **_kwargs):
+        raise AssertionError("GET roadmap attempted to mutate task persistence")
+
+    monkeypatch.setattr(main_module.store, "save_task", forbidden_write)
+    assert client.get(f"/me/recommendation-runs/{run_id}/roadmap", headers=headers).status_code == 200
+    assert client.get(f"/me/recommendation-runs/{run_id}/action-plan", headers=headers).status_code == 200
+
+
 def test_advisor_conversation_updates_profile_and_reruns_recommendations() -> None:
     login = registered_login("advisor@offerpilot.cn")
     headers = {"Authorization": f"Bearer {login.json()['access_token']}"}
@@ -437,6 +457,47 @@ def test_deepseek_stream_is_consented_redacted_and_persisted(monkeypatch) -> Non
     assert audits[0]["provider"] == "deepseek"
     assert audits[0]["input_tokens"] == 120
     assert audits[0]["prompt_version"] == "advisor-2.0.0-redacted"
+
+
+def test_stream_prerequisite_loading_does_not_block_the_event_loop(monkeypatch) -> None:
+    import asyncio
+    import importlib
+    from threading import Event
+    from time import perf_counter
+
+    from app.models import AdvisorMessageRequest, DemoUser
+
+    main_module = importlib.import_module("app.main")
+    login = registered_login("stream-nonblocking@offerpilot.cn")
+    headers = {"Authorization": f"Bearer {login.json()['access_token']}"}
+    client.put("/me/profile", json={
+        "undergraduate_school": "示例大学", "school_tier": "双非", "undergraduate_major": "软件工程",
+        "gpa": 82, "gpa_scale": 100, "target_field": "计算机与数据",
+    }, headers=headers)
+    thread = client.post("/me/advisor/threads", headers=headers).json()
+    user = DemoUser.model_validate(client.get("/me", headers=headers).json())
+    original_get_thread = main_module.store.get_thread
+    started = Event()
+    release = Event()
+
+    def slow_get_thread(*args):
+        started.set()
+        release.wait(0.8)
+        return original_get_thread(*args)
+
+    monkeypatch.setattr(main_module.store, "get_thread", slow_get_thread)
+
+    async def exercise() -> float:
+        began = perf_counter()
+        request = asyncio.create_task(main_module.stream_advisor_message(
+            thread["id"], AdvisorMessageRequest(content="下一步是什么"), user,
+        ))
+        assert await asyncio.to_thread(started.wait, 0.2)
+        release.set()
+        await request
+        return perf_counter() - began
+
+    assert asyncio.run(exercise()) < 0.4
 
 
 def test_deepseek_stream_failure_is_explicit_and_never_falls_back_to_ollama(monkeypatch) -> None:

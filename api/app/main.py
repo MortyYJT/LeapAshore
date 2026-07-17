@@ -110,12 +110,83 @@ def sync_roadmap(
     result: AgentRecommendationResponse,
     choices: list[ApplicationChoice] | None = None,
 ) -> ApplicationRoadmap:
+    roadmap = roadmap_for_run(user_id, profile, result, choices)
+    tasks = (
+        [task for phase in roadmap.phases for task in phase.tasks]
+        + [task for branch in roadmap.program_branches for task in branch.tasks]
+    )
+    for task in tasks:
+        store.save_task(user_id, task)
+    return roadmap
+
+
+def roadmap_for_run(
+    user_id: str,
+    profile: ApplicantProfile,
+    result: AgentRecommendationResponse,
+    choices: list[ApplicationChoice] | None = None,
+) -> ApplicationRoadmap:
+    """Build a roadmap view without mutating persistence from a GET request."""
     portfolio = choices if choices is not None else portfolio_for_run(user_id, result)
     templates = task_templates(profile, result, portfolio)
     merged = merge_tasks(templates, store.list_tasks(user_id))
-    for task in merged:
-        store.save_task(user_id, task)
     return build_roadmap(profile, result, portfolio, merged)
+
+
+def load_stream_prerequisites(user_id: str, thread_id: str) -> tuple[AdvisorThread | None, ApplicantProfile | None, int]:
+    thread = store.get_thread(user_id, thread_id)
+    profile = store.get_profile(user_id)
+    today = datetime.now(UTC).date()
+    daily_calls = sum(audit.created_at.date() == today for audit in store.list_audits(user_id))
+    return thread, profile, daily_calls
+
+
+def prepare_stream_turn(
+    user: DemoUser,
+    thread: AdvisorThread,
+    profile: ApplicantProfile,
+    message: str,
+) -> tuple[
+    ApplicantProfile,
+    AgentRecommendationResponse | None,
+    list[ApplicationChoice],
+    ApplicationRoadmap | None,
+    list,
+    KnowledgeSearchResponse,
+    dict[str, Any],
+    AIConsent | None,
+]:
+    run_summaries = store.list_runs(user.id)
+    latest_result = store.get_run(user.id, run_summaries[0].run_id) if run_summaries else None
+    actions = safe_tool_actions(message, profile, latest_result, store.list_tasks(user.id))
+    updated_profile, action_run = execute_advisor_actions(user.id, profile, actions)
+    if action_run:
+        latest_result = action_run
+    choices = portfolio_for_run(user.id, latest_result) if latest_result else []
+    current_roadmap = roadmap_for_run(user.id, updated_profile, latest_result, choices) if latest_result else None
+    knowledge = retrieve_official_knowledge(KnowledgeSearchRequest(
+        query=message,
+        target_degree_level=updated_profile.target_degree_level,
+        target_field=updated_profile.target_field,
+        program_slugs=[item.program.slug for item in latest_result.recommendations] if latest_result else [],
+        top_k=4,
+    ))
+    history = [{"role": item.role, "content": item.content} for item in thread.messages]
+    context = build_redacted_context(
+        updated_profile, latest_result, choices, current_roadmap, history, message,
+        [user.email, user.display_name, user.id, profile.undergraduate_school],
+        knowledge.hits,
+    )
+    return (
+        updated_profile,
+        latest_result,
+        choices,
+        current_roadmap,
+        actions,
+        knowledge,
+        context,
+        store.get_ai_consent(user.id),
+    )
 
 
 def execute_advisor_actions(
@@ -661,7 +732,7 @@ def get_action_plan(run_id: str, user: Annotated[DemoUser, Depends(current_user)
     profile = store.get_profile(user.id)
     if not profile:
         raise HTTPException(status_code=409, detail="请先保存申请背景")
-    roadmap = sync_roadmap(user.id, profile, result)
+    roadmap = roadmap_for_run(user.id, profile, result)
     return ActionPlanResponse(
         run_id=run_id,
         items=[
@@ -720,7 +791,7 @@ def get_roadmap(run_id: str, user: Annotated[DemoUser, Depends(current_user)]) -
     profile = store.get_profile(user.id)
     if not profile:
         raise HTTPException(status_code=409, detail="请先保存申请背景")
-    return sync_roadmap(user.id, profile, result)
+    return roadmap_for_run(user.id, profile, result)
 
 
 @app.post("/me/advisor/threads", response_model=AdvisorThread)
@@ -819,51 +890,35 @@ async def stream_advisor_message(
     payload: AdvisorMessageRequest,
     user: Annotated[DemoUser, Depends(current_user)],
 ) -> StreamingResponse:
-    thread = store.get_thread(user.id, thread_id)
-    profile = store.get_profile(user.id)
+    thread, profile, daily_calls = await asyncio.to_thread(load_stream_prerequisites, user.id, thread_id)
     if not thread:
         raise HTTPException(status_code=404, detail="顾问会话不存在")
     if not profile:
         raise HTTPException(status_code=409, detail="请先保存申请背景")
 
-    today = datetime.now(UTC).date()
-    if sum(audit.created_at.date() == today for audit in store.list_audits(user.id)) >= int(os.getenv("ADVISOR_DAILY_LIMIT", "30")):
+    if daily_calls >= int(os.getenv("ADVISOR_DAILY_LIMIT", "30")):
         raise HTTPException(status_code=429, detail="今日 AI 顾问请求次数已用完，请明天继续")
 
     async def events():
         started = asyncio.get_running_loop().time()
         yield sse_event("status", {"message": "正在读取你的申请组合与路线图", "provider": "deepseek"})
-        run_summaries = store.list_runs(user.id)
-        latest_result = store.get_run(user.id, run_summaries[0].run_id) if run_summaries else None
-        choices = portfolio_for_run(user.id, latest_result) if latest_result else []
-        current_roadmap = sync_roadmap(user.id, profile, latest_result, choices) if latest_result else None
-        actions = safe_tool_actions(payload.content, profile, latest_result, store.list_tasks(user.id))
-        updated_profile, action_run = execute_advisor_actions(user.id, profile, actions)
-        if action_run:
-            latest_result = action_run
-        choices = portfolio_for_run(user.id, latest_result) if latest_result else []
-        current_roadmap = sync_roadmap(user.id, updated_profile, latest_result, choices) if latest_result else None
+        (
+            updated_profile,
+            latest_result,
+            choices,
+            current_roadmap,
+            actions,
+            knowledge,
+            context,
+            consent,
+        ) = await asyncio.to_thread(prepare_stream_turn, user, thread, profile, payload.content)
         yield sse_event("actions", [action.model_dump(mode="json") for action in actions])
 
-        knowledge = retrieve_official_knowledge(KnowledgeSearchRequest(
-            query=payload.content,
-            target_degree_level=updated_profile.target_degree_level,
-            target_field=updated_profile.target_field,
-            program_slugs=[item.program.slug for item in latest_result.recommendations] if latest_result else [],
-            top_k=4,
-        ))
         yield sse_event("status", {
             "message": f"已检索 {len(knowledge.hits)} 条可引用的官方项目证据" if knowledge.hits else "当前问题没有命中已核验项目证据",
             "provider": "official-knowledge-rag",
         })
 
-        history = [{"role": item.role, "content": item.content} for item in thread.messages]
-        context = build_redacted_context(
-            updated_profile, latest_result, choices, current_roadmap, history, payload.content,
-            [user.email, user.display_name, user.id, profile.undergraduate_school],
-            knowledge.hits,
-        )
-        consent = store.get_ai_consent(user.id)
         cloud_allowed = bool(consent and consent.accepted and configured_provider() == "deepseek")
         provider = "deepseek" if cloud_allowed else "deterministic-fallback"
         model = configured_model()
@@ -916,16 +971,17 @@ async def stream_advisor_message(
         )
         thread.messages.extend([user_message, assistant_message])
         thread.updated_at = assistant_message.created_at
-        store.save_thread(user.id, thread)
         latency_ms = round((asyncio.get_running_loop().time() - started) * 1000)
-        store.save_audit(user.id, AgentRunAudit(
+        audit = AgentRunAudit(
             id=f"audit_{uuid4().hex[:10]}", thread_id=thread.id, message_id=assistant_message.id,
             provider=provider, model=model, prompt_version="advisor-2.0.0-redacted",
             workflow_version=latest_result.workflow_version if latest_result else "advisor-tools-2.0.0",
             latency_ms=latency_ms, input_tokens=input_tokens, output_tokens=output_tokens,
             tools=(["retrieve_official_knowledge"] if knowledge.hits else []) + [action.tool for action in actions],
             created_at=assistant_message.created_at,
-        ))
+        )
+        await asyncio.to_thread(store.save_thread, user.id, thread)
+        await asyncio.to_thread(store.save_audit, user.id, audit)
         yield sse_event("state", {
             "thread": thread.model_dump(mode="json"),
             "profile": updated_profile.model_dump(mode="json"),
