@@ -169,7 +169,7 @@ def test_agent_returns_programs_tools_and_citations() -> None:
 
     assert response.status_code == 200
     body = response.json()
-    assert body["workflow_version"] == "agent-0.4.0"
+    assert body["workflow_version"] == "agent-0.5.0"
     assert len(body["tool_trace"]) == 6
     assert len(body["catalog_options"]) == 8
     assert len(body["recommendations"]) >= 6
@@ -195,6 +195,48 @@ def test_agent_flags_missing_language_and_prerequisite_evidence() -> None:
     assert "语言成绩" in body["missing_information"]
     assert "用于确认先修课的成绩单课程列表" in body["missing_information"]
     assert any(item["tier"] == "暂不推荐" for item in body["recommendations"])
+
+
+def test_agent_never_marks_unverified_prerequisites_or_language_as_satisfied() -> None:
+    base = {
+        "undergraduate_school": "示例大学",
+        "school_tier": "双非",
+        "undergraduate_major": "软件工程",
+        "gpa": 82,
+        "gpa_scale": 100,
+        "target_field": "计算机与数据",
+        "intake": "2027 S1",
+        "english_score": "IELTS 7.0",
+    }
+    missing_courses = client.post("/agent/recommendations", json=base).json()
+    uq = next(item for item in missing_courses["recommendations"] if item["program"]["slug"] == "uq-master-data-science")
+    assert uq["eligibility"] == "需要人工核验"
+    assert next(step for step in missing_courses["tool_trace"] if step["tool"] == "check_hard_constraints")["status"] == "needs_input"
+
+    verified = client.post("/agent/recommendations", json={
+        **base,
+        "english_score": "IELTS 7.0，单项 6.5",
+        "coursework_summary": "高等数学、线性代数、概率统计、Python 程序设计、数据库系统",
+    }).json()
+    verified_uq = next(item for item in verified["recommendations"] if item["program"]["slug"] == "uq-master-data-science")
+    assert verified_uq["eligibility"] == "满足基础门槛"
+
+
+def test_agent_treats_a_published_minimum_shortfall_as_a_hard_gap() -> None:
+    response = client.post("/agent/recommendations", json={
+        "undergraduate_school": "示例大学",
+        "school_tier": "双非",
+        "undergraduate_major": "软件工程",
+        "gpa": 68,
+        "gpa_scale": 100,
+        "target_field": "计算机与数据",
+        "english_score": "IELTS 7.0，单项 6.5",
+        "coursework_summary": "高等数学、线性代数、概率统计、数据结构、数据库",
+    }).json()
+    unsw = next(item for item in response["recommendations"] if item["program"]["slug"] == "unsw-master-it")
+    assert unsw["tier"] == "暂不推荐"
+    assert unsw["eligibility"] == "存在门槛缺口"
+    assert any("70%" in risk for risk in unsw["risks"])
 
 
 def test_agent_covers_every_go8_degree_and_study_area_without_inventing_rules() -> None:

@@ -24,13 +24,13 @@ BASE = {
 CASES: list[dict[str, Any]] = [
     {"id": "relevant-strong", "overrides": {}, "expected": {"unsw-master-it": "稳妥"}},
     {"id": "relevant-medium", "overrides": {"gpa": 74}, "expected": {"unsw-master-it": "匹配"}},
-    {"id": "relevant-borderline", "overrides": {"gpa": 68}, "expected": {"unsw-master-it": "冲刺"}},
+    {"id": "relevant-borderline", "overrides": {"gpa": 68}, "expected": {"unsw-master-it": "暂不推荐"}},
     {"id": "relevant-low", "overrides": {"gpa": 60}, "expected": {"unsw-master-it": "暂不推荐"}},
     {"id": "non-cognate", "overrides": {"undergraduate_major": "市场营销"}, "expected": {"monash-master-cs": "暂不推荐", "uq-master-data-science": "暂不推荐"}},
     {"id": "missing-language", "overrides": {"english_score": None}, "expected_missing": ["语言成绩"]},
     {"id": "missing-experience", "overrides": {"experience_summary": None}, "expected_missing": ["相关实习、科研或项目经历"]},
     {"id": "gpa-four-scale", "overrides": {"gpa": 3.4, "gpa_scale": 4}, "expected": {"usyd-master-cs": "稳妥"}},
-    {"id": "non-211-special-rule", "overrides": {"gpa": 68}, "expected": {"unsw-master-it": "冲刺", "usyd-master-cs": "冲刺"}},
+    {"id": "non-211-special-rule", "overrides": {"gpa": 68}, "expected": {"unsw-master-it": "暂不推荐", "usyd-master-cs": "冲刺"}},
     {"id": "high-non-cognate", "overrides": {"undergraduate_major": "英语", "gpa": 90}, "expected": {"monash-master-ai": "稳妥", "monash-master-cs": "暂不推荐"}},
 ]
 
@@ -58,7 +58,7 @@ def evaluate() -> dict[str, float | int]:
             citation_present += int(bool(item.citations and item.citations[0].url.startswith("https://")))
         for step in result.tool_trace[:5]:
             tool_total += 1
-            tool_completed += int(step.status == "completed")
+            tool_completed += int(step.status in {"completed", "needs_input"})
 
     return {
         "cases": len(CASES),

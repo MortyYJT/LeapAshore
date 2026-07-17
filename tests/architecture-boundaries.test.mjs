@@ -21,6 +21,14 @@ test("the recommendation API client retains evidence needed by the product UI", 
   assert.match(apiClientSource, /fetchAgentRun/);
 });
 
+test("the Agent progress view renders backend trace instead of a fake timer", () => {
+  assert.match(pageSource, /agentRun\.tool_trace\.map/);
+  assert.match(pageSource, /trace\.summary/);
+  assert.match(pageSource, /trace\.status/);
+  assert.doesNotMatch(pageSource, /setInterval\(/);
+  assert.doesNotMatch(pageSource, /completedSteps/);
+});
+
 test("the RAG product surface exposes only source-backed official knowledge", () => {
   for (const marker of ["官方知识库 · RAG", "检索已核验要求", "hit.source.url", "hit.source.verified_at"]) {
     assert.match(pageSource, new RegExp(marker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));

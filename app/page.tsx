@@ -98,6 +98,7 @@ const verifiedProgramUniversities = ["UNSW", "USYD", "MON", "UQ", "UWA"] as cons
 
 const agentSteps = [
   { tool: "normalize_gpa", label: "换算学术成绩", detail: "统一不同学校和满分制的成绩口径" },
+  { tool: "retrieve_official_catalogs", label: "读取官方目录", detail: "读取本地登记的澳洲八大官方课程目录入口" },
   { tool: "retrieve_programs", label: "匹配目标项目", detail: "结合学位、方向与入学时间筛选已核验项目" },
   { tool: "check_hard_constraints", label: "评估申请要求", detail: "对照均分、专业背景、先修课程和语言要求" },
   { tool: "rank_portfolio", label: "规划申请组合", detail: "平衡冲刺、匹配和稳妥项目" },
@@ -211,7 +212,6 @@ export default function Home() {
   const [error, setError] = useState("");
   const [selected, setSelected] = useState<ApiProgramRecommendation | null>(null);
   const [tierFilter, setTierFilter] = useState<"全部" | Tier>("全部");
-  const [completedSteps, setCompletedSteps] = useState(0);
   const [token, setToken] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [runSummary, setRunSummary] = useState("已完成项目要求对照，并根据你的背景生成申请组合。");
@@ -293,23 +293,10 @@ export default function Home() {
       .catch(() => setError("暂时无法读取申请组合"));
   }, [view, token, activeRunId]);
   useEffect(() => {
-    if (view !== "agent") return;
-    let current = 0;
-    const interval = window.setInterval(() => {
-      current += 1;
-      setCompletedSteps(current);
-      if (current === agentSteps.length) {
-        window.clearInterval(interval);
-      }
-    }, 520);
-    return () => window.clearInterval(interval);
-  }, [view]);
-
-  useEffect(() => {
-    if (view !== "agent" || completedSteps !== agentSteps.length || !agentRun) return;
-    const timeout = window.setTimeout(() => setView("results"), 400);
+    if (view !== "agent" || !agentRun) return;
+    const timeout = window.setTimeout(() => setView("results"), 900);
     return () => window.clearTimeout(timeout);
-  }, [view, completedSteps, agentRun]);
+  }, [view, agentRun]);
 
   useEffect(() => {
     if (view !== "advisor" || !token || advisorThread) return;
@@ -517,7 +504,6 @@ export default function Home() {
       return;
     }
     setError("");
-    setCompletedSteps(0);
     setAgentRun(null);
     setView("agent");
     void executeAgentRun();
@@ -808,7 +794,18 @@ export default function Home() {
       {view === "agent" && (
         <section className="agent-run-page">
           <div className="agent-run-heading"><p className="eyebrow"><span /> 正在规划</p><h1>正在生成你的申请方案</h1><p>{profile.school} · {profile.major} · GPA {profile.gpa}/{profile.gpaScale}</p></div>
-          <div className="agent-console" aria-live="polite"><div className="console-top"><span>申请方案进度</span><em>{completedSteps === agentSteps.length ? "已完成" : `${completedSteps} / ${agentSteps.length}`}</em></div>{agentSteps.map((step, index) => { const done = index < completedSteps; const active = index === completedSteps; return <div className={`agent-step ${done ? "done" : ""} ${active ? "active" : ""}`} key={step.tool}><span className="step-status">{done ? "✓" : active ? "…" : index + 1}</span><div><strong>{step.label}</strong><p>{step.detail}</p></div><small>{done ? "完成" : active ? "进行中" : "等待"}</small></div>; })}</div>
+          <div className="agent-console" aria-live="polite">
+            <div className="console-top"><span>后端工具执行记录</span><em>{agentRun ? `${agentRun.tool_trace.length} 步已返回` : "正在请求"}</em></div>
+            {!agentRun
+              ? <div className="agent-step active"><span className="step-status">…</span><div><strong>运行确定性申请工具</strong><p>正在读取档案并等待后端返回真实执行状态。</p></div><small>进行中</small></div>
+              : agentRun.tool_trace.map((trace) => {
+                const meta = agentSteps.find((item) => item.tool === trace.tool);
+                const label = meta?.label ?? trace.tool;
+                const statusLabel = trace.status === "completed" ? "完成" : trace.status === "needs_input" ? "待补信息" : trace.status === "skipped" ? "已跳过" : "失败";
+                const icon = trace.status === "completed" ? "✓" : trace.status === "needs_input" ? "!" : trace.status === "skipped" ? "–" : "×";
+                return <div className={`agent-step ${trace.status === "completed" ? "done" : trace.status.replace("_", "-")}`} key={`${trace.step}-${trace.tool}`}><span className="step-status">{icon}</span><div><strong>{label}</strong><p>{trace.summary}</p></div><small>{statusLabel}</small></div>;
+              })}
+          </div>
           <p className="agent-footnote">结果会区分最低申请要求与竞争力建议；最终录取仍以学校正式审核为准。</p>
         </section>
       )}

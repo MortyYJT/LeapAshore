@@ -13,6 +13,7 @@ from ..models import (
 from ..catalog_data import CATALOG_COVERAGE
 from ..program_data import PROGRAMS
 from .recommender import normalize_gpa
+from .transcript import analyze_transcript
 
 
 COGNATE_KEYWORDS = {
@@ -32,30 +33,55 @@ def parse_ielts(score: str | None) -> float | None:
     return float(match.group(1)) if match else None
 
 
+def english_evidence_state(program: Program, profile: ApplicantProfile) -> str:
+    """Return satisfied, missing, or needs_input without guessing vague school rules."""
+    required = re.search(r"IELTS\s*(\d(?:\.\d)?)", program.english_requirement, flags=re.I)
+    current = parse_ielts(profile.english_score)
+    if not required or current is None:
+        return "needs_input"
+    if current < float(required.group(1)):
+        return "missing"
+    if "单项" in program.english_requirement and "单项" not in (profile.english_score or ""):
+        return "needs_input"
+    return "satisfied"
+
+
 def effective_threshold(program: Program, profile: ApplicantProfile) -> float | None:
     if profile.school_tier == "双非" and program.non_211_minimum_mark:
         return program.non_211_minimum_mark
     return program.minimum_mark
 
 
-def recommend_program(program: Program, profile: ApplicantProfile) -> ProgramRecommendation:
+def recommend_program(
+    program: Program,
+    profile: ApplicantProfile,
+    prerequisite_state: str = "needs_input",
+) -> ProgramRecommendation:
     gpa = normalize_gpa(profile)
     threshold = effective_threshold(program, profile)
     cognate = is_cognate(profile.undergraduate_major)
     prerequisite_risk = program.requires_cognate and not cognate
     gap = gpa - threshold if threshold is not None else None
+    english_state = english_evidence_state(program, profile)
+    hard_gap = bool(
+        prerequisite_risk
+        or (gap is not None and gap < 0)
+        or prerequisite_state == "missing"
+        or english_state == "missing"
+    )
+    needs_input = prerequisite_state == "needs_input" or english_state == "needs_input"
 
     if threshold is None:
         tier = "暂不推荐"
         eligibility = "需要人工核验"
         score = 50
-    elif prerequisite_risk:
+    elif hard_gap:
         tier = "暂不推荐"
         eligibility = "存在门槛缺口"
         score = max(45, min(72, round(62 + gap / 2)))
     else:
         tier = "稳妥" if gap >= 12 else "匹配" if gap >= 4 else "冲刺" if gap >= -3 else "暂不推荐"
-        eligibility = "满足基础门槛" if gap >= 0 else "需要人工核验"
+        eligibility = "需要人工核验" if needs_input else "满足基础门槛"
         score = max(50, min(96, round(78 + gap)))
 
     reasons = [f"当前学术成绩标准化为 {gpa}/100。"]
@@ -65,6 +91,8 @@ def recommend_program(program: Program, profile: ApplicantProfile) -> ProgramRec
         reasons.append(f"当前公开基线按 {threshold:g}% 参与检查。")
     reasons.append(f"既往专业“{profile.undergraduate_major}”被识别为{'相关' if cognate else '非相关或待核验'}背景。")
     risks: list[str] = []
+    if gap is not None and gap < 0:
+        risks.append(f"当前标准化成绩低于已录入的 {threshold:g}% 公开基线。")
     if prerequisite_risk:
         risks.append("项目要求相关背景或指定先修课程，当前专业信息不足以确认满足。")
     if program.requires_supervisor:
@@ -72,12 +100,15 @@ def recommend_program(program: Program, profile: ApplicantProfile) -> ProgramRec
     if program.research_proposal_required:
         risks.append("需要准备研究计划，并由院系按研究能力单独审核。")
     if program.prerequisites:
-        risks.append("需用成绩单逐项核验：" + "、".join(program.prerequisites) + "。")
+        if prerequisite_state == "needs_input":
+            risks.append("尚未提供足够课程信息，需逐项核验：" + "、".join(program.prerequisites) + "。")
+        elif prerequisite_state == "missing":
+            risks.append("当前课程列表未覆盖全部已录入先修要求：" + "、".join(program.prerequisites) + "。")
     ielts = parse_ielts(profile.english_score)
-    if ielts is None:
-        risks.append("未提供可解析的 IELTS 成绩，语言门槛尚未完成验证。")
-    elif "IELTS 6.5" in program.english_requirement and ielts < 6.5:
-        risks.append(f"当前 IELTS {ielts:g} 低于页面列出的 6.5 总分要求。")
+    if english_state == "needs_input":
+        risks.append("语言要求尚未完整验证；需按官方页面补充考试类型、总分及单项成绩。")
+    elif english_state == "missing" and ielts is not None:
+        risks.append(f"当前 IELTS {ielts:g} 低于已录入的官方总分要求。")
     if not risks:
         risks.append("达到最低门槛不代表录取，仍受名额和申请轮次影响。")
 
@@ -100,7 +131,21 @@ def run_recommendation_agent(profile: ApplicantProfile) -> AgentRecommendationRe
         program for program in PROGRAMS
         if program.field == profile.target_field and program.degree_level == profile.target_degree_level
     ]
-    results = [recommend_program(program, profile) for program in programs]
+    prerequisite_states: dict[str, str] = {}
+    if profile.coursework_summary:
+        analysis = analyze_transcript(profile.coursework_summary)
+        prerequisite_states = {
+            match.program_slug: "satisfied" if match.status in {"满足", "无需指定先修课"} else "missing"
+            for match in analysis.program_matches
+        }
+    results = [
+        recommend_program(
+            program,
+            profile,
+            "satisfied" if not program.prerequisites else prerequisite_states.get(program.slug, "needs_input"),
+        )
+        for program in programs
+    ]
     catalog_options = [
         item for item in CATALOG_COVERAGE
         if item.degree_level == profile.target_degree_level and item.field == profile.target_field
@@ -129,7 +174,7 @@ def run_recommendation_agent(profile: ApplicantProfile) -> AgentRecommendationRe
             step=2,
             tool="retrieve_official_catalogs",
             status="completed",
-            summary=f"已连接 {len(catalog_options)} 所澳洲八大的{profile.target_degree_level} · {profile.target_field}官方课程目录。",
+            summary=f"已读取 {len(catalog_options)} 所澳洲八大本地登记的{profile.target_degree_level} · {profile.target_field}官方课程目录入口。",
         ),
         ToolTrace(
             step=3,
@@ -142,15 +187,24 @@ def run_recommendation_agent(profile: ApplicantProfile) -> AgentRecommendationRe
             ),
             evidence_ids=evidence_ids,
         ),
-        ToolTrace(step=4, tool="check_hard_constraints", status="completed" if programs else "skipped", summary="逐项检查均分、专业背景、先修课和语言门槛。" if programs else "没有课程级门槛，未执行硬条件判断。", evidence_ids=evidence_ids),
+        ToolTrace(
+            step=4,
+            tool="check_hard_constraints",
+            status="needs_input" if programs and any(item.eligibility == "需要人工核验" for item in results) else "completed" if programs else "skipped",
+            summary=(
+                "已检查可验证的均分、专业背景、先修课和语言信息；未提供或规则未结构化的部分保留为人工核验。"
+                if programs else "没有课程级门槛，未执行硬条件判断。"
+            ),
+            evidence_ids=evidence_ids,
+        ),
         ToolTrace(step=5, tool="rank_portfolio", status="completed" if programs else "skipped", summary="按可解释规则生成冲刺、匹配、稳妥和暂不推荐分层。" if programs else "没有已核验项目，未生成误导性分档。"),
-        ToolTrace(step=6, tool="validate_citations", status="completed" if programs else "skipped", summary=f"{len(results)}/{len(results)} 条推荐均绑定官方来源。" if programs else "没有推荐结果需要引用校验。", evidence_ids=evidence_ids),
+        ToolTrace(step=6, tool="validate_citations", status="completed" if programs else "skipped", summary=f"{len(results)}/{len(results)} 条推荐均保留官方来源标识和核验日期；页面更新仍需人工复核。" if programs else "没有推荐结果需要引用校验。", evidence_ids=evidence_ids),
     ]
 
     eligible = sum(item.eligibility == "满足基础门槛" for item in results)
     result = AgentRecommendationResponse(
         run_id=f"run_{uuid4().hex[:10]}",
-        workflow_version="agent-0.4.0",
+        workflow_version="agent-0.5.0",
         summary=(
             f"已对照 {len(programs)} 个{profile.target_degree_level}具体项目，其中 {eligible} 个达到当前公开的基础申请要求。"
             if programs else
