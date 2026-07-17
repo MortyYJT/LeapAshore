@@ -472,6 +472,55 @@ def test_deepseek_stream_failure_is_explicit_and_never_falls_back_to_ollama(monk
     assert "ollama" not in response.text.lower()
 
 
+def test_cloud_calls_are_confined_to_the_consented_streaming_boundary(monkeypatch) -> None:
+    import importlib
+
+    main_module = importlib.import_module("app.main")
+    advisor_module = importlib.import_module("app.services.advisor")
+    monkeypatch.setenv("LLM_PROVIDER", "deepseek")
+    monkeypatch.setenv("DEEPSEEK_API_KEY", "server-only")
+
+    def forbidden_plan(_context):
+        raise AssertionError("legacy or recommendation path attempted a cloud model call")
+
+    monkeypatch.setattr(advisor_module, "plan_advisor_turn", forbidden_plan)
+    login = registered_login("cloud-boundary@offerpilot.cn")
+    headers = {"Authorization": f"Bearer {login.json()['access_token']}"}
+    client.put("/me/profile", json={
+        "undergraduate_school": "不应出境大学", "school_tier": "双非", "undergraduate_major": "软件工程",
+        "gpa": 82, "gpa_scale": 100, "target_field": "计算机与数据",
+    }, headers=headers)
+
+    run = client.post("/me/recommendation-runs", headers=headers)
+    assert run.status_code == 200
+    assert run.json()["agent_mode"] == "deterministic-demo"
+
+    thread = client.post("/me/advisor/threads", headers=headers).json()
+    legacy = client.post(
+        f"/me/advisor/threads/{thread['id']}/messages",
+        json={"content": "请重新推荐学校"}, headers=headers,
+    )
+    assert legacy.status_code == 200
+    assert legacy.json()["provider"] == "deterministic-fallback"
+
+    cloud_called = False
+
+    async def forbidden_stream(_context):
+        nonlocal cloud_called
+        cloud_called = True
+        if False:
+            yield "delta", ""
+
+    monkeypatch.setattr(main_module, "stream_deepseek", forbidden_stream)
+    streamed = client.post(
+        f"/me/advisor/threads/{thread['id']}/messages/stream",
+        json={"content": "这些项目怎么选"}, headers=headers,
+    )
+    assert streamed.status_code == 200
+    assert "deterministic-fallback" in streamed.text
+    assert cloud_called is False
+
+
 def test_program_sources_expose_review_freshness() -> None:
     response = client.get("/program-sources/status")
     assert response.status_code == 200

@@ -13,7 +13,6 @@ from ..models import (
 from ..catalog_data import CATALOG_COVERAGE
 from ..program_data import PROGRAMS
 from .recommender import normalize_gpa
-from .model_provider import ModelProviderError, configured_agent_mode, generate_grounded_summary
 
 
 COGNATE_KEYWORDS = {
@@ -162,26 +161,4 @@ def run_recommendation_agent(profile: ApplicantProfile) -> AgentRecommendationRe
         catalog_options=catalog_options,
         recommendations=results,
     )
-    if programs and configured_agent_mode() == "llm-assisted":
-        try:
-            result.summary = generate_grounded_summary(profile, result)
-            result.agent_mode = "llm-assisted"
-            result.tool_trace.append(
-                ToolTrace(
-                    step=7,
-                    tool="llm_grounded_explainer",
-                    status="completed",
-                    summary="模型基于已验证工具结果生成总结，未参与硬门槛判断。",
-                    evidence_ids=evidence_ids,
-                )
-            )
-        except ModelProviderError:
-            result.tool_trace.append(
-                ToolTrace(
-                    step=7,
-                    tool="llm_grounded_explainer",
-                    status="skipped",
-                    summary="模型不可用，已安全降级为 deterministic-demo。",
-                )
-            )
     return result

@@ -54,24 +54,37 @@ def fallback_plan(message: str, profile: ApplicantProfile) -> dict[str, Any]:
     return {"reply": reply, "actions": actions}
 
 
-def plan_turn(message: str, profile: ApplicantProfile, history: list[dict[str, str]]) -> tuple[str, list[AdvisorAction], dict[str, Any]]:
+def plan_turn(
+    message: str,
+    profile: ApplicantProfile,
+    history: list[dict[str, str]],
+    *,
+    model_context: dict[str, Any] | None = None,
+) -> tuple[str, list[AdvisorAction], dict[str, Any]]:
+    """Plan a compatibility-mode turn.
+
+    Cloud providers are never called from this legacy non-streaming path. A
+    caller may opt into a model only by supplying a context that has already
+    crossed the service's privacy boundary; production cloud chat uses the
+    consented streaming endpoint instead.
+    """
     started = perf_counter()
     provider = "deterministic-fallback"
     tokens: dict[str, Any] = {"input_tokens": None, "output_tokens": None}
-    try:
-        model_result = plan_advisor_turn({
-            "profile": profile.model_dump(),
-            "recent_messages": history[-8:],
-            "user_message": message,
-        })
-        raw = model_result.payload
-        provider = model_result.provider
-        model = model_result.model
-        tokens = {"input_tokens": model_result.input_tokens, "output_tokens": model_result.output_tokens}
-    except ModelProviderError:
+    if model_context is None:
         raw = fallback_plan(message, profile)
         model = configured_model()
-        provider = "deterministic-fallback"
+    else:
+        try:
+            model_result = plan_advisor_turn(model_context)
+            raw = model_result.payload
+            provider = model_result.provider
+            model = model_result.model
+            tokens = {"input_tokens": model_result.input_tokens, "output_tokens": model_result.output_tokens}
+        except ModelProviderError:
+            raw = fallback_plan(message, profile)
+            model = configured_model()
+            provider = "deterministic-fallback"
 
     actions = []
     for item in raw.get("actions", [])[:3]:

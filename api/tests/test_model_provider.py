@@ -1,6 +1,7 @@
 import json
 
 import httpx
+import pytest
 
 from app.models import ApplicantProfile
 from app.services.deepseek_advisor import build_redacted_context
@@ -59,3 +60,10 @@ def test_deepseek_configuration_and_redacted_context_exclude_direct_identifiers(
         assert forbidden not in serialized
     assert context["profile"]["gpa_percent"] == 82
     assert "undergraduate_school" not in context["profile"]
+
+
+def test_generic_model_planner_rejects_cloud_providers(monkeypatch) -> None:
+    monkeypatch.setenv("LLM_PROVIDER", "deepseek")
+    monkeypatch.setenv("DEEPSEEK_API_KEY", "server-secret")
+    with pytest.raises(model_provider.ModelProviderError, match="consented redaction boundary"):
+        model_provider.plan_advisor_turn({"unsafe": "must never leave through this adapter"})
