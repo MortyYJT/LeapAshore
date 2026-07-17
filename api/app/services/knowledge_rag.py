@@ -16,6 +16,7 @@ from ..program_data import PROGRAMS
 
 
 RETRIEVAL_VERSION = "official-knowledge-bm25-1.0.0"
+MIN_RELEVANCE_SCORE = 4.0
 
 PROGRAM_ALIASES = {
     "unsw-master-it": ["unsw", "新南威尔士", "新南", "master of information technology", "mit", "信息技术"],
@@ -171,6 +172,7 @@ def retrieve_official_knowledge(request: KnowledgeSearchRequest) -> KnowledgeSea
             source=chunk.program.source,
         )
         for score, chunk in scores[:request.top_k]
+        if score >= MIN_RELEVANCE_SCORE
     ]
     return KnowledgeSearchResponse(
         query=request.query,

@@ -34,3 +34,10 @@ def test_rag_returns_honest_empty_state_outside_verified_corpus() -> None:
     ))
     assert response.hits == []
     assert "没有可引用" in response.coverage_notice
+
+
+def test_rag_rejects_out_of_corpus_queries_instead_of_forcing_a_match() -> None:
+    for query in ["量子考古学项目要求", "哈佛医学院录取要求"]:
+        response = retrieve_official_knowledge(KnowledgeSearchRequest(query=query))
+        assert response.hits == []
+        assert grounded_fallback_answer(query, response.hits) is None

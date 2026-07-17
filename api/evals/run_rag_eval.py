@@ -22,6 +22,14 @@ CASES: list[dict[str, Any]] = [
     {"query": "西澳大学信息技术雅思多少", "program": "uwa-master-it", "section": "先修课与语言"},
 ]
 
+NO_ANSWER_CASES = [
+    "量子考古学项目要求",
+    "哈佛医学院录取要求",
+    "澳洲八大宿舍宠物政策",
+    "今天北京天气怎么样",
+    "2029 年奖学金截止日期",
+]
+
 
 def evaluate_rag() -> dict[str, float | int]:
     top_one_program = top_one_section = recall_at_three = cited = 0
@@ -34,12 +42,19 @@ def evaluate_rag() -> dict[str, float | int]:
         recall_at_three += int(any(hit.program_slug == case["program"] for hit in response.hits))
         cited += int(all(hit.source.url.startswith("https://") and hit.source.id for hit in response.hits))
     total = len(CASES)
+    rejected = sum(
+        not retrieve_official_knowledge(KnowledgeSearchRequest(query=query, top_k=3)).hits
+        for query in NO_ANSWER_CASES
+    )
     return {
-        "cases": total,
+        "cases": total + len(NO_ANSWER_CASES),
+        "retrieval_cases": total,
+        "no_answer_cases": len(NO_ANSWER_CASES),
         "top_one_program_accuracy": round(top_one_program / total, 4),
         "top_one_section_accuracy": round(top_one_section / total, 4),
         "program_recall_at_3": round(recall_at_three / total, 4),
         "citation_coverage": round(cited / total, 4),
+        "no_answer_rejection_accuracy": round(rejected / len(NO_ANSWER_CASES), 4),
     }
 
 
