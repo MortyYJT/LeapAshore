@@ -237,6 +237,13 @@ class DemoStore:
     def save_choice(self, user_id: str, choice: ApplicationChoice) -> ApplicationChoice:
         with self._lock:
             choices = self._choices.setdefault(user_id, [])
+            if choice.is_primary:
+                choices[:] = [
+                    item.model_copy(update={"is_primary": False, "updated_at": choice.updated_at})
+                    if item.run_id == choice.run_id and item.is_primary and item.program_slug != choice.program_slug
+                    else item
+                    for item in choices
+                ]
             choices[:] = [item for item in choices if not (
                 item.run_id == choice.run_id and item.program_slug == choice.program_slug
             )]
@@ -665,14 +672,43 @@ class SQLiteStore:
         return AgentRecommendationResponse.model_validate_json(row["result_payload"]) if row else None
 
     def save_choice(self, user_id: str, choice: ApplicationChoice) -> ApplicationChoice:
-        with self._lock, self._connection:
-            self._connection.execute(
-                """INSERT INTO application_choices (user_id, run_id, program_slug, payload, updated_at)
-                VALUES (?, ?, ?, ?, ?)
-                ON CONFLICT(user_id, run_id, program_slug) DO UPDATE SET
-                    payload = excluded.payload, updated_at = excluded.updated_at""",
-                (user_id, choice.run_id, choice.program_slug, choice.model_dump_json(), choice.updated_at.isoformat()),
-            )
+        with self._lock:
+            self._connection.execute("BEGIN IMMEDIATE")
+            try:
+                if choice.is_primary:
+                    rows = self._connection.execute(
+                        "SELECT program_slug, payload FROM application_choices WHERE user_id = ? AND run_id = ?",
+                        (user_id, choice.run_id),
+                    ).fetchall()
+                    for row in rows:
+                        existing = ApplicationChoice.model_validate_json(row["payload"])
+                        if existing.is_primary and existing.program_slug != choice.program_slug:
+                            demoted = existing.model_copy(update={
+                                "is_primary": False,
+                                "updated_at": choice.updated_at,
+                            })
+                            self._connection.execute(
+                                """UPDATE application_choices SET payload = ?, updated_at = ?
+                                WHERE user_id = ? AND run_id = ? AND program_slug = ?""",
+                                (
+                                    demoted.model_dump_json(),
+                                    demoted.updated_at.isoformat(),
+                                    user_id,
+                                    choice.run_id,
+                                    demoted.program_slug,
+                                ),
+                            )
+                self._connection.execute(
+                    """INSERT INTO application_choices (user_id, run_id, program_slug, payload, updated_at)
+                    VALUES (?, ?, ?, ?, ?)
+                    ON CONFLICT(user_id, run_id, program_slug) DO UPDATE SET
+                        payload = excluded.payload, updated_at = excluded.updated_at""",
+                    (user_id, choice.run_id, choice.program_slug, choice.model_dump_json(), choice.updated_at.isoformat()),
+                )
+                self._connection.commit()
+            except Exception:
+                self._connection.rollback()
+                raise
         return choice
 
     def list_choices(self, user_id: str, run_id: str | None = None) -> list[ApplicationChoice]:

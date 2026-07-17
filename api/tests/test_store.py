@@ -2,7 +2,7 @@ from datetime import UTC, datetime
 
 from app.models import AIConsent, ApplicationChoice, AdvisorMessage, AdvisorThread, ApplicantProfile
 from app.services.agent import run_recommendation_agent
-from app.store import SQLiteStore
+from app.store import DemoStore, SQLiteStore
 
 
 def sample_profile() -> ApplicantProfile:
@@ -82,3 +82,31 @@ def test_sqlite_password_reset_is_single_use_and_revokes_sessions(tmp_path) -> N
     store.reset_password(reset_token, "after1234")
     assert store.user_for_token(session) is None
     assert store.login("reset@example.com", "after1234")[1].email == "reset@example.com"
+
+
+def test_choice_save_atomically_preserves_one_primary_in_memory() -> None:
+    store = DemoStore()
+    now = datetime.now(UTC)
+    for slug in ["program-a", "program-b", "program-c"]:
+        store.save_choice("user-1", ApplicationChoice(
+            run_id="run-1", program_slug=slug, status="applying", is_primary=True, updated_at=now,
+        ))
+
+    choices = store.list_choices("user-1", "run-1")
+    assert [choice.program_slug for choice in choices if choice.is_primary] == ["program-c"]
+
+
+def test_choice_save_atomically_preserves_one_primary_in_sqlite(tmp_path) -> None:
+    store = SQLiteStore(str(tmp_path / "offerpilot.db"))
+    _, verification = store.register("portfolio@example.com", "demo1234", "Portfolio")
+    user = store.verify_email(verification)
+    now = datetime.now(UTC)
+    store.save_choice(user.id, ApplicationChoice(
+        run_id="run-1", program_slug="program-a", status="applying", is_primary=True, updated_at=now,
+    ))
+    store.save_choice(user.id, ApplicationChoice(
+        run_id="run-1", program_slug="program-b", status="applying", is_primary=True, updated_at=now,
+    ))
+
+    choices = store.list_choices(user.id, "run-1")
+    assert [choice.program_slug for choice in choices if choice.is_primary] == ["program-b"]

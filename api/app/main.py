@@ -170,9 +170,6 @@ def execute_advisor_actions(
                 continue
             if is_primary:
                 status = "applying"
-                for choice in store.list_choices(user_id, result.run_id):
-                    if choice.is_primary and choice.program_slug != slug:
-                        store.save_choice(user_id, choice.model_copy(update={"is_primary": False, "updated_at": datetime.now(UTC)}))
             existing = store.get_choice(user_id, result.run_id, slug)
             store.save_choice(user_id, ApplicationChoice(
                 run_id=result.run_id,
@@ -701,10 +698,6 @@ def update_portfolio_choice(
         raise HTTPException(status_code=422, detail="截止日期来源必须是有效网页地址")
     status = "applying" if payload.is_primary else payload.status
     now = datetime.now(UTC)
-    if payload.is_primary:
-        for existing in store.list_choices(user.id, run_id):
-            if existing.is_primary and existing.program_slug != program_slug:
-                store.save_choice(user.id, existing.model_copy(update={"is_primary": False, "updated_at": now}))
     choice = ApplicationChoice(
         run_id=run_id, program_slug=program_slug, status=status,
         is_primary=payload.is_primary and status == "applying",

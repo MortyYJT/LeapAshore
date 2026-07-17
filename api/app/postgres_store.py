@@ -270,7 +270,32 @@ class PostgresStore:
         return self._get_entity(user_id, "recommendation_result", run_id, AgentRecommendationResponse)
 
     def save_choice(self, user_id: str, choice: ApplicationChoice) -> ApplicationChoice:
-        self._save_entity(user_id, "application_choice", f"{choice.run_id}:{choice.program_slug}", choice)
+        from psycopg.types.json import Jsonb
+
+        now = datetime.now(UTC)
+        entity_id = f"{choice.run_id}:{choice.program_slug}"
+        with self._lock, self._connection.transaction(), self._connection.cursor() as cursor:
+            # The advisory lock makes the one-primary invariant hold across API instances.
+            cursor.execute(
+                "SELECT pg_advisory_xact_lock(hashtextextended(%s, 0))",
+                (f"{user_id}:{choice.run_id}",),
+            )
+            if choice.is_primary:
+                cursor.execute(
+                    """UPDATE entities
+                    SET payload = jsonb_set(payload, '{is_primary}', 'false'::jsonb), updated_at = %s
+                    WHERE user_id = %s AND kind = 'application_choice'
+                      AND payload->>'run_id' = %s AND payload->>'is_primary' = 'true'
+                      AND entity_id <> %s""",
+                    (now, user_id, choice.run_id, entity_id),
+                )
+            cursor.execute(
+                """INSERT INTO entities (user_id, kind, entity_id, payload, created_at, updated_at)
+                VALUES (%s, 'application_choice', %s, %s, %s, %s)
+                ON CONFLICT (user_id, kind, entity_id) DO UPDATE
+                SET payload = EXCLUDED.payload, updated_at = EXCLUDED.updated_at""",
+                (user_id, entity_id, Jsonb(choice.model_dump(mode="json")), now, now),
+            )
         return choice
 
     def list_choices(self, user_id: str, run_id: str | None = None) -> list[ApplicationChoice]:
