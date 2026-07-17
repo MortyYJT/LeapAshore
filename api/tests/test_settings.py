@@ -38,6 +38,7 @@ def test_production_deepseek_requires_a_server_side_key(monkeypatch) -> None:
         "APP_ENV": "production", "DATABASE_URL": "postgresql://example", "SMTP_HOST": "smtp.example.com",
         "SMTP_FROM": "no-reply@example.com", "APP_URL": "https://beta.example.com",
         "ADMIN_EMAILS": "owner@example.com", "CORS_ORIGINS": "https://beta.example.com", "LLM_PROVIDER": "deepseek",
+        "TRUST_PROXY_HEADERS": "true",
     }
     for name, value in values.items():
         monkeypatch.setenv(name, value)
@@ -47,3 +48,17 @@ def test_production_deepseek_requires_a_server_side_key(monkeypatch) -> None:
 
     monkeypatch.setenv("DEEPSEEK_API_KEY", "server-only")
     validate_runtime_configuration()
+
+
+def test_production_requires_the_configured_gateway_boundary(monkeypatch) -> None:
+    values = {
+        "APP_ENV": "production", "DATABASE_URL": "postgresql://example", "SMTP_HOST": "smtp.example.com",
+        "SMTP_FROM": "no-reply@example.com", "APP_URL": "https://beta.example.com",
+        "ADMIN_EMAILS": "owner@example.com", "CORS_ORIGINS": "https://beta.example.com",
+        "LLM_PROVIDER": "deterministic", "TRUST_PROXY_HEADERS": "false",
+    }
+    for name, value in values.items():
+        monkeypatch.setenv(name, value)
+
+    with pytest.raises(RuntimeError, match="TRUST_PROXY_HEADERS"):
+        validate_runtime_configuration()

@@ -11,7 +11,10 @@
     }
 
     handle_path /api/* {
-        reverse_proxy api:8000
+        reverse_proxy api:8000 {
+            # Overwrite instead of forwarding a possibly forged client header.
+            header_up X-Forwarded-For {remote_host}
+        }
     }
 
     handle {

@@ -18,6 +18,22 @@ from starlette.responses import Response
 logger = logging.getLogger("offerpilot.request")
 
 
+def env_enabled(name: str, default: bool = False) -> bool:
+    value = os.getenv(name)
+    if value is None:
+        return default
+    return value.strip().lower() in {"1", "true", "yes", "on"}
+
+
+def client_ip(request: Request) -> str:
+    """Resolve an address without trusting client-controlled proxy headers by default."""
+    direct = request.client.host if request.client else "unknown"
+    if not env_enabled("TRUST_PROXY_HEADERS"):
+        return direct
+    forwarded = request.headers.get("x-forwarded-for", "").split(",", 1)[0].strip()
+    return forwarded or direct
+
+
 class SecurityHeadersMiddleware(BaseHTTPMiddleware):
     async def dispatch(self, request: Request, call_next: RequestResponseEndpoint) -> Response:
         request_id = request.headers.get("x-request-id", f"req_{uuid4().hex[:16]}")[:80]
@@ -59,8 +75,7 @@ class RateLimitMiddleware(BaseHTTPMiddleware):
         limit = int(os.getenv("RATE_LIMIT_PER_MINUTE", "120"))
         if request.url.path.startswith("/auth/"):
             limit = int(os.getenv("AUTH_RATE_LIMIT_PER_MINUTE", "10"))
-        forwarded = request.headers.get("x-forwarded-for", "").split(",", 1)[0].strip()
-        client = forwarded or (request.client.host if request.client else "unknown")
+        client = client_ip(request)
         key = f"{client}:{request.url.path.split('/', 2)[:2]}"
         now = datetime.now(UTC)
         with self._lock:
@@ -74,4 +89,27 @@ class RateLimitMiddleware(BaseHTTPMiddleware):
                     headers={"Retry-After": "60"},
                 )
             bucket.append(now)
+        return await call_next(request)
+
+
+class OriginGuardMiddleware(BaseHTTPMiddleware):
+    """Reject cross-site mutations that rely on the browser session cookie."""
+
+    async def dispatch(self, request: Request, call_next: RequestResponseEndpoint) -> Response:
+        if request.method in {"GET", "HEAD", "OPTIONS"}:
+            return await call_next(request)
+        if "offerpilot_session" not in request.cookies or request.headers.get("authorization"):
+            return await call_next(request)
+        origin = request.headers.get("origin")
+        if not origin:
+            # Native clients and same-origin requests may not send Origin. SameSite=Lax
+            # remains the browser baseline when the header is absent.
+            return await call_next(request)
+        allowed = {
+            item.strip().rstrip("/")
+            for item in os.getenv("CORS_ORIGINS", "http://localhost:3000").split(",")
+            if item.strip()
+        }
+        if origin.rstrip("/") not in allowed:
+            return JSONResponse({"detail": "请求来源未被允许"}, status_code=403)
         return await call_next(request)

@@ -60,7 +60,7 @@ from .models import (
     University,
 )
 from .mailer import EmailDeliveryError, send_password_reset_email, send_verification_email
-from .middleware import RateLimitMiddleware, SecurityHeadersMiddleware
+from .middleware import OriginGuardMiddleware, RateLimitMiddleware, SecurityHeadersMiddleware
 from .observability import configure_error_reporting
 from .program_data import PROGRAMS
 from .taxonomy import DEGREE_LEVELS, STUDY_AREAS, DegreeLevel, StudyArea
@@ -213,6 +213,7 @@ app = FastAPI(
 
 app.add_middleware(SecurityHeadersMiddleware)
 app.add_middleware(RateLimitMiddleware)
+app.add_middleware(OriginGuardMiddleware)
 
 app.add_middleware(
     CORSMiddleware,

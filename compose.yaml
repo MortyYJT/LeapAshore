@@ -69,6 +69,7 @@ services:
       ADMIN_EMAILS: ${ADMIN_EMAILS:-admin@offerpilot.local}
       AUTH_RATE_LIMIT_PER_MINUTE: 20
       RATE_LIMIT_PER_MINUTE: 120
+      TRUST_PROXY_HEADERS: "true"
     depends_on:
       postgres:
         condition: service_healthy
