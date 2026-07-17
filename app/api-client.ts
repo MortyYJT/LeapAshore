@@ -166,11 +166,68 @@ export type TranscriptAnalysis = {
   program_matches: { program_slug: string; program_name: string; matched: string[]; missing: string[]; status: string }[];
 };
 
+export type ApiProgramSource = {
+  id: string;
+  title: string;
+  url: string;
+  excerpt: string;
+  verified_at: string;
+};
+
+export type ApiProgram = {
+  slug: string;
+  university: string;
+  name: string;
+  city: string;
+  degree_level: string;
+  field: string;
+  minimum_mark?: number | null;
+  non_211_minimum_mark?: number | null;
+  requires_cognate: boolean;
+  prerequisites: string[];
+  english_requirement: string;
+  duration: string;
+  requires_supervisor: boolean;
+  research_proposal_required: boolean;
+  verification_status: "已核验" | "待复核";
+  source: ApiProgramSource;
+};
+
+export type ApiProgramRecommendation = {
+  program: ApiProgram;
+  tier: "冲刺" | "匹配" | "稳妥" | "暂不推荐";
+  eligibility: "满足基础门槛" | "需要人工核验" | "存在门槛缺口";
+  match_score: number;
+  reasons: string[];
+  risks: string[];
+  next_action: string;
+  citations: ApiProgramSource[];
+};
+
 export type ApiAgentRun = {
   run_id: string;
   workflow_version: string;
   agent_mode: "deterministic-demo" | "llm-assisted";
   summary: string;
+  missing_information: string[];
+  tool_trace: Array<{
+    step: number;
+    tool: string;
+    status: "completed" | "needs_input" | "failed" | "skipped";
+    summary: string;
+    evidence_ids: string[];
+  }>;
+  catalog_options: Array<{
+    university_slug: string;
+    university: string;
+    city: string;
+    degree_level: string;
+    field: string;
+    catalog_url: string;
+    source_title: string;
+    status: string;
+  }>;
+  recommendations: ApiProgramRecommendation[];
 };
 
 // Same-origin is the production default; Sites gracefully falls back when /api is absent.
@@ -273,6 +330,12 @@ export async function saveProfile(token: string, profile: Record<string, unknown
 export async function createAgentRun(token: string): Promise<ApiAgentRun> {
   return request<ApiAgentRun>("/me/recommendation-runs", {
     method: "POST",
+    headers: { Authorization: `Bearer ${token}` },
+  });
+}
+
+export async function fetchAgentRun(token: string, runId: string): Promise<ApiAgentRun> {
+  return request<ApiAgentRun>(`/me/recommendation-runs/${runId}`, {
     headers: { Authorization: `Bearer ${token}` },
   });
 }

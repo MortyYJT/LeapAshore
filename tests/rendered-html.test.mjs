@@ -57,11 +57,13 @@ test("connects application portfolio and roadmap product flows", async () => {
 
 test("keeps program-level sources, agent tools, and disclaimers in source", async () => {
   const page = await readFile(new URL("../app/page.tsx", import.meta.url), "utf8");
+  const programData = await readFile(new URL("../api/app/program_data.py", import.meta.url), "utf8");
+  const agent = await readFile(new URL("../api/app/services/agent.py", import.meta.url), "utf8");
   const programSlugs = ["unsw-master-it", "usyd-master-cs", "monash-master-ai", "monash-master-cs", "uq-master-data-science", "uwa-master-it"];
   const tools = ["normalize_gpa", "retrieve_programs", "check_hard_constraints", "rank_portfolio", "validate_citations"];
 
-  for (const slug of programSlugs) assert.match(page, new RegExp(`slug: \\\"${slug}\\\"`));
-  for (const tool of tools) assert.match(page, new RegExp(tool));
+  for (const slug of programSlugs) assert.match(programData, new RegExp(`slug=\\\"${slug}\\\"`));
+  for (const tool of tools) assert.match(page + agent, new RegExp(tool));
   assert.match(page, /匹配分/);
   assert.match(page, /不是录取概率/);
   assert.doesNotMatch(page, /FastAPI connected|Demo fallback|grounded agent report/);

@@ -6,10 +6,13 @@ import {
   AdvisorThread,
   AIConsent,
   AdminStats,
+  ApiAgentRun,
   ApiActionItem,
   ApplicationChoice,
   ApplicationRoadmap,
   ApiHistoryItem,
+  ApiProgram,
+  ApiProgramRecommendation,
   ApiUser,
   FeedbackItem,
   ProgramSourceStatus,
@@ -24,6 +27,7 @@ import {
   fetchAdminStats,
   fetchAdminUsers,
   fetchAdminProgramSources,
+  fetchAgentRun,
   fetchAIConsent,
   fetchCurrentUser,
   fetchHistory,
@@ -86,56 +90,7 @@ const officialCatalogs = [
   ["西澳大学", "https://www.uwa.edu.au/study/courses"],
   ["阿德莱德大学", "https://adelaideuni.edu.au/study/degrees"],
 ] as const;
-
-type Source = {
-  id: string;
-  title: string;
-  url: string;
-  excerpt: string;
-};
-
-type Program = {
-  slug: string;
-  short: string;
-  university: string;
-  name: string;
-  city: string;
-  accent: string;
-  minimumMark: number;
-  non211MinimumMark?: number;
-  requiresCognate: boolean;
-  prerequisites: string[];
-  english: string;
-  duration: string;
-  source: Source;
-};
-
-const programs: Program[] = [
-  {
-    slug: "unsw-master-it", short: "UNSW", university: "新南威尔士大学", name: "Master of Information Technology", city: "悉尼", accent: "#D7A900", minimumMark: 65, non211MinimumMark: 70, requiresCognate: false, prerequisites: [], english: "按 UNSW 英语要求核验", duration: "2 年",
-    source: { id: "UNSW-MIT-2026", title: "UNSW Master of Information Technology", url: "https://www.unsw.edu.au/study/postgraduate/master-of-information-technology?studentType=International", excerpt: "相关背景通常要求 65% 均分；非 211 中国院校通常要求 70%，非相关背景可走衔接路径。" },
-  },
-  {
-    slug: "usyd-master-cs", short: "USYD", university: "悉尼大学", name: "Master of Computer Science", city: "悉尼", accent: "#C73B2C", minimumMark: 65, requiresCognate: false, prerequisites: [], english: "按悉尼大学英语要求核验", duration: "2 年",
-    source: { id: "USYD-MCS-2026", title: "University of Sydney Master of Computer Science", url: "https://www.sydney.edu.au/content/courses/courses/pc/master-of-computer-science.html", excerpt: "申请人需具有任意学科本科学位并达到 credit average（65%）或同等水平。" },
-  },
-  {
-    slug: "monash-master-ai", short: "MON", university: "蒙纳士大学", name: "Master of Artificial Intelligence", city: "墨尔本", accent: "#1769AA", minimumMark: 60, requiresCognate: false, prerequisites: [], english: "需满足 Monash 英语要求", duration: "1.5–2 年",
-    source: { id: "MONASH-MAI-2026", title: "Monash Master of Artificial Intelligence", url: "https://www.monash.edu/study/courses/find-a-course/artificial-intelligence-c6007", excerpt: "2 年路径接受非 IT 本科，通常要求 60% 均分；相关背景可能满足 1.5 年路径。" },
-  },
-  {
-    slug: "monash-master-cs", short: "MON", university: "蒙纳士大学", name: "Master of Computer Science", city: "墨尔本", accent: "#1769AA", minimumMark: 60, requiresCognate: true, prerequisites: ["编程", "算法或数据结构"], english: "需满足 Monash 英语要求", duration: "1.5–2 年",
-    source: { id: "MONASH-MCS-2026", title: "Monash Master of Computer Science", url: "https://www.monash.edu/study/courses/find-a-course/computer-science-c6008", excerpt: "不同入学路径取决于既往计算机学习背景，课程页列出对应资格要求。" },
-  },
-  {
-    slug: "uq-master-data-science", short: "UQ", university: "昆士兰大学", name: "Master of Data Science", city: "布里斯班", accent: "#51247A", minimumMark: 71.4, requiresCognate: true, prerequisites: ["微积分或高等数学", "线性代数与统计，或编程与数据库"], english: "IELTS 6.5，单项不低于 6.0", duration: "1.5–2 年",
-    source: { id: "UQ-MDS-2027", title: "UQ Master of Data Science", url: "https://study.uq.edu.au/study-options/programs/master-data-science-5660", excerpt: "通常要求 UQ 7 分制 GPA 5.0，并满足相关学科或指定数学、统计及计算机课程要求。" },
-  },
-  {
-    slug: "uwa-master-it", short: "UWA", university: "西澳大学", name: "Master of Information Technology", city: "珀斯", accent: "#12355B", minimumMark: 65, requiresCognate: false, prerequisites: ["Mathematics Methods ATAR 或同等数学基础"], english: "IELTS 6.5，单项不低于 6.0", duration: "1.5–2 年",
-    source: { id: "UWA-MIT-2026", title: "UWA Master of Information Technology", url: "https://www.uwa.edu.au/study/courses/master-of-information-technology", excerpt: "通常要求受认可本科学位、至少 65% UWA 等值均分，并具备规定的数学基础。" },
-  },
-];
+const verifiedProgramUniversities = ["UNSW", "USYD", "MON", "UQ", "UWA"] as const;
 
 const agentSteps = [
   { tool: "normalize_gpa", label: "换算学术成绩", detail: "统一不同学校和满分制的成绩口径" },
@@ -183,32 +138,20 @@ function profileToApi(profile: Profile): Record<string, unknown> {
   };
 }
 
-function normalizeGpa(profile: Profile): number {
-  return Math.min(100, Math.round(((Number(profile.gpa) || 0) / (Number(profile.gpaScale) || 100)) * 100));
-}
+const universityPresentation: Record<string, { short: string; accent: string }> = {
+  "新南威尔士大学": { short: "UNSW", accent: "#D7A900" },
+  "悉尼大学": { short: "USYD", accent: "#C73B2C" },
+  "蒙纳士大学": { short: "MON", accent: "#1769AA" },
+  "昆士兰大学": { short: "UQ", accent: "#51247A" },
+  "西澳大学": { short: "UWA", accent: "#12355B" },
+};
 
-function isCognate(major: string): boolean {
-  return ["计算机", "软件", "信息", "数据", "人工智能", "网络", "电子", "自动化"].some((keyword) => major.includes(keyword));
+function presentationFor(program: ApiProgram) {
+  return universityPresentation[program.university] ?? {
+    short: program.university.slice(0, 2),
+    accent: "#315E52",
+  };
 }
-
-function getProgramRecommendation(program: Program, profile: Profile) {
-  // Hard admission constraints remain deterministic even though the UI is user-facing.
-  const gpa = normalizeGpa(profile);
-  const threshold = profile.schoolTier === "双非" && program.non211MinimumMark ? program.non211MinimumMark : program.minimumMark;
-  const cognate = isCognate(profile.major);
-  const blocked = program.requiresCognate && !cognate;
-  const gap = gpa - threshold;
-  const tier: Tier = blocked ? "暂不推荐" : gap >= 12 ? "稳妥" : gap >= 4 ? "匹配" : gap >= -3 ? "冲刺" : "暂不推荐";
-  const score = blocked ? Math.max(45, Math.min(72, Math.round(62 + gap / 2))) : Math.max(50, Math.min(96, Math.round(78 + gap)));
-  const eligibility = blocked ? "存在门槛缺口" : gap >= 0 ? "满足基础门槛" : "需要人工核验";
-  const risks = [
-    ...(program.prerequisites.length ? [`需结合成绩单确认：${program.prerequisites.join("、")}`] : []),
-    ...(!profile.english ? ["尚未填写语言成绩"] : []),
-  ];
-  return { tier, score, threshold, cognate, eligibility, risks };
-}
-
-const tierOrder: Record<Tier, number> = { 匹配: 0, 稳妥: 1, 冲刺: 2, 暂不推荐: 3 };
 
 const navItems: { section: NavSection; label: string }[] = [
   { section: "landing", label: "主界面" },
@@ -242,12 +185,13 @@ export default function Home() {
   const [resetToken, setResetToken] = useState("");
   const [currentUser, setCurrentUser] = useState<ApiUser | null>(null);
   const [error, setError] = useState("");
-  const [selected, setSelected] = useState<Program | null>(null);
+  const [selected, setSelected] = useState<ApiProgramRecommendation | null>(null);
   const [tierFilter, setTierFilter] = useState<"全部" | Tier>("全部");
   const [completedSteps, setCompletedSteps] = useState(0);
   const [token, setToken] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [runSummary, setRunSummary] = useState("已完成项目要求对照，并根据你的背景生成申请组合。");
+  const [agentRun, setAgentRun] = useState<ApiAgentRun | null>(null);
   const [activeRunId, setActiveRunId] = useState<string | null>(null);
   const [portfolio, setPortfolio] = useState<ApplicationChoice[]>([]);
   const [roadmap, setRoadmap] = useState<ApplicationRoadmap | null>(null);
@@ -270,12 +214,7 @@ export default function Home() {
   const [adminSources, setAdminSources] = useState<ProgramSourceStatus[]>([]);
   const [deletePassword, setDeletePassword] = useState("");
 
-  const results = useMemo(
-    () => profile.targetDegree === "授课型硕士" && profile.target === "计算机与数据"
-      ? programs.map((program) => ({ program, ...getProgramRecommendation(program, profile) })).sort((a, b) => tierOrder[a.tier] - tierOrder[b.tier] || b.score - a.score)
-      : [],
-    [profile],
-  );
+  const results = agentRun?.recommendations ?? [];
   const filteredResults = results.filter((item) => tierFilter === "全部" || item.tier === tierFilter);
   const portfolioBySlug = useMemo(() => new Map(portfolio.map((choice) => [choice.program_slug, choice])), [portfolio]);
   const applyingChoices = portfolio.filter((choice) => choice.status === "applying");
@@ -333,11 +272,16 @@ export default function Home() {
       setCompletedSteps(current);
       if (current === agentSteps.length) {
         window.clearInterval(interval);
-        window.setTimeout(() => setView("results"), 700);
       }
     }, 520);
     return () => window.clearInterval(interval);
   }, [view]);
+
+  useEffect(() => {
+    if (view !== "agent" || completedSteps !== agentSteps.length || !agentRun) return;
+    const timeout = window.setTimeout(() => setView("results"), 400);
+    return () => window.clearTimeout(timeout);
+  }, [view, completedSteps, agentRun]);
 
   useEffect(() => {
     if (view !== "advisor" || !token || advisorThread) return;
@@ -528,6 +472,7 @@ export default function Home() {
     }
     setError("");
     setCompletedSteps(0);
+    setAgentRun(null);
     setView("agent");
     void executeAgentRun();
   }
@@ -538,6 +483,7 @@ export default function Home() {
       try {
         await saveProfile(token, backendProfile);
         const run = await createAgentRun(token);
+        setAgentRun(run);
         setActiveRunId(run.run_id);
         setRunSummary(run.summary);
         const [nextPortfolio, nextRoadmap] = await Promise.all([
@@ -547,28 +493,18 @@ export default function Home() {
         setRoadmap(nextRoadmap);
         setHistory(await fetchHistory(token));
         return;
-      } catch {
+      } catch (reason) {
+        setError(reason instanceof Error ? reason.message : "生成选校方案失败，请稍后重试");
+        setView("profile");
+        return;
       }
     }
-    const localRunId = `run_demo_${normalizeGpa(profile)}_${history.length + 1}`;
-    setActiveRunId(localRunId);
-    const localSummary = results.length
-      ? `已完成 ${results.length} 个${profile.targetDegree}项目的申请要求对照，并生成建议组合。`
-      : `已接入${profile.targetDegree} · ${profile.target}的官方目录入口；课程级要求仍在核验中，暂不生成录取分档。`;
-    setRunSummary(localSummary);
-    setHistory((items) => [{
-      run_id: localRunId,
-      created_at: new Date().toISOString(),
-      workflow_version: "agent-0.4.0",
-      target_field: profile.target,
-      intake: profile.intake,
-      recommendation_count: results.length,
-      summary: localSummary,
-    }, ...items]);
+    setError("登录状态已失效，请重新登录后生成方案");
+    setView("login");
   }
 
-  function openProgram(program: Program) {
-    setSelected(program);
+  function openProgram(recommendation: ApiProgramRecommendation) {
+    setSelected(recommendation);
     setView("program");
   }
 
@@ -622,7 +558,10 @@ export default function Home() {
     setRunSummary(item.summary);
     setActiveRunId(item.run_id);
     if (token) {
-      const [choices, nextRoadmap] = await Promise.all([fetchPortfolio(token, item.run_id), fetchRoadmap(token, item.run_id)]);
+      const [run, choices, nextRoadmap] = await Promise.all([
+        fetchAgentRun(token, item.run_id), fetchPortfolio(token, item.run_id), fetchRoadmap(token, item.run_id),
+      ]);
+      setAgentRun(run);
       setPortfolio(choices);
       setRoadmap(nextRoadmap);
     }
@@ -746,7 +685,7 @@ export default function Home() {
             </div>
             <div className="floating-note note-one"><span>✓</span> 学术背景已评估</div><div className="floating-note note-two"><span>8</span> 所学校目录已接入</div>
           </div>
-          <div className="go8-strip"><span>首批已核验项目</span>{programs.map((program) => <b key={program.slug}>{program.short}</b>)}</div>
+          <div className="go8-strip"><span>首批已核验项目</span>{verifiedProgramUniversities.map((university) => <b key={university}>{university}</b>)}</div>
         </section>
       )}
 
@@ -848,25 +787,34 @@ export default function Home() {
           <div className="insight-banner"><div className="insight-score"><strong>{results.filter((item) => item.eligibility === "满足基础门槛").length}</strong><span>达到公开基线</span></div><div><p className="step-kicker">方案摘要</p><h3>{runSummary.replace("Agent ", "")}</h3><p>优先确认匹配项目；涉及专业背景和先修课程的项目仍需结合正式成绩单判断。</p></div><div className="legend"><span><i className="match" />匹配</span><span><i className="reach" />冲刺</span><span><i className="safe" />稳妥</span></div></div>
           <div className="evidence-overview"><div><span>项目范围</span><strong>{results.length}</strong><small>已核验具体项目</small></div><div><span>推荐组合</span><strong>{results.filter((item) => item.tier !== "暂不推荐").length}</strong><small>值得继续评估</small></div><div><span>语言状态</span><strong>{profile.english ? "已填写" : "待补充"}</strong><small>{profile.english || "补充总分与单项"}</small></div><div><span>资料完整度</span><strong>{Math.round(readiness)}%</strong><small>{readiness >= 85 ? "可进入选校阶段" : "仍有信息需要补充"}</small></div></div>
           <div className="portfolio-summary">
-            <div><span>当前申请组合</span><strong>{applyingChoices.length} 个确定申请</strong><small>{primaryChoice ? `首选：${programs.find((item) => item.slug === primaryChoice.program_slug)?.university ?? primaryChoice.program_slug}` : "还没有设置首选项目"}</small></div>
+            <div><span>当前申请组合</span><strong>{applyingChoices.length} 个确定申请</strong><small>{primaryChoice ? `首选：${results.find((item) => item.program.slug === primaryChoice.program_slug)?.program.university ?? primaryChoice.program_slug}` : "还没有设置首选项目"}</small></div>
             <p>先把项目放入“确定申请”，再选一个首选。它们会自动生成到行动路线图的学校分支中。</p>
             <button className="outline-button" onClick={() => setView("plan")}>打开路线图 →</button>
           </div>
           <div className="result-toolbar"><div>{(["全部", "匹配", "冲刺", "稳妥", "暂不推荐"] as const).map((tier) => <button key={tier} className={tierFilter === tier ? "active" : ""} onClick={() => setTierFilter(tier)}>{tier}</button>)}</div><span>点击项目查看具体要求和下一步准备</span></div>
-          <div className="result-list">{filteredResults.map(({ program, tier, score, eligibility, risks }) => (
-            <article className="result-card program-result-card" key={program.slug} role="button" tabIndex={0} onClick={() => openProgram(program)} onKeyDown={(event) => { if (event.key === "Enter") openProgram(program); }}>
-              <div className="uni-monogram" style={{ background: program.accent }}>{program.short.slice(0, 2)}</div>
+          <div className="result-list">{filteredResults.map((recommendation) => {
+            const { program, tier, eligibility, risks } = recommendation;
+            const presentation = presentationFor(program);
+            return (
+            <article className="result-card program-result-card" key={program.slug} role="button" tabIndex={0} onClick={() => openProgram(recommendation)} onKeyDown={(event) => { if (event.key === "Enter") openProgram(recommendation); }}>
+              <div className="uni-monogram" style={{ background: presentation.accent }}>{presentation.short.slice(0, 2)}</div>
               <div className="uni-main"><div className="uni-title"><div><h3>{program.name}</h3><p>{program.university} · {program.city} · {program.duration}</p></div><span className={`tier tier-${tier}`}>{tier}</span></div><p className="uni-note">{program.source.excerpt}</p><div className="reason-row"><span>✓ {eligibility}</span><span>{profile.cityPreference.includes(program.city) ? "✓ 符合城市偏好" : "○ 城市偏好待权衡"}</span><span className={risks.length ? "warning" : ""}>{risks.length ? `! ${risks[0]}` : "✓ 暂无明显材料缺口"}</span></div><a className="citation-chip" href={program.source.url} target="_blank" rel="noreferrer" onClick={(event) => event.stopPropagation()}>查看项目官方要求 ↗</a><PortfolioControls choice={choiceFor(program.slug)} onChange={(payload) => changePortfolioChoice(program.slug, payload)} /></div>
-              <div className="match-score"><strong>{score}</strong><span>综合匹配度</span><button aria-label={`查看 ${program.name} 详情`}>→</button></div>
+              <div className="match-score"><strong>{recommendation.match_score}</strong><span>综合匹配度</span><button aria-label={`查看 ${program.name} 详情`}>→</button></div>
             </article>
-          ))}{filteredResults.length === 0 && <div className="empty-state"><strong>这个方向已接入官方课程目录</strong><p>目前还没有完成课程级要求核验，因此不会生成可能误导你的录取分档。你可以先浏览八大官方目录，或让 AI 顾问帮你整理需要核验的学校与材料。</p><div className="reason-row">{officialCatalogs.map(([name, url]) => <a className="citation-chip" href={url} target="_blank" rel="noreferrer" key={name}>{name}课程目录 ↗</a>)}</div><button className="primary-button" onClick={() => setView("advisor")}>咨询 AI 申请顾问</button></div>}</div>
+          );})}{filteredResults.length === 0 && <div className="empty-state"><strong>这个方向已接入官方课程目录</strong><p>目前还没有完成课程级要求核验，因此不会生成可能误导你的录取分档。你可以先浏览八大官方目录，或让 AI 顾问帮你整理需要核验的学校与材料。</p><div className="reason-row">{officialCatalogs.map(([name, url]) => <a className="citation-chip" href={url} target="_blank" rel="noreferrer" key={name}>{name}课程目录 ↗</a>)}</div><button className="primary-button" onClick={() => setView("advisor")}>咨询 AI 申请顾问</button></div>}</div>
           <p className="data-disclaimer">匹配分不是录取概率；最低门槛、名额和课程信息可能变化，最终以项目官网及学校正式审核为准。</p>
         </section>
       )}
 
       {view === "program" && selected && (() => {
-        const recommendation = getProgramRecommendation(selected, profile);
-        return <section className="school-page"><button className="back-button" onClick={() => setView("results")}>← 返回选校方案</button><div className="school-hero"><div className="uni-monogram large" style={{ background: selected.accent }}>{selected.short.slice(0, 2)}</div><div><p>{selected.university} · {selected.city}</p><h1>{selected.name}</h1><span className={`tier tier-${recommendation.tier}`}>{recommendation.tier}</span></div><a href={selected.source.url} target="_blank" rel="noreferrer" className="outline-button">查看项目官网 ↗</a></div><div className="school-grid"><article className="analysis-card primary-analysis"><p className="step-kicker">申请要求对照</p><h2>为什么归入“{recommendation.tier}”？</h2><div className="big-score"><strong>{recommendation.score}</strong><span>/ 100 综合匹配度</span></div><ul><li><span>01</span><div><strong>学术成绩</strong><p>你的成绩换算为 {normalizeGpa(profile)}/100；当前项目公开成绩基线按 {recommendation.threshold}% 评估。</p></div></li><li><span>02</span><div><strong>专业背景</strong><p>你的“{profile.major}”背景初步判断为{recommendation.cognate ? "相关" : "非相关或需要进一步确认"}；正式结果需要结合完整成绩单。</p></div></li><li><span>03</span><div><strong>核心课程</strong><p>{selected.prerequisites.length ? `重点确认：${selected.prerequisites.join("、")}。你填写的课程包括：${profile.coursework || "尚未填写"}。` : "项目页面暂未列出明确的专业先修课程限制。"}</p></div></li><li><span>04</span><div><strong>英语要求</strong><p>{selected.english}；你的当前情况：{profile.english || "尚未填写语言成绩"}。</p></div></li></ul></article><aside><article className="analysis-card application-choice-card"><p className="step-kicker">申请决策</p><h3>把项目放进申请组合</h3><PortfolioControls choice={choiceFor(selected.slug)} showDeadline onChange={(payload) => changePortfolioChoice(selected.slug, payload)} /></article><article className="analysis-card"><p className="step-kicker">申请前确认</p><h3>这个项目还需要</h3><ol className="checklist"><li><span>1</span>确认成绩换算口径</li><li><span>2</span>逐项核对成绩单课程</li><li><span>3</span>确认语言总分与单项</li><li><span>4</span>查看当前开放轮次与截止日期</li></ol></article><article className="source-card"><span>项目要求来源</span><p>{selected.source.excerpt}</p><a href={selected.source.url} target="_blank" rel="noreferrer">{selected.source.title} ↗</a><small>信息更新：2026-07-14 · 请以官网最新说明为准</small></article></aside></div></section>;
+        const program = selected.program;
+        const presentation = presentationFor(program);
+        const evidencePoints = [
+          ...selected.reasons.map((reason, index) => ({ title: index === 0 ? "成绩换算" : index === 1 ? "公开门槛" : "专业背景", detail: reason })),
+          { title: "核心课程", detail: program.prerequisites.length ? `重点确认：${program.prerequisites.join("、")}。` : "项目页面暂未列出明确的专业先修课程限制。" },
+          { title: "英语要求", detail: `${program.english_requirement}；你的当前情况：${profile.english || "尚未填写语言成绩"}。` },
+        ];
+        return <section className="school-page"><button className="back-button" onClick={() => setView("results")}>← 返回选校方案</button><div className="school-hero"><div className="uni-monogram large" style={{ background: presentation.accent }}>{presentation.short.slice(0, 2)}</div><div><p>{program.university} · {program.city}</p><h1>{program.name}</h1><span className={`tier tier-${selected.tier}`}>{selected.tier}</span></div><a href={program.source.url} target="_blank" rel="noreferrer" className="outline-button">查看项目官网 ↗</a></div><div className="school-grid"><article className="analysis-card primary-analysis"><p className="step-kicker">申请要求对照</p><h2>为什么归入“{selected.tier}”？</h2><div className="big-score"><strong>{selected.match_score}</strong><span>/ 100 综合匹配度</span></div><ul>{evidencePoints.map((point, index) => <li key={`${point.title}-${index}`}><span>{String(index + 1).padStart(2, "0")}</span><div><strong>{point.title}</strong><p>{point.detail}</p></div></li>)}</ul><div className="risk-panel"><strong>需要继续确认</strong>{selected.risks.map((risk) => <p key={risk}>! {risk}</p>)}</div></article><aside><article className="analysis-card application-choice-card"><p className="step-kicker">申请决策</p><h3>把项目放进申请组合</h3><PortfolioControls choice={choiceFor(program.slug)} showDeadline onChange={(payload) => changePortfolioChoice(program.slug, payload)} /></article><article className="analysis-card"><p className="step-kicker">申请前确认</p><h3>建议下一步</h3><p>{selected.next_action}</p><ol className="checklist"><li><span>1</span>确认成绩换算口径</li><li><span>2</span>逐项核对成绩单课程</li><li><span>3</span>确认语言总分与单项</li><li><span>4</span>查看当前开放轮次与截止日期</li></ol></article><article className="source-card"><span>项目要求来源</span><p>{program.source.excerpt}</p><a href={program.source.url} target="_blank" rel="noreferrer">{program.source.title} ↗</a><small>信息更新：{program.source.verified_at} · 请以官网最新说明为准</small></article></aside></div></section>;
       })()}
 
       {view === "plan" && (
