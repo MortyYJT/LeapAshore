@@ -139,7 +139,7 @@ function profileToApi(profile: Profile): Record<string, unknown> {
     coursework_summary: profile.coursework || null,
     career_goal: profile.careerGoal || null,
     location_preferences: profile.cityPreference || null,
-    annual_budget_aud: profile.annualBudget ? Number(profile.annualBudget) * 10000 : null,
+    annual_budget_cny: profile.annualBudget ? Number(profile.annualBudget) * 10000 : null,
   };
 }
 
@@ -159,7 +159,7 @@ function profileFromApi(profile: ApiApplicantProfile): Profile {
     experience: profile.experience_summary ?? "",
     careerGoal: profile.career_goal ?? "",
     cityPreference: profile.location_preferences ?? "",
-    annualBudget: profile.annual_budget_aud ? String(profile.annual_budget_aud / 10000) : "",
+    annualBudget: profile.annual_budget_cny ? String(profile.annual_budget_cny / 10000) : "",
   };
 }
 

@@ -55,7 +55,7 @@ services:
     build: ./api
     environment:
       DATABASE_URL: postgresql://offerpilot:${POSTGRES_PASSWORD:-offerpilot-local}@postgres:5432/offerpilot
-      LLM_PROVIDER: ${LLM_PROVIDER:-deepseek}
+      LLM_PROVIDER: ${LLM_PROVIDER:-deterministic}
       DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY:-}
       DEEPSEEK_BASE_URL: ${DEEPSEEK_BASE_URL:-https://api.deepseek.com}
       DEEPSEEK_MODEL: ${DEEPSEEK_MODEL:-deepseek-v4-flash}
@@ -65,6 +65,7 @@ services:
       SESSION_TTL_HOURS: 168
       CORS_ORIGINS: http://localhost:8080
       APP_ENV: development
+      EXPOSE_DEBUG_TOKENS: "true"
       APP_URL: http://localhost:8080
       ADMIN_EMAILS: ${ADMIN_EMAILS:-admin@offerpilot.local}
       AUTH_RATE_LIMIT_PER_MINUTE: 20

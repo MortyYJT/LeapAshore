@@ -56,9 +56,9 @@ flowchart LR
 
 无模型密钥时自动启用。完整执行同一组确定性工具与引用校验，顾问仍能识别常见偏好变更和任务指令。
 
-### `deepseek`（服务端默认）
+### `deepseek`（可选云端模式）
 
-部署者在服务器配置一次 `DEEPSEEK_API_KEY`，普通用户不接触 Key。首次使用云端顾问时，产品会单独征求数据处理同意；只发送脱敏档案、已核验项目事实、申请组合、路线图和最近对话，不发送姓名、邮箱、账户 ID、本科学校名称或原始成绩单。回答通过 SSE 流式返回，首 Token 超过 8 秒、总时限超过 25 秒、429、余额不足或服务异常时会明确进入确定性降级，不再隐式等待本地模型。
+当前生产模板默认使用确定性顾问，不要求 DeepSeek Key。部署者后续显式设置 `LLM_PROVIDER=deepseek` 并在服务器配置一次 `DEEPSEEK_API_KEY` 后，普通用户仍不接触 Key。首次使用云端顾问时，产品会单独征求数据处理同意；只发送脱敏档案、已核验项目事实、申请组合、路线图和最近对话，不发送姓名、邮箱、账户 ID、本科学校名称或原始成绩单。回答通过 SSE 流式返回，首 Token 超过 8 秒、总时限超过 25 秒、429、余额不足或服务异常时会明确进入确定性降级，不再隐式等待本地模型。
 
 ```env
 AGENT_MODE=llm-assisted
@@ -164,7 +164,7 @@ uvicorn app.main:app --reload
 cp .env.example .env.local
 ```
 
-前端配置 `NEXT_PUBLIC_API_URL=http://localhost:8000` 后会连接 FastAPI。连接失败时界面会明确显示 `Demo fallback`，并继续使用同规则的浏览器会话演示。
+前端配置 `NEXT_PUBLIC_API_URL=http://localhost:8000` 后会连接 FastAPI。连接失败时界面会明确报错，不会在浏览器内伪造账户、推荐或历史数据。本地 Compose 通过同域 `/api` 自动连接，无需手工填写这个地址。
 
 如需在本机启用真实小模型，安装 Ollama 后执行：
 
@@ -321,7 +321,7 @@ DEEPSEEK_API_KEY=... LLM_PROVIDER=deepseek PYTHONPATH=. .venv/bin/python evals/d
 
 - 未配置 `DATABASE_PATH` 时，Profile、历史记录和行动计划使用进程内 Store；API 重启会清空。
 - 生产部署应配置 `DATABASE_URL`；SQLite 不适合作为无状态云函数的共享数据库。
-- 在线站点在 FastAPI 未单独部署时使用浏览器会话 fallback，刷新会清空。
+- 在线站点必须同时部署 FastAPI 与 PostgreSQL；纯静态预览只展示登录界面，不承诺可用的账户与选校流程。
 - 当前成绩单工具处理可复制文本；扫描版 PDF/OCR 仍需接入文件存储和视觉模型。
 - 来源模块会标记超过 30 天未核验的数据，但不会在无人审核时自动覆盖申请门槛。
 - 系统不生成“录取概率”，也不会把模型推断伪装成学校官方结论。

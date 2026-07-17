@@ -387,7 +387,7 @@ def register(payload: RegisterRequest) -> RegistrationResponse:
         ),
         user=user,
         delivery=delivery,
-        debug_token=token if os.getenv("APP_ENV", "development") != "production" else None,
+        debug_token=token if os.getenv("EXPOSE_DEBUG_TOKENS", "false").lower() in {"1", "true", "yes", "on"} else None,
     )
 
 

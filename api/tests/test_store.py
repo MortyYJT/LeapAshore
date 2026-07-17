@@ -19,6 +19,16 @@ def sample_profile() -> ApplicantProfile:
     )
 
 
+def test_profile_migrates_the_legacy_aud_named_budget_to_cny() -> None:
+    payload = sample_profile().model_dump()
+    payload.pop("annual_budget_cny")
+    profile = ApplicantProfile.model_validate({**payload, "annual_budget_aud": 450000})
+    assert profile.annual_budget_cny == 450000
+    dumped = profile.model_dump()
+    assert dumped["annual_budget_cny"] == 450000
+    assert "annual_budget_aud" not in dumped
+
+
 def test_sqlite_store_survives_adapter_restart(tmp_path) -> None:
     database_path = str(tmp_path / "offerpilot.db")
     first = SQLiteStore(database_path)

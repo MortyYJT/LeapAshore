@@ -62,7 +62,7 @@ def build_redacted_context(
         "experience_summary": profile.experience_summary,
         "career_goal": profile.career_goal,
         "location_preferences": profile.location_preferences,
-        "annual_budget_aud": profile.annual_budget_aud,
+        "annual_budget_cny": profile.annual_budget_cny,
     }
     recommendations = [] if not result else [
         {

@@ -30,7 +30,7 @@ export type ApiApplicantProfile = {
   experience_summary?: string | null;
   career_goal?: string | null;
   location_preferences?: string | null;
-  annual_budget_aud?: number | null;
+  annual_budget_cny?: number | null;
 };
 
 export type RegistrationResult = {

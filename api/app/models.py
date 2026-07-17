@@ -1,7 +1,7 @@
 from datetime import datetime
 from typing import Any, Literal
 
-from pydantic import BaseModel, Field
+from pydantic import AliasChoices, BaseModel, Field
 
 from .taxonomy import DegreeLevel, EducationLevel, StudyArea
 
@@ -21,7 +21,11 @@ class ApplicantProfile(BaseModel):
     experience_summary: str | None = None
     career_goal: str | None = None
     location_preferences: str | None = None
-    annual_budget_aud: float | None = Field(default=None, gt=0)
+    annual_budget_cny: float | None = Field(
+        default=None,
+        gt=0,
+        validation_alias=AliasChoices("annual_budget_cny", "annual_budget_aud"),
+    )
 
 
 class University(BaseModel):

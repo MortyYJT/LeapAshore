@@ -67,7 +67,7 @@ def plan_advisor_turn(context: dict[str, Any]) -> ModelResult:
         "experience_summary": {"type": ["string", "null"]},
         "career_goal": {"type": ["string", "null"]},
         "location_preferences": {"type": ["string", "null"]},
-        "annual_budget_aud": {"type": ["number", "null"]},
+        "annual_budget_cny": {"type": ["number", "null"]},
         "title": {"type": ["string", "null"]},
         "detail": {"type": ["string", "null"]},
         "category": {"enum": ["选校", "成绩单", "语言", "材料", "截止日期", "其他", None]},

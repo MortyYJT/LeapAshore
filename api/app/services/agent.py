@@ -162,7 +162,7 @@ def run_recommendation_agent(profile: ApplicantProfile) -> AgentRecommendationRe
         missing.append("相关实习、科研或项目经历")
     if not profile.career_goal:
         missing.append("毕业后的职业目标")
-    if not profile.annual_budget_aud:
+    if not profile.annual_budget_cny:
         missing.append("年度留学预算")
     if not programs:
         missing.insert(0, "该学位层次与专业方向的课程级核验数据")

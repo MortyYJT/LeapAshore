@@ -16,7 +16,7 @@ def fallback_plan(message: str, profile: ApplicantProfile) -> dict[str, Any]:
     updates: dict[str, Any] = {}
     budget = re.search(r"(?:预算|每年).*?(\d{2,3})(?:\s*万)", message)
     if budget:
-        updates["annual_budget_aud"] = float(budget.group(1)) * 10000
+        updates["annual_budget_cny"] = float(budget.group(1)) * 10000
     ielts = re.search(r"(?:ielts|雅思)(?:成绩)?(?:是|为|[:：])?\s*(\d(?:\.\d)?)", message, re.I)
     if ielts:
         updates["english_score"] = f"IELTS {ielts.group(1)}"

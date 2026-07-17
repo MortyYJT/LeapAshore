@@ -388,7 +388,7 @@ def test_advisor_conversation_updates_profile_and_reruns_recommendations() -> No
     body = reply.json()
     assert body["provider"] == "deterministic-fallback"
     assert body["profile"]["english_score"] == "IELTS 7.0"
-    assert body["profile"]["annual_budget_aud"] == 500000
+    assert body["profile"]["annual_budget_cny"] == 500000
     assert body["recommendation_run"] is not None
     assert [item["tool"] for item in body["thread"]["messages"][-1]["actions"]] == [
         "update_profile",
