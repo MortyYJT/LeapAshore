@@ -37,3 +37,11 @@ test("the streaming advisor cannot shadow the HttpOnly session with a fake cooki
   assert.match(streamSource, /credentials: "include"/);
   assert.doesNotMatch(streamSource, /headers: \{[^}]*Authorization:/s);
 });
+
+test("login restores persisted profile data and the advisor cannot overwrite it with demo defaults", () => {
+  assert.match(pageSource, /hydrateWorkspace\("cookie"\)/);
+  assert.match(pageSource, /fetchProfile\(sessionToken\)/);
+  assert.match(pageSource, /profileFromApi/);
+  assert.doesNotMatch(pageSource, /saveProfile\(token, profileToApi\(profile\)\)\s*\.then\(\(\) => createAdvisorThread/);
+  assert.doesNotMatch(pageSource, /school: "广东工业大学"/);
+});

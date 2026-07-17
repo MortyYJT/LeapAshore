@@ -6,6 +6,7 @@ import {
   AdvisorThread,
   AIConsent,
   AdminStats,
+  ApiApplicantProfile,
   ApiAgentRun,
   ApiActionItem,
   ApplicationChoice,
@@ -33,6 +34,7 @@ import {
   fetchCurrentUser,
   fetchHistory,
   fetchPortfolio,
+  fetchProfile,
   fetchRoadmap,
   fetchMyFeedback,
   loginWithAccount,
@@ -104,20 +106,20 @@ const agentSteps = [
 
 const initialProfile: Profile = {
   currentEducation: "本科",
-  school: "广东工业大学",
+  school: "",
   schoolTier: "双非",
-  major: "软件工程",
-  gpa: "82",
+  major: "",
+  gpa: "",
   gpaScale: "100",
   targetDegree: "授课型硕士",
   target: "计算机与数据",
   intake: "2027 S1",
-  english: "IELTS 6.5",
-  coursework: "高等数学、线性代数、概率统计、数据结构、算法、数据库、Python",
-  experience: "一段后端开发实习，两个 AI 应用项目",
-  careerGoal: "毕业后从事 AI 应用工程或数据工程",
-  cityPreference: "悉尼、墨尔本优先，也接受布里斯班和珀斯",
-  annualBudget: "45",
+  english: "",
+  coursework: "",
+  experience: "",
+  careerGoal: "",
+  cityPreference: "",
+  annualBudget: "",
 };
 
 function profileToApi(profile: Profile): Record<string, unknown> {
@@ -137,6 +139,26 @@ function profileToApi(profile: Profile): Record<string, unknown> {
     career_goal: profile.careerGoal || null,
     location_preferences: profile.cityPreference || null,
     annual_budget_aud: profile.annualBudget ? Number(profile.annualBudget) * 10000 : null,
+  };
+}
+
+function profileFromApi(profile: ApiApplicantProfile): Profile {
+  return {
+    currentEducation: profile.current_education_level,
+    school: profile.undergraduate_school,
+    schoolTier: profile.school_tier,
+    major: profile.undergraduate_major,
+    gpa: String(profile.gpa),
+    gpaScale: String(profile.gpa_scale),
+    targetDegree: profile.target_degree_level,
+    target: profile.target_field,
+    intake: profile.intake,
+    english: profile.english_score ?? "",
+    coursework: profile.coursework_summary ?? "",
+    experience: profile.experience_summary ?? "",
+    careerGoal: profile.career_goal ?? "",
+    cityPreference: profile.location_preferences ?? "",
+    annualBudget: profile.annual_budget_aud ? String(profile.annual_budget_aud / 10000) : "",
   };
 }
 
@@ -249,6 +271,7 @@ export default function Home() {
         setToken("cookie");
         setIsAuthenticated(true);
         setView((current) => current === "login" ? "profile" : current);
+        void hydrateWorkspace("cookie");
       })
       .catch(() => undefined);
   }, []);
@@ -297,12 +320,11 @@ export default function Home() {
         setAdvisorProvider(consent?.accepted ? "DeepSeek V4 Flash · 云端" : consent ? "规则顾问 · 云端处理已关闭" : "顾问已就绪");
       }
     }).catch(() => { if (!cancelled) setCloudConsent(null); });
-    saveProfile(token, profileToApi(profile))
-      .then(() => createAdvisorThread(token))
+    createAdvisorThread(token)
       .then((thread) => { if (!cancelled) setAdvisorThread(thread); })
-      .catch(() => { if (!cancelled) setAdvisorProvider("演示模式"); });
+      .catch(() => { if (!cancelled) setAdvisorProvider("请先保存申请档案"); });
     return () => { cancelled = true; };
-  }, [view, token, advisorThread, profile]);
+  }, [view, token, advisorThread]);
 
   async function handleLogin(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -319,6 +341,7 @@ export default function Home() {
       setToken("cookie");
       setCurrentUser(session.user);
       setIsAuthenticated(true);
+      await hydrateWorkspace("cookie");
       setView("profile");
     } catch (reason) {
       setToken(null);
@@ -399,8 +422,22 @@ export default function Home() {
     setToken(null);
     setCurrentUser(null);
     setIsAuthenticated(false);
+    setProfile(initialProfile);
+    setHistory([]);
+    setAgentRun(null);
+    setActiveRunId(null);
+    setAdvisorThread(null);
     setView("login");
     setAuthMode("login");
+  }
+
+  async function hydrateWorkspace(sessionToken: string) {
+    const [savedProfile, savedHistory] = await Promise.all([
+      fetchProfile(sessionToken).catch(() => null),
+      fetchHistory(sessionToken).catch(() => []),
+    ]);
+    if (savedProfile) setProfile(profileFromApi(savedProfile));
+    setHistory(savedHistory);
   }
 
   async function handleExportData() {
@@ -457,6 +494,10 @@ export default function Home() {
   function navigateTo(section: NavSection) {
     setError("");
     if (section === "profile") setProfileStep(1);
+    if (section === "results" && !agentRun && history[0]) {
+      void openHistoryRun(history[0]);
+      return;
+    }
     setView(isAuthenticated ? section : "login");
   }
 

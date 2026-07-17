@@ -15,6 +15,24 @@ export type ApiUser = {
 
 export type AuthSession = { access_token: string; user: ApiUser };
 
+export type ApiApplicantProfile = {
+  current_education_level: string;
+  undergraduate_school: string;
+  school_tier: string;
+  undergraduate_major: string;
+  gpa: number;
+  gpa_scale: number;
+  target_degree_level: string;
+  target_field: string;
+  intake: string;
+  english_score?: string | null;
+  coursework_summary?: string | null;
+  experience_summary?: string | null;
+  career_goal?: string | null;
+  location_preferences?: string | null;
+  annual_budget_aud?: number | null;
+};
+
 export type RegistrationResult = {
   message: string;
   user: ApiUser;
@@ -343,6 +361,12 @@ export async function saveProfile(token: string, profile: Record<string, unknown
     method: "PUT",
     headers: { Authorization: `Bearer ${token}` },
     body: JSON.stringify(profile),
+  });
+}
+
+export async function fetchProfile(token: string): Promise<ApiApplicantProfile> {
+  return request<ApiApplicantProfile>("/me/profile", {
+    headers: { Authorization: `Bearer ${token}` },
   });
 }
 
