@@ -28,3 +28,12 @@ test("the RAG product surface exposes only source-backed official knowledge", ()
   assert.match(apiClientSource, /\/me\/knowledge\/search/);
   assert.match(apiClientSource, /relevance_score/);
 });
+
+test("the streaming advisor cannot shadow the HttpOnly session with a fake cookie bearer", () => {
+  const start = apiClientSource.indexOf("export async function streamAdvisorMessage");
+  const end = apiClientSource.indexOf("export async function analyzeTranscript", start);
+  const streamSource = apiClientSource.slice(start, end);
+  assert.match(streamSource, /token !== "cookie"/);
+  assert.match(streamSource, /credentials: "include"/);
+  assert.doesNotMatch(streamSource, /headers: \{[^}]*Authorization:/s);
+});

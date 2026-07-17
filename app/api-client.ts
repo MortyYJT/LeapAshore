@@ -442,10 +442,15 @@ export async function streamAdvisorMessage(
   content: string,
   onEvent: (event: AdvisorStreamEvent) => void,
 ): Promise<void> {
+  const headers = new Headers({ "Content-Type": "application/json" });
+  // The authenticated browser keeps the real credential in an HttpOnly
+  // cookie. "cookie" is only a React presence marker and must never shadow
+  // that cookie as a fake Bearer token.
+  if (token && token !== "cookie") headers.set("Authorization", `Bearer ${token}`);
   const response = await fetch(`${API_URL}/me/advisor/threads/${threadId}/messages/stream`, {
     method: "POST",
     credentials: "include",
-    headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+    headers,
     body: JSON.stringify({ content }),
   });
   if (!response.ok || !response.body) {
