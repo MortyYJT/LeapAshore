@@ -35,7 +35,13 @@ from .models import (
     ApplicantProfile,
     DemoUser,
     FeedbackItem,
+    ProgramSourceVersion,
     RecommendationRunSummary,
+)
+from .source_errors import (
+    SourceVersionConflictError,
+    SourceVersionNotFoundError,
+    SourceVersionStateError,
 )
 
 
@@ -72,6 +78,15 @@ class Store(Protocol):
     def save_feedback(self, feedback: FeedbackItem) -> FeedbackItem: ...
     def list_feedback(self, user_id: str | None = None) -> list[FeedbackItem]: ...
     def get_feedback(self, feedback_id: str) -> FeedbackItem | None: ...
+    def save_program_source_version(self, version: ProgramSourceVersion) -> ProgramSourceVersion: ...
+    def get_program_source_version(self, version_id: str) -> ProgramSourceVersion | None: ...
+    def list_program_source_versions(
+        self, program_slug: str | None = None, status: str | None = None,
+    ) -> list[ProgramSourceVersion]: ...
+    def review_program_source_version(
+        self, version_id: str, decision: str, reviewer_id: str, reviewed_at: datetime,
+        review_note: str | None = None,
+    ) -> ProgramSourceVersion: ...
     def list_users(self) -> list[DemoUser]: ...
     def update_user_status(self, user_id: str, status: str) -> DemoUser | None: ...
     def admin_counts(self) -> dict[str, int]: ...
@@ -96,6 +111,7 @@ class DemoStore:
         self._audits: dict[str, list[AgentRunAudit]] = {}
         self._ai_consents: dict[str, AIConsent] = {}
         self._feedback: dict[str, FeedbackItem] = {}
+        self._program_source_versions: dict[str, ProgramSourceVersion] = {}
 
     def register(self, email: str, password: str, display_name: str) -> tuple[DemoUser, str]:
         normalized = normalize_email(email)
@@ -320,6 +336,75 @@ class DemoStore:
         with self._lock:
             return self._feedback.get(feedback_id)
 
+    def save_program_source_version(self, version: ProgramSourceVersion) -> ProgramSourceVersion:
+        with self._lock:
+            existing = self._program_source_versions.get(version.version_id)
+            if existing:
+                return existing
+            if version.status == "published" and any(
+                item.program_slug == version.program_slug and item.status == "published"
+                for item in self._program_source_versions.values()
+            ):
+                raise SourceVersionStateError("该项目已经存在发布版本")
+            self._program_source_versions[version.version_id] = version
+        return version
+
+    def get_program_source_version(self, version_id: str) -> ProgramSourceVersion | None:
+        with self._lock:
+            return self._program_source_versions.get(version_id)
+
+    def list_program_source_versions(
+        self, program_slug: str | None = None, status: str | None = None,
+    ) -> list[ProgramSourceVersion]:
+        with self._lock:
+            versions = [
+                item for item in self._program_source_versions.values()
+                if program_slug is None or item.program_slug == program_slug
+            ]
+            if status:
+                versions = [item for item in versions if item.status == status]
+        return sorted(versions, key=lambda item: item.submitted_at, reverse=True)
+
+    def review_program_source_version(
+        self,
+        version_id: str,
+        decision: str,
+        reviewer_id: str,
+        reviewed_at: datetime,
+        review_note: str | None = None,
+    ) -> ProgramSourceVersion:
+        with self._lock:
+            candidate = self._program_source_versions.get(version_id)
+            if not candidate:
+                raise SourceVersionNotFoundError("来源版本不存在")
+            if candidate.status != "pending_review":
+                raise SourceVersionStateError("只有待审核版本可以执行审核")
+            if decision == "approve":
+                current = next((
+                    item for item in self._program_source_versions.values()
+                    if item.program_slug == candidate.program_slug and item.status == "published"
+                ), None)
+                if not current or candidate.base_hash != current.content_hash:
+                    raise SourceVersionConflictError("当前发布版本已变化，请重新生成差异")
+                self._program_source_versions[current.version_id] = current.model_copy(update={
+                    "status": "superseded",
+                })
+                reviewed = candidate.model_copy(update={
+                    "status": "published",
+                    "reviewed_by": reviewer_id,
+                    "reviewed_at": reviewed_at,
+                    "review_note": review_note,
+                })
+            else:
+                reviewed = candidate.model_copy(update={
+                    "status": "rejected",
+                    "reviewed_by": reviewer_id,
+                    "reviewed_at": reviewed_at,
+                    "review_note": review_note,
+                })
+            self._program_source_versions[version_id] = reviewed
+        return reviewed
+
     def list_users(self) -> list[DemoUser]:
         with self._lock:
             return sorted(self._users.values(), key=lambda user: user.created_at or datetime.min.replace(tzinfo=UTC), reverse=True)
@@ -467,6 +552,23 @@ class SQLiteStore:
                     created_at TEXT NOT NULL,
                     updated_at TEXT NOT NULL
                 );
+                CREATE TABLE IF NOT EXISTS program_source_versions (
+                    version_id TEXT PRIMARY KEY,
+                    program_slug TEXT NOT NULL,
+                    source_id TEXT NOT NULL,
+                    content_hash TEXT NOT NULL,
+                    base_hash TEXT,
+                    status TEXT NOT NULL CHECK (status IN ('pending_review', 'published', 'superseded', 'rejected')),
+                    payload TEXT NOT NULL,
+                    submitted_at TEXT NOT NULL,
+                    reviewed_at TEXT,
+                    CHECK (length(content_hash) = 64),
+                    CHECK (base_hash IS NULL OR length(base_hash) = 64)
+                );
+                CREATE INDEX IF NOT EXISTS idx_source_versions_program_submitted
+                    ON program_source_versions(program_slug, submitted_at DESC);
+                CREATE INDEX IF NOT EXISTS idx_source_versions_program_status
+                    ON program_source_versions(program_slug, status);
                 """
             )
             columns = {row[1] for row in self._connection.execute("PRAGMA table_info(users)").fetchall()}
@@ -841,6 +943,129 @@ class SQLiteStore:
         with self._lock:
             row = self._connection.execute("SELECT payload FROM feedback WHERE feedback_id = ?", (feedback_id,)).fetchone()
         return FeedbackItem.model_validate_json(row["payload"]) if row else None
+
+    def save_program_source_version(self, version: ProgramSourceVersion) -> ProgramSourceVersion:
+        with self._lock:
+            self._connection.execute("BEGIN IMMEDIATE")
+            try:
+                row = self._connection.execute(
+                    "SELECT payload FROM program_source_versions WHERE version_id = ?",
+                    (version.version_id,),
+                ).fetchone()
+                if row:
+                    self._connection.commit()
+                    return ProgramSourceVersion.model_validate_json(row["payload"])
+                if version.status == "published" and self._connection.execute(
+                    "SELECT 1 FROM program_source_versions WHERE program_slug = ? AND status = 'published'",
+                    (version.program_slug,),
+                ).fetchone():
+                    raise SourceVersionStateError("该项目已经存在发布版本")
+                self._connection.execute(
+                    """INSERT INTO program_source_versions
+                    (version_id, program_slug, source_id, content_hash, base_hash, status, payload, submitted_at, reviewed_at)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+                    (
+                        version.version_id,
+                        version.program_slug,
+                        version.source_id,
+                        version.content_hash,
+                        version.base_hash,
+                        version.status,
+                        version.model_dump_json(),
+                        version.submitted_at.isoformat(),
+                        version.reviewed_at.isoformat() if version.reviewed_at else None,
+                    ),
+                )
+                self._connection.commit()
+            except Exception:
+                self._connection.rollback()
+                raise
+        return version
+
+    def get_program_source_version(self, version_id: str) -> ProgramSourceVersion | None:
+        with self._lock:
+            row = self._connection.execute(
+                "SELECT payload FROM program_source_versions WHERE version_id = ?",
+                (version_id,),
+            ).fetchone()
+        return ProgramSourceVersion.model_validate_json(row["payload"]) if row else None
+
+    def list_program_source_versions(
+        self, program_slug: str | None = None, status: str | None = None,
+    ) -> list[ProgramSourceVersion]:
+        query = "SELECT payload FROM program_source_versions"
+        conditions: list[str] = []
+        params: list[str] = []
+        if program_slug:
+            conditions.append("program_slug = ?")
+            params.append(program_slug)
+        if status:
+            conditions.append("status = ?")
+            params.append(status)
+        if conditions:
+            query += " WHERE " + " AND ".join(conditions)
+        query += " ORDER BY submitted_at DESC"
+        with self._lock:
+            rows = self._connection.execute(query, params).fetchall()
+        return [ProgramSourceVersion.model_validate_json(row["payload"]) for row in rows]
+
+    def review_program_source_version(
+        self,
+        version_id: str,
+        decision: str,
+        reviewer_id: str,
+        reviewed_at: datetime,
+        review_note: str | None = None,
+    ) -> ProgramSourceVersion:
+        with self._lock:
+            self._connection.execute("BEGIN IMMEDIATE")
+            try:
+                row = self._connection.execute(
+                    "SELECT payload FROM program_source_versions WHERE version_id = ?",
+                    (version_id,),
+                ).fetchone()
+                if not row:
+                    raise SourceVersionNotFoundError("来源版本不存在")
+                candidate = ProgramSourceVersion.model_validate_json(row["payload"])
+                if candidate.status != "pending_review":
+                    raise SourceVersionStateError("只有待审核版本可以执行审核")
+                if decision == "approve":
+                    current_row = self._connection.execute(
+                        """SELECT version_id, payload FROM program_source_versions
+                        WHERE program_slug = ? AND status = 'published'""",
+                        (candidate.program_slug,),
+                    ).fetchone()
+                    current = ProgramSourceVersion.model_validate_json(current_row["payload"]) if current_row else None
+                    if not current or candidate.base_hash != current.content_hash:
+                        raise SourceVersionConflictError("当前发布版本已变化，请重新生成差异")
+                    superseded = current.model_copy(update={"status": "superseded"})
+                    self._connection.execute(
+                        "UPDATE program_source_versions SET status = ?, payload = ? WHERE version_id = ?",
+                        (superseded.status, superseded.model_dump_json(), superseded.version_id),
+                    )
+                    reviewed = candidate.model_copy(update={
+                        "status": "published",
+                        "reviewed_by": reviewer_id,
+                        "reviewed_at": reviewed_at,
+                        "review_note": review_note,
+                    })
+                else:
+                    reviewed = candidate.model_copy(update={
+                        "status": "rejected",
+                        "reviewed_by": reviewer_id,
+                        "reviewed_at": reviewed_at,
+                        "review_note": review_note,
+                    })
+                self._connection.execute(
+                    """UPDATE program_source_versions
+                    SET status = ?, payload = ?, reviewed_at = ? WHERE version_id = ?""",
+                    (reviewed.status, reviewed.model_dump_json(), reviewed_at.isoformat(), reviewed.version_id),
+                )
+                self._connection.commit()
+            except Exception:
+                self._connection.rollback()
+                raise
+        return reviewed
 
     def list_users(self) -> list[DemoUser]:
         with self._lock:

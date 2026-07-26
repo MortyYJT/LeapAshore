@@ -74,6 +74,9 @@ export type ProgramSourceStatus = {
   title: string;
   url: string;
   verified_at: string;
+  published_version_id: string;
+  content_hash: string;
+  pending_versions: number;
   status: "已核验" | "需要复核";
   reason: string;
 };
@@ -160,6 +163,8 @@ export type AdvisorThread = {
   id: string;
   title: string;
   messages: AdvisorMessage[];
+  created_at: string;
+  updated_at: string;
 };
 
 export type AIConsent = {
@@ -173,7 +178,16 @@ export type AdvisorStreamEvent =
   | { event: "status"; data: { message: string; provider: string } }
   | { event: "delta"; data: { content: string } }
   | { event: "actions"; data: AdvisorAction[] }
-  | { event: "state"; data: { thread: AdvisorThread; portfolio: ApplicationChoice[]; roadmap: ApplicationRoadmap | null } }
+  | {
+      event: "state";
+      data: {
+        thread: AdvisorThread;
+        profile: ApiApplicantProfile;
+        recommendation_run: ApiAgentRun | null;
+        portfolio: ApplicationChoice[];
+        roadmap: ApplicationRoadmap | null;
+      };
+    }
   | { event: "done"; data: { provider: string; model: string; latency_ms: number } }
   | { event: "error"; data: { message: string; fallback: boolean } };
 
@@ -190,6 +204,8 @@ export type ApiProgramSource = {
   url: string;
   excerpt: string;
   verified_at: string;
+  version_id: string | null;
+  content_hash: string | null;
 };
 
 export type ApiProgram = {
@@ -209,6 +225,29 @@ export type ApiProgram = {
   research_proposal_required: boolean;
   verification_status: "已核验" | "待复核";
   source: ApiProgramSource;
+};
+
+export type ProgramSourceChange = {
+  field: string;
+  before: unknown;
+  after: unknown;
+};
+
+export type ProgramSourceVersion = {
+  version_id: string;
+  program_slug: string;
+  source_id: string;
+  content_hash: string;
+  base_hash?: string | null;
+  status: "pending_review" | "published" | "superseded" | "rejected";
+  program: ApiProgram;
+  changes: ProgramSourceChange[];
+  submitted_by: string;
+  submitted_at: string;
+  reviewed_by?: string | null;
+  reviewed_at?: string | null;
+  review_note?: string | null;
+  rollback_of?: string | null;
 };
 
 export type ApiProgramRecommendation = {
@@ -270,9 +309,32 @@ export type KnowledgeSearchResponse = {
 
 // Same-origin is the production default; Sites gracefully falls back when /api is absent.
 const API_URL = (process.env.NEXT_PUBLIC_API_URL ?? "/api").replace(/\/$/, "");
+export const SESSION_EXPIRED_EVENT = "offerpilot:session-expired";
+
+export class ApiRequestError extends Error {
+  constructor(
+    message: string,
+    readonly status: number,
+  ) {
+    super(message);
+    this.name = "ApiRequestError";
+  }
+}
+
+export function isSessionExpiredError(error: unknown): error is ApiRequestError {
+  return error instanceof ApiRequestError
+    && error.status === 401
+    && (error.message === "登录已失效" || error.message === "缺少 Bearer token");
+}
+
+function scheduleSessionExpired(error: ApiRequestError) {
+  if (typeof window === "undefined" || !isSessionExpiredError(error)) return;
+  window.setTimeout(() => window.dispatchEvent(new Event(SESSION_EXPIRED_EVENT)), 0);
+}
 
 async function request<T>(path: string, init?: RequestInit): Promise<T> {
   const headers = new Headers({ "Content-Type": "application/json", ...init?.headers });
+  const authenticatedRequest = headers.has("Authorization");
   if (headers.get("Authorization") === "Bearer cookie") headers.delete("Authorization");
   const response = await fetch(`${API_URL}${path}`, {
     ...init,
@@ -286,7 +348,9 @@ async function request<T>(path: string, init?: RequestInit): Promise<T> {
     const detail = Array.isArray(body?.detail)
       ? body.detail.map((item) => item.msg).filter(Boolean).join("；")
       : body?.detail;
-    throw new Error(detail || `请求失败（${response.status}）`);
+    const error = new ApiRequestError(detail || `请求失败（${response.status}）`, response.status);
+    if (authenticatedRequest) scheduleSessionExpired(error);
+    throw error;
   }
   return response.json() as Promise<T>;
 }
@@ -357,7 +421,7 @@ export async function deleteAccount(token: string, password: string): Promise<vo
   });
 }
 
-export async function saveProfile(token: string, profile: Record<string, unknown>): Promise<void> {
+export async function saveProfile(token: string, profile: ApiApplicantProfile): Promise<void> {
   await request("/me/profile", {
     method: "PUT",
     headers: { Authorization: `Bearer ${token}` },
@@ -441,6 +505,10 @@ export async function createAdvisorThread(token: string): Promise<AdvisorThread>
   return request<AdvisorThread>("/me/advisor/threads", { method: "POST", headers: { Authorization: `Bearer ${token}` } });
 }
 
+export async function fetchAdvisorThreads(token: string): Promise<AdvisorThread[]> {
+  return request<AdvisorThread[]>("/me/advisor/threads", { headers: { Authorization: `Bearer ${token}` } });
+}
+
 export async function sendAdvisorMessage(token: string, threadId: string, content: string): Promise<{ thread: AdvisorThread; provider: string }> {
   return request(`/me/advisor/threads/${threadId}/messages`, {
     method: "POST",
@@ -480,23 +548,33 @@ export async function streamAdvisorMessage(
   });
   if (!response.ok || !response.body) {
     const body = await response.json().catch(() => null) as { detail?: string } | null;
-    throw new Error(body?.detail || `顾问请求失败（${response.status}）`);
+    const error = new ApiRequestError(body?.detail || `顾问请求失败（${response.status}）`, response.status);
+    scheduleSessionExpired(error);
+    throw error;
   }
   const reader = response.body.getReader();
   const decoder = new TextDecoder();
   let buffer = "";
+  let committedStateReceived = false;
+  const dispatchBlock = (block: string) => {
+    const event = block.split("\n").find((line) => line.startsWith("event:"))?.slice(6).trim();
+    const data = block.split("\n").filter((line) => line.startsWith("data:")).map((line) => line.slice(5).trim()).join("\n");
+    if (!event || !data) return;
+    if (event === "state") committedStateReceived = true;
+    onEvent({ event, data: JSON.parse(data) } as AdvisorStreamEvent);
+  };
   while (true) {
     const { done, value } = await reader.read();
     buffer += decoder.decode(value, { stream: !done }).replaceAll("\r\n", "\n");
     const blocks = buffer.split("\n\n");
     buffer = blocks.pop() ?? "";
-    for (const block of blocks) {
-      const event = block.split("\n").find((line) => line.startsWith("event:"))?.slice(6).trim();
-      const data = block.split("\n").filter((line) => line.startsWith("data:")).map((line) => line.slice(5).trim()).join("\n");
-      if (event && data) onEvent({ event, data: JSON.parse(data) } as AdvisorStreamEvent);
+    blocks.forEach(dispatchBlock);
+    if (done) {
+      if (buffer.trim()) dispatchBlock(buffer);
+      break;
     }
-    if (done) break;
   }
+  if (!committedStateReceived) throw new Error("顾问连接在收到保存确认前中断");
 }
 
 export async function analyzeTranscript(token: string, transcriptText: string): Promise<TranscriptAnalysis> {
@@ -564,6 +642,59 @@ export async function fetchAdminFeedback(token: string): Promise<FeedbackItem[]>
 
 export async function fetchAdminProgramSources(token: string): Promise<ProgramSourceStatus[]> {
   return request<ProgramSourceStatus[]>("/admin/program-sources", { headers: { Authorization: `Bearer ${token}` } });
+}
+
+export async function fetchProgram(programSlug: string): Promise<ApiProgram> {
+  return request<ApiProgram>(`/programs/${programSlug}`);
+}
+
+export async function fetchAdminProgramSourceVersions(
+  token: string,
+  programSlug: string,
+): Promise<ProgramSourceVersion[]> {
+  return request<ProgramSourceVersion[]>(`/admin/program-sources/${programSlug}/versions`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+}
+
+export async function createAdminProgramSourceVersion(
+  token: string,
+  programSlug: string,
+  baseHash: string,
+  program: ApiProgram,
+): Promise<ProgramSourceVersion> {
+  return request<ProgramSourceVersion>(`/admin/program-sources/${programSlug}/versions`, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${token}` },
+    body: JSON.stringify({ base_hash: baseHash, program }),
+  });
+}
+
+export async function reviewAdminProgramSourceVersion(
+  token: string,
+  programSlug: string,
+  versionId: string,
+  decision: "approve" | "reject",
+  note: string,
+): Promise<ProgramSourceVersion> {
+  return request<ProgramSourceVersion>(`/admin/program-sources/${programSlug}/versions/${versionId}`, {
+    method: "PUT",
+    headers: { Authorization: `Bearer ${token}` },
+    body: JSON.stringify({ decision, note }),
+  });
+}
+
+export async function rollbackAdminProgramSourceVersion(
+  token: string,
+  programSlug: string,
+  targetVersionId: string,
+  note: string,
+): Promise<ProgramSourceVersion> {
+  return request<ProgramSourceVersion>(`/admin/program-sources/${programSlug}/rollback`, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${token}` },
+    body: JSON.stringify({ target_version_id: targetVersionId, note }),
+  });
 }
 
 export async function updateAdminFeedback(token: string, feedbackId: string, status: FeedbackItem["status"]): Promise<FeedbackItem> {

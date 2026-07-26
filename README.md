@@ -58,7 +58,7 @@ flowchart LR
 
 ### `deepseek`（可选云端模式）
 
-当前生产模板默认使用确定性顾问，不要求 DeepSeek Key。部署者后续显式设置 `LLM_PROVIDER=deepseek` 并在服务器配置一次 `DEEPSEEK_API_KEY` 后，普通用户仍不接触 Key。首次使用云端顾问时，产品会单独征求数据处理同意；只发送脱敏档案、已核验项目事实、申请组合、路线图和最近对话，不发送姓名、邮箱、账户 ID、本科学校名称或原始成绩单。回答通过 SSE 流式返回，首 Token 超过 8 秒、总时限超过 25 秒、429、余额不足或服务异常时会明确进入确定性降级，不再隐式等待本地模型。
+当前生产模板默认使用确定性顾问，不要求 DeepSeek Key。部署者后续显式设置 `LLM_PROVIDER=deepseek` 并在服务器配置一次 `DEEPSEEK_API_KEY` 后，普通用户仍不接触 Key。首次使用云端顾问时，产品会单独征求数据处理同意；只发送脱敏档案、已核验项目事实、申请组合、路线图和最近对话，不发送姓名、邮箱、账户 ID、本科学校名称或原始成绩单。回答通过 SSE 流式返回，首 Token 超过 8 秒、总时限超过 25 秒、429、余额不足或服务异常时会明确进入确定性降级，不再隐式等待本地模型。页面刷新或再次进入顾问时会恢复最近持久化线程；若连接在收到服务端 `state` 保存确认前中断，前端会先回读同一线程：已保存则恢复权威消息，未保存才撤销局部回答并恢复原草稿，避免把半条流误当成成功或重复提交。
 
 ```env
 AGENT_MODE=llm-assisted
@@ -98,7 +98,7 @@ OLLAMA_MODEL=qwen2.5:0.5b
 - UQ — Master of Data Science
 - UWA — Master of Information Technology
 
-每条数据均包含官方 URL、门槛摘录、先修要求、英语要求和核验日期。数据位于 `api/app/program_data.py`；前端保留同规则 fallback，用于 Python API 未部署时的公开演示。
+每条数据均包含官方 URL、门槛摘录、先修要求、英语要求和核验日期。`api/app/program_data.py` 是首次启动的受版本控制种子；运行时会为每个发布快照生成稳定 SHA-256 与不可变版本号。候选变更只保存字段级 diff，管理员批准后才同时进入推荐规则与 RAG，历史发布版本可回滚。当前仍未实现官网自动抓取，页面内容需要运营人员人工提交和核验。
 
 ## Eval 结果
 
@@ -121,6 +121,7 @@ OLLAMA_MODEL=qwen2.5:0.5b
 
 - 语料只来自 `api/app/program_data.py` 中已经人工核验的具体项目，不把 384 个目录入口伪装成已核验要求。
 - 每个项目拆成“项目概览、学术与背景、先修课与语言”三个知识块，并保留原始来源元数据。
+- 每条 RAG 引用同时返回发布版本号和内容 SHA-256；未批准候选不会进入知识块。
 - 当前小语料使用支持中英文别名与中文双字切分的 BM25 检索，无模型 Key、无额外下载，适合一键本地演示。
 - DeepSeek 后续接入时只接收 RAG 命中的脱敏证据；无云模型时，规则顾问也能基于同一批证据生成带来源回答。
 - 当已核验项目扩展到数百个、开始接入 PDF/网页正文后，再增加 pgvector 语义召回并与 BM25 做混合排序；当前不为 18 个知识块引入虚假的向量复杂度。
@@ -294,12 +295,19 @@ Vercel Serverless 不适合常驻加载 Ollama 模型；云端顾问需在 API s
 - `GET|PUT /admin/users`
 - `GET|PUT /admin/feedback`
 - `GET /admin/program-sources`
+- `GET|POST /admin/program-sources/{program_slug}/versions`
+- `PUT /admin/program-sources/{program_slug}/versions/{version_id}`
+- `POST /admin/program-sources/{program_slug}/rollback`
+
+运营后台的“版本审核工作台”会从当前发布事实生成候选 JSON，只创建待审核版本；管理员核对逐字段 diff 并填写备注后才能批准或拒绝，也可把已替代版本作为回滚目标。所有动作完成后会刷新发布 version/hash 与待审核计数。
 
 ## 验证
 
 ```bash
 pnpm run lint
 pnpm test
+pnpm exec playwright install chromium
+pnpm run test:e2e
 pnpm audit --prod
 
 cd api
@@ -309,6 +317,8 @@ PYTHONPATH=. .venv/bin/python evals/run_eval.py
 PYTHONPATH=. .venv/bin/python evals/run_advisor_eval.py
 PYTHONPATH=. .venv/bin/python evals/run_rag_eval.py
 ```
+
+`pnpm run test:e2e` 会自动启动本地 FastAPI DemoStore 与 Next.js，并用 Chromium 验证注册、Cookie 登录、生成推荐、设置首选、顾问 SSE、刷新后恢复同一线程、撤销 Cookie 后的刷新/受保护操作恢复、来源 diff 审核/回滚、顾问动作状态，以及 SSE 503、未提交截断回滚和“服务端已保存但确认事件丢失”的线程对账；不需要 DeepSeek Key。
 
 配置真实服务端 Key 后，可选运行延迟 smoke test（不会在 CI 中消耗真实额度）：
 

@@ -17,7 +17,13 @@ from .models import (
     ApplicantProfile,
     DemoUser,
     FeedbackItem,
+    ProgramSourceVersion,
     RecommendationRunSummary,
+)
+from .source_errors import (
+    SourceVersionConflictError,
+    SourceVersionNotFoundError,
+    SourceVersionStateError,
 )
 from .auth import (
     AccountExistsError,
@@ -81,6 +87,17 @@ class PostgresStore:
                     feedback_id TEXT PRIMARY KEY, user_id TEXT NOT NULL REFERENCES users(id), payload JSONB NOT NULL,
                     created_at TIMESTAMPTZ NOT NULL, updated_at TIMESTAMPTZ NOT NULL
                 );
+                CREATE TABLE IF NOT EXISTS program_source_versions (
+                    version_id TEXT PRIMARY KEY, program_slug TEXT NOT NULL, source_id TEXT NOT NULL,
+                    content_hash TEXT NOT NULL CHECK (length(content_hash) = 64),
+                    base_hash TEXT CHECK (base_hash IS NULL OR length(base_hash) = 64),
+                    status TEXT NOT NULL CHECK (status IN ('pending_review', 'published', 'superseded', 'rejected')),
+                    payload JSONB NOT NULL, submitted_at TIMESTAMPTZ NOT NULL, reviewed_at TIMESTAMPTZ
+                );
+                CREATE INDEX IF NOT EXISTS idx_source_versions_program_submitted
+                    ON program_source_versions(program_slug, submitted_at DESC);
+                CREATE INDEX IF NOT EXISTS idx_source_versions_program_status
+                    ON program_source_versions(program_slug, status);
                 ALTER TABLE users ADD COLUMN IF NOT EXISTS email_verified_at TIMESTAMPTZ;
                 ALTER TABLE users ADD COLUMN IF NOT EXISTS role TEXT NOT NULL DEFAULT 'user';
                 ALTER TABLE users ADD COLUMN IF NOT EXISTS status TEXT NOT NULL DEFAULT 'active';
@@ -366,6 +383,147 @@ class PostgresStore:
             cursor.execute("SELECT payload FROM feedback WHERE feedback_id = %s", (feedback_id,))
             row = cursor.fetchone()
         return FeedbackItem.model_validate(row["payload"]) if row else None
+
+    def save_program_source_version(self, version: ProgramSourceVersion) -> ProgramSourceVersion:
+        from psycopg.types.json import Jsonb
+
+        with self._lock, self._connection.transaction(), self._connection.cursor() as cursor:
+            cursor.execute(
+                "SELECT pg_advisory_xact_lock(hashtextextended(%s, 0))",
+                (f"program-source:{version.program_slug}",),
+            )
+            cursor.execute(
+                "SELECT payload FROM program_source_versions WHERE version_id = %s",
+                (version.version_id,),
+            )
+            row = cursor.fetchone()
+            if row:
+                return ProgramSourceVersion.model_validate(row["payload"])
+            if version.status == "published":
+                cursor.execute(
+                    "SELECT 1 FROM program_source_versions WHERE program_slug = %s AND status = 'published'",
+                    (version.program_slug,),
+                )
+                if cursor.fetchone():
+                    raise SourceVersionStateError("该项目已经存在发布版本")
+            cursor.execute(
+                """INSERT INTO program_source_versions
+                (version_id, program_slug, source_id, content_hash, base_hash, status, payload, submitted_at, reviewed_at)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s)""",
+                (
+                    version.version_id,
+                    version.program_slug,
+                    version.source_id,
+                    version.content_hash,
+                    version.base_hash,
+                    version.status,
+                    Jsonb(version.model_dump(mode="json")),
+                    version.submitted_at,
+                    version.reviewed_at,
+                ),
+            )
+        return version
+
+    def get_program_source_version(self, version_id: str) -> ProgramSourceVersion | None:
+        with self._lock, self._connection.cursor() as cursor:
+            cursor.execute(
+                "SELECT payload FROM program_source_versions WHERE version_id = %s",
+                (version_id,),
+            )
+            row = cursor.fetchone()
+        return ProgramSourceVersion.model_validate(row["payload"]) if row else None
+
+    def list_program_source_versions(
+        self, program_slug: str | None = None, status: str | None = None,
+    ) -> list[ProgramSourceVersion]:
+        with self._lock, self._connection.cursor() as cursor:
+            if program_slug and status:
+                cursor.execute(
+                    """SELECT payload FROM program_source_versions
+                    WHERE program_slug = %s AND status = %s ORDER BY submitted_at DESC""",
+                    (program_slug, status),
+                )
+            elif program_slug:
+                cursor.execute(
+                    """SELECT payload FROM program_source_versions
+                    WHERE program_slug = %s ORDER BY submitted_at DESC""",
+                    (program_slug,),
+                )
+            elif status:
+                cursor.execute(
+                    """SELECT payload FROM program_source_versions
+                    WHERE status = %s ORDER BY submitted_at DESC""",
+                    (status,),
+                )
+            else:
+                cursor.execute("SELECT payload FROM program_source_versions ORDER BY submitted_at DESC")
+            rows = cursor.fetchall()
+        return [ProgramSourceVersion.model_validate(row["payload"]) for row in rows]
+
+    def review_program_source_version(
+        self,
+        version_id: str,
+        decision: str,
+        reviewer_id: str,
+        reviewed_at: datetime,
+        review_note: str | None = None,
+    ) -> ProgramSourceVersion:
+        from psycopg.types.json import Jsonb
+
+        with self._lock, self._connection.transaction(), self._connection.cursor() as cursor:
+            cursor.execute(
+                "SELECT payload FROM program_source_versions WHERE version_id = %s FOR UPDATE",
+                (version_id,),
+            )
+            row = cursor.fetchone()
+            if not row:
+                raise SourceVersionNotFoundError("来源版本不存在")
+            candidate = ProgramSourceVersion.model_validate(row["payload"])
+            cursor.execute(
+                "SELECT pg_advisory_xact_lock(hashtextextended(%s, 0))",
+                (f"program-source:{candidate.program_slug}",),
+            )
+            if candidate.status != "pending_review":
+                raise SourceVersionStateError("只有待审核版本可以执行审核")
+            if decision == "approve":
+                cursor.execute(
+                    """SELECT version_id, payload FROM program_source_versions
+                    WHERE program_slug = %s AND status = 'published' FOR UPDATE""",
+                    (candidate.program_slug,),
+                )
+                current_row = cursor.fetchone()
+                current = ProgramSourceVersion.model_validate(current_row["payload"]) if current_row else None
+                if not current or candidate.base_hash != current.content_hash:
+                    raise SourceVersionConflictError("当前发布版本已变化，请重新生成差异")
+                superseded = current.model_copy(update={"status": "superseded"})
+                cursor.execute(
+                    "UPDATE program_source_versions SET status = %s, payload = %s WHERE version_id = %s",
+                    (superseded.status, Jsonb(superseded.model_dump(mode="json")), superseded.version_id),
+                )
+                reviewed = candidate.model_copy(update={
+                    "status": "published",
+                    "reviewed_by": reviewer_id,
+                    "reviewed_at": reviewed_at,
+                    "review_note": review_note,
+                })
+            else:
+                reviewed = candidate.model_copy(update={
+                    "status": "rejected",
+                    "reviewed_by": reviewer_id,
+                    "reviewed_at": reviewed_at,
+                    "review_note": review_note,
+                })
+            cursor.execute(
+                """UPDATE program_source_versions
+                SET status = %s, payload = %s, reviewed_at = %s WHERE version_id = %s""",
+                (
+                    reviewed.status,
+                    Jsonb(reviewed.model_dump(mode="json")),
+                    reviewed_at,
+                    reviewed.version_id,
+                ),
+            )
+        return reviewed
 
     def list_users(self) -> list[DemoUser]:
         with self._lock, self._connection.cursor() as cursor:

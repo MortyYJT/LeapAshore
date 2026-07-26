@@ -44,6 +44,8 @@ class SourceCitation(BaseModel):
     url: str
     excerpt: str
     verified_at: str = "2026-07-14"
+    version_id: str | None = None
+    content_hash: str | None = Field(default=None, pattern=r"^[0-9a-f]{64}$")
 
 
 class Program(BaseModel):
@@ -417,12 +419,63 @@ class ApplicationRoadmap(BaseModel):
     total_tasks: int
 
 
+class AdvisorStreamState(BaseModel):
+    """Authoritative client state after an advisor turn finishes."""
+
+    thread: AdvisorThread
+    profile: ApplicantProfile
+    recommendation_run: AgentRecommendationResponse | None = None
+    portfolio: list[ApplicationChoice]
+    roadmap: ApplicationRoadmap | None = None
+
+
+class ProgramSourceChange(BaseModel):
+    field: str
+    before: Any = None
+    after: Any = None
+
+
+class ProgramSourceVersion(BaseModel):
+    version_id: str
+    program_slug: str
+    source_id: str
+    content_hash: str = Field(pattern=r"^[0-9a-f]{64}$")
+    base_hash: str | None = Field(default=None, pattern=r"^[0-9a-f]{64}$")
+    status: Literal["pending_review", "published", "superseded", "rejected"]
+    program: Program
+    changes: list[ProgramSourceChange] = Field(default_factory=list)
+    submitted_by: str
+    submitted_at: datetime
+    reviewed_by: str | None = None
+    reviewed_at: datetime | None = None
+    review_note: str | None = None
+    rollback_of: str | None = None
+
+
+class ProgramSourceCandidateRequest(BaseModel):
+    base_hash: str = Field(pattern=r"^[0-9a-f]{64}$")
+    program: Program
+
+
+class ProgramSourceReviewRequest(BaseModel):
+    decision: Literal["approve", "reject"]
+    note: str | None = Field(default=None, max_length=1000)
+
+
+class ProgramSourceRollbackRequest(BaseModel):
+    target_version_id: str = Field(min_length=1, max_length=160)
+    note: str | None = Field(default=None, max_length=1000)
+
+
 class ProgramSourceStatus(BaseModel):
     source_id: str
     program_slug: str
     title: str
     url: str
     verified_at: str
+    published_version_id: str
+    content_hash: str = Field(pattern=r"^[0-9a-f]{64}$")
+    pending_versions: int = 0
     status: Literal["已核验", "需要复核"]
     reason: str
 

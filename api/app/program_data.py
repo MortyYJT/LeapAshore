@@ -118,3 +118,18 @@ PROGRAMS = [
         ),
     ),
 ]
+
+
+# Keep the checked-in facts immutable so a persisted published version can be
+# rolled back without re-reading mutable process state.
+SEED_PROGRAMS = tuple(program.model_copy(deep=True) for program in PROGRAMS)
+
+
+def replace_published_program(program: Program) -> None:
+    """Replace one published program in-place for all existing module imports."""
+
+    for index, existing in enumerate(PROGRAMS):
+        if existing.slug == program.slug:
+            PROGRAMS[index] = program.model_copy(deep=True)
+            return
+    PROGRAMS.append(program.model_copy(deep=True))

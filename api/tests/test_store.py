@@ -1,7 +1,11 @@
 from datetime import UTC, datetime
 
+import pytest
+
 from app.models import AIConsent, ApplicationChoice, AdvisorMessage, AdvisorThread, ApplicantProfile
 from app.services.agent import run_recommendation_agent
+from app.source_errors import SourceVersionConflictError
+from app.source_governance import current_program, initialize_source_registry, new_candidate
 from app.store import DemoStore, SQLiteStore
 
 
@@ -120,3 +124,61 @@ def test_choice_save_atomically_preserves_one_primary_in_sqlite(tmp_path) -> Non
 
     choices = store.list_choices(user.id, "run-1")
     assert [choice.program_slug for choice in choices if choice.is_primary] == ["program-b"]
+
+
+def test_source_review_rejects_candidate_based_on_superseded_hash_in_memory() -> None:
+    store = DemoStore()
+    initialize_source_registry(store)
+    published = next(
+        item for item in store.list_program_source_versions("unsw-master-it")
+        if item.status == "published"
+    )
+    first = new_candidate(
+        current=published,
+        proposed=published.program.model_copy(update={"duration": "2.25 年"}),
+        submitted_by="reviewer-1",
+    )
+    second = new_candidate(
+        current=published,
+        proposed=published.program.model_copy(update={"duration": "2.5 年"}),
+        submitted_by="reviewer-1",
+    )
+    store.save_program_source_version(first)
+    store.save_program_source_version(second)
+
+    approved = store.review_program_source_version(first.version_id, "approve", "reviewer-2", datetime.now(UTC))
+    assert approved.status == "published"
+    with pytest.raises(SourceVersionConflictError, match="发布版本已变化"):
+        store.review_program_source_version(second.version_id, "approve", "reviewer-2", datetime.now(UTC))
+
+
+def test_sqlite_persists_published_source_version_across_restart(tmp_path) -> None:
+    database_path = str(tmp_path / "source-versions.db")
+    first = SQLiteStore(database_path)
+    initialize_source_registry(first)
+    published = next(
+        item for item in first.list_program_source_versions("uq-master-data-science")
+        if item.status == "published"
+    )
+    candidate = new_candidate(
+        current=published,
+        proposed=published.program.model_copy(update={"duration": "2 年（测试版本）"}),
+        submitted_by="reviewer-1",
+    )
+    first.save_program_source_version(candidate)
+    first.review_program_source_version(candidate.version_id, "approve", "reviewer-2", datetime.now(UTC))
+
+    restarted = SQLiteStore(database_path)
+    restored = restarted.get_program_source_version(candidate.version_id)
+    assert restored is not None
+    assert restored.status == "published"
+    assert restored.reviewed_by == "reviewer-2"
+    assert next(
+        item for item in restarted.list_program_source_versions("uq-master-data-science")
+        if item.status == "published"
+    ).version_id == candidate.version_id
+    try:
+        initialize_source_registry(restarted)
+        assert current_program("uq-master-data-science").duration == "2 年（测试版本）"
+    finally:
+        initialize_source_registry(DemoStore())

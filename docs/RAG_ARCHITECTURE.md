@@ -14,7 +14,7 @@ flowchart LR
     HIT --> RULES[无模型确定性回答]
     HIT --> SAFE[同意与脱敏边界]
     SAFE --> LLM[可选 DeepSeek 解释层]
-    RULES --> ANSWER[带 URL 与核验日期的回答]
+    RULES --> ANSWER[带 URL、发布版本、内容哈希与核验日期的回答]
     LLM --> ANSWER
 ```
 
@@ -24,7 +24,7 @@ flowchart LR
 2. 学术与背景：官网摘录、基础成绩参考、非 211 规则和相关背景要求。
 3. 先修课与语言：结构化先修课程、IELTS/英语说明和研究型条件。
 
-检索实现位于 `api/app/services/knowledge_rag.py`，接口为 `POST /me/knowledge/search`。顾问流式接口也调用同一检索函数，避免 UI 检索和 Agent 检索产生两套事实。
+检索实现位于 `api/app/services/knowledge_rag.py`，接口为 `POST /me/knowledge/search`。顾问流式接口也调用同一检索函数，避免 UI 检索和 Agent 检索产生两套事实。发布事实由 `program_source_versions` 保存：候选快照基于当前内容 hash 生成字段级 diff，只有管理员审核通过后才原子切换发布状态；过期基线会触发冲突，回滚会创建新的审计版本而不是改写历史。
 
 ## 为什么第一版不用向量数据库
 

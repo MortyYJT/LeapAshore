@@ -1,8 +1,9 @@
 "use client";
 
-import { FormEvent, useEffect, useMemo, useState } from "react";
+import { FormEvent, useCallback, useEffect, useMemo, useState } from "react";
 
 import {
+  AdvisorAction,
   AdvisorThread,
   AIConsent,
   AdminStats,
@@ -18,6 +19,7 @@ import {
   ApiUser,
   FeedbackItem,
   ProgramSourceStatus,
+  SESSION_EXPIRED_EVENT,
   TranscriptAnalysis,
   analyzeTranscript,
   createAdvisorThread,
@@ -31,6 +33,7 @@ import {
   fetchAdminProgramSources,
   fetchAgentRun,
   fetchAIConsent,
+  fetchAdvisorThreads,
   fetchCurrentUser,
   fetchHistory,
   fetchPortfolio,
@@ -39,6 +42,7 @@ import {
   fetchMyFeedback,
   loginWithAccount,
   logoutAccount,
+  isSessionExpiredError,
   registerAccount,
   requestPasswordReset,
   resendVerification,
@@ -55,6 +59,7 @@ import {
 } from "./api-client";
 import { PortfolioControls } from "./portfolio-controls";
 import { RoadmapView } from "./roadmap-view";
+import { SourceReviewPanel } from "./source-review-panel";
 
 type View = "landing" | "login" | "profile" | "agent" | "advisor" | "results" | "program" | "plan" | "history" | "feedback" | "admin" | "account" | "terms" | "privacy";
 type Tier = "冲刺" | "匹配" | "稳妥" | "暂不推荐";
@@ -122,8 +127,15 @@ const initialProfile: Profile = {
   cityPreference: "",
   annualBudget: "",
 };
+const initialRunSummary = "已完成项目要求对照，并根据你的背景生成申请组合。";
 
-function profileToApi(profile: Profile): Record<string, unknown> {
+const advisorActionStatusMeta: Record<AdvisorAction["status"], { icon: string; label: string }> = {
+  completed: { icon: "✓", label: "已完成" },
+  needs_confirmation: { icon: "?", label: "待确认" },
+  skipped: { icon: "–", label: "已跳过" },
+};
+
+function profileToApi(profile: Profile): ApiApplicantProfile {
   return {
     current_education_level: profile.currentEducation,
     undergraduate_school: profile.school,
@@ -214,7 +226,7 @@ export default function Home() {
   const [tierFilter, setTierFilter] = useState<"全部" | Tier>("全部");
   const [token, setToken] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [runSummary, setRunSummary] = useState("已完成项目要求对照，并根据你的背景生成申请组合。");
+  const [runSummary, setRunSummary] = useState(initialRunSummary);
   const [agentRun, setAgentRun] = useState<ApiAgentRun | null>(null);
   const [activeRunId, setActiveRunId] = useState<string | null>(null);
   const [portfolio, setPortfolio] = useState<ApplicationChoice[]>([]);
@@ -241,6 +253,45 @@ export default function Home() {
   const [adminSources, setAdminSources] = useState<ProgramSourceStatus[]>([]);
   const [deletePassword, setDeletePassword] = useState("");
 
+  const resetAuthenticatedSession = useCallback((message = "") => {
+    setToken(null);
+    setCurrentUser(null);
+    setIsAuthenticated(false);
+    setProfile(initialProfile);
+    setProfileStep(1);
+    setPassword("");
+    setHistory([]);
+    setAgentRun(null);
+    setActiveRunId(null);
+    setRunSummary(initialRunSummary);
+    setPortfolio([]);
+    setRoadmap(null);
+    setSelected(null);
+    setTierFilter("全部");
+    setAdvisorThread(null);
+    setAdvisorInput("");
+    setAdvisorBusy(false);
+    setAdvisorProvider("正在连接顾问");
+    setCloudConsent(undefined);
+    setShowCloudConsent(false);
+    setPendingAdvisorMessage("");
+    setTranscriptText("");
+    setTranscriptResult(null);
+    setKnowledgeHits([]);
+    setKnowledgeBusy(false);
+    setMyFeedback([]);
+    setAdminStats(null);
+    setAdminUsers([]);
+    setAdminFeedback([]);
+    setAdminSources([]);
+    setDeletePassword("");
+    setIsSubmitting(false);
+    setAuthNotice("");
+    setError(message);
+    setView("login");
+    setAuthMode("login");
+  }, []);
+
   const results = agentRun?.recommendations ?? [];
   const filteredResults = results.filter((item) => tierFilter === "全部" || item.tier === tierFilter);
   const portfolioBySlug = useMemo(() => new Map(portfolio.map((choice) => [choice.program_slug, choice])), [portfolio]);
@@ -265,6 +316,15 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
+    const handleSessionExpired = () => {
+      void logoutAccount("cookie").catch(() => undefined);
+      resetAuthenticatedSession("登录状态已失效，请重新登录。");
+    };
+    window.addEventListener(SESSION_EXPIRED_EVENT, handleSessionExpired);
+    return () => window.removeEventListener(SESSION_EXPIRED_EVENT, handleSessionExpired);
+  }, [resetAuthenticatedSession]);
+
+  useEffect(() => {
     fetchCurrentUser()
       .then((user) => {
         setCurrentUser(user);
@@ -273,8 +333,12 @@ export default function Home() {
         setView((current) => current === "login" ? "profile" : current);
         void hydrateWorkspace("cookie");
       })
-      .catch(() => undefined);
-  }, []);
+      .catch((reason) => {
+        if (!isSessionExpiredError(reason) || reason.message !== "登录已失效") return;
+        void logoutAccount("cookie").catch(() => undefined);
+        resetAuthenticatedSession("登录状态已失效，请重新登录。");
+      });
+  }, [resetAuthenticatedSession]);
 
   useEffect(() => {
     if (view === "feedback" && token) {
@@ -300,16 +364,24 @@ export default function Home() {
 
   useEffect(() => {
     if (view !== "advisor" || !token || advisorThread) return;
+    const sessionToken = token;
     let cancelled = false;
-    void fetchAIConsent(token).then((consent) => {
-      if (!cancelled) {
+    async function restoreAdvisor() {
+      try {
+        const [consent, threads] = await Promise.all([
+          fetchAIConsent(sessionToken).catch(() => null),
+          fetchAdvisorThreads(sessionToken),
+        ]);
+        if (cancelled) return;
         setCloudConsent(consent);
         setAdvisorProvider(consent?.accepted ? "DeepSeek V4 Flash · 云端" : consent ? "规则顾问 · 云端处理已关闭" : "顾问已就绪");
+        const thread = threads[0] ?? await createAdvisorThread(sessionToken);
+        if (!cancelled) setAdvisorThread(thread);
+      } catch {
+        if (!cancelled) setAdvisorProvider("请先保存申请档案");
       }
-    }).catch(() => { if (!cancelled) setCloudConsent(null); });
-    createAdvisorThread(token)
-      .then((thread) => { if (!cancelled) setAdvisorThread(thread); })
-      .catch(() => { if (!cancelled) setAdvisorProvider("请先保存申请档案"); });
+    }
+    void restoreAdvisor();
     return () => { cancelled = true; };
   }, [view, token, advisorThread]);
 
@@ -406,16 +478,7 @@ export default function Home() {
 
   async function handleLogout() {
     if (token) await logoutAccount(token).catch(() => undefined);
-    setToken(null);
-    setCurrentUser(null);
-    setIsAuthenticated(false);
-    setProfile(initialProfile);
-    setHistory([]);
-    setAgentRun(null);
-    setActiveRunId(null);
-    setAdvisorThread(null);
-    setView("login");
-    setAuthMode("login");
+    resetAuthenticatedSession();
   }
 
   async function hydrateWorkspace(sessionToken: string) {
@@ -615,6 +678,8 @@ export default function Home() {
 
   async function submitAdvisorMessage(content: string) {
     if (!token || !advisorThread || advisorBusy) return;
+    const persistedMessageCount = advisorThread.messages.length;
+    const activeThreadId = advisorThread.id;
     setAdvisorInput("");
     setAdvisorBusy(true);
     const temporaryUserId = `temp-user-${Date.now()}`;
@@ -626,6 +691,7 @@ export default function Home() {
         { id: temporaryAssistantId, role: "assistant", content: "", created_at: new Date().toISOString(), actions: [] },
       ],
     } : thread);
+    let committedStateReceived = false;
     try {
       await streamAdvisorMessage(token, advisorThread.id, content, ({ event, data }) => {
         if (event === "status") setAdvisorProvider(data.message);
@@ -639,16 +705,48 @@ export default function Home() {
           messages: thread.messages.map((message) => message.id === temporaryAssistantId ? { ...message, actions: data } : message),
         } : thread);
         if (event === "state") {
+          committedStateReceived = true;
           setAdvisorThread(data.thread);
+          setProfile(profileFromApi(data.profile));
           setPortfolio(data.portfolio);
           setRoadmap(data.roadmap);
+          if (data.recommendation_run) {
+            setAgentRun(data.recommendation_run);
+            setActiveRunId(data.recommendation_run.run_id);
+            setRunSummary(data.recommendation_run.summary);
+            setSelected(null);
+            setTierFilter("全部");
+          }
         }
         if (event === "done") setAdvisorProvider(data.provider === "deepseek" ? `DeepSeek V4 Flash · ${data.latency_ms}ms` : "规则顾问 · 快速降级");
       });
+      void fetchHistory(token).then(setHistory).catch(() => undefined);
     } catch (reason) {
       setAdvisorProvider(reason instanceof Error ? reason.message : "暂时无法连接，请稍后重试");
+      if (!committedStateReceived) {
+        const persistedThread = await fetchAdvisorThreads(token)
+          .then((threads) => threads.find((thread) => thread.id === activeThreadId) ?? null)
+          .catch(() => null);
+        const newMessages = persistedThread?.messages.slice(persistedMessageCount) ?? [];
+        const persistedUserIndex = newMessages.findIndex((message) => message.role === "user" && message.content === content);
+        const turnWasPersisted = persistedUserIndex >= 0
+          && newMessages.slice(persistedUserIndex + 1).some((message) => message.role === "assistant");
+        if (persistedThread && turnWasPersisted) {
+          setAdvisorThread(persistedThread);
+          setAdvisorProvider("回答已保存，已恢复最新会话");
+          await hydrateWorkspace(token);
+        } else {
+          setAdvisorThread((thread) => thread ? {
+            ...thread,
+            messages: thread.messages.filter((message) => message.id !== temporaryUserId && message.id !== temporaryAssistantId),
+          } : thread);
+          setAdvisorInput(content);
+          setAdvisorProvider(reason instanceof Error ? `${reason.message}，请重试` : "暂时无法连接，请稍后重试");
+        }
+      }
+    } finally {
+      setAdvisorBusy(false);
     }
-    setAdvisorBusy(false);
   }
 
   async function decideCloudConsent(accepted: boolean) {
@@ -824,7 +922,10 @@ export default function Home() {
                 {(advisorThread?.messages ?? []).map((message) => <div key={message.id} className={`chat-message ${message.role}`}>
                   <small>{message.role === "assistant" ? "OfferPilot 顾问" : "你"}</small>
                   <p>{message.content}</p>
-                  {message.actions.length > 0 && <div className="tool-actions">{message.actions.map((action, index) => <span key={`${action.tool}-${index}`}><b>✓</b>{action.summary}</span>)}</div>}
+                  {message.actions.length > 0 && <div className="tool-actions">{message.actions.map((action, index) => {
+                    const status = advisorActionStatusMeta[action.status];
+                    return <span className={`tool-action-${action.status.replace("_", "-")}`} key={`${action.tool}-${index}`}><b aria-hidden="true">{status.icon}</b><em>{status.label}</em>{action.summary}</span>;
+                  })}</div>}
                 </div>)}
                 {!advisorThread && <div className="chat-loading">正在读取你的申请档案并建立顾问会话…</div>}
                 {advisorBusy && advisorThread && <div className="chat-loading">顾问正在分析，并调用申请工具…</div>}
@@ -837,7 +938,7 @@ export default function Home() {
             </article>
             <aside className="advisor-tools">
               <div className="profile-snapshot"><p className="step-kicker">当前申请画像</p><h3>{profile.school}</h3><dl><div><dt>专业</dt><dd>{profile.major}</dd></div><div><dt>语言</dt><dd>{profile.english || "待补充"}</dd></div><div><dt>城市</dt><dd>{profile.cityPreference || "不限"}</dd></div><div><dt>资料完整度</dt><dd>{Math.round(readiness)}%</dd></div></dl><button className="text-button" onClick={() => { setProfileStep(1); setView("profile"); }}>修改档案 →</button></div>
-              <div className="knowledge-tool"><p className="step-kicker">官方知识库 · RAG</p><h3>检索已核验要求</h3><p>只检索已人工核验的项目事实，每条结果都能回到学校官方页面。</p><textarea value={knowledgeQuery} onChange={(event) => setKnowledgeQuery(event.target.value)} placeholder="例如：UQ 数据科学需要哪些数学课程？" /><button className="outline-button" disabled={knowledgeQuery.trim().length < 2 || knowledgeBusy} onClick={handleKnowledgeSearch}>{knowledgeBusy ? "正在检索…" : "检索官方资料"}</button>{knowledgeHits.length > 0 && <div className="knowledge-results">{knowledgeHits.map((hit) => <article key={hit.chunk_id}><span>{hit.section} · 相关度 {hit.relevance_score.toFixed(1)}</span><strong>{hit.university} · {hit.program_name}</strong><p>{hit.content}</p><a href={hit.source.url} target="_blank" rel="noreferrer">{hit.source.title} ↗</a><small>核验日期 {hit.source.verified_at}</small></article>)}</div>}</div>
+              <div className="knowledge-tool"><p className="step-kicker">官方知识库 · RAG</p><h3>检索已核验要求</h3><p>只检索已人工核验的项目事实，每条结果都能回到学校官方页面。</p><textarea value={knowledgeQuery} onChange={(event) => setKnowledgeQuery(event.target.value)} placeholder="例如：UQ 数据科学需要哪些数学课程？" /><button className="outline-button" disabled={knowledgeQuery.trim().length < 2 || knowledgeBusy} onClick={handleKnowledgeSearch}>{knowledgeBusy ? "正在检索…" : "检索官方资料"}</button>{knowledgeHits.length > 0 && <div className="knowledge-results">{knowledgeHits.map((hit) => <article key={hit.chunk_id}><span>{hit.section} · 相关度 {hit.relevance_score.toFixed(1)}</span><strong>{hit.university} · {hit.program_name}</strong><p>{hit.content}</p><a href={hit.source.url} target="_blank" rel="noreferrer">{hit.source.title} ↗</a><small>核验日期 {hit.source.verified_at}{hit.source.version_id ? ` · 版本 ${hit.source.version_id.slice(0, 18)}` : ""}</small></article>)}</div>}</div>
               <div className="transcript-tool"><p className="step-kicker">成绩单课程核验</p><h3>粘贴成绩单文本</h3><p>识别数学、编程、算法与数据库课程，并逐项目检查先修要求。原始文本不会发送给 DeepSeek。</p><textarea value={transcriptText} onChange={(event) => setTranscriptText(event.target.value)} placeholder={"高等数学 88\n数据结构 90\n数据库系统 87"} /><button className="outline-button" disabled={!transcriptText.trim() || advisorBusy} onClick={handleTranscriptAnalysis}>分析课程匹配</button>{transcriptResult && <div className="transcript-result"><strong>{transcriptResult.academic_summary}</strong><span>{transcriptResult.program_matches.filter((item) => item.status === "满足").length} 个项目的已列先修课可初步满足</span>{transcriptResult.warnings.map((warning) => <small key={warning}>! {warning}</small>)}</div>}</div>
               {cloudConsent && <div className="ai-data-setting"><span>云端 AI 数据处理</span><strong>{cloudConsent.accepted ? "已同意 · 最小化脱敏" : "已拒绝 · 使用规则顾问"}</strong><button className="text-button" onClick={() => setShowCloudConsent(true)}>修改选择</button></div>}
             </aside>
@@ -878,7 +979,7 @@ export default function Home() {
           { title: "核心课程", detail: program.prerequisites.length ? `重点确认：${program.prerequisites.join("、")}。` : "项目页面暂未列出明确的专业先修课程限制。" },
           { title: "英语要求", detail: `${program.english_requirement}；你的当前情况：${profile.english || "尚未填写语言成绩"}。` },
         ];
-        return <section className="school-page"><button className="back-button" onClick={() => setView("results")}>← 返回选校方案</button><div className="school-hero"><div className="uni-monogram large" style={{ background: presentation.accent }}>{presentation.short.slice(0, 2)}</div><div><p>{program.university} · {program.city}</p><h1>{program.name}</h1><span className={`tier tier-${selected.tier}`}>{selected.tier}</span></div><a href={program.source.url} target="_blank" rel="noreferrer" className="outline-button">查看项目官网 ↗</a></div><div className="school-grid"><article className="analysis-card primary-analysis"><p className="step-kicker">申请要求对照</p><h2>为什么归入“{selected.tier}”？</h2><div className="big-score"><strong>{selected.match_score}</strong><span>/ 100 综合匹配度</span></div><ul>{evidencePoints.map((point, index) => <li key={`${point.title}-${index}`}><span>{String(index + 1).padStart(2, "0")}</span><div><strong>{point.title}</strong><p>{point.detail}</p></div></li>)}</ul><div className="risk-panel"><strong>需要继续确认</strong>{selected.risks.map((risk) => <p key={risk}>! {risk}</p>)}</div></article><aside><article className="analysis-card application-choice-card"><p className="step-kicker">申请决策</p><h3>把项目放进申请组合</h3><PortfolioControls choice={choiceFor(program.slug)} showDeadline onChange={(payload) => changePortfolioChoice(program.slug, payload)} /></article><article className="analysis-card"><p className="step-kicker">申请前确认</p><h3>建议下一步</h3><p>{selected.next_action}</p><ol className="checklist"><li><span>1</span>确认成绩换算口径</li><li><span>2</span>逐项核对成绩单课程</li><li><span>3</span>确认语言总分与单项</li><li><span>4</span>查看当前开放轮次与截止日期</li></ol></article><article className="source-card"><span>项目要求来源</span><p>{program.source.excerpt}</p><a href={program.source.url} target="_blank" rel="noreferrer">{program.source.title} ↗</a><small>信息更新：{program.source.verified_at} · 请以官网最新说明为准</small></article></aside></div></section>;
+        return <section className="school-page"><button className="back-button" onClick={() => setView("results")}>← 返回选校方案</button><div className="school-hero"><div className="uni-monogram large" style={{ background: presentation.accent }}>{presentation.short.slice(0, 2)}</div><div><p>{program.university} · {program.city}</p><h1>{program.name}</h1><span className={`tier tier-${selected.tier}`}>{selected.tier}</span></div><a href={program.source.url} target="_blank" rel="noreferrer" className="outline-button">查看项目官网 ↗</a></div><div className="school-grid"><article className="analysis-card primary-analysis"><p className="step-kicker">申请要求对照</p><h2>为什么归入“{selected.tier}”？</h2><div className="big-score"><strong>{selected.match_score}</strong><span>/ 100 综合匹配度</span></div><ul>{evidencePoints.map((point, index) => <li key={`${point.title}-${index}`}><span>{String(index + 1).padStart(2, "0")}</span><div><strong>{point.title}</strong><p>{point.detail}</p></div></li>)}</ul><div className="risk-panel"><strong>需要继续确认</strong>{selected.risks.map((risk) => <p key={risk}>! {risk}</p>)}</div></article><aside><article className="analysis-card application-choice-card"><p className="step-kicker">申请决策</p><h3>把项目放进申请组合</h3><PortfolioControls choice={choiceFor(program.slug)} showDeadline onChange={(payload) => changePortfolioChoice(program.slug, payload)} /></article><article className="analysis-card"><p className="step-kicker">申请前确认</p><h3>建议下一步</h3><p>{selected.next_action}</p><ol className="checklist"><li><span>1</span>确认成绩换算口径</li><li><span>2</span>逐项核对成绩单课程</li><li><span>3</span>确认语言总分与单项</li><li><span>4</span>查看当前开放轮次与截止日期</li></ol></article><article className="source-card"><span>项目要求来源</span><p>{program.source.excerpt}</p><a href={program.source.url} target="_blank" rel="noreferrer">{program.source.title} ↗</a><small>信息更新：{program.source.verified_at}{program.source.version_id ? ` · 版本 ${program.source.version_id.slice(0, 18)}` : ""} · 请以官网最新说明为准</small></article></aside></div></section>;
       })()}
 
       {view === "plan" && (
@@ -914,7 +1015,11 @@ export default function Home() {
           <div className="admin-sections">
             <article className="operations-card"><p className="step-kicker">用户管理</p><h3>Beta 用户</h3><div className="admin-table">{adminUsers.map((user) => <div className="admin-row" key={user.id}><div><strong>{user.display_name}</strong><span>{user.email}</span></div><span>{user.email_verified ? "邮箱已验证" : "待验证"}</span><span>{user.terms_version ? `条款 ${user.terms_version}` : "条款待补录"}</span><span>{user.role === "admin" ? "管理员" : "用户"}</span><button className="text-button" disabled={user.id === currentUser.id} onClick={() => void changeUserStatus(user.id, user.status === "active" ? "suspended" : "active")}>{user.status === "active" ? "停用" : "恢复"}</button></div>)}</div></article>
             <article className="operations-card"><p className="step-kicker">反馈队列</p><h3>用户反馈</h3><div className="compact-list">{adminFeedback.map((item) => <div key={item.id}><span className={`status-chip status-${item.status}`}>{item.status}</span><strong>{item.category} · {item.user_email}</strong><p>{item.message}</p><select value={item.status} onChange={(event) => void changeFeedbackStatus(item.id, event.target.value as FeedbackItem["status"])}><option value="new">待处理</option><option value="reviewing">处理中</option><option value="resolved">已解决</option></select></div>)}{adminFeedback.length === 0 && <p className="muted-copy">暂无用户反馈。</p>}</div></article>
-            <article className="operations-card admin-sources"><p className="step-kicker">数据治理</p><h3>项目来源复核</h3><div className="admin-table">{adminSources.map((source) => <div className="admin-row source-row" key={source.source_id}><div><strong>{source.title}</strong><span>{source.source_id} · 上次核验 {source.verified_at}</span></div><span className={`status-chip ${source.status === "已核验" ? "status-resolved" : "status-new"}`}>{source.status}</span><span>{source.reason}</span><a className="text-button" href={source.url} target="_blank" rel="noreferrer">官网 ↗</a></div>)}</div></article>
+            <article className="operations-card admin-sources">
+              <p className="step-kicker">数据治理</p><h3>项目来源复核</h3>
+              <div className="admin-table">{adminSources.map((source) => <div className="admin-row source-row" key={source.source_id}><div><strong>{source.title}</strong><span>{source.source_id} · 上次核验 {source.verified_at}</span><span>版本 {source.published_version_id.slice(0, 18)} · SHA-256 {source.content_hash.slice(0, 12)}{source.pending_versions ? ` · ${source.pending_versions} 个待审核` : ""}</span></div><span className={`status-chip ${source.status === "已核验" ? "status-resolved" : "status-new"}`}>{source.status}</span><span>{source.reason}</span><a className="text-button" href={source.url} target="_blank" rel="noreferrer">官网 ↗</a></div>)}</div>
+              {token && <SourceReviewPanel token={token} sources={adminSources} onSourcesChange={setAdminSources} />}
+            </article>
           </div>
         </section>
       )}

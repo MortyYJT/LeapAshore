@@ -7,7 +7,7 @@ from datetime import UTC, datetime
 from typing import Annotated, Any
 from uuid import uuid4
 
-from fastapi import Cookie, Depends, FastAPI, Header, HTTPException, Query, Response
+from fastapi import Cookie, Depends, FastAPI, Header, HTTPException, Query, Request, Response
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 
@@ -26,6 +26,7 @@ from .models import (
     AdvisorMessage,
     AdvisorMessageRequest,
     AdvisorReply,
+    AdvisorStreamState,
     AdvisorThread,
     AgentRecommendationResponse,
     ApplicantProfile,
@@ -50,7 +51,11 @@ from .models import (
     KnowledgeSearchRequest,
     KnowledgeSearchResponse,
     Program,
+    ProgramSourceCandidateRequest,
+    ProgramSourceReviewRequest,
+    ProgramSourceRollbackRequest,
     ProgramSourceStatus,
+    ProgramSourceVersion,
     RecommendationResponse,
     RecommendationRunSummary,
     TranscriptAnalysisRequest,
@@ -62,7 +67,7 @@ from .models import (
 from .mailer import EmailDeliveryError, send_password_reset_email, send_verification_email
 from .middleware import OriginGuardMiddleware, RateLimitMiddleware, SecurityHeadersMiddleware
 from .observability import configure_error_reporting
-from .program_data import PROGRAMS
+from .program_data import PROGRAMS, replace_published_program
 from .taxonomy import DEGREE_LEVELS, STUDY_AREAS, DegreeLevel, StudyArea
 from .services.advisor import plan_turn
 from .services.advisor import fallback_plan
@@ -87,10 +92,34 @@ from .store import (
     InvalidCredentialsError,
     store,
 )
+from .source_errors import (
+    SourceVersionConflictError,
+    SourceVersionNotFoundError,
+    SourceVersionStateError,
+)
+from .source_governance import (
+    current_program,
+    initialize_source_registry,
+    new_candidate,
+    refresh_source_registry,
+    validate_official_source,
+)
 
 configure_error_reporting()
 logger = logging.getLogger("offerpilot.mail")
 deepseek_slots = asyncio.Semaphore(4)
+SOURCE_BACKED_PATHS = (
+    "/programs",
+    "/program-sources",
+    "/catalog",
+    "/recommendations",
+    "/agent",
+    "/me/recommendation-runs",
+    "/me/knowledge",
+    "/me/transcript",
+    "/me/advisor",
+)
+initialize_source_registry(store)
 
 
 def portfolio_for_run(user_id: str, result: AgentRecommendationResponse) -> list[ApplicationChoice]:
@@ -292,6 +321,13 @@ app.add_middleware(
 )
 
 
+@app.middleware("http")
+async def refresh_published_programs(request: Request, call_next):
+    if request.url.path.startswith(SOURCE_BACKED_PATHS):
+        await asyncio.to_thread(refresh_source_registry, store)
+    return await call_next(request)
+
+
 def current_user(
     authorization: Annotated[str | None, Header()] = None,
     session_cookie: Annotated[str | None, Cookie(alias="offerpilot_session")] = None,
@@ -436,7 +472,6 @@ def reset_password(payload: PasswordResetRequest) -> MessageResponse:
 
 @app.post("/auth/logout", response_model=MessageResponse)
 def logout(
-    _: Annotated[DemoUser, Depends(current_user)],
     response: Response,
     authorization: Annotated[str | None, Header()] = None,
     session_cookie: Annotated[str | None, Cookie(alias="offerpilot_session")] = None,
@@ -680,12 +715,23 @@ def create_recommendation_run(user: Annotated[DemoUser, Depends(current_user)]) 
 def program_source_status() -> list[ProgramSourceStatus]:
     today = datetime.now(UTC).date()
     statuses = []
-    for program in PROGRAMS:
+    all_versions = store.list_program_source_versions()
+    by_program = {
+        program.slug: [item for item in all_versions if item.program_slug == program.slug]
+        for program in PROGRAMS
+    }
+    for program_slug, versions in by_program.items():
+        published = next((item for item in versions if item.status == "published"), None)
+        if not published:
+            raise HTTPException(status_code=503, detail=f"项目 {program_slug} 缺少发布来源版本")
+        program = published.program
         age = (today - datetime.fromisoformat(program.source.verified_at).date()).days
         needs_review = age > 30
         statuses.append(ProgramSourceStatus(
             source_id=program.source.id, program_slug=program.slug, title=program.source.title,
             url=program.source.url, verified_at=program.source.verified_at,
+            published_version_id=published.version_id, content_hash=published.content_hash,
+            pending_versions=sum(item.status == "pending_review" for item in versions),
             status="需要复核" if needs_review else "已核验",
             reason=f"距上次人工核验已 {age} 天" if needs_review else "仍在 30 天复核周期内",
         ))
@@ -709,6 +755,136 @@ def search_official_knowledge(
 @app.get("/admin/program-sources", response_model=list[ProgramSourceStatus])
 def admin_program_source_status(_: Annotated[DemoUser, Depends(current_admin)]) -> list[ProgramSourceStatus]:
     return program_source_status()
+
+
+def _published_source_version(program_slug: str) -> ProgramSourceVersion:
+    published = next((
+        item for item in store.list_program_source_versions(program_slug)
+        if item.status == "published"
+    ), None)
+    if not published:
+        raise HTTPException(status_code=404, detail="项目或发布来源版本不存在")
+    return published
+
+
+@app.get(
+    "/admin/program-sources/{program_slug}/versions",
+    response_model=list[ProgramSourceVersion],
+)
+def admin_program_source_versions(
+    program_slug: str,
+    _: Annotated[DemoUser, Depends(current_admin)],
+) -> list[ProgramSourceVersion]:
+    if not current_program(program_slug):
+        raise HTTPException(status_code=404, detail="项目不存在")
+    return store.list_program_source_versions(program_slug)
+
+
+@app.post(
+    "/admin/program-sources/{program_slug}/versions",
+    response_model=ProgramSourceVersion,
+    status_code=201,
+)
+def admin_create_program_source_version(
+    program_slug: str,
+    payload: ProgramSourceCandidateRequest,
+    admin: Annotated[DemoUser, Depends(current_admin)],
+) -> ProgramSourceVersion:
+    if payload.program.slug != program_slug or not current_program(program_slug):
+        raise HTTPException(status_code=422, detail="候选版本的项目标识与路径不一致")
+    published = _published_source_version(program_slug)
+    if payload.base_hash != published.content_hash:
+        raise HTTPException(status_code=409, detail="当前发布版本已变化，请基于最新 hash 重新生成差异")
+    try:
+        candidate = new_candidate(
+            current=published,
+            proposed=payload.program,
+            submitted_by=admin.id,
+        )
+        return store.save_program_source_version(candidate)
+    except ValueError as error:
+        status_code = 409 if "完全一致" in str(error) else 422
+        raise HTTPException(status_code=status_code, detail=str(error)) from error
+    except SourceVersionStateError as error:
+        raise HTTPException(status_code=409, detail=str(error)) from error
+
+
+@app.put(
+    "/admin/program-sources/{program_slug}/versions/{version_id}",
+    response_model=ProgramSourceVersion,
+)
+def admin_review_program_source_version(
+    program_slug: str,
+    version_id: str,
+    payload: ProgramSourceReviewRequest,
+    admin: Annotated[DemoUser, Depends(current_admin)],
+) -> ProgramSourceVersion:
+    candidate = store.get_program_source_version(version_id)
+    if not candidate or candidate.program_slug != program_slug:
+        raise HTTPException(status_code=404, detail="来源版本不存在")
+    if payload.decision == "approve":
+        try:
+            validate_official_source(candidate.program)
+        except ValueError as error:
+            raise HTTPException(status_code=422, detail=str(error)) from error
+    try:
+        reviewed = store.review_program_source_version(
+            version_id,
+            payload.decision,
+            admin.id,
+            datetime.now(UTC),
+            payload.note,
+        )
+    except SourceVersionNotFoundError as error:
+        raise HTTPException(status_code=404, detail=str(error)) from error
+    except (SourceVersionConflictError, SourceVersionStateError) as error:
+        raise HTTPException(status_code=409, detail=str(error)) from error
+    if reviewed.status == "published":
+        replace_published_program(reviewed.program)
+    return reviewed
+
+
+@app.post(
+    "/admin/program-sources/{program_slug}/rollback",
+    response_model=ProgramSourceVersion,
+    status_code=201,
+)
+def admin_rollback_program_source_version(
+    program_slug: str,
+    payload: ProgramSourceRollbackRequest,
+    admin: Annotated[DemoUser, Depends(current_admin)],
+) -> ProgramSourceVersion:
+    target = store.get_program_source_version(payload.target_version_id)
+    if not target or target.program_slug != program_slug:
+        raise HTTPException(status_code=404, detail="回滚目标版本不存在")
+    if target.status != "superseded":
+        raise HTTPException(status_code=409, detail="只能回滚到曾经发布且已被替代的历史版本")
+    published = _published_source_version(program_slug)
+    if target.content_hash == published.content_hash:
+        raise HTTPException(status_code=409, detail="目标版本内容已经是当前发布内容")
+    try:
+        rollback = new_candidate(
+            current=published,
+            proposed=target.program,
+            submitted_by=admin.id,
+            rollback_of=target.version_id,
+        )
+        store.save_program_source_version(rollback)
+        reviewed = store.review_program_source_version(
+            rollback.version_id,
+            "approve",
+            admin.id,
+            datetime.now(UTC),
+            payload.note or f"回滚到历史版本 {target.version_id}",
+        )
+    except ValueError as error:
+        raise HTTPException(status_code=422, detail=str(error)) from error
+    except SourceVersionNotFoundError as error:
+        raise HTTPException(status_code=404, detail=str(error)) from error
+    except (SourceVersionConflictError, SourceVersionStateError) as error:
+        raise HTTPException(status_code=409, detail=str(error)) from error
+    replace_published_program(reviewed.program)
+    return reviewed
 
 
 @app.get("/me/recommendation-runs", response_model=list[RecommendationRunSummary])
@@ -982,12 +1158,14 @@ async def stream_advisor_message(
         )
         await asyncio.to_thread(store.save_thread, user.id, thread)
         await asyncio.to_thread(store.save_audit, user.id, audit)
-        yield sse_event("state", {
-            "thread": thread.model_dump(mode="json"),
-            "profile": updated_profile.model_dump(mode="json"),
-            "portfolio": [choice.model_dump(mode="json") for choice in choices],
-            "roadmap": current_roadmap.model_dump(mode="json") if current_roadmap else None,
-        })
+        state = AdvisorStreamState(
+            thread=thread,
+            profile=updated_profile,
+            recommendation_run=latest_result,
+            portfolio=choices,
+            roadmap=current_roadmap,
+        )
+        yield sse_event("state", state.model_dump(mode="json"))
         yield sse_event("done", {
             "provider": provider, "model": model, "latency_ms": latency_ms,
             "input_tokens": input_tokens, "output_tokens": output_tokens,

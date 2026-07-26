@@ -104,6 +104,19 @@ def test_http_only_cookie_restores_same_origin_session() -> None:
     assert client.get("/me").status_code == 401
 
 
+def test_logout_is_idempotent_and_clears_a_stale_session_cookie() -> None:
+    stale_client = TestClient(app)
+    stale_client.cookies.set("offerpilot_session", "revoked-session-token")
+
+    response = stale_client.post("/auth/logout")
+
+    assert response.status_code == 200
+    set_cookie = response.headers["set-cookie"].lower()
+    assert "offerpilot_session=" in set_cookie
+    assert "max-age=0" in set_cookie
+    assert "samesite=lax" in set_cookie
+
+
 def test_admin_can_review_feedback_and_suspend_users() -> None:
     user_login = registered_login("feedback-user@offerpilot.cn")
     user_headers = {"Authorization": f"Bearer {user_login.json()['access_token']}"}
@@ -514,6 +527,41 @@ def test_deepseek_stream_is_consented_redacted_and_persisted(monkeypatch) -> Non
     assert audits[0]["prompt_version"] == "advisor-2.0.0-redacted"
 
 
+def test_stream_state_keeps_profile_run_portfolio_and_roadmap_on_one_snapshot() -> None:
+    import json
+
+    login = registered_login("stream-state-contract@offerpilot.cn")
+    headers = {"Authorization": f"Bearer {login.json()['access_token']}"}
+    client.put("/me/profile", json={
+        "undergraduate_school": "示例大学", "school_tier": "双非", "undergraduate_major": "软件工程",
+        "gpa": 82, "gpa_scale": 100, "target_field": "计算机与数据", "intake": "2027 S1",
+    }, headers=headers)
+    old_run_id = client.post("/me/recommendation-runs", headers=headers).json()["run_id"]
+    thread = client.post("/me/advisor/threads", headers=headers).json()
+
+    response = client.post(
+        f"/me/advisor/threads/{thread['id']}/messages/stream",
+        json={"content": "我更想去悉尼，预算每年 50 万，请重新推荐学校"},
+        headers=headers,
+    )
+    assert response.status_code == 200
+    state_block = next(
+        block for block in response.text.replace("\r\n", "\n").split("\n\n")
+        if block.startswith("event: state\n")
+    )
+    state = json.loads(next(
+        line.removeprefix("data: ").strip()
+        for line in state_block.splitlines()
+        if line.startswith("data:")
+    ))
+
+    assert state["profile"]["location_preferences"] == "悉尼优先"
+    assert state["profile"]["annual_budget_cny"] == 500000
+    assert state["recommendation_run"]["run_id"] != old_run_id
+    assert state["roadmap"]["run_id"] == state["recommendation_run"]["run_id"]
+    assert {item["run_id"] for item in state["portfolio"]} == {state["recommendation_run"]["run_id"]}
+
+
 def test_stream_prerequisite_loading_does_not_block_the_event_loop(monkeypatch) -> None:
     import asyncio
     import importlib
@@ -642,6 +690,126 @@ def test_program_sources_expose_review_freshness() -> None:
     assert response.status_code == 200
     assert len(response.json()) >= 6
     assert all(item["url"].startswith("https://") for item in response.json())
+    assert all(len(item["content_hash"]) == 64 for item in response.json())
+    assert all(item["published_version_id"] for item in response.json())
+
+
+def test_admin_source_versions_require_review_update_rag_and_can_rollback(monkeypatch) -> None:
+    monkeypatch.setenv("ADMIN_EMAILS", "admin@offerpilot.cn,source-admin@offerpilot.cn")
+    login = registered_login("source-admin@offerpilot.cn")
+    headers = {"Authorization": f"Bearer {login.json()['access_token']}"}
+    slug = "unsw-master-it"
+
+    baseline_status = next(
+        item for item in client.get("/program-sources/status").json()
+        if item["program_slug"] == slug
+    )
+    baseline_program = client.get(f"/programs/{slug}").json()
+    baseline_version_id = baseline_status["published_version_id"]
+    baseline_hash = baseline_status["content_hash"]
+
+    untrusted_program = {
+        **baseline_program,
+        "duration": "2.25 年",
+        "source": {**baseline_program["source"], "url": "https://example.com/not-official"},
+    }
+    untrusted = client.post(
+        f"/admin/program-sources/{slug}/versions",
+        json={"base_hash": baseline_hash, "program": untrusted_program},
+        headers=headers,
+    )
+    assert untrusted.status_code == 422
+    assert "官方域名" in untrusted.json()["detail"]
+
+    first_program = {**baseline_program, "duration": "2.25 年"}
+    second_program = {**baseline_program, "duration": "2.5 年"}
+    first = client.post(
+        f"/admin/program-sources/{slug}/versions",
+        json={"base_hash": baseline_hash, "program": first_program},
+        headers=headers,
+    )
+    second = client.post(
+        f"/admin/program-sources/{slug}/versions",
+        json={"base_hash": baseline_hash, "program": second_program},
+        headers=headers,
+    )
+    assert first.status_code == second.status_code == 201
+    assert first.json()["status"] == "pending_review"
+    assert {item["field"] for item in first.json()["changes"]} == {"duration"}
+    assert client.get(f"/programs/{slug}").json()["duration"] == baseline_program["duration"]
+
+    first_id = first.json()["version_id"]
+    approved = client.put(
+        f"/admin/program-sources/{slug}/versions/{first_id}",
+        json={"decision": "approve", "note": "测试审核通过"},
+        headers=headers,
+    )
+    assert approved.status_code == 200
+    assert approved.json()["status"] == "published"
+    assert approved.json()["reviewed_by"] == login.json()["user"]["id"]
+    assert client.get(f"/programs/{slug}").json()["duration"] == "2.25 年"
+
+    rag = client.post(
+        "/me/knowledge/search",
+        json={"query": "UNSW 信息技术项目学制", "top_k": 3},
+        headers=headers,
+    )
+    unsw_hit = next(item for item in rag.json()["hits"] if item["program_slug"] == slug)
+    assert unsw_hit["source"]["version_id"] == first_id
+    assert unsw_hit["source"]["content_hash"] == approved.json()["content_hash"]
+
+    recommendation = client.post("/agent/recommendations", json={
+        "undergraduate_school": "示例大学",
+        "school_tier": "双非",
+        "undergraduate_major": "软件工程",
+        "gpa": 82,
+        "gpa_scale": 100,
+        "target_field": "计算机与数据",
+    }).json()
+    unsw = next(item for item in recommendation["recommendations"] if item["program"]["slug"] == slug)
+    assert unsw["program"]["duration"] == "2.25 年"
+    assert unsw["program"]["source"]["version_id"] == first_id
+
+    second_id = second.json()["version_id"]
+    stale = client.put(
+        f"/admin/program-sources/{slug}/versions/{second_id}",
+        json={"decision": "approve"},
+        headers=headers,
+    )
+    assert stale.status_code == 409
+    rejected = client.put(
+        f"/admin/program-sources/{slug}/versions/{second_id}",
+        json={"decision": "reject", "note": "基线已过期"},
+        headers=headers,
+    )
+    assert rejected.status_code == 200
+    assert rejected.json()["status"] == "rejected"
+    rejected_rollback = client.post(
+        f"/admin/program-sources/{slug}/rollback",
+        json={"target_version_id": second_id},
+        headers=headers,
+    )
+    assert rejected_rollback.status_code == 409
+    assert "曾经发布" in rejected_rollback.json()["detail"]
+
+    rollback = client.post(
+        f"/admin/program-sources/{slug}/rollback",
+        json={"target_version_id": baseline_version_id, "note": "测试回滚"},
+        headers=headers,
+    )
+    assert rollback.status_code == 201
+    assert rollback.json()["status"] == "published"
+    assert rollback.json()["rollback_of"] == baseline_version_id
+    assert rollback.json()["content_hash"] == baseline_hash
+    assert rollback.json()["version_id"] != baseline_version_id
+    assert client.get(f"/programs/{slug}").json()["duration"] == baseline_program["duration"]
+
+    versions = client.get(
+        f"/admin/program-sources/{slug}/versions",
+        headers=headers,
+    ).json()
+    assert sum(item["status"] == "published" for item in versions) == 1
+    assert any(item["status"] == "rejected" and item["version_id"] == second_id for item in versions)
 
 
 def test_authenticated_rag_search_and_advisor_fallback_share_cited_evidence() -> None:
