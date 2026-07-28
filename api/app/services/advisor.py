@@ -5,6 +5,7 @@ from time import perf_counter
 from typing import Any
 
 from ..models import AdvisorAction, ApplicantProfile
+from ..observability import traced
 from .model_provider import ModelProviderError, configured_model, plan_advisor_turn
 
 
@@ -54,6 +55,7 @@ def fallback_plan(message: str, profile: ApplicantProfile) -> dict[str, Any]:
     return {"reply": reply, "actions": actions}
 
 
+@traced("advisor.plan", layer="agent")
 def plan_turn(
     message: str,
     profile: ApplicantProfile,

@@ -7,6 +7,7 @@ from typing import Any
 
 import httpx
 
+from ..observability import traced
 from ..taxonomy import DEGREE_LEVELS, STUDY_AREAS
 
 
@@ -44,6 +45,7 @@ def llm_is_configured() -> bool:
     return configured_provider() in {"openai", "ollama", "deepseek"}
 
 
+@traced("provider.plan", layer="provider")
 def plan_advisor_turn(context: dict[str, Any]) -> ModelResult:
     """Ask the model for a constrained plan; server-side code executes every mutation."""
     provider = configured_provider()

@@ -1,0 +1,40 @@
+# OfferPilot 最小可观测性
+
+OfferPilot 先固定可验证的 span 与 metric 语义，再决定是否接入 OpenTelemetry Collector 或托管监控。当前实现不依赖外部监控服务，也不代表已经得到线上 SLO、DeepSeek 实网延迟或容量结论。
+
+## Trace 边界
+
+每个 HTTP 请求接受合法的 W3C `traceparent`；缺失或非法时生成新的 128-bit trace ID。响应返回 `X-Trace-ID`。客户端提供的 `X-Request-ID` 只有在匹配 1–80 位字母、数字及 `._:-` 时才会沿用，否则服务端重新生成。结构化 span 只记录受控的低基数字段，不记录请求正文、用户 ID、邮箱、顾问消息、项目 slug 或异常消息。
+
+| 层 | span | 说明 |
+| --- | --- | --- |
+| HTTP | `http.request` | 方法、FastAPI 路由模板、状态码、请求 ID |
+| Agent | `advisor.plan`、`advisor.actions.plan` | 顾问规划与白名单动作选择 |
+| RAG | `rag.retrieve` | 官方知识 BM25 检索 |
+| Provider | `provider.plan`、`provider.stream` | 可选模型规划与流式调用；错误只记录异常类型 |
+| Store | `store.<operation>` | 当前存储适配器的读写操作，不采集参数或返回值 |
+
+`TELEMETRY_SPAN_SAMPLE_RATE` 控制结构化 span 日志采样，范围为 `0`–`1`，默认 `1`。指标始终累计，不受日志采样影响。
+
+## Prometheus 指标
+
+- `offerpilot_http_requests_total{method,route,status_class}`
+- `offerpilot_http_request_duration_seconds{method,route,status_class}`
+- `offerpilot_operation_total{layer,operation,outcome}`
+- `offerpilot_operation_duration_seconds{layer,operation,outcome}`
+
+HTTP `route` 使用 FastAPI 路由模板；未匹配请求统一标记为 `__unmatched__`，预路由拒绝标记为 `__pre_route__`，避免把用户 ID、资源 ID 或任意 URL 片段变成指标标签。
+
+指标端点为 `GET /internal/metrics`。未配置 `METRICS_BEARER_TOKEN` 时返回 404；配置后只接受精确的 `Authorization: Bearer <token>`，并使用常量时间比较。示例：
+
+```bash
+curl -H "Authorization: Bearer $METRICS_BEARER_TOKEN" \
+  http://127.0.0.1:8000/internal/metrics
+```
+
+## 当前边界与下一步
+
+- 指标保存在单进程内存中，进程重启会清零，多实例也不会自动聚合。
+- 当前没有声称已部署 Collector、Dashboard 或告警路由；接入时应直接抓取上述端点，并按 `trace_id` 关联 JSON span。
+- 文档中的 API 可用性 99.5%、非 LLM API p95 小于 500ms 仍是待压测校准的初始目标，不是当前实测结果。
+- 下一步应在真实 PostgreSQL 与可控 Provider 测试环境中采样连接等待、事务/锁等待、TTFT、完成率和 fallback 比例，再建立 dashboard 与告警。

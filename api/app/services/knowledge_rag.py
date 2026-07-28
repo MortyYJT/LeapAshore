@@ -12,6 +12,7 @@ from ..models import (
     KnowledgeSearchResponse,
     Program,
 )
+from ..observability import traced
 from ..program_data import PROGRAMS
 
 
@@ -114,6 +115,7 @@ def _filtered_chunks(request: KnowledgeSearchRequest) -> list[KnowledgeChunk]:
     ]
 
 
+@traced("rag.retrieve", layer="rag")
 def retrieve_official_knowledge(request: KnowledgeSearchRequest) -> KnowledgeSearchResponse:
     chunks = _filtered_chunks(request)
     query_tokens = _tokens(request.query)

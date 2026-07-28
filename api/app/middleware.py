@@ -5,17 +5,28 @@ from datetime import UTC, datetime, timedelta
 import json
 import logging
 import os
+import re
 from threading import Lock
 from uuid import uuid4
 from time import perf_counter
 
 from fastapi import Request
 from fastapi.responses import JSONResponse
+from starlette.datastructures import MutableHeaders
 from starlette.middleware.base import BaseHTTPMiddleware, RequestResponseEndpoint
 from starlette.responses import Response
+from starlette.types import ASGIApp, Message, Receive, Scope, Send
+
+from .observability import (
+    metrics_response,
+    record_http_request,
+    trace_scope,
+    trace_span,
+)
 
 
 logger = logging.getLogger("offerpilot.request")
+_REQUEST_ID = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._:-]{0,79}$")
 
 
 def env_enabled(name: str, default: bool = False) -> bool:
@@ -34,30 +45,91 @@ def client_ip(request: Request) -> str:
     return forwarded or direct
 
 
-class SecurityHeadersMiddleware(BaseHTTPMiddleware):
-    async def dispatch(self, request: Request, call_next: RequestResponseEndpoint) -> Response:
-        request_id = request.headers.get("x-request-id", f"req_{uuid4().hex[:16]}")[:80]
+class SecurityHeadersMiddleware:
+    """Apply request security and telemetry across the complete response stream."""
+
+    def __init__(self, app: ASGIApp) -> None:
+        self.app = app
+
+    async def __call__(self, scope: Scope, receive: Receive, send: Send) -> None:
+        if scope["type"] != "http":
+            await self.app(scope, receive, send)
+            return
+
+        request = Request(scope, receive=receive)
+        supplied_request_id = request.headers.get("x-request-id", "")
+        request_id = (
+            supplied_request_id
+            if _REQUEST_ID.fullmatch(supplied_request_id)
+            else f"req_{uuid4().hex[:16]}"
+        )
         request.state.request_id = request_id
         started = perf_counter()
-        try:
-            content_length = int(request.headers.get("content-length", "0") or 0)
-        except ValueError:
-            content_length = 1_000_001
-        if content_length > 1_000_000:
-            return JSONResponse({"detail": "请求内容过大"}, status_code=413, headers={"X-Request-ID": request_id})
-        response = await call_next(request)
-        response.headers["X-Request-ID"] = request_id
-        response.headers["X-Content-Type-Options"] = "nosniff"
-        response.headers["X-Frame-Options"] = "DENY"
-        response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
-        response.headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
-        response.headers["Cache-Control"] = "no-store" if request.url.path.startswith(("/auth", "/me", "/admin")) else "no-cache"
-        logger.info(json.dumps({
-            "event": "http_request", "request_id": request_id, "method": request.method,
-            "path": request.url.path, "status": response.status_code,
-            "duration_ms": round((perf_counter() - started) * 1000, 2),
-        }, ensure_ascii=False))
-        return response
+        route = "__pre_route__"
+        status_code = 500
+        with trace_scope(request.headers.get("traceparent")) as trace_id:
+            with trace_span(
+                "http.request",
+                layer="http",
+                attributes={
+                    "http.method": request.method,
+                    "request.id": request_id,
+                },
+            ) as span:
+                async def send_with_headers(message: Message) -> None:
+                    nonlocal status_code
+                    if message["type"] == "http.response.start":
+                        status_code = message["status"]
+                        headers = MutableHeaders(scope=message)
+                        headers["X-Request-ID"] = request_id
+                        headers["X-Trace-ID"] = trace_id
+                        headers["X-Content-Type-Options"] = "nosniff"
+                        headers["X-Frame-Options"] = "DENY"
+                        headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
+                        headers["Permissions-Policy"] = "camera=(), microphone=(), geolocation=()"
+                        headers["Cache-Control"] = (
+                            "no-store"
+                            if request.url.path.startswith(("/auth", "/me", "/admin", "/internal"))
+                            else "no-cache"
+                        )
+                    await send(message)
+
+                try:
+                    try:
+                        content_length = int(request.headers.get("content-length", "0") or 0)
+                    except ValueError:
+                        content_length = 1_000_001
+                    if request.url.path == "/internal/metrics":
+                        route = "/internal/metrics"
+                        response = metrics_response(request.headers.get("authorization"))
+                        await response(scope, receive, send_with_headers)
+                    elif content_length > 1_000_000:
+                        response = JSONResponse({"detail": "请求内容过大"}, status_code=413)
+                        await response(scope, receive, send_with_headers)
+                    else:
+                        await self.app(scope, receive, send_with_headers)
+                    if route == "__pre_route__":
+                        matched_route = scope.get("route")
+                        route = getattr(matched_route, "path", None) or "__unmatched__"
+                except BaseException:
+                    if route == "__pre_route__":
+                        matched_route = scope.get("route")
+                        route = getattr(matched_route, "path", None) or "__unmatched__"
+                    duration_seconds = perf_counter() - started
+                    record_http_request(request.method, route, 500, duration_seconds)
+                    span.set_attribute("http.route", route)
+                    span.set_attribute("http.status_code", 500)
+                    raise
+
+                duration_seconds = perf_counter() - started
+                span.set_attribute("http.route", route)
+                span.set_attribute("http.status_code", status_code)
+                record_http_request(request.method, route, status_code, duration_seconds)
+                logger.info(json.dumps({
+                    "event": "http_request", "request_id": request_id, "trace_id": trace_id,
+                    "method": request.method, "route": route, "status": status_code,
+                    "duration_ms": round(duration_seconds * 1000, 2),
+                }, ensure_ascii=False))
 
 
 class RateLimitMiddleware(BaseHTTPMiddleware):

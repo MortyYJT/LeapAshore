@@ -17,6 +17,7 @@ from ..models import (
     AdvisorAction,
     KnowledgeEvidence,
 )
+from ..observability import traced
 from .advisor import fallback_plan
 
 
@@ -104,6 +105,7 @@ def build_redacted_context(
     return json.loads(_redact_text(json.dumps(payload, ensure_ascii=False), sensitive_values))
 
 
+@traced("advisor.actions.plan", layer="agent")
 def safe_tool_actions(
     message: str,
     profile: ApplicantProfile,
@@ -144,6 +146,7 @@ def safe_tool_actions(
     ) for item in raw["actions"][:3]]
 
 
+@traced("provider.stream", layer="provider")
 async def stream_deepseek(context: dict[str, Any]) -> AsyncIterator[tuple[str, Any]]:
     api_key = os.getenv("DEEPSEEK_API_KEY")
     if not api_key:

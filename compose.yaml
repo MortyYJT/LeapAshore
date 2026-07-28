@@ -71,6 +71,8 @@ services:
       AUTH_RATE_LIMIT_PER_MINUTE: 20
       RATE_LIMIT_PER_MINUTE: 120
       TRUST_PROXY_HEADERS: "true"
+      METRICS_BEARER_TOKEN: ${METRICS_BEARER_TOKEN:-}
+      TELEMETRY_SPAN_SAMPLE_RATE: ${TELEMETRY_SPAN_SAMPLE_RATE:-1.0}
     depends_on:
       postgres:
         condition: service_healthy
