@@ -509,10 +509,15 @@ export async function fetchAdvisorThreads(token: string): Promise<AdvisorThread[
   return request<AdvisorThread[]>("/me/advisor/threads", { headers: { Authorization: `Bearer ${token}` } });
 }
 
-export async function sendAdvisorMessage(token: string, threadId: string, content: string): Promise<{ thread: AdvisorThread; provider: string }> {
+export async function sendAdvisorMessage(
+  token: string,
+  threadId: string,
+  content: string,
+  requestId = crypto.randomUUID(),
+): Promise<{ thread: AdvisorThread; provider: string }> {
   return request(`/me/advisor/threads/${threadId}/messages`, {
     method: "POST",
-    headers: { Authorization: `Bearer ${token}` },
+    headers: { Authorization: `Bearer ${token}`, "Idempotency-Key": requestId },
     body: JSON.stringify({ content }),
   });
 }
@@ -533,9 +538,13 @@ export async function streamAdvisorMessage(
   token: string,
   threadId: string,
   content: string,
+  requestId: string,
   onEvent: (event: AdvisorStreamEvent) => void,
 ): Promise<void> {
-  const headers = new Headers({ "Content-Type": "application/json" });
+  const headers = new Headers({
+    "Content-Type": "application/json",
+    "Idempotency-Key": requestId,
+  });
   // The authenticated browser keeps the real credential in an HttpOnly
   // cookie. "cookie" is only a React presence marker and must never shadow
   // that cookie as a fake Bearer token.

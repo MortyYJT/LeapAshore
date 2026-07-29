@@ -301,6 +301,44 @@ class AdvisorMessageRequest(BaseModel):
     content: str = Field(min_length=1, max_length=4000)
 
 
+class AdvisorTurnRecord(BaseModel):
+    """Durable checkpoint for one idempotent advisor request."""
+
+    request_id: str = Field(min_length=8, max_length=128)
+    thread_id: str = Field(min_length=1, max_length=128)
+    mode: Literal["sync", "stream"]
+    content_hash: str = Field(pattern=r"^[0-9a-f]{64}$")
+    status: Literal["reserved", "planned", "actions_applied", "reply_ready", "completed"] = "reserved"
+    actions: list[AdvisorAction] = Field(default_factory=list)
+    reply_text: str | None = None
+    provider: Literal["openai", "ollama", "deepseek", "deterministic-fallback"] | None = None
+    model: str | None = None
+    latency_ms: int | None = None
+    input_tokens: int | None = None
+    output_tokens: int | None = None
+    recommendation_run_id: str | None = None
+    prompt_version: str | None = None
+    workflow_version: str | None = None
+    tools: list[str] = Field(default_factory=list)
+    created_at: datetime
+    updated_at: datetime
+    reply_ready_at: datetime | None = None
+    completed_at: datetime | None = None
+
+
+ADVISOR_TURN_STATUS_RANK = {
+    "reserved": 0,
+    "planned": 1,
+    "actions_applied": 2,
+    "reply_ready": 3,
+    "completed": 4,
+}
+
+
+def advisor_turn_status_rank(status: str) -> int:
+    return ADVISOR_TURN_STATUS_RANK[status]
+
+
 class AdvisorReply(BaseModel):
     thread: AdvisorThread
     profile: ApplicantProfile

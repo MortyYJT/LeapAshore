@@ -14,11 +14,13 @@ from .models import (
     ApplicationChoice,
     ApplicationTask,
     AdvisorThread,
+    AdvisorTurnRecord,
     ApplicantProfile,
     DemoUser,
     FeedbackItem,
     ProgramSourceVersion,
     RecommendationRunSummary,
+    advisor_turn_status_rank,
 )
 from .source_errors import (
     SourceVersionConflictError,
@@ -331,6 +333,69 @@ class PostgresStore:
 
     def get_thread(self, user_id: str, thread_id: str) -> AdvisorThread | None:
         return self._get_entity(user_id, "advisor_thread", thread_id, AdvisorThread)
+
+    def reserve_advisor_turn(self, user_id: str, turn: AdvisorTurnRecord) -> AdvisorTurnRecord:
+        from psycopg.types.json import Jsonb
+
+        with self._lock, self._connection.transaction(), self._connection.cursor() as cursor:
+            cursor.execute(
+                "SELECT pg_advisory_xact_lock(hashtextextended(%s, 0))",
+                (f"advisor-turn:{user_id}:{turn.request_id}",),
+            )
+            cursor.execute(
+                """SELECT payload FROM entities
+                WHERE user_id = %s AND kind = 'advisor_turn' AND entity_id = %s""",
+                (user_id, turn.request_id),
+            )
+            row = cursor.fetchone()
+            if row:
+                return AdvisorTurnRecord.model_validate(row["payload"])
+            cursor.execute(
+                """INSERT INTO entities (user_id, kind, entity_id, payload, created_at, updated_at)
+                VALUES (%s, 'advisor_turn', %s, %s, %s, %s)""",
+                (
+                    user_id,
+                    turn.request_id,
+                    Jsonb(turn.model_dump(mode="json")),
+                    turn.created_at,
+                    turn.updated_at,
+                ),
+            )
+        return turn
+
+    def save_advisor_turn(self, user_id: str, turn: AdvisorTurnRecord) -> AdvisorTurnRecord:
+        from psycopg.types.json import Jsonb
+
+        with self._lock, self._connection.transaction(), self._connection.cursor() as cursor:
+            cursor.execute(
+                "SELECT pg_advisory_xact_lock(hashtextextended(%s, 0))",
+                (f"advisor-turn:{user_id}:{turn.request_id}",),
+            )
+            cursor.execute(
+                """SELECT payload FROM entities
+                WHERE user_id = %s AND kind = 'advisor_turn' AND entity_id = %s""",
+                (user_id, turn.request_id),
+            )
+            row = cursor.fetchone()
+            if not row:
+                raise ValueError("顾问请求尚未预留")
+            existing = AdvisorTurnRecord.model_validate(row["payload"])
+            if advisor_turn_status_rank(existing.status) >= advisor_turn_status_rank(turn.status):
+                return existing
+            cursor.execute(
+                """UPDATE entities SET payload = %s, updated_at = %s
+                WHERE user_id = %s AND kind = 'advisor_turn' AND entity_id = %s""",
+                (
+                    Jsonb(turn.model_dump(mode="json")),
+                    turn.updated_at,
+                    user_id,
+                    turn.request_id,
+                ),
+            )
+        return turn
+
+    def get_advisor_turn(self, user_id: str, request_id: str) -> AdvisorTurnRecord | None:
+        return self._get_entity(user_id, "advisor_turn", request_id, AdvisorTurnRecord)
 
     def save_task(self, user_id: str, task: ApplicationTask) -> ApplicationTask:
         self._save_entity(user_id, "application_task", task.id, task, task.created_at)

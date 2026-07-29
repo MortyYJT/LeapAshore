@@ -78,6 +78,22 @@ test("the SSE client rejects a stream that closes before the persisted state eve
   assert.match(streamSource, /if \(!committedStateReceived\) throw new Error\("顾问连接在收到保存确认前中断"\)/);
 });
 
+test("advisor retries reuse one request-scoped idempotency key", () => {
+  const start = apiClientSource.indexOf("export async function streamAdvisorMessage");
+  const end = apiClientSource.indexOf("export async function analyzeTranscript", start);
+  const streamSource = apiClientSource.slice(start, end);
+  assert.match(streamSource, /"Idempotency-Key": requestId/);
+  for (const marker of [
+    "advisorRetryRef",
+    "pendingRetry?.content === content",
+    "pendingRetry.requestId",
+    "crypto.randomUUID()",
+    "streamAdvisorMessage(token, advisorThread.id, content, requestId",
+  ]) {
+    assert.match(pageSource, new RegExp(marker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  }
+});
+
 test("an ambiguous SSE disconnect reconciles the persisted thread before enabling a retry", () => {
   for (const marker of [
     "persistedMessageCount",

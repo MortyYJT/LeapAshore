@@ -223,7 +223,7 @@ test("admin reviews a source diff, publishes it, and rolls back through the UI",
   }
 });
 
-test("advisor SSE 503 restores the draft and leaves the thread retryable", async ({ context, page }) => {
+test("advisor SSE 503 restores the draft and reuses its idempotency key", async ({ context, page }) => {
   const email = `e2e-sse-${Date.now()}@offerpilot.test`;
   const message = "请重新检查我的申请计划";
   await registerAndLogin(context, email, "SSE 失败路径用户");
@@ -251,12 +251,19 @@ test("advisor SSE 503 restores the draft and leaves the thread retryable", async
   const consent = await context.request.post(`${apiUrl}/me/advisor/consent`, { data: { accepted: false } });
   expect(consent.ok()).toBe(true);
 
+  const requestKeys: string[] = [];
   await page.route("**/me/advisor/threads/*/messages/stream", async (route) => {
-    await route.fulfill({
-      status: 503,
-      contentType: "application/json",
-      body: JSON.stringify({ detail: "模拟 SSE 不可用" }),
-    });
+    requestKeys.push(route.request().headers()["idempotency-key"] ?? "");
+    if (requestKeys.length === 1) {
+      await route.fulfill({
+        status: 503,
+        contentType: "application/json",
+        body: JSON.stringify({ detail: "模拟 SSE 不可用" }),
+      });
+      return;
+    }
+    const response = await route.fetch();
+    await route.fulfill({ response });
   });
   await page.goto("/");
   const navigation = page.getByRole("navigation", { name: "主要导航" });
@@ -275,10 +282,17 @@ test("advisor SSE 503 restores the draft and leaves the thread retryable", async
   await expect(page.locator(".chat-message")).toHaveCount(1);
   await expect(page.locator(".chat-loading")).toHaveCount(0);
 
+  await page.getByRole("button", { name: /^发送/ }).click();
+  await expect(advisorInput).toHaveValue("");
+  await expect(page.locator(".chat-message")).toHaveCount(3);
+  expect(requestKeys).toHaveLength(2);
+  expect(requestKeys[0]).toMatch(/^[0-9a-f-]{36}$/);
+  expect(requestKeys[1]).toBe(requestKeys[0]);
+
   const threadsResponse = await context.request.get(`${apiUrl}/me/advisor/threads`);
   const threads = await threadsResponse.json() as Array<{ messages: unknown[] }>;
   expect(threads).toHaveLength(1);
-  expect(threads[0].messages).toHaveLength(1);
+  expect(threads[0].messages).toHaveLength(3);
 });
 
 test("advisor tool actions render skipped work without a success check", async ({ context, page }) => {

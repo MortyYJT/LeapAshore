@@ -1,4 +1,5 @@
 import asyncio
+from hashlib import sha256
 import json
 import logging
 import os
@@ -23,11 +24,13 @@ from .models import (
     ApplicationChoiceUpdate,
     ApplicationRoadmap,
     ApplicationTask,
+    AdvisorAction,
     AdvisorMessage,
     AdvisorMessageRequest,
     AdvisorReply,
     AdvisorStreamState,
     AdvisorThread,
+    AdvisorTurnRecord,
     AgentRecommendationResponse,
     ApplicantProfile,
     AuthResponse,
@@ -63,6 +66,7 @@ from .models import (
     TaskCreateRequest,
     TaskUpdateRequest,
     University,
+    advisor_turn_status_rank,
 )
 from .mailer import EmailDeliveryError, send_password_reset_email, send_verification_email
 from .middleware import OriginGuardMiddleware, RateLimitMiddleware, SecurityHeadersMiddleware
@@ -138,8 +142,9 @@ def sync_roadmap(
     profile: ApplicantProfile,
     result: AgentRecommendationResponse,
     choices: list[ApplicationChoice] | None = None,
+    generated_at: datetime | None = None,
 ) -> ApplicationRoadmap:
-    roadmap = roadmap_for_run(user_id, profile, result, choices)
+    roadmap = roadmap_for_run(user_id, profile, result, choices, generated_at)
     tasks = (
         [task for phase in roadmap.phases for task in phase.tasks]
         + [task for branch in roadmap.program_branches for task in branch.tasks]
@@ -154,12 +159,13 @@ def roadmap_for_run(
     profile: ApplicantProfile,
     result: AgentRecommendationResponse,
     choices: list[ApplicationChoice] | None = None,
+    generated_at: datetime | None = None,
 ) -> ApplicationRoadmap:
     """Build a roadmap view without mutating persistence from a GET request."""
     portfolio = choices if choices is not None else portfolio_for_run(user_id, result)
-    templates = task_templates(profile, result, portfolio)
+    templates = task_templates(profile, result, portfolio, generated_at)
     merged = merge_tasks(templates, store.list_tasks(user_id))
-    return build_roadmap(profile, result, portfolio, merged)
+    return build_roadmap(profile, result, portfolio, merged, generated_at)
 
 
 def load_stream_prerequisites(user_id: str, thread_id: str) -> tuple[AdvisorThread | None, ApplicantProfile | None, int]:
@@ -170,29 +176,106 @@ def load_stream_prerequisites(user_id: str, thread_id: str) -> tuple[AdvisorThre
     return thread, profile, daily_calls
 
 
+def advisor_turn_at_least(turn: AdvisorTurnRecord, status: str) -> bool:
+    return advisor_turn_status_rank(turn.status) >= advisor_turn_status_rank(status)
+
+
+def advisor_turn_effect_id(user_id: str, thread_id: str, request_id: str) -> str:
+    raw = f"{user_id}\0{thread_id}\0{request_id}".encode()
+    return sha256(raw).hexdigest()[:20]
+
+
+def advisor_effect_entity_id(effect_id: str, kind: str, action_index: int | None = None) -> str:
+    action = "" if action_index is None else f":{action_index}"
+    suffix = sha256(f"{effect_id}:{kind}{action}".encode()).hexdigest()[:16]
+    return f"{kind}_{suffix}"
+
+
+def reserve_advisor_turn(
+    user_id: str,
+    thread_id: str,
+    message: str,
+    request_id: str,
+    mode: str,
+) -> tuple[AdvisorTurnRecord, str]:
+    now = datetime.now(UTC)
+    content_hash = sha256(message.encode()).hexdigest()
+    candidate = AdvisorTurnRecord(
+        request_id=request_id,
+        thread_id=thread_id,
+        mode=mode,
+        content_hash=content_hash,
+        created_at=now,
+        updated_at=now,
+    )
+    turn = store.reserve_advisor_turn(user_id, candidate)
+    if turn.thread_id != thread_id or turn.mode != mode or turn.content_hash != content_hash:
+        raise HTTPException(
+            status_code=409,
+            detail="Idempotency-Key 已用于不同的顾问请求，请生成新 Key",
+        )
+    return turn, advisor_turn_effect_id(user_id, thread_id, request_id)
+
+
+def latest_recommendation(user_id: str, preferred_run_id: str | None = None) -> AgentRecommendationResponse | None:
+    if preferred_run_id:
+        preferred = store.get_run(user_id, preferred_run_id)
+        if preferred:
+            return preferred
+    run_summaries = store.list_runs(user_id)
+    return store.get_run(user_id, run_summaries[0].run_id) if run_summaries else None
+
+
+def plan_stream_actions(
+    user_id: str,
+    message: str,
+    profile: ApplicantProfile,
+) -> list[AdvisorAction]:
+    return safe_tool_actions(
+        message,
+        profile,
+        latest_recommendation(user_id),
+        store.list_tasks(user_id),
+    )
+
+
 def prepare_stream_turn(
     user: DemoUser,
     thread: AdvisorThread,
     profile: ApplicantProfile,
     message: str,
+    actions: list[AdvisorAction],
+    *,
+    apply_actions: bool,
+    effect_id: str,
+    occurred_at: datetime,
+    preferred_run_id: str | None = None,
 ) -> tuple[
     ApplicantProfile,
     AgentRecommendationResponse | None,
     list[ApplicationChoice],
     ApplicationRoadmap | None,
-    list,
     KnowledgeSearchResponse,
     dict[str, Any],
     AIConsent | None,
 ]:
-    run_summaries = store.list_runs(user.id)
-    latest_result = store.get_run(user.id, run_summaries[0].run_id) if run_summaries else None
-    actions = safe_tool_actions(message, profile, latest_result, store.list_tasks(user.id))
-    updated_profile, action_run = execute_advisor_actions(user.id, profile, actions)
-    if action_run:
-        latest_result = action_run
+    action_run = None
+    if apply_actions:
+        updated_profile, action_run = execute_advisor_actions(
+            user.id,
+            profile,
+            actions,
+            effect_id=effect_id,
+            occurred_at=occurred_at,
+        )
+    else:
+        updated_profile = store.get_profile(user.id) or profile
+    latest_result = action_run or latest_recommendation(user.id, preferred_run_id)
     choices = portfolio_for_run(user.id, latest_result) if latest_result else []
-    current_roadmap = roadmap_for_run(user.id, updated_profile, latest_result, choices) if latest_result else None
+    current_roadmap = (
+        roadmap_for_run(user.id, updated_profile, latest_result, choices, occurred_at)
+        if latest_result else None
+    )
     knowledge = retrieve_official_knowledge(KnowledgeSearchRequest(
         query=message,
         target_degree_level=updated_profile.target_degree_level,
@@ -211,7 +294,6 @@ def prepare_stream_turn(
         latest_result,
         choices,
         current_roadmap,
-        actions,
         knowledge,
         context,
         store.get_ai_consent(user.id),
@@ -221,11 +303,15 @@ def prepare_stream_turn(
 def execute_advisor_actions(
     user_id: str,
     profile: ApplicantProfile,
-    actions: list,
+    actions: list[AdvisorAction],
+    *,
+    effect_id: str | None = None,
+    occurred_at: datetime | None = None,
 ) -> tuple[ApplicantProfile, AgentRecommendationResponse | None]:
     """Execute only the server whitelist; model text never mutates product state directly."""
     recommendation_run = None
-    for action in actions:
+    action_time = occurred_at or datetime.now(UTC)
+    for action_index, action in enumerate(actions):
         if action.tool == "update_profile" and action.arguments:
             try:
                 profile = ApplicantProfile.model_validate({**profile.model_dump(), **action.arguments})
@@ -234,11 +320,14 @@ def execute_advisor_actions(
                 action.status = "skipped"
                 action.summary = "档案更新值未通过格式检查，已保留原数据"
         elif action.tool == "run_recommendation":
-            recommendation_run = run_recommendation_agent(profile)
+            run_id = (
+                advisor_effect_entity_id(effect_id, "run_adv", action_index)
+                if effect_id else None
+            )
+            recommendation_run = run_recommendation_agent(profile, run_id=run_id)
             store.save_run(user_id, profile, recommendation_run)
-            sync_roadmap(user_id, profile, recommendation_run)
+            sync_roadmap(user_id, profile, recommendation_run, generated_at=action_time)
         elif action.tool == "create_task":
-            now = datetime.now(UTC)
             arguments = action.arguments
             try:
                 request = TaskCreateRequest.model_validate({
@@ -249,8 +338,15 @@ def execute_advisor_actions(
                     "due_at": arguments.get("due_at"),
                     "reminder_at": arguments.get("reminder_at"),
                 })
+                task_id = (
+                    advisor_effect_entity_id(effect_id, "task_adv", action_index)
+                    if effect_id else f"task_{uuid4().hex[:10]}"
+                )
                 store.save_task(user_id, ApplicationTask(
-                    id=f"task_{uuid4().hex[:10]}", created_at=now, updated_at=now, **request.model_dump()
+                    id=task_id,
+                    created_at=action_time,
+                    updated_at=action_time,
+                    **request.model_dump(),
                 ))
             except ValueError:
                 action.status = "skipped"
@@ -278,9 +374,9 @@ def execute_advisor_actions(
                 is_primary=is_primary and status == "applying",
                 official_deadline=existing.official_deadline if existing else None,
                 deadline_source_url=existing.deadline_source_url if existing else None,
-                updated_at=datetime.now(UTC),
+                updated_at=action_time,
             ))
-            sync_roadmap(user_id, profile, result)
+            sync_roadmap(user_id, profile, result, generated_at=action_time)
         elif action.tool == "update_task":
             task = store.get_task(user_id, str(action.arguments.get("task_id", "")))
             status = action.arguments.get("status")
@@ -288,8 +384,90 @@ def execute_advisor_actions(
                 action.status = "skipped"
                 action.summary = "没有找到可修改的路线图任务"
                 continue
-            store.save_task(user_id, task.model_copy(update={"status": status, "updated_at": datetime.now(UTC)}))
+            store.save_task(user_id, task.model_copy(update={"status": status, "updated_at": action_time}))
     return profile, recommendation_run
+
+
+def advisor_stream_state(
+    user_id: str,
+    thread: AdvisorThread,
+    preferred_run_id: str | None = None,
+    generated_at: datetime | None = None,
+) -> AdvisorStreamState:
+    profile = store.get_profile(user_id)
+    if not profile:
+        raise RuntimeError("顾问回合完成时申请背景丢失")
+    latest_result = latest_recommendation(user_id, preferred_run_id)
+    choices = portfolio_for_run(user_id, latest_result) if latest_result else []
+    roadmap = (
+        roadmap_for_run(user_id, profile, latest_result, choices, generated_at)
+        if latest_result else None
+    )
+    return AdvisorStreamState(
+        thread=thread,
+        profile=profile,
+        recommendation_run=latest_result,
+        portfolio=choices,
+        roadmap=roadmap,
+    )
+
+
+def commit_advisor_turn(
+    user_id: str,
+    thread: AdvisorThread,
+    message: str,
+    turn: AdvisorTurnRecord,
+    effect_id: str,
+) -> tuple[AdvisorThread, AdvisorTurnRecord]:
+    if not turn.reply_text or not turn.provider or not turn.model or not turn.reply_ready_at:
+        raise RuntimeError("顾问回合尚未生成可持久化回复")
+    user_message_id = advisor_effect_entity_id(effect_id, "msg_user")
+    assistant_message_id = advisor_effect_entity_id(effect_id, "msg_assistant")
+    audit_id = advisor_effect_entity_id(effect_id, "audit_adv")
+    committed_thread = thread.model_copy(deep=True)
+    if not any(item.id == assistant_message_id for item in committed_thread.messages):
+        committed_thread.messages = [
+            item for item in committed_thread.messages
+            if item.id not in {user_message_id, assistant_message_id}
+        ]
+        committed_thread.messages.extend([
+            AdvisorMessage(
+                id=user_message_id,
+                role="user",
+                content=message,
+                created_at=turn.created_at,
+            ),
+            AdvisorMessage(
+                id=assistant_message_id,
+                role="assistant",
+                content=turn.reply_text,
+                actions=turn.actions,
+                created_at=turn.reply_ready_at,
+            ),
+        ])
+        committed_thread.updated_at = turn.reply_ready_at
+    store.save_thread(user_id, committed_thread)
+    store.save_audit(user_id, AgentRunAudit(
+        id=audit_id,
+        thread_id=committed_thread.id,
+        message_id=assistant_message_id,
+        provider=turn.provider,
+        model=turn.model,
+        prompt_version=turn.prompt_version or "advisor-2.0.0-redacted",
+        workflow_version=turn.workflow_version or "advisor-tools-2.0.0",
+        latency_ms=turn.latency_ms or 0,
+        input_tokens=turn.input_tokens,
+        output_tokens=turn.output_tokens,
+        tools=turn.tools,
+        created_at=turn.reply_ready_at,
+    ))
+    completed_at = datetime.now(UTC)
+    completed_turn = store.save_advisor_turn(user_id, turn.model_copy(update={
+        "status": "completed",
+        "updated_at": completed_at,
+        "completed_at": completed_at,
+    }))
+    return committed_thread, completed_turn
 
 
 def sse_event(event: str, payload: Any) -> str:
@@ -1028,6 +1206,15 @@ def send_advisor_message(
     thread_id: str,
     payload: AdvisorMessageRequest,
     user: Annotated[DemoUser, Depends(current_user)],
+    idempotency_key: Annotated[
+        str,
+        Header(
+            alias="Idempotency-Key",
+            min_length=8,
+            max_length=128,
+            pattern=r"^[A-Za-z0-9._:-]+$",
+        ),
+    ],
 ) -> AdvisorReply:
     thread = store.get_thread(user.id, thread_id)
     profile = store.get_profile(user.id)
@@ -1036,28 +1223,102 @@ def send_advisor_message(
     if not profile:
         raise HTTPException(status_code=409, detail="请先保存申请背景")
 
-    now = datetime.now(UTC)
-    user_message = AdvisorMessage(id=f"msg_{uuid4().hex[:10]}", role="user", content=payload.content, created_at=now)
-    history = [{"role": item.role, "content": item.content} for item in thread.messages]
-    reply_text, actions, metadata = plan_turn(payload.content, profile, history)
-
-    profile, recommendation_run = execute_advisor_actions(user.id, profile, actions)
-
-    assistant_message = AdvisorMessage(
-        id=f"msg_{uuid4().hex[:10]}", role="assistant", content=reply_text, created_at=datetime.now(UTC), actions=actions
+    turn, effect_id = reserve_advisor_turn(
+        user.id,
+        thread_id,
+        payload.content,
+        idempotency_key,
+        "sync",
     )
-    thread.messages.extend([user_message, assistant_message])
-    thread.updated_at = assistant_message.created_at
-    store.save_thread(user.id, thread)
-    store.save_audit(user.id, AgentRunAudit(
-        id=f"audit_{uuid4().hex[:10]}", thread_id=thread.id, message_id=assistant_message.id,
-        provider=metadata["provider"], model=metadata["model"], prompt_version="advisor-1.0.0",
-        workflow_version=recommendation_run.workflow_version if recommendation_run else "advisor-tools-1.0.0",
-        latency_ms=metadata["latency_ms"], input_tokens=metadata["input_tokens"],
-        output_tokens=metadata["output_tokens"], tools=[action.tool for action in actions],
-        created_at=assistant_message.created_at,
-    ))
-    return AdvisorReply(thread=thread, profile=profile, recommendation_run=recommendation_run, **metadata)
+    if turn.status == "completed":
+        recommendation_run = (
+            store.get_run(user.id, turn.recommendation_run_id)
+            if turn.recommendation_run_id else None
+        )
+        return AdvisorReply(
+            thread=thread,
+            profile=profile,
+            recommendation_run=recommendation_run,
+            provider=turn.provider or "deterministic-fallback",
+            model=turn.model or configured_model(),
+            latency_ms=turn.latency_ms or 0,
+            input_tokens=turn.input_tokens,
+            output_tokens=turn.output_tokens,
+            prompt_version=turn.prompt_version or "advisor-1.0.0",
+        )
+
+    if turn.status == "reserved":
+        history = [{"role": item.role, "content": item.content} for item in thread.messages]
+        reply_text, planned_actions, metadata = plan_turn(payload.content, profile, history)
+        turn = store.save_advisor_turn(user.id, turn.model_copy(update={
+            "status": "planned",
+            "actions": planned_actions,
+            "reply_text": reply_text,
+            "provider": metadata["provider"],
+            "model": metadata["model"],
+            "latency_ms": metadata["latency_ms"],
+            "input_tokens": metadata["input_tokens"],
+            "output_tokens": metadata["output_tokens"],
+            "prompt_version": "advisor-1.0.0",
+            "updated_at": datetime.now(UTC),
+        }))
+
+    actions = [action.model_copy(deep=True) for action in turn.actions]
+    recommendation_run = (
+        store.get_run(user.id, turn.recommendation_run_id)
+        if turn.recommendation_run_id else None
+    )
+    if not advisor_turn_at_least(turn, "actions_applied"):
+        profile, recommendation_run = execute_advisor_actions(
+            user.id,
+            profile,
+            actions,
+            effect_id=effect_id,
+            occurred_at=turn.created_at,
+        )
+        turn = store.save_advisor_turn(user.id, turn.model_copy(update={
+            "status": "actions_applied",
+            "actions": actions,
+            "recommendation_run_id": recommendation_run.run_id if recommendation_run else None,
+            "updated_at": datetime.now(UTC),
+        }))
+    else:
+        profile = store.get_profile(user.id) or profile
+
+    if not advisor_turn_at_least(turn, "reply_ready"):
+        ready_at = datetime.now(UTC)
+        turn = store.save_advisor_turn(user.id, turn.model_copy(update={
+            "status": "reply_ready",
+            "workflow_version": (
+                recommendation_run.workflow_version
+                if recommendation_run else "advisor-tools-1.0.0"
+            ),
+            "tools": [action.tool for action in turn.actions],
+            "reply_ready_at": ready_at,
+            "updated_at": ready_at,
+        }))
+
+    committed_thread, turn = commit_advisor_turn(
+        user.id,
+        thread,
+        payload.content,
+        turn,
+        effect_id,
+    )
+    return AdvisorReply(
+        thread=committed_thread,
+        profile=store.get_profile(user.id) or profile,
+        recommendation_run=(
+            store.get_run(user.id, turn.recommendation_run_id)
+            if turn.recommendation_run_id else None
+        ),
+        provider=turn.provider or "deterministic-fallback",
+        model=turn.model or configured_model(),
+        latency_ms=turn.latency_ms or 0,
+        input_tokens=turn.input_tokens,
+        output_tokens=turn.output_tokens,
+        prompt_version=turn.prompt_version or "advisor-1.0.0",
+    )
 
 
 @app.post("/me/advisor/threads/{thread_id}/messages/stream")
@@ -1065,6 +1326,15 @@ async def stream_advisor_message(
     thread_id: str,
     payload: AdvisorMessageRequest,
     user: Annotated[DemoUser, Depends(current_user)],
+    idempotency_key: Annotated[
+        str,
+        Header(
+            alias="Idempotency-Key",
+            min_length=8,
+            max_length=128,
+            pattern=r"^[A-Za-z0-9._:-]+$",
+        ),
+    ],
 ) -> StreamingResponse:
     thread, profile, daily_calls = await asyncio.to_thread(load_stream_prerequisites, user.id, thread_id)
     if not thread:
@@ -1072,22 +1342,104 @@ async def stream_advisor_message(
     if not profile:
         raise HTTPException(status_code=409, detail="请先保存申请背景")
 
-    if daily_calls >= int(os.getenv("ADVISOR_DAILY_LIMIT", "30")):
+    turn, effect_id = await asyncio.to_thread(
+        reserve_advisor_turn,
+        user.id,
+        thread_id,
+        payload.content,
+        idempotency_key,
+        "stream",
+    )
+    if turn.status != "completed" and daily_calls >= int(os.getenv("ADVISOR_DAILY_LIMIT", "30")):
         raise HTTPException(status_code=429, detail="今日 AI 顾问请求次数已用完，请明天继续")
 
     async def events():
+        nonlocal turn
+        if turn.status == "completed":
+            assistant_message_id = advisor_effect_entity_id(effect_id, "msg_assistant")
+            assistant_message = next(
+                (item for item in thread.messages if item.id == assistant_message_id),
+                None,
+            )
+            if not assistant_message:
+                raise RuntimeError("幂等顾问回合已完成，但会话消息不存在")
+            yield sse_event("status", {
+                "message": "该请求已完成，正在恢复保存结果",
+                "provider": turn.provider or "deterministic-fallback",
+            })
+            yield sse_event("actions", [
+                action.model_dump(mode="json") for action in assistant_message.actions
+            ])
+            yield sse_event("delta", {"content": assistant_message.content})
+            state = await asyncio.to_thread(
+                advisor_stream_state,
+                user.id,
+                thread,
+                turn.recommendation_run_id,
+                turn.created_at,
+            )
+            yield sse_event("state", state.model_dump(mode="json"))
+            yield sse_event("done", {
+                "provider": turn.provider or "deterministic-fallback",
+                "model": turn.model or configured_model(),
+                "latency_ms": turn.latency_ms or 0,
+                "input_tokens": turn.input_tokens,
+                "output_tokens": turn.output_tokens,
+                "replayed": True,
+            })
+            return
+
         started = asyncio.get_running_loop().time()
         yield sse_event("status", {"message": "正在读取你的申请组合与路线图", "provider": "deepseek"})
+        if turn.status == "reserved":
+            planned_actions = await asyncio.to_thread(
+                plan_stream_actions,
+                user.id,
+                payload.content,
+                profile,
+            )
+            turn = await asyncio.to_thread(
+                store.save_advisor_turn,
+                user.id,
+                turn.model_copy(update={
+                    "status": "planned",
+                    "actions": planned_actions,
+                    "updated_at": datetime.now(UTC),
+                }),
+            )
+        actions = [action.model_copy(deep=True) for action in turn.actions]
+        apply_actions = not advisor_turn_at_least(turn, "actions_applied")
         (
             updated_profile,
             latest_result,
             choices,
             current_roadmap,
-            actions,
             knowledge,
             context,
             consent,
-        ) = await asyncio.to_thread(prepare_stream_turn, user, thread, profile, payload.content)
+        ) = await asyncio.to_thread(
+            prepare_stream_turn,
+            user,
+            thread,
+            profile,
+            payload.content,
+            actions,
+            apply_actions=apply_actions,
+            effect_id=effect_id,
+            occurred_at=turn.created_at,
+            preferred_run_id=turn.recommendation_run_id,
+        )
+        if apply_actions:
+            turn = await asyncio.to_thread(
+                store.save_advisor_turn,
+                user.id,
+                turn.model_copy(update={
+                    "status": "actions_applied",
+                    "actions": actions,
+                    "recommendation_run_id": latest_result.run_id if latest_result else None,
+                    "updated_at": datetime.now(UTC),
+                }),
+            )
         yield sse_event("actions", [action.model_dump(mode="json") for action in actions])
 
         yield sse_event("status", {
@@ -1095,71 +1447,101 @@ async def stream_advisor_message(
             "provider": "official-knowledge-rag",
         })
 
-        cloud_allowed = bool(consent and consent.accepted and configured_provider() == "deepseek")
-        provider = "deepseek" if cloud_allowed else "deterministic-fallback"
-        model = configured_model()
-        input_tokens = None
-        output_tokens = None
-        reply_parts: list[str] = []
-
-        if cloud_allowed:
-            try:
-                async with asyncio.timeout(25):
-                    async with deepseek_slots:
-                        iterator = stream_deepseek(context).__aiter__()
-                        first_delta = False
-                        while not first_delta:
-                            kind, value = await asyncio.wait_for(anext(iterator), timeout=8)
-                            if kind == "usage":
-                                input_tokens = value.get("prompt_tokens")
-                                output_tokens = value.get("completion_tokens")
-                            elif kind == "delta":
-                                first_delta = True
-                                reply_parts.append(str(value))
-                                yield sse_event("delta", {"content": value})
-                        async for kind, value in iterator:
-                            if kind == "usage":
-                                input_tokens = value.get("prompt_tokens")
-                                output_tokens = value.get("completion_tokens")
-                            elif kind == "delta":
-                                reply_parts.append(str(value))
-                                yield sse_event("delta", {"content": value})
-                if not reply_parts:
-                    raise DeepSeekStreamError("DeepSeek 返回了空内容")
-            except (DeepSeekStreamError, TimeoutError, StopAsyncIteration, asyncio.TimeoutError):
-                provider = "deterministic-fallback"
-                yield sse_event("error", {"message": "DeepSeek 暂时不可用、限流或余额不足，已切换到规则顾问", "fallback": True})
+        if advisor_turn_at_least(turn, "reply_ready"):
+            assistant_text = turn.reply_text or ""
+            provider = turn.provider or "deterministic-fallback"
+            model = turn.model or configured_model()
+            input_tokens = turn.input_tokens
+            output_tokens = turn.output_tokens
+            latency_ms = turn.latency_ms or 0
+            yield sse_event("status", {
+                "message": "动作已保存，正在恢复同一请求的回答",
+                "provider": provider,
+            })
+            yield sse_event("delta", {"content": assistant_text})
         else:
-            reason = "你尚未同意云端 AI 数据处理，当前使用规则顾问" if not consent or not consent.accepted else "DeepSeek 尚未配置，当前使用规则顾问"
-            yield sse_event("status", {"message": reason, "provider": "deterministic-fallback"})
+            cloud_allowed = bool(consent and consent.accepted and configured_provider() == "deepseek")
+            provider = "deepseek" if cloud_allowed else "deterministic-fallback"
+            model = configured_model()
+            input_tokens = None
+            output_tokens = None
+            reply_parts: list[str] = []
 
-        if provider == "deterministic-fallback":
-            fallback = grounded_fallback_answer(payload.content, knowledge.hits) or fallback_plan(payload.content, updated_profile)["reply"]
-            reply_parts = [fallback]
-            yield sse_event("delta", {"content": fallback})
+            if cloud_allowed:
+                try:
+                    async with asyncio.timeout(25):
+                        async with deepseek_slots:
+                            iterator = stream_deepseek(context).__aiter__()
+                            first_delta = False
+                            while not first_delta:
+                                kind, value = await asyncio.wait_for(anext(iterator), timeout=8)
+                                if kind == "usage":
+                                    input_tokens = value.get("prompt_tokens")
+                                    output_tokens = value.get("completion_tokens")
+                                elif kind == "delta":
+                                    first_delta = True
+                                    reply_parts.append(str(value))
+                                    yield sse_event("delta", {"content": value})
+                            async for kind, value in iterator:
+                                if kind == "usage":
+                                    input_tokens = value.get("prompt_tokens")
+                                    output_tokens = value.get("completion_tokens")
+                                elif kind == "delta":
+                                    reply_parts.append(str(value))
+                                    yield sse_event("delta", {"content": value})
+                    if not reply_parts:
+                        raise DeepSeekStreamError("DeepSeek 返回了空内容")
+                except (DeepSeekStreamError, TimeoutError, StopAsyncIteration, asyncio.TimeoutError):
+                    provider = "deterministic-fallback"
+                    yield sse_event("error", {"message": "DeepSeek 暂时不可用、限流或余额不足，已切换到规则顾问", "fallback": True})
+            else:
+                reason = "你尚未同意云端 AI 数据处理，当前使用规则顾问" if not consent or not consent.accepted else "DeepSeek 尚未配置，当前使用规则顾问"
+                yield sse_event("status", {"message": reason, "provider": "deterministic-fallback"})
 
-        assistant_text = "".join(reply_parts)
-        now = datetime.now(UTC)
-        user_message = AdvisorMessage(id=f"msg_{uuid4().hex[:10]}", role="user", content=payload.content, created_at=now)
-        assistant_message = AdvisorMessage(
-            id=f"msg_{uuid4().hex[:10]}", role="assistant", content=assistant_text,
-            actions=actions, created_at=datetime.now(UTC),
+            if provider == "deterministic-fallback":
+                fallback = grounded_fallback_answer(payload.content, knowledge.hits) or fallback_plan(payload.content, updated_profile)["reply"]
+                reply_parts = [fallback]
+                yield sse_event("delta", {"content": fallback})
+
+            assistant_text = "".join(reply_parts)
+            latency_ms = round((asyncio.get_running_loop().time() - started) * 1000)
+            ready_at = datetime.now(UTC)
+            turn = await asyncio.to_thread(
+                store.save_advisor_turn,
+                user.id,
+                turn.model_copy(update={
+                    "status": "reply_ready",
+                    "actions": actions,
+                    "reply_text": assistant_text,
+                    "provider": provider,
+                    "model": model,
+                    "latency_ms": latency_ms,
+                    "input_tokens": input_tokens,
+                    "output_tokens": output_tokens,
+                    "prompt_version": "advisor-2.0.0-redacted",
+                    "workflow_version": (
+                        latest_result.workflow_version
+                        if latest_result else "advisor-tools-2.0.0"
+                    ),
+                    "tools": (
+                        (["retrieve_official_knowledge"] if knowledge.hits else [])
+                        + [action.tool for action in actions]
+                    ),
+                    "reply_ready_at": ready_at,
+                    "updated_at": ready_at,
+                }),
+            )
+
+        committed_thread, turn = await asyncio.to_thread(
+            commit_advisor_turn,
+            user.id,
+            thread,
+            payload.content,
+            turn,
+            effect_id,
         )
-        thread.messages.extend([user_message, assistant_message])
-        thread.updated_at = assistant_message.created_at
-        latency_ms = round((asyncio.get_running_loop().time() - started) * 1000)
-        audit = AgentRunAudit(
-            id=f"audit_{uuid4().hex[:10]}", thread_id=thread.id, message_id=assistant_message.id,
-            provider=provider, model=model, prompt_version="advisor-2.0.0-redacted",
-            workflow_version=latest_result.workflow_version if latest_result else "advisor-tools-2.0.0",
-            latency_ms=latency_ms, input_tokens=input_tokens, output_tokens=output_tokens,
-            tools=(["retrieve_official_knowledge"] if knowledge.hits else []) + [action.tool for action in actions],
-            created_at=assistant_message.created_at,
-        )
-        await asyncio.to_thread(store.save_thread, user.id, thread)
-        await asyncio.to_thread(store.save_audit, user.id, audit)
         state = AdvisorStreamState(
-            thread=thread,
+            thread=committed_thread,
             profile=updated_profile,
             recommendation_run=latest_result,
             portfolio=choices,

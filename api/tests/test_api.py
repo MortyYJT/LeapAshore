@@ -408,7 +408,7 @@ def test_advisor_conversation_updates_profile_and_reruns_recommendations() -> No
     reply = client.post(
         f"/me/advisor/threads/{created.json()['id']}/messages",
         json={"content": "雅思 7.0，每年预算 50 万，悉尼优先，请重新推荐学校"},
-        headers=headers,
+        headers={**headers, "Idempotency-Key": "advisor-profile-run-1"},
     )
     assert reply.status_code == 200
     body = reply.json()
@@ -475,10 +475,129 @@ def test_advisor_can_create_an_application_task() -> None:
     thread = client.post("/me/advisor/threads", headers=headers).json()
     response = client.post(
         f"/me/advisor/threads/{thread['id']}/messages",
-        json={"content": "提醒我准备英文成绩单"}, headers=headers,
+        json={"content": "提醒我准备英文成绩单"},
+        headers={**headers, "Idempotency-Key": "advisor-create-task-1"},
     )
     assert response.status_code == 200
     assert client.get("/me/tasks", headers=headers).json()[0]["title"] == "准备英文成绩单"
+
+
+def test_advisor_idempotency_recovers_after_actions_before_thread_write(monkeypatch) -> None:
+    import importlib
+
+    import pytest
+
+    from app.models import AdvisorAction
+
+    main_module = importlib.import_module("app.main")
+    login = registered_login("advisor-idempotency@offerpilot.cn")
+    user_id = login.json()["user"]["id"]
+    headers = {"Authorization": f"Bearer {login.json()['access_token']}"}
+    client.put("/me/profile", json={
+        "undergraduate_school": "示例大学", "school_tier": "双非", "undergraduate_major": "软件工程",
+        "gpa": 82, "gpa_scale": 100, "target_field": "计算机与数据", "intake": "2027 S1",
+    }, headers=headers)
+    run = client.post("/me/recommendation-runs", headers=headers).json()
+    program_slug = run["recommendations"][0]["program"]["slug"]
+    thread = client.post("/me/advisor/threads", headers=headers).json()
+    content = "把悉尼设为偏好、首选当前项目，并提醒我准备材料"
+    request_headers = {**headers, "Idempotency-Key": "advisor-effect-window-1"}
+    plan_calls = 0
+
+    def planned_turn(_message, _profile, _history):
+        nonlocal plan_calls
+        plan_calls += 1
+        return (
+            "已更新档案、申请组合和材料待办。",
+            [
+                AdvisorAction(
+                    tool="update_profile",
+                    summary="更新城市偏好",
+                    arguments={"location_preferences": "悉尼优先"},
+                ),
+                AdvisorAction(
+                    tool="set_application_choice",
+                    summary="设置首选项目",
+                    arguments={
+                        "run_id": run["run_id"],
+                        "program_slug": program_slug,
+                        "status": "applying",
+                        "is_primary": True,
+                    },
+                ),
+                AdvisorAction(
+                    tool="create_task",
+                    summary="准备幂等材料",
+                    arguments={"title": "准备幂等材料", "category": "材料", "priority": "P1"},
+                ),
+            ],
+            {
+                "provider": "deterministic-fallback",
+                "model": "test-model",
+                "latency_ms": 1,
+                "input_tokens": None,
+                "output_tokens": None,
+            },
+        )
+
+    monkeypatch.setattr(main_module, "plan_turn", planned_turn)
+    original_save_thread = main_module.store.save_thread
+    fail_thread_write = True
+
+    def injected_thread_failure(*args):
+        nonlocal fail_thread_write
+        if fail_thread_write:
+            fail_thread_write = False
+            raise RuntimeError("injected thread write failure")
+        return original_save_thread(*args)
+
+    monkeypatch.setattr(main_module.store, "save_thread", injected_thread_failure)
+    with pytest.raises(RuntimeError, match="injected thread write failure"):
+        client.post(
+            f"/me/advisor/threads/{thread['id']}/messages",
+            json={"content": content},
+            headers=request_headers,
+        )
+
+    assert client.get("/me/profile", headers=headers).json()["location_preferences"] == "悉尼优先"
+    choices = client.get(
+        f"/me/recommendation-runs/{run['run_id']}/portfolio",
+        headers=headers,
+    ).json()
+    assert [
+        item["program_slug"] for item in choices
+        if item["program_slug"] == program_slug and item["is_primary"]
+    ] == [program_slug]
+    assert [
+        item["title"] for item in client.get("/me/tasks", headers=headers).json()
+        if item["title"] == "准备幂等材料"
+    ] == ["准备幂等材料"]
+    assert client.get(f"/me/advisor/threads/{thread['id']}", headers=headers).json()["messages"] == thread["messages"]
+    assert main_module.store.get_advisor_turn(user_id, "advisor-effect-window-1").status == "reply_ready"
+
+    retried = client.post(
+        f"/me/advisor/threads/{thread['id']}/messages",
+        json={"content": content},
+        headers=request_headers,
+    )
+    assert retried.status_code == 200
+    assert plan_calls == 1
+    messages = retried.json()["thread"]["messages"]
+    assert sum(item["role"] == "user" and item["content"] == content for item in messages) == 1
+    assert sum(item["role"] == "assistant" and item["content"] == "已更新档案、申请组合和材料待办。" for item in messages) == 1
+    assert len([
+        item for item in client.get("/me/tasks", headers=headers).json()
+        if item["title"] == "准备幂等材料"
+    ]) == 1
+    assert len(client.get("/me/advisor/audits", headers=headers).json()) == 1
+
+    conflict = client.post(
+        f"/me/advisor/threads/{thread['id']}/messages",
+        json={"content": "换一条不同的问题"},
+        headers=request_headers,
+    )
+    assert conflict.status_code == 409
+    assert "Idempotency-Key" in conflict.json()["detail"]
 
 
 def test_deepseek_stream_is_consented_redacted_and_persisted(monkeypatch) -> None:
@@ -509,7 +628,8 @@ def test_deepseek_stream_is_consented_redacted_and_persisted(monkeypatch) -> Non
     monkeypatch.setattr(main_module, "stream_deepseek", fake_stream)
     response = client.post(
         f"/me/advisor/threads/{thread['id']}/messages/stream",
-        json={"content": "请比较这些项目的取舍"}, headers=headers,
+        json={"content": "请比较这些项目的取舍"},
+        headers={**headers, "Idempotency-Key": "deepseek-stream-1"},
     )
     assert response.status_code == 200
     assert "event: status" in response.text
@@ -530,6 +650,17 @@ def test_deepseek_stream_is_consented_redacted_and_persisted(monkeypatch) -> Non
 def test_stream_state_keeps_profile_run_portfolio_and_roadmap_on_one_snapshot() -> None:
     import json
 
+    def state_from(response_text: str) -> dict:
+        state_block = next(
+            block for block in response_text.replace("\r\n", "\n").split("\n\n")
+            if block.startswith("event: state\n")
+        )
+        return json.loads(next(
+            line.removeprefix("data: ").strip()
+            for line in state_block.splitlines()
+            if line.startswith("data:")
+        ))
+
     login = registered_login("stream-state-contract@offerpilot.cn")
     headers = {"Authorization": f"Bearer {login.json()['access_token']}"}
     client.put("/me/profile", json={
@@ -542,24 +673,24 @@ def test_stream_state_keeps_profile_run_portfolio_and_roadmap_on_one_snapshot() 
     response = client.post(
         f"/me/advisor/threads/{thread['id']}/messages/stream",
         json={"content": "我更想去悉尼，预算每年 50 万，请重新推荐学校"},
-        headers=headers,
+        headers={**headers, "Idempotency-Key": "stream-state-contract-1"},
     )
     assert response.status_code == 200
-    state_block = next(
-        block for block in response.text.replace("\r\n", "\n").split("\n\n")
-        if block.startswith("event: state\n")
-    )
-    state = json.loads(next(
-        line.removeprefix("data: ").strip()
-        for line in state_block.splitlines()
-        if line.startswith("data:")
-    ))
+    state = state_from(response.text)
 
     assert state["profile"]["location_preferences"] == "悉尼优先"
     assert state["profile"]["annual_budget_cny"] == 500000
     assert state["recommendation_run"]["run_id"] != old_run_id
     assert state["roadmap"]["run_id"] == state["recommendation_run"]["run_id"]
     assert {item["run_id"] for item in state["portfolio"]} == {state["recommendation_run"]["run_id"]}
+
+    replay = client.post(
+        f"/me/advisor/threads/{thread['id']}/messages/stream",
+        json={"content": "我更想去悉尼，预算每年 50 万，请重新推荐学校"},
+        headers={**headers, "Idempotency-Key": "stream-state-contract-1"},
+    )
+    assert replay.status_code == 200
+    assert state_from(replay.text)["roadmap"] == state["roadmap"]
 
 
 def test_stream_prerequisite_loading_does_not_block_the_event_loop(monkeypatch) -> None:
@@ -593,7 +724,7 @@ def test_stream_prerequisite_loading_does_not_block_the_event_loop(monkeypatch) 
     async def exercise() -> float:
         began = perf_counter()
         request = asyncio.create_task(main_module.stream_advisor_message(
-            thread["id"], AdvisorMessageRequest(content="下一步是什么"), user,
+            thread["id"], AdvisorMessageRequest(content="下一步是什么"), user, "stream-nonblocking-1",
         ))
         assert await asyncio.to_thread(started.wait, 0.2)
         release.set()
@@ -628,7 +759,8 @@ def test_deepseek_stream_failure_is_explicit_and_never_falls_back_to_ollama(monk
     monkeypatch.setattr(main_module, "stream_deepseek", failed_stream)
     response = client.post(
         f"/me/advisor/threads/{thread['id']}/messages/stream",
-        json={"content": "我下一步做什么"}, headers=headers,
+        json={"content": "我下一步做什么"},
+        headers={**headers, "Idempotency-Key": "deepseek-fallback-1"},
     )
     assert response.status_code == 200
     assert "event: error" in response.text
@@ -662,7 +794,8 @@ def test_cloud_calls_are_confined_to_the_consented_streaming_boundary(monkeypatc
     thread = client.post("/me/advisor/threads", headers=headers).json()
     legacy = client.post(
         f"/me/advisor/threads/{thread['id']}/messages",
-        json={"content": "请重新推荐学校"}, headers=headers,
+        json={"content": "请重新推荐学校"},
+        headers={**headers, "Idempotency-Key": "cloud-boundary-sync-1"},
     )
     assert legacy.status_code == 200
     assert legacy.json()["provider"] == "deterministic-fallback"
@@ -678,7 +811,8 @@ def test_cloud_calls_are_confined_to_the_consented_streaming_boundary(monkeypatc
     monkeypatch.setattr(main_module, "stream_deepseek", forbidden_stream)
     streamed = client.post(
         f"/me/advisor/threads/{thread['id']}/messages/stream",
-        json={"content": "这些项目怎么选"}, headers=headers,
+        json={"content": "这些项目怎么选"},
+        headers={**headers, "Idempotency-Key": "cloud-boundary-stream-1"},
     )
     assert streamed.status_code == 200
     assert "deterministic-fallback" in streamed.text
@@ -830,7 +964,8 @@ def test_authenticated_rag_search_and_advisor_fallback_share_cited_evidence() ->
     thread = client.post("/me/advisor/threads", headers=headers).json()
     reply = client.post(
         f"/me/advisor/threads/{thread['id']}/messages/stream",
-        json={"content": "UQ 数据科学雅思和数学先修要求是什么"}, headers=headers,
+        json={"content": "UQ 数据科学雅思和数学先修要求是什么"},
+        headers={**headers, "Idempotency-Key": "rag-advisor-stream-1"},
     )
     assert reply.status_code == 200
     assert "official-knowledge-rag" in reply.text

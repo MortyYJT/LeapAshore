@@ -124,7 +124,11 @@ def recommend_program(
     )
 
 
-def run_recommendation_agent(profile: ApplicantProfile) -> AgentRecommendationResponse:
+def run_recommendation_agent(
+    profile: ApplicantProfile,
+    *,
+    run_id: str | None = None,
+) -> AgentRecommendationResponse:
     """Run an auditable plan-and-execute workflow with deterministic admission tools."""
     gpa = normalize_gpa(profile)
     programs = [
@@ -203,7 +207,7 @@ def run_recommendation_agent(profile: ApplicantProfile) -> AgentRecommendationRe
 
     eligible = sum(item.eligibility == "满足基础门槛" for item in results)
     result = AgentRecommendationResponse(
-        run_id=f"run_{uuid4().hex[:10]}",
+        run_id=run_id or f"run_{uuid4().hex[:10]}",
         workflow_version="agent-0.5.0",
         profile_snapshot=profile.model_copy(deep=True),
         summary=(

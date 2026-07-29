@@ -32,11 +32,13 @@ from .models import (
     ApplicationChoice,
     ApplicationTask,
     AdvisorThread,
+    AdvisorTurnRecord,
     ApplicantProfile,
     DemoUser,
     FeedbackItem,
     ProgramSourceVersion,
     RecommendationRunSummary,
+    advisor_turn_status_rank,
 )
 from .source_errors import (
     SourceVersionConflictError,
@@ -68,6 +70,9 @@ class Store(Protocol):
     def save_thread(self, user_id: str, thread: AdvisorThread) -> AdvisorThread: ...
     def list_threads(self, user_id: str) -> list[AdvisorThread]: ...
     def get_thread(self, user_id: str, thread_id: str) -> AdvisorThread | None: ...
+    def reserve_advisor_turn(self, user_id: str, turn: AdvisorTurnRecord) -> AdvisorTurnRecord: ...
+    def save_advisor_turn(self, user_id: str, turn: AdvisorTurnRecord) -> AdvisorTurnRecord: ...
+    def get_advisor_turn(self, user_id: str, request_id: str) -> AdvisorTurnRecord | None: ...
     def save_task(self, user_id: str, task: ApplicationTask) -> ApplicationTask: ...
     def list_tasks(self, user_id: str) -> list[ApplicationTask]: ...
     def get_task(self, user_id: str, task_id: str) -> ApplicationTask | None: ...
@@ -107,6 +112,7 @@ class DemoStore:
         self._runs: dict[str, list[tuple[RecommendationRunSummary, AgentRecommendationResponse]]] = {}
         self._choices: dict[str, list[ApplicationChoice]] = {}
         self._threads: dict[str, list[AdvisorThread]] = {}
+        self._advisor_turns: dict[tuple[str, str], AdvisorTurnRecord] = {}
         self._tasks: dict[str, list[ApplicationTask]] = {}
         self._audits: dict[str, list[AgentRunAudit]] = {}
         self._ai_consents: dict[str, AIConsent] = {}
@@ -194,6 +200,9 @@ class DemoStore:
             self._runs.pop(user_id, None)
             self._choices.pop(user_id, None)
             self._threads.pop(user_id, None)
+            self._advisor_turns = {
+                key: value for key, value in self._advisor_turns.items() if key[0] != user_id
+            }
             self._tasks.pop(user_id, None)
             self._audits.pop(user_id, None)
             self._ai_consents.pop(user_id, None)
@@ -236,7 +245,16 @@ class DemoStore:
             summary=result.summary,
         )
         with self._lock:
-            self._runs.setdefault(user_id, []).insert(0, (summary, result))
+            runs = self._runs.setdefault(user_id, [])
+            existing = next((item for item in runs if item[0].run_id == result.run_id), None)
+            if existing:
+                summary = existing[0]
+                runs[:] = [
+                    (summary, result) if item[0].run_id == result.run_id else item
+                    for item in runs
+                ]
+            else:
+                runs.insert(0, (summary, result))
         return summary
 
     def list_runs(self, user_id: str) -> list[RecommendationRunSummary]:
@@ -289,6 +307,31 @@ class DemoStore:
         with self._lock:
             return next((item for item in self._threads.get(user_id, []) if item.id == thread_id), None)
 
+    def reserve_advisor_turn(self, user_id: str, turn: AdvisorTurnRecord) -> AdvisorTurnRecord:
+        key = (user_id, turn.request_id)
+        with self._lock:
+            existing = self._advisor_turns.get(key)
+            if existing:
+                return existing.model_copy(deep=True)
+            self._advisor_turns[key] = turn.model_copy(deep=True)
+        return turn.model_copy(deep=True)
+
+    def save_advisor_turn(self, user_id: str, turn: AdvisorTurnRecord) -> AdvisorTurnRecord:
+        key = (user_id, turn.request_id)
+        with self._lock:
+            existing = self._advisor_turns.get(key)
+            if not existing:
+                raise ValueError("顾问请求尚未预留")
+            if advisor_turn_status_rank(existing.status) >= advisor_turn_status_rank(turn.status):
+                return existing.model_copy(deep=True)
+            self._advisor_turns[key] = turn.model_copy(deep=True)
+        return turn.model_copy(deep=True)
+
+    def get_advisor_turn(self, user_id: str, request_id: str) -> AdvisorTurnRecord | None:
+        with self._lock:
+            turn = self._advisor_turns.get((user_id, request_id))
+            return turn.model_copy(deep=True) if turn else None
+
     def save_task(self, user_id: str, task: ApplicationTask) -> ApplicationTask:
         with self._lock:
             tasks = self._tasks.setdefault(user_id, [])
@@ -306,7 +349,9 @@ class DemoStore:
 
     def save_audit(self, user_id: str, audit: AgentRunAudit) -> AgentRunAudit:
         with self._lock:
-            self._audits.setdefault(user_id, []).insert(0, audit)
+            audits = self._audits.setdefault(user_id, [])
+            audits[:] = [item for item in audits if item.id != audit.id]
+            audits.insert(0, audit)
         return audit
 
     def list_audits(self, user_id: str) -> list[AgentRunAudit]:
@@ -504,6 +549,22 @@ class SQLiteStore:
                 );
                 CREATE INDEX IF NOT EXISTS idx_threads_user_updated
                     ON advisor_threads(user_id, updated_at DESC);
+                CREATE TABLE IF NOT EXISTS advisor_turns (
+                    user_id TEXT NOT NULL REFERENCES users(id),
+                    request_id TEXT NOT NULL,
+                    thread_id TEXT NOT NULL,
+                    content_hash TEXT NOT NULL,
+                    status TEXT NOT NULL CHECK (
+                        status IN ('reserved', 'planned', 'actions_applied', 'reply_ready', 'completed')
+                    ),
+                    payload TEXT NOT NULL,
+                    created_at TEXT NOT NULL,
+                    updated_at TEXT NOT NULL,
+                    PRIMARY KEY (user_id, request_id),
+                    CHECK (length(content_hash) = 64)
+                );
+                CREATE INDEX IF NOT EXISTS idx_advisor_turns_user_updated
+                    ON advisor_turns(user_id, updated_at DESC);
                 CREATE TABLE IF NOT EXISTS application_tasks (
                     task_id TEXT PRIMARY KEY,
                     user_id TEXT NOT NULL REFERENCES users(id),
@@ -669,7 +730,7 @@ class SQLiteStore:
             row = self._connection.execute("SELECT password_hash FROM users WHERE id = ?", (user_id,)).fetchone()
             if not row or not verify_password(password, row["password_hash"]):
                 raise InvalidCredentialsError("密码不正确")
-            for table in ["feedback", "auth_tokens", "sessions", "profiles", "recommendation_runs", "advisor_threads", "application_choices", "application_tasks", "agent_run_audits", "ai_consents"]:
+            for table in ["feedback", "auth_tokens", "sessions", "profiles", "recommendation_runs", "advisor_turns", "advisor_threads", "application_choices", "application_tasks", "agent_run_audits", "ai_consents"]:
                 self._connection.execute(f"DELETE FROM {table} WHERE user_id = ?", (user_id,))
             self._connection.execute("DELETE FROM users WHERE id = ?", (user_id,))
 
@@ -861,6 +922,64 @@ class SQLiteStore:
                 (user_id, thread_id),
             ).fetchone()
         return AdvisorThread.model_validate_json(row["payload"]) if row else None
+
+    def reserve_advisor_turn(self, user_id: str, turn: AdvisorTurnRecord) -> AdvisorTurnRecord:
+        with self._lock, self._connection:
+            self._connection.execute(
+                """INSERT OR IGNORE INTO advisor_turns
+                (user_id, request_id, thread_id, content_hash, status, payload, created_at, updated_at)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?)""",
+                (
+                    user_id,
+                    turn.request_id,
+                    turn.thread_id,
+                    turn.content_hash,
+                    turn.status,
+                    turn.model_dump_json(),
+                    turn.created_at.isoformat(),
+                    turn.updated_at.isoformat(),
+                ),
+            )
+            row = self._connection.execute(
+                "SELECT payload FROM advisor_turns WHERE user_id = ? AND request_id = ?",
+                (user_id, turn.request_id),
+            ).fetchone()
+        return AdvisorTurnRecord.model_validate_json(row["payload"])
+
+    def save_advisor_turn(self, user_id: str, turn: AdvisorTurnRecord) -> AdvisorTurnRecord:
+        with self._lock, self._connection:
+            row = self._connection.execute(
+                "SELECT payload FROM advisor_turns WHERE user_id = ? AND request_id = ?",
+                (user_id, turn.request_id),
+            ).fetchone()
+            if not row:
+                raise ValueError("顾问请求尚未预留")
+            existing = AdvisorTurnRecord.model_validate_json(row["payload"])
+            if advisor_turn_status_rank(existing.status) >= advisor_turn_status_rank(turn.status):
+                return existing
+            self._connection.execute(
+                """UPDATE advisor_turns
+                SET thread_id = ?, content_hash = ?, status = ?, payload = ?, updated_at = ?
+                WHERE user_id = ? AND request_id = ?""",
+                (
+                    turn.thread_id,
+                    turn.content_hash,
+                    turn.status,
+                    turn.model_dump_json(),
+                    turn.updated_at.isoformat(),
+                    user_id,
+                    turn.request_id,
+                ),
+            )
+        return turn
+
+    def get_advisor_turn(self, user_id: str, request_id: str) -> AdvisorTurnRecord | None:
+        with self._lock:
+            row = self._connection.execute(
+                "SELECT payload FROM advisor_turns WHERE user_id = ? AND request_id = ?",
+                (user_id, request_id),
+            ).fetchone()
+        return AdvisorTurnRecord.model_validate_json(row["payload"]) if row else None
 
     def save_task(self, user_id: str, task: ApplicationTask) -> ApplicationTask:
         with self._lock, self._connection:

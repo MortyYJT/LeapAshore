@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useCallback, useEffect, useMemo, useState } from "react";
+import { FormEvent, useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import {
   AdvisorAction,
@@ -239,6 +239,7 @@ export default function Home() {
   const [cloudConsent, setCloudConsent] = useState<AIConsent | null | undefined>(undefined);
   const [showCloudConsent, setShowCloudConsent] = useState(false);
   const [pendingAdvisorMessage, setPendingAdvisorMessage] = useState("");
+  const advisorRetryRef = useRef<{ content: string; requestId: string } | null>(null);
   const [transcriptText, setTranscriptText] = useState("");
   const [transcriptResult, setTranscriptResult] = useState<TranscriptAnalysis | null>(null);
   const [knowledgeQuery, setKnowledgeQuery] = useState("UQ 数据科学的雅思和数学先修要求");
@@ -275,6 +276,7 @@ export default function Home() {
     setCloudConsent(undefined);
     setShowCloudConsent(false);
     setPendingAdvisorMessage("");
+    advisorRetryRef.current = null;
     setTranscriptText("");
     setTranscriptResult(null);
     setKnowledgeHits([]);
@@ -678,6 +680,11 @@ export default function Home() {
 
   async function submitAdvisorMessage(content: string) {
     if (!token || !advisorThread || advisorBusy) return;
+    const pendingRetry = advisorRetryRef.current;
+    const requestId = pendingRetry?.content === content
+      ? pendingRetry.requestId
+      : crypto.randomUUID();
+    advisorRetryRef.current = { content, requestId };
     const persistedMessageCount = advisorThread.messages.length;
     const activeThreadId = advisorThread.id;
     setAdvisorInput("");
@@ -693,7 +700,7 @@ export default function Home() {
     } : thread);
     let committedStateReceived = false;
     try {
-      await streamAdvisorMessage(token, advisorThread.id, content, ({ event, data }) => {
+      await streamAdvisorMessage(token, advisorThread.id, content, requestId, ({ event, data }) => {
         if (event === "status") setAdvisorProvider(data.message);
         if (event === "error") setAdvisorProvider(data.message);
         if (event === "delta") setAdvisorThread((thread) => thread ? {
@@ -720,9 +727,11 @@ export default function Home() {
         }
         if (event === "done") setAdvisorProvider(data.provider === "deepseek" ? `DeepSeek V4 Flash · ${data.latency_ms}ms` : "规则顾问 · 快速降级");
       });
+      advisorRetryRef.current = null;
       void fetchHistory(token).then(setHistory).catch(() => undefined);
     } catch (reason) {
       setAdvisorProvider(reason instanceof Error ? reason.message : "暂时无法连接，请稍后重试");
+      if (committedStateReceived) advisorRetryRef.current = null;
       if (!committedStateReceived) {
         const persistedThread = await fetchAdvisorThreads(token)
           .then((threads) => threads.find((thread) => thread.id === activeThreadId) ?? null)
@@ -732,6 +741,7 @@ export default function Home() {
         const turnWasPersisted = persistedUserIndex >= 0
           && newMessages.slice(persistedUserIndex + 1).some((message) => message.role === "assistant");
         if (persistedThread && turnWasPersisted) {
+          advisorRetryRef.current = null;
           setAdvisorThread(persistedThread);
           setAdvisorProvider("回答已保存，已恢复最新会话");
           await hydrateWorkspace(token);

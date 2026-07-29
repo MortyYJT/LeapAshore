@@ -2,7 +2,14 @@ from datetime import UTC, datetime
 
 import pytest
 
-from app.models import AIConsent, ApplicationChoice, AdvisorMessage, AdvisorThread, ApplicantProfile
+from app.models import (
+    AIConsent,
+    ApplicationChoice,
+    AdvisorMessage,
+    AdvisorThread,
+    AdvisorTurnRecord,
+    ApplicantProfile,
+)
 from app.services.agent import run_recommendation_agent
 from app.source_errors import SourceVersionConflictError
 from app.source_governance import current_program, initialize_source_registry, new_candidate
@@ -51,6 +58,26 @@ def test_sqlite_store_survives_adapter_restart(tmp_path) -> None:
         updated_at=now,
     )
     first.save_thread(user.id, thread)
+    turn = first.reserve_advisor_turn(user.id, AdvisorTurnRecord(
+        request_id="sqlite-restart-request-1",
+        thread_id=thread.id,
+        mode="stream",
+        content_hash="a" * 64,
+        created_at=now,
+        updated_at=now,
+    ))
+    turn = first.save_advisor_turn(user.id, turn.model_copy(update={
+        "status": "planned",
+        "updated_at": now,
+    }))
+    assert first.save_advisor_turn(
+        user.id,
+        turn.model_copy(update={"reply_text": "late same-stage overwrite"}),
+    ) == turn
+    assert first.save_advisor_turn(
+        user.id,
+        turn.model_copy(update={"status": "reserved"}),
+    ) == turn
     choice = first.save_choice(user.id, ApplicationChoice(
         run_id=result.run_id, program_slug=result.recommendations[0].program.slug,
         status="applying", is_primary=True, updated_at=now,
@@ -64,6 +91,7 @@ def test_sqlite_store_survives_adapter_restart(tmp_path) -> None:
     assert restarted.get_run(user.id, result.run_id) == result
     assert restarted.get_thread(user.id, thread.id) == thread
     assert restarted.list_threads(user.id) == [thread]
+    assert restarted.get_advisor_turn(user.id, turn.request_id) == turn
     assert restarted.get_choice(user.id, result.run_id, choice.program_slug) == choice
     assert restarted.list_choices(user.id, result.run_id) == [choice]
     assert restarted.get_ai_consent(user.id) == consent
@@ -108,6 +136,29 @@ def test_choice_save_atomically_preserves_one_primary_in_memory() -> None:
 
     choices = store.list_choices("user-1", "run-1")
     assert [choice.program_slug for choice in choices if choice.is_primary] == ["program-c"]
+
+
+def test_advisor_turn_checkpoints_keep_the_first_same_stage_write_in_memory() -> None:
+    store = DemoStore()
+    now = datetime.now(UTC)
+    reserved = store.reserve_advisor_turn("user-1", AdvisorTurnRecord(
+        request_id="memory-same-stage-1",
+        thread_id="thread-1",
+        mode="stream",
+        content_hash="a" * 64,
+        created_at=now,
+        updated_at=now,
+    ))
+    planned = store.save_advisor_turn("user-1", reserved.model_copy(update={
+        "status": "planned",
+        "reply_text": "first writer",
+    }))
+
+    assert store.save_advisor_turn(
+        "user-1",
+        planned.model_copy(update={"reply_text": "late overwrite"}),
+    ) == planned
+    assert store.get_advisor_turn("user-1", reserved.request_id) == planned
 
 
 def test_choice_save_atomically_preserves_one_primary_in_sqlite(tmp_path) -> None:

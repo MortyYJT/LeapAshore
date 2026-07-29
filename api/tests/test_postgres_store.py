@@ -5,7 +5,7 @@ from uuid import uuid4
 import pytest
 
 from app.postgres_store import PostgresStore
-from app.models import ApplicationChoice
+from app.models import AdvisorTurnRecord, ApplicationChoice
 from app.source_governance import initialize_source_registry, new_candidate
 
 
@@ -45,6 +45,46 @@ def test_postgres_choice_write_preserves_one_primary() -> None:
 
     choices = store.list_choices(user.id, run_id)
     assert [choice.program_slug for choice in choices if choice.is_primary] == ["program-b"]
+
+
+def test_postgres_advisor_turn_reservation_is_create_only() -> None:
+    store = PostgresStore(os.environ["DATABASE_URL"])
+    email = f"advisor-turn-{uuid4().hex}@example.com"
+    user, verification = store.register(email, "secure123", "Advisor Turn")
+    user = store.verify_email(verification)
+    now = datetime.now(UTC)
+    request_id = f"request-{uuid4().hex}"
+    first = store.reserve_advisor_turn(user.id, AdvisorTurnRecord(
+        request_id=request_id,
+        thread_id="thread-first",
+        mode="stream",
+        content_hash="a" * 64,
+        created_at=now,
+        updated_at=now,
+    ))
+    conflicting = store.reserve_advisor_turn(user.id, AdvisorTurnRecord(
+        request_id=request_id,
+        thread_id="thread-second",
+        mode="stream",
+        content_hash="b" * 64,
+        created_at=now,
+        updated_at=now,
+    ))
+    assert conflicting == first
+
+    planned = store.save_advisor_turn(user.id, first.model_copy(update={
+        "status": "planned",
+        "updated_at": now,
+    }))
+    assert store.save_advisor_turn(
+        user.id,
+        planned.model_copy(update={"reply_text": "late same-stage overwrite"}),
+    ) == planned
+    assert store.save_advisor_turn(
+        user.id,
+        planned.model_copy(update={"status": "reserved"}),
+    ) == planned
+    assert store.get_advisor_turn(user.id, request_id) == planned
 
 
 def test_postgres_source_review_is_persistent_and_keeps_one_published_version() -> None:

@@ -58,7 +58,7 @@ flowchart LR
 
 ### `deepseek`（可选云端模式）
 
-当前生产模板默认使用确定性顾问，不要求 DeepSeek Key。部署者后续显式设置 `LLM_PROVIDER=deepseek` 并在服务器配置一次 `DEEPSEEK_API_KEY` 后，普通用户仍不接触 Key。首次使用云端顾问时，产品会单独征求数据处理同意；只发送脱敏档案、已核验项目事实、申请组合、路线图和最近对话，不发送姓名、邮箱、账户 ID、本科学校名称或原始成绩单。回答通过 SSE 流式返回，首 Token 超过 8 秒、总时限超过 25 秒、429、余额不足或服务异常时会明确进入确定性降级，不再隐式等待本地模型。页面刷新或再次进入顾问时会恢复最近持久化线程；若连接在收到服务端 `state` 保存确认前中断，前端会先回读同一线程：已保存则恢复权威消息，未保存才撤销局部回答并恢复原草稿，避免把半条流误当成成功或重复提交。
+当前生产模板默认使用确定性顾问，不要求 DeepSeek Key。部署者后续显式设置 `LLM_PROVIDER=deepseek` 并在服务器配置一次 `DEEPSEEK_API_KEY` 后，普通用户仍不接触 Key。首次使用云端顾问时，产品会单独征求数据处理同意；只发送脱敏档案、已核验项目事实、申请组合、路线图和最近对话，不发送姓名、邮箱、账户 ID、本科学校名称或原始成绩单。回答通过 SSE 流式返回，首 Token 超过 8 秒、总时限超过 25 秒、429、余额不足或服务异常时会明确进入确定性降级，不再隐式等待本地模型。页面刷新或再次进入顾问时会恢复最近持久化线程；若连接在收到服务端 `state` 保存确认前中断，前端会先回读同一线程：已保存则恢复权威消息，未保存才撤销局部回答并恢复原草稿。每次顾问提交还会携带请求级 `Idempotency-Key`，失败后的同内容重试复用该 Key；服务端保存请求指纹、动作阶段和稳定 effect ID，避免“动作已写、线程未写”窗口重复创建任务、方案或消息。
 
 ```env
 AGENT_MODE=llm-assisted
@@ -289,6 +289,8 @@ Vercel Serverless 不适合常驻加载 Ollama 模型；云端顾问需在 API s
 - `PUT /me/tasks/{task_id}`
 - `GET|POST /me/feedback`
 
+两个顾问消息 `POST` 都要求 8–128 字符的 `Idempotency-Key` 请求头；同一用户复用同一 Key 时，线程、模式和消息内容必须一致，否则返回 `409`。
+
 管理员接口：
 
 - `GET /admin/stats`
@@ -318,7 +320,7 @@ PYTHONPATH=. .venv/bin/python evals/run_advisor_eval.py
 PYTHONPATH=. .venv/bin/python evals/run_rag_eval.py
 ```
 
-`pnpm run test:e2e` 会自动启动本地 FastAPI DemoStore 与 Next.js，并用 Chromium 验证注册、Cookie 登录、生成推荐、设置首选、顾问 SSE、刷新后恢复同一线程、撤销 Cookie 后的刷新/受保护操作恢复、来源 diff 审核/回滚、顾问动作状态，以及 SSE 503、未提交截断回滚和“服务端已保存但确认事件丢失”的线程对账；不需要 DeepSeek Key。
+`pnpm run test:e2e` 会自动启动本地 FastAPI DemoStore 与 Next.js，并用 Chromium 验证注册、Cookie 登录、生成推荐、设置首选、顾问 SSE、刷新后恢复同一线程、撤销 Cookie 后的刷新/受保护操作恢复、来源 diff 审核/回滚、顾问动作状态，以及 SSE 503 后复用幂等 Key、未提交截断回滚和“服务端已保存但确认事件丢失”的线程对账；不需要 DeepSeek Key。
 
 配置真实服务端 Key 后，可选运行延迟 smoke test（不会在 CI 中消耗真实额度）：
 
