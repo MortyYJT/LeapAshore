@@ -473,6 +473,17 @@ class ProgramSourceChange(BaseModel):
     after: Any = None
 
 
+class ProgramSourceSnapshot(BaseModel):
+    requested_url: str = Field(max_length=2048)
+    final_url: str = Field(max_length=2048)
+    fetched_at: datetime
+    content_type: str = Field(max_length=100)
+    content_sha256: str = Field(pattern=r"^[0-9a-f]{64}$")
+    content_bytes: int = Field(gt=0, le=512 * 1024)
+    body_text: str = Field(min_length=1, max_length=512 * 1024)
+    redirect_chain: list[str] = Field(default_factory=list, max_length=3)
+
+
 class ProgramSourceVersion(BaseModel):
     version_id: str
     program_slug: str
@@ -488,11 +499,13 @@ class ProgramSourceVersion(BaseModel):
     reviewed_at: datetime | None = None
     review_note: str | None = None
     rollback_of: str | None = None
+    source_snapshot: ProgramSourceSnapshot | None = None
 
 
 class ProgramSourceCandidateRequest(BaseModel):
     base_hash: str = Field(pattern=r"^[0-9a-f]{64}$")
     program: Program
+    capture_snapshot: bool = False
 
 
 class ProgramSourceReviewRequest(BaseModel):

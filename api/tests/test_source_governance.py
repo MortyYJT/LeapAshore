@@ -1,12 +1,19 @@
+from datetime import UTC, datetime
+from hashlib import sha256
+
 import pytest
 
+from app.models import ProgramSourceSnapshot
 from app.program_data import SEED_PROGRAMS
 from app.source_governance import (
     attach_version,
     diff_programs,
+    initialize_source_registry,
+    new_candidate,
     program_content_hash,
     validate_official_source,
 )
+from app.store import DemoStore
 
 
 def test_program_content_hash_is_canonical_and_ignores_version_metadata() -> None:
@@ -40,3 +47,31 @@ def test_source_candidate_requires_registered_school_https_domain() -> None:
     })
     with pytest.raises(ValueError, match="HTTPS 官方域名"):
         validate_official_source(untrusted)
+
+
+def test_source_candidate_rejects_a_snapshot_with_tampered_body() -> None:
+    program = SEED_PROGRAMS[0]
+    store = DemoStore()
+    initialize_source_registry(store)
+    current = next(
+        version for version in store.list_program_source_versions(program.slug)
+        if version.status == "published"
+    )
+    body = "<html>official source body</html>"
+    snapshot = ProgramSourceSnapshot(
+        requested_url=program.source.url,
+        final_url=program.source.url,
+        fetched_at=datetime.now(UTC),
+        content_type="text/html",
+        content_sha256=sha256(body.encode()).hexdigest(),
+        content_bytes=len(body.encode()),
+        body_text=f"{body}tampered",
+    )
+
+    with pytest.raises(ValueError, match="正文与 SHA-256 不一致"):
+        new_candidate(
+            current=current,
+            proposed=program.model_copy(update={"duration": "2.5 年"}),
+            submitted_by="reviewer",
+            source_snapshot=snapshot,
+        )

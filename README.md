@@ -301,7 +301,9 @@ Vercel Serverless 不适合常驻加载 Ollama 模型；云端顾问需在 API s
 - `PUT /admin/program-sources/{program_slug}/versions/{version_id}`
 - `POST /admin/program-sources/{program_slug}/rollback`
 
-运营后台的“版本审核工作台”会从当前发布事实生成候选 JSON，只创建待审核版本；管理员核对逐字段 diff 并填写备注后才能批准或拒绝，也可把已替代版本作为回滚目标。所有动作完成后会刷新发布 version/hash 与待审核计数。
+运营后台的“版本审核工作台”会从当前发布事实生成候选 JSON，只创建待审核版本；管理员核对逐字段 diff 并填写备注后才能批准或拒绝，也可把已替代版本作为回滚目标。选择“抓取官网并生成候选”时，API 只访问该项目登记的 HTTPS 学校域名：DNS 结果必须全部为公网地址，连接固定到已校验 IP 且每次重定向重新过门禁；默认端口、3 次跳转、5 秒单跳超时、HTML/纯文本类型和 512 KiB 响应上限均为硬约束。规范化正文、SHA-256、抓取时间、最终 URL 和跳转链会随候选版本留存，但抓取结果绝不自动发布。
+
+`POST /admin/program-sources/{program_slug}/versions` 的 `capture_snapshot` 默认为 `false`，便于人工导入或离线测试；运营界面的官网抓取动作会显式设为 `true`。历史发布版本已有快照时，普通字段候选会继承该快照，避免结构化修订意外丢失来源证据。
 
 ## 验证
 
@@ -335,7 +337,7 @@ DEEPSEEK_API_KEY=... LLM_PROVIDER=deepseek PYTHONPATH=. .venv/bin/python evals/d
 - 生产部署应配置 `DATABASE_URL`；SQLite 不适合作为无状态云函数的共享数据库。
 - 在线站点必须同时部署 FastAPI 与 PostgreSQL；纯静态预览只展示登录界面，不承诺可用的账户与选校流程。
 - 当前成绩单工具处理可复制文本；扫描版 PDF/OCR 仍需接入文件存储和视觉模型。
-- 来源模块会标记超过 30 天未核验的数据，但不会在无人审核时自动覆盖申请门槛。
+- 来源模块会标记超过 30 天未核验的数据；官网抓取只生成带正文快照的待审核候选，不会在无人审核时自动覆盖申请门槛。
 - 系统不生成“录取概率”，也不会把模型推断伪装成学校官方结论。
 - 当前内存限流适用于单 API 实例封闭 Beta；多副本部署前需要迁移到 Redis。
 - SMTP 服务商、域名 SPF/DKIM/DMARC、服务器防火墙与异地备份需要在真实域名上线时完成最终配置。

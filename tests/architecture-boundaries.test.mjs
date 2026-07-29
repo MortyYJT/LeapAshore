@@ -110,11 +110,27 @@ test("the operations UI exposes the complete source review lifecycle", async () 
   for (const endpoint of ["/programs/", "/admin/program-sources/", "/versions", "/rollback"]) {
     assert.match(apiClientSource, new RegExp(endpoint.replaceAll("/", "\\/")));
   }
-  for (const label of ["候选 Program JSON", "生成字段差异", "批准发布", "拒绝候选", "回滚到此版本"]) {
+  for (const label of ["候选 Program JSON", "生成字段差异", "抓取官网并生成候选", "批准发布", "拒绝候选", "回滚到此版本"]) {
     assert.match(panelSource, new RegExp(label));
   }
   assert.match(panelSource, /currentVersion\.content_hash/);
   assert.match(panelSource, /version\.changes\.map/);
+  assert.match(panelSource, /version\.source_snapshot/);
+  assert.match(apiClientSource, /capture_snapshot: captureSnapshot/);
+});
+
+test("official source fetches pin public DNS and bound every response hop", async () => {
+  const sourceFetch = await readFile(new URL("../api/app/source_fetch.py", import.meta.url), "utf8");
+  for (const marker of [
+    "parsed.is_global",
+    "_PinnedHTTPSConnection",
+    "MAX_SOURCE_REDIRECTS = 3",
+    "MAX_SOURCE_BYTES = 512 * 1024",
+    "ALLOWED_SOURCE_CONTENT_TYPES",
+    "Accept-Encoding",
+  ]) {
+    assert.match(sourceFetch, new RegExp(marker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  }
 });
 
 test("the streaming state contract replaces every run-scoped client snapshot together", () => {

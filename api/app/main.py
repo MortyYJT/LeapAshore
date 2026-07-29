@@ -101,12 +101,15 @@ from .source_errors import (
     SourceVersionNotFoundError,
     SourceVersionStateError,
 )
+from .source_fetch import SourceFetchError, fetch_official_source
 from .source_governance import (
+    OFFICIAL_SOURCE_DOMAINS,
     current_program,
     initialize_source_registry,
     new_candidate,
     refresh_source_registry,
     validate_official_source,
+    validate_source_snapshot,
 )
 
 configure_error_reporting()
@@ -974,12 +977,25 @@ def admin_create_program_source_version(
     if payload.base_hash != published.content_hash:
         raise HTTPException(status_code=409, detail="当前发布版本已变化，请基于最新 hash 重新生成差异")
     try:
+        source_snapshot = published.source_snapshot
+        if payload.capture_snapshot:
+            validate_official_source(payload.program)
+            source_snapshot = fetch_official_source(
+                payload.program.source.url,
+                OFFICIAL_SOURCE_DOMAINS.get(program_slug, ()),
+            )
         candidate = new_candidate(
             current=published,
             proposed=payload.program,
             submitted_by=admin.id,
+            source_snapshot=source_snapshot,
         )
         return store.save_program_source_version(candidate)
+    except SourceFetchError as error:
+        raise HTTPException(
+            status_code=502 if error.upstream else 422,
+            detail=f"官网抓取失败：{error}",
+        ) from error
     except ValueError as error:
         status_code = 409 if "完全一致" in str(error) else 422
         raise HTTPException(status_code=status_code, detail=str(error)) from error
@@ -1003,6 +1019,8 @@ def admin_review_program_source_version(
     if payload.decision == "approve":
         try:
             validate_official_source(candidate.program)
+            if candidate.source_snapshot:
+                validate_source_snapshot(candidate.program, candidate.source_snapshot)
         except ValueError as error:
             raise HTTPException(status_code=422, detail=str(error)) from error
     try:
@@ -1046,6 +1064,7 @@ def admin_rollback_program_source_version(
             proposed=target.program,
             submitted_by=admin.id,
             rollback_of=target.version_id,
+            source_snapshot=target.source_snapshot,
         )
         store.save_program_source_version(rollback)
         reviewed = store.review_program_source_version(

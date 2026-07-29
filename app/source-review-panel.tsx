@@ -36,6 +36,10 @@ function formatTimestamp(value?: string | null): string {
   return value ? new Date(value).toLocaleString("zh-CN") : "—";
 }
 
+function formatBytes(value: number): string {
+  return value < 1024 ? `${value} B` : `${(value / 1024).toFixed(1)} KiB`;
+}
+
 export function SourceReviewPanel({ token, sources, onSourcesChange }: SourceReviewPanelProps) {
   const [requestedSlug, setRequestedSlug] = useState("");
   const [versions, setVersions] = useState<ProgramSourceVersion[]>([]);
@@ -96,7 +100,7 @@ export function SourceReviewPanel({ token, sources, onSourcesChange }: SourceRev
     }
   }
 
-  async function submitCandidate() {
+  async function submitCandidate(captureSnapshot: boolean) {
     if (!currentVersion) return;
     let proposed: ApiProgram;
     try {
@@ -109,14 +113,22 @@ export function SourceReviewPanel({ token, sources, onSourcesChange }: SourceRev
       setError("候选项目 slug 必须与当前所选项目一致");
       return;
     }
-    setBusyAction("candidate");
+    setBusyAction(captureSnapshot ? "candidate-snapshot" : "candidate");
     setError("");
     setNotice("");
     try {
-      await createAdminProgramSourceVersion(token, selectedSlug, currentVersion.content_hash, proposed);
+      await createAdminProgramSourceVersion(
+        token,
+        selectedSlug,
+        currentVersion.content_hash,
+        proposed,
+        captureSnapshot,
+      );
       await refreshSourceData();
       setCandidateOpen(false);
-      setNotice("候选已生成，请核对字段差异后再决定是否发布。");
+      setNotice(captureSnapshot
+        ? "官网正文已受限抓取并随候选留存，请核对快照与字段差异后再决定是否发布。"
+        : "候选已生成，请核对字段差异后再决定是否发布。");
     } catch (reason) {
       setError(reason instanceof Error ? reason.message : "候选创建失败");
     } finally {
@@ -190,11 +202,14 @@ export function SourceReviewPanel({ token, sources, onSourcesChange }: SourceRev
             候选 Program JSON
             <textarea value={candidateJson} onChange={(event) => setCandidateJson(event.target.value)} spellCheck={false} />
           </label>
-          <p>只提交可由官网证据复核的事实，并同步更新 source.excerpt 与 source.verified_at。提交只会生成待审核 diff，不会直接发布。</p>
+          <p>只提交可由官网证据复核的事实，并同步更新 source.excerpt 与 source.verified_at。“抓取官网”会校验官方域名、DNS、重定向、类型和大小，再把正文快照与 hash 留在待审核版本；两种方式都不会自动发布。</p>
           <div className="source-action-row">
             <button className="text-button" type="button" onClick={() => setCandidateOpen(false)}>取消</button>
-            <button className="primary-button" type="button" disabled={busyAction !== null || !candidateJson.trim()} onClick={() => void submitCandidate()}>
+            <button className="outline-button" type="button" disabled={busyAction !== null || !candidateJson.trim()} onClick={() => void submitCandidate(false)}>
               {busyAction === "candidate" ? "正在生成…" : "生成字段差异"}
+            </button>
+            <button className="primary-button" type="button" disabled={busyAction !== null || !candidateJson.trim()} onClick={() => void submitCandidate(true)}>
+              {busyAction === "candidate-snapshot" ? "正在安全抓取…" : "抓取官网并生成候选"}
             </button>
           </div>
         </div>
@@ -231,6 +246,19 @@ export function SourceReviewPanel({ token, sources, onSourcesChange }: SourceRev
                     ))}
                   </div>
                 ) : <p className="muted-copy">种子或审计发布版本，没有独立字段差异记录。</p>}
+
+                {version.source_snapshot && (
+                  <details className="source-snapshot">
+                    <summary>官网正文快照 · SHA-256 {version.source_snapshot.content_sha256.slice(0, 16)}</summary>
+                    <dl>
+                      <div><dt>抓取时间</dt><dd>{formatTimestamp(version.source_snapshot.fetched_at)}</dd></div>
+                      <div><dt>最终 URL</dt><dd>{version.source_snapshot.final_url}</dd></div>
+                      <div><dt>响应</dt><dd>{version.source_snapshot.content_type} · {formatBytes(version.source_snapshot.content_bytes)} · {version.source_snapshot.redirect_chain.length} 次跳转</dd></div>
+                    </dl>
+                    <pre>{version.source_snapshot.body_text.slice(0, 12000)}</pre>
+                    {version.source_snapshot.body_text.length > 12000 && <small>界面只预览前 12,000 字符；完整正文仍保存在版本记录中。</small>}
+                  </details>
+                )}
 
                 {version.reviewed_at && <p className="source-review-meta">审核 {formatTimestamp(version.reviewed_at)} · {version.review_note || "未填写备注"}</p>}
 

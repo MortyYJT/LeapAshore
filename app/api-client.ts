@@ -233,6 +233,17 @@ export type ProgramSourceChange = {
   after: unknown;
 };
 
+export type ProgramSourceSnapshot = {
+  requested_url: string;
+  final_url: string;
+  fetched_at: string;
+  content_type: string;
+  content_sha256: string;
+  content_bytes: number;
+  body_text: string;
+  redirect_chain: string[];
+};
+
 export type ProgramSourceVersion = {
   version_id: string;
   program_slug: string;
@@ -248,6 +259,7 @@ export type ProgramSourceVersion = {
   reviewed_at?: string | null;
   review_note?: string | null;
   rollback_of?: string | null;
+  source_snapshot?: ProgramSourceSnapshot | null;
 };
 
 export type ApiProgramRecommendation = {
@@ -671,11 +683,12 @@ export async function createAdminProgramSourceVersion(
   programSlug: string,
   baseHash: string,
   program: ApiProgram,
+  captureSnapshot = false,
 ): Promise<ProgramSourceVersion> {
   return request<ProgramSourceVersion>(`/admin/program-sources/${programSlug}/versions`, {
     method: "POST",
     headers: { Authorization: `Bearer ${token}` },
-    body: JSON.stringify({ base_hash: baseHash, program }),
+    body: JSON.stringify({ base_hash: baseHash, program, capture_snapshot: captureSnapshot }),
   });
 }
 

@@ -946,6 +946,72 @@ def test_admin_source_versions_require_review_update_rag_and_can_rollback(monkey
     assert any(item["status"] == "rejected" and item["version_id"] == second_id for item in versions)
 
 
+def test_admin_can_capture_an_official_snapshot_without_auto_publishing(monkeypatch) -> None:
+    import importlib
+    from datetime import UTC, datetime
+    from hashlib import sha256
+
+    from app.models import ProgramSourceSnapshot
+
+    main_module = importlib.import_module("app.main")
+    monkeypatch.setenv("ADMIN_EMAILS", "admin@offerpilot.cn,snapshot-admin@offerpilot.cn")
+    login = registered_login("snapshot-admin@offerpilot.cn")
+    headers = {"Authorization": f"Bearer {login.json()['access_token']}"}
+    slug = "monash-master-cs"
+    baseline_status = next(
+        item for item in client.get("/program-sources/status").json()
+        if item["program_slug"] == slug
+    )
+    baseline_program = client.get(f"/programs/{slug}").json()
+    body_text = "<html><body>Monash official course requirements snapshot</body></html>"
+    captured: dict[str, object] = {}
+
+    def fake_fetch(url: str, domains: tuple[str, ...]) -> ProgramSourceSnapshot:
+        captured.update(url=url, domains=domains)
+        return ProgramSourceSnapshot(
+            requested_url=url,
+            final_url=url,
+            fetched_at=datetime.now(UTC),
+            content_type="text/html",
+            content_sha256=sha256(body_text.encode()).hexdigest(),
+            content_bytes=len(body_text.encode()),
+            body_text=body_text,
+        )
+
+    monkeypatch.setattr(main_module, "fetch_official_source", fake_fetch)
+    proposed = {**baseline_program, "duration": f"{baseline_program['duration']}（快照测试）"}
+    response = client.post(
+        f"/admin/program-sources/{slug}/versions",
+        json={
+            "base_hash": baseline_status["content_hash"],
+            "program": proposed,
+            "capture_snapshot": True,
+        },
+        headers=headers,
+    )
+
+    assert response.status_code == 201
+    candidate = response.json()
+    assert captured == {
+        "url": baseline_program["source"]["url"],
+        "domains": ("monash.edu",),
+    }
+    assert candidate["status"] == "pending_review"
+    assert candidate["content_hash"] != baseline_status["content_hash"]
+    assert candidate["source_snapshot"]["body_text"] == body_text
+    assert candidate["source_snapshot"]["content_sha256"] == sha256(body_text.encode()).hexdigest()
+    assert "source_snapshot.content_sha256" in {item["field"] for item in candidate["changes"]}
+    assert client.get(f"/programs/{slug}").json()["duration"] == baseline_program["duration"]
+
+    rejected = client.put(
+        f"/admin/program-sources/{slug}/versions/{candidate['version_id']}",
+        json={"decision": "reject", "note": "测试完成，不发布"},
+        headers=headers,
+    )
+    assert rejected.status_code == 200
+    assert rejected.json()["status"] == "rejected"
+
+
 def test_authenticated_rag_search_and_advisor_fallback_share_cited_evidence() -> None:
     login = registered_login("rag-product@offerpilot.cn")
     headers = {"Authorization": f"Bearer {login.json()['access_token']}"}

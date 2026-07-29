@@ -1,4 +1,5 @@
 from datetime import UTC, datetime
+from hashlib import sha256
 
 import pytest
 
@@ -9,6 +10,7 @@ from app.models import (
     AdvisorThread,
     AdvisorTurnRecord,
     ApplicantProfile,
+    ProgramSourceSnapshot,
 )
 from app.services.agent import run_recommendation_agent
 from app.source_errors import SourceVersionConflictError
@@ -211,10 +213,21 @@ def test_sqlite_persists_published_source_version_across_restart(tmp_path) -> No
         item for item in first.list_program_source_versions("uq-master-data-science")
         if item.status == "published"
     )
+    snapshot_body = "<html><body>Persisted official source snapshot</body></html>"
+    snapshot = ProgramSourceSnapshot(
+        requested_url=published.program.source.url,
+        final_url=published.program.source.url,
+        fetched_at=datetime.now(UTC),
+        content_type="text/html",
+        content_sha256=sha256(snapshot_body.encode()).hexdigest(),
+        content_bytes=len(snapshot_body.encode()),
+        body_text=snapshot_body,
+    )
     candidate = new_candidate(
         current=published,
         proposed=published.program.model_copy(update={"duration": "2 年（测试版本）"}),
         submitted_by="reviewer-1",
+        source_snapshot=snapshot,
     )
     first.save_program_source_version(candidate)
     first.review_program_source_version(candidate.version_id, "approve", "reviewer-2", datetime.now(UTC))
@@ -224,6 +237,7 @@ def test_sqlite_persists_published_source_version_across_restart(tmp_path) -> No
     assert restored is not None
     assert restored.status == "published"
     assert restored.reviewed_by == "reviewer-2"
+    assert restored.source_snapshot == snapshot
     assert next(
         item for item in restarted.list_program_source_versions("uq-master-data-science")
         if item.status == "published"

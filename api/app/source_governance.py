@@ -1,15 +1,16 @@
 from __future__ import annotations
 
-from datetime import UTC, date, datetime
+from datetime import UTC, date, datetime, timedelta
 from hashlib import sha256
 import json
 import re
 from typing import Any
-from urllib.parse import urlsplit
+from urllib.parse import urlsplit, urlunsplit
 from uuid import uuid4
 
-from .models import Program, ProgramSourceChange, ProgramSourceVersion
+from .models import Program, ProgramSourceChange, ProgramSourceSnapshot, ProgramSourceVersion
 from .program_data import PROGRAMS, SEED_PROGRAMS, replace_published_program
+from .source_fetch import ALLOWED_SOURCE_CONTENT_TYPES
 from .store import Store
 
 
@@ -40,6 +41,27 @@ def program_content_hash(program: Program) -> str:
     return sha256(canonical.encode("utf-8")).hexdigest()
 
 
+def source_version_content_hash(
+    program: Program,
+    source_snapshot: ProgramSourceSnapshot | None,
+) -> str:
+    program_hash = program_content_hash(program)
+    if not source_snapshot:
+        return program_hash
+    snapshot_identity = json.dumps(
+        {
+            "content_sha256": source_snapshot.content_sha256,
+            "content_type": source_snapshot.content_type,
+            "final_url": source_snapshot.final_url,
+            "requested_url": source_snapshot.requested_url,
+        },
+        ensure_ascii=False,
+        sort_keys=True,
+        separators=(",", ":"),
+    )
+    return sha256(f"{program_hash}:{snapshot_identity}".encode("utf-8")).hexdigest()
+
+
 def attach_version(program: Program, version_id: str, content_hash: str) -> Program:
     source = program.source.model_copy(update={
         "version_id": version_id,
@@ -63,14 +85,30 @@ def diff_programs(before: Program, after: Program) -> list[ProgramSourceChange]:
     return changes
 
 
-def validate_official_source(program: Program) -> None:
-    parsed = urlsplit(program.source.url)
+def _canonical_official_url(program_slug: str, url: str) -> str:
+    try:
+        parsed = urlsplit(url)
+        port = parsed.port
+    except ValueError as error:
+        raise ValueError("候选来源 URL 端口无效") from error
     hostname = (parsed.hostname or "").lower().rstrip(".")
-    allowed = OFFICIAL_SOURCE_DOMAINS.get(program.slug, ())
-    if parsed.scheme != "https" or not any(
-        hostname == domain or hostname.endswith(f".{domain}") for domain in allowed
+    allowed = OFFICIAL_SOURCE_DOMAINS.get(program_slug, ())
+    if (
+        parsed.scheme.lower() != "https"
+        or parsed.username
+        or parsed.password
+        or port not in {None, 443}
+        or not any(
+            hostname == domain or hostname.endswith(f".{domain}")
+            for domain in allowed
+        )
     ):
         raise ValueError("候选来源必须使用该项目已登记学校的 HTTPS 官方域名")
+    return urlunsplit(("https", hostname, parsed.path or "/", parsed.query, ""))
+
+
+def validate_official_source(program: Program) -> None:
+    _canonical_official_url(program.slug, program.source.url)
     if program.verification_status != "已核验":
         raise ValueError("只有标记为已核验的项目事实可以进入发布流程")
     if len(program.source.excerpt.strip()) < 20:
@@ -83,6 +121,42 @@ def validate_official_source(program: Program) -> None:
         raise ValueError("核验日期不是有效日历日期") from error
     if verified_at > datetime.now(UTC).date():
         raise ValueError("核验日期不能晚于当前日期")
+
+
+def validate_source_snapshot(program: Program, snapshot: ProgramSourceSnapshot) -> None:
+    requested_url = _canonical_official_url(program.slug, snapshot.requested_url)
+    final_url = _canonical_official_url(program.slug, snapshot.final_url)
+    if requested_url != _canonical_official_url(program.slug, program.source.url):
+        raise ValueError("官网快照必须来自候选事实登记的来源 URL")
+    if final_url != snapshot.final_url:
+        raise ValueError("官网快照最终 URL 未规范化")
+    if snapshot.content_type not in ALLOWED_SOURCE_CONTENT_TYPES:
+        raise ValueError("官网快照内容类型不受支持")
+    if sha256(snapshot.body_text.encode("utf-8")).hexdigest() != snapshot.content_sha256:
+        raise ValueError("官网快照正文与 SHA-256 不一致")
+    if snapshot.fetched_at.tzinfo is None:
+        raise ValueError("官网快照抓取时间必须包含时区")
+    if snapshot.fetched_at > datetime.now(UTC) + timedelta(minutes=5):
+        raise ValueError("官网快照抓取时间不能晚于当前时间")
+
+
+def _snapshot_changes(
+    before: ProgramSourceSnapshot | None,
+    after: ProgramSourceSnapshot | None,
+) -> list[ProgramSourceChange]:
+    if before == after:
+        return []
+    changes: list[ProgramSourceChange] = []
+    for field in ("content_sha256", "content_type", "content_bytes", "final_url"):
+        old_value = getattr(before, field, None)
+        new_value = getattr(after, field, None)
+        if old_value != new_value:
+            changes.append(ProgramSourceChange(
+                field=f"source_snapshot.{field}",
+                before=old_value,
+                after=new_value,
+            ))
+    return changes
 
 
 def _seed_version(program: Program) -> ProgramSourceVersion:
@@ -135,11 +209,14 @@ def new_candidate(
     proposed: Program,
     submitted_by: str,
     rollback_of: str | None = None,
+    source_snapshot: ProgramSourceSnapshot | None = None,
 ) -> ProgramSourceVersion:
     validate_official_source(proposed)
+    if source_snapshot:
+        validate_source_snapshot(proposed, source_snapshot)
     if proposed.slug != current.program_slug:
         raise ValueError("候选版本的项目标识与路径不一致")
-    content_hash = program_content_hash(proposed)
+    content_hash = source_version_content_hash(proposed, source_snapshot)
     if content_hash == current.content_hash:
         raise ValueError("候选内容与当前发布版本完全一致")
     version_id = f"srcv_{uuid4().hex}"
@@ -151,8 +228,12 @@ def new_candidate(
         base_hash=current.content_hash,
         status="pending_review",
         program=attach_version(proposed, version_id, content_hash),
-        changes=diff_programs(current.program, proposed),
+        changes=diff_programs(current.program, proposed) + _snapshot_changes(
+            current.source_snapshot,
+            source_snapshot,
+        ),
         submitted_by=submitted_by,
         submitted_at=datetime.now(UTC),
         rollback_of=rollback_of,
+        source_snapshot=source_snapshot,
     )
