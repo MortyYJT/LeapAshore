@@ -16,6 +16,7 @@ from app.services.agent import run_recommendation_agent
 from app.source_errors import SourceVersionConflictError
 from app.source_governance import current_program, initialize_source_registry, new_candidate
 from app.store import DemoStore, SQLiteStore
+from app.store_errors import AdvisorThreadRevisionConflictError
 
 
 def sample_profile() -> ApplicantProfile:
@@ -40,6 +41,71 @@ def test_profile_migrates_the_legacy_aud_named_budget_to_cny() -> None:
     dumped = profile.model_dump()
     assert dumped["annual_budget_cny"] == 450000
     assert "annual_budget_aud" not in dumped
+
+
+def test_memory_thread_revision_cas_rejects_a_stale_writer() -> None:
+    store = DemoStore()
+    user, _ = store.register("thread-cas-memory@example.com", "demo1234", "CAS")
+    now = datetime.now(UTC)
+    thread = AdvisorThread(
+        id="thread-cas-memory",
+        title="初始会话",
+        messages=[AdvisorMessage(id="greeting", role="assistant", content="你好", created_at=now)],
+        created_at=now,
+        updated_at=now,
+    )
+    store.save_thread(user.id, thread)
+    winner = thread.model_copy(update={"revision": 1, "title": "先提交"})
+    stale = thread.model_copy(update={"revision": 1, "title": "后提交"})
+
+    assert store.save_thread(user.id, winner, 0) == winner
+    with pytest.raises(AdvisorThreadRevisionConflictError) as conflict:
+        store.save_thread(user.id, stale, 0)
+
+    assert conflict.value.expected_revision == 0
+    assert conflict.value.actual_revision == 1
+    assert store.get_thread(user.id, thread.id) == winner
+
+
+def test_sqlite_thread_revision_cas_serializes_two_connections(tmp_path) -> None:
+    from concurrent.futures import ThreadPoolExecutor
+    from threading import Barrier
+
+    database_path = str(tmp_path / "thread-cas.db")
+    first = SQLiteStore(database_path)
+    user, _ = first.register("thread-cas-sqlite@example.com", "demo1234", "CAS")
+    second = SQLiteStore(database_path)
+    now = datetime.now(UTC)
+    thread = AdvisorThread(
+        id="thread-cas-sqlite",
+        title="初始会话",
+        messages=[AdvisorMessage(id="greeting", role="assistant", content="你好", created_at=now)],
+        created_at=now,
+        updated_at=now,
+    )
+    first.save_thread(user.id, thread)
+    barrier = Barrier(2)
+
+    def save_candidate(store: SQLiteStore, title: str) -> str:
+        candidate = thread.model_copy(update={"revision": 1, "title": title})
+        barrier.wait(timeout=2)
+        try:
+            store.save_thread(user.id, candidate, 0)
+        except AdvisorThreadRevisionConflictError:
+            return "conflict"
+        return "saved"
+
+    with ThreadPoolExecutor(max_workers=2) as executor:
+        results = list(executor.map(
+            lambda args: save_candidate(*args),
+            [(first, "连接一"), (second, "连接二")],
+        ))
+
+    assert sorted(results) == ["conflict", "saved"]
+    persisted = first.get_thread(user.id, thread.id)
+    assert persisted is not None
+    assert persisted.revision == 1
+    assert persisted.title in {"连接一", "连接二"}
 
 
 def test_sqlite_store_survives_adapter_restart(tmp_path) -> None:

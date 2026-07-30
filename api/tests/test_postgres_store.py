@@ -1,12 +1,15 @@
 import os
+from concurrent.futures import ThreadPoolExecutor
 from datetime import UTC, datetime
+from threading import Barrier
 from uuid import uuid4
 
 import pytest
 
 from app.postgres_store import PostgresStore
-from app.models import AdvisorTurnRecord, ApplicationChoice
+from app.models import AdvisorMessage, AdvisorThread, AdvisorTurnRecord, ApplicationChoice
 from app.source_governance import initialize_source_registry, new_candidate
+from app.store_errors import AdvisorThreadRevisionConflictError
 
 
 pytestmark = pytest.mark.skipif(not os.getenv("DATABASE_URL"), reason="requires PostgreSQL integration database")
@@ -45,6 +48,45 @@ def test_postgres_choice_write_preserves_one_primary() -> None:
 
     choices = store.list_choices(user.id, run_id)
     assert [choice.program_slug for choice in choices if choice.is_primary] == ["program-b"]
+
+
+def test_postgres_thread_revision_cas_serializes_two_connections() -> None:
+    first = PostgresStore(os.environ["DATABASE_URL"])
+    second = PostgresStore(os.environ["DATABASE_URL"])
+    email = f"thread-cas-{uuid4().hex}@example.com"
+    user, verification = first.register(email, "secure123", "Thread CAS")
+    user = first.verify_email(verification)
+    now = datetime.now(UTC)
+    thread = AdvisorThread(
+        id=f"thread-{uuid4().hex}",
+        title="初始会话",
+        messages=[AdvisorMessage(id="greeting", role="assistant", content="你好", created_at=now)],
+        created_at=now,
+        updated_at=now,
+    )
+    first.save_thread(user.id, thread)
+    barrier = Barrier(2)
+
+    def save_candidate(store: PostgresStore, title: str) -> str:
+        candidate = thread.model_copy(update={"revision": 1, "title": title})
+        barrier.wait(timeout=2)
+        try:
+            store.save_thread(user.id, candidate, 0)
+        except AdvisorThreadRevisionConflictError:
+            return "conflict"
+        return "saved"
+
+    with ThreadPoolExecutor(max_workers=2) as executor:
+        results = list(executor.map(
+            lambda args: save_candidate(*args),
+            [(first, "连接一"), (second, "连接二")],
+        ))
+
+    assert sorted(results) == ["conflict", "saved"]
+    persisted = first.get_thread(user.id, thread.id)
+    assert persisted is not None
+    assert persisted.revision == 1
+    assert persisted.title in {"连接一", "连接二"}
 
 
 def test_postgres_advisor_turn_reservation_is_create_only() -> None:

@@ -291,6 +291,7 @@ class AdvisorMessage(BaseModel):
 
 class AdvisorThread(BaseModel):
     id: str
+    revision: int = Field(default=0, ge=0)
     title: str
     messages: list[AdvisorMessage]
     created_at: datetime

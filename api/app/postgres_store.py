@@ -27,6 +27,7 @@ from .source_errors import (
     SourceVersionNotFoundError,
     SourceVersionStateError,
 )
+from .store_errors import AdvisorThreadRevisionConflictError
 from .auth import (
     AccountExistsError,
     InvalidAuthTokenError,
@@ -324,9 +325,71 @@ class PostgresStore:
     def get_choice(self, user_id: str, run_id: str, program_slug: str) -> ApplicationChoice | None:
         return self._get_entity(user_id, "application_choice", f"{run_id}:{program_slug}", ApplicationChoice)
 
-    def save_thread(self, user_id: str, thread: AdvisorThread) -> AdvisorThread:
-        self._save_entity(user_id, "advisor_thread", thread.id, thread, thread.created_at)
-        return thread
+    def save_thread(
+        self,
+        user_id: str,
+        thread: AdvisorThread,
+        expected_revision: int | None = None,
+    ) -> AdvisorThread:
+        from psycopg.types.json import Jsonb
+
+        if expected_revision is None and thread.revision != 0:
+            raise ValueError("新顾问会话的 revision 必须为 0")
+        if expected_revision is not None and thread.revision != expected_revision + 1:
+            raise ValueError("顾问会话 revision 必须单调增加 1")
+
+        with self._lock, self._connection.transaction(), self._connection.cursor() as cursor:
+            if expected_revision is None:
+                cursor.execute(
+                    """INSERT INTO entities
+                    (user_id, kind, entity_id, payload, created_at, updated_at)
+                    VALUES (%s, 'advisor_thread', %s, %s, %s, %s)
+                    ON CONFLICT (user_id, kind, entity_id) DO NOTHING
+                    RETURNING payload""",
+                    (
+                        user_id,
+                        thread.id,
+                        Jsonb(thread.model_dump(mode="json")),
+                        thread.created_at,
+                        thread.updated_at,
+                    ),
+                )
+            else:
+                cursor.execute(
+                    """UPDATE entities
+                    SET payload = %s, updated_at = %s
+                    WHERE user_id = %s
+                      AND kind = 'advisor_thread'
+                      AND entity_id = %s
+                      AND COALESCE((payload->>'revision')::INTEGER, 0) = %s
+                    RETURNING payload""",
+                    (
+                        Jsonb(thread.model_dump(mode="json")),
+                        thread.updated_at,
+                        user_id,
+                        thread.id,
+                        expected_revision,
+                    ),
+                )
+            saved = cursor.fetchone()
+            if not saved:
+                cursor.execute(
+                    """SELECT payload FROM entities
+                    WHERE user_id = %s AND kind = 'advisor_thread' AND entity_id = %s""",
+                    (user_id, thread.id),
+                )
+                row = cursor.fetchone()
+                actual_revision = (
+                    AdvisorThread.model_validate(row["payload"]).revision
+                    if row
+                    else None
+                )
+                raise AdvisorThreadRevisionConflictError(
+                    thread.id,
+                    expected_revision,
+                    actual_revision,
+                )
+        return thread.model_copy(deep=True)
 
     def list_threads(self, user_id: str) -> list[AdvisorThread]:
         return self._list_entities(user_id, "advisor_thread", AdvisorThread)

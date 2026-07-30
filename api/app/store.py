@@ -45,6 +45,7 @@ from .source_errors import (
     SourceVersionNotFoundError,
     SourceVersionStateError,
 )
+from .store_errors import AdvisorThreadRevisionConflictError
 
 
 class Store(Protocol):
@@ -67,7 +68,12 @@ class Store(Protocol):
     def save_choice(self, user_id: str, choice: ApplicationChoice) -> ApplicationChoice: ...
     def list_choices(self, user_id: str, run_id: str | None = None) -> list[ApplicationChoice]: ...
     def get_choice(self, user_id: str, run_id: str, program_slug: str) -> ApplicationChoice | None: ...
-    def save_thread(self, user_id: str, thread: AdvisorThread) -> AdvisorThread: ...
+    def save_thread(
+        self,
+        user_id: str,
+        thread: AdvisorThread,
+        expected_revision: int | None = None,
+    ) -> AdvisorThread: ...
     def list_threads(self, user_id: str) -> list[AdvisorThread]: ...
     def get_thread(self, user_id: str, thread_id: str) -> AdvisorThread | None: ...
     def reserve_advisor_turn(self, user_id: str, turn: AdvisorTurnRecord) -> AdvisorTurnRecord: ...
@@ -292,20 +298,50 @@ class DemoStore:
         with self._lock:
             return next((item for item in self._choices.get(user_id, []) if item.run_id == run_id and item.program_slug == program_slug), None)
 
-    def save_thread(self, user_id: str, thread: AdvisorThread) -> AdvisorThread:
+    def save_thread(
+        self,
+        user_id: str,
+        thread: AdvisorThread,
+        expected_revision: int | None = None,
+    ) -> AdvisorThread:
         with self._lock:
             threads = self._threads.setdefault(user_id, [])
+            existing = next((item for item in threads if item.id == thread.id), None)
+            actual_revision = existing.revision if existing else None
+            if expected_revision is None:
+                if existing:
+                    raise AdvisorThreadRevisionConflictError(
+                        thread.id,
+                        expected_revision,
+                        actual_revision,
+                    )
+                if thread.revision != 0:
+                    raise ValueError("新顾问会话的 revision 必须为 0")
+            else:
+                if actual_revision != expected_revision:
+                    raise AdvisorThreadRevisionConflictError(
+                        thread.id,
+                        expected_revision,
+                        actual_revision,
+                    )
+                if thread.revision != expected_revision + 1:
+                    raise ValueError("顾问会话 revision 必须单调增加 1")
+            stored = thread.model_copy(deep=True)
             threads[:] = [item for item in threads if item.id != thread.id]
-            threads.insert(0, thread)
-        return thread
+            threads.insert(0, stored)
+        return stored.model_copy(deep=True)
 
     def list_threads(self, user_id: str) -> list[AdvisorThread]:
         with self._lock:
-            return list(self._threads.get(user_id, []))
+            return [item.model_copy(deep=True) for item in self._threads.get(user_id, [])]
 
     def get_thread(self, user_id: str, thread_id: str) -> AdvisorThread | None:
         with self._lock:
-            return next((item for item in self._threads.get(user_id, []) if item.id == thread_id), None)
+            thread = next(
+                (item for item in self._threads.get(user_id, []) if item.id == thread_id),
+                None,
+            )
+            return thread.model_copy(deep=True) if thread else None
 
     def reserve_advisor_turn(self, user_id: str, turn: AdvisorTurnRecord) -> AdvisorTurnRecord:
         key = (user_id, turn.request_id)
@@ -893,19 +929,69 @@ class SQLiteStore:
             ).fetchone()
         return ApplicationChoice.model_validate_json(row["payload"]) if row else None
 
-    def save_thread(self, user_id: str, thread: AdvisorThread) -> AdvisorThread:
-        with self._lock, self._connection:
-            self._connection.execute(
-                """
-                INSERT INTO advisor_threads (thread_id, user_id, payload, updated_at)
-                VALUES (?, ?, ?, ?)
-                ON CONFLICT(thread_id) DO UPDATE SET
-                    payload = excluded.payload,
-                    updated_at = excluded.updated_at
-                """,
-                (thread.id, user_id, thread.model_dump_json(), thread.updated_at.isoformat()),
-            )
-        return thread
+    def save_thread(
+        self,
+        user_id: str,
+        thread: AdvisorThread,
+        expected_revision: int | None = None,
+    ) -> AdvisorThread:
+        with self._lock:
+            try:
+                self._connection.execute("BEGIN IMMEDIATE")
+                row = self._connection.execute(
+                    "SELECT user_id, payload FROM advisor_threads WHERE thread_id = ?",
+                    (thread.id,),
+                ).fetchone()
+                existing = (
+                    AdvisorThread.model_validate_json(row["payload"])
+                    if row and row["user_id"] == user_id
+                    else None
+                )
+                actual_revision = existing.revision if existing else None
+                if expected_revision is None:
+                    if row:
+                        raise AdvisorThreadRevisionConflictError(
+                            thread.id,
+                            expected_revision,
+                            actual_revision,
+                        )
+                    if thread.revision != 0:
+                        raise ValueError("新顾问会话的 revision 必须为 0")
+                    self._connection.execute(
+                        """INSERT INTO advisor_threads (thread_id, user_id, payload, updated_at)
+                        VALUES (?, ?, ?, ?)""",
+                        (
+                            thread.id,
+                            user_id,
+                            thread.model_dump_json(),
+                            thread.updated_at.isoformat(),
+                        ),
+                    )
+                else:
+                    if actual_revision != expected_revision:
+                        raise AdvisorThreadRevisionConflictError(
+                            thread.id,
+                            expected_revision,
+                            actual_revision,
+                        )
+                    if thread.revision != expected_revision + 1:
+                        raise ValueError("顾问会话 revision 必须单调增加 1")
+                    self._connection.execute(
+                        """UPDATE advisor_threads
+                        SET payload = ?, updated_at = ?
+                        WHERE thread_id = ? AND user_id = ?""",
+                        (
+                            thread.model_dump_json(),
+                            thread.updated_at.isoformat(),
+                            thread.id,
+                            user_id,
+                        ),
+                    )
+                self._connection.commit()
+            except Exception:
+                self._connection.rollback()
+                raise
+        return thread.model_copy(deep=True)
 
     def list_threads(self, user_id: str) -> list[AdvisorThread]:
         with self._lock:

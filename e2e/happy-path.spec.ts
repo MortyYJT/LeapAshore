@@ -295,6 +295,101 @@ test("advisor SSE 503 restores the draft and reuses its idempotency key", async 
   expect(threads[0].messages).toHaveLength(3);
 });
 
+test("advisor thread conflict loads the newer revision and keeps the draft for retry", async ({ context, page }) => {
+  const email = `e2e-thread-cas-${Date.now()}@offerpilot.test`;
+  const localMessage = "保留这条并发冲突草稿";
+  const remoteMessage = "另一个窗口先提交的消息";
+  await registerAndLogin(context, email, "线程并发用户");
+  const profile = await context.request.put(`${apiUrl}/me/profile`, {
+    data: {
+      current_education_level: "本科",
+      undergraduate_school: "浏览器测试大学",
+      school_tier: "211/双一流",
+      undergraduate_major: "软件工程",
+      gpa: 82,
+      gpa_scale: 100,
+      target_degree_level: "授课型硕士",
+      target_field: "计算机与数据",
+      intake: "2027 S1",
+    },
+  });
+  expect(profile.ok()).toBe(true);
+  expect((await context.request.post(`${apiUrl}/me/advisor/consent`, { data: { accepted: false } })).ok()).toBe(true);
+
+  const requestKeys: string[] = [];
+  await page.route("**/me/advisor/threads/*/messages/stream", async (route) => {
+    requestKeys.push(route.request().headers()["idempotency-key"] ?? "");
+    if (requestKeys.length === 1) {
+      await route.fulfill({
+        status: 200,
+        contentType: "text/event-stream",
+        body: [
+          "event: conflict",
+          `data: ${JSON.stringify({
+            message: "顾问会话已在其他请求中更新，请加载最新内容后重试",
+            expected_revision: 0,
+            actual_revision: 1,
+          })}`,
+          "",
+          "",
+        ].join("\n"),
+      });
+      return;
+    }
+    const response = await route.fetch();
+    await route.fulfill({ response });
+  });
+
+  await page.goto("/");
+  const navigation = page.getByRole("navigation", { name: "主要导航" });
+  await expect(navigation.getByRole("button", { name: "AI 申请顾问" })).toBeVisible();
+  await navigation.getByRole("button", { name: "AI 申请顾问" }).click();
+  const advisorInput = page.getByPlaceholder(/我想把入学时间改到/);
+  await expect(advisorInput).toBeEnabled();
+  await expect(page.locator(".chat-message")).toHaveCount(1);
+
+  const initialThreads = await (await context.request.get(`${apiUrl}/me/advisor/threads`)).json() as Array<{
+    id: string;
+    revision: number;
+  }>;
+  expect(initialThreads).toHaveLength(1);
+  expect(initialThreads[0].revision).toBe(0);
+  const remoteTurn = await context.request.post(
+    `${apiUrl}/me/advisor/threads/${initialThreads[0].id}/messages`,
+    {
+      data: { content: remoteMessage },
+      headers: { "Idempotency-Key": `e2e-remote-${Date.now()}` },
+    },
+  );
+  expect(remoteTurn.ok()).toBe(true);
+  expect((await remoteTurn.json()).thread.revision).toBe(1);
+
+  await advisorInput.fill(localMessage);
+  await page.getByRole("button", { name: /^发送/ }).click();
+  await expect(page.locator(".advisor-status")).toContainText("会话已在其他窗口更新，已加载最新内容");
+  await expect(advisorInput).toHaveValue(localMessage);
+  await expect(advisorInput).toBeEnabled();
+  await expect(page.locator(".chat-message")).toHaveCount(3);
+  await expect(page.locator(".chat-message.user")).toContainText([remoteMessage]);
+
+  await page.getByRole("button", { name: /^发送/ }).click();
+  await expect(advisorInput).toHaveValue("");
+  await expect(page.locator(".chat-message")).toHaveCount(5);
+  expect(requestKeys).toHaveLength(2);
+  expect(requestKeys[0]).toMatch(/^[0-9a-f-]{36}$/);
+  expect(requestKeys[1]).toBe(requestKeys[0]);
+
+  const persistedThreads = await (await context.request.get(`${apiUrl}/me/advisor/threads`)).json() as Array<{
+    revision: number;
+    messages: Array<{ role: string; content: string }>;
+  }>;
+  expect(persistedThreads[0].revision).toBe(2);
+  expect(persistedThreads[0].messages.filter((message) => message.role === "user").map((message) => message.content)).toEqual([
+    remoteMessage,
+    localMessage,
+  ]);
+});
+
 test("advisor tool actions render skipped work without a success check", async ({ context, page }) => {
   const email = `e2e-action-status-${Date.now()}@offerpilot.test`;
   await registerAndLogin(context, email, "动作状态用户");

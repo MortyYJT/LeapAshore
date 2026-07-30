@@ -600,6 +600,119 @@ def test_advisor_idempotency_recovers_after_actions_before_thread_write(monkeypa
     assert "Idempotency-Key" in conflict.json()["detail"]
 
 
+def test_concurrent_advisor_turns_use_thread_revision_cas_and_retry_without_replanning(monkeypatch) -> None:
+    import importlib
+    from concurrent.futures import ThreadPoolExecutor
+    from threading import Barrier
+
+    from fastapi import HTTPException
+
+    from app.models import AdvisorMessageRequest, DemoUser
+
+    main_module = importlib.import_module("app.main")
+    login = registered_login("advisor-thread-cas@offerpilot.cn")
+    headers = {"Authorization": f"Bearer {login.json()['access_token']}"}
+    client.put("/me/profile", json={
+        "undergraduate_school": "示例大学", "school_tier": "双非", "undergraduate_major": "软件工程",
+        "gpa": 82, "gpa_scale": 100, "target_field": "计算机与数据",
+    }, headers=headers)
+    thread = client.post("/me/advisor/threads", headers=headers).json()
+    user = DemoUser.model_validate(client.get("/me", headers=headers).json())
+    barrier = Barrier(2)
+    plan_calls: list[str] = []
+
+    def concurrent_plan(message, _profile, _history):
+        plan_calls.append(message)
+        barrier.wait(timeout=2)
+        return (
+            f"已处理：{message}",
+            [],
+            {
+                "provider": "deterministic-fallback",
+                "model": "test-model",
+                "latency_ms": 1,
+                "input_tokens": None,
+                "output_tokens": None,
+            },
+        )
+
+    monkeypatch.setattr(main_module, "plan_turn", concurrent_plan)
+
+    def send(content: str, request_id: str):
+        try:
+            return main_module.send_advisor_message(
+                thread["id"],
+                AdvisorMessageRequest(content=content),
+                user,
+                request_id,
+            )
+        except HTTPException as error:
+            return error
+
+    requests = [
+        ("并发请求一", "advisor-thread-cas-request-1"),
+        ("并发请求二", "advisor-thread-cas-request-2"),
+    ]
+    with ThreadPoolExecutor(max_workers=2) as executor:
+        outcomes = list(executor.map(lambda args: send(*args), requests))
+
+    conflicts = [item for item in outcomes if isinstance(item, HTTPException)]
+    replies = [item for item in outcomes if not isinstance(item, HTTPException)]
+    assert len(replies) == 1
+    assert len(conflicts) == 1
+    assert conflicts[0].status_code == 409
+    persisted = client.get(
+        f"/me/advisor/threads/{thread['id']}",
+        headers=headers,
+    ).json()
+    assert persisted["revision"] == 1
+    assert len(persisted["messages"]) == 3
+
+    saved_contents = {item["content"] for item in persisted["messages"] if item["role"] == "user"}
+    loser = next(item for item in requests if item[0] not in saved_contents)
+    retried = send(*loser)
+    assert not isinstance(retried, HTTPException)
+    assert retried.thread.revision == 2
+    assert len(retried.thread.messages) == 5
+    assert {item.content for item in retried.thread.messages if item.role == "user"} == {
+        "并发请求一",
+        "并发请求二",
+    }
+    assert sorted(plan_calls) == ["并发请求一", "并发请求二"]
+
+
+def test_stream_advisor_turn_emits_a_structured_thread_conflict(monkeypatch) -> None:
+    import importlib
+
+    from app.store_errors import AdvisorThreadRevisionConflictError
+
+    main_module = importlib.import_module("app.main")
+    login = registered_login("advisor-stream-thread-cas@offerpilot.cn")
+    headers = {"Authorization": f"Bearer {login.json()['access_token']}"}
+    client.put("/me/profile", json={
+        "undergraduate_school": "示例大学", "school_tier": "双非", "undergraduate_major": "软件工程",
+        "gpa": 82, "gpa_scale": 100, "target_field": "计算机与数据",
+    }, headers=headers)
+    thread = client.post("/me/advisor/threads", headers=headers).json()
+
+    def conflict(*_args):
+        raise AdvisorThreadRevisionConflictError(thread["id"], 0, 1)
+
+    monkeypatch.setattr(main_module, "commit_advisor_turn", conflict)
+    response = client.post(
+        f"/me/advisor/threads/{thread['id']}/messages/stream",
+        json={"content": "触发结构化冲突"},
+        headers={**headers, "Idempotency-Key": "advisor-stream-thread-cas-1"},
+    )
+
+    assert response.status_code == 200
+    assert "event: conflict" in response.text
+    assert '"expected_revision": 0' in response.text
+    assert '"actual_revision": 1' in response.text
+    assert "event: state" not in response.text
+    assert "event: done" not in response.text
+
+
 def test_deepseek_stream_is_consented_redacted_and_persisted(monkeypatch) -> None:
     import importlib
     import json

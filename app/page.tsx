@@ -687,6 +687,7 @@ export default function Home() {
     advisorRetryRef.current = { content, requestId };
     const persistedMessageCount = advisorThread.messages.length;
     const activeThreadId = advisorThread.id;
+    const baseThreadRevision = advisorThread.revision;
     setAdvisorInput("");
     setAdvisorBusy(true);
     const temporaryUserId = `temp-user-${Date.now()}`;
@@ -745,6 +746,10 @@ export default function Home() {
           setAdvisorThread(persistedThread);
           setAdvisorProvider("回答已保存，已恢复最新会话");
           await hydrateWorkspace(token);
+        } else if (persistedThread && persistedThread.revision > baseThreadRevision) {
+          setAdvisorThread(persistedThread);
+          setAdvisorInput(content);
+          setAdvisorProvider("会话已在其他窗口更新，已加载最新内容；请确认后重试");
         } else {
           setAdvisorThread((thread) => thread ? {
             ...thread,

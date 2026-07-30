@@ -94,6 +94,24 @@ test("advisor retries reuse one request-scoped idempotency key", () => {
   }
 });
 
+test("advisor thread revisions surface concurrent write conflicts and restore the latest thread", () => {
+  for (const marker of [
+    "revision: number",
+    'event: "conflict"',
+    "new ApiRequestError(threadConflict, 409)",
+  ]) {
+    assert.match(apiClientSource, new RegExp(marker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  }
+  for (const marker of [
+    "baseThreadRevision",
+    "persistedThread.revision > baseThreadRevision",
+    "setAdvisorThread(persistedThread)",
+    "会话已在其他窗口更新，已加载最新内容；请确认后重试",
+  ]) {
+    assert.match(pageSource, new RegExp(marker.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  }
+});
+
 test("an ambiguous SSE disconnect reconciles the persisted thread before enabling a retry", () => {
   for (const marker of [
     "persistedMessageCount",

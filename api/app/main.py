@@ -96,6 +96,7 @@ from .store import (
     InvalidCredentialsError,
     store,
 )
+from .store_errors import AdvisorThreadRevisionConflictError
 from .source_errors import (
     SourceVersionConflictError,
     SourceVersionNotFoundError,
@@ -429,6 +430,7 @@ def commit_advisor_turn(
     audit_id = advisor_effect_entity_id(effect_id, "audit_adv")
     committed_thread = thread.model_copy(deep=True)
     if not any(item.id == assistant_message_id for item in committed_thread.messages):
+        expected_revision = thread.revision
         committed_thread.messages = [
             item for item in committed_thread.messages
             if item.id not in {user_message_id, assistant_message_id}
@@ -449,7 +451,20 @@ def commit_advisor_turn(
             ),
         ])
         committed_thread.updated_at = turn.reply_ready_at
-    store.save_thread(user_id, committed_thread)
+        committed_thread.revision = expected_revision + 1
+        try:
+            committed_thread = store.save_thread(
+                user_id,
+                committed_thread,
+                expected_revision,
+            )
+        except AdvisorThreadRevisionConflictError:
+            latest_thread = store.get_thread(user_id, thread.id)
+            if not latest_thread or not any(
+                item.id == assistant_message_id for item in latest_thread.messages
+            ):
+                raise
+            committed_thread = latest_thread
     store.save_audit(user_id, AgentRunAudit(
         id=audit_id,
         thread_id=committed_thread.id,
@@ -1317,13 +1332,19 @@ def send_advisor_message(
             "updated_at": ready_at,
         }))
 
-    committed_thread, turn = commit_advisor_turn(
-        user.id,
-        thread,
-        payload.content,
-        turn,
-        effect_id,
-    )
+    try:
+        committed_thread, turn = commit_advisor_turn(
+            user.id,
+            thread,
+            payload.content,
+            turn,
+            effect_id,
+        )
+    except AdvisorThreadRevisionConflictError as error:
+        raise HTTPException(
+            status_code=409,
+            detail="顾问会话已在其他请求中更新，请加载最新内容后重试",
+        ) from error
     return AdvisorReply(
         thread=committed_thread,
         profile=store.get_profile(user.id) or profile,
@@ -1551,14 +1572,22 @@ async def stream_advisor_message(
                 }),
             )
 
-        committed_thread, turn = await asyncio.to_thread(
-            commit_advisor_turn,
-            user.id,
-            thread,
-            payload.content,
-            turn,
-            effect_id,
-        )
+        try:
+            committed_thread, turn = await asyncio.to_thread(
+                commit_advisor_turn,
+                user.id,
+                thread,
+                payload.content,
+                turn,
+                effect_id,
+            )
+        except AdvisorThreadRevisionConflictError as error:
+            yield sse_event("conflict", {
+                "message": "顾问会话已在其他请求中更新，请加载最新内容后重试",
+                "expected_revision": error.expected_revision,
+                "actual_revision": error.actual_revision,
+            })
+            return
         state = AdvisorStreamState(
             thread=committed_thread,
             profile=updated_profile,

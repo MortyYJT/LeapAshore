@@ -161,6 +161,7 @@ export type AdvisorMessage = {
 
 export type AdvisorThread = {
   id: string;
+  revision: number;
   title: string;
   messages: AdvisorMessage[];
   created_at: string;
@@ -178,6 +179,10 @@ export type AdvisorStreamEvent =
   | { event: "status"; data: { message: string; provider: string } }
   | { event: "delta"; data: { content: string } }
   | { event: "actions"; data: AdvisorAction[] }
+  | {
+      event: "conflict";
+      data: { message: string; expected_revision: number; actual_revision: number | null };
+    }
   | {
       event: "state";
       data: {
@@ -577,12 +582,17 @@ export async function streamAdvisorMessage(
   const decoder = new TextDecoder();
   let buffer = "";
   let committedStateReceived = false;
+  let threadConflict: string | null = null;
   const dispatchBlock = (block: string) => {
     const event = block.split("\n").find((line) => line.startsWith("event:"))?.slice(6).trim();
     const data = block.split("\n").filter((line) => line.startsWith("data:")).map((line) => line.slice(5).trim()).join("\n");
     if (!event || !data) return;
+    const parsed = JSON.parse(data) as { message?: string };
     if (event === "state") committedStateReceived = true;
-    onEvent({ event, data: JSON.parse(data) } as AdvisorStreamEvent);
+    if (event === "conflict") {
+      threadConflict = parsed.message ?? "顾问会话已在其他请求中更新";
+    }
+    onEvent({ event, data: parsed } as AdvisorStreamEvent);
   };
   while (true) {
     const { done, value } = await reader.read();
@@ -595,6 +605,7 @@ export async function streamAdvisorMessage(
       break;
     }
   }
+  if (threadConflict) throw new ApiRequestError(threadConflict, 409);
   if (!committedStateReceived) throw new Error("顾问连接在收到保存确认前中断");
 }
 
