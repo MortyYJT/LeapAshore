@@ -41,7 +41,7 @@ docker compose --env-file .env.production -f compose.yaml -f compose.production.
 docker compose --env-file .env.production -f compose.yaml -f compose.production.yaml ps
 ```
 
-Caddy 会为 `DOMAIN` 自动申请并续期 HTTPS 证书。API 容器每次启动前执行 `alembic upgrade head`，数据库迁移失败时 API 不会带病启动。
+Caddy 会为 `DOMAIN` 自动申请并续期 HTTPS 证书。API 容器每次启动前执行 `alembic upgrade head`，数据库迁移失败时 API 不会带病启动。应用进程自身只读校验 `alembic_version`，不会运行 `CREATE TABLE` 或 `ALTER TABLE`；直接启动 API 时也必须先从 `api/` 执行 `alembic upgrade head`，revision 不匹配会关闭数据库连接并拒绝启动。
 
 ## 3. 上线验收
 

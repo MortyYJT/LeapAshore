@@ -46,6 +46,28 @@ from .auth import (
 
 
 ModelT = TypeVar("ModelT", bound=BaseModel)
+POSTGRES_SCHEMA_REVISIONS = frozenset({"0003_program_source_versions"})
+
+
+def verify_postgres_schema(cursor: Any) -> None:
+    """Require the database to be migrated before the application starts."""
+    try:
+        cursor.execute("SELECT version_num FROM alembic_version")
+        actual_revisions = frozenset(row["version_num"] for row in cursor.fetchall())
+    except Exception as error:
+        raise RuntimeError(
+            "PostgreSQL schema is not initialized by Alembic. "
+            "Run `alembic upgrade head` before starting OfferPilot."
+        ) from error
+
+    if actual_revisions != POSTGRES_SCHEMA_REVISIONS:
+        expected = ", ".join(sorted(POSTGRES_SCHEMA_REVISIONS))
+        actual = ", ".join(sorted(actual_revisions)) or "(none)"
+        raise RuntimeError(
+            "PostgreSQL schema revision mismatch: "
+            f"expected {expected}, found {actual}. "
+            "Run `alembic upgrade head` before starting OfferPilot."
+        )
 
 
 class PostgresStore:
@@ -59,58 +81,12 @@ class PostgresStore:
             raise RuntimeError("DATABASE_URL requires the psycopg dependency") from error
         self._lock = Lock()
         self._connection = psycopg.connect(database_url, autocommit=True, row_factory=dict_row)
-        with self._connection.cursor() as cursor:
-            cursor.execute(
-                """
-                CREATE TABLE IF NOT EXISTS users (
-                    id TEXT PRIMARY KEY, email TEXT NOT NULL UNIQUE, display_name TEXT NOT NULL, password_hash TEXT NOT NULL,
-                    email_verified_at TIMESTAMPTZ, role TEXT NOT NULL DEFAULT 'user', status TEXT NOT NULL DEFAULT 'active',
-                    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(), last_login_at TIMESTAMPTZ,
-                    terms_accepted_at TIMESTAMPTZ, terms_version TEXT
-                );
-                CREATE TABLE IF NOT EXISTS sessions (
-                    token TEXT PRIMARY KEY, user_id TEXT NOT NULL REFERENCES users(id), expires_at TIMESTAMPTZ NOT NULL,
-                    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
-                );
-                CREATE INDEX IF NOT EXISTS idx_sessions_user ON sessions(user_id);
-                CREATE TABLE IF NOT EXISTS entities (
-                    user_id TEXT NOT NULL REFERENCES users(id), kind TEXT NOT NULL, entity_id TEXT NOT NULL,
-                    payload JSONB NOT NULL, created_at TIMESTAMPTZ NOT NULL, updated_at TIMESTAMPTZ NOT NULL,
-                    PRIMARY KEY (user_id, kind, entity_id)
-                );
-                CREATE INDEX IF NOT EXISTS idx_entities_user_kind_updated
-                    ON entities(user_id, kind, updated_at DESC);
-                CREATE TABLE IF NOT EXISTS auth_tokens (
-                    token_hash TEXT PRIMARY KEY, user_id TEXT NOT NULL REFERENCES users(id), purpose TEXT NOT NULL,
-                    expires_at TIMESTAMPTZ NOT NULL, used_at TIMESTAMPTZ, created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
-                );
-                CREATE INDEX IF NOT EXISTS idx_auth_tokens_user_purpose
-                    ON auth_tokens(user_id, purpose, expires_at DESC);
-                CREATE TABLE IF NOT EXISTS feedback (
-                    feedback_id TEXT PRIMARY KEY, user_id TEXT NOT NULL REFERENCES users(id), payload JSONB NOT NULL,
-                    created_at TIMESTAMPTZ NOT NULL, updated_at TIMESTAMPTZ NOT NULL
-                );
-                CREATE TABLE IF NOT EXISTS program_source_versions (
-                    version_id TEXT PRIMARY KEY, program_slug TEXT NOT NULL, source_id TEXT NOT NULL,
-                    content_hash TEXT NOT NULL CHECK (length(content_hash) = 64),
-                    base_hash TEXT CHECK (base_hash IS NULL OR length(base_hash) = 64),
-                    status TEXT NOT NULL CHECK (status IN ('pending_review', 'published', 'superseded', 'rejected')),
-                    payload JSONB NOT NULL, submitted_at TIMESTAMPTZ NOT NULL, reviewed_at TIMESTAMPTZ
-                );
-                CREATE INDEX IF NOT EXISTS idx_source_versions_program_submitted
-                    ON program_source_versions(program_slug, submitted_at DESC);
-                CREATE INDEX IF NOT EXISTS idx_source_versions_program_status
-                    ON program_source_versions(program_slug, status);
-                ALTER TABLE users ADD COLUMN IF NOT EXISTS email_verified_at TIMESTAMPTZ;
-                ALTER TABLE users ADD COLUMN IF NOT EXISTS role TEXT NOT NULL DEFAULT 'user';
-                ALTER TABLE users ADD COLUMN IF NOT EXISTS status TEXT NOT NULL DEFAULT 'active';
-                ALTER TABLE users ADD COLUMN IF NOT EXISTS created_at TIMESTAMPTZ NOT NULL DEFAULT NOW();
-                ALTER TABLE users ADD COLUMN IF NOT EXISTS last_login_at TIMESTAMPTZ;
-                ALTER TABLE users ADD COLUMN IF NOT EXISTS terms_accepted_at TIMESTAMPTZ;
-                ALTER TABLE users ADD COLUMN IF NOT EXISTS terms_version TEXT;
-                ALTER TABLE sessions ADD COLUMN IF NOT EXISTS created_at TIMESTAMPTZ NOT NULL DEFAULT NOW();
-                """
-            )
+        try:
+            with self._connection.cursor() as cursor:
+                verify_postgres_schema(cursor)
+        except Exception:
+            self._connection.close()
+            raise
 
     def register(self, email: str, password: str, display_name: str) -> tuple[DemoUser, str]:
         normalized = normalize_email(email)

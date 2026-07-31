@@ -236,7 +236,7 @@ cp .env.production.example .env.production
 docker compose --env-file .env.production -f compose.yaml -f compose.production.yaml up -d --build
 ```
 
-生产模式强制要求 PostgreSQL、SMTP、HTTPS 域名、安全 CORS 和管理员邮箱；缺失时 API 拒绝启动。Caddy 自动管理 HTTPS，Alembic 在 API 启动前执行迁移，备份容器每天生成 PostgreSQL 备份并保留 7 天。完整步骤见 [Beta 上线 Runbook](./docs/BETA_LAUNCH_RUNBOOK.md)，安全基线见 [SECURITY.md](./SECURITY.md)。
+生产模式强制要求 PostgreSQL、SMTP、HTTPS 域名、安全 CORS 和管理员邮箱；缺失时 API 拒绝启动。Caddy 自动管理 HTTPS，Alembic 在 API 启动前执行迁移，备份容器每天生成 PostgreSQL 备份并保留 7 天。PostgreSQL Store 只校验当前 Alembic revision，不会在应用启动时创建或修改表；绕过容器直接启动 API 前也必须先执行 `cd api && alembic upgrade head`。完整步骤见 [Beta 上线 Runbook](./docs/BETA_LAUNCH_RUNBOOK.md)，安全基线见 [SECURITY.md](./SECURITY.md)。
 
 ## Vercel 前端预览
 
