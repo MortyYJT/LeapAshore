@@ -22,8 +22,12 @@ OfferPilot 先固定可验证的 span 与 metric 语义，再决定是否接入 
 - `offerpilot_http_request_duration_seconds{method,route,status_class}`
 - `offerpilot_operation_total{layer,operation,outcome}`
 - `offerpilot_operation_duration_seconds{layer,operation,outcome}`
+- `offerpilot_rag_queries_total{outcome}`
+- `offerpilot_rag_top_relevance_score{outcome}`
 
 HTTP `route` 使用 FastAPI 路由模板；未匹配请求统一标记为 `__unmatched__`，预路由拒绝标记为 `__pre_route__`，避免把用户 ID、资源 ID 或任意 URL 片段变成指标标签。
+
+RAG 的 `outcome` 只有 `hit` 与 `no_answer` 两种固定值。每次官方知识检索恰好记录一次结果；最高 BM25 分数使用固定桶 `0/4/8/16/32/64/+Inf` 聚合，可计算拒答比例并观察分数分布。指标不记录查询文本、用户标识、项目 slug、命中正文或来源 URL。
 
 指标端点为 `GET /internal/metrics`。未配置 `METRICS_BEARER_TOKEN` 时返回 404；配置后只接受精确的 `Authorization: Bearer <token>`，并使用常量时间比较。示例：
 
@@ -37,4 +41,5 @@ curl -H "Authorization: Bearer $METRICS_BEARER_TOKEN" \
 - 指标保存在单进程内存中，进程重启会清零，多实例也不会自动聚合。
 - 当前没有声称已部署 Collector、Dashboard 或告警路由；接入时应直接抓取上述端点，并按 `trace_id` 关联 JSON span。
 - 文档中的 API 可用性 99.5%、非 LLM API p95 小于 500ms 仍是待压测校准的初始目标，不是当前实测结果。
+- RAG 指标目前只提供检索次数、拒答结果与相关度分布；没有真实查询基线前不设置告警阈值，也不把固定 Eval 分数当线上检索质量。
 - 下一步应在真实 PostgreSQL 与可控 Provider 测试环境中采样连接等待、事务/锁等待、TTFT、完成率和 fallback 比例，再建立 dashboard 与告警。

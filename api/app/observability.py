@@ -28,7 +28,21 @@ _TRACEPARENT = re.compile(
     r"^(?P<version>[0-9a-f]{2})-(?P<trace_id>[0-9a-f]{32})-"
     r"(?P<span_id>[0-9a-f]{16})-(?P<flags>[0-9a-f]{2})$"
 )
-_HISTOGRAM_BUCKETS = (0.005, 0.01, 0.025, 0.05, 0.1, 0.25, 0.5, 1.0, 2.5, 5.0, 10.0, 30.0)
+_DURATION_HISTOGRAM_BUCKETS = (
+    0.005,
+    0.01,
+    0.025,
+    0.05,
+    0.1,
+    0.25,
+    0.5,
+    1.0,
+    2.5,
+    5.0,
+    10.0,
+    30.0,
+)
+_RAG_RELEVANCE_SCORE_BUCKETS = (0.0, 4.0, 8.0, 16.0, 32.0, 64.0)
 
 
 def _label_key(labels: dict[str, str]) -> tuple[tuple[str, str], ...]:
@@ -54,24 +68,34 @@ class MetricRegistry:
         self._counters: dict[tuple[str, tuple[tuple[str, str], ...]], float] = defaultdict(float)
         self._histograms: dict[
             tuple[str, tuple[tuple[str, str], ...]],
-            tuple[list[int], int, float],
+            tuple[tuple[float, ...], list[int], int, float],
         ] = {}
 
     def increment(self, name: str, labels: dict[str, str], value: float = 1.0) -> None:
         with self._lock:
             self._counters[(name, _label_key(labels))] += value
 
-    def observe(self, name: str, labels: dict[str, str], value: float) -> None:
+    def observe(
+        self,
+        name: str,
+        labels: dict[str, str],
+        value: float,
+        *,
+        buckets: tuple[float, ...] = _DURATION_HISTOGRAM_BUCKETS,
+    ) -> None:
         key = (name, _label_key(labels))
         with self._lock:
-            buckets, count, total = self._histograms.get(
-                key,
-                ([0] * len(_HISTOGRAM_BUCKETS), 0, 0.0),
-            )
-            for index, boundary in enumerate(_HISTOGRAM_BUCKETS):
+            existing = self._histograms.get(key)
+            if existing is None:
+                counts, count, total = [0] * len(buckets), 0, 0.0
+            else:
+                existing_buckets, counts, count, total = existing
+                if existing_buckets != buckets:
+                    raise ValueError(f"histogram {name} bucket boundaries changed")
+            for index, boundary in enumerate(buckets):
                 if value <= boundary:
-                    buckets[index] += 1
-            self._histograms[key] = (buckets, count + 1, total + value)
+                    counts[index] += 1
+            self._histograms[key] = (buckets, counts, count + 1, total + value)
 
     def reset(self) -> None:
         with self._lock:
@@ -88,17 +112,21 @@ class MetricRegistry:
             "# TYPE offerpilot_operation_total counter",
             "# HELP offerpilot_operation_duration_seconds Traced operation duration.",
             "# TYPE offerpilot_operation_duration_seconds histogram",
+            "# HELP offerpilot_rag_queries_total Official knowledge retrievals by grounded outcome.",
+            "# TYPE offerpilot_rag_queries_total counter",
+            "# HELP offerpilot_rag_top_relevance_score Highest BM25 relevance score per retrieval.",
+            "# TYPE offerpilot_rag_top_relevance_score histogram",
         ]
         with self._lock:
             counters = sorted(self._counters.items())
             histograms = sorted(
-                (key, (list(buckets), count, total))
-                for key, (buckets, count, total) in self._histograms.items()
+                (key, (boundaries, list(counts), count, total))
+                for key, (boundaries, counts, count, total) in self._histograms.items()
             )
         for (name, labels), value in counters:
             lines.append(f"{name}{_format_labels(labels)} {value:g}")
-        for (name, labels), (buckets, count, total) in histograms:
-            for boundary, bucket_count in zip(_HISTOGRAM_BUCKETS, buckets, strict=True):
+        for (name, labels), (boundaries, counts, count, total) in histograms:
+            for boundary, bucket_count in zip(boundaries, counts, strict=True):
                 lines.append(
                     f'{name}_bucket{_format_labels(labels, ("le", f"{boundary:g}"))} {bucket_count}'
                 )
@@ -254,6 +282,20 @@ def record_http_request(method: str, route: str, status_code: int, duration_seco
     }
     METRICS.increment("offerpilot_http_requests_total", labels)
     METRICS.observe("offerpilot_http_request_duration_seconds", labels, duration_seconds)
+
+
+def record_rag_retrieval(hit_count: int, top_relevance_score: float | None) -> None:
+    """Record retrieval quality signals without query, user, or program labels."""
+
+    outcome = "hit" if hit_count > 0 else "no_answer"
+    labels = {"outcome": outcome}
+    METRICS.increment("offerpilot_rag_queries_total", labels)
+    METRICS.observe(
+        "offerpilot_rag_top_relevance_score",
+        labels,
+        max(0.0, top_relevance_score or 0.0),
+        buckets=_RAG_RELEVANCE_SCORE_BUCKETS,
+    )
 
 
 _STORE_METHOD_PREFIXES = (

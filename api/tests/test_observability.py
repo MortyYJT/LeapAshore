@@ -101,6 +101,7 @@ def test_http_and_rag_spans_share_trace_and_metrics_use_route_templates(
         'offerpilot_operation_total{layer="rag",operation="rag.retrieve",outcome="success"} 1'
         in metrics.text
     )
+    assert 'offerpilot_rag_queries_total{outcome="hit"} 1' in metrics.text
     assert "unsw-master-it" not in metrics.text
 
     spans = [
@@ -112,6 +113,38 @@ def test_http_and_rag_spans_share_trace_and_metrics_use_route_templates(
     rag_span = next(item for item in spans if item["name"] == "rag.retrieve" and item["trace_id"] == trace_id)
     assert rag_span["parent_span_id"] == request_span["span_id"]
     assert request_span["attributes"]["http.route"] == "/programs/{program_slug}"
+
+
+def test_rag_metrics_cover_grounded_outcomes_with_fixed_private_labels(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    reset_telemetry_for_tests()
+    monkeypatch.setenv("METRICS_BEARER_TOKEN", "metrics-test-token")
+
+    hit = retrieve_official_knowledge(KnowledgeSearchRequest(
+        query="UQ 数据科学雅思要求 private-query-marker",
+        top_k=3,
+    ))
+    rejected = retrieve_official_knowledge(KnowledgeSearchRequest(
+        query="澳洲八大宿舍宠物政策 private-rejection-marker",
+        program_slugs=["not-a-verified-program"],
+        top_k=3,
+    ))
+    assert hit.hits
+    assert rejected.hits == []
+
+    metrics = TestClient(telemetry_app()).get(
+        "/internal/metrics",
+        headers={"Authorization": "Bearer metrics-test-token"},
+    ).text
+    assert 'offerpilot_rag_queries_total{outcome="hit"} 1' in metrics
+    assert 'offerpilot_rag_queries_total{outcome="no_answer"} 1' in metrics
+    assert 'offerpilot_rag_top_relevance_score_count{outcome="hit"} 1' in metrics
+    assert 'offerpilot_rag_top_relevance_score_count{outcome="no_answer"} 1' in metrics
+    assert 'offerpilot_rag_top_relevance_score_bucket{outcome="no_answer",le="0"} 1' in metrics
+    assert "private-query-marker" not in metrics
+    assert "private-rejection-marker" not in metrics
+    assert "uq-master-data-science" not in metrics
 
 
 def test_unmatched_routes_do_not_create_high_cardinality_metric_labels(

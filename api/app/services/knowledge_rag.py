@@ -12,7 +12,7 @@ from ..models import (
     KnowledgeSearchResponse,
     Program,
 )
-from ..observability import traced
+from ..observability import record_rag_retrieval, traced
 from ..program_data import PROGRAMS
 
 
@@ -120,6 +120,7 @@ def retrieve_official_knowledge(request: KnowledgeSearchRequest) -> KnowledgeSea
     chunks = _filtered_chunks(request)
     query_tokens = _tokens(request.query)
     if not chunks or not query_tokens:
+        record_rag_retrieval(0, None)
         return KnowledgeSearchResponse(
             query=request.query,
             retrieval_version=RETRIEVAL_VERSION,
@@ -176,6 +177,7 @@ def retrieve_official_knowledge(request: KnowledgeSearchRequest) -> KnowledgeSea
         for score, chunk in scores[:request.top_k]
         if score >= MIN_RELEVANCE_SCORE
     ]
+    record_rag_retrieval(len(hits), scores[0][0] if scores else None)
     return KnowledgeSearchResponse(
         query=request.query,
         retrieval_version=RETRIEVAL_VERSION,
