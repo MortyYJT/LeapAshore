@@ -79,6 +79,10 @@ jobs:
           python-version: "3.12"
           cache: pip
           cache-dependency-path: api/requirements-dev.txt
+      - name: Install PostgreSQL client tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes postgresql-client
       - run: python -m pip install --upgrade pip==26.1.2
       - run: pip install -r requirements-dev.txt
       - run: pip-audit --local
@@ -88,6 +92,9 @@ jobs:
       - run: PYTHONPATH=. python evals/run_rag_eval.py
       - run: DATABASE_URL=postgresql://offerpilot:offerpilot_test@localhost:5432/offerpilot_test alembic upgrade head
       - run: DATABASE_URL=postgresql://offerpilot:offerpilot_test@localhost:5432/offerpilot_test pytest -q tests/test_postgres_store.py
+      - run: RESTORE_SMOKE_CONFIRM_EPHEMERAL=1 ../deploy/restore-smoke.sh
+        env:
+          DATABASE_URL: postgresql://offerpilot:offerpilot_test@localhost:5432/offerpilot_test
 
   deployment:
     runs-on: ubuntu-latest
@@ -101,7 +108,7 @@ jobs:
       DEEPSEEK_API_KEY: ci-only-placeholder-not-a-real-key
     steps:
       - uses: actions/checkout@v6
-      - run: shellcheck deploy/backup.sh deploy/preflight.sh
+      - run: shellcheck deploy/backup.sh deploy/preflight.sh deploy/restore-smoke.sh
       - run: docker compose -f compose.yaml -f compose.production.yaml config >/dev/null
       - run: docker compose -f compose.yaml -f compose.mailpit.yaml config >/dev/null
       - run: docker build --tag offerpilot-web-ci .
