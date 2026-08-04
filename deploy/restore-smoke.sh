@@ -208,7 +208,9 @@ capture_manifest() {
         --set=program_source_versions_digest="$program_source_versions_digest" \
         --set=sessions_digest="$sessions_digest" \
         --set=users_digest="$users_digest" \
-        --dbname="$manifest_database_url" --command="$manifest_query" > "$manifest_output"
+        --dbname="$manifest_database_url" > "$manifest_output" <<SQL
+$manifest_query
+SQL
 }
 
 capture_manifest "$DATABASE_URL" "$source_manifest"

@@ -37,7 +37,9 @@ case "$command_name" in
                 esac
                 printf '%s\\n' "$row"
                 ;;
-            *relation_name*)
+            *--set=alembic_digest=*)
+                manifest_sql="$(cat)"
+                printf '%s\\n' "$manifest_sql" >> "$FAKE_COMMAND_LOG"
                 alembic_digest=''
                 auth_tokens_digest=''
                 entities_digest=''
