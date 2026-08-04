@@ -86,7 +86,7 @@ docker compose --env-file .env.production -f compose.yaml -f compose.production.
 
 每周至少执行一次恢复演练；只有能恢复的备份才算有效备份。
 
-CI 的 API job 会在临时 PostgreSQL service 上运行 `deploy/restore-smoke.sh`：先写入覆盖全部业务表的哨兵记录，再生成 custom-format dump，恢复到新建临时库，并逐表比较记录数和主键集合（包括 Alembic revision），最后删除临时库。脚本必须显式设置 `RESTORE_SMOKE_CONFIRM_EPHEMERAL=1`，不得对生产库运行。该检查证明当前 schema 的备份可恢复，但不等同于生产备份调度、异地副本或 RPO/RTO 已验证。
+CI 的 API job 会在临时 PostgreSQL service 上运行 `deploy/restore-smoke.sh`：先写入覆盖全部业务表的哨兵记录，再生成非空的 custom-format dump 并记录文件大小与 SHA-256，恢复到新建临时库；随后逐表比较记录数、主键集合和按主键排序后的规范化整行 SHA-256（包括 Alembic revision），最后删除临时库。脚本必须显式设置 `RESTORE_SMOKE_CONFIRM_EPHEMERAL=1`，不得对生产库运行。该检查证明当前 schema 的备份可恢复且 CI 小库内容一致，但不等同于生产备份调度、异地副本或 RPO/RTO 已验证。
 
 ## 5. 运营节奏
 
