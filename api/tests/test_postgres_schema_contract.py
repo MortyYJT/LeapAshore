@@ -6,7 +6,7 @@ from alembic.script import ScriptDirectory
 import psycopg
 import pytest
 
-from app.postgres_store import POSTGRES_SCHEMA_REVISIONS, PostgresStore
+from app.postgres_store import POSTGRES_SCHEMA_REVISIONS, PostgresStore, _MeasuredConnectionLock
 
 
 class FakeCursor:
@@ -116,3 +116,76 @@ def test_postgres_store_rejects_database_without_alembic_schema(
         PostgresStore("postgresql://offerpilot")
 
     assert connection.closed is True
+
+
+def test_connection_lock_reports_only_measured_queue_time(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    observed: list[float] = []
+    clock = iter([10.0, 10.125])
+    monkeypatch.setattr("app.postgres_store.perf_counter", lambda: next(clock))
+    monkeypatch.setattr(
+        "app.postgres_store.record_postgres_connection_slot_wait",
+        observed.append,
+    )
+
+    with _MeasuredConnectionLock():
+        pass
+
+    assert observed == [0.125]
+
+
+def test_transaction_and_advisory_lock_report_success_and_error(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    class Transaction:
+        def __enter__(self) -> None:
+            return None
+
+        def __exit__(self, *_args: object) -> None:
+            return None
+
+    class TransactionConnection:
+        def transaction(self) -> Transaction:
+            return Transaction()
+
+    class AdvisoryCursor:
+        def __init__(self) -> None:
+            self.fail = False
+            self.parameters: list[tuple[str, ...]] = []
+
+        def execute(self, _query: str, parameters: tuple[str, ...]) -> None:
+            self.parameters.append(parameters)
+            if self.fail:
+                raise RuntimeError("database unavailable")
+
+    store = object.__new__(PostgresStore)
+    store._connection = TransactionConnection()
+    transaction_observations: list[tuple[str, float]] = []
+    advisory_observations: list[tuple[str, float]] = []
+    monkeypatch.setattr(
+        "app.postgres_store.record_postgres_transaction",
+        lambda outcome, duration: transaction_observations.append((outcome, duration)),
+    )
+    monkeypatch.setattr(
+        "app.postgres_store.record_postgres_advisory_lock_wait",
+        lambda outcome, duration: advisory_observations.append((outcome, duration)),
+    )
+
+    clock = iter([20.0, 20.25, 30.0, 30.5, 40.0, 40.75, 50.0, 51.0])
+    monkeypatch.setattr("app.postgres_store.perf_counter", lambda: next(clock))
+    with store._transaction():
+        pass
+    with pytest.raises(RuntimeError, match="transaction failed"):
+        with store._transaction():
+            raise RuntimeError("transaction failed")
+
+    cursor = AdvisoryCursor()
+    store._acquire_advisory_lock(cursor, "private:user:run")
+    cursor.fail = True
+    with pytest.raises(RuntimeError, match="database unavailable"):
+        store._acquire_advisory_lock(cursor, "private:user:run")
+
+    assert transaction_observations == [("success", 0.25), ("error", 0.5)]
+    assert advisory_observations == [("success", 0.75), ("error", 1.0)]
+    assert cursor.parameters == [("private:user:run",), ("private:user:run",)]

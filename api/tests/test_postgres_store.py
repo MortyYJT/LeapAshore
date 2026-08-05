@@ -6,6 +6,7 @@ from uuid import uuid4
 
 import pytest
 
+from app.observability import METRICS, reset_telemetry_for_tests
 from app.postgres_store import PostgresStore
 from app.models import AdvisorMessage, AdvisorThread, AdvisorTurnRecord, ApplicationChoice
 from app.source_governance import initialize_source_registry, new_candidate
@@ -37,6 +38,7 @@ def test_postgres_choice_write_preserves_one_primary() -> None:
     email = f"portfolio-{uuid4().hex}@example.com"
     user, verification = store.register(email, "secure123", "Portfolio")
     user = store.verify_email(verification)
+    reset_telemetry_for_tests()
     run_id = f"run-{uuid4().hex}"
     now = datetime.now(UTC)
     store.save_choice(user.id, ApplicationChoice(
@@ -48,6 +50,16 @@ def test_postgres_choice_write_preserves_one_primary() -> None:
 
     choices = store.list_choices(user.id, run_id)
     assert [choice.program_slug for choice in choices if choice.is_primary] == ["program-b"]
+    metrics = METRICS.render()
+    assert "offerpilot_postgres_connection_slot_wait_seconds_count 3" in metrics
+    assert (
+        'offerpilot_postgres_transaction_duration_seconds_count{outcome="success"} 2'
+        in metrics
+    )
+    assert (
+        'offerpilot_postgres_advisory_lock_wait_seconds_count{outcome="success"} 2'
+        in metrics
+    )
 
 
 def test_postgres_thread_revision_cas_serializes_two_connections() -> None:

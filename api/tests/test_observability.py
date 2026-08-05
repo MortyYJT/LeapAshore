@@ -14,6 +14,9 @@ from app.models import ApplicantProfile, KnowledgeSearchRequest
 from app.observability import (
     METRICS,
     instrument_store,
+    record_postgres_advisory_lock_wait,
+    record_postgres_connection_slot_wait,
+    record_postgres_transaction,
     reset_telemetry_for_tests,
     trace_scope,
     traced,
@@ -278,3 +281,28 @@ def test_advisor_and_provider_success_and_error_paths_are_measured(
         'offerpilot_operation_total{layer="provider",operation="provider.stream",outcome="error"} 1'
         in metrics
     )
+
+
+def test_postgres_metrics_keep_wait_keys_and_database_identifiers_private() -> None:
+    reset_telemetry_for_tests()
+
+    record_postgres_connection_slot_wait(0.125)
+    record_postgres_transaction("success", 0.25)
+    record_postgres_transaction("unexpected-private-value", 0.5)
+    record_postgres_advisory_lock_wait("success", 0.75)
+    metrics = METRICS.render()
+
+    assert "offerpilot_postgres_connection_slot_wait_seconds_count 1" in metrics
+    assert (
+        'offerpilot_postgres_transaction_duration_seconds_count{outcome="success"} 1'
+        in metrics
+    )
+    assert (
+        'offerpilot_postgres_transaction_duration_seconds_count{outcome="error"} 1'
+        in metrics
+    )
+    assert (
+        'offerpilot_postgres_advisory_lock_wait_seconds_count{outcome="success"} 1'
+        in metrics
+    )
+    assert "unexpected-private-value" not in metrics

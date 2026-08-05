@@ -1,8 +1,11 @@
 from __future__ import annotations
 
+from collections.abc import Iterator
+from contextlib import contextmanager
 from datetime import UTC, datetime, timedelta
 import secrets
 from threading import Lock
+from time import perf_counter
 from typing import Any, TypeVar
 
 from pydantic import BaseModel
@@ -28,6 +31,11 @@ from .source_errors import (
     SourceVersionStateError,
 )
 from .store_errors import AdvisorThreadRevisionConflictError
+from .observability import (
+    record_postgres_advisory_lock_wait,
+    record_postgres_connection_slot_wait,
+    record_postgres_transaction,
+)
 from .auth import (
     AccountExistsError,
     InvalidAuthTokenError,
@@ -47,6 +55,26 @@ from .auth import (
 
 ModelT = TypeVar("ModelT", bound=BaseModel)
 POSTGRES_SCHEMA_REVISIONS = frozenset({"0003_program_source_versions"})
+
+
+class _MeasuredConnectionLock:
+    """Serialize one psycopg connection and expose process-local queue time."""
+
+    def __init__(self) -> None:
+        self._lock = Lock()
+
+    def __enter__(self) -> "_MeasuredConnectionLock":
+        started = perf_counter()
+        self._lock.acquire()
+        try:
+            record_postgres_connection_slot_wait(perf_counter() - started)
+        except BaseException:
+            self._lock.release()
+            raise
+        return self
+
+    def __exit__(self, *_args: object) -> None:
+        self._lock.release()
 
 
 def verify_postgres_schema(cursor: Any) -> None:
@@ -79,7 +107,7 @@ class PostgresStore:
             from psycopg.rows import dict_row
         except ImportError as error:  # pragma: no cover - only reachable in a misconfigured deployment
             raise RuntimeError("DATABASE_URL requires the psycopg dependency") from error
-        self._lock = Lock()
+        self._lock = _MeasuredConnectionLock()
         self._connection = psycopg.connect(database_url, autocommit=True, row_factory=dict_row)
         try:
             with self._connection.cursor() as cursor:
@@ -87,6 +115,34 @@ class PostgresStore:
         except Exception:
             self._connection.close()
             raise
+
+    @contextmanager
+    def _transaction(self) -> Iterator[None]:
+        started = perf_counter()
+        outcome = "success"
+        try:
+            with self._connection.transaction():
+                yield
+        except BaseException:
+            outcome = "error"
+            raise
+        finally:
+            record_postgres_transaction(outcome, perf_counter() - started)
+
+    @staticmethod
+    def _acquire_advisory_lock(cursor: Any, key: str) -> None:
+        started = perf_counter()
+        outcome = "success"
+        try:
+            cursor.execute(
+                "SELECT pg_advisory_xact_lock(hashtextextended(%s, 0))",
+                (key,),
+            )
+        except BaseException:
+            outcome = "error"
+            raise
+        finally:
+            record_postgres_advisory_lock_wait(outcome, perf_counter() - started)
 
     def register(self, email: str, password: str, display_name: str) -> tuple[DemoUser, str]:
         normalized = normalize_email(email)
@@ -270,12 +326,9 @@ class PostgresStore:
 
         now = datetime.now(UTC)
         entity_id = f"{choice.run_id}:{choice.program_slug}"
-        with self._lock, self._connection.transaction(), self._connection.cursor() as cursor:
+        with self._lock, self._transaction(), self._connection.cursor() as cursor:
             # The advisory lock makes the one-primary invariant hold across API instances.
-            cursor.execute(
-                "SELECT pg_advisory_xact_lock(hashtextextended(%s, 0))",
-                (f"{user_id}:{choice.run_id}",),
-            )
+            self._acquire_advisory_lock(cursor, f"{user_id}:{choice.run_id}")
             if choice.is_primary:
                 cursor.execute(
                     """UPDATE entities
@@ -314,7 +367,7 @@ class PostgresStore:
         if expected_revision is not None and thread.revision != expected_revision + 1:
             raise ValueError("顾问会话 revision 必须单调增加 1")
 
-        with self._lock, self._connection.transaction(), self._connection.cursor() as cursor:
+        with self._lock, self._transaction(), self._connection.cursor() as cursor:
             if expected_revision is None:
                 cursor.execute(
                     """INSERT INTO entities
@@ -376,11 +429,8 @@ class PostgresStore:
     def reserve_advisor_turn(self, user_id: str, turn: AdvisorTurnRecord) -> AdvisorTurnRecord:
         from psycopg.types.json import Jsonb
 
-        with self._lock, self._connection.transaction(), self._connection.cursor() as cursor:
-            cursor.execute(
-                "SELECT pg_advisory_xact_lock(hashtextextended(%s, 0))",
-                (f"advisor-turn:{user_id}:{turn.request_id}",),
-            )
+        with self._lock, self._transaction(), self._connection.cursor() as cursor:
+            self._acquire_advisory_lock(cursor, f"advisor-turn:{user_id}:{turn.request_id}")
             cursor.execute(
                 """SELECT payload FROM entities
                 WHERE user_id = %s AND kind = 'advisor_turn' AND entity_id = %s""",
@@ -405,11 +455,8 @@ class PostgresStore:
     def save_advisor_turn(self, user_id: str, turn: AdvisorTurnRecord) -> AdvisorTurnRecord:
         from psycopg.types.json import Jsonb
 
-        with self._lock, self._connection.transaction(), self._connection.cursor() as cursor:
-            cursor.execute(
-                "SELECT pg_advisory_xact_lock(hashtextextended(%s, 0))",
-                (f"advisor-turn:{user_id}:{turn.request_id}",),
-            )
+        with self._lock, self._transaction(), self._connection.cursor() as cursor:
+            self._acquire_advisory_lock(cursor, f"advisor-turn:{user_id}:{turn.request_id}")
             cursor.execute(
                 """SELECT payload FROM entities
                 WHERE user_id = %s AND kind = 'advisor_turn' AND entity_id = %s""",
@@ -491,11 +538,8 @@ class PostgresStore:
     def save_program_source_version(self, version: ProgramSourceVersion) -> ProgramSourceVersion:
         from psycopg.types.json import Jsonb
 
-        with self._lock, self._connection.transaction(), self._connection.cursor() as cursor:
-            cursor.execute(
-                "SELECT pg_advisory_xact_lock(hashtextextended(%s, 0))",
-                (f"program-source:{version.program_slug}",),
-            )
+        with self._lock, self._transaction(), self._connection.cursor() as cursor:
+            self._acquire_advisory_lock(cursor, f"program-source:{version.program_slug}")
             cursor.execute(
                 "SELECT payload FROM program_source_versions WHERE version_id = %s",
                 (version.version_id,),
@@ -574,7 +618,7 @@ class PostgresStore:
     ) -> ProgramSourceVersion:
         from psycopg.types.json import Jsonb
 
-        with self._lock, self._connection.transaction(), self._connection.cursor() as cursor:
+        with self._lock, self._transaction(), self._connection.cursor() as cursor:
             cursor.execute(
                 "SELECT payload FROM program_source_versions WHERE version_id = %s FOR UPDATE",
                 (version_id,),
@@ -583,10 +627,7 @@ class PostgresStore:
             if not row:
                 raise SourceVersionNotFoundError("来源版本不存在")
             candidate = ProgramSourceVersion.model_validate(row["payload"])
-            cursor.execute(
-                "SELECT pg_advisory_xact_lock(hashtextextended(%s, 0))",
-                (f"program-source:{candidate.program_slug}",),
-            )
+            self._acquire_advisory_lock(cursor, f"program-source:{candidate.program_slug}")
             if candidate.status != "pending_review":
                 raise SourceVersionStateError("只有待审核版本可以执行审核")
             if decision == "approve":

@@ -116,6 +116,12 @@ class MetricRegistry:
             "# TYPE offerpilot_rag_queries_total counter",
             "# HELP offerpilot_rag_top_relevance_score Highest BM25 relevance score per retrieval.",
             "# TYPE offerpilot_rag_top_relevance_score histogram",
+            "# HELP offerpilot_postgres_connection_slot_wait_seconds Process-local wait for the single PostgreSQL connection slot.",
+            "# TYPE offerpilot_postgres_connection_slot_wait_seconds histogram",
+            "# HELP offerpilot_postgres_transaction_duration_seconds PostgreSQL transaction duration by outcome.",
+            "# TYPE offerpilot_postgres_transaction_duration_seconds histogram",
+            "# HELP offerpilot_postgres_advisory_lock_wait_seconds PostgreSQL advisory lock acquisition duration by outcome.",
+            "# TYPE offerpilot_postgres_advisory_lock_wait_seconds histogram",
         ]
         with self._lock:
             counters = sorted(self._counters.items())
@@ -295,6 +301,38 @@ def record_rag_retrieval(hit_count: int, top_relevance_score: float | None) -> N
         labels,
         max(0.0, top_relevance_score or 0.0),
         buckets=_RAG_RELEVANCE_SCORE_BUCKETS,
+    )
+
+
+def record_postgres_connection_slot_wait(duration_seconds: float) -> None:
+    """Measure local queuing for the adapter's single shared PostgreSQL connection."""
+
+    METRICS.observe(
+        "offerpilot_postgres_connection_slot_wait_seconds",
+        {},
+        max(0.0, duration_seconds),
+    )
+
+
+def record_postgres_transaction(outcome: str, duration_seconds: float) -> None:
+    """Measure explicit PostgreSQL transactions without entity or user labels."""
+
+    bounded_outcome = outcome if outcome in {"success", "error"} else "error"
+    METRICS.observe(
+        "offerpilot_postgres_transaction_duration_seconds",
+        {"outcome": bounded_outcome},
+        max(0.0, duration_seconds),
+    )
+
+
+def record_postgres_advisory_lock_wait(outcome: str, duration_seconds: float) -> None:
+    """Measure advisory-lock acquisition without exposing the sensitive lock key."""
+
+    bounded_outcome = outcome if outcome in {"success", "error"} else "error"
+    METRICS.observe(
+        "offerpilot_postgres_advisory_lock_wait_seconds",
+        {"outcome": bounded_outcome},
+        max(0.0, duration_seconds),
     )
 
 
