@@ -54,7 +54,7 @@ from .auth import (
 
 
 ModelT = TypeVar("ModelT", bound=BaseModel)
-POSTGRES_SCHEMA_REVISIONS = frozenset({"0003_program_source_versions"})
+POSTGRES_SCHEMA_REVISIONS = frozenset({"0004_agent_outbox"})
 
 
 class _MeasuredConnectionLock:
@@ -361,6 +361,7 @@ class PostgresStore:
         expected_revision: int | None = None,
     ) -> AdvisorThread:
         from psycopg.types.json import Jsonb
+        from .agent_store.events import advisor_thread_changed_event
 
         if expected_revision is None and thread.revision != 0:
             raise ValueError("新顾问会话的 revision 必须为 0")
@@ -418,7 +419,83 @@ class PostgresStore:
                     expected_revision,
                     actual_revision,
                 )
+            event = advisor_thread_changed_event(user_id, thread.id, thread.revision, len(thread.messages))
+            cursor.execute(
+                """INSERT INTO agent_projection_outbox
+                (event_id, event_type, schema_version, aggregate_type, aggregate_id,
+                 source_revision, payload, occurred_at)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s)
+                ON CONFLICT (event_id) DO NOTHING""",
+                (
+                    event["event_id"], event["event_type"], event["schema_version"],
+                    event["aggregate_type"], event["aggregate_id"], event["source_revision"],
+                    Jsonb(event["payload"]), event["occurred_at"],
+                ),
+            )
         return thread.model_copy(deep=True)
+
+    def claim_projection_events(
+        self,
+        worker_id: str,
+        *,
+        limit: int = 50,
+        lease_seconds: int = 30,
+        aggregate_id: str | None = None,
+    ) -> list[dict[str, Any]]:
+        if not worker_id or len(worker_id) > 128 or not 1 <= limit <= 500 or not 1 <= lease_seconds <= 3600:
+            raise ValueError("invalid projection lease parameters")
+        with self._lock, self._transaction(), self._connection.cursor() as cursor:
+            aggregate_clause = "AND aggregate_id = %s" if aggregate_id is not None else ""
+            parameters = (aggregate_id, limit, worker_id, lease_seconds) if aggregate_id is not None else (limit, worker_id, lease_seconds)
+            cursor.execute(
+                f"""WITH candidates AS (
+                    SELECT event_id FROM agent_projection_outbox
+                    WHERE acknowledged_at IS NULL AND available_at <= NOW()
+                      AND (lease_expires_at IS NULL OR lease_expires_at < NOW())
+                      {aggregate_clause}
+                    ORDER BY created_at, event_id
+                    FOR UPDATE SKIP LOCKED
+                    LIMIT %s
+                )
+                UPDATE agent_projection_outbox AS outbox
+                SET lease_owner = %s,
+                    lease_expires_at = NOW() + (%s * INTERVAL '1 second'),
+                    attempts = attempts + 1
+                FROM candidates
+                WHERE outbox.event_id = candidates.event_id
+                RETURNING outbox.event_id, outbox.event_type, outbox.schema_version,
+                          outbox.aggregate_type, outbox.aggregate_id, outbox.source_revision,
+                          outbox.payload, outbox.occurred_at, outbox.attempts""",
+                parameters,
+            )
+            return cursor.fetchall()
+
+    def acknowledge_projection_event(self, worker_id: str, event_id: str) -> bool:
+        with self._lock, self._transaction(), self._connection.cursor() as cursor:
+            cursor.execute(
+                """UPDATE agent_projection_outbox
+                SET acknowledged_at = NOW(), lease_owner = NULL, lease_expires_at = NULL,
+                    last_error_class = NULL
+                WHERE event_id = %s AND lease_owner = %s AND acknowledged_at IS NULL
+                RETURNING event_id""",
+                (event_id, worker_id),
+            )
+            return cursor.fetchone() is not None
+
+    def retry_projection_event(self, worker_id: str, event_id: str, *, error_class: str, delay_seconds: int = 10) -> bool:
+        safe_error_class = "".join(character for character in error_class if character.isalnum() or character in "._-")[:80]
+        if not safe_error_class or not 1 <= delay_seconds <= 3600:
+            raise ValueError("invalid projection retry parameters")
+        with self._lock, self._transaction(), self._connection.cursor() as cursor:
+            cursor.execute(
+                """UPDATE agent_projection_outbox
+                SET available_at = NOW() + (%s * INTERVAL '1 second'),
+                    lease_owner = NULL, lease_expires_at = NULL, last_error_class = %s
+                WHERE event_id = %s AND lease_owner = %s AND acknowledged_at IS NULL
+                RETURNING event_id""",
+                (delay_seconds, safe_error_class, event_id, worker_id),
+            )
+            return cursor.fetchone() is not None
 
     def list_threads(self, user_id: str) -> list[AdvisorThread]:
         return self._list_entities(user_id, "advisor_thread", AdvisorThread)

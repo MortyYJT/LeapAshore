@@ -1,4 +1,147 @@
 services:
+  mysql-agent:
+    image: mysql:8.4
+    profiles: ["agent-stack"]
+    environment:
+      MYSQL_DATABASE: offerpilot_agent
+      MYSQL_USER: offerpilot_agent
+      MYSQL_PASSWORD: ${MYSQL_AGENT_PASSWORD:-offerpilot-agent-local}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_AGENT_ROOT_PASSWORD:-offerpilot-root-local}
+    command: ["--default-authentication-plugin=caching_sha2_password", "--character-set-server=utf8mb4", "--collation-server=utf8mb4_0900_ai_ci"]
+    volumes:
+      - mysql_agent_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -u$$MYSQL_USER --password=$$MYSQL_PASSWORD --silent"]
+      interval: 5s
+      timeout: 4s
+      retries: 20
+    restart: unless-stopped
+
+  agent-migrate:
+    build: ./api
+    profiles: ["agent-stack"]
+    command: ["alembic", "-c", "alembic_agent.ini", "upgrade", "head"]
+    environment:
+      MYSQL_AGENT_URL: ${MYSQL_AGENT_URL:-mysql+asyncmy://offerpilot_agent:offerpilot-agent-local@mysql-agent:3306/offerpilot_agent}
+    depends_on:
+      mysql-agent:
+        condition: service_healthy
+    restart: "no"
+
+  agent-projector:
+    build: ./api
+    profiles: ["agent-stack"]
+    command: ["python", "-m", "app.agent_store.worker", "--batch-size", "50", "--poll-seconds", "2"]
+    environment:
+      DATABASE_URL: postgresql://offerpilot:${POSTGRES_PASSWORD:-offerpilot-local}@postgres:5432/offerpilot
+      MYSQL_AGENT_URL: ${MYSQL_AGENT_URL:-mysql+asyncmy://offerpilot_agent:offerpilot-agent-local@mysql-agent:3306/offerpilot_agent}
+      MYSQL_AGENT_CONNECT_TIMEOUT: ${MYSQL_AGENT_CONNECT_TIMEOUT:-3}
+      MYSQL_AGENT_POOL_SIZE: ${MYSQL_AGENT_POOL_SIZE:-5}
+    depends_on:
+      postgres:
+        condition: service_healthy
+      mysql-agent:
+        condition: service_healthy
+      agent-migrate:
+        condition: service_completed_successfully
+    restart: unless-stopped
+
+  milvus-etcd:
+    image: quay.io/coreos/etcd:v3.5.18
+    profiles: ["agent-stack"]
+    environment:
+      ETCD_AUTO_COMPACTION_MODE: revision
+      ETCD_AUTO_COMPACTION_RETENTION: "1000"
+      ETCD_QUOTA_BACKEND_BYTES: "4294967296"
+      ETCD_SNAPSHOT_COUNT: "50000"
+    command: ["etcd", "-advertise-client-urls=http://milvus-etcd:2379", "-listen-client-urls=http://0.0.0.0:2379", "--data-dir=/etcd"]
+    volumes:
+      - milvus_etcd_data:/etcd
+    healthcheck:
+      test: ["CMD", "etcdctl", "endpoint", "health"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  milvus-minio:
+    image: quay.io/minio/minio:RELEASE.2024-12-18T13-15-44Z
+    profiles: ["agent-stack"]
+    command: ["server", "/minio_data", "--console-address", ":9001"]
+    environment:
+      MINIO_ROOT_USER: ${MILVUS_MINIO_ROOT_USER:-offerpilot-milvus-dev}
+      MINIO_ROOT_PASSWORD: ${MILVUS_MINIO_ROOT_PASSWORD:-offerpilot-milvus-minio-dev}
+    volumes:
+      - milvus_minio_data:/minio_data
+    healthcheck:
+      test: ["CMD", "mc", "ready", "local"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  milvus-agent:
+    image: milvusdb/milvus:v2.6.24
+    profiles: ["agent-stack"]
+    command: ["milvus", "run", "standalone"]
+    environment:
+      ETCD_ENDPOINTS: milvus-etcd:2379
+      MINIO_ADDRESS: milvus-minio:9000
+      MINIO_ACCESS_KEY_ID: ${MILVUS_MINIO_ROOT_USER:-offerpilot-milvus-dev}
+      MINIO_SECRET_ACCESS_KEY: ${MILVUS_MINIO_ROOT_PASSWORD:-offerpilot-milvus-minio-dev}
+    volumes:
+      - milvus_data:/var/lib/milvus
+    depends_on:
+      milvus-etcd:
+        condition: service_healthy
+      milvus-minio:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:9091/healthz >/dev/null"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+    restart: unless-stopped
+
+  embedding-agent:
+    image: ${TEI_CPU_IMAGE:-ghcr.io/huggingface/text-embeddings-inference:cpu-1.9}
+    profiles: ["agent-stack"]
+    command: ["--model-id", "BAAI/bge-m3"]
+    environment:
+      HF_HOME: /data
+    volumes:
+      - embedding_model_data:/data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:80/health >/dev/null"]
+      interval: 15s
+      timeout: 5s
+      retries: 30
+    restart: unless-stopped
+
+  reranker-agent:
+    image: ${TEI_CPU_IMAGE:-ghcr.io/huggingface/text-embeddings-inference:cpu-1.9}
+    profiles: ["agent-stack"]
+    command: ["--model-id", "Alibaba-NLP/gte-multilingual-reranker-base"]
+    environment:
+      HF_HOME: /data
+    volumes:
+      - reranker_model_data:/data
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://localhost:80/health >/dev/null"]
+      interval: 15s
+      timeout: 5s
+      retries: 30
+    restart: unless-stopped
+
+  mcp-agent:
+    build: ./api
+    profiles: ["agent-stack"]
+    command: ["python", "-m", "app.mcp_server"]
+    environment:
+      MCP_HOST: 0.0.0.0
+      MCP_PORT: 8765
+    restart: unless-stopped
+
   postgres:
     image: postgres:16-alpine
     environment:
@@ -55,6 +198,19 @@ services:
     build: ./api
     environment:
       DATABASE_URL: postgresql://offerpilot:${POSTGRES_PASSWORD:-offerpilot-local}@postgres:5432/offerpilot
+      MYSQL_AGENT_URL: ${MYSQL_AGENT_URL:-mysql+asyncmy://offerpilot_agent:offerpilot-agent-local@mysql-agent:3306/offerpilot_agent}
+      MYSQL_AGENT_CONNECT_TIMEOUT: ${MYSQL_AGENT_CONNECT_TIMEOUT:-3}
+      MYSQL_AGENT_POOL_SIZE: ${MYSQL_AGENT_POOL_SIZE:-5}
+      MILVUS_URI: ${MILVUS_URI:-http://milvus-agent:19530}
+      MILVUS_TOKEN: ${MILVUS_TOKEN:-}
+      MILVUS_COLLECTION: ${MILVUS_COLLECTION:-offerpilot_knowledge_v1}
+      MILVUS_EMBEDDING_DIMENSIONS: ${MILVUS_EMBEDDING_DIMENSIONS:-1024}
+      EMBEDDING_BASE_URL: ${EMBEDDING_BASE_URL:-http://embedding-agent/v1}
+      EMBEDDING_MODEL: ${EMBEDDING_MODEL:-bge-m3}
+      EMBEDDING_API_KEY: ${EMBEDDING_API_KEY:-local-tei-only}
+      RERANKER_BASE_URL: ${RERANKER_BASE_URL:-http://reranker-agent}
+      MCP_SERVER_URL: ${MCP_SERVER_URL:-http://mcp-agent:8765/mcp}
+      MCP_ENABLED: ${MCP_ENABLED:-false}
       LLM_PROVIDER: ${LLM_PROVIDER:-deterministic}
       DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY:-}
       DEEPSEEK_BASE_URL: ${DEEPSEEK_BASE_URL:-https://api.deepseek.com}
@@ -107,6 +263,12 @@ services:
     restart: unless-stopped
 
 volumes:
+  mysql_agent_data:
+  milvus_etcd_data:
+  milvus_minio_data:
+  milvus_data:
+  embedding_model_data:
+  reranker_model_data:
   postgres_data:
   ollama_data:
   caddy_data:

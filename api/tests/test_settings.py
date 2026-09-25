@@ -1,6 +1,7 @@
 import pytest
 
 from app.settings import validate_runtime_configuration
+from app.agent_store.database import create_agent_engine, settings_from_env
 
 
 def test_production_configuration_fails_closed_without_critical_services(monkeypatch) -> None:
@@ -76,3 +77,21 @@ def test_production_rejects_exposed_debug_tokens(monkeypatch) -> None:
 
     with pytest.raises(RuntimeError, match="EXPOSE_DEBUG_TOKENS"):
         validate_runtime_configuration()
+
+
+def test_mysql_agent_settings_do_not_require_or_log_a_url(monkeypatch) -> None:
+    monkeypatch.delenv("MYSQL_AGENT_URL", raising=False)
+    monkeypatch.setenv("MYSQL_AGENT_CONNECT_TIMEOUT", "4")
+    monkeypatch.setenv("MYSQL_AGENT_POOL_SIZE", "7")
+    settings = settings_from_env()
+    assert settings.url == ""
+    assert settings.connect_timeout_seconds == 4
+    assert settings.pool_size == 7
+    with pytest.raises(ValueError, match="MYSQL_AGENT_URL is required"):
+        create_agent_engine(settings)
+
+
+def test_mysql_agent_requires_asyncmy_dialect(monkeypatch) -> None:
+    monkeypatch.setenv("MYSQL_AGENT_URL", "mysql://name:secret@localhost/db")
+    with pytest.raises(ValueError, match=r"mysql\+asyncmy"):
+        create_agent_engine(settings_from_env())

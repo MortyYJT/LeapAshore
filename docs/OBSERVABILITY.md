@@ -16,6 +16,10 @@ OfferPilot 先固定可验证的 span 与 metric 语义，再决定是否接入 
 
 `TELEMETRY_SPAN_SAMPLE_RATE` 控制结构化 span 日志采样，范围为 `0`–`1`，默认 `1`。指标始终累计，不受日志采样影响。
 
+### Langfuse 准入字段
+
+新增 `app.observability_fields.safe_agent_attributes()` 作为未来 Langfuse 导出的唯一 metadata 清洗入口。只允许固定枚举和计数/时延字段；未知字段直接丢弃，不将状态对象、查询、回答、来源片段、用户标识或异常消息转成字符串。SDK、远端导出器、自托管 Langfuse 服务尚未接入；Langfuse 当前为未启用状态，不应配置生产流量。
+
 ## Prometheus 指标
 
 - `offerpilot_http_requests_total{method,route,status_class}`
@@ -45,6 +49,7 @@ curl -H "Authorization: Bearer $METRICS_BEARER_TOKEN" \
 
 - 指标保存在单进程内存中，进程重启会清零，多实例也不会自动聚合。
 - 当前没有声称已部署 Collector、Dashboard 或告警路由；接入时应直接抓取上述端点，并按 `trace_id` 关联 JSON span。
+- Langfuse SDK 与自托管服务尚未部署。接入前需验证 SDK 只导出显式创建的安全 span，并关闭 LangChain/模型自动集成的输入输出采集；官方 Python SDK 会初始化 OpenTelemetry，且默认会导出 Langfuse 与 GenAI spans，因此不能在没有 span 筛选的情况下直接启用。
 - 文档中的 API 可用性 99.5%、非 LLM API p95 小于 500ms 仍是待压测校准的初始目标，不是当前实测结果。
 - RAG 指标目前只提供检索次数、拒答结果与相关度分布；没有真实查询基线前不设置告警阈值，也不把固定 Eval 分数当线上检索质量。
 - PostgreSQL 的连接槽等待、事务与 advisory lock 分布已经可采集，但当前仍没有生产相似负载样本、连接池、Dashboard 或告警阈值。

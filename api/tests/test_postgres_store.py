@@ -99,6 +99,22 @@ def test_postgres_thread_revision_cas_serializes_two_connections() -> None:
     assert persisted is not None
     assert persisted.revision == 1
     assert persisted.title in {"连接一", "连接二"}
+    with first._lock, first._connection.cursor() as cursor:
+        cursor.execute(
+            "SELECT source_revision FROM agent_projection_outbox WHERE aggregate_id = %s ORDER BY source_revision",
+            (thread.id,),
+        )
+        revisions = [row["source_revision"] for row in cursor.fetchall()]
+    assert revisions == [0, 1]
+    worker = f"test-{uuid4().hex}"
+    events = first.claim_projection_events(worker, aggregate_id=thread.id)
+    assert sorted(event["source_revision"] for event in events) == [0, 1]
+    event_by_revision = {event["source_revision"]: event for event in events}
+    assert first.acknowledge_projection_event(worker, event_by_revision[0]["event_id"]) is True
+    assert first.retry_projection_event(worker, event_by_revision[1]["event_id"], error_class="TemporaryUpstreamError", delay_seconds=30) is True
+    with first._lock, first._connection.cursor() as cursor:
+        cursor.execute("SELECT last_error_class FROM agent_projection_outbox WHERE event_id = %s", (event_by_revision[1]["event_id"],))
+        assert cursor.fetchone()["last_error_class"] == "TemporaryUpstreamError"
 
 
 def test_postgres_advisor_turn_reservation_is_create_only() -> None:
