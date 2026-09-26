@@ -19,6 +19,7 @@ from ..models import (
 )
 from ..observability import traced
 from .advisor import fallback_plan
+from .context_layers import build_context_layers
 
 
 class DeepSeekStreamError(RuntimeError):
@@ -48,6 +49,7 @@ def build_redacted_context(
     user_message: str,
     sensitive_values: list[str],
     knowledge_hits: list[KnowledgeEvidence] | None = None,
+    total_char_budget: int = 12_000,
 ) -> dict[str, Any]:
     """Create the only payload allowed to leave the service boundary."""
     safe_profile = {
@@ -92,17 +94,32 @@ def build_redacted_context(
             *[task for branch in roadmap.program_branches for task in branch.tasks],
         ]
     ]
+    evidence = [hit.model_dump(mode="json") for hit in (knowledge_hits or [])]
+    layers = build_context_layers(
+        profile=safe_profile,
+        portfolio={"recommendations": recommendations, "choices": [choice.model_dump(mode="json") for choice in choices], "roadmap_tasks": tasks},
+        history=history[-10:],
+        message=user_message,
+        evidence=evidence,
+        sensitive_values=sensitive_values,
+        total_char_budget=total_char_budget,
+    )
+    profile_layer = json.loads(layers["profile"])
+    application_layer = json.loads(layers["application"])
+    conversation_layer = json.loads(layers["conversation"])
     payload = {
-        "profile": safe_profile,
-        "recommendations": recommendations,
-        "application_portfolio": [choice.model_dump(mode="json") for choice in choices],
-        "roadmap_tasks": tasks,
-        "knowledge_evidence": [hit.model_dump(mode="json") for hit in (knowledge_hits or [])],
-        "recent_messages": history[-10:],
-        "user_message": user_message,
+        "profile": profile_layer,
+        "recommendations": application_layer.get("recommendations", []),
+        "application_portfolio": application_layer.get("choices", []),
+        "roadmap_tasks": application_layer.get("roadmap_tasks", []),
+        "knowledge_evidence": json.loads(layers["evidence"]),
+        "recent_messages": conversation_layer.get("recent_messages", []),
+        "user_message": conversation_layer.get("current_message", ""),
     }
     # Summaries and chat text can contain user-entered identifiers, so redact the serialized payload as a final boundary check.
-    return json.loads(_redact_text(json.dumps(payload, ensure_ascii=False), sensitive_values))
+    result_payload = json.loads(_redact_text(json.dumps(payload, ensure_ascii=False), sensitive_values))
+    result_payload["context_budget_chars"] = total_char_budget
+    return result_payload
 
 
 @traced("advisor.actions.plan", layer="agent")

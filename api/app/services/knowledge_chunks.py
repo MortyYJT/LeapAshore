@@ -20,6 +20,8 @@ class PublishedProgramSnapshot:
 class PublishedKnowledgeChunk:
     chunk_id: str
     program_slug: str
+    degree_level: str
+    field: str
     section: str
     content: str
     source_version_id: str
@@ -53,6 +55,8 @@ def build_published_chunks(
             chunks.append(PublishedKnowledgeChunk(
                 chunk_id=digest,
                 program_slug=snapshot.program.slug,
+                degree_level=snapshot.program.degree_level,
+                field=snapshot.program.field,
                 section=source_chunk.section,
                 content=source_chunk.content,
                 source_version_id=snapshot.source_version_id,

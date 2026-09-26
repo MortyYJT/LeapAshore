@@ -45,6 +45,8 @@ from .models import (
     FeedbackCreateRequest,
     FeedbackItem,
     FeedbackUpdateRequest,
+    KnowledgeGapCandidate,
+    KnowledgeGapUpdateRequest,
     LoginRequest,
     MessageResponse,
     PasswordResetRequest,
@@ -84,6 +86,9 @@ from .services.deepseek_advisor import (
 from .services.agent import run_recommendation_agent
 from .services.model_provider import configured_model, configured_provider, llm_is_configured
 from .services.knowledge_rag import grounded_fallback_answer, retrieve_official_knowledge
+from .services.hybrid_knowledge import configured_hybrid_retrieval, rebuild_configured_published_index
+from .services.flywheel import knowledge_gap_candidate, knowledge_gap_eval_query
+from .graph.live_workflow import run_live_workflow
 from .services.roadmap import build_roadmap, merge_tasks, task_templates
 from .services.recommender import generate_recommendations
 from .services.transcript import analyze_transcript
@@ -116,6 +121,32 @@ from .source_governance import (
 configure_error_reporting()
 logger = logging.getLogger("offerpilot.mail")
 deepseek_slots = asyncio.Semaphore(4)
+
+
+def retrieve_user_knowledge(request: KnowledgeSearchRequest, user_id: str) -> KnowledgeSearchResponse:
+    """Use Hybrid RAG only when enabled; otherwise preserve BM25 as the safe fallback."""
+    if os.getenv("HYBRID_RAG_ENABLED", "false").lower() not in {"1", "true", "yes", "on"}:
+        return retrieve_official_knowledge(request)
+    consent = store.get_ai_consent(user_id)
+    try:
+        return configured_hybrid_retrieval(
+            request,
+            store.list_program_source_versions(status="published"),
+            cloud_processing_consented=bool(consent and consent.accepted),
+        )
+    except Exception as error:
+        logger.warning("Hybrid retrieval unavailable; falling back to BM25", extra={"error_type": type(error).__name__})
+        return retrieve_official_knowledge(request).model_copy(update={
+            "retrieval_version": "official-knowledge-bm25-fallback-v1",
+        })
+
+
+def record_workflow_knowledge_gap(query: str, workflow: Any, event_id: str) -> None:
+    decision = workflow.state.confidence_decision
+    if workflow.state.route != "retrieve_official_facts" or decision.get("allowed") is not False:
+        return
+    gap = knowledge_gap_candidate(query)
+    store.record_knowledge_gap(gap, event_id)
 SOURCE_BACKED_PATHS = (
     "/programs",
     "/program-sources",
@@ -262,6 +293,7 @@ def prepare_stream_turn(
     KnowledgeSearchResponse,
     dict[str, Any],
     AIConsent | None,
+    dict[str, Any],
 ]:
     action_run = None
     if apply_actions:
@@ -280,19 +312,31 @@ def prepare_stream_turn(
         roadmap_for_run(user.id, updated_profile, latest_result, choices, occurred_at)
         if latest_result else None
     )
-    knowledge = retrieve_official_knowledge(KnowledgeSearchRequest(
-        query=message,
-        target_degree_level=updated_profile.target_degree_level,
-        target_field=updated_profile.target_field,
-        program_slugs=[item.program.slug for item in latest_result.recommendations] if latest_result else [],
-        top_k=4,
-    ))
     history = [{"role": item.role, "content": item.content} for item in thread.messages]
+    consent = store.get_ai_consent(user.id)
+    workflow = run_live_workflow(
+        message,
+        updated_profile,
+        history,
+        sensitive_values=[user.email, user.display_name, user.id, profile.undergraduate_school],
+        retriever=lambda request: retrieve_user_knowledge(request, user.id),
+        cloud_processing_consented=bool(consent and consent.accepted),
+    )
+    record_workflow_knowledge_gap(message, workflow, effect_id)
+    knowledge = workflow.knowledge
     context = build_redacted_context(
         updated_profile, latest_result, choices, current_roadmap, history, message,
         [user.email, user.display_name, user.id, profile.undergraduate_school],
         knowledge.hits,
     )
+    workflow_metadata = {
+        "intent": workflow.state.intent,
+        "route": workflow.state.route,
+        "confidence_decision": workflow.state.confidence_decision,
+        "final_reply": workflow.state.final_reply,
+        "node_path": list(workflow.nodes),
+        "workflow_version": "offerpilot-stategraph-v1",
+    }
     return (
         updated_profile,
         latest_result,
@@ -300,7 +344,8 @@ def prepare_stream_turn(
         current_roadmap,
         knowledge,
         context,
-        store.get_ai_consent(user.id),
+        consent,
+        workflow_metadata,
     )
 
 
@@ -834,10 +879,13 @@ def create_feedback(
     user: Annotated[DemoUser, Depends(current_user)],
 ) -> FeedbackItem:
     now = datetime.now(UTC)
-    return store.save_feedback(FeedbackItem(
+    feedback = store.save_feedback(FeedbackItem(
         id=f"feedback_{uuid4().hex[:12]}", user_id=user.id, user_email=user.email,
         created_at=now, updated_at=now, **payload.model_dump(),
     ))
+    if payload.category in {"问题", "数据错误"}:
+        store.record_knowledge_gap(knowledge_gap_candidate(payload.message, now=now), feedback.id)
+    return feedback
 
 
 @app.get("/admin/stats", response_model=AdminStats)
@@ -884,6 +932,123 @@ def admin_update_feedback(
     if not item:
         raise HTTPException(status_code=404, detail="反馈不存在")
     return store.save_feedback(item.model_copy(update={"status": payload.status, "updated_at": datetime.now(UTC)}))
+
+
+@app.get("/admin/knowledge-gaps", response_model=list[KnowledgeGapCandidate])
+def admin_knowledge_gaps(_: Annotated[DemoUser, Depends(current_admin)]) -> list[KnowledgeGapCandidate]:
+    return store.list_knowledge_gaps()
+
+
+@app.put("/admin/knowledge-gaps/{candidate_id}", response_model=KnowledgeGapCandidate)
+def admin_update_knowledge_gap(
+    candidate_id: str,
+    payload: KnowledgeGapUpdateRequest,
+    _: Annotated[DemoUser, Depends(current_admin)],
+) -> KnowledgeGapCandidate:
+    candidate = next((item for item in store.list_knowledge_gaps() if item.id == candidate_id), None)
+    if not candidate:
+        raise HTTPException(status_code=404, detail="知识缺口候选不存在")
+    if candidate.revision != payload.expected_revision:
+        raise HTTPException(status_code=409, detail="知识缺口已被其他审核请求更新")
+    now = datetime.now(UTC)
+    if payload.action == "start_review":
+        if candidate.status != "new":
+            raise HTTPException(status_code=409, detail="只有新候选可以开始审核")
+        updated = candidate.model_copy(update={"status": "reviewing", "review_note": payload.review_note, "updated_at": now})
+    elif payload.action == "reject":
+        if candidate.status not in {"new", "reviewing", "source_pending"}:
+            raise HTTPException(status_code=409, detail="当前状态不能拒绝")
+        updated = candidate.model_copy(update={"status": "rejected", "review_note": payload.review_note, "updated_at": now})
+    else:
+        if candidate.status != "reviewing" or not payload.source_version_id:
+            raise HTTPException(status_code=409, detail="需先进入人工审核并指定已创建的来源版本")
+        source = store.get_program_source_version(payload.source_version_id)
+        if not source or source.program_slug != candidate.program_slug:
+            raise HTTPException(status_code=404, detail="来源版本与候选项目不匹配")
+        if source.status not in {"pending_review", "published"}:
+            raise HTTPException(status_code=409, detail="来源版本不是待审核或已发布状态")
+        updated = candidate.model_copy(update={
+            "status": "published" if source.status == "published" else "source_pending",
+            "source_version_id": source.version_id,
+            "review_note": payload.review_note,
+            "updated_at": now,
+        })
+    saved = store.update_knowledge_gap(updated, payload.expected_revision)
+    if not saved:
+        raise HTTPException(status_code=409, detail="知识缺口已被其他审核请求更新")
+    return saved
+
+
+@app.post("/admin/knowledge-gaps/{candidate_id}/evaluate")
+def evaluate_published_knowledge_gap(
+    candidate_id: str,
+    admin: Annotated[DemoUser, Depends(current_admin)],
+) -> dict[str, Any]:
+    candidate = next((item for item in store.list_knowledge_gaps() if item.id == candidate_id), None)
+    if not candidate or candidate.status != "published" or not candidate.source_version_id:
+        raise HTTPException(status_code=409, detail="候选必须先关联已发布官方来源")
+    source = store.get_program_source_version(candidate.source_version_id)
+    if not source or source.status != "published" or source.program_slug != candidate.program_slug:
+        raise HTTPException(status_code=409, detail="关联来源不再是当前发布版本")
+    program = current_program(source.program_slug)
+    if not program:
+        raise HTTPException(status_code=404, detail="来源项目不存在")
+    query = knowledge_gap_eval_query(candidate, program.name, program.university)
+    if os.getenv("HYBRID_RAG_ENABLED", "false").lower() in {"1", "true", "yes", "on"}:
+        try:
+            rebuild_configured_published_index(store.list_program_source_versions())
+        except Exception as error:
+            logger.warning("Published knowledge reindex before Eval failed", extra={"error_type": type(error).__name__})
+            raise HTTPException(status_code=503, detail="知识索引重建失败，Eval 未执行") from error
+    profile = ApplicantProfile(
+        undergraduate_school="Eval Fixture", school_tier="双非", undergraduate_major="软件工程",
+        gpa=75, gpa_scale=100, target_degree_level=program.degree_level,
+        target_field=program.field, intake="2027 S1",
+    )
+    turn = run_live_workflow(
+        query, profile,
+        retriever=lambda request: retrieve_user_knowledge(request, admin.id),
+        cloud_processing_consented=bool((consent := store.get_ai_consent(admin.id)) and consent.accepted),
+    )
+    version_match = any(hit.source.version_id == source.version_id for hit in turn.knowledge.hits)
+    citation_valid = bool(turn.knowledge.hits) and all(
+        hit.source.url.startswith("https://") and hit.source.id for hit in turn.knowledge.hits
+    )
+    passed = (
+        turn.state.route == "retrieve_official_facts"
+        and bool(turn.state.confidence_decision.get("allowed"))
+        and version_match
+        and citation_valid
+    )
+    eval_material = json.dumps({
+        "candidate_hash": candidate.candidate_hash,
+        "source_version_id": source.version_id,
+        "query": query,
+        "workflow_version": "offerpilot-stategraph-v1",
+        "retrieval_version": turn.knowledge.retrieval_version,
+    }, sort_keys=True, ensure_ascii=False, separators=(",", ":")).encode()
+    dataset_hash = sha256(eval_material).hexdigest()
+    updated = candidate.model_copy(update={
+        "status": "resolved" if passed else "eval_failed",
+        "eval_passed": passed,
+        "eval_dataset_hash": dataset_hash,
+        "updated_at": datetime.now(UTC),
+        "review_note": "发布后回归通过" if passed else "发布后回归未通过；需修订来源或检索链路",
+    })
+    saved = store.update_knowledge_gap(updated, candidate.revision)
+    if not saved:
+        raise HTTPException(status_code=409, detail="知识缺口审核状态已更新，请重新加载")
+    return {
+        "passed": passed,
+        "dataset_sha256": dataset_hash,
+        "workflow_version": "offerpilot-stategraph-v1",
+        "retrieval_version": turn.knowledge.retrieval_version,
+        "route": turn.state.route,
+        "gate_reason": turn.state.confidence_decision.get("reason"),
+        "source_version_match": version_match,
+        "citation_valid": citation_valid,
+        "hit_count": len(turn.knowledge.hits),
+    }
 
 
 @app.post("/recommendations", response_model=RecommendationResponse)
@@ -945,12 +1110,26 @@ def search_official_knowledge(
             "target_degree_level": payload.target_degree_level or profile.target_degree_level,
             "target_field": payload.target_field or profile.target_field,
         })
-    return retrieve_official_knowledge(payload)
+    return retrieve_user_knowledge(payload, user.id)
 
 
 @app.get("/admin/program-sources", response_model=list[ProgramSourceStatus])
 def admin_program_source_status(_: Annotated[DemoUser, Depends(current_admin)]) -> list[ProgramSourceStatus]:
     return program_source_status()
+
+
+@app.post("/admin/knowledge/index/rebuild")
+def rebuild_official_knowledge_index(_: Annotated[DemoUser, Depends(current_admin)]) -> dict[str, Any]:
+    try:
+        indexed_chunks = rebuild_configured_published_index(store.list_program_source_versions())
+    except Exception as error:
+        logger.warning("Published knowledge index rebuild failed", extra={"error_type": type(error).__name__})
+        raise HTTPException(status_code=503, detail="官方知识索引暂时不可用") from error
+    return {
+        "indexed_chunks": indexed_chunks,
+        "index_version": "offerpilot-knowledge-v1",
+        "source_versions_considered": len(store.list_program_source_versions()),
+    }
 
 
 def _published_source_version(program_slug: str) -> ProgramSourceVersion:
@@ -1052,6 +1231,10 @@ def admin_review_program_source_version(
         raise HTTPException(status_code=409, detail=str(error)) from error
     if reviewed.status == "published":
         replace_published_program(reviewed.program)
+        for gap in store.list_knowledge_gaps():
+            if gap.source_version_id == reviewed.version_id and gap.status == "source_pending":
+                published_gap = gap.model_copy(update={"status": "published", "updated_at": datetime.now(UTC)})
+                store.update_knowledge_gap(published_gap, expected_revision=gap.revision)
     return reviewed
 
 
@@ -1283,7 +1466,29 @@ def send_advisor_message(
 
     if turn.status == "reserved":
         history = [{"role": item.role, "content": item.content} for item in thread.messages]
-        reply_text, planned_actions, metadata = plan_turn(payload.content, profile, history)
+        workflow = run_live_workflow(
+            payload.content,
+            profile,
+            history,
+            sensitive_values=[user.email, user.display_name, user.id, profile.undergraduate_school],
+            retriever=lambda request: retrieve_user_knowledge(request, user.id),
+            cloud_processing_consented=bool(
+                (consent := store.get_ai_consent(user.id)) and consent.accepted
+            ),
+        )
+        record_workflow_knowledge_gap(payload.content, workflow, effect_id)
+        if workflow.state.route == "retrieve_official_facts":
+            reply_text = workflow.state.final_reply
+            planned_actions = []
+            metadata = {
+                "provider": "deterministic-fallback",
+                "model": "langgraph-stategraph-v1",
+                "latency_ms": 0,
+                "input_tokens": None,
+                "output_tokens": None,
+            }
+        else:
+            reply_text, planned_actions, metadata = plan_turn(payload.content, profile, history)
         turn = store.save_advisor_turn(user.id, turn.model_copy(update={
             "status": "planned",
             "actions": planned_actions,
@@ -1293,7 +1498,11 @@ def send_advisor_message(
             "latency_ms": metadata["latency_ms"],
             "input_tokens": metadata["input_tokens"],
             "output_tokens": metadata["output_tokens"],
-            "prompt_version": "advisor-1.0.0",
+            "prompt_version": (
+                "advisor-3.0.0-redacted"
+                if workflow.state.route == "retrieve_official_facts" else "advisor-1.0.0"
+            ),
+            "workflow_version": "offerpilot-stategraph-v1",
             "updated_at": datetime.now(UTC),
         }))
 
@@ -1457,6 +1666,7 @@ async def stream_advisor_message(
             knowledge,
             context,
             consent,
+            workflow_metadata,
         ) = await asyncio.to_thread(
             prepare_stream_turn,
             user,
@@ -1500,14 +1710,27 @@ async def stream_advisor_message(
             })
             yield sse_event("delta", {"content": assistant_text})
         else:
-            cloud_allowed = bool(consent and consent.accepted and configured_provider() == "deepseek")
-            provider = "deepseek" if cloud_allowed else "deterministic-fallback"
-            model = configured_model()
             input_tokens = None
             output_tokens = None
             reply_parts: list[str] = []
 
-            if cloud_allowed:
+            if workflow_metadata["route"] == "retrieve_official_facts":
+                # Official-fact answers use only the graph's evidence-gated deterministic renderer.
+                provider = "deterministic-fallback"
+                model = "langgraph-stategraph-v1"
+                fallback = workflow_metadata["final_reply"]
+                reply_parts = [fallback]
+                yield sse_event("status", {
+                    "message": "回答已通过官方证据与引用校验" if workflow_metadata["confidence_decision"].get("allowed") else "证据不足，按规则拒答",
+                    "provider": provider,
+                })
+                yield sse_event("delta", {"content": fallback})
+            else:
+                cloud_allowed = bool(consent and consent.accepted and configured_provider() == "deepseek")
+                provider = "deepseek" if cloud_allowed else "deterministic-fallback"
+                model = configured_model()
+
+            if workflow_metadata["route"] != "retrieve_official_facts" and cloud_allowed:
                 try:
                     async with asyncio.timeout(25):
                         async with deepseek_slots:
@@ -1534,11 +1757,11 @@ async def stream_advisor_message(
                 except (DeepSeekStreamError, TimeoutError, StopAsyncIteration, asyncio.TimeoutError):
                     provider = "deterministic-fallback"
                     yield sse_event("error", {"message": "DeepSeek 暂时不可用、限流或余额不足，已切换到规则顾问", "fallback": True})
-            else:
+            elif workflow_metadata["route"] != "retrieve_official_facts":
                 reason = "你尚未同意云端 AI 数据处理，当前使用规则顾问" if not consent or not consent.accepted else "DeepSeek 尚未配置，当前使用规则顾问"
                 yield sse_event("status", {"message": reason, "provider": "deterministic-fallback"})
 
-            if provider == "deterministic-fallback":
+            if workflow_metadata["route"] != "retrieve_official_facts" and provider == "deterministic-fallback":
                 fallback = grounded_fallback_answer(payload.content, knowledge.hits) or fallback_plan(payload.content, updated_profile)["reply"]
                 reply_parts = [fallback]
                 yield sse_event("delta", {"content": fallback})
@@ -1559,10 +1782,7 @@ async def stream_advisor_message(
                     "input_tokens": input_tokens,
                     "output_tokens": output_tokens,
                     "prompt_version": "advisor-2.0.0-redacted",
-                    "workflow_version": (
-                        latest_result.workflow_version
-                        if latest_result else "advisor-tools-2.0.0"
-                    ),
+                    "workflow_version": workflow_metadata["workflow_version"],
                     "tools": (
                         (["retrieve_official_knowledge"] if knowledge.hits else [])
                         + [action.tool for action in actions]

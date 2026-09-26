@@ -20,7 +20,9 @@ class AdvisorState(BaseModel):
     intent: Literal["planning", "official_knowledge", "profile_clarification", "action", "other"] = "other"
     route: str = ""
     recommendation: dict[str, Any] | None = None
+    context_layers: dict[str, str] = Field(default_factory=dict)
     knowledge_evidence: list[dict[str, Any]] = Field(default_factory=list)
+    confidence_decision: dict[str, Any] = Field(default_factory=dict)
     proposed_actions: list[dict[str, Any]] = Field(default_factory=list)
     citations: list[dict[str, Any]] = Field(default_factory=list)
     provider_usage: dict[str, Any] = Field(default_factory=dict)

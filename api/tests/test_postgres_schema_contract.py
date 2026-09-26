@@ -72,7 +72,7 @@ def test_declared_schema_revision_matches_alembic_heads() -> None:
 def test_postgres_store_only_reads_current_alembic_revision(
     monkeypatch: pytest.MonkeyPatch,
 ) -> None:
-    cursor = FakeCursor([{"version_num": "0004_agent_outbox"}])
+    cursor = FakeCursor([{"version_num": "0005_knowledge_gaps"}])
     connection = FakeConnection(cursor)
     install_connection(monkeypatch, connection)
 
@@ -93,7 +93,7 @@ def test_postgres_store_rejects_outdated_alembic_revision(
     with pytest.raises(
         RuntimeError,
         match=(
-            "expected 0004_agent_outbox, "
+            "expected 0005_knowledge_gaps, "
             "found 0002_terms_acceptance.*alembic upgrade head"
         ),
     ):

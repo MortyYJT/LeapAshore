@@ -1,3 +1,5 @@
+import json
+
 from fastapi.testclient import TestClient
 
 from app.main import app
@@ -15,6 +17,13 @@ def registered_login(email: str, password: str = "demo1234"):
     token = registered.json()["debug_token"]
     assert client.post("/auth/verify-email", json={"token": token}).status_code == 200
     return client.post("/auth/login", json={"email": email, "password": password})
+
+
+def admin_login():
+    login = client.post("/auth/login", json={"email": "admin@offerpilot.cn", "password": "demo1234"})
+    if login.status_code == 401:
+        return registered_login("admin@offerpilot.cn")
+    return login
 
 
 def test_vercel_service_entrypoint_exports_the_application() -> None:
@@ -126,8 +135,8 @@ def test_admin_can_review_feedback_and_suspend_users() -> None:
     assert feedback.status_code == 201
     assert client.get("/admin/stats", headers=user_headers).status_code == 403
 
-    admin_login = registered_login("admin@offerpilot.cn")
-    admin_headers = {"Authorization": f"Bearer {admin_login.json()['access_token']}"}
+    admin = admin_login()
+    admin_headers = {"Authorization": f"Bearer {admin.json()['access_token']}"}
     stats = client.get("/admin/stats", headers=admin_headers)
     assert stats.status_code == 200
     assert stats.json()["open_feedback"] >= 1
@@ -1152,3 +1161,71 @@ def test_authenticated_rag_search_and_advisor_fallback_share_cited_evidence() ->
     assert "不是录取承诺" in reply.text
     audits = client.get("/me/advisor/audits", headers=headers).json()
     assert "retrieve_official_knowledge" in audits[0]["tools"]
+    assert audits[0]["workflow_version"] == "offerpilot-stategraph-v1"
+
+
+def test_knowledge_gap_feedback_review_publish_and_eval_lifecycle() -> None:
+    user_login = registered_login("knowledge-gap-user@offerpilot.cn")
+    user_headers = {"Authorization": f"Bearer {user_login.json()['access_token']}"}
+    feedback = client.post("/me/feedback", json={
+        "category": "数据错误", "message": "UNSW 成绩门槛是否包含非 211 院校规则？", "page": "/knowledge",
+    }, headers=user_headers)
+    assert feedback.status_code == 201
+
+    admin = admin_login()
+    admin_headers = {"Authorization": f"Bearer {admin.json()['access_token']}"}
+    candidates = client.get("/admin/knowledge-gaps", headers=admin_headers).json()
+    candidate = next(item for item in candidates if item["program_slug"] == "unsw-master-it" and item["topic_class"] == "academic")
+    serialized = json.dumps(candidate, ensure_ascii=False)
+    assert feedback.json()["message"] not in serialized
+    assert "knowledge-gap-user@offerpilot.cn" not in serialized
+
+    review = client.put(f"/admin/knowledge-gaps/{candidate['id']}", headers=admin_headers, json={
+        "expected_revision": candidate["revision"], "action": "start_review", "review_note": "核对官方成绩要求",
+    })
+    assert review.status_code == 200
+    status = client.get("/admin/program-sources", headers=admin_headers).json()
+    unsw = next(item for item in status if item["program_slug"] == "unsw-master-it")
+    linked = client.put(f"/admin/knowledge-gaps/{candidate['id']}", headers=admin_headers, json={
+        "expected_revision": review.json()["revision"], "action": "attach_source",
+        "source_version_id": unsw["published_version_id"], "review_note": "已核对当前发布版本",
+    })
+    assert linked.status_code == 200
+    assert linked.json()["status"] == "published"
+
+    evaluation = client.post(f"/admin/knowledge-gaps/{candidate['id']}/evaluate", headers=admin_headers)
+    assert evaluation.status_code == 200
+    assert evaluation.json()["dataset_sha256"]
+    assert evaluation.json()["source_version_match"] is True
+    assert evaluation.json()["citation_valid"] is True
+    assert evaluation.json()["passed"] is True
+    final = next(item for item in client.get("/admin/knowledge-gaps", headers=admin_headers).json() if item["id"] == candidate["id"])
+    assert final["status"] == "resolved"
+    assert final["eval_passed"] is True
+
+
+def test_stream_advisor_refuses_off_corpus_official_fact_instead_of_calling_model() -> None:
+    login = registered_login("rag-no-answer@offerpilot.cn")
+    headers = {"Authorization": f"Bearer {login.json()['access_token']}"}
+    client.put("/me/profile", json={
+        "undergraduate_school": "示例大学", "school_tier": "双非", "undergraduate_major": "软件工程",
+        "gpa": 82, "gpa_scale": 100, "target_field": "计算机与数据",
+    }, headers=headers)
+    thread = client.post("/me/advisor/threads", headers=headers).json()
+
+    reply = client.post(
+        f"/me/advisor/threads/{thread['id']}/messages/stream",
+        json={"content": "哈佛医学院录取要求是什么"},
+        headers={**headers, "Idempotency-Key": "rag-no-answer-gate-1"},
+    )
+
+    assert reply.status_code == 200
+    assert "按规则拒答" in reply.text
+    assert "没有足够" in reply.text
+    assert "Harvard Medical School" not in reply.text
+    audits = client.get("/me/advisor/audits", headers=headers).json()
+    assert audits[0]["workflow_version"] == "offerpilot-stategraph-v1"
+    admin = admin_login()
+    admin_headers = {"Authorization": f"Bearer {admin.json()['access_token']}"}
+    gaps = client.get("/admin/knowledge-gaps", headers=admin_headers).json()
+    assert any(item["topic_class"] == "academic" and "哈佛医学院录取要求" not in json.dumps(item, ensure_ascii=False) for item in gaps)

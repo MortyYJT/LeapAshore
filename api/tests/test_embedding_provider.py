@@ -69,3 +69,13 @@ def test_embedding_provider_factory_uses_private_config_names(monkeypatch) -> No
     monkeypatch.setenv("MILVUS_EMBEDDING_DIMENSIONS", "1024")
     provider = embedding_provider_from_env()
     assert provider._url == "http://embedding-agent/v1/embeddings"
+
+
+def test_sync_query_embedding_preserves_remote_consent_boundary() -> None:
+    provider = EmbeddingProvider(
+        "https://embed.example/v1", "key", "model", 2,
+        sync_transport=httpx.MockTransport(lambda _req: httpx.Response(200, json={"data": [{"embedding": [0.4, 0.6]}]})),
+    )
+    with pytest.raises(EmbeddingProviderError, match="consent"):
+        provider.embed_query_sync("private applicant query")
+    assert provider.embed_query_sync("consented query", cloud_processing_consented=True) == [0.4, 0.6]

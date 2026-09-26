@@ -54,10 +54,10 @@ def build_advisor_graph(
     def evidence_gate(state: AdvisorState) -> dict[str, Any]:
         if on_node:
             on_node("evidence_gate")
-        if state.route == "retrieve_official_facts" and not state.knowledge_evidence:
-            return {"final_reply": "我目前没有可核验的官方来源，暂时不能确认这个要求。"}
         if handlers and "evidence_gate" in handlers:
             return handlers["evidence_gate"](state)
+        if state.route == "retrieve_official_facts" and not state.knowledge_evidence:
+            return {"final_reply": "我目前没有可核验的官方来源，暂时不能确认这个要求。"}
         return {}
 
     def compose(state: AdvisorState) -> dict[str, Any]:

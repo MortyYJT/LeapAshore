@@ -40,6 +40,26 @@ QUERY_EXPANSIONS = {
 }
 
 
+def infer_program_slugs(query: str) -> list[str]:
+    """Apply explicit institution/course aliases as structured pre-retrieval filters."""
+    text = query.casefold().replace(" ", "")
+    for aliases, slug in (
+        (("unsw", "新南威尔士大学", "新南"), "unsw-master-it"),
+        (("usyd", "悉尼大学", "悉大"), "usyd-master-cs"),
+        (("uq", "昆士兰大学", "昆大"), "uq-master-data-science"),
+        (("uwa", "西澳大学", "西澳"), "uwa-master-it"),
+    ):
+        if any(alias.casefold().replace(" ", "") in text for alias in aliases):
+            return [slug]
+    if any(alias in text for alias in ("monash", "蒙纳士", "莫纳什")):
+        if any(term in text for term in ("artificialintelligence", "masterofai", "人工智能", "monashai", "ai非", "ai背景")):
+            return ["monash-master-ai"]
+        if any(term in text for term in ("computerscience", "monashcs", "计算机科学", "cs先修", "cs课程", "cs要求", "cs")):
+            return ["monash-master-cs"]
+        return ["monash-master-ai", "monash-master-cs"]
+    return []
+
+
 @dataclass(frozen=True)
 class KnowledgeChunk:
     chunk_id: str
@@ -193,7 +213,7 @@ def retrieve_official_knowledge(request: KnowledgeSearchRequest) -> KnowledgeSea
 def grounded_fallback_answer(query: str, hits: list[KnowledgeEvidence]) -> str | None:
     """Create a no-model answer that remains visibly bound to retrieved evidence."""
     if not hits or not any(term in query.lower() for term in [
-        "要求", "申请", "成绩", "均分", "gpa", "背景", "先修", "课程", "数学", "雅思", "ielts", "英语", "学制", "项目", "学校",
+        "要求", "申请", "成绩", "均分", "gpa", "背景", "先修", "课程", "算法", "数学", "雅思", "ielts", "英语", "学制", "项目", "学校",
     ]):
         return None
     selected: list[KnowledgeEvidence] = []

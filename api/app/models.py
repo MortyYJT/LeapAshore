@@ -199,6 +199,29 @@ class FeedbackUpdateRequest(BaseModel):
     status: Literal["new", "reviewing", "resolved"]
 
 
+class KnowledgeGapCandidate(BaseModel):
+    id: str
+    candidate_hash: str = Field(pattern=r"^[0-9a-f]{64}$")
+    program_slug: str | None = None
+    topic_class: Literal["academic", "prerequisite", "language", "tuition", "deadline", "policy", "general"]
+    occurrence_count: int = Field(default=1, ge=1)
+    status: Literal["new", "reviewing", "source_pending", "published", "eval_failed", "resolved", "rejected"] = "new"
+    source_version_id: str | None = None
+    eval_dataset_hash: str | None = Field(default=None, pattern=r"^[0-9a-f]{64}$")
+    eval_passed: bool | None = None
+    review_note: str | None = Field(default=None, max_length=1000)
+    revision: int = Field(default=0, ge=0)
+    created_at: datetime
+    updated_at: datetime
+
+
+class KnowledgeGapUpdateRequest(BaseModel):
+    expected_revision: int = Field(ge=0)
+    action: Literal["start_review", "attach_source", "reject"]
+    source_version_id: str | None = Field(default=None, min_length=1, max_length=160)
+    review_note: str | None = Field(default=None, max_length=1000)
+
+
 class AdminStats(BaseModel):
     users: int
     verified_users: int

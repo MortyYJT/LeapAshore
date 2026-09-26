@@ -21,6 +21,7 @@ from .models import (
     ApplicantProfile,
     DemoUser,
     FeedbackItem,
+    KnowledgeGapCandidate,
     ProgramSourceVersion,
     RecommendationRunSummary,
     advisor_turn_status_rank,
@@ -54,7 +55,7 @@ from .auth import (
 
 
 ModelT = TypeVar("ModelT", bound=BaseModel)
-POSTGRES_SCHEMA_REVISIONS = frozenset({"0004_agent_outbox"})
+POSTGRES_SCHEMA_REVISIONS = frozenset({"0005_knowledge_gaps"})
 
 
 class _MeasuredConnectionLock:
@@ -611,6 +612,73 @@ class PostgresStore:
             cursor.execute("SELECT payload FROM feedback WHERE feedback_id = %s", (feedback_id,))
             row = cursor.fetchone()
         return FeedbackItem.model_validate(row["payload"]) if row else None
+
+    def record_knowledge_gap(self, candidate: KnowledgeGapCandidate, event_id: str) -> KnowledgeGapCandidate:
+        from psycopg.types.json import Jsonb
+
+        with self._lock, self._transaction(), self._connection.cursor() as cursor:
+            cursor.execute(
+                "SELECT 1 FROM knowledge_gap_events WHERE candidate_id = %s AND event_id = %s",
+                (candidate.id, event_id),
+            )
+            if cursor.fetchone():
+                cursor.execute("SELECT payload FROM knowledge_gap_candidates WHERE candidate_id = %s", (candidate.id,))
+                row = cursor.fetchone()
+                return KnowledgeGapCandidate.model_validate(row["payload"]) if row else candidate
+            cursor.execute(
+                "SELECT payload FROM knowledge_gap_candidates WHERE candidate_id = %s FOR UPDATE", (candidate.id,),
+            )
+            row = cursor.fetchone()
+            current = KnowledgeGapCandidate.model_validate(row["payload"]) if row else None
+            updated = candidate.model_copy(update={
+                "occurrence_count": (current.occurrence_count if current else 0) + 1,
+                "status": current.status if current else "new",
+                "revision": current.revision if current else 0,
+                "created_at": current.created_at if current else candidate.created_at,
+            })
+            cursor.execute(
+                """INSERT INTO knowledge_gap_candidates
+                (candidate_id, candidate_hash, program_slug, topic_class, status, occurrence_count, revision, payload, created_at, updated_at)
+                VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                ON CONFLICT (candidate_id) DO UPDATE SET status=EXCLUDED.status,
+                occurrence_count=EXCLUDED.occurrence_count, revision=EXCLUDED.revision,
+                payload=EXCLUDED.payload, updated_at=EXCLUDED.updated_at""",
+                (updated.id, updated.candidate_hash, updated.program_slug, updated.topic_class, updated.status,
+                 updated.occurrence_count, updated.revision, Jsonb(updated.model_dump(mode="json")), updated.created_at, updated.updated_at),
+            )
+            cursor.execute(
+                "INSERT INTO knowledge_gap_events(candidate_id, event_id) VALUES (%s, %s)", (candidate.id, event_id),
+            )
+            return updated
+
+    def list_knowledge_gaps(self) -> list[KnowledgeGapCandidate]:
+        with self._lock, self._connection.cursor() as cursor:
+            cursor.execute("SELECT payload FROM knowledge_gap_candidates ORDER BY occurrence_count DESC, updated_at DESC")
+            rows = cursor.fetchall()
+        return [KnowledgeGapCandidate.model_validate(row["payload"]) for row in rows]
+
+    def update_knowledge_gap(self, candidate: KnowledgeGapCandidate, expected_revision: int) -> KnowledgeGapCandidate | None:
+        from psycopg.types.json import Jsonb
+
+        with self._lock, self._transaction(), self._connection.cursor() as cursor:
+            cursor.execute(
+                "SELECT revision FROM knowledge_gap_candidates WHERE candidate_id = %s FOR UPDATE", (candidate.id,),
+            )
+            row = cursor.fetchone()
+            if not row or row["revision"] != expected_revision:
+                return None
+            updated = candidate.model_copy(update={"revision": expected_revision + 1})
+            cursor.execute(
+                """UPDATE knowledge_gap_candidates SET status=%s, source_version_id=%s, eval_dataset_hash=%s,
+                eval_passed=%s, review_note=%s, revision=%s, payload=%s, updated_at=%s
+                WHERE candidate_id=%s AND revision=%s""",
+                (updated.status, updated.source_version_id, updated.eval_dataset_hash, updated.eval_passed,
+                 updated.review_note, updated.revision, Jsonb(updated.model_dump(mode="json")), updated.updated_at,
+                 updated.id, expected_revision),
+            )
+            if cursor.rowcount != 1:
+                return None
+            return updated
 
     def save_program_source_version(self, version: ProgramSourceVersion) -> ProgramSourceVersion:
         from psycopg.types.json import Jsonb

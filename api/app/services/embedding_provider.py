@@ -20,6 +20,7 @@ class EmbeddingProvider:
         *,
         timeout_seconds: float = 10.0,
         transport: httpx.AsyncBaseTransport | None = None,
+        sync_transport: httpx.BaseTransport | None = None,
     ):
         if not api_key.strip():
             raise ValueError("embedding API key is required")
@@ -31,6 +32,7 @@ class EmbeddingProvider:
         self._dimensions = dimensions
         self._timeout = httpx.Timeout(timeout_seconds)
         self._transport = transport
+        self._sync_transport = sync_transport
         self._base_url = base_url.rstrip("/")
 
     async def embed_query(self, query: str, *, cloud_processing_consented: bool = False) -> list[float]:
@@ -58,8 +60,36 @@ class EmbeddingProvider:
             suffix = f" (HTTP {status})" if status else ""
             raise EmbeddingProviderError(f"embedding provider unavailable{suffix}") from None
 
+        return self._parse_vectors(payload, len(texts))
+
+    def embed_query_sync(self, query: str, *, cloud_processing_consented: bool = False) -> list[float]:
+        host = (urlparse(self._base_url).hostname or "").lower()
+        local_hosts = {"localhost", "127.0.0.1", "::1", "embedding", "embedding-service", "embedding-agent", "milvus-embedding"}
+        if host not in local_hosts and not host.endswith((".internal", ".local")) and not cloud_processing_consented:
+            raise EmbeddingProviderError("remote query embedding requires explicit cloud-processing consent")
+        return self.embed_documents_sync([query])[0]
+
+    def embed_documents_sync(self, texts: Sequence[str]) -> list[list[float]]:
+        if not texts or any(not text.strip() for text in texts):
+            raise ValueError("embedding input must contain non-empty text")
+        try:
+            with httpx.Client(timeout=self._timeout, transport=self._sync_transport) as client:
+                response = client.post(
+                    self._url,
+                    headers={"Authorization": f"Bearer {self._api_key}"},
+                    json={"model": self._model, "input": list(texts)},
+                )
+                response.raise_for_status()
+                payload = response.json()
+        except (httpx.HTTPError, ValueError) as error:
+            status = getattr(getattr(error, "response", None), "status_code", None)
+            suffix = f" (HTTP {status})" if status else ""
+            raise EmbeddingProviderError(f"embedding provider unavailable{suffix}") from None
+        return self._parse_vectors(payload, len(texts))
+
+    def _parse_vectors(self, payload: object, expected_count: int) -> list[list[float]]:
         data = payload.get("data") if isinstance(payload, dict) else None
-        if not isinstance(data, list) or len(data) != len(texts):
+        if not isinstance(data, list) or len(data) != expected_count:
             raise EmbeddingProviderError("embedding provider returned an invalid result count")
         vectors: list[list[float]] = []
         for item in data:

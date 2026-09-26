@@ -11,6 +11,7 @@ _ENUMS: dict[str, frozenset[str]] = {
     "node.name": frozenset({"classify", "retrieve", "answer", "confidence_gate", "fallback", "unknown"}),
     "outcome": frozenset({"success", "error", "cancelled", "no_answer", "fallback"}),
     "workflow.version": frozenset({"v1", "v2"}),
+    "prompt.version": frozenset({"v1", "v2"}),
 }
 _COUNTS = frozenset({"token_count", "source_count", "tool_count"})
 _DURATIONS = frozenset({"latency_ms"})

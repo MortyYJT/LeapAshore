@@ -36,6 +36,7 @@ from .models import (
     ApplicantProfile,
     DemoUser,
     FeedbackItem,
+    KnowledgeGapCandidate,
     ProgramSourceVersion,
     RecommendationRunSummary,
     advisor_turn_status_rank,
@@ -89,6 +90,9 @@ class Store(Protocol):
     def save_feedback(self, feedback: FeedbackItem) -> FeedbackItem: ...
     def list_feedback(self, user_id: str | None = None) -> list[FeedbackItem]: ...
     def get_feedback(self, feedback_id: str) -> FeedbackItem | None: ...
+    def record_knowledge_gap(self, candidate: KnowledgeGapCandidate, event_id: str) -> KnowledgeGapCandidate: ...
+    def list_knowledge_gaps(self) -> list[KnowledgeGapCandidate]: ...
+    def update_knowledge_gap(self, candidate: KnowledgeGapCandidate, expected_revision: int) -> KnowledgeGapCandidate | None: ...
     def save_program_source_version(self, version: ProgramSourceVersion) -> ProgramSourceVersion: ...
     def get_program_source_version(self, version_id: str) -> ProgramSourceVersion | None: ...
     def list_program_source_versions(
@@ -123,6 +127,8 @@ class DemoStore:
         self._audits: dict[str, list[AgentRunAudit]] = {}
         self._ai_consents: dict[str, AIConsent] = {}
         self._feedback: dict[str, FeedbackItem] = {}
+        self._knowledge_gaps: dict[str, KnowledgeGapCandidate] = {}
+        self._knowledge_gap_events: set[tuple[str, str]] = set()
         self._program_source_versions: dict[str, ProgramSourceVersion] = {}
 
     def register(self, email: str, password: str, display_name: str) -> tuple[DemoUser, str]:
@@ -417,6 +423,35 @@ class DemoStore:
         with self._lock:
             return self._feedback.get(feedback_id)
 
+    def record_knowledge_gap(self, candidate: KnowledgeGapCandidate, event_id: str) -> KnowledgeGapCandidate:
+        with self._lock:
+            event_key = (candidate.id, event_id)
+            existing = self._knowledge_gaps.get(candidate.id)
+            if event_key not in self._knowledge_gap_events:
+                self._knowledge_gap_events.add(event_key)
+                candidate = candidate.model_copy(update={
+                    "occurrence_count": (existing.occurrence_count if existing else 0) + 1,
+                    "status": existing.status if existing else "new",
+                    "created_at": existing.created_at if existing else candidate.created_at,
+                    "updated_at": candidate.updated_at,
+                })
+                self._knowledge_gaps[candidate.id] = candidate
+            return self._knowledge_gaps.get(candidate.id, candidate)
+
+    def list_knowledge_gaps(self) -> list[KnowledgeGapCandidate]:
+        with self._lock:
+            items = list(self._knowledge_gaps.values())
+        return sorted(items, key=lambda item: (item.occurrence_count, item.updated_at), reverse=True)
+
+    def update_knowledge_gap(self, candidate: KnowledgeGapCandidate, expected_revision: int) -> KnowledgeGapCandidate | None:
+        with self._lock:
+            current = self._knowledge_gaps.get(candidate.id)
+            if not current or current.revision != expected_revision:
+                return None
+            updated = candidate.model_copy(update={"revision": expected_revision + 1})
+            self._knowledge_gaps[candidate.id] = updated
+            return updated
+
     def save_program_source_version(self, version: ProgramSourceVersion) -> ProgramSourceVersion:
         with self._lock:
             existing = self._program_source_versions.get(version.version_id)
@@ -648,6 +683,27 @@ class SQLiteStore:
                     payload TEXT NOT NULL,
                     created_at TEXT NOT NULL,
                     updated_at TEXT NOT NULL
+                );
+                CREATE TABLE IF NOT EXISTS knowledge_gap_candidates (
+                    candidate_id TEXT PRIMARY KEY,
+                    candidate_hash TEXT NOT NULL UNIQUE,
+                    program_slug TEXT,
+                    topic_class TEXT NOT NULL,
+                    status TEXT NOT NULL,
+                    occurrence_count INTEGER NOT NULL CHECK (occurrence_count >= 1),
+                    source_version_id TEXT,
+                    eval_dataset_hash TEXT,
+                    eval_passed INTEGER,
+                    review_note TEXT,
+                    revision INTEGER NOT NULL CHECK (revision >= 0),
+                    payload TEXT NOT NULL,
+                    created_at TEXT NOT NULL,
+                    updated_at TEXT NOT NULL
+                );
+                CREATE TABLE IF NOT EXISTS knowledge_gap_events (
+                    candidate_id TEXT NOT NULL REFERENCES knowledge_gap_candidates(candidate_id),
+                    event_id TEXT NOT NULL,
+                    PRIMARY KEY (candidate_id, event_id)
                 );
                 CREATE TABLE IF NOT EXISTS program_source_versions (
                     version_id TEXT PRIMARY KEY,
@@ -1148,6 +1204,80 @@ class SQLiteStore:
         with self._lock:
             row = self._connection.execute("SELECT payload FROM feedback WHERE feedback_id = ?", (feedback_id,)).fetchone()
         return FeedbackItem.model_validate_json(row["payload"]) if row else None
+
+    def record_knowledge_gap(self, candidate: KnowledgeGapCandidate, event_id: str) -> KnowledgeGapCandidate:
+        with self._lock:
+            self._connection.execute("BEGIN IMMEDIATE")
+            try:
+                event = self._connection.execute(
+                    "SELECT 1 FROM knowledge_gap_events WHERE candidate_id = ? AND event_id = ?",
+                    (candidate.id, event_id),
+                ).fetchone()
+                row = self._connection.execute(
+                    "SELECT payload FROM knowledge_gap_candidates WHERE candidate_id = ?", (candidate.id,),
+                ).fetchone()
+                current = KnowledgeGapCandidate.model_validate_json(row["payload"]) if row else None
+                if event:
+                    self._connection.commit()
+                    return current or candidate
+                updated = candidate.model_copy(update={
+                    "occurrence_count": (current.occurrence_count if current else 0) + 1,
+                    "status": current.status if current else "new",
+                    "revision": current.revision if current else 0,
+                    "created_at": current.created_at if current else candidate.created_at,
+                })
+                self._connection.execute(
+                    """INSERT INTO knowledge_gap_candidates
+                    (candidate_id, candidate_hash, program_slug, topic_class, status, occurrence_count, revision, payload, created_at, updated_at)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                    ON CONFLICT(candidate_id) DO UPDATE SET status=excluded.status,
+                    occurrence_count=excluded.occurrence_count, revision=excluded.revision,
+                    payload=excluded.payload, updated_at=excluded.updated_at""",
+                    (updated.id, updated.candidate_hash, updated.program_slug, updated.topic_class, updated.status,
+                     updated.occurrence_count, updated.revision, updated.model_dump_json(), updated.created_at.isoformat(), updated.updated_at.isoformat()),
+                )
+                self._connection.execute(
+                    "INSERT INTO knowledge_gap_events(candidate_id, event_id) VALUES (?, ?)", (candidate.id, event_id),
+                )
+                self._connection.commit()
+                return updated
+            except Exception:
+                self._connection.rollback()
+                raise
+
+    def list_knowledge_gaps(self) -> list[KnowledgeGapCandidate]:
+        with self._lock:
+            rows = self._connection.execute(
+                "SELECT payload FROM knowledge_gap_candidates ORDER BY occurrence_count DESC, updated_at DESC",
+            ).fetchall()
+        return [KnowledgeGapCandidate.model_validate_json(row["payload"]) for row in rows]
+
+    def update_knowledge_gap(self, candidate: KnowledgeGapCandidate, expected_revision: int) -> KnowledgeGapCandidate | None:
+        with self._lock:
+            self._connection.execute("BEGIN IMMEDIATE")
+            try:
+                row = self._connection.execute(
+                    "SELECT revision FROM knowledge_gap_candidates WHERE candidate_id = ?", (candidate.id,),
+                ).fetchone()
+                if not row or row["revision"] != expected_revision:
+                    self._connection.rollback()
+                    return None
+                updated = candidate.model_copy(update={"revision": expected_revision + 1})
+                result = self._connection.execute(
+                    """UPDATE knowledge_gap_candidates SET status=?, source_version_id=?, eval_dataset_hash=?, eval_passed=?,
+                    review_note=?, revision=?, payload=?, updated_at=? WHERE candidate_id=? AND revision=?""",
+                    (updated.status, updated.source_version_id, updated.eval_dataset_hash, updated.eval_passed,
+                     updated.review_note, updated.revision, updated.model_dump_json(), updated.updated_at.isoformat(),
+                     updated.id, expected_revision),
+                )
+                if result.rowcount != 1:
+                    self._connection.rollback()
+                    return None
+                self._connection.commit()
+                return updated
+            except Exception:
+                self._connection.rollback()
+                raise
 
     def save_program_source_version(self, version: ProgramSourceVersion) -> ProgramSourceVersion:
         with self._lock:

@@ -21,11 +21,12 @@ def fuse_rankings(
     if k < 1:
         raise ValueError("RRF k must be positive")
     fused: dict[str, dict[str, Any]] = {}
-    for ranking in (dense_hits, bm25_hits):
+    for channel, ranking in (("dense_rank", dense_hits), ("bm25_rank", bm25_hits)):
         for rank, hit in enumerate(ranking, start=1):
             chunk_id, entity = _hit_fields(hit)
             candidate = fused.setdefault(chunk_id, {**entity, "chunk_id": chunk_id, "rrf_score": 0.0})
             candidate["rrf_score"] += 1.0 / (k + rank)
+            candidate[channel] = rank
     return sorted(fused.values(), key=lambda item: (-item["rrf_score"], item["chunk_id"]))
 
 
@@ -72,6 +73,8 @@ def retrieve_hybrid(
     source_is_current: Callable[[str, str], bool],
     program_slugs: Sequence[str] = (),
     section: str | None = None,
+    degree_level: str | None = None,
+    field: str | None = None,
     reranker: Callable[[str, Sequence[dict[str, Any]]], Sequence[str]] | None = None,
     candidate_limit: int = 30,
     rerank_limit: int = 10,
@@ -79,7 +82,7 @@ def retrieve_hybrid(
 ) -> list[dict[str, Any]]:
     if not query.strip() or min(candidate_limit, top_k) < 1:
         return []
-    dense = index.search_dense(query_embedding, top_k=candidate_limit, program_slugs=program_slugs, section=section)
-    bm25 = index.search_bm25(query, top_k=candidate_limit, program_slugs=program_slugs, section=section)
+    dense = index.search_dense(query_embedding, top_k=candidate_limit, program_slugs=program_slugs, section=section, degree_level=degree_level, field=field)
+    bm25 = index.search_bm25(query, top_k=candidate_limit, program_slugs=program_slugs, section=section, degree_level=degree_level, field=field)
     candidates = filter_current_sources(fuse_rankings(dense, bm25), source_is_current)
     return rerank_candidates(query, candidates, reranker, max_candidates=min(rerank_limit, candidate_limit))[:top_k]
