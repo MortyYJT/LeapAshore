@@ -60,7 +60,7 @@ test("resolves a name with a college suffix attached", () => {
   assert.deepEqual(recognizeDomesticSchool("清华大学计算机学院"), {
     name: "清华大学",
     tier: "985",
-    matchedBy: "exact",
+    matchedBy: "partial",
   });
 });
 
@@ -78,4 +78,38 @@ test("offers a manual tier and a QS band for every path that cannot be detected"
   assert.equal(OVERSEAS_BAND_OPTIONS.length, 6);
   assert.ok(DOMESTIC_TIER_OPTIONS.some((o) => o.value === "其他"));
   assert.ok(OVERSEAS_BAND_OPTIONS.some((o) => o.value === "不确定"));
+});
+
+// ── Bug fix: false-positive containment matching ────────────────────────────────────────────────
+// A bare containment match resolved an unlisted institution onto a shorter listed name. 南昌航空大学
+// came back as 南昌大学, which would hand a non-211 applicant a Project 211 baseline. The same pattern
+// affects 南京邮电大学 → 南京大学, 天津工业大学 → 天津大学 and 北京信息科技大学 → 北京大学.
+
+test("does not resolve an unlisted institution onto a shorter listed name", () => {
+  const wrong = [
+    "南昌航空大学",
+    "南京邮电大学",
+    "天津工业大学",
+    "北京信息科技大学",
+    "上海海事大学",
+    "重庆邮电大学",
+    "北京第二外国语学院",
+  ];
+  for (const name of wrong) {
+    assert.equal(
+      recognizeDomesticSchool(name),
+      null,
+      `${name} must not resolve onto a different institution`,
+    );
+  }
+});
+
+test("still resolves a listed institution that carries a faculty or campus suffix", () => {
+  assert.equal(recognizeDomesticSchool("清华大学计算机学院")?.name, "清华大学");
+  assert.equal(recognizeDomesticSchool("上海交通大学医学院")?.name, "上海交通大学");
+  assert.equal(recognizeDomesticSchool("北京大学医学部")?.name, "北京大学");
+});
+
+test("reports a suffix match distinctly from a full-name or abbreviation match", () => {
+  assert.equal(recognizeDomesticSchool("清华大学计算机学院")?.matchedBy, "partial");
 });

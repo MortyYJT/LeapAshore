@@ -84,8 +84,23 @@ export interface SchoolMatch {
   /** Full name that was matched. */
   name: string;
   tier: DomesticTier;
-  /** Whether the match came from an abbreviation or the full name. */
-  matchedBy: "exact" | "alias";
+  /** How the name was matched: full name, abbreviation, or a listed name with a suffix attached. */
+  matchedBy: "exact" | "alias" | "partial";
+}
+
+/**
+ * What may legitimately follow an institution name when a user types a faculty or campus.
+ *
+ * This list exists to keep the partial match narrow. Matching on bare containment instead resolved
+ * 南昌航空大学 onto 南昌大学, 南京邮电大学 onto 南京大学 and 天津工业大学 onto 天津大学, which would
+ * hand a non-211 applicant a Project 211 baseline they do not have. Requiring a recognised suffix
+ * means an unknown institution returns null and the interface asks the user, which is the honest
+ * outcome.
+ */
+const TRAILING_SCOPE = /^(大学|学院|学部|研究生院|研究院|校区|分校)/;
+
+function tierOf(name: string): DomesticTier {
+  return C985.includes(name) ? "985" : "211";
 }
 
 function lookup(query: string): SchoolMatch | null {
@@ -93,29 +108,26 @@ function lookup(query: string): SchoolMatch | null {
   if (q.length < 2) return null;
 
   const all = [...C985, ...C211_ONLY];
+
   const exact = all.find((s) => normalize(s) === q);
   if (exact) {
-    return { name: exact, tier: C985.includes(exact) ? "985" : "211", matchedBy: "exact" };
+    return { name: exact, tier: tierOf(exact), matchedBy: "exact" };
   }
 
   const aliasFull = ALIASES[query.trim()];
   if (aliasFull) {
-    return {
-      name: aliasFull,
-      tier: C985.includes(aliasFull) ? "985" : "211",
-      matchedBy: "alias",
-    };
+    return { name: aliasFull, tier: tierOf(aliasFull), matchedBy: "alias" };
   }
 
-  // Fallback for partial input, for example a school name with a college suffix attached.
-  const contained = all.find((s) => normalize(s).includes(q) || q.includes(normalize(s)));
-  if (contained) {
-    return {
-      name: contained,
-      tier: C985.includes(contained) ? "985" : "211",
-      matchedBy: "exact",
-    };
+  // Longest name first, so 上海交通大学 wins over 上海大学 for 上海交通大学医学院.
+  const byLength = [...all].sort((a, b) => normalize(b).length - normalize(a).length);
+  for (const school of byLength) {
+    const key = normalize(school);
+    if (q.startsWith(key) && TRAILING_SCOPE.test(q.slice(key.length))) {
+      return { name: school, tier: tierOf(school), matchedBy: "partial" };
+    }
   }
+
   return null;
 }
 

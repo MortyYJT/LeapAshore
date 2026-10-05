@@ -233,7 +233,11 @@ export default function Onboarding({ initialProfile, onComplete }: Props) {
                         </div>
                         <div className="mt-1 text-xs text-[var(--color-ink-soft)]">
                           依据教育部 985 / 211 公开名单，匹配方式：
-                          {match.matchedBy === "alias" ? "简称" : "校名"}
+                          {match.matchedBy === "alias"
+                            ? "简称"
+                            : match.matchedBy === "partial"
+                              ? "校名 + 院系后缀"
+                              : "校名"}
                         </div>
                       </div>
                     ) : (
