@@ -63,16 +63,23 @@ export function assessProgram(program: Program, profile: Profile): ProgramAssess
   const gpa = normalizeGpa(profile.gpaScore, profile.gpaScale);
   reasons.push(`均分归一为 ${gpa}/100。`);
 
-  // Only 985 / 211 and non-211 backgrounds are reasonably well defined in public guidance.
-  // Other tiers usually have institution-specific lists, so mark them for manual review.
+  // Two groups are well defined in public guidance: Project 985 and Project 211 institutions, which
+  // compare against the program baseline, and every other Chinese institution, which compares against
+  // the non-211 baseline when the program records one. A 双一流 institution that is not also 985 or
+  // 211 belongs to the second group. An applicant who declines to state a tier stays unclassified and
+  // is sent to manual review.
   const tierKnown = profile.domesticTier === "985" || profile.domesticTier === "211";
-  const isShuangfei = profile.domesticTier === "一本" || profile.domesticTier === "二本" || profile.domesticTier === "专科";
+  const isNon211 =
+    profile.domesticTier === "双一流" ||
+    profile.domesticTier === "一本" ||
+    profile.domesticTier === "二本" ||
+    profile.domesticTier === "专科";
 
   let threshold: number | null = null;
   if (tierKnown) {
     threshold = program.minimumMark;
     reasons.push(`按已录入的 ${program.university} 公开基线 ${program.minimumMark ?? "—"}% 比较。`);
-  } else if (isShuangfei && program.non211MinimumMark !== null) {
+  } else if (isNon211 && program.non211MinimumMark !== null) {
     threshold = program.non211MinimumMark;
     reasons.push(
       `该项目录入了中国非 211 院校的单独基线 ${program.non211MinimumMark}%，按此比较。`,

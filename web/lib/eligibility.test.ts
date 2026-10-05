@@ -100,15 +100,18 @@ test("refuses to tier when no baseline matches the applicant tier", () => {
   assert.equal(result.gapStatus, "需要人工核验");
 });
 
-// Known gap: the non-211 baseline only applies to 一本 / 二本 / 专科. An applicant who selects
-// 双一流 or 其他 receives no tier at all, even though institutions in those groups are often strong.
-// Asserted here so the behaviour is explicit rather than accidental.
-test("gives no tier to a 双一流 or 其他 applicant", () => {
-  for (const domesticTier of ["双一流", "其他"] as const) {
-    const result = assessProgram(program("unsw-master-it"), { ...BASE, domesticTier });
-    assert.equal(result.suggestedTier, null, `expected no tier for ${domesticTier}`);
-    assert.equal(result.gapStatus, "需要人工核验");
-  }
+// A 双一流 institution that is not also 985 or 211 is a non-211 institution, so the recorded
+// non-211 baseline applies. Treating it as unknowable left those applicants with an empty portfolio.
+test("applies the non-211 baseline to a 双一流 applicant", () => {
+  const result = assessProgram(program("unsw-master-it"), { ...BASE, domesticTier: "双一流" });
+  assert.equal(result.suggestedTier, "保");
+  assert.ok(result.reasons.some((r) => r.includes("非 211")));
+});
+
+test("still gives no tier when the applicant declines to state a tier", () => {
+  const result = assessProgram(program("unsw-master-it"), { ...BASE, domesticTier: "其他" });
+  assert.equal(result.suggestedTier, null);
+  assert.equal(result.gapStatus, "需要人工核验");
 });
 
 test("refuses to convert an overseas degree automatically", () => {
@@ -146,7 +149,7 @@ test("marks every seed program as resting on unverified data", () => {
 test("never reaches 满足基础门槛 with the current seed data", () => {
   const outcomes = new Set<string>();
   for (const p of PROGRAMS) {
-    for (const domesticTier of ["985", "211", "一本"] as const) {
+    for (const domesticTier of ["985", "211", "一本", "双一流"] as const) {
       for (const englishScore of ["IELTS 8.0", "IELTS 6.5", ""]) {
         const result = assessProgram(p, { ...BASE, domesticTier, englishScore, gpaScore: 95 });
         outcomes.add(result.gapStatus);
