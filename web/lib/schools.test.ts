@@ -13,9 +13,9 @@ test("the Project 985 list holds the 39 official institutions", () => {
 });
 
 // Known gap: this list holds 76 Project 211 institutions that are not Project 985, giving 115 in
-// total, while commonly cited figures run from 112 to 116 depending on whether split campuses such as
-// 中国矿业大学(北京) and 中国石油大学(华东) are counted as one institution or two. The list has NOT been
-// checked against an authoritative source. Do not treat 76 as verified.
+// total. Different sources may count split campuses such as 中国矿业大学(北京) and 中国石油大学(华东) as
+// one institution or as two. The list has NOT been checked against an authoritative source, so do not
+// treat either 76 or 115 as verified.
 test("the Project 211 list is present and plausibly sized", () => {
   assert.equal(C211_ONLY.length, 76);
   assert.ok(C211_ONLY.every((name) => name.length >= 2));
