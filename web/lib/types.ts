@@ -1,0 +1,147 @@
+// OfferPilot domain model, front-end MVP version.
+// Mirrors the Pydantic models the FastAPI service will expose, so it can be swapped for API responses.
+
+export type EducationLevel = "高中" | "本科" | "硕士" | "其他";
+
+export type SchoolOrigin = "国内" | "海外";
+
+/** Domestic tier. 985 and 211 are detected automatically; the rest are self-reported. */
+export type DomesticTier = "985" | "211" | "双一流" | "一本" | "二本" | "专科" | "其他";
+
+/** Overseas institutions are self-reported by QS band; rankings change every year. */
+export type OverseasBand =
+  | "QS 1-50"
+  | "QS 51-100"
+  | "QS 101-200"
+  | "QS 201-500"
+  | "QS 500+"
+  | "不确定";
+
+export type DegreeLevel = "本科" | "授课型硕士" | "研究型硕士" | "博士";
+
+export type StudyArea =
+  | "计算机与数据"
+  | "商科与金融"
+  | "工程"
+  | "教育与社会科学"
+  | "生命科学"
+  | "医学与健康"
+  | "法律与犯罪学"
+  | "自然科学与数学"
+  | "人文与语言"
+  | "建筑规划与设计"
+  | "传媒艺术与音乐"
+  | "环境与农业";
+
+/** Application profile: the object the whole product revolves around. */
+export interface Profile {
+  educationLevel: EducationLevel | null;
+  schoolOrigin: SchoolOrigin | null;
+  /** Raw school name as typed. May be empty when the user prefers not to disclose it. */
+  schoolName: string;
+  /** Detected or self-reported tier. */
+  domesticTier: DomesticTier | null;
+  overseasBand: OverseasBand | null;
+  major: string;
+  /** Undergraduate average and its scale, normalised to a percentage. */
+  gpaScore: number | null;
+  gpaScale: number | null;
+  targetDegree: DegreeLevel | null;
+  targetField: StudyArea | null;
+  englishScore: string;
+  annualBudgetCny: number | null;
+  intake: string;
+}
+
+export type SourceStatus = "已核验" | "待核验";
+
+/** Official source citation. The excerpt is a manual summary, not captured page text. */
+export interface SourceCitation {
+  id: string;
+  title: string;
+  url: string;
+  excerpt: string;
+  verifiedAt: string | null;
+  status: SourceStatus;
+}
+
+/** An admission program. */
+export interface Program {
+  slug: string;
+  university: string;
+  name: string;
+  city: string;
+  degreeLevel: DegreeLevel;
+  field: StudyArea;
+  duration: string;
+  /** Grade baseline as a percentage. Provenance and verification status live in source. */
+  minimumMark: number | null;
+  /** Separate baseline for Chinese non-211 institutions, only when an official page states one. */
+  non211MinimumMark: number | null;
+  requiresCognate: boolean;
+  prerequisites: string[];
+  englishRequirement: string;
+  source: SourceCitation;
+  /** Overall data confidence. Every record is pending verification during the MVP stage. */
+  dataStatus: SourceStatus;
+}
+
+export type PortfolioTier = "冲" | "稳" | "保";
+
+export interface PortfolioItem {
+  programSlug: string;
+  tier: PortfolioTier;
+  /** Whether the user confirmed this program into the application portfolio. */
+  confirmed: boolean;
+  /** True when the user added a program the system could not tier automatically. */
+  needsReview?: boolean;
+}
+
+export type PhaseId =
+  | "selection"
+  | "academic"
+  | "language"
+  | "specialized"
+  | "submission"
+  | "decision";
+
+export type PhaseStatus = "pending" | "in_progress" | "completed" | "overdue";
+
+/** A preparation item, shown when a roadmap node is opened. */
+export interface MaterialItem {
+  id: string;
+  label: string;
+  detail: string;
+  /** Applicability filter by degree level and study area. */
+  appliesTo?: "research" | "portfolio" | "all";
+}
+
+export interface PhaseTask {
+  materialId: string;
+  label: string;
+  detail: string;
+  done: boolean;
+  /** official = confirmed deadline with a source; suggested = derived system suggestion. */
+  scheduleOrigin: "suggested" | "official" | "user";
+  dueAt: string | null;
+  deadlineSourceUrl: string | null;
+}
+
+export interface RoadmapPhase {
+  id: PhaseId;
+  title: string;
+  detail: string;
+  /** Suggested start date, derived backwards from the intake term. */
+  suggestedAt: string;
+  status: PhaseStatus;
+  tasks: PhaseTask[];
+}
+
+export interface Roadmap {
+  intake: string;
+  anchorAt: string;
+  generatedAt: string;
+  phases: RoadmapPhase[];
+}
+
+export type AppStage = "onboarding" | "generating" | "portfolio" | "app";

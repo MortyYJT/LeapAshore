@@ -1,0 +1,152 @@
+// Program data (MVP seed set).
+//
+// IMPORTANT: these values come from a first-pass manual seed set and have NOT been
+// re-checked against the official course pages. Every record therefore carries
+// dataStatus="待核验", the interface surfaces it, and nothing here may be presented as verified.
+
+import type { Program } from "./types";
+
+function src(
+  id: string,
+  title: string,
+  url: string,
+  excerpt: string,
+): Program["source"] {
+  return {
+    id,
+    title,
+    url,
+    excerpt,
+    verifiedAt: null, // 未核验：不填日期，避免出现假的核验时间
+    status: "待核验",
+  };
+}
+
+export const PROGRAMS: Program[] = [
+  {
+    slug: "unsw-master-it",
+    university: "新南威尔士大学",
+    name: "Master of Information Technology",
+    city: "悉尼",
+    degreeLevel: "授课型硕士",
+    field: "计算机与数据",
+    duration: "2 年",
+    minimumMark: 65,
+    non211MinimumMark: 70,
+    requiresCognate: false,
+    prerequisites: [],
+    englishRequirement: "按 UNSW 英语语言要求核验",
+    source: src(
+      "UNSW-MIT-2026",
+      "UNSW Master of Information Technology",
+      "https://www.unsw.edu.au/study/postgraduate/master-of-information-technology?studentType=International",
+      "第一版人工摘录：相关背景通常要求 65% 均分；非 211 中国院校通常要求 70%。",
+    ),
+    dataStatus: "待核验",
+  },
+  {
+    slug: "usyd-master-cs",
+    university: "悉尼大学",
+    name: "Master of Computer Science",
+    city: "悉尼",
+    degreeLevel: "授课型硕士",
+    field: "计算机与数据",
+    duration: "2 年",
+    minimumMark: 65,
+    non211MinimumMark: null,
+    requiresCognate: false,
+    prerequisites: [],
+    englishRequirement: "按悉尼大学课程页英语要求核验",
+    source: src(
+      "USYD-MCS-2026",
+      "University of Sydney Master of Computer Science",
+      "https://www.sydney.edu.au/content/courses/courses/pc/master-of-computer-science.html",
+      "第一版人工摘录：需具有任意学科本科学位并达到 credit average（65%）或同等水平。",
+    ),
+    dataStatus: "待核验",
+  },
+  {
+    slug: "monash-master-ai",
+    university: "蒙纳士大学",
+    name: "Master of Artificial Intelligence",
+    city: "墨尔本",
+    degreeLevel: "授课型硕士",
+    field: "计算机与数据",
+    duration: "1.5–2 年",
+    minimumMark: 60,
+    non211MinimumMark: null,
+    requiresCognate: false,
+    prerequisites: [],
+    englishRequirement: "需同时满足 Monash 英语要求",
+    source: src(
+      "MONASH-MAI-2026",
+      "Monash Master of Artificial Intelligence",
+      "https://www.monash.edu/study/courses/find-a-course/artificial-intelligence-c6007",
+      "第一版人工摘录：2 年路径接受非 IT 本科，通常要求 60% 均分。",
+    ),
+    dataStatus: "待核验",
+  },
+  {
+    slug: "monash-master-cs",
+    university: "蒙纳士大学",
+    name: "Master of Computer Science",
+    city: "墨尔本",
+    degreeLevel: "授课型硕士",
+    field: "计算机与数据",
+    duration: "1.5–2 年",
+    minimumMark: 60,
+    non211MinimumMark: null,
+    requiresCognate: true,
+    prerequisites: ["编程", "算法或数据结构"],
+    englishRequirement: "需同时满足 Monash 英语要求",
+    source: src(
+      "MONASH-MCS-2026",
+      "Monash Master of Computer Science",
+      "https://www.monash.edu/study/courses/find-a-course/computer-science-c6008",
+      "第一版人工摘录：不同入学路径取决于既往计算机学习背景。",
+    ),
+    dataStatus: "待核验",
+  },
+  {
+    slug: "uq-master-data-science",
+    university: "昆士兰大学",
+    name: "Master of Data Science",
+    city: "布里斯班",
+    degreeLevel: "授课型硕士",
+    field: "计算机与数据",
+    duration: "1.5–2 年",
+    minimumMark: 71.4,
+    non211MinimumMark: null,
+    requiresCognate: true,
+    prerequisites: ["微积分或高等数学", "线性代数与统计，或编程与数据库"],
+    englishRequirement: "IELTS 6.5，单项不低于 6.0",
+    source: src(
+      "UQ-MDS-2027",
+      "UQ Master of Data Science",
+      "https://study.uq.edu.au/study-options/programs/master-data-science-5660",
+      "第一版人工摘录：通常要求 UQ 7 分制 GPA 5.0，并满足指定数学、统计及计算机课程要求。",
+    ),
+    dataStatus: "待核验",
+  },
+  {
+    slug: "uwa-master-it",
+    university: "西澳大学",
+    name: "Master of Information Technology",
+    city: "珀斯",
+    degreeLevel: "授课型硕士",
+    field: "计算机与数据",
+    duration: "1.5–2 年",
+    minimumMark: 65,
+    non211MinimumMark: null,
+    requiresCognate: false,
+    prerequisites: ["Mathematics Methods ATAR 或同等数学基础"],
+    englishRequirement: "IELTS 6.5，单项不低于 6.0",
+    source: src(
+      "UWA-MIT-2026",
+      "UWA Master of Information Technology",
+      "https://www.uwa.edu.au/study/courses/master-of-information-technology",
+      "第一版人工摘录：通常要求受认可本科学位、至少 65% 等值均分，并具备规定数学基础。",
+    ),
+    dataStatus: "待核验",
+  },
+];
