@@ -14,7 +14,7 @@
   --color-line: #e5e7eb;
 
   --color-canvas: #ffffff;
-  --color-surface: #f7f9fa;
+  --color-surface: #f6f9f4;
 
   --color-warn: #f0a500;
   --color-warn-soft: #fff4d6;
@@ -167,19 +167,37 @@
     letter-spacing: 0.04em;
   }
 
+  /*
+    Portfolio tiers read as one green intensity scale rather than three unrelated colours: a reach is
+    the palest, a safe choice is solid. The palette stays green and white.
+  */
   .tag-chong {
-    background: #ffe0e6;
-    color: #c9184a;
+    background: #f0fbe4;
+    color: var(--color-brand-dark);
   }
 
   .tag-wen {
-    background: #e0edff;
-    color: #1d4ed8;
+    background: var(--color-brand-soft);
+    color: var(--color-brand-dark);
   }
 
   .tag-bao {
+    background: var(--color-brand);
+    color: #ffffff;
+  }
+
+  /*
+    Status tags carry meaning, not decoration, so they keep their own colours. A gap and a pending
+    review must stay visually distinct from a satisfied check even in a green-dominant palette.
+  */
+  .tag-ok {
     background: var(--color-brand-soft);
     color: var(--color-brand-dark);
+  }
+
+  .tag-gap {
+    background: var(--color-danger-soft);
+    color: var(--color-danger);
   }
 
   .tag-warn {

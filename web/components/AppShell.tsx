@@ -45,13 +45,17 @@ export default function AppShell({
 
   return (
     <div className="min-h-screen">
-      <header className="sticky top-0 z-10 border-b-2 border-[var(--color-line)] bg-white">
-        <div className="mx-auto flex w-full max-w-5xl items-center gap-1 px-4">
-          <div className="mr-3 flex items-center gap-2 py-3">
+      {/*
+        Equal 1fr columns on both sides keep the tab row centred on the page rather than centred in
+        whatever space the logo leaves behind. The logo hides on narrow screens so the tabs get room.
+      */}
+      <header className="sticky top-0 z-10 border-b-2 border-[var(--color-line)] bg-[var(--color-canvas)]">
+        <div className="mx-auto grid w-full max-w-5xl grid-cols-[1fr_auto_1fr] items-center px-4">
+          <div className="flex items-center gap-2 justify-self-start py-3">
             <span className="text-xl">🧭</span>
-            <strong className="text-[15px]">OfferPilot</strong>
+            <strong className="hidden text-[15px] lg:inline">OfferPilot</strong>
           </div>
-          <nav className="flex flex-1 gap-1 overflow-x-auto">
+          <nav className="flex justify-self-center gap-1 overflow-x-auto py-2">
             {TABS.map((t) => (
               <button
                 key={t.key}
@@ -59,7 +63,11 @@ export default function AppShell({
                 className="whitespace-nowrap rounded-xl px-4 py-2 text-sm font-bold transition-colors"
                 style={
                   tab === t.key
-                    ? { background: "var(--color-brand-soft)", color: "var(--color-brand-dark)" }
+                    ? {
+                        background: "var(--color-brand-soft)",
+                        color: "var(--color-brand-dark)",
+                        boxShadow: "0 2px 0 var(--color-brand)",
+                      }
                     : { color: "var(--color-ink-soft)" }
                 }
               >
@@ -67,6 +75,7 @@ export default function AppShell({
               </button>
             ))}
           </nav>
+          <div aria-hidden />
         </div>
       </header>
 

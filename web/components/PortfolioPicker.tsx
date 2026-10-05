@@ -92,9 +92,9 @@ export default function PortfolioPicker({ profile, onConfirm, onBack }: Props) {
                     <span
                       className={`tag ${
                         a.gapStatus === "满足基础门槛"
-                          ? "tag-bao"
+                          ? "tag-ok"
                           : a.gapStatus === "存在门槛缺口"
-                            ? "tag-chong"
+                            ? "tag-gap"
                             : "tag-warn"
                       }`}
                     >
