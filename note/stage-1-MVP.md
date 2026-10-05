@@ -290,3 +290,45 @@
 - **这个 bug 是我自己漏掉的，原因是我的验收面比真实使用面窄**：前两轮的 `make screenshots` **只跑 `localhost`**，而用户的实际入口是 `127.0.0.1` / 局域网 IP。只验一个 origin 等于没验。已用 `make check-origins` 补上这个缺口。
 - 我最初的怀疑是「dev server 运行期间跑 `next build` 冲掉了 `.next` 产物」——**这个猜测没有被证实**，实测所有 chunk 都返回 HTTP 200。真正的证据来自 dev log 里的 `Cross-origin access to Next.js dev resources is blocked`。教训：**先去读日志，再猜原因。**
 - 用户截图里的界面整体偏灰、按钮呈浅绿（disabled 态），我一度以为是样式回归。实际是移动端窄视口渲染 + 我的样式修改都已生效；`继续` 按钮变浅是因为第 1 步还没选项，属于正确行为，不是 bug。**差点把正常状态当成故障去改。**
+
+## 2026-10-05 — 补齐领域函数测试，并按贡献规范重排提交
+
+### 用户关键原话
+
+- 「好的，注意合理安排commit，还有commit message要有body什么的，格式什么的按照文档规定的来，你开发完成之后我微调，mvp就做好了」
+
+### 关键产出与评审结论
+
+- 此前没有 git 仓库，也没有配置 git 身份。本轮 `git init`，身份取自既有仓库（`MortyYJT <213947413+MortyYJT@users.noreply.github.com>`），工作分支 `codex/stage-1-mvp`。
+- **T4 完成**：41 个测试，用 Node 内置 `node:test` 跑，**零新增依赖**（符合 AGENTS.md「不要自行加依赖」）。需要给 `tsconfig.json` 开 `allowImportingTsExtensions`，因为 Node 的 ESM 解析要求写全 `.ts` 后缀。
+- 三条已知缺口**用测试显式钉住**，而不是留在注释里等以后忘掉：
+  1. 211 名单 76 条（合计 115），**未经权威来源核验**；
+  2. 选「双一流」或「其他」的申请人**拿不到任何档位**（`suggestedTier` 为 `null`，在界面上只能走"仍然加入"）；
+  3. **「满足基础门槛」当前不可达** —— 没有任何种子项目同时具备可解析的 IELTS 要求和空先修课清单，所以 985 高分申也有人落到"需要人工核验"。
+- **测试性质要说清楚**：这是**特性固化测试（characterisation test），不是 TDD**。这些函数在 T1–T3 就写完了，拿不到真实的 RED。把它讲成 TDD 是不诚实的。**真正的 TDD 从 T5 开始。**
+- CI 增加 `npm test` 步骤（在 build 之前），Makefile 增加 `test` 与 `check-origins` 两个目标。
+
+### 提交安排
+
+按关注点分 4 个提交，**每个都能独立构建**（逐个 checkout 实测验证）：
+
+| 提交 | 内容 | 验证 |
+|---|---|---|
+| `chore(repo)` | 规范、贡献指南、Makefile、README、.gitignore | 仅文档，无需构建 |
+| `feat(web)` | 前端骨架 + 领域规则 + 走查脚本 | build ✓ TypeScript ✓ |
+| `test(web)` | 41 个测试 + 起源检查 + Makefile 目标 + CI | build ✓ 41 pass |
+| `docs(repo)` | 英文验收报告 + 中文 note + 16 张截图 | build ✓ 41 pass |
+
+### 用户拒绝或纠偏
+
+- 用户要求提交按 `CONTRIBUTING.md` 的规范来（强制 scope + 英文 body），已全部遵守。
+
+### 翻车与返工
+
+- **提交重做了三次，两次是我自己的疏忽：**
+  1. 第一次 `package-lock.json` 漏提交 —— 而 CI 用的 `npm ci` 正需要它，等于 CI 一定失败。
+  2. 第二次 `git checkout --orphan` 之后用 `git rm -r --cached .` 清索引**失败但被忽略**，索引没清空，导致第一个提交把 26 个 `web/` 文件全吞了。改用 `git read-tree --empty` 才对。**根因是我没有在提交后立刻核对文件集。**
+  3. 第三次 `git add web` 会把 `web/lib/*.test.ts` 一起带上，测试文件跑进了 `feat` 提交。改为逐路径显式 `git add`。
+- 中间一版分成 6 个提交，其中 2 个**无法独立构建**（`app/page.tsx` 是编排器，要等所有阶段模块就位）。我用静态导入解析验证确认了这一点，随后把三个 feat 合成一个，换来每个提交都能构建。**没有为了好看去伪造中间版本的 `page.tsx`** —— 那段代码从来没有存在过。
+- 测试注释里我原本写了"常见口径 112–116 所"，后来发现**这个范围我自己也没核验过**。在一个专门用来标记未核验数据的文件里放未核验数字是自相矛盾的，已用单独一个提交删掉该说法。搜索也没能给出干净的权威数字，所以只保留可核对的部分。
+- 教训：**每完成一个 commit 立刻 `git ls-tree -r --name-only HEAD` 核对文件集**，不要等最后一起查。
