@@ -1,4 +1,4 @@
-.PHONY: help dev build verify install clean screenshots
+.PHONY: help dev build test verify install clean screenshots check-origins
 
 WEB := web
 SHOTS := docs/screenshots
@@ -17,10 +17,16 @@ dev:  ## Start the frontend dev server on :3000
 build:  ## Type-check and build
 	cd $(WEB) && npm run build
 
-verify: build screenshots  ## Verify: build plus the end-to-end screenshot walkthrough
+test:  ## Run the unit tests for the domain functions
+	cd $(WEB) && npm test
+
+verify: build test screenshots  ## Verify: build, unit tests and the end-to-end walkthrough
 
 screenshots:  ## Drive the full flow in a real browser, writing screenshots to docs/screenshots/
 	node scripts/e2e-walkthrough.cjs
+
+check-origins:  ## Assert the dev server is interactive from every allowed origin (needs make dev running)
+	node scripts/dev-origin-check.cjs
 
 clean:  ## Remove build output
 	rm -rf $(WEB)/.next $(WEB)/node_modules

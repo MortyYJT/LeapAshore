@@ -1,0 +1,45 @@
+name: Offline CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  web:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Run unit tests
+        run: npm test
+      - name: Type-check and build
+        run: npm run build
+
+# Not covered by this workflow, and deliberately so:
+#
+# - The end-to-end walkthrough (`make screenshots`) drives a real Chromium through
+#   `scripts/e2e-walkthrough.cjs`. It currently borrows Playwright from a sibling
+#   checkout, so it only runs locally. Adding it here means installing Playwright
+#   in CI first.
+# - Automated interface checks are handled by the Vibe-coding exception in
+#   AGENTS.md: pages are accepted from real browser output, not from TDD.
+# - There is no backend job yet. Add one when the FastAPI service exists.
