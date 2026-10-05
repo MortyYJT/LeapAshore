@@ -1,0 +1,32 @@
+# 编辑忽略：npm 缓存指向本仓库内，避免系统缓存权限问题
+.npm-cache/
+
+# superpowers 子代理的临时工作区（brief / report / red.txt / green.txt）
+.superpowers/
+
+# 环境与密钥
+.env
+.env.local
+
+# 前端
+node_modules/
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+
+# 系统与 IDE
+.DS_Store
+.idea/
+.vscode/
+
+# 日志
+*.log
+log/
+
+# 后续接后端时启用
+# .venv/
+# __pycache__/
+# .pytest_cache/
+# .ruff_cache/
+# *.egg-info/
