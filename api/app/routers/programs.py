@@ -1,6 +1,7 @@
+import logging
 from typing import Annotated
 
-from fastapi import APIRouter, Depends, HTTPException, Query, status
+from fastapi import APIRouter, Depends, Query, Response
 from sqlalchemy import select
 from sqlalchemy.orm import Session, selectinload
 
@@ -11,9 +12,18 @@ from app.schemas.program import ProgramOut, SourceOut
 
 router = APIRouter(prefix="/api/programs", tags=["programs"])
 
+logger = logging.getLogger(__name__)
+
+# Response header naming the programs this request could not serve. The body stays a plain list of
+# programs, because every consumer reads it that way, so the defect travels beside it rather than in
+# it: a caller that reads only the body still gets the healthy rows, and one that watches the header
+# learns that the catalogue is short and which ids are missing.
+WITHOUT_SOURCE_HEADER = "X-OfferPilot-Programs-Without-Source"
+
 
 @router.get("", response_model=list[ProgramOut])
 def list_programs(
+    response: Response,
     session: Annotated[Session, Depends(get_session)],
     field: Annotated[str | None, Query()] = None,
 ) -> list[ProgramOut]:
@@ -27,10 +37,18 @@ def list_programs(
     as the program's rows sorted by `sort_order`, the order a reader has to check them in; a
     program with no rows serves `[]`, which is how the frontend knows there is nothing to check.
 
-    A program whose `source_id` points at a row that no longer exists is a data defect, not an
-    empty citation, so it makes the request fail loudly instead of serialising `source: null` or
-    dropping the program from the list. Both alternatives hide the defect: the first serves a
-    program with no provenance, the second silently shrinks the catalogue.
+    A program whose `source_id` does not resolve to a source row is a data defect, not an empty
+    citation. The schema makes it unreachable — the column is `NOT NULL` and the foreign key points
+    at `sources.id` — so this branch is a backstop for a row a future migration or a manual edit
+    could still produce.
+
+    The backstop serves the healthy rows and names the defective ids, instead of failing the whole
+    request. Refusing the response was the first version, and one bad row made `GET /api/programs`
+    answer 500 for the entire catalogue: five healthy programs became invisible to every applicant
+    because a sixth had no provenance. The defect still surfaces — the ids go out in the
+    `X-OfferPilot-Programs-Without-Source` header and into an error log — but the applicant keeps
+    the catalogue. What does not happen either way is serving a program with no provenance:
+    `source: null` is never written, and a defective row is never passed off as sound.
 
     Two differences from `web/lib/types.ts` cannot be seen from the response alone, so an adapter
     that feeds that type must be told about them rather than discover them by rendering the wrong
@@ -54,13 +72,12 @@ def list_programs(
         statement = statement.where(Program.field == field)
 
     out: list[ProgramOut] = []
+    without_source: list[str] = []
     for program in session.execute(statement).scalars():
         source = session.get(Source, program.source_id) if program.source_id else None
         if source is None:
-            raise HTTPException(
-                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
-                detail=f"program {program.id} has no source row (source_id={program.source_id!r})",
-            )
+            without_source.append(program.id)
+            continue
         out.append(
             ProgramOut(
                 slug=program.id,
@@ -83,4 +100,9 @@ def list_programs(
                 source=SourceOut(url=source.url, title=source.title, status=source.status),
             )
         )
+    if without_source:
+        logger.error(
+            "programs without a source row, served without them: %s", ", ".join(without_source)
+        )
+        response.headers[WITHOUT_SOURCE_HEADER] = ", ".join(without_source)
     return out

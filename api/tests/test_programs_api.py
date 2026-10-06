@@ -12,7 +12,7 @@ from unittest.mock import MagicMock
 from uuid import uuid4
 
 import pytest
-from fastapi import HTTPException
+from fastapi import Response
 from fastapi.testclient import TestClient
 from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
@@ -21,7 +21,7 @@ from app.db import SessionLocal
 from app.main import app
 from app.models.program import Program, ProgramPrerequisite, University
 from app.models.source import Source, SourceStatus
-from app.routers.programs import list_programs
+from app.routers.programs import WITHOUT_SOURCE_HEADER, list_programs
 from app.seed import seed_programs
 from tests.test_seed import PROGRAM_IDS
 
@@ -111,32 +111,98 @@ def test_the_database_refuses_a_program_whose_source_does_not_exist(require_db, 
         assert check.get(Source, source_id) is not None
 
 
-def test_a_program_whose_source_row_is_gone_fails_loudly():
+def test_the_database_refuses_a_program_with_no_source_at_all(require_db, db_session):
+    """`source_id` is mandatory in the schema, not merely filled in by the seed.
+
+    The parallel columns `review_criteria.source_id` and `document_review_findings.criterion_id`
+    were always `NOT NULL`; `programs.source_id` was left to the seed, which is what let a single
+    sourceless row exist and take the whole catalogue down with a 500. This pins the constraint
+    itself, so a later migration that relaxes it fails here instead of quietly restoring the hole.
+    The insert is attempted through the ORM with the column left unset, which is exactly how a
+    program row with no provenance would be created.
+    """
+    with SessionLocal() as session:
+        with pytest.raises(IntegrityError):
+            session.add(
+                Program(
+                    id="test-program-without-source",
+                    university_id="unsw",
+                    name="没有来源的项目",
+                    data_status="待核验",
+                )
+            )
+            session.flush()
+        session.rollback()
+
+    with SessionLocal() as check:
+        assert check.get(Program, "test-program-without-source") is None
+
+
+def test_a_program_without_a_source_does_not_take_the_healthy_rows_down():
     """The router's backstop for a program whose source row cannot be read.
 
-    That state cannot be reached through PostgreSQL while the foreign key holds, so this drives
-    the endpoint with a session stub instead of pretending a database could produce it. It still
-    pins the decision: refusing to answer beats `source: null` (a program with no provenance) and
-    beats dropping the row (a catalogue that shrinks with no explanation).
+    That state cannot be reached through PostgreSQL — `source_id` is `NOT NULL` and its foreign key
+    points at `sources.id` — so this drives the endpoint with a session stub instead of pretending a
+    database could produce it. It pins the decision the old version got wrong: one defective row
+    used to fail the whole request with a 500, which hid five healthy programs from every applicant
+    because a sixth had no provenance.
+
+    The healthy rows are served, `source: null` is never written, and the defective ids travel in the
+    `X-OfferPilot-Programs-Without-Source` header rather than being dropped in silence. The header is
+    what makes this "serve what can be served and say what could not" rather than "skip the bad row".
     """
     orphan = Program(
         id="orphan-program",
         university_id="unsw",
         name="没有来源的项目",
+        requires_cognate=False,
+        requires_supervisor=False,
+        research_proposal_required=False,
         data_status="待核验",
         source_id="src-that-does-not-exist",
     )
     orphan.university = University(id="unsw", name="新南威尔士大学")
+    # The booleans are set rather than left to the column defaults: a `Program` built in Python has
+    # none of them yet, and the healthy row is serialised below, so a default that only the INSERT
+    # would apply is `None` here and the response model rejects it.
+    healthy = Program(
+        id="healthy-program",
+        university_id="unsw",
+        name="有来源的项目",
+        requires_cognate=False,
+        requires_supervisor=False,
+        research_proposal_required=False,
+        data_status="待核验",
+        source_id="src-that-exists",
+    )
+    healthy.university = University(id="unsw", name="新南威尔士大学")
+    found = Source(
+        id="src-that-exists",
+        url="https://example.edu/healthy",
+        title="Healthy program",
+        status=SourceStatus.UNVERIFIED,
+    )
 
     session = MagicMock()
-    session.execute.return_value.scalars.return_value = iter([orphan])
-    session.get.return_value = None
+    session.execute.return_value.scalars.return_value = iter([healthy, orphan])
+    session.get.side_effect = lambda model, ident, *args, **kwargs: (
+        found if ident == "src-that-exists" else None
+    )
 
-    with pytest.raises(HTTPException) as raised:
-        list_programs(session, field=None)
+    response = Response()
+    body = list_programs(response=response, session=session, field=None)
 
-    assert raised.value.status_code == 500
-    assert "orphan-program" in raised.value.detail
+    assert [program.slug for program in body] == ["healthy-program"]
+    assert body[0].source.url == "https://example.edu/healthy"
+    assert response.headers[WITHOUT_SOURCE_HEADER] == "orphan-program"
+
+
+def test_a_healthy_catalogue_reports_no_defect(require_db, db_session):
+    """The defect header is absent when nothing is wrong, so it can be read as an alarm."""
+    seed_programs(db_session)
+    response = TestClient(app).get("/api/programs")
+    assert response.status_code == 200
+    assert WITHOUT_SOURCE_HEADER not in response.headers
 
 
 def test_the_wire_format_uses_the_frontend_key_names(require_db, db_session):

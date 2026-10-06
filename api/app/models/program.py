@@ -47,7 +47,11 @@ class Program(Base):
     research_proposal_required: Mapped[bool] = mapped_column(Boolean, default=False)
     english_requirement: Mapped[str | None] = mapped_column(Text)
 
-    source_id: Mapped[str | None] = mapped_column(String(36), ForeignKey("sources.id"))
+    # Mandatory, like `review_criteria.source_id` and `document_review_findings.criterion_id`: a
+    # program is a claim about an official page, so a program with no page is not a program with an
+    # unknown source. The router still checks the row it reads, because a check that only holds in
+    # the schema is worth keeping visible at the point of use.
+    source_id: Mapped[str] = mapped_column(String(36), ForeignKey("sources.id"))
     data_status: Mapped[str] = mapped_column(String(16), default="待核验")
 
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
