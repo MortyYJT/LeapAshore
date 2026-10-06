@@ -54,14 +54,14 @@ api-test:  ## Run the backend tests in the project-local venv
 api-dev:  ## Start the backend dev server on :8000
 	cd api && .venv/bin/uvicorn app.main:app --reload --port 8000
 
-db-up: ## 启动数据库容器
+db-up: ## Start the database container
 	docker compose up -d db
 
-db-down: ## 停止数据库容器
+db-down: ## Stop the database container
 	docker compose down
 
-migrate: ## 应用数据库迁移
+migrate: ## Apply the database migrations
 	cd api && .venv/bin/alembic upgrade head
 
-revision: ## 生成新迁移，用法：make revision m="add profiles"
+revision: ## Generate a new migration, usage: make revision m="add profiles"
 	cd api && .venv/bin/alembic revision --autogenerate -m "$(m)"
