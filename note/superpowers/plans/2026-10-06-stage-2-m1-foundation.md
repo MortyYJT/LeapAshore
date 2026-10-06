@@ -178,13 +178,13 @@ __pycache__/
 在 `offerpilot/Makefile` 的 `.PHONY` 行加入 `api-install api-test api-dev`，并追加：
 
 ```make
-api-install: ## 建后端 venv 并安装依赖
+api-install: ## Create the backend venv and install its dependencies
 	cd api && ../$(shell find ../.runtime-tools -name uv -type f -perm +111 | head -1) pip install --python .venv/bin/python -e ".[test]"
 
-api-test: ## 跑后端测试
+api-test: ## Run the backend tests
 	cd api && .venv/bin/pytest -q
 
-api-dev: ## 启动后端开发服务器
+api-dev: ## Start the backend dev server on :8000
 	cd api && .venv/bin/uvicorn app.main:app --reload --port 8000
 ```
 
@@ -410,16 +410,16 @@ Expected: PASS。
 - [ ] **Step 9: 加 Makefile 目标**
 
 ```make
-db-up: ## 启动数据库容器
+db-up: ## Start the database container
 	docker compose up -d db
 
-db-down: ## 停止数据库容器
+db-down: ## Stop the database container
 	docker compose down
 
-migrate: ## 应用数据库迁移
+migrate: ## Apply database migrations
 	cd api && .venv/bin/alembic upgrade head
 
-revision: ## 生成新迁移，用法：make revision m="add profiles"
+revision: ## Generate a migration, e.g. make revision m="add profiles"
 	cd api && .venv/bin/alembic revision --autogenerate -m "$(m)"
 ```
 
@@ -1437,7 +1437,7 @@ PY
 Makefile 追加：
 
 ```make
-seed: ## 导入项目种子数据
+seed: ## Seed the placeholder program catalogue
 	cd api && .venv/bin/python seed_cli.py
 ```
 
