@@ -14,8 +14,8 @@ install:  ## Install frontend dependencies using a repository-local npm cache
 dev:  ## Start the frontend dev server on :3000
 	cd $(WEB) && npm run dev
 
-build:  ## Type-check and build
-	cd $(WEB) && npm run build
+build:  ## Type-check and build into .next-build so a running dev server is untouched
+	cd $(WEB) && NEXT_DIST_DIR=.next-build npm run build
 
 test:  ## Run the unit tests for the domain functions
 	cd $(WEB) && npm test
@@ -29,5 +29,5 @@ check-origins:  ## Assert the dev server is interactive from every allowed origi
 	node scripts/dev-origin-check.cjs
 
 clean:  ## Remove build output
-	rm -rf $(WEB)/.next $(WEB)/node_modules
+	rm -rf $(WEB)/.next $(WEB)/.next-build $(WEB)/node_modules
 	@echo "Cleaned. Run make install again to restore node_modules."

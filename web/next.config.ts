@@ -10,6 +10,11 @@ const nextConfig: NextConfig = {
   // address makes Next block its own dev assets and the HMR socket, so React never hydrates and the
   // page renders but no control responds. Entries match the hostname only: no scheme, no port.
   allowedDevOrigins: ["127.0.0.1", "10.139.217.141"],
+  // Next takes ownership of its output directory and deletes parts of it. When `next build` and
+  // `next dev` shared `.next`, running the build check while the dev server was up wiped the server's
+  // chunks: the page still rendered from HTML and CSS but never hydrated, so every control was dead
+  // with no visible error. `make build` now points the build at its own directory.
+  distDir: process.env.NEXT_DIST_DIR || ".next",
 };
 
 export default nextConfig;
