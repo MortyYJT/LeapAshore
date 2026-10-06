@@ -1,357 +1,89 @@
-# OfferPilot — 可验证的留学申请规划 Agent
+# OfferPilot
 
-OfferPilot 是一个覆盖澳洲八大本科、授课型硕士、研究型硕士和博士的留学申请规划 Web 产品。用户登录并填写背景后，系统先在官方课程目录中定位方向；只有完成课程级核验的项目才会进入确定性门槛检查和推荐分档，随后生成带官方来源的申请组合、项目分析与行动计划。
+A long-horizon planning agent for master's applications to Australian universities. The product is a
+**visual application roadmap**: open any phase and see what to prepare, when to prepare it, and which
+official page the requirement came from.
 
-> 匹配分不是录取概率。最低门槛、名额和课程信息可能变化，最终以项目官网及学校正式审核为准。
+## Current stage status
 
-## 在线体验
+The repository provides the onboarding flow, the portfolio picker, and the roadmap interface. State is
+kept in the browser.
 
-- Demo：https://offerpilot-study.jammy-mole-2081.chatgpt.site
-- FastAPI 文档：本地启动后访问 http://localhost:8000/docs
+Not implemented:
 
-## 产品流程
+- There is no backend service. State lives in `localStorage`, not on a server.
+- There is no agent and no model call. The advisor tab is a placeholder describing intended behavior.
+- Official deadlines are **all marked as pending verification**. No deadline has been confirmed against
+  a university page.
+- Admission thresholds come from a first-pass manual seed set. Every record carries
+  `dataStatus: "待核验"` and the interface surfaces that to the user.
+- There are no unit tests yet. `lib/` holds pure functions that should be covered by tests.
+- The CI workflow exists but **has never run on GitHub**. Deployment and containers are not verified.
 
-1. 注册账户、验证邮箱并建立可撤销的登录会话
-2. 登录后填写或修改申请背景
-3. 与 AI 申请顾问对话，直接修改偏好、重跑方案或创建待办
-4. 粘贴成绩单文本，逐项目核验先修课程
-5. 查看项目级冲刺、匹配、稳妥与暂不推荐结果
-6. 推进带截止日期和提醒的申请任务
-7. 回看历史方案与 Agent 执行审计
-8. 提交 Beta 反馈，管理员在运营后台跟进用户、反馈和项目来源复核
+## Local setup
 
-## Agent 架构
+~~~bash
+make install     # install dependencies
+make dev         # http://localhost:3000
+make verify      # build plus end-to-end walkthrough screenshots
+make help        # list every command
+~~~
 
-```mermaid
-flowchart LR
-    UI[Next.js 产品界面] --> API[FastAPI]
-    API --> ORCH[Agent Orchestrator]
-    ORCH --> GPA[normalize_gpa]
-    ORCH --> RET[retrieve_programs]
-    ORCH --> RAG[retrieve_official_knowledge]
-    ORCH --> RULES[check_hard_constraints]
-    ORCH --> RANK[rank_portfolio]
-    ORCH --> CITE[validate_citations]
-    RET --> DATA[官方项目数据]
-    RAG --> KB[可引用官方知识块]
-    RULES --> DATA
-    CITE --> DATA
-    ORCH <--> LLM[Ollama · Qwen2.5 0.5B]
-    ORCH --> TASKS[任务与提醒工具]
-    ORCH --> TRANSCRIPT[成绩单课程核验工具]
-    API --> STORE[Store Adapter: Memory / SQLite / PostgreSQL]
+If `npm install` fails with `EPERM`, the shared npm cache contains root-owned files. `make install`
+already points npm at a repository-local cache directory to avoid that.
+
+## Product flow
+
+```
+Onboarding (ten steps, green progress bar with an x/y counter)
+  -> "background captured, generating a plan"
+  -> Portfolio selection (reach / steady / safe)
+  -> Main interface: home | roadmap | profile | advisor
 ```
 
-核心设计原则：
+The **roadmap** is the main surface: six phases stacked vertically, each showing preparation materials,
+a suggested date, the official deadline, and the source. Ticking a material updates the phase status.
 
-- Agent 负责编排、补充信息判断和解释。
-- 硬门槛由可测试的 Python 工具处理，LLM 不能修改档位、分数或引用。
-- 每条推荐绑定官方项目页、来源编号、摘录和核验日期。
-- 顾问先检索已核验知识块，再回答项目要求；检索命中始终保留官方 URL、来源编号和核验日期。
-- 工具或模型不可用时显式降级，不静默伪造结论。
+## Data honesty rules
 
-## 顾问运行模式
+These exist because the previous implementation of this product generated a plausible-looking
+verification date and an official-looking threshold with no source. Do not undo them.
 
-### `deterministic-demo`
+1. Admission data is marked `待核验` (pending verification) in `web/lib/programs.ts`.
+2. `SourceCitation.verifiedAt` is `null`, not a hardcoded date.
+3. Every date is a **system suggestion** derived backwards from the intake term. Official deadline
+   fields are left empty and rendered as "pending verification".
+4. When the system cannot decide, it returns "needs manual review" instead of guessing a tier.
 
-无模型密钥时自动启用。完整执行同一组确定性工具与引用校验，顾问仍能识别常见偏好变更和任务指令。
+## Interface language
 
-### `deepseek`（可选云端模式）
+Interface copy is Chinese because the product targets Chinese applicants. Source comments,
+documentation, and commit messages are English. See CONTRIBUTING.md.
 
-当前生产模板默认使用确定性顾问，不要求 DeepSeek Key。部署者后续显式设置 `LLM_PROVIDER=deepseek` 并在服务器配置一次 `DEEPSEEK_API_KEY` 后，普通用户仍不接触 Key。首次使用云端顾问时，产品会单独征求数据处理同意；只发送脱敏档案、已核验项目事实、申请组合、路线图和最近对话，不发送姓名、邮箱、账户 ID、本科学校名称或原始成绩单。回答通过 SSE 流式返回，首 Token 超过 8 秒、总时限超过 25 秒、429、余额不足或服务异常时会明确进入确定性降级，不再隐式等待本地模型。页面刷新或再次进入顾问时会恢复最近持久化线程；若连接在收到服务端 `state` 保存确认前中断，前端会先回读同一线程：已保存则恢复权威消息，未保存才撤销局部回答并恢复原草稿。每次顾问提交还会携带请求级 `Idempotency-Key`，失败后的同内容重试复用该 Key；服务端保存请求指纹、动作阶段和稳定 effect ID，避免“动作已写、线程未写”窗口重复创建任务、方案或消息。每个顾问线程另带单调 `revision`，Memory、SQLite 与 PostgreSQL 更新都使用 compare-and-swap；同线程不同 Key 并发时，后提交者收到冲突而不会覆盖先提交消息，浏览器会加载最新线程、保留原草稿，并沿用原 Key 重试。
+## Checks
 
-```env
-AGENT_MODE=llm-assisted
-LLM_PROVIDER=deepseek
-DEEPSEEK_API_KEY=your-server-side-key
-DEEPSEEK_BASE_URL=https://api.deepseek.com
-DEEPSEEK_MODEL=deepseek-v4-flash
-```
+~~~bash
+make build        # type check and production build
+make screenshots  # full walkthrough in a real browser, writes docs/screenshots/
+~~~
 
-网页免费聊天登录不能代替 API Key；API 按开放平台的赠送/充值余额与 Token 计费，不保证永久免费。参见 [DeepSeek API 文档](https://api-docs.deepseek.com/) 与 [价格说明](https://api-docs.deepseek.com/quick_start/pricing)。
+The walkthrough borrows Playwright from a sibling checkout, so it runs locally only.
 
-### `ollama`（可选离线模式）
+## How this differs from a support-chat agent
 
-服务端通过 Ollama 自托管 Qwen2.5 0.5B，不需要模型 API Key。它只会在部署者明确设置 `LLM_PROVIDER=ollama` 时启用，不是 DeepSeek 失败后的隐式回退。
+Both projects use a deterministic workflow with an agent layer, but the object under management is
+different. A support agent aims to **answer a question correctly**. OfferPilot aims to **keep a
+multi-month application state correct**, where every fact has to trace back to an official page.
 
-```env
-AGENT_MODE=llm-assisted
-LLM_PROVIDER=ollama
-OLLAMA_BASE_URL=http://localhost:11434
-OLLAMA_MODEL=qwen2.5:0.5b
-```
+That pushes the architecture toward source versioning and human review, freshness gates, refusing to
+answer when evidence is missing, and confirmation before irreversible writes.
 
-## 课程覆盖与核验边界
+## Project records
 
-当前产品范围为 8 所大学 × 4 个学位层次 × 12 个专业大类，共 384 个目录覆盖组合。专业大类包括计算机与数据、商科与金融、工程、教育与社会科学、生命科学、医学与健康、法律与犯罪学、自然科学与数学、人文与语言、建筑规划与设计、传媒艺术与音乐、环境与农业。
-
-“目录覆盖”表示产品能把用户带到对应学校的官方课程入口，不表示已经掌握具体课程的录取要求。只有标记为“已核验”的具体项目才能参与冲刺、匹配、稳妥分档；其他组合返回官方目录与待核验提示，不生成推测性录取结论。
-
-## 首批已核验项目数据
-
-当前维护 6 个计算机与数据方向项目：
-
-- UNSW — Master of Information Technology
-- University of Sydney — Master of Computer Science
-- Monash — Master of Artificial Intelligence
-- Monash — Master of Computer Science
-- UQ — Master of Data Science
-- UWA — Master of Information Technology
-
-每条数据均包含官方 URL、门槛摘录、先修要求、英语要求和核验日期。`api/app/program_data.py` 是首次启动的受版本控制种子；运行时会为每个发布快照生成稳定 SHA-256 与不可变版本号。候选变更只保存字段级 diff，管理员批准后才同时进入推荐规则与 RAG，历史发布版本可回滚。当前仍未实现官网自动抓取，页面内容需要运营人员人工提交和核验。
-
-## Eval 结果
-
-固定 Eval 集包含相关/非相关专业、高中低 GPA、4 分制换算、双非特殊门槛、语言缺失和经历缺失等 10 个案例。
-
-| 指标 | 结果 |
-|---|---:|
-| 固定案例数 | 10 |
-| 硬门槛判断准确率 | 100% |
-| 缺失信息识别准确率 | 100% |
-| 官方引用覆盖率 | 100% |
-| 核心工具成功率 | 100% |
-| 本地平均确定性运行时间 | < 0.2 ms |
-
-以上结果由 `api/evals/run_eval.py` 在 2026-07-14 实际运行得到；CI 会重新运行质量门槛。小型固定集只用于防止规则回归，不代表真实录取预测能力。
-
-官方知识 RAG 另有 17 条固定 Eval：12 条检索正样本覆盖学校别名、中英文项目名、均分、非 211、专业背景、先修课程和 IELTS，5 条负样本检查库外问题拒答。当前小型已核验语料上的项目 Top-1、章节 Top-1、Recall@3、引用覆盖率与无答案拒答准确率均为 100%。该结果只证明固定知识集不会发生基础回归，不代表开放网页检索质量。
-
-### 官方知识 RAG
-
-- 语料只来自 `api/app/program_data.py` 中已经人工核验的具体项目，不把 384 个目录入口伪装成已核验要求。
-- 每个项目拆成“项目概览、学术与背景、先修课与语言”三个知识块，并保留原始来源元数据。
-- 每条 RAG 引用同时返回发布版本号和内容 SHA-256；未批准候选不会进入知识块。
-- 当前小语料使用支持中英文别名与中文双字切分的 BM25 检索，无模型 Key、无额外下载，适合一键本地演示。
-- DeepSeek 后续接入时只接收 RAG 命中的脱敏证据；无云模型时，规则顾问也能基于同一批证据生成带来源回答。
-- 当已核验项目扩展到数百个、开始接入 PDF/网页正文后，再增加 pgvector 语义召回并与 BM25 做混合排序；当前不为 18 个知识块引入虚假的向量复杂度。
-
-详细设计和演进门槛见 [RAG 架构说明](./docs/RAG_ARCHITECTURE.md)。
-
-## 技术栈
-
-- 前端：Next.js App Router、React 19、TypeScript、Tailwind CSS
-- API：FastAPI、Pydantic v2
-- Agent：确定性专业工具 + 官方知识 RAG + 服务端白名单工具执行；DeepSeek/Ollama 为可选解释层
-- 测试：Node Test Runner、pytest、固定 Agent Eval
-- 持久化：Repository 抽象、进程内 Demo Store、SQLite、PostgreSQL JSONB
-- 安全：scrypt 密码哈希、HttpOnly/SameSite 会话 Cookie、哈希令牌、限流、安全响应头、服务端密钥、逐请求鉴权
-- 账户：邮箱验证、密码重置、会话撤销、账户停用、数据导出与删除
-- 可观测性：请求 ID、结构化访问日志、可选 Sentry、模型/Prompt/Workflow 版本、耗时、Token 与工具轨迹
-- 工程化：GitHub Actions、Docker Compose、Caddy、Sites/Vercel 前端预览
-
-## 本地运行
-
-需要 Node.js 22.13+、pnpm 11 和 Python 3.12+。
-
-```bash
-pnpm install
-pnpm dev
-```
-
-另开终端启动 API：
-
-```bash
-cd api
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-uvicorn app.main:app --reload
-```
-
-复制环境变量示例：
-
-```bash
-cp .env.example .env.local
-```
-
-前端配置 `NEXT_PUBLIC_API_URL=http://localhost:8000` 后会连接 FastAPI。连接失败时界面会明确报错，不会在浏览器内伪造账户、推荐或历史数据。本地 Compose 通过同域 `/api` 自动连接，无需手工填写这个地址。
-
-如需在本机启用真实小模型，安装 Ollama 后执行：
-
-```bash
-ollama pull qwen2.5:0.5b
-LLM_PROVIDER=ollama OLLAMA_BASE_URL=http://localhost:11434 uvicorn app.main:app --reload
-```
-
-如需让 API 重启后继续保留资料和推荐历史，配置：
-
-```env
-DATABASE_PATH=./data/offerpilot.db
-```
-
-SQLite 适配器会自动建表，并通过 `user_id` 隔离 Profile 与 Agent Run。它适合本地 Demo、单机部署和面试演示；无状态云函数应改接托管 PostgreSQL。
-
-生产环境配置 PostgreSQL 后会优先使用共享数据库：
-
-```env
-DATABASE_URL=postgresql://user:password@host:5432/offerpilot
-```
-
-PostgreSQL 适配器将 Profile、顾问会话、方案、任务和运行审计存入 JSONB，允许模型与工作流 Schema 继续演进。
-
-## 无 Key 全栈部署
-
-本地完整运行：
-
-```bash
-docker compose up -d --build
-```
-
-如果要按真实 SMTP 流程验收邮箱验证和密码重置，可启用仅绑定本机的 Mailpit 覆盖配置：
-
-```bash
-docker compose -f compose.yaml -f compose.mailpit.yaml up -d --build
-```
-
-邮件会由 API 通过 SMTP 投递，在 `http://localhost:8025` 查看。Mailpit 只用于本地验收，管理界面不暴露到局域网；生产环境仍使用 `compose.production.yaml` 中的真实 SMTP 配置。
-
-启动后可以一键验证“注册 → 收到验证邮件 → 登录 → 收到重置邮件 → 旧密码失效”的完整链路：
-
-```bash
-api/.venv/bin/python api/evals/email_e2e.py
-```
-
-默认启动不会下载本地模型。浏览器访问 `http://服务器地址:8080`。完整拓扑为：
-
-- Caddy：唯一公开入口，同域转发 Web 与 `/api`
-- Next.js：产品界面
-- FastAPI：认证、Agent 编排、专业工具与审计
-- DeepSeek：由 FastAPI 使用服务端 Key 调用，浏览器永远拿不到 Key
-- Ollama：仅通过 `docker compose --profile offline` 显式启用的可选离线推理
-- PostgreSQL：持久化账户、档案、会话、任务与审计
-
-生产环境至少应设置独立数据库密码：
-
-```bash
-POSTGRES_PASSWORD='replace-with-a-strong-password' docker compose up -d --build
-```
-
-数据库密码和 DeepSeek Key 都是服务器基础设施配置，不需要任何普通用户填写。
-
-正式封闭 Beta 使用生产覆盖配置：
-
-```bash
-cp .env.production.example .env.production
-docker compose --env-file .env.production -f compose.yaml -f compose.production.yaml up -d --build
-```
-
-生产模式强制要求 PostgreSQL、SMTP、HTTPS 域名、安全 CORS 和管理员邮箱；缺失时 API 拒绝启动。Caddy 自动管理 HTTPS，Alembic 在 API 启动前执行迁移，备份容器每天生成 PostgreSQL 备份并保留 7 天。PostgreSQL Store 只校验当前 Alembic revision，不会在应用启动时创建或修改表；绕过容器直接启动 API 前也必须先执行 `cd api && alembic upgrade head`。完整步骤见 [Beta 上线 Runbook](./docs/BETA_LAUNCH_RUNBOOK.md)，安全基线见 [SECURITY.md](./SECURITY.md)。
-
-## Vercel 前端预览
-
-仓库根目录仍保留 `vercel.json`，用于 Web 与普通 FastAPI 的在线预览：
-
-- `/` → Next.js Web service
-- `/api/*` → FastAPI service（服务入口保留并挂载 `/api` 前缀）
-
-Vercel Serverless 不适合常驻加载 Ollama 模型；云端顾问需在 API service 配置服务端 `DEEPSEEK_API_KEY`。现有静态预览仍可作为无需后端的界面演示。
-
-## API
-
-公共接口：
-
-- `GET /health`
-- `GET /health/readiness`
-- `GET /llm/status`
-- `POST /auth/login`
-- `POST /auth/register`
-- `POST /auth/verify-email`
-- `POST /auth/resend-verification`
-- `POST /auth/forgot-password`
-- `POST /auth/reset-password`
-- `POST /auth/logout`
-- `GET /catalog/facets`
-- `GET /catalog/coverage`
-- `GET /programs`
-- `GET /programs/{slug}`
-- `POST /agent/recommendations`
-
-登录后接口：
-
-- `GET|DELETE /me`
-- `GET /me/export`
-- `GET /me/profile`
-- `PUT /me/profile`
-- `POST /me/recommendation-runs`
-- `GET /me/recommendation-runs`
-- `GET /me/recommendation-runs/{run_id}`
-- `GET /me/recommendation-runs/{run_id}/action-plan`
-- `GET|PUT /me/recommendation-runs/{run_id}/portfolio[/{program_slug}]`
-- `GET /me/recommendation-runs/{run_id}/roadmap`
-- `POST /me/advisor/threads`
-- `POST /me/advisor/threads/{thread_id}/messages`
-- `GET|POST /me/advisor/consent`
-- `POST /me/advisor/threads/{thread_id}/messages/stream`
-- `GET /me/advisor/audits`
-- `POST /me/transcript/analyze`
-- `GET|POST /me/tasks`
-- `PUT /me/tasks/{task_id}`
-- `GET|POST /me/feedback`
-
-两个顾问消息 `POST` 都要求 8–128 字符的 `Idempotency-Key` 请求头；同一用户复用同一 Key 时，线程、模式和消息内容必须一致，否则返回 `409`。同线程不同 Key 并发更新若命中旧 `revision`，同步接口返回 `409`，SSE 接口发送 `conflict` 事件；客户端读取最新线程后可用原 Key 继续未完成回合。
-
-管理员接口：
-
-- `GET /admin/stats`
-- `GET|PUT /admin/users`
-- `GET|PUT /admin/feedback`
-- `GET /admin/program-sources`
-- `GET|POST /admin/program-sources/{program_slug}/versions`
-- `PUT /admin/program-sources/{program_slug}/versions/{version_id}`
-- `POST /admin/program-sources/{program_slug}/rollback`
-
-运营后台的“版本审核工作台”会从当前发布事实生成候选 JSON，只创建待审核版本；管理员核对逐字段 diff 并填写备注后才能批准或拒绝，也可把已替代版本作为回滚目标。选择“抓取官网并生成候选”时，API 只访问该项目登记的 HTTPS 学校域名：DNS 结果必须全部为公网地址，连接固定到已校验 IP 且每次重定向重新过门禁；默认端口、3 次跳转、5 秒单跳超时、HTML/纯文本类型和 512 KiB 响应上限均为硬约束。规范化正文、SHA-256、抓取时间、最终 URL 和跳转链会随候选版本留存，但抓取结果绝不自动发布。
-
-`POST /admin/program-sources/{program_slug}/versions` 的 `capture_snapshot` 默认为 `false`，便于人工导入或离线测试；运营界面的官网抓取动作会显式设为 `true`。历史发布版本已有快照时，普通字段候选会继承该快照，避免结构化修订意外丢失来源证据。
-
-## 验证
-
-```bash
-pnpm run lint
-pnpm test
-pnpm exec playwright install chromium
-pnpm run test:e2e
-pnpm audit --prod
-
-cd api
-.venv/bin/pytest -q
-.venv/bin/pip-audit --local
-PYTHONPATH=. .venv/bin/python evals/run_eval.py
-PYTHONPATH=. .venv/bin/python evals/run_advisor_eval.py
-PYTHONPATH=. .venv/bin/python evals/run_rag_eval.py
-```
-
-`pnpm run test:e2e` 会自动启动本地 FastAPI DemoStore 与 Next.js，并用 Chromium 验证注册、Cookie 登录、生成推荐、设置首选、顾问 SSE、刷新后恢复同一线程、撤销 Cookie 后的刷新/受保护操作恢复、来源 diff 审核/回滚、顾问动作状态，以及 SSE 503 后复用幂等 Key、未提交截断回滚、“服务端已保存但确认事件丢失”的线程对账和并发 revision 冲突恢复；不需要 DeepSeek Key。
-
-配置真实服务端 Key 后，可选运行延迟 smoke test（不会在 CI 中消耗真实额度）：
-
-```bash
-cd api
-DEEPSEEK_API_KEY=... LLM_PROVIDER=deepseek PYTHONPATH=. .venv/bin/python evals/deepseek_smoke.py
-```
-
-## 当前边界
-
-- 未配置 `DATABASE_PATH` 时，Profile、历史记录和行动计划使用进程内 Store；API 重启会清空。
-- 生产部署应配置 `DATABASE_URL`；SQLite 不适合作为无状态云函数的共享数据库。
-- 在线站点必须同时部署 FastAPI 与 PostgreSQL；纯静态预览只展示登录界面，不承诺可用的账户与选校流程。
-- 当前成绩单工具处理可复制文本；扫描版 PDF/OCR 仍需接入文件存储和视觉模型。
-- 来源模块会标记超过 30 天未核验的数据；官网抓取只生成带正文快照的待审核候选，不会在无人审核时自动覆盖申请门槛。
-- 系统不生成“录取概率”，也不会把模型推断伪装成学校官方结论。
-- 当前内存限流适用于单 API 实例封闭 Beta；多副本部署前需要迁移到 Redis。
-- SMTP 服务商、域名 SPF/DKIM/DMARC、服务器防火墙与异地备份需要在真实域名上线时完成最终配置。
-
-## Beta 上线门槛
-
-- 自动化：前端构建、lint、产品流程测试、API 测试和 Agent Eval 全部通过。
-- 流程：登录 → 背景 → 目标学位/方向 → Agent → 结果/诚实空状态 → 行动计划可完整走通。
-- 数据：384 个目录组合均有官方入口；推荐结果必须来自已核验具体项目并带来源。
-- 熟人测试：至少 5 名不同背景用户完成主流程，任务成功率不低于 80%，阻断性问题为 0。
-- 上线：修复所有阻断问题，并记录高频困惑、无结果搜索和用户最想要的项目，作为下一轮课程核验优先级。
-
-完整一天版产品规格见 [PRD.md](./PRD.md)。
-
-## License
-
-MIT
+- [Contribution and commit rules](CONTRIBUTING.md)
+- [Repository instructions for agents](AGENTS.md)
+- [English verification report](docs/verification/stage-1-skeleton.md)
+- [Original Chinese verification record](note/verification/stage-1-skeleton.md)
+- [Chinese stage design record](note/superpowers/specs/2026-10-05-stage-1-mvp-design.md)
+- [Chinese stage implementation plan](note/superpowers/plans/2026-10-05-stage-1-mvp.md)
+- [Chinese learning log](note/stage-1-MVP.md)

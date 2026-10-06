@@ -1,0 +1,212 @@
+@import "tailwindcss";
+
+/*
+  设计变量放 @theme（Tailwind v4 官方写法），会同时生成 bg-brand / text-ink-soft 之类的工具类。
+  注意：不要写回 :root。:root 的变量不会被注册成 theme token。
+*/
+@theme {
+  --color-brand: #58cc02;
+  --color-brand-dark: #46a302;
+  --color-brand-soft: #d7ffb8;
+
+  --color-ink: #1f2933;
+  --color-ink-soft: #52606d;
+  --color-line: #e5e7eb;
+
+  --color-canvas: #ffffff;
+  --color-surface: #f6f9f4;
+
+  --color-warn: #f0a500;
+  --color-warn-soft: #fff4d6;
+  --color-danger: #e5484d;
+  --color-danger-soft: #ffe3e4;
+}
+
+/*
+  基础样式放 @layer base。
+  自定义组件类必须放 @layer components —— 无层级的规则优先级高于所有 layer，
+  会盖掉 Tailwind 工具类（例如 .card 的白色背景会压过 bg-surface）。
+*/
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+    background: var(--color-surface);
+    color: var(--color-ink);
+    font-family: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB",
+      "Microsoft YaHei", "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  button {
+    font-family: inherit;
+    cursor: pointer;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+  }
+
+  input,
+  select,
+  textarea {
+    font-family: inherit;
+    font-size: 15px;
+  }
+}
+
+@layer components {
+  .card {
+    background: var(--color-canvas);
+    border: 2px solid var(--color-line);
+    border-radius: 16px;
+    padding: 20px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: none;
+    border-radius: 14px;
+    padding: 14px 22px;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    transition: transform 0.06s ease, filter 0.15s ease;
+  }
+
+  .btn:active:not(:disabled) {
+    transform: translateY(2px);
+  }
+
+  .btn-primary {
+    background: var(--color-brand);
+    color: #fff;
+    box-shadow: 0 4px 0 var(--color-brand-dark);
+  }
+
+  .btn-primary:active:not(:disabled) {
+    box-shadow: 0 2px 0 var(--color-brand-dark);
+  }
+
+  .btn-ghost {
+    background: var(--color-canvas);
+    color: var(--color-ink-soft);
+    border: 2px solid var(--color-line);
+  }
+
+  .btn-ghost:hover:not(:disabled) {
+    background: var(--color-surface);
+  }
+
+  .option {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    width: 100%;
+    text-align: left;
+    background: var(--color-canvas);
+    border: 2px solid var(--color-line);
+    border-radius: 14px;
+    padding: 16px 18px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-ink);
+    box-shadow: 0 2px 0 var(--color-line);
+    transition: all 0.12s ease;
+  }
+
+  .option:hover:not(:disabled) {
+    background: var(--color-surface);
+  }
+
+  .option.selected {
+    border-color: var(--color-brand);
+    background: var(--color-brand-soft);
+    box-shadow: 0 2px 0 var(--color-brand);
+  }
+
+  .option .hint {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-ink-soft);
+    margin-top: 2px;
+  }
+
+  .progress-track {
+    flex: 1;
+    height: 16px;
+    background: var(--color-line);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--color-brand);
+    border-radius: 999px;
+    transition: width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+  }
+
+  /*
+    Portfolio tiers read as one green intensity scale rather than three unrelated colours: a reach is
+    the palest, a safe choice is solid. The palette stays green and white.
+  */
+  .tag-chong {
+    background: #f0fbe4;
+    color: var(--color-brand-dark);
+  }
+
+  .tag-wen {
+    background: var(--color-brand-soft);
+    color: var(--color-brand-dark);
+  }
+
+  .tag-bao {
+    background: var(--color-brand);
+    color: #ffffff;
+  }
+
+  /*
+    Status tags carry meaning, not decoration, so they keep their own colours. A gap and a pending
+    review must stay visually distinct from a satisfied check even in a green-dominant palette.
+  */
+  .tag-ok {
+    background: var(--color-brand-soft);
+    color: var(--color-brand-dark);
+  }
+
+  .tag-gap {
+    background: var(--color-danger-soft);
+    color: var(--color-danger);
+  }
+
+  .tag-warn {
+    background: var(--color-warn-soft);
+    color: #9a6700;
+  }
+
+  .tag-muted {
+    background: var(--color-line);
+    color: var(--color-ink-soft);
+  }
+}
