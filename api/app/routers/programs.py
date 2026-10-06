@@ -19,15 +19,24 @@ def list_programs(
 ) -> list[ProgramOut]:
     """Serve the catalogue. Public data, so no client cookie is issued or required.
 
-    The university is eager-loaded because every row needs its display name and a lazy load per row
-    would turn one query into six.
+    The university and the prerequisites are eager-loaded because every row needs them and a lazy
+    load per row would turn one query into six (plus one more per program for its prerequisites).
+
+    `slug` and `university` are built from the program id and the university's display name, in
+    that order, because those are the key names `web/lib/types.ts` reads. `prerequisites` is built
+    as the program's rows sorted by `sort_order`, the order a reader has to check them in; a
+    program with no rows serves `[]`, which is how the frontend knows there is nothing to check.
 
     A program whose `source_id` points at a row that no longer exists is a data defect, not an
     empty citation, so it makes the request fail loudly instead of serialising `source: null` or
     dropping the program from the list. Both alternatives hide the defect: the first serves a
     program with no provenance, the second silently shrinks the catalogue.
     """
-    statement = select(Program).options(selectinload(Program.university)).order_by(Program.id)
+    statement = (
+        select(Program)
+        .options(selectinload(Program.university), selectinload(Program.prerequisites))
+        .order_by(Program.id)
+    )
     if field:
         statement = statement.where(Program.field == field)
 
@@ -41,10 +50,10 @@ def list_programs(
             )
         out.append(
             ProgramOut(
-                id=program.id,
+                slug=program.id,
                 name=program.name,
                 name_en=program.name_en,
-                university_name=program.university.name,
+                university=program.university.name,
                 city=program.city,
                 degree_level=program.degree_level,
                 field=program.field,
@@ -52,6 +61,10 @@ def list_programs(
                 minimum_mark=program.minimum_mark,
                 non_211_minimum_mark=program.non_211_minimum_mark,
                 requires_cognate=program.requires_cognate,
+                prerequisites=[
+                    row.label
+                    for row in sorted(program.prerequisites, key=lambda row: row.sort_order)
+                ],
                 english_requirement=program.english_requirement,
                 data_status=program.data_status,
                 source=SourceOut(url=source.url, title=source.title, status=source.status),

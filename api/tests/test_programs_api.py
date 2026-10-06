@@ -8,6 +8,7 @@ values, and none of them leave a row deleted behind.
 """
 
 from unittest.mock import MagicMock
+from uuid import uuid4
 
 import pytest
 from fastapi import HTTPException
@@ -17,10 +18,15 @@ from sqlalchemy.exc import IntegrityError
 
 from app.db import SessionLocal
 from app.main import app
-from app.models.program import Program, University
-from app.models.source import Source
+from app.models.program import Program, ProgramPrerequisite, University
+from app.models.source import Source, SourceStatus
 from app.routers.programs import list_programs
 from app.seed import seed_programs
+
+# The ordering test needs a program whose prerequisites it controls. Its institution and source are
+# stable rows it creates once and reuses, so repeated runs do not accumulate them.
+TEST_UNIVERSITY_ID = "test-prerequisites-university"
+TEST_SOURCE_ID = "test-prerequisites-source"
 
 
 def test_lists_every_seeded_program_with_its_source(require_db, db_session):
@@ -31,7 +37,7 @@ def test_lists_every_seeded_program_with_its_source(require_db, db_session):
     programs = response.json()
     assert len(programs) >= 6
     first = programs[0]
-    assert set(first) >= {"id", "name", "universityName", "source", "dataStatus"}
+    assert set(first) >= {"slug", "name", "university", "source", "dataStatus"}
     assert first["source"]["url"].startswith("https://")
     assert first["source"]["status"] == "待核验"
 
@@ -121,18 +127,19 @@ def test_a_program_whose_source_row_is_gone_fails_loudly():
 def test_the_wire_format_uses_the_frontend_key_names(require_db, db_session):
     """Task 8 feeds this response into `Program` in web/lib/types.ts.
 
-    The camelCase keys are the contract, not a detail. This asserts the names the frontend reads
-    that the endpoint already answers; the deliberate differences are listed in the report rather
-    than asserted here, because a name this endpoint does not carry has no response key to check.
+    These keys are the contract, not a detail: the frontend reads `slug` where the column is `id`
+    and `university` where the column is the university's `name`, so the names are asserted
+    explicitly. The fields the endpoint still does not carry are listed in the report rather than
+    asserted here, because a name that has no response key cannot be checked against one.
     """
     seed_programs(db_session)
     body = TestClient(app).get("/api/programs").json()
     assert body, "the catalogue must not be empty"
 
     for key in (
-        "id",
+        "slug",
         "name",
-        "universityName",
+        "university",
         "city",
         "degreeLevel",
         "field",
@@ -140,6 +147,7 @@ def test_the_wire_format_uses_the_frontend_key_names(require_db, db_session):
         "minimumMark",
         "non211MinimumMark",
         "requiresCognate",
+        "prerequisites",
         "englishRequirement",
         "dataStatus",
     ):
@@ -147,3 +155,80 @@ def test_the_wire_format_uses_the_frontend_key_names(require_db, db_session):
 
     for key in ("url", "title", "status"):
         assert key in body[0]["source"], key
+
+
+def test_the_prerequisites_are_bare_labels_in_sort_order(require_db, db_session):
+    """`eligibility.ts:91` joins `program.prerequisites` with "、" and `:126` tests its length.
+
+    Nothing reads a prerequisite's category or id, so an element is the label alone and the order
+    is the only structure the wire format carries. The test builds its own program with the rows
+    inserted in a deliberately wrong order, so a passing result cannot be insertion order or the
+    primary key's order: only `sort_order` produces it.
+
+    The rows are committed, not merely flushed: the endpoint opens its own session per request, so
+    an uncommitted row is invisible to it. The institution and the source are stable rows the test
+    reuses rather than creates, and the program is removed again in the `finally` block with its
+    prerequisite rows, through the model's delete-orphan cascade.
+    """
+    marker = uuid4().hex[:8]
+    program_id = f"test-prerequisites-{marker}"
+
+    session = db_session
+    if session.get(University, TEST_UNIVERSITY_ID) is None:
+        session.add(University(id=TEST_UNIVERSITY_ID, name="先修课顺序测试大学"))
+    if session.get(Source, TEST_SOURCE_ID) is None:
+        session.add(
+            Source(
+                id=TEST_SOURCE_ID,
+                url="https://example.edu/prerequisites-order-test",
+                title="Prerequisite ordering test",
+                status=SourceStatus.UNVERIFIED,
+            )
+        )
+    session.flush()
+    session.add(
+        Program(
+            id=program_id,
+            university_id=TEST_UNIVERSITY_ID,
+            name="先修课顺序测试项目",
+            field="先修课顺序测试方向",
+            source_id=TEST_SOURCE_ID,
+            data_status="待核验",
+        )
+    )
+    session.flush()
+
+    labels_by_sort_order = [
+        (2, "第三步"),
+        (0, "第一步"),
+        (1, "第二步"),
+    ]
+    session.add_all(
+        [
+            ProgramPrerequisite(
+                id=f"{program_id}-pre-{order}",
+                program_id=program_id,
+                label=label,
+                sort_order=order,
+            )
+            for order, label in labels_by_sort_order
+        ]
+    )
+    session.commit()
+
+    try:
+        response = TestClient(app).get("/api/programs", params={"field": "先修课顺序测试方向"})
+        assert response.status_code == 200
+
+        body = response.json()
+        assert [row["slug"] for row in body] == [program_id]
+        assert body[0]["prerequisites"] == ["第一步", "第二步", "第三步"]
+        assert all(isinstance(item, str) for item in body[0]["prerequisites"])
+    finally:
+        # The program's prerequisite rows go with it through the model's delete-orphan cascade.
+        with SessionLocal() as cleanup:
+            stored = cleanup.get(Program, program_id)
+            if stored is not None:
+                cleanup.delete(stored)
+            cleanup.commit()
+            assert cleanup.get(Program, program_id) is None
