@@ -107,12 +107,6 @@ export default function HomeView({ profile, roadmap, portfolio, onGoFlow }: Prop
           </dl>
         </article>
       </section>
-
-      <section className="rounded-2xl border-2 border-[var(--color-warn)] bg-[var(--color-warn-soft)] p-4">
-        <p className="text-sm leading-relaxed text-[#9a6700]">
-          ⚠️ 招生要求目前是「待核验」，时间都是系统倒推的建议时间，不是官方截止日期。
-        </p>
-      </section>
     </div>
   );
 }

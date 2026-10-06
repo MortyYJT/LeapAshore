@@ -32,7 +32,6 @@ export default function PortfolioPicker({ profile, onConfirm, onBack }: Props) {
   );
 
   const chosenCount = Object.values(picked).filter(Boolean).length;
-  const anyUnverified = assessments.some((a) => a.basedOnUnverifiedData);
 
   function toggle(slug: string) {
     setPicked((prev) => ({ ...prev, [slug]: !prev[slug] }));
@@ -60,14 +59,6 @@ export default function PortfolioPicker({ profile, onConfirm, onBack }: Props) {
           勾掉不想申的，确认后进入申请流程。
         </p>
       </header>
-
-      {anyUnverified && (
-        <div className="mb-6 rounded-2xl border-2 border-[var(--color-warn)] bg-[var(--color-warn-soft)] p-4">
-          <p className="text-sm leading-relaxed text-[#9a6700]">
-            ⚠️ 招生要求尚未逐条核验，提交前请以官网为准。
-          </p>
-        </div>
-      )}
 
       <div className="grid gap-4">
         {assessments.map((a) => {
@@ -131,8 +122,7 @@ export default function PortfolioPicker({ profile, onConfirm, onBack }: Props) {
                 </div>
               )}
 
-              <div className="mt-3 flex items-center gap-2 text-xs">
-                <span className="tag tag-muted">来源 {a.program.source.status}</span>
+              <div className="mt-3 text-xs">
                 <a
                   className="text-[var(--color-brand-dark)] underline"
                   href={a.program.source.url}

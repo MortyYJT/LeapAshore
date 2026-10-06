@@ -124,7 +124,7 @@ export default function FlowView({
                 return (
                   <li key={item.programSlug} className="flex items-start gap-2">
                     {item.needsReview ? (
-                      <span className="tag tag-warn">待核验</span>
+                      <span className="tag tag-muted">自选</span>
                     ) : (
                       <span className={`tag ${TIER_CLASS[item.tier]}`}>{item.tier}</span>
                     )}
@@ -171,11 +171,11 @@ export default function FlowView({
               <div className="font-bold">{phase.suggestedAt}</div>
               <div className="mt-0.5 text-[11px] text-[var(--color-ink-soft)]">系统倒推 · 非官方日期</div>
             </div>
-            <div className="rounded-xl bg-[var(--color-warn-soft)] p-3">
-              <div className="text-xs text-[#9a6700]">官方截止日期</div>
-              <div className="font-bold text-[#9a6700]">待核验</div>
-              <div className="mt-0.5 text-[11px] text-[#9a6700]">
-                需人工到官网确认后填写
+            <div className="rounded-xl bg-[var(--color-surface)] p-3">
+              <div className="text-xs text-[var(--color-ink-soft)]">官方截止日期</div>
+              <div className="font-bold text-[var(--color-ink-soft)]">未录入</div>
+              <div className="mt-0.5 text-[11px] text-[var(--color-ink-soft)]">
+                以官网为准
               </div>
             </div>
           </div>
