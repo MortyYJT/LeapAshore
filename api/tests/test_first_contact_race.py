@@ -36,12 +36,12 @@ class TagTheRequest:
     """Wrap the app so every request carries an identity of its own.
 
     The barrier has to count arrivals per request, and a lookup cannot say which request it belongs
-    to. Counting lookups instead is only correct while each request makes exactly one. `get_profile`
-    looks the client row up once today, so a second lookup added later — a new dependency, or a
-    re-read before the insert — would let one request move the counter twice, releasing the barrier
-    while the other request is still outside the window. The token rides in the request's context,
-    which `to_thread` copies into the threadpool, so the request stays recognisable even though its
-    synchronous dependencies run on threads the request does not own.
+    to. Counting lookups instead is only correct while each request makes exactly one.
+    `load_or_create_profile` looks the client row up once today, so a second lookup added later — a
+    new dependency, or a re-read before the insert — would let one request move the counter twice,
+    releasing the barrier while the other request is still outside the window. The token rides in
+    the request's context, which `to_thread` copies into the threadpool, so the request stays
+    recognisable even though its synchronous dependencies run on threads the request does not own.
     """
 
     def __init__(self, inner: Any) -> None:

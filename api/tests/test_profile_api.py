@@ -1,10 +1,21 @@
 import uuid
 
 from fastapi.testclient import TestClient
+from sqlalchemy import func, select
 
+from app.db import SessionLocal
 from app.main import app
+from app.models.client import Client, Profile
 
 COOKIE = "offerpilot_client"
+
+
+def row_counts() -> tuple[int, int]:
+    """How many subjects and profiles the database holds right now."""
+    with SessionLocal() as session:
+        clients = session.scalar(select(func.count()).select_from(Client))
+        profiles = session.scalar(select(func.count()).select_from(Profile))
+    return clients or 0, profiles or 0
 
 
 def test_first_request_creates_a_client_and_returns_an_empty_profile(require_db):
@@ -40,6 +51,43 @@ def test_rejects_an_unknown_field(require_db):
     client = TestClient(app)
     response = client.patch("/api/profile", json={"gpaScoreTypo": 82})
     assert response.status_code == 422
+
+
+def test_a_rejected_body_does_not_mint_an_unreachable_subject(require_db):
+    """A 422 must not leave a client and profile pair behind that no cookie can address.
+
+    FastAPI resolves dependencies before it validates the body, so the subject used to be created
+    and committed for a request it then rejected — and the rejection carries no `Set-Cookie`, so the
+    id that names those rows was never handed to anyone. `ProfileFields` sets `extra="forbid"`, so a
+    single unexpected key was enough; the development database had accumulated 221 such pairs, 184
+    of them with a null `school_name`, when this was fixed. The fix is where the rows are created,
+    not what the constraint allows, so this test asks the database rather than the response.
+    """
+    before = row_counts()
+    client = TestClient(app)
+    response = client.patch("/api/profile", json={"gpaScoreTypo": 82})
+    assert response.status_code == 422
+    assert "set-cookie" not in {key.lower() for key in response.headers}
+    assert row_counts() == before, "a rejected request created a subject"
+
+
+def test_an_accepted_body_mints_the_subject_exactly_once(require_db):
+    """The other half of the same rule: a valid request still gets its rows, and only once.
+
+    Moving the insert out of the dependency could have gone wrong in the opposite direction — no
+    subject at all, or one per call — which is why this counts rather than trusting the 200.
+    """
+    before_clients, before_profiles = row_counts()
+    client = TestClient(app)
+    response = client.patch("/api/profile", json={"schoolName": "北京邮电大学"})
+    assert response.status_code == 200
+
+    after_clients, after_profiles = row_counts()
+    assert (after_clients - before_clients, after_profiles - before_profiles) == (1, 1)
+
+    # A second request on the cookie the server just set addresses the same subject, not a new one.
+    assert client.get("/api/profile").json()["schoolName"] == "北京邮电大学"
+    assert row_counts() == (after_clients, after_profiles)
 
 
 def test_a_cookie_that_is_not_a_uuid_is_replaced_before_it_is_read(require_db):

@@ -1,11 +1,10 @@
 import uuid
 from typing import Annotated
 
-from fastapi import Cookie, Depends, Response
+from fastapi import Cookie, Response
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
-from app.db import get_session
 from app.models.client import Client, Profile, new_client_id
 
 COOKIE_NAME = "offerpilot_client"
@@ -15,12 +14,20 @@ def get_client_id(
     response: Response,
     offerpilot_client: Annotated[str | None, Cookie()] = None,
 ) -> str:
-    """Resolve the anonymous subject, minting one on the first request.
+    """Resolve the anonymous subject id, minting one on the first request.
 
     An id that is not a well-formed uuid is replaced rather than trusted, so a malformed cookie can
     never address a row that belongs to someone else. A well-formed id is stored in its canonical
     spelling, since the column holds canonical text and another spelling of the same uuid would
     otherwise miss the row it names and start a second subject.
+
+    This dependency reads a cookie and writes a response header; it deliberately does not touch the
+    database. FastAPI resolves dependencies before it validates the request body, so a dependency
+    that inserted and committed the subject left a `clients` and `profiles` pair behind for a
+    request it then rejected with a 422 — and a 422 carries no `Set-Cookie`, so no browser could
+    ever present the id that addresses those rows. The development database accumulated 221 such
+    pairs, 184 of them with a null `school_name`, before this moved. `load_or_create_profile` does
+    the writing instead, and the endpoints call it once FastAPI has accepted the request.
     """
     client_id = offerpilot_client
     if client_id:
@@ -38,10 +45,7 @@ def get_client_id(
     return client_id
 
 
-def get_profile(
-    client_id: Annotated[str, Depends(get_client_id)],
-    session: Annotated[Session, Depends(get_session)],
-) -> Profile:
+def load_or_create_profile(session: Session, client_id: str) -> Profile:
     """Return the caller's profile, creating the client and profile rows on first contact.
 
     First contact is an insert, so it cannot be "check, then insert": the loser of the insert would
@@ -57,6 +61,11 @@ def get_profile(
     is the same answer the winner returns. The savepoint is used rather than an `ON CONFLICT` upsert
     because two different tables can collide here — whichever statement lost, `session.get` answers
     with the committed row afterwards.
+
+    This is a plain function rather than a `Depends` on purpose: a dependency runs before FastAPI
+    validates the request body, and the rows it creates for a rejected request are unreachable
+    forever. A function called from the endpoint body runs after the body is valid, so an invalid
+    request leaves the database untouched while a valid one still gets its subject exactly once.
     """
     if session.get(Client, client_id) is None:
         try:
