@@ -1,9 +1,10 @@
 """Tests for the placeholder catalogue seed.
 
-The fixtures run against the shared development database. The first two tests clear the catalogue
-first, because they assert on how many rows a run adds and would otherwise depend on whether a
-developer had already run `make seed`. The rest seed on top of whatever the shared database already
-holds and assert only on the seeded rows, which the seed's own idempotency makes safe.
+The fixtures run against the shared development database. The tests that assert on how many rows a
+run adds — and the last one, which compares stored values against the frontend source — clear the
+catalogue first, so they cannot be answered by whatever a developer happened to leave in the
+database. The rest seed on top of the existing rows and assert only on the seeded rows, which the
+seed's own idempotency makes safe.
 
 The last test hands the seeded rows to scripts/verify-programs-mirror.cjs, the guard that keeps the
 seed and web/lib/programs.ts from drifting apart.
@@ -113,7 +114,13 @@ def test_seeded_values_still_mirror_the_typescript_source(db_session, require_db
     comparison itself lives in scripts/verify-programs-mirror.cjs: it imports the TypeScript through
     Node's own type stripping, so the expected values come from the source of truth rather than from
     a second hand-copied table, and it fails loudly when it finds nothing to compare.
+
+    The catalogue is cleared first because ``seed_programs`` skips any program id that already
+    exists. Without that, a row left behind by an earlier run — or by a different tree — would be
+    read back and compared, and the verdict would describe the database's history instead of
+    api/app/seed.py. Clearing means the rows read back are the ones this run of the seed wrote.
     """
+    clear_catalogue(db_session)
     seed_programs(db_session)
 
     # `Program` has no `source` relationship, so the url is read from the row the program points at.

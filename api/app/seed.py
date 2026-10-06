@@ -3,10 +3,12 @@
 The values mirror web/lib/programs.ts, which is the current source of truth until the annotation stage
 replaces both with reviewed data. Every record is written as 待核验.
 
-The frontend carries one field that has no column here — ``excerpt``, a manual summary rather than
-captured page text — so it is dropped on purpose. In the other direction the model has two booleans
-the frontend has no counterpart for, ``requires_supervisor`` and ``research_proposal_required``;
-both stay at their model default of False.
+The frontend carries two program fields that have no column here. ``excerpt`` is a manual summary
+rather than captured page text, so it is dropped on purpose. ``university`` is the frontend's display
+name for the institution, which the seed keeps only as ``university_id`` pointing at
+``universities.name``: the name lives once in the university row instead of being copied onto every
+program. In the other direction the model has two booleans the frontend has no counterpart for,
+``requires_supervisor`` and ``research_proposal_required``; both stay at their model default of False.
 """
 
 from sqlalchemy import select

@@ -206,10 +206,12 @@ function makeAliasLookup(label) {
 // The TypeScript is loaded through Node's own TypeScript support, so this script never parses it.
 // A bare `require` cannot reach a `.ts` module, so a child process imports it and prints JSON.
 function loadTypeScriptPrograms(tsPath) {
+  // The path is reported from the argument the child actually imported, so `--ts <other file>` does
+  // not produce an error message naming web/lib/programs.ts.
   const bootstrap = `
     const mod = await import(process.argv[1]);
     if (!Array.isArray(mod.PROGRAMS)) {
-      throw new Error("web/lib/programs.ts no longer exports a PROGRAMS array");
+      throw new Error(process.argv[1] + " no longer exports a PROGRAMS array");
     }
     process.stdout.write(JSON.stringify({ rows: mod.PROGRAMS.length, programs: mod.PROGRAMS }));
   `;
