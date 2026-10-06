@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   DOMESTIC_TIER_OPTIONS,
   OVERSEAS_BAND_OPTIONS,
@@ -34,16 +34,32 @@ interface Props {
   initialProfile: Profile;
   onComplete: (profile: Profile) => void;
   onCancel?: () => void;
+  /** Why the last server save failed, or null. Onboarding sends the profile at the end. */
+  saveError?: string | null;
 }
 
-export default function Onboarding({ initialProfile, onComplete }: Props) {
+export default function Onboarding({ initialProfile, onComplete, saveError }: Props) {
   const [step, setStep] = useState(0);
   const [p, setP] = useState<Profile>(initialProfile);
   /** Two input modes for the school step: type a name for detection, or pick a tier directly. */
   const [schoolMode, setSchoolMode] = useState<"name" | "tier">("name");
+  /** Set by the first edit the applicant makes, after which a late server profile must not win. */
+  const edited = useRef(false);
+
+  // The server profile arrives one request after mount, so the form is seeded with it once it does.
+  // Without this the page would show the answers it has only after the applicant touched something,
+  // which is the same "storage was cleared, so start over" behaviour this task removes. An edit
+  // already in progress wins: replacing what someone is typing is worse than a late prefill.
+  useEffect(() => {
+    if (edited.current) return;
+    setP(initialProfile);
+  }, [initialProfile]);
 
   const total = STEP_TITLES.length;
-  const patch = (v: Partial<Profile>) => setP((prev) => ({ ...prev, ...v }));
+  const patch = (v: Partial<Profile>) => {
+    edited.current = true;
+    setP((prev) => ({ ...prev, ...v }));
+  };
 
   const match: SchoolMatch | null = useMemo(
     () => (p.schoolOrigin === "国内" && p.schoolName ? recognizeDomesticSchool(p.schoolName) : null),
@@ -105,6 +121,15 @@ export default function Onboarding({ initialProfile, onComplete }: Props) {
 
       <main className="flex flex-1 flex-col justify-center py-10">
         <h1 className="mb-8 text-2xl font-extrabold leading-snug">{STEP_TITLES[step]}</h1>
+
+        {saveError && (
+          <p
+            role="alert"
+            className="mb-4 rounded-xl border-2 border-[var(--color-danger)] px-4 py-3 text-sm font-semibold text-[var(--color-danger)]"
+          >
+            档案没有保存到服务器（{saveError}）。已填内容还在这台设备上，请检查后端后重试。
+          </p>
+        )}
 
         {step === 0 && (
           <div className="grid gap-3">

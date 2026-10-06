@@ -1,5 +1,5 @@
 .PHONY: help dev build test verify install clean screenshots check-origins
-.PHONY: api-install api-test api-dev
+.PHONY: api-install api-test api-dev api-dev-bg wait-api check-api
 .PHONY: db-up db-down migrate revision seed
 .PHONY: check-dates check-programs-mirror
 
@@ -22,8 +22,15 @@ help:  ## List documented targets
 install: api-install  ## Install frontend and backend dependencies
 	cd $(WEB) && npm install --no-audit --no-fund --cache ../.npm-cache
 
-dev: db-up  ## Start the frontend dev server on :3000
-	cd $(WEB) && npm run dev
+dev: db-up api-dev-bg  ## Start the database, the API on :8000 and the frontend dev server on :3000
+	@trap 'kill 0' EXIT INT TERM; cd $(WEB) && npm run dev
+
+# The browser now reads the applicant's profile from the API, so a dev server without a backend
+# renders a page whose profile is permanently empty. Start it in the background, detached from this
+# shell's job control, and wait for the health probe instead of assuming the port answers.
+api-dev-bg:  ## Start the API in the background and wait until it answers
+	@cd api && nohup .venv/bin/uvicorn app.main:app --port 8000 >/tmp/offerpilot-api.log 2>&1 &
+	@$(MAKE) --no-print-directory wait-api
 
 build:  ## Type-check and build into .next-build so a running dev server is untouched
 	cd $(WEB) && NEXT_DIST_DIR=.next-build npm run build
@@ -33,8 +40,22 @@ test: check-dates check-programs-mirror api-test  ## Run the frontend and backen
 
 verify: build test screenshots  ## Verify: build, unit tests and the end-to-end walkthrough
 
-screenshots:  ## Drive the full flow in a real browser, writing screenshots to docs/screenshots/
+# The walkthrough asserts the API before opening the browser, so this target failed at the page
+# rather than after a full run. Checking here too keeps `make verify` from spending a build and the
+# whole unit suite before saying the backend was never up.
+screenshots: check-api  ## Drive the full flow in a real browser, writing screenshots to docs/screenshots/
 	node scripts/e2e-walkthrough.cjs
+
+check-api:  ## Fail unless the API answers on :8000
+	@curl -fsS -o /dev/null --max-time 5 http://127.0.0.1:8000/api/health \
+	  || { echo "后端未运行：http://127.0.0.1:8000/api/health 无响应。先运行 make dev（同时启动前后端）或 make api-dev。" >&2; exit 1; }
+
+wait-api:  ## Wait for the API started by api-dev-bg to answer
+	@for i in $$(seq 1 40); do \
+	  curl -fsS -o /dev/null --max-time 2 http://127.0.0.1:8000/api/health && break; \
+	  test $$i -lt 40 || { echo "后端 20 秒内未启动，见 /tmp/offerpilot-api.log" >&2; exit 1; }; \
+	  sleep 0.5; \
+	done
 
 check-dates:  ## Fail if a verification date is hardcoded in source or seed data
 	node scripts/check-no-fake-dates.cjs

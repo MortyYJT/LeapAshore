@@ -136,6 +136,8 @@ interface Props {
   onChange: (patch: Partial<Profile>) => void;
   onAvatarChange: (dataUrl: string | null) => void;
   onOpenSettings: () => void;
+  /** Why the last save failed, or null. The edit has already been rolled back when this is set. */
+  saveError: string | null;
 }
 
 export default function ProfileView({
@@ -144,6 +146,7 @@ export default function ProfileView({
   onChange,
   onAvatarChange,
   onOpenSettings,
+  saveError,
 }: Props) {
   const isOverseas = profile.schoolOrigin === "海外";
   const fileRef = useRef<HTMLInputElement>(null);
@@ -170,6 +173,15 @@ export default function ProfileView({
           每条都能单独改，改完立刻影响推荐和流程，不需要重填整份档案。
         </p>
       </header>
+
+      {saveError && (
+        <p
+          role="alert"
+          className="rounded-xl border-2 border-[var(--color-danger)] px-4 py-3 text-sm font-semibold text-[var(--color-danger)]"
+        >
+          这一条没有保存到服务器（{saveError}），已经改回原来的值。请确认后端在运行后重试。
+        </p>
+      )}
 
       <section className="card flex flex-wrap items-center gap-5">
         <div className="flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-full border-2 border-[var(--color-line)] bg-[var(--color-surface)] text-[var(--color-ink-soft)]">
@@ -380,7 +392,8 @@ export default function ProfileView({
       <section className="card">
         <h2 className="text-sm font-bold text-[var(--color-ink-soft)]">数据与隐私</h2>
         <p className="mt-2 text-sm leading-relaxed text-[var(--color-ink-soft)]">
-          档案保存在这台设备的浏览器里，没有账号体系，也没有上传到服务器。清除数据与数据来源说明在设置里。
+          档案保存在服务器上，靠这台设备上的匿名标识认领，没有账号体系，也不需要填姓名、邮箱或手机号。
+          申请组合、已勾选的材料和流程进度还保存在这台设备的浏览器里。
         </p>
         <button className="btn btn-ghost mt-4" onClick={onOpenSettings}>
           打开设置

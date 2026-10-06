@@ -21,6 +21,22 @@ const BASE = process.env.BASE_URL || "http://localhost:3000";
 fs.mkdirSync(OUT, { recursive: true });
 
 (async () => {
+  // The profile now lives on the server, so a walkthrough with no backend would drive a page whose
+  // profile never loads and report success for the empty version of every assertion below. Fail
+  // here instead, with the address that was tried.
+  try {
+    const response = await fetch(`${BASE}/api/profile`);
+    if (!response.ok) throw new Error(`GET /api/profile responded ${response.status}`);
+    await response.json();
+  } catch (error) {
+    console.error(
+      `后端不可达：GET ${BASE}/api/profile 失败（${error.message}）。` +
+        "先运行 make dev（同时启动前端与 :8000 上的后端），再跑 make screenshots。",
+    );
+    process.exitCode = 1;
+    return;
+  }
+
   const browser = await chromium.launch();
   const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
   const errors = [];
@@ -196,7 +212,8 @@ fs.mkdirSync(OUT, { recursive: true });
   const markers = ["待核验", "待人工核验", "尚未逐条核验"].filter((m) => bodyText.includes(m));
   console.log("残留的数据核验标记:", markers.length ? markers.join(" / ") : "无");
 
-  // Whether progress survives a reload (localStorage persistence).
+  // Whether progress survives a reload (localStorage persistence). Run before the site data is
+  // cleared, because that clear is what the next block is about.
   await page.reload({ waitUntil: "networkidle" });
   await page.waitForTimeout(700);
   const kept = await page
@@ -206,6 +223,51 @@ fs.mkdirSync(OUT, { recursive: true });
     .catch(() => false);
   console.log("刷新后仍在主流程（localStorage 生效）:", kept);
   await shot("21-after-reload");
+
+  // The profile must now survive without localStorage: reload after clearing site data and the
+  // server-side copy should still answer. This runs last, because the clear also resets the stage
+  // that still lives on localStorage and the browser ends up back in onboarding.
+  await page.evaluate(() => window.localStorage.clear());
+  await page.reload({ waitUntil: "networkidle" });
+  await page.waitForTimeout(800);
+  const serverProfile = await page.evaluate(async () => {
+    const response = await fetch("/api/profile");
+    return response.json();
+  });
+  console.log("清空 localStorage 后服务端仍有档案:", serverProfile.schoolName ? "是" : "否");
+
+  // The assertion above only proves the server still holds a row. Clearing localStorage also reset
+  // the stage, so the reload landed back on onboarding, and whether the UI *reads* that row is what
+  // this line settles. The school field sits two steps in, and the value it has to show is the one
+  // the server just answered with: the walker reads that value back from the API rather than
+  // expecting a copy this script typed in.
+  await page
+    .locator("button.option")
+    .filter({ hasText: /^\s*本科/ })
+    .first()
+    .click();
+  await page.waitForTimeout(250);
+  await page
+    .locator("button.option")
+    .filter({ hasText: /^\s*国内院校/ })
+    .first()
+    .click();
+  await page.waitForTimeout(250);
+  const serverSchoolName = await page.evaluate(
+    async () => (await (await fetch("/api/profile")).json()).schoolName,
+  );
+  const shownSchoolName = await page
+    .locator('input[placeholder="例如：北京邮电大学"]')
+    .first()
+    .inputValue()
+    .catch(() => null);
+  const restoredOk = Boolean(serverSchoolName) && shownSchoolName === serverSchoolName;
+  console.log(
+    "重新打开后档案已从服务端恢复:",
+    restoredOk ? "是" : "否",
+    JSON.stringify({ expected: serverSchoolName, actual: shownSchoolName }),
+  );
+  await shot("22-profile-restored-from-server");
 
   console.log("\n=== JS 错误 ===");
   console.log(errors.length ? errors.join("\n") : "无");
