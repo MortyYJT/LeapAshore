@@ -21,6 +21,11 @@
 // row with a missing key, and the only reason it was caught is that the browser walkthrough reports
 // console errors. Inferring the names from what the builder wants, rather than from the wire, is the
 // mistake this header is here to prevent.
+//
+// That round-trip test builds its input from the constants and the adapter in this same file, so it
+// only catches a name that one of the two halves changed on its own. The binding to the server's
+// spelling is `web/lib/roadmap-response.fixture.json` — a captured `GET /api/roadmap` body — which
+// `roadmap-source.test.ts` maps and compares field by field.
 
 import type { RoadmapDefinition, MaterialItem } from "./types";
 
@@ -39,11 +44,12 @@ export interface ServedPhase {
 /**
  * One material as it arrives over the wire.
  *
- * `source` is carried because the wire carries it, and this interface is the honest description of a
- * response body: a material with no source row really does send `null`, and the two authored visa
- * materials really do send an object. Nothing here renders it yet — every date the roadmap shows is
- * still a system suggestion — and `SourceRef` is declared in `api/app/schemas/roadmap.py`, not on
- * this side, so naming its fields here would invent a contract the frontend does not read.
+ * The response also carries `source` — `null` for a transcribed material and an object for the two
+ * authored visa ones — and it is deliberately not declared here. Nothing on this side reads it, every
+ * date the roadmap shows is still a system suggestion, and `SourceRef` is declared in
+ * `api/app/schemas/roadmap.py` rather than on this side, so a field naming it would describe a
+ * contract this module does not have. The captured fixture keeps the byte of the response that says
+ * it is there.
  */
 export interface ServedMaterial {
   /** The material key, which is `MaterialItem["id"]` on this side. */
@@ -55,7 +61,6 @@ export interface ServedMaterial {
   detail: string;
   appliesTo?: MaterialItem["appliesTo"];
   sortOrder: number;
-  source: unknown;
 }
 
 /** The whole definition, exactly as `GET /api/roadmap` serves it. */
@@ -64,18 +69,23 @@ export interface ServedRoadmapDefinition {
   materials: ServedMaterial[];
 }
 
-/** One phase definition as `buildRoadmap` reads it, plus the wire's own name for the phase. */
+/**
+ * One phase definition as `buildRoadmap` reads it, plus the wire's own name for the phase.
+ *
+ * `key` and `id` always hold the same string, and the duplication is kept on purpose: the brief's
+ * acceptance test for this mapper reads `phases[0].key`, because that is the name the wire uses,
+ * while `buildRoadmap` and every caller of it read `id`. Dropping either one means editing a test this
+ * fix round was told not to touch, or changing what the builder walks, so the seam stays where the
+ * two vocabularies meet and `toPhaseDefs` writes both from the single served value.
+ */
 export type PhaseDef = RoadmapDefinition["phases"][number] & { key: string };
 
 /**
  * The served phases as the definitions `buildRoadmap` walks.
  *
- * `key` is kept on each returned definition so the caller can still name the wire identifier, and
- * `id` is added because that is what the builder and every caller of it use. Both hold the same
- * value; the duplication is the seam between the two vocabularies, not a second field to maintain.
- * A `subtitle` of `null` becomes `""`, which is how a phase without a description already renders:
- * `FlowView` puts `detail` in a paragraph, and the null would either print as "null" or need a check
- * at every render site.
+ * `id` is added alongside the wire's `key` (see `PhaseDef`). A `subtitle` of `null` becomes `""`,
+ * which is how a phase without a description already renders: `FlowView` puts `detail` in a
+ * paragraph, and the null would either print as "null" or need a check at every render site.
  */
 export function toPhaseDefs(definition: ServedRoadmapDefinition): PhaseDef[] {
   return definition.phases.map((phase) => ({

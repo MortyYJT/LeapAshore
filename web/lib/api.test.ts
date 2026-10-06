@@ -250,3 +250,60 @@ test("fetchRoadmapDefinition rejects an error page so the caller can fall back v
     /读取路线图定义失败：502/,
   );
 });
+
+test("fetchRoadmapDefinition rejects a well-formed 200 that carries no phases", async () => {
+  // The blank screen this pins: a route that answers `{"phases":[],"materials":[]}` is well formed and
+  // used to be accepted as a definition, so the page replaced the built-in copy with nothing and drew
+  // zero phases without a word. An empty phase list is the same claim as an unreachable route — there
+  // is nothing to build a roadmap from — so it has to fail the read and reach the caller's catch,
+  // which renders the built-in copy and the notice saying so.
+  await assert.rejects(
+    () =>
+      withFetch(
+        () => new Response(JSON.stringify({ phases: [], materials: [] }), { status: 200 }),
+        () => fetchRoadmapDefinition(),
+      ),
+    /读取路线图定义失败：响应里没有任何阶段/,
+  );
+});
+
+test("fetchRoadmapDefinition rejects a 200 whose lists are missing or not lists", async () => {
+  // A malformed body is a failure for the same reason, and it is the case a caller cannot recover from
+  // on its own: without `phases` the mapping throws inside the caller's `then`, and without
+  // `materials` it throws inside the builder's own lookup. Both were reaching the notice by accident.
+  // Failing at the read says which list was absent instead.
+  await assert.rejects(
+    () =>
+      withFetch(
+        () => new Response(JSON.stringify({ materials: [] }), { status: 200 }),
+        () => fetchRoadmapDefinition(),
+      ),
+    /读取路线图定义失败：响应缺少阶段列表/,
+  );
+  await assert.rejects(
+    () =>
+      withFetch(
+        () =>
+          new Response(JSON.stringify({ phases: [{ key: "visa", title: "签证与行前" }] }), {
+            status: 200,
+          }),
+        () => fetchRoadmapDefinition(),
+      ),
+    /读取路线图定义失败：响应缺少材料列表/,
+  );
+});
+
+test("a definition with phases and no materials is still walkable", async () => {
+  // The other side of the check: emptiness is judged on the phase list, because that is what produces
+  // the timeline. An authored phase whose materials have not been written yet is a thin roadmap, not a
+  // broken definition, and refusing it would send the page to the built-in copy for no reason.
+  const body = {
+    phases: [{ key: "visa", title: "签证与行前", subtitle: null, offsetDays: 30, sortOrder: 6 }],
+    materials: [],
+  };
+  const { value } = await withFetch(
+    () => new Response(JSON.stringify(body), { status: 200 }),
+    () => fetchRoadmapDefinition(),
+  );
+  assert.deepEqual(value, body);
+});

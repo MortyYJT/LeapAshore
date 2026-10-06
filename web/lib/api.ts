@@ -20,11 +20,34 @@ import type { ServedRoadmapDefinition } from "./roadmap-source";
  * checked without a server. A failure raises rather than resolving to an empty definition, because
  * "the server said nothing" and "the server could not be reached" are different claims and only the
  * caller knows which fallback to use.
+ *
+ * A `200` that cannot be walked is a failure too, and it raises here instead of being handed on. The
+ * caller's only lever is "did the read fail", so a well-formed definition carrying no phases has to
+ * answer that question the way an unreachable route does: otherwise the page takes it as the truth,
+ * overrides the built-in copy, and renders an empty timeline with no notice to say why — the blank
+ * screen the fallback exists to prevent. The check lives in the transport rather than in
+ * `buildRoadmap` because the builder cannot report what it did: falling back there would put the
+ * built-in phases on screen while the page still believed it was rendering the server's empty
+ * definition, which is the silent half of the same bug.
+ *
+ * Only the two lists are required; their contents are not inspected. A phase this build has never
+ * heard of is the server's to add, and a definition with phases and no materials yet is walkable,
+ * if thin.
  */
 export async function fetchRoadmapDefinition(): Promise<ServedRoadmapDefinition> {
   const response = await fetch("/api/roadmap", { credentials: "same-origin" });
   if (!response.ok) throw new Error(`读取路线图定义失败：${response.status}`);
-  return response.json();
+  const definition = (await response.json()) as ServedRoadmapDefinition;
+  if (!Array.isArray(definition.phases)) {
+    throw new Error("读取路线图定义失败：响应缺少阶段列表");
+  }
+  if (!Array.isArray(definition.materials)) {
+    throw new Error("读取路线图定义失败：响应缺少材料列表");
+  }
+  if (definition.phases.length === 0) {
+    throw new Error("读取路线图定义失败：响应里没有任何阶段");
+  }
+  return definition;
 }
 
 /**
