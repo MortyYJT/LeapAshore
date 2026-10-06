@@ -1200,7 +1200,7 @@ def test_every_program_points_at_a_source(db_session, require_db):
 def test_expected_universities_are_present(db_session, require_db):
     seed_programs(db_session)
     names = set(db_session.execute(select(University.name)).scalars().all())
-    assert {"新南威尔士大学", "悉尼大学", "莫纳什大学"} <= names
+    assert {"新南威尔士大学", "悉尼大学", "蒙纳士大学"} <= names
 ```
 
 - [ ] **Step 2: 运行测试，确认失败**
