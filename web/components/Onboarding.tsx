@@ -127,7 +127,10 @@ export default function Onboarding({ initialProfile, onComplete, saveError }: Pr
             role="alert"
             className="mb-4 rounded-xl border-2 border-[var(--color-danger)] px-4 py-3 text-sm font-semibold text-[var(--color-danger)]"
           >
-            档案还没有同步到服务器（{saveError}）。请检查后端后点「生成我的方案」重试；刷新页面会丢失这里的答案。
+            档案还没有同步到服务器（{saveError}）。
+            {step === total - 1
+              ? "请检查后端后点「生成我的方案」重试；刷新页面会丢失这里的答案。"
+              : "请检查后端后再继续；这里的答案还没同步到服务器，刷新页面会丢失。"}
           </p>
         )}
 

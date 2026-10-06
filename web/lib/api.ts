@@ -20,6 +20,63 @@ export async function fetchProfile(): Promise<Partial<Profile>> {
 }
 
 /**
+ * Decimal places the numeric profile columns hold, read from `api/app/models/client.py`.
+ *
+ * `gpa_score` and `gpa_scale` are `Numeric(5, 2)` and `annual_budget_cny` is `Numeric(12, 2)`, so
+ * the database keeps two decimal places and rounds anything finer. That is reachable from the UI
+ * today: the GPA input is a number field, and a GPA on the 4.0/4.3/5.0/7.0 scales carries three
+ * decimals (`3.756`). The budget's two inputs are fixed option lists, so only a whole option value
+ * reaches the column from there, but the rule is the column's rather than the control's: a field
+ * this map does not name is compared exactly.
+ */
+const COLUMN_DECIMALS: Partial<Record<keyof Profile, number>> = {
+  gpaScore: 2,
+  gpaScale: 2,
+  annualBudgetCny: 2,
+};
+
+/**
+ * Round `value` to `places` decimals the way the database column does: half away from zero, applied
+ * to the number's shortest decimal spelling.
+ *
+ * Measured through the running server: `{"gpaScore": 85.375}` comes back as `85.38`, and
+ * `{"annualBudgetCny": 250000.505}` comes back as `250000.51`. Rounding the spelling `String()`
+ * produces — which is the same shortest spelling Postgres reads out of the double — reproduces both,
+ * including those ties, which are exactly the inputs an applicant can type.
+ *
+ * Scaling by `10 ** places` instead is not equivalent, and fails on the same class of input:
+ * `4.675 * 100` is `467.49999999999994`, which would round down to `4.67` where the column holds
+ * `4.68`. That is why the digits are rounded as digits.
+ */
+function roundToColumnPrecision(value: number, places: number): number {
+  if (!Number.isFinite(value)) return value;
+  const text = String(value);
+  // Exponent notation means |value| is below 1e-6 or at least 1e21: outside what these columns can
+  // hold, and not a shape any of the inputs produces. Left alone rather than guessed at.
+  if (text.includes("e")) return value;
+  const negative = text.startsWith("-");
+  const [whole, fraction = ""] = (negative ? text.slice(1) : text).split(".");
+  const digits = whole + fraction;
+  const keep = whole.length + places;
+  if (keep >= digits.length) return value; // already no finer than the column
+  let kept = digits.slice(0, keep);
+  if (digits.charCodeAt(keep) - 48 >= 5) kept = (BigInt(kept) + 1n).toString();
+  // Dividing by `10 ** places` stays right when the carry added a digit: 9.999 keeps "999", rounds
+  // up to "1000", and 1000 / 100 is still 10.
+  const scaled = Number(kept) / 10 ** places;
+  return negative ? -scaled : scaled;
+}
+
+/** Whether the value in the reply is the value that was sent, to the precision its column keeps. */
+function isStoredAsSent(key: keyof Profile, sent: unknown, saved: unknown): boolean {
+  const places = COLUMN_DECIMALS[key];
+  if (places === undefined || typeof sent !== "number" || typeof saved !== "number") {
+    return saved === sent;
+  }
+  return roundToColumnPrecision(sent, places) === roundToColumnPrecision(saved, places);
+}
+
+/**
  * Save the fields in `patch` and return the profile as the server now holds it.
  *
  * `PATCH` applies only the keys present in the body, so a one-field edit cannot blank the rest, and
@@ -29,6 +86,13 @@ export async function fetchProfile(): Promise<Partial<Profile>> {
  * error the caller already knows how to report, instead of the local state quietly keeping a value
  * the server never stored. Only the sent fields are checked; the response carries the whole profile,
  * and the rest of it is not this call's business.
+ *
+ * A numeric field is compared at the precision its column keeps, not by `!==`. Comparing the raw
+ * numbers called the database's own rounding a failed save: `85.375` came back as `85.38`, so the
+ * caller refused to advance on a save that had landed, and the inline edit path rolled the field
+ * back to a value the server disagreed with — the silent divergence this check exists to prevent.
+ * The comparison is still exact for everything the column cannot explain, so a field the server
+ * kept at its old value, or changed to anything else, still raises.
  */
 export async function patchProfile(patch: Partial<Profile>): Promise<Partial<Profile>> {
   const response = await fetch("/api/profile", {
@@ -44,7 +108,10 @@ export async function patchProfile(patch: Partial<Profile>): Promise<Partial<Pro
   // about whether the save landed.
   const sent = Object.entries(patch).filter(([, value]) => value !== undefined);
   const diverged = sent
-    .filter(([key, value]) => saved[key as keyof Profile] !== value)
+    .filter(
+      ([key, value]) =>
+        !isStoredAsSent(key as keyof Profile, value, saved[key as keyof Profile]),
+    )
     .map(([key]) => key);
   if (diverged.length > 0) {
     throw new Error(`保存档案失败：服务器没有按提交的值保存（${diverged.join("、")}）`);

@@ -111,6 +111,28 @@ def test_an_explicit_null_clears_the_field_it_names(require_db):
     assert body["major"] == "计算机科学与技术"
 
 
+def test_a_value_finer_than_its_column_is_stored_rounded(require_db):
+    """The columns round, so the frontend has to read the rounded reply as a successful save.
+
+    `gpa_score` is `Numeric(5, 2)` and `annual_budget_cny` is `Numeric(12, 2)`, and the applicant
+    can type finer than two decimals. `web/lib/api.test.ts` compares a reply against the sent value
+    within that precision; the values asserted here are the ones its regression test is built on,
+    so this is what keeps that test honest — a column that started keeping four decimals, or a
+    rounding rule that stopped being half away from zero, would leave the frontend rejecting a real
+    reply.
+
+    `4.675` and `1.005` are here on purpose. They are the ties where a frontend that scaled by 100
+    instead of rounding the digits goes the wrong way: `4.675 * 100` is `467.49999999999994`.
+    """
+    client = TestClient(app)
+    body = client.patch("/api/profile", json={"annualBudgetCny": 250000.505}).json()
+    assert float(body["annualBudgetCny"]) == 250000.51
+
+    for sent, stored in ((85.375, 85.38), (3.756, 3.76), (4.675, 4.68), (1.005, 1.01)):
+        answer = client.patch("/api/profile", json={"gpaScore": sent}).json()
+        assert float(answer["gpaScore"]) == stored, sent
+
+
 def test_the_wire_format_uses_the_frontend_key_names(require_db):
     """Task 8 feeds these responses straight into the `Profile` type in web/lib/types.ts.
 

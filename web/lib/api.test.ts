@@ -118,6 +118,50 @@ test("patchProfile raises when the server did not store the value it was sent", 
   );
 });
 
+test("a reply the column rounded is the same answer, not a divergence", async () => {
+  // The regression this pins: `gpaScore` and `annualBudgetCny` are `Numeric(5, 2)` and
+  // `Numeric(12, 2)`, so the database rounds anything finer, and comparing the raw numbers with
+  // `!==` called that rounding a failed save. Both values below were measured through the running
+  // server, and `api/tests/test_profile_api.py` pins the same ones against the real column, so this
+  // test fails if the stub ever stops matching what the backend does. On the failure itself: the
+  // onboarding caller refuses to advance on a divergence, so a three-decimal GPA on the 4.0/4.3/5.0/
+  // 7.0 scales (`3.756`) left a healthy backend blocking the flow at `onboarding`.
+  const { value } = await withFetch(
+    () =>
+      new Response(JSON.stringify({ gpaScore: 85.38, annualBudgetCny: 250000.51 }), { status: 200 }),
+    () => patchProfile({ gpaScore: 85.375, annualBudgetCny: 250000.505 }),
+  );
+  assert.equal(value.gpaScore, 85.38);
+  assert.equal(value.annualBudgetCny, 250000.51);
+});
+
+test("the rounding matches the column's ties, not binary scaling", async () => {
+  // 4.675 * 100 is 467.49999999999994, so a comparison written as `Math.round(value * 100)` would
+  // call this stored reply (4.68, measured through the server) a divergence. Same tie class as
+  // 85.375, opposite float luck, which is why the digits are rounded as digits.
+  const { value } = await withFetch(
+    () => new Response(JSON.stringify({ gpaScore: 4.68 }), { status: 200 }),
+    () => patchProfile({ gpaScore: 4.675 }),
+  );
+  assert.equal(value.gpaScore, 4.68);
+});
+
+test("a stored value the column cannot explain still raises", async () => {
+  // The comparison is narrowed by the column's precision, not by a loose tolerance. Two shapes of a
+  // save that did not land: the reply still holds the old value, or it holds something that two
+  // decimal places of the sent value could not have produced.
+  const replyWith = (body: unknown) => () =>
+    new Response(JSON.stringify(body), { status: 200 });
+  await assert.rejects(
+    () => withFetch(replyWith({ gpaScore: 82 }), () => patchProfile({ gpaScore: 85.375 })),
+    /保存档案失败：服务器没有按提交的值保存（gpaScore）/,
+  );
+  await assert.rejects(
+    () => withFetch(replyWith({ gpaScore: 85.4 }), () => patchProfile({ gpaScore: 85.375 })),
+    /保存档案失败：服务器没有按提交的值保存（gpaScore）/,
+  );
+});
+
 test("patchProfile ignores the rest of the profile the server echoes back", async () => {
   // The response carries every field, so only the sent ones are compared. Treating the extra keys as
   // a divergence would fail on every real save, which is what the first version of this check did.
