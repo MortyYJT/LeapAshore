@@ -54,6 +54,16 @@ export default function Page() {
     setState((prev) => ({ ...prev, stage: "onboarding" }));
   }
 
+  // Editing a single field from the profile view. Used instead of sending the applicant back through
+  // onboarding to correct one value.
+  function updateProfile(patch: Partial<Profile>) {
+    setState((prev) => {
+      const profile = { ...prev.profile, ...patch };
+      // Clearing the tier is meaningful: the assessment then reports that it cannot decide.
+      return { ...prev, profile };
+    });
+  }
+
   function clearAll() {
     clearState();
     setState({ ...initialState });
@@ -89,7 +99,7 @@ export default function Page() {
       portfolio={state.portfolio}
       completedMaterials={state.completedMaterials}
       onToggleMaterial={toggleMaterial}
-      onRestart={restart}
+      onUpdateProfile={updateProfile}
       onClear={clearAll}
     />
   );

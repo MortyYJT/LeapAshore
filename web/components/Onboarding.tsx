@@ -7,62 +7,15 @@ import {
   recognizeDomesticSchool,
   type SchoolMatch,
 } from "@/lib/schools";
-import type {
-  DegreeLevel,
-  DomesticTier,
-  EducationLevel,
-  OverseasBand,
-  Profile,
-  SchoolOrigin,
-  StudyArea,
-} from "@/lib/types";
-
-const STUDY_AREAS: StudyArea[] = [
-  "计算机与数据",
-  "商科与金融",
-  "工程",
-  "教育与社会科学",
-  "生命科学",
-  "医学与健康",
-  "法律与犯罪学",
-  "自然科学与数学",
-  "人文与语言",
-  "建筑规划与设计",
-  "传媒艺术与音乐",
-  "环境与农业",
-];
-
-const EDU_OPTIONS: { value: EducationLevel; hint: string }[] = [
-  { value: "高中", hint: "申请本科" },
-  { value: "本科", hint: "申请硕士" },
-  { value: "硕士", hint: "申请二硕或博士" },
-  { value: "其他", hint: "" },
-];
-
-const DEGREE_OPTIONS: { value: DegreeLevel; hint: string }[] = [
-  { value: "授课型硕士", hint: "以课程为主，最常见" },
-  { value: "研究型硕士", hint: "需要研究计划与导师" },
-  { value: "本科", hint: "高中毕业后直接申请" },
-  { value: "博士", hint: "需要研究计划与导师" },
-];
-
-const BUDGET_OPTIONS: { value: number; label: string }[] = [
-  { value: 200000, label: "20 万以下 / 年" },
-  { value: 300000, label: "20–30 万 / 年" },
-  { value: 400000, label: "30–40 万 / 年" },
-  { value: 500000, label: "40–50 万 / 年" },
-  { value: 800000, label: "50 万以上 / 年" },
-];
-
-const INTAKE_OPTIONS = ["2027 S1", "2027 S2", "2028 S1", "2028 S2"];
-
-const SCALE_OPTIONS = [
-  { value: 100, label: "百分制" },
-  { value: 4, label: "4.0 制" },
-  { value: 4.3, label: "4.3 制" },
-  { value: 5, label: "5.0 制" },
-  { value: 7, label: "7.0 制" },
-];
+import {
+  BUDGET_OPTIONS,
+  DEGREE_OPTIONS,
+  EDUCATION_OPTIONS,
+  GPA_SCALE_OPTIONS,
+  INTAKE_OPTIONS,
+  STUDY_AREAS,
+} from "@/lib/taxonomy";
+import type { DomesticTier, OverseasBand, Profile, SchoolOrigin } from "@/lib/types";
 
 const STEP_TITLES = [
   "你现在的学历是？",
@@ -155,7 +108,7 @@ export default function Onboarding({ initialProfile, onComplete }: Props) {
 
         {step === 0 && (
           <div className="grid gap-3">
-            {EDU_OPTIONS.map((o) => (
+            {EDUCATION_OPTIONS.map((o) => (
               <button
                 key={o.value}
                 className={`option ${p.educationLevel === o.value ? "selected" : ""}`}
@@ -316,7 +269,7 @@ export default function Onboarding({ initialProfile, onComplete }: Props) {
                 value={p.gpaScale ?? 100}
                 onChange={(e) => patch({ gpaScale: Number(e.target.value) })}
               >
-                {SCALE_OPTIONS.map((s) => (
+                {GPA_SCALE_OPTIONS.map((s) => (
                   <option key={s.value} value={s.value}>
                     {s.label}
                   </option>
