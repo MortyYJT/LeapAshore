@@ -1,6 +1,9 @@
 # 编辑忽略：npm 缓存指向本仓库内，避免系统缓存权限问题
 .npm-cache/
 
+# 项目本地下载的工具与运行时（例如 gh CLI），不进版本库
+.runtime-tools/
+
 # superpowers 子代理的临时工作区（brief / report / red.txt / green.txt）
 .superpowers/
 
