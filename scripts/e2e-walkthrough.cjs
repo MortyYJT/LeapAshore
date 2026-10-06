@@ -121,13 +121,46 @@ fs.mkdirSync(OUT, { recursive: true });
   await shot("15-advisor-message");
 
   // The account control is an avatar with a hover menu, not a tab.
-  await page.getByRole("button", { name: "账户" }).hover();
-  await page.waitForTimeout(300);
+  //
+  // Move the pointer down through the space between the button and the menu instead of jumping
+  // straight onto the menu item. A previous version positioned the menu with a top offset, which left
+  // that strip belonging to neither element: crossing it fired mouseleave and the menu vanished
+  // before the pointer arrived.
+  const account = page.getByRole("button", { name: "账户" });
+  const box = await account.boundingBox();
+  await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+  await page.waitForTimeout(200);
+  await page.mouse.move(box.x + box.width / 2, box.y + box.height + 4, { steps: 6 });
+  await page.mouse.move(box.x + box.width / 2, box.y + box.height + 24, { steps: 6 });
+  await page.waitForTimeout(250);
+
+  const menuHeld = await page.getByRole("button", { name: "个人信息", exact: true }).isVisible().catch(() => false);
+  console.log("指针移向菜单后仍然打开:", menuHeld ? "是" : "否");
   await shot("16-account-menu");
 
   await page.getByRole("button", { name: "个人信息", exact: true }).click();
   await page.getByText("每条都能单独改").waitFor({ timeout: 10000 });
   await page.waitForTimeout(300);
+  // Avatar upload: the image is downscaled in the browser and stored locally, so the header control
+  // should render an img once one is chosen.
+  const png = Buffer.from(
+    "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==",
+    "base64",
+  );
+  await page.locator('input[type="file"]').setInputFiles({
+    name: "avatar.png",
+    mimeType: "image/png",
+    buffer: png,
+  });
+  await page.waitForTimeout(500);
+  const avatarShown = (await page.locator('button[aria-label="账户"] img').count()) === 1;
+  const avatarStored = await page.evaluate(() => {
+    const raw = window.localStorage.getItem("offerpilot.state.v1");
+    return Boolean(raw && JSON.parse(raw).avatar);
+  });
+  console.log("上传后头像已显示:", avatarShown ? "是" : "否");
+  console.log("头像已存入本机:", avatarStored ? "是" : "否");
+
   // Guard against the option-selection bug above: the demo profile must say 本科, not 高中.
   const educationOk = await page
     .locator("div", { hasText: /^当前学历/ })
