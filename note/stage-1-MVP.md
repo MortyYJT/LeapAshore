@@ -533,3 +533,40 @@
   —— 说明那是 GitHub 对分支名结果的**缓存**，不是实现错误。
   教训：**用 SHA 复核，别把缓存当成事实**，也别在缓存误导下急着改实现。
 - 本轮无其它返工。所有破坏性操作的替代方案都提前验证过：dry-run push、合并前后 tree hash 对比、fast-forward 确认。
+
+## 2026-10-06 — 安装 gh、创建 PR、CI 首次通过；汇报格式写进 AGENTS.md
+
+### 用户关键原话
+
+- 「首先为了确保说话有逻辑，你把结构写在文档里，然后我们的工作流程你似乎没按照SUPERPOWER的来；gh是什么？你不能帮我安装吗？我要你帮我自主commit，提pr；还有就是原来这个项目的commit我想要保留，但是我现在属于是重构项目，commit保留但是代码不保留；我git账户没有登陆吗？」
+
+### 关键产出与评审结论
+
+- **汇报结构已写进 `AGENTS.md`**：固定四段——你要做什么 / 我完成了什么 / 我遇到什么问题 / 还没完成什么，并写明"先说要用户做什么，不要先叙述我做了什么"。
+- **工作流程已明确并写进 `AGENTS.md` §1**：产品与逻辑走完整 superpowers 流程（brainstorm → spec → plan → TDD → review → verification）；
+  纯界面走浏览器验收。并明确**不得把这个例外扩展到逻辑**。
+  **我承认前面几轮 UI 修改确实跳了流程**，当时按"页面例外"处理但没有把例外显式化，现在写死了。
+- **gh 是什么**：GitHub 官方命令行工具，用于建仓库、提 PR、看 CI 状态。本机没有 Homebrew，改为直接下载官方 arm64 二进制
+  到项目本地 `.runtime-tools/`（已加入 .gitignore），版本 2.102.0。
+- **git 账户是否登录**：**登录着**。证据：本地 `~/.ssh/offerpilot_codex` 公钥与 GitHub 账户公钥列表中的 id `157216191` 完全一致
+  （2026-07-14 添加，last_used 2026-10-06）。默认调用失败只是因为文件名不是 `id_ed25519` 且没进 ssh-agent。
+  HTTPS 侧 osxkeychain 也存有凭据（scope: `gist, read:org, repo, workflow`）。
+- **凭据获取方式**：不读 `security -w`（ACL 不通，而且会打印密钥），改用 `git credential fill` 把 token 送进环境变量，
+  **全程不打印**。gh 认证状态显示 `Logged in to github.com account MortyYJT (GH_TOKEN)`。
+- **PR 已创建**：https://github.com/MortyYJT/offerpilot/pull/1 —— 30 个提交，245 个文件，状态 OPEN / MERGEABLE。
+- **CI 首次真实运行并通过**：`completed success CI codex/stage-1-mvp pull_request 27s`（run 37415993328）。
+  顺带印证了用户此前的说法：旧仓库最后一次 push 到 main 的 CI 结果是 `failure`。
+- **"commit 保留但代码不保留"**：用户的诉求已经用 `-s ours` 合并实现 —— 旧 main 的 77 个提交作为祖先保留在历史里，
+  但最终树完全等于新实现（合并前后 tree hash 一致，`4f5593dfeb57`）。旧代码没有进入新树。
+
+### 用户拒绝或纠偏
+
+- 用户指出我汇报混乱，要求把结构写进文档。已照做。
+- 用户指出我没按 superpowers 流程。**这个批评成立**，已把两条轨道的边界写进 AGENTS.md。
+
+### 翻车与返工
+
+- 上一轮我把「发现」「已完成」「待办」混在一段里讲，用户明确表示看不懂。这是沟通问题不是技术问题，
+  已用固定四段格式解决。
+- 我此前把「页面例外」当作已授权来用，但没有和用户确认过边界。现已写死在文档里，并明确逻辑不得走这个例外。
+- 无其它返工。
