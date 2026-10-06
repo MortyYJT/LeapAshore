@@ -119,20 +119,33 @@ export async function patchProfile(patch: Partial<Profile>): Promise<Partial<Pro
   return saved;
 }
 
-/** True when an incoming value would replace a locally known one with nothing. */
+/**
+ * True when the server has never been told this field.
+ *
+ * Only `null` and `undefined` count. An empty string is an answer: `ProfileView` sends it when the
+ * applicant clears a field, and the server stores what it was sent, so reading it as "no answer"
+ * was how a cleared field came back on the next load while the server held the cleared one — the
+ * same silent divergence the write-path check in `patchProfile` exists to prevent. A whitespace-only
+ * string is an answer for the same reason; nothing in the UI produces one, and singling it out would
+ * reintroduce the resurrection for the one value that most looks like a deliberate blank.
+ */
 function isAbsent(value: unknown): boolean {
-  return value === null || value === undefined || (typeof value === "string" && value.trim() === "");
+  return value === null || value === undefined;
 }
 
 /**
- * Merge the server's profile under the local one, letting the server win wherever it has a value.
+ * Merge the server's profile under the local one, letting the server win wherever it has an answer.
  *
- * The server is authoritative, but it starts every subject on a row of all-null columns, and a
- * null there means "this account never told us", not "the applicant has no school". A blind
- * overwrite would let that empty first-contact row wipe the answers the applicant just gave on this
- * device, so a field the server does not have falls back to the local value. The consequence to
- * remember: a null on the server cannot be used to clear a field that still has a local value. The
- * one place that matters is clearing the detected tier, and its local fallback is empty by then.
+ * The server is authoritative for the profile, so every value it holds for a field wins — including
+ * `""`, which is what clearing a saved field leaves behind. What it does not hold is `null`, and
+ * that means "this account never told us", not "the applicant has no school": the row a subject
+ * starts on is all nulls, so a blind overwrite would wipe the answers given on this device before
+ * the first save landed. Only those fields fall back to the local copy, which is the frontend's
+ * defaults (`EMPTY_PROFILE`) plus any answer the server has not been told yet.
+ *
+ * The consequence to remember: a value on screen is therefore not proof that the server holds it.
+ * That is what `patchProfile` reports on the write path, and why a field the applicant cleared is
+ * an empty win rather than a fallback.
  */
 export function mergeServerProfile(remote: Partial<Profile>, local: Profile): Profile {
   const merged: Record<string, unknown> = { ...local };

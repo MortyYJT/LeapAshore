@@ -32,8 +32,10 @@ test("a field the server holds wins over the local copy", () => {
 });
 
 test("a field the server has never been told does not erase the local answer", () => {
-  // First contact answers with a row of nulls. Taking those at face value would wipe the answers the
-  // applicant just gave on this device, which is the whole reason the merge is not a spread.
+  // A `null` is "this account never told us", and the row a subject starts on is all nulls. Taking
+  // those at face value would wipe the answers the applicant just gave on this device, which is the
+  // whole reason the merge is not a spread. Null is the only value that means absent; an empty
+  // string is an answer, which the next test pins.
   const local: Profile = { ...EMPTY_PROFILE, schoolName: "北京邮电大学", gpaScore: 82, intake: "2027 S1" };
   // The nulls are the wire value the server actually sends, and `Profile` declares these three fields
   // as non-nullable, so the cast is the test saying "this is what a raw response body looks like"
@@ -50,13 +52,36 @@ test("a field the server has never been told does not erase the local answer", (
   assert.deepEqual(merged, local);
 });
 
-test("an empty string on the server is treated as no answer, not as an answer", () => {
-  // The column is nullable and the frontend's `englishScore` defaults to "", so "empty" cannot be
-  // read as "the applicant cleared this": it is the shape of a row that was never filled in.
+test("an empty string on the server is an answer: it is how a cleared field comes back", () => {
+  // The applicant cleared a saved field, `ProfileView` sent `""`, and the server stored it. Reading
+  // that as "no answer" let the locally remembered value win, so the old value reappeared on screen
+  // while the server held the cleared one — the silent divergence this layer exists to prevent.
+  // This test used to name the opposite rule as intended; the rule was decided again deliberately:
+  // the server is authoritative, and an explicit empty is an answer.
   const local: Profile = { ...EMPTY_PROFILE, schoolName: "北京邮电大学", englishScore: "IELTS 6.5" };
-  assert.equal(mergeServerProfile({ schoolName: "" }, local).schoolName, "北京邮电大学");
-  assert.equal(mergeServerProfile({ schoolName: "  " }, local).schoolName, "北京邮电大学");
-  assert.equal(mergeServerProfile({ englishScore: "" }, local).englishScore, "IELTS 6.5");
+  assert.equal(mergeServerProfile({ schoolName: "" }, local).schoolName, "");
+  assert.equal(mergeServerProfile({ englishScore: "" }, local).englishScore, "");
+});
+
+test("a whitespace-only string on the server is an answer too", () => {
+  // Nothing in the UI produces one, so the tempting special case is "trim, then compare". It is not
+  // taken: if the server holds "  " then that is what the applicant's saved answer is, and treating
+  // it as absent would restore exactly the resurrection the test above pins — for the one value that
+  // most looks like a deliberate blank.
+  const local: Profile = { ...EMPTY_PROFILE, schoolName: "北京邮电大学" };
+  assert.equal(mergeServerProfile({ schoolName: "  " }, local).schoolName, "  ");
+});
+
+test("clearing a saved field survives the next load", async () => {
+  // The whole path in one test: the save of an empty value is accepted by the write-path check, and
+  // the value that comes back merges as the answer rather than falling back to the local copy.
+  const local: Profile = { ...EMPTY_PROFILE, schoolName: "北京邮电大学" };
+  const { value } = await withFetch(
+    () => new Response(JSON.stringify({ schoolName: "" }), { status: 200 }),
+    () => patchProfile({ schoolName: "" }),
+  );
+  assert.equal(value.schoolName, "");
+  assert.equal(mergeServerProfile(value, local).schoolName, "");
 });
 
 test("a numeric zero from the server is a real answer and wins over the local value", () => {
