@@ -21,7 +21,7 @@
 - 分支：`codex/stage-2-m2a-roadmap-definition`。
 - `Numeric` 列一律标注为 `Decimal`（M1 最终修复波已确立），本批没有 Numeric 列但保持同一习惯。
 - 每张配置表都要有唯一键，种子必须**幂等**（重跑不产生重复行）。
-- **不得凭印象编造材料项或阶段。** 6 个阶段与 29 个材料项必须逐条对照 `web/lib/roadmap.ts` 转写；签证阶段是新增内容，必须挂官方来源并且初始状态为 `待核验`。
+- **不得凭印象编造材料项或阶段。** 6 个阶段与 **31 个材料项**必须逐条对照 `web/lib/roadmap.ts` 转写；签证阶段是新增内容，必须挂官方来源并且初始状态为 `待核验`。
 
 ---
 
@@ -232,7 +232,7 @@ EOF
 
 ---
 
-### Task 2: 把 6 个阶段与 29 个材料从 TypeScript 转写进种子
+### Task 2: 把 6 个阶段与 31 个材料从 TypeScript 转写进种子
 
 **Files:**
 - Create: `api/app/seed_roadmap.py`
@@ -248,7 +248,7 @@ EOF
 
 - [ ] **Step 1: 先读源文件，不要凭印象**
 
-打开 `~/Documents/留学agent/offerpilot/web/lib/roadmap.ts`，逐条抄出 `PHASE_DEFS`（6 个阶段，含 `offsetDays`）与 `MATERIALS`（29 个材料项，含 `phase`、`title`、`detail`、`appliesTo` 与顺序）。**计划里不重复这些值**，因为它们必须以源文件为准；转写时逐条核对，并写一张映射表放进报告。
+打开 `~/Documents/留学agent/offerpilot/web/lib/roadmap.ts`，逐条抄出 `PHASE_DEFS`（6 个阶段，含 `offsetDays`）与 `MATERIALS`（31 个材料项，含 `phase`、`title`、`detail`、`appliesTo` 与顺序）。**计划里不重复这些值**，因为它们必须以源文件为准；转写时逐条核对，并写一张映射表放进报告。
 
 - [ ] **Step 2: 写失败测试**
 
@@ -364,7 +364,7 @@ PHASES = [
 ]
 
 MATERIALS = [
-    # 29 条现有材料，逐条对照 web/lib/roadmap.ts 的 MATERIALS 填入：
+    # 31 条现有材料，逐条对照 web/lib/roadmap.ts 的 MATERIALS 填入：
     # {"key": …, "phase": …, "title": …, "detail": …, "applies_to": …, "sort_order": …}
 ]
 
@@ -442,14 +442,14 @@ Expected: 五个测试全部 PASS。
 
 - 比对**值**，不只比对形状
 - 发现零个阶段或零个材料时**必须报失败**，不能报"全部正常"（本仓库已被这种静默通过坑过两次）
-- 只比较与 TypeScript 有对应关系的 6 个阶段和 29 个材料；`visa` 阶段是新增的，排除在外并在脚本注释里写明原因
+- 只比较与 TypeScript 有对应关系的 6 个阶段和 31 个材料；`visa` 阶段是新增的，排除在外并在脚本注释里写明原因
 
 ```bash
 cd ~/Documents/留学agent/offerpilot
 node scripts/verify-roadmap-mirror.cjs
 ```
 
-Expected: `OK — 6 phases and 29 materials match web/lib/roadmap.ts`。
+Expected: `OK — 6 phases and 31 materials match web/lib/roadmap.ts`。
 
 **双向验证**：故意把某个 `offset_days` 改错一位，跑脚本，确认它以程序名和字段名报错；然后还原。
 
@@ -508,7 +508,7 @@ def test_returns_every_phase_and_material(require_db, db_session):
     body = TestClient(app).get("/api/roadmap").json()
 
     assert len(body["phases"]) == 7
-    assert len(body["materials"]) == 31
+    assert len(body["materials"]) == 33
     assert body["phases"][0]["key"] == "selection"
     assert body["phases"][-1]["key"] == "visa"
     assert set(body["phases"][0]) == {"key", "title", "subtitle", "offsetDays", "sortOrder"}
