@@ -1,9 +1,18 @@
 """Tests for the placeholder catalogue seed.
 
-The fixtures run against the shared development database, so every test here clears the rows it
-cares about first. Without that, `test_seed_is_idempotent` would silently depend on whether a
-developer had already run `make seed`, and it would pass for the wrong reason.
+The fixtures run against the shared development database. The first two tests clear the catalogue
+first, because they assert on how many rows a run adds and would otherwise depend on whether a
+developer had already run `make seed`. The rest seed on top of whatever the shared database already
+holds and assert only on the seeded rows, which the seed's own idempotency makes safe.
+
+The last test hands the seeded rows to scripts/verify-programs-mirror.cjs, the guard that keeps the
+seed and web/lib/programs.ts from drifting apart.
 """
+
+import json
+import subprocess
+from decimal import Decimal
+from pathlib import Path
 
 from sqlalchemy import delete, func, select
 
@@ -13,6 +22,19 @@ from app.seed import PROGRAMS, UNIVERSITIES, seed_programs
 
 PROGRAM_IDS = [row["id"] for row in PROGRAMS]
 UNIVERSITY_IDS = [row["id"] for row in UNIVERSITIES]
+
+# tests/ -> api/ -> the repository root, where the guard and the frontend data live.
+REPO_ROOT = Path(__file__).resolve().parents[2]
+MIRROR_GUARD = REPO_ROOT / "scripts" / "verify-programs-mirror.cjs"
+
+
+def json_number(value):
+    """Numeric columns come back as Decimal; JSON wants a number, and null must stay null."""
+    if value is None:
+        return None
+    if isinstance(value, Decimal):
+        return float(value)
+    return value
 
 
 def clear_catalogue(session) -> None:
@@ -81,3 +103,55 @@ def test_expected_universities_are_present(db_session, require_db):
     # The plan wrote 莫纳什大学 here; web/lib/programs.ts, which this seed must mirror exactly,
     # has always spelled Monash 蒙纳士大学. The frontend value wins.
     assert {"新南威尔士大学", "悉尼大学", "蒙纳士大学"} <= names
+
+
+def test_seeded_values_still_mirror_the_typescript_source(db_session, require_db, tmp_path):
+    """Every seeded value must equal the value web/lib/programs.ts carries today.
+
+    Nothing else in the suite ties a stored value to the file the seed was transcribed from, so a
+    changed mark, a dropped prerequisite or a truncated url used to leave the build green. The
+    comparison itself lives in scripts/verify-programs-mirror.cjs: it imports the TypeScript through
+    Node's own type stripping, so the expected values come from the source of truth rather than from
+    a second hand-copied table, and it fails loudly when it finds nothing to compare.
+    """
+    seed_programs(db_session)
+
+    # `Program` has no `source` relationship, so the url is read from the row the program points at.
+    source_urls = dict(db_session.execute(select(Source.id, Source.url)).all())
+    dump = {
+        "programs": [
+            {
+                "id": program.id,
+                "city": program.city,
+                "degree_level": program.degree_level,
+                "field": program.field,
+                "duration": program.duration,
+                "minimum_mark": json_number(program.minimum_mark),
+                "non_211_minimum_mark": json_number(program.non_211_minimum_mark),
+                "requires_cognate": program.requires_cognate,
+                "english_requirement": program.english_requirement,
+                "source_url": source_urls.get(program.source_id),
+                "prerequisites": [
+                    row.label
+                    for row in sorted(program.prerequisites, key=lambda row: row.sort_order)
+                ],
+            }
+            for program in db_session.execute(select(Program).order_by(Program.id)).scalars()
+        ]
+    }
+    # Nothing here filters the rows: when the database holds no program the dump is empty and the
+    # guard reports that as a failure, so a broken seed can never look like a clean comparison.
+    dump_path = tmp_path / "programs-from-database.json"
+    dump_path.write_text(json.dumps(dump, ensure_ascii=False), encoding="utf-8")
+
+    result = subprocess.run(
+        ["node", str(MIRROR_GUARD), str(dump_path)],
+        cwd=REPO_ROOT,
+        capture_output=True,
+        text=True,
+    )
+    assert result.returncode == 0, (
+        f"{MIRROR_GUARD.name} rejected the seeded values\n"
+        f"stdout:\n{result.stdout}\nstderr:\n{result.stderr}"
+    )
+    assert "MISMATCH" not in result.stdout

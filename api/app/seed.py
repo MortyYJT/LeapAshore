@@ -3,9 +3,10 @@
 The values mirror web/lib/programs.ts, which is the current source of truth until the annotation stage
 replaces both with reviewed data. Every record is written as 待核验.
 
-The TypeScript carries three fields with no column here, and they are dropped on purpose:
-``excerpt`` (a manual summary, not captured page text), and ``requiresSupervisor`` /
-``researchProposalRequired`` (absent from the frontend, so both stay at their model default of False).
+The frontend carries one field that has no column here — ``excerpt``, a manual summary rather than
+captured page text — so it is dropped on purpose. In the other direction the model has two booleans
+the frontend has no counterpart for, ``requires_supervisor`` and ``research_proposal_required``;
+both stay at their model default of False.
 """
 
 from sqlalchemy import select

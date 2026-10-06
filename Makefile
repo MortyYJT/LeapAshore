@@ -1,7 +1,7 @@
 .PHONY: help dev build test verify install clean screenshots check-origins
 .PHONY: api-install api-test api-dev
 .PHONY: db-up db-down migrate revision seed
-.PHONY: check-dates
+.PHONY: check-dates check-programs-mirror
 
 WEB := web
 SHOTS := docs/screenshots
@@ -28,7 +28,7 @@ dev: db-up  ## Start the frontend dev server on :3000
 build:  ## Type-check and build into .next-build so a running dev server is untouched
 	cd $(WEB) && NEXT_DIST_DIR=.next-build npm run build
 
-test: check-dates api-test  ## Run the frontend and backend unit tests
+test: check-dates check-programs-mirror api-test  ## Run the frontend and backend unit tests
 	cd $(WEB) && npm test
 
 verify: build test screenshots  ## Verify: build, unit tests and the end-to-end walkthrough
@@ -38,6 +38,12 @@ screenshots:  ## Drive the full flow in a real browser, writing screenshots to d
 
 check-dates:  ## Fail if a verification date is hardcoded in source or seed data
 	node scripts/check-no-fake-dates.cjs
+
+# Without a database dump this still compares web/lib/programs.ts against the committed snapshot, so
+# the check runs even when the container is down. api/tests/test_seed.py compares the seeded rows
+# against the same snapshot, which is what binds the tables to the frontend data.
+check-programs-mirror:  ## Fail if the seeded catalogue stops mirroring web/lib/programs.ts
+	node scripts/verify-programs-mirror.cjs
 
 check-origins:  ## Assert the dev server is interactive from every allowed origin (needs make dev running)
 	node scripts/dev-origin-check.cjs
