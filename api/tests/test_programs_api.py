@@ -3,8 +3,9 @@
 These run against the shared development database, so `seed_programs` is not enough on its own to
 guarantee the rows these tests read: it skips any program id that already exists, which means a
 row left behind by an earlier run — or by a different tree — is what gets served. The tests that
-read the catalogue therefore assert on shape and on the keys the frontend reads, not on exact
-values, and none of them leave a row deleted behind.
+read the catalogue therefore never assert on a row count and never assume the catalogue holds only
+the six seeded rows: the first test pins which programs must be present as a set, and the others
+assert on the keys and values the frontend reads. None of them leave a row deleted behind.
 """
 
 from unittest.mock import MagicMock
@@ -22,6 +23,7 @@ from app.models.program import Program, ProgramPrerequisite, University
 from app.models.source import Source, SourceStatus
 from app.routers.programs import list_programs
 from app.seed import seed_programs
+from tests.test_seed import PROGRAM_IDS
 
 # The ordering test needs a program whose prerequisites it controls. Its institution and source are
 # stable rows it creates once and reuses, so repeated runs do not accumulate them.
@@ -30,12 +32,25 @@ TEST_SOURCE_ID = "test-prerequisites-source"
 
 
 def test_lists_every_seeded_program_with_its_source(require_db, db_session):
+    """Every seeded program is served, each with the https source it was read from.
+
+    The requirement is that the catalogue lists *every* seeded program, so the served slug set is
+    asserted against `PROGRAM_IDS` rather than a row count. A count of `>= 6` cannot carry that
+    requirement: `seed_programs` skips ids that already exist, so one leftover row in the
+    database is enough for a missing seeded program to keep the count over the threshold. The set
+    is a superset check because a leftover row is legitimate; the duplicate check keeps "every
+    seeded program" from being satisfied by repetition.
+    """
     seed_programs(db_session)
     response = TestClient(app).get("/api/programs")
     assert response.status_code == 200
 
     programs = response.json()
-    assert len(programs) >= 6
+    slugs = [program["slug"] for program in programs]
+    missing = sorted(set(PROGRAM_IDS) - set(slugs))
+    assert not missing, f"the catalogue is missing seeded programs: {missing}"
+    assert len(slugs) == len(set(slugs)), "a program must not be served twice"
+
     first = programs[0]
     assert set(first) >= {"slug", "name", "university", "source", "dataStatus"}
     assert first["source"]["url"].startswith("https://")
@@ -161,9 +176,13 @@ def test_the_prerequisites_are_bare_labels_in_sort_order(require_db, db_session)
     """`eligibility.ts:91` joins `program.prerequisites` with "、" and `:126` tests its length.
 
     Nothing reads a prerequisite's category or id, so an element is the label alone and the order
-    is the only structure the wire format carries. The test builds its own program with the rows
-    inserted in a deliberately wrong order, so a passing result cannot be insertion order or the
-    primary key's order: only `sort_order` produces it.
+    is the only structure the wire format carries. This fixture is built so that `sort_order` is
+    the only thing that can produce the expected list: the row ids run backwards against
+    `sort_order` (`-pre-a` / `-pre-b` / `-pre-c` for orders 2 / 1 / 0) and the rows are inserted in
+    the order 2, 0, 1, so neither sorting by id nor serving the rows unsorted gives the expected
+    order while sorting by `sort_order` does. The seed does embed the index in the real
+    prerequisite ids (`f"{id}-pre-{index}"` in `api/app/seed.py`), where id order and `sort_order`
+    order coincide; this fixture is the place that keeps the two distinguishable.
 
     The rows are committed, not merely flushed: the endpoint opens its own session per request, so
     an uncommitted row is invisible to it. The institution and the source are stable rows the test
@@ -198,20 +217,22 @@ def test_the_prerequisites_are_bare_labels_in_sort_order(require_db, db_session)
     )
     session.flush()
 
-    labels_by_sort_order = [
-        (2, "第三步"),
-        (0, "第一步"),
-        (1, "第二步"),
+    # (sort_order, label, id suffix): the suffix axis is reversed against `sort_order` on purpose,
+    # so the primary key's order is not the order under test.
+    prerequisites = [
+        (2, "第三步", "pre-a"),
+        (0, "第一步", "pre-c"),
+        (1, "第二步", "pre-b"),
     ]
     session.add_all(
         [
             ProgramPrerequisite(
-                id=f"{program_id}-pre-{order}",
+                id=f"{program_id}-{suffix}",
                 program_id=program_id,
                 label=label,
                 sort_order=order,
             )
-            for order, label in labels_by_sort_order
+            for order, label, suffix in prerequisites
         ]
     )
     session.commit()

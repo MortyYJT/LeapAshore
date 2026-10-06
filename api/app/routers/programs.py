@@ -31,6 +31,19 @@ def list_programs(
     empty citation, so it makes the request fail loudly instead of serialising `source: null` or
     dropping the program from the list. Both alternatives hide the defect: the first serves a
     program with no provenance, the second silently shrinks the catalogue.
+
+    Two differences from `web/lib/types.ts` cannot be seen from the response alone, so an adapter
+    that feeds that type must be told about them rather than discover them by rendering the wrong
+    copy:
+
+    - `name` here is the Chinese program name and `nameEn` is the English one, while the
+      frontend's `Program.name` is the English name. Mapping `name` to `name` swaps the copy
+      rendered at `web/components/HomeView.tsx:77` and `web/components/FlowView.tsx:135`; the
+      frontend key that corresponds to this endpoint's `name` is `nameEn`. Neither key is renamed
+      here: the database's split is the product's natural shape.
+    - `city`, `degreeLevel`, `field`, `duration` and `englishRequirement` are `string | null`
+      here and non-nullable `string` in the frontend's type, so the adapter has to narrow them
+      instead of assuming they are always present.
     """
     statement = (
         select(Program)
