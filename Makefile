@@ -35,7 +35,9 @@ api-dev-bg:  ## Start the API in the background and wait until it answers
 build:  ## Type-check and build into .next-build so a running dev server is untouched
 	cd $(WEB) && NEXT_DIST_DIR=.next-build npm run build
 
-test: check-dates check-programs-mirror api-test  ## Run the frontend and backend unit tests
+# `npm test` type-checks before it runs the tests, because `next build` skips `lib/*.test.ts` and
+# would otherwise let a type error in a test file sit in the tree until someone ran tsc by hand.
+test: check-dates check-programs-mirror api-test  ## Run the frontend type-check and unit tests, plus the backend tests
 	cd $(WEB) && npm test
 
 verify: build test screenshots  ## Verify: build, unit tests and the end-to-end walkthrough

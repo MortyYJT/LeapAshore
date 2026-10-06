@@ -54,23 +54,33 @@ export default function Page() {
   /**
    * Send one field edit to the server, keeping the local update optimistic.
    *
-   * The edit has already been applied to local state by the caller, so the row feels immediate. The
-   * pre-edit value of each field this patch had actually changed is captured on the way in: a
-   * failure restores exactly those fields, leaving any newer edit to another field alone, and then
-   * says why. A local value the server never accepted is the silent divergence this keeps out.
+   * The edit has already been applied to local state by the caller, so the row feels immediate.
+   * `rollbackTo` is the pre-edit value of each field this patch changed: a failure restores exactly
+   * those fields and leaves any newer edit to another field alone. Pass null instead when there is
+   * no earlier profile to fall back to, which is the first save: restoring `previousValues` there
+   * would replace everything the applicant just typed with an empty profile while the error is
+   * shown on a screen they have already left. A local value the server never accepted is the silent
+   * divergence this keeps out.
+   *
+   * Returns whether the server took the edit, so the caller can decide what to do next instead of
+   * advancing as if it had.
    */
-  async function savePatch(patch: Partial<Profile>, before: Partial<Profile>) {
+  async function saveProfile(patch: Partial<Profile>, rollbackTo: Partial<Profile> | null): Promise<boolean> {
     setProfileError(null);
     try {
       await patchProfile(patch);
+      return true;
     } catch (error: unknown) {
-      const rollback: Record<string, unknown> = {};
-      for (const key of Object.keys(before)) rollback[key] = before[key as keyof Profile];
-      setState((prev) => ({
-        ...prev,
-        profile: { ...prev.profile, ...rollback } as Profile,
-      }));
+      if (rollbackTo !== null) {
+        const rollback: Record<string, unknown> = {};
+        for (const key of Object.keys(rollbackTo)) rollback[key] = rollbackTo[key as keyof Profile];
+        setState((prev) => ({
+          ...prev,
+          profile: { ...prev.profile, ...rollback } as Profile,
+        }));
+      }
       setProfileError(error instanceof Error ? error.message : "保存档案失败");
+      return false;
     }
   }
 
@@ -89,11 +99,20 @@ export default function Page() {
     return before as Partial<Profile>;
   }
 
-  function handleProfileComplete(profile: Profile) {
-    // Onboarding produces most of the profile in one step, so the whole object goes to the server
-    // rather than only the field that changed. Not awaited: the stage change must not wait on the
-    // network, and a failure still lands in the same rollback path as an inline edit.
-    void savePatch(profile, previousValues(profile, state.profile));
+  /**
+   * Finish onboarding: store the whole profile, then move on only if the server took it.
+   *
+   * The stage change is what makes this different from an inline edit. Advancing first left the
+   * applicant on a screen where the failure is invisible, holding a profile the rollback had just
+   * emptied, and the flow went on to build a plan from no background at all. Staying on the last
+   * onboarding step keeps the typed answers and the error message on the screen the applicant is
+   * looking at, and it leaves the retry button under their cursor. The two exits the applicant
+   * controls are deliberate: 返回 keeps the answers and lets them walk back through the steps, and
+   * the copy says a reload does not have them, because the server is what makes them durable.
+   */
+  async function handleProfileComplete(profile: Profile) {
+    const saved = await saveProfile(profile, null);
+    if (!saved) return;
     setState((prev) => ({ ...prev, profile, stage: "generating" }));
   }
 
@@ -125,7 +144,7 @@ export default function Page() {
       // Clearing the tier is meaningful: the assessment then reports that it cannot decide.
       return { ...prev, profile: { ...prev.profile, ...patch } };
     });
-    void savePatch(patch, before);
+    void saveProfile(patch, before);
   }
 
   function setAvatar(dataUrl: string | null) {

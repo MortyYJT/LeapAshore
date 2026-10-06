@@ -23,9 +23,12 @@ export async function fetchProfile(): Promise<Partial<Profile>> {
  * Save the fields in `patch` and return the profile as the server now holds it.
  *
  * `PATCH` applies only the keys present in the body, so a one-field edit cannot blank the rest, and
- * the server rejects unknown keys with 422. Parse the returned body even though the caller may
- * ignore it: its keys are the ones the server actually accepted, which is what makes a silent
- * divergence visible instead of assumed.
+ * the server rejects unknown keys with 422. The response body is parsed and checked rather than
+ * ignored: it is the server's own account of what it now holds, so a reply whose value for a field
+ * just sent differs from that field is a save that did not land. Raising here turns that into an
+ * error the caller already knows how to report, instead of the local state quietly keeping a value
+ * the server never stored. Only the sent fields are checked; the response carries the whole profile,
+ * and the rest of it is not this call's business.
  */
 export async function patchProfile(patch: Partial<Profile>): Promise<Partial<Profile>> {
   const response = await fetch("/api/profile", {
@@ -35,7 +38,18 @@ export async function patchProfile(patch: Partial<Profile>): Promise<Partial<Pro
     body: JSON.stringify(patch),
   });
   if (!response.ok) throw new Error(`保存档案失败：${response.status}`);
-  return response.json();
+  const saved = (await response.json()) as Partial<Profile>;
+  // Only the keys this call actually sent are compared. `JSON.stringify` drops a key whose value is
+  // `undefined`, so such a key never reached the server and its absence from the reply says nothing
+  // about whether the save landed.
+  const sent = Object.entries(patch).filter(([, value]) => value !== undefined);
+  const diverged = sent
+    .filter(([key, value]) => saved[key as keyof Profile] !== value)
+    .map(([key]) => key);
+  if (diverged.length > 0) {
+    throw new Error(`保存档案失败：服务器没有按提交的值保存（${diverged.join("、")}）`);
+  }
+  return saved;
 }
 
 /** True when an incoming value would replace a locally known one with nothing. */

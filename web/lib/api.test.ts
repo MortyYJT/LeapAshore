@@ -35,10 +35,18 @@ test("a field the server has never been told does not erase the local answer", (
   // First contact answers with a row of nulls. Taking those at face value would wipe the answers the
   // applicant just gave on this device, which is the whole reason the merge is not a spread.
   const local: Profile = { ...EMPTY_PROFILE, schoolName: "北京邮电大学", gpaScore: 82, intake: "2027 S1" };
-  const merged = mergeServerProfile(
-    { schoolName: null, gpaScore: null, intake: null, major: null },
-    local,
-  );
+  // The nulls are the wire value the server actually sends, and `Profile` declares these three fields
+  // as non-nullable, so the cast is the test saying "this is what a raw response body looks like"
+  // rather than a type-correct Partial<Profile>. Building the object as a Partial<Profile> would not
+  // type-check at all, which is why the earlier version of this test only passed while nothing
+  // type-checked test files.
+  const fromServer = {
+    schoolName: null,
+    gpaScore: null,
+    intake: null,
+    major: null,
+  } as unknown as Partial<Profile>;
+  const merged = mergeServerProfile(fromServer, local);
   assert.deepEqual(merged, local);
 });
 
@@ -91,4 +99,44 @@ test("patchProfile raises on a rejected save so the caller can roll the edit bac
     () => withFetch(() => new Response("", { status: 422 }), () => patchProfile({ major: "x" })),
     /保存档案失败：422/,
   );
+});
+
+test("patchProfile raises when the server did not store the value it was sent", async () => {
+  // A reply is the server's account of what it now holds. If the field that was just sent comes back
+  // as something else, the save did not land and the caller has to hear about it: this is the silent
+  // divergence where the screen shows the new value and the server keeps the old one.
+  await assert.rejects(
+    () =>
+      withFetch(
+        () =>
+          new Response(JSON.stringify({ major: "计算机科学与技术", schoolName: "北京邮电大学" }), {
+            status: 200,
+          }),
+        () => patchProfile({ major: "软件工程" }),
+      ),
+    /保存档案失败：服务器没有按提交的值保存（major）/,
+  );
+});
+
+test("patchProfile ignores the rest of the profile the server echoes back", async () => {
+  // The response carries every field, so only the sent ones are compared. Treating the extra keys as
+  // a divergence would fail on every real save, which is what the first version of this check did.
+  const body = { major: "软件工程", schoolName: "北京邮电大学", gpaScore: 82 };
+  const { value } = await withFetch(
+    () => new Response(JSON.stringify(body), { status: 200 }),
+    () => patchProfile({ major: "软件工程" }),
+  );
+  assert.deepEqual(value, body);
+});
+
+test("patchProfile does not compare a key the request never sent", async () => {
+  // `JSON.stringify` drops a key whose value is `undefined`, so that key was never in the body the
+  // server saw and the reply cannot be held to it. Comparing it anyway would report a divergence on
+  // a save that landed, and the onboarding caller treats that as "do not advance".
+  const { value, calls } = await withFetch(
+    () => new Response(JSON.stringify({ major: "软件工程", schoolName: null }), { status: 200 }),
+    () => patchProfile({ major: "软件工程", schoolName: undefined }),
+  );
+  assert.equal(calls[0].init?.body, JSON.stringify({ major: "软件工程" }));
+  assert.deepEqual(value, { major: "软件工程", schoolName: null });
 });

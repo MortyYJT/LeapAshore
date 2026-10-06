@@ -44,10 +44,13 @@ def get_profile(
 ) -> Profile:
     """Return the caller's profile, creating the client and profile rows on first contact.
 
-    First contact is an insert, so it cannot be "check, then insert": two requests carrying the same
-    cookie both find no row, and the loser of the insert would fail with a 500 on the primary key.
-    That is reachable without a bug in the caller — a browser fires the mount read while a reload or
-    a second tab is arriving, and any shared cache or proxy can replay one request into two.
+    First contact is an insert, so it cannot be "check, then insert": the loser of the insert would
+    fail with a 500 on the primary key. The trigger is one cookie in flight twice, not two first
+    contacts racing each other — a first contact cannot collide, because no cookie exists until a
+    response has arrived. What does happen is the same cookie used concurrently: two connections or
+    two tabs of one browser, a reloading or retrying proxy, a replayed request, or a cookie whose row
+    was deleted between visits. Neither request needs a bug in the caller, and the browser cannot be
+    relied on to serialise them.
 
     The insert therefore runs inside a savepoint whose `IntegrityError` is the second caller losing
     that race. Releasing the savepoint undoes only the failed insert, then the row is read back, which
