@@ -1,6 +1,4 @@
-from datetime import datetime
-
-from sqlalchemy import DateTime, ForeignKey, Integer, String, Text, func
+from sqlalchemy import ForeignKey, Integer, String, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db import Base
@@ -18,7 +16,13 @@ class RoadmapPhase(Base):
     offset_days: Mapped[int] = mapped_column(Integer)
     sort_order: Mapped[int] = mapped_column(Integer, default=0)
 
-    materials: Mapped[list["MaterialTemplate"]] = relationship(back_populates="phase_ref")
+    # passive_deletes hands the delete to the database instead of loading the materials and setting
+    # their `phase` to NULL first. Without it the ORM's own nullify fails on the NOT NULL column
+    # before the RESTRICT rule below is reached, so a RESTRICT-to-CASCADE regression would leave the
+    # delete tests green while the requirements silently disappeared.
+    materials: Mapped[list["MaterialTemplate"]] = relationship(
+        back_populates="phase_ref", passive_deletes=True
+    )
 
 
 class MaterialTemplate(Base):

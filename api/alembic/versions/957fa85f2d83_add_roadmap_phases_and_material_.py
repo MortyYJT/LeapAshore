@@ -1,5 +1,12 @@
 """add roadmap phases and material templates
 
+Two configuration tables: the timeline an applicant follows and the materials it asks for. The
+material's phase foreign key is RESTRICT rather than CASCADE, because a phase that disappeared while
+materials still pointed at it would take requirements the applicant is working through with it; the
+model pairs that with a `passive_deletes` relationship so a delete reaches the rule instead of the
+ORM nulling the column first. source_id stays nullable, since most materials have no official page
+yet and an invented citation is worse than a missing one.
+
 Revision ID: 957fa85f2d83
 Revises: d80f2d2aa62d
 Create Date: 2026-10-06 20:55:50.956841
