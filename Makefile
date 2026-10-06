@@ -47,6 +47,7 @@ api-install:  ## Create the backend venv (if missing) and install the backend de
 	cd api && "$(UV)" pip install --python .venv/bin/python -e ".[test]"
 
 api-test:  ## Run the backend tests in the project-local venv
+	@test -x api/.venv/bin/python || { echo "api/.venv is missing; run make api-install first" >&2; exit 1; }
 	cd api && .venv/bin/pytest -q
 
 api-dev:  ## Start the backend dev server on :8000
