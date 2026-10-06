@@ -61,6 +61,39 @@ def clear_the_roadmap_definition(session) -> None:
     session.flush()
 
 
+@pytest.fixture
+def clear_the_roadmap_definition_after_the_test():
+    """Remove the roadmap definition once the test that seeded it has finished.
+
+    ``test_seed_roadmap.py`` and ``test_roadmap_api.py`` both seed the definition and both have to
+    remove what they wrote before the next module is collected: ``test_roadmap_model.py`` inserts
+    the keys ``selection`` and ``aca-transcript``, and ``test_sources.py`` inserts the Genuine
+    Student url, which is unique. A seeded database reaching either one makes it fail on a unique
+    violation for a reason that has nothing to do with what it tests. This is why
+    ``test_seed_roadmap.py`` has swept after itself since it was written, and why the api module
+    has to as well.
+
+    It is deliberately **not** autouse: ``test_roadmap_model.py`` inserts rows the definition owns
+    and then asserts on them, so a fixture that swept every module would delete the very rows that
+    module is checking. The two modules that seed request it explicitly, as a dependency of their
+    own autouse fixture, which is also where the reasoning that is specific to each of them lives.
+
+    ``clear_the_roadmap_definition`` is the cleaner: it deletes the materials, then the phases, then
+    the Genuine Student source, in that order, because the database refuses a phase that still has
+    materials and a source that materials still point at.
+
+    An unreachable database means "no rows were written", not "skip this test", the same rule
+    ``remove_the_clients_these_tests_create`` follows: failing here would turn a container that is
+    down into a red suite instead of a skipped one.
+    """
+    yield
+    if not database_is_reachable():
+        return
+    with SessionLocal() as session:
+        clear_the_roadmap_definition(session)
+        session.commit()
+
+
 @pytest.fixture(scope="session", autouse=True)
 def unseed_the_roadmap_definition_for_the_run_and_restore_it_afterwards():
     """Empty the roadmap definition for the run, then put the canonical one back.

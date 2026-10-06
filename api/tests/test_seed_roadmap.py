@@ -35,10 +35,8 @@ from pathlib import Path
 import pytest
 from sqlalchemy import func, select
 
-from app.db import SessionLocal
 from app.models.roadmap import MaterialTemplate, RoadmapPhase
 from app.seed_roadmap import MATERIALS, PHASES, VISA_MATERIALS, seed_roadmap
-from tests.conftest import clear_the_roadmap_definition, database_is_reachable
 
 PHASE_KEYS = [
     "selection",
@@ -72,7 +70,9 @@ def _clear(session):
 
 
 @pytest.fixture(autouse=True)
-def remove_the_roadmap_definition_these_tests_write():
+def remove_the_roadmap_definition_these_tests_write(
+    clear_the_roadmap_definition_after_the_test,
+):
     """Remove the rows these tests write, and the Genuine Student source with them.
 
     The rows go first, exactly as before these tests wrote anything. They are removed rather than
@@ -86,13 +86,11 @@ def remove_the_roadmap_definition_these_tests_write():
     belongs to the definition, so it leaves with the phases and the materials. Restoring the
     definition is the session-scoped fixture's job in ``tests/conftest.py``: it finalises after this
     one, and it is what makes a ``make test`` leave a seeded database rather than an empty timeline.
+
+    The sweep is shared with ``test_roadmap_api.py`` through
+    ``tests.conftest.clear_the_roadmap_definition_after_the_test``; ``_clear`` above is a different
+    thing, the bare-row delete a single test uses before it seeds.
     """
-    yield
-    if not database_is_reachable():
-        return
-    with SessionLocal() as session:
-        clear_the_roadmap_definition(session)
-        session.commit()
 
 
 def test_seed_is_idempotent(db_session, require_db):

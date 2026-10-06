@@ -26,10 +26,13 @@ from app.schemas.common import _camel
 class SourceRef(BaseModel):
     """The official page a material's requirement was read from.
 
-    Deliberately smaller than `app.schemas.program.SourceOut` is not: it carries exactly the same
-    three fields, for the same reason. `publisher`, `domain` and a verification date are on the
-    row but no consumer renders them, and `verified_at` stays null until a human verifies the page,
-    so `status` is what tells the reader whether anyone has.
+    Its three fields are the same three `app.schemas.program.SourceOut` carries, for the same
+    reason: `publisher`, `domain` and a verification date are on the row but no consumer renders
+    them, and `verified_at` stays null until a human verifies the page, so `status` is what tells
+    the reader whether anyone has. The field list is all the two models share, and that is
+    deliberate: `SourceOut` is validated from a `sources` row and so sets `from_attributes=True`,
+    while this one is built by the roadmap route from the row its material's `source_id` names and
+    therefore takes plain keyword arguments.
     """
 
     model_config = ConfigDict(alias_generator=_camel, populate_by_name=True)
