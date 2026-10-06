@@ -1327,7 +1327,7 @@ UNIVERSITIES = [
 # Each entry keeps the same official url the frontend already cites.
 PROGRAMS = [
     {
-        "id": "unsw-master-of-it",
+        "id": "unsw-master-it",
         "university_id": "unsw",
         "name": "信息技术硕士",
         "name_en": "Master of Information Technology",
