@@ -1,33 +1,10 @@
 import uuid
 
-import pytest
 from fastapi.testclient import TestClient
-from sqlalchemy import delete, select
 
-from app.db import SessionLocal
 from app.main import app
-from app.models.client import Client
 
 COOKIE = "offerpilot_client"
-
-
-@pytest.fixture(autouse=True)
-def remove_the_clients_these_tests_create(require_db):
-    """Leave the shared development database exactly as it was found.
-
-    M1 has no test database, so these tests write real rows. Deleting only the ids that appeared
-    during the test keeps that from also deleting whatever the developer has been trying out.
-    """
-    with SessionLocal() as session:
-        before = set(session.scalars(select(Client.id)))
-    yield
-    with SessionLocal() as session:
-        after = set(session.scalars(select(Client.id)))
-        created = after - before
-        if created:
-            # The database cascade takes each profile with its client.
-            session.execute(delete(Client).where(Client.id.in_(created)))
-            session.commit()
 
 
 def test_first_request_creates_a_client_and_returns_an_empty_profile(require_db):
