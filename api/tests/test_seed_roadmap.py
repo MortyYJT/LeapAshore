@@ -4,14 +4,20 @@ The fixtures run against the shared development database, as the rest of the sui
 test here clears the two roadmap tables first: ``seed_roadmap`` skips any key that already exists,
 which means a row left behind by an earlier run — or by a different tree — would be read back and
 compared instead of the rows this run wrote. The autouse fixture below removes the same rows again
-afterwards, including the Genuine Student source, so the suite neither depends on nor leaves behind
-the seeded definition. ``tests/conftest.py`` removes it once before the session starts as well,
-because the seed now owns keys and a url that two other modules hold as fixed values: without that,
-``make seed`` followed by ``make test`` would fail in ``test_roadmap_model.py`` and
-``test_sources.py`` for a reason that has nothing to do with what they test.
+afterwards, including the Genuine Student source, and the session-scoped fixture in
+``tests/conftest.py`` restores the definition once the whole run is over, so a ``make test`` leaves
+the shared database holding the definition ``make seed`` produces rather than an empty timeline.
+``tests/conftest.py`` removes it once before the session starts as well, because the seed now owns
+keys and a url that two other modules hold as fixed values: without that, ``make seed`` followed by
+``make test`` would fail in ``test_roadmap_model.py`` and ``test_sources.py`` for a reason that has
+nothing to do with what they test.
 
-The last test hands the seeded rows to ``scripts/verify-roadmap-mirror.cjs``, the guard that keeps
-the definition from drifting away from ``web/lib/roadmap.ts``.
+The database-backed tests come last. ``test_seeded_values_still_mirror_the_typescript_source`` hands
+the seeded rows to ``scripts/verify-roadmap-mirror.cjs``, the guard that keeps the definition from
+drifting away from ``web/lib/roadmap.ts``, and it needs the database, so it skips with the container
+down; ``test_the_constants_match_the_committed_snapshot`` carries the same comparison without one,
+so a wrong constant is still visible when the container is down and both the guard and every test
+that reads a row step aside.
 
 The module carries 31 transcribed materials, not the 29 the M2a plan records, and the difference is
 knowledge, not a choice. ``web/lib/roadmap.ts`` holds 5 + 5 + 4 + 6 + 5 + 6 = 31 entries. The 29 is
@@ -47,6 +53,14 @@ PHASE_KEYS = [
 # tests/ -> api/ -> the repository root, where the guard and the frontend data live.
 REPO_ROOT = Path(__file__).resolve().parents[2]
 MIRROR_GUARD = REPO_ROOT / "scripts" / "verify-roadmap-mirror.cjs"
+SNAPSHOT = REPO_ROOT / "scripts" / "roadmap-definition.snapshot.json"
+
+# The fields scripts/verify-roadmap-mirror.cjs compares, spelled here the way the snapshot and the
+# tables spell them. They are duplicated on purpose: a snapshot that renamed a field must fail as a
+# changed value rather than as a missing one, and if this list and the guard's ever disagree the
+# containerless test below stops finding the field and says so by name.
+PHASE_FIELDS = ("key", "title", "subtitle", "offset_days", "sort_order")
+MATERIAL_FIELDS = ("key", "phase", "title", "detail", "applies_to", "sort_order")
 
 
 def _clear(session):
@@ -59,13 +73,19 @@ def _clear(session):
 
 @pytest.fixture(autouse=True)
 def remove_the_roadmap_definition_these_tests_write():
-    """Leave the shared development database as it was found.
+    """Remove the rows these tests write, and the Genuine Student source with them.
 
-    The Genuine Student source goes with the phases and the materials. It is not a row these tests
-    invented — the seed creates it — but ``test_sources.py`` inserts the same url to prove a new
-    source starts unverified, and ``sources.url`` is unique, so leaving the seeded row behind would
-    make that test fail on a unique violation. The two modules run in different orders depending on
-    whether the whole suite or one file is selected, so each removes what it needs to.
+    The rows go first, exactly as before these tests wrote anything. They are removed rather than
+    restored here because the definition has to stay empty for the whole run: ``test_sources.py``
+    inserts the Genuine Student url, which is unique, and ``test_roadmap_model.py`` inserts the keys
+    ``selection`` and ``aca-transcript``, so a seeded database reaching either module makes it fail
+    on a unique violation for a reason that has nothing to do with what it tests. That is also why
+    ``tests/conftest.py`` removes the definition once before the session starts.
+
+    The Genuine Student source is not a row these tests invented — the seed creates it — but it
+    belongs to the definition, so it leaves with the phases and the materials. Restoring the
+    definition is the session-scoped fixture's job in ``tests/conftest.py``: it finalises after this
+    one, and it is what makes a ``make test`` leave a seeded database rather than an empty timeline.
     """
     yield
     if not database_is_reachable():
@@ -160,6 +180,38 @@ def test_only_the_visa_materials_cite_a_source(db_session, require_db):
     assert sourced == {"visa"}
 
 
+def test_the_constants_match_the_committed_snapshot():
+    """The seed's constants still carry the definition the snapshot was generated from.
+
+    This is the only check in the file that needs no database, and it exists for the case where
+    there is none: ``require_db`` skips every test above, and ``make test`` runs
+    ``check-roadmap-mirror`` with no dump, which compares ``web/lib/roadmap.ts`` against the
+    committed snapshot. A snapshot regenerated from the same TypeScript therefore compares equal to
+    itself, and a seed constant that was changed, or mistyped, is compared to nothing at all. The
+    snapshot holds the six transcribed phases and their thirty-one materials; the visa phase and its
+    two materials are authored in the seed and have no counterpart there, so they are left out.
+    """
+    snapshot = json.loads(SNAPSHOT.read_text(encoding="utf-8"))
+    recorded_phases = {row["key"]: row for row in snapshot["phases"]}
+    recorded_materials = {row["key"]: row for row in snapshot["materials"]}
+    # The visa phase is authored in the seed, so it is the one key the snapshot has never carried.
+    carried_phases = {row["key"]: row for row in PHASES if row["key"] != "visa"}
+    carried_materials = {row["key"]: row for row in MATERIALS}
+
+    assert len(carried_phases) == len(recorded_phases) == 6
+    assert len(carried_materials) == len(recorded_materials) == 31
+    for carried, recorded, fields, kind in (
+        (carried_phases, recorded_phases, PHASE_FIELDS, "phase"),
+        (carried_materials, recorded_materials, MATERIAL_FIELDS, "material"),
+    ):
+        for key, row in carried.items():
+            for field in fields:
+                assert row[field] == recorded[key][field], (
+                    f"{SNAPSHOT.name}: the {kind} {key}.{field} is {row[field]!r} in "
+                    f"app/seed_roadmap.py and {recorded[key][field]!r} in the snapshot"
+                )
+
+
 def test_seeded_values_still_mirror_the_typescript_source(db_session, require_db, tmp_path):
     """Every seeded value must equal the value ``web/lib/roadmap.ts`` carries today.
 
@@ -218,4 +270,3 @@ def test_seeded_values_still_mirror_the_typescript_source(db_session, require_db
         f"{MIRROR_GUARD.name} rejected the seeded values\n"
         f"stdout:\n{result.stdout}\nstderr:\n{result.stderr}"
     )
-    assert "MISMATCH" not in result.stdout

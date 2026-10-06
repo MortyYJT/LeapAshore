@@ -5,7 +5,7 @@ from app.db import SessionLocal, engine
 from app.models.client import Client
 from app.models.roadmap import MaterialTemplate, RoadmapPhase
 from app.models.source import Source
-from app.seed_roadmap import GS_SOURCE_URL
+from app.seed_roadmap import GS_SOURCE_URL, seed_roadmap
 
 
 @pytest.fixture
@@ -62,26 +62,50 @@ def clear_the_roadmap_definition(session) -> None:
 
 
 @pytest.fixture(scope="session", autouse=True)
-def start_from_an_unseeded_roadmap_definition():
-    """Remove the seeded roadmap definition once, before the first test of the session.
+def unseed_the_roadmap_definition_for_the_run_and_restore_it_afterwards():
+    """Empty the roadmap definition for the run, then put the canonical one back.
 
-    ``api/seed_cli.py`` writes the seven phases, their materials and the Genuine Student source into
-    the same development database these tests use, so a developer who has run ``make seed`` starts a
-    test run with configuration rows already present. Two test modules hold fixed values that the
-    seed now owns: ``test_roadmap_model.py`` inserts the keys ``selection`` and ``aca-transcript``,
-    and ``test_sources.py`` inserts the Genuine Student url, which is unique. Either one would then
-    fail for a reason that has nothing to do with what it tests.
+    ``api/seed_cli.py`` writes the seven phases, their materials and the Genuine Student source
+    into the same development database these tests use, so a developer who has run ``make seed``
+    starts a test run with configuration rows already present. Two test modules hold fixed values
+    that the seed now owns: ``test_roadmap_model.py`` inserts the keys ``selection`` and
+    ``aca-transcript``, and ``test_sources.py`` inserts the Genuine Student url, which is unique.
+    Either one would then fail for a reason that has nothing to do with what it tests. Both are
+    ordinary tests of the model and the source, not of the seed, so the definition is removed here
+    rather than those modules being rewritten around a seeded database: it has to happen before the
+    first of them is collected, and it is the same policy the catalogue already follows when
+    ``test_seed.py`` clears the seeded programs before asserting on counts.
 
-    The definition is removed here rather than in those modules because it has to happen before the
-    first of them is collected, and because this is the same policy the catalogue already follows:
-    ``test_seed.py`` clears the seeded programs before it asserts on counts, which is why no test
-    depends on the developer's database being seeded. ``test_seed_roadmap.py`` also removes what it
-    writes, so the suite neither depends on nor leaves behind the seeded definition.
+    The teardown restores the definition now, which it did not before. Clearing tens of
+    configuration rows and leaving it at that made the roadmap the one part of the development
+    database a test run destroyed: the program catalogue survives, the roadmap definition did not,
+    so ``make seed`` -> ``make test`` left an empty timeline, and ``make dev`` does not seed. The
+    next task's ``GET /api/roadmap`` reads these tables, and ``make verify`` runs ``test`` before
+    ``screenshots``, so the browser walkthrough would have driven an empty roadmap. ``seed_roadmap``
+    is idempotent, so one call returns the definition to the state ``make seed`` produces: the
+    phases, the materials and the Genuine Student source that ``clear_the_roadmap_definition``
+    removes.
+
+    ``test_seed_roadmap.py``'s own fixture removes what its tests write and does not restore it: the
+    definition has to stay empty for the whole run, because a seeded database reaching
+    ``test_roadmap_model.py`` or ``test_sources.py`` is what breaks those two modules. The restore
+    happens here, once, when every test has finished.
     """
-    if not database_is_reachable():
+    # The yield is unconditional on purpose. A fixture that returns before its yield is a generator
+    # that ends early, and pytest reports that as "did not yield a value" and errors out of every
+    # test that depends on it — with no container, that turned the whole module red instead of
+    # skipping it. An unreachable database means "no rows were written", not "skip this test", the
+    # same rule ``remove_the_clients_these_tests_create`` below follows.
+    reachable = database_is_reachable()
+    if reachable:
+        with SessionLocal() as session:
+            clear_the_roadmap_definition(session)
+            session.commit()
+    yield
+    if not reachable or not database_is_reachable():
         return
     with SessionLocal() as session:
-        clear_the_roadmap_definition(session)
+        seed_roadmap(session)
         session.commit()
 
 
