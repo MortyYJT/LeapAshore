@@ -92,6 +92,16 @@ export default function Page() {
   // An omitted definition is the built-in copy, so the failed-fetch path is the same line of code as
   // the first paint rather than a second branch that has to be kept in step with it. `now` is left at
   // its own default by passing `undefined` explicitly, which is the only reason it is named here.
+  //
+  // HAZARD, recorded as a constraint on the next batch in
+  // `note/superpowers/specs/2026-10-06-stage-2-m2-design.md` §3.8: this same call runs with the
+  // built-in copy, which has no visa phase. A recalculation that wrote back whatever this returns
+  // would find zero visa materials, delete the visa system rows as no longer applicable, and
+  // re-insert them as `pending` — losing `status` and `completed_at`, the loss the `origin` rule
+  // exists to prevent. The notice below tells the human; it does not gate the write path. So the
+  // recalculation and its write must be gated on a definition that was actually read from the
+  // server, and the client must send the applicable material keys explicitly so the server can tell
+  // "removed" from "absent".
   const roadmap = buildRoadmap(
     state.profile,
     state.completedMaterials,
