@@ -1,4 +1,5 @@
 from datetime import datetime
+from decimal import Decimal
 
 from sqlalchemy import Boolean, DateTime, ForeignKey, Integer, Numeric, String, Text, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
@@ -39,9 +40,10 @@ class Program(Base):
     duration: Mapped[str | None] = mapped_column(String(32))
 
     # Thresholds are nullable: an institution that publishes no non-211 baseline has an unknown
-    # value, not a zero one.
-    minimum_mark: Mapped[float | None] = mapped_column(Numeric(5, 2))
-    non_211_minimum_mark: Mapped[float | None] = mapped_column(Numeric(5, 2))
+    # value, not a zero one. `Numeric` reads back as `Decimal`, so that is the annotation; the
+    # schemas serialise a JSON number, which is where `float` belongs.
+    minimum_mark: Mapped[Decimal | None] = mapped_column(Numeric(5, 2))
+    non_211_minimum_mark: Mapped[Decimal | None] = mapped_column(Numeric(5, 2))
     requires_cognate: Mapped[bool] = mapped_column(Boolean, default=False)
     requires_supervisor: Mapped[bool] = mapped_column(Boolean, default=False)
     research_proposal_required: Mapped[bool] = mapped_column(Boolean, default=False)

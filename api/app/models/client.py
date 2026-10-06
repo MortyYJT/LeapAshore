@@ -1,5 +1,6 @@
 import uuid
 from datetime import datetime
+from decimal import Decimal
 
 from sqlalchemy import DateTime, ForeignKey, Numeric, String, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
@@ -39,13 +40,16 @@ class Profile(Base):
     domestic_tier: Mapped[str | None] = mapped_column(String(16))
     overseas_band: Mapped[str | None] = mapped_column(String(32))
     major: Mapped[str | None] = mapped_column(String(64))
-    gpa_score: Mapped[float | None] = mapped_column(Numeric(5, 2))
-    gpa_scale: Mapped[float | None] = mapped_column(Numeric(5, 2))
+    # `Numeric` reads back as `Decimal`, so that is the honest annotation: `float` promised a type
+    # SQLAlchemy never returns. The wire is a different layer, and `app/schemas/profile.py` does
+    # declare `float` there, which is what the frontend's JSON numbers actually are.
+    gpa_score: Mapped[Decimal | None] = mapped_column(Numeric(5, 2))
+    gpa_scale: Mapped[Decimal | None] = mapped_column(Numeric(5, 2))
     target_degree_level: Mapped[str | None] = mapped_column(String(32))
     target_field: Mapped[str | None] = mapped_column(String(64))
     intake: Mapped[str | None] = mapped_column(String(16))
     english_score: Mapped[str | None] = mapped_column(String(64))
-    annual_budget_cny: Mapped[float | None] = mapped_column(Numeric(12, 2))
+    annual_budget_cny: Mapped[Decimal | None] = mapped_column(Numeric(12, 2))
     created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
     updated_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), onupdate=func.now()

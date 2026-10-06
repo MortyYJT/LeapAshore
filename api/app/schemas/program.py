@@ -57,10 +57,11 @@ class ProgramOut(BaseModel):
     joins the list with "、" and tests whether it is empty. A row's `category` and id are read by
     nobody, so they stay off the wire, and an element is a bare string rather than an object.
 
-    `minimum_mark` and `non_211_minimum_mark` are annotated `float` per the brief even though the
-    Numeric columns hand SQLAlchemy a Decimal; a controller ruling corrects every such annotation
-    in one later change, so this file keeps the brief's spelling rather than diverging on its
-    own.
+    `minimum_mark` and `non_211_minimum_mark` are `float` here because this layer is the wire, and
+    JSON has one number type: the ORM attributes are `Decimal` (`Numeric` reads back as `Decimal`,
+    and the models say so), and Pydantic serialises that `Decimal` to a JSON number on the way out.
+    An earlier version of this docstring deferred the correction of the model annotations to a later
+    change; that change has landed, so the note is gone.
     """
 
     model_config = ConfigDict(alias_generator=_camel, populate_by_name=True, from_attributes=True)
