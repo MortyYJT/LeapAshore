@@ -16,5 +16,13 @@ dependencies = [
 [project.optional-dependencies]
 test = ["pytest", "httpx"]
 
+# Without this, setuptools' flat-layout auto-discovery sees two top-level directories (`app` and
+# `alembic`) and refuses to build: "Multiple top-level packages discovered in a flat-layout". `uv pip
+# install -e` used to tolerate that, `pip install` does not, and CI installs with pip. The backend is
+# the `app` package; `alembic/` is migrations and `tests/` is the suite, neither is part of the
+# distribution.
+[tool.setuptools]
+packages = ["app"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]

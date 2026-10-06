@@ -34,6 +34,48 @@ jobs:
       - name: Type-check and build
         run: npm run build
 
+  backend:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: api
+    services:
+      # The suite runs against a real PostgreSQL, not a stub: it asserts the cookie-level isolation,
+      # the ON DELETE CASCADE, the first-contact savepoint race and the seeded catalogue mirror, and
+      # none of those survive being mocked. `compose.yaml` runs the same image locally on 55432; here
+      # the container publishes 5432 and `DATABASE_URL` below points the app at it.
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: offerpilot
+          POSTGRES_PASSWORD: offerpilot
+          POSTGRES_DB: offerpilot
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U offerpilot"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      # `app/config.py` reads `database_url` from the environment and falls back to the local
+      # composition; `api/.env` is not committed, so CI supplies the value here.
+      DATABASE_URL: postgresql+psycopg://offerpilot:offerpilot@localhost:5432/offerpilot
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: api/pyproject.toml
+      - name: Install the backend dependencies
+        run: python -m pip install -e ".[test]"
+      - name: Apply the database migrations
+        run: python -m alembic upgrade head
+      - name: Run the backend tests
+        run: python -m pytest -q
+
 # Not covered by this workflow, and deliberately so:
 #
 # - The end-to-end walkthrough (`make screenshots`) drives a real Chromium through
@@ -42,4 +84,8 @@ jobs:
 #   in CI first.
 # - Automated interface checks are handled by the Vibe-coding exception in
 #   AGENTS.md: pages are accepted from real browser output, not from TDD.
-# - There is no backend job yet. Add one when the FastAPI service exists.
+# - The two guards `make test` runs first (`scripts/check-no-fake-dates.cjs` and
+#   `scripts/verify-programs-mirror.cjs`) stay out of this workflow. The mirror guard
+#   compares `web/lib/programs.ts` against the committed snapshot and needs no service,
+#   so it belongs with the frontend if it is wired in later; the backend's own half of
+#   that contract is `api/tests/test_seed.py`, which the backend job above runs.
