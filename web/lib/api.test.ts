@@ -307,3 +307,115 @@ test("a definition with phases and no materials is still walkable", async () => 
   );
   assert.deepEqual(value, body);
 });
+
+test("fetchRoadmapDefinition rejects a phase the date arithmetic cannot reach", async () => {
+  // The reviewer's stub verbatim: a well-formed 200 whose only phase has no `offsetDays`. It used to
+  // be installed as it arrived, and the failure surfaced during render — `addDays(anchor, -undefined)`
+  // yields `Invalid Date`, and `toISOString` then throws `RangeError: Invalid time value` from inside
+  // `buildRoadmap`'s `.map`, outside the promise chain and therefore outside the caller's `catch`.
+  // Measured in a browser before this check: the Next Runtime RangeError overlay, zero phases, and no
+  // notice. `phases: [null]` was already caught, because that throws inside the mapping; a phase
+  // missing one field was not, which is the asymmetry this closes.
+  await assert.rejects(
+    () =>
+      withFetch(
+        () =>
+          new Response(
+            JSON.stringify({ phases: [{ key: "selection", title: "锁定申请组合" }], materials: [] }),
+            { status: 200 },
+          ),
+        () => fetchRoadmapDefinition(),
+      ),
+    /读取路线图定义失败：阶段 0（selection）的 offsetDays 不是可用的天数/,
+  );
+});
+
+test("fetchRoadmapDefinition caps the offset at the range of the date arithmetic", async () => {
+  // `Number.isFinite` alone is not the check, and this case is why: 1e9 is finite, fits a Postgres
+  // `INTEGER`, and still leaves the `Date` range once multiplied by 86_400_000 against ±8.64e15 ms —
+  // the same crash in the same browser, measured. The column has no CHECK and the design intends
+  // humans to edit these rows, so the read is the place that has to refuse a value like this.
+  await assert.rejects(
+    () =>
+      withFetch(
+        () =>
+          new Response(
+            JSON.stringify({
+              phases: [
+                {
+                  key: "selection",
+                  title: "锁定申请组合",
+                  subtitle: null,
+                  offsetDays: 1_000_000_000,
+                  sortOrder: 0,
+                },
+              ],
+              materials: [],
+            }),
+            { status: 200 },
+          ),
+        () => fetchRoadmapDefinition(),
+      ),
+    /阶段 0（selection）的 offsetDays 不是可用的天数/,
+  );
+
+  // The other side of the line: 1e8 days is the range itself and is still inside it for any anchor
+  // this app can hold, so a phase carrying it is walkable rather than refused.
+  const body = {
+    phases: [
+      { key: "selection", title: "锁定申请组合", subtitle: null, offsetDays: 100_000_000, sortOrder: 0 },
+    ],
+    materials: [],
+  };
+  const { value } = await withFetch(
+    () => new Response(JSON.stringify(body), { status: 200 }),
+    () => fetchRoadmapDefinition(),
+  );
+  assert.deepEqual(value, body);
+});
+
+test("fetchRoadmapDefinition rejects a phase with no key or no title", async () => {
+  const rejects = (phases: unknown, message: RegExp) =>
+    assert.rejects(
+      () =>
+        withFetch(
+          () => new Response(JSON.stringify({ phases, materials: [] }), { status: 200 }),
+          () => fetchRoadmapDefinition(),
+        ),
+      message,
+    );
+  // `null` reached the catch before, but by accident and with the mapper's own message; it is named
+  // here rather than left to whatever the mapping happens to throw.
+  await rejects([null], /读取路线图定义失败：阶段 0 缺少 key/);
+  await rejects([{ title: "锁定申请组合", offsetDays: 330 }], /阶段 0 缺少 key/);
+  await rejects([{ key: "selection", title: "", offsetDays: 330 }], /阶段 0（selection）缺少 title/);
+});
+
+test("fetchRoadmapDefinition rejects a material with no key, phase or title", async () => {
+  // A material's own fields fail differently from a phase's: a missing `key` is the React
+  // duplicate-key warning the browser walkthrough treats as a failure, and a missing `phase` groups
+  // the requirement under no phase, so it silently never renders — a dropped requirement, which is
+  // the failure this product exists to avoid. Neither is a crash, so neither was reachable from the
+  // page's `catch` before this check.
+  const phase = { key: "selection", title: "锁定申请组合", subtitle: null, offsetDays: 330, sortOrder: 0 };
+  const material = {
+    key: "sel-goal",
+    phase: "selection",
+    title: "明确目标国家与方向",
+    detail: "结合预算、就业方向和家庭意见，先锁定国家与专业大类。",
+    appliesTo: "all",
+    sortOrder: 0,
+  };
+  const rejects = (materials: unknown, message: RegExp) =>
+    assert.rejects(
+      () =>
+        withFetch(
+          () => new Response(JSON.stringify({ phases: [phase], materials }), { status: 200 }),
+          () => fetchRoadmapDefinition(),
+        ),
+      message,
+    );
+  await rejects([{ ...material, key: undefined }], /读取路线图定义失败：材料 0 缺少 key/);
+  await rejects([{ ...material, phase: "" }], /材料 0（sel-goal）缺少 phase/);
+  await rejects([{ ...material, title: undefined }], /材料 0（sel-goal）缺少 title/);
+});
