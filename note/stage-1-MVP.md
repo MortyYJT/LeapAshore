@@ -500,3 +500,36 @@
   —— **因为我的走查用的是 `locator.hover()`，直接把鼠标瞬移到菜单项，恰好绕开了缝隙。**
   这是这轮最值得记的教训：**验收动作要模拟真实路径（连续移动），而不是跳到终点**。
   同样的道理，之前"渲染正常但 hydration 失败"那一类 bug 也是被这种"跳步验收"漏掉的。
+
+## 2026-10-05 — 推送分支、打通 PR、验证 CI
+
+### 用户关键原话
+
+- 「我觉得现在mvp算是搭建好了，你提交pr，ci/cd什么的，我们mvp主要就是搭建前端骨架，下一个阶段我们建表，接入agent，加入工具什么的」
+
+### 关键产出与评审结论
+
+- **先确认能力再动手**：这台机器没有 `gh` CLI，默认 SSH 密钥不被 GitHub 接受。实测发现 `~/.ssh/offerpilot_codex` 可用（显式 `-i` 指定），HTTPS 的 `git push --dry-run` 也确认 osxkeychain 里存有写权限。
+- **CI 在本地逐字跑通之后才推**，而不是"推上去看看过不过"：
+  `npm ci`（验证 lockfile 与 package.json 同步，34 个包）、`npm test`（44 通过）、`NEXT_DIST_DIR=.next-build npm run build`（成功）。
+- **遇到的硬问题：新项目与旧 `main` 没有共同祖先。** GitHub API 直接返回
+  `404 {"message":"No common ancestor between main and codex/stage-1-mvp."}` —— **PR 根本建不出来**。
+- 解法：在分支上执行 `git merge --allow-unrelated-histories -s ours <旧 main>`，把旧 main 记为第二个父提交，
+  同时**完整保留本分支的树**。验证：合并前后 tree hash 完全一致（`4f5593dfeb57`），推送是 fast-forward（`3b758d2..141c64b`），
+  **没有 force-push、没有改写任何已推送的提交**，旧实现仍可在历史中访问。
+- 复核：分支名 compare 由 404 变为 `200 {status: ahead, ahead_by: 28, merge_base: 716f3ca, 245 files}` → PR 可创建。
+- CI 配置经 `ruby -ryaml` 解析确认：checkout@v7 / setup-node@v7 / npm ci / npm test / npm run build，10 分钟超时。
+- **我做不到的部分（如实说明）**：没有 `gh`，也没有 GitHub API 写权限——keychain 里的那条凭据是给 git 用的，
+  取出来需要打印你的密钥，我不做这种事。所以**PR 需要你点一下**：
+  https://github.com/MortyYJT/offerpilot/pull/new/codex/stage-1-mvp
+
+### 用户拒绝或纠偏
+
+- 用户确认 MVP 范围就是前端骨架；下一阶段做建表 / 接入 agent / 加入工具。
+
+### 翻车与返工
+
+- 第一次用**分支名**查 compare 拿到 404，我一度怀疑 `-s ours` 没生效。改用**显式 SHA** 比对后返回 200 且 merge_base 正确
+  —— 说明那是 GitHub 对分支名结果的**缓存**，不是实现错误。
+  教训：**用 SHA 复核，别把缓存当成事实**，也别在缓存误导下急着改实现。
+- 本轮无其它返工。所有破坏性操作的替代方案都提前验证过：dry-run push、合并前后 tree hash 对比、fast-forward 确认。
