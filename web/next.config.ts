@@ -2,6 +2,12 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
+  // The browser reaches the API through this origin, so the httpOnly `offerpilot_client` cookie is
+  // same-origin and no CORS or credentials plumbing is needed. The cost is that the backend must be
+  // running: `make dev` starts both, and `screenshots` refuses to drive the browser without it.
+  async rewrites() {
+    return [{ source: "/api/:path*", destination: "http://127.0.0.1:8000/api/:path*" }];
+  },
   // A lockfile also exists in a parent directory; pin the workspace root so Next does not guess.
   turbopack: {
     root: __dirname,

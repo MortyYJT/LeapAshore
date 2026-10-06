@@ -1,0 +1,91 @@
+{
+  "$comment": "Generated from web/lib/programs.ts by scripts/verify-programs-mirror.cjs --write-snapshot. Do not edit by hand: change web/lib/programs.ts and regenerate, or fix api/app/seed.py when only the seed is wrong.",
+  "programs": [
+    {
+      "id": "unsw-master-it",
+      "city": "悉尼",
+      "degree_level": "授课型硕士",
+      "field": "计算机与数据",
+      "duration": "2 年",
+      "minimum_mark": 65,
+      "non_211_minimum_mark": 70,
+      "requires_cognate": false,
+      "english_requirement": "按 UNSW 英语语言要求核验",
+      "source_url": "https://www.unsw.edu.au/study/postgraduate/master-of-information-technology?studentType=International",
+      "prerequisites": []
+    },
+    {
+      "id": "usyd-master-cs",
+      "city": "悉尼",
+      "degree_level": "授课型硕士",
+      "field": "计算机与数据",
+      "duration": "2 年",
+      "minimum_mark": 65,
+      "non_211_minimum_mark": null,
+      "requires_cognate": false,
+      "english_requirement": "按悉尼大学课程页英语要求核验",
+      "source_url": "https://www.sydney.edu.au/content/courses/courses/pc/master-of-computer-science.html",
+      "prerequisites": []
+    },
+    {
+      "id": "monash-master-ai",
+      "city": "墨尔本",
+      "degree_level": "授课型硕士",
+      "field": "计算机与数据",
+      "duration": "1.5–2 年",
+      "minimum_mark": 60,
+      "non_211_minimum_mark": null,
+      "requires_cognate": false,
+      "english_requirement": "需同时满足 Monash 英语要求",
+      "source_url": "https://www.monash.edu/study/courses/find-a-course/artificial-intelligence-c6007",
+      "prerequisites": []
+    },
+    {
+      "id": "monash-master-cs",
+      "city": "墨尔本",
+      "degree_level": "授课型硕士",
+      "field": "计算机与数据",
+      "duration": "1.5–2 年",
+      "minimum_mark": 60,
+      "non_211_minimum_mark": null,
+      "requires_cognate": true,
+      "english_requirement": "需同时满足 Monash 英语要求",
+      "source_url": "https://www.monash.edu/study/courses/find-a-course/computer-science-c6008",
+      "prerequisites": [
+        "编程",
+        "算法或数据结构"
+      ]
+    },
+    {
+      "id": "uq-master-data-science",
+      "city": "布里斯班",
+      "degree_level": "授课型硕士",
+      "field": "计算机与数据",
+      "duration": "1.5–2 年",
+      "minimum_mark": 71.4,
+      "non_211_minimum_mark": null,
+      "requires_cognate": true,
+      "english_requirement": "IELTS 6.5，单项不低于 6.0",
+      "source_url": "https://study.uq.edu.au/study-options/programs/master-data-science-5660",
+      "prerequisites": [
+        "微积分或高等数学",
+        "线性代数与统计，或编程与数据库"
+      ]
+    },
+    {
+      "id": "uwa-master-it",
+      "city": "珀斯",
+      "degree_level": "授课型硕士",
+      "field": "计算机与数据",
+      "duration": "1.5–2 年",
+      "minimum_mark": 65,
+      "non_211_minimum_mark": null,
+      "requires_cognate": false,
+      "english_requirement": "IELTS 6.5，单项不低于 6.0",
+      "source_url": "https://www.uwa.edu.au/study/courses/master-of-information-technology",
+      "prerequisites": [
+        "Mathematics Methods ATAR 或同等数学基础"
+      ]
+    }
+  ]
+}

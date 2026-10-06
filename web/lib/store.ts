@@ -1,5 +1,6 @@
-// Local persistence. During the MVP stage state lives in the browser so progress survives a reload.
-// Once the backend exists this file becomes FastAPI calls; components stay unchanged.
+// Local persistence for the state the server does not own: which stage the applicant is looking at,
+// the chosen portfolio, the ticked material rows, and the avatar. The profile is not part of it —
+// `web/lib/api.ts` reads and writes that against the backend, which is where it is authoritative.
 
 import type { AppStage, PortfolioItem, Profile } from "./types";
 
@@ -23,6 +24,10 @@ export const EMPTY_PROFILE: Profile = {
 
 export interface PersistedState {
   stage: AppStage;
+  /**
+   * The in-memory profile. It stays in this type because the running state holds it, but it is not
+   * written to `localStorage`: see `saveState`.
+   */
   profile: Profile;
   portfolio: PortfolioItem[];
   completedMaterials: string[];
@@ -46,7 +51,11 @@ export function loadState(): PersistedState {
     const parsed = JSON.parse(raw) as Partial<PersistedState>;
     return {
       stage: parsed.stage ?? initialState.stage,
-      profile: { ...EMPTY_PROFILE, ...(parsed.profile ?? {}) },
+      // A fresh object rather than `EMPTY_PROFILE` itself, so no caller can mutate the constant.
+      // `parsed.profile` is deliberately ignored: a copy written by an older build is a second
+      // opinion about a profile the server owns, and it would be merged back in wherever the server
+      // has no answer — the divergence `mergeServerProfile` is written to avoid.
+      profile: { ...EMPTY_PROFILE },
       portfolio: parsed.portfolio ?? [],
       completedMaterials: parsed.completedMaterials ?? [],
       avatar: parsed.avatar ?? null,
@@ -56,10 +65,23 @@ export function loadState(): PersistedState {
   }
 }
 
+/**
+ * Persist everything except the profile.
+ *
+ * The profile is server state. Writing it here as well meant the next load merged the surviving
+ * local copy back over the server's answer wherever the server had none, so a value the applicant
+ * had cleared or a save the server never took could reappear as if it were stored. `Onboarding`
+ * already tells the applicant that answers which have not reached the server are lost on a refresh
+ * ("这里的答案还没同步到服务器，刷新页面会丢失"), and keeping a copy here contradicted that.
+ */
 export function saveState(state: PersistedState): void {
   if (typeof window === "undefined") return;
   try {
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    const { stage, portfolio, completedMaterials, avatar } = state;
+    window.localStorage.setItem(
+      STORAGE_KEY,
+      JSON.stringify({ stage, portfolio, completedMaterials, avatar }),
+    );
   } catch {
     /* localStorage can be unavailable in private mode; ignore. */
   }

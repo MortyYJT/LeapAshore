@@ -41,6 +41,8 @@ interface Props {
   onUpdateProfile: (patch: Partial<Profile>) => void;
   onAvatarChange: (dataUrl: string | null) => void;
   onClear: () => void;
+  /** Why the last profile save failed, or null, so the profile view can report the rollback. */
+  profileError: string | null;
 }
 
 export default function AppShell({
@@ -52,6 +54,7 @@ export default function AppShell({
   onUpdateProfile,
   onAvatarChange,
   onClear,
+  profileError,
 }: Props) {
   const [tab, setTab] = useState<Tab>("flow");
   const [panel, setPanel] = useState<Panel>(null);
@@ -203,6 +206,7 @@ export default function AppShell({
             onChange={onUpdateProfile}
             onAvatarChange={onAvatarChange}
             onOpenSettings={() => setPanel("settings")}
+            saveError={profileError}
           />
         )}
         {panel === "settings" && <SettingsView onClear={onClear} />}
