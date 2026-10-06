@@ -29,10 +29,11 @@ class SourceRef(BaseModel):
     Its three fields are the same three `app.schemas.program.SourceOut` carries, for the same
     reason: `publisher`, `domain` and a verification date are on the row but no consumer renders
     them, and `verified_at` stays null until a human verifies the page, so `status` is what tells
-    the reader whether anyone has. The field list is all the two models share, and that is
-    deliberate: `SourceOut` is validated from a `sources` row and so sets `from_attributes=True`,
-    while this one is built by the roadmap route from the row its material's `source_id` names and
-    therefore takes plain keyword arguments.
+    the reader whether anyone has. Both models are built the same way — from the row their route
+    just read, by plain keyword arguments — and the field list is all they share: the one real
+    difference is that `SourceOut` declares `from_attributes=True` and this model does not, so a
+    `sources` row can be validated into a `SourceOut` directly while a `SourceRef` is always
+    constructed explicitly.
     """
 
     model_config = ConfigDict(alias_generator=_camel, populate_by_name=True)
@@ -45,8 +46,12 @@ class SourceRef(BaseModel):
 class PhaseOut(BaseModel):
     """One stage of the timeline, as the frontend's `RoadmapPhase` reads it.
 
-    `sort_order` is served as well as used for ordering, because the frontend keeps a phase's
-    position as an array index and needs the same value to place a phase it renders on its own.
+    `sort_order` is served as well as used for ordering, and no consumer reads it: the frontend
+    keeps a phase's position as its index in the returned array, which is why the list arrives
+    ordered rather than being sorted again on the other side. It stays on the wire because it is the
+    value the route ordered by, and `MaterialOut` serves its own `sort_order` on the same terms. The
+    comment that used to justify it — that the frontend needed the number "to place a phase it
+    renders on its own" — named a consumer that does not exist; nothing renders a phase on its own.
     """
 
     model_config = ConfigDict(alias_generator=_camel, populate_by_name=True, from_attributes=True)
