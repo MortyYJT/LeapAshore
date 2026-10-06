@@ -1,10 +1,11 @@
 from fastapi import FastAPI
 
-from app.routers import profile
+from app.routers import profile, programs
 
 app = FastAPI(title="OfferPilot API")
 
 app.include_router(profile.router)
+app.include_router(programs.router)
 
 
 @app.get("/api/health")
