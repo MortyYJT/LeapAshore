@@ -6,19 +6,23 @@ official page the requirement came from.
 
 ## Current stage status
 
-The repository provides the onboarding flow, the portfolio picker, and the roadmap interface. State is
-kept in the browser.
+The repository provides the onboarding flow, the portfolio picker, the roadmap interface and the advisor
+chat skeleton. A FastAPI service with a PostgreSQL schema persists the applicant's profile; the
+application stage, the portfolio and the completed materials still live in `localStorage` and move to the
+server in the next batch.
 
 Not implemented:
 
-- There is no backend service. State lives in `localStorage`, not on a server.
-- There is no agent and no model call. The advisor tab is a placeholder describing intended behavior.
-- Official deadlines are **all marked as pending verification**. No deadline has been confirmed against
-  a university page.
-- Admission thresholds come from a first-pass manual seed set. Every record carries
-  `dataStatus: "待核验"` and the interface surfaces that to the user.
-- There are no unit tests yet. `lib/` holds pure functions that should be covered by tests.
-- The CI workflow exists but **has never run on GitHub**. Deployment and containers are not verified.
+- There is no agent and no model call. The advisor chat appends the message and answers with a fixed
+  notice rather than pretending an assistant replied.
+- No official deadline is recorded. Every program carries `dataStatus: "待核验"` and the interface says
+  so.
+- Admission thresholds come from a first-pass manual seed set that mirrors `web/lib/programs.ts`. A guard
+  fails the test run if the seed and that file diverge, but neither has been checked against a university
+  page. This is placeholder data pending the annotation stage.
+- There is no file upload, no document review, and no review criteria.
+- The backend has no authentication. A profile is scoped to an anonymous cookie, so clearing browser data
+  loses access to it.
 
 ## Local setup
 
