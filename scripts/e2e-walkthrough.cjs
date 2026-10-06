@@ -65,6 +65,19 @@ fs.mkdirSync(OUT, { recursive: true });
     await page.getByRole("button", { name: t, exact: false }).first().click();
     await page.waitForTimeout(250);
   };
+  /**
+   * Assert, rather than print.
+   *
+   * The console.log lines below are evidence for a human reading the run; a `console.log` cannot gate
+   * anything, so it is never the check itself. This one fails the run and names what disagreed. The
+   * failure is deferred to the end (process.exitCode is read after the browser closes) so the rest of
+   * the walkthrough still produces its screenshots and its error list.
+   */
+  const failures = [];
+  const check = (name, ok, detail) => {
+    console.log(name + ":", ok ? "是" : "否", detail === undefined ? "" : JSON.stringify(detail));
+    if (!ok) failures.push(name + (detail === undefined ? "" : " " + JSON.stringify(detail)));
+  };
 
   await page.goto(BASE, { waitUntil: "networkidle" });
   await shot("01-step1-education");
@@ -269,9 +282,85 @@ fs.mkdirSync(OUT, { recursive: true });
   );
   await shot("22-profile-restored-from-server");
 
+  // The roadmap definition comes from the server, so the rendered phases have to match the served
+  // ones — count and names, not merely "something rendered".
+  //
+  // The localStorage clear above also reset the stage, so the reload after it lands in onboarding and
+  // the roadmap is not on screen at all. Putting the stage back into storage first is what makes the
+  // reload a genuine cold start of the main interface with browser storage otherwise empty: the page
+  // mounts, fetches the definition, builds the roadmap, and only then is anything counted.
+  //
+  // The expected value is read from the API in the same reloaded page rather than hardcoded, because a
+  // hardcoded 7 would pass against a stale build and would have to be edited every time the definition
+  // grows. That read is allowed to fail: a run against a broken definition route is a run where the
+  // page is *supposed* to fall back, and reporting that is this block's job. Crashing on the read
+  // instead would fail the run without saying which of the two things was wrong.
+  await page.evaluate(() => {
+    window.localStorage.setItem("offerpilot.state.v1", JSON.stringify({ stage: "app" }));
+  });
+  await page.reload({ waitUntil: "networkidle" });
+  await page.getByText("申请流程").first().waitFor({ timeout: 15000 });
+  await page.waitForTimeout(500);
+
+  const readDefinition = () =>
+    page.evaluate(async () => {
+      // The marker separates this read from the page's own request for the same route. Without it the
+      // two are indistinguishable, so a run that stubs the route cannot make the page and this check
+      // disagree — and a check that cannot disagree with the page proves nothing about the page.
+      const response = await fetch("/api/roadmap?from=walkthrough");
+      if (!response.ok) return { ok: false, status: response.status };
+      const body = await response.json();
+      return { ok: true, phases: body.phases ?? [] };
+    });
+  let definition = await readDefinition();
+  // One retry: this read races nothing in particular today, but a half-open route is not the condition
+  // the assertion is about.
+  if (!definition.ok) definition = await readDefinition();
+
+  const renderedPhases = await page.evaluate(() => {
+    const items = [...document.querySelectorAll("ol > li")];
+    return items
+      .map((li) => li.querySelector("strong")?.innerText?.trim() ?? null)
+      .filter((title) => title !== null);
+  });
+
+  // Whether the page is showing the built-in copy is read first: it is the page's own answer, and the
+  // condition that decides which of the two claims below is the one this run has to make.
+  const fallbackNotice = await page
+    .getByText("路线图定义未能从服务器读取")
+    .first()
+    .isVisible()
+    .catch(() => false);
+
+  if (definition.ok) {
+    // The definition is reachable, so the page has to be rendering exactly it, in its order. A page
+    // that never fetched, one that silently fell back to the six built-in phases, and one that dropped
+    // a phase all disagree with the served list here.
+    const servedTitles = definition.phases.map((p) => p.title);
+    check(
+      "清空浏览器存储并重载后路线图仍渲染，且阶段与接口一致",
+      servedTitles.length > 0 && JSON.stringify(renderedPhases) === JSON.stringify(servedTitles),
+      { served: servedTitles, rendered: renderedPhases },
+    );
+    // The same condition from the other side: the page says out loud when it is showing the built-in
+    // copy, so the absence of that notice is what proves these phases came from the server.
+    check("路线图由服务端定义渲染（未显示内置副本提示）", !fallbackNotice);
+  } else {
+    // The definition could not be fetched, so the page is required to keep rendering and to say which
+    // copy it used. A blank screen and a silent fallback are both failures here.
+    check(
+      `定义接口不可用时（HTTP ${definition.status}）路线图仍渲染且说明用了内置副本`,
+      renderedPhases.length > 0 && fallbackNotice,
+      { rendered: renderedPhases, fallbackNotice },
+    );
+  }
+  // No screenshot of its own: 21-after-reload already shows this exact view, and a second identical
+  // image would be churn rather than evidence. The two lines above are the record.
+
   console.log("\n=== JS 错误 ===");
   console.log(errors.length ? errors.join("\n") : "无");
 
   await browser.close();
-  if (errors.length) process.exitCode = 1;
+  if (failures.length) console.error("断言未通过:\n" + failures.join("\n"));
+  if (errors.length || failures.length) process.exitCode = 1;
 })();

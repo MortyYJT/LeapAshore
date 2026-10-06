@@ -5,16 +5,31 @@ import AppShell from "@/components/AppShell";
 import Generating from "@/components/Generating";
 import Onboarding from "@/components/Onboarding";
 import PortfolioPicker from "@/components/PortfolioPicker";
-import { fetchProfile, mergeServerProfile, patchProfile } from "@/lib/api";
+import { fetchProfile, fetchRoadmapDefinition, mergeServerProfile, patchProfile } from "@/lib/api";
 import { buildRoadmap } from "@/lib/roadmap";
+import { toRoadmapDefinition } from "@/lib/roadmap-source";
 import { clearState, initialState, loadState, saveState, type PersistedState } from "@/lib/store";
-import type { PortfolioItem, Profile } from "@/lib/types";
+import type { PortfolioItem, Profile, RoadmapDefinition } from "@/lib/types";
+
+/** Shown while the roadmap is built from the built-in copy because the definition read failed. */
+const LOCAL_DEFINITION_NOTICE =
+  "路线图定义未能从服务器读取，当前显示的是内置副本，可能缺少服务器上的最新阶段。";
 
 export default function Page() {
   // Render the initial state first so the first paint shows onboarding, then hydrate from localStorage.
   const [state, setState] = useState<PersistedState>(initialState);
   const [hydrated, setHydrated] = useState(false);
   const [profileError, setProfileError] = useState<string | null>(null);
+  /**
+   * The served definition, or null while it is in flight and after a failed read.
+   *
+   * `null` is what `buildRoadmap` reads as "use the built-in copy", so a failure needs no second flag
+   * to fall back correctly. `roadmapNotice` is the separate one: without it the fallback would be
+   * silent, and a roadmap that quietly omits the phases this build does not carry looks exactly like
+   * a roadmap built from the server's answer.
+   */
+  const [definition, setDefinition] = useState<RoadmapDefinition | null>(null);
+  const [roadmapNotice, setRoadmapNotice] = useState<string | null>(null);
 
   useEffect(() => {
     setState(loadState());
@@ -40,6 +55,31 @@ export default function Page() {
     };
   }, []);
 
+  /**
+   * The definitions come from the server too, once, for the same reason the profile does.
+   *
+   * The failure is reported rather than thrown away. A roadmap built from the built-in copy is a
+   * different claim from one built from the server's answer — the fallback does not carry the visa
+   * phase, for instance — and reporting the phase count as if it came from the server would be the
+   * silent divergence the profile layer already refuses to make. So the notice stays on screen while
+   * the fallback is what is being rendered.
+   */
+  useEffect(() => {
+    let cancelled = false;
+    fetchRoadmapDefinition()
+      .then((served) => {
+        if (cancelled) return;
+        setDefinition(toRoadmapDefinition(served));
+      })
+      .catch(() => {
+        if (cancelled) return;
+        setRoadmapNotice(LOCAL_DEFINITION_NOTICE);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   useEffect(() => {
     if (hydrated) saveState(state);
   }, [state, hydrated]);
@@ -49,7 +89,15 @@ export default function Page() {
     window.scrollTo({ top: 0 });
   }, [state.stage]);
 
-  const roadmap = buildRoadmap(state.profile, state.completedMaterials);
+  // An omitted definition is the built-in copy, so the failed-fetch path is the same line of code as
+  // the first paint rather than a second branch that has to be kept in step with it. `now` is left at
+  // its own default by passing `undefined` explicitly, which is the only reason it is named here.
+  const roadmap = buildRoadmap(
+    state.profile,
+    state.completedMaterials,
+    undefined,
+    definition ?? undefined,
+  );
 
   /**
    * Send one field edit to the server, keeping the local update optimistic.
@@ -192,6 +240,7 @@ export default function Page() {
       onAvatarChange={setAvatar}
       onClear={clearAll}
       profileError={profileError}
+      roadmapNotice={roadmapNotice}
     />
   );
 }

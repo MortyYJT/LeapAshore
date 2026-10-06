@@ -7,7 +7,7 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 
 import { buildRoadmap, intakeAnchor, PHASE_DEFS, roadmapProgress } from "./roadmap.ts";
-import type { Profile } from "./types.ts";
+import type { Profile, RoadmapDefinition } from "./types.ts";
 
 const BASE: Profile = {
   educationLevel: "本科",
@@ -130,4 +130,62 @@ test("adds a portfolio for design and arts fields", () => {
 test("carries the intake term onto the roadmap", () => {
   assert.equal(build({ intake: "2028 S2" }).intake, "2028 S2");
   assert.equal(build({ intake: "2028 S2" }).anchorAt, "2028-07-15");
+});
+
+// The definition argument is what makes the phases the server's to change. These two tests pin the
+// two halves of that: a definition that differs from the constants is what gets built, and a
+// definition that is omitted still builds the constants — the offline path this task has to keep.
+test("a served definition is what gets built, not the built-in constants", () => {
+  const definition: RoadmapDefinition = {
+    phases: [
+      { id: "visa", title: "签证与行前", detail: "", offsetDays: 30 },
+      { id: "selection", title: "锁定申请组合", detail: "确定申请哪些项目，并标出一个首选。", offsetDays: 330 },
+    ],
+    materials: {
+      visa: [
+        { id: "visa-gs-responses", label: "GS 问卷逐题作答", detail: "每题不超过 150 词。", appliesTo: "all" },
+      ],
+      selection: [
+        { id: "sel-goal", label: "明确目标国家与方向", detail: "先锁定国家与专业大类。", appliesTo: "all" },
+      ],
+    },
+  };
+  const roadmap = buildRoadmap(BASE, [], NOW, definition);
+
+  // Both the set and the order come from the definition: `visa` lands first because that is the order
+  // it arrived in, and the visa phase is one the constants do not carry at all.
+  assert.deepEqual(
+    roadmap.phases.map((p) => p.id),
+    ["visa", "selection"],
+  );
+  assert.equal(roadmap.phases[0].suggestedAt, "2027-01-16"); // 2027-02-15 minus 30 days
+  assert.deepEqual(
+    roadmap.phases[0].tasks.map((t) => t.materialId),
+    ["visa-gs-responses"],
+  );
+  // The date arithmetic is still the client's: the definition carries an offset, never a date.
+  assert.equal(roadmap.phases[1].suggestedAt, "2026-03-22");
+});
+
+test("omitting the definition still builds the built-in copy", () => {
+  // The fallback path, asserted on both halves: the constants' six phases, and a phase the served
+  // definition has that the constants do not, absent rather than rendered empty.
+  const roadmap = buildRoadmap(BASE, [], NOW, undefined);
+  assert.deepEqual(
+    roadmap.phases.map((p) => p.id),
+    PHASE_DEFS.map((p) => p.id),
+  );
+  assert.ok(!roadmap.phases.some((p) => p.id === "visa"));
+});
+
+// A phase the definition lists but supplies no materials for is an empty phase, not a crash. The
+// server can add a phase before its materials are written, and the roadmap has to render what it has.
+test("a phase with no materials in the definition renders as an empty phase", () => {
+  const roadmap = buildRoadmap(BASE, [], NOW, {
+    phases: [{ id: "visa", title: "签证与行前", detail: "", offsetDays: 30 }],
+    materials: {},
+  });
+  assert.equal(roadmap.phases.length, 1);
+  assert.deepEqual(roadmap.phases[0].tasks, []);
+  assert.equal(roadmap.phases[0].status, "pending");
 });

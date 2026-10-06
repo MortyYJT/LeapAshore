@@ -128,7 +128,12 @@ export interface PhaseTask {
 }
 
 export interface RoadmapPhase {
-  id: PhaseId;
+  /**
+   * The served phase key. A plain string, not `PhaseId`: the definition comes from the server, so the
+   * set of phases is the server's to change, and a phase it adds must render rather than be rejected
+   * by a union that was written before it existed.
+   */
+  id: string;
   title: string;
   detail: string;
   /** Suggested start date, derived backwards from the intake term. */
@@ -142,6 +147,28 @@ export interface Roadmap {
   anchorAt: string;
   generatedAt: string;
   phases: RoadmapPhase[];
+}
+
+/**
+ * The phase and material definitions the roadmap is built from, without any dates.
+ *
+ * This is what `GET /api/roadmap` describes and what `buildRoadmap` takes: the server owns which
+ * phases exist and what each one asks for, while the date arithmetic stays on the client by design.
+ * The shape is deliberately loose — neither the phase id nor the material grouping is keyed by
+ * `PhaseId` — because the server owns the list and may name a phase this build has never heard of,
+ * such as the authored `visa` phase the constants here do not carry. A phase it adds has to render
+ * rather than be rejected by a union written before it existed. The constants satisfy this shape
+ * because a `PhaseId` is a string and their material record is one entry per phase.
+ */
+export interface RoadmapDefinition {
+  phases: {
+    id: string;
+    title: string;
+    detail: string;
+    /** Days before the intake date, counted backwards. */
+    offsetDays: number;
+  }[];
+  materials: Record<string, MaterialItem[]>;
 }
 
 export type AppStage = "onboarding" | "generating" | "portfolio" | "app";

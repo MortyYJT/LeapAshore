@@ -7,7 +7,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 
-import { fetchProfile, mergeServerProfile, patchProfile } from "./api.ts";
+import { fetchProfile, fetchRoadmapDefinition, mergeServerProfile, patchProfile } from "./api.ts";
 import { EMPTY_PROFILE } from "./store.ts";
 import type { Profile } from "./types.ts";
 
@@ -208,4 +208,45 @@ test("patchProfile does not compare a key the request never sent", async () => {
   );
   assert.equal(calls[0].init?.body, JSON.stringify({ major: "软件工程" }));
   assert.deepEqual(value, { major: "软件工程", schoolName: null });
+});
+
+test("fetchRoadmapDefinition reads the served definition from the shared route", async () => {
+  // The route is shared configuration rather than applicant data, so this request differs from the
+  // profile calls in nothing but its path. The body is handed back unmapped: turning it into what
+  // `buildRoadmap` takes is `roadmap-source.ts`'s job, and doing it here as well would give the same
+  // mapping two homes.
+  //
+  // It is spelled the way the route serves it — `key` and `title`, not `id` and `label` — so this is
+  // a check on the contract rather than a restatement of the call.
+  const body = {
+    phases: [{ key: "selection", title: "锁定申请组合", subtitle: null, offsetDays: 330, sortOrder: 0 }],
+    materials: [
+      {
+        key: "sel-goal",
+        phase: "selection",
+        title: "明确目标国家与方向",
+        detail: "结合预算、就业方向和家庭意见，先锁定国家与专业大类。",
+        appliesTo: "all",
+        sortOrder: 0,
+        source: null,
+      },
+    ],
+  };
+  const { value, calls } = await withFetch(
+    () => new Response(JSON.stringify(body), { status: 200 }),
+    () => fetchRoadmapDefinition(),
+  );
+  assert.deepEqual(value, body);
+  assert.equal(calls[0].url, "/api/roadmap");
+  assert.equal(calls[0].init?.credentials, "same-origin");
+});
+
+test("fetchRoadmapDefinition rejects an error page so the caller can fall back visibly", async () => {
+  // The failure this pins is the one the page has to report: an unreachable definition must not be
+  // read as an empty one, or the roadmap would render with no phases and no explanation. The caller
+  // catches this, builds from the built-in copy, and says so on screen.
+  await assert.rejects(
+    () => withFetch(() => new Response("nope", { status: 502 }), () => fetchRoadmapDefinition()),
+    /读取路线图定义失败：502/,
+  );
 });

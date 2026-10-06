@@ -5,6 +5,27 @@
 // httpOnly `offerpilot_client` cookie rides along on its own and no CORS setup is needed.
 
 import type { Profile } from "./types";
+import type { ServedRoadmapDefinition } from "./roadmap-source";
+
+/**
+ * Read the roadmap definition: which phases exist and what each one asks for.
+ *
+ * This is shared configuration, not applicant data. The route takes no subject and is served without
+ * a cookie, so the response is the same for everyone and reading it has no side effect. What the
+ * server does *not* send is any date: the phases carry an offset in days and the client derives the
+ * dates from the intake term, which is the split this task keeps on purpose.
+ *
+ * The body is returned as the wire shape rather than mapped. Mapping it is `roadmap-source.ts`'s job
+ * and is a pure function with its own tests, so a body that passes through here unexamined can be
+ * checked without a server. A failure raises rather than resolving to an empty definition, because
+ * "the server said nothing" and "the server could not be reached" are different claims and only the
+ * caller knows which fallback to use.
+ */
+export async function fetchRoadmapDefinition(): Promise<ServedRoadmapDefinition> {
+  const response = await fetch("/api/roadmap", { credentials: "same-origin" });
+  if (!response.ok) throw new Error(`读取路线图定义失败：${response.status}`);
+  return response.json();
+}
 
 /**
  * Read the caller's profile.

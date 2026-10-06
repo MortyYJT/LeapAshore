@@ -43,6 +43,14 @@ interface Props {
   onClear: () => void;
   /** Why the last profile save failed, or null, so the profile view can report the rollback. */
   profileError: string | null;
+  /**
+   * Set when the roadmap on screen was built from the built-in definition instead of the served one.
+   *
+   * It is a claim about the data, not a save error: the timeline still works, but it is missing
+   * whatever the server holds that this build does not — the authored visa phase among it. Rendered
+   * under the header on every tab rather than inside one view, because every view renders the roadmap.
+   */
+  roadmapNotice: string | null;
 }
 
 export default function AppShell({
@@ -55,6 +63,7 @@ export default function AppShell({
   onAvatarChange,
   onClear,
   profileError,
+  roadmapNotice,
 }: Props) {
   const [tab, setTab] = useState<Tab>("flow");
   const [panel, setPanel] = useState<Panel>(null);
@@ -199,6 +208,16 @@ export default function AppShell({
       </header>
 
       <main className="mx-auto w-full max-w-5xl px-4 py-6">
+        {/*
+          A stale local definition is a different claim from a fresh server one, so it is said out
+          loud instead of falling back quietly. Warning-coloured rather than danger-coloured: the page
+          works, it is the definition that is older than the server's.
+        */}
+        {roadmapNotice && (
+          <div className="mb-4 rounded-xl border-2 border-[var(--color-warn)] bg-[var(--color-warn-soft)] p-3">
+            <p className="text-sm leading-relaxed text-[#9a6700]">{roadmapNotice}</p>
+          </div>
+        )}
         {panel === "profile" && (
           <ProfileView
             profile={profile}
