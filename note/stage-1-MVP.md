@@ -570,3 +570,37 @@
   已用固定四段格式解决。
 - 我此前把「页面例外」当作已授权来用，但没有和用户确认过边界。现已写死在文档里，并明确逻辑不得走这个例外。
 - 无其它返工。
+
+## 2026-10-06 — 第二阶段 M1：档案从 localStorage 落到服务端（含一条验收偏差记录）
+
+### 用户关键原话
+
+- 本阶段没有新的用户原话：它按已批准的计划 `note/superpowers/plans/2026-10-06-stage-2-m1-foundation.md`
+  执行，验收标准来自同目录的 spec。计划与 spec 的对应关系在计划末尾的「自检」表里。
+
+### 关键产出与评审结论
+
+- 后端：FastAPI 服务 + PostgreSQL schema（Alembic 迁移），`clients` / `profiles` / `sources` /
+  `universities` / `programs` / `program_prerequisites` 六张表。
+- 前端：档案的读写从 localStorage 改为 `GET/PATCH /api/profile`，清空浏览器存储后档案仍能从服务端读回
+  （真实浏览器走查 `scripts/e2e-walkthrough.cjs`，截图 `22-profile-restored-from-server.png`）。
+- **验收偏差（本轮补记）**：计划 Task 8 的 Files 表写了 `Modify: web/lib/store.ts`，**实际实现没有改这个文件**。
+  当时的后果是：档案仍然随每次 state 变化写进 localStorage，并在下一次加载时**反向合并**到服务端档案之上
+  ——服务端某字段为空时，本地旧值胜出。功能目标本身达成了（档案不依赖 localStorage），
+  但分支**交付了一条它没有声明的验收偏差**：偏差被评审发现，而不是被交付时说明。
+- 同一条偏差的另一半：计划隐含要求「组件不变」，实际改动了 5 个组件
+  （`AppShell`、`Onboarding`、`ProfileView`、`SettingsView`、`app/page.tsx`）。
+  评审结论是这些改动**正确且必要**：要保存失败必须让申请人看见，就不能要求组件一字不改，
+  否则只剩「保存失败也静默推进」这一种实现。
+- 最终修复轮把这条偏差收口：`store.ts` 不再写入、也不再读回档案（只保留 `stage` / `portfolio` /
+  `completedMaterials` / `avatar`），并在文件注释里写明原因；
+  `mergeServerProfile` 的规则明确为「服务端有值（含空串）即胜出，只有 null 才回退本地默认值」。
+
+### 用户拒绝或纠偏
+
+- 无。本阶段用户没有介入中间过程，纠偏来自任务内的自审与整分支评审。
+
+### 翻车与返工
+
+- 「组件不变」这条隐含假设与「保存失败要报错」直接冲突，计划没有预先说清，代价是一次整分支评审才把它讲明白。
+  教训：计划里写「不要改某文件」时，必须同时写出它换来的是哪条行为；否则执行者只能在两者之间私自取舍。
