@@ -1,6 +1,6 @@
 .PHONY: help dev build test verify install clean screenshots check-origins
 .PHONY: api-install api-test api-dev
-.PHONY: db-up db-down migrate revision
+.PHONY: db-up db-down migrate revision seed
 .PHONY: check-dates
 
 WEB := web
@@ -69,3 +69,6 @@ migrate: ## Apply the database migrations
 
 revision: ## Generate a new migration, usage: make revision m="add profiles"
 	cd api && .venv/bin/alembic revision --autogenerate -m "$(m)"
+
+seed: ## Seed the placeholder program catalogue
+	cd api && .venv/bin/python seed_cli.py
