@@ -73,43 +73,34 @@ test("tiers a 211 applicant against the program baseline", () => {
   assert.equal(result.gapStatus, "需要人工核验");
 });
 
+// Both non-211 tiers share the non-211 baseline. They are separate options because institutions
+// differ, not because the recruitment rule differs.
 test("tiers a non-211 applicant against the non-211 baseline when one is recorded", () => {
-  const solid = assessProgram(program("unsw-master-it"), { ...BASE, domesticTier: "一本" });
-  assert.equal(solid.suggestedTier, "保");
+  for (const domesticTier of ["双非", "专科"] as const) {
+    const solid = assessProgram(program("unsw-master-it"), { ...BASE, domesticTier });
+    assert.equal(solid.suggestedTier, "保", `expected a tier for ${domesticTier}`);
+    assert.ok(solid.reasons.some((r) => r.includes("非 211")));
 
-  const borderline = assessProgram(program("unsw-master-it"), {
-    ...BASE,
-    domesticTier: "一本",
-    gpaScore: 70,
-  });
-  assert.equal(borderline.suggestedTier, "冲");
+    const borderline = assessProgram(program("unsw-master-it"), {
+      ...BASE,
+      domesticTier,
+      gpaScore: 70,
+    });
+    assert.equal(borderline.suggestedTier, "冲");
 
-  const short = assessProgram(program("unsw-master-it"), {
-    ...BASE,
-    domesticTier: "一本",
-    gpaScore: 68,
-  });
-  assert.equal(short.suggestedTier, null);
-  assert.equal(short.gapStatus, "存在门槛缺口");
+    const short = assessProgram(program("unsw-master-it"), {
+      ...BASE,
+      domesticTier,
+      gpaScore: 68,
+    });
+    assert.equal(short.suggestedTier, null);
+    assert.equal(short.gapStatus, "存在门槛缺口");
+  }
 });
 
 test("refuses to tier when no baseline matches the applicant tier", () => {
   // usyd records no non-211 baseline, so a non-211 applicant cannot be compared.
-  const result = assessProgram(program("usyd-master-cs"), { ...BASE, domesticTier: "一本" });
-  assert.equal(result.suggestedTier, null);
-  assert.equal(result.gapStatus, "需要人工核验");
-});
-
-// A 双一流 institution that is not also 985 or 211 is a non-211 institution, so the recorded
-// non-211 baseline applies. Treating it as unknowable left those applicants with an empty portfolio.
-test("applies the non-211 baseline to a 双一流 applicant", () => {
-  const result = assessProgram(program("unsw-master-it"), { ...BASE, domesticTier: "双一流" });
-  assert.equal(result.suggestedTier, "保");
-  assert.ok(result.reasons.some((r) => r.includes("非 211")));
-});
-
-test("still gives no tier when the applicant declines to state a tier", () => {
-  const result = assessProgram(program("unsw-master-it"), { ...BASE, domesticTier: "其他" });
+  const result = assessProgram(program("usyd-master-cs"), { ...BASE, domesticTier: "双非" });
   assert.equal(result.suggestedTier, null);
   assert.equal(result.gapStatus, "需要人工核验");
 });
@@ -149,7 +140,7 @@ test("marks every seed program as resting on unverified data", () => {
 test("never reaches 满足基础门槛 with the current seed data", () => {
   const outcomes = new Set<string>();
   for (const p of PROGRAMS) {
-    for (const domesticTier of ["985", "211", "一本", "双一流"] as const) {
+    for (const domesticTier of ["985", "211", "双非", "专科"] as const) {
       for (const englishScore of ["IELTS 8.0", "IELTS 6.5", ""]) {
         const result = assessProgram(p, { ...BASE, domesticTier, englishScore, gpaScore: 95 });
         outcomes.add(result.gapStatus);

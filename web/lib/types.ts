@@ -6,7 +6,7 @@ export type EducationLevel = "高中" | "本科" | "硕士" | "其他";
 export type SchoolOrigin = "国内" | "海外";
 
 /** Domestic tier. 985 and 211 are detected automatically; the rest are self-reported. */
-export type DomesticTier = "985" | "211" | "双一流" | "一本" | "二本" | "专科" | "其他";
+export type DomesticTier = "985" | "211" | "双非" | "专科";
 
 /** Overseas institutions are self-reported by QS band; rankings change every year. */
 export type OverseasBand =

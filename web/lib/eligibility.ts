@@ -65,15 +65,9 @@ export function assessProgram(program: Program, profile: Profile): ProgramAssess
 
   // Two groups are well defined in public guidance: Project 985 and Project 211 institutions, which
   // compare against the program baseline, and every other Chinese institution, which compares against
-  // the non-211 baseline when the program records one. A 双一流 institution that is not also 985 or
-  // 211 belongs to the second group. An applicant who declines to state a tier stays unclassified and
-  // is sent to manual review.
+  // the non-211 baseline when the program records one.
   const tierKnown = profile.domesticTier === "985" || profile.domesticTier === "211";
-  const isNon211 =
-    profile.domesticTier === "双一流" ||
-    profile.domesticTier === "一本" ||
-    profile.domesticTier === "二本" ||
-    profile.domesticTier === "专科";
+  const isNon211 = profile.domesticTier === "双非" || profile.domesticTier === "专科";
 
   let threshold: number | null = null;
   if (tierKnown) {

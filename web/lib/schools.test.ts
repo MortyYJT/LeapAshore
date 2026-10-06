@@ -73,10 +73,17 @@ test("returns null for input that is too short to match", () => {
   assert.equal(recognizeDomesticSchool("a"), null);
 });
 
-test("offers a manual tier and a QS band for every path that cannot be detected", () => {
-  assert.equal(DOMESTIC_TIER_OPTIONS.length, 7);
+// Four tiers only. Splitting the non-211 group into 双一流 / 一本 / 二本 produced options that the
+// baseline data cannot serve, which left applicants with an empty portfolio.
+test("offers exactly the four supported domestic tiers", () => {
+  assert.deepEqual(
+    DOMESTIC_TIER_OPTIONS.map((o) => o.value),
+    ["985", "211", "双非", "专科"],
+  );
+});
+
+test("offers a QS band for overseas institutions, which are never detected automatically", () => {
   assert.equal(OVERSEAS_BAND_OPTIONS.length, 6);
-  assert.ok(DOMESTIC_TIER_OPTIONS.some((o) => o.value === "其他"));
   assert.ok(OVERSEAS_BAND_OPTIONS.some((o) => o.value === "不确定"));
 });
 

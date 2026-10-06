@@ -136,14 +136,16 @@ export function recognizeDomesticSchool(input: string): SchoolMatch | null {
   return lookup(input);
 }
 
+/**
+ * Four tiers, matching the groups the recruitment rules and the baseline data can actually serve.
+ * An earlier version split the non-211 group into 双一流, 一本 and 二本. Most programs record no
+ * baseline for those groups, so the extra options produced an empty portfolio instead of a decision.
+ */
 export const DOMESTIC_TIER_OPTIONS: { value: DomesticTier; label: string; hint: string }[] = [
-  { value: "985", label: "985 工程", hint: "共 39 所，认可度最高" },
-  { value: "211", label: "211 工程（非 985）", hint: "共 116 所（含 985）" },
-  { value: "双一流", label: "双一流（非 211）", hint: "第二轮名单新增院校" },
-  { value: "一本", label: "普通一本", hint: "非 985/211 的公办本科一批" },
-  { value: "二本", label: "普通二本", hint: "" },
+  { value: "985", label: "985 工程", hint: "共 39 所" },
+  { value: "211", label: "211 工程（非 985）", hint: "" },
+  { value: "双非", label: "双非本科", hint: "非 985、非 211 的本科院校" },
   { value: "专科", label: "专科 / 高职", hint: "" },
-  { value: "其他", label: "其他 / 不便透露", hint: "不影响继续使用" },
 ];
 
 export const OVERSEAS_BAND_OPTIONS: { value: string; label: string }[] = [
