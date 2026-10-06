@@ -64,6 +64,10 @@ export default function Page() {
     });
   }
 
+  function setAvatar(dataUrl: string | null) {
+    setState((prev) => ({ ...prev, avatar: dataUrl }));
+  }
+
   function clearAll() {
     clearState();
     setState({ ...initialState });
@@ -100,6 +104,8 @@ export default function Page() {
       completedMaterials={state.completedMaterials}
       onToggleMaterial={toggleMaterial}
       onUpdateProfile={updateProfile}
+      avatar={state.avatar}
+      onAvatarChange={setAvatar}
       onClear={clearAll}
     />
   );

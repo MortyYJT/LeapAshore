@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
+import { toAvatarDataUrl } from "@/lib/avatar";
 import { DOMESTIC_TIER_OPTIONS, OVERSEAS_BAND_OPTIONS } from "@/lib/schools";
 import {
   BUDGET_OPTIONS,
@@ -131,12 +132,35 @@ function SelectEditor<T extends string>({
 
 interface Props {
   profile: Profile;
+  avatar: string | null;
   onChange: (patch: Partial<Profile>) => void;
+  onAvatarChange: (dataUrl: string | null) => void;
   onOpenSettings: () => void;
 }
 
-export default function ProfileView({ profile, onChange, onOpenSettings }: Props) {
+export default function ProfileView({
+  profile,
+  avatar,
+  onChange,
+  onAvatarChange,
+  onOpenSettings,
+}: Props) {
   const isOverseas = profile.schoolOrigin === "海外";
+  const fileRef = useRef<HTMLInputElement>(null);
+  const [avatarError, setAvatarError] = useState<string | null>(null);
+
+  async function handleFile(file: File | undefined) {
+    if (!file) return;
+    setAvatarError(null);
+    try {
+      onAvatarChange(await toAvatarDataUrl(file));
+    } catch (error) {
+      setAvatarError(error instanceof Error ? error.message : "处理图片失败");
+    } finally {
+      // Allow picking the same file again after an error.
+      if (fileRef.current) fileRef.current.value = "";
+    }
+  }
 
   return (
     <div className="grid gap-6">
@@ -146,6 +170,59 @@ export default function ProfileView({ profile, onChange, onOpenSettings }: Props
           每条都能单独改，改完立刻影响推荐和流程，不需要重填整份档案。
         </p>
       </header>
+
+      <section className="card flex flex-wrap items-center gap-5">
+        <div className="flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-full border-2 border-[var(--color-line)] bg-[var(--color-surface)] text-[var(--color-ink-soft)]">
+          {avatar ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={avatar} alt="头像" className="h-full w-full object-cover" />
+          ) : (
+            <svg viewBox="0 0 24 24" width="34" height="34" fill="none" aria-hidden>
+              <circle cx="12" cy="8.5" r="3.6" fill="currentColor" />
+              <path
+                d="M4.8 20c0-3.6 3.2-6 7.2-6s7.2 2.4 7.2 6"
+                stroke="currentColor"
+                strokeWidth="1.9"
+                strokeLinecap="round"
+              />
+            </svg>
+          )}
+        </div>
+
+        <div className="min-w-[200px] flex-1">
+          <h2 className="text-sm font-bold">头像</h2>
+          <p className="mt-1 text-xs leading-relaxed text-[var(--color-ink-soft)]">
+            只保存在这台设备上，会先压缩到 256×256 再存，不会上传。
+          </p>
+          <div className="mt-3 flex flex-wrap items-center gap-2">
+            <button
+              className="btn btn-ghost !px-4 !py-2 !text-sm"
+              onClick={() => fileRef.current?.click()}
+            >
+              上传头像
+            </button>
+            {avatar && (
+              <button
+                className="btn btn-ghost !px-4 !py-2 !text-sm !text-[var(--color-danger)]"
+                onClick={() => onAvatarChange(null)}
+              >
+                移除
+              </button>
+            )}
+          </div>
+          <input
+            ref={fileRef}
+            type="file"
+            accept="image/*"
+            aria-label="选择头像图片"
+            className="sr-only"
+            onChange={(e) => handleFile(e.target.files?.[0])}
+          />
+          {avatarError && (
+            <p className="mt-2 text-xs font-semibold text-[var(--color-danger)]">{avatarError}</p>
+          )}
+        </div>
+      </section>
 
       <section className="card">
         <EditableRow<EducationLevel | "">

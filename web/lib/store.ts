@@ -26,6 +26,8 @@ export interface PersistedState {
   profile: Profile;
   portfolio: PortfolioItem[];
   completedMaterials: string[];
+  /** Downscaled data URL for the account avatar, or null to use the default glyph. */
+  avatar: string | null;
 }
 
 export const initialState: PersistedState = {
@@ -33,6 +35,7 @@ export const initialState: PersistedState = {
   profile: EMPTY_PROFILE,
   portfolio: [],
   completedMaterials: [],
+  avatar: null,
 };
 
 export function loadState(): PersistedState {
@@ -46,6 +49,7 @@ export function loadState(): PersistedState {
       profile: { ...EMPTY_PROFILE, ...(parsed.profile ?? {}) },
       portfolio: parsed.portfolio ?? [],
       completedMaterials: parsed.completedMaterials ?? [],
+      avatar: parsed.avatar ?? null,
     };
   } catch {
     return initialState;

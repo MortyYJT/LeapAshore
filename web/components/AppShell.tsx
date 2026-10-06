@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import AdvisorView from "./AdvisorView";
 import FlowView from "./FlowView";
 import HomeView from "./HomeView";
@@ -17,7 +17,7 @@ const TABS: { key: Tab; label: string }[] = [
   { key: "advisor", label: "留学顾问" },
 ];
 
-function AvatarIcon() {
+function AvatarGlyph() {
   return (
     <svg viewBox="0 0 24 24" width="19" height="19" fill="none" aria-hidden>
       <circle cx="12" cy="8.5" r="3.6" fill="currentColor" />
@@ -36,8 +36,10 @@ interface Props {
   roadmap: Roadmap;
   portfolio: PortfolioItem[];
   completedMaterials: string[];
+  avatar: string | null;
   onToggleMaterial: (materialId: string) => void;
   onUpdateProfile: (patch: Partial<Profile>) => void;
+  onAvatarChange: (dataUrl: string | null) => void;
   onClear: () => void;
 }
 
@@ -45,20 +47,43 @@ export default function AppShell({
   profile,
   roadmap,
   portfolio,
+  avatar,
   onToggleMaterial,
   onUpdateProfile,
+  onAvatarChange,
   onClear,
 }: Props) {
   const [tab, setTab] = useState<Tab>("flow");
   const [panel, setPanel] = useState<Panel>(null);
   const [selectedPhase, setSelectedPhase] = useState<string>("selection");
   const [menuOpen, setMenuOpen] = useState(false);
+  const accountRef = useRef<HTMLDivElement>(null);
 
   // Leaving a view returns to the top, otherwise the previous scroll position leaves content hidden
   // under the sticky header.
   useEffect(() => {
     window.scrollTo({ top: 0 });
   }, [tab, panel]);
+
+  // A hover menu also needs to close on an outside click and on Escape, otherwise it stays open over
+  // the page after the pointer has moved on.
+  useEffect(() => {
+    if (!menuOpen) return;
+    function onPointerDown(event: MouseEvent) {
+      if (accountRef.current && !accountRef.current.contains(event.target as Node)) {
+        setMenuOpen(false);
+      }
+    }
+    function onKeyDown(event: KeyboardEvent) {
+      if (event.key === "Escape") setMenuOpen(false);
+    }
+    document.addEventListener("mousedown", onPointerDown);
+    document.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", onPointerDown);
+      document.removeEventListener("keydown", onKeyDown);
+    };
+  }, [menuOpen]);
 
   const showingPanel = panel !== null;
 
@@ -109,6 +134,7 @@ export default function AppShell({
           </nav>
 
           <div
+            ref={accountRef}
             className="relative justify-self-end"
             onMouseEnter={() => setMenuOpen(true)}
             onMouseLeave={() => setMenuOpen(false)}
@@ -117,40 +143,52 @@ export default function AppShell({
               aria-label="账户"
               aria-expanded={menuOpen}
               onClick={() => setMenuOpen((v) => !v)}
-              className="flex h-9 w-9 items-center justify-center rounded-full border-2 transition-colors"
+              className="flex h-9 w-9 items-center justify-center overflow-hidden rounded-full border-2 transition-colors"
               style={{
                 borderColor: showingPanel ? "var(--color-brand)" : "var(--color-line)",
                 background: showingPanel ? "var(--color-brand-soft)" : "var(--color-surface)",
                 color: showingPanel ? "var(--color-brand-dark)" : "var(--color-ink-soft)",
               }}
             >
-              <AvatarIcon />
+              {avatar ? (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img src={avatar} alt="账户头像" className="h-full w-full object-cover" />
+              ) : (
+                <AvatarGlyph />
+              )}
             </button>
 
+            {/*
+              The drop shadow gap is padding on this wrapper rather than a top offset. An offset would
+              leave a strip that belongs to neither the button nor the menu, so crossing it fired
+              mouseleave and the menu vanished before the pointer reached it.
+            */}
             {menuOpen && (
-              <div className="absolute right-0 top-[calc(100%+6px)] w-40 overflow-hidden rounded-xl border-2 border-[var(--color-line)] bg-[var(--color-canvas)] py-1 shadow-lg">
-                {(
-                  [
-                    { key: "profile", label: "个人信息" },
-                    { key: "settings", label: "设置" },
-                  ] as const
-                ).map((item) => (
-                  <button
-                    key={item.key}
-                    onClick={() => {
-                      setPanel(item.key);
-                      setMenuOpen(false);
-                    }}
-                    className="block w-full px-4 py-2 text-left text-sm font-semibold transition-colors hover:bg-[var(--color-surface)]"
-                    style={
-                      panel === item.key
-                        ? { color: "var(--color-brand-dark)" }
-                        : { color: "var(--color-ink)" }
-                    }
-                  >
-                    {item.label}
-                  </button>
-                ))}
+              <div className="absolute right-0 top-full pt-2">
+                <div className="w-40 overflow-hidden rounded-xl border-2 border-[var(--color-line)] bg-[var(--color-canvas)] py-1 shadow-lg">
+                  {(
+                    [
+                      { key: "profile", label: "个人信息" },
+                      { key: "settings", label: "设置" },
+                    ] as const
+                  ).map((item) => (
+                    <button
+                      key={item.key}
+                      onClick={() => {
+                        setPanel(item.key);
+                        setMenuOpen(false);
+                      }}
+                      className="block w-full px-4 py-2 text-left text-sm font-semibold transition-colors hover:bg-[var(--color-surface)]"
+                      style={
+                        panel === item.key
+                          ? { color: "var(--color-brand-dark)" }
+                          : { color: "var(--color-ink)" }
+                      }
+                    >
+                      {item.label}
+                    </button>
+                  ))}
+                </div>
               </div>
             )}
           </div>
@@ -161,7 +199,9 @@ export default function AppShell({
         {panel === "profile" && (
           <ProfileView
             profile={profile}
+            avatar={avatar}
             onChange={onUpdateProfile}
+            onAvatarChange={onAvatarChange}
             onOpenSettings={() => setPanel("settings")}
           />
         )}
