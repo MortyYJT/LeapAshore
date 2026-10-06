@@ -60,9 +60,12 @@ UNIVERSITIES = [
 
 # Each entry keeps the same official url and title the frontend already cites. The frontend mixes the
 # local name and the English name between 大学 / 项目; ``name`` and ``name_en`` follow that split.
+# ``id`` is the frontend's ``slug`` verbatim: it is the join key the interface uses to resolve a
+# portfolio entry back to a program, so a different spelling here breaks that lookup. The source and
+# prerequisite ids below are derived from it, which keeps one identifier per row in every table.
 PROGRAMS = [
     {
-        "id": "unsw-master-of-it",
+        "id": "unsw-master-it",
         "university_id": "unsw",
         "name": "信息技术硕士",
         "name_en": "Master of Information Technology",

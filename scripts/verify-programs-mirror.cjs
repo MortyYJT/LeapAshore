@@ -39,18 +39,10 @@ const SELF = "scripts/verify-programs-mirror.cjs";
 const TS_SOURCE = "web/lib/programs.ts";
 const SNAPSHOT = "scripts/seed-programs.snapshot.json";
 
-// The rows are matched on the TypeScript `slug`, which is the identifier both sides agree on. The
-// seed stores the longer ids the task brief fixed, and the frontend never reads a program id, so
-// the two spellings are related here explicitly instead of guessed. A new program that appears in
-// either file without an entry below is reported as unmatched rather than skipped.
-const SLUG_ALIASES = {
-  "unsw-master-it": "unsw-master-of-it",
-  "usyd-master-cs": "usyd-master-cs",
-  "monash-master-ai": "monash-master-ai",
-  "monash-master-cs": "monash-master-cs",
-  "uq-master-data-science": "uq-master-data-science",
-  "uwa-master-it": "uwa-master-it",
-};
+// The program identifier is the join key between the two sides, so it is mirrored like every other
+// value: the TypeScript calls it `slug` and the snapshot and the tables call it `id`, and both must
+// hold the same spelling. A program that appears on one side only is reported as unmatched, and a
+// database row whose id is not the frontend's slug is a divergence, not a variant to be translated.
 
 // The field-by-field mapping. Both sides of the comparison are normalised into
 // { city, degree_level, ... }, and the report names the field with these keys.
@@ -127,9 +119,9 @@ function normaliseText(value) {
   return value === null || value === undefined ? "<null>" : String(value);
 }
 
-// One normalised record per representation, keyed by the TypeScript slug. The TypeScript
-// identifies a program by `slug`; the seed reuses the brief's longer ids for the same six rows, so
-// the dump is re-keyed through an alias table on the way in.
+// One normalised record per representation, keyed by the program identifier. The TypeScript
+// identifies a program by `slug` and the snapshot and the tables by `id`; the two spellings have to
+// hold the same value, so the dump is keyed by its id with no translation in between.
 const NORMALISERS = {
   city: normaliseText,
   degree_level: normaliseText,
@@ -166,41 +158,23 @@ function fromTypeScript(rows, label) {
   return programs;
 }
 
-function fromDump(rows, aliasIds) {
+function fromDump(rows) {
   const programs = new Map();
-  const ids = new Set();
   for (const row of rows) {
     if (!row) throw new Error(`database dump: empty record`);
     const id = row.id;
     if (typeof id !== "string" || id === "") {
       throw new Error(`database dump: a record has no id: ${JSON.stringify(row)}`);
     }
-    if (ids.has(id)) throw new Error(`database dump: duplicate id ${id}`);
-    ids.add(id);
-    const slug = aliasIds.href(id);
+    if (programs.has(id)) throw new Error(`database dump: duplicate id ${id}`);
     const value = {};
     for (const field of FIELDS) {
       if (!(field in row)) throw new Error(`database dump: ${id} is missing the field ${field}`);
       value[field] = row[field];
     }
-    programs.set(slug, value);
+    programs.set(id, value);
   }
   return programs;
-}
-
-function makeAliasLookup(label) {
-  const byId = new Map(Object.entries(SLUG_ALIASES).map(([slug, id]) => [id, slug]));
-  return {
-    href(id) {
-      const slug = byId.get(id);
-      if (!slug) {
-        throw new Error(
-          `${label} holds the program id ${id}, which has no entry in SLUG_ALIASES in ${SELF}`,
-        );
-      }
-      return slug;
-    },
-  };
 }
 
 // The TypeScript is loaded through Node's own TypeScript support, so this script never parses it.
@@ -244,12 +218,12 @@ function loadTypeScriptPrograms(tsPath) {
 }
 
 // The snapshot is generated from the TypeScript itself, never hand-written, so it can only ever be
-// a copy of the source of truth rather than a second opinion about it.
+// a copy of the source of truth rather than a second opinion about it. The frontend's `slug` is
+// written out as `id` because that is the name the tables use for the same value.
 function writeSnapshot(snapshotPath, typescript) {
   const programs = [];
   for (const [slug, row] of typescript) {
-    const id = SLUG_ALIASES[slug];
-    const entry = { id };
+    const entry = { id: slug };
     for (const field of FIELDS) entry[field] = row[field];
     programs.push(entry);
   }
@@ -273,7 +247,7 @@ function loadSnapshot(snapshotPath) {
   if (!parsed || !Array.isArray(parsed.programs)) {
     throw new Error(`${snapshotPath} has no "programs" array`);
   }
-  return fromDump(parsed.programs, makeAliasLookup(snapshotPath));
+  return fromDump(parsed.programs);
 }
 
 function loadDump(dumpPath) {
@@ -286,7 +260,7 @@ function loadDump(dumpPath) {
   if (!parsed || !Array.isArray(parsed.programs)) {
     throw new Error(`${dumpPath} has no "programs" array`);
   }
-  return fromDump(parsed.programs, makeAliasLookup(dumpPath));
+  return fromDump(parsed.programs);
 }
 
 function compare(source, sourceLabel, other, otherLabel, problems) {
