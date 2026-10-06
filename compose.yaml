@@ -1,0 +1,19 @@
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: offerpilot
+      POSTGRES_PASSWORD: offerpilot
+      POSTGRES_DB: offerpilot
+    ports:
+      - "55432:5432"
+    volumes:
+      - offerpilot-db:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U offerpilot"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
+volumes:
+  offerpilot-db:

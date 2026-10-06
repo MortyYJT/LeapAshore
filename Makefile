@@ -1,5 +1,6 @@
 .PHONY: help dev build test verify install clean screenshots check-origins
 .PHONY: api-install api-test api-dev
+.PHONY: db-up db-down migrate revision
 
 WEB := web
 SHOTS := docs/screenshots
@@ -20,7 +21,7 @@ help:  ## List documented targets
 install: api-install  ## Install frontend and backend dependencies
 	cd $(WEB) && npm install --no-audit --no-fund --cache ../.npm-cache
 
-dev:  ## Start the frontend dev server on :3000
+dev: db-up  ## Start the frontend dev server on :3000
 	cd $(WEB) && npm run dev
 
 build:  ## Type-check and build into .next-build so a running dev server is untouched
@@ -52,3 +53,15 @@ api-test:  ## Run the backend tests in the project-local venv
 
 api-dev:  ## Start the backend dev server on :8000
 	cd api && .venv/bin/uvicorn app.main:app --reload --port 8000
+
+db-up: ## 启动数据库容器
+	docker compose up -d db
+
+db-down: ## 停止数据库容器
+	docker compose down
+
+migrate: ## 应用数据库迁移
+	cd api && .venv/bin/alembic upgrade head
+
+revision: ## 生成新迁移，用法：make revision m="add profiles"
+	cd api && .venv/bin/alembic revision --autogenerate -m "$(m)"
