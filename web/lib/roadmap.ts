@@ -1,10 +1,15 @@
-// Application roadmap: derive six phases backwards from the intake date, each with its materials.
+// Application roadmap: derive the phases backwards from the intake date, each with its materials.
+//
+// The phases and materials themselves come from `GET /api/roadmap`; the date arithmetic stays here,
+// by design, and the result is what the frontend stores. `PHASE_DEFS` and `MATERIALS` below are the
+// fallback for a page that cannot reach the server, not a second copy of the truth: without them an
+// unreachable API would turn the roadmap into a blank screen.
 //
 // Honesty rules:
 // - Every date is a system suggestion (scheduleOrigin="suggested"), not an official deadline.
 // - Official deadline fields stay empty and render as pending verification until a human confirms them.
 
-import type { MaterialItem, PhaseId, Profile, Roadmap, RoadmapPhase, StudyArea, DegreeLevel } from "./types";
+import type { MaterialItem, PhaseId, Profile, Roadmap, RoadmapDefinition, RoadmapPhase, StudyArea, DegreeLevel } from "./types";
 
 interface PhaseDef {
   id: PhaseId;
@@ -70,6 +75,16 @@ export const MATERIALS: Record<PhaseId, MaterialItem[]> = {
   ],
 };
 
+/**
+ * The built-in definition, used whenever no served one was fetched.
+ *
+ * The visa phase is deliberately absent. It is authored in `api/app/seed_roadmap.py` and has no
+ * counterpart here, so this fallback is a subset of what the server serves rather than a stale copy
+ * of it. That difference is what the notice in `AppShell` reports: a roadmap built from this object
+ * claims less than the server would, and saying so is the point of surfacing the failure.
+ */
+export const DEFAULT_DEFINITION: RoadmapDefinition = { phases: PHASE_DEFS, materials: MATERIALS };
+
 /** Parse an intake string such as "2027 S1" into an anchor date. */
 export function intakeAnchor(intake: string): Date {
   const m = /(20\d{2})\s*S([12])/i.exec(intake);
@@ -92,18 +107,28 @@ function applies(item: MaterialItem, degree: DegreeLevel | null, field: StudyAre
 /**
  * Build the roadmap.
  * Only system-suggested dates are produced here; official deadlines require manual verification.
+ *
+ * `definition` is the served list of phases and materials; omitting it builds from the built-in
+ * fallback, which is what keeps an interface that cannot reach the server from rendering an empty
+ * timeline and keeps every existing call site working. The dates are computed here either way: the
+ * server owns the definition, the client owns the arithmetic, and the result is what gets stored.
  */
 export function buildRoadmap(
   profile: Profile,
   completedMaterialIds: string[] = [],
   now: Date = new Date(),
+  definition: RoadmapDefinition = DEFAULT_DEFINITION,
 ): Roadmap {
   const anchor = intakeAnchor(profile.intake || "2027 S1");
   const done = new Set(completedMaterialIds);
 
-  const phases: RoadmapPhase[] = PHASE_DEFS.map((def) => {
+  const phases: RoadmapPhase[] = definition.phases.map((def) => {
     const suggestedAt = addDays(anchor, -def.offsetDays);
-    const items = MATERIALS[def.id].filter((i) => applies(i, profile.targetDegree, profile.targetField));
+    // A phase whose key has no materials is an empty phase (`?? []`), not a crash: the keys index the
+    // served definition, so a phase the server adds before its materials are written still renders.
+    const items = (definition.materials[def.id] ?? []).filter((i) =>
+      applies(i, profile.targetDegree, profile.targetField),
+    );
     const tasks = items.map((item) => ({
       materialId: item.id,
       label: item.label,

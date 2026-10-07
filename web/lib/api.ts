@@ -5,6 +5,120 @@
 // httpOnly `offerpilot_client` cookie rides along on its own and no CORS setup is needed.
 
 import type { Profile } from "./types";
+import type { ServedMaterial, ServedPhase, ServedRoadmapDefinition } from "./roadmap-source";
+
+/** Whether the value the wire sent is a string with at least one character in it. */
+function isFilled(value: unknown): value is string {
+  return typeof value === "string" && value.length > 0;
+}
+
+/**
+ * The offset magnitude past which the client's own date arithmetic cannot produce a date at all.
+ *
+ * `buildRoadmap` derives a phase's suggested date as `anchor - offsetDays * 86_400_000` and calls
+ * `toISOString` on it. A `Date` spans ±8.64e15 ms, which is 1e8 days, so a phase whose offset leaves
+ * that window makes the builder throw `RangeError: Invalid time value` from inside its `.map` — a
+ * failure during render, where the read's `catch` cannot reach it. The largest offset the definition
+ * uses is 330, and the column is a Postgres `INTEGER` (up to 2147483647) with no CHECK, so a value
+ * in that window is reachable by editing a row, which is exactly what this design invites. Measured
+ * in a browser against the stub `offsetDays: 1000000000`: the Next Runtime RangeError overlay, no
+ * phases and no notice.
+ *
+ * `Number.isFinite` alone does not close this, which is why the bound is here: 1e9 is finite and
+ * still crashes. The intake pattern (`20\d{2}`) narrows the anchor to a window that moves the edge
+ * by about twelve days, so 1e8 days is the conservative line to hold.
+ */
+const MAX_OFFSET_DAYS = 100_000_000;
+
+/**
+ * The first reason a served definition cannot be walked, or `null` when it can.
+ *
+ * The list checks in `fetchRoadmapDefinition` say the response carries two lists; this says their
+ * entries can be built into a roadmap. A phase with no `offsetDays` used to be installed as it
+ * arrived: `addDays` yielded `Invalid Date`, `toISOString` threw, and the throw happened while
+ * rendering — outside the promise chain, so the page's `catch` never saw it and the applicant got
+ * a crash where the built-in copy belonged. The asymmetry is what let that through:
+ * `phases: [null]` throws inside the mapping and does reach the `catch`, while a phase missing a
+ * single field does not.
+ *
+ * The materials are checked for the fields a nameless or unplaceable requirement would come from:
+ * a missing `key` is the React duplicate-key warning the browser walkthrough treats as a failure,
+ * and a missing `phase` groups the requirement under no phase at all, so it silently never renders.
+ */
+function unwalkableReason(definition: ServedRoadmapDefinition): string | null {
+  for (const [index, phase] of definition.phases.entries()) {
+    // The declared types above are this side's claim about the wire, not a promise the wire
+    // keeps: an entry can arrive as `null`, as a bare value, or as an object missing a field, and
+    // finding that is what this function is for.
+    const served = phase as Partial<ServedPhase> | null;
+    const key = served?.key;
+    if (!isFilled(key)) return `阶段 ${index} 缺少 key`;
+    if (!isFilled(served?.title)) return `阶段 ${index}（${key}）缺少 title`;
+    const offsetDays = served?.offsetDays;
+    if (
+      typeof offsetDays !== "number" ||
+      !Number.isFinite(offsetDays) ||
+      Math.abs(offsetDays) > MAX_OFFSET_DAYS
+    ) {
+      return `阶段 ${index}（${key}）的 offsetDays 不是可用的天数`;
+    }
+  }
+  for (const [index, material] of definition.materials.entries()) {
+    const served = material as Partial<ServedMaterial> | null;
+    const key = served?.key;
+    if (!isFilled(key)) return `材料 ${index} 缺少 key`;
+    if (!isFilled(served?.phase)) return `材料 ${index}（${key}）缺少 phase`;
+    if (!isFilled(served?.title)) return `材料 ${index}（${key}）缺少 title`;
+  }
+  return null;
+}
+
+/**
+ * Read the roadmap definition: which phases exist and what each one asks for.
+ *
+ * This is shared configuration, not applicant data. The route takes no subject and is served without
+ * a cookie, so the response is the same for everyone and reading it has no side effect. What the
+ * server does *not* send is any date: the phases carry an offset in days and the client derives the
+ * dates from the intake term, which is the split this task keeps on purpose.
+ *
+ * The body is returned as the wire shape rather than mapped. Mapping it is `roadmap-source.ts`'s job
+ * and is a pure function with its own tests, so a body that passes through here unexamined can be
+ * checked without a server. A failure raises rather than resolving to an empty definition, because
+ * "the server said nothing" and "the server could not be reached" are different claims and only the
+ * caller knows which fallback to use.
+ *
+ * A `200` that cannot be walked is a failure too, and it raises here instead of being handed on. The
+ * caller's only lever is "did the read fail", so a well-formed definition carrying no phases has to
+ * answer that question the way an unreachable route does: otherwise the page takes it as the truth,
+ * overrides the built-in copy, and renders an empty timeline with no notice to say why — the blank
+ * screen the fallback exists to prevent. The check lives in the transport rather than in
+ * `buildRoadmap` because the builder cannot report what it did: falling back there would put the
+ * built-in phases on screen while the page still believed it was rendering the server's empty
+ * definition, which is the silent half of the same bug.
+ *
+ * The entries are checked for the values the builder cannot work without, and for nothing else. A
+ * phase this build has never heard of is the server's to add, and a definition with phases and no
+ * materials yet is walkable, if thin. What is refused is an entry whose own values cannot produce
+ * a roadmap at all — see `unwalkableReason`, and `MAX_OFFSET_DAYS` for the one bound that is not
+ * merely a missing field.
+ */
+export async function fetchRoadmapDefinition(): Promise<ServedRoadmapDefinition> {
+  const response = await fetch("/api/roadmap", { credentials: "same-origin" });
+  if (!response.ok) throw new Error(`读取路线图定义失败：${response.status}`);
+  const definition = (await response.json()) as ServedRoadmapDefinition;
+  if (!Array.isArray(definition.phases)) {
+    throw new Error("读取路线图定义失败：响应缺少阶段列表");
+  }
+  if (!Array.isArray(definition.materials)) {
+    throw new Error("读取路线图定义失败：响应缺少材料列表");
+  }
+  if (definition.phases.length === 0) {
+    throw new Error("读取路线图定义失败：响应里没有任何阶段");
+  }
+  const reason = unwalkableReason(definition);
+  if (reason !== null) throw new Error(`读取路线图定义失败：${reason}`);
+  return definition;
+}
 
 /**
  * Read the caller's profile.

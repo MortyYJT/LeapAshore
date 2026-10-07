@@ -1,7 +1,7 @@
 .PHONY: help dev build test verify install clean screenshots check-origins
 .PHONY: api-install api-test api-dev api-dev-bg wait-api check-api check-venv
 .PHONY: db-up db-down migrate revision seed
-.PHONY: check-dates check-programs-mirror
+.PHONY: check-dates check-programs-mirror check-roadmap-mirror
 
 WEB := web
 SHOTS := docs/screenshots
@@ -40,7 +40,7 @@ build:  ## Type-check and build into .next-build so a running dev server is unto
 
 # `npm test` type-checks before it runs the tests, because `next build` skips `lib/*.test.ts` and
 # would otherwise let a type error in a test file sit in the tree until someone ran tsc by hand.
-test: check-dates check-programs-mirror api-test  ## Run the frontend type-check and unit tests, plus the backend tests
+test: check-dates check-programs-mirror check-roadmap-mirror api-test  ## Run the frontend type-check and unit tests, plus the backend tests
 	cd $(WEB) && npm test
 
 verify: check-venv build test screenshots  ## Verify: build, unit tests and the end-to-end walkthrough
@@ -70,6 +70,13 @@ check-dates:  ## Fail if a verification date is hardcoded in source or seed data
 # against the same snapshot, which is what binds the tables to the frontend data.
 check-programs-mirror:  ## Fail if the seeded catalogue stops mirroring web/lib/programs.ts
 	node scripts/verify-programs-mirror.cjs
+
+# The same two-part binding as the catalogue: without a database dump this compares
+# web/lib/roadmap.ts against the committed snapshot, and api/tests/test_seed_roadmap.py compares the
+# seeded rows against the same snapshot. The visa phase is excluded, because it is authored in the
+# seed and has no counterpart in the TypeScript.
+check-roadmap-mirror:  ## Fail if the seeded roadmap stops mirroring web/lib/roadmap.ts
+	node scripts/verify-roadmap-mirror.cjs
 
 check-origins:  ## Assert the dev server is interactive from every allowed origin (needs make dev running)
 	node scripts/dev-origin-check.cjs

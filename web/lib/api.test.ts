@@ -7,7 +7,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 
-import { fetchProfile, mergeServerProfile, patchProfile } from "./api.ts";
+import { fetchProfile, fetchRoadmapDefinition, mergeServerProfile, patchProfile } from "./api.ts";
 import { EMPTY_PROFILE } from "./store.ts";
 import type { Profile } from "./types.ts";
 
@@ -208,4 +208,214 @@ test("patchProfile does not compare a key the request never sent", async () => {
   );
   assert.equal(calls[0].init?.body, JSON.stringify({ major: "软件工程" }));
   assert.deepEqual(value, { major: "软件工程", schoolName: null });
+});
+
+test("fetchRoadmapDefinition reads the served definition from the shared route", async () => {
+  // The route is shared configuration rather than applicant data, so this request differs from the
+  // profile calls in nothing but its path. The body is handed back unmapped: turning it into what
+  // `buildRoadmap` takes is `roadmap-source.ts`'s job, and doing it here as well would give the same
+  // mapping two homes.
+  //
+  // It is spelled the way the route serves it — `key` and `title`, not `id` and `label` — so this is
+  // a check on the contract rather than a restatement of the call.
+  const body = {
+    phases: [{ key: "selection", title: "锁定申请组合", subtitle: null, offsetDays: 330, sortOrder: 0 }],
+    materials: [
+      {
+        key: "sel-goal",
+        phase: "selection",
+        title: "明确目标国家与方向",
+        detail: "结合预算、就业方向和家庭意见，先锁定国家与专业大类。",
+        appliesTo: "all",
+        sortOrder: 0,
+        source: null,
+      },
+    ],
+  };
+  const { value, calls } = await withFetch(
+    () => new Response(JSON.stringify(body), { status: 200 }),
+    () => fetchRoadmapDefinition(),
+  );
+  assert.deepEqual(value, body);
+  assert.equal(calls[0].url, "/api/roadmap");
+  assert.equal(calls[0].init?.credentials, "same-origin");
+});
+
+test("fetchRoadmapDefinition rejects an error page so the caller can fall back visibly", async () => {
+  // The failure this pins is the one the page has to report: an unreachable definition must not be
+  // read as an empty one, or the roadmap would render with no phases and no explanation. The caller
+  // catches this, builds from the built-in copy, and says so on screen.
+  await assert.rejects(
+    () => withFetch(() => new Response("nope", { status: 502 }), () => fetchRoadmapDefinition()),
+    /读取路线图定义失败：502/,
+  );
+});
+
+test("fetchRoadmapDefinition rejects a well-formed 200 that carries no phases", async () => {
+  // The blank screen this pins: a route that answers `{"phases":[],"materials":[]}` is well formed and
+  // used to be accepted as a definition, so the page replaced the built-in copy with nothing and drew
+  // zero phases without a word. An empty phase list is the same claim as an unreachable route — there
+  // is nothing to build a roadmap from — so it has to fail the read and reach the caller's catch,
+  // which renders the built-in copy and the notice saying so.
+  await assert.rejects(
+    () =>
+      withFetch(
+        () => new Response(JSON.stringify({ phases: [], materials: [] }), { status: 200 }),
+        () => fetchRoadmapDefinition(),
+      ),
+    /读取路线图定义失败：响应里没有任何阶段/,
+  );
+});
+
+test("fetchRoadmapDefinition rejects a 200 whose lists are missing or not lists", async () => {
+  // A malformed body is a failure for the same reason, and it is the case a caller cannot recover from
+  // on its own: without `phases` the mapping throws inside the caller's `then`, and without
+  // `materials` it throws inside the builder's own lookup. Both were reaching the notice by accident.
+  // Failing at the read says which list was absent instead.
+  await assert.rejects(
+    () =>
+      withFetch(
+        () => new Response(JSON.stringify({ materials: [] }), { status: 200 }),
+        () => fetchRoadmapDefinition(),
+      ),
+    /读取路线图定义失败：响应缺少阶段列表/,
+  );
+  await assert.rejects(
+    () =>
+      withFetch(
+        () =>
+          new Response(JSON.stringify({ phases: [{ key: "visa", title: "签证与行前" }] }), {
+            status: 200,
+          }),
+        () => fetchRoadmapDefinition(),
+      ),
+    /读取路线图定义失败：响应缺少材料列表/,
+  );
+});
+
+test("a definition with phases and no materials is still walkable", async () => {
+  // The other side of the check: emptiness is judged on the phase list, because that is what produces
+  // the timeline. An authored phase whose materials have not been written yet is a thin roadmap, not a
+  // broken definition, and refusing it would send the page to the built-in copy for no reason.
+  const body = {
+    phases: [{ key: "visa", title: "签证与行前", subtitle: null, offsetDays: 30, sortOrder: 6 }],
+    materials: [],
+  };
+  const { value } = await withFetch(
+    () => new Response(JSON.stringify(body), { status: 200 }),
+    () => fetchRoadmapDefinition(),
+  );
+  assert.deepEqual(value, body);
+});
+
+test("fetchRoadmapDefinition rejects a phase the date arithmetic cannot reach", async () => {
+  // The reviewer's stub verbatim: a well-formed 200 whose only phase has no `offsetDays`. It used to
+  // be installed as it arrived, and the failure surfaced during render — `addDays(anchor, -undefined)`
+  // yields `Invalid Date`, and `toISOString` then throws `RangeError: Invalid time value` from inside
+  // `buildRoadmap`'s `.map`, outside the promise chain and therefore outside the caller's `catch`.
+  // Measured in a browser before this check: the Next Runtime RangeError overlay, zero phases, and no
+  // notice. `phases: [null]` was already caught, because that throws inside the mapping; a phase
+  // missing one field was not, which is the asymmetry this closes.
+  await assert.rejects(
+    () =>
+      withFetch(
+        () =>
+          new Response(
+            JSON.stringify({ phases: [{ key: "selection", title: "锁定申请组合" }], materials: [] }),
+            { status: 200 },
+          ),
+        () => fetchRoadmapDefinition(),
+      ),
+    /读取路线图定义失败：阶段 0（selection）的 offsetDays 不是可用的天数/,
+  );
+});
+
+test("fetchRoadmapDefinition caps the offset at the range of the date arithmetic", async () => {
+  // `Number.isFinite` alone is not the check, and this case is why: 1e9 is finite, fits a Postgres
+  // `INTEGER`, and still leaves the `Date` range once multiplied by 86_400_000 against ±8.64e15 ms —
+  // the same crash in the same browser, measured. The column has no CHECK and the design intends
+  // humans to edit these rows, so the read is the place that has to refuse a value like this.
+  await assert.rejects(
+    () =>
+      withFetch(
+        () =>
+          new Response(
+            JSON.stringify({
+              phases: [
+                {
+                  key: "selection",
+                  title: "锁定申请组合",
+                  subtitle: null,
+                  offsetDays: 1_000_000_000,
+                  sortOrder: 0,
+                },
+              ],
+              materials: [],
+            }),
+            { status: 200 },
+          ),
+        () => fetchRoadmapDefinition(),
+      ),
+    /阶段 0（selection）的 offsetDays 不是可用的天数/,
+  );
+
+  // The other side of the line: 1e8 days is the range itself and is still inside it for any anchor
+  // this app can hold, so a phase carrying it is walkable rather than refused.
+  const body = {
+    phases: [
+      { key: "selection", title: "锁定申请组合", subtitle: null, offsetDays: 100_000_000, sortOrder: 0 },
+    ],
+    materials: [],
+  };
+  const { value } = await withFetch(
+    () => new Response(JSON.stringify(body), { status: 200 }),
+    () => fetchRoadmapDefinition(),
+  );
+  assert.deepEqual(value, body);
+});
+
+test("fetchRoadmapDefinition rejects a phase with no key or no title", async () => {
+  const rejects = (phases: unknown, message: RegExp) =>
+    assert.rejects(
+      () =>
+        withFetch(
+          () => new Response(JSON.stringify({ phases, materials: [] }), { status: 200 }),
+          () => fetchRoadmapDefinition(),
+        ),
+      message,
+    );
+  // `null` reached the catch before, but by accident and with the mapper's own message; it is named
+  // here rather than left to whatever the mapping happens to throw.
+  await rejects([null], /读取路线图定义失败：阶段 0 缺少 key/);
+  await rejects([{ title: "锁定申请组合", offsetDays: 330 }], /阶段 0 缺少 key/);
+  await rejects([{ key: "selection", title: "", offsetDays: 330 }], /阶段 0（selection）缺少 title/);
+});
+
+test("fetchRoadmapDefinition rejects a material with no key, phase or title", async () => {
+  // A material's own fields fail differently from a phase's: a missing `key` is the React
+  // duplicate-key warning the browser walkthrough treats as a failure, and a missing `phase` groups
+  // the requirement under no phase, so it silently never renders — a dropped requirement, which is
+  // the failure this product exists to avoid. Neither is a crash, so neither was reachable from the
+  // page's `catch` before this check.
+  const phase = { key: "selection", title: "锁定申请组合", subtitle: null, offsetDays: 330, sortOrder: 0 };
+  const material = {
+    key: "sel-goal",
+    phase: "selection",
+    title: "明确目标国家与方向",
+    detail: "结合预算、就业方向和家庭意见，先锁定国家与专业大类。",
+    appliesTo: "all",
+    sortOrder: 0,
+  };
+  const rejects = (materials: unknown, message: RegExp) =>
+    assert.rejects(
+      () =>
+        withFetch(
+          () => new Response(JSON.stringify({ phases: [phase], materials }), { status: 200 }),
+          () => fetchRoadmapDefinition(),
+        ),
+      message,
+    );
+  await rejects([{ ...material, key: undefined }], /读取路线图定义失败：材料 0 缺少 key/);
+  await rejects([{ ...material, phase: "" }], /材料 0（sel-goal）缺少 phase/);
+  await rejects([{ ...material, title: undefined }], /材料 0（sel-goal）缺少 title/);
 });
