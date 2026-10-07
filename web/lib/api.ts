@@ -50,6 +50,16 @@ const MAX_OFFSET_DAYS = 100_000_000;
  * The materials are checked for the fields a nameless or unplaceable requirement would come from:
  * a missing `key` is the React duplicate-key warning the browser walkthrough treats as a failure,
  * and a missing `phase` groups the requirement under no phase at all, so it silently never renders.
+ *
+ * The caller's own `tasks` are checked for the same class of entry, one step later in the chain: the
+ * rows are mapped by `toTaskRows` before anything renders them, and a `null` entry throws there —
+ * `Cannot read properties of null (reading 'id')`. That throw happens inside the caller's mapping
+ * step, so where it lands is decided by whether the caller wrapped the mapping as well as the read;
+ * this check is the half that belongs to the transport, and the answer is the same as for a phase or
+ * a material that cannot be walked: the body is refused and the caller takes its fallback. The `id`
+ * and `materialKey` are the two fields the page cannot do its job without — the first addresses the
+ * row on the per-row edit route, the second is how a tick on screen finds its row at all — so a row
+ * missing either is not a thin row but a control that would silently do nothing.
  */
 function unwalkableReason(definition: ServedRoadmapDefinition): string | null {
   for (const [index, phase] of definition.phases.entries()) {
@@ -75,6 +85,14 @@ function unwalkableReason(definition: ServedRoadmapDefinition): string | null {
     if (!isFilled(key)) return `材料 ${index} 缺少 key`;
     if (!isFilled(served?.phase)) return `材料 ${index}（${key}）缺少 phase`;
     if (!isFilled(served?.title)) return `材料 ${index}（${key}）缺少 title`;
+  }
+  // `tasks` is optional — a subject with no rows yet is the normal first answer — so the array check
+  // is the loader's and this loop only walks what is already known to be a list.
+  for (const [index, task] of (definition.tasks ?? []).entries()) {
+    const served = task as Partial<ServedTask> | null;
+    const id = served?.id;
+    if (!isFilled(id)) return `任务 ${index} 缺少 id`;
+    if (!isFilled(served?.materialKey)) return `任务 ${index}（${id}）缺少 materialKey`;
   }
   return null;
 }
@@ -112,6 +130,13 @@ function unwalkableReason(definition: ServedRoadmapDefinition): string | null {
  * materials yet is walkable, if thin. What is refused is an entry whose own values cannot produce
  * a roadmap at all — see `unwalkableReason`, and `MAX_OFFSET_DAYS` for the one bound that is not
  * merely a missing field.
+ *
+ * That includes the body's third list, the caller's own `tasks`. It is optional — "this subject has
+ * no rows yet" is the normal first answer — but when it is there it is checked the same way, because
+ * the rows are mapped by the caller before anything renders and a `null` entry throws inside that
+ * mapping. The transport is where "this response cannot be read" is decided, so the shape of the list
+ * and the fields of its entries are decided here rather than by whichever caller wrapped its mapping
+ * step in a `catch`.
  */
 export async function fetchRoadmapDefinition(): Promise<ServedRoadmapDefinition> {
   const response = await fetch("/api/roadmap", { credentials: "same-origin" });
@@ -122,6 +147,15 @@ export async function fetchRoadmapDefinition(): Promise<ServedRoadmapDefinition>
   }
   if (!Array.isArray(definition.materials)) {
     throw new Error("读取路线图定义失败：响应缺少材料列表");
+  }
+  // The caller's own rows are the third list the body carries and the only one that may legitimately
+  // be absent. When it is present it has to be a list: `tasks: {}`, `tasks: 5` and `tasks: "pending"`
+  // are bodies the checks above accept and `toTaskRows` cannot walk — `(served ?? []).map is not a
+  // function` — so they used to reach the mapping and take the notice only if the caller happened to
+  // have wrapped it. Refusing them here is what makes "the read failed" the transport's answer, the
+  // same way an empty phase list is.
+  if (definition.tasks !== undefined && !Array.isArray(definition.tasks)) {
+    throw new Error("读取路线图定义失败：响应的任务列表不是列表");
   }
   if (definition.phases.length === 0) {
     throw new Error("读取路线图定义失败：响应里没有任何阶段");

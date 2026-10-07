@@ -67,13 +67,30 @@ export const NO_DEFINITION_READ: DefinitionRead = { definition: null, notice: nu
  * from here, so the failure branch below is testable without a server and without taking one down.
  * This function does not reject: "the read failed" is part of its answer rather than an exception the
  * caller has to remember to catch, because the caller's next step is the same either way.
+ *
+ * The `try` covers the mapping as well as the load, and that is a claim about what a read is. The
+ * transport refuses a body it cannot walk (`unwalkableReason` in `api.ts`), but the transport is not
+ * the only thing that can fail on the way to this answer: `toRoadmapDefinition` and `toTaskRows` are
+ * code, and a shape the checks do not anticipate — an entry that is a bare value, a field whose type
+ * the wire broke — throws inside them. When the mapping sat outside the `try` that throw escaped as a
+ * rejected promise, the caller's `.then` never ran, the page kept rendering the six built-in phases
+ * with an empty `definitionRead` and *no notice at all*, and the rejection surfaced only in the
+ * browser console: the silent fallback this module exists to prevent, arriving by a different door.
+ * Wrapping the load alone is what let that regress. The decision this module makes — "the read did
+ * not produce a definition, and the page must say so" — is one decision, so every way of failing to
+ * read takes the same branch.
  */
 export async function readRoadmapDefinition(
   load: () => Promise<ServedRoadmapDefinition>,
 ): Promise<DefinitionRead> {
-  let served: ServedRoadmapDefinition;
   try {
-    served = await load();
+    const served = await load();
+    return {
+      definition: toRoadmapDefinition(served),
+      // Whatever the previous read had to say about the fallback no longer applies: this one succeeded.
+      notice: null,
+      tasks: toTaskRows(served.tasks),
+    };
   } catch {
     // The branch the whole module exists for. The definition stays `null` and the built-in copy is
     // never put here: the page renders the fallback through `buildRoadmap`'s own default argument, so
@@ -82,10 +99,4 @@ export async function readRoadmapDefinition(
     // looks exactly like one built from the server's answer.
     return { definition: null, notice: LOCAL_DEFINITION_NOTICE, tasks: null };
   }
-  return {
-    definition: toRoadmapDefinition(served),
-    // Whatever the previous read had to say about the fallback no longer applies: this one succeeded.
-    notice: null,
-    tasks: toTaskRows(served.tasks),
-  };
 }

@@ -20,6 +20,7 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import { DEFAULT_DEFINITION, buildRoadmap } from "./roadmap.ts";
+import { fetchRoadmapDefinition } from "./api.ts";
 import {
   LOCAL_DEFINITION_NOTICE,
   NO_DEFINITION_READ,
@@ -123,6 +124,38 @@ test("a failed read leaves the page with no definition, so there is nothing to w
     null,
     "a read that failed may not reach a write, because its applicable keys omit the visa materials",
   );
+});
+
+test("a body the mapper cannot walk takes the fallback and announces it", async () => {
+  // The reviewer measured four shapes of the same body on the mount read — `tasks: [null]`,
+  // `tasks: {}`, `tasks: 5` and `tasks: "pending"` — and the load-bearing half here is the `try` in
+  // `readRoadmapDefinition`: the transport refuses these (see the loader's own test), but the mapping
+  // is code, and wrapping the load alone meant a mapping throw escaped as a rejected promise. The
+  // page's `.then` never ran, `definitionRead` stayed at `NO_DEFINITION_READ`, the six built-in phases
+  // rendered with no notice, and the rejection appeared only in the browser console. The assertions
+  // below are the two halves of the fix: the answer is the fallback with a notice, and the promise
+  // resolves — a rejection would fail this test at the `await` rather than at an equality.
+  for (const tasks of [[null], {}, 5, "pending"] as unknown[]) {
+    const loader = async () => ({ ...SERVED, tasks } as ServedRoadmapDefinition);
+    const read = await readRoadmapDefinition(loader);
+    assert.equal(read.definition, null, `tasks ${JSON.stringify(tasks)} must not reach a definition`);
+    assert.equal(read.notice, LOCAL_DEFINITION_NOTICE, "a fallback nobody announced is the silent bug");
+    assert.equal(read.tasks, null, "no rows were read, so the rows on screen are kept");
+  }
+
+  // The same claim through the real transport rather than through a loader that answers a bad shape:
+  // `fetchRoadmapDefinition` is what the page passes to this function, so the refusal and the
+  // fallback have to meet in the middle. The stub is installed only for the call.
+  const original = globalThis.fetch;
+  globalThis.fetch = (async () =>
+    new Response(JSON.stringify({ ...SERVED, tasks: [null] }), { status: 200 })) as typeof fetch;
+  try {
+    const read = await readRoadmapDefinition(fetchRoadmapDefinition);
+    assert.equal(read.notice, LOCAL_DEFINITION_NOTICE, "a null row did not reach the notice");
+    assert.equal(read.definition, null, "a null row produced a definition the builder would walk");
+  } finally {
+    globalThis.fetch = original;
+  }
 });
 
 test("a served read is the only thing that gives the page a definition and its rows", async () => {

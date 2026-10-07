@@ -428,6 +428,56 @@ test("fetchRoadmapDefinition rejects a material with no key, phase or title", as
   await rejects([{ ...material, title: undefined }], /材料 0（sel-goal）缺少 title/);
 });
 
+test("fetchRoadmapDefinition refuses a tasks list the mapper cannot walk", async () => {
+  // The whole-branch reviewer's four shapes, verbatim, and they all share one property: the checks
+  // above accept the body and the mapping does not. `tasks: [null]` throws inside `toTaskRows`
+  // (`Cannot read properties of null (reading 'id')`); the other three make `(served ?? []).map` a
+  // non-function. None of them used to be the transport's answer, so whether the page showed its
+  // fallback depended on the caller having wrapped the mapping step rather than on the read failing.
+  // The row below is the ordinary one, embedded in the invalid payloads, so each refusal is about the
+  // entry rather than about the body being empty.
+  const phase = { key: "selection", title: "锁定申请组合", subtitle: null, offsetDays: 330, sortOrder: 0 };
+  const task = {
+    id: "0f0f0f0f-0000-0000-0000-000000000000",
+    materialKey: "sel-goal",
+    programId: "",
+    phase: "selection",
+    status: "pending",
+    suggestedAt: null,
+    dueAt: "2026-06-09",
+    scheduleOrigin: "suggested",
+    origin: "system",
+    documentId: null,
+    completedAt: null,
+    createdAt: "2026-10-07T12:41:51.352633Z",
+    updatedAt: "2026-10-07T12:41:51.352633Z",
+  };
+  const rejects = (tasks: unknown, message: RegExp) =>
+    assert.rejects(
+      () =>
+        withFetch(
+          () => new Response(JSON.stringify({ phases: [phase], materials: [], tasks }), { status: 200 }),
+          () => fetchRoadmapDefinition(),
+        ),
+      message,
+    );
+  await rejects([null], /读取路线图定义失败：任务 0 缺少 id/);
+  await rejects([{ ...task, id: undefined }], /任务 0 缺少 id/);
+  await rejects([{ ...task, materialKey: "" }], /任务 0（0f0f0f0f-0000-0000-0000-000000000000）缺少 materialKey/);
+  await rejects({}, /读取路线图定义失败：响应的任务列表不是列表/);
+  await rejects(5, /响应的任务列表不是列表/);
+  await rejects("pending", /响应的任务列表不是列表/);
+
+  // The other side of the check, and the reason the array test is written as "present and not a
+  // list": `tasks` is absent for a subject who has never stored anything, and that is a walkable
+  // definition rather than a broken one.
+  const { value } = await withFetch(
+    () => new Response(JSON.stringify({ phases: [phase], materials: [] }), { status: 200 }),
+    () => fetchRoadmapDefinition(),
+  );
+  assert.deepEqual(value.tasks, undefined);
+});
+
 // The write path. The rule for what may be written is `roadmap-sync.test.ts`'s; these tests are the
 // transport: the request the caller's payload turns into, and what counts as "the save did not land".
 
