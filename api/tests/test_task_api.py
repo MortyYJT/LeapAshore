@@ -270,23 +270,41 @@ def test_a_patch_cannot_claim_an_origin(require_db, db_session):
     in the timeline are the recomputation's and the definition's, and a per-row edit is the status and
     the dates. A payload sending any of them has misunderstood the route, so it is a 422 naming the
     field rather than a value silently dropped.
+
+    Every body below states a legal field **as well as** the refused one, and that is what makes the
+    test able to fail. Built as one forbidden key per body it could not: under `extra="ignore"` the
+    body then states nothing at all, the "a patch must state something" validator refuses it, and the
+    422 arrives for a reason that has nothing to do with the field this test is about — measured by
+    switching `TaskPatch`'s `extra` to `"ignore"` and watching both this test and its sibling pass.
+    With `status` in the body the distinction is real: `ignore` drops the forbidden key, the edit is
+    applied, the row's status moves and its `origin` flips to `user` — the exact claim of provenance
+    the batch rests on — so the assertions after the loop fail. The refusal is also checked to name
+    the field, because a 422 that says only "invalid body" would leave "silently dropped" and
+    "refused" indistinguishable to the applicant.
     """
     seed_roadmap(db_session)
     client = TestClient(app)
     task = _write_one_row(client)
 
-    for body in (
-        {"origin": "user"},
-        {"materialKey": MATERIAL},
-        {"phase": PHASE},
-        {"scheduleOrigin": "official"},
+    for field, body in (
+        ("origin", {"status": TaskStatus.IN_PROGRESS.value, "origin": "user"}),
+        ("materialKey", {"status": TaskStatus.IN_PROGRESS.value, "materialKey": OTHER_MATERIAL}),
+        ("phase", {"status": TaskStatus.IN_PROGRESS.value, "phase": "visa"}),
+        ("scheduleOrigin", {"status": TaskStatus.IN_PROGRESS.value, "scheduleOrigin": "official"}),
     ):
         refused = client.patch(f"/api/roadmap/tasks/{task['id']}", json=body)
         assert refused.status_code == 422, f"{body} was accepted: {refused.text}"
+        assert field in refused.text, f"the refusal did not name {field}: {refused.text}"
 
     served = _row(client, task["id"])
     assert served["origin"] == TaskOrigin.SYSTEM, "a refused patch claimed the row for the user"
     assert served["materialKey"] == MATERIAL and served["phase"] == PHASE
+    # The half a 422 alone does not prove: the legal field these bodies carried never landed either.
+    # A route that refused the unknown key and applied the rest would leave the row edited, and the
+    # applicant's mark — which freezes the row against every later recomputation — would be there
+    # without the edit they thought they were making.
+    assert served["status"] == TaskStatus.PENDING, "a refused patch applied the fields around it"
+    assert not [event for event in _events(db_session, task["id"]) if event.actor == TaskOrigin.USER]
 
 
 def test_a_patch_that_names_no_field_is_refused(require_db, db_session):
