@@ -1,3 +1,5 @@
+import warnings
+
 import pytest
 from sqlalchemy import delete, select, text
 
@@ -88,25 +90,73 @@ def clear_the_roadmap_definition(session) -> list[dict]:
     return displaced
 
 
-def restore_roadmap_tasks(session, displaced: list[dict]) -> None:
-    """Put back the task rows the definition sweep had to remove, as it found them.
+def restore_roadmap_tasks(session, displaced: list[dict]) -> dict:
+    """Put back the task rows a definition sweep had to remove, as it found them.
 
-    Called only after ``seed_roadmap`` has restored the definition, because a task row names a
-    material that has to exist. A row whose subject is gone by now is skipped rather than restored:
-    the subject sweep cascades a test's own subjects away, and re-inserting a row for a deleted client
-    would fail the foreign key and turn the teardown into the failure it exists to prevent. A row that
-    is somehow already back is left alone, so the restore cannot collide with itself.
+    Called only after ``seed_roadmap`` has restored the definition, because a task row names a material
+    that has to exist. Three kinds of row are not restorable, and each is told apart rather than
+    assumed:
+
+    - the subject is gone. Skipped silently, because it is the ordinary case: the client sweep deletes
+      the subjects a test created, so a row a test wrote during the run is expected to be unrestorable,
+      and its absence is not news.
+    - the material is gone. Reported, not skipped quietly. The row names a material the seed no longer
+      writes, which is exactly what a developer's database holds once an entry leaves
+      ``web/lib/roadmap.ts`` and the seed follows it. Re-inserting such a row used to raise
+      ``roadmap_tasks_material_key_fkey`` out of the teardown and turn the run red — including
+      ``test_health.py``, which never touches the database. Measured: one row for an existing subject
+      naming a material the seed does not write, then ``pytest tests/test_health.py -q`` -> ``ERROR
+      tests/test_health.py::test_health_reports_ok ... ForeignKeyViolation``, with the row gone. The row
+      cannot be restored, because its material does not exist and the definition being restored is the
+      canonical one, so the honest answer is to name it and let the run finish rather than to fail on
+      a fact the run did not change. The warning is what keeps the loss from being silent; the message
+      says which row and what to do about it.
+    - the row is somehow already back. Left alone, so the restore cannot collide with itself.
+
+    Returns the counts, so a caller can report what became of the rows it was given without reading the
+    database again.
     """
+    known_materials = set(session.scalars(select(MaterialTemplate.key)))
+    restored = skipped_without_a_subject = skipped_without_a_material = 0
     for values in displaced:
         if session.get(Client, values["client_id"]) is None:
+            skipped_without_a_subject += 1
+            continue
+        if values["material_key"] not in known_materials:
+            warnings.warn(
+                f"roadmap task {values['id']} for client {values['client_id']} names material "
+                f"{values['material_key']!r}, which the roadmap seed no longer writes, so the row "
+                "cannot be restored and is dropped. To keep it, the material has to come back to "
+                "web/lib/roadmap.ts and the seed; otherwise the stale row can be deleted.",
+                stacklevel=2,
+            )
+            skipped_without_a_material += 1
             continue
         if session.get(RoadmapTask, values["id"]) is not None:
             continue
         session.add(RoadmapTask(**values))
+        restored += 1
+    return {
+        "restored": restored,
+        "skipped_without_a_subject": skipped_without_a_subject,
+        "skipped_without_a_material": skipped_without_a_material,
+    }
+
+
+@pytest.fixture(scope="session")
+def task_rows_displaced_mid_run() -> list[dict]:
+    """Rows a mid-run definition sweep had to remove, held until the run's teardown can put them back.
+
+    A list, and session-scoped because that is the only scope that outlives the sweeps: the definition
+    has to stay empty until every test has finished, so the materials a displaced row names exist again
+    only in the session-scoped fixture's teardown. See
+    ``clear_the_roadmap_definition_after_the_test`` for the silent loss this list exists to prevent.
+    """
+    return []
 
 
 @pytest.fixture
-def clear_the_roadmap_definition_after_the_test():
+def clear_the_roadmap_definition_after_the_test(task_rows_displaced_mid_run):
     """Remove the roadmap definition once the test that seeded it has finished.
 
     ``test_seed_roadmap.py`` and ``test_roadmap_api.py`` both seed the definition and both have to
@@ -125,12 +175,17 @@ def clear_the_roadmap_definition_after_the_test():
     ``clear_the_roadmap_definition`` is the cleaner: it deletes the materials, then the phases, then
     the Genuine Student source, in that order, because the database refuses a phase that still has
     materials and a source that materials still point at. It also removes any task row that names one
-    of those materials, and returns them; this fixture ignores the return value because it has no way
-    to restore them — the materials they point at are deleted until the session ends, and a task row
-    cannot exist without its material. The rows a developer left behind are displaced by the
-    session-scoped sweep before the first test is collected, so there is nothing left here for this
-    mid-run sweep to lose; only rows a test creates mid-run, which belong to subjects the same run
-    deletes anyway, can be reached.
+    of those materials, and returns them; those rows go to ``task_rows_displaced_mid_run``, which the
+    session-scoped fixture drains once the materials are back. This fixture cannot re-insert them
+    itself — a task row cannot exist without its material, and the materials are deleted until the
+    session ends — but dropping them was a defect of its own: the sweep used to abort loudly on the
+    foreign key, and discarding what it displaced traded that loud failure for a silent one. Measured:
+    a row written *during* the run for a subject that existed before it is gone when the run ends, with
+    nothing in the output to say so. The rows a developer left behind are displaced by the
+    session-scoped sweep before the first test is collected, so it is this mid-run window — a row a
+    test writes for a pre-existing subject, or a probe script's row — that the accumulator covers. Rows
+    a test writes for its own subject are handed over too and skipped on the way back, because that
+    subject is swept before the definition is restored.
 
     An unreachable database means "no rows were written", not "skip this test", the same rule
     ``remove_the_clients_these_tests_create`` follows: failing here would turn a container that is
@@ -140,12 +195,15 @@ def clear_the_roadmap_definition_after_the_test():
     if not database_is_reachable():
         return
     with SessionLocal() as session:
-        clear_the_roadmap_definition(session)
+        displaced = clear_the_roadmap_definition(session)
         session.commit()
+    task_rows_displaced_mid_run.extend(displaced)
 
 
 @pytest.fixture(scope="session", autouse=True)
-def unseed_the_roadmap_definition_for_the_run_and_restore_it_afterwards():
+def unseed_the_roadmap_definition_for_the_run_and_restore_it_afterwards(
+    task_rows_displaced_mid_run,
+):
     """Empty the roadmap definition for the run, then put the canonical one back.
 
     ``api/seed_cli.py`` writes the seven phases, their materials and the Genuine Student source
@@ -174,11 +232,15 @@ def unseed_the_roadmap_definition_for_the_run_and_restore_it_afterwards():
     ``test_roadmap_model.py`` or ``test_sources.py`` is what breaks those two modules. The restore
     happens here, once, when every test has finished.
 
-    The task rows the sweep had to displace go back here too, for the same reason the definition
+    The task rows the sweeps had to displace go back here too, for the same reason the definition
     does. ``clear_the_roadmap_definition`` returns them, and this is the only place that can restore
     them: the row names a material, so it can only be re-inserted after ``seed_roadmap`` has put the
-    materials back. A run therefore leaves a developer's own task rows exactly where it found them,
-    which is what makes the sweep's new deletion safe rather than destructive.
+    materials back. Two sweeps displace rows, and both sets are restored from here — the ones this
+    fixture displaced before the first test, and the ones the mid-run sweeps accumulated in
+    ``task_rows_displaced_mid_run`` while the run was going on. A run therefore leaves a developer's own
+    task rows exactly where it found them, which is what makes the sweep's deletion safe rather than
+    destructive; a row that cannot come back is skipped and, if it was the material and not the
+    subject, reported by ``restore_roadmap_tasks``.
     """
     # The yield is unconditional on purpose. A fixture that returns before its yield is a generator
     # that ends early, and pytest reports that as "did not yield a value" and errors out of every
@@ -196,7 +258,7 @@ def unseed_the_roadmap_definition_for_the_run_and_restore_it_afterwards():
         return
     with SessionLocal() as session:
         seed_roadmap(session)
-        restore_roadmap_tasks(session, displaced_tasks)
+        restore_roadmap_tasks(session, displaced_tasks + task_rows_displaced_mid_run)
         session.commit()
 
 
