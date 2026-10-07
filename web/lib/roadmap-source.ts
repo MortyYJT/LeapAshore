@@ -74,7 +74,8 @@ export interface ServedMaterial {
  * === materialId)` simply never matches, so every tick returned early and the checkbox flipped back.
  * Measured in a browser against the running server: a click on a material produced no `PATCH` at all.
  * `web/lib/api.test.ts` captures the row with these names, and `roadmap-response.fixture.json` is the
- * body this declaration is a claim about.
+ * body this declaration is a claim about: it carries the `tasks` array of a real response, which
+ * `roadmap-source.test.ts` maps field by field against the names in the capture.
  */
 export interface ServedTask {
   id: string;

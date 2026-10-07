@@ -332,6 +332,58 @@ test("a response with no tasks is an empty row list, not a crash", () => {
   assert.deepEqual(toTaskRows([]), []);
 });
 
+test("the task adapter reads the field names of a captured response body", () => {
+  // The binding the constant above cannot provide, for the reason this file's header records: a
+  // constant typed out against `ServedTask` and an adapter written from the same declaration are two
+  // spellings of one guess, and a wire name both halves got wrong keeps every one of those tests
+  // green. `roadmap-response.fixture.json` now carries the `tasks` array of a real `GET /api/roadmap`,
+  // captured after a `PUT` wrote two rows and a `PATCH` claimed one, so the names below are the
+  // server's and the two `origin` values are both present in the data.
+  const captured = CAPTURED_RESPONSE.tasks ?? [];
+  assert.ok(captured.length > 0, "the capture must carry the caller's own task rows");
+
+  // Field by field, with the wire's names spelled out as literals rather than read through
+  // `ServedTask`. Reading the expectation through the declaration is exactly what would let a renamed
+  // declaration agree with an adapter renamed the same way: both sides would produce `undefined`, and
+  // `undefined` equals `undefined`.
+  const expected = captured.map((task) => {
+    const wire = task as unknown as Record<string, unknown>;
+    return {
+      id: wire["id"],
+      material_key: wire["materialKey"],
+      program_id: wire["programId"],
+      phase: wire["phase"],
+      status: wire["status"],
+      suggested_at: wire["suggestedAt"],
+      due_at: wire["dueAt"],
+      schedule_origin: wire["scheduleOrigin"],
+      origin: wire["origin"],
+      completed_at: wire["completedAt"],
+    };
+  });
+  assert.deepEqual(toTaskRows(captured), expected);
+
+  // The capture has to stay a record of the server's spelling, the same way the material test above
+  // keeps its own. These two lines are what notice if it is ever regenerated from the declarations
+  // instead of recaptured.
+  const firstWire = captured[0] as unknown as Record<string, unknown>;
+  assert.equal(
+    "materialKey" in firstWire && "scheduleOrigin" in firstWire && "completedAt" in firstWire,
+    true,
+  );
+  assert.equal(
+    "material_key" in firstWire || "schedule_origin" in firstWire || "completed_at" in firstWire,
+    false,
+  );
+
+  // The values that make the mapping worth binding: both ownership values and both completion states
+  // are in the capture, so a wrong `origin` or `completedAt` reading fails on a real row rather than
+  // on a row this file invented.
+  assert.deepEqual([...new Set(captured.map((task) => task.origin))].sort(), ["system", "user"]);
+  assert.equal(captured.some((task) => task.completedAt !== null), true, "one row is completed");
+  assert.equal(captured.some((task) => task.completedAt === null), true, "one row is not");
+});
+
 test("the mapping round-trips the constants through the served field names", () => {
   // What this checks: a served name that one half of the file changed on its own. It is a change
   // detector for this file, not evidence about the route — `servedFromConstants` above and the

@@ -642,6 +642,16 @@ fs.mkdirSync(OUT, { recursive: true });
   );
 
   // A reload must show that same tick, because it comes from the server rather than this device.
+  //
+  // The write count is snapshotted *before* the reload, not after it. A page that recomputes as it
+  // mounts issues its `PUT` while the reload is still settling, so a baseline read afterwards already
+  // contains that write and the check below could not fail for the behaviour it names. Measured with
+  // the page's "the server already holds rows" guard deleted: the reload issued `PUT rows=31`, the
+  // baseline had been taken after it, and the check still printed 是 and the run exited 0. The count
+  // below is a delta against this snapshot, so the reset at the top of this block — which is what
+  // keeps the `PATCH` count to this block's own tick — is already accounted for, and nothing is
+  // cleared here that could hide a write arriving while the reload is in flight.
+  const putsBeforeReload = taskPuts.length;
   await page.reload({ waitUntil: "networkidle" });
   await page.getByText("申请流程").first().waitFor({ timeout: 15000 });
   await page.waitForTimeout(500);
@@ -659,8 +669,8 @@ fs.mkdirSync(OUT, { recursive: true });
   await sleep(600);
   check(
     "服务端已有行时，刷新不会再次写入（不做无谓重算）",
-    taskPuts.length === putsAfterReload,
-    { before: putsAfterReload, after: taskPuts.length },
+    taskPuts.length === putsBeforeReload,
+    { before: putsBeforeReload, after: taskPuts.length, settled: putsAfterReload },
   );
   await shot("23-task-tick-survives-reload");
 

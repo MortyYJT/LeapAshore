@@ -14,14 +14,12 @@ import {
   replaceRoadmapTasks,
 } from "@/lib/api";
 import { buildRoadmap } from "@/lib/roadmap";
-import { toRoadmapDefinition, toTaskRows } from "@/lib/roadmap-source";
+import { NO_DEFINITION_READ, readRoadmapDefinition } from "@/lib/roadmap-definition";
+import { toTaskRows } from "@/lib/roadmap-source";
 import { toReplacePayload, type TaskRow } from "@/lib/roadmap-sync";
 import { clearState, initialState, loadState, saveState, type PersistedState } from "@/lib/store";
 import type { PortfolioItem, Profile, RoadmapDefinition } from "@/lib/types";
 
-/** Shown while the roadmap is built from the built-in copy because the definition read failed. */
-const LOCAL_DEFINITION_NOTICE =
-  "路线图定义未能从服务器读取，当前显示的是内置副本，可能缺少服务器上的最新阶段。";
 /**
  * Shown when a roadmap write did not land.
  *
@@ -67,21 +65,28 @@ export default function Page() {
   const [hydrated, setHydrated] = useState(false);
   const [profileError, setProfileError] = useState<string | null>(null);
   /**
-   * The served definition, or null while it is in flight and after a failed read.
+   * What the read of the served definition left behind: the definition, the fallback notice, its rows.
    *
+   * `definition` inside it is `null` while the read is in flight and `null` again after a failed one.
    * `null` is what `buildRoadmap` reads as "use the built-in copy", so a failure needs no second flag
-   * to fall back correctly. `roadmapNotice` is the separate one: without it the fallback would be
-   * silent, and a roadmap that quietly omits the phases this build does not carry looks exactly like
-   * a roadmap built from the server's answer.
+   * to fall back correctly. The notice is the separate one: without it the fallback would be silent,
+   * and a roadmap that quietly omits the phases this build does not carry looks exactly like a roadmap
+   * built from the server's answer.
    *
    * It is also the write gate, which is the part that matters most here. A write is only ever built
    * from a definition this state actually holds, so the built-in copy — which has no visa phase — can
    * never drive one; see `note/superpowers/specs/2026-10-06-stage-2-m2-design.md` §3.8 and
    * `roadmap-sync.ts`. Keeping the fallback out of this state rather than out of the payload function
    * means there is exactly one way to have a definition and that is to have read it.
+   *
+   * The state is the read's own answer rather than three pieces the page assembles, and the read
+   * itself is `roadmap-definition.ts`, where `npm test` can reach it: the decision that a failure
+   * leaves `null` behind is the rule §3.8 turns on, and a component's `useEffect` is not testable in
+   * this project. Nothing in this file names a definition for the failure case, so there is no line
+   * here that could put the built-in copy into the value the gate reads.
    */
-  const [definition, setDefinition] = useState<RoadmapDefinition | null>(null);
-  const [roadmapNotice, setRoadmapNotice] = useState<string | null>(null);
+  const [definitionRead, setDefinitionRead] = useState(NO_DEFINITION_READ);
+  const definition = definitionRead.definition;
   /**
    * The applicant's own rows, as the server holds them.
    *
@@ -129,15 +134,23 @@ export default function Page() {
    * the replacement reported the rows as updates. That subject has rows on the server and none in the
    * page, which is exactly what makes a tick silently do nothing.
    *
-   * A failed re-read leaves the previous rows in place: it is a stale-id problem rather than a
-   * data-loss one, and the write it followed has already been reported as failed if it was.
+   * A failed re-read is announced rather than swallowed, for the same reason a tick that cannot be
+   * sent is: the symptom it produces on screen — a click that does nothing, or a checkbox that flips
+   * straight back — is exactly the defect this path was fixed for, and a page that says nothing about
+   * it is indistinguishable from one that worked. The rows on screen stay as they are, because the
+   * write this followed did land and the rows it created are still the server's truth; what is missing
+   * is their ids, and only a reload can fetch those.
    */
   async function refreshTaskRows(): Promise<void> {
     try {
       const served = await fetchRoadmapDefinition();
       setTaskRows(toTaskRows(served.tasks));
-    } catch {
-      // Nothing to do: the rows on screen stay as they are and the next mount re-reads them.
+    } catch (error: unknown) {
+      setTaskSyncError(
+        error instanceof Error
+          ? `路线图已保存，但重新读取任务行失败（${error.message}），勾选暂时不会生效。`
+          : "路线图已保存，但重新读取任务行失败，勾选暂时不会生效。",
+      );
     }
   }
 
@@ -173,22 +186,22 @@ export default function Page() {
    * phase, for instance — and reporting the phase count as if it came from the server would be the
    * silent divergence the profile layer already refuses to make. So the notice stays on screen while
    * the fallback is what is being rendered.
+   *
+   * What the read leaves behind, including "no definition at all" after a failure, is decided by
+   * `readRoadmapDefinition`, and deliberately not here: that decision is the write gate above, and it
+   * lives where the unit tests can drive its failure branch. This effect applies the answer and has no
+   * `catch` of its own, so there is no line here that could put the built-in copy into the definition
+   * the gate reads. The rows arrive with the definition, in one response, and they are what the
+   * timeline's ticks are read from; `null` means the read failed, and the rows already on screen are
+   * kept rather than replaced with none.
    */
   useEffect(() => {
     let cancelled = false;
-    fetchRoadmapDefinition()
-      .then((served) => {
-        if (cancelled) return;
-        setDefinition(toRoadmapDefinition(served));
-        // The rows arrive with the definition, in one response, and they are what the timeline's
-        // ticks are read from. An absent `tasks` and an empty one mean the same thing here: this
-        // subject has no rows yet, which the recomputation below is about to fix.
-        setTaskRows(toTaskRows(served.tasks));
-      })
-      .catch(() => {
-        if (cancelled) return;
-        setRoadmapNotice(LOCAL_DEFINITION_NOTICE);
-      });
+    readRoadmapDefinition(fetchRoadmapDefinition).then((read) => {
+      if (cancelled) return;
+      setDefinitionRead(read);
+      if (read.tasks !== null) setTaskRows(read.tasks);
+    });
     return () => {
       cancelled = true;
     };
@@ -240,18 +253,15 @@ export default function Page() {
     lastSyncedFingerprint.current = fingerprint;
     let cancelled = false;
     replaceRoadmapTasks(payload)
-      .then(async (result) => {
+      .then(async () => {
         if (cancelled) return;
-        // A row this call sent came back as neither created nor updated, so part of the roadmap was
-        // not stored. Saying so is the point: a roadmap that silently failed to save is
-        // indistinguishable from one that saved until the next load.
-        const written = result.created + result.updated;
-        if (written !== payload.rows.length) {
-          setTaskSyncError(
-            `${TASK_SYNC_ERROR_NOTICE}（提交 ${payload.rows.length} 行，服务器写入 ${written} 行）`,
-          );
-          return;
-        }
+        // The counts are not checked again here. `replaceRoadmapTasks` already raises when the reply's
+        // `created + updated` disagrees with the rows sent, so a second copy of that rule in this file
+        // could never run — it was dead code, and two implementations of one rule is one too many,
+        // because only the live one is ever exercised. The transport owns it: that is where the reply
+        // is read, and the raise reaches the `catch` below with the same notice and one more thing
+        // done — the fingerprint claim is cleared, so the next run retries rather than believing a
+        // partial write landed.
         setTaskSyncError(null);
         // The rows this call created, or confirmed, have ids only the server knows, and a tick needs
         // them; see `refreshTaskRows`. It runs after every successful write rather than only after one
@@ -387,7 +397,13 @@ export default function Page() {
     const row = rowsRef.current.find((candidate) => candidate.material_key === materialId);
     if (row === undefined) {
       // No row to edit: the roadmap is rendering a material the server has no row for yet, which can
-      // only be the moment between a recomputation being computed and its rows arriving.
+      // only be the moment between a recomputation being computed and its rows arriving. It used to
+      // return in silence, and silence is the wrong answer here: the applicant sees a click that did
+      // nothing and a checkbox that flipped back, which is the same symptom as the defect this path
+      // was fixed for, and the rest of it — a failed `PATCH`, a failed re-read — refuses to leave that
+      // unsaid. The row the tick names is not in the server's answer, so there is nothing to write to
+      // and nothing to roll back.
+      setTaskSyncError("材料勾选没有保存到服务器：服务器上还没有这一条材料对应的任务行，请刷新页面后重试。");
       return;
     }
     const previous = { status: row.status, origin: row.origin };
@@ -479,7 +495,7 @@ export default function Page() {
       onAvatarChange={setAvatar}
       onClear={clearAll}
       profileError={profileError}
-      roadmapNotice={roadmapNotice}
+      roadmapNotice={definitionRead.notice}
       taskSyncError={taskSyncError}
     />
   );

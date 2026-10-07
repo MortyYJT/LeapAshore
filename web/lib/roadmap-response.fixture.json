@@ -1,5 +1,5 @@
 {
-  "$comment": "The `response` object below is the body of GET /api/roadmap, captured verbatim from the running server with `curl -s http://127.0.0.1:8000/api/roadmap` on the stage-2 M2a branch. It is here so a unit test can check the field names the frontend adapter reads against the names the route actually serves, rather than against the adapter's own declarations. Recapture it, do not hand-edit it: an edit would turn the binding back into a transcript of this repository's own idea of the response. `source` is present in the capture and deliberately unmodelled by `ServedMaterial`, because nothing on this side reads it.",
+  "$comment": "The `response` object below is the body of GET /api/roadmap, captured verbatim from the running server. It is here so a unit test can check the field names the frontend adapter reads against the names the route actually serves, rather than against the adapter's own declarations. Recapture it, do not hand-edit it: an edit would turn the binding back into a transcript of this repository's own idea of the response. `source` is present in the capture and deliberately unmodelled by `ServedMaterial`, because nothing on this side reads it. The `tasks` array is the caller's own rows from the same route, added later: it was captured from a subject this script created with `curl -c cookies -b cookies http://127.0.0.1:8000/api/roadmap` after a `PUT /api/roadmap/tasks` wrote two rows and a `PATCH` on one of them claimed it for the applicant, which is what the two `origin` values and the two `completedAt` shapes are. The definition halves are byte-for-byte the earlier capture, because the definition is shared configuration.",
   "response": {
     "phases": [
       {
@@ -357,6 +357,38 @@
           "title": "Genuine Student requirement",
           "status": "待核验"
         }
+      }
+    ],
+    "tasks": [
+      {
+        "id": "17ee7184-d060-4932-b61a-5bb724fd07ac",
+        "materialKey": "sel-goal",
+        "programId": "",
+        "phase": "selection",
+        "status": "completed",
+        "suggestedAt": null,
+        "dueAt": "2027-02-15",
+        "scheduleOrigin": "suggested",
+        "origin": "user",
+        "documentId": null,
+        "completedAt": "2026-10-07T13:21:14.283755Z",
+        "createdAt": "2026-10-07T13:21:11.866175Z",
+        "updatedAt": "2026-10-07T13:21:14.280854Z"
+      },
+      {
+        "id": "6da10ee2-e30f-450a-93f2-8904a73e9bad",
+        "materialKey": "spe-cv",
+        "programId": "",
+        "phase": "specialized",
+        "status": "pending",
+        "suggestedAt": null,
+        "dueAt": "2027-06-15",
+        "scheduleOrigin": "suggested",
+        "origin": "system",
+        "documentId": null,
+        "completedAt": null,
+        "createdAt": "2026-10-07T13:21:11.866175Z",
+        "updatedAt": "2026-10-07T13:21:11.866175Z"
       }
     ]
   }
