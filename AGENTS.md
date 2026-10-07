@@ -43,6 +43,10 @@ Every delivery report uses exactly these four sections, in this order, and nothi
 
 Rules:
 
+- **Open every section with a one-line summary, then the detail.** The user reads the summary to
+  decide whether the detail concerns them. For 我遇到什么问题 that means a plain label first —
+  "遇到点 bug", "设计上有分歧", "环境问题", "没问题" — before any explanation. For 我完成了什么 it
+  means one sentence naming what now works, before the itemised list.
 - Lead with the user's action. Never open with a narration of what I did.
 - One idea per line. No nested caveats inside a bullet.
 - Report status per dimension separately: code, tests, CI, local run, deployment. Never merge a
