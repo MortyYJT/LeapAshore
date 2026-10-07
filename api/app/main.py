@@ -1,9 +1,10 @@
 from fastapi import FastAPI
 
-from app.routers import profile, programs, roadmap
+from app.routers import applications, profile, programs, roadmap
 
 app = FastAPI(title="OfferPilot API")
 
+app.include_router(applications.router)
 app.include_router(profile.router)
 app.include_router(programs.router)
 app.include_router(roadmap.router)
