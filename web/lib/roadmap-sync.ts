@@ -36,6 +36,12 @@
 // - a material whose served row is owned by the applicant or the advisor is still listed as
 //   applicable — they have to prepare it — but no row is sent for it. The row's dates and status
 //   belong to whoever owns it now.
+//
+// `alreadyStored` is the module's other question, and it is asked of the same payload: not "what may
+// be written" but "does anything need to be". Its arguments are the payload and the rows the server
+// served, so the answer survives a reload — which is what the page's trigger needs and what session
+// memory, by definition, cannot give it. See its own docstring for the three ways a stored roadmap
+// disagrees with the one this profile implies.
 
 import type { PhaseTask, Roadmap, RoadmapDefinition } from "./types";
 
@@ -149,4 +155,77 @@ function toRow(task: PhaseTask, phase: string): TaskReplaceRow {
     dueAt: task.dueAt,
     scheduleOrigin: task.scheduleOrigin,
   };
+}
+
+/** How a served row and a payload row are matched to each other: by material and program together. */
+function identity(materialKey: string, programId: string): string {
+  return JSON.stringify([materialKey, programId]);
+}
+
+/**
+ * Whether the rows the server holds are already the rows this payload would leave there.
+ *
+ * This is the "does a recomputation have a reason to run" question, asked of the server's own data:
+ * the payload is built from the profile and the definition the server gave this page, and the rows
+ * are the server's. When the two agree there is nothing to store, and when they disagree the
+ * disagreement is exactly what a recomputation is for.
+ *
+ * It exists because the page cannot answer that question from session memory. The earlier trigger was
+ * "the server has no rows, or the fingerprint moved since the last write this session made", and the
+ * second half is silent after a reload: a fresh page has no memory of a write, so a subject whose
+ * rows are stale — a profile edited on another device, a recomputation whose `PUT` failed and whose
+ * notice told the applicant to reload — reloaded into a page that compared nothing and wrote nothing.
+ * The measured case: 31 rows on the server with no row for a material the profile had just made
+ * applicable, the failed write's notice on screen, and a reload that issued no request at all, so the
+ * material rendered and could never be ticked. A reload has to reconcile, and the only evidence that
+ * survives it is the server's.
+ *
+ * The three ways to disagree, and nothing else:
+ *
+ * - a material key that applies and has no row at all. This is the measured case: the page renders
+ *   the material, `toggleMaterial` finds no row to address, and the applicant is told to prepare
+ *   something they can never mark done. Any origin counts, because a row the applicant or the advisor
+ *   owns is still a row the tick can address;
+ * - a `system` row whose key no longer applies. The recomputation would remove it, and until it does
+ *   the server holds a requirement nobody renders. A `user` or `agent` row is never counted here: the
+ *   removal pass leaves those alone, so a row the recomputation cannot touch is not a reason to run;
+ * - a row the payload would write that differs from the stored one in the fields the recomputation
+ *   owns — the phase it is placed in and the date it was computed for. That is what makes an intake
+ *   change, whose only effect is on every date, a reason to reconcile as well. `schedule_origin` is
+ *   deliberately not compared: a stored value the client does not produce is a claim about where a
+ *   date came from, and rewriting it is not something a reload should decide on its own.
+ *
+ * What is deliberately not compared is everything else about a row: its `status`, its `completed_at`
+ * and its `suggested_at` are not the recomputation's to state, and a `system` row for an applicable
+ * key that the payload does not carry — one naming a program this batch has no rows for — is left
+ * where it is, because the recomputation cannot touch it either.
+ *
+ * Both arguments come from one computation: `payload` is `toReplacePayload` called with the same
+ * `tasks`, which is what makes the ownership rule and this comparison agree about which rows are the
+ * client's to write. A caller that compared a payload built from a different row list would be asking
+ * about two different recomputations.
+ */
+export function alreadyStored(payload: TaskReplacePayload, tasks: TaskRow[]): boolean {
+  const applicable = new Set(payload.applicableKeys);
+  const storedKeys = new Set<string>();
+  const stored = new Map<string, TaskRow>();
+  for (const task of tasks) {
+    storedKeys.add(task.material_key);
+    if (task.origin !== "system") continue;
+    if (!applicable.has(task.material_key)) return false;
+    stored.set(identity(task.material_key, task.program_id), task);
+  }
+
+  for (const key of applicable) {
+    if (!storedKeys.has(key)) return false;
+  }
+
+  for (const row of payload.rows) {
+    const existing = stored.get(identity(row.materialKey, row.programId));
+    if (existing === undefined) return false;
+    if (existing.phase !== row.phase) return false;
+    if (existing.due_at !== row.dueAt) return false;
+  }
+
+  return true;
 }

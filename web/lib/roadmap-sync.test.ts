@@ -21,7 +21,8 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 
 import { buildRoadmap, DEFAULT_DEFINITION } from "./roadmap.ts";
-import { toReplacePayload } from "./roadmap-sync.ts";
+import { alreadyStored, toReplacePayload } from "./roadmap-sync.ts";
+import type { TaskReplacePayload } from "./roadmap-sync.ts";
 import type { TaskRow } from "./roadmap-sync.ts";
 import type { Profile, Roadmap, RoadmapDefinition } from "./types.ts";
 
@@ -185,4 +186,107 @@ test("the rows carry the phase and the due date the builder computed", () => {
   assert.equal(cv.programId, "");
   assert.equal(cv.dueAt, roadmap.phases[0].tasks[0].dueAt);
   assert.equal(cv.scheduleOrigin, "suggested");
+});
+
+// The other half of the recomputation rule: not what may be written, but whether anything needs to
+// be. The page's trigger used to be session memory — "the server has no rows, or the fingerprint moved
+// since the last write this session made" — and a reload has none, so a subject whose rows were stale
+// reloaded into a page that wrote nothing; see `alreadyStored` and the walkthrough's reload block.
+
+/** The payload's own rows as the server would serve them back, for the "nothing to add" case. */
+function served(payload: TaskReplacePayload, overrides: Partial<TaskRow>[] = []): TaskRow[] {
+  return payload.rows.map((task, index) =>
+    row({
+      material_key: task.materialKey,
+      program_id: task.programId,
+      origin: "system",
+      phase: task.phase,
+      due_at: task.dueAt,
+      ...(overrides[index] ?? {}),
+    }),
+  );
+}
+
+test("the server's rows agreeing with the payload is what stops a recomputation", () => {
+  // The state a settled subject reloads into: every applicable key has its row, every stored system
+  // row's key still applies, and the dates are the ones this profile computes. Nothing to store, so
+  // the reload writes nothing — which is the behaviour the walkthrough pins as "不做无谓重算".
+  const payload = toReplacePayload(DEFINITION, computedRoadmap(), []);
+  assert.ok(payload);
+  assert.equal(alreadyStored(payload, served(payload)), true);
+
+  // The row's own marks are not the recomputation's to state, so a stored row that carries a status,
+  // a completion time and a suggestion date the payload never sends still agrees with it. Reading
+  // those as a disagreement would make every ticked material a reason to rewrite the roadmap.
+  const marked = served(payload, [
+    { status: "completed", completed_at: "2026-10-06T00:00:00Z", suggested_at: "2026-06-09" },
+  ]);
+  assert.equal(alreadyStored(payload, marked), true);
+
+  // `schedule_origin` is left alone for the same reason: the client only produces `suggested`, and a
+  // stored value saying the date came from somewhere else is not a reload's to overrule.
+  const official = served(payload, [{ schedule_origin: "official" }]);
+  assert.equal(alreadyStored(payload, official), true);
+});
+
+test("a material that applies with no row is a reason to reconcile", () => {
+  // The measured defect: 31 rows on the server, the profile changed so `spe-portfolio` applies, the
+  // recomputation's `PUT` failed, and the reload compared nothing and wrote nothing. The material
+  // rendered, and clicking it sent no `PATCH` and said the row did not exist. This is the check that
+  // makes the reload repair it.
+  const payload = toReplacePayload(DEFINITION, computedRoadmap(), []);
+  assert.ok(payload);
+  const missing = served(payload).filter((task) => task.material_key !== "visa-gs");
+  assert.equal(alreadyStored(payload, missing), false);
+
+  // The key is satisfied by a row of any origin: a row the applicant or the advisor owns is one the
+  // tick can address, so it is not the missing row this check is about. The payload is rebuilt from
+  // these rows, as it is in the page, because the ownership rule reads them: `toReplacePayload` drops
+  // a row a human owns, and comparing a payload built from a different row list would be comparing
+  // two different recomputations.
+  const owned = served(payload).map((task) =>
+    task.material_key === "visa-gs" ? { ...task, origin: "user" as const } : task,
+  );
+  const ownedPayload = toReplacePayload(DEFINITION, computedRoadmap(), owned);
+  assert.ok(ownedPayload);
+  assert.equal(ownedPayload.rows.some((task) => task.materialKey === "visa-gs"), false);
+  assert.equal(alreadyStored(ownedPayload, owned), true);
+});
+
+test("a row the recomputation would remove, or rewrite, is a reason too", () => {
+  const payload = toReplacePayload(DEFINITION, computedRoadmap(), []);
+  assert.ok(payload);
+
+  // A system row for a material this profile does not qualify for. `spe-research` applies to research
+  // degrees; the payload's `applicableKeys` do not carry it, which is the statement the server deletes
+  // on — so this is a recomputation waiting to happen rather than a row to leave alone.
+  const stale = [...served(payload), row({ material_key: "spe-research", origin: "system" })];
+  assert.equal(alreadyStored(payload, stale), false);
+  // The same row owned by a human is not: the removal pass leaves `user` and `agent` rows untouched,
+  // so a row the recomputation cannot touch is not a reason to run one.
+  for (const origin of ["user", "agent"] as const) {
+    const theirs: TaskRow[] = [...served(payload), row({ material_key: "spe-research", origin })];
+    assert.equal(alreadyStored(payload, theirs), true, `a ${origin} row is not ours to remove`);
+  }
+
+  // Every date moved: the intake changed, and this payload is what the new one computes. The stored
+  // rows are the old intake's, so the reload has to write — this is the fix for the trigger and the
+  // payload disagreeing about what a recomputation is for.
+  const oldIntake = served(payload, [{ due_at: "2026-06-09" }]);
+  const first = payload.rows[0].dueAt;
+  assert.notEqual(first, "2026-06-09", "the fixture must actually move the date it replaces");
+  assert.equal(alreadyStored(payload, oldIntake), false);
+
+  // A material the definition moved into another phase: the phase is one of the two fields the
+  // recomputation owns, so a row placed differently is a row to rewrite.
+  const moved = served(payload, [{ phase: "visa" }]);
+  assert.equal(alreadyStored(payload, moved), false);
+
+  // A `system` row for an applicable key whose program the payload does not carry is left where it
+  // is: this batch computes one row per material, and the recomputation cannot address that one.
+  const otherProgram = [
+    ...served(payload),
+    row({ material_key: "spe-cv", program_id: "prog-1", origin: "system" }),
+  ];
+  assert.equal(alreadyStored(payload, otherProgram), true);
 });

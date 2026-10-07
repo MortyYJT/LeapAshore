@@ -16,7 +16,7 @@ import {
 import { buildRoadmap } from "@/lib/roadmap";
 import { NO_DEFINITION_READ, readRoadmapDefinition } from "@/lib/roadmap-definition";
 import { toTaskRows } from "@/lib/roadmap-source";
-import { toReplacePayload, type TaskRow } from "@/lib/roadmap-sync";
+import { alreadyStored, toReplacePayload, type TaskRow } from "@/lib/roadmap-sync";
 import { clearState, initialState, loadState, saveState, type PersistedState } from "@/lib/store";
 import type { PortfolioItem, Profile, RoadmapDefinition } from "@/lib/types";
 
@@ -33,20 +33,27 @@ const TASK_SYNC_ERROR_NOTICE =
   "路线图的保存没有成功，服务器上的任务没有更新。当前显示的是本机计算的结果，刷新页面可能会看到旧数据。";
 
 /**
- * The parts of the profile that decide *which* materials exist, as a comparable string.
+ * The parts of the profile that decide what the payload holds, as a comparable string.
  *
- * A recomputation is needed when the set of applicable materials changes, and only `targetDegree` and
- * `targetField` feed the builder's `appliesTo` filter. The dates are not in this fingerprint on
- * purpose: `intake` moves every computed date, and recomputing for a change that adds and removes no
- * row would rewrite the roadmap's dates for no reason while the applicant is mid-edit. When the
- * definition itself changes, every row's phase and dates can move too, so the fingerprint carries the
- * served phase keys and material keys as well — a new material is a new row, which is exactly the
- * change worth writing.
+ * This is the page's record of *which* recomputation it is in the middle of: it is claimed for a
+ * payload before the request goes out, so the effect cannot fire a second identical write while the
+ * first is in flight, and the claim is what the effect compares against on later runs. Everything the
+ * payload is built from therefore has to be in it: `targetDegree` and `targetField`, which decide
+ * which materials apply, `intake`, which decides every date in it, and the definition's own phase and
+ * material keys, because a definition that gained or lost one changes the payload too.
+ *
+ * `intake` was deliberately left out of an earlier version of this function, and that was wrong: it
+ * is the one input that moves every `dueAt`, so a payload built after the intake changed was a
+ * different payload under the same fingerprint — the trigger and the payload disagreed about what a
+ * recomputation is for, and changing 2027 S1 to 2028 S1 on screen left the stored dates a year behind
+ * with nothing said about it. It is in here now, and the dates it moves are also compared against the
+ * server's rows by `alreadyStored`, so the two halves of the decision cannot drift apart again.
  */
 function applicabilityFingerprint(definition: RoadmapDefinition, profile: Profile): string {
   return JSON.stringify({
     targetDegree: profile.targetDegree,
     targetField: profile.targetField,
+    intake: profile.intake,
     phases: definition.phases.map((phase) => phase.id),
     materials: Object.entries(definition.materials)
       .flatMap(([phase, items]) => items.map((item) => `${phase}:${item.id}`))
@@ -64,6 +71,18 @@ export default function Page() {
   const [state, setState] = useState<PersistedState>(initialState);
   const [hydrated, setHydrated] = useState(false);
   const [profileError, setProfileError] = useState<string | null>(null);
+  /**
+   * Whether the profile on screen is the server's own copy rather than this device's memory of it.
+   *
+   * The profile is the third input a payload is built from, and like the definition it has to have
+   * been read from the server before anything is written. On a cold start `localStorage` holds the
+   * last copy this device saw, and that is the profile the page computes from until the read answers:
+   * a payload built from it would carry the dates of an intake the server may not hold and would be
+   * indistinguishable from a legitimate recomputation once stored. This is the same gate as
+   * `definition === null` below, one input over — and it is the whole of "do not write on mount" —
+   * so the two writes and the render all trace back to the server's own answers.
+   */
+  const [profileFromServer, setProfileFromServer] = useState(false);
   /**
    * What the read of the served definition left behind: the definition, the fallback notice, its rows.
    *
@@ -99,13 +118,16 @@ export default function Page() {
   /** Set when a roadmap write did not land, so the failure is not silent. */
   const [taskSyncError, setTaskSyncError] = useState<string | null>(null);
   /**
-   * The applicability fingerprint of the last computation that reached the server.
+   * The applicability fingerprint of the recomputation this session has already sent, or is sending.
    *
    * A ref rather than state because it is a record of what was *sent*, not something to render, and
    * because the recomputation effect must be able to read it without itself being re-run by the write
-   * that sets it. `undefined` means "nothing has been written in this session", which is read together
-   * with the row count: a session that starts with rows on the server and no memory of writing them has
-   * nothing to add, and one that starts with no rows recomputes.
+   * that sets it. `undefined` means no write has been claimed in this session, which is why it can
+   * only ever answer "is this exact recomputation already on its way" — a fresh page has no memory of
+   * an earlier session, and reading it as "the server's rows are current" is the defect this wave
+   * fixes: a subject whose rows were stale reloaded into a page that compared nothing and wrote
+   * nothing, forever. What survives a reload is the server's own data, and `alreadyStored` is where
+   * that comparison happens.
    */
   const lastSyncedFingerprint = useRef<string | undefined>(undefined);
   /**
@@ -162,12 +184,20 @@ export default function Page() {
   // The server owns the profile, so it is read once on mount and merged over the local copy. The
   // read is skipped when the database is unreachable, but a failed save has to be said out loud,
   // because the applicant would otherwise believe an edit was stored when it was not.
+  //
+  // A read that lands is also what makes the profile on screen the server's own copy rather than this
+  // device's memory of it, which the recomputation below needs before it writes anything: see
+  // `profileFromServer`. A read that fails leaves that false, exactly as a failed definition read
+  // leaves the definition `null` — the page keeps rendering from what it has and writes nothing,
+  // because a payload built from a copy the server never confirmed is the silent divergence the whole
+  // layer refuses to make.
   useEffect(() => {
     let cancelled = false;
     fetchProfile()
       .then((remote) => {
         if (cancelled) return;
         setState((prev) => ({ ...prev, profile: mergeServerProfile(remote, prev.profile) }));
+        setProfileFromServer(true);
       })
       .catch((error: unknown) => {
         if (cancelled) return;
@@ -212,39 +242,50 @@ export default function Page() {
   }, [state, hydrated]);
 
   /**
-   * Store the roadmap on the server, but only when there is a reason to.
+   * Store the roadmap on the server, but only when the server's own rows give a reason to.
    *
-   * Two reasons, and nothing else:
+   * The trigger is `alreadyStored`, which compares the payload this profile and definition imply
+   * against the rows the server served in the same response. That comparison is the one piece of
+   * evidence a reload cannot lose, and it is the fix for the defect an earlier version of this effect
+   * had: the trigger was session memory — "the server has no rows, or the fingerprint moved since the
+   * last write this session made" — and a fresh page has none, so a subject whose stored roadmap was
+   * stale (a profile edited elsewhere, or a recomputation whose `PUT` failed and whose notice told the
+   * applicant to reload) reloaded into a page that wrote nothing. Measured: 31 rows on the server with
+   * no row for a material the profile had just made applicable; the material rendered, its checkbox
+   * sent no `PATCH`, and no reload could ever repair it. Now the reload reconciles: the missing key is
+   * a disagreement, the write runs, and the row exists to be ticked.
    *
-   * - the server has no rows for this subject, so this is the first computation and the roadmap only
-   *   exists on this device until it is sent;
-   * - the applicability fingerprint moved since the last computation that reached the server — the
-   *   degree or the field changed, so different materials apply, or the definition itself gained or
-   *   lost a phase or a material.
+   * Rounding that off, the two conditions around it:
    *
-   * It is not a recomputation per render. The fingerprint is the whole trigger, and a recomputation
-   * whose fingerprint has not moved would rewrite the same dates and add no row, while every write
-   * also records an event in the server's audit trail.
+   * - nothing is computed or written until both the definition and the profile have been read from the
+   *   server. The profile half is `profileFromServer`; `localStorage` holds a copy of the profile this
+   *   device saw, and a payload built from it before the read answers would store dates for an intake
+   *   the server may not hold. Until then the effect returns without claiming a fingerprint, so the
+   *   decision is taken again — correctly — when the read lands;
+   * - a fingerprint already claimed means this exact recomputation is in flight or has landed. That is
+   *   what keeps a re-render during the request from sending the payload twice: the write records one
+   *   round of audit events, not two. A failed write clears the claim, so the next run retries rather
+   *   than believing a partial write landed; the failure itself is reported, never swallowed.
    *
-   * The write is gated on `definition`, which is only ever a definition that was read from the
-   * server. That gate is the whole point of §3.8: the built-in copy omits the visa phase, a
-   * recomputation driven by it would state an applicable-key set without the visa keys, and the
-   * server would delete the applicant's visa rows and lose their completion state. `toReplacePayload`
-   * returns `null` for that case and the call is skipped rather than sent empty — an empty payload is
-   * a real statement that nothing applies, and it would delete every system row in one request.
+   * `toReplacePayload` can still answer `null`, and that gate is untouched: a definition the page did
+   * not read from the server produces no write at all, because the built-in copy omits the visa phase
+   * and its applicable-key set would delete those rows and their completion state — §3.8, and never
+   * an empty payload instead.
    */
   useEffect(() => {
-    if (!hydrated || definition === null) return;
+    if (!hydrated || definition === null || !profileFromServer) return;
     const fingerprint = applicabilityFingerprint(definition, state.profile);
     if (lastSyncedFingerprint.current === fingerprint) return;
-    if (taskRows.length > 0 && lastSyncedFingerprint.current === undefined) {
-      // The rows are already on the server and nothing has said the profile moved since they were
-      // written, so this session has nothing to add.
+    const payload = toReplacePayload(definition, roadmap, taskRows);
+    if (payload === null) return;
+    if (alreadyStored(payload, taskRows)) {
+      // The server already holds the rows this profile and definition imply, so there is nothing to
+      // store this time round. The fingerprint is claimed anyway: it is the record that this exact
+      // recomputation has been considered, which is what stops the comparison being redone on every
+      // later render of the same inputs.
       lastSyncedFingerprint.current = fingerprint;
       return;
     }
-    const payload = toReplacePayload(definition, roadmap, taskRows);
-    if (payload === null) return;
     // Claimed before the request, not after it lands: this effect is re-run by the state it sets, and
     // a fingerprint written in `.then` leaves a window in which a second run cannot tell that a write
     // is already on its way. Two identical replacements would both succeed — the service is a
@@ -281,10 +322,11 @@ export default function Page() {
       cancelled = true;
     };
     // `roadmap` is deliberately absent: it is recomputed on every render, so it cannot be a trigger
-    // without making this run on every render. The fingerprint covers everything that decides the
-    // payload, and `taskRows` is what the ownership rule reads.
+    // without making this run on every render. Every input it is built from is covered instead — the
+    // definition and the profile in the fingerprint, the rows in `alreadyStored` — and `taskRows` is
+    // what the ownership rule reads.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [hydrated, definition, taskRows, state.profile]);
+  }, [hydrated, definition, profileFromServer, taskRows, state.profile]);
 
   // Scroll to top when the stage changes.
   useEffect(() => {
@@ -297,9 +339,9 @@ export default function Page() {
   //
   // This call does run with the built-in copy when the read failed, and that is safe now because the
   // result is only ever rendered: the write is gated on `definition`, which is null in exactly that
-  // case, so §3.8's hazard is closed at the effect above rather than by branching here. The
-  // applicant's own marks come from the server's rows, so a tick cannot be lost by a recomputation
-  // that renders from a subset.
+  // case, and on `profileFromServer` for the other input, so §3.8's hazard is closed at the effect
+  // above rather than by branching here. The applicant's own marks come from the server's rows, so a
+  // tick cannot be lost by a recomputation that renders from a subset.
   const completedMaterialIds = taskRows
     .filter((row) => row.status === "completed")
     .map((row) => row.material_key);
