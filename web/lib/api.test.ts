@@ -7,7 +7,15 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 
-import { fetchProfile, fetchRoadmapDefinition, mergeServerProfile, patchProfile } from "./api.ts";
+import {
+  fetchProfile,
+  fetchRoadmapDefinition,
+  mergeServerProfile,
+  patchProfile,
+  patchRoadmapTask,
+  replaceRoadmapTasks,
+} from "./api.ts";
+import type { TaskReplacePayload } from "./roadmap-sync.ts";
 import { EMPTY_PROFILE } from "./store.ts";
 import type { Profile } from "./types.ts";
 
@@ -418,4 +426,107 @@ test("fetchRoadmapDefinition rejects a material with no key, phase or title", as
   await rejects([{ ...material, key: undefined }], /读取路线图定义失败：材料 0 缺少 key/);
   await rejects([{ ...material, phase: "" }], /材料 0（sel-goal）缺少 phase/);
   await rejects([{ ...material, title: undefined }], /材料 0（sel-goal）缺少 title/);
+});
+
+// The write path. The rule for what may be written is `roadmap-sync.test.ts`'s; these tests are the
+// transport: the request the caller's payload turns into, and what counts as "the save did not land".
+
+/** One computed row, as `toReplacePayload` emits it and as the route reads it. */
+const PAYLOAD: TaskReplacePayload = {
+  applicableKeys: ["spe-cv", "visa-gs"],
+  rows: [
+    { materialKey: "spe-cv", programId: "", phase: "specialized", dueAt: "2026-06-09", scheduleOrigin: "suggested" },
+    { materialKey: "visa-gs", programId: "", phase: "visa", dueAt: "2027-01-15", scheduleOrigin: "suggested" },
+  ],
+};
+const REPLACE_RESULT = { created: 1, updated: 1, removed: 0, kept: 0 };
+
+test("replaceRoadmapTasks sends the applicable keys and the rows as a PUT", async () => {
+  // The two lists travel as the route reads them: `applicableKeys` is the caller's statement of what
+  // applies this round, and it is deliberately not derived from the rows by the server, so the whole
+  // payload has to reach the wire as written. The counts come back and are returned to the caller.
+  const { value, calls } = await withFetch(
+    () => new Response(JSON.stringify(REPLACE_RESULT), { status: 200 }),
+    () => replaceRoadmapTasks(PAYLOAD),
+  );
+  assert.deepEqual(value, REPLACE_RESULT);
+  assert.equal(calls[0].url, "/api/roadmap/tasks");
+  assert.equal(calls[0].init?.method, "PUT");
+  assert.equal(calls[0].init?.credentials, "same-origin");
+  assert.equal(calls[0].init?.body, JSON.stringify(PAYLOAD));
+});
+
+test("replaceRoadmapTasks raises on a rejected write so the caller can report it", async () => {
+  // A rejected replacement is a roadmap the server did not store. The caller shows a notice; silently
+  // resolving would leave the applicant looking at a roadmap that only exists in this tab.
+  await assert.rejects(
+    () =>
+      withFetch(() => new Response("", { status: 422 }), () => replaceRoadmapTasks(PAYLOAD)),
+    /保存路线图失败：422/,
+  );
+});
+
+test("replaceRoadmapTasks raises when the reply says part of the roadmap was not written", async () => {
+  // The regression this pins is a save that answered 200 and stored less than it was sent. The counts
+  // are the server's own account of what it did, and two rows went out: a reply accounting for one of
+  // them is the silent half-save this check exists to turn into an error the page can show. `kept` is
+  // not part of it — that counts rows the caller does not own and cannot predict.
+  await assert.rejects(
+    () =>
+      withFetch(
+        () => new Response(JSON.stringify({ created: 1, updated: 0, removed: 0, kept: 5 }), { status: 200 }),
+        () => replaceRoadmapTasks(PAYLOAD),
+      ),
+    /保存路线图失败：服务器只写入了 1 行，提交的是 2 行/,
+  );
+});
+
+test("replaceRoadmapTasks accepts a write that landed as an update rather than a create", async () => {
+  // Both counts are the same claim from this side's point of view — "this row is now stored" — so the
+  // check is their sum. A recomputation over rows that already exist is all updates, which is the
+  // normal case after the first one, and reading it as a failure would block every later recompute.
+  const { value } = await withFetch(
+    () => new Response(JSON.stringify({ created: 0, updated: 2, removed: 0, kept: 0 }), { status: 200 }),
+    () => replaceRoadmapTasks(PAYLOAD),
+  );
+  assert.equal(value.updated, 2);
+});
+
+test("patchRoadmapTask edits one row by id, and returns the row the server stored", async () => {
+  // The per-row door, and the reason it is not the replacement: this call is how a tick claims a row
+  // for the applicant, which is what takes it out of the recomputation's reach. The reply is the
+  // stored row, so it is returned rather than discarded — it carries the server's own `status` and
+  // `completedAt`, which is what the caller's optimistic update has to agree with.
+  const stored = {
+    id: "task-9",
+    materialKey: "spe-cv",
+    programId: "",
+    phase: "specialized",
+    status: "completed",
+    suggestedAt: null,
+    dueAt: "2026-06-09",
+    scheduleOrigin: "suggested",
+    origin: "user",
+    documentId: null,
+    completedAt: "2026-10-06T00:00:00Z",
+    createdAt: "2026-10-06T00:00:00Z",
+    updatedAt: "2026-10-06T00:00:00Z",
+  };
+  const { value, calls } = await withFetch(
+    () => new Response(JSON.stringify(stored), { status: 200 }),
+    () => patchRoadmapTask("task-9", { status: "completed" }),
+  );
+  assert.equal(value.status, "completed");
+  assert.equal(value.origin, "user");
+  assert.equal(calls[0].url, "/api/roadmap/tasks/task-9");
+  assert.equal(calls[0].init?.method, "PATCH");
+  assert.equal(calls[0].init?.body, JSON.stringify({ status: "completed" }));
+});
+
+test("patchRoadmapTask raises when the tick was not stored", async () => {
+  await assert.rejects(
+    () =>
+      withFetch(() => new Response("", { status: 404 }), () => patchRoadmapTask("task-9", { status: "completed" })),
+    /保存材料状态失败：404/,
+  );
 });

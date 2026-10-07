@@ -25,8 +25,8 @@ import { readFileSync } from "node:fs";
 import test from "node:test";
 
 import { DEFAULT_DEFINITION } from "./roadmap.ts";
-import { toMaterialDefs, toPhaseDefs, toRoadmapDefinition } from "./roadmap-source.ts";
-import type { ServedMaterial, ServedRoadmapDefinition } from "./roadmap-source.ts";
+import { toMaterialDefs, toPhaseDefs, toRoadmapDefinition, toTaskRows } from "./roadmap-source.ts";
+import type { ServedMaterial, ServedRoadmapDefinition, ServedTask } from "./roadmap-source.ts";
 
 /**
  * A `GET /api/roadmap` body captured from the running server, read here as the wire record it is.
@@ -282,6 +282,54 @@ test("the adapter reads the field names of a captured response body", () => {
   const firstMaterial = CAPTURED_RESPONSE.materials[0] as unknown as Record<string, unknown>;
   assert.equal("key" in firstMaterial && "title" in firstMaterial, true);
   assert.equal("id" in firstMaterial || "label" in firstMaterial, false);
+});
+
+// One task row, in the spelling `GET /api/roadmap` serves under `tasks`. Every name below was read off
+// a live response body; none of them is the database's own spelling, because `TaskOut` carries the same
+// `alias_generator` as the rest of the API's schemas.
+const SERVED_TASK: ServedTask = {
+  id: "0f0f0f0f-0000-0000-0000-000000000000",
+  materialKey: "aca-transcript",
+  programId: "",
+  phase: "academic",
+  status: "pending",
+  suggestedAt: null,
+  dueAt: "2026-05-21",
+  scheduleOrigin: "suggested",
+  origin: "system",
+  documentId: null,
+  completedAt: null,
+  createdAt: "2026-10-07T12:41:51.352633Z",
+  updatedAt: "2026-10-07T12:41:51.352633Z",
+};
+
+test("maps a served task row from the wire's camelCase to the names the payload rule reads", () => {
+  // The defect this pins, measured in a browser before it was fixed: `roadmap-sync.ts` looked a row up
+  // by `row.material_key`, the wire names it `materialKey`, and nothing failed loudly — every lookup
+  // missed, so `toggleMaterial` returned early, no `PATCH` was sent, and the checkbox flipped straight
+  // back. No type error, no console error, no failing test: the mapping had simply never been bound to
+  // the route. `TaskRow` names its fields after the columns, which is what the pure payload rule is
+  // written against, so the rename has to happen here and this is the test that holds it.
+  const [row] = toTaskRows([SERVED_TASK]);
+  assert.deepEqual(row, {
+    id: SERVED_TASK.id,
+    material_key: "aca-transcript",
+    program_id: "",
+    phase: "academic",
+    status: "pending",
+    suggested_at: null,
+    due_at: "2026-05-21",
+    schedule_origin: "suggested",
+    origin: "system",
+    completed_at: null,
+  });
+});
+
+test("a response with no tasks is an empty row list, not a crash", () => {
+  // The route always serves the key, but a subject created before M2b could answer without it, and an
+  // older build's captured body does not carry it either. Both mean the same thing: no rows yet.
+  assert.deepEqual(toTaskRows(undefined), []);
+  assert.deepEqual(toTaskRows([]), []);
 });
 
 test("the mapping round-trips the constants through the served field names", () => {

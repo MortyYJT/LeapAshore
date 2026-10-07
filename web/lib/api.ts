@@ -5,7 +5,13 @@
 // httpOnly `offerpilot_client` cookie rides along on its own and no CORS setup is needed.
 
 import type { Profile } from "./types";
-import type { ServedMaterial, ServedPhase, ServedRoadmapDefinition } from "./roadmap-source";
+import type { TaskReplacePayload, TaskReplaceResult } from "./roadmap-sync";
+import type {
+  ServedMaterial,
+  ServedPhase,
+  ServedRoadmapDefinition,
+  ServedTask,
+} from "./roadmap-source";
 
 /** Whether the value the wire sent is a string with at least one character in it. */
 function isFilled(value: unknown): value is string {
@@ -74,12 +80,17 @@ function unwalkableReason(definition: ServedRoadmapDefinition): string | null {
 }
 
 /**
- * Read the roadmap definition: which phases exist and what each one asks for.
+ * Read the roadmap definition: which phases exist, what each one asks for, and the caller's own rows.
  *
- * This is shared configuration, not applicant data. The route takes no subject and is served without
- * a cookie, so the response is the same for everyone and reading it has no side effect. What the
- * server does *not* send is any date: the phases carry an offset in days and the client derives the
- * dates from the intake term, which is the split this task keeps on purpose.
+ * The definition half is shared configuration — the phases and materials are the same for everyone —
+ * but the response is not: it also carries the caller's own `tasks`, so the route reads and sets the
+ * `offerpilot_client` cookie and the answer differs per subject. Reading it still writes no row: a
+ * first-time visitor simply has no tasks, and the subject row is created by the first write. The
+ * cookie is repeated on every response rather than only on the first, which is what `deps.py` records
+ * having once got wrong in the other direction.
+ *
+ * What the server does *not* send is any date: the phases carry an offset in days and the client
+ * derives the dates from the intake term, which is the split this task keeps on purpose.
  *
  * The body is returned as the wire shape rather than mapped. Mapping it is `roadmap-source.ts`'s job
  * and is a pure function with its own tests, so a body that passes through here unexamined can be
@@ -269,4 +280,73 @@ export function mergeServerProfile(remote: Partial<Profile>, local: Profile): Pr
     if (!isAbsent(value)) merged[key] = value;
   }
   return merged as unknown as Profile;
+}
+
+/**
+ * Store one recomputation: the material keys that are applicable this round, and the rows computed
+ * for them.
+ *
+ * The payload is built by `toReplacePayload`, which returns `null` for "do not write" — when the
+ * definition on screen did not come from the server. That case never reaches this function; the
+ * caller skips the call rather than sending an empty payload, because an empty `applicableKeys` is a
+ * real statement that nothing applies this round and the server would delete every system row for it.
+ *
+ * The body is compared against the reply rather than trusted, the same way `patchProfile` checks what
+ * it sent. Here the check is the four counts: every row this call sent has to come back as created or
+ * updated, because a replacement that reported success while storing nothing is the silent failure
+ * this whole path exists to prevent — the applicant would tick a material, the screen would keep it,
+ * and the next load would find nothing. A count that disagrees is reported as a failed save naming
+ * the numbers, so the caller's notice says what happened instead of "something went wrong".
+ *
+ * Anything else about the counts is the server's business: `kept` counts rows the caller does not own
+ * and cannot predict, so it is returned rather than checked.
+ */
+export async function replaceRoadmapTasks(
+  payload: TaskReplacePayload,
+): Promise<TaskReplaceResult> {
+  const response = await fetch("/api/roadmap/tasks", {
+    method: "PUT",
+    credentials: "same-origin",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  if (!response.ok) throw new Error(`保存路线图失败：${response.status}`);
+  const result = (await response.json()) as TaskReplaceResult;
+  const written = (result.created ?? 0) + (result.updated ?? 0);
+  if (written !== payload.rows.length) {
+    throw new Error(
+      `保存路线图失败：服务器只写入了 ${written} 行，提交的是 ${payload.rows.length} 行`,
+    );
+  }
+  return result;
+}
+
+/**
+ * Edit one task row: its status, or its dates.
+ *
+ * This is the applicant's own door onto a row, and the difference from `replaceRoadmapTasks` is the
+ * whole ownership rule: a replacement may only ever touch the rows the client generated, while this
+ * call takes one row out of the recomputation's reach by flipping its `origin` to `user`. So a tick
+ * goes here and never through the replacement, and the two are not interchangeable even though both
+ * write to `roadmap_tasks`.
+ *
+ * The reply is the row as the server stored it, and it is returned rather than discarded: it carries
+ * the server's own `status` and `completedAt`, which is what the caller's optimistic update has to
+ * agree with once the request lands. It is the wire shape, so the caller reads it the way the
+ * transport spells it; `toTaskRows` is what turns a list of these into this side's names. A failed
+ * edit raises, because a tick the server did not take is the silent divergence this layer exists to
+ * surface.
+ */
+export async function patchRoadmapTask(
+  taskId: string,
+  patch: { status?: string; dueAt?: string | null; suggestedAt?: string | null },
+): Promise<ServedTask> {
+  const response = await fetch(`/api/roadmap/tasks/${encodeURIComponent(taskId)}`, {
+    method: "PATCH",
+    credentials: "same-origin",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(patch),
+  });
+  if (!response.ok) throw new Error(`保存材料状态失败：${response.status}`);
+  return (await response.json()) as ServedTask;
 }

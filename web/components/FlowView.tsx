@@ -21,7 +21,7 @@ interface Props {
   portfolio: PortfolioItem[];
   selectedPhase: string;
   onSelectPhase: (id: string) => void;
-  onToggleMaterial: (materialId: string) => void;
+  onToggleMaterial: (materialId: string, checked: boolean) => void;
 }
 
 export default function FlowView({
@@ -191,7 +191,7 @@ export default function FlowView({
                     type="checkbox"
                     className="mt-1 h-5 w-5 accent-[var(--color-brand)]"
                     checked={t.done}
-                    onChange={() => onToggleMaterial(t.materialId)}
+                    onChange={(event) => onToggleMaterial(t.materialId, event.target.checked)}
                   />
                   <span>
                     <span
