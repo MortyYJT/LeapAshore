@@ -1,17 +1,17 @@
 from typing import Annotated
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException, Response
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.db import get_session
-from app.deps import get_client_id
+from app.deps import get_client_id, load_or_create_profile
 from app.models.roadmap import MaterialTemplate, RoadmapPhase
 from app.models.source import Source
 from app.models.task import RoadmapTask
 from app.schemas.roadmap import MaterialOut, PhaseOut, RoadmapDefinition, SourceRef
 from app.schemas.task import TaskOut, TaskReplaceRequest, TaskReplaceResult
-from app.services.roadmap_tasks import replace_system_tasks
+from app.services.roadmap_tasks import InvalidTaskPayload, replace_system_tasks
 
 router = APIRouter(prefix="/api/roadmap", tags=["roadmap"])
 
@@ -117,6 +117,7 @@ def replace_tasks(
     payload: TaskReplaceRequest,
     client_id: Annotated[str, Depends(get_client_id)],
     session: Annotated[Session, Depends(get_session)],
+    response: Response,
 ) -> dict:
     """Replace only the rows the client itself generated.
 
@@ -124,15 +125,38 @@ def replace_tasks(
     payload" and "no longer applicable" are different claims: treating the first as the second would
     delete the visa tasks whenever the definition was served from the built-in fallback, and the next
     run with the real definition would recreate them as `pending` with the applicant's completed
-    marks gone.
+    marks gone. A key the rows carry and the applicable list does not is a contradiction rather than a
+    third claim, and it is refused with a 422 instead of being interpreted — see
+    `app.services.roadmap_tasks` for the create-then-delete it used to cause.
+
+    The subject is created here, in the endpoint body, exactly as `app/routers/profile.py` does it.
+    `get_client_id` only mints the cookie, so the subject that `GET /api/roadmap` just named has no
+    `clients` row yet: that read writes nothing by design. This route is the first write to arrive
+    with that cookie, and without this call the insert would violate `roadmap_tasks_client_id_fkey`
+    and the applicant's first recompute would answer 500. Calling it here rather than in a dependency
+    keeps the other property `deps.py` documents: FastAPI has already validated the body, so a
+    rejected request cannot leave a client and profile pair behind.
 
     The counts come back — `created`, `updated`, `removed`, `kept` — rather than the rows, because the
     caller just computed them: what it cannot compute is what happened to the rows it does not own,
-    and `kept` is that number. The write commits once, inside `replace_system_tasks`.
+    and `kept` is that number: every existing row this call left exactly as it was. The write commits
+    once, inside `replace_system_tasks`.
+
+    A payload the definition cannot satisfy — an unknown material key or phase, or a contradiction
+    between its two lists — is a mapped 422 with the reason, never a raw 500 from the foreign key. The
+    cookie is repeated on that response on purpose: the subject was created before the payload could
+    be checked, so a response that dropped the cookie would strand the rows the way `deps.py` records
+    having stranded 221 of them.
     """
-    return replace_system_tasks(
-        session,
-        client_id,
-        applicable_keys=payload.applicable_keys,
-        rows=payload.rows,
-    )
+    load_or_create_profile(session, client_id)
+    try:
+        return replace_system_tasks(
+            session,
+            client_id,
+            applicable_keys=payload.applicable_keys,
+            rows=payload.rows,
+        )
+    except InvalidTaskPayload as exc:
+        raise HTTPException(
+            status_code=422, detail=str(exc), headers=dict(response.headers)
+        ) from exc

@@ -193,3 +193,135 @@ def test_sets_a_cookie_only_for_the_tasks_it_returns(require_db, db_session):
     assert second.json()["phases"] == first.json()["phases"]
     assert second.json()["materials"] == first.json()["materials"]
     assert second.json()["tasks"] == []
+
+
+# The tests below were added in the fix round. Nothing above them changed.
+
+
+def test_the_minted_cookie_can_write_what_the_same_route_just_served(require_db, db_session):
+    """Finding 1: the read mints the subject, so the first write must be able to create it.
+
+    `GET /api/roadmap` resolves a subject and sets the cookie, and it writes nothing on purpose — a
+    read should not leave rows behind. The consequence is that the subject it just named has no
+    `clients` row, and before this fix the insert in `PUT /api/roadmap/tasks` violated
+    `roadmap_tasks_client_id_fkey`: measured as GET 200 with a cookie, then PUT with that cookie
+    -> 500. The page only hid it by reading `/api/profile` on mount. This test makes both halves the
+    applicant actually performs — read the timeline, then write the recomputation — the assertion.
+    """
+    seed_roadmap(db_session)
+    client = TestClient(app)
+    read = client.get("/api/roadmap")
+    assert read.status_code == 200
+    assert read.json()["tasks"] == [], "the subject this read minted owns no rows"
+
+    write = client.put(
+        "/api/roadmap/tasks",
+        json={
+            "applicableKeys": ["aca-transcript"],
+            "rows": [
+                {"materialKey": "aca-transcript", "phase": "academic", "suggestedAt": "2027-06-01"}
+            ],
+        },
+    )
+    assert write.status_code == 200, write.text
+    assert write.json() == {"created": 1, "updated": 0, "removed": 0, "kept": 0}
+
+    served = client.get("/api/roadmap").json()["tasks"]
+    assert [(task["materialKey"], task["suggestedAt"]) for task in served] == [
+        ("aca-transcript", "2027-06-01")
+    ], "the row the write created was not the row the read returns"
+    assert served[0]["origin"] == "system", "everything a recomputation writes is a system row"
+
+
+def test_one_subject_never_sees_another_subjects_tasks(require_db, db_session):
+    """The route's subject filter, which nothing else asserts.
+
+    The only claim about tasks used to be that a fresh subject's list is empty, which a route that
+    returned every row in the table would also satisfy. One subject's two rows are asserted here, and
+    the other subject's list is asserted to be empty.
+    """
+    seed_roadmap(db_session)
+    owner, stranger = TestClient(app), TestClient(app)
+    owner.get("/api/profile")
+    stranger.get("/api/profile")
+    assert owner.cookies[COOKIE_NAME] != stranger.cookies[COOKIE_NAME], (
+        "the two clients have to be different subjects for this test to mean anything"
+    )
+
+    written = owner.put(
+        "/api/roadmap/tasks",
+        json={
+            "applicableKeys": ["aca-transcript", "aca-scale"],
+            "rows": [
+                {"materialKey": "aca-transcript", "phase": "academic", "suggestedAt": "2027-06-01"},
+                {"materialKey": "aca-scale", "phase": "academic", "suggestedAt": "2027-06-02"},
+            ],
+        },
+    )
+    assert written.status_code == 200, written.text
+    assert written.json() == {"created": 2, "updated": 0, "removed": 0, "kept": 0}
+
+    assert [task["materialKey"] for task in owner.get("/api/roadmap").json()["tasks"]] == [
+        "aca-scale",
+        "aca-transcript",
+    ], "the owner must see exactly the rows the owner wrote"
+    assert stranger.get("/api/roadmap").json()["tasks"] == [], (
+        "another subject saw rows that are not theirs"
+    )
+
+
+def test_put_answers_bad_input_with_422_not_500(require_db, db_session):
+    """Finding 4: the three invalid-input paths that used to be an `IntegrityError` and a raw 500.
+
+    A `materialKey` naming no `material_templates` row was measured as `ForeignKeyViolation` -> 500.
+    A `phase` naming no `roadmap_phases` row was accepted and stored. A key in `rows` that
+    `applicableKeys` denies is the contradiction the service now refuses. The `scheduleOrigin`
+    domain is the enum's, so `"banana"` never leaves the schema. Any of them that produced rows would
+    be a partial write to a roadmap the applicant cannot see, so the absence of rows is asserted too.
+    """
+    seed_roadmap(db_session)
+    client = TestClient(app)
+    client.get("/api/profile")
+
+    unknown_material = client.put(
+        "/api/roadmap/tasks",
+        json={
+            "applicableKeys": ["no-such-material"],
+            "rows": [{"materialKey": "no-such-material", "phase": "academic"}],
+        },
+    )
+    assert unknown_material.status_code == 422, unknown_material.text
+    assert "no-such-material" in unknown_material.json()["detail"]
+
+    unknown_phase = client.put(
+        "/api/roadmap/tasks",
+        json={
+            "applicableKeys": ["aca-transcript"],
+            "rows": [{"materialKey": "aca-transcript", "phase": "banana"}],
+        },
+    )
+    assert unknown_phase.status_code == 422, unknown_phase.text
+    assert "banana" in unknown_phase.json()["detail"]
+
+    contradiction = client.put(
+        "/api/roadmap/tasks",
+        json={
+            "applicableKeys": [],
+            "rows": [{"materialKey": "aca-transcript", "phase": "academic"}],
+        },
+    )
+    assert contradiction.status_code == 422, contradiction.text
+    assert "aca-transcript" in contradiction.json()["detail"]
+
+    unknown_origin = client.put(
+        "/api/roadmap/tasks",
+        json={
+            "applicableKeys": ["aca-transcript"],
+            "rows": [
+                {"materialKey": "aca-transcript", "phase": "academic", "scheduleOrigin": "banana"}
+            ],
+        },
+    )
+    assert unknown_origin.status_code == 422, unknown_origin.text
+
+    assert client.get("/api/roadmap").json()["tasks"] == [], "a rejected payload wrote a row"

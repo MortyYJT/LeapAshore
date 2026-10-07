@@ -22,6 +22,26 @@ materials and delete the visa rows; the next run with the real definition would 
 ``pending`` and the applicant's completion state would be gone. A ``user`` or ``agent`` row is never a
 candidate for removal under either claim, because the recomputation does not own it.
 
+Leaving the two lists free to disagree is a worse defect than either claim being wrong on its own. A
+key that ``rows`` carries and ``applicable_keys`` does not is a contradiction: sending a row is the
+caller's own statement that the key is applicable this round. Implemented literally, one call writes
+that row and then the removal pass deletes a row with the same key, and what the call did depends on
+state the caller cannot see — a row created by this very call survives, because the removal pass walks
+a snapshot taken before the loop, while an identical row that already existed is updated and then
+destroyed. The same payload therefore leaves a row behind or removes one depending on whether it was
+there before, which is not a rule anyone can hold in their head. ``InvalidTaskPayload`` rejects the
+contradiction instead, before anything is written, and the route serves it as a 422 naming the keys.
+For the same reason the payload is checked against the definition first: a ``materialKey`` that names
+no ``material_templates`` row would otherwise be an ``IntegrityError`` and a raw 500, and a ``phase``
+that names no ``roadmap_phases`` row would be stored as a place outside the timeline.
+
+Two recomputations for one subject can also reach the insert for the same identity at the same time —
+two tabs, a retried request, a proxy replaying one. The insert therefore runs inside a savepoint whose
+``IntegrityError`` is the second caller losing that race, exactly as ``load_or_create_profile`` in
+``app/deps.py`` treats a racing first contact: releasing the savepoint undoes only the failed insert,
+the row the winner committed is read back, and this call updates it as the ``system`` row it is
+instead of one of two identical requests coming back as a 500.
+
 Every change writes a ``task_events`` row with ``actor="system"`` and a before/after snapshot, so the
 ownership rule can be audited after the fact rather than being taken on trust. The whole replacement
 runs in one transaction, so a partial write cannot leave the roadmap half-updated.
@@ -33,22 +53,54 @@ from datetime import timezone
 from typing import Any
 
 from sqlalchemy import select
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
+from app.models.roadmap import MaterialTemplate, RoadmapPhase
 from app.models.task import RoadmapTask, ScheduleOrigin, TaskEvent, TaskOrigin, TaskStatus
+
+
+class InvalidTaskPayload(ValueError):
+    """A recomputation that cannot be applied, with the reason in the message.
+
+    Raised before anything is written, so a rejected payload leaves the roadmap exactly as it was and
+    the route can answer with a 4xx: a payload that contradicts itself, one that names a material key
+    the definition does not carry, one that names a phase it does not carry, and the residue of those
+    checks losing a race with a concurrent definition change. None of them is a server fault, so none
+    of them may reach the applicant as a 500 — the path an unknown material key used to take, where a
+    foreign key caught what a check should have said out loud.
+    """
 
 
 def _row_value(row: Any, name: str, default: Any = None) -> Any:
     """Read one field from a payload row, which may be a schema object or a plain mapping.
 
     The router passes ``TaskIn`` instances and the tests pass dicts, and both spell a field the same
-    way. A missing key answers with the default rather than raising: ``None`` is the honest answer for
-    a date the client computed as unknown, and getting that wrong would be a 500 on a field an
-    applicant never filled in.
+    way. A missing key answers with the default rather than raising, and ``_carries`` is what tells
+    the two apart: the default is for a field the payload never mentions, while a value the payload
+    does state — including an explicit ``None`` — is applied as it stands.
     """
     if isinstance(row, Mapping):
         return row.get(name, default)
     return getattr(row, name, default)
+
+
+def _carries(row: Any, name: str) -> bool:
+    """True when the payload states this field, as opposed to leaving it to a default.
+
+    The distinction is what makes a recomputation a partial update. A payload that omits a date is
+    silent about that date, so the row keeps the one it has; sending ``null`` is the claim that the
+    row has no date, and that is what clears it. Without the distinction, a caller that computed a
+    suggestion date but no deadline would silently wipe a deadline the row held — a loss the caller
+    cannot see in its own payload, which is exactly the kind of state change this batch exists to
+    prevent.
+    """
+    if isinstance(row, Mapping):
+        return name in row
+    fields_set = getattr(row, "model_fields_set", None)
+    if fields_set is not None:
+        return name in fields_set
+    return hasattr(row, name)
 
 
 def _payload_key(row: Any) -> tuple[str, str]:
@@ -113,23 +165,92 @@ def _history(
     )
 
 
+def _reject_a_contradiction(identities: Sequence[tuple[str, str]], applicable: set[str]) -> None:
+    """Refuse a payload whose rows claim keys its own ``applicable_keys`` denies.
+
+    See the module docstring: the two lists describe one fact, and honouring both in one call is what
+    makes the outcome depend on whether the row happened to exist already.
+    """
+    contradictory = sorted({key for key, _ in identities if key not in applicable})
+    if contradictory:
+        raise InvalidTaskPayload(
+            f"rows carries material key(s) {contradictory} that applicable_keys does not list: a row "
+            "the caller computed is itself the statement that the key is applicable this round, so "
+            "the two lists disagree. Listing every row's key in applicable_keys resolves it."
+        )
+
+
+def _reject_unknown_references(
+    session: Session, identities: Sequence[tuple[str, str]], rows: Sequence[Any]
+) -> None:
+    """Refuse keys and phases the definition does not carry, before the columns would.
+
+    ``material_key`` is a foreign key, so an unknown one used to surface as an ``IntegrityError`` and
+    a 500; ``phase`` has no foreign key, so an unknown one was simply stored and the row sorted
+    nowhere. Both are mistakes the caller can act on, and both are checked here rather than in the
+    schema because they are facts about the rows the definition currently holds, not about the shape
+    of a payload — the phase list is data transcribed from ``web/lib/roadmap.ts``, so a hand-written
+    enum naming it would go stale the first time a phase was added.
+    """
+    keys = sorted({key for key, _ in identities})
+    if keys:
+        known_keys = set(
+            session.scalars(select(MaterialTemplate.key).where(MaterialTemplate.key.in_(keys)))
+        )
+        unknown_keys = [key for key in keys if key not in known_keys]
+        if unknown_keys:
+            raise InvalidTaskPayload(
+                f"material key(s) {unknown_keys} name no material_template: the roadmap definition "
+                "does not carry them, so a row for them could never be rendered."
+            )
+
+    phases = sorted({str(_row_value(row, "phase", "")) for row in rows})
+    if phases:
+        known_phases = set(
+            session.scalars(select(RoadmapPhase.key).where(RoadmapPhase.key.in_(phases)))
+        )
+        unknown_phases = [phase for phase in phases if phase not in known_phases]
+        if unknown_phases:
+            raise InvalidTaskPayload(
+                f"phase(s) {unknown_phases} name no roadmap phase: a row is placed by the phase the "
+                "definition serves, and an unknown one would put it outside the timeline."
+            )
+
+
 def _apply_dates(row: RoadmapTask, payload: Any) -> None:
     """Move the fields the recomputation owns, and leave the applicant's marks alone.
 
-    The four that move are ``phase``, ``suggested_at``, ``due_at`` and ``schedule_origin``: the phase
-    is derived from the definition the client recomputed against, and the schedule origin says whether
-    the date came from a suggestion or an official deadline, so it travels with the dates. ``status``
-    and ``completed_at`` are the applicant's marks and are deliberately absent here.
+    The four that can move are ``phase``, ``suggested_at``, ``due_at`` and ``schedule_origin``: the
+    phase is derived from the definition the client recomputed against, and the schedule origin says
+    whether the date came from a suggestion or an official deadline, so it travels with the dates.
+    ``status`` and ``completed_at`` are the applicant's marks and are deliberately absent here.
 
-    The payload's ``program_id`` is not applied: it is half of the identity a row was matched by, so
-    writing it would rename a row rather than update it.
+    A field the payload does not carry is left where it is; see ``_carries``. ``program_id`` is not
+    applied at all: it is half of the identity a row was matched by, so writing it would rename a row
+    rather than update it.
     """
-    row.phase = str(_row_value(payload, "phase", row.phase))
-    row.suggested_at = _row_value(payload, "suggested_at", None)
-    row.due_at = _row_value(payload, "due_at", None)
-    row.schedule_origin = str(
-        _row_value(payload, "schedule_origin", ScheduleOrigin.SUGGESTED) or ScheduleOrigin.SUGGESTED
-    )
+    if _carries(payload, "phase"):
+        row.phase = str(_row_value(payload, "phase", row.phase))
+    if _carries(payload, "suggested_at"):
+        row.suggested_at = _row_value(payload, "suggested_at")
+    if _carries(payload, "due_at"):
+        row.due_at = _row_value(payload, "due_at")
+    if _carries(payload, "schedule_origin"):
+        row.schedule_origin = str(
+            _row_value(payload, "schedule_origin", ScheduleOrigin.SUGGESTED)
+            or ScheduleOrigin.SUGGESTED
+        )
+
+
+def _reload(session: Session, client_id: str, identity: tuple[str, str]) -> RoadmapTask | None:
+    """Read one row back by identity, after a failed insert released its savepoint."""
+    return session.execute(
+        select(RoadmapTask).where(
+            RoadmapTask.client_id == client_id,
+            RoadmapTask.material_key == identity[0],
+            RoadmapTask.program_id == identity[1],
+        )
+    ).scalar_one_or_none()
 
 
 def replace_system_tasks(
@@ -140,23 +261,29 @@ def replace_system_tasks(
 ) -> dict:
     """Replace the rows this client generated, and only those.
 
-    Returns ``{"created": n, "updated": n, "removed": n, "kept": n}``. ``kept`` counts every existing
-    row that survived, which is both the ``user``/``agent`` rows nothing may touch and the ``system``
-    rows whose key the caller still lists as applicable without sending a row for them.
+    Returns ``{"created": n, "updated": n, "removed": n, "kept": n}``. The four counts are disjoint:
+    ``created`` and ``updated`` are the rows this call wrote, ``removed`` the rows it deleted, and
+    ``kept`` the existing rows it left exactly as they were — every ``user``/``agent`` row, which the
+    rule forbids it to touch, and every ``system`` row whose key the caller still lists as applicable
+    without sending a row for it. Nothing is counted twice, so the four together describe the call.
 
     The caller states ``applicable_keys`` separately from ``rows`` on purpose; see the module docstring
-    for the deletion it prevents. The whole replacement commits once, at the end.
+    for the deletion that prevents and for why a key only one of the two lists carries is rejected
+    rather than interpreted. The whole replacement commits once, at the end.
     """
     applicable = set(applicable_keys)
+    identities = [_payload_key(payload) for payload in rows]
+    _reject_a_contradiction(identities, applicable)
+    _reject_unknown_references(session, identities, rows)
 
     existing = list(
         session.execute(select(RoadmapTask).where(RoadmapTask.client_id == client_id)).scalars()
     )
     by_identity = {(row.material_key, row.program_id): row for row in existing}
+    written: set[str] = set()
 
     created = updated = 0
-    for payload in rows:
-        identity = _payload_key(payload)
+    for payload, identity in zip(rows, identities):
         row = by_identity.get(identity)
         if row is None:
             row = RoadmapTask(
@@ -169,11 +296,32 @@ def replace_system_tasks(
                 origin=TaskOrigin.SYSTEM,
             )
             _apply_dates(row, payload)
-            session.add(row)
-            by_identity[identity] = row
-            _history(session, client_id, row.id, "created", None, _snapshot(row))
-            created += 1
-            continue
+            # Everything an earlier row left pending is flushed first, so the savepoint below can
+            # only ever undo this row's own insert: a pending event from an earlier row would
+            # otherwise be emitted inside this savepoint and expunged with it.
+            session.flush()
+            try:
+                with session.begin_nested():
+                    session.add(row)
+                    session.flush()
+            except IntegrityError as exc:
+                # Another recomputation for this subject inserted this identity between the snapshot
+                # above and this insert. The savepoint has undone only this insert, and the winner
+                # has committed, so the row is read back and handled as an existing one.
+                row = _reload(session, client_id, identity)
+                if row is None:
+                    raise InvalidTaskPayload(
+                        f"the row for material key {identity[0]!r} and program {identity[1]!r} could "
+                        "not be written: the subject or the material it names is no longer in the "
+                        f"database ({exc.orig})"
+                    ) from exc
+                by_identity[identity] = row
+            else:
+                by_identity[identity] = row
+                _history(session, client_id, row.id, "created", None, _snapshot(row))
+                created += 1
+                written.add(row.id)
+                continue
 
         if row.origin != TaskOrigin.SYSTEM:
             # A human's or the advisor's row. It is not the recomputation's to change, so it is not
@@ -184,8 +332,10 @@ def replace_system_tasks(
         _apply_dates(row, payload)
         _history(session, client_id, row.id, "rescheduled", before, _snapshot(row))
         updated += 1
+        written.add(row.id)
 
     removed = 0
+    removed_ids: set[str] = set()
     for row in existing:
         # Only a system row, and only when the caller said the key itself is no longer applicable.
         # A row the caller never mentioned — including every user and agent row — falls through here.
@@ -193,7 +343,13 @@ def replace_system_tasks(
             continue
         _history(session, client_id, row.id, "removed", _snapshot(row), None)
         session.delete(row)
+        removed_ids.add(row.id)
         removed += 1
 
     session.commit()
-    return {"created": created, "updated": updated, "removed": removed, "kept": len(existing) - removed}
+    # What the call left alone, read off the snapshot rather than assumed: a row another
+    # recomputation inserted is not one of this call's existing rows and is never counted here, so
+    # the count cannot go wrong the way `len(existing) - removed` did when a row was both updated and
+    # subtracted.
+    kept = len({row.id for row in existing} - written - removed_ids)
+    return {"created": created, "updated": updated, "removed": removed, "kept": kept}

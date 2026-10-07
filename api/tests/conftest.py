@@ -5,7 +5,12 @@ from app.db import SessionLocal, engine
 from app.models.client import Client
 from app.models.roadmap import MaterialTemplate, RoadmapPhase
 from app.models.source import Source
+from app.models.task import RoadmapTask
 from app.seed_roadmap import GS_SOURCE_URL, seed_roadmap
+
+# The column names a displaced task row is snapshotted by, taken from the table rather than written
+# out, so a column added later is carried by the restore without anyone remembering to add it here.
+TASK_COLUMNS = tuple(column.key for column in RoadmapTask.__table__.columns)
 
 
 @pytest.fixture
@@ -40,13 +45,34 @@ def require_db():
         pytest.skip("database container is not running")
 
 
-def clear_the_roadmap_definition(session) -> None:
+def clear_the_roadmap_definition(session) -> list[dict]:
     """Delete every phase and material, and the Genuine Student source.
 
     The order is not cosmetic. ``material_templates.phase`` is RESTRICT, so the database refuses to
     drop a phase that still has materials, and ``material_templates.source_id`` points at the source
     the visa materials cite, so the source can only go once those materials have.
+
+    ``roadmap_tasks.material_key`` is RESTRICT as well, and that is a defect rather than an ordering
+    detail: a single task row left in the shared development database — by a probe script that failed
+    before its cleanup, or by the frontend once it starts writing rows — used to abort the material
+    delete with ``roadmap_tasks_material_key_fkey`` and take the whole run down with it, including
+    ``test_health.py``, which never touches the database. Measured: one row for an existing subject,
+    then ``pytest tests/test_health.py -q`` -> ``ERROR tests/test_health.py::test_health_reports_ok
+    ... ForeignKeyViolation``.
+
+    The subject sweep below cannot prevent that: it deletes only the subjects a test created inside
+    the session, and the row in question belongs to a subject that was already there. So the task rows
+    that stand in the way of the definition are removed here, before the materials, and returned as
+    plain column values so the session-scoped fixture can put them back when it restores the
+    definition. They are the developer's rows, and a test run that quietly deleted them would violate
+    the same "leave the shared database as it was found" rule the subject sweep follows.
     """
+    tasks = list(session.scalars(select(RoadmapTask)))
+    displaced = [{name: getattr(task, name) for name in TASK_COLUMNS} for task in tasks]
+    for task in tasks:
+        session.delete(task)
+    session.flush()
+
     for row in session.scalars(select(MaterialTemplate)):
         session.delete(row)
     session.flush()
@@ -59,6 +85,24 @@ def clear_the_roadmap_definition(session) -> None:
     if source is not None:
         session.delete(source)
     session.flush()
+    return displaced
+
+
+def restore_roadmap_tasks(session, displaced: list[dict]) -> None:
+    """Put back the task rows the definition sweep had to remove, as it found them.
+
+    Called only after ``seed_roadmap`` has restored the definition, because a task row names a
+    material that has to exist. A row whose subject is gone by now is skipped rather than restored:
+    the subject sweep cascades a test's own subjects away, and re-inserting a row for a deleted client
+    would fail the foreign key and turn the teardown into the failure it exists to prevent. A row that
+    is somehow already back is left alone, so the restore cannot collide with itself.
+    """
+    for values in displaced:
+        if session.get(Client, values["client_id"]) is None:
+            continue
+        if session.get(RoadmapTask, values["id"]) is not None:
+            continue
+        session.add(RoadmapTask(**values))
 
 
 @pytest.fixture
@@ -80,7 +124,13 @@ def clear_the_roadmap_definition_after_the_test():
 
     ``clear_the_roadmap_definition`` is the cleaner: it deletes the materials, then the phases, then
     the Genuine Student source, in that order, because the database refuses a phase that still has
-    materials and a source that materials still point at.
+    materials and a source that materials still point at. It also removes any task row that names one
+    of those materials, and returns them; this fixture ignores the return value because it has no way
+    to restore them — the materials they point at are deleted until the session ends, and a task row
+    cannot exist without its material. The rows a developer left behind are displaced by the
+    session-scoped sweep before the first test is collected, so there is nothing left here for this
+    mid-run sweep to lose; only rows a test creates mid-run, which belong to subjects the same run
+    deletes anyway, can be reached.
 
     An unreachable database means "no rows were written", not "skip this test", the same rule
     ``remove_the_clients_these_tests_create`` follows: failing here would turn a container that is
@@ -123,6 +173,12 @@ def unseed_the_roadmap_definition_for_the_run_and_restore_it_afterwards():
     definition has to stay empty for the whole run, because a seeded database reaching
     ``test_roadmap_model.py`` or ``test_sources.py`` is what breaks those two modules. The restore
     happens here, once, when every test has finished.
+
+    The task rows the sweep had to displace go back here too, for the same reason the definition
+    does. ``clear_the_roadmap_definition`` returns them, and this is the only place that can restore
+    them: the row names a material, so it can only be re-inserted after ``seed_roadmap`` has put the
+    materials back. A run therefore leaves a developer's own task rows exactly where it found them,
+    which is what makes the sweep's new deletion safe rather than destructive.
     """
     # The yield is unconditional on purpose. A fixture that returns before its yield is a generator
     # that ends early, and pytest reports that as "did not yield a value" and errors out of every
@@ -130,15 +186,17 @@ def unseed_the_roadmap_definition_for_the_run_and_restore_it_afterwards():
     # skipping it. An unreachable database means "no rows were written", not "skip this test", the
     # same rule ``remove_the_clients_these_tests_create`` below follows.
     reachable = database_is_reachable()
+    displaced_tasks: list[dict] = []
     if reachable:
         with SessionLocal() as session:
-            clear_the_roadmap_definition(session)
+            displaced_tasks = clear_the_roadmap_definition(session)
             session.commit()
     yield
     if not reachable or not database_is_reachable():
         return
     with SessionLocal() as session:
         seed_roadmap(session)
+        restore_roadmap_tasks(session, displaced_tasks)
         session.commit()
 
 
