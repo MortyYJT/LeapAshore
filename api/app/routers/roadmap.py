@@ -10,8 +10,8 @@ from app.models.roadmap import MaterialTemplate, RoadmapPhase
 from app.models.source import Source
 from app.models.task import RoadmapTask
 from app.schemas.roadmap import MaterialOut, PhaseOut, RoadmapDefinition, SourceRef
-from app.schemas.task import TaskOut, TaskReplaceRequest, TaskReplaceResult
-from app.services.roadmap_tasks import InvalidTaskPayload, replace_system_tasks
+from app.schemas.task import TaskOut, TaskPatch, TaskReplaceRequest, TaskReplaceResult
+from app.services.roadmap_tasks import InvalidTaskPayload, replace_system_tasks, update_task
 
 router = APIRouter(prefix="/api/roadmap", tags=["roadmap"])
 
@@ -160,3 +160,42 @@ def replace_tasks(
         raise HTTPException(
             status_code=422, detail=str(exc), headers=dict(response.headers)
         ) from exc
+
+
+@router.patch("/tasks/{task_id}", response_model=TaskOut)
+def update_one_task(
+    task_id: str,
+    payload: TaskPatch,
+    client_id: Annotated[str, Depends(get_client_id)],
+    session: Annotated[Session, Depends(get_session)],
+) -> RoadmapTask:
+    """Apply the applicant's edit to one of their own rows.
+
+    This is the per-row door: the applicant changes a task's status or its dates, and the row becomes
+    theirs. `PUT /api/roadmap/tasks` is the other one — the recomputation's — and the two differ in
+    exactly the way the ownership rule turns on: a recomputation may only ever replace the rows it
+    generated, while this route's whole point is to take one row out of its reach.
+
+    The row is looked up by `(id, client_id)` together, so another subject's task is a miss. The route
+    answers that miss with a 404 whose text is the same as for an id that exists nowhere: a caller that
+    could tell the two apart could ask whether a given task id belongs to somebody else, which is a
+    question this API should not answer. The response does carry the caller's own cookie, because
+    `get_client_id` sets it on every response; that identifies the caller and says nothing about the
+    row.
+
+    No subject is created here, unlike `replace_tasks`: a row cannot exist without its subject, so a
+    request that finds no row has nothing to write and no `clients` row to create. Creating one for a
+    404 would leave a subject behind that no cookie-bearing request ever asked for.
+
+    The service commits once and returns the row; the status, the dates and the completion time it
+    reports are the values it stored, not the ones the caller sent. A payload that names no field, or
+    that claims `origin`, `materialKey` or `phase`, is refused by `TaskPatch` with a 422 before the
+    service is reached.
+    """
+    task = update_task(session, client_id, task_id, payload)
+    if task is None:
+        raise HTTPException(
+            status_code=404,
+            detail="no task with this id belongs to the subject this cookie names",
+        )
+    return task

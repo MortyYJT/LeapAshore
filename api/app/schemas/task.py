@@ -14,7 +14,10 @@ that fallback would otherwise delete the visa rows and lose the applicant's comp
 and cannot claim one is its own either: everything a recomputation writes is a ``system`` row, which
 is the server's own default for the column. ``status`` and ``completed_at`` are absent for the same
 reason on the other side of the rule: those are the applicant's marks, set through the per-row edit
-route, and a recomputation that could send them could untick a finished requirement.
+route, and a recomputation that could send them could untick a finished requirement. ``TaskPatch`` is
+that route's payload and reads as the mirror image: it carries the status and the dates, and it refuses
+``origin``, ``materialKey`` and ``phase``, because editing one row is neither a claim of ownership nor
+a change of identity or place.
 
 What this module can decide on its own it decides here — the domain of ``schedule_origin``, and that a
 row's dates are optional rather than defaulted. What it cannot is whether a ``materialKey`` or a
@@ -24,9 +27,9 @@ them against the tables and answers 422 rather than letting a foreign key turn t
 
 from datetime import date, datetime
 
-from pydantic import BaseModel, ConfigDict, Field
+from pydantic import BaseModel, ConfigDict, Field, model_validator
 
-from app.models.task import ScheduleOrigin
+from app.models.task import ScheduleOrigin, TaskStatus
 from app.schemas.common import _camel
 
 # Same wire name as the column, and the empty string rather than None: the uniqueness constraint is
@@ -62,6 +65,55 @@ class TaskIn(BaseModel):
     suggested_at: date | None = None
     due_at: date | None = None
     schedule_origin: ScheduleOrigin = ScheduleOrigin.SUGGESTED
+
+
+class TaskPatch(BaseModel):
+    """The applicant's own edit of one row: its status and its dates.
+
+    This is the second door onto `roadmap_tasks`, and it is deliberately narrow. ``origin`` is absent
+    for the reason ``TaskIn`` omits it — a client cannot claim a row is a human's or the advisor's
+    decision — and on this route the absence does more work than that: the service sets ``origin`` to
+    ``user`` itself, because the applicant touching a row is what claims it, and a caller that could
+    send ``origin`` could claim to be the advisor instead. ``materialKey`` and ``phase`` are absent as
+    well: a row's identity and its place in the timeline belong to the recomputation and the
+    definition, and a per-row edit is neither. ``extra="forbid"`` turns any of them into a 422 naming
+    the field rather than a value silently dropped.
+
+    The dates keep the rule ``TaskIn`` states: a field the payload does not carry leaves the row's date
+    alone, while an explicit ``null`` says the row has no date. ``status`` is not nullable, so a
+    ``null`` there is refused rather than read as "leave it", and a patch that names none of the three
+    fields is refused rather than applied as a no-op. That last rule is not tidiness: every accepted
+    edit claims the row for the applicant, a claimed row is one no recomputation may touch again, and
+    a caller that submitted an empty patch would therefore freeze the row against the recomputation
+    that keeps its dates current.
+    """
+
+    model_config = ConfigDict(alias_generator=_camel, populate_by_name=True, extra="forbid")
+
+    status: TaskStatus | None = None
+    suggested_at: date | None = None
+    due_at: date | None = None
+
+    @model_validator(mode="after")
+    def _must_state_something(self) -> "TaskPatch":
+        """Refuse a payload that states no field, and a status that is not a status.
+
+        ``model_fields_set`` is what separates an omitted field from an explicit ``null`` here, the
+        same distinction the service makes for the dates, and the only way to see it: both spellings
+        leave the attribute equal to its default, so the value alone cannot tell them apart.
+        """
+        if not self.model_fields_set:
+            raise ValueError(
+                "a patch must carry at least one of status, suggestedAt or dueAt: an edit that states "
+                "nothing cannot be told apart from an accident, and accepting it would claim the row "
+                "for the user without the user having said anything."
+            )
+        if "status" in self.model_fields_set and self.status is None:
+            raise ValueError(
+                "status cannot be null: a row always holds pending, in_progress, completed or "
+                "skipped, and an omitted status is how 'leave it as it is' is spelled."
+            )
+        return self
 
 
 class TaskReplaceRequest(BaseModel):

@@ -45,11 +45,20 @@ instead of one of two identical requests coming back as a 500.
 Every change writes a ``task_events`` row with ``actor="system"`` and a before/after snapshot, so the
 ownership rule can be audited after the fact rather than being taken on trust. The whole replacement
 runs in one transaction, so a partial write cannot leave the roadmap half-updated.
+
+``update_task`` is the module's other writer, and it is the same rule seen from the applicant's side.
+It is the per-row edit: the applicant changes one row's status or dates, so the row is looked up by
+``(id, client_id)`` together — a row belonging to another subject is a miss rather than a success, and
+the two cases are deliberately indistinguishable to the caller — and the edit claims the row by setting
+``origin`` to ``user``, which is what makes a later recomputation leave it alone. A row the advisor
+already owns is the one exception: changing its status does not transfer its provenance, because the
+advisor still owns why the row exists. Its history is written with ``actor="user"``, so the two doors
+onto a row are told apart in the audit trail rather than merged into one "something changed".
 """
 
 import uuid
 from collections.abc import Mapping, Sequence
-from datetime import timezone
+from datetime import datetime, timezone
 from typing import Any
 
 from sqlalchemy import select
@@ -150,14 +159,20 @@ def _history(
     event: str,
     before: dict | None,
     after: dict | None,
+    actor: str = TaskOrigin.SYSTEM,
 ) -> None:
-    """Append one entry to the audit trail. ``actor`` is always the client's own recomputation."""
+    """Append one entry to the audit trail, attributed to whoever made the change.
+
+    ``actor`` defaults to the client's own recomputation, which is every call in
+    ``replace_system_tasks``; ``update_task`` passes ``TaskOrigin.USER`` instead, so an entry says
+    which door the change came through and not merely that a row moved.
+    """
     session.add(
         TaskEvent(
             id=str(uuid.uuid4()),
             client_id=client_id,
             task_id=task_id,
-            actor=TaskOrigin.SYSTEM,
+            actor=actor,
             event=event,
             before=before,
             after=after,
@@ -353,3 +368,88 @@ def replace_system_tasks(
     # subtracted.
     kept = len({row.id for row in existing} - written - removed_ids)
     return {"created": created, "updated": updated, "removed": removed, "kept": kept}
+
+
+def _name_the_user_edit(before: dict, after: dict) -> str | None:
+    """The event name for one edit, from the field that moved, or ``None`` if none did.
+
+    The three names are the ones the design's event vocabulary carries for a row that already exists:
+    ``status_changed`` when the status moved, ``rescheduled`` when only a date did, and ``reassigned``
+    when the only thing that changed is the row's owner — which is what the ``system``-to-``user`` flip
+    is. The order is the order of consequence: an edit that moves two of them is recorded once, under
+    the first, with all of them in the snapshot.
+    """
+    if before["status"] != after["status"]:
+        return "status_changed"
+    if before["suggested_at"] != after["suggested_at"] or before["due_at"] != after["due_at"]:
+        return "rescheduled"
+    if before["origin"] != after["origin"]:
+        return "reassigned"
+    return None
+
+
+def update_task(
+    session: Session, client_id: str, task_id: str, patch: Any
+) -> RoadmapTask | None:
+    """Apply one applicant's edit to one of their own rows, or miss.
+
+    Returns the row it wrote, or ``None`` when no row with that id belongs to this subject. The lookup
+    asks the two questions as one — ``id`` and ``client_id`` in the same ``WHERE`` — because a route
+    that read the row by id and only then compared owners would already have another subject's row in
+    its session, and the difference between "there is no such row" and "that one is not yours" is
+    exactly the difference a caller should not be able to read. Both are the same miss, and the route
+    serves both as the same 404.
+
+    The fields the applicant owns are ``status`` and the two dates. ``origin`` is set to ``user`` as
+    soon as an edit lands, because that is what "the applicant owns this row now" means and it is what
+    makes the next recomputation skip the row (see ``replace_system_tasks``) — with one exception: a
+    row that is already ``agent`` keeps its origin, since the advisor still owns why the row exists and
+    a status change is not a transfer of provenance. ``program_id``, ``material_key`` and ``phase`` are
+    not applied at all; the schema refuses them before this function sees a payload, the same way it
+    refuses ``origin``.
+
+    ``completed_at`` travels with ``status`` rather than with the caller: entering ``completed`` stamps
+    it with the moment of the edit, leaving ``completed`` clears it, and a status that does not move
+    leaves it alone. Only a move writes it, so re-sending ``completed`` for a row that is already
+    completed does not restamp history with a later moment. A date the payload does not carry is left
+    where it is; an explicit ``null`` clears it; see ``_carries``.
+
+    One ``TaskEvent`` with ``actor="user"`` records the edit when a field moved, snapshotted by the
+    same ``_snapshot`` the recomputation uses, so both doors onto a row are read the same way in the
+    audit trail. A request that moved nothing writes nothing: the schema refuses a patch that states no
+    field, so the only way to reach here with no change is a caller re-sending a value the row already
+    holds, and an entry whose ``before`` and ``after`` are equal would say "something happened" about a
+    moment when nothing did. The write commits once, at the end.
+    """
+    row = session.execute(
+        select(RoadmapTask).where(
+            RoadmapTask.id == task_id,
+            RoadmapTask.client_id == client_id,
+        )
+    ).scalar_one_or_none()
+    if row is None:
+        return None
+
+    before = _snapshot(row)
+    if _carries(patch, "status"):
+        status = str(_row_value(patch, "status"))
+        if status != row.status:
+            if status == TaskStatus.COMPLETED:
+                row.completed_at = datetime.now(timezone.utc)
+            elif row.status == TaskStatus.COMPLETED:
+                row.completed_at = None
+            row.status = status
+    if _carries(patch, "suggested_at"):
+        row.suggested_at = _row_value(patch, "suggested_at")
+    if _carries(patch, "due_at"):
+        row.due_at = _row_value(patch, "due_at")
+    if row.origin != TaskOrigin.AGENT:
+        row.origin = TaskOrigin.USER
+
+    after = _snapshot(row)
+    event = _name_the_user_edit(before, after)
+    if event is not None:
+        _history(session, client_id, row.id, event, before, after, actor=TaskOrigin.USER)
+
+    session.commit()
+    return row
