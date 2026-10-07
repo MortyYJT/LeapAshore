@@ -16,11 +16,16 @@ cite a page, and they carry it.
 `detail` and a phase's `subtitle` follow their columns and stay nullable. `NULL` means "this
 definition does not carry that copy", which is not the same as an empty string, and collapsing the
 two would turn an unknown into a claim.
+
+`tasks` is the one part of the response that is not shared configuration. It is the caller's own
+rows, defined in `app/schemas/task.py`, and it is why the route that serves this model resolves a
+subject cookie.
 """
 
-from pydantic import BaseModel, ConfigDict
+from pydantic import BaseModel, ConfigDict, Field
 
 from app.schemas.common import _camel
+from app.schemas.task import TaskOut
 
 
 class SourceRef(BaseModel):
@@ -83,12 +88,19 @@ class MaterialOut(BaseModel):
 
 
 class RoadmapDefinition(BaseModel):
-    """The whole definition in one response.
+    """The whole definition in one response, plus the caller's own rows.
 
-    Both lists are already in the order the timeline reads them, and a consumer renders them as
-    they arrive: `phases` from the earliest suggested date to the latest, `materials` grouped by
-    that same phase order and ordered within each phase.
+    Both definition lists are already in the order the timeline reads them, and a consumer renders
+    them as they arrive: `phases` from the earliest suggested date to the latest, `materials` grouped
+    by that same phase order and ordered within each phase.
+
+    `tasks` carries the caller's rows, which are the opposite kind of data to the other two: the
+    definition is shared configuration, identical for every caller, while a task row belongs to one
+    subject and is the reason this route now reads the subject cookie. The field defaults to an empty
+    list so that a caller which only has a definition — the tests that seed one and read it back, or
+    any consumer written before this batch — gets the same shape without supplying anything.
     """
 
     phases: list[PhaseOut]
     materials: list[MaterialOut]
+    tasks: list[TaskOut] = Field(default_factory=list)

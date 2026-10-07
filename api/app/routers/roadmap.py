@@ -5,9 +5,13 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.db import get_session
+from app.deps import get_client_id
 from app.models.roadmap import MaterialTemplate, RoadmapPhase
 from app.models.source import Source
+from app.models.task import RoadmapTask
 from app.schemas.roadmap import MaterialOut, PhaseOut, RoadmapDefinition, SourceRef
+from app.schemas.task import TaskOut, TaskReplaceRequest, TaskReplaceResult
+from app.services.roadmap_tasks import replace_system_tasks
 
 router = APIRouter(prefix="/api/roadmap", tags=["roadmap"])
 
@@ -19,8 +23,11 @@ UNKNOWN_PHASE_ORDER = 1 << 30
 
 
 @router.get("", response_model=RoadmapDefinition)
-def read_roadmap(session: Annotated[Session, Depends(get_session)]) -> RoadmapDefinition:
-    """Serve the whole timeline definition: the phases and every material under them.
+def read_roadmap(
+    client_id: Annotated[str, Depends(get_client_id)],
+    session: Annotated[Session, Depends(get_session)],
+) -> RoadmapDefinition:
+    """Serve the definition plus the caller's own task rows: the whole timeline in one response.
 
     The order is the timeline, not the alphabet. `sort_order` runs from the earliest suggested date
     to the latest — selection at 330 days before intake down to the visa at 30 — so a consumer
@@ -38,11 +45,12 @@ def read_roadmap(session: Annotated[Session, Depends(get_session)]) -> RoadmapDe
     be worse than reporting none. `source_id` is `NULL` for all of them, so the extra lookup only
     runs for the two visa materials that have one.
 
-    Tasks land in the same response in the next batch. They are per-applicant and will need the
-    subject cookie this route deliberately does not have: the definition is shared configuration,
-    identical for every caller, so reading or minting a cookie here would hand a visitor a subject
-    they never asked for and imply the timeline is theirs. Nothing in this function touches the
-    client dependency for that reason.
+    `tasks` is the applicant's own half, and it arrives in the same response so the timeline can be
+    rendered without a second round trip. It is not shared configuration the way the other two lists
+    are, which is what brings `get_client_id` into this route: the cookie identifies the subject the
+    tasks belong to, and the response sets it because that is how a first-time visitor gets a subject
+    at all. Reading it here does not write anything — a fresh subject simply has no tasks yet, and
+    the row is created by the first write, not by a read.
     """
     # The phase order is decided here, in one place: `key` is only a tiebreak, so two phases that
     # ever shared an order would still come back deterministically.
@@ -85,6 +93,46 @@ def read_roadmap(session: Annotated[Session, Depends(get_session)]) -> RoadmapDe
             )
         )
 
+    # The applicant's rows, ordered by `(material_key, program_id)` so the list is deterministic.
+    # `phase` would be the natural order for display, but it is redundant with the definition's own
+    # phase order and can be stale on a row a human edited, so the stable identity is what this
+    # orders by and the consumer places the rows against the definition it already has.
+    tasks = list(
+        session.execute(
+            select(RoadmapTask)
+            .where(RoadmapTask.client_id == client_id)
+            .order_by(RoadmapTask.material_key, RoadmapTask.program_id)
+        ).scalars()
+    )
+
     return RoadmapDefinition(
-        phases=[PhaseOut.model_validate(phase) for phase in phases], materials=out
+        phases=[PhaseOut.model_validate(phase) for phase in phases],
+        materials=out,
+        tasks=[TaskOut.model_validate(task) for task in tasks],
+    )
+
+
+@router.put("/tasks", response_model=TaskReplaceResult)
+def replace_tasks(
+    payload: TaskReplaceRequest,
+    client_id: Annotated[str, Depends(get_client_id)],
+    session: Annotated[Session, Depends(get_session)],
+) -> dict:
+    """Replace only the rows the client itself generated.
+
+    The caller states which material keys are applicable this round, because "absent from this
+    payload" and "no longer applicable" are different claims: treating the first as the second would
+    delete the visa tasks whenever the definition was served from the built-in fallback, and the next
+    run with the real definition would recreate them as `pending` with the applicant's completed
+    marks gone.
+
+    The counts come back — `created`, `updated`, `removed`, `kept` — rather than the rows, because the
+    caller just computed them: what it cannot compute is what happened to the rows it does not own,
+    and `kept` is that number. The write commits once, inside `replace_system_tasks`.
+    """
+    return replace_system_tasks(
+        session,
+        client_id,
+        applicable_keys=payload.applicable_keys,
+        rows=payload.rows,
     )
