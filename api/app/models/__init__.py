@@ -1,3 +1,9 @@
+from app.models.application import (
+    Application,
+    ApplicationOrigin,
+    ApplicationStatus,
+    ApplicationTier,
+)
 from app.models.client import Client, Profile
 from app.models.program import Program, ProgramPrerequisite, University
 from app.models.roadmap import MaterialTemplate, RoadmapPhase
@@ -11,6 +17,10 @@ from app.models.task import (
 )
 
 __all__ = [
+    "Application",
+    "ApplicationOrigin",
+    "ApplicationStatus",
+    "ApplicationTier",
     "Client",
     "MaterialTemplate",
     "Profile",
