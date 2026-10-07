@@ -30,6 +30,17 @@ export interface PersistedState {
    */
   profile: Profile;
   portfolio: PortfolioItem[];
+  /**
+   * A local copy of the ticked materials, and no longer the answer to "what is ticked".
+   *
+   * Since M2b a tick is a `status` on the applicant's own `roadmap_tasks` row, so the server is the
+   * source of truth and `web/app/page.tsx` reads the ticks off the rows it fetched rather than from
+   * here. Nothing in the app reads or writes this field any more; it is kept in the persisted shape
+   * because the key is in the storage contract this module's tests pin, and because dropping it from
+   * `loadState` would make an older browser's copy meaningless to read rather than simply unused.
+   * Do not reintroduce it as a render source: a local tick the server never took is indistinguishable
+   * on screen from one it did, which is the divergence the write path reports instead.
+   */
   completedMaterials: string[];
   /** Downscaled data URL for the account avatar, or null to use the default glyph. */
   avatar: string | null;

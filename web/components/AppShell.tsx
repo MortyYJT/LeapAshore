@@ -35,9 +35,12 @@ interface Props {
   profile: Profile;
   roadmap: Roadmap;
   portfolio: PortfolioItem[];
-  completedMaterials: string[];
   avatar: string | null;
-  onToggleMaterial: (materialId: string) => void;
+  /**
+   * Tick or untick one material. `checked` is the state the control is moving to, so the caller does
+   * not have to re-derive it from a roadmap that may already have been recomputed.
+   */
+  onToggleMaterial: (materialId: string, checked: boolean) => void;
   onUpdateProfile: (patch: Partial<Profile>) => void;
   onAvatarChange: (dataUrl: string | null) => void;
   onClear: () => void;
@@ -51,6 +54,15 @@ interface Props {
    * under the header on every tab rather than inside one view, because every view renders the roadmap.
    */
   roadmapNotice: string | null;
+  /**
+   * Set when a roadmap write did not land, or null.
+   *
+   * Deliberately a separate notice from the one above: that one says the page is rendering a copy of
+   * the definition, this one says a change to the applicant's own rows was not stored. Both mean the
+   * screen is not the server, but only this one means work is at risk, so it is rendered as an error
+   * rather than as a warning.
+   */
+  taskSyncError: string | null;
 }
 
 export default function AppShell({
@@ -64,6 +76,7 @@ export default function AppShell({
   onClear,
   profileError,
   roadmapNotice,
+  taskSyncError,
 }: Props) {
   const [tab, setTab] = useState<Tab>("flow");
   const [panel, setPanel] = useState<Panel>(null);
@@ -216,6 +229,17 @@ export default function AppShell({
         {roadmapNotice && (
           <div className="mb-4 rounded-xl border-2 border-[var(--color-warn)] bg-[var(--color-warn-soft)] p-3">
             <p className="text-sm leading-relaxed text-[#9a6700]">{roadmapNotice}</p>
+          </div>
+        )}
+        {/*
+          A write that did not land is reported on every tab, for the same reason the notice above is:
+          the roadmap renders everywhere, so a failure to save it is not one view's news. Danger-
+          coloured rather than warning-coloured, because this one means the server does not hold what
+          the screen shows.
+        */}
+        {taskSyncError && (
+          <div className="mb-4 rounded-xl border-2 border-[var(--color-danger)] bg-[var(--color-danger-soft)] p-3">
+            <p className="text-sm leading-relaxed text-[var(--color-danger)]">{taskSyncError}</p>
           </div>
         )}
         {panel === "profile" && (

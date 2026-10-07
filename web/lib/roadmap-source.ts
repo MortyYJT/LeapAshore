@@ -27,6 +27,7 @@
 // spelling is `web/lib/roadmap-response.fixture.json` — a captured `GET /api/roadmap` body — which
 // `roadmap-source.test.ts` maps and compares field by field.
 
+import type { TaskRow } from "./roadmap-sync";
 import type { RoadmapDefinition, MaterialItem } from "./types";
 
 /** One phase as it arrives over the wire, in the camelCase the API serialises. */
@@ -63,10 +64,71 @@ export interface ServedMaterial {
   sortOrder: number;
 }
 
-/** The whole definition, exactly as `GET /api/roadmap` serves it. */
+/**
+ * One task row as it arrives over the wire.
+ *
+ * Every field here is camelCase, because that is what the route serves: `TaskOut` carries the same
+ * `alias_generator` the rest of the API's schemas do, so `material_key` leaves as `materialKey`.
+ * Assuming otherwise is not a type error anywhere — the mapping above only reads `phase` and `key`,
+ * which are single words — and it is silent at runtime: `rowsRef.current.find((row) => row.material_key
+ * === materialId)` simply never matches, so every tick returned early and the checkbox flipped back.
+ * Measured in a browser against the running server: a click on a material produced no `PATCH` at all.
+ * `web/lib/api.test.ts` captures the row with these names, and `roadmap-response.fixture.json` is the
+ * body this declaration is a claim about: it carries the `tasks` array of a real response, which
+ * `roadmap-source.test.ts` maps field by field against the names in the capture.
+ */
+export interface ServedTask {
+  id: string;
+  materialKey: string;
+  programId: string;
+  phase: string;
+  status: string;
+  suggestedAt: string | null;
+  dueAt: string | null;
+  scheduleOrigin: string;
+  origin: string;
+  documentId: string | null;
+  completedAt: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+/**
+ * The wire's task rows as this side's `TaskRow`, which names its fields the way the database columns
+ * do.
+ *
+ * The renaming happens here, at the edge, rather than inside the payload rule, for the same reason the
+ * definition is mapped in this file: `toReplacePayload` is a pure function about who owns a row, and
+ * it should not also have to know which spelling the transport chose. The two enum columns are
+ * narrowed rather than passed through, so a value outside the three the rule understands cannot be
+ * read as an owner it does not have.
+ */
+export function toTaskRows(served: ServedTask[] | undefined): TaskRow[] {
+  return (served ?? []).map((task) => ({
+    id: task.id,
+    material_key: task.materialKey,
+    program_id: task.programId,
+    phase: task.phase,
+    status: task.status,
+    suggested_at: task.suggestedAt,
+    due_at: task.dueAt,
+    schedule_origin: task.scheduleOrigin as TaskRow["schedule_origin"],
+    origin: task.origin as TaskRow["origin"],
+    completed_at: task.completedAt,
+  }));
+}
+
+/**
+ * The whole definition, exactly as `GET /api/roadmap` serves it.
+ *
+ * `tasks` is not part of the definition and is mapped by `toTaskRows` rather than by anything the
+ * roadmap builder reads: it is the caller's own half of the same response, so `toRoadmapDefinition` is
+ * given a body that carries it and ignores it.
+ */
 export interface ServedRoadmapDefinition {
   phases: ServedPhase[];
   materials: ServedMaterial[];
+  tasks?: ServedTask[];
 }
 
 /**

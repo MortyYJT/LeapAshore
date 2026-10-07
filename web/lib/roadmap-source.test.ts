@@ -25,8 +25,8 @@ import { readFileSync } from "node:fs";
 import test from "node:test";
 
 import { DEFAULT_DEFINITION } from "./roadmap.ts";
-import { toMaterialDefs, toPhaseDefs, toRoadmapDefinition } from "./roadmap-source.ts";
-import type { ServedMaterial, ServedRoadmapDefinition } from "./roadmap-source.ts";
+import { toMaterialDefs, toPhaseDefs, toRoadmapDefinition, toTaskRows } from "./roadmap-source.ts";
+import type { ServedMaterial, ServedRoadmapDefinition, ServedTask } from "./roadmap-source.ts";
 
 /**
  * A `GET /api/roadmap` body captured from the running server, read here as the wire record it is.
@@ -282,6 +282,106 @@ test("the adapter reads the field names of a captured response body", () => {
   const firstMaterial = CAPTURED_RESPONSE.materials[0] as unknown as Record<string, unknown>;
   assert.equal("key" in firstMaterial && "title" in firstMaterial, true);
   assert.equal("id" in firstMaterial || "label" in firstMaterial, false);
+});
+
+// One task row, in the spelling `GET /api/roadmap` serves under `tasks`. Every name below was read off
+// a live response body; none of them is the database's own spelling, because `TaskOut` carries the same
+// `alias_generator` as the rest of the API's schemas.
+const SERVED_TASK: ServedTask = {
+  id: "0f0f0f0f-0000-0000-0000-000000000000",
+  materialKey: "aca-transcript",
+  programId: "",
+  phase: "academic",
+  status: "pending",
+  suggestedAt: null,
+  dueAt: "2026-05-21",
+  scheduleOrigin: "suggested",
+  origin: "system",
+  documentId: null,
+  completedAt: null,
+  createdAt: "2026-10-07T12:41:51.352633Z",
+  updatedAt: "2026-10-07T12:41:51.352633Z",
+};
+
+test("maps a served task row from the wire's camelCase to the names the payload rule reads", () => {
+  // The defect this pins, measured in a browser before it was fixed: `roadmap-sync.ts` looked a row up
+  // by `row.material_key`, the wire names it `materialKey`, and nothing failed loudly — every lookup
+  // missed, so `toggleMaterial` returned early, no `PATCH` was sent, and the checkbox flipped straight
+  // back. No type error, no console error, no failing test: the mapping had simply never been bound to
+  // the route. `TaskRow` names its fields after the columns, which is what the pure payload rule is
+  // written against, so the rename has to happen here and this is the test that holds it.
+  const [row] = toTaskRows([SERVED_TASK]);
+  assert.deepEqual(row, {
+    id: SERVED_TASK.id,
+    material_key: "aca-transcript",
+    program_id: "",
+    phase: "academic",
+    status: "pending",
+    suggested_at: null,
+    due_at: "2026-05-21",
+    schedule_origin: "suggested",
+    origin: "system",
+    completed_at: null,
+  });
+});
+
+test("a response with no tasks is an empty row list, not a crash", () => {
+  // The route always serves the key, but a subject created before M2b could answer without it, and an
+  // older build's captured body does not carry it either. Both mean the same thing: no rows yet.
+  assert.deepEqual(toTaskRows(undefined), []);
+  assert.deepEqual(toTaskRows([]), []);
+});
+
+test("the task adapter reads the field names of a captured response body", () => {
+  // The binding the constant above cannot provide, for the reason this file's header records: a
+  // constant typed out against `ServedTask` and an adapter written from the same declaration are two
+  // spellings of one guess, and a wire name both halves got wrong keeps every one of those tests
+  // green. `roadmap-response.fixture.json` now carries the `tasks` array of a real `GET /api/roadmap`,
+  // captured after a `PUT` wrote two rows and a `PATCH` claimed one, so the names below are the
+  // server's and the two `origin` values are both present in the data.
+  const captured = CAPTURED_RESPONSE.tasks ?? [];
+  assert.ok(captured.length > 0, "the capture must carry the caller's own task rows");
+
+  // Field by field, with the wire's names spelled out as literals rather than read through
+  // `ServedTask`. Reading the expectation through the declaration is exactly what would let a renamed
+  // declaration agree with an adapter renamed the same way: both sides would produce `undefined`, and
+  // `undefined` equals `undefined`.
+  const expected = captured.map((task) => {
+    const wire = task as unknown as Record<string, unknown>;
+    return {
+      id: wire["id"],
+      material_key: wire["materialKey"],
+      program_id: wire["programId"],
+      phase: wire["phase"],
+      status: wire["status"],
+      suggested_at: wire["suggestedAt"],
+      due_at: wire["dueAt"],
+      schedule_origin: wire["scheduleOrigin"],
+      origin: wire["origin"],
+      completed_at: wire["completedAt"],
+    };
+  });
+  assert.deepEqual(toTaskRows(captured), expected);
+
+  // The capture has to stay a record of the server's spelling, the same way the material test above
+  // keeps its own. These two lines are what notice if it is ever regenerated from the declarations
+  // instead of recaptured.
+  const firstWire = captured[0] as unknown as Record<string, unknown>;
+  assert.equal(
+    "materialKey" in firstWire && "scheduleOrigin" in firstWire && "completedAt" in firstWire,
+    true,
+  );
+  assert.equal(
+    "material_key" in firstWire || "schedule_origin" in firstWire || "completed_at" in firstWire,
+    false,
+  );
+
+  // The values that make the mapping worth binding: both ownership values and both completion states
+  // are in the capture, so a wrong `origin` or `completedAt` reading fails on a real row rather than
+  // on a row this file invented.
+  assert.deepEqual([...new Set(captured.map((task) => task.origin))].sort(), ["system", "user"]);
+  assert.equal(captured.some((task) => task.completedAt !== null), true, "one row is completed");
+  assert.equal(captured.some((task) => task.completedAt === null), true, "one row is not");
 });
 
 test("the mapping round-trips the constants through the served field names", () => {

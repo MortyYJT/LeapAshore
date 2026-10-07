@@ -1,13 +1,17 @@
 from typing import Annotated
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException, Response
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.db import get_session
+from app.deps import get_client_id, load_or_create_profile
 from app.models.roadmap import MaterialTemplate, RoadmapPhase
 from app.models.source import Source
+from app.models.task import RoadmapTask
 from app.schemas.roadmap import MaterialOut, PhaseOut, RoadmapDefinition, SourceRef
+from app.schemas.task import TaskOut, TaskPatch, TaskReplaceRequest, TaskReplaceResult
+from app.services.roadmap_tasks import InvalidTaskPayload, replace_system_tasks, update_task
 
 router = APIRouter(prefix="/api/roadmap", tags=["roadmap"])
 
@@ -19,8 +23,11 @@ UNKNOWN_PHASE_ORDER = 1 << 30
 
 
 @router.get("", response_model=RoadmapDefinition)
-def read_roadmap(session: Annotated[Session, Depends(get_session)]) -> RoadmapDefinition:
-    """Serve the whole timeline definition: the phases and every material under them.
+def read_roadmap(
+    client_id: Annotated[str, Depends(get_client_id)],
+    session: Annotated[Session, Depends(get_session)],
+) -> RoadmapDefinition:
+    """Serve the definition plus the caller's own task rows: the whole timeline in one response.
 
     The order is the timeline, not the alphabet. `sort_order` runs from the earliest suggested date
     to the latest — selection at 330 days before intake down to the visa at 30 — so a consumer
@@ -38,11 +45,12 @@ def read_roadmap(session: Annotated[Session, Depends(get_session)]) -> RoadmapDe
     be worse than reporting none. `source_id` is `NULL` for all of them, so the extra lookup only
     runs for the two visa materials that have one.
 
-    Tasks land in the same response in the next batch. They are per-applicant and will need the
-    subject cookie this route deliberately does not have: the definition is shared configuration,
-    identical for every caller, so reading or minting a cookie here would hand a visitor a subject
-    they never asked for and imply the timeline is theirs. Nothing in this function touches the
-    client dependency for that reason.
+    `tasks` is the applicant's own half, and it arrives in the same response so the timeline can be
+    rendered without a second round trip. It is not shared configuration the way the other two lists
+    are, which is what brings `get_client_id` into this route: the cookie identifies the subject the
+    tasks belong to, and the response sets it because that is how a first-time visitor gets a subject
+    at all. Reading it here does not write anything — a fresh subject simply has no tasks yet, and
+    the row is created by the first write, not by a read.
     """
     # The phase order is decided here, in one place: `key` is only a tiebreak, so two phases that
     # ever shared an order would still come back deterministically.
@@ -85,6 +93,109 @@ def read_roadmap(session: Annotated[Session, Depends(get_session)]) -> RoadmapDe
             )
         )
 
-    return RoadmapDefinition(
-        phases=[PhaseOut.model_validate(phase) for phase in phases], materials=out
+    # The applicant's rows, ordered by `(material_key, program_id)` so the list is deterministic.
+    # `phase` would be the natural order for display, but it is redundant with the definition's own
+    # phase order and can be stale on a row a human edited, so the stable identity is what this
+    # orders by and the consumer places the rows against the definition it already has.
+    tasks = list(
+        session.execute(
+            select(RoadmapTask)
+            .where(RoadmapTask.client_id == client_id)
+            .order_by(RoadmapTask.material_key, RoadmapTask.program_id)
+        ).scalars()
     )
+
+    return RoadmapDefinition(
+        phases=[PhaseOut.model_validate(phase) for phase in phases],
+        materials=out,
+        tasks=[TaskOut.model_validate(task) for task in tasks],
+    )
+
+
+@router.put("/tasks", response_model=TaskReplaceResult)
+def replace_tasks(
+    payload: TaskReplaceRequest,
+    client_id: Annotated[str, Depends(get_client_id)],
+    session: Annotated[Session, Depends(get_session)],
+    response: Response,
+) -> dict:
+    """Replace only the rows the client itself generated.
+
+    The caller states which material keys are applicable this round, because "absent from this
+    payload" and "no longer applicable" are different claims: treating the first as the second would
+    delete the visa tasks whenever the definition was served from the built-in fallback, and the next
+    run with the real definition would recreate them as `pending` with the applicant's completed
+    marks gone. A key the rows carry and the applicable list does not is a contradiction rather than a
+    third claim, and it is refused with a 422 instead of being interpreted — see
+    `app.services.roadmap_tasks` for the create-then-delete it used to cause.
+
+    The subject is created here, in the endpoint body, exactly as `app/routers/profile.py` does it.
+    `get_client_id` only mints the cookie, so the subject that `GET /api/roadmap` just named has no
+    `clients` row yet: that read writes nothing by design. This route is the first write to arrive
+    with that cookie, and without this call the insert would violate `roadmap_tasks_client_id_fkey`
+    and the applicant's first recompute would answer 500. Calling it here rather than in a dependency
+    keeps the other property `deps.py` documents: FastAPI has already validated the body, so a
+    rejected request cannot leave a client and profile pair behind.
+
+    The counts come back — `created`, `updated`, `removed`, `kept` — rather than the rows, because the
+    caller just computed them: what it cannot compute is what happened to the rows it does not own,
+    and `kept` is that number: every existing row this call left exactly as it was. The write commits
+    once, inside `replace_system_tasks`.
+
+    A payload the definition cannot satisfy — an unknown material key or phase, or a contradiction
+    between its two lists — is a mapped 422 with the reason, never a raw 500 from the foreign key. The
+    cookie is repeated on that response on purpose: the subject was created before the payload could
+    be checked, so a response that dropped the cookie would strand the rows the way `deps.py` records
+    having stranded 221 of them.
+    """
+    load_or_create_profile(session, client_id)
+    try:
+        return replace_system_tasks(
+            session,
+            client_id,
+            applicable_keys=payload.applicable_keys,
+            rows=payload.rows,
+        )
+    except InvalidTaskPayload as exc:
+        raise HTTPException(
+            status_code=422, detail=str(exc), headers=dict(response.headers)
+        ) from exc
+
+
+@router.patch("/tasks/{task_id}", response_model=TaskOut)
+def update_one_task(
+    task_id: str,
+    payload: TaskPatch,
+    client_id: Annotated[str, Depends(get_client_id)],
+    session: Annotated[Session, Depends(get_session)],
+) -> RoadmapTask:
+    """Apply the applicant's edit to one of their own rows.
+
+    This is the per-row door: the applicant changes a task's status or its dates, and the row becomes
+    theirs. `PUT /api/roadmap/tasks` is the other one — the recomputation's — and the two differ in
+    exactly the way the ownership rule turns on: a recomputation may only ever replace the rows it
+    generated, while this route's whole point is to take one row out of its reach.
+
+    The row is looked up by `(id, client_id)` together, so another subject's task is a miss. The route
+    answers that miss with a 404 whose text is the same as for an id that exists nowhere: a caller that
+    could tell the two apart could ask whether a given task id belongs to somebody else, which is a
+    question this API should not answer. The response does carry the caller's own cookie, because
+    `get_client_id` sets it on every response; that identifies the caller and says nothing about the
+    row.
+
+    No subject is created here, unlike `replace_tasks`: a row cannot exist without its subject, so a
+    request that finds no row has nothing to write and no `clients` row to create. Creating one for a
+    404 would leave a subject behind that no cookie-bearing request ever asked for.
+
+    The service commits once and returns the row; the status, the dates and the completion time it
+    reports are the values it stored, not the ones the caller sent. A payload that names no field, or
+    that claims `origin`, `materialKey` or `phase`, is refused by `TaskPatch` with a 422 before the
+    service is reached.
+    """
+    task = update_task(session, client_id, task_id, payload)
+    if task is None:
+        raise HTTPException(
+            status_code=404,
+            detail="no task with this id belongs to the subject this cookie names",
+        )
+    return task
