@@ -2,39 +2,46 @@
 
 ## Language
 
-Write source comments, docstrings, the README, contribution guides, and engineering documentation in English. Chinese planning and learning records belong in note/.
+Write source comments, docstrings, the README, contribution guides, and engineering documentation in
+English. Chinese planning and learning records belong in `note/`.
 
-Keep Chinese text when it is runtime or test data: interface copy, brand names, prompts shown to users, public error messages, and test inputs or outputs. Do not translate those strings as part of documentation cleanup.
-
-Layout follows from the rule:
+Keep Chinese text when it is runtime or test data: interface copy, brand names, prompts shown to users,
+public error messages, and test inputs or outputs. Do not translate those strings as part of documentation
+cleanup.
 
 - `note/` — Chinese planning, design records, learning logs, and implementation plans.
 - `docs/` — English engineering documentation and verification reports.
 
-## Commit messages
+## Commits
 
-Follow [Conventional Commits 1.0.0](https://www.conventionalcommits.org/en/v1.0.0/). The standard permits an omitted scope and an omitted body. This repository adds two mandatory requirements: every commit must include a scope and a non-empty English body.
+Follow [Conventional Commits 1.0.0](https://www.conventionalcommits.org/en/v1.0.0/). The standard permits
+an omitted scope and an omitted body. This repository adds two mandatory requirements: every commit must
+include a scope and a non-empty English body.
 
-Use this subject format: `type(scope): imperative summary`.
+```
+<type>(<scope>): <subject>
 
-~~~text
-type(scope): imperative summary
-~~~
+- what changed and why, one line per item
+- what was verified, and how
+```
 
-The summary must be an English imperative phrase. Put a blank line after the subject, then write a non-empty English body. Every body item must start with `- `. Explain what changed, why it changed, and how it was verified. Use one or more bullets.
+Each body item starts with `- `. A wrapped continuation line is indented, not a new item.
 
-~~~text
-feat(flow): add the application roadmap timeline
+## Branches and pull requests
 
-- Add a six-phase timeline derived backwards from the intake date.
-- Keep every phase marked as a system suggestion rather than an official deadline.
-- Verify the rendered timeline and node detail panel in a real browser.
-~~~
+- Branch from an up-to-date `main` as `<owner>/<topic>`, where `<owner>` is the agent that did the work
+  (`codex/`, `claude/`, `dsh/`, …) or `me/` for your own. New agents take their own prefix; do not reuse
+  another agent's. Use short kebab-case topics, e.g. `codex/stage-2-m2a-roadmap-definition`.
+- Open a pull request into `main`. The user merges; do not merge your own work.
+- Never push to `main`, force-push, or rewrite already-pushed history.
+- Run `git diff --cached --check` before each commit.
 
-Use `feat(ui)` or `fix(ui)` for interface behavior or visual changes. Reserve `style` for formatting changes that do not change behavior or product appearance.
+## Verification
 
-## Git and pull requests
+Evidence over assertion. A pull request states what it changed, what it verified, and how. The check
+command is `make verify`; CI runs the same steps.
 
-Work on a `codex/` branch and open a pull request into main. The user merges pull requests manually; do not enable automatic merging or push directly to main.
+## Repository hygiene
 
-Do not amend, rebase, force-push, or otherwise rewrite already-pushed history. Keep ignored `.env` files and `.superpowers/` scratch files out of commits. Before committing, inspect the staged changes and run `git diff --cached --check`.
+Keep `.env`, `.venv`, `.runtime-tools/`, build output, and scratch directories out of the repository. They
+are ignored; do not commit them, and do not commit a file you had to force.
