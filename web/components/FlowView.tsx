@@ -22,7 +22,20 @@ interface Props {
   selectedPhase: string;
   onSelectPhase: (id: string) => void;
   onToggleMaterial: (materialId: string, checked: boolean) => void;
+  /**
+   * Upload a file for one requirement.
+   *
+   * The requirement travels as the material's own key rather than as a task id: `buildRoadmap` builds
+   * these rows from the served definition and never sees the applicant's task rows, so the id the
+   * server needs is resolved in `page.tsx`, which is where those rows already are. A material whose
+   * requirement has no stored task row yet still uploads — the file is stored without one, which is a
+   * fact about the roadmap rather than a reason to refuse the applicant's file.
+   */
+  onUploadMaterial: (materialId: string, file: File) => void;
 }
+
+/** The file types the upload route accepts, so the picker does not offer what it would refuse. */
+const ACCEPTED_UPLOADS = ".pdf,.png,.jpg,.jpeg,.docx";
 
 export default function FlowView({
   roadmap,
@@ -30,6 +43,7 @@ export default function FlowView({
   selectedPhase,
   onSelectPhase,
   onToggleMaterial,
+  onUploadMaterial,
 }: Props) {
   void PHASE_DEFS;
   const phase = roadmap.phases.find((p) => p.id === selectedPhase) ?? roadmap.phases[0];
@@ -186,8 +200,14 @@ export default function FlowView({
           </h3>
           <ul className="mt-3 grid gap-2">
             {phase.tasks.map((t) => (
-              <li key={t.materialId}>
-                <label className="flex cursor-pointer items-start gap-3 rounded-xl border-2 border-[var(--color-line)] p-3 transition-colors hover:bg-[var(--color-surface)]">
+              // Two controls, so the row is a container rather than one label: a label may not contain
+              // another, and nesting the upload picker inside the tick's label makes a click on either
+              // one fire both.
+              <li
+                key={t.materialId}
+                className="flex items-start gap-2 rounded-xl border-2 border-[var(--color-line)] transition-colors hover:bg-[var(--color-surface)]"
+              >
+                <label className="flex flex-1 cursor-pointer items-start gap-3 p-3">
                   <input
                     type="checkbox"
                     className="mt-1 h-5 w-5 accent-[var(--color-brand)]"
@@ -204,6 +224,23 @@ export default function FlowView({
                       {t.detail}
                     </span>
                   </span>
+                </label>
+                <label
+                  className="m-2 shrink-0 cursor-pointer rounded-lg border-2 border-[var(--color-line)] px-2 py-1 text-xs font-bold whitespace-nowrap"
+                  data-testid="upload-material"
+                >
+                  上传材料
+                  <input
+                    className="hidden"
+                    type="file"
+                    accept={ACCEPTED_UPLOADS}
+                    onChange={(event) => {
+                      const file = event.target.files?.[0];
+                      if (file) onUploadMaterial(t.materialId, file);
+                      // Cleared so picking the same file again still fires a change event.
+                      event.target.value = "";
+                    }}
+                  />
                 </label>
               </li>
             ))}

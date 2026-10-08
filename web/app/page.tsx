@@ -6,7 +6,11 @@ import Generating from "@/components/Generating";
 import Onboarding from "@/components/Onboarding";
 import PortfolioPicker from "@/components/PortfolioPicker";
 import {
+  addMaterialVersion,
+  archiveMaterial,
   fetchApplications,
+  fetchMaterial,
+  fetchMaterials,
   fetchProfile,
   fetchPrograms,
   fetchRoadmapDefinition,
@@ -15,14 +19,24 @@ import {
   patchRoadmapTask,
   replaceApplications,
   replaceRoadmapTasks,
+  submitMaterial,
+  uploadMaterial,
 } from "@/lib/api";
+import { toMaterial, toMaterials } from "@/lib/materials-source";
 import { buildRoadmap } from "@/lib/roadmap";
 import { NO_DEFINITION_READ, readRoadmapDefinition } from "@/lib/roadmap-definition";
 import { toApplicationRows, toPortfolioItems, toProgramView } from "@/lib/programs-source";
 import { toTaskRows } from "@/lib/roadmap-source";
 import { alreadyStored, toReplacePayload, type TaskRow } from "@/lib/roadmap-sync";
 import { clearState, initialState, loadState, saveState, type PersistedState } from "@/lib/store";
-import type { PortfolioItem, Profile, Program, RoadmapDefinition } from "@/lib/types";
+import type {
+  Material,
+  MaterialKind,
+  PortfolioItem,
+  Profile,
+  Program,
+  RoadmapDefinition,
+} from "@/lib/types";
 
 /**
  * Shown when a roadmap write did not land.
@@ -141,6 +155,21 @@ export default function Page() {
    */
   const [portfolio, setPortfolio] = useState<PortfolioItem[]>([]);
   /**
+   * The applicant's material library, as the server holds it.
+   *
+   * Read from `GET /api/documents` for the same reason the portfolio is: an uploaded file is
+   * per-applicant state that has to survive a reload on another device. Nothing here keeps a local
+   * opinion about a material's status — every write below re-reads what the server stored, so the
+   * screen cannot show a review state the server does not hold.
+   */
+  const [materials, setMaterials] = useState<Material[]>([]);
+  /** The one material whose versions and reviews are open, or null. */
+  const [materialDetail, setMaterialDetail] = useState<Material | null>(null);
+  /** Why the last material read or write failed, so the failure is never silent. */
+  const [materialsError, setMaterialsError] = useState<string | null>(null);
+  /** True while a material write is in flight, so the controls that would race it are disabled. */
+  const [materialsBusy, setMaterialsBusy] = useState(false);
+  /**
    * The applicability fingerprint of the recomputation this session has already sent, or is sending.
    *
    * A ref rather than state because it is a record of what was *sent*, not something to render, and
@@ -162,6 +191,30 @@ export default function Page() {
    */
   const rowsRef = useRef<TaskRow[]>([]);
   rowsRef.current = taskRows;
+
+
+  /**
+   * Read the material library once on mount.
+   *
+   * A failed read leaves the list empty and says why. It deliberately does not fall back to a local
+   * copy: there is none, and an empty library that failed to load must not look like an applicant who
+   * has uploaded nothing — the two are different claims and the notice is what tells them apart.
+   */
+  useEffect(() => {
+    let cancelled = false;
+    fetchMaterials()
+      .then((served) => {
+        if (cancelled) return;
+        setMaterials(toMaterials(served));
+      })
+      .catch((error: unknown) => {
+        if (cancelled) return;
+        setMaterialsError(error instanceof Error ? error.message : "读取材料库失败");
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   /**
    * Re-read the roadmap so the local rows carry the ids the server gave them.
@@ -594,6 +647,98 @@ export default function Page() {
       });
   }
 
+
+  /**
+   * Re-read the library after a write, and keep the open detail panel in step.
+   *
+   * A write is answered with the material it stored, so the row on screen takes the server's own copy
+   * of it rather than the values this page sent — the detected type, the version number and the status
+   * are all the server's to decide.
+   *
+   * An open detail panel for that material is closed rather than patched. It holds the version list and
+   * the findings as they were before the write, and a new version or a review makes both stale; leaving
+   * it open would show a material in a state the server no longer holds. Opening it again reads the
+   * detail route, which is the only thing that carries those lists.
+   */
+  function applyMaterial(stored: Material): void {
+    setMaterials((rows) => {
+      const index = rows.findIndex((row) => row.id === stored.id);
+      if (index === -1) return [stored, ...rows];
+      return rows.map((row) => (row.id === stored.id ? stored : row));
+    });
+    setMaterialDetail((open) => (open?.id === stored.id ? null : open));
+  }
+
+  /**
+   * Run one material write, and report a refusal with the server's own words.
+   *
+   * Every path goes through here so there is exactly one place that decides what a failure looks like:
+   * the route writes its refusals in Chinese for the applicant — "单个材料不能超过 20 MB。" — and a
+   * caller that flattened them into "操作失败" would throw away the only part of the answer that says
+   * what to do.
+   */
+  async function writeMaterial(work: () => Promise<Material>): Promise<void> {
+    setMaterialsBusy(true);
+    setMaterialsError(null);
+    try {
+      applyMaterial(await work());
+    } catch (error: unknown) {
+      setMaterialsError(error instanceof Error ? error.message : "材料操作失败");
+    } finally {
+      setMaterialsBusy(false);
+    }
+  }
+
+  /**
+   * Upload one file for one roadmap requirement.
+   *
+   * The requirement's task row is found the same way a tick finds it — by the material key the served
+   * rows carry — because the task id is what the route needs to attach the material to that
+   * requirement. No row means the file is still stored, without the attachment: the roadmap may not
+   * have written its rows yet, and that is a fact about the roadmap rather than a reason to refuse the
+   * applicant's file.
+   */
+  function uploadMaterialForRequirement(materialId: string, file: File): void {
+    const row = rowsRef.current.find((candidate) => candidate.material_key === materialId);
+    void writeMaterial(async () => {
+      const stored = await uploadMaterial(file, { taskId: row?.id ?? null });
+      return toMaterial(stored);
+    });
+  }
+
+  function archiveMaterialById(documentId: string, kind: MaterialKind): void {
+    void writeMaterial(async () => toMaterial(await archiveMaterial(documentId, kind)));
+  }
+
+  function submitMaterialById(documentId: string): void {
+    void writeMaterial(async () => toMaterial(await submitMaterial(documentId)));
+  }
+
+  function addVersionToMaterial(documentId: string, file: File): void {
+    void writeMaterial(async () => toMaterial(await addMaterialVersion(documentId, file)));
+  }
+
+  /**
+   * Open or close one material's detail panel, reading it when it opens.
+   *
+   * The list route carries only the current version, so the versions and the reviews arrive from the
+   * detail route — and a failed read closes the panel rather than opening an empty one, because an
+   * empty review list is a claim that nobody has reviewed the material.
+   */
+  function openMaterial(documentId: string | null): void {
+    if (documentId === null) {
+      setMaterialDetail(null);
+      return;
+    }
+    setMaterialsError(null);
+    fetchMaterial(documentId)
+      .then((served) => setMaterialDetail(toMaterial(served)))
+      .catch((error: unknown) => {
+        setMaterialDetail(null);
+        setMaterialsError(error instanceof Error ? error.message : "读取材料失败");
+      });
+  }
+
   /**
    * Return from the picker to the background questions.
    *
@@ -665,6 +810,17 @@ export default function Page() {
       profileError={profileError}
       roadmapNotice={definitionRead.notice}
       taskSyncError={taskSyncError}
+      onUploadMaterial={uploadMaterialForRequirement}
+      library={{
+        materials,
+        detail: materialDetail,
+        error: materialsError,
+        busy: materialsBusy,
+        onOpen: openMaterial,
+        onArchive: archiveMaterialById,
+        onSubmit: submitMaterialById,
+        onAddVersion: addVersionToMaterial,
+      }}
     />
   );
 }
