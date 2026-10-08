@@ -1127,9 +1127,13 @@ function dbRun(sql) {
         await route.continue();
       });
 
-      // A real file on disk, because `setInputFiles` needs one and the route sniffs the bytes rather
-      // than trusting the name: a request that claimed to be a PDF without a PDF header is refused.
-      const materialPath = path.join(os.tmpdir(), "offerpilot-walkthrough-material.pdf");
+      // A real file on disk, named so that its extension lies about its contents.
+      //
+      // The name is the point. The browser declares a part's content type from the extension, so a file
+      // called `.pdf` holding PDF bytes is declared correctly and the check below could not tell a
+      // server that sniffs from one that believes the declaration. With PDF bytes in a `.png`, the two
+      // answers differ and the check can fail: the route must store `application/pdf`.
+      const materialPath = path.join(os.tmpdir(), "offerpilot-walkthrough-material.png");
       fs.writeFileSync(
         materialPath,
         "%PDF-1.4\n1 0 obj\n<< /Type /Catalog >>\nendobj\ntrailer\n<< /Root 1 0 R >>\n%%EOF\n",
@@ -1165,9 +1169,13 @@ function dbRun(sql) {
       const uploadedRows = (await readMaterials()) ?? [];
       check("服务端自己持有刚上传的材料", uploadedRows.length === 1, { rows: uploadedRows.length });
       check(
-        "服务端按魔数判定了类型，而不是信客户端声明",
+        "服务端按魔数判定了类型，而没有信浏览器按扩展名给的类型",
         uploadedRows[0]?.currentVersion?.mimeType === "application/pdf",
-        { mimeType: uploadedRows[0]?.currentVersion?.mimeType },
+        {
+          declaredByName: "image/png",
+          stored: uploadedRows[0]?.currentVersion?.mimeType,
+          filename: uploadedRows[0]?.currentVersion?.filename,
+        },
       );
       check("上传时没有分类，服务端如实记为空", uploadedRows[0]?.kind === null, {
         kind: uploadedRows[0]?.kind,
