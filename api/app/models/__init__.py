@@ -5,7 +5,24 @@ from app.models.application import (
     ApplicationTier,
 )
 from app.models.client import Client, Profile
+from app.models.document import (
+    Document,
+    DocumentKind,
+    DocumentStatus,
+    DocumentVersion,
+    UploadedBy,
+)
 from app.models.program import Program, ProgramPrerequisite, University
+from app.models.review import (
+    CheckType,
+    CriterionScope,
+    CriterionStatus,
+    DocumentReview,
+    DocumentReviewFinding,
+    FindingSeverity,
+    ReviewCriterion,
+    ReviewOverall,
+)
 from app.models.roadmap import MaterialTemplate, RoadmapPhase
 from app.models.source import Source, SourceStatus, SourceVersion, SourceVersionStatus
 from app.models.task import (
@@ -21,11 +38,23 @@ __all__ = [
     "ApplicationOrigin",
     "ApplicationStatus",
     "ApplicationTier",
+    "CheckType",
     "Client",
+    "CriterionScope",
+    "CriterionStatus",
+    "Document",
+    "DocumentKind",
+    "DocumentReview",
+    "DocumentReviewFinding",
+    "DocumentStatus",
+    "DocumentVersion",
+    "FindingSeverity",
     "MaterialTemplate",
     "Profile",
     "Program",
     "ProgramPrerequisite",
+    "ReviewCriterion",
+    "ReviewOverall",
     "RoadmapPhase",
     "RoadmapTask",
     "ScheduleOrigin",
@@ -37,4 +66,5 @@ __all__ = [
     "TaskOrigin",
     "TaskStatus",
     "University",
+    "UploadedBy",
 ]

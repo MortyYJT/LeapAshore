@@ -3,11 +3,14 @@ import warnings
 import pytest
 from sqlalchemy import delete, select, text
 
+from app.config import settings
 from app.db import SessionLocal, engine
 from app.models.client import Client
+from app.models.review import DocumentReview, DocumentReviewFinding, ReviewCriterion
 from app.models.roadmap import MaterialTemplate, RoadmapPhase
 from app.models.source import Source
 from app.models.task import RoadmapTask
+from app.seed_review_criteria import seed_review_criteria
 from app.seed_roadmap import GS_SOURCE_URL, seed_roadmap
 
 # The column names a displaced task row is snapshotted by, taken from the table rather than written
@@ -68,6 +71,19 @@ def clear_the_roadmap_definition(session) -> list[dict]:
     plain column values so the session-scoped fixture can put them back when it restores the
     definition. They are the developer's rows, and a test run that quietly deleted them would violate
     the same "leave the shared database as it was found" rule the subject sweep follows.
+
+    Returns ``(displaced task rows, the human-set fields of the criteria it removed)``. The criteria go
+    here rather than in a separate sweep because this function is what deletes the Genuine Student
+    source, and ``review_criteria.source_id`` is RESTRICT: the source cannot go while a criterion still
+    names it, and a criterion cannot go while a finding still cites it, so all three have to come out
+    in one order. This function runs before the first test is collected, so getting that order wrong
+    turns the whole run red before a single test has run. Measured while writing M3: the session sweep
+    aborted on ``review_criteria_source_id_fkey``.
+
+    Only ``code``, ``status`` and ``verified_at`` are kept from each criterion. The rest is a
+    transcription the seed rewrites anyway, and the two fields that are not are exactly the two a
+    person set: dropping them would mean every test run silently un-verified whatever a developer had
+    checked, which is a data loss no one would see until they opened the interface.
     """
     tasks = list(session.scalars(select(RoadmapTask)))
     displaced = [{name: getattr(task, name) for name in TASK_COLUMNS} for task in tasks]
@@ -81,13 +97,28 @@ def clear_the_roadmap_definition(session) -> list[dict]:
     for row in session.scalars(select(RoadmapPhase)):
         session.delete(row)
     session.flush()
+
+    criterion_states = [
+        {"code": row.code, "status": row.status, "verified_at": row.verified_at}
+        for row in session.scalars(select(ReviewCriterion))
+    ]
+    for row in session.scalars(select(DocumentReviewFinding)):
+        session.delete(row)
+    session.flush()
+    for row in session.scalars(select(DocumentReview)):
+        session.delete(row)
+    session.flush()
+    for row in session.scalars(select(ReviewCriterion)):
+        session.delete(row)
+    session.flush()
+
     source = session.execute(
         select(Source).where(Source.url == GS_SOURCE_URL)
     ).scalar_one_or_none()
     if source is not None:
         session.delete(source)
     session.flush()
-    return displaced
+    return displaced, criterion_states
 
 
 def restore_roadmap_tasks(session, displaced: list[dict]) -> dict:
@@ -143,6 +174,32 @@ def restore_roadmap_tasks(session, displaced: list[dict]) -> dict:
     }
 
 
+def restore_review_criteria(session, states: list[dict]) -> int:
+    """Put back what a person decided about each criterion, after the seed has rewritten the rest.
+
+    Called only after ``seed_review_criteria``, because the rows these fields belong to are the ones it
+    writes. ``status`` and ``verified_at`` are the only two fields a criterion carries that are not a
+    transcription of the official page, which is why they are the only two the sweep kept — re-applying
+    them is what makes "a test run leaves the development database as it found it" true for a table
+    whose rows the run deletes and recreates.
+
+    A code that is no longer seeded is skipped rather than re-inserted: the criterion it described does
+    not exist any more, and inventing a row for it would be exactly the sourceless requirement the
+    schema refuses.
+    """
+    restored = 0
+    for state in states:
+        stored = session.execute(
+            select(ReviewCriterion).where(ReviewCriterion.code == state["code"])
+        ).scalar_one_or_none()
+        if stored is None:
+            continue
+        stored.status = state["status"]
+        stored.verified_at = state["verified_at"]
+        restored += 1
+    return restored
+
+
 @pytest.fixture(scope="session")
 def task_rows_displaced_mid_run() -> list[dict]:
     """Rows a mid-run definition sweep had to remove, held until the run's teardown can put them back.
@@ -155,8 +212,21 @@ def task_rows_displaced_mid_run() -> list[dict]:
     return []
 
 
+@pytest.fixture(scope="session")
+def criterion_states_displaced_mid_run() -> list[dict]:
+    """The human-set fields of the criteria a mid-run sweep had to remove, held until the teardown.
+
+    Session-scoped for the same reason as ``task_rows_displaced_mid_run``: only the session teardown
+    can put them back, because the criteria have to be re-seeded first, and the definition stays empty
+    until every test has finished.
+    """
+    return []
+
+
 @pytest.fixture
-def clear_the_roadmap_definition_after_the_test(task_rows_displaced_mid_run):
+def clear_the_roadmap_definition_after_the_test(
+    task_rows_displaced_mid_run, criterion_states_displaced_mid_run
+):
     """Remove the roadmap definition once the test that seeded it has finished.
 
     ``test_seed_roadmap.py`` and ``test_roadmap_api.py`` both seed the definition and both have to
@@ -195,14 +265,15 @@ def clear_the_roadmap_definition_after_the_test(task_rows_displaced_mid_run):
     if not database_is_reachable():
         return
     with SessionLocal() as session:
-        displaced = clear_the_roadmap_definition(session)
+        displaced, criterion_states = clear_the_roadmap_definition(session)
         session.commit()
     task_rows_displaced_mid_run.extend(displaced)
+    criterion_states_displaced_mid_run.extend(criterion_states)
 
 
 @pytest.fixture(scope="session", autouse=True)
 def unseed_the_roadmap_definition_for_the_run_and_restore_it_afterwards(
-    task_rows_displaced_mid_run,
+    task_rows_displaced_mid_run, criterion_states_displaced_mid_run
 ):
     """Empty the roadmap definition for the run, then put the canonical one back.
 
@@ -249,17 +320,39 @@ def unseed_the_roadmap_definition_for_the_run_and_restore_it_afterwards(
     # same rule ``remove_the_clients_these_tests_create`` below follows.
     reachable = database_is_reachable()
     displaced_tasks: list[dict] = []
+    displaced_criteria: list[dict] = []
     if reachable:
         with SessionLocal() as session:
-            displaced_tasks = clear_the_roadmap_definition(session)
+            displaced_tasks, displaced_criteria = clear_the_roadmap_definition(session)
             session.commit()
     yield
     if not reachable or not database_is_reachable():
         return
     with SessionLocal() as session:
         seed_roadmap(session)
+        # After the roadmap seed, whose Genuine Student source the criteria cite. `seed_review_criteria`
+        # would write that source itself if it had to, so this order is a convenience rather than a
+        # requirement.
+        seed_review_criteria(session)
+        restore_review_criteria(
+            session, displaced_criteria + criterion_states_displaced_mid_run
+        )
         restore_roadmap_tasks(session, displaced_tasks + task_rows_displaced_mid_run)
         session.commit()
+
+
+@pytest.fixture(autouse=True)
+def keep_uploads_out_of_the_development_directory(tmp_path, monkeypatch):
+    """Point the document storage root at a temporary directory for every test.
+
+    The upload directory is shared state in exactly the way the development database is, and the same
+    rule applies to it: a test run must leave it as it found it. The root is read from settings on
+    every call rather than captured at import time, which is what makes this redirect effective.
+
+    Autouse for the same reason the client sweep below is: one test that forgot to ask would write
+    the files it created into the directory the developer's own uploads live in.
+    """
+    monkeypatch.setattr(settings, "document_storage_root", tmp_path / "documents")
 
 
 @pytest.fixture(autouse=True)
