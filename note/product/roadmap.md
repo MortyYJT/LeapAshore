@@ -6,7 +6,7 @@
 
 | 顺序 | 条目 | 状态 | OpenSpec change |
 | --- | --- | --- | --- |
-| 1 | 阶段二 M3：材料库（上传 / 版本 / 归档）与审核依据 | 未开始 | — |
+| 1 | 阶段二 M3：材料库（上传 / 版本 / 归档）与审核依据 | 两个 PR 已开、待合并（后端 [#8](https://github.com/MortyYJT/offerpilot/pull/8)、前端 [#9](https://github.com/MortyYJT/offerpilot/pull/9)） | `stage-2-m3-document-library` |
 | 2 | 阶段二 M4：会话、消息、提案（agent 写操作待确认） | 未开始 | — |
 | 3 | 数据标注：把项目数据从占位数据换成核验过的数据 | 未开始 | — |
 | 4 | 接入模型，让顾问真正能对话 | 未开始 | — |

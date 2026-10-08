@@ -77,10 +77,10 @@
 - [x] 7.7 前端单测：适配层对照抓下来的真实响应 fixture；未归档材料的 `kind` 渲染为"未分类"而不是"其他"
 - [x] 7.8 `scripts/e2e-walkthrough.cjs` 增加步骤：任务行上传一个真实 PDF → 材料库看到它 → 归档 → 送审 → 重新加载后状态仍在；截图写入 `docs/screenshots/`
 - [x] 7.9 `make verify` 全绿（含浏览器走查截图），仍按 §4 报告格式给证据
-- [ ] 7.10 独立审查 + 修复；分支 `dsh/stage-2-m3-document-library-frontend`，开 PR 2（不合并，等用户）
+- [x] 7.10 独立审查 + 修复；分支 `dsh/stage-2-m3-document-library-frontend`，开 PR 2（不合并，等用户）
 
 ## 8. 收尾
 
-- [ ] 8.1 重写 `note/handoff.md`：日期、分支与提交、change id、已完成与证据、未完成、下一步、坑
-- [ ] 8.2 `note/product/roadmap.md` 把 M3 标为已完成并填上 change id；`note/product/backlog.md` 记下本批次暴露的新想法
+- [x] 8.1 重写 `note/handoff.md`：日期、分支与提交、change id、已完成与证据、未完成、下一步、坑
+- [x] 8.2 `note/product/roadmap.md` 把 M3 标为已完成并填上 change id；`note/product/backlog.md` 记下本批次暴露的新想法
 - [ ] 8.3 两个 PR 都合入后，`openspec archive stage-2-m3-document-library`，把 spec 归档进 `openspec/specs/`
