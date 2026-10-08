@@ -991,8 +991,9 @@ function dbRun(sql) {
       //
       // What this check cannot settle is the *source*: the constants array and the seeded catalogue agree
       // on all six programs, so a lookup renders the same text and keeps this green. The static half is
-      // `make check-programs-readers` — no file under web/components or web/app may import the array —
-      // and this check is the half that measures what the page actually drew.
+      // `make check-programs-readers` — it walks the import graph out of `web/app` and fails if
+      // `web/lib/programs.ts` is reachable from a page, however many hops away — and this check is the
+      // half that measures what the page actually drew.
       //
       // The card is addressed by its `data-testid` because 首页 renders the `·`-joined school label in the
       // 申请档案 card as well, and a text-shaped selector would leave the subject of this check ambiguous.

@@ -71,11 +71,13 @@ check-dates:  ## Fail if a verification date is hardcoded in source or seed data
 check-programs-mirror:  ## Fail if the seeded catalogue stops mirroring web/lib/programs.ts
 	node scripts/verify-programs-mirror.cjs
 
-# The mirror guard binds the constants to the seed; this one binds a view to the served row. The
+# The mirror guard binds the constants to the seed; this one binds the pages to the served row. The
 # walkthrough's M2d check compares the page against the server's own answer, and the two catalogues
 # agree on all six seeded programs, so restoring a `PROGRAMS.find(...)` in a view kept it green. This
-# is the cheap, deterministic half: no file under web/components or web/app may import the array.
-check-programs-readers:  ## Fail if a component or a page reads web/lib/programs.ts as data
+# is the cheap, deterministic half: it walks the import graph out of the App Router's entry points and
+# fails if web/lib/programs.ts is reachable from any of them, however many hops away. A grep over
+# web/components and web/app was bypassable one re-export away — a lookup in web/lib kept it green.
+check-programs-readers:  ## Fail if a page can reach web/lib/programs.ts through the import graph
 	node scripts/check-no-programs-import.cjs
 
 # The same two-part binding as the catalogue: without a database dump this compares
