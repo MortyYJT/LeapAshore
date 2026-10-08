@@ -196,3 +196,28 @@ def test_a_write_to_the_file_route_is_refused(db_session, require_db):
     document_id = client.post("/api/documents", files=an_upload()).json()["id"]
 
     assert client.post(f"/api/documents/{document_id}/versions/1/file").status_code == 405
+
+
+def test_a_version_row_pointing_outside_the_storage_root_is_refused(db_session, require_db, tmp_path):
+    """The one place a stored string becomes a file on disk confines it to the root.
+
+    Every writer builds that path from the file's own digest, so such a row is unreachable through any
+    route. This writes one directly, which is what a hand edit or a future migration could do, and
+    asserts the download refuses rather than serving whatever the row happens to name.
+    """
+    client = TestClient(app)
+    document_id = client.post("/api/documents", files=an_upload()).json()["id"]
+
+    outside = tmp_path / "outside-the-root.txt"
+    outside.write_text("not this applicant's material", encoding="utf-8")
+    with SessionLocal() as session:
+        version = session.execute(
+            select(DocumentVersion).where(DocumentVersion.document_id == document_id)
+        ).scalar_one()
+        version.storage_path = f"../{outside.name}"
+        session.commit()
+
+    response = client.get(f"/api/documents/{document_id}/versions/1/file")
+
+    assert response.status_code == 404
+    assert b"not this applicant" not in response.content

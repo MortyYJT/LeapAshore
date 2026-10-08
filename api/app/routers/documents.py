@@ -306,6 +306,12 @@ def download_version(
     A version whose row exists but whose file does not is reported as missing rather than as a 500.
     The foreign key and the write order make that state unreachable, so reaching it means something
     outside this code removed a file, and saying so is more useful than a stack trace.
+
+    The path is confined to the storage root before anything is served. Every writer in this codebase
+    builds it from the file's own digest, so a row pointing outside is unreachable through any route —
+    which is exactly why the check belongs here rather than nowhere: this is the one place that turns
+    a stored string into a file on disk, and a hand-edited row must produce a 404 rather than whatever
+    path it names.
     """
     document = _own_document(session, client_id, document_id)
     version = session.execute(
@@ -316,7 +322,10 @@ def download_version(
     if version is None:
         raise HTTPException(status_code=404, detail=NO_SUCH_VERSION)
 
-    path = storage_root() / version.storage_path
+    root = storage_root().resolve()
+    path = (root / version.storage_path).resolve()
+    if root != path and root not in path.parents:
+        raise HTTPException(status_code=404, detail=FILE_MISSING)
     if not path.is_file():
         raise HTTPException(status_code=404, detail=FILE_MISSING)
 
