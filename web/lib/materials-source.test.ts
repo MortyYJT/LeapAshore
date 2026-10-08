@@ -15,8 +15,10 @@ import { readFileSync } from "node:fs";
 import test from "node:test";
 
 import {
+  KIND_OPTIONS,
   byteSizeLabel,
   kindLabel,
+  materialFileUrl,
   overallLabel,
   severityLabel,
   statusLabel,
@@ -57,11 +59,52 @@ test("an unclassified material reports no kind", () => {
 test("a kind this build does not know is unknown, not unclassified and not other", () => {
   const material = toMaterial({ ...UNCLASSIFIED, kind: "diploma" });
 
-  assert.equal(material.kind, null);
-  assert.equal(kindLabel(material.kind), "未分类");
-  // The two cases are one value here on purpose — the interface has one marker for "this build cannot
-  // say" — but the label must never become 其他, which would be a classification nobody made.
+  assert.equal(material.kind, "diploma", "the value the server stated has to survive the mapping");
+  assert.equal(kindLabel(material.kind), "未知");
+  assert.notEqual(kindLabel(material.kind), "未分类");
   assert.notEqual(kindLabel(material.kind), "其他材料");
+});
+
+test("the status mapping is exercised through the adapter, not only through the labels", () => {
+  // Each case runs the served value through `toMaterial`, which is what the screens read. Calling
+  // `statusLabel` alone left the mapping's own normalisation untested: inverting it, or relabelling one
+  // state, kept every test green before this one existed.
+  const expected: [string, string][] = [
+    ["uploaded", "待归档"],
+    ["archived", "已归档"],
+    ["under_review", "审核中"],
+    ["needs_revision", "需要修改"],
+    ["accepted", "已通过"],
+  ];
+  for (const [status, label] of expected) {
+    const material = toMaterial({ ...UNCLASSIFIED, status });
+    assert.equal(material.status, status);
+    assert.equal(statusLabel(material.status), label);
+  }
+
+  const unknown = toMaterial({ ...UNCLASSIFIED, status: "restored" });
+  assert.equal(unknown.status, null);
+  assert.equal(statusLabel(unknown.status), "未知");
+});
+
+test("a classification the mapper carries through stays out of the picker's vocabulary", () => {
+  // The picker offers only the values in `KIND_OPTIONS`, and that is what keeps an unrecognised
+  // classification from being posted back to the route on a click.
+  const material = toMaterial({ ...UNCLASSIFIED, kind: "diploma" });
+  assert.equal(
+    KIND_OPTIONS.some((option) => option.value === material.kind),
+    false,
+  );
+});
+
+test("the download URL is built from the id and the version, and a hostile id cannot escape", () => {
+  assert.equal(materialFileUrl("d1", 2), "/api/documents/d1/versions/2/file");
+  assert.equal(
+    materialFileUrl("../../etc/passwd", 1),
+    "/api/documents/..%2F..%2Fetc%2Fpasswd/versions/1/file",
+    "the id is server-provided today, and this is the one place it turns into a path",
+  );
+  assert.equal(materialFileUrl("a b", 1), "/api/documents/a%20b/versions/1/file");
 });
 
 test("a classification this build knows is labelled in Chinese", () => {
@@ -147,6 +190,9 @@ test("a material the interface cannot name is a failed read, not a blank row", (
 
 test("a size nobody recorded stays unknown rather than zero", () => {
   assert.equal(byteSizeLabel(null), "未知");
+  // An absent field is not a number at all, and it used to reach the arithmetic and print
+  // "undefined B" — which is not a claim about the file's size in either direction.
+  assert.equal(byteSizeLabel(undefined as unknown as number), "未知");
   assert.equal(byteSizeLabel(0), "0 B");
   assert.equal(byteSizeLabel(70), "70 B");
   assert.equal(byteSizeLabel(2048), "2 KB");

@@ -81,7 +81,13 @@ export default function MaterialsView({
 }: MaterialsViewProps) {
   // The kind each material is about to be classified as, while the applicant has not pressed 归档 yet.
   // Keyed by material: one picker per row, and a row's pending choice is not another row's.
-  const [pendingKind, setPendingKind] = useState<Record<string, MaterialKind>>({});
+  //
+  // There is deliberately no default. The picker used to fall back to 成绩单 so that the select always
+  // had a value, which meant one click on 归档 filed an unclassified file as a transcript — a
+  // classification the applicant never made, and the exact fabricated value the rest of this codebase
+  // refuses to produce. `null` here means "no choice yet", the placeholder option is what the select
+  // shows, and 归档 stays disabled until a real choice arrives.
+  const [pendingKind, setPendingKind] = useState<Record<string, MaterialKind | null>>({});
 
   const total = materials.length;
   const reviewed = materials.filter((material) => material.reviews.length > 0).length;
@@ -116,7 +122,13 @@ export default function MaterialsView({
               color: "var(--color-ink-soft)",
               background: "var(--color-line)",
             };
-            const chosen = pendingKind[material.id] ?? material.kind ?? "transcript";
+            // Only a classification this build can offer may be pre-selected. A stored kind it cannot
+            // name leaves the picker on the placeholder rather than posting that value back on a click:
+            // the route would refuse it, and a picker showing a choice the applicant did not make is
+            // worse than one showing none.
+            const storedChoice = KIND_OPTIONS.find((option) => option.value === material.kind);
+            const chosen = pendingKind[material.id] ?? storedChoice?.value ?? "";
+            const chosenOption = KIND_OPTIONS.find((option) => option.value === chosen);
             const maySubmit =
               material.status === "archived" || material.status === "needs_revision";
             const open = detail?.id === material.id;
@@ -161,10 +173,13 @@ export default function MaterialsView({
                       onChange={(event) =>
                         setPendingKind((prev) => ({
                           ...prev,
-                          [material.id]: event.target.value as MaterialKind,
+                          [material.id]: (event.target.value || null) as MaterialKind | null,
                         }))
                       }
                     >
+                      {/* The empty value is the absence of a choice, and it is the only thing that may
+                          sit there before the applicant picks one. */}
+                      <option value="">请选择分类</option>
                       {KIND_OPTIONS.map((option) => (
                         <option key={option.value} value={option.value}>
                           {option.label}
@@ -174,8 +189,11 @@ export default function MaterialsView({
                   </label>
                   <button
                     className="rounded-lg border-2 border-[var(--color-brand)] px-3 py-1 text-xs font-bold text-[var(--color-brand-dark)] disabled:opacity-50"
-                    disabled={busy}
-                    onClick={() => onArchive(material.id, chosen)}
+                    disabled={busy || chosenOption === undefined}
+                    title={chosenOption === undefined ? "先选择一个分类，再归档" : undefined}
+                    onClick={() => {
+                      if (chosenOption) onArchive(material.id, chosenOption.value);
+                    }}
                   >
                     {material.kind === null ? "归档" : "改分类"}
                   </button>

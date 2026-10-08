@@ -1113,13 +1113,14 @@ function dbRun(sql) {
 
       // ---------------------------------------------------------------------------------------------
       // The material library (M3): one file uploaded against a roadmap requirement, classified, sent
-      // for review, and still there after a reload. Every step goes through the real route with the
-      // real cookie, because the point of the block is that the library is the server's answer rather
-      // than this tab's.
+      // for review, downloaded, reviewed, and still there after a reload. Every step goes through the
+      // real route with the real cookie, because the point of the block is that the library is the
+      // server's answer rather than this tab's.
       //
-      // No review is written here: recording one is the operator command's job (`api/review_cli.py`),
-      // and this batch deliberately has no HTTP route for it. What the browser can show is that a
-      // material nobody has reviewed says so instead of inventing a verdict.
+      // The review is recorded by the operator command rather than through the page, because that is
+      // the only way it can be recorded at all: this batch deliberately has no HTTP route for it. The
+      // command runs as a real process here, which is also what makes the rendering of a sourced finding
+      // reachable in a browser at all.
       // ---------------------------------------------------------------------------------------------
       const materialUploads = [];
       await page.route(/\/api\/documents$/, async (route) => {
@@ -1130,14 +1131,13 @@ function dbRun(sql) {
       // A real file on disk, named so that its extension lies about its contents.
       //
       // The name is the point. The browser declares a part's content type from the extension, so a file
-      // called `.pdf` holding PDF bytes is declared correctly and the check below could not tell a
-      // server that sniffs from one that believes the declaration. With PDF bytes in a `.png`, the two
-      // answers differ and the check can fail: the route must store `application/pdf`.
+      // called `.pdf` holding PDF bytes is declared correctly and the check below could not tell a server
+      // that sniffs from one that believes the declaration. With PDF bytes in a `.png`, the two answers
+      // differ and the check can fail: the route must store `application/pdf`.
       const materialPath = path.join(os.tmpdir(), "offerpilot-walkthrough-material.png");
-      fs.writeFileSync(
-        materialPath,
-        "%PDF-1.4\n1 0 obj\n<< /Type /Catalog >>\nendobj\ntrailer\n<< /Root 1 0 R >>\n%%EOF\n",
-      );
+      const materialBytes =
+        "%PDF-1.4\n1 0 obj\n<< /Type /Catalog >>\nendobj\ntrailer\n<< /Root 1 0 R >>\n%%EOF\n";
+      fs.writeFileSync(materialPath, materialBytes);
 
       const readMaterials = () =>
         page.evaluate(async () => {
@@ -1150,8 +1150,8 @@ function dbRun(sql) {
 
       // The block above deliberately ends on the picker, with a confirmation the stub refused, so the
       // first thing to do is get back into the application flow: confirming the same portfolio again
-      // succeeds now that the failing route is unrouted. Without this the tab row does not exist yet
-      // and the click below waits for a button that is not on the page — measured, as a 30s timeout.
+      // succeeds now that the failing route is unrouted. Without this the tab row does not exist yet and
+      // the click below waits for a button that is not on the page — measured, as a 30s timeout.
       await page.getByRole("button", { name: /确认组合/ }).click();
       await page.waitForTimeout(1200);
       await page.getByRole("button", { name: "流程进度" }).first().click();
@@ -1180,6 +1180,11 @@ function dbRun(sql) {
       check("上传时没有分类，服务端如实记为空", uploadedRows[0]?.kind === null, {
         kind: uploadedRows[0]?.kind,
       });
+      check(
+        "上传时挂上了这条材料对应的任务要求",
+        typeof uploadedRows[0]?.taskId === "string" && uploadedRows[0].taskId.length > 0,
+        { taskId: uploadedRows[0]?.taskId },
+      );
 
       await page.getByRole("button", { name: "材料库" }).click();
       await page.waitForTimeout(600);
@@ -1198,15 +1203,26 @@ function dbRun(sql) {
         uploadedBadges.includes("未分类") && !uploadedBadges.includes("其他材料"),
         { badges: uploadedBadges.join(" / ") },
       );
+      // The picker must not have a classification of its own: this batch's review found it defaulting to
+      // 成绩单, which made one click on 归档 file an unclassified material as a transcript.
+      const pickerBeforeChoice = await materialRows.first().locator("select").inputValue();
+      check("分类下拉框没有替申请人预选一个分类", pickerBeforeChoice === "", {
+        value: pickerBeforeChoice,
+      });
+      check(
+        "还没有选分类时，归档按钮不可点",
+        await materialRows.first().getByRole("button", { name: "归档" }).isDisabled(),
+        {},
+      );
       await shot("26-material-uploaded");
 
-      await materialRows.first().locator("select").selectOption("transcript");
+      await materialRows.first().locator("select").selectOption("gs");
       await materialRows.first().getByRole("button", { name: "归档" }).click();
       await page.waitForTimeout(1200);
       const archivedRow = (await readMaterials() ?? [])[0];
       check(
-        "归档写进了服务端，并记下了分类与归档时间",
-        archivedRow?.kind === "transcript" &&
+        "归档写进了服务端，并记下了申请人选的分类与归档时间",
+        archivedRow?.kind === "gs" &&
           archivedRow?.status === "archived" &&
           typeof archivedRow?.archivedAt === "string",
         { kind: archivedRow?.kind, status: archivedRow?.status },
@@ -1221,19 +1237,43 @@ function dbRun(sql) {
       });
       await shot("27-material-submitted");
 
+      // The download, clicked rather than read: the link is a plain navigation, so the only way to know
+      // it serves the stored bytes is to follow it.
+      const [download] = await Promise.all([
+        page.waitForEvent("download"),
+        materialRows.first().getByRole("link", { name: "下载" }).click(),
+      ]);
+      const downloadedPath = await download.path();
+      const downloaded = fs.readFileSync(downloadedPath);
+      check(
+        "下载拿到的是存进去的那份文件",
+        downloaded.equals(Buffer.from(materialBytes, "utf8")),
+        { bytes: downloaded.length, name: download.suggestedFilename() },
+      );
+
       await materialRows.first().getByRole("button", { name: /查看审核/ }).click();
       await page.waitForTimeout(1000);
       const materialDetail = page.locator('[data-testid="material-detail"]');
-      check(
-        "打开审核面板读的是详情接口",
-        await materialDetail.isVisible().catch(() => false),
-        {},
-      );
       const detailText = await materialDetail.innerText().catch(() => "");
       check(
         "还没有审核结论时，面板说的是还没有，而不是编一条出来",
         detailText.includes("还没有审核结论") && !detailText.includes("通过 ·"),
         { text: detailText.replace(/\n/g, " / ").slice(0, 160) },
+      );
+
+      // The operator command, as a real process against the same database. Its `--version` is the
+      // material's current version, which is what makes the recorded review bind to the bytes on screen.
+      execFileSync(
+        API_PYTHON,
+        [
+          "review_cli.py", "review", archivedRow.id,
+          "--version", String(archivedRow.currentVersion.versionNo),
+          "--overall", "needs_revision",
+          "--reviewed-by", "走查审查者",
+          "--summary", "回答需要补充",
+          "--finding", "gs-answer-length:warning:第二条回答 213 词，超过 150 词",
+        ],
+        { cwd: API_DIR },
       );
 
       await page.reload({ waitUntil: "networkidle" });
@@ -1243,10 +1283,70 @@ function dbRun(sql) {
       const reloadedText = await page.locator('[data-testid="material-row"]').first().innerText();
       check(
         "刷新后材料、分类与状态仍在（全部来自服务端）",
-        reloadedText.includes("成绩单") && reloadedText.includes("审核中"),
+        reloadedText.includes("Genuine Student 陈述") && reloadedText.includes("需要修改"),
         { text: reloadedText.replace(/\n/g, " / ") },
       );
+
+      await page.locator('[data-testid="material-row"]').first().getByRole("button", { name: /查看审核/ }).click();
+      await page.waitForTimeout(1200);
+      const reviewedDetail = await page.locator('[data-testid="material-detail"]').innerText();
+      check(
+        "审核结论渲染出了具体建议",
+        reviewedDetail.includes("第二条回答 213 词，超过 150 词") &&
+          reviewedDetail.includes("走查审查者"),
+        { text: reviewedDetail.replace(/\n/g, " / ").slice(0, 200) },
+      );
+      check(
+        "每条建议都带着它引用的审核要点",
+        reviewedDetail.includes("回答长度") && reviewedDetail.includes("gs-answer-length"),
+        {},
+      );
+      // The target, not the link's text: the panel shows the page's title and puts the URL in the href,
+      // so `innerText` cannot see it — the first version of this check looked for the URL in the text and
+      // failed while the link was correct.
+      const reviewedSource = page
+        .locator('[data-testid="material-detail"] a[href^="https://immi.homeaffairs.gov.au/"]')
+        .first();
+      const sourceHref = await reviewedSource.getAttribute("href").catch(() => null);
+      check(
+        "每条建议都带着要点出自的官方页面与它的核验状态",
+        sourceHref ===
+          "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/student-500/genuine-student-requirement" &&
+          reviewedDetail.includes("待核验"),
+        { href: sourceHref, mentionsStatus: reviewedDetail.includes("待核验") },
+      );
       await shot("28-material-survives-reload");
+
+      // The library at a phone width, which is the layout the tab row and the row controls have to
+      // survive: the tabs scroll rather than being pushed off, and every control on a material stays
+      // reachable instead of being clipped by the narrower card.
+      await page.setViewportSize({ width: 390, height: 844 });
+      await page.waitForTimeout(500);
+      const narrowRow = page.locator('[data-testid="material-row"]').first();
+      check(
+        "窄屏下材料行仍然完整可见",
+        await narrowRow.isVisible().catch(() => false),
+        { width: 390 },
+      );
+      const narrowControls = await narrowRow
+        .locator("a, button, select, label")
+        .evaluateAll((nodes) =>
+          nodes.map((node) => {
+            const box = node.getBoundingClientRect();
+            return { text: (node.textContent || "").trim().slice(0, 12), right: Math.round(box.right) };
+          }),
+        );
+      check(
+        "窄屏下没有控件被裁到视口外",
+        narrowControls.every((control) => control.right <= 390),
+        {
+          widest: narrowControls.reduce((max, control) => Math.max(max, control.right), 0),
+          controls: narrowControls.length,
+        },
+      );
+      await shot("29-material-narrow");
+      await page.setViewportSize({ width: 1280, height: 900 });
+      await page.waitForTimeout(300);
       await page.unroute(/\/api\/documents$/);
 
 

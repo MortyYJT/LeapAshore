@@ -139,10 +139,14 @@ function isKnown<K extends string>(value: unknown, labels: Record<K, string>): v
  * The label for a material's classification.
  *
  * `null` is 未分类 — nobody has said what this file is — and a value outside the vocabulary this build
- * knows is 未知, because those are different facts and only one of them is about the applicant.
+ * knows is 未知, because those are different facts and only one of them is about the applicant. The
+ * default is never 其他材料: that is a classification, and the interface may not make one.
  */
-export function kindLabel(kind: MaterialKind | null): string {
-  return kind === null ? "未分类" : KIND_LABELS[kind];
+export function kindLabel(kind: string | null): string {
+  if (kind === null) return "未分类";
+  return Object.prototype.hasOwnProperty.call(KIND_LABELS, kind)
+    ? KIND_LABELS[kind as MaterialKind]
+    : UNKNOWN;
 }
 
 export function statusLabel(status: MaterialStatus | null): string {
@@ -164,7 +168,9 @@ export const KIND_OPTIONS: { value: MaterialKind; label: string }[] = (
 
 /** Bytes as the interface states them. A size nobody recorded stays unknown rather than 0 B. */
 export function byteSizeLabel(bytes: number | null): string {
-  if (bytes === null || Number.isNaN(bytes)) return UNKNOWN;
+  // A size that is absent, or not a number at all, is unknown rather than zero: `undefined` used to
+  // reach the arithmetic and print "undefined B", which is not a claim about the file's size.
+  if (typeof bytes !== "number" || Number.isNaN(bytes)) return UNKNOWN;
   if (bytes < 1024) return `${bytes} B`;
   if (bytes < 1024 * 1024) return `${Math.round(bytes / 1024)} KB`;
   return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
@@ -237,7 +243,9 @@ export function toMaterial(served: ServedDocument): Material {
   return {
     id: served.id,
     title: served.title,
-    kind: isKnown(served.kind, KIND_LABELS) ? served.kind : null,
+    // Carried through as the server states it, including a value this build cannot name; only a
+    // non-string or an empty string is treated as "no classification stated".
+    kind: typeof served.kind === "string" && served.kind.length > 0 ? served.kind : null,
     status: isKnown(served.status, STATUS_LABELS) ? served.status : null,
     taskId: served.taskId,
     archivedAt: served.archivedAt,

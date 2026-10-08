@@ -312,8 +312,16 @@ export interface MaterialReview {
 export interface Material {
   id: string;
   title: string;
-  /** Null until the applicant classifies it. Not `other`, which would be a decision nobody took. */
-  kind: MaterialKind | null;
+  /**
+   * The classification the server states, or `null` when it states none.
+   *
+   * Deliberately `string | null` rather than `MaterialKind | null`: a value this build has never heard
+   * of has to survive the mapping, because "nobody has classified this" and "someone classified it as
+   * something this build cannot name" are different facts. The first renders as 未分类, the second as
+   * 未知; collapsing them would tell the applicant nobody had looked at a file the server says someone
+   * did.
+   */
+  kind: string | null;
   /** Null when the server holds a status this build does not know. */
   status: MaterialStatus | null;
   taskId: string | null;
