@@ -11,6 +11,9 @@ dependencies = [
   "sqlalchemy",
   "alembic",
   "psycopg[binary]",
+  # FastAPI parses a multipart upload into an `UploadFile` only when this is installed; without it
+  # the material-upload route raises at import time rather than on the first request.
+  "python-multipart",
 ]
 
 [project.optional-dependencies]
