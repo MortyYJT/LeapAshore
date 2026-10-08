@@ -61,10 +61,10 @@
 
 ## 6. PR 1 验收与提交
 
-- [ ] 6.1 `make verify` 全绿，并把输出留在提交信息与 PR 描述里
-- [ ] 6.2 独立审查（fresh-context subagent）：只报影响正确性或本 change 需求的问题
-- [ ] 6.3 按审查结论修复，重跑 `make verify`
-- [ ] 6.4 分支 `dsh/stage-2-m3-document-library-backend`，按 Conventional Commits 提交并开 PR 1（不合并，等用户）
+- [x] 6.1 `make verify` 全绿，并把输出留在提交信息与 PR 描述里
+- [x] 6.2 独立审查（fresh-context subagent）：只报影响正确性或本 change 需求的问题
+- [x] 6.3 按审查结论修复，重跑 `make verify`
+- [x] 6.4 分支 `dsh/stage-2-m3-document-library-backend`，按 Conventional Commits 提交并开 PR 1（不合并，等用户）
 
 ## 7. 前端材料库（PR 2）
 
