@@ -28,8 +28,9 @@ from datetime import date
 
 import pytest
 from fastapi.testclient import TestClient
-from sqlalchemy import select
+from sqlalchemy import event, insert, select
 
+from app.db import engine
 from app.deps import COOKIE_NAME
 from app.main import app
 from app.models.application import (
@@ -61,9 +62,22 @@ def _put(client: TestClient, rows: list[dict]):
 
 
 def _events(session, client_id: str) -> list[TaskEvent]:
-    """The history rows written for one subject, read after dropping what this session cached."""
+    """The history rows written for one subject, read after dropping what this session cached.
+
+    Ordered by ``created_at``, which every entry one call writes shares — PostgreSQL's ``now()`` is
+    the transaction's start, so a call's entries are one timestamp and the calls read in order. That
+    is what makes reading the *last* entry a statement about the last call: without it the rows come
+    back in whatever order the heap happens to hold them, which stops being insertion order as soon as
+    a swept subject's space is reused, and the assertion becomes a statement about the page layout.
+    """
     session.expire_all()
-    return list(session.scalars(select(TaskEvent).where(TaskEvent.client_id == client_id)))
+    return list(
+        session.scalars(
+            select(TaskEvent)
+            .where(TaskEvent.client_id == client_id)
+            .order_by(TaskEvent.created_at)
+        )
+    )
 
 
 def _stored(session, client_id: str) -> dict[str, Application]:
@@ -208,12 +222,89 @@ def test_a_program_named_twice_and_a_second_first_choice_are_two_different_refus
     )
 
 
+def test_a_second_first_choice_replaces_the_stored_one_and_is_never_a_500(require_db, db_session):
+    """Moving the first choice to another program is the replacement, not a contradiction.
+
+    A stored primary plus a payload that marks a different program primary is the flow this endpoint
+    exists for: the applicant's new 首选 replaces the old one, and the old row leaves the list in the
+    same call. Written in payload order — the payload inserted while the stored rows still hold their
+    flags — it was an unmapped 500 from the partial unique index. All three ways of asking for the
+    move are here, because they reach the same state by different routes: the first drops the stored
+    row, the second leaves it in the list without the flag, and the third states the flag as ``false``.
+
+    The second also settles what an omitted ``isPrimary`` means in a whole replacement: ``false``,
+    which is the schema's own default. A payload that lists the portfolio states its first choice, so
+    a row it does not mark is not one — reading the omission as "leave the stored flag alone" is what
+    left the caller's new first choice and the stored row's flag in the same portfolio. The last case
+    below is the same rule with nothing replacing it: a payload that marks nothing leaves no first
+    choice behind, rather than keeping one the caller never stated.
+    """
+    seed_programs(db_session)
+    # The exceptions are not raised: what a caller actually sees is the status code, and the 500 this
+    # test exists for is a response rather than a traceback.
+    client = TestClient(app, raise_server_exceptions=False)
+
+    def portfolio() -> list[tuple[str, bool]]:
+        return [
+            (row["programId"], row["isPrimary"]) for row in client.get("/api/applications").json()
+        ]
+
+    # 1. The stored row leaves the portfolio and the new first choice arrives.
+    assert _put(client, [_row(REACH, tier="冲", isPrimary=True)]).status_code == 200
+    assert portfolio() == [(REACH, True)]
+    moved = _put(client, [_row(MATCH, tier="稳", isPrimary=True)])
+    assert moved.status_code == 200, f"the new first choice was not a mapped response: {moved.text}"
+    assert moved.json() == {"created": 1, "updated": 0, "kept": 0, "removed": 1}
+    assert portfolio() == [(MATCH, True)], "the portfolio does not say what the payload said"
+
+    # 2. The stored row stays and is released, which is the omitted flag read as `false`.
+    assert _put(client, [_row(REACH, tier="冲", isPrimary=True)]).status_code == 200
+    omitted = _put(client, [_row(REACH, tier="冲"), _row(MATCH, tier="稳", isPrimary=True)])
+    assert omitted.status_code == 200, f"an omitted isPrimary was not a mapped response: {omitted.text}"
+    assert omitted.json() == {"created": 1, "updated": 1, "kept": 0, "removed": 0}
+    assert portfolio() == [(MATCH, True), (REACH, False)], (
+        "an omitted isPrimary kept a stored first choice the payload never stated"
+    )
+
+    # 3. The same move stated explicitly, which must not depend on the flag being left out.
+    assert _put(client, [_row(REACH, tier="冲", isPrimary=True)]).status_code == 200
+    stated = _put(
+        client,
+        [
+            _row(REACH, tier="冲", isPrimary=False),
+            _row(MATCH, tier="稳", isPrimary=True),
+        ],
+    )
+    assert stated.status_code == 200, f"an explicit false was not a mapped response: {stated.text}"
+    assert stated.json() == {"created": 1, "updated": 1, "kept": 0, "removed": 0}
+    assert portfolio() == [(MATCH, True), (REACH, False)]
+
+    # 4. A payload that marks no first choice leaves none, including the one that was stored.
+    assert _put(client, [_row(REACH, tier="冲", isPrimary=True)]).status_code == 200
+    assert portfolio() == [(REACH, True)]
+    released = _put(client, [_row(REACH, tier="冲")])
+    assert released.status_code == 200, released.text
+    assert released.json() == {"created": 0, "updated": 1, "kept": 0, "removed": 0}
+    assert portfolio() == [(REACH, False)], "a replacement that marks no first choice kept one"
+
+    stored = _stored(db_session, client.cookies[COOKIE_NAME])
+    assert (stored[REACH].tier, stored[REACH].is_primary) == ("冲", False), (
+        "the stored row disagrees with the read that served it"
+    )
+
+
 def test_an_unknown_program_is_refused_by_name_not_by_the_foreign_key(require_db, db_session):
     """`program_id` is a foreign key, so an unknown one used to be an `IntegrityError` and a 500.
 
     The caller can act on the mistake, so it is answered with a message that names the id. The valid
     half of the same payload is not written either: the refusal happens before anything lands, which
     is what makes the replacement one transaction rather than a partial one.
+
+    Which message is asserted, not just the status code. The service also has a backstop that turns an
+    ``IntegrityError`` into a 422, so removing this check would still produce a 422 — with the driver's
+    foreign-key error quoted in it. A test that only looked at the status would pass either way and the
+    check could be deleted without anything noticing, which is the state this assertion exists to
+    prevent.
     """
     seed_programs(db_session)
     client = TestClient(app)
@@ -223,6 +314,9 @@ def test_an_unknown_program_is_refused_by_name_not_by_the_foreign_key(require_db
         f"an unknown program was not a mapped refusal: {refused.status_code} {refused.text}"
     )
     assert NO_SUCH_PROGRAM in refused.text, refused.text
+    assert "name no program in the catalogue" in refused.text, (
+        "the refusal has to be the catalogue check's own message, not the constraint backstop's"
+    )
     assert client.get("/api/applications").json() == [], "a refused payload wrote the valid half"
 
     accepted = _put(client, [_row(REACH)])
@@ -540,3 +634,105 @@ def test_the_service_refuses_a_mapping_that_states_no_band(require_db, db_sessio
     assert REACH in str(raised.value), "the refusal must name the row that states no band"
     assert _stored(db_session, client_id) == {}
     assert _events(db_session, client_id) == []
+
+
+def test_the_service_refuses_a_mapping_that_states_no_status(require_db, db_session):
+    """The second field a plain mapping can state as ``null``, guarded the same way as the band.
+
+    An explicit ``null`` status is not silence about the status, and the payload reader stringifies
+    what it is handed, so storing it literally would write the text ``"None"`` — a fourth status the
+    model never defined, which the portfolio lists would render as a tag. The schema refuses it for
+    the route, and this is the same refusal at the door a mapping caller comes through, on the create
+    path as well as on an update: a refused replacement leaves the row's real status alone rather than
+    replacing it with the string.
+    """
+    seed_programs(db_session)
+    client_id = _subject(db_session)
+    cleared = {"program_id": REACH, "tier": "冲", "status": None}
+
+    with pytest.raises(InvalidApplicationPayload) as raised:
+        replace_applications(db_session, client_id, [cleared])
+    assert REACH in str(raised.value), "the refusal must name the row that states no status"
+    assert _stored(db_session, client_id) == {}, "a refused create wrote a row"
+
+    replace_applications(
+        db_session, client_id, [{"program_id": REACH, "tier": "冲", "status": "applying"}]
+    )
+    with pytest.raises(InvalidApplicationPayload):
+        replace_applications(db_session, client_id, [cleared])
+    rows = _stored(db_session, client_id)
+    assert rows[REACH].status == ApplicationStatus.APPLYING.value, (
+        "a null status was stored instead of being refused"
+    )
+
+
+def test_two_tabs_of_one_subject_are_a_rebuilt_portfolio_not_a_500(require_db, db_session):
+    """The race the checks cannot close: the losing write adopts what the winner committed.
+
+    Both tabs read the same portfolio and both write the same program, so the second insert meets
+    ``UNIQUE (client_id, program_id)`` — a 500 before this was handled, and the gap the report
+    disclosed. The write is retried inside a savepoint, so the loser reads the stored row back and
+    states its payload on top of it instead of failing. What is asserted is the result rather than the
+    mechanism: the call returns its counts, the portfolio holds one row for the program, and that row
+    is the payload's.
+
+    The competing write is made to land between this call's read and its flush by the session's own
+    ``before_flush`` hook, which is the only moment that separates the two — a real second tab is not
+    something a test can schedule, and that window is what makes the race a race.
+    """
+    seed_programs(db_session)
+    client_id = _subject(db_session)
+    armed = [True]
+
+    @event.listens_for(db_session, "before_flush")
+    def _the_other_tab(session, flush_context, instances):
+        if not armed[0]:
+            return
+        armed[0] = False
+        with engine.begin() as connection:
+            connection.execute(
+                insert(Application).values(
+                    id=str(uuid.uuid4()),
+                    client_id=client_id,
+                    program_id=REACH,
+                    tier=ApplicationTier.SAFETY.value,
+                    status=ApplicationStatus.CONSIDERING.value,
+                    is_primary=True,
+                    needs_review=False,
+                    origin=ApplicationOrigin.USER.value,
+                )
+            )
+
+    counts = replace_applications(
+        db_session, client_id, [{"program_id": REACH, "tier": "冲", "is_primary": True}]
+    )
+
+    assert counts == {"created": 0, "updated": 1, "kept": 0, "removed": 0}, (
+        "the losing write did not adopt the row the winning one committed"
+    )
+    rows = _stored(db_session, client_id)
+    assert set(rows) == {REACH}, "the retry left a second row for the program behind"
+    assert (rows[REACH].tier, rows[REACH].is_primary) == ("冲", True), (
+        "the payload's row is not what the portfolio holds"
+    )
+
+
+def test_a_write_postgresql_refuses_twice_is_a_mapped_refusal_not_a_500(require_db, db_session):
+    """The backstop: a constraint that refuses both attempts is the service's refusal.
+
+    The retry above closes the race the checks cannot see, but it cannot make a constraint disappear.
+    A caller that hands the service a subject the ``clients`` table does not carry is the
+    deterministic version of that: the catalogue checks pass, the read finds no portfolio, and the
+    insert is refused by the foreign key — on the second attempt too. What comes out is the service's
+    own refusal, which the route maps to a 422, rather than the ``IntegrityError`` a caller reads as a
+    500.
+    """
+    seed_programs(db_session)
+    absent = str(uuid.uuid4())
+
+    with pytest.raises(InvalidApplicationPayload) as raised:
+        replace_applications(db_session, absent, [{"program_id": REACH, "tier": "冲"}])
+
+    assert "could not be written" in str(raised.value), str(raised.value)
+    assert _stored(db_session, absent) == {}, "a refused write left a row behind"
+    assert _events(db_session, absent) == []

@@ -111,6 +111,11 @@ def replace_the_applications(
     and a program it no longer names is removed. The whole replacement runs in one transaction inside
     `replace_applications`, so a failure cannot leave half a portfolio behind.
 
+    The first choice is restated by the replacement rather than patched: the rows the payload lists
+    are the portfolio, so the row it marks `isPrimary` is the first choice afterwards and a row it
+    does not mark is not one — which is what makes "move my 首选 to this program" one call. See
+    `ApplicationIn` for that field and for the two that keep the omission rule.
+
     The subject is created here, in the endpoint body, exactly as `app/routers/roadmap.py` and
     `app/routers/profile.py` do it. `get_client_id` only mints the cookie, and the read above
     deliberately writes nothing, so the subject a read just named has no `clients` row yet: this route
@@ -125,15 +130,25 @@ def replace_the_applications(
 
     A payload the table or the catalogue cannot accept is a mapped 422 naming what is wrong, never a
     raw 500 from a unique index or a foreign key: the same program twice, more than one first choice,
-    or a program id that names nothing. The cookie is repeated on that response on purpose. The
-    subject was created before the payload could be checked — the checks are facts about the rows the
-    catalogue holds, so they need the session — and a 422 that dropped the cookie would strand the
-    rows the way `deps.py` records having stranded 221 of them.
+    or a program id that names nothing. A concurrent write for the same subject is retried once inside
+    the service rather than answered with a 500, and what is left of that race is one of these 422s.
+    The cookie is repeated on that response on purpose — and *only* the cookie, by name. The subject
+    was created before the payload could be checked — the checks are facts about the rows the catalogue
+    holds, so they need the session — and a 422 that dropped the cookie would strand the rows the way
+    `deps.py` records having stranded 221 of them.
+
+    The cookie is named rather than copied wholesale (`dict(response.headers)`) because the injected
+    response accumulates whatever any dependency or the route body put on it, and the header this
+    response owes the caller is the subject rather than a repeat of someone else's intent: today the
+    two are the same set, and a cache directive or a content type added later would be served on a
+    body it does not describe.
     """
     load_or_create_profile(session, client_id)
     try:
         return replace_applications(session, client_id, payload.rows)
     except InvalidApplicationPayload as exc:
         raise HTTPException(
-            status_code=422, detail=str(exc), headers=dict(response.headers)
+            status_code=422,
+            detail=str(exc),
+            headers={"set-cookie": response.headers["set-cookie"]},
         ) from exc

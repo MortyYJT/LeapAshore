@@ -14,12 +14,14 @@ spelling of 冲 elsewhere in the codebase would be a second answer to what a por
 
 What this module can decide on its own it decides here: the membership of those two vocabularies, and
 that an omitted field means "leave it" while an explicit ``null`` means "clear it" for the two
-deadline fields. What it cannot is whether a ``programId`` exists — that is a fact about the rows the
-catalogue currently holds, so ``app.services.applications`` checks it against ``programs`` and answers
-422 rather than letting a foreign key turn the mistake into a 500. The two ways one payload can break
-the table's own constraints — the same program named twice, and two first choices — are checked there
-as well, and for the same reason: they are facts about the whole list, and the interface
-``replace_applications`` is callable without a schema in front of it.
+deadline fields — with ``isPrimary`` the one exception, because the first choice belongs to the
+portfolio the replacement states rather than to the row it is written on. What it cannot is whether a
+``programId`` exists — that is a fact about the rows the catalogue currently holds, so
+``app.services.applications`` checks it against ``programs`` and answers 422 rather than letting a
+foreign key turn the mistake into a 500. The two ways one payload can break the table's own
+constraints — the same program named twice, and two first choices — are checked there as well, and for
+the same reason: they are facts about the whole list, and the interface ``replace_applications`` is
+callable without a schema in front of it.
 """
 
 from datetime import date, datetime
@@ -52,9 +54,16 @@ class ApplicationIn(BaseModel):
     states a band but not a deadline from silently wiping a deadline the applicant entered, and an
     official deadline nobody has looked up stays ``null`` rather than becoming a date this API made up.
 
-    ``is_primary`` and ``needs_review`` follow the same rule, and their defaults are the columns': a
-    row nobody marks as the first choice is not one, and a program the applicant added by hand is
-    flagged by the caller that knows the system could not tier it.
+    ``is_primary`` defaults to ``False`` and a replacement states it for every row: a payload that
+    lists the portfolio says which one of those rows is the first choice, so a row it does not mark is
+    not one, and the stored flag is deliberately not left alone. Reading the omission as "leave it"
+    would let a caller move its first choice to another program while the stored row kept the flag —
+    two first choices in one portfolio, which the partial index refuses and which is the whole reason
+    the replacement states the flag rather than patching it.
+
+    ``needs_review`` does follow the omission rule, and its default is the column's: a program the
+    applicant added by hand is flagged by the caller that knows the system could not tier it, and a
+    payload that says nothing about the flag leaves the row's own answer alone.
     """
 
     model_config = ConfigDict(alias_generator=_camel, populate_by_name=True, extra="forbid")
