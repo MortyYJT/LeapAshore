@@ -41,15 +41,15 @@ command are the two places a verification date could appear, and the command is 
 
 Command: `make api-test` (that is `cd api && .venv/bin/pytest -q`)
 
-Result: **195 passed**
+Result: **200 passed**
 
 ```
-195 passed, 1 warning in 4.54s
+200 passed, 1 warning in 4.79s
 ```
 
-106 tests existed before this batch and 89 are new: the model constraints (12), the upload service
-(15), the HTTP routes (14), the middleware (5), the lifecycle transitions (12), the criteria seed and
-route (12), the operator command (19).
+106 tests existed before this batch and 94 are new: the model constraints (12), the upload service
+(17), the HTTP routes (16), the middleware (5), the lifecycle transitions (12), the criteria seed and
+route (13), the operator command (19).
 
 The suite was run twice in a row on the same database. That is the check that matters most here: the
 session sweep deletes the roadmap definition and the Genuine Student source before the first test is
@@ -86,6 +86,25 @@ Two of six runs failed on unchanged code, so this is **pre-existing** and is rec
 
 After restoring the schema, `make api-test` passed **twelve consecutive times**. The count below is
 what a passing run reports; it is not a claim of determinism.
+
+### The independent review round
+
+A fresh-context reviewer read the specs, the design, the whole diff and the code it touches, ran the
+tests, probed every declared path and method on a live API, and exercised the multipart parser and
+Starlette's `FileResponse` directly. It found no gap in isolation, provenance, path handling or the
+state machine, and it named these, all of which are now fixed:
+
+| Finding | What changed |
+| --- | --- |
+| The version number was chosen without a lock, so two uploads for one material could interleave | `_next_version_no` takes a row lock on the material; the number is chosen once and the retry reuses it rather than recomputing one |
+| The spec's own version-number race had no test | Two threads upload to one material at once and assert the numbers are exactly 1, 2, 3; measured failing without the lock |
+| An existing blob was reused without being checked, so a truncated one would serve wrong bytes under a correct digest | `_place` compares the file's length and repairs a mismatch |
+| A missing source was served as `""` for url, title and status, where the rule is null | `SourceRef`'s three fields are nullable and the routers pass null |
+| `test_a_check_type_outside_the_set_is_refused` could pass for another reason | Every insert-and-refuse test now asserts *which* constraint refused it, by name |
+| `PUT /api/documents/{id}` had no test | Added, asserting 405 and that the row is unchanged |
+
+The reviewer independently reproduced the intermittent failure above on `main`, which is the second
+confirmation that it predates this batch.
 
 ## 4. End-to-end walkthrough
 

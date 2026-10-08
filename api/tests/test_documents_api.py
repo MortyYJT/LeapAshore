@@ -221,3 +221,17 @@ def test_a_version_row_pointing_outside_the_storage_root_is_refused(db_session, 
 
     assert response.status_code == 404
     assert b"not this applicant" not in response.content
+
+
+def test_a_put_to_the_document_route_is_refused(db_session, require_db):
+    """This batch has no way to rewrite a material, and the refusal is tested rather than assumed."""
+    client = TestClient(app)
+    document_id = client.post("/api/documents", files=an_upload()).json()["id"]
+
+    with SessionLocal() as check:
+        before = check.get(Document, document_id).title
+    response = client.put(f"/api/documents/{document_id}", json={"title": "改名"})
+
+    assert response.status_code == 405
+    with SessionLocal() as check:
+        assert check.get(Document, document_id).title == before

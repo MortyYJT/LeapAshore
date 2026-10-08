@@ -137,9 +137,9 @@ def _reviews(session: Session, document_id: str) -> list[ReviewOut]:
                     title=criterion.title,
                     description=criterion.description,
                     source=SourceRef(
-                        url=source.url if source is not None else "",
-                        title=source.title if source is not None else "",
-                        status=source.status if source is not None else "",
+                        url=source.url if source is not None else None,
+                        title=source.title if source is not None else None,
+                        status=source.status if source is not None else None,
                     ),
                 ),
             )

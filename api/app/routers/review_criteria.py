@@ -62,9 +62,9 @@ def read_review_criteria(
                 status=criterion.status,
                 verified_at=criterion.verified_at,
                 source=SourceRef(
-                    url=source.url if source is not None else "",
-                    title=source.title if source is not None else "",
-                    status=source.status if source is not None else "",
+                    url=source.url if source is not None else None,
+                    title=source.title if source is not None else None,
+                    status=source.status if source is not None else None,
                 ),
             )
         )

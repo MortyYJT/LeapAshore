@@ -43,9 +43,14 @@ class SourceRef(BaseModel):
 
     model_config = ConfigDict(alias_generator=_camel, populate_by_name=True)
 
-    url: str
-    title: str
-    status: str
+    # Nullable, and null rather than an empty string when the row behind the citation cannot be read.
+    # Every writer of a citation requires the `sources` row to exist — `programs.source_id` and
+    # `review_criteria.source_id` are both NOT NULL with RESTRICT — so an absent one means a caller
+    # joined something it should not have, and the honest answer to "which page said this" is then
+    # "none readable", not a url-shaped empty string.
+    url: str | None = None
+    title: str | None = None
+    status: str | None = None
 
 
 class PhaseOut(BaseModel):

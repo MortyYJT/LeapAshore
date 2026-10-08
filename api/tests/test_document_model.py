@@ -103,6 +103,22 @@ def an_uncommitted_finding(session, review, criterion=None) -> DocumentReviewFin
     )
 
 
+def refused_by(session, evidence: str) -> None:
+    """Assert the flush was refused, and that it was *this* rule that refused it.
+
+    Naming the constraint, or the column for a NOT NULL, is what stops the test from passing for
+    another reason — a row a previous test left behind, a fixture that failed earlier, a different
+    constraint. An `IntegrityError` of any kind would satisfy a bare `pytest.raises`, and then the test
+    would no longer be pinning what it claims to.
+    """
+    with pytest.raises(IntegrityError) as refused:
+        session.flush()
+    assert evidence in str(refused.value), (
+        f"the insert was refused, but not by {evidence}: {refused.value}"
+    )
+    session.rollback()
+
+
 def discard(session, *rows) -> None:
     """Delete what a test wrote, in the order the foreign keys require.
 
@@ -134,9 +150,7 @@ def test_a_criterion_without_a_source_is_refused(db_session, require_db):
             source_id=None,
         )
     )
-    with pytest.raises(IntegrityError):
-        db_session.flush()
-    db_session.rollback()
+    refused_by(db_session, "source_id")
 
 
 def test_a_criterion_cannot_cite_a_source_that_does_not_exist(db_session, require_db):
@@ -151,9 +165,7 @@ def test_a_criterion_cannot_cite_a_source_that_does_not_exist(db_session, requir
             source_id=new_id(),
         )
     )
-    with pytest.raises(IntegrityError):
-        db_session.flush()
-    db_session.rollback()
+    refused_by(db_session, "review_criteria_source_id_fkey")
 
 
 def test_a_scope_outside_the_set_is_refused(db_session, require_db):
@@ -171,9 +183,7 @@ def test_a_scope_outside_the_set_is_refused(db_session, require_db):
                 source_id=source.id,
             )
         )
-        with pytest.raises(IntegrityError):
-            db_session.flush()
-        db_session.rollback()
+        refused_by(db_session, "ck_review_criteria_scope")
     finally:
         discard(db_session, (Source, source.id))
 
@@ -192,9 +202,7 @@ def test_a_check_type_outside_the_set_is_refused(db_session, require_db):
                 source_id=source.id,
             )
         )
-        with pytest.raises(IntegrityError):
-            db_session.flush()
-        db_session.rollback()
+        refused_by(db_session, "ck_review_criteria_check_type")
     finally:
         discard(db_session, (Source, source.id))
 
@@ -215,9 +223,7 @@ def test_a_finding_without_a_criterion_is_refused(db_session, require_db):
     db_session.commit()
 
     db_session.add(an_uncommitted_finding(db_session, review, criterion=None))
-    with pytest.raises(IntegrityError):
-        db_session.flush()
-    db_session.rollback()
+    refused_by(db_session, "criterion_id")
 
 
 def test_a_finding_severity_outside_the_set_is_refused(db_session, require_db):
@@ -239,9 +245,7 @@ def test_a_finding_severity_outside_the_set_is_refused(db_session, require_db):
         finding = an_uncommitted_finding(db_session, review, criterion)
         finding.severity = "fatal"
         db_session.add(finding)
-        with pytest.raises(IntegrityError):
-            db_session.flush()
-        db_session.rollback()
+        refused_by(db_session, "ck_document_review_findings_severity")
     finally:
         discard(db_session, (ReviewCriterion, criterion.id), (Source, source.id))
 
@@ -264,9 +268,7 @@ def test_a_version_number_is_unique_within_a_document(db_session, require_db):
             storage_path=f"blobs/{digest[:2]}/{digest}",
         )
     )
-    with pytest.raises(IntegrityError):
-        db_session.flush()
-    db_session.rollback()
+    refused_by(db_session, "document_versions_document_id_version_no_key")
 
 
 def test_a_document_kind_outside_the_set_is_refused(db_session, require_db):
@@ -277,9 +279,7 @@ def test_a_document_kind_outside_the_set_is_refused(db_session, require_db):
     """
     client = a_client(db_session)
     db_session.add(Document(id=new_id(), client_id=client.id, title="本科成绩单", kind="diploma"))
-    with pytest.raises(IntegrityError):
-        db_session.flush()
-    db_session.rollback()
+    refused_by(db_session, "ck_documents_kind")
 
 
 def test_a_cited_source_cannot_be_deleted(db_session, require_db):
@@ -288,9 +288,10 @@ def test_a_cited_source_cannot_be_deleted(db_session, require_db):
     criterion = a_criterion(db_session, source)
     try:
         with SessionLocal() as remove:
-            with pytest.raises(IntegrityError):
+            with pytest.raises(IntegrityError) as refused:
                 remove.delete(remove.get(Source, source.id))
                 remove.commit()
+            assert "review_criteria_source_id_fkey" in str(refused.value)
             remove.rollback()
 
         with SessionLocal() as check:
@@ -321,9 +322,10 @@ def test_a_cited_criterion_cannot_be_deleted(db_session, require_db):
 
     try:
         with SessionLocal() as remove:
-            with pytest.raises(IntegrityError):
+            with pytest.raises(IntegrityError) as refused:
                 remove.delete(remove.get(ReviewCriterion, criterion.id))
                 remove.commit()
+            assert "document_review_findings_criterion_id_fkey" in str(refused.value)
             remove.rollback()
 
         with SessionLocal() as check:

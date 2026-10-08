@@ -177,15 +177,48 @@ def _accept(staged: Path) -> str:
 
 
 def _place(staged: Path, digest: str) -> str:
-    """Move the staged file to its content-addressed home, or drop it if those bytes are here already."""
+    """Move the staged file to its content-addressed home, or drop it if those bytes are here already.
+
+    An existing file is checked before it is trusted. The path is the digest, so reusing it is the
+    whole point — but "the path is the digest" is only true if what is at that path really is those
+    bytes, and a blob that a disk-full write or something outside this code left truncated would
+    otherwise be reused by every later upload of that content, forever, while the row kept recording a
+    digest and a size the file does not have. The check is the file's length: this code writes through
+    a temporary file and an atomic rename, so a *partial* file cannot appear at the final path, and a
+    same-length difference would take something deliberately writing over the store — the same trust
+    boundary as the row itself. Repairing is a rename, which is why a mismatch is cheap to fix.
+    """
     relpath = blob_relpath(digest)
     destination = storage_root() / relpath
     destination.parent.mkdir(parents=True, exist_ok=True)
-    if destination.exists():
+
+    if destination.exists() and destination.stat().st_size == staged.stat().st_size:
         staged.unlink(missing_ok=True)
     else:
         os.replace(staged, destination)
     return relpath
+
+
+def _next_version_no(session: Session, document_id: str) -> int:
+    """The number the next version of this material takes, under a lock on the material.
+
+    The lock is what makes "increase by exactly one" true by construction rather than by luck: two
+    uploads for one material cannot both read the same last number, so neither has to be resolved by
+    recomputing afterwards — and a recomputation is exactly where a number could be skipped. The lock
+    is taken after the file is in place and held only across the insert and the commit, so it does not
+    cover the copy.
+    """
+    session.execute(
+        select(Document.id).where(Document.id == document_id).with_for_update()
+    ).scalar_one()
+    return (
+        session.execute(
+            select(func.coalesce(func.max(DocumentVersion.version_no), 0)).where(
+                DocumentVersion.document_id == document_id
+            )
+        ).scalar_one()
+        + 1
+    )
 
 
 def _require_own_task(session: Session, client_id: str, task_id: str | None) -> None:
@@ -265,8 +298,11 @@ def add_version(session: Session, document: Document, upload: UploadFile) -> Doc
     just been replaced. Reviews themselves stay attached to the version they judged, so an earlier
     verdict is not lost — it just stops describing the current file.
 
-    Two uploads racing for the same number are resolved by retrying once: the loser's unique
-    constraint violation is a fact about timing, not about the request.
+    Two uploads racing for the same number are resolved by the lock `_next_version_no` takes: the
+    second waits, then reads the number the first committed, so the sequence stays contiguous. The
+    retry below is the residue — the number is chosen once and reused, never recomputed, because a
+    recomputation is what could quietly skip a number. If it still cannot be stored the answer is 409,
+    which says the material moved rather than pretending the rows are in a state they are not.
     """
     filename = upload.filename
     if not filename:
@@ -275,16 +311,9 @@ def add_version(session: Session, document: Document, upload: UploadFile) -> Doc
     staged, digest, size = _stage(upload)
     mime_type = _accept(staged)
     relpath = _place(staged, digest)
+    next_no = _next_version_no(session, document.id)
 
     for attempt in (1, 2):
-        next_no = (
-            session.execute(
-                select(func.coalesce(func.max(DocumentVersion.version_no), 0)).where(
-                    DocumentVersion.document_id == document.id
-                )
-            ).scalar_one()
-            + 1
-        )
         version = DocumentVersion(
             id=str(uuid.uuid4()),
             document_id=document.id,

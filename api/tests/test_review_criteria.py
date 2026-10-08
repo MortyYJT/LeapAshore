@@ -189,3 +189,15 @@ def test_the_seed_does_not_duplicate_a_source_url(db_session, require_db):
     with SessionLocal() as session:
         rows = session.execute(select(Source).where(Source.url == GS_SOURCE_URL)).scalars().all()
     assert len(rows) == 1
+
+
+def test_a_citation_with_no_readable_source_is_null_not_empty():
+    """`SourceRef` is nullable so that "no page readable" is null rather than a url-shaped "".
+
+    No route can reach that state today — `source_id` is NOT NULL with RESTRICT in both tables that
+    serve a citation — which is exactly why the schema has to say it: the fallback in the routers is
+    what a later join would fall into, and an empty string there would read as a citation nobody made.
+    """
+    from app.schemas.roadmap import SourceRef
+
+    assert SourceRef().model_dump(by_alias=True) == {"url": None, "title": None, "status": None}

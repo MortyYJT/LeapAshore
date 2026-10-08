@@ -7,10 +7,13 @@ the kind that a later refactor can quietly undo, so they are pinned here.
 
 import base64
 import io
+import threading
 import uuid
 import zipfile
+from concurrent.futures import ThreadPoolExecutor
 
 import pytest
+from sqlalchemy import select
 from starlette.datastructures import Headers, UploadFile
 
 from app.config import settings
@@ -282,3 +285,70 @@ def test_the_uploaded_bytes_are_not_left_in_a_staging_file(db_session, require_d
 
     version = db_session.get(DocumentVersion, document.current_version_id)
     assert files_under(upload_root) == [version.storage_path]
+
+
+# Long enough that a slow machine still reaches the overlap, short enough that a thread which never
+# does fails the test instead of hanging the suite.
+PATIENCE_SECONDS = 10
+
+
+def test_two_uploads_racing_for_the_next_version_number(db_session, require_db, upload_root):
+    """Both uploads are stored, and the numbers stay exactly 1, 2, 3.
+
+    This is the spec's own scenario: two uploads for one material reach for the same next number. The
+    loser must not become a 500, and it must not become a 409 either — the number is chosen under a lock
+    on the material, so the second upload waits and then reads what the first committed. Removing that
+    lock while the retry reuses the number it chose (rather than recomputing one, which is what could
+    skip a number) turns the loser into a refusal and this test red.
+    """
+    client = a_client(db_session)
+    document = store_upload(db_session, client.id, an_upload(A_PNG, "one.png"))
+    document_id = document.id
+    both_arrived = threading.Barrier(2)
+
+    def append(payload: bytes, name: str) -> int:
+        with SessionLocal() as session:
+            current = session.get(Document, document_id)
+            both_arrived.wait(timeout=PATIENCE_SECONDS)
+            return add_version(
+                session, current, an_upload(payload, name, MIME_PDF)
+            ).version_no
+
+    with ThreadPoolExecutor(max_workers=2) as pool:
+        futures = [
+            pool.submit(append, b"%PDF-1.4 second", "two.pdf"),
+            pool.submit(append, b"%PDF-1.4 third", "three.pdf"),
+        ]
+        numbers = sorted(future.result() for future in futures)
+
+    assert numbers == [2, 3], "the two racing uploads did not take the next two numbers"
+    with SessionLocal() as session:
+        stored = sorted(
+            session.scalars(
+                select(DocumentVersion.version_no).where(
+                    DocumentVersion.document_id == document_id
+                )
+            )
+        )
+    assert stored == [1, 2, 3], "a version number was skipped"
+
+
+def test_a_truncated_blob_is_repaired_rather_than_reused(db_session, require_db, upload_root):
+    """The path is the digest, so what is at the path has to be those bytes.
+
+    A blob left truncated — a full disk on some older write, or something outside this code — would
+    otherwise be reused by every later upload of that content, while the row went on recording a digest
+    and a byte size the file does not have.
+    """
+    client = a_client(db_session)
+    first = store_upload(db_session, client.id, an_upload(A_PNG, "one.png"))
+    version = db_session.get(DocumentVersion, first.current_version_id)
+    blob = upload_root / version.storage_path
+    blob.write_bytes(b"")
+
+    again = store_upload(db_session, client.id, an_upload(A_PNG, "two.png"))
+
+    stored = db_session.get(DocumentVersion, again.current_version_id)
+    assert stored.storage_path == version.storage_path, "the two uploads stopped sharing one blob"
+    assert blob.read_bytes() == A_PNG, "a truncated blob was reused instead of repaired"
+    assert blob.stat().st_size == stored.byte_size
