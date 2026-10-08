@@ -101,8 +101,9 @@ export default function PortfolioPicker({
    * Two sources, and both are needed. The system's own suggestions are ticked by default, which is
    * what makes "confirm the recommended combination" one click. The programs the server already holds
    * are ticked as well, so reopening the picker shows the applicant's actual portfolio rather than the
-   * recommendation over again — without that, confirming again would silently drop whatever they had
-   * added by hand.
+   * recommendation over again — without that, confirming again would silently drop the stored rows the
+   * filter admits. `carriedItems` is what covers the ones it does not: a tick can only be drawn for a
+   * card, and a stored row outside the filter has no card.
    *
    * It is deliberately not written as a `useMemo` over the assessments that the render reads: a value
    * derived on every render cannot be un-ticked. This runs once, and only while nothing has been
@@ -120,6 +121,41 @@ export default function PortfolioPicker({
     });
   }, [programs, assessments, portfolio]);
 
+  /**
+   * The rows the server already holds that this screen cannot draw, because the assessment list is
+   * filtered by the profile's target degree and field (`assessAll`) and these rows' programs fall
+   * outside that filter.
+   *
+   * They are not deleted, and that is the whole point of collecting them: the confirmation sends the
+   * whole portfolio and the server removes every row the payload does not name, so a row left out of
+   * the payload is destroyed permanently, with a `removed` audit entry and nothing on screen to say
+   * it happened. The comment that used to sit in `chosenItems` claimed the picker protected "whatever
+   * they had added by hand"; it protected only the rows the filter admits.
+   *
+   * Not reachable with the current catalogue — all six seeded programs share one degree and one field
+   * — but it becomes reachable with the first second field or degree, which is where the design is
+   * going. Measured in a real browser with `GET /api/programs` stubbed to add one 研究型硕士 program and
+   * the profile moved to that degree: the picker drew the injected card, held a stored 授课型硕士 row it
+   * could not draw, and the confirmation's payload — on the version without this — named only the
+   * card. The stored row was removed from the server by that call and would have stayed gone.
+   *
+   * These travel through the payload untouched rather than being refused, and the reason is the
+   * applicant's: the rows are their own decisions, they are stored, and a confirmation of the cards on
+   * screen is not a statement about a program this screen never showed. Refusing instead would block
+   * every confirmation while a hidden row exists, with no way out from inside the picker, and the flow
+   * would be stuck on a filter the applicant cannot see. The notice below says the rest is kept.
+   *
+   * One consequence worth stating rather than discovering: `chosenCount` counts the keys in `picked`,
+   * and the seeding effect ticks every stored row by its slug whether or not that row has a card, so a
+   * carried row keeps the confirm button enabled. That is the right side of the line — the portfolio
+   * being confirmed is not empty — but the number on the button is then not a count of the cards, nor
+   * of the rows that will be stored: it is the count of stored rows, carried ones included.
+   */
+  const carriedItems = useMemo(() => {
+    const shown = new Set(assessments.map((a) => a.program.slug));
+    return portfolio.filter((item) => !shown.has(item.programSlug));
+  }, [assessments, portfolio]);
+
   const chosenCount = Object.values(picked).filter(Boolean).length;
 
   function toggle(slug: string) {
@@ -128,18 +164,24 @@ export default function PortfolioPicker({
   }
 
   /**
-   * The chosen rows as the server stores them.
+   * The chosen rows as the server stores them: the visible ticks, plus every stored row this screen
+   * could not show.
    *
-   * `isPrimary` and `needsReview` are taken from the portfolio the server served when the row is one of
-   * its rows, and otherwise from the assessment: a whole replacement restates the first choice, and an
-   * omitted `isPrimary` reads as `false` (a controller ruling recorded in
-   * `api/app/services/applications.py`), so a row that was the applicant's 首选 has to carry the flag
-   * back or this call would release it. `needsReview` is the system's own admission that it could not
-   * tier the program — set for a row the applicant added by hand, never presented as a recommendation.
+   * `isPrimary` for a visible row is read back from the portfolio the server served: a whole
+   * replacement restates the first choice, and an omitted `isPrimary` reads as `false` (a controller
+   * ruling recorded in `api/app/services/applications.py`), so a row that was the applicant's 首选 has
+   * to carry the flag back or this call would release it.
+   *
+   * A carried row is sent exactly as it was stored, `isPrimary` included, and neither of the two
+   * fields is recomputed from an assessment — there is no assessment for a program that is not on
+   * screen. `needsReview` on a visible row is the system's own admission that it could not tier the
+   * program, and it is derived from the assessment and never from the served portfolio: set when
+   * `suggestedTier` is null, so that the interface never presents an unmatchable program as a
+   * recommendation. A carried row is not re-assessed, so its stored `needsReview` is what travels.
    */
   function chosenItems(): PortfolioItem[] {
     const stored = new Map(portfolio.map((item) => [item.programSlug, item]));
-    return assessments
+    const visible: PortfolioItem[] = assessments
       .filter((a) => picked[a.program.slug])
       .map((a) => ({
         programSlug: a.program.slug,
@@ -150,6 +192,7 @@ export default function PortfolioPicker({
         needsReview: a.suggestedTier === null,
         isPrimary: stored.get(a.program.slug)?.isPrimary === true,
       }));
+    return [...visible, ...carriedItems];
   }
 
   /**
@@ -190,6 +233,15 @@ export default function PortfolioPicker({
       {saveError !== null && (
         <div className="mb-4 rounded-xl border-2 border-[var(--color-danger)] bg-[var(--color-danger-soft)] p-3">
           <p className="text-sm leading-relaxed text-[var(--color-danger)]">{saveError}</p>
+        </div>
+      )}
+
+      {carriedItems.length > 0 && (
+        <div className="mb-4 rounded-xl border-2 border-[var(--color-line)] bg-[var(--color-surface)] p-3">
+          <p className="text-sm leading-relaxed text-[var(--color-ink-soft)]">
+            另有 {carriedItems.length} 个已保存的项目不在当前筛选范围内（目标学位或方向不同），
+            这里看不到，但它们会原样保留，不会被删掉。
+          </p>
         </div>
       )}
 
