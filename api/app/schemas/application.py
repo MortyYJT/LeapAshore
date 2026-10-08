@@ -112,7 +112,7 @@ class ProgramRef(BaseModel):
 
     This is a projection rather than the catalogue row `app.schemas.program.ProgramOut` serves, and
     the difference is deliberate: the two portfolio lists draw the institution and the program name
-    (`HomeView.tsx:77` and `FlowView.tsx:135`) and nothing else from the program, so a portfolio read
+    (`HomeView.tsx:79` and `FlowView.tsx:130`) and nothing else from the program, so a portfolio read
     does not need to carry marks, prerequisites and a citation per row. The full record stays on
     `/api/programs`, which is where the picker reads it.
 
@@ -148,7 +148,9 @@ class ApplicationOut(BaseModel):
     it is a backstop for a row a future migration or a manual edit could still produce, and the
     applicant's own choice is served either way: dropping the row would hide a decision the applicant
     made because of a defect in the catalogue, and inventing a placeholder would pass a guess off as
-    the program. The frontend already renders a portfolio row it cannot resolve by its slug.
+    the program. The frontend renders the row without one as the unknown marker rather than as a blank
+    or as the slug: M2d removed the ``PROGRAMS.find(...)`` lookup that printed the row's slug, so
+    ``program: null`` is a state the two portfolio lists already draw (``未知 · 未知``).
     """
 
     model_config = ConfigDict(alias_generator=_camel, populate_by_name=True, from_attributes=True)

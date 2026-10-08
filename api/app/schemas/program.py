@@ -17,7 +17,7 @@ wire and the consumer has to handle it.
 
 Two differences from `web/lib/types.ts` are recorded here because the catalogue-wiring task reads
 this file: the frontend's `Program.name` is the English program name, which is `name_en` on this
-wire, while this endpoint's `name` is the Chinese one (`HomeView.tsx:77` and `FlowView.tsx:135`
+wire, while this endpoint's `name` is the Chinese one (`HomeView.tsx:79` and `FlowView.tsx:130`
 render the frontend's copy, so a key-for-key adapter would swap it); and the five fields named
 above are `string | null` here where the frontend declares a non-nullable `string`. Neither the
 keys nor the frontend's declarations are changed by this task — the divergence is only made
