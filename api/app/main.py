@@ -1,7 +1,14 @@
 from fastapi import FastAPI
 
 from app.middleware import BodySizeLimitMiddleware
-from app.routers import applications, documents, profile, programs, roadmap
+from app.routers import (
+    applications,
+    documents,
+    profile,
+    programs,
+    review_criteria,
+    roadmap,
+)
 from app.services.documents import MAX_UPLOAD_BYTES, TOO_LARGE
 
 app = FastAPI(title="OfferPilot API")
@@ -19,6 +26,7 @@ app.include_router(applications.router)
 app.include_router(documents.router)
 app.include_router(profile.router)
 app.include_router(programs.router)
+app.include_router(review_criteria.router)
 app.include_router(roadmap.router)
 
 
