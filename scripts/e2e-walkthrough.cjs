@@ -948,8 +948,9 @@ function dbRun(sql) {
       await page.waitForTimeout(400);
       const renderedSlugs = await page.evaluate(() =>
         [...document.querySelectorAll("li span.font-semibold")].map((n) =>
-          // The list renders `university · name` when the catalogue resolves the slug and the bare slug
-          // when it does not, so this reads the resolved program back out of either shape.
+          // The list renders `大学 · 名称` from the program the server served with the row, for every row:
+          // a program the catalogue cannot resolve prints the unknown marker on both sides of the dot
+          // rather than a bare slug, so this reads the name half back out of the one shape there is.
           n.innerText.includes(" · ") ? n.innerText.split(" · ").slice(1).join(" · ") : n.innerText,
         ),
       );
@@ -987,6 +988,11 @@ function dbRun(sql) {
       // reports. The expected value is never the slug and never the string the page happens to hold, so the
       // two can differ — an assertion written against the page's own idea of the label would agree with
       // any implementation, including the one this task removes.
+      //
+      // What this check cannot settle is the *source*: the constants array and the seeded catalogue agree
+      // on all six programs, so a lookup renders the same text and keeps this green. The static half is
+      // `make check-programs-readers` — no file under web/components or web/app may import the array —
+      // and this check is the half that measures what the page actually drew.
       //
       // The card is addressed by its `data-testid` because 首页 renders the `·`-joined school label in the
       // 申请档案 card as well, and a text-shaped selector would leave the subject of this check ambiguous.

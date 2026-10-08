@@ -92,7 +92,33 @@ export interface ServedSource {
 }
 
 /**
- * The label the two portfolio views print for a served program reference, or `null` when there is none.
+ * The program as a portfolio item carries it: the institution and the English name, the two fields
+ * both portfolio views read.
+ *
+ * Narrower than the wire reference on purpose, and the narrowing is a fix rather than a tidy-up. A
+ * portfolio item is built in two places: `toPortfolioItems` projects a row the route served, and
+ * `PortfolioPicker` builds the items it is about to confirm out of the catalogue it already holds. The
+ * picker's items are what the screen renders when the post-confirmation re-read fails, and the picker
+ * cannot answer for the wire's full reference — it holds `Program`s, where the English name lives on
+ * `name` (§3.6) and the route's Chinese `name` does not exist at all — so with a full reference in this
+ * position those items carried no program and both views printed `未知 · 未知` for programs the
+ * catalogue knows. Two fields are exactly what the views print and both builders can fill them
+ * truthfully; the route's own `ProgramRef` docstring says the same from the other side, and it serves
+ * the other five fields because a read is not a render.
+ *
+ * `nameEn` is spelled as the wire spells it rather than as `name`: this is the served English name, and
+ * a caller that read a `Program`'s own `name` into it is making §3.6's mapping rather than a naming
+ * slip. `null` in either field means the catalogue does not know, and the view prints `UNKNOWN`.
+ */
+export interface PortfolioProgram {
+  /** The institution that offers the program, or `null` when the served value is absent or empty. */
+  university: string | null;
+  /** The English program name, or `null` when the served value is absent or empty. */
+  nameEn: string | null;
+}
+
+/**
+ * The label the two portfolio views print for a portfolio item's program, or `null` when there is none.
  *
  * This is the replacement for `PROGRAMS.find(...)`: the source is the projection `GET /api/applications`
  * serves alongside every row, so a program outside `web/lib/programs.ts` renders as its name rather
@@ -101,32 +127,58 @@ export interface ServedSource {
  * `nameEn` and nothing else. The served `name` is the Chinese one, so falling back to it would put a
  * name the server chose for another field onto the label §3.6 says is the English one — the same swap
  * `toProgramView` refuses. A `null` (or an absent key) is therefore answered with `null` rather than
- * with the Chinese name or an empty string, and the render sites turn that into `UNKNOWN`.
+ * with the Chinese name or an empty string, and the render sites turn that into `UNKNOWN`. An empty
+ * string is answered the same way: `?? null` alone would let it through, and the card would then print
+ * `大学 · ` with nothing after the dot, which is a claim that the program has no name.
  */
-export function toProgramLabel(program: ServedProgramRef | null | undefined): string | null {
-  return program?.nameEn ?? null;
+export function toProgramLabel(program: PortfolioProgram | null | undefined): string | null {
+  const name = program?.nameEn;
+  return isFilled(name) ? name : null;
 }
 
 /**
- * One program as the interface carries it on a portfolio item, copied out of the wire projection.
+ * A served portfolio row's program reference as the two fields the item carries.
  *
- * Written field by field rather than by spreading the served object: the item travels through the
- * application state and the render sites, so what it carries is this module's decision rather than
- * whatever the route happens to add to the projection next.
+ * A projection rather than a copy: the item travels through the application state and the render sites,
+ * so what it carries is this module's decision rather than whatever the route happens to put in its
+ * projection next. The other five fields the wire serves are dropped here because no view reads them
+ * and because `toPortfolioProgram` — the picker's own builder, from a catalogue entry — could not
+ * answer for them; see `PortfolioProgram`.
+ *
+ * An empty served string is projected to `null`: a field the route served as `""` is a field nobody
+ * filled in, and `""` is not nullish, so `?? null` alone would carry it to the card as a blank half of
+ * the label.
  */
-export function toProgramRef(program: ServedProgramRef): ServedProgramRef {
+export function toProgramRef(program: ServedProgramRef): PortfolioProgram {
   return {
-    slug: program.slug,
-    name: program.name,
-    nameEn: program.nameEn ?? null,
-    university: program.university,
-    city: program.city ?? null,
-    degreeLevel: program.degreeLevel ?? null,
-    dataStatus: program.dataStatus,
+    university: isFilled(program.university) ? program.university : null,
+    nameEn: isFilled(program.nameEn) ? program.nameEn : null,
   };
 }
 
-/** One program the portfolio row names, as `GET /api/applications` serves it under `program`. */
+/**
+ * A catalogue entry, as the picker holds it, as the same two fields an item carries.
+ *
+ * This is the builder that closes the fallback path: `PortfolioPicker` draws the confirmed items out of
+ * `GET /api/programs`, those items become the rendered portfolio if the re-read after the write fails,
+ * and without a program on them the two views printed the unknown marker for the programs the applicant
+ * had just chosen. `Program.name` is the served English name (`toProgramView` wrote it from `nameEn`,
+ * §3.6), so it fills this side's `nameEn`, and `Program.university` is the served institution.
+ */
+export function toPortfolioProgram(program: Program): PortfolioProgram {
+  return {
+    university: isFilled(program.university) ? program.university : null,
+    nameEn: isFilled(program.name) ? program.name : null,
+  };
+}
+
+/**
+ * One program the portfolio row names, as `GET /api/applications` serves it under `program`.
+ *
+ * The wire's own reference, seven fields wide, which is what `toProgramRef` narrows into the
+ * `PortfolioProgram` an item carries. The two are deliberately different shapes: this one describes what
+ * the route answered, and the item's describes what the views print.
+ */
 export interface ServedProgramRef {
   slug: string;
   name: string;
@@ -152,10 +204,10 @@ export interface ServedApplication {
   /**
    * The program the row names, or `null` when the catalogue cannot answer for it.
    *
-   * The route serves `null` rather than dropping the row or inventing copy. `toPortfolioItems` carries
-   * it onto the item the interface passes around — `null` included, never `undefined` — and the two
-   * portfolio views draw the institution and the name from it through `toProgramLabel`, so the row no
-   * longer depends on `web/lib/programs.ts` to be renderable.
+   * The route serves `null` rather than dropping the row or inventing copy. `toPortfolioItems` narrows
+   * it through `toProgramRef` onto the item the interface passes around — `null` included, never
+   * `undefined` — and the two portfolio views draw the institution and the name from it through
+   * `toProgramLabel`, so the row no longer depends on `web/lib/programs.ts` to be renderable.
    */
   program: ServedProgramRef | null;
   createdAt: string;
@@ -220,9 +272,11 @@ function toSourceStatus(value: unknown): SourceStatus {
  * One served program as the interface renders it.
  *
  * The five nullable fields stay `null` — they are not defaulted to `""` here, and no render site may
- * do it there: see `UNKNOWN` and this module's header. `minimumMark` and `non211MinimumMark` are
- * already nullable on this side, and `null` there is a value the assessment code reads as "no
- * threshold to compare against" rather than a missing answer to fill in.
+ * do it there: see `UNKNOWN` and this module's header. An empty string is read as the same unknown:
+ * `""` is not nullish, so `?? null` would carry it through to a card that then prints `大学 · ` with
+ * nothing after the dot, and a body may spell "nobody filled this in" either way. `minimumMark` and
+ * `non211MinimumMark` are already nullable on this side, and `null` there is a value the assessment code
+ * reads as "no threshold to compare against" rather than a missing answer to fill in.
  *
  * The citation's `id`, `excerpt` and `verifiedAt` are written here because the wire does not carry
  * them. `id` is the program slug, which is the one identifier this side has for the program and the
@@ -234,16 +288,16 @@ export function toProgramView(program: ServedProgram): Program {
   return {
     slug: requiredText(program.slug, "slug"),
     university: requiredText(program.university, "university"),
-    name: program.nameEn ?? null,
-    city: program.city ?? null,
-    degreeLevel: program.degreeLevel ?? null,
-    field: program.field ?? null,
-    duration: program.duration ?? null,
+    name: isFilled(program.nameEn) ? program.nameEn : null,
+    city: isFilled(program.city) ? program.city : null,
+    degreeLevel: isFilled(program.degreeLevel) ? program.degreeLevel : null,
+    field: isFilled(program.field) ? program.field : null,
+    duration: isFilled(program.duration) ? program.duration : null,
     minimumMark: program.minimumMark ?? null,
     non211MinimumMark: program.non211MinimumMark ?? null,
     requiresCognate: program.requiresCognate ?? false,
     prerequisites: program.prerequisites ?? [],
-    englishRequirement: program.englishRequirement ?? null,
+    englishRequirement: isFilled(program.englishRequirement) ? program.englishRequirement : null,
     source: {
       id: program.slug,
       title: requiredText(program.source?.title, "source.title"),
@@ -273,11 +327,15 @@ export function toProgramView(program: ServedProgram): Program {
  * below restates it rather than guessing, so a replacement must not silently release a first choice
  * the applicant already has.
  *
- * `program` is the projection the route serves alongside the row, carried onto the item because the
- * two portfolio views render it: they resolved the row through `web/lib/programs.ts` until M2d, which
- * turned a program the constants array does not carry into a bare slug. It is written for every row,
- * `null` included, so a view can tell "the catalogue did not answer for this one" apart from a field
- * this adapter forgot; `toProgramLabel` turns it into the label, and `null` renders as `UNKNOWN`.
+ * `program` is the projection the route serves alongside the row, projected onto the item through
+ * `toProgramRef` because the two portfolio views render it: they resolved the row through
+ * `web/lib/programs.ts` until M2d, which turned a program the constants array does not carry into a bare
+ * slug. It is written for every row, `null` included, so a view can tell "the catalogue did not answer
+ * for this one" apart from a field this adapter forgot; `toProgramLabel` turns it into the label, and
+ * `null` renders as `UNKNOWN`. What it carries is the narrower `PortfolioProgram` rather than the wire
+ * reference: the picker's own items — the ones the views render when the post-confirmation re-read
+ * fails — have to answer the same two fields, and the picker has no Chinese name to fill a full
+ * reference with.
  */
 export function toPortfolioItems(rows: ServedApplication[]): PortfolioItem[] {
   return (rows ?? []).map((row) => ({

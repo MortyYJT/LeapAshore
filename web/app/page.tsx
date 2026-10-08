@@ -517,8 +517,15 @@ export default function Page() {
     // The server's own list, not the payload that was just sent: the route decides the order a
     // portfolio is read in (the first choice, then 冲 / 稳 / 保) and the reply carries counts rather
     // than rows, so re-reading is what makes the screen the server's answer instead of this tab's copy
-    // of what it sent. The items just sent stand in if that re-read fails: the write landed, so the
+    // of what it sent. The items just sent stand in if that re-read fails — the write landed, so the
     // applicant's list is right and only its order may be the page's own.
+    //
+    // They can stand in for the rendering too, which is why the picker puts a program on every row it
+    // builds (`toPortfolioProgram`, from the catalogue entry the card was drawn from). The alternative —
+    // leaving the previous server list here instead — was rejected: that list is a portfolio the
+    // applicant has just changed, so it would drop the rows this confirmation added and rename the ones
+    // it re-tiered, on a screen that is supposed to be showing what they just confirmed. Only the
+    // order is the page's own; the names are not.
     setPortfolio(items);
     setState((prev) => ({ ...prev, portfolio: items, stage: "app" }));
     try {

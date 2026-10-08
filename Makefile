@@ -1,7 +1,7 @@
 .PHONY: help dev build test verify install clean screenshots check-origins
 .PHONY: api-install api-test api-dev api-dev-bg wait-api check-api check-venv
 .PHONY: db-up db-down migrate revision seed
-.PHONY: check-dates check-programs-mirror check-roadmap-mirror
+.PHONY: check-dates check-programs-mirror check-programs-readers check-roadmap-mirror
 
 WEB := web
 SHOTS := docs/screenshots
@@ -40,7 +40,7 @@ build:  ## Type-check and build into .next-build so a running dev server is unto
 
 # `npm test` type-checks before it runs the tests, because `next build` skips `lib/*.test.ts` and
 # would otherwise let a type error in a test file sit in the tree until someone ran tsc by hand.
-test: check-dates check-programs-mirror check-roadmap-mirror api-test  ## Run the frontend type-check and unit tests, plus the backend tests
+test: check-dates check-programs-mirror check-programs-readers check-roadmap-mirror api-test  ## Run the frontend type-check and unit tests, plus the backend tests
 	cd $(WEB) && npm test
 
 verify: check-venv build test screenshots  ## Verify: build, unit tests and the end-to-end walkthrough
@@ -70,6 +70,13 @@ check-dates:  ## Fail if a verification date is hardcoded in source or seed data
 # against the same snapshot, which is what binds the tables to the frontend data.
 check-programs-mirror:  ## Fail if the seeded catalogue stops mirroring web/lib/programs.ts
 	node scripts/verify-programs-mirror.cjs
+
+# The mirror guard binds the constants to the seed; this one binds a view to the served row. The
+# walkthrough's M2d check compares the page against the server's own answer, and the two catalogues
+# agree on all six seeded programs, so restoring a `PROGRAMS.find(...)` in a view kept it green. This
+# is the cheap, deterministic half: no file under web/components or web/app may import the array.
+check-programs-readers:  ## Fail if a component or a page reads web/lib/programs.ts as data
+	node scripts/check-no-programs-import.cjs
 
 # The same two-part binding as the catalogue: without a database dump this compares
 # web/lib/roadmap.ts against the committed snapshot, and api/tests/test_seed_roadmap.py compares the

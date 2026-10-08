@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { assessAll } from "@/lib/eligibility";
-import { UNKNOWN } from "@/lib/programs-source";
+import { UNKNOWN, toPortfolioProgram } from "@/lib/programs-source";
 import type { PortfolioItem, PortfolioTier, Profile, Program } from "@/lib/types";
 
 const TIER_LABEL: Record<PortfolioTier, string> = {
@@ -178,6 +178,13 @@ export default function PortfolioPicker({
    * program, and it is derived from the assessment and never from the served portfolio: set when
    * `suggestedTier` is null, so that the interface never presents an unmatchable program as a
    * recommendation. A carried row is not re-assessed, so its stored `needsReview` is what travels.
+   *
+   * `program` travels with a visible row too, taken from the catalogue entry the card was drawn from.
+   * These items are not only a payload: `handlePortfolioConfirm` puts them on screen as the portfolio
+   * when the re-read that follows the write fails, and the two views print the institution and the name
+   * from them. Without this the fallback path carried no program at all, and both views rendered
+   * `未知 · 未知` for the six programs the applicant had just confirmed — measured with the re-read
+   * stubbed to fail.
    */
   function chosenItems(): PortfolioItem[] {
     const stored = new Map(portfolio.map((item) => [item.programSlug, item]));
@@ -185,6 +192,10 @@ export default function PortfolioPicker({
       .filter((a) => picked[a.program.slug])
       .map((a) => ({
         programSlug: a.program.slug,
+        // The catalogue entry this card was drawn from, in the two fields the portfolio views read.
+        // `Program.name` is the served English name (§3.6), which is the field they call `nameEn`; the
+        // wire's Chinese name is not held here and is not something these screens print.
+        program: toPortfolioProgram(a.program),
         // When the system cannot tier a program, fall back to 'steady' but flag it, so the
         // interface never presents it as a system recommendation.
         tier: (a.suggestedTier ?? stored.get(a.program.slug)?.tier ?? "稳") as PortfolioTier,

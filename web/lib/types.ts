@@ -1,7 +1,7 @@
 // OfferPilot domain model, front-end MVP version.
 // Mirrors the Pydantic models the FastAPI service will expose, so it can be swapped for API responses.
 
-import type { ServedProgramRef } from "./programs-source";
+import type { PortfolioProgram } from "./programs-source";
 
 export type EducationLevel = "高中" | "本科" | "硕士" | "其他";
 
@@ -113,14 +113,22 @@ export interface PortfolioItem {
    * The two portfolio views draw the institution and the program name from this rather than resolving
    * the slug against `web/lib/programs.ts`: the server sends the program with every row, and a program
    * the constants array does not carry used to render as a bare slug. The label comes from `nameEn` —
-   * see `toProgramLabel` and `Program.name` for why — and a `null` here renders as `UNKNOWN` rather
-   * than as an empty string.
+   * see `toProgramLabel` and `Program.name` for why — and a `null` here, or an empty field inside it,
+   * renders as `UNKNOWN` rather than as an empty string.
    *
-   * Optional because the picker builds the items it is about to send out of the catalogue it already
-   * holds, and those never came from a portfolio read. `toPortfolioItems` always writes the field —
-   * `null` when there was no program — so a row read off the server never has it absent.
+   * The shape is `PortfolioProgram` — the institution and the English name, the two fields both views
+   * read — rather than the route's wider `ServedProgramRef`. A portfolio item is also built by
+   * `PortfolioPicker`, out of the catalogue it already holds, and those items are what the screen
+   * renders when the post-confirmation re-read fails: the picker has no Chinese name to fill a full
+   * reference with, so the field has to be one it can answer for. `toProgramRef` projects a served row
+   * and `toPortfolioProgram` maps a catalogue entry onto the same two fields.
+   *
+   * Optional because `store.ts` still reads back the copies an older build wrote, and an item from one
+   * of those may predate the field. Every item the app itself builds writes it — `toPortfolioItems`
+   * writes `null` rather than leaving it absent when the route answered with no program, and the picker
+   * fills it from the catalogue.
    */
-  program?: ServedProgramRef | null;
+  program?: PortfolioProgram | null;
   tier: PortfolioTier;
   /** Whether the user confirmed this program into the application portfolio. */
   confirmed: boolean;

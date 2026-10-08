@@ -163,6 +163,31 @@ test("carries a null through as null rather than turning it into an empty string
   assert.equal(toProgramView(served({ non211MinimumMark: null })).non211MinimumMark, null);
 });
 
+test("an empty served string is the same unknown as a null, and never reaches a label", () => {
+  // The hole `?? null` leaves: `""` is not nullish, so it survives the mapping and the render sites —
+  // the picker's `?? UNKNOWN`, the label's `?? UNKNOWN` — keep it, and the card prints `大学 · ` with
+  // nothing after the dot. A body can send either spelling for "nobody filled this in", and both are
+  // mapped to the one value the interface knows how to render as 未知.
+  const EMPTY_TEXT = {
+    nameEn: "",
+    city: "",
+    degreeLevel: "",
+    field: "",
+    duration: "",
+    englishRequirement: "",
+  };
+  const view = toProgramView(served(EMPTY_TEXT));
+  assert.equal(view.name, null);
+  for (const key of ["city", "degreeLevel", "field", "duration", "englishRequirement"] as const) {
+    assert.equal(view[key], null, `${key} is unknown, not empty`);
+    assert.notEqual(view[key], "", `${key} must not be an empty string`);
+  }
+  // The two fields the interface cannot do without are refused rather than blanked: an empty slug and an
+  // empty institution are bodies this side cannot render at all, and `requiredText` already says so.
+  assert.throws(() => toProgramView(served({ ...EMPTY_TEXT, slug: "" })), /条目缺少 slug/);
+  assert.throws(() => toProgramView(served({ ...EMPTY_TEXT, university: "" })), /条目缺少 university/);
+});
+
 test("a null nameEn stays null and is not swapped for the Chinese name", () => {
   // `name_en` is nullable on the wire as well, and this is the case a deliberate `.name` fallback
   // would look reasonable on and be wrong: showing the Chinese name under the frontend's `name` is
@@ -317,14 +342,11 @@ test("maps a served portfolio row onto the item the interface renders", () => {
     programSlug: "unsw-master-it",
     // The program the route served alongside the row travels with the item: the two portfolio views
     // render it, so it is part of what this mapping produces rather than a field of the row left behind.
+    // Narrowed to the two fields those views read — the institution and the English name — because the
+    // picker also builds items, out of a catalogue that has no Chinese name to fill a full reference.
     program: {
-      slug: "unsw-master-it",
-      name: "信息技术硕士",
-      nameEn: "Master of Information Technology",
       university: "新南威尔士大学",
-      city: "悉尼",
-      degreeLevel: "授课型硕士",
-      dataStatus: "待核验",
+      nameEn: "Master of Information Technology",
     },
     tier: "保",
     // The server's portfolio is a list of choices the applicant made, so every row in it is confirmed.
@@ -350,17 +372,12 @@ test("a row the server does not flag is not flagged here", () => {
   ]);
   // The row's program projection travels with the item since M2d, because the two portfolio views
   // render it: they resolved the row through `web/lib/programs.ts` before, and a program that array
-  // does not carry reached the card as a bare slug. What the item carries is the copy this adapter
-  // made, field for field — a spread of the served object would let a field the route adds later
-  // reach the render sites without a decision here.
+  // does not carry reached the card as a bare slug. What the item carries is the projection this
+  // adapter made — the institution and the English name, the two fields the views print, so a field the
+  // route adds to its reference later cannot reach a render site without a decision here.
   assert.deepEqual(item.program, {
-    slug: SERVED_ROW.program!.slug,
-    name: SERVED_ROW.program!.name,
-    nameEn: SERVED_ROW.program!.nameEn,
     university: SERVED_ROW.program!.university,
-    city: SERVED_ROW.program!.city,
-    degreeLevel: SERVED_ROW.program!.degreeLevel,
-    dataStatus: SERVED_ROW.program!.dataStatus,
+    nameEn: SERVED_ROW.program!.nameEn,
   });
   // The label the views print is the English name, which is what the wire calls `nameEn`; the served
   // `name` is the Chinese one and is not it.
