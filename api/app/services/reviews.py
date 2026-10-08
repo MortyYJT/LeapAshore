@@ -120,6 +120,24 @@ def _resolve_findings(
     return resolved
 
 
+def recent_materials(session: Session, *, limit: int = 20) -> list[Document]:
+    """The most recently uploaded materials, newest first, for the operator's own use.
+
+    Recording a review needs a document id, and the applicant's browser is the only place that knows it:
+    the reviewer holds the database, not the cookie. This is how they find the material they were asked
+    about, which is why it is deliberately not filtered by subject — an operator is not a subject, and a
+    listing narrowed to a cookie they do not have would be useless for its only purpose.
+
+    Read-only, and bounded: the command prints these, and an unbounded dump of every material any
+    applicant ever uploaded is not something a terminal should try to render.
+    """
+    return list(
+        session.scalars(
+            select(Document).order_by(Document.created_at.desc(), Document.id).limit(limit)
+        )
+    )
+
+
 def record_review(
     session: Session,
     document_id: str,
