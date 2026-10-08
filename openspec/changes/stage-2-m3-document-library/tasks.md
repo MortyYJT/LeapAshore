@@ -50,7 +50,7 @@
 ## 5. 维护者 CLI（后端）
 
 - [ ] 5.1 新增 `api/review_cli.py`（argparse，风格对齐 `seed_cli.py`）：`verify-criterion <code>` / `unverify-criterion <code>`，写入 `now()`，是全仓库唯一写 `verified_at` 的地方
-- [ ] 5.2 同文件：`review <document_id> --overall --reviewed-by --summary --finding "<code>:<severity>:<text>"`（可重复）；`--finding` 按冒号切两刀（`split(":", 2)`），少于两个冒号即参数错误，`text` 里的冒号原样保留；一个事务内写 review + findings 并按结论推进材料状态
+- [ ] 5.2 同文件：`review <document_id> --version <n> --overall --reviewed-by --summary --finding "<code>:<severity>:<text>"`（可重复）；`--version` **必填**——审核结论描述的是具体字节，让操作者指名他看的是哪一版，才能在"审阅期间来了新版本"时拒绝而不是把结论挂到没人看过的文件上；`--finding` 按冒号切两刀（`split(":", 2)`），少于两个冒号即参数错误，`text` 里的冒号原样保留；一个事务内写 review + findings 并按结论推进材料状态
 - [ ] 5.3 TDD: `api/tests/test_review_cli.py` — verify 写入运行时间且状态变 `已核验`；unverify 清空日期
 - [ ] 5.4 TDD: 同文件 — `pass` + blocker 被拒；非 `pass` 且无 findings 被拒；severity 越界被拒；`reviewed_by` 为空被拒
 - [ ] 5.5 TDD: 同文件 — 要点 scope 与材料 kind 不匹配被拒（`general` 除外）；审核非当前版本 409；审核非 `under_review` 的材料 409

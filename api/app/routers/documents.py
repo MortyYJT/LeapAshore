@@ -39,7 +39,7 @@ from app.schemas.document import (
 )
 from app.schemas.roadmap import SourceRef
 from app.services.documents import (
-    MaterialRejected,
+    Refused,
     add_version,
     archive_document,
     storage_root,
@@ -189,7 +189,7 @@ def _detail(session: Session, document: Document) -> DocumentDetailOut:
     )
 
 
-def _refusal(exc: MaterialRejected, response: Response) -> HTTPException:
+def _refusal(exc: Refused, response: Response) -> HTTPException:
     """A refusal from the upload service, as an HTTP error that keeps the subject's cookie."""
     return HTTPException(
         status_code=exc.status_code,
@@ -268,7 +268,7 @@ def upload_document(
     load_or_create_profile(session, client_id)
     try:
         document = store_upload(session, client_id, file, title=title, task_id=task_id)
-    except MaterialRejected as exc:
+    except Refused as exc:
         raise _refusal(exc, response) from exc
     return _detail(session, document)
 
@@ -285,7 +285,7 @@ def upload_version(
     document = _own_document(session, client_id, document_id)
     try:
         add_version(session, document, file)
-    except MaterialRejected as exc:
+    except Refused as exc:
         raise _refusal(exc, response) from exc
     return _detail(session, document)
 
@@ -345,7 +345,7 @@ def archive_document_route(
     document = _own_document(session, client_id, document_id)
     try:
         archive_document(session, document, payload.kind)
-    except MaterialRejected as exc:
+    except Refused as exc:
         raise _refusal(exc, response) from exc
     return _detail(session, document)
 
@@ -361,6 +361,6 @@ def submit_document_route(
     document = _own_document(session, client_id, document_id)
     try:
         submit_document(session, document)
-    except MaterialRejected as exc:
+    except Refused as exc:
         raise _refusal(exc, response) from exc
     return _detail(session, document)

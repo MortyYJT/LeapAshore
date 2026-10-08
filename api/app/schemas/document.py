@@ -35,6 +35,8 @@ class VersionOut(BaseModel):
 class CriterionRefOut(BaseModel):
     """The requirement a finding failed, with the page that requirement was read from."""
 
+    model_config = ConfigDict(alias_generator=_camel, populate_by_name=True)
+
     code: str
     scope: str
     title: str
@@ -45,6 +47,8 @@ class CriterionRefOut(BaseModel):
 class FindingOut(BaseModel):
     """One concrete thing to fix, and what it fails against."""
 
+    model_config = ConfigDict(alias_generator=_camel, populate_by_name=True)
+
     id: str
     severity: str
     finding: str
@@ -54,6 +58,8 @@ class FindingOut(BaseModel):
 
 class ReviewOut(BaseModel):
     """One human verdict on one version, with its findings."""
+
+    model_config = ConfigDict(alias_generator=_camel, populate_by_name=True)
 
     id: str
     version_id: str

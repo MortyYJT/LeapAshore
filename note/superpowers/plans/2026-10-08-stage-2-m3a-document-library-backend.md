@@ -345,7 +345,9 @@ class DocumentReviewFinding(Base):
 Run: `make migrate && cd api && .venv/bin/alembic downgrade -1 && .venv/bin/alembic upgrade head`
 Expected: 三次都成功，无报错
 
-- [ ] **Step 7: 改测试清扫**
+- [ ] **Step 7: 改测试清扫（执行时移到 Task 6）**
+
+**执行时调整**：这一步移到 Task 6。理由：清扫之所以必须改，是因为 session 级 fixture 要删 GS 来源而 `review_criteria.source_id` 是 RESTRICT——而在 Task 6 之前根本不存在任何要点行，Task 2 的模型测试自己清理自己写的行。与种子放在同一个任务里，改动才是自洽的。届时还要多做一件事：把开发者已经用 CLI 核验过的 `status` / `verified_at` 快照下来，种子跑完再还原，否则每次测试运行都会把人设的核验日期静默抹掉（本文件既有的 `restore_roadmap_tasks` 就是为同类损失写的）。
 
 `api/tests/conftest.py` 的 `clear_the_roadmap_definition`：**它本身**要先删 `document_review_findings`、`document_reviews`、`review_criteria`，然后才删既有的 materials / phases / GS source。原因写在函数 docstring 里：`review_criteria.source_id` 是 RESTRICT，session 级 fixture 在收集第一个测试之前就会调用它，只要要点还在，删 source 会以 `review_criteria_source_id_fkey` 让整轮测试在第一个测试之前变红。同时 session 收尾在 `seed_roadmap` 之后调 `seed_review_criteria`（Task 6 建）。
 

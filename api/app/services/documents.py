@@ -44,6 +44,7 @@ from app.models.document import (
     UploadedBy,
 )
 from app.models.task import RoadmapTask
+from app.services.refusals import Refused
 
 MAX_UPLOAD_BYTES = 20 * 1024 * 1024
 
@@ -92,20 +93,6 @@ ARCHIVE_ALLOWED_FROM = (
 
 # Only a classified material can be reviewed, and only after a revision or a first classification.
 SUBMIT_ALLOWED_FROM = (DocumentStatus.ARCHIVED, DocumentStatus.NEEDS_REVISION)
-
-
-class MaterialRejected(Exception):
-    """A refusal with an HTTP status and a message the interface can show as-is.
-
-    Carried as an exception rather than returned because every caller up the stack — the service, the
-    route — has to do the same thing with it, and a return value is the one a later edit forgets to
-    check.
-    """
-
-    def __init__(self, status_code: int, detail: str) -> None:
-        super().__init__(detail)
-        self.status_code = status_code
-        self.detail = detail
 
 
 def storage_root() -> Path:
@@ -167,11 +154,11 @@ def _stage(upload: UploadFile) -> tuple[Path, str, int]:
                     break
                 size += len(chunk)
                 if size > MAX_UPLOAD_BYTES:
-                    raise MaterialRejected(413, TOO_LARGE)
+                    raise Refused(413, TOO_LARGE)
                 digest.update(chunk)
                 sink.write(chunk)
         if size == 0:
-            raise MaterialRejected(422, EMPTY_UPLOAD)
+            raise Refused(422, EMPTY_UPLOAD)
     except BaseException:
         temp.unlink(missing_ok=True)
         raise
@@ -185,7 +172,7 @@ def _accept(staged: Path) -> str:
     mime_type = detect_mime(staged, head)
     if mime_type is None:
         staged.unlink(missing_ok=True)
-        raise MaterialRejected(415, UNSUPPORTED_TYPE)
+        raise Refused(415, UNSUPPORTED_TYPE)
     return mime_type
 
 
@@ -214,7 +201,7 @@ def _require_own_task(session: Session, client_id: str, task_id: str | None) -> 
         select(RoadmapTask.id).where(RoadmapTask.id == task_id, RoadmapTask.client_id == client_id)
     ).scalar_one_or_none()
     if owned is None:
-        raise MaterialRejected(422, NO_SUCH_TASK)
+        raise Refused(422, NO_SUCH_TASK)
 
 
 def store_upload(
@@ -235,7 +222,7 @@ def store_upload(
 
     filename = upload.filename
     if not filename:
-        raise MaterialRejected(422, MISSING_FILENAME)
+        raise Refused(422, MISSING_FILENAME)
 
     staged, digest, size = _stage(upload)
     mime_type = _accept(staged)
@@ -283,7 +270,7 @@ def add_version(session: Session, document: Document, upload: UploadFile) -> Doc
     """
     filename = upload.filename
     if not filename:
-        raise MaterialRejected(422, MISSING_FILENAME)
+        raise Refused(422, MISSING_FILENAME)
 
     staged, digest, size = _stage(upload)
     mime_type = _accept(staged)
@@ -323,12 +310,12 @@ def add_version(session: Session, document: Document, upload: UploadFile) -> Doc
         except IntegrityError:
             session.rollback()
             if attempt == 2:
-                raise MaterialRejected(409, SUPERSEDED) from None
+                raise Refused(409, SUPERSEDED) from None
             document = session.get(Document, document.id)
             continue
         session.commit()
         return version
-    raise MaterialRejected(409, SUPERSEDED)
+    raise Refused(409, SUPERSEDED)
 
 
 def archive_document(
@@ -346,9 +333,9 @@ def archive_document(
     should have said which it was.
     """
     if kind not in KIND_VALUES:
-        raise MaterialRejected(422, UNKNOWN_KIND)
+        raise Refused(422, UNKNOWN_KIND)
     if document.status not in ARCHIVE_ALLOWED_FROM:
-        raise MaterialRejected(409, ARCHIVE_WHILE_UNDER_REVIEW)
+        raise Refused(409, ARCHIVE_WHILE_UNDER_REVIEW)
 
     document.kind = kind
     document.status = DocumentStatus.ARCHIVED
@@ -366,9 +353,9 @@ def submit_document(session: Session, document: Document) -> Document:
     whose verdict already stands.
     """
     if document.kind is None:
-        raise MaterialRejected(409, SUBMIT_WITHOUT_KIND)
+        raise Refused(409, SUBMIT_WITHOUT_KIND)
     if document.status not in SUBMIT_ALLOWED_FROM:
-        raise MaterialRejected(409, SUBMIT_FROM_THIS_STATUS)
+        raise Refused(409, SUBMIT_FROM_THIS_STATUS)
 
     document.status = DocumentStatus.UNDER_REVIEW
     session.commit()
