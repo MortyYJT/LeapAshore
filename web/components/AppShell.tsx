@@ -4,16 +4,18 @@ import { useEffect, useRef, useState } from "react";
 import AdvisorView from "./AdvisorView";
 import FlowView from "./FlowView";
 import HomeView from "./HomeView";
+import MaterialsView, { type MaterialsViewProps } from "./MaterialsView";
 import ProfileView from "./ProfileView";
 import SettingsView from "./SettingsView";
 import type { PortfolioItem, Profile, Roadmap } from "@/lib/types";
 
-type Tab = "home" | "flow" | "advisor";
+type Tab = "home" | "flow" | "materials" | "advisor";
 type Panel = "profile" | "settings" | null;
 
 const TABS: { key: Tab; label: string }[] = [
   { key: "home", label: "首页" },
   { key: "flow", label: "流程进度" },
+  { key: "materials", label: "材料库" },
   { key: "advisor", label: "留学顾问" },
 ];
 
@@ -63,6 +65,21 @@ interface Props {
    * rather than as a warning.
    */
   taskSyncError: string | null;
+  /**
+   * The material library: its state and the five things the applicant can do to it.
+   *
+   * Grouped rather than spread over eight props for the same reason the roadmap is one object: it is
+   * one view's whole interface, `MaterialsView` owns its shape, and the shell only has to hand it on.
+   */
+  library: MaterialsViewProps;
+  /**
+   * Upload a file for one roadmap requirement.
+   *
+   * Its own prop rather than part of `library`, because the control lives on the flow view's task rows
+   * and what the library needs is the five things done *to a material*. The two only share the file:
+   * an upload creates a material, which the library then lists.
+   */
+  onUploadMaterial: (materialId: string, file: File) => void;
 }
 
 export default function AppShell({
@@ -77,6 +94,8 @@ export default function AppShell({
   profileError,
   roadmapNotice,
   taskSyncError,
+  library,
+  onUploadMaterial,
 }: Props) {
   const [tab, setTab] = useState<Tab>("flow");
   const [panel, setPanel] = useState<Panel>(null);
@@ -268,8 +287,10 @@ export default function AppShell({
             selectedPhase={selectedPhase}
             onSelectPhase={setSelectedPhase}
             onToggleMaterial={onToggleMaterial}
+            onUploadMaterial={onUploadMaterial}
           />
         )}
+        {!showingPanel && tab === "materials" && <MaterialsView {...library} />}
         {!showingPanel && tab === "advisor" && <AdvisorView />}
       </main>
     </div>

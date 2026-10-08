@@ -221,3 +221,115 @@ export interface RoadmapDefinition {
 }
 
 export type AppStage = "onboarding" | "generating" | "portfolio" | "app";
+
+/**
+ * A material in the applicant's library, as the interface renders it.
+ *
+ * The applicant uploads files, classifies each one, sends it for review and reads what came back —
+ * `documents` and `document_versions` on the server. `note/superpowers/specs/2026-10-06-stage-2-database-design.md`
+ * §3.3 is why a material is an identity with versions rather than one file: a revision is a new
+ * version, and a review binds to the exact version it judged.
+ */
+export type MaterialKind =
+  | "transcript"
+  | "cv"
+  | "ps"
+  | "recommendation"
+  | "language"
+  | "passport"
+  | "gs"
+  | "other";
+
+export type MaterialStatus =
+  | "uploaded"
+  | "archived"
+  | "under_review"
+  | "needs_revision"
+  | "accepted";
+
+export type ReviewOverall = "pass" | "needs_revision" | "insufficient_evidence";
+
+export type FindingSeverity = "info" | "warning" | "blocker";
+
+/** One uploaded file. Immutable on the server: a revision is another version, never an edit. */
+export interface MaterialVersion {
+  id: string;
+  versionNo: number;
+  filename: string;
+  mimeType: string;
+  byteSize: number;
+  sha256: string;
+  createdAt: string;
+}
+
+/**
+ * The official page a review criterion was read from.
+ *
+ * `url` and `title` are nullable because a citation whose row cannot be read is served as `null`
+ * rather than as an empty string — the same rule `Program`'s nullable fields follow. `status` is the
+ * narrowed union, so a page whose verification state this build does not know reads as `待核验`.
+ */
+export interface MaterialCitation {
+  url: string | null;
+  title: string | null;
+  status: SourceStatus;
+}
+
+/**
+ * The requirement a finding failed.
+ *
+ * `title` and `description` are the criterion's own words, transcribed from the official page; the
+ * interface shows them next to the finding so the applicant can see what was checked against what.
+ */
+export interface MaterialCriterion {
+  code: string;
+  scope: string;
+  title: string;
+  description: string;
+  source: MaterialCitation;
+}
+
+/** One concrete thing to fix. `evidenceQuote` is null when the reviewer quoted nothing. */
+export interface MaterialFinding {
+  id: string;
+  severity: FindingSeverity | null;
+  finding: string;
+  evidenceQuote: string | null;
+  criterion: MaterialCriterion;
+}
+
+/** One human verdict on one version, with the findings that justify it. */
+export interface MaterialReview {
+  id: string;
+  versionId: string;
+  overall: ReviewOverall | null;
+  summary: string | null;
+  reviewedBy: string;
+  createdAt: string;
+  findings: MaterialFinding[];
+}
+
+export interface Material {
+  id: string;
+  title: string;
+  /**
+   * The classification the server states, or `null` when it states none.
+   *
+   * Deliberately `string | null` rather than `MaterialKind | null`: a value this build has never heard
+   * of has to survive the mapping, because "nobody has classified this" and "someone classified it as
+   * something this build cannot name" are different facts. The first renders as 未分类, the second as
+   * 未知; collapsing them would tell the applicant nobody had looked at a file the server says someone
+   * did.
+   */
+  kind: string | null;
+  /** Null when the server holds a status this build does not know. */
+  status: MaterialStatus | null;
+  taskId: string | null;
+  archivedAt: string | null;
+  createdAt: string;
+  currentVersion: MaterialVersion | null;
+  /** Every version, newest first. Only the detail response carries these. */
+  versions: MaterialVersion[];
+  /** Empty on the list response, which does not carry reviews. */
+  reviews: MaterialReview[];
+}

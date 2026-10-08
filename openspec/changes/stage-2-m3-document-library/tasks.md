@@ -68,19 +68,19 @@
 
 ## 7. 前端材料库（PR 2）
 
-- [ ] 7.1 `web/lib/types.ts`：材料与版本的读取形状（列表只带当前版本，详情带完整版本列表且最新在前）、审核结论与建议（含要点与来源）的读取形状；`PhaseTask` 不动（`buildRoadmap` 不接触服务端 task 行）。要点来源的核验状态必须复用既有的归一化方向（未知一律读成 `待核验`，绝不读成 `已核验`，见 `programs-source.ts` 的 `toSourceStatus`）：把它提出来共用，而不是写第二份
-- [ ] 7.2 `web/app/page.tsx`：由已有的 `taskRows` 建 `material_key → task id` 映射（与既有 `completedMaterialIds` 同源），并接上上传回调；映射不到任务时不拦上传，材料照存且 `task_id` 为空；补单测
-- [ ] 7.3 `web/lib/api.ts`：读材料列表与详情、上传（multipart，字段名按 D16）、加版本、归档、送审、下载地址；上传失败要读出后端的中文错误而不是"上传失败"
-- [ ] 7.4 新增 `web/components/MaterialsView.tsx`：材料列表（分类、状态、当前版本、时间），详情里展示版本列表、审核结论、逐条建议、引用的要点与官网链接，以及要点来源的核验状态
-- [ ] 7.5 `web/components/AppShell.tsx` 增加"材料库"入口；`web/app/page.tsx` 接线（读服务端、写入后重读，与既有的档案/组合写法一致）
-- [ ] 7.6 `web/components/FlowView.tsx` 任务行加上传入口，回调只传 `materialId`，任务 id 由 `page.tsx` 解析
-- [ ] 7.7 前端单测：适配层对照抓下来的真实响应 fixture；未归档材料的 `kind` 渲染为"未分类"而不是"其他"
-- [ ] 7.8 `scripts/e2e-walkthrough.cjs` 增加步骤：任务行上传一个真实 PDF → 材料库看到它 → 归档 → 送审 → 重新加载后状态仍在；截图写入 `docs/screenshots/`
-- [ ] 7.9 `make verify` 全绿（含浏览器走查截图），仍按 §4 报告格式给证据
-- [ ] 7.10 独立审查 + 修复；分支 `dsh/stage-2-m3-document-library-frontend`，开 PR 2（不合并，等用户）
+- [x] 7.1 `web/lib/types.ts`：材料与版本的读取形状（列表只带当前版本，详情带完整版本列表且最新在前）、审核结论与建议（含要点与来源）的读取形状；`PhaseTask` 不动（`buildRoadmap` 不接触服务端 task 行）。要点来源的核验状态必须复用既有的归一化方向（未知一律读成 `待核验`，绝不读成 `已核验`，见 `programs-source.ts` 的 `toSourceStatus`）：把它提出来共用，而不是写第二份
+- [x] 7.2 `web/app/page.tsx`：由已有的 `taskRows` 建 `material_key → task id` 映射（与既有 `completedMaterialIds` 同源），并接上上传回调；映射不到任务时不拦上传，材料照存且 `task_id` 为空；补单测
+- [x] 7.3 `web/lib/api.ts`：读材料列表与详情、上传（multipart，字段名按 D16）、加版本、归档、送审、下载地址；上传失败要读出后端的中文错误而不是"上传失败"
+- [x] 7.4 新增 `web/components/MaterialsView.tsx`：材料列表（分类、状态、当前版本、时间），详情里展示版本列表、审核结论、逐条建议、引用的要点与官网链接，以及要点来源的核验状态
+- [x] 7.5 `web/components/AppShell.tsx` 增加"材料库"入口；`web/app/page.tsx` 接线（读服务端、写入后重读，与既有的档案/组合写法一致）
+- [x] 7.6 `web/components/FlowView.tsx` 任务行加上传入口，回调只传 `materialId`，任务 id 由 `page.tsx` 解析
+- [x] 7.7 前端单测：适配层对照抓下来的真实响应 fixture；未归档材料的 `kind` 渲染为"未分类"而不是"其他"
+- [x] 7.8 `scripts/e2e-walkthrough.cjs` 增加步骤：任务行上传一个真实 PDF → 材料库看到它 → 归档 → 送审 → 重新加载后状态仍在；截图写入 `docs/screenshots/`
+- [x] 7.9 `make verify` 全绿（含浏览器走查截图），仍按 §4 报告格式给证据
+- [x] 7.10 独立审查 + 修复；分支 `dsh/stage-2-m3-document-library-frontend`，开 PR 2（不合并，等用户）
 
 ## 8. 收尾
 
-- [ ] 8.1 重写 `note/handoff.md`：日期、分支与提交、change id、已完成与证据、未完成、下一步、坑
-- [ ] 8.2 `note/product/roadmap.md` 把 M3 标为已完成并填上 change id；`note/product/backlog.md` 记下本批次暴露的新想法
+- [x] 8.1 重写 `note/handoff.md`：日期、分支与提交、change id、已完成与证据、未完成、下一步、坑
+- [x] 8.2 `note/product/roadmap.md` 把 M3 标为已完成并填上 change id；`note/product/backlog.md` 记下本批次暴露的新想法
 - [ ] 8.3 两个 PR 都合入后，`openspec archive stage-2-m3-document-library`，把 spec 归档进 `openspec/specs/`

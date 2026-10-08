@@ -10,7 +10,8 @@
 // onto the shapes the interface renders, which is what lets those mappings be pure functions with
 // tests bound to a captured response body.
 
-import type { Profile } from "./types";
+import type { ServedDocument } from "./materials-source.ts";
+import type { MaterialKind, Profile } from "./types";
 import type { TaskReplacePayload, TaskReplaceResult } from "./roadmap-sync";
 import type {
   ServedMaterial,
@@ -472,4 +473,145 @@ export async function replaceApplications(
   });
   if (!response.ok) throw new Error(`保存申请组合失败：${response.status}`);
   return (await response.json()) as ApplicationReplaceResult;
+}
+
+/**
+ * The error a refused material write should carry.
+ *
+ * Every refusal this batch can produce has a message written for the applicant — "单个材料不能超过
+ * 20 MB。", "材料只支持 PDF、PNG、JPEG 或 DOCX 格式。", "先给材料归档分类，才能送审。" — and it
+ * arrives in the response's `detail`. Showing "上传失败" instead would throw away the only part of the
+ * answer that says what to do, and the applicant would retry the same file.
+ *
+ * A body that is not JSON, or carries no `detail`, is a refusal this side cannot explain, so it is
+ * reported as the status code rather than as an empty message.
+ */
+async function refusalOf(response: Response, fallback: string): Promise<Error> {
+  try {
+    const body = (await response.json()) as { detail?: unknown };
+    if (typeof body.detail === "string" && body.detail.length > 0) return new Error(body.detail);
+  } catch {
+    /* not a JSON body: fall through to the status */
+  }
+  return new Error(`${fallback}：${response.status}`);
+}
+
+/**
+ * Read the applicant's own material library.
+ *
+ * Addressed by the `offerpilot_client` cookie, like the portfolio, so the answer differs per subject
+ * and the route mints the cookie for a first-time visitor. Reading it writes nothing. The body is
+ * returned as the wire shape — `materials-source.ts` owns the mapping onto the shape the interface
+ * renders, and it is a pure function with its own tests against captured bodies — because mapping here
+ * as well would give the same rules two homes.
+ *
+ * A body that is not a list raises here rather than being handed on, for the same reason
+ * `fetchApplications` does it: the caller's only lever is "did the read fail".
+ */
+export async function fetchMaterials(): Promise<ServedDocument[]> {
+  const response = await fetch("/api/documents", { credentials: "same-origin" });
+  if (!response.ok) throw new Error(`读取材料库失败：${response.status}`);
+  const materials = (await response.json()) as ServedDocument[];
+  if (!Array.isArray(materials)) throw new Error("读取材料库失败：响应不是材料列表");
+  return materials;
+}
+
+/**
+ * Read one material with its versions and its reviews.
+ *
+ * The list route carries only the current version, so opening a material is its own read rather than a
+ * wider list: the applicant's whole version history and every review of it is what the detail panel
+ * shows, and sending that for every row of the library would be most of the response for none of the
+ * screen.
+ */
+export async function fetchMaterial(documentId: string): Promise<ServedDocument> {
+  const response = await fetch(`/api/documents/${encodeURIComponent(documentId)}`, {
+    credentials: "same-origin",
+  });
+  if (!response.ok) throw new Error(`读取材料失败：${response.status}`);
+  return (await response.json()) as ServedDocument;
+}
+
+/**
+ * Upload a file, optionally against the roadmap requirement it satisfies.
+ *
+ * `multipart/form-data`, because a file cannot be sent as JSON, and the field names are the route's
+ * own: `file`, `title`, `task_id`. `type` is deliberately not set on the request — the browser adds the
+ * multipart boundary itself, and setting the header by hand produces a body the parser cannot read.
+ *
+ * The route answers 201 with the material it created, which is returned rather than discarded: the
+ * caller's list has to show what the server actually stored, including the type it detected rather
+ * than the one the browser guessed.
+ */
+export async function uploadMaterial(
+  file: File,
+  options: { title?: string; taskId?: string | null } = {},
+): Promise<ServedDocument> {
+  const form = new FormData();
+  form.append("file", file);
+  if (options.title) form.append("title", options.title);
+  if (options.taskId) form.append("task_id", options.taskId);
+  const response = await fetch("/api/documents", {
+    method: "POST",
+    credentials: "same-origin",
+    body: form,
+  });
+  if (!response.ok) throw await refusalOf(response, "上传材料失败");
+  return (await response.json()) as ServedDocument;
+}
+
+/**
+ * Add a version to a material the applicant already has.
+ *
+ * A revision rather than a replacement: the server keeps the earlier file and its reviews, and moves
+ * the material's status back to `uploaded` because the bytes a review judged are no longer the bytes
+ * that are there. `title` is not sent — the material already has a name, and the new file does not
+ * rename the applicant's material.
+ */
+export async function addMaterialVersion(documentId: string, file: File): Promise<ServedDocument> {
+  const form = new FormData();
+  form.append("file", file);
+  const response = await fetch(`/api/documents/${encodeURIComponent(documentId)}/versions`, {
+    method: "POST",
+    credentials: "same-origin",
+    body: form,
+  });
+  if (!response.ok) throw await refusalOf(response, "上传新材料版本失败");
+  return (await response.json()) as ServedDocument;
+}
+
+/**
+ * Classify a material.
+ *
+ * The kind is the applicant's own claim about what the file is, which is why it is a required
+ * argument rather than a default: the criteria a review can apply are chosen by it, and the system has
+ * nothing to guess from.
+ */
+export async function archiveMaterial(
+  documentId: string,
+  kind: MaterialKind,
+): Promise<ServedDocument> {
+  const response = await fetch(`/api/documents/${encodeURIComponent(documentId)}/archive`, {
+    method: "POST",
+    credentials: "same-origin",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ kind }),
+  });
+  if (!response.ok) throw await refusalOf(response, "归档材料失败");
+  return (await response.json()) as ServedDocument;
+}
+
+/**
+ * Send a classified material for review.
+ *
+ * A refusal here is a rule rather than a fault — a material that is not classified yet, or one whose
+ * verdict already stands — so the server's own message is what the applicant is shown.
+ */
+export async function submitMaterial(documentId: string): Promise<ServedDocument> {
+  const response = await fetch(`/api/documents/${encodeURIComponent(documentId)}/submit`, {
+    method: "POST",
+    credentials: "same-origin",
+  });
+  if (!response.ok) throw await refusalOf(response, "送审失败");
+  return (await response.json()) as ServedDocument;
 }

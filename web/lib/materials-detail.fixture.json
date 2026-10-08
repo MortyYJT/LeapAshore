@@ -1,0 +1,61 @@
+{
+  "id": "0fa6b039-0193-434f-b369-2f4bf7600041",
+  "title": "Genuine Student 陈述",
+  "kind": "gs",
+  "status": "needs_revision",
+  "taskId": null,
+  "programId": null,
+  "archivedBy": "user",
+  "archivedAt": "2026-10-08T06:08:55.088723Z",
+  "createdAt": "2026-10-08T06:08:55.052743Z",
+  "updatedAt": "2026-10-08T06:08:55.308647Z",
+  "currentVersion": {
+    "id": "2eb44555-706d-4ccc-9ae2-793b5315e8a3",
+    "versionNo": 1,
+    "filename": "陈述.png",
+    "mimeType": "image/png",
+    "byteSize": 70,
+    "sha256": "c414cd0e204de974f73753c7e28d7638e7b3691bb8b1a2bab6b25bb7fed7ce77",
+    "createdAt": "2026-10-08T06:08:55.052743Z"
+  },
+  "versions": [
+    {
+      "id": "2eb44555-706d-4ccc-9ae2-793b5315e8a3",
+      "versionNo": 1,
+      "filename": "陈述.png",
+      "mimeType": "image/png",
+      "byteSize": 70,
+      "sha256": "c414cd0e204de974f73753c7e28d7638e7b3691bb8b1a2bab6b25bb7fed7ce77",
+      "createdAt": "2026-10-08T06:08:55.052743Z"
+    }
+  ],
+  "reviews": [
+    {
+      "id": "d7a2d9f3-b85e-4c88-9fd2-66163e12de77",
+      "versionId": "2eb44555-706d-4ccc-9ae2-793b5315e8a3",
+      "overall": "needs_revision",
+      "summary": "回答需要补充",
+      "reviewedBy": "审查者",
+      "createdAt": "2026-10-08T06:08:55.308647Z",
+      "findings": [
+        {
+          "id": "f5841b37-fcea-43df-9560-18490d9dd57f",
+          "severity": "warning",
+          "finding": "第二条回答 213 词，超过 150 词：需要压缩",
+          "evidenceQuote": null,
+          "criterion": {
+            "code": "gs-answer-length",
+            "scope": "gs",
+            "title": "回答长度",
+            "description": "每题回答不超过 150 词。",
+            "source": {
+              "url": "https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/student-500/genuine-student-requirement",
+              "title": "Genuine Student requirement",
+              "status": "待核验"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

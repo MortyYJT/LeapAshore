@@ -31,7 +31,8 @@
  * declarations were wrong about the wire, so `Program` is what carries the nullability and every
  * consumer of it now answers for the nulls it can see.
  */
-import type { PortfolioItem, PortfolioTier, Program, SourceStatus } from "./types";
+import { toSourceStatus } from "./source-status.ts";
+import type { PortfolioItem, PortfolioTier, Program } from "./types";
 
 /**
  * What the interface shows where the catalogue does not know yet.
@@ -254,18 +255,6 @@ function isFilled(value: unknown): value is string {
 function requiredText(value: unknown, field: string): string {
   if (!isFilled(value)) throw new Error(`读取项目目录失败：条目缺少 ${field}`);
   return value;
-}
-
-/**
- * The served status as the union the domain type declares.
- *
- * An unknown status is reported as 待核验 rather than as 已核验, and that direction is the whole
- * rule: `eligibility.ts` treats `已核验` as grounds to stop warning the applicant that the conclusion
- * rests on unverified data, so a status this build has never heard of must not be read as verified.
- * The two known values pass through unchanged, so a genuinely verified catalogue row still says so.
- */
-function toSourceStatus(value: unknown): SourceStatus {
-  return value === "已核验" ? "已核验" : "待核验";
 }
 
 /**
