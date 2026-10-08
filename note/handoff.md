@@ -6,7 +6,9 @@ Verify it against `git status` and `git log` before trusting it.
 ## Where we are
 
 - 日期：2026-10-08
-- `main` = M3 全部合入（后端 PR #8、前端 PR #9），M3 的 spec 已归档
+- `main` = M3 全部合入（后端 PR #8、前端 PR #9、归档 PR #10、审查命令 PR #11），M3 的 spec 已归档
+- **要测试就照 `note/testing-m3.md` 走**：前端已起在 <http://localhost:3001>（避开你另一个项目的 3000），
+  API 在 :8000，数据库已 seed；那份指引里的每条命令我都跑过一遍
 - `openspec/specs/` 现在是 current truth：`document-library`(13) / `document-review`(8) /
   `review-criteria`(5)，共 26 条需求
 - 归档件：`openspec/changes/archive/2026-10-08-stage-2-m3-document-library/`（proposal / design / specs / tasks，
