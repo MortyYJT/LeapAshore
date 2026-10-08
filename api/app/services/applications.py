@@ -19,11 +19,22 @@ program to another — the applicant's new 首选 replaces the old one, and the 
 is the flow this endpoint exists for, and written in payload order it used to be an unmapped 500: the
 insert of the new primary row is flushed while the stored row still holds the partial index's
 predicate, because SQLAlchemy emits the inserts and updates of one flush before the deletes, and the
-removal that would have released the predicate came last. So the stored rows are dealt with first: a
-row whose program the payload no longer names is deleted, and a first choice the payload does not keep
-is released, and only then is the session flushed and the payload written. After that flush no stored
-row holds a first choice the payload does not state, so the one row the payload may mark cannot
-collide with anything.
+removal that would have released the predicate came last. So the stored rows are dealt with first —
+the rows whose program the payload no longer names are deleted in the first pass — and the session is
+flushed before the payload is written. That flush is the whole fix: it is what emits the removals, and
+with them the partial index's predicate released, before pass two may insert or update the one row the
+payload marks as the first choice. Measured by deleting it and changing nothing else: the move
+`test_a_second_first_choice_replaces_the_stored_one_and_is_never_a_500` covers comes back as
+``InvalidApplicationPayload`` on ``uq_applications_one_primary_per_client``, because the stored row
+still holds the predicate when the payload's row is written.
+
+The first pass used to *also* release a stored first choice the payload does not keep, by writing
+``is_primary = False`` on the row. That statement is gone, and it was dead rather than merely
+unpinned: a stored row the payload does not name is deleted in this pass, so the flag goes with the
+row, and a stored row the payload does name reaches ``_apply`` in pass two, which writes the flag
+unconditionally. Deleting it and changing nothing else leaves every test green — measured — so it was
+never what made the move work, and the flush above was. Keeping a statement no test can see, under a
+comment claiming it is the fix, is what this repository's own rule against unearned prose is for.
 
 **An omitted ``isPrimary`` in a replacement means ``False``, not "leave it as it is".** The other
 fields keep the omission rule — an absent deadline is silence about that deadline, and the stored one
@@ -239,8 +250,9 @@ def _apply(payload: Any, row: Application) -> None:
 
     ``is_primary`` is the one field that does not keep the omission rule, and it is written
     unconditionally: a whole replacement restates the portfolio's first choice, so a row that does not
-    claim the flag is not the first choice. The stored value is deliberately not consulted — see the
-    module docstring for the two first choices that "leave it" used to leave behind. ``tier`` and
+    claim the flag is not the first choice. The stored value is deliberately not consulted — reading
+    the omission as "leave it" is what left two first choices in the list, and it is also why the first
+    pass needs no release of its own: this line is the only place the flag is written. ``tier`` and
     ``status`` are the two fields a mapping caller can state as ``null``, so both go through their own
     guard rather than being stringified; ``needs_review`` has a stored default and reads as the schema
     leaves it.
@@ -263,19 +275,6 @@ def _apply(payload: Any, row: Application) -> None:
     if carries(payload, "needs_review"):
         row.needs_review = bool(row_value(payload, "needs_review", False))
     row.origin = ApplicationOrigin.USER
-
-
-def _the_first_choice(rows: Sequence[Any], program_ids: Sequence[str]) -> str | None:
-    """The program the payload marks as its first choice, or ``None`` when it marks none.
-
-    ``_reject_a_second_primary`` has already refused a payload that marks more than one, so the first
-    match is the only one. A flag the payload omits counts as ``False``, the same reading ``_apply``
-    writes with: this is the whole replacement's first choice, not a field of one row.
-    """
-    for payload, program_id in zip(rows, program_ids):
-        if bool(row_value(payload, "is_primary", False)):
-            return program_id
-    return None
 
 
 def _name_the_change(before: dict, after: dict) -> str:
@@ -310,14 +309,15 @@ def _write_the_replacement(
     """Write the whole replacement, stored rows first, and report the four counts.
 
     The two passes and the flush between them are the ordering rule the module docstring gives: the
-    stored first choice is released and the dropped rows are deleted *before* the payload may insert
-    one of its own, because a flush emits the inserts and updates of one table before the deletes and
-    the stored row would otherwise still hold the partial index's predicate.
+    rows the payload drops are deleted *before* the payload may insert or move the row it marks as its
+    first choice, because one flush emits the inserts and updates of a table before its deletes and the
+    stored row would otherwise still hold the partial index's predicate. The flush is the statement
+    that matters; for why the first pass no longer writes ``is_primary = False`` on its own, see the
+    module docstring.
 
-    The ``before`` snapshots are taken in the first pass, while every stored row still holds the value
-    the payload is compared against: releasing a first choice moves the row, and that move is the
-    call's own doing rather than a change the applicant asked for, so it must not be what the history
-    entry or the ``updated`` count reports.
+    The ``before`` snapshots are taken in the first pass, before anything in this call has moved a
+    stored row, so the entry's before side is the row the payload is compared against rather than a
+    value this call produced on the way.
 
     Nothing is committed here; the caller owns the savepoint this runs in and the commit after it.
     """
@@ -327,13 +327,12 @@ def _write_the_replacement(
     by_program = {row.program_id: row for row in existing}
     before_by_program = {row.program_id: _snapshot(row) for row in existing}
     wanted = set(program_ids)
-    first_choice = _the_first_choice(rows, program_ids)
 
     # Pass one, the stored rows. A program the payload does not name leaves — whatever `origin` the
     # row carried. This is not a recomputation: nothing here has to leave the advisor's rows alone,
-    # because the applicant is the one replacing the whole list. A first choice the payload does not
-    # keep is released in the same pass, so the flush below leaves no stored predicate for the
-    # payload's own first choice to collide with.
+    # because the applicant is the one replacing the whole list. Deleting them releases the partial
+    # index's predicate as it goes, and the flush below is what emits those deletes before pass two
+    # may claim the predicate for the payload's own first choice.
     removed = 0
     for row in existing:
         if row.program_id not in wanted:
@@ -348,8 +347,6 @@ def _write_the_replacement(
             )
             session.delete(row)
             removed += 1
-        elif row.is_primary and row.program_id != first_choice:
-            row.is_primary = False
     session.flush()
 
     # Pass two, the payload: what the subject did not hold is inserted, and what it held is moved to
@@ -366,6 +363,17 @@ def _write_the_replacement(
             )
             _apply(payload, row)
             session.add(row)
+            # Flushed before the snapshot, because the columns this row does not state are filled by
+            # their defaults at flush time and the entry has to record the row that was stored rather
+            # than the object before those defaults landed. Without this the entry claimed
+            # `"status": null` for a row stored as `considering` and `"needs_review": null` for one
+            # stored as `false` — an audit trail that disagrees with the row it describes, on every
+            # row this route has ever created. Measured: `PUT` one row for a new subject, then
+            # `task_events.after` -> `{'status': None, 'needs_review': None}` against a stored
+            # `('considering', False)`. The order of the two statements is the fix rather than a
+            # detail: the history entry describes a row that already exists, and this flush is what
+            # makes that statement true.
+            session.flush()
             write_history(
                 session,
                 client_id,

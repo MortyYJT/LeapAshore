@@ -580,6 +580,53 @@ def test_every_change_is_history_as_the_applicants_own_and_an_empty_payload_clea
     assert _events(db_session, client.cookies[COOKIE_NAME])[-1].event == "removed"
 
 
+def test_the_created_entry_records_what_was_stored_including_the_column_defaults(
+    require_db, db_session
+):
+    """A created row's `after` side is the stored row, not the object before the flush.
+
+    ``status`` and ``needs_review`` are column defaults, and SQLAlchemy applies a Python-side default
+    at flush time rather than when the mapper constructs the row. The snapshot used to be taken
+    before that flush, so every row created through this route recorded ``"status": null`` and
+    ``"needs_review": null`` while the columns held ``considering`` and ``false`` — history that
+    disagrees with the row it describes, for every row the frontend has ever written. Measured before
+    the fix: ``PUT`` one row for a new subject, then ``task_events.after`` ->
+    ``{'status': None, ..., 'needs_review': None}`` against a stored row reading
+    ``('considering', False)``.
+
+    The payload below states neither field, which is the case the frontend produces: the schema has
+    a default for both, so their absence is the ordinary shape of a confirmation.
+    """
+    seed_programs(db_session)
+    client = TestClient(app)
+
+    written = _put(client, [_row(REACH, tier="冲")])
+    assert written.status_code == 200, written.text
+
+    stored = _stored(db_session, client.cookies[COOKIE_NAME])[REACH]
+    created = next(
+        event
+        for event in _events(db_session, client.cookies[COOKIE_NAME])
+        if event.event == "created"
+    )
+    assert created.after is not None, "a creation has no before side and must have an after one"
+    assert created.after["status"] == stored.status, (
+        f"the entry records {created.after['status']!r} for a row stored as {stored.status!r}"
+    )
+    assert created.after["needs_review"] == stored.needs_review, (
+        f"the entry records {created.after['needs_review']!r} for a row stored as "
+        f"{stored.needs_review!r}"
+    )
+    assert stored.status == ApplicationStatus.CONSIDERING.value, (
+        "the stored row is not the column's own default, so this test proves nothing about it"
+    )
+    assert (created.after["tier"], created.after["is_primary"], created.after["origin"]) == (
+        "冲",
+        False,
+        ApplicationOrigin.USER.value,
+    ), f"the rest of the snapshot disagrees with the row: {created.after}"
+
+
 def _subject(session) -> str:
     """One subject, written straight into `clients`, for the tests that drive the service."""
     client_id = str(uuid.uuid4())
