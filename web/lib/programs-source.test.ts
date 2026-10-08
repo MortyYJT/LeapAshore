@@ -1,13 +1,13 @@
 // Tests for the mapping from the served catalogue onto the shape the picker renders.
 //
-// The fixture at the top is the point of this file. `web/lib/roadmap-source.test.ts` records the
+// The fixtures at the top are the point of this file. `web/lib/roadmap-source.test.ts` records the
 // defect that made the pattern necessary: that adapter read `material.id` and `material.label` while
 // the wire said `key` and `title`, and every test passed, because the fixtures had been typed out
 // against the adapter's own declarations. Nothing type-checked the difference — both sides were
 // declared in the same module, so the compiler was only ever comparing the adapter with its own wrong
-// idea of the response. So the tests that matter here read `programs-response.fixture.json`, a
-// captured `GET /api/programs` body, and their expectations are derived from the capture rather than
-// from `ServedProgram`.
+// idea of the response. So the tests that matter here read captured bodies — `programs-response.fixture.json`
+// for the catalogue and `applications-response.fixture.json` for the portfolio — and their expectations
+// are derived from the capture rather than from `ServedProgram` / `ServedApplication`.
 //
 // Two names in this mapping are not type errors anywhere when they are got wrong, which is why they
 // are pinned separately below:
@@ -309,6 +309,110 @@ test("keeps the served order and does not drop a program with thin values", () =
 // Both are spelled by the route's schema (`ApplicationOut` / `ApplicationIn`), not by the database's
 // columns, so the field-by-field expectations below are written as camelCase literals.
 // ------------------------------------------------------------------------------------------------
+
+/**
+ * A `GET /api/applications` body captured from the running server, read here as the wire record it is.
+ *
+ * The file is `applications-response.fixture.json`; its `$comment` names the command that produced it.
+ * This is the other half of the binding `CAPTURED_RESPONSE` makes for the catalogue, and it is here for
+ * the same reason: the twelve field names of a served row and the seven under `program` are the route's
+ * own spelling, and every expectation written from this side's declarations would agree with the adapter
+ * whatever the route actually sent. A hand-typed `ServedApplication` is exactly the fixture-mirroring the
+ * header of `programs-source.ts` warns about — the mistake that let `roadmap-source.ts` read
+ * `id`/`label` while the wire said `key`/`title`. `SERVED_ROW` below is still written by hand, because it
+ * carries the overrides the capture cannot (`tier`, `needsReview`, `program: null`); it is this capture,
+ * not that literal, that binds the adapter's field names.
+ */
+const CAPTURED_APPLICATIONS: ServedApplication[] = (
+  JSON.parse(
+    readFileSync(new URL("./applications-response.fixture.json", import.meta.url), "utf8"),
+  ) as { response: ServedApplication[] }
+).response;
+
+// The twelve names `ApplicationOut` serialises — camelCase, aliased by the schema's generator. Written
+// as literals rather than read off the adapter, so a rename on either side has to be made in both
+// places. The row's own `program_id` does not appear on the item the adapter builds: it is carried as
+// `programSlug`, which is the assertion of the next test.
+const WIRE_ROW_KEYS = [
+  "createdAt",
+  "deadlineSourceUrl",
+  "id",
+  "isPrimary",
+  "needsReview",
+  "officialDeadline",
+  "origin",
+  "program",
+  "programId",
+  "status",
+  "tier",
+  "updatedAt",
+];
+
+// The seven names `ProgramRef` projects under `program`, which are `GET /api/programs`' own names — so
+// `name` is the Chinese program name and `nameEn` the English one, the split §3.6 rules on.
+const WIRE_PROGRAM_KEYS = [
+  "city",
+  "dataStatus",
+  "degreeLevel",
+  "name",
+  "nameEn",
+  "slug",
+  "university",
+];
+
+test("the applications capture still carries the wire's own names", () => {
+  assert.ok(CAPTURED_APPLICATIONS.length > 0, "the capture must carry portfolio rows");
+  for (const row of CAPTURED_APPLICATIONS) {
+    assert.deepEqual(Object.keys(row).sort(), WIRE_ROW_KEYS, `the keys of row ${row.id}`);
+    // The database's own spelling must not be in it, or the capture would be this repository's idea of
+    // the response rather than the server's.
+    const wire = row as unknown as Record<string, unknown>;
+    assert.equal(
+      "program_id" in wire ||
+        "is_primary" in wire ||
+        "needs_review" in wire ||
+        "created_at" in wire ||
+        "deadline_source_url" in wire,
+      false,
+      "the wire is camelCase",
+    );
+    assert.ok(row.program !== null, `row ${row.id} resolves its program`);
+    assert.deepEqual(
+      Object.keys(row.program).sort(),
+      WIRE_PROGRAM_KEYS,
+      `the program keys of row ${row.id}`,
+    );
+    // The two names have to differ in the capture, or a mapping that read the Chinese `name` where the
+    // label wants `nameEn` would pass every assertion below.
+    assert.notEqual(row.program.nameEn, row.program.name, `the two names of ${row.program.slug}`);
+  }
+});
+
+test("the captured rows map onto the items field by field, through the wire's own names", () => {
+  const items = toPortfolioItems(CAPTURED_APPLICATIONS);
+  assert.equal(items.length, CAPTURED_APPLICATIONS.length);
+  for (const [index, row] of CAPTURED_APPLICATIONS.entries()) {
+    const item = items[index];
+    const program = row.program;
+    assert.ok(program !== null);
+    // The wire's `programId` is the item's `programSlug`: a row keyed by the program it names, which is
+    // the identity the interface already uses for a choice.
+    assert.equal(item.programSlug, row.programId, `programSlug of ${row.id}`);
+    assert.equal(item.tier, row.tier, `tier of ${row.id}`);
+    assert.equal(item.needsReview, row.needsReview, `needsReview of ${row.id}`);
+    assert.equal(item.isPrimary, row.isPrimary, `isPrimary of ${row.id}`);
+    assert.equal(item.confirmed, true, `confirmed of ${row.id}`);
+    // The projection the views render, compared against the capture's own values rather than against
+    // `toProgramRef` agreeing with itself.
+    assert.deepEqual(
+      item.program,
+      { university: program.university, nameEn: program.nameEn },
+      `program of ${row.id}`,
+    );
+    assert.equal(toProgramLabel(item.program), program.nameEn, `label of ${row.id}`);
+    assert.notEqual(toProgramLabel(item.program), program.name, `swapped copy for ${row.id}`);
+  }
+});
 
 /** One served portfolio row, in the spelling `GET /api/applications` uses. */
 const SERVED_ROW: ServedApplication = {

@@ -1,0 +1,137 @@
+{
+  "$comment": "The `response` array below is the body of GET /api/applications, captured verbatim from the running server with `curl -s -H \"Cookie: offerpilot_client=21c4eb9f-2569-44b4-bff6-2e9b2b47b670\" http://127.0.0.1:8000/api/applications`, against a subject holding all six seeded programs. It is here so a unit test can check the field names and the nullability the frontend adapter reads against the names the route actually serves, rather than against the adapter's own declarations — the same reason, and the same shape, as `programs-response.fixture.json`. Recapture it, do not hand-edit it: an edit would turn the binding back into a transcript of this repository's own idea of the response. Three things in it are deliberate records of the contract and must not be normalised away: `programId` is the wire's name for the program a row names (the adapter calls the field `programSlug` on the item it builds), every row carries the program under `program` with the seven fields `api/app/schemas/application.py` projects there — the same names `GET /api/programs` uses, so `name` is the Chinese program name and `nameEn` is the English one — and the timestamps are the route's own `createdAt`/`updatedAt` in UTC. Every row in this capture resolves its program, because the capture is of a live catalogue; `program: null` is the contract's other branch and is exercised by override in `programs-source.test.ts`, not here.",
+  "response": [
+    {
+      "id": "87c0ade6-4db7-40c3-9520-8a0281291a08",
+      "programId": "uq-master-data-science",
+      "tier": "稳",
+      "status": "considering",
+      "isPrimary": false,
+      "officialDeadline": null,
+      "deadlineSourceUrl": null,
+      "needsReview": false,
+      "origin": "user",
+      "program": {
+        "slug": "uq-master-data-science",
+        "name": "数据科学硕士",
+        "nameEn": "Master of Data Science",
+        "university": "昆士兰大学",
+        "city": "布里斯班",
+        "degreeLevel": "授课型硕士",
+        "dataStatus": "待核验"
+      },
+      "createdAt": "2026-10-08T04:26:32.368308Z",
+      "updatedAt": "2026-10-08T04:26:32.368308Z"
+    },
+    {
+      "id": "b744da88-393a-4ce7-b3af-802b909d4cdf",
+      "programId": "monash-master-ai",
+      "tier": "保",
+      "status": "considering",
+      "isPrimary": false,
+      "officialDeadline": null,
+      "deadlineSourceUrl": null,
+      "needsReview": false,
+      "origin": "user",
+      "program": {
+        "slug": "monash-master-ai",
+        "name": "人工智能硕士",
+        "nameEn": "Master of Artificial Intelligence",
+        "university": "蒙纳士大学",
+        "city": "墨尔本",
+        "degreeLevel": "授课型硕士",
+        "dataStatus": "待核验"
+      },
+      "createdAt": "2026-10-08T04:26:32.368308Z",
+      "updatedAt": "2026-10-08T04:26:32.368308Z"
+    },
+    {
+      "id": "67e69c43-c030-40a0-b8e3-0c8083b54c43",
+      "programId": "monash-master-cs",
+      "tier": "保",
+      "status": "considering",
+      "isPrimary": false,
+      "officialDeadline": null,
+      "deadlineSourceUrl": null,
+      "needsReview": false,
+      "origin": "user",
+      "program": {
+        "slug": "monash-master-cs",
+        "name": "计算机科学硕士",
+        "nameEn": "Master of Computer Science",
+        "university": "蒙纳士大学",
+        "city": "墨尔本",
+        "degreeLevel": "授课型硕士",
+        "dataStatus": "待核验"
+      },
+      "createdAt": "2026-10-08T04:26:32.368308Z",
+      "updatedAt": "2026-10-08T04:26:32.368308Z"
+    },
+    {
+      "id": "70795a1f-8127-49a1-b658-033376e70fef",
+      "programId": "unsw-master-it",
+      "tier": "保",
+      "status": "considering",
+      "isPrimary": false,
+      "officialDeadline": null,
+      "deadlineSourceUrl": null,
+      "needsReview": false,
+      "origin": "user",
+      "program": {
+        "slug": "unsw-master-it",
+        "name": "信息技术硕士",
+        "nameEn": "Master of Information Technology",
+        "university": "新南威尔士大学",
+        "city": "悉尼",
+        "degreeLevel": "授课型硕士",
+        "dataStatus": "待核验"
+      },
+      "createdAt": "2026-10-08T04:26:32.368308Z",
+      "updatedAt": "2026-10-08T04:26:32.368308Z"
+    },
+    {
+      "id": "adfe4736-2311-4687-8a79-888406626a8f",
+      "programId": "usyd-master-cs",
+      "tier": "保",
+      "status": "considering",
+      "isPrimary": false,
+      "officialDeadline": null,
+      "deadlineSourceUrl": null,
+      "needsReview": false,
+      "origin": "user",
+      "program": {
+        "slug": "usyd-master-cs",
+        "name": "计算机科学硕士",
+        "nameEn": "Master of Computer Science",
+        "university": "悉尼大学",
+        "city": "悉尼",
+        "degreeLevel": "授课型硕士",
+        "dataStatus": "待核验"
+      },
+      "createdAt": "2026-10-08T04:26:32.368308Z",
+      "updatedAt": "2026-10-08T04:26:32.368308Z"
+    },
+    {
+      "id": "f49e8112-ab46-45d7-ba8d-43f40d7fdd0b",
+      "programId": "uwa-master-it",
+      "tier": "保",
+      "status": "considering",
+      "isPrimary": false,
+      "officialDeadline": null,
+      "deadlineSourceUrl": null,
+      "needsReview": false,
+      "origin": "user",
+      "program": {
+        "slug": "uwa-master-it",
+        "name": "信息技术硕士",
+        "nameEn": "Master of Information Technology",
+        "university": "西澳大学",
+        "city": "珀斯",
+        "degreeLevel": "授课型硕士",
+        "dataStatus": "待核验"
+      },
+      "createdAt": "2026-10-08T04:26:32.368308Z",
+      "updatedAt": "2026-10-08T04:26:32.368308Z"
+    }
+  ]
+}
