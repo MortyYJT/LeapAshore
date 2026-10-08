@@ -482,15 +482,33 @@ def test_one_subject_never_sees_or_overwrites_another_subjects_portfolio(require
 
     # One row per subject for that program, which is the other half of "not written": a route that
     # ignored the subject would have left a single row behind and one portfolio short.
+    #
+    # Scoped to the two subjects this test made, because the shared development database is shared:
+    # the same query over the whole table asserts a fact about every row a developer's browser has
+    # ever written for this program. Measured with one stored row for another subject —
+    # ``AssertionError: the program is held by 3 rows``, with the developer's own id in the list — and
+    # a person clicking in the dev UI must not be able to fail a test they never ran. What the claim
+    # needs is this pair of subjects, and narrowing to them is what makes the failure name this test's
+    # own write instead of somebody else's row.
     both = list(
         db_session.scalars(
-            select(Application).where(Application.program_id == REACH).order_by(Application.id)
+            select(Application)
+            .where(
+                Application.program_id == REACH,
+                Application.client_id.in_(
+                    [owner.cookies[COOKIE_NAME], stranger.cookies[COOKIE_NAME]]
+                ),
+            )
+            .order_by(Application.id)
         )
     )
     assert {row.client_id for row in both} == {
         owner.cookies[COOKIE_NAME],
         stranger.cookies[COOKIE_NAME],
     }, f"the program is held by {len(both)} rows: {[(r.client_id, r.tier) for r in both]}"
+    assert len(both) == 2, (
+        "one row per subject for that program: a route that ignored the subject would have left one"
+    )
 
 
 def test_every_change_is_history_as_the_applicants_own_and_an_empty_payload_clears_it(
