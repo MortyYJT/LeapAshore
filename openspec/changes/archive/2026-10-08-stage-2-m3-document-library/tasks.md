@@ -83,4 +83,4 @@
 
 - [x] 8.1 重写 `note/handoff.md`：日期、分支与提交、change id、已完成与证据、未完成、下一步、坑
 - [x] 8.2 `note/product/roadmap.md` 把 M3 标为已完成并填上 change id；`note/product/backlog.md` 记下本批次暴露的新想法
-- [ ] 8.3 两个 PR 都合入后，`openspec archive stage-2-m3-document-library`，把 spec 归档进 `openspec/specs/`
+- [x] 8.3 两个 PR 都合入后，`openspec archive stage-2-m3-document-library`，把 spec 归档进 `openspec/specs/`

@@ -6,13 +6,14 @@
 
 | 顺序 | 条目 | 状态 | OpenSpec change |
 | --- | --- | --- | --- |
-| 1 | 阶段二 M3：材料库（上传 / 版本 / 归档）与审核依据 | 两个 PR 已开、待合并（后端 [#8](https://github.com/MortyYJT/offerpilot/pull/8)、前端 [#9](https://github.com/MortyYJT/offerpilot/pull/9)） | `stage-2-m3-document-library` |
-| 2 | 阶段二 M4：会话、消息、提案（agent 写操作待确认） | 未开始 | — |
-| 3 | 数据标注：把项目数据从占位数据换成核验过的数据 | 未开始 | — |
-| 4 | 接入模型，让顾问真正能对话 | 未开始 | — |
+| 1 | 阶段二 M4：会话、消息、提案（agent 写操作待确认） | 未开始 | — |
+| 2 | 数据标注：把项目数据从占位数据换成核验过的数据 | 未开始 | — |
+| 3 | 接入模型，让顾问真正能对话 | 未开始 | — |
 
 ## 已完成（不进 OpenSpec 的历史）
 
 - 阶段一：前端骨架（PR #1）
 - 阶段二 M1：后端与数据库基础（PR #2）
 - 阶段二 M2a–M2d：路线图定义、任务行与归属规则、选校组合、视图改用服务端目录（PR #3–#6）
+- 阶段二 M3：材料库（上传 / 版本 / 归档）与审核依据（PR #8 后端、#9 前端；spec 已归档进
+  `openspec/specs/`，change 在 `openspec/changes/archive/2026-10-08-stage-2-m3-document-library/`）
