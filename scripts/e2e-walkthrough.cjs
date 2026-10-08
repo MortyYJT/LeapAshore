@@ -8,6 +8,7 @@
 
 const path = require("path");
 const fs = require("fs");
+const { execFileSync } = require("child_process");
 
 const PLAYWRIGHT =
   process.env.PLAYWRIGHT_PATH ||
@@ -18,7 +19,60 @@ const ROOT = path.resolve(__dirname, "..");
 const OUT = path.join(ROOT, "docs/screenshots");
 const BASE = process.env.BASE_URL || "http://localhost:3000";
 
+// A program slug that is in no catalogue. It is written into the browser's own copy of the portfolio
+// before the storage-clear reload below, so that a page still rendering from storage would put it on
+// screen — which is the one thing that separates "the server owns the portfolio" from "the screen and
+// the bundle happen to agree".
+const SENTINEL_PROGRAM = "__walkthrough-not-a-program__";
+
+// The backend's own virtualenv, its interpreter and the source of its database URL. Read from
+// `api/app/config.py` rather than restated, so the walkthrough cannot clean up in one database while
+// the API writes to another.
+const API_DIR = path.join(ROOT, "api");
+const API_PYTHON = path.join(API_DIR, ".venv/bin/python");
+const API_APP = path.join(API_DIR, "app");
+
 fs.mkdirSync(OUT, { recursive: true });
+
+/**
+ * Run one statement against the same database the API uses, and return what it answered.
+ *
+ * The walkthrough writes real portfolio rows through `PUT /api/applications`, and
+ * `applications.program_id` is a `RESTRICT` foreign key. Any row left behind therefore blocks
+ * `api/tests/test_seed.py`'s catalogue sweep — three of its tests delete every seeded program — so
+ * `make verify` followed by `make test` used to go red on rows this script itself had written. The
+ * cleanup at the end of the run is what closes that, and it needs a connection the browser cannot
+ * give it.
+ *
+ * A query answers with the first column of its first row and a write with the number of rows it
+ * touched. Those are two different questions and the first version of this printed `rowcount` for
+ * both: `SELECT count(*)` returns exactly one row whatever the catalogue holds, so the "is it zero"
+ * check below read `1` against a database that was already clean and could never have passed.
+ *
+ * The URL comes from the application's own settings, so a walkthrough pointed at a different database
+ * cleans up that one. A failure is reported and returned, never thrown: cleanup runs last, and a
+ * script that dies there would replace the run's verdict with its own.
+ */
+function dbRun(sql) {
+  const script = [
+    "import sys",
+    "from sqlalchemy import create_engine, text",
+    "from app.config import settings",
+    "engine = create_engine(settings.database_url)",
+    "with engine.begin() as connection:",
+    "    result = connection.execute(text(sys.argv[1]))",
+    "    row = result.first() if result.returns_rows else None",
+    "    print(row[0] if row is not None else result.rowcount)",
+  ].join("\n");
+  try {
+    return execFileSync(API_PYTHON, ["-c", script, sql], {
+      cwd: API_APP,
+      encoding: "utf8",
+    }).trim();
+  } catch (error) {
+    return "失败：" + String(error.stderr || error.message).trim().split("\n").slice(-1)[0];
+  }
+}
 
 (async () => {
   // The profile now lives on the server, so a walkthrough with no backend would drive a page whose
@@ -38,7 +92,8 @@ fs.mkdirSync(OUT, { recursive: true });
   }
 
   const browser = await chromium.launch();
-  const page = await browser.newPage({ viewport: { width: 1280, height: 900 } });
+  const context = await browser.newContext({ viewport: { width: 1280, height: 900 } });
+  const page = await context.newPage();
   const errors = [];
   /**
    * Errors this run caused on purpose, listed separately from the ones it is checking for.
@@ -126,8 +181,27 @@ fs.mkdirSync(OUT, { recursive: true });
     if (!ok) failures.push(name + (detail === undefined ? "" : " " + JSON.stringify(detail)));
   };
 
+  // The target degree the onboarding answers with, and the one the roadmap block later changes the
+  // profile to. The portfolio block puts the first one back, because the picker filters the catalogue
+  // by the target degree and no seeded program is a research degree — measured: reopening the picker
+  // on 研究型硕士 shows zero cards, so the catalogue check would have been measuring an empty screen.
+  //
+  // These are two separate values on purpose. Writing the restore as "put back whatever the run last
+  // set" is the version that ran and did nothing: it restored 研究型硕士, which is what the profile
+  // already said.
+  const ONBOARDING_DEGREE = "授课型硕士";
+  let demoDegree = ONBOARDING_DEGREE;
+
   await page.goto(BASE, { waitUntil: "networkidle" });
   await shot("01-step1-education");
+
+  // The subject this run is writing to, read off the cookie the API minted for this browser. Both the
+  // portfolio rows (through the picker below) and the client row itself are this run's own doing, and
+  // the cleanup at the end removes them: the RESTRICT foreign key on `applications.program_id` makes a
+  // leftover row break the catalogue seed's sweep.
+  const clientCookie = (await context.cookies()).find((c) => c.name === "offerpilot_client");
+  const clientId = clientCookie?.value ?? null;
+  console.log("本次走查的主体:", clientId ?? "未取得 cookie");
 
   await chooseOption("本科");
   await shot("02-step2-origin");
@@ -169,6 +243,9 @@ fs.mkdirSync(OUT, { recursive: true });
   await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
   await page.waitForTimeout(300);
   await shot("09-portfolio-bottom");
+
+  const cardsBeforeConfirm = await page.locator("article.card").count();
+  console.log("确认组合时界面上的项目卡片数:", cardsBeforeConfirm);
 
   await clickText("确认组合");
   await page.getByText("申请流程").first().waitFor({ timeout: 15000 });
@@ -533,6 +610,11 @@ fs.mkdirSync(OUT, { recursive: true });
     nodes.map((node) => node.value),
   );
   const nextDegree = degreeOptions.includes("研究型硕士") ? "研究型硕士" : degreeOptions[1];
+  // Remembered because `assessAll` filters the catalogue by the target degree, and no seeded program
+  // is a research degree: after this edit the picker legitimately shows zero cards. The portfolio
+  // block below puts the degree back rather than assuming the catalogue still matches — measured: a
+  // picker with no cards at all, and a check that would have been measuring the empty state.
+  demoDegree = nextDegree;
   await degreeSelect.selectOption(nextDegree);
   await page.getByRole("button", { name: "保存" }).first().click();
   for (let i = 0; i < 20 && taskPuts.length === putsBeforeDegree; i += 1) await sleep(250);
@@ -673,6 +755,260 @@ fs.mkdirSync(OUT, { recursive: true });
     { before: putsBeforeReload, after: taskPuts.length, settled: putsAfterReload },
   );
   await shot("23-task-tick-survives-reload");
+
+  // ---------------------------------------------------------------------------------------------
+  // The school-choice portfolio (M2c task 3): it is read from the server rather than from
+  // localStorage, the application flow renders what the server holds, and a failed confirmation is
+  // visible and does not advance the flow.
+  //
+  // The subject is the one every block above has used, and its portfolio rows are the ones the
+  // picker's confirmation wrote through `PUT /api/applications`. That write is the hazard this
+  // script's cleanup exists for, so it is real traffic against the real route rather than a stub.
+  // ---------------------------------------------------------------------------------------------
+  const readPortfolio = () =>
+    page.evaluate(async () => {
+      // The marker keeps this read distinguishable from the page's own request for the same route, so
+      // a run that stubs the route cannot make the page and this check disagree.
+      const response = await fetch("/api/applications?from=walkthrough-portfolio");
+      if (!response.ok) return null;
+      const body = await response.json();
+      return Array.isArray(body) ? body : null;
+    });
+
+  const servedPortfolio = await readPortfolio();
+  const serverSlugs = (servedPortfolio ?? []).map((row) => row.programId);
+  check(
+    "走查的确认动作把组合写进了服务端（PUT /api/applications）",
+    servedPortfolio !== null &&
+      servedPortfolio.length > 0 &&
+      servedPortfolio.length === cardsBeforeConfirm,
+    {
+      rows: servedPortfolio === null ? null : servedPortfolio.length,
+      cards: cardsBeforeConfirm,
+      slugs: serverSlugs,
+    },
+  );
+
+  // The catalogue the picker renders is the server's, and `nameEn` is the field this side's `name`
+  // maps to. This is the mapping a key-for-key adapter gets wrong silently — it would show the
+  // Chinese program name under a key whose whole meaning is "the English one" — so the assertion is
+  // read off the rendered cards rather than off the payload the page happens to hold.
+  //
+  // The picker is reopened deliberately: this is where it renders, and reopening it also exercises the
+  // read of the portfolio the server already holds, which is what stops a second confirmation from
+  // dropping rows the applicant added by hand. The stage is put back afterwards so the block below
+  // measures the main interface.
+  // Back to the degree the onboarding answered with, so the catalogue has programs to render.
+  const degreeRestore = await page.evaluate(async (degree) => {
+    const response = await fetch("/api/profile", {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ targetDegree: degree }),
+    });
+    const body = await response.json();
+    return { status: response.status, degree: body.targetDegree };
+  }, ONBOARDING_DEGREE);
+  // Asserted rather than assumed: if this write does not land, every catalogue check below is
+  // measuring a picker with no cards, and the failure would be reported as "the interface is wrong".
+  check(
+    "走查把学位改回入学答案，项目目录才有可渲染的项目",
+    degreeRestore.status === 200 && degreeRestore.degree === ONBOARDING_DEGREE,
+    { ...degreeRestore, profileBefore: demoDegree },
+  );
+  await page.evaluate(() => {
+    window.localStorage.clear();
+    window.localStorage.setItem("offerpilot.state.v1", JSON.stringify({ stage: "portfolio" }));
+  });
+  await page.reload({ waitUntil: "networkidle" });
+  await page.getByText("为你筛出的申请组合").waitFor({ timeout: 15000 });
+  // The cards are rendered from the assessments, and the assessments come from the catalogue read this
+  // page mounts with; waiting for a card rather than for a duration is what keeps this from measuring
+  // the picker's empty first paint.
+  await page.locator("article.card").first().waitFor({ timeout: 15000 });
+  await page.waitForTimeout(400);
+
+  const servedCatalogue = await page.evaluate(async () => {
+    const response = await fetch("/api/programs?from=walkthrough-catalogue");
+    if (!response.ok) return null;
+    return response.json();
+  });
+  const renderedCards = await page.evaluate(() =>
+    [...document.querySelectorAll("article.card")].map((card) => card.innerText),
+  );
+  const catalogue = servedCatalogue ?? [];
+  // The number of cards is the catalogue's length, so a body that arrived empty is a failure here
+  // rather than a comparison that passes over two empty lists.
+  check(
+    "选择页渲染的项目数与项目目录接口一致",
+    catalogue.length > 0 && renderedCards.length === catalogue.length,
+    { catalogue: catalogue.length, cards: renderedCards.length },
+  );
+  const englishOnScreen = catalogue.filter((program) =>
+    renderedCards.some((text) => text.includes(program.nameEn)),
+  );
+  const chineseOnScreen = catalogue.filter((program) =>
+    renderedCards.some((text) => text.includes(program.name)),
+  );
+  check(
+    "项目目录来自接口，卡片渲染的是 nameEn（英文名）而不是 name",
+    englishOnScreen.length === catalogue.length && chineseOnScreen.length === 0,
+    {
+      catalogue: catalogue.length,
+      english: englishOnScreen.map((p) => p.nameEn),
+      chinese: chineseOnScreen.map((p) => p.name),
+    },
+  );
+  // The portfolio the server already holds is ticked when the picker opens, so the count on the
+  // button is the evidence that the read above reached it rather than the recommendation only.
+  const confirmLabel = await page.getByRole("button", { name: /确认组合/ }).innerText();
+  const confirmCount = Number((/（(\d+) 个/.exec(confirmLabel) ?? [])[1] ?? NaN);
+  check(
+    "重新打开选择页时，服务端已有的组合被带入勾选状态",
+    serverSlugs.length > 0 && confirmCount >= serverSlugs.length,
+    { label: confirmLabel, serverRows: serverSlugs.length },
+  );
+  // No screenshot of its own: 08-portfolio already shows this exact view — the same catalogue, the same
+  // ticks — and the checks above are the record of what it proves. A second identical image would be
+  // churn rather than evidence.
+
+  // The claim the brief's Step 5 names: clear the browser's storage, reload, and the portfolio is
+  // still there and still the server's. The stage lives in localStorage, so it is put back first —
+  // otherwise the reload lands in onboarding and there is no portfolio on screen to measure.
+  await page.evaluate((sentinel) => {
+    window.localStorage.clear();
+    window.localStorage.setItem(
+      "offerpilot.state.v1",
+      JSON.stringify({
+        stage: "app",
+        // A program that is in no catalogue. If anything on this page rendered from storage, this
+        // slug would be in the list below.
+        portfolio: [{ programSlug: sentinel, tier: "保", confirmed: true }],
+      }),
+    );
+  }, SENTINEL_PROGRAM);
+  await page.reload({ waitUntil: "networkidle" });
+  await page.getByText("申请流程").first().waitFor({ timeout: 15000 });
+  await page.waitForTimeout(600);
+  await page.getByRole("button", { name: "首页" }).click();
+  await page.waitForTimeout(400);
+  const renderedSlugs = await page.evaluate(() =>
+    [...document.querySelectorAll("li span.font-semibold")].map((n) =>
+      // The list renders `university · name` when the catalogue resolves the slug and the bare slug
+      // when it does not, so this reads the resolved program back out of either shape.
+      n.innerText.includes(" · ") ? n.innerText.split(" · ").slice(1).join(" · ") : n.innerText,
+    ),
+  );
+  const afterClear = await readPortfolio();
+  const afterClearSlugs = (afterClear ?? []).map((row) => row.programId);
+  check(
+    "清空浏览器存储并重载后组合仍在，且与服务器一致",
+    afterClearSlugs.length > 0 &&
+      JSON.stringify([...afterClearSlugs].sort()) === JSON.stringify([...serverSlugs].sort()) &&
+      renderedSlugs.length === afterClearSlugs.length,
+    { server: afterClearSlugs, rendered: renderedSlugs, before: serverSlugs },
+  );
+  // The other half of "the server owns it", and the check that can fail: a sentinel row was written
+  // into the browser's copy of the portfolio *before* the reload, and if the page were still rendering
+  // from storage the sentinel would be on screen. It is not: the list is the server's answer.
+  //
+  // A weaker version of this compared the re-saved storage field against `undefined` and stayed red
+  // without meaning anything — the key is still written, with whatever this device holds, because the
+  // storage contract is `store.test.ts`'s subject and was deliberately left alone (the
+  // `completedMaterials` precedent). What actually changed is who the value comes from, and that is
+  // what the sentinel measures.
+  check(
+    "组合的真相在服务端：浏览器存储里的组合不会被渲染",
+    !renderedSlugs.includes(SENTINEL_PROGRAM),
+    { sentinelOnScreen: renderedSlugs.includes(SENTINEL_PROGRAM), rendered: renderedSlugs },
+  );
+  await shot("24-portfolio-survives-storage-clear");
+
+  // A confirmation the server refuses has to be visible and must not advance the flow, or the
+  // applicant lands on an application view built from a portfolio the database never stored. The
+  // write is answered with a 500 here, which is the same shape as the failed tick above.
+  const beforeFailedConfirm = (await readPortfolio() ?? []).length;
+  const rejectPortfolio = async (route) => {
+    if (route.request().method() === "PUT") {
+      await route.fulfill({
+        status: 500,
+        contentType: "application/json",
+        body: JSON.stringify({ detail: "walkthrough: forced failure" }),
+      });
+      return;
+    }
+    await route.continue();
+  };
+  await page.route("**/api/applications", rejectPortfolio);
+  await page.evaluate(() => {
+    window.localStorage.clear();
+    window.localStorage.setItem("offerpilot.state.v1", JSON.stringify({ stage: "portfolio" }));
+  });
+  await page.reload({ waitUntil: "networkidle" });
+  await page.getByText("为你筛出的申请组合").waitFor({ timeout: 15000 });
+  await page.waitForTimeout(900);
+  injectingFailure = true;
+  const chosenBefore = await page.getByRole("button", { name: /确认组合/ }).innerText();
+  await page.getByRole("button", { name: /确认组合/ }).click();
+  await page.waitForTimeout(900);
+  const confirmFailure = await page
+    .getByText("申请组合没有保存到服务器")
+    .first()
+    .isVisible()
+    .catch(() => false);
+  const stillOnPicker = await page.getByText("为你筛出的申请组合").isVisible().catch(() => false);
+  // The navigation tab, matched exactly. A substring match on 申请流程 also matches the picker's own
+  // subtitle ("勾掉不想申的，确认后进入申请流程。"), so the loose version of this check reported
+  // "the flow is on screen" against the picker itself and could never pass.
+  const reachedFlow = await page
+    .getByRole("button", { name: "流程进度", exact: true })
+    .first()
+    .isVisible()
+    .catch(() => false);
+  check("组合写入失败时页面给出可见提示", confirmFailure, { button: chosenBefore });
+  check(
+    "组合写入失败后没有进入申请流程（界面不与服务器不一致）",
+    stillOnPicker && !reachedFlow,
+    { picker: stillOnPicker, flow: reachedFlow },
+  );
+  await page.unroute("**/api/applications", rejectPortfolio);
+  injectingFailure = false;
+  const afterFailedConfirm = (await readPortfolio() ?? []).length;
+  check(
+    "失败的那一次确认没有改到服务端的组合",
+    afterFailedConfirm === beforeFailedConfirm,
+    { before: beforeFailedConfirm, after: afterFailedConfirm },
+  );
+  await shot("25-portfolio-save-failed");
+
+  // ---------------------------------------------------------------------------------------------
+  // Cleanup: put the shared development database back the way this run found it.
+  //
+  // This is not tidiness. `applications.program_id` is a RESTRICT foreign key, so a portfolio row left
+  // behind blocks the catalogue seed's sweep — `api/tests/test_seed.py` deletes every seeded program
+  // in three of its tests — and `make verify` followed by `make test` then goes red on rows this script
+  // wrote itself, with nothing in the failure saying who wrote them.
+  //
+  // The check below can fail: the run's own portfolio rows are asserted gone, and outside a parallel
+  // run they are the only ones this subject has. It is written against the client cookie this browser
+  // was given, so it removes exactly the subject the walkthrough created, along with its rows. A
+  // baseline row count would be a weaker check — a concurrent run would make it disagree for a reason
+  // that is not this one — so the client id is what the two statements name.
+  // ---------------------------------------------------------------------------------------------
+  console.log("\n=== 清理 ===");
+  if (clientId === null) {
+    check("走查结束时清理了本次主体", false, "没有读到 offerpilot_client cookie");
+  } else {
+    const removedRows = dbRun(`DELETE FROM applications WHERE client_id = '${clientId}'`);
+    const removedClient = dbRun(`DELETE FROM clients WHERE id = '${clientId}'`);
+    const leftOver = dbRun(`SELECT count(*) FROM applications WHERE client_id = '${clientId}'`);
+    check("走查结束时清理了本次主体（组合行与主体行）", leftOver === "0", {
+      client: clientId,
+      removedApplications: removedRows,
+      removedClients: removedClient,
+      leftOver,
+    });
+    console.log("清理后该主体的组合行数:", leftOver);
+  }
 
   console.log("\n=== JS 错误 ===");
   console.log(errors.length ? errors.join("\n") : "无");

@@ -8,11 +8,14 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 
 import {
+  fetchApplications,
   fetchProfile,
+  fetchPrograms,
   fetchRoadmapDefinition,
   mergeServerProfile,
   patchProfile,
   patchRoadmapTask,
+  replaceApplications,
   replaceRoadmapTasks,
 } from "./api.ts";
 import type { TaskReplacePayload } from "./roadmap-sync.ts";
@@ -578,5 +581,129 @@ test("patchRoadmapTask raises when the tick was not stored", async () => {
     () =>
       withFetch(() => new Response("", { status: 404 }), () => patchRoadmapTask("task-9", { status: "completed" })),
     /保存材料状态失败：404/,
+  );
+});
+
+// The catalogue and the portfolio. The mapping those bodies pass through is `programs-source.ts`'s and
+// is bound to a captured response there; these are the transport's own claims: the path, the method,
+// the payload as `ApplicationIn` reads it, and what counts as a read that failed.
+
+test("fetchPrograms reads the catalogue from its own public route", async () => {
+  // Public data: no cookie to ride along, so the request differs from the profile calls in nothing but
+  // its path. The body is handed back unmapped — the `name ← nameEn` mapping is `programs-source.ts`'s
+  // job, and doing it here too would give that rule two homes.
+  const body = [
+    {
+      slug: "unsw-master-it",
+      name: "信息技术硕士",
+      nameEn: "Master of Information Technology",
+      university: "新南威尔士大学",
+      city: "悉尼",
+      degreeLevel: "授课型硕士",
+      field: "计算机与数据",
+      duration: "2 年",
+      minimumMark: 65,
+      non211MinimumMark: 70,
+      requiresCognate: false,
+      prerequisites: [],
+      englishRequirement: "按 UNSW 英语语言要求核验",
+      dataStatus: "待核验",
+      source: { url: "https://example.test/x", title: "UNSW", status: "待核验" },
+    },
+  ];
+  const { value, calls } = await withFetch(
+    () => new Response(JSON.stringify(body), { status: 200 }),
+    () => fetchPrograms(),
+  );
+  assert.deepEqual(value, body);
+  assert.equal(calls[0].url, "/api/programs");
+  assert.equal(calls[0].init?.credentials, "same-origin");
+});
+
+test("fetchPrograms rejects a body that is not a list of programs", async () => {
+  // The catalogue comes from the server now, so "the read failed" is the only lever the page has. A
+  // body that is an object — a proxy's error page parsed as JSON, for instance — would otherwise reach
+  // `.map` in the caller and throw there, where whether it is reported depends on who wrapped what.
+  await assert.rejects(
+    () => withFetch(() => new Response(JSON.stringify({ programs: [] }), { status: 200 }), () => fetchPrograms()),
+    /读取项目目录失败：响应不是项目列表/,
+  );
+  await assert.rejects(
+    () => withFetch(() => new Response("nope", { status: 502 }), () => fetchPrograms()),
+    /读取项目目录失败：502/,
+  );
+});
+
+test("fetchApplications reads the caller's own portfolio, and refuses a body it cannot walk", async () => {
+  const body = [
+    {
+      id: "row-1",
+      programId: "unsw-master-it",
+      tier: "冲",
+      status: "considering",
+      isPrimary: false,
+      officialDeadline: null,
+      deadlineSourceUrl: null,
+      needsReview: false,
+      origin: "user",
+      program: null,
+      createdAt: "2026-10-07T12:41:51.352633Z",
+      updatedAt: "2026-10-07T12:41:51.352633Z",
+    },
+  ];
+  const { value, calls } = await withFetch(
+    () => new Response(JSON.stringify(body), { status: 200 }),
+    () => fetchApplications(),
+  );
+  assert.deepEqual(value, body);
+  assert.equal(calls[0].url, "/api/applications");
+  assert.equal(calls[0].init?.credentials, "same-origin");
+
+  await assert.rejects(
+    () => withFetch(() => new Response(JSON.stringify({ rows: [] }), { status: 200 }), () => fetchApplications()),
+    /读取申请组合失败：响应不是组合列表/,
+  );
+  await assert.rejects(
+    () => withFetch(() => new Response("", { status: 500 }), () => fetchApplications()),
+    /读取申请组合失败：500/,
+  );
+});
+
+test("replaceApplications sends the rows as a PUT and returns the server's counts", async () => {
+  // The payload is the whole portfolio, so an empty list is a real statement rather than "nothing to
+  // do" — the opposite of the roadmap replacement, whose empty `applicableKeys` is destructive and is
+  // skipped by the caller instead. `origin` and `status` are absent by design: the schema forbids
+  // unknown keys and the server writes `origin` itself.
+  const rows = [
+    { programId: "unsw-master-it", tier: "冲" as const, isPrimary: true, needsReview: false },
+    { programId: "usyd-master-cs", tier: "保" as const, isPrimary: false, needsReview: true },
+  ];
+  const counts = { created: 1, updated: 1, kept: 0, removed: 0 };
+  const { value, calls } = await withFetch(
+    () => new Response(JSON.stringify(counts), { status: 200 }),
+    () => replaceApplications(rows),
+  );
+  assert.deepEqual(value, counts);
+  assert.equal(calls[0].url, "/api/applications");
+  assert.equal(calls[0].init?.method, "PUT");
+  assert.equal(calls[0].init?.credentials, "same-origin");
+  assert.equal(calls[0].init?.body, JSON.stringify({ rows }));
+});
+
+test("replaceApplications raises on a refused portfolio so the picker can show it", async () => {
+  // The route's two refusals (a program named twice, two first choices) are 422s with a message, and a
+  // 500 is a server that never took the write. Either way the confirmation did not land, and the
+  // caller must not advance: silently resolving would leave the applicant on an application flow built
+  // from a portfolio the database does not hold.
+  await assert.rejects(
+    () =>
+      withFetch(
+        () => new Response(JSON.stringify({ detail: "..." }), { status: 422 }),
+        () =>
+          replaceApplications([
+            { programId: "unsw-master-it", tier: "冲", isPrimary: true, needsReview: false },
+          ]),
+      ),
+    /保存申请组合失败：422/,
   );
 });

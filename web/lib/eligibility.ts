@@ -93,13 +93,20 @@ export function assessProgram(program: Program, profile: Profile): ProgramAssess
   }
 
   const ielts = parseIelts(profile.englishScore);
-  const requiredIelts = /IELTS\s*(\d(?:\.\d)?)/i.exec(program.englishRequirement);
+  // The requirement is nullable on the wire, where `null` means the catalogue has not recorded one for
+  // this program. A missing requirement is not a requirement of zero and not a blank that matches: it
+  // takes the same branch as a requirement nobody has been able to parse yet — `englishUnknown` stays
+  // true and the applicant is told to check the official page. Coercing the null to `""` at the
+  // adapter would have reached this line as no match either, but it would have said the program has an
+  // empty requirement, which is a claim about the catalogue this side cannot make.
+  const requirement = program.englishRequirement;
+  const requiredIelts = requirement === null ? null : /IELTS\s*(\d(?:\.\d)?)/i.exec(requirement);
   let englishUnknown = true;
   if (requiredIelts && ielts !== null) {
     if (ielts < Number(requiredIelts[1])) {
       risks.push(`当前 IELTS ${ielts} 低于已录入的总分要求 ${requiredIelts[1]}。`);
       englishUnknown = false;
-    } else if (program.englishRequirement.includes("单项") && !/单项/.test(profile.englishScore)) {
+    } else if (requirement !== null && requirement.includes("单项") && !/单项/.test(profile.englishScore)) {
       risks.push("已录入要求包含单项分数，但你的成绩未说明单项，需要补充。");
     } else {
       englishUnknown = false;
