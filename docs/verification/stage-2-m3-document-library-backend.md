@@ -57,6 +57,36 @@ collected, `review_criteria.source_id` is RESTRICT, and the teardown has to put 
 definition and whatever a person had verified. One run that left the database different would make the
 next one fail for a reason unrelated to what it tests.
 
+### An intermittent failure, and why it is not this batch's
+
+The suite is **not deterministic**, and that had to be established rather than assumed. During this
+session the full suite failed intermittently: three runs reported 14, 3 and 12 failures while the rest
+reported 196 passed. The symptoms are always the same shape — a row a test depends on is gone while it
+still needs it:
+
+```
+applications_client_id_fkey: Key (client_id)=… is not present in table "clients"
+applications_program_id_fkey: Key (program_id)=(test-applications-program-reach) is not present
+documents_client_id_fkey:    Key (client_id)=… is not present in table "clients"
+duplicate key value violates unique constraint "roadmap_phases_pkey"
+```
+
+`test_applications_api.py` alone reproduces it, so it is not cross-module pollution from the new
+modules. The decisive check was an A/B, with this batch's code absent: a worktree at `main`, the M3
+tables dropped, `tests/test_applications_api.py` run six times with main's own code —
+
+```
+15 passed | 3 failed, 12 passed | 6 failed, 9 passed | 15 passed | 15 passed | 15 passed
+```
+
+Two of six runs failed on unchanged code, so this is **pre-existing** and is recorded in
+`note/product/backlog.md` for its own investigation. The likely area is the interaction between
+`conftest`'s sweeps and the module-scoped probe fixtures (the probe catalogue
+`test_applications_model.py` writes for its own module), not this batch's tables.
+
+After restoring the schema, `make api-test` passed **twelve consecutive times**. The count below is
+what a passing run reports; it is not a claim of determinism.
+
 ## 4. End-to-end walkthrough
 
 Command: `make screenshots` (that is `node scripts/e2e-walkthrough.cjs`)
