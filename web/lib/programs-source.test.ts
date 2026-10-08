@@ -1,13 +1,13 @@
 // Tests for the mapping from the served catalogue onto the shape the picker renders.
 //
-// The fixture at the top is the point of this file. `web/lib/roadmap-source.test.ts` records the
+// The fixtures at the top are the point of this file. `web/lib/roadmap-source.test.ts` records the
 // defect that made the pattern necessary: that adapter read `material.id` and `material.label` while
 // the wire said `key` and `title`, and every test passed, because the fixtures had been typed out
 // against the adapter's own declarations. Nothing type-checked the difference — both sides were
 // declared in the same module, so the compiler was only ever comparing the adapter with its own wrong
-// idea of the response. So the tests that matter here read `programs-response.fixture.json`, a
-// captured `GET /api/programs` body, and their expectations are derived from the capture rather than
-// from `ServedProgram`.
+// idea of the response. So the tests that matter here read captured bodies — `programs-response.fixture.json`
+// for the catalogue and `applications-response.fixture.json` for the portfolio — and their expectations
+// are derived from the capture rather than from `ServedProgram` / `ServedApplication`.
 //
 // Two names in this mapping are not type errors anywhere when they are got wrong, which is why they
 // are pinned separately below:
@@ -29,6 +29,7 @@ import {
   UNKNOWN,
   toApplicationRows,
   toPortfolioItems,
+  toProgramLabel,
   toProgramView,
 } from "./programs-source.ts";
 import type { ServedApplication, ServedProgram } from "./programs-source.ts";
@@ -162,6 +163,31 @@ test("carries a null through as null rather than turning it into an empty string
   assert.equal(toProgramView(served({ non211MinimumMark: null })).non211MinimumMark, null);
 });
 
+test("an empty served string is the same unknown as a null, and never reaches a label", () => {
+  // The hole `?? null` leaves: `""` is not nullish, so it survives the mapping and the render sites —
+  // the picker's `?? UNKNOWN`, the label's `?? UNKNOWN` — keep it, and the card prints `大学 · ` with
+  // nothing after the dot. A body can send either spelling for "nobody filled this in", and both are
+  // mapped to the one value the interface knows how to render as 未知.
+  const EMPTY_TEXT = {
+    nameEn: "",
+    city: "",
+    degreeLevel: "",
+    field: "",
+    duration: "",
+    englishRequirement: "",
+  };
+  const view = toProgramView(served(EMPTY_TEXT));
+  assert.equal(view.name, null);
+  for (const key of ["city", "degreeLevel", "field", "duration", "englishRequirement"] as const) {
+    assert.equal(view[key], null, `${key} is unknown, not empty`);
+    assert.notEqual(view[key], "", `${key} must not be an empty string`);
+  }
+  // The two fields the interface cannot do without are refused rather than blanked: an empty slug and an
+  // empty institution are bodies this side cannot render at all, and `requiredText` already says so.
+  assert.throws(() => toProgramView(served({ ...EMPTY_TEXT, slug: "" })), /条目缺少 slug/);
+  assert.throws(() => toProgramView(served({ ...EMPTY_TEXT, university: "" })), /条目缺少 university/);
+});
+
 test("a null nameEn stays null and is not swapped for the Chinese name", () => {
   // `name_en` is nullable on the wire as well, and this is the case a deliberate `.name` fallback
   // would look reasonable on and be wrong: showing the Chinese name under the frontend's `name` is
@@ -284,6 +310,110 @@ test("keeps the served order and does not drop a program with thin values", () =
 // columns, so the field-by-field expectations below are written as camelCase literals.
 // ------------------------------------------------------------------------------------------------
 
+/**
+ * A `GET /api/applications` body captured from the running server, read here as the wire record it is.
+ *
+ * The file is `applications-response.fixture.json`; its `$comment` names the command that produced it.
+ * This is the other half of the binding `CAPTURED_RESPONSE` makes for the catalogue, and it is here for
+ * the same reason: the twelve field names of a served row and the seven under `program` are the route's
+ * own spelling, and every expectation written from this side's declarations would agree with the adapter
+ * whatever the route actually sent. A hand-typed `ServedApplication` is exactly the fixture-mirroring the
+ * header of `programs-source.ts` warns about — the mistake that let `roadmap-source.ts` read
+ * `id`/`label` while the wire said `key`/`title`. `SERVED_ROW` below is still written by hand, because it
+ * carries the overrides the capture cannot (`tier`, `needsReview`, `program: null`); it is this capture,
+ * not that literal, that binds the adapter's field names.
+ */
+const CAPTURED_APPLICATIONS: ServedApplication[] = (
+  JSON.parse(
+    readFileSync(new URL("./applications-response.fixture.json", import.meta.url), "utf8"),
+  ) as { response: ServedApplication[] }
+).response;
+
+// The twelve names `ApplicationOut` serialises — camelCase, aliased by the schema's generator. Written
+// as literals rather than read off the adapter, so a rename on either side has to be made in both
+// places. The row's own `program_id` does not appear on the item the adapter builds: it is carried as
+// `programSlug`, which is the assertion of the next test.
+const WIRE_ROW_KEYS = [
+  "createdAt",
+  "deadlineSourceUrl",
+  "id",
+  "isPrimary",
+  "needsReview",
+  "officialDeadline",
+  "origin",
+  "program",
+  "programId",
+  "status",
+  "tier",
+  "updatedAt",
+];
+
+// The seven names `ProgramRef` projects under `program`, which are `GET /api/programs`' own names — so
+// `name` is the Chinese program name and `nameEn` the English one, the split §3.6 rules on.
+const WIRE_PROGRAM_KEYS = [
+  "city",
+  "dataStatus",
+  "degreeLevel",
+  "name",
+  "nameEn",
+  "slug",
+  "university",
+];
+
+test("the applications capture still carries the wire's own names", () => {
+  assert.ok(CAPTURED_APPLICATIONS.length > 0, "the capture must carry portfolio rows");
+  for (const row of CAPTURED_APPLICATIONS) {
+    assert.deepEqual(Object.keys(row).sort(), WIRE_ROW_KEYS, `the keys of row ${row.id}`);
+    // The database's own spelling must not be in it, or the capture would be this repository's idea of
+    // the response rather than the server's.
+    const wire = row as unknown as Record<string, unknown>;
+    assert.equal(
+      "program_id" in wire ||
+        "is_primary" in wire ||
+        "needs_review" in wire ||
+        "created_at" in wire ||
+        "deadline_source_url" in wire,
+      false,
+      "the wire is camelCase",
+    );
+    assert.ok(row.program !== null, `row ${row.id} resolves its program`);
+    assert.deepEqual(
+      Object.keys(row.program).sort(),
+      WIRE_PROGRAM_KEYS,
+      `the program keys of row ${row.id}`,
+    );
+    // The two names have to differ in the capture, or a mapping that read the Chinese `name` where the
+    // label wants `nameEn` would pass every assertion below.
+    assert.notEqual(row.program.nameEn, row.program.name, `the two names of ${row.program.slug}`);
+  }
+});
+
+test("the captured rows map onto the items field by field, through the wire's own names", () => {
+  const items = toPortfolioItems(CAPTURED_APPLICATIONS);
+  assert.equal(items.length, CAPTURED_APPLICATIONS.length);
+  for (const [index, row] of CAPTURED_APPLICATIONS.entries()) {
+    const item = items[index];
+    const program = row.program;
+    assert.ok(program !== null);
+    // The wire's `programId` is the item's `programSlug`: a row keyed by the program it names, which is
+    // the identity the interface already uses for a choice.
+    assert.equal(item.programSlug, row.programId, `programSlug of ${row.id}`);
+    assert.equal(item.tier, row.tier, `tier of ${row.id}`);
+    assert.equal(item.needsReview, row.needsReview, `needsReview of ${row.id}`);
+    assert.equal(item.isPrimary, row.isPrimary, `isPrimary of ${row.id}`);
+    assert.equal(item.confirmed, true, `confirmed of ${row.id}`);
+    // The projection the views render, compared against the capture's own values rather than against
+    // `toProgramRef` agreeing with itself.
+    assert.deepEqual(
+      item.program,
+      { university: program.university, nameEn: program.nameEn },
+      `program of ${row.id}`,
+    );
+    assert.equal(toProgramLabel(item.program), program.nameEn, `label of ${row.id}`);
+    assert.notEqual(toProgramLabel(item.program), program.name, `swapped copy for ${row.id}`);
+  }
+});
+
 /** One served portfolio row, in the spelling `GET /api/applications` uses. */
 const SERVED_ROW: ServedApplication = {
   id: "0f0f0f0f-0000-0000-0000-000000000000",
@@ -314,6 +444,14 @@ test("maps a served portfolio row onto the item the interface renders", () => {
   ]);
   assert.deepEqual(item, {
     programSlug: "unsw-master-it",
+    // The program the route served alongside the row travels with the item: the two portfolio views
+    // render it, so it is part of what this mapping produces rather than a field of the row left behind.
+    // Narrowed to the two fields those views read — the institution and the English name — because the
+    // picker also builds items, out of a catalogue that has no Chinese name to fill a full reference.
+    program: {
+      university: "新南威尔士大学",
+      nameEn: "Master of Information Technology",
+    },
     tier: "保",
     // The server's portfolio is a list of choices the applicant made, so every row in it is confirmed.
     confirmed: true,
@@ -332,12 +470,23 @@ test("a row the server does not flag is not flagged here", () => {
     "confirmed",
     "isPrimary",
     "needsReview",
+    "program",
     "programSlug",
     "tier",
   ]);
-  // The row's program projection is not read: the portfolio lists resolve a row through the
-  // catalogue, and copying the served name onto the item would give the same text two homes.
-  assert.equal(wireField(item, "program"), undefined);
+  // The row's program projection travels with the item since M2d, because the two portfolio views
+  // render it: they resolved the row through `web/lib/programs.ts` before, and a program that array
+  // does not carry reached the card as a bare slug. What the item carries is the projection this
+  // adapter made — the institution and the English name, the two fields the views print, so a field the
+  // route adds to its reference later cannot reach a render site without a decision here.
+  assert.deepEqual(item.program, {
+    university: SERVED_ROW.program!.university,
+    nameEn: SERVED_ROW.program!.nameEn,
+  });
+  // The label the views print is the English name, which is what the wire calls `nameEn`; the served
+  // `name` is the Chinese one and is not it.
+  assert.equal(toProgramLabel(item.program), SERVED_ROW.program!.nameEn);
+  assert.notEqual(toProgramLabel(item.program), SERVED_ROW.program!.name);
 });
 
 test("the rows sent back to the route speak the route's own field names", () => {

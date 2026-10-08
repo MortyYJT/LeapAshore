@@ -113,7 +113,7 @@ def test_put_replaces_the_portfolio_whole_and_the_read_serves_it(require_db, db_
 
     A row that leaves the payload is gone, a row that stays is moved, a row that arrives is created —
     in one call. The served row carries the program information the two portfolio lists render
-    (`HomeView.tsx:77` and `FlowView.tsx:135` draw `university` and the English program name), and an
+    (`HomeView.tsx:79` and `FlowView.tsx:130` draw `university` and the English program name), and an
     official deadline nobody typed is null rather than a date this endpoint made up.
     """
     seed_programs(db_session)

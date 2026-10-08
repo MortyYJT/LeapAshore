@@ -84,10 +84,12 @@ jobs:
 #   in CI first.
 # - Automated interface checks are handled by the Vibe-coding exception in
 #   AGENTS.md: pages are accepted from real browser output, not from TDD.
-# - The three guards `make test` runs first (`scripts/check-no-fake-dates.cjs`,
-#   `scripts/verify-programs-mirror.cjs` and `scripts/verify-roadmap-mirror.cjs`) stay
-#   out of this workflow. Each mirror guard compares its `web/lib/*.ts` against the
-#   committed snapshot and needs no service, so they belong with the frontend if they
-#   are wired in later; the backend's own half of that contract is
+# - The four guards `make test` runs first (`scripts/check-no-fake-dates.cjs`,
+#   `scripts/verify-programs-mirror.cjs`, `scripts/check-no-programs-import.cjs` and
+#   `scripts/verify-roadmap-mirror.cjs`) stay out of this workflow. Each one reads files and
+#   needs no service, so they belong with the frontend if they are wired in later; the two
+#   mirror guards compare their `web/lib/*.ts` against the committed snapshot, the readers
+#   guard resolves the import graph out of `web/app`, and the backend's own half of that
+#   contract is
 #   `api/tests/test_seed.py` and `api/tests/test_seed_roadmap.py`, which the backend job
 #   above runs.

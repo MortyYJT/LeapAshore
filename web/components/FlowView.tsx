@@ -1,7 +1,7 @@
 "use client";
 
+import { UNKNOWN, toProgramLabel } from "@/lib/programs-source";
 import { PHASE_DEFS } from "@/lib/roadmap";
-import { PROGRAMS } from "@/lib/programs";
 import type { PortfolioItem, Roadmap, RoadmapPhase } from "@/lib/types";
 
 const STATUS_META: Record<
@@ -118,9 +118,16 @@ export default function FlowView({
             <div className="text-xs font-bold text-[var(--color-ink-soft)]">
               申请项目分支（{portfolio.length} 个）
             </div>
-            <ul className="mt-2 grid gap-2 text-sm">
+            {/*
+              The branch list is where this view and the portfolio meet: the phases above are roadmap
+              data and name no program, so the only program copy on this screen comes from the row the
+              server sent. It used to be resolved against `web/lib/programs.ts`, which printed a bare
+              slug for anything the constants array does not carry.
+            */}
+            <ul className="mt-2 grid gap-2 text-sm" data-testid="flow-program-branches">
               {portfolio.map((item) => {
-                const prog = PROGRAMS.find((x) => x.slug === item.programSlug);
+                const university = item.program?.university ?? UNKNOWN;
+                const name = toProgramLabel(item.program) ?? UNKNOWN;
                 return (
                   <li key={item.programSlug} className="flex items-start gap-2">
                     {item.needsReview ? (
@@ -129,14 +136,8 @@ export default function FlowView({
                       <span className={`tag ${TIER_CLASS[item.tier]}`}>{item.tier}</span>
                     )}
                     <span className="leading-snug">
-                      {prog ? (
-                        <>
-                          <strong>{prog.university}</strong>
-                          <span className="block text-xs text-[var(--color-ink-soft)]">{prog.name}</span>
-                        </>
-                      ) : (
-                        item.programSlug
-                      )}
+                      <strong>{university}</strong>
+                      <span className="block text-xs text-[var(--color-ink-soft)]">{name}</span>
                     </span>
                   </li>
                 );

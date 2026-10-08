@@ -1,6 +1,6 @@
 "use client";
 
-import { PROGRAMS } from "@/lib/programs";
+import { UNKNOWN, toProgramLabel } from "@/lib/programs-source";
 import { roadmapProgress } from "@/lib/roadmap";
 import type { PortfolioItem, Profile, Roadmap } from "@/lib/types";
 
@@ -62,20 +62,25 @@ export default function HomeView({ profile, roadmap, portfolio, onGoFlow }: Prop
       </section>
 
       <section className="grid gap-4 md:grid-cols-2">
-        <article className="card">
+        <article className="card" data-testid="home-portfolio">
           <h2 className="text-sm font-bold text-[var(--color-ink-soft)]">申请组合</h2>
           {portfolio.length === 0 ? (
             <p className="mt-2 text-sm text-[var(--color-ink-soft)]">还没有选定项目。</p>
           ) : (
             <ul className="mt-3 grid gap-2">
+              {/*
+                The program comes off the row the server sent, not out of `web/lib/programs.ts`: a
+                program the constants array does not carry used to render as its bare slug. A row the
+                route could not resolve renders the marker for both halves rather than a blank, which
+                is what a `""` would say — that the program has no institution, or no name.
+              */}
               {portfolio.map((item) => {
-                const prog = PROGRAMS.find((x) => x.slug === item.programSlug);
+                const university = item.program?.university ?? UNKNOWN;
+                const name = toProgramLabel(item.program) ?? UNKNOWN;
                 return (
                   <li key={item.programSlug} className="flex items-center gap-2 text-sm">
                     <span className={`tag ${TIER_CLASS[item.tier]}`}>{item.tier}</span>
-                    <span className="font-semibold">
-                      {prog ? `${prog.university} · ${prog.name}` : item.programSlug}
-                    </span>
+                    <span className="font-semibold">{`${university} · ${name}`}</span>
                   </li>
                 );
               })}

@@ -56,7 +56,7 @@ def list_programs(
 
     - `name` here is the Chinese program name and `nameEn` is the English one, while the
       frontend's `Program.name` is the English name. Mapping `name` to `name` swaps the copy
-      rendered at `web/components/HomeView.tsx:77` and `web/components/FlowView.tsx:135`; the
+      rendered at `web/components/HomeView.tsx:79` and `web/components/FlowView.tsx:130`; the
       frontend key that corresponds to this endpoint's `name` is `nameEn`. Neither key is renamed
       here: the database's split is the product's natural shape.
     - `city`, `degreeLevel`, `field`, `duration` and `englishRequirement` are `string | null`
