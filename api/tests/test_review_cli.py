@@ -590,3 +590,42 @@ def test_the_review_names_the_version_it_judged(db_session, require_db):
         document = session.get(Document, document_id)
     assert version.version_no == 1
     assert document.current_version_id == version.id
+
+
+def test_the_operator_can_find_the_material_they_were_asked_about(db_session, require_db, capsys):
+    """`list` prints an id the `review` command then accepts, which is the whole point of it.
+
+    Recording a review needs a document id, and the applicant's browser is the only place that knows
+    one — the reviewer holds the database, not the cookie. Without this the operator would have to read
+    the id out of the page's network tab, so the check is the round trip rather than the formatting:
+    whatever `list` prints as the id has to be the id `review` takes.
+    """
+    seed_review_criteria(db_session)
+    owner, document_id = a_material_under_review()
+
+    assert main(["list"]) == 0
+    printed = capsys.readouterr().out
+    line = next((row for row in printed.splitlines() if document_id in row), None)
+    assert line is not None, f"the material was not listed: {printed!r}"
+    assert a_material_title(document_id) in line, "a row the operator cannot recognise is not a lead"
+    assert "第 1 版" in line, "the version number is what `review --version` needs next"
+
+    listed_id = line.split()[0]
+    assert listed_id == document_id
+    assert (
+        main(
+            [
+                "review", listed_id,
+                "--version", "1",
+                "--overall", "pass",
+                "--reviewed-by", "审查者",
+            ]
+        )
+        == 0
+    ), "the id the listing printed was not one the review command accepts"
+
+
+def a_material_title(document_id: str) -> str:
+    """The title the listing has to show for a material, read from the database."""
+    with SessionLocal() as session:
+        return session.get(Document, document_id).title

@@ -22,8 +22,9 @@ import sys
 from sqlalchemy.orm import Session
 
 from app.db import SessionLocal
+from app.models.document import DocumentVersion
 from app.services.refusals import Refused
-from app.services.reviews import record_review, verify_criterion
+from app.services.reviews import recent_materials, record_review, verify_criterion
 
 
 def _parse_finding(value: str) -> dict:
@@ -55,6 +56,11 @@ def build_parser() -> argparse.ArgumentParser:
     ):
         verify = commands.add_parser(name, help=help_text)
         verify.add_argument("code", help="审核要点的代码，例如 gs-evidence")
+
+    listing = commands.add_parser(
+        "list", help="列出最近上传的材料，用来找 review 需要的那份 id"
+    )
+    listing.add_argument("--limit", type=int, default=20, help="最多列几条，默认 20")
 
     review = commands.add_parser("review", help="写入一条审核结论")
     review.add_argument("document_id", help="材料的 id")
@@ -93,6 +99,22 @@ def main(argv: list[str] | None = None, session: Session | None = None) -> int:
         elif args.command == "unverify-criterion":
             criterion = verify_criterion(session, args.code, verified=False)
             print(f"已退回待核验 {criterion.code}")
+        elif args.command == "list":
+            materials = recent_materials(session, limit=args.limit)
+            if not materials:
+                print("还没有任何材料。")
+            for material in materials:
+                version = (
+                    session.get(DocumentVersion, material.current_version_id)
+                    if material.current_version_id is not None
+                    else None
+                )
+                print(
+                    f"{material.id}  {material.status:<14} {material.kind or '未分类':<26} "
+                    f"{material.title}（{material.created_at:%Y-%m-%d}，"
+                    f"主体 {material.client_id[:8]}…，"
+                    f"{'第 %d 版 %s' % (version.version_no, version.filename) if version else '还没有文件'}）"
+                )
         else:
             review = record_review(
                 session,
