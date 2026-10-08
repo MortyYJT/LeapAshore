@@ -29,6 +29,17 @@ export interface PersistedState {
    * written to `localStorage`: see `saveState`.
    */
   profile: Profile;
+  /**
+   * The in-memory portfolio, and no longer the answer to "what is in the portfolio".
+   *
+   * Since M2c a choice is an `applications` row, so the server is the source of truth and
+   * `web/app/page.tsx` renders the rows it read from `GET /api/applications` rather than this field.
+   * Nothing in the app reads or writes it any more; it is kept in the persisted shape for the same
+   * reason `completedMaterials` below is — the key is in the storage contract this module's tests pin,
+   * and the write still happens so that contract is unchanged. Do not reintroduce it as a render
+   * source: a local portfolio the server never took is indistinguishable on screen from one it did,
+   * which is the divergence the confirmation's own error notice is there to report instead.
+   */
   portfolio: PortfolioItem[];
   /**
    * A local copy of the ticked materials, and no longer the answer to "what is ticked".
@@ -84,6 +95,12 @@ export function loadState(): PersistedState {
  * had cleared or a save the server never took could reappear as if it were stored. `Onboarding`
  * already tells the applicant that answers which have not reached the server are lost on a refresh
  * ("这里的答案还没同步到服务器，刷新页面会丢失"), and keeping a copy here contradicted that.
+ *
+ * The four keys that are still written are this device's own progress, and `portfolio` is written
+ * even though the server owns it now — the same arrangement `completedMaterials` has had since M2b.
+ * The storage contract is this module's tests' subject, and narrowing it to make a retirement look
+ * tidier would weaken the one check that says which keys a browser may hold; what changed is that
+ * nothing reads the portfolio back. See the field's own comment.
  */
 export function saveState(state: PersistedState): void {
   if (typeof window === "undefined") return;

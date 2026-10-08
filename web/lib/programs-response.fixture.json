@@ -1,0 +1,139 @@
+{
+  "$comment": "The `response` array below is the body of GET /api/programs, captured verbatim from the running server with `curl -s http://127.0.0.1:8000/api/programs`. It is here so a unit test can check the field names and the nullability the frontend adapter reads against the names the route actually serves, rather than against the adapter's own declarations. Recapture it, do not hand-edit it: an edit would turn the binding back into a transcript of this repository's own idea of the response. Three things in it are deliberate records of the contract and must not be normalised away: `name` is the Chinese program name while `nameEn` is the English one (so `ProgramView.name` has to come from `nameEn`), the five fields `city`, `degreeLevel`, `field`, `duration` and `englishRequirement` are nullable here (all six seeded programs happen to carry a value today, which is exactly why a fixture typed out by hand cannot notice the difference), and `source` carries only url, title and status, with no `id`, `excerpt` or `verifiedAt`.",
+  "response": [
+    {
+      "slug": "monash-master-ai",
+      "name": "人工智能硕士",
+      "nameEn": "Master of Artificial Intelligence",
+      "university": "蒙纳士大学",
+      "city": "墨尔本",
+      "degreeLevel": "授课型硕士",
+      "field": "计算机与数据",
+      "duration": "1.5–2 年",
+      "minimumMark": 60.0,
+      "non211MinimumMark": null,
+      "requiresCognate": false,
+      "prerequisites": [],
+      "englishRequirement": "需同时满足 Monash 英语要求",
+      "dataStatus": "待核验",
+      "source": {
+        "url": "https://www.monash.edu/study/courses/find-a-course/artificial-intelligence-c6007",
+        "title": "Monash Master of Artificial Intelligence",
+        "status": "待核验"
+      }
+    },
+    {
+      "slug": "monash-master-cs",
+      "name": "计算机科学硕士",
+      "nameEn": "Master of Computer Science",
+      "university": "蒙纳士大学",
+      "city": "墨尔本",
+      "degreeLevel": "授课型硕士",
+      "field": "计算机与数据",
+      "duration": "1.5–2 年",
+      "minimumMark": 60.0,
+      "non211MinimumMark": null,
+      "requiresCognate": true,
+      "prerequisites": [
+        "编程",
+        "算法或数据结构"
+      ],
+      "englishRequirement": "需同时满足 Monash 英语要求",
+      "dataStatus": "待核验",
+      "source": {
+        "url": "https://www.monash.edu/study/courses/find-a-course/computer-science-c6008",
+        "title": "Monash Master of Computer Science",
+        "status": "待核验"
+      }
+    },
+    {
+      "slug": "unsw-master-it",
+      "name": "信息技术硕士",
+      "nameEn": "Master of Information Technology",
+      "university": "新南威尔士大学",
+      "city": "悉尼",
+      "degreeLevel": "授课型硕士",
+      "field": "计算机与数据",
+      "duration": "2 年",
+      "minimumMark": 65.0,
+      "non211MinimumMark": 70.0,
+      "requiresCognate": false,
+      "prerequisites": [],
+      "englishRequirement": "按 UNSW 英语语言要求核验",
+      "dataStatus": "待核验",
+      "source": {
+        "url": "https://www.unsw.edu.au/study/postgraduate/master-of-information-technology?studentType=International",
+        "title": "UNSW Master of Information Technology",
+        "status": "待核验"
+      }
+    },
+    {
+      "slug": "uq-master-data-science",
+      "name": "数据科学硕士",
+      "nameEn": "Master of Data Science",
+      "university": "昆士兰大学",
+      "city": "布里斯班",
+      "degreeLevel": "授课型硕士",
+      "field": "计算机与数据",
+      "duration": "1.5–2 年",
+      "minimumMark": 71.4,
+      "non211MinimumMark": null,
+      "requiresCognate": true,
+      "prerequisites": [
+        "微积分或高等数学",
+        "线性代数与统计，或编程与数据库"
+      ],
+      "englishRequirement": "IELTS 6.5，单项不低于 6.0",
+      "dataStatus": "待核验",
+      "source": {
+        "url": "https://study.uq.edu.au/study-options/programs/master-data-science-5660",
+        "title": "UQ Master of Data Science",
+        "status": "待核验"
+      }
+    },
+    {
+      "slug": "usyd-master-cs",
+      "name": "计算机科学硕士",
+      "nameEn": "Master of Computer Science",
+      "university": "悉尼大学",
+      "city": "悉尼",
+      "degreeLevel": "授课型硕士",
+      "field": "计算机与数据",
+      "duration": "2 年",
+      "minimumMark": 65.0,
+      "non211MinimumMark": null,
+      "requiresCognate": false,
+      "prerequisites": [],
+      "englishRequirement": "按悉尼大学课程页英语要求核验",
+      "dataStatus": "待核验",
+      "source": {
+        "url": "https://www.sydney.edu.au/content/courses/courses/pc/master-of-computer-science.html",
+        "title": "University of Sydney Master of Computer Science",
+        "status": "待核验"
+      }
+    },
+    {
+      "slug": "uwa-master-it",
+      "name": "信息技术硕士",
+      "nameEn": "Master of Information Technology",
+      "university": "西澳大学",
+      "city": "珀斯",
+      "degreeLevel": "授课型硕士",
+      "field": "计算机与数据",
+      "duration": "1.5–2 年",
+      "minimumMark": 65.0,
+      "non211MinimumMark": null,
+      "requiresCognate": false,
+      "prerequisites": [
+        "Mathematics Methods ATAR 或同等数学基础"
+      ],
+      "englishRequirement": "IELTS 6.5，单项不低于 6.0",
+      "dataStatus": "待核验",
+      "source": {
+        "url": "https://www.uwa.edu.au/study/courses/master-of-information-technology",
+        "title": "UWA Master of Information Technology",
+        "status": "待核验"
+      }
+    }
+  ]
+}

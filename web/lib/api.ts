@@ -1,8 +1,14 @@
-// The profile API. The server is the source of truth for the applicant's background; localStorage
-// keeps only what has not moved to the backend yet (see `store.ts`).
+// The transport: one function per route the interface calls, over the profile, the roadmap and the
+// school-choice portfolio. The server is the source of truth for all three; `store.ts` keeps only what
+// has not moved to the backend, and nothing that has.
 //
 // Requests go to a same-origin `/api` path that `next.config.ts` rewrites to the backend, so the
 // httpOnly `offerpilot_client` cookie rides along on its own and no CORS setup is needed.
+//
+// These functions fetch, refuse a body this side cannot read, and hand the wire shape back. They do
+// not map: `roadmap-source.ts` and `programs-source.ts` own the mappings from the served field names
+// onto the shapes the interface renders, which is what lets those mappings be pure functions with
+// tests bound to a captured response body.
 
 import type { Profile } from "./types";
 import type { TaskReplacePayload, TaskReplaceResult } from "./roadmap-sync";
@@ -12,6 +18,12 @@ import type {
   ServedRoadmapDefinition,
   ServedTask,
 } from "./roadmap-source";
+import type {
+  ApplicationReplaceResult,
+  ApplicationRow,
+  ServedApplication,
+  ServedProgram,
+} from "./programs-source";
 
 /** Whether the value the wire sent is a string with at least one character in it. */
 function isFilled(value: unknown): value is string {
@@ -383,4 +395,81 @@ export async function patchRoadmapTask(
   });
   if (!response.ok) throw new Error(`保存材料状态失败：${response.status}`);
   return (await response.json()) as ServedTask;
+}
+
+/**
+ * Read the program catalogue.
+ *
+ * The route is public data, so unlike the profile and portfolio reads it carries no cookie of its own
+ * and the answer is the same for everyone. The body is returned as the wire shape rather than mapped:
+ * `programs-source.ts` owns the mapping — the `name ← nameEn` swap and the nullability of five fields
+ * — and it is a pure function with its own tests, one of which checks it against a captured response
+ * body. Mapping here as well would give the same rule two homes, which is exactly how the roadmap
+ * mapper's field names went wrong unnoticed.
+ *
+ * The body has to be a list. An object, or a page of HTML from a misrouted proxy, is a read that
+ * failed, and the caller's own answer is what turns that into "the catalogue could not be read"
+ * instead of a picker with no programs and no explanation.
+ */
+export async function fetchPrograms(): Promise<ServedProgram[]> {
+  const response = await fetch("/api/programs", { credentials: "same-origin" });
+  if (!response.ok) throw new Error(`读取项目目录失败：${response.status}`);
+  const programs = (await response.json()) as ServedProgram[];
+  if (!Array.isArray(programs)) throw new Error("读取项目目录失败：响应不是项目列表");
+  return programs;
+}
+
+/**
+ * Read the applicant's own portfolio.
+ *
+ * Addressed by the `offerpilot_client` cookie, like the profile, so the answer differs per subject and
+ * the route mints the cookie for a first-time visitor. Reading it writes nothing: a subject with no
+ * rows yet simply has no rows. The body is returned as the wire shape — `toPortfolioItems` in
+ * `programs-source.ts` is what turns it into the items the interface passes around — for the same
+ * reason the catalogue is.
+ *
+ * A body that is not a list raises here rather than being handed on: the caller's only lever is "did
+ * the read fail", and `{"rows": []}` reaching `toPortfolioItems` would throw inside the caller's own
+ * mapping, where whether it is reported depends on which caller wrapped which step. The transport is
+ * where "this response cannot be read" is decided — the same split `fetchRoadmapDefinition` keeps.
+ */
+export async function fetchApplications(): Promise<ServedApplication[]> {
+  const response = await fetch("/api/applications", { credentials: "same-origin" });
+  if (!response.ok) throw new Error(`读取申请组合失败：${response.status}`);
+  const rows = (await response.json()) as ServedApplication[];
+  if (!Array.isArray(rows)) throw new Error("读取申请组合失败：响应不是组合列表");
+  return rows;
+}
+
+/**
+ * Replace the applicant's whole portfolio, and report how the write landed.
+ *
+ * A whole replacement rather than a patch, which is what the confirmation flow is: the applicant ticks
+ * the programs they want and the payload *is* the portfolio afterwards. A program the payload does not
+ * name is therefore removed, and an empty list is a real statement that the portfolio holds nothing.
+ * `toApplicationRows` is what turns the items on screen into the three fields `ApplicationIn` reads.
+ *
+ * The four counts are the server's own account of what it did and cannot be computed here, so they are
+ * returned rather than checked: `created + updated + kept` is what the subject holds afterwards, and a
+ * caller that wants to know that reads it from the reply instead of assuming the status code meant it.
+ * A rejected write raises, because a confirmation the server did not take is the silent divergence
+ * this layer exists to surface. The route answers 422 with a message naming which rule the list broke
+ * — a program named twice, two first choices, a program the catalogue does not carry — so the status
+ * is the only part of that answer this side can still show.
+ *
+ * `status` and the two deadline fields are deliberately absent from the payload: the schema sets
+ * `extra="forbid"`, `origin` is the server's to write, and a status is not something the confirmation
+ * flow has an opinion about. Sending one would be refused rather than ignored.
+ */
+export async function replaceApplications(
+  rows: ApplicationRow[],
+): Promise<ApplicationReplaceResult> {
+  const response = await fetch("/api/applications", {
+    method: "PUT",
+    credentials: "same-origin",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ rows }),
+  });
+  if (!response.ok) throw new Error(`保存申请组合失败：${response.status}`);
+  return (await response.json()) as ApplicationReplaceResult;
 }

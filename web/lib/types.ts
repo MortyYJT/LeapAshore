@@ -69,18 +69,33 @@ export interface SourceCitation {
 export interface Program {
   slug: string;
   university: string;
-  name: string;
-  city: string;
-  degreeLevel: DegreeLevel;
-  field: StudyArea;
-  duration: string;
+  /**
+   * The English program name, which is what the product shows.
+   *
+   * The served catalogue names it `nameEn` and calls its own `name` the Chinese one; the adapter in
+   * `programs-source.ts` makes that mapping, and `note/superpowers/specs/2026-10-06-stage-2-m2-design.md`
+   * §3.6 is the ruling. `null` on the wire means the catalogue has no English name yet, and the render
+   * sites show `UNKNOWN` rather than an empty string.
+   */
+  name: string | null;
+  /**
+   * The five fields the served catalogue can leave unknown.
+   *
+   * `null` is "this catalogue does not know yet" and it is not the same claim as `""`, which says the
+   * program has none of this. `api/app/schemas/program.py` keeps the nullability visible on the wire
+   * for that reason, and the render sites show `UNKNOWN`; nothing may substitute an empty string.
+   */
+  city: string | null;
+  degreeLevel: string | null;
+  field: string | null;
+  duration: string | null;
   /** Grade baseline as a percentage. Provenance and verification status live in source. */
   minimumMark: number | null;
   /** Separate baseline for Chinese non-211 institutions, only when an official page states one. */
   non211MinimumMark: number | null;
   requiresCognate: boolean;
   prerequisites: string[];
-  englishRequirement: string;
+  englishRequirement: string | null;
   source: SourceCitation;
   /** Overall data confidence. Every record is pending verification during the MVP stage. */
   dataStatus: SourceStatus;
@@ -95,6 +110,16 @@ export interface PortfolioItem {
   confirmed: boolean;
   /** True when the user added a program the system could not tier automatically. */
   needsReview?: boolean;
+  /**
+   * Whether this row is the applicant's first choice.
+   *
+   * A fact the server enforces rather than a display detail: `applications` carries the partial unique
+   * index `uq_applications_one_primary_per_client`, and a whole replacement restates the flag, so a
+   * payload that omitted it would read as `False` and silently release a first choice the applicant
+   * already had. It is carried through the round trip for that reason, not because a screen shows it
+   * today.
+   */
+  isPrimary?: boolean;
 }
 
 export type PhaseId =

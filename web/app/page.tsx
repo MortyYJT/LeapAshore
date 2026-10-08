@@ -6,19 +6,23 @@ import Generating from "@/components/Generating";
 import Onboarding from "@/components/Onboarding";
 import PortfolioPicker from "@/components/PortfolioPicker";
 import {
+  fetchApplications,
   fetchProfile,
+  fetchPrograms,
   fetchRoadmapDefinition,
   mergeServerProfile,
   patchProfile,
   patchRoadmapTask,
+  replaceApplications,
   replaceRoadmapTasks,
 } from "@/lib/api";
 import { buildRoadmap } from "@/lib/roadmap";
 import { NO_DEFINITION_READ, readRoadmapDefinition } from "@/lib/roadmap-definition";
+import { toApplicationRows, toPortfolioItems, toProgramView } from "@/lib/programs-source";
 import { toTaskRows } from "@/lib/roadmap-source";
 import { alreadyStored, toReplacePayload, type TaskRow } from "@/lib/roadmap-sync";
 import { clearState, initialState, loadState, saveState, type PersistedState } from "@/lib/store";
-import type { PortfolioItem, Profile, RoadmapDefinition } from "@/lib/types";
+import type { PortfolioItem, Profile, Program, RoadmapDefinition } from "@/lib/types";
 
 /**
  * Shown when a roadmap write did not land.
@@ -117,6 +121,25 @@ export default function Page() {
   const [taskRows, setTaskRows] = useState<TaskRow[]>([]);
   /** Set when a roadmap write did not land, so the failure is not silent. */
   const [taskSyncError, setTaskSyncError] = useState<string | null>(null);
+  /**
+   * The catalogue as `GET /api/programs` served it, or `null` before that read answers and after a
+   * failed one. The two are one value on purpose: nothing may build a picker out of "no programs",
+   * because that is a claim about the applicant's targets rather than about the read.
+   */
+  const [programs, setPrograms] = useState<Program[] | null>(null);
+  /** Why the catalogue read failed, so the picker can say so instead of showing an empty screen. */
+  const [programsError, setProgramsError] = useState<string | null>(null);
+  /**
+   * The portfolio the server holds, which is what the application flow renders.
+   *
+   * Read from `GET /api/applications` rather than from `localStorage`: a choice is per-applicant state
+   * that has to survive a reload on another device, which is why M2c moved it behind the API. The
+   * `portfolio` field of `PersistedState` is still in the persisted shape and is still written — see
+   * `store.ts` for why that key was deliberately left alone — but nothing renders from it: this state
+   * is what the screens are given, and it is filled from the route and from the confirmation's own
+   * reply.
+   */
+  const [portfolio, setPortfolio] = useState<PortfolioItem[]>([]);
   /**
    * The applicability fingerprint of the recomputation this session has already sent, or is sending.
    *
@@ -232,6 +255,61 @@ export default function Page() {
       setDefinitionRead(read);
       if (read.tasks !== null) setTaskRows(read.tasks);
     });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  /**
+   * The catalogue comes from the server too, once, and the failure is reported rather than hidden.
+   *
+   * `web/lib/programs.ts` used to be this page's data source. It is deliberately still in the tree —
+   * the mirror guard in `scripts/verify-programs-mirror.cjs` compares the seeded rows against it, and
+   * `eligibility.test.ts` uses it as its fixture — but nothing here reads it as data any more, which is
+   * what M2d was for.
+   *
+   * A failed read leaves `programs` null and sets a message. The picker renders that message instead of
+   * an empty list, because an empty catalogue and a catalogue that could not be read are different
+   * claims about the applicant's options, and only one of them is true.
+   */
+  useEffect(() => {
+    let cancelled = false;
+    fetchPrograms()
+      .then((served) => {
+        if (cancelled) return;
+        // The adapter is where §3.6's `name ← nameEn` mapping and the five nullable fields are
+        // resolved; see `programs-source.ts`, and its test against a captured response body.
+        setPrograms(served.map(toProgramView));
+      })
+      .catch((error: unknown) => {
+        if (cancelled) return;
+        setProgramsError(error instanceof Error ? error.message : "读取项目目录失败");
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  /**
+   * The applicant's own portfolio is read once, from the server that owns it.
+   *
+   * A failed read leaves the portfolio empty and is not announced here: the picker and the portfolio
+   * lists are the two places it shows, and the picker's own error is where a failed *write* is
+   * reported. An empty portfolio after a failed read is the same on screen as a subject who has chosen
+   * nothing yet, which is the state this page cannot distinguish — so it does not claim to, and the
+   * next successful read corrects it.
+   */
+  useEffect(() => {
+    let cancelled = false;
+    fetchApplications()
+      .then((served) => {
+        if (cancelled) return;
+        setPortfolio(toPortfolioItems(served));
+      })
+      .catch(() => {
+        if (cancelled) return;
+        setPortfolio([]);
+      });
     return () => {
       cancelled = true;
     };
@@ -417,8 +495,39 @@ export default function Page() {
     setState((prev) => ({ ...prev, profile, stage: "generating" }));
   }
 
-  function handlePortfolioConfirm(portfolio: PortfolioItem[]) {
-    setState((prev) => ({ ...prev, portfolio, stage: "app" }));
+  /**
+   * Store the confirmed portfolio on the server, and advance only if it landed.
+   *
+   * The whole list goes in one `PUT`, which is what the confirmation flow is: the ticks on screen are
+   * the portfolio afterwards. A failed write is reported by the picker — which stays on screen with the
+   * ticks, the error and a retry button — and the stage does not change, so nobody arrives at an
+   * application flow built on a portfolio the database never stored. The message the transport raised
+   * is passed on rather than flattened, because it carries the status the route answered with: a 422
+   * naming a broken list is a different thing to fix from a server that was never reachable.
+   *
+   * The rows are built by `toApplicationRows`, which is also where `origin` and `status` are kept off
+   * the payload: the schema refuses unknown keys, and the server writes `origin` itself.
+   */
+  async function handlePortfolioConfirm(items: PortfolioItem[]): Promise<string | null> {
+    try {
+      await replaceApplications(toApplicationRows(items));
+    } catch (error: unknown) {
+      return error instanceof Error ? error.message : "保存申请组合失败";
+    }
+    // The server's own list, not the payload that was just sent: the route decides the order a
+    // portfolio is read in (the first choice, then 冲 / 稳 / 保) and the reply carries counts rather
+    // than rows, so re-reading is what makes the screen the server's answer instead of this tab's copy
+    // of what it sent. The items just sent stand in if that re-read fails: the write landed, so the
+    // applicant's list is right and only its order may be the page's own.
+    setPortfolio(items);
+    setState((prev) => ({ ...prev, portfolio: items, stage: "app" }));
+    try {
+      setPortfolio(toPortfolioItems(await fetchApplications()));
+    } catch {
+      // Only the re-read failed. The next load reads the server again, and the stages above have
+      // already moved on.
+    }
+    return null;
   }
 
   /**
@@ -478,6 +587,13 @@ export default function Page() {
       });
   }
 
+  /**
+   * Return from the picker to the background questions.
+   *
+   * The stage is the only thing that changes: the portfolio is not touched, so walking back and
+   * forward does not drop a choice the server already holds — the picker reads that list from the
+   * server when it is shown again.
+   */
   function restart() {
     setState((prev) => ({ ...prev, stage: "onboarding" }));
   }
@@ -520,6 +636,9 @@ export default function Page() {
     return (
       <PortfolioPicker
         profile={state.profile}
+        programs={programs}
+        portfolio={portfolio}
+        programsError={programsError}
         onConfirm={handlePortfolioConfirm}
         onBack={restart}
       />
@@ -530,7 +649,7 @@ export default function Page() {
     <AppShell
       profile={state.profile}
       roadmap={roadmap}
-      portfolio={state.portfolio}
+      portfolio={portfolio}
       onToggleMaterial={toggleMaterial}
       onUpdateProfile={updateProfile}
       avatar={state.avatar}

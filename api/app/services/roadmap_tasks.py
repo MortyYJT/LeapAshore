@@ -57,7 +57,7 @@ onto a row are told apart in the audit trail rather than merged into one "someth
 """
 
 import uuid
-from collections.abc import Mapping, Sequence
+from collections.abc import Sequence
 from datetime import datetime, timezone
 from typing import Any
 
@@ -66,7 +66,8 @@ from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
 from app.models.roadmap import MaterialTemplate, RoadmapPhase
-from app.models.task import RoadmapTask, ScheduleOrigin, TaskEvent, TaskOrigin, TaskStatus
+from app.models.task import RoadmapTask, ScheduleOrigin, TaskOrigin, TaskStatus
+from app.services.writes import carries as _carries, row_value as _row_value, write_history
 
 
 class InvalidTaskPayload(ValueError):
@@ -81,35 +82,9 @@ class InvalidTaskPayload(ValueError):
     """
 
 
-def _row_value(row: Any, name: str, default: Any = None) -> Any:
-    """Read one field from a payload row, which may be a schema object or a plain mapping.
-
-    The router passes ``TaskIn`` instances and the tests pass dicts, and both spell a field the same
-    way. A missing key answers with the default rather than raising, and ``_carries`` is what tells
-    the two apart: the default is for a field the payload never mentions, while a value the payload
-    does state — including an explicit ``None`` — is applied as it stands.
-    """
-    if isinstance(row, Mapping):
-        return row.get(name, default)
-    return getattr(row, name, default)
-
-
-def _carries(row: Any, name: str) -> bool:
-    """True when the payload states this field, as opposed to leaving it to a default.
-
-    The distinction is what makes a recomputation a partial update. A payload that omits a date is
-    silent about that date, so the row keeps the one it has; sending ``null`` is the claim that the
-    row has no date, and that is what clears it. Without the distinction, a caller that computed a
-    suggestion date but no deadline would silently wipe a deadline the row held — a loss the caller
-    cannot see in its own payload, which is exactly the kind of state change this batch exists to
-    prevent.
-    """
-    if isinstance(row, Mapping):
-        return name in row
-    fields_set = getattr(row, "model_fields_set", None)
-    if fields_set is not None:
-        return name in fields_set
-    return hasattr(row, name)
+# `_row_value`, `_carries` and the event writer are shared with `app.services.applications` and live
+# in `app.services.writes`; they are imported under the private names this module already reads by,
+# so one implementation of "the payload stated this field" serves both writers.
 
 
 def _payload_key(row: Any) -> tuple[str, str]:
@@ -150,34 +125,6 @@ def _snapshot(row: RoadmapTask) -> dict:
             else None
         ),
     }
-
-
-def _history(
-    session: Session,
-    client_id: str,
-    task_id: str | None,
-    event: str,
-    before: dict | None,
-    after: dict | None,
-    actor: str = TaskOrigin.SYSTEM,
-) -> None:
-    """Append one entry to the audit trail, attributed to whoever made the change.
-
-    ``actor`` defaults to the client's own recomputation, which is every call in
-    ``replace_system_tasks``; ``update_task`` passes ``TaskOrigin.USER`` instead, so an entry says
-    which door the change came through and not merely that a row moved.
-    """
-    session.add(
-        TaskEvent(
-            id=str(uuid.uuid4()),
-            client_id=client_id,
-            task_id=task_id,
-            actor=actor,
-            event=event,
-            before=before,
-            after=after,
-        )
-    )
 
 
 def _reject_a_contradiction(identities: Sequence[tuple[str, str]], applicable: set[str]) -> None:
@@ -333,7 +280,15 @@ def replace_system_tasks(
                 by_identity[identity] = row
             else:
                 by_identity[identity] = row
-                _history(session, client_id, row.id, "created", None, _snapshot(row))
+                write_history(
+                    session,
+                    client_id,
+                    "created",
+                    None,
+                    _snapshot(row),
+                    actor=TaskOrigin.SYSTEM,
+                    task_id=row.id,
+                )
                 created += 1
                 written.add(row.id)
                 continue
@@ -345,7 +300,15 @@ def replace_system_tasks(
 
         before = _snapshot(row)
         _apply_dates(row, payload)
-        _history(session, client_id, row.id, "rescheduled", before, _snapshot(row))
+        write_history(
+            session,
+            client_id,
+            "rescheduled",
+            before,
+            _snapshot(row),
+            actor=TaskOrigin.SYSTEM,
+            task_id=row.id,
+        )
         updated += 1
         written.add(row.id)
 
@@ -356,7 +319,15 @@ def replace_system_tasks(
         # A row the caller never mentioned — including every user and agent row — falls through here.
         if row.origin != TaskOrigin.SYSTEM or row.material_key in applicable:
             continue
-        _history(session, client_id, row.id, "removed", _snapshot(row), None)
+        write_history(
+            session,
+            client_id,
+            "removed",
+            _snapshot(row),
+            None,
+            actor=TaskOrigin.SYSTEM,
+            task_id=row.id,
+        )
         session.delete(row)
         removed_ids.add(row.id)
         removed += 1
@@ -449,7 +420,15 @@ def update_task(
     after = _snapshot(row)
     event = _name_the_user_edit(before, after)
     if event is not None:
-        _history(session, client_id, row.id, event, before, after, actor=TaskOrigin.USER)
+        write_history(
+            session,
+            client_id,
+            event,
+            before,
+            after,
+            actor=TaskOrigin.USER,
+            task_id=row.id,
+        )
 
     session.commit()
     return row
