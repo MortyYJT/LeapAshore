@@ -3,6 +3,7 @@ import warnings
 import pytest
 from sqlalchemy import delete, select, text
 
+from app.config import settings
 from app.db import SessionLocal, engine
 from app.models.client import Client
 from app.models.roadmap import MaterialTemplate, RoadmapPhase
@@ -260,6 +261,20 @@ def unseed_the_roadmap_definition_for_the_run_and_restore_it_afterwards(
         seed_roadmap(session)
         restore_roadmap_tasks(session, displaced_tasks + task_rows_displaced_mid_run)
         session.commit()
+
+
+@pytest.fixture(autouse=True)
+def keep_uploads_out_of_the_development_directory(tmp_path, monkeypatch):
+    """Point the document storage root at a temporary directory for every test.
+
+    The upload directory is shared state in exactly the way the development database is, and the same
+    rule applies to it: a test run must leave it as it found it. The root is read from settings on
+    every call rather than captured at import time, which is what makes this redirect effective.
+
+    Autouse for the same reason the client sweep below is: one test that forgot to ask would write
+    the files it created into the directory the developer's own uploads live in.
+    """
+    monkeypatch.setattr(settings, "document_storage_root", tmp_path / "documents")
 
 
 @pytest.fixture(autouse=True)

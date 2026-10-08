@@ -72,14 +72,13 @@ def files_under(root) -> list[str]:
 
 
 @pytest.fixture
-def upload_root(tmp_path, monkeypatch):
-    """Point the storage root at a temporary directory.
+def upload_root():
+    """The temporary storage root `conftest` already redirected every test to.
 
-    The root is read from settings on every call rather than captured at import time, which is what
-    lets this fixture keep a test run out of the developer's own upload directory.
+    Named here rather than created here so the redirect is one autouse fixture instead of one per
+    module: a module that forgot it would write into the developer's own upload directory.
     """
-    monkeypatch.setattr(settings, "document_storage_root", tmp_path)
-    return tmp_path
+    return settings.document_storage_root
 
 
 def test_an_oversized_upload_is_refused_and_leaves_nothing(db_session, require_db, upload_root):
