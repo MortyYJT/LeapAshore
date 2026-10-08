@@ -8,7 +8,11 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 
 import {
+  addMaterialVersion,
+  archiveMaterial,
   fetchApplications,
+  fetchMaterial,
+  fetchMaterials,
   fetchProfile,
   fetchPrograms,
   fetchRoadmapDefinition,
@@ -17,6 +21,8 @@ import {
   patchRoadmapTask,
   replaceApplications,
   replaceRoadmapTasks,
+  submitMaterial,
+  uploadMaterial,
 } from "./api.ts";
 import type { TaskReplacePayload } from "./roadmap-sync.ts";
 import { EMPTY_PROFILE } from "./store.ts";
@@ -705,5 +711,126 @@ test("replaceApplications raises on a refused portfolio so the picker can show i
           ]),
       ),
     /保存申请组合失败：422/,
+  );
+});
+
+
+// --- the material library -------------------------------------------------------------------------
+//
+// The rule these pin is the one a refusal has to obey: the server writes its refusals in Chinese for
+// the applicant, and a transport that replaced them with "上传失败" would throw away the only part of
+// the answer that says what to do about it.
+
+function aJsonResponse(body: unknown, status: number): Response {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: { "Content-Type": "application/json" },
+  });
+}
+
+test("an upload sends the file as multipart, with the task when it was given one", async () => {
+  const { calls } = await withFetch(
+    () => aJsonResponse({ id: "d1", title: "陈述.png" }, 201),
+    () => uploadMaterial(new File([new Uint8Array([1, 2, 3])], "陈述.png"), { taskId: "t1" }),
+  );
+
+  assert.equal(calls.length, 1);
+  assert.equal(calls[0].url, "/api/documents");
+  assert.equal(calls[0].init?.method, "POST");
+  const form = calls[0].init?.body as FormData;
+  assert.ok(form instanceof FormData, "the body has to be a form; JSON cannot carry a file");
+  assert.equal((form.get("file") as File).name, "陈述.png");
+  assert.equal(form.get("task_id"), "t1");
+  assert.equal(
+    (calls[0].init?.headers as Record<string, string> | undefined)?.["Content-Type"],
+    undefined,
+    "setting the content type by hand removes the multipart boundary the parser needs",
+  );
+});
+
+test("an upload with no task sends no task field", async () => {
+  const { calls } = await withFetch(
+    () => aJsonResponse({ id: "d1", title: "陈述.png" }, 201),
+    () => uploadMaterial(new File([new Uint8Array([1])], "陈述.png")),
+  );
+
+  assert.equal((calls[0].init?.body as FormData).get("task_id"), null);
+});
+
+test("a refused upload carries the server's own message", async () => {
+  await assert.rejects(
+    () =>
+      withFetch(
+        () => aJsonResponse({ detail: "单个材料不能超过 20 MB。" }, 413),
+        () => uploadMaterial(new File([new Uint8Array([1])], "big.pdf")),
+      ),
+    (error: Error) => error.message === "单个材料不能超过 20 MB。",
+  );
+});
+
+test("a refusal with no readable detail reports the status instead of an empty message", async () => {
+  await assert.rejects(
+    () =>
+      withFetch(
+        () => new Response("<html>gateway</html>", { status: 502 }),
+        () => uploadMaterial(new File([new Uint8Array([1])], "a.pdf")),
+      ),
+    (error: Error) => error.message === "上传材料失败：502",
+  );
+});
+
+test("archiving sends the kind the applicant chose", async () => {
+  const { calls } = await withFetch(
+    () => aJsonResponse({ id: "d1", kind: "transcript" }, 200),
+    () => archiveMaterial("d1", "transcript"),
+  );
+
+  assert.equal(calls[0].url, "/api/documents/d1/archive");
+  assert.deepEqual(JSON.parse(String(calls[0].init?.body)), { kind: "transcript" });
+});
+
+test("submitting a material is a POST with no body", async () => {
+  const { calls } = await withFetch(
+    () => aJsonResponse({ id: "d1", status: "under_review" }, 200),
+    () => submitMaterial("d1"),
+  );
+
+  assert.equal(calls[0].url, "/api/documents/d1/submit");
+  assert.equal(calls[0].init?.method, "POST");
+  assert.equal(calls[0].init?.body, undefined);
+});
+
+test("a refused submission says which rule refused it", async () => {
+  await assert.rejects(
+    () =>
+      withFetch(
+        () => aJsonResponse({ detail: "先给材料归档分类，才能送审。" }, 409),
+        () => submitMaterial("d1"),
+      ),
+    (error: Error) => error.message === "先给材料归档分类，才能送审。",
+  );
+});
+
+test("adding a version posts the file to the material's versions route", async () => {
+  const { calls } = await withFetch(
+    () => aJsonResponse({ id: "d1", currentVersion: { versionNo: 2 } }, 201),
+    () => addMaterialVersion("d1", new File([new Uint8Array([9])], "成绩单.pdf")),
+  );
+
+  assert.equal(calls[0].url, "/api/documents/d1/versions");
+  assert.equal((calls[0].init?.body as FormData).get("file") instanceof File, true);
+});
+
+test("a material list that is not a list is a failed read", async () => {
+  await assert.rejects(
+    () => withFetch(() => aJsonResponse({ materials: [] }, 200), () => fetchMaterials()),
+    (error: Error) => error.message === "读取材料库失败：响应不是材料列表",
+  );
+});
+
+test("a material the route cannot serve raises with the status", async () => {
+  await assert.rejects(
+    () => withFetch(() => aJsonResponse({ detail: "找不到这份材料。" }, 404), () => fetchMaterial("d1")),
+    (error: Error) => error.message === "读取材料失败：404",
   );
 });
