@@ -29,6 +29,7 @@ from app.models.document import Document, DocumentVersion
 from app.models.review import DocumentReview, DocumentReviewFinding, ReviewCriterion
 from app.models.source import Source
 from app.schemas.document import (
+    ArchiveRequest,
     CriterionRefOut,
     DocumentDetailOut,
     DocumentSummaryOut,
@@ -37,7 +38,14 @@ from app.schemas.document import (
     VersionOut,
 )
 from app.schemas.roadmap import SourceRef
-from app.services.documents import UploadRejected, add_version, storage_root, store_upload
+from app.services.documents import (
+    MaterialRejected,
+    add_version,
+    archive_document,
+    storage_root,
+    store_upload,
+    submit_document,
+)
 
 router = APIRouter(prefix="/api/documents", tags=["documents"])
 
@@ -181,7 +189,7 @@ def _detail(session: Session, document: Document) -> DocumentDetailOut:
     )
 
 
-def _refusal(exc: UploadRejected, response: Response) -> HTTPException:
+def _refusal(exc: MaterialRejected, response: Response) -> HTTPException:
     """A refusal from the upload service, as an HTTP error that keeps the subject's cookie."""
     return HTTPException(
         status_code=exc.status_code,
@@ -260,7 +268,7 @@ def upload_document(
     load_or_create_profile(session, client_id)
     try:
         document = store_upload(session, client_id, file, title=title, task_id=task_id)
-    except UploadRejected as exc:
+    except MaterialRejected as exc:
         raise _refusal(exc, response) from exc
     return _detail(session, document)
 
@@ -277,7 +285,7 @@ def upload_version(
     document = _own_document(session, client_id, document_id)
     try:
         add_version(session, document, file)
-    except UploadRejected as exc:
+    except MaterialRejected as exc:
         raise _refusal(exc, response) from exc
     return _detail(session, document)
 
@@ -318,3 +326,41 @@ def download_version(
         filename=version.filename,
         headers={"X-Content-Type-Options": "nosniff"},
     )
+
+
+@router.post("/{document_id}/archive", response_model=DocumentDetailOut)
+def archive_document_route(
+    document_id: str,
+    payload: ArchiveRequest,
+    client_id: Annotated[str, Depends(get_client_id)],
+    session: Annotated[Session, Depends(get_session)],
+    response: Response,
+) -> DocumentDetailOut:
+    """Classify one of the caller's materials.
+
+    A JSON body rather than a form field: nothing here is binary, and every other write in this API
+    states its payload the same way. The upload routes are the exception because a file cannot be
+    sent as JSON at all.
+    """
+    document = _own_document(session, client_id, document_id)
+    try:
+        archive_document(session, document, payload.kind)
+    except MaterialRejected as exc:
+        raise _refusal(exc, response) from exc
+    return _detail(session, document)
+
+
+@router.post("/{document_id}/submit", response_model=DocumentDetailOut)
+def submit_document_route(
+    document_id: str,
+    client_id: Annotated[str, Depends(get_client_id)],
+    session: Annotated[Session, Depends(get_session)],
+    response: Response,
+) -> DocumentDetailOut:
+    """Send one of the caller's classified materials for review."""
+    document = _own_document(session, client_id, document_id)
+    try:
+        submit_document(session, document)
+    except MaterialRejected as exc:
+        raise _refusal(exc, response) from exc
+    return _detail(session, document)

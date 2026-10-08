@@ -24,7 +24,7 @@ from app.services.documents import (
     MIME_DOCX,
     MIME_PDF,
     MIME_PNG,
-    UploadRejected,
+    MaterialRejected,
     add_version,
     store_upload,
 )
@@ -85,7 +85,7 @@ def test_an_oversized_upload_is_refused_and_leaves_nothing(db_session, require_d
     client = a_client(db_session)
     oversized = an_upload(b"\x00" * (MAX_UPLOAD_BYTES + 1), "big.pdf", MIME_PDF)
 
-    with pytest.raises(UploadRejected) as rejected:
+    with pytest.raises(MaterialRejected) as rejected:
         store_upload(db_session, client.id, oversized)
 
     assert rejected.value.status_code == 413
@@ -95,7 +95,7 @@ def test_an_oversized_upload_is_refused_and_leaves_nothing(db_session, require_d
 
 def test_an_empty_upload_is_refused(db_session, require_db, upload_root):
     client = a_client(db_session)
-    with pytest.raises(UploadRejected) as rejected:
+    with pytest.raises(MaterialRejected) as rejected:
         store_upload(db_session, client.id, an_upload(b"", "empty.pdf", MIME_PDF))
 
     assert rejected.value.status_code == 422
@@ -109,7 +109,7 @@ def test_a_text_file_claiming_to_be_a_pdf_is_refused(db_session, require_db, upl
     upload would arrive as `<html>` and be rendered as a page on this origin.
     """
     client = a_client(db_session)
-    with pytest.raises(UploadRejected) as rejected:
+    with pytest.raises(MaterialRejected) as rejected:
         store_upload(
             db_session,
             client.id,
@@ -123,7 +123,7 @@ def test_a_text_file_claiming_to_be_a_pdf_is_refused(db_session, require_db, upl
 def test_a_zip_that_is_not_a_word_document_is_refused(db_session, require_db, upload_root):
     """A ZIP signature only proves the file is an archive, so the container is opened and asked."""
     client = a_client(db_session)
-    with pytest.raises(UploadRejected) as rejected:
+    with pytest.raises(MaterialRejected) as rejected:
         store_upload(
             db_session,
             client.id,
@@ -244,12 +244,12 @@ def test_a_task_that_belongs_to_another_subject_is_refused(db_session, require_d
     db_session.commit()
 
     try:
-        with pytest.raises(UploadRejected) as rejected:
+        with pytest.raises(MaterialRejected) as rejected:
             store_upload(db_session, visitor.id, an_upload(A_PNG, "a.png"), task_id=task.id)
         assert rejected.value.status_code == 422
         assert files_under(upload_root) == []
 
-        with pytest.raises(UploadRejected):
+        with pytest.raises(MaterialRejected):
             store_upload(db_session, visitor.id, an_upload(A_PNG, "a.png"), task_id=str(uuid.uuid4()))
         assert files_under(upload_root) == []
     finally:

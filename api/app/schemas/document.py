@@ -85,3 +85,15 @@ class DocumentDetailOut(DocumentSummaryOut):
 
     versions: list[VersionOut] = []
     reviews: list[ReviewOut] = []
+
+
+class ArchiveRequest(BaseModel):
+    """The classification the applicant is asserting.
+
+    Required, with no default: `kind` drives which criteria can ever apply to this material, and a
+    default would be the system deciding what someone else's file is.
+    """
+
+    model_config = ConfigDict(alias_generator=_camel, populate_by_name=True)
+
+    kind: str

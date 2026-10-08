@@ -27,6 +27,7 @@ import hashlib
 import os
 import uuid
 import zipfile
+from datetime import UTC, datetime
 from pathlib import Path
 
 from sqlalchemy import func, select
@@ -35,7 +36,13 @@ from sqlalchemy.orm import Session
 from starlette.datastructures import UploadFile
 
 from app.config import settings
-from app.models.document import Document, DocumentStatus, DocumentVersion, UploadedBy
+from app.models.document import (
+    KIND_VALUES,
+    Document,
+    DocumentStatus,
+    DocumentVersion,
+    UploadedBy,
+)
 from app.models.task import RoadmapTask
 
 MAX_UPLOAD_BYTES = 20 * 1024 * 1024
@@ -64,8 +71,30 @@ MISSING_FILENAME = "上传缺少文件名。"
 NO_SUCH_TASK = "找不到这个材料要求，或它不属于你。"
 SUPERSEDED = "这份材料刚被另一个上传改动过，请重试。"
 
+UNKNOWN_KIND = "这不是一个可用的材料分类。"
+ARCHIVE_WHILE_UNDER_REVIEW = "这份材料正在审核中，暂时不能改动分类。"
+SUBMIT_WITHOUT_KIND = "先给材料归档分类，才能送审。"
+SUBMIT_FROM_THIS_STATUS = "这份材料当前的状态不能送审。"
 
-class UploadRejected(Exception):
+# The transitions this library allows, as tables rather than as scattered `if`s. A state machine
+# written this way is one a reader can check against the spec's list at a glance, and adding a state
+# means adding a row rather than finding every branch that would have to agree with the others.
+#
+# `under_review` is deliberately absent from the archiving row: the running review cites the criteria
+# for the material's kind, so reclassifying — or re-stating the same kind, which would still re-stamp
+# `archived_at` — would move the ground under it.
+ARCHIVE_ALLOWED_FROM = (
+    DocumentStatus.UPLOADED,
+    DocumentStatus.ARCHIVED,
+    DocumentStatus.NEEDS_REVISION,
+    DocumentStatus.ACCEPTED,
+)
+
+# Only a classified material can be reviewed, and only after a revision or a first classification.
+SUBMIT_ALLOWED_FROM = (DocumentStatus.ARCHIVED, DocumentStatus.NEEDS_REVISION)
+
+
+class MaterialRejected(Exception):
     """A refusal with an HTTP status and a message the interface can show as-is.
 
     Carried as an exception rather than returned because every caller up the stack — the service, the
@@ -138,11 +167,11 @@ def _stage(upload: UploadFile) -> tuple[Path, str, int]:
                     break
                 size += len(chunk)
                 if size > MAX_UPLOAD_BYTES:
-                    raise UploadRejected(413, TOO_LARGE)
+                    raise MaterialRejected(413, TOO_LARGE)
                 digest.update(chunk)
                 sink.write(chunk)
         if size == 0:
-            raise UploadRejected(422, EMPTY_UPLOAD)
+            raise MaterialRejected(422, EMPTY_UPLOAD)
     except BaseException:
         temp.unlink(missing_ok=True)
         raise
@@ -156,7 +185,7 @@ def _accept(staged: Path) -> str:
     mime_type = detect_mime(staged, head)
     if mime_type is None:
         staged.unlink(missing_ok=True)
-        raise UploadRejected(415, UNSUPPORTED_TYPE)
+        raise MaterialRejected(415, UNSUPPORTED_TYPE)
     return mime_type
 
 
@@ -185,7 +214,7 @@ def _require_own_task(session: Session, client_id: str, task_id: str | None) -> 
         select(RoadmapTask.id).where(RoadmapTask.id == task_id, RoadmapTask.client_id == client_id)
     ).scalar_one_or_none()
     if owned is None:
-        raise UploadRejected(422, NO_SUCH_TASK)
+        raise MaterialRejected(422, NO_SUCH_TASK)
 
 
 def store_upload(
@@ -206,7 +235,7 @@ def store_upload(
 
     filename = upload.filename
     if not filename:
-        raise UploadRejected(422, MISSING_FILENAME)
+        raise MaterialRejected(422, MISSING_FILENAME)
 
     staged, digest, size = _stage(upload)
     mime_type = _accept(staged)
@@ -254,7 +283,7 @@ def add_version(session: Session, document: Document, upload: UploadFile) -> Doc
     """
     filename = upload.filename
     if not filename:
-        raise UploadRejected(422, MISSING_FILENAME)
+        raise MaterialRejected(422, MISSING_FILENAME)
 
     staged, digest, size = _stage(upload)
     mime_type = _accept(staged)
@@ -294,9 +323,53 @@ def add_version(session: Session, document: Document, upload: UploadFile) -> Doc
         except IntegrityError:
             session.rollback()
             if attempt == 2:
-                raise UploadRejected(409, SUPERSEDED) from None
+                raise MaterialRejected(409, SUPERSEDED) from None
             document = session.get(Document, document.id)
             continue
         session.commit()
         return version
-    raise UploadRejected(409, SUPERSEDED)
+    raise MaterialRejected(409, SUPERSEDED)
+
+
+def archive_document(
+    session: Session, document: Document, kind: str, *, actor: UploadedBy = UploadedBy.USER
+) -> Document:
+    """Classify a material, which is what "archiving" means here.
+
+    The kind is the applicant's claim about what the file is, so an unknown value is refused rather
+    than stored: a value outside the set would make the material unreviewable (`review_criteria.scope`
+    could never match it) while still looking classified in the interface.
+
+    `actor` is recorded rather than implied. Today only the applicant can reach this, but the column
+    exists because the distinction — a person decided this, or the agent did — is what the parent
+    design's write-confirmation rule turns on, and a default that guessed would hide a caller that
+    should have said which it was.
+    """
+    if kind not in KIND_VALUES:
+        raise MaterialRejected(422, UNKNOWN_KIND)
+    if document.status not in ARCHIVE_ALLOWED_FROM:
+        raise MaterialRejected(409, ARCHIVE_WHILE_UNDER_REVIEW)
+
+    document.kind = kind
+    document.status = DocumentStatus.ARCHIVED
+    document.archived_by = actor
+    document.archived_at = datetime.now(UTC)
+    session.commit()
+    return document
+
+
+def submit_document(session: Session, document: Document) -> Document:
+    """Send a classified material for review.
+
+    Both refusals are about the same thing: a review cites criteria chosen by the material's kind, so
+    there is nothing to review until a kind exists, and nothing to gain from re-submitting a material
+    whose verdict already stands.
+    """
+    if document.kind is None:
+        raise MaterialRejected(409, SUBMIT_WITHOUT_KIND)
+    if document.status not in SUBMIT_ALLOWED_FROM:
+        raise MaterialRejected(409, SUBMIT_FROM_THIS_STATUS)
+
+    document.status = DocumentStatus.UNDER_REVIEW
+    session.commit()
+    return document
