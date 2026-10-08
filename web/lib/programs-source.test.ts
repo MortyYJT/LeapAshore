@@ -29,6 +29,7 @@ import {
   UNKNOWN,
   toApplicationRows,
   toPortfolioItems,
+  toProgramLabel,
   toProgramView,
 } from "./programs-source.ts";
 import type { ServedApplication, ServedProgram } from "./programs-source.ts";
@@ -314,6 +315,17 @@ test("maps a served portfolio row onto the item the interface renders", () => {
   ]);
   assert.deepEqual(item, {
     programSlug: "unsw-master-it",
+    // The program the route served alongside the row travels with the item: the two portfolio views
+    // render it, so it is part of what this mapping produces rather than a field of the row left behind.
+    program: {
+      slug: "unsw-master-it",
+      name: "信息技术硕士",
+      nameEn: "Master of Information Technology",
+      university: "新南威尔士大学",
+      city: "悉尼",
+      degreeLevel: "授课型硕士",
+      dataStatus: "待核验",
+    },
     tier: "保",
     // The server's portfolio is a list of choices the applicant made, so every row in it is confirmed.
     confirmed: true,
@@ -332,12 +344,28 @@ test("a row the server does not flag is not flagged here", () => {
     "confirmed",
     "isPrimary",
     "needsReview",
+    "program",
     "programSlug",
     "tier",
   ]);
-  // The row's program projection is not read: the portfolio lists resolve a row through the
-  // catalogue, and copying the served name onto the item would give the same text two homes.
-  assert.equal(wireField(item, "program"), undefined);
+  // The row's program projection travels with the item since M2d, because the two portfolio views
+  // render it: they resolved the row through `web/lib/programs.ts` before, and a program that array
+  // does not carry reached the card as a bare slug. What the item carries is the copy this adapter
+  // made, field for field — a spread of the served object would let a field the route adds later
+  // reach the render sites without a decision here.
+  assert.deepEqual(item.program, {
+    slug: SERVED_ROW.program!.slug,
+    name: SERVED_ROW.program!.name,
+    nameEn: SERVED_ROW.program!.nameEn,
+    university: SERVED_ROW.program!.university,
+    city: SERVED_ROW.program!.city,
+    degreeLevel: SERVED_ROW.program!.degreeLevel,
+    dataStatus: SERVED_ROW.program!.dataStatus,
+  });
+  // The label the views print is the English name, which is what the wire calls `nameEn`; the served
+  // `name` is the Chinese one and is not it.
+  assert.equal(toProgramLabel(item.program), SERVED_ROW.program!.nameEn);
+  assert.notEqual(toProgramLabel(item.program), SERVED_ROW.program!.name);
 });
 
 test("the rows sent back to the route speak the route's own field names", () => {

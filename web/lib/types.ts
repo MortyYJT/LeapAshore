@@ -1,6 +1,8 @@
 // OfferPilot domain model, front-end MVP version.
 // Mirrors the Pydantic models the FastAPI service will expose, so it can be swapped for API responses.
 
+import type { ServedProgramRef } from "./programs-source";
+
 export type EducationLevel = "高中" | "本科" | "硕士" | "其他";
 
 export type SchoolOrigin = "国内" | "海外";
@@ -105,6 +107,20 @@ export type PortfolioTier = "冲" | "稳" | "保";
 
 export interface PortfolioItem {
   programSlug: string;
+  /**
+   * The program the row names, as `GET /api/applications` served it, or `null` when the route had none.
+   *
+   * The two portfolio views draw the institution and the program name from this rather than resolving
+   * the slug against `web/lib/programs.ts`: the server sends the program with every row, and a program
+   * the constants array does not carry used to render as a bare slug. The label comes from `nameEn` —
+   * see `toProgramLabel` and `Program.name` for why — and a `null` here renders as `UNKNOWN` rather
+   * than as an empty string.
+   *
+   * Optional because the picker builds the items it is about to send out of the catalogue it already
+   * holds, and those never came from a portfolio read. `toPortfolioItems` always writes the field —
+   * `null` when there was no program — so a row read off the server never has it absent.
+   */
+  program?: ServedProgramRef | null;
   tier: PortfolioTier;
   /** Whether the user confirmed this program into the application portfolio. */
   confirmed: boolean;

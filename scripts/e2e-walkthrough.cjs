@@ -976,6 +976,74 @@ function dbRun(sql) {
         !renderedSlugs.includes(SENTINEL_PROGRAM),
         { sentinelOnScreen: renderedSlugs.includes(SENTINEL_PROGRAM), rendered: renderedSlugs },
       );
+
+      // The claim M2d is about: the portfolio card renders the program the *server* sent, rather than a
+      // lookup in `web/lib/programs.ts`.
+      //
+      // The expected side is `nameEn`, which is the name this side calls `name` (§3.6), read off the rows
+      // the route served to this same reloaded page. The two sides are kept apart on purpose: a page that
+      // resolved the row through the constants array would print the *Chinese* names for the programs the
+      // array carries and the bare slug for anything it does not, and both are disagreements this check
+      // reports. The expected value is never the slug and never the string the page happens to hold, so the
+      // two can differ — an assertion written against the page's own idea of the label would agree with
+      // any implementation, including the one this task removes.
+      //
+      // The card is addressed by its `data-testid` because 首页 renders the `·`-joined school label in the
+      // 申请档案 card as well, and a text-shaped selector would leave the subject of this check ambiguous.
+      // Each row is compared whole, `大学 · 名称` together: that is the copy the card shows, so it is the
+      // copy the server's answer has to account for. Trimming the label out of it would compare one half
+      // and leave the other free to drift.
+      const servedLabels = (afterClear ?? [])
+        .map((row) =>
+          row.program === null || !row.program?.nameEn
+            ? null
+            : `${row.program.university} · ${row.program.nameEn}`,
+        )
+        .filter((label) => label !== null)
+        .sort();
+      const renderedLabels = await page.evaluate(() =>
+        [...document.querySelectorAll('[data-testid="home-portfolio"] li span.font-semibold')].map(
+          (node) => node.innerText,
+        ),
+      );
+      check(
+        "首页组合卡片渲染的项目名来自服务端下发的 program（不是常量数组）",
+        servedLabels.length > 0 &&
+          renderedLabels.length === servedLabels.length &&
+          JSON.stringify([...renderedLabels].sort()) === JSON.stringify(servedLabels),
+        { served: servedLabels, rendered: renderedLabels },
+      );
+      // The other view this batch changed, and the one the plan recorded as a risk: its roadmap phases
+      // carry no program at all, so the only program copy on that screen is the branch list, and it has to
+      // come from the same served rows.
+      //
+      // The settlement of the comparison is the card's own: `首页` draws `大学 · 名称` in one span, and
+      // that view draws the two in two elements, so its rendered text separates them with a space rather
+      // than the dot. Both sides are normalised to the same shape before they are compared, which keeps
+      // the check about the program rather than about the punctuation between the two fields.
+      //
+      // `.first()` because 首页 renders two controls whose accessible name contains 流程进度 — the tab and
+      // the 进入流程进度 button — and an unqualified role query resolves to both and throws.
+      await page.getByRole("button", { name: "流程进度" }).first().click();
+      await page.waitForTimeout(500);
+      const normalise = (text) => text.replace(/[·\s]+/g, " ").trim();
+      const renderedBranches = await page.evaluate(() =>
+        [...document.querySelectorAll('[data-testid="flow-program-branches"] li')].map((node) =>
+          node.innerText,
+        ),
+      );
+      check(
+        "流程页的项目分支渲染的也是服务端下发的项目名",
+        servedLabels.length > 0 &&
+          servedLabels.every((label) =>
+            renderedBranches.some((branch) => normalise(branch).includes(normalise(label))),
+          ),
+        { served: servedLabels, rendered: renderedBranches },
+      );
+      // Back to 首页 before the screenshot: 24 has always shown the portfolio card, and a run that left
+      // the tab on 流程 would quietly replace that image with a different view.
+      await page.getByRole("button", { name: "首页" }).first().click();
+      await page.waitForTimeout(400);
       await shot("24-portfolio-survives-storage-clear");
 
       // A confirmation the server refuses has to be visible and must not advance the flow, or the

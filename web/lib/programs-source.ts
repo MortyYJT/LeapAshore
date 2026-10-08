@@ -91,6 +91,41 @@ export interface ServedSource {
   status: string;
 }
 
+/**
+ * The label the two portfolio views print for a served program reference, or `null` when there is none.
+ *
+ * This is the replacement for `PROGRAMS.find(...)`: the source is the projection `GET /api/applications`
+ * serves alongside every row, so a program outside `web/lib/programs.ts` renders as its name rather
+ * than as a bare slug, and the two can no longer disagree.
+ *
+ * `nameEn` and nothing else. The served `name` is the Chinese one, so falling back to it would put a
+ * name the server chose for another field onto the label §3.6 says is the English one — the same swap
+ * `toProgramView` refuses. A `null` (or an absent key) is therefore answered with `null` rather than
+ * with the Chinese name or an empty string, and the render sites turn that into `UNKNOWN`.
+ */
+export function toProgramLabel(program: ServedProgramRef | null | undefined): string | null {
+  return program?.nameEn ?? null;
+}
+
+/**
+ * One program as the interface carries it on a portfolio item, copied out of the wire projection.
+ *
+ * Written field by field rather than by spreading the served object: the item travels through the
+ * application state and the render sites, so what it carries is this module's decision rather than
+ * whatever the route happens to add to the projection next.
+ */
+export function toProgramRef(program: ServedProgramRef): ServedProgramRef {
+  return {
+    slug: program.slug,
+    name: program.name,
+    nameEn: program.nameEn ?? null,
+    university: program.university,
+    city: program.city ?? null,
+    degreeLevel: program.degreeLevel ?? null,
+    dataStatus: program.dataStatus,
+  };
+}
+
 /** One program the portfolio row names, as `GET /api/applications` serves it under `program`. */
 export interface ServedProgramRef {
   slug: string;
@@ -117,9 +152,10 @@ export interface ServedApplication {
   /**
    * The program the row names, or `null` when the catalogue cannot answer for it.
    *
-   * The route serves `null` rather than dropping the row or inventing copy; nothing on this side
-   * reads it today (the portfolio lists resolve a row through `web/lib/programs.ts`), so it is
-   * declared because the body carries it rather than because a render site needs it.
+   * The route serves `null` rather than dropping the row or inventing copy. `toPortfolioItems` carries
+   * it onto the item the interface passes around — `null` included, never `undefined` — and the two
+   * portfolio views draw the institution and the name from it through `toProgramLabel`, so the row no
+   * longer depends on `web/lib/programs.ts` to be renderable.
    */
   program: ServedProgramRef | null;
   createdAt: string;
@@ -236,10 +272,17 @@ export function toProgramView(program: ServedProgram): Program {
  * enforces (at most one row per applicant, `uq_applications_one_primary_per_client`) and the write
  * below restates it rather than guessing, so a replacement must not silently release a first choice
  * the applicant already has.
+ *
+ * `program` is the projection the route serves alongside the row, carried onto the item because the
+ * two portfolio views render it: they resolved the row through `web/lib/programs.ts` until M2d, which
+ * turned a program the constants array does not carry into a bare slug. It is written for every row,
+ * `null` included, so a view can tell "the catalogue did not answer for this one" apart from a field
+ * this adapter forgot; `toProgramLabel` turns it into the label, and `null` renders as `UNKNOWN`.
  */
 export function toPortfolioItems(rows: ServedApplication[]): PortfolioItem[] {
   return (rows ?? []).map((row) => ({
     programSlug: row.programId,
+    program: row.program ? toProgramRef(row.program) : null,
     tier: row.tier as PortfolioTier,
     confirmed: true,
     needsReview: row.needsReview,
