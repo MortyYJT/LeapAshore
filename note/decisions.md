@@ -13,3 +13,9 @@
 - **决定**：从现在起，实现由 Codex 负责（按 issue、在独立 worktree 里 TDD），dsh 负责出题和阶段复盘，不再做主要实现者。
 - **理由**：MortyYJT 选了推荐项，没有另写理由。推荐时给的理由：dsh 对仓库历史最熟，适合写复盘；实现和出题分开，避免「自己考自己」。
 - **影响**：分支前缀以后主要是 `codex/` 和 `claude/`；dsh 的产出放在 `note/interview/`。
+
+## 2026-10-10 只装 guard hook，不装 verify hook
+
+- **决定**：安装 `.claude/hooks/guard.sh`（PreToolUse），不装 `verify.sh`（Stop）。推翻了之前「两个 hook 都不装」的做法。
+- **理由**：MortyYJT 选了推荐项，没有另写理由。推荐时给的理由：v2 由 Claude 自动推送、开 PR，需要真的拦住远端危险操作；`make verify` 要起数据库、跑截图，挂在每个回合结束时跑太慢。
+- **影响**：完成前的检查仍靠手动跑 `make verify` 和 CI。
