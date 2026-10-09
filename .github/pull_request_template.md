@@ -1,6 +1,10 @@
 ## What and why
 
-<!-- One or two sentences. Link the OpenSpec change if there is one: openspec/changes/<id> -->
+<!-- One or two sentences. Link the issue and the OpenSpec change if there is one. -->
+
+Closes #
+
+Baseline: <!-- the check command on main before this change: passed / failed (pre-existing) -->
 
 ## Verification
 
@@ -15,8 +19,14 @@
 
 <!-- Say it plainly. Write "nothing" if nothing. -->
 
+## Out-of-scope findings
+
+<!-- Problems noticed but not fixed here. Write "none" if none. -->
+
 ## Checklist
 
 - [ ] Branch carries an agent or owner prefix (`claude/…`, `codex/…`, `dsh/…`, `me/…`); commits follow CONTRIBUTING.md
 - [ ] No secrets, real names, or identifying local paths
 - [ ] OpenSpec change updated or archived (product/logic changes only)
+- [ ] One commit per plan step; about 400 changed lines or fewer (excluding tests and lockfiles)
+- [ ] `TODO(human)` parts left for the user
