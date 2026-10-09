@@ -11,6 +11,7 @@ Read `AGENTS.md` ("Agents and human gates") and the guidelines section "Multi-ag
 
 - The user approved the design (gate 1) in this session or in `note/handoff.md`, and the OpenSpec change id is known.
 - `gh auth status` succeeds, and `codex` and `dsh` are on PATH. If one is missing, stop and tell the user.
+- The repository-local Git identity (`git config --local user.name/user.email`) is the public handle and noreply address. Placeholder identities left by rehearsals have leaked into pushed history before; check, and pass `-c user.name=... -c user.email=...` if it is wrong.
 
 ## Steps
 
@@ -22,7 +23,7 @@ Read `AGENTS.md` ("Agents and human gates") and the guidelines section "Multi-ag
    - Changes needed: send the findings back with `codex exec resume --last` (or a new `codex exec` in the same worktree). At most two rounds; then stop and hand over to the user.
    - Ready: push the branch (your guard hook applies), then `gh pr create` using the PR template, with `Closes #N`. Post the review summary as a PR comment.
 6. **Gate 2.** Tell the user the PR is ready and wait. Do not merge.
-7. **Queue a quiz (after the user merges; non-blocking).** In the **main checkout** (not a separate worktree), switch to a new branch `dsh/quiz-<pr>` from the updated `main`, then run `dsh headless "Read PR #<n> and the changed files. Write note/interview/<pr>.md: a short plain-Chinese summary of what was built and why, then six questions (three on design, three on code reading) with empty answer slots. Do not change any other file."` dsh keys sessions by working directory (`~/.dsh/sessions/<encoded-path>/`), so running from the main checkout makes this one new conversation listed under the project in the DeepSeek Harness app (verified 2026-10-10), where the user continues learning. Record the newest session id from that folder at the top of the file. Check that only the quiz file changed, commit it for a docs PR, tell the user in one line that it is queued, and continue with the next issue. Do not wait. Requires `DEEPSEEK_API_KEY` in the environment (the headless profile does not see the app's managed key); never print it.
+7. **Queue a quiz (after the user merges; non-blocking).** Follow the guidelines, "Multi-agent collaboration", Quiz. In short: in the main checkout, branch `dsh/quiz-<pr>` from the updated `main`, run `dsh headless` with a prompt that starts with `【<repo> · Stage <n>：<short title>】`, take the newest `session-…` folder name from `~/.dsh/sessions/<encoded-path>/` (bare-UUID folders are subagents), and check that only `note/interview/<pr>.md` changed. Commit it for a docs PR, tell the user in one line that it is queued, and continue with the next issue. Do not wait.
 8. **When the user answers (any time).** Mark each answer ✅/⚠️/❌ and add misses to the review list in the same file.
 9. **Handoff.** Update `note/handoff.md`: issues and PRs in flight, the last verified state, and the next step.
 
