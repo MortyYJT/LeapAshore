@@ -1,68 +1,49 @@
 # Session handoff
 
 **This is the only current-state file. Overwrite it at the end of a session; read it at the start.**
-Verify it against `git status` and `git log` before trusting it.
+Verify it against `git status`, `git log` and `gh pr list` before trusting it.
 
-## Where we are
+## Where we are（2026-10-10）
 
-- 日期：2026-10-08
-- `main` = M3 全部合入（后端 PR #8、前端 PR #9、归档 PR #10、审查命令 PR #11），M3 的 spec 已归档
-- **要测试就照 `note/testing-m3.md` 走**：前端已起在 <http://localhost:3001>（避开你另一个项目的 3000），
-  API 在 :8000，数据库已 seed；那份指引里的每条命令我都跑过一遍
-- `openspec/specs/` 现在是 current truth：`document-library`(13) / `document-review`(8) /
-  `review-criteria`(5)，共 26 条需求
-- 归档件：`openspec/changes/archive/2026-10-08-stage-2-m3-document-library/`（proposal / design / specs / tasks，
-  58 项全部勾完）
-- 路线图里 M3 已从待办移进"已完成"，下一个是 M4
+- `main` 仍是 M3 合入后的 `794a911`。今天的工作都在 PR 里，**等 MortyYJT 合并**：
+  - PR #13 `claude/workflow-v2`：装开发流程 v2 + guard hook；`note/decisions.md`（今天全部决定及理由）；
+    愿景 / 路线图 / 想法池按新定位重写；本文件
+  - PR #14 `dsh/interview-m1-m3`：M1–M3 中文复盘和题目（dsh 写，`note/interview/`），不阻塞
+  - PR #16 `codex/static-prototype`：10 页静态原型（`/prototype`），关 issue #15
+- **产品定位已变**：OfferPilot 是 MortyYJT 留学中介的获客与初筛工具（见 `note/product/vision.md`）
+- **当前阶段**：静态原型定功能点 → 原型定稿后再拆后端、排期。之前的 S1–S5 草案**未批准**，排期作废
+- M4（会话与提案）已移进想法池；分支 `dsh/stage-2-m4-conversations` 保留
 
-## 本次会话交付了什么
+## 分工（v2）
 
-- 后端：5 张表与迁移；材料的上传 / 版本 / 归档 / 送审 / 下载接口（按 cookie 隔离，别人的材料一律 404）；
-  内容寻址存储、按魔数判类型、20 MiB 两处限流、下载路径限制在存储根内、版本号在行锁下取；
-  10 条 Genuine Student 要点种入（全部 `待核验`）；维护者 CLI `api/review_cli.py`（全仓库唯一写 `verified_at` 的地方）
-- 前端：材料适配层（对照两份真实响应体）、五个接口调用、`MaterialsView` 材料库页、`材料库` 标签、
-  任务行上传入口
-- 证据：后端 200 用例、前端 175 用例；`make verify` 在**合并后的 main 上**退出码 0，29 张走查截图，无 JS 错误
-- 验证文档：`docs/verification/stage-2-m3-document-library-{backend,frontend}.md`（后者第 7 节是 26 条需求
-  到代码与检查的对应表）
-- 两轮独立审查的问题全部修完。前端那个 blocker 值得记：分类下拉框默认"成绩单"，点一次归档就把未分类的
-  材料写成了成绩单——已改成"请选择分类"且未选时按钮不可点
+MortyYJT 决策 + 合并；Claude 调研、出方案、派活、审查、推送、开 PR；Codex 按 issue 在独立 worktree
+里实现；dsh 出题。阻塞关口只有「批准方案」和「合并 PR」。所有决定连同理由写进 `note/decisions.md`。
 
-## 还没做
+## 下一步
 
-- 没有部署过。线上有两个已知限制：存储根是本地目录；Vercel 函数请求体上限约 4.5 MB，20 MiB 上传到不了后端
-- "来源已核验"的渲染分支没在浏览器里出现过（种子里没有已核验的要点）
-- 走查的材料库步骤会在 `api/var/documents` 留下孤儿 blob（主体清理了、文件不删，是 D11 的决定）
+1. MortyYJT 看原型（PR #16 的截图在 `docs/screenshots/prototype/`，或本地 `cd web && npm run dev` 打开 `/prototype`），
+   提出要增删改的功能点
+2. 原型定稿后：把已定的后端决定（CRICOS 骨架、三档核验、官方页采集 + Claude API 抽取、规则分档、
+   留资与转人工）拆成 OpenSpec change，排期，派给 Codex
+3. 原型合并后，按 dispatch 第 7 步给 dsh 派出题（提示词开头写【offerpilot · Stage 原型：静态原型】）
 
-## 已知问题
+## 待用户回答
 
-- **测试偶发红，属既有问题**：症状是某行在用例还需要它时消失（`applications_client_id_fkey` 等）。
-  证据：`main` 的 worktree 上、把 M3 的表降级掉之后，单跑 `test_applications_api.py` 六次仍有两次失败。
-  记在 `note/product/backlog.md` 与后端验证文档第 3 节
-- `test_sources.py` 每次运行泄漏一行 `sources`（既有）
-- 开发库里有一批遗留匿名 `clients`（本会话的探针、审查与走查留下的），没有删
-
-## 下一步（M4）
-
-按 `note/product/roadmap.md` 第 1 项开新的 OpenSpec change：会话、消息、提案（agent 写操作待确认）。
-M3 留下的接口在这里要用到：`document_reviews` 现在只由 CLI 写，M4 的 agent 送审要接上
-（`openspec/specs/document-review/spec.md` 与归档的 design.md D10 记了 `run_id` 推迟到 M4 加）。
-
-## 怎么跑
-
-- `make dev`（同时起数据库、:8000 的 API、:3000 前端）→ `make verify`（检查命令，CI 跑同样的步骤）
-- 后端单跑 `make api-test`；CLI `cd api && .venv/bin/python review_cli.py --help`
-- 归档：`openspec archive <change>`；`openspec list` 看活跃 change
+- `.git/config` 的本地身份是占位的 `rehearsal <rehearsal@example.com>`（main 上已有 3 个提交用了它）；
+  要不要改回 `MortyYJT` + noreply。本会话每次提交都用 `git -c user.name=... -c user.email=...` 绕过
+- 是否在 GitHub 设置里隐藏个人邮箱（网页合并的 merge commit 用的是个人邮箱）
+- 原型示例门槛偏高：典型 211 / 78 / 雅思 6.5 的背景全部「不满足」，要不要调低示例门槛让演示更好看
 
 ## 坑
 
-- 端口 3000 上跑着**用户另一个项目**的 dev 服务器（IPv4）；本项目的 next dev 绑 IPv6 :3000，
-  `localhost:3000` 解析到 `::1` 才是本项目。若 `make dev` 报 "Port 3000 is in use"，那是它；
-  若报 "Another next dev server is already running" 且进程已死，删掉 `web/.next/dev/lock` 即可
-  （本会话遇到过一次；`web/.next` 的 Turbopack 缓存坏掉时报 AMQF 反序列化失败，删掉整个 `.next` 重启）
-- **合并两个批次时用 merge commit**：预演过，squash #8 之后再合 #9 会在 `note/handoff.md`、
-  `note/product/backlog.md`、`tasks.md` 三个文件上冲突
-- git 的**仓库本地**身份是公开 handle + GitHub noreply（原来的真实姓名与个人邮箱不符合
-  `docs/engineering/agent-guidelines.md`）；全局配置未动
-- 测试直接跑在共享开发库上；`conftest` 的清扫会删掉路线图定义、GS 来源与要点并在收尾还原
-  （还会把人工核验过的 `status`/`verified_at` 快照还原），改它之前先读它的 docstring
+- Codex 沙箱：worktree 里提交不了（要 `--add-dir "$(git rev-parse --git-common-dir)"`，未实测）；
+  不能联网（先 `cp -Rc` 复制 `web/node_modules`）；不能监听端口（浏览器走查由 Claude 做）
+- dsh 会话：`~/.dsh/sessions/<path>/` 下带 `session-` 前缀的才是对话，纯 UUID 是子 agent
+- `scripts/e2e-walkthrough.cjs` 写死了能认出机主的绝对路径（既有问题，已开 chip 任务）
+- 端口 3000 有另一个项目；原型验证用的是 `next start -p 3015`
+- 其余旧坑（测试偶发红、合批次用 merge commit、conftest 清扫）见 git 历史里上一版 handoff（`794a911`）
+
+## 怎么跑
+
+- `make dev` → `make verify`；只看前端：`cd web && npm test && npm run build`
+- 工作树：`../offerpilot-workflow-v2`（PR #13）、`../offerpilot-prototype`（PR #16）；合并后可删
