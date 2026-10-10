@@ -2,19 +2,16 @@
 // interface, and a reload, capturing a screenshot per step and reporting JS errors at the end.
 //
 // Usage: node scripts/e2e-walkthrough.cjs
-// Requires the dev server on localhost:3000 (make dev).
+// Requires the dev server on localhost:3000 (make dev); set BASE_URL to use another origin.
 //
-// Playwright is borrowed from a sibling checkout rather than installed here; override with PLAYWRIGHT_PATH.
+// Playwright comes from web/node_modules (see scripts/playwright.cjs); override with PLAYWRIGHT_PATH.
 
 const path = require("path");
 const fs = require("fs");
 const os = require("os");
 const { execFileSync } = require("child_process");
 
-const PLAYWRIGHT =
-  process.env.PLAYWRIGHT_PATH ||
-  "~/Documents/留学agent/web/node_modules/@playwright/test";
-const { chromium } = require(PLAYWRIGHT);
+const { chromium } = require("./playwright.cjs");
 
 const ROOT = path.resolve(__dirname, "..");
 const OUT = path.join(ROOT, "docs/screenshots");

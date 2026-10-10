@@ -71,7 +71,8 @@ make build        # type check and production build
 make screenshots  # full walkthrough in a real browser, writes docs/screenshots/
 ~~~
 
-The walkthrough borrows Playwright from a sibling checkout, so it runs locally only.
+The walkthrough uses the `@playwright/test` devDependency in `web/` and runs locally only. It needs a
+Chromium build: run `npx playwright install chromium` in `web/` once if it is missing.
 
 ## How this differs from a support-chat agent
 

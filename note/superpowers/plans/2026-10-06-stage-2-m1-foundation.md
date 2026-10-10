@@ -43,7 +43,7 @@
 - [ ] **Step 1: 安装 uv 到项目本地工具目录**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot
+cd "$(git rev-parse --show-toplevel)"
 mkdir -p .runtime-tools
 curl -sL "https://github.com/astral-sh/uv/releases/latest/download/uv-aarch64-apple-darwin.tar.gz" -o /tmp/uv.tgz
 tar -xzf /tmp/uv.tgz -C .runtime-tools
@@ -55,7 +55,7 @@ Expected: 打印出 `uv` 的可执行路径，例如 `.runtime-tools/uv-aarch64-
 - [ ] **Step 2: 建项目本地 venv（Python 3.12）**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot
+cd "$(git rev-parse --show-toplevel)"
 UV=$(find .runtime-tools -name uv -type f -perm +111 | head -1)
 "$UV" venv --python 3.12 api/.venv
 api/.venv/bin/python -V
@@ -93,7 +93,7 @@ testpaths = ["tests"]
 - [ ] **Step 4: 安装依赖**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot/api
+cd "$(git rev-parse --show-toplevel)/api"
 UV=$(find ../.runtime-tools -name uv -type f -perm +111 | head -1)
 "$UV" pip install --python .venv/bin/python -e ".[test]"
 ```
@@ -120,7 +120,7 @@ def test_health_reports_ok():
 - [ ] **Step 6: 运行测试，确认失败**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot/api
+cd "$(git rev-parse --show-toplevel)/api"
 .venv/bin/pytest tests/test_health.py -v
 ```
 
@@ -147,7 +147,7 @@ def health() -> dict[str, str]:
 - [ ] **Step 8: 运行测试，确认通过**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot/api
+cd "$(git rev-parse --show-toplevel)/api"
 .venv/bin/pytest tests/test_health.py -v
 ```
 
@@ -193,7 +193,7 @@ api-dev: ## Start the backend dev server on :8000
 - [ ] **Step 11: 提交**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot
+cd "$(git rev-parse --show-toplevel)"
 git checkout -b codex/stage-2-m1-foundation
 git add api Makefile .gitignore
 git diff --cached --check
@@ -262,7 +262,7 @@ volumes:
 - [ ] **Step 2: 启动数据库并确认健康**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot
+cd "$(git rev-parse --show-toplevel)"
 docker compose up -d db
 docker compose ps
 ```
@@ -369,7 +369,7 @@ def test_database_is_reachable(db_session, require_db):
 - [ ] **Step 6: 运行测试，确认失败**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot/api
+cd "$(git rev-parse --show-toplevel)/api"
 .venv/bin/pytest tests/test_db.py -v
 ```
 
@@ -378,7 +378,7 @@ Expected: FAIL —— `ModuleNotFoundError: No module named 'app.config'`（此�
 - [ ] **Step 7: 初始化 Alembic**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot/api
+cd "$(git rev-parse --show-toplevel)/api"
 .venv/bin/alembic init -t generic alembic
 ```
 
@@ -401,7 +401,7 @@ target_metadata = Base.metadata
 - [ ] **Step 8: 运行测试，确认通过**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot/api
+cd "$(git rev-parse --show-toplevel)/api"
 .venv/bin/pytest tests/test_db.py -v
 ```
 
@@ -428,7 +428,7 @@ revision: ## Generate a migration, e.g. make revision m="add profiles"
 - [ ] **Step 10: 提交**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot
+cd "$(git rev-parse --show-toplevel)"
 git add compose.yaml api Makefile
 git diff --cached --check
 git commit -F - <<'EOF'
@@ -505,7 +505,7 @@ def test_deleting_a_client_removes_its_profile(db_session, require_db):
 - [ ] **Step 2: 运行测试，确认失败**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot/api
+cd "$(git rev-parse --show-toplevel)/api"
 .venv/bin/pytest tests/test_profile_model.py -v
 ```
 
@@ -583,7 +583,7 @@ __all__ = ["Client", "Profile"]
 - [ ] **Step 4: 生成迁移**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot/api
+cd "$(git rev-parse --show-toplevel)/api"
 .venv/bin/alembic revision --autogenerate -m "add clients and profiles"
 ```
 
@@ -592,7 +592,7 @@ cd ~/Documents/留学agent/offerpilot/api
 - [ ] **Step 5: 应用迁移**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot/api
+cd "$(git rev-parse --show-toplevel)/api"
 .venv/bin/alembic upgrade head
 .venv/bin/alembic downgrade base
 .venv/bin/alembic upgrade head
@@ -603,7 +603,7 @@ Expected: 三次都成功。**降级必须能跑通**，这是验收标准之一
 - [ ] **Step 6: 运行测试，确认通过**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot/api
+cd "$(git rev-parse --show-toplevel)/api"
 .venv/bin/pytest tests/test_profile_model.py -v
 ```
 
@@ -612,7 +612,7 @@ Expected: 两个测试都 PASS。
 - [ ] **Step 7: 提交**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot
+cd "$(git rev-parse --show-toplevel)"
 git add api
 git diff --cached --check
 git commit -F - <<'EOF'
@@ -695,7 +695,7 @@ def test_rejects_an_unknown_field(require_db):
 - [ ] **Step 2: 运行测试，确认失败**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot/api
+cd "$(git rev-parse --show-toplevel)/api"
 .venv/bin/pytest tests/test_profile_api.py -v
 ```
 
@@ -850,7 +850,7 @@ app.include_router(profile.router)
 - [ ] **Step 7: 运行测试，确认通过**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot/api
+cd "$(git rev-parse --show-toplevel)/api"
 .venv/bin/pytest tests/test_profile_api.py -v
 ```
 
@@ -859,7 +859,7 @@ Expected: 四个测试全部 PASS。
 - [ ] **Step 8: 提交**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot
+cd "$(git rev-parse --show-toplevel)"
 git add api
 git diff --cached --check
 git commit -F - <<'EOF'
@@ -961,7 +961,7 @@ def test_versions_are_numbered_within_a_source(db_session, require_db):
 - [ ] **Step 2: 运行测试，确认失败**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot/api
+cd "$(git rev-parse --show-toplevel)/api"
 .venv/bin/pytest tests/test_sources.py -v
 ```
 
@@ -1055,7 +1055,7 @@ class SourceVersion(Base):
 - [ ] **Step 4: 生成并校对迁移**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot/api
+cd "$(git rev-parse --show-toplevel)/api"
 .venv/bin/alembic revision --autogenerate -m "add sources and source versions"
 ```
 
@@ -1064,14 +1064,14 @@ cd ~/Documents/留学agent/offerpilot/api
 - [ ] **Step 5: 应用并验证可回退**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot/api
+cd "$(git rev-parse --show-toplevel)/api"
 .venv/bin/alembic upgrade head && .venv/bin/alembic downgrade -1 && .venv/bin/alembic upgrade head
 ```
 
 - [ ] **Step 6: 运行测试，确认通过**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot/api
+cd "$(git rev-parse --show-toplevel)/api"
 .venv/bin/pytest tests/test_sources.py -v
 ```
 
@@ -1114,7 +1114,7 @@ console.log("未发现硬编码的核验日期");
 - [ ] **Step 8: 运行检查**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot
+cd "$(git rev-parse --show-toplevel)"
 node scripts/check-no-fake-dates.cjs
 ```
 
@@ -1123,7 +1123,7 @@ Expected: `未发现硬编码的核验日期`。
 - [ ] **Step 9: 提交**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot
+cd "$(git rev-parse --show-toplevel)"
 git add api scripts
 git diff --cached --check
 git commit -F - <<'EOF'
@@ -1206,7 +1206,7 @@ def test_expected_universities_are_present(db_session, require_db):
 - [ ] **Step 2: 运行测试，确认失败**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot/api
+cd "$(git rev-parse --show-toplevel)/api"
 .venv/bin/pytest tests/test_seed.py -v
 ```
 
@@ -1291,7 +1291,7 @@ class ProgramPrerequisite(Base):
 - [ ] **Step 4: 生成并应用迁移**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot/api
+cd "$(git rev-parse --show-toplevel)/api"
 .venv/bin/alembic revision --autogenerate -m "add universities programs and prerequisites"
 .venv/bin/alembic upgrade head
 ```
@@ -1413,7 +1413,7 @@ def seed_programs(session: Session) -> int:
 - [ ] **Step 6: 运行测试，确认通过**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot/api
+cd "$(git rev-parse --show-toplevel)/api"
 .venv/bin/pytest tests/test_seed.py -v
 ```
 
@@ -1422,7 +1422,7 @@ Expected: 五个测试全部 PASS。
 - [ ] **Step 7: 加命令行入口**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot
+cd "$(git rev-parse --show-toplevel)"
 cat > api/seed_cli.py <<'PY'
 """Run the program seed from the command line: python seed_cli.py"""
 from app.db import SessionLocal
@@ -1444,7 +1444,7 @@ seed: ## Seed the placeholder program catalogue
 - [ ] **Step 8: 提交**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot
+cd "$(git rev-parse --show-toplevel)"
 git add api Makefile
 git diff --cached --check
 git commit -F - <<'EOF'
@@ -1509,7 +1509,7 @@ def test_filters_by_field(require_db, db_session):
 - [ ] **Step 2: 运行测试，确认失败**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot/api
+cd "$(git rev-parse --show-toplevel)/api"
 .venv/bin/pytest tests/test_programs_api.py -v
 ```
 
@@ -1615,7 +1615,7 @@ app.include_router(programs.router)
 - [ ] **Step 5: 运行测试，确认通过**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot/api
+cd "$(git rev-parse --show-toplevel)/api"
 .venv/bin/pytest tests/test_programs_api.py -v
 ```
 
@@ -1624,7 +1624,7 @@ Expected: 两个测试 PASS。
 - [ ] **Step 6: 提交**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot
+cd "$(git rev-parse --show-toplevel)"
 git add api
 git diff --cached --check
 git commit -F - <<'EOF'
@@ -1685,7 +1685,7 @@ async rewrites() {
 - [ ] **Step 3: 运行走查，确认失败**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot
+cd "$(git rev-parse --show-toplevel)"
 make dev          # 另开一个终端保持运行
 make screenshots
 ```
@@ -1725,7 +1725,7 @@ export async function patchProfile(patch: Partial<Profile>): Promise<Partial<Pro
 - [ ] **Step 6: 运行走查，确认通过**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot
+cd "$(git rev-parse --show-toplevel)"
 make screenshots
 ```
 
@@ -1734,7 +1734,7 @@ Expected: 打印 `清空 localStorage 后服务端仍有档案: 是`，且原有
 - [ ] **Step 7: 跑全部测试与构建**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot
+cd "$(git rev-parse --show-toplevel)"
 make api-test && make test && make build
 ```
 
@@ -1743,7 +1743,7 @@ Expected: 后端测试与前端 44 个测试全部通过，构建成功。
 - [ ] **Step 8: 提交**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot
+cd "$(git rev-parse --show-toplevel)"
 git add web scripts Makefile
 git diff --cached --check
 git commit -F - <<'EOF'
