@@ -1,10 +1,22 @@
 import { overseasInstitutions } from '../../../lib/prototype-library-server';
-import { filterSchools, paginate, singleQuery } from '../../../lib/prototype-library';
-import { SchoolCard, Pagination, FilterSelect } from '../../../components/prototype/library';
-import { Heading, input, button, secondary } from '../../../components/prototype/shared';
-import Link from 'next/link';
-export default async function Page({searchParams}: {searchParams: Promise<Record<string,string|string[]|undefined>>}) {
-  const query = singleQuery(await searchParams);
-  const result = paginate(filterSchools(overseasInstitutions, query), query.page);
-  return <><Heading title="学校库">收录 {overseasInstitutions.length} 所院校。入选依据仅说明收录范围。</Heading><form className="grid gap-4 rounded-2xl bg-white p-5 sm:grid-cols-2" action="/prototype/schools"><label className="text-sm">搜索学校<input className={`${input} mt-2`} name="q" defaultValue={query.q} placeholder="中文或英文名称"/></label><FilterSelect name="country" label="国家 / 地区" value={query.country} options={[...new Set(overseasInstitutions.map(s => s.country))].sort().map(c => [c,c])}/><button className={button}>筛选</button><Link className={secondary} href="/prototype/schools">重置</Link></form><Pagination {...result} query={query} path="/prototype/schools"/><div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">{result.items.map(s => <SchoolCard key={s.name_en || s.name_zh} school={s}/>)}</div>{!result.total && <p>没有符合条件的学校。</p>}<Pagination {...result} query={query} path="/prototype/schools"/></>;
+import { filterSchools, sortSchools, paginateSchools, schoolQuery } from '../../../lib/prototype-library';
+import { SchoolRow } from '../../../components/prototype/school-row';
+import { SchoolFilters } from '../../../components/prototype/school-filters';
+import { SchoolPagination } from '../../../components/prototype/school-pagination';
+import { Heading } from '../../../components/prototype/shared';
+
+export default async function Page({searchParams}: {searchParams: Promise<Record<string, string | string[] | undefined>>}) {
+  const query = schoolQuery(await searchParams);
+  const result = paginateSchools(sortSchools(filterSchools(overseasInstitutions, query)), query.page);
+  return <>
+    <Heading title="学校库">收录 {overseasInstitutions.length} 所院校。按地区和 QS 排名筛选，找到想了解的学校。</Heading>
+    <SchoolFilters query={query}/>
+    <p role="status" className="mb-4 text-sm text-slate-600">共找到 <strong className="text-emerald-900">{result.total}</strong> 个学校符合条件</p>
+    <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white divide-y divide-slate-200">
+      {result.items.map(s => <SchoolRow key={s.name_en || s.name_zh} school={s}/>)}
+      {!result.total && <p className="p-6 text-sm text-slate-500">没有符合条件的学校，请调整筛选条件。</p>}
+    </div>
+    <SchoolPagination page={result.page} pages={result.pages} query={query}/>
+    <p className="text-xs leading-6 text-slate-500">QS 排名来源：<a href="https://www.topuniversities.com/world-university-rankings" className="text-emerald-800 underline">QS World University Rankings 2027</a>（2026-06-18 发布）。</p>
+  </>;
 }

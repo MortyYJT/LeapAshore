@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { institutionTier, eligibilityNote, institutionSlug, searchInstitutions, filterSchools, filterPrograms, paginate, tuitionAmount, singleQuery, type ChineseInstitution, type OverseasInstitution, type MasterProgram } from './prototype-library.ts';
+import { institutionTier, eligibilityNote, institutionSlug, searchInstitutions, filterSchools, filterPrograms, paginate, tuitionAmount, singleQuery, schoolQuery, sortSchools, paginateSchools, schoolListHref, type ChineseInstitution, type OverseasInstitution, type MasterProgram } from './prototype-library.ts';
 const fixture = (name: string) => JSON.parse(readFileSync(new URL(`../prototype-fixtures/${name}.json`, import.meta.url), 'utf8'));
 const cn: ChineseInstitution[] = fixture('cn-institutions').institutions;
 const schools: OverseasInstitution[] = fixture('overseas-institutions').institutions;
@@ -33,6 +33,70 @@ test('school filters preserve region counts and search both names', () => {
   for (const [country, count] of [['Australia',40], ['Hong Kong SAR',22], ['Macau SAR',10]]) assert.equal(filterSchools(schools, {country: String(country)}).length, count);
   assert.equal(filterSchools(schools, {q: 'MELBOURNE', country: 'Australia'}).length, 1);
   assert.equal(filterSchools([{name_zh:'澳门大学', country:'Macau SAR'}], {q:'澳门'}).length, 1);
+});
+test('school region and QS filters match the issue acceptance counts', () => {
+  for (const [region, count] of [['英国', 33], ['澳大利亚', 40], ['中国香港', 22]] as const) {
+    assert.equal(filterSchools(schools, {region}).length, count);
+  }
+  assert.equal(filterSchools(schools, {qs: '1-50'}).length, 50);
+  assert.equal(filterSchools(schools, {qs: 'unranked'}).length, 46);
+  const ukTop = filterSchools(schools, {region: '英国', qs: '1-50'});
+  assert.ok(ukTop.length > 0 && ukTop.length < 33);
+  assert.ok(ukTop.every(s => s.country === 'United Kingdom' && s.qs_order! <= 50));
+  assert.equal(filterSchools(schools, {qs: '1-50,51-100'}).length, 102);
+  assert.deepEqual(filterSchools(schools, {qs: '251-300,unranked'}), schools.filter(s => !s.qs_rank || Number(s.qs_rank.replace('=', '')) >= 251));
+  assert.equal(filterSchools(schools, {q: '  ＩＭＰＥＲＩＡＬ  ', region: '英国'}).length, 1);
+  assert.equal(filterSchools(schools, {q: '帝国理工'}).length, 1);
+  assert.equal(filterSchools(schools, {q: 'no such school'}).length, 0);
+});
+test('school QS buckets use published ranks, keep ties and exclude unknowns', () => {
+  const rows = [
+    {country: 'Test', qs_order: 49, qs_rank: '=50'},
+    {country: 'Test', qs_order: 50, qs_rank: '=50'},
+    {country: 'Test', qs_order: 51, qs_rank: '51'},
+    {country: 'Test', qs_rank: null},
+  ];
+  assert.deepEqual(filterSchools(rows, {qs: '1-50'}), rows.slice(0, 2));
+  assert.deepEqual(filterSchools(rows, {qs: '51-100'}), rows.slice(2, 3));
+  assert.deepEqual(filterSchools(rows, {qs: 'unranked'}), rows.slice(3));
+  assert.equal(filterSchools(schools, {qs: 'bogus'}).length, schools.length);
+});
+test('school sort is stable, puts missing orders last and does not mutate input', () => {
+  const sorted = sortSchools([...schools].reverse());
+  assert.deepEqual(sorted.slice(0, 3).map(s => s.name_zh), ['麻省理工学院', '帝国理工学院', '斯坦福大学']);
+  assert.deepEqual(sorted.slice(0, 3).map(s => s.qs_rank), ['1', '=2', '=2']);
+  const rows = [{id: 'missing'}, {id: 'second', qs_order: 2}, {id: 'first', qs_order: 1}, {id: 'missing2'}, {id: 'tie', qs_order: 2}];
+  assert.deepEqual(sortSchools(rows).map(s => s.id), ['first', 'second', 'tie', 'missing', 'missing2']);
+  assert.equal(rows[0].id, 'missing');
+  assert.deepEqual(sortSchools(schools).filter(s => !s.qs_order), schools.filter(s => !s.qs_order));
+});
+test('school query preserves multiple QS chips, normalizes invalid values and shares links', () => {
+  const query = schoolQuery({q: ' 帝国 ', region: ['英国', '美国'], qs: ['1-50', '51-100', '1-50', 'bogus'], page: '2'});
+  assert.deepEqual(query, {q: '帝国', region: '英国', qs: '1-50,51-100', page: '2'});
+  assert.deepEqual(schoolQuery({region: 'invalid', qs: 'bogus', page: 'Infinity'}), {q: undefined, region: undefined, qs: undefined, page: 'Infinity'});
+  const url = new URL(schoolListHref(query, {region: '澳大利亚'}), 'https://example.test');
+  assert.equal(url.searchParams.get('q'), '帝国');
+  assert.equal(url.searchParams.get('region'), '澳大利亚');
+  assert.deepEqual(url.searchParams.getAll('qs'), ['1-50', '51-100']);
+  assert.equal(url.searchParams.has('page'), false);
+  assert.deepEqual(schoolQuery({q: url.searchParams.get('q')!, region: url.searchParams.get('region')!, qs: url.searchParams.getAll('qs')}), {...query, region: '澳大利亚', page: undefined});
+  assert.equal(new URL(schoolListHref(query, {region: undefined, qs: undefined}), 'https://example.test').searchParams.has('qs'), false);
+  assert.equal(new URL(schoolListHref(query, {page: '3'}), 'https://example.test').searchParams.get('page'), '3');
+});
+test('school pagination has 30 rows, clamps pages and reaches all schools exactly once', () => {
+  const rows = sortSchools(schools);
+  assert.equal(paginateSchools(rows).items.length, 30);
+  assert.equal(paginateSchools(rows).pages, 12);
+  assert.equal(paginateSchools(rows, '999').items.length, 16);
+  const collected = Array.from({length: 12}, (_, i) => paginateSchools(rows, String(i + 1)).items).flat();
+  assert.deepEqual(collected, rows);
+  for (const page of ['0', '-3', 'NaN', 'Infinity']) assert.equal(paginateSchools(rows, page).page, 1);
+  assert.deepEqual(paginateSchools([], '99'), {items: [], total: 0, pages: 1, page: 1});
+});
+test('school alliance sources remain available for linked chips', () => {
+  for (const [name, alliance] of [['帝国理工学院', '罗素大学集团'], ['墨尔本大学', '澳洲八大'], ['哈佛大学', '常春藤联盟']]) {
+    assert.ok(schools.find(s => s.name_zh === name)?.alliances?.some(a => a.name === alliance && a.source.startsWith('https://')));
+  }
 });
 test('programme filters combine school, field, total tuition and duration without treating unknown as zero', () => {
   const first = programs[0];
