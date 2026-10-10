@@ -9,7 +9,7 @@ export function SchoolRow({school, detail = false}: {school: OverseasInstitution
   return <article className="relative flex min-w-0 flex-col gap-4 bg-white px-4 py-5 sm:flex-row sm:items-center sm:px-5">
     {!detail && <Link href={href} aria-label={`查看${name}`} className="absolute inset-0 rounded-lg focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-emerald-700"/>}
     <div className="pointer-events-none flex min-w-0 flex-1 items-start gap-4">
-      <span aria-hidden="true" className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-emerald-50 text-xl font-bold text-emerald-800">{Array.from(name)[0]}</span>
+      {school.logo ? <img src={`/logos/${school.logo}`} alt="" width={48} height={48} loading="lazy" className="h-12 w-12 shrink-0 rounded-lg border border-slate-100 bg-white object-contain p-1"/> : <span aria-hidden="true" className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-emerald-50 text-xl font-bold text-emerald-800">{Array.from(name)[0]}</span>}
       <div className="min-w-0 flex-1">
         {detail ? <h1 className="break-words text-2xl font-bold text-emerald-900 sm:text-3xl">{names}</h1> : <h2 className="break-words text-lg font-bold text-emerald-900">{names}</h2>}
         <p className="mt-1 break-words text-sm text-slate-600">{school.name_en || '未知'}</p>

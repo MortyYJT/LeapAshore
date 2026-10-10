@@ -17,6 +17,6 @@ export default async function Page({searchParams}: {searchParams: Promise<Record
       {!result.total && <p className="p-6 text-sm text-slate-500">没有符合条件的学校，请调整筛选条件。</p>}
     </div>
     <SchoolPagination page={result.page} pages={result.pages} query={query}/>
-    <p className="text-xs leading-6 text-slate-500">QS 排名来源：<a href="https://www.topuniversities.com/world-university-rankings" className="text-emerald-800 underline">QS World University Rankings 2027</a>（2026-06-18 发布）。</p>
+    <p className="text-xs leading-6 text-slate-500">QS 排名来源：<a href="https://www.topuniversities.com/world-university-rankings" className="text-emerald-800 underline">QS World University Rankings 2027</a>（2026-06-18 发布）。</p><p className="text-xs leading-6 text-slate-500">校徽图标取自各校官网，归各校所有，仅用于识别学校，不代表与任何学校存在合作关系。</p>
   </>;
 }
