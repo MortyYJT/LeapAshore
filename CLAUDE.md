@@ -2,10 +2,10 @@
 
 ## Claude Code specifics
 
-- **The hooks are not installed in this repository.** `guard.sh` and `verify.sh` were deliberately
-  skipped, so the prohibitions they enforce — no writes to secret files, no push to `main`, no
-  force-push, no `git reset --hard`, no broad `rm -rf` — are rules only, with nothing blocking you.
-  Treat them as strictly as if a hook did.
+- **Only the guard hook is installed** (`.claude/hooks/guard.sh`, PreToolUse). It blocks writes to secret
+  files, push to `main`, force-push, `git reset --hard`, and broad `rm -rf`. The `verify.sh` Stop hook is
+  deliberately not installed, because `make verify` needs the database and runs screenshots; run it
+  yourself before claiming work is done.
 - The project's check command is `make verify`. Run it before claiming work is done.
 - Use plan mode when the approach is uncertain, the change touches several files, or it is an OpenSpec
   change. If the diff can be described in one sentence, skip the plan and just do it.
