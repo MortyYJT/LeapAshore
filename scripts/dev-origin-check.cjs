@@ -13,10 +13,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const PLAYWRIGHT =
-  process.env.PLAYWRIGHT_PATH ||
-  "~/Documents/留学agent/web/node_modules/@playwright/test";
-const { chromium } = require(PLAYWRIGHT);
+const { chromium } = require("./playwright.cjs");
 
 const ROOT = path.resolve(__dirname, "..");
 const PORT = process.env.PORT || "3000";

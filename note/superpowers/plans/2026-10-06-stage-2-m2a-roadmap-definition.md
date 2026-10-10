@@ -122,7 +122,7 @@ def test_deleting_a_phase_is_refused_while_materials_reference_it(db_session, re
 - [ ] **Step 2: 跑测试确认失败**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot/api
+cd "$(git rev-parse --show-toplevel)/api"
 .venv/bin/pytest tests/test_roadmap_model.py -v
 ```
 
@@ -188,7 +188,7 @@ from app.models.roadmap import MaterialTemplate, RoadmapPhase
 - [ ] **Step 4: 生成并人工校对迁移**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot/api
+cd "$(git rev-parse --show-toplevel)/api"
 .venv/bin/alembic revision --autogenerate -m "add roadmap phases and material templates"
 ```
 
@@ -211,7 +211,7 @@ Expected: 三个测试全部 PASS。
 - [ ] **Step 7: 提交**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot
+cd "$(git rev-parse --show-toplevel)"
 git checkout -b codex/stage-2-m2a-roadmap-definition
 git add api
 git diff --cached --check
@@ -248,7 +248,7 @@ EOF
 
 - [ ] **Step 1: 先读源文件，不要凭印象**
 
-打开 `~/Documents/留学agent/offerpilot/web/lib/roadmap.ts`，逐条抄出 `PHASE_DEFS`（6 个阶段，含 `offsetDays`）与 `MATERIALS`（31 个材料项，含 `phase`、`title`、`detail`、`appliesTo` 与顺序）。**计划里不重复这些值**，因为它们必须以源文件为准；转写时逐条核对，并写一张映射表放进报告。
+打开 `web/lib/roadmap.ts`，逐条抄出 `PHASE_DEFS`（6 个阶段，含 `offsetDays`）与 `MATERIALS`（31 个材料项，含 `phase`、`title`、`detail`、`appliesTo` 与顺序）。**计划里不重复这些值**，因为它们必须以源文件为准；转写时逐条核对，并写一张映射表放进报告。
 
 - [ ] **Step 2: 写失败测试**
 
@@ -328,7 +328,7 @@ def test_offsets_are_positive_and_descending(db_session, require_db):
 - [ ] **Step 3: 跑测试确认失败**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot/api
+cd "$(git rev-parse --show-toplevel)/api"
 .venv/bin/pytest tests/test_seed_roadmap.py -v
 ```
 
@@ -445,7 +445,7 @@ Expected: 五个测试全部 PASS。
 - 只比较与 TypeScript 有对应关系的 6 个阶段和 31 个材料；`visa` 阶段是新增的，排除在外并在脚本注释里写明原因
 
 ```bash
-cd ~/Documents/留学agent/offerpilot
+cd "$(git rev-parse --show-toplevel)"
 node scripts/verify-roadmap-mirror.cjs
 ```
 
@@ -543,7 +543,7 @@ def test_does_not_require_a_cookie(require_db, db_session):
 - [ ] **Step 2: 跑测试确认失败**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot/api
+cd "$(git rev-parse --show-toplevel)/api"
 .venv/bin/pytest tests/test_roadmap_api.py -v
 ```
 
@@ -666,7 +666,7 @@ Expected: 四个测试全部 PASS。
 - [ ] **Step 5: 跑全量并在浏览器里看一眼**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot
+cd "$(git rev-parse --show-toplevel)"
 make test
 cd api && (.venv/bin/uvicorn app.main:app --port 8000 > /tmp/api-m2a.log 2>&1 &) ; sleep 4
 curl -s http://127.0.0.1:8000/api/roadmap | python3 -m json.tool | head -30
@@ -751,7 +751,7 @@ test("keeps the served order rather than sorting again", () => {
 - [ ] **Step 2: 跑测试确认失败**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot/web
+cd "$(git rev-parse --show-toplevel)/web"
 npm test 2>&1 | tail -12
 ```
 
@@ -776,7 +776,7 @@ Expected: FAIL —— 找不到 `./roadmap-source.ts`。
 - [ ] **Step 7: 跑全量**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot
+cd "$(git rev-parse --show-toplevel)"
 make test && make build && make screenshots
 ```
 
