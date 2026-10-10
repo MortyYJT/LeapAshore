@@ -1,6 +1,6 @@
 export type InstitutionTag = { tag: string; verification: string; mapping_note?: string };
 export type ChineseInstitution = { code: string; name: string; province: string; city?: string | null; level: string; authority: string; note?: string; tags?: InstitutionTag[] };
-export type OverseasInstitution = { name_en?: string | null; name_zh?: string | null; country: string; city?: string; website?: string; sources: string[]; selection_basis: string[]; cricos_codes?: string[]; hk_category?: string; mo_category?: string; in_cn_library: boolean };
+export type OverseasInstitution = { name_en?: string | null; name_zh?: string | null; name_zh_kind?: string; qs_order?: number; country: string; city?: string; website?: string; sources: string[]; selection_basis: string[]; cricos_codes?: string[]; hk_category?: string; mo_category?: string; in_cn_library: boolean };
 export type MasterProgram = { provider: string; institution: string; code: string; name: string; field: string; narrow: string; weeks: number | null; tuition: string | null; total_cost: string | null };
 export type Query = Record<string, string | undefined>;
 export function institutionTier(institution: {tags?: InstitutionTag[]} | null): '985' | '211' | '其他' | null {
