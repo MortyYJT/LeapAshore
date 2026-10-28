@@ -1,0 +1,34 @@
+{
+ "school_key": "monash-university",
+ "school_name_en": "Monash University",
+ "country": "Australia",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [],
+ "blocked": [
+  {
+   "url": "https://www.monash.edu/study/courses/find-a-course/artificial-intelligence-c6007",
+   "reason": "robots.txt disallows https://www.monash.edu/study/courses/find-a-course/artificial-intelligence-c6007 (snapshot tool refused the fetch; no further www.monash.edu URLs were tried)"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://handbook.monash.edu/2026/courses/C6007"
+ ],
+ "notes": "www.monash.edu course finder (where entry, English and China requirements live) is blocked by robots.txt. handbook.monash.edu is not blocked but its course pages (checked C6007 with --render) carry only structure, units and CRICOS code, with no admission, English or deadline text, so no requirement values could be quoted. Only C6007 was fetched; the other CRICOS courses were not fetched because the same page type would yield no requirement fields. Needs a human or a different official source for Monash entry requirements.",
+ "programs": [
+  {
+   "name": "Master of Artificial Intelligence",
+   "url": "https://handbook.monash.edu/2026/courses/C6007",
+   "cricos_code": "103000K",
+   "snapshot_sha256": "7e1e9749222c95071211b980651ac593c176db160e87011abe238cb4120a56a9",
+   "fields": {},
+   "status": "待人工"
+  }
+ ],
+ "verification": {
+  "programs": 1,
+  "机器核对": 0,
+  "待人工": 1
+ }
+}

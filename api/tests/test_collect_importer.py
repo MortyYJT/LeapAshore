@@ -1,0 +1,113 @@
+"""Importing checked requirement files into the catalogue."""
+
+import pytest
+from sqlalchemy import delete, func, select
+
+from app.collect.importer import import_school, program_id_for, source_id_for
+from app.models.program import Program, ProgramPrerequisite, University
+from app.models.source import Source, SourceVersion
+from app.seed import seed_programs
+from app.seed_catalog import seed_catalog
+
+KEY = "test-importer-university"
+SHA = "c" * 64
+URL = "https://example.test/msc-data-science"
+SCHOOLS = {KEY: {"school_key": KEY, "name_zh": "测试大学", "country": "United Kingdom"}}
+
+
+def school_file(**field_overrides):
+    fields = {
+        "academic": {"text": "2:1 honours", "quote": "a 2:1 honours degree", "check": "ok"},
+        "ielts": {"overall": 7.0, "min_band": 6.5, "quote": "IELTS 7.0 with 6.5 in each component", "check": "ok"},
+        "china_requirement": {"min_mark_211": 80, "min_mark_other": 85, "quote": "80% (211) or 85%", "check": "ok"},
+        "prerequisites": [{"text": "linear algebra", "quote": "linear algebra", "check": "ok"}],
+    }
+    fields.update(field_overrides)
+    every_ok = all(
+        (all(i["check"] == "ok" for i in f) if isinstance(f, list) else f["check"] == "ok") for f in fields.values()
+    )
+    return {
+        "school_key": KEY, "school_name_en": "Test Importer University", "country": "United Kingdom",
+        "listing_urls": ["https://example.test/courses"],
+        "programs": [{
+            "name": "MSc Data Science", "url": URL, "snapshot_sha256": SHA, "fetched_at": "2026-10-29T01:00:00+00:00",
+            "fields": fields, "status": "机器核对" if every_ok else "待人工",
+        }],
+    }
+
+
+@pytest.fixture
+def cleanup(db_session):
+    yield
+    pid = program_id_for(KEY, {"url": URL, "name": "MSc Data Science"})
+    db_session.rollback()
+    db_session.execute(delete(ProgramPrerequisite).where(ProgramPrerequisite.program_id == pid))
+    db_session.execute(delete(Program).where(Program.id == pid))
+    db_session.execute(delete(SourceVersion).where(SourceVersion.source_id == source_id_for(URL)))
+    db_session.execute(delete(Source).where(Source.id == source_id_for(URL)))
+    db_session.execute(delete(University).where(University.id == KEY))
+    db_session.commit()
+
+
+def test_a_checked_program_is_imported_as_machine_checked_and_never_verified(db_session, require_db, cleanup, tmp_path):
+    result = import_school(db_session, school_file(), SCHOOLS, root=tmp_path)
+    assert result["programs_added"] == 1
+    program = db_session.get(Program, program_id_for(KEY, {"url": URL, "name": "MSc Data Science"}))
+    assert program.data_status == "机器核对"
+    assert program.english_requirement == "IELTS 7.0，单项不低于 6.5"
+    assert (float(program.minimum_mark), float(program.non_211_minimum_mark)) == (80, 85)
+    assert [p.label for p in program.prerequisites] == ["linear algebra"]
+    assert db_session.get(University, KEY).name == "测试大学"
+    assert db_session.get(University, KEY).country == "英国"
+    source = db_session.get(Source, source_id_for(URL))
+    assert source.verified_at is None and source.status == "待核验"
+    version = db_session.scalars(select(SourceVersion).where(SourceVersion.source_id == source.id)).one()
+    assert version.status == "pending_review" and version.content_sha256 == SHA
+    assert "[ielts] IELTS 7.0 with 6.5 in each component" in version.body_text
+
+
+def test_a_field_that_failed_its_check_is_not_written(db_session, require_db, cleanup, tmp_path):
+    data = school_file(ielts={"overall": 7.0, "quote": "IELTS 7", "check": "quote not found in snapshot"},
+                       china_requirement={"min_mark_211": 80, "quote": "80%", "check": "quote not found in snapshot"})
+    import_school(db_session, data, SCHOOLS, root=tmp_path)
+    program = db_session.get(Program, program_id_for(KEY, {"url": URL, "name": "MSc Data Science"}))
+    assert program.english_requirement is None
+    assert program.minimum_mark is None
+    assert program.data_status == "待核验"
+
+
+def test_importing_twice_adds_nothing(db_session, require_db, cleanup, tmp_path):
+    import_school(db_session, school_file(), SCHOOLS, root=tmp_path)
+    again = import_school(db_session, school_file(), SCHOOLS, root=tmp_path)
+    assert again["programs_added"] == 0
+    versions = db_session.scalar(select(func.count()).select_from(SourceVersion).where(SourceVersion.source_id == source_id_for(URL)))
+    assert versions == 1
+
+
+def test_an_australian_program_lands_on_its_cricos_row(db_session, require_db, tmp_path):
+    seed_programs(db_session)
+    seed_catalog(db_session)
+    url = "https://example.test/au-course-for-importer-test"
+    data = {
+        "school_key": "university-of-sydney", "school_name_en": "The University of Sydney", "country": "Australia",
+        "programs": [{
+            "name": "Master of Data Science", "url": url, "cricos_code": "087981E", "snapshot_sha256": SHA,
+            "fields": {"ielts": {"overall": 7.0, "min_band": 6.0, "quote": "IELTS 7.0 overall, 6.0 each", "check": "ok"}},
+            "status": "机器核对",
+        }],
+    }
+    row = db_session.get(Program, "cricos-087981E")
+    before = (row.source_id, row.english_requirement, row.data_status)
+    try:
+        result = import_school(db_session, data, {}, root=tmp_path)
+        assert result == {"school": "university-of-sydney", "programs_added": 0, "programs_updated": 1}
+        row = db_session.get(Program, "cricos-087981E")
+        assert row.university_id == "usyd"
+        assert row.english_requirement == "IELTS 7.0，单项不低于 6.0"
+        assert row.data_status == "机器核对"
+    finally:
+        row.source_id, row.english_requirement, row.data_status = before
+        db_session.flush()
+        db_session.execute(delete(SourceVersion).where(SourceVersion.source_id == source_id_for(url)))
+        db_session.execute(delete(Source).where(Source.id == source_id_for(url)))
+        db_session.commit()

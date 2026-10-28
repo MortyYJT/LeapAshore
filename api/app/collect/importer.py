@@ -1,0 +1,198 @@
+"""Import the checked requirement files into the catalogue.
+
+    python -m app.collect.importer [api/data/requirements/<school>.json ...]
+
+Only fields whose quote passed `verify` (`check == "ok"`) are written. A program is `机器核对` when every
+field it reports passed, otherwise `待核验`. Nothing here writes `verified_at`: the page source stays
+`待核验` until a person reviews it, and its snapshot version stays `pending_review`.
+
+Australian programs land on their CRICOS row (`cricos-<code>`); everything else gets
+`<school_key>-<program slug>`, under a university row named from `_schools.json`. Each program page
+becomes one `Source`, and each distinct snapshot of it one `SourceVersion` whose `body_text` holds the
+verified quotes (the full page stays in the local snapshot store, which is not published).
+"""
+
+import json
+import re
+import sys
+import unicodedata
+import uuid
+from datetime import datetime
+from pathlib import Path
+from urllib.parse import urlsplit
+
+from sqlalchemy import delete, func, select
+from sqlalchemy.orm import Session
+
+from app.collect.snapshot import SNAPSHOT_ROOT
+from app.collect.verify import LIST_FIELDS, MACHINE_CHECKED
+from app.models.program import Program, ProgramPrerequisite, University
+from app.models.source import Source, SourceStatus, SourceVersion
+
+DATA_DIR = Path(__file__).resolve().parents[2] / "data" / "requirements"
+SCHOOLS_FILE = DATA_DIR / "_schools.json"
+SOURCE_NAMESPACE = uuid.UUID("6f2b7a1e-0c55-4c1f-9d7a-2e3b0f6c8a41")
+
+COUNTRY_ZH = {
+    "Australia": "澳大利亚", "Hong Kong SAR": "中国香港", "Singapore": "新加坡", "United Kingdom": "英国",
+    "United States": "美国", "Canada": "加拿大", "New Zealand": "新西兰", "Japan": "日本",
+    "South Korea": "韩国", "Malaysia": "马来西亚",
+}
+
+
+def slugify(text: str, limit: int) -> str:
+    text = unicodedata.normalize("NFKD", text).encode("ascii", "ignore").decode()
+    return re.sub(r"[^a-z0-9]+", "-", text.lower()).strip("-")[:limit].strip("-")
+
+
+def program_id_for(school_key: str, program: dict) -> str:
+    if program.get("cricos_code"):
+        return f"cricos-{program['cricos_code']}"
+    # 64 characters at most, and stable for one program page: the slug of its name, then a short
+    # hash of its url so two programs with one name (a part-time variant) stay apart.
+    digest = uuid.uuid5(SOURCE_NAMESPACE, program["url"]).hex[:6]
+    return f"{slugify(school_key, 24)}-{slugify(program['name'], 32)}-{digest}"
+
+
+def source_id_for(url: str) -> str:
+    return str(uuid.uuid5(SOURCE_NAMESPACE, url))
+
+
+def passed(item: dict) -> bool:
+    return item.get("check") == "ok"
+
+
+def english_text(fields: dict) -> str | None:
+    """IELTS and TOEFL minimums in one line the interface can parse (`IELTS 6.5…`)."""
+    parts = []
+    for test, label, form in (("ielts", "IELTS", "{:.1f}"), ("toefl", "TOEFL iBT", "{:g}")):
+        item = fields.get(test)
+        if item and passed(item) and item.get("overall") is not None:
+            text = f"{label} {form.format(item['overall'])}"
+            if item.get("min_band") is not None:
+                text += f"，单项不低于 {form.format(item['min_band'])}"
+            parts.append(text)
+    return "；".join(parts) or None
+
+
+def verified_quotes(fields: dict) -> str:
+    lines = []
+    for name, field in fields.items():
+        for item in field if name in LIST_FIELDS else [field]:
+            if passed(item):
+                lines.append(f"[{name}] {item['quote']}")
+    return "\n".join(lines)
+
+
+def _university(session: Session, data: dict, school: dict | None, program_ids: list[str]) -> str:
+    """The university row for this school; Australian ones already exist from the CRICOS seed."""
+    existing = session.scalars(select(Program.university_id).where(Program.id.in_(program_ids))).first()
+    if existing:
+        return existing
+    key = data["school_key"]
+    if session.get(University, key) is None:
+        listing = (data.get("listing_urls") or [None])[0]
+        session.add(University(
+            id=key,
+            name=(school or {}).get("name_zh") or data["school_name_en"],
+            name_en=data["school_name_en"],
+            country=COUNTRY_ZH.get(data.get("country") or "", (school or {}).get("country") or "未知")[:32],
+            official_url=f"{urlsplit(listing).scheme}://{urlsplit(listing).netloc}/" if listing else None,
+        ))
+        session.flush()
+    return key
+
+
+def _snapshot_meta(school_key: str, sha: str, root: Path) -> dict:
+    path = root / school_key / f"{sha}.json"
+    return json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
+
+
+def import_school(session: Session, data: dict, schools: dict[str, dict], root: Path = SNAPSHOT_ROOT) -> dict:
+    key = data["school_key"]
+    programs = data.get("programs", [])
+    ids = [program_id_for(key, p) for p in programs]
+    university_id = _university(session, data, schools.get(key), ids)
+    added = updated = 0
+    for program, pid in zip(programs, ids):
+        fields = program.get("fields", {})
+        meta = _snapshot_meta(key, program["snapshot_sha256"], root)
+
+        source = session.get(Source, source_id_for(program["url"])) or session.execute(
+            select(Source).where(Source.url == program["url"])
+        ).scalar_one_or_none()
+        if source is None:
+            source = Source(
+                id=source_id_for(program["url"]), url=program["url"], title=program["name"],
+                publisher=university_id, domain=urlsplit(program["url"]).netloc,
+                status=SourceStatus.UNVERIFIED, verified_at=None,
+            )
+            session.add(source)
+            session.flush()
+        known = session.scalar(select(SourceVersion.id).where(
+            SourceVersion.source_id == source.id, SourceVersion.content_sha256 == program["snapshot_sha256"]))
+        if known is None:
+            number = (session.scalar(select(func.max(SourceVersion.version_no)).where(SourceVersion.source_id == source.id)) or 0) + 1
+            fetched = meta.get("fetched_at") or program.get("fetched_at")
+            session.add(SourceVersion(
+                id=str(uuid.uuid4()), source_id=source.id, version_no=number,
+                requested_url=meta.get("requested_url", program["url"]), final_url=meta.get("final_url"),
+                fetched_at=datetime.fromisoformat(fetched) if fetched else None,
+                content_type=meta.get("content_type"), content_sha256=program["snapshot_sha256"],
+                body_text=verified_quotes(fields) or None,
+            ))
+
+        china = fields.get("china_requirement") or {}
+        china_ok = passed(china) if china else False
+        values = {
+            "english_requirement": english_text(fields),
+            "minimum_mark": china.get("min_mark_211") if china_ok else None,
+            "non_211_minimum_mark": china.get("min_mark_other") if china_ok else None,
+            "source_id": source.id,
+            "data_status": MACHINE_CHECKED if program.get("status") == MACHINE_CHECKED else "待核验",
+        }
+        row = session.get(Program, pid)
+        if row is None:
+            if program.get("cricos_code"):
+                continue  # an Australian course the catalogue does not carry: nothing to attach it to
+            row = Program(id=pid, university_id=university_id, name=program["name"], name_en=program["name"],
+                          degree_level="授课型硕士", **values)
+            session.add(row)
+            added += 1
+        else:
+            for column, value in values.items():
+                setattr(row, column, value)
+            updated += 1
+        session.flush()
+
+        prerequisites = [item["text"] if item.get("text") else item["quote"]
+                         for item in fields.get("prerequisites", []) if passed(item)]
+        session.execute(delete(ProgramPrerequisite).where(ProgramPrerequisite.program_id == pid))
+        for index, label in enumerate(prerequisites):
+            session.add(ProgramPrerequisite(id=f"{pid}-pre-{index}"[:64], program_id=pid, label=label,
+                                            category="collected", sort_order=index))
+    session.commit()
+    return {"school": key, "programs_added": added, "programs_updated": updated}
+
+
+def load_schools(path: Path = SCHOOLS_FILE) -> dict[str, dict]:
+    return {row["school_key"]: row for row in json.loads(path.read_text(encoding="utf-8"))}
+
+
+def requirement_files(directory: Path = DATA_DIR) -> list[Path]:
+    return sorted(p for p in directory.glob("*.json") if not p.name.startswith("_"))
+
+
+def main(argv: list[str]) -> int:
+    from app.db import SessionLocal
+
+    paths = [Path(a) for a in argv] or requirement_files()
+    schools = load_schools()
+    with SessionLocal() as session:
+        for path in paths:
+            print(json.dumps(import_school(session, json.loads(path.read_text(encoding="utf-8")), schools), ensure_ascii=False))
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main(sys.argv[1:]))

@@ -1,0 +1,1657 @@
+{
+ "school_key": "university-of-new-south-wales",
+ "school_name_en": "The University of New South Wales (UNSW Sydney)",
+ "country": "Australia",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://www.unsw.edu.au/study/postgraduate",
+  "https://www.unsw.edu.au/study/find-a-degree-or-course/degree-search-results?postgraduate=true"
+ ],
+ "blocked": [],
+ "complete": false,
+ "remaining_urls": [],
+ "notes": "Course pages carry their own China notes (non-211 averages) and no separate China-specific page was found, so china_page is omitted. IELTS/TOEFL come from the faculty-by-level English requirements table (postgraduate coursework column; the program page names its faculty). Application deadlines are only published as general offer-round schedules, not per program, so none are reported. Not collected: master-of-biomedical-engineering and master-of-pre-doctoral-business-studies (URL redirects to non-program pages), Master of Clinical Optometry (UNSW-only entry), extension/combined/dual degrees, and programs whose guessed course-page URL returned 404 (Built Environment, Urban Development and Design, Sustainable Built Environment, Financial Planning, Information Systems Management, Optometry, City Analytics, Health Data Science).",
+ "programs": [
+  {
+   "name": "Master of Education",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-education",
+   "cricos_code": "110653C",
+   "snapshot_sha256": "f7126d287b78446edd2b2f738c0bb9bbaa97ac9dc94925275e0a09cf652493fe",
+   "fields": {
+    "academic": {
+     "text": "A bachelor’s degree (or equivalent qualification) in any discipline with a record of academic achievement equivalent to a UNSW credit average of 65%.",
+     "quote": "A bachelor’s degree (or equivalent qualification) in any discipline with a record of academic achievement equivalent to a UNSW credit average of 65%.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "6.5 overall (min 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Arts, Design & Architecture",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "min_band": 22,
+     "quote": "90 overall (min. 23 in writing, 22 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Arts, Design & Architecture",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Educational Leadership",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-educational-leadership",
+   "cricos_code": "110654B",
+   "snapshot_sha256": "99406611dab4b1718ee311af1fe902b28fcb22743375436443b927ee0193cd2c",
+   "fields": {
+    "academic": {
+     "text": "A bachelor’s degree (or equivalent qualification) in any discipline with a record of academic achievement equivalent to a UNSW credit average of 65%.",
+     "quote": "A bachelor’s degree (or equivalent qualification) in any discipline with a record of academic achievement equivalent to a UNSW credit average of 65%.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Statistics",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-statistics",
+   "cricos_code": "001008F",
+   "snapshot_sha256": "7a9ce59c9b73bb00dfbe013f1c2528627868a4baa5a9b1a43f98f366c1f25874",
+   "fields": {
+    "academic": {
+     "text": "A recognised bachelor degree (or equivalent qualification): With a major in a cognate discipline; and An overall average of 65 or higher: As determined by the UNSW Postgraduate Coursework Entry Calculator; or",
+     "quote": "A recognised bachelor degree (or equivalent qualification): With a major in a cognate discipline; and An overall average of 65 or higher: As determined by the UNSW Postgraduate Coursework Entry Calculator; or",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "6.5 overall (min. 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Science",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "min_band": 22,
+     "quote": "90 overall (min. 23 in writing, 22 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Science",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Psychology (Clinical)",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-psychology-clinical",
+   "cricos_code": "001934A",
+   "snapshot_sha256": "c2df30e2d9fbcb64b9b7e6834d93fb857e565775df9aed45df0a75c688fbbb77",
+   "fields": {
+    "academic": {
+     "text": "The minimum academic eligibility requirement is completion of a four-year APAC-accredited sequence in psychology, including a major research thesis/project, with Honours Class 1 (85%), or international equivalent. Qualifications must have been completed within the last 10 years (exceptions may be possible in limited circumstances).",
+     "quote": "The minimum academic eligibility requirement is completion of a four-year APAC-accredited sequence in psychology, including a major research thesis/project, with Honours Class 1 (85%), or international equivalent. Qualifications must have been completed within the last 10 years (exceptions may be possible in limited circumstances).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.5,
+     "quote": "Master of Psychology (Clinical & Forensic) including combined PhD/Master: 7.0 overall (min 7.0 in listening, speaking & reading, 6.5 in writing)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Master of Psychology (Clinical & Forensic) exception",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 91,
+     "min_band": 22,
+     "quote": "Master of Psychology (Clinical & Forensic) including combined PhD/Master: 91 overall (min. 23 in writing, 22 in reading and listening, 24 in speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Master of Psychology (Clinical & Forensic) exception",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Psychology (Forensic)",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-psychology-forensic",
+   "cricos_code": "028068E",
+   "snapshot_sha256": "dd93f0f79ac5ebac57165ea050ec930f80dc784a18b5b0db0a1c08aac9df577a",
+   "fields": {
+    "academic": {
+     "text": "The minimum entrance requirement is completion of an accredited four-year, or three-year plus a fourth year, APAC-accredited sequence in psychology, including a major research thesis, completed within the last 10 years with Honours Class 1 (85%), or Upper Second Class Honours (75%) or their equivalents.",
+     "quote": "The minimum entrance requirement is completion of an accredited four-year, or three-year plus a fourth year, APAC-accredited sequence in psychology, including a major research thesis, completed within the last 10 years with Honours Class 1 (85%), or Upper Second Class Honours (75%) or their equivalents.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.5,
+     "quote": "Master of Psychology (Clinical & Forensic) including combined PhD/Master: 7.0 overall (min 7.0 in listening, speaking & reading, 6.5 in writing)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Master of Psychology (Clinical & Forensic) exception",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 91,
+     "min_band": 22,
+     "quote": "Master of Psychology (Clinical & Forensic) including combined PhD/Master: 91 overall (min. 23 in writing, 22 in reading and listening, 24 in speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Master of Psychology (Clinical & Forensic) exception",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Infectious Diseases Intelligence",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-infectious-diseases-intelligence",
+   "cricos_code": "089223E",
+   "snapshot_sha256": "08532e9ef6205b22a0c0d92f4cbc37d1f32a166ddc3fc109cb4898a94f57689b",
+   "fields": {
+    "academic": {
+     "text": "a) A three year undergraduate degree in any field of study, and b) Two years of full-time professional or volunteer experience in a relevant field*.",
+     "quote": "a) A three year undergraduate degree in any field of study, and b) Two years of full-time professional or volunteer experience in a relevant field*.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "6.5 overall (min. 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Medicine & Health",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "min_band": 22,
+     "quote": "90 overall (min. 23 in writing, 22 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Medicine & Health",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Data Science and Decisions",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-data-science-and-decisions",
+   "cricos_code": "0101866",
+   "snapshot_sha256": "be65852fdf743b106803f5b9e5d188509c3c2efa65258868b99967f1bc6fbee2",
+   "fields": {
+    "academic": {
+     "text": "A recognised bachelor degree (or equivalent qualification): With a substantial quantitative component in a cognate discipline; and An overall average of 70 or higher: As determined by the UNSW Postgraduate Coursework Entry Calculator",
+     "quote": "A recognised bachelor degree (or equivalent qualification): With a substantial quantitative component in a cognate discipline; and An overall average of 70 or higher: As determined by the UNSW Postgraduate Coursework Entry Calculator",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "6.5 overall (min. 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Science",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "min_band": 22,
+     "quote": "90 overall (min. 23 in writing, 22 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Science",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Taxation",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-taxation",
+   "cricos_code": "015849E",
+   "snapshot_sha256": "fcbff5aeb4d854575dd4aabc87f751a882999d8674e64899d233811408f1af04",
+   "fields": {
+    "academic": {
+     "text": "A recognised bachelor degree (or equivalent qualification) in Taxation, Law, Accounting, Business or Commerce (or equivalent qualifications) as determined by UNSW Business School; with an average of 65% or more in these subjects, as determined by UNSW Business School; and a minimum of two years relevant full-time professional experience in professional services firms or in government departments.",
+     "quote": "A recognised bachelor degree (or equivalent qualification) in Taxation, Law, Accounting, Business or Commerce (or equivalent qualifications) as determined by UNSW Business School; with an average of 65% or more in these subjects, as determined by UNSW Business School; and a minimum of two years relevant full-time professional experience in professional services firms or in government departments.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "7.0 overall (min 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Business",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 94,
+     "min_band": 23,
+     "quote": "94 overall (min. 25 in writing, 23 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Business",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Professional Accounting",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-professional-accounting",
+   "cricos_code": "051221J",
+   "snapshot_sha256": "1df7614e52bec6cbddb9e615960dbe611f8de05fa3976dfa3d2b1e50d78c72a3",
+   "fields": {
+    "academic": {
+     "text": "Recognised bachelor degree (or equivalent qualification) with a credit average as determined by the UNSW Postgraduate Coursework Entry Score Calculator.",
+     "quote": "Recognised bachelor degree (or equivalent qualification) with a credit average as determined by the UNSW Postgraduate Coursework Entry Score Calculator.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Applicants from non-211 universities in China need a minimum overall average of 88 in their current university's grading system (UNSW Business School)",
+     "min_mark_other": 88,
+     "quote": "Applicants from non-211 universities in China wishing to study Postgraduate Coursework in the UNSW Business School must achieve a minimum overall average of 88 in their current university’s grading system.",
+     "source_sha256": "1df7614e52bec6cbddb9e615960dbe611f8de05fa3976dfa3d2b1e50d78c72a3",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "7.0 overall (min 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Business",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 94,
+     "min_band": 23,
+     "quote": "94 overall (min. 25 in writing, 23 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Business",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Actuarial Studies",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-actuarial-studies",
+   "cricos_code": "051222G",
+   "snapshot_sha256": "7522adda7c4099ef60c3187eab612e3e83de8f5e61bddf1179159d65a627429d",
+   "fields": {
+    "academic": {
+     "text": "To be eligible for this program, you must have a recognised bachelor degree (or equivalent qualification) with a substantial component of mathematics, statistics, econometrics or actuarial studies, with a credit average, as determined by the UNSW Business School.",
+     "quote": "To be eligible for this program, you must have a recognised bachelor degree (or equivalent qualification) with a substantial component of mathematics, statistics, econometrics or actuarial studies, with a credit average, as determined by the UNSW Business School.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Applicants from non-211 universities in China need a minimum overall average of 88 in their current university's grading system (UNSW Business School)",
+     "min_mark_other": 88,
+     "quote": "Applicants from non-211 universities in China wishing to study Postgraduate Coursework in the UNSW Business School must achieve a minimum overall average of 88 in their current university’s grading system.",
+     "source_sha256": "7522adda7c4099ef60c3187eab612e3e83de8f5e61bddf1179159d65a627429d",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "7.0 overall (min 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Business",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 94,
+     "min_band": 23,
+     "quote": "94 overall (min. 25 in writing, 23 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Business",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Economics",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-economics",
+   "cricos_code": "055189E",
+   "snapshot_sha256": "485c735f46ac801f7d02b5725e8063c74e730e90e004063c00f3c67c2daab897",
+   "fields": {
+    "academic": {
+     "text": "An honours degree (or equivalent) in Economics or a cognate discipline*, with a minimum WAM of 70 A double bachelor’s degree (or equivalent) where one major or degree is in Economics and the other in a cognate discipline*, with an overall WAM of at least 70 A bachelor’s degree (or equivalent) with a major in Economics or a cognate discipline*, with an overall WAM of at least 70, plus a minimum of two years of relevant professional experience.",
+     "quote": "An honours degree (or equivalent) in Economics or a cognate discipline*, with a minimum WAM of 70 A double bachelor’s degree (or equivalent) where one major or degree is in Economics and the other in a cognate discipline*, with an overall WAM of at least 70 A bachelor’s degree (or equivalent) with a major in Economics or a cognate discipline*, with an overall WAM of at least 70, plus a minimum of two years of relevant professional experience.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Applicants from non-211 universities in China need a minimum overall average of 88 in their current university's grading system (UNSW Business School)",
+     "min_mark_other": 88,
+     "quote": "Applicants from non-211 universities in China wishing to study Postgraduate Coursework in the UNSW Business School must achieve a minimum overall average of 88 in their current university’s grading system.",
+     "source_sha256": "485c735f46ac801f7d02b5725e8063c74e730e90e004063c00f3c67c2daab897",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "7.0 overall (min 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Business",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 94,
+     "min_band": 23,
+     "quote": "94 overall (min. 25 in writing, 23 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Business",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Financial Mathematics",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-financial-mathematics",
+   "cricos_code": "058739M",
+   "snapshot_sha256": "5bf33b5401bc9e4904e284dfde9cadb7f5873f613fed1005b3564e3c9bc05bd1",
+   "fields": {
+    "academic": {
+     "text": "A recognised bachelor degree (or equivalent qualification): With a major in a cognate discipline area; and An overall average of 65 or higher: As determined by the UNSW Postgraduate Coursework Entry Calculator; or",
+     "quote": "A recognised bachelor degree (or equivalent qualification): With a major in a cognate discipline area; and An overall average of 65 or higher: As determined by the UNSW Postgraduate Coursework Entry Calculator; or",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "6.5 overall (min. 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Science",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "min_band": 22,
+     "quote": "90 overall (min. 23 in writing, 22 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Science",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Financial Analysis",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-financial-analysis",
+   "cricos_code": "058933J",
+   "snapshot_sha256": "f72b5e630fe53bb6e6f31fba6c1c6d9f05befb0eea418a270aef12cd124c7343",
+   "fields": {
+    "academic": {
+     "text": "A recognised bachelor degree with 2nd class lower division honours or higher (or equivalent qualification) in Finance, Accounting, or a closely related discipline, as determined by the UNSW Australia Business School; or",
+     "quote": "A recognised bachelor degree with 2nd class lower division honours or higher (or equivalent qualification) in Finance, Accounting, or a closely related discipline, as determined by the UNSW Australia Business School; or",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "7.0 overall (min 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Business",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 94,
+     "min_band": 23,
+     "quote": "94 overall (min. 25 in writing, 23 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Business",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Health Leadership and Management",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-health-leadership-and-management",
+   "cricos_code": "059315E",
+   "snapshot_sha256": "42b8cb427505d2c0cffb7035647655641768d2ce536a467cc5e7e3df485ad1fe",
+   "fields": {
+    "academic": {
+     "text": "To apply, you’ll need an undergraduate degree relevant to health management and at least two years related work or volunteer experience OR an undergraduate degree, plus an honours or postgraduate degree in a field relevant to health management.",
+     "quote": "To apply, you’ll need an undergraduate degree relevant to health management and at least two years related work or volunteer experience OR an undergraduate degree, plus an honours or postgraduate degree in a field relevant to health management.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "6.5 overall (min. 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Medicine & Health",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "min_band": 22,
+     "quote": "90 overall (min. 23 in writing, 22 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Medicine & Health",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Architecture",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-architecture",
+   "cricos_code": "061906G",
+   "snapshot_sha256": "a681add4bf494987f00d67c1bdf7686a9f54e0e6bfa5e9cdf393672e4828d02e",
+   "fields": {
+    "academic": {
+     "text": "To be eligible, you must have completed a nationally accredited undergraduate degree in architecture, such as the UNSW Bachelor of Architectural Studies (or equivalent), with a minimum credit average (65 WAM).",
+     "quote": "To be eligible, you must have completed a nationally accredited undergraduate degree in architecture, such as the UNSW Bachelor of Architectural Studies (or equivalent), with a minimum credit average (65 WAM).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "6.5 overall (min 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Arts, Design & Architecture",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "min_band": 22,
+     "quote": "90 overall (min. 23 in writing, 22 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Arts, Design & Architecture",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-engineering",
+   "cricos_code": "067604G",
+   "snapshot_sha256": "dfff04fb9f7d8946042298ad68dcfee7128c477ec16ae269bc80199f24a87f94",
+   "fields": {
+    "academic": {
+     "text": "Admission to this program requires one of the following: 4-year Bachelor of Engineering degree (or equivalent) in a cognate discipline that is not completed in Australia; or 3-year Bachelor of Engineering Science degree in a cognate discipline. A minimum 65% average, or its equivalent, throughout the qualifying bachelor’s degree is mandatory.",
+     "quote": "Admission to this program requires one of the following: 4-year Bachelor of Engineering degree (or equivalent) in a cognate discipline that is not completed in Australia; or 3-year Bachelor of Engineering Science degree in a cognate discipline. A minimum 65% average, or its equivalent, throughout the qualifying bachelor’s degree is mandatory.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "6.5 overall (min 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Engineering",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "min_band": 22,
+     "quote": "90 overall (min. 23 in writing, 22 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Engineering",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Teaching (Secondary)",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-teaching-secondary",
+   "cricos_code": "073442C",
+   "snapshot_sha256": "5ff047629852e5a1439dbe7050b1c4eca4aff04d947e0805d79898247a81d718",
+   "fields": {
+    "academic": {
+     "text": "Undergraduate degree: A recognised three-year Bachelor degree which meets the prerequisites for their selected teaching methods/specialisation/s. Minimum WAM: 60/100 (or equivalent).",
+     "quote": "Undergraduate degree: A recognised three-year Bachelor degree which meets the prerequisites for their selected teaching methods/specialisation/s. Minimum WAM: 60/100 (or equivalent).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "min_band": 7.0,
+     "quote": "Master of Teaching (Primary & Secondary): 7.5 overall (min 7.0 in writing & reading, 8.0 in speaking & listening)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Master of Teaching exception (Arts, Design & Architecture)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 102,
+     "min_band": 24,
+     "quote": "Master of Teaching (Primary & Secondary): 102 overall (min. 27 in writing, 24 in reading, 28 in listening, 26 in speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Master of Teaching exception (Arts, Design & Architecture)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Teaching (Primary)",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-teaching-primary",
+   "cricos_code": "099104G",
+   "snapshot_sha256": "ec4114e6b223f84f88eba1f26c06c924fb3a59c941a5abb78385e12a17067dae",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have completed a recognised undergraduate degree with Weighted Average Mark (WAM) of 60+, or an equivalent qualification.",
+     "quote": "Applicants must have completed a recognised undergraduate degree with Weighted Average Mark (WAM) of 60+, or an equivalent qualification.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "min_band": 7.0,
+     "quote": "Master of Teaching (Primary & Secondary): 7.5 overall (min 7.0 in writing & reading, 8.0 in speaking & listening)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Master of Teaching exception (Arts, Design & Architecture)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 102,
+     "min_band": 24,
+     "quote": "Master of Teaching (Primary & Secondary): 102 overall (min. 27 in writing, 24 in reading, 28 in listening, 26 in speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Master of Teaching exception (Arts, Design & Architecture)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of International Business",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-international-business",
+   "cricos_code": "078546K",
+   "snapshot_sha256": "a227b93f7fe5372616973c08724e4e1bf80d73c5f15e93bf30e89c606d2fe4b3",
+   "fields": {
+    "academic": {
+     "text": "To be eligible for UNSW Business Master’s programs, you’ll need to have a recognised bachelor's degree (or equivalent qualification) with a credit average (65% or higher) as determined by the UNSW Postgraduate Coursework Entry Calculator.",
+     "quote": "To be eligible for UNSW Business Master’s programs, you’ll need to have a recognised bachelor's degree (or equivalent qualification) with a credit average (65% or higher) as determined by the UNSW Postgraduate Coursework Entry Calculator.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Applicants from non-211 universities in China need a minimum overall average of 88 in their current university's grading system (UNSW Business School)",
+     "min_mark_other": 88,
+     "quote": "Applicants from non-211 universities in China wishing to study Postgraduate Coursework in the UNSW Business School must achieve a minimum overall average of 88 in their current university’s grading system.",
+     "source_sha256": "a227b93f7fe5372616973c08724e4e1bf80d73c5f15e93bf30e89c606d2fe4b3",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "7.0 overall (min 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Business",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 94,
+     "min_band": 23,
+     "quote": "94 overall (min. 25 in writing, 23 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Business",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Mathematics",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-mathematics",
+   "cricos_code": "080059G",
+   "snapshot_sha256": "15c5cc18ab54435b42ecb558e43cf9f7d0c4946321626f95214d980f4b6ff7e3",
+   "fields": {
+    "academic": {
+     "text": "A recognised bachelor degree (or equivalent qualification): With a major in a cognate discipline; and An overall average of 65 or higher: As determined by the UNSW Postgraduate Coursework Entry Calculator; or",
+     "quote": "A recognised bachelor degree (or equivalent qualification): With a major in a cognate discipline; and An overall average of 65 or higher: As determined by the UNSW Postgraduate Coursework Entry Calculator; or",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "6.5 overall (min. 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Science",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "min_band": 22,
+     "quote": "90 overall (min. 23 in writing, 22 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Science",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Environmental Management",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-environmental-management",
+   "cricos_code": "080063M",
+   "snapshot_sha256": "6688ebbe6f102c8b61138260a111d96f62e81fde9e6e1dbc7b86b56f8ab7f980",
+   "fields": {
+    "academic": {
+     "text": "Bachelor degree (or equivalent qualification) in any discipline with a record of academic achievement equivalent to a UNSW credit average of 65%",
+     "quote": "Bachelor degree (or equivalent qualification) in any discipline with a record of academic achievement equivalent to a UNSW credit average of 65%",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "6.5 overall (min 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Arts, Design & Architecture",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "min_band": 22,
+     "quote": "90 overall (min. 23 in writing, 22 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Arts, Design & Architecture",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Design",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-design",
+   "cricos_code": "082198B",
+   "snapshot_sha256": "4509ed1319dba8fa44191feefcd1eb543dcb286333da76ebbd4f4a479fe28ac0",
+   "fields": {
+    "academic": {
+     "text": "A recognised bachelor’s or honours degree (or equivalent qualification) in any field with at least a credit average (65%). Applicants who apply from non-cognate will be admitted on successful assessment of a submitted portfolio.",
+     "quote": "A recognised bachelor’s or honours degree (or equivalent qualification) in any field with at least a credit average (65%). Applicants who apply from non-cognate will be admitted on successful assessment of a submitted portfolio.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Curating and Cultural Leadership",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-curating-and-cultural-leadership",
+   "cricos_code": "082201A",
+   "snapshot_sha256": "e28251d0f0e0e933dd9731d68f118f1b17b00436fb9c6e8ad82614199e0399d5",
+   "fields": {
+    "academic": {
+     "text": "If you have completed a Bachelor’s degree in any field (related or unrelated) with a record of academic achievement equivalent to a UNSW credit average (65%), you’re eligible for admission into the full 2 year program. The 2 year program includes a foundational course component in Curating and Cultural Leadership.",
+     "quote": "If you have completed a Bachelor’s degree in any field (related or unrelated) with a record of academic achievement equivalent to a UNSW credit average (65%), you’re eligible for admission into the full 2 year program. The 2 year program includes a foundational course component in Curating and Cultural Leadership.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of International Relations",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-international-relations",
+   "cricos_code": "083232G",
+   "snapshot_sha256": "380d75ab2508abf2789d054e9741257c6c13fc554390daec9051e89de694af21",
+   "fields": {
+    "academic": {
+     "text": "Bachelor degree (or equivalent qualification) in any discipline with a record of academic achievement equivalent to a UNSW credit average of 65%.",
+     "quote": "Bachelor degree (or equivalent qualification) in any discipline with a record of academic achievement equivalent to a UNSW credit average of 65%.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Students from a non-211 university in China need academic achievement equivalent to a UNSW distinction average (75%); no Chinese-scale mark is stated",
+     "quote": "Students from a non-211 university in China are now required to have a record of academic achievement equivalent to a UNSW distinction average (75%).",
+     "source_sha256": "380d75ab2508abf2789d054e9741257c6c13fc554390daec9051e89de694af21",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "6.5 overall (min 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Arts, Design & Architecture",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "min_band": 22,
+     "quote": "90 overall (min. 23 in writing, 22 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Arts, Design & Architecture",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Interpreting",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-interpreting",
+   "cricos_code": "083233G",
+   "snapshot_sha256": "f59c33c9fbe9148ffa34d938986fe7e0c69cebaa90091600fa3712b96e11fe1b",
+   "fields": {
+    "academic": {
+     "text": "Applicants must hold a bachelor degree (or equivalent qualification) with a record of academic achievement equivalent to a UNSW credit average of 65% and an advanced level of bilingual proficiency.",
+     "quote": "Applicants must hold a bachelor degree (or equivalent qualification) with a record of academic achievement equivalent to a UNSW credit average of 65% and an advanced level of bilingual proficiency.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Students from a non-211 university in China need academic achievement equivalent to a UNSW distinction average (75%); no Chinese-scale mark is stated",
+     "quote": "Students from a non-211 university in China are now required to have a record of academic achievement equivalent to a UNSW distinction average (75%).",
+     "source_sha256": "f59c33c9fbe9148ffa34d938986fe7e0c69cebaa90091600fa3712b96e11fe1b",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "6.5 overall (min 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Arts, Design & Architecture",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "min_band": 22,
+     "quote": "90 overall (min. 23 in writing, 22 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Arts, Design & Architecture",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Translation",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-translation",
+   "cricos_code": "083234F",
+   "snapshot_sha256": "787cf2fa88dad42e34700c77e91139a7bff5f7a2362799cd4e18e205520e8d02",
+   "fields": {
+    "academic": {
+     "text": "A bachelor's degree (or equivalent qualification) in any field with a credit average (equivalent to a UNSW WAM of 65) and an advanced level of bilingual proficiency.",
+     "quote": "A bachelor's degree (or equivalent qualification) in any field with a credit average (equivalent to a UNSW WAM of 65) and an advanced level of bilingual proficiency.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Students from a non-211 university in China need academic achievement equivalent to a UNSW distinction average (75%); no Chinese-scale mark is stated",
+     "quote": "Students from a non-211 university in China are now required to have a record of academic achievement equivalent to a UNSW distinction average (75%).",
+     "source_sha256": "787cf2fa88dad42e34700c77e91139a7bff5f7a2362799cd4e18e205520e8d02",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "6.5 overall (min 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Arts, Design & Architecture",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "min_band": 22,
+     "quote": "90 overall (min. 23 in writing, 22 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Arts, Design & Architecture",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Development Studies",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-development-studies",
+   "cricos_code": "083236D",
+   "snapshot_sha256": "54d39b6fc6ce2ffa64021eb1728710ec8914e97f27758e9a5254481f99f6b0e6",
+   "fields": {
+    "academic": {
+     "text": "Bachelor degree (or equivalent qualification) in any discipline with a record of academic achievement equivalent to a UNSW credit average of 65%.",
+     "quote": "Bachelor degree (or equivalent qualification) in any discipline with a record of academic achievement equivalent to a UNSW credit average of 65%.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Students from a non-211 university in China need academic achievement equivalent to a UNSW distinction average (75%); no Chinese-scale mark is stated",
+     "quote": "Students from a non-211 university in China are now required to have a record of academic achievement equivalent to a UNSW distinction average (75%).",
+     "source_sha256": "54d39b6fc6ce2ffa64021eb1728710ec8914e97f27758e9a5254481f99f6b0e6",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "6.5 overall (min 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Arts, Design & Architecture",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "min_band": 22,
+     "quote": "90 overall (min. 23 in writing, 22 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Arts, Design & Architecture",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Policy and Governance",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-public-policy-and-governance",
+   "cricos_code": "083243E",
+   "snapshot_sha256": "e6880aae1f294b5892d0e3ed8f60aeef9013e3b2ffa1996c78930691f8186050",
+   "fields": {
+    "academic": {
+     "text": "Bachelor degree (or equivalent qualification) in any discipline with a record of academic achievement equivalent to a UNSW credit average of 65%.",
+     "quote": "Bachelor degree (or equivalent qualification) in any discipline with a record of academic achievement equivalent to a UNSW credit average of 65%.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Students from a non-211 university in China need academic achievement equivalent to a UNSW distinction average (75%); no Chinese-scale mark is stated",
+     "quote": "Students from a non-211 university in China are now required to have a record of academic achievement equivalent to a UNSW distinction average (75%).",
+     "source_sha256": "e6880aae1f294b5892d0e3ed8f60aeef9013e3b2ffa1996c78930691f8186050",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "6.5 overall (min 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Arts, Design & Architecture",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "min_band": 22,
+     "quote": "90 overall (min. 23 in writing, 22 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Arts, Design & Architecture",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Relations and Advertising",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-public-relations-and-advertising",
+   "cricos_code": "083245C",
+   "snapshot_sha256": "03ede9dff2c09dc82481ac1cb8c88169e3eeb0214c9d2a48d18a5e0e80b785cc",
+   "fields": {
+    "academic": {
+     "text": "Bachelor degree (or equivalent qualification) in any discipline with a record of academic achievement equivalent to a UNSW credit average of 65% or better.",
+     "quote": "Bachelor degree (or equivalent qualification) in any discipline with a record of academic achievement equivalent to a UNSW credit average of 65% or better.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "6.5 overall (min 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Arts, Design & Architecture",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "min_band": 22,
+     "quote": "90 overall (min. 23 in writing, 22 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Arts, Design & Architecture",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Translation and Interpreting",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-translation-and-interpreting",
+   "cricos_code": "083246B",
+   "snapshot_sha256": "119b790b4c77b0d841bf8bcab4de6287720c218ba73672fea65167a50999e4a8",
+   "fields": {
+    "academic": {
+     "text": "Bachelor degree (or equivalent qualification) in any discipline with a record of academic achievement equivalent to a UNSW credit average of 65% and an advanced level of bilingual proficiency.",
+     "quote": "Bachelor degree (or equivalent qualification) in any discipline with a record of academic achievement equivalent to a UNSW credit average of 65% and an advanced level of bilingual proficiency.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Students from a non-211 university in China need academic achievement equivalent to a UNSW distinction average (75%); no Chinese-scale mark is stated",
+     "quote": "Students from a non-211 university in China are now required to have a record of academic achievement equivalent to a UNSW distinction average (75%).",
+     "source_sha256": "119b790b4c77b0d841bf8bcab4de6287720c218ba73672fea65167a50999e4a8",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "6.5 overall (min 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Arts, Design & Architecture",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "min_band": 22,
+     "quote": "90 overall (min. 23 in writing, 22 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Arts, Design & Architecture",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Applied Linguistics",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-applied-linguistics",
+   "cricos_code": "083248M",
+   "snapshot_sha256": "1758dda5791ca2c7985b8153bc7d29b756662335e254f1f8c40cffeeaf09ec85",
+   "fields": {
+    "academic": {
+     "text": "A Bachelor Degree or equivalent with a record of academic achievement equivalent to a UNSW credit average of 65%.",
+     "quote": "A Bachelor Degree or equivalent with a record of academic achievement equivalent to a UNSW credit average of 65%.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Students from a non-211 university in China need academic achievement equivalent to a UNSW distinction average (75%); no Chinese-scale mark is stated",
+     "quote": "Students from a non-211 university in China are now required to have a record of academic achievement equivalent to a UNSW distinction average (75%).",
+     "source_sha256": "1758dda5791ca2c7985b8153bc7d29b756662335e254f1f8c40cffeeaf09ec85",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "6.5 overall (min 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Arts, Design & Architecture",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "min_band": 22,
+     "quote": "90 overall (min. 23 in writing, 22 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Arts, Design & Architecture",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Journalism and Communication",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-journalism-and-communication",
+   "cricos_code": "083249K",
+   "snapshot_sha256": "b18f25fd115d5b1fc536bad08a27f0feef314fd926705a223398822f85b0363b",
+   "fields": {
+    "academic": {
+     "text": "Bachelor degree (or equivalent qualification) in any discipline with a record of academic achievement equivalent to a UNSW credit average of 65%.",
+     "quote": "Bachelor degree (or equivalent qualification) in any discipline with a record of academic achievement equivalent to a UNSW credit average of 65%.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "6.5 overall (min 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Arts, Design & Architecture",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "min_band": 22,
+     "quote": "90 overall (min. 23 in writing, 22 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Arts, Design & Architecture",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Food Science",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-food-science",
+   "cricos_code": "084283M",
+   "snapshot_sha256": "09873fee4d59a31f5ea3c5ae8f259f0975d41c78a9a7c3b0b12b5de4a3f59f4e",
+   "fields": {
+    "academic": {
+     "text": "A Bachelor Degree or AQF Level 7 equivalent in a cognate discipline with a minimum 65% average.",
+     "quote": "A Bachelor Degree or AQF Level 7 equivalent in a cognate discipline with a minimum 65% average.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "6.5 overall (min 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Engineering",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "min_band": 22,
+     "quote": "90 overall (min. 23 in writing, 22 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Engineering",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Mining Engineering",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-mining-engineering",
+   "cricos_code": "084284K",
+   "snapshot_sha256": "dfdff25515800dcb11675e68e11fd62c086f87ba5e396c187d4924d68c95bb8e",
+   "fields": {
+    "academic": {
+     "text": "Entry requires a four-year (Honours) degree in Mining Engineering or a cognate discipline from a recognised institution, or satisfying the requirements of the UNSW Graduate Diploma in Mining Engineering (MINE5040FS and from 2015: MINE5335) with a minimum 70% average and no course fails.",
+     "quote": "Entry requires a four-year (Honours) degree in Mining Engineering or a cognate discipline from a recognised institution, or satisfying the requirements of the UNSW Graduate Diploma in Mining Engineering (MINE5040FS and from 2015: MINE5335) with a minimum 70% average and no course fails.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "6.5 overall (min 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Engineering",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "min_band": 22,
+     "quote": "90 overall (min. 23 in writing, 22 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Engineering",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Marine Science and Management",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-marine-science-and-management",
+   "cricos_code": "085467F",
+   "snapshot_sha256": "070c487b24b7441e8b6c374dd7ee339c78f627630e50d921767f23ebc56b4218",
+   "fields": {
+    "academic": {
+     "text": "Bachelor of Science degree (in any science discipline) with a weighted average mark (WAM) of 65 or greater",
+     "quote": "Bachelor of Science degree (in any science discipline) with a weighted average mark (WAM) of 65 or greater",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "6.5 overall (min. 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Science",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "min_band": 22,
+     "quote": "90 overall (min. 23 in writing, 22 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Science",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Construction Project Management",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-construction-project-management",
+   "cricos_code": "085910C",
+   "snapshot_sha256": "c8cacb595e6de46e902b9e1f13745e8995b8fda1c70afb915d4fd876cb436703",
+   "fields": {
+    "academic": {
+     "text": "A bachelor degree with a credit average in a related field*, OR",
+     "quote": "A bachelor degree with a credit average in a related field*, OR",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "6.5 overall (min 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Arts, Design & Architecture",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "min_band": 22,
+     "quote": "90 overall (min. 23 in writing, 22 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Arts, Design & Architecture",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Materials Technology",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-materials-technology",
+   "cricos_code": "085912A",
+   "snapshot_sha256": "671f71195a0ab9b5cf04e216db63914371039bb2d0877f5988967ff03758bab9",
+   "fields": {
+    "academic": {
+     "text": "a four-year bachelor’s degree with a minimum weighted average mark (WAM) of 65 in a cognate science or engineering discipline (e.g., materials science and engineering, chemistry, chemical engineering, mineral engineering and mechanical engineering)",
+     "quote": "a four-year bachelor’s degree with a minimum weighted average mark (WAM) of 65 in a cognate science or engineering discipline (e.g., materials science and engineering, chemistry, chemical engineering, mineral engineering and mechanical engineering)",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "6.5 overall (min. 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Science",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "min_band": 22,
+     "quote": "90 overall (min. 23 in writing, 22 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Science",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of City Planning",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-city-planning",
+   "cricos_code": "088355A",
+   "snapshot_sha256": "29594bda35de0b49a83cba189d8e4b1c9d1dda726265bc43d2c2bdfb596f2a65",
+   "fields": {
+    "academic": {
+     "text": "To gain entry into the Master of City Planning, you’ll need a bachelor’s degree with a credit average or above (Weighted Average Mark 65+).",
+     "quote": "To gain entry into the Master of City Planning, you’ll need a bachelor’s degree with a credit average or above (Weighted Average Mark 65+).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "6.5 overall (min 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Arts, Design & Architecture",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "min_band": 22,
+     "quote": "90 overall (min. 23 in writing, 22 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Arts, Design & Architecture",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Global Health",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-global-health",
+   "cricos_code": "068957G",
+   "snapshot_sha256": "27f590fb6f0bbe423a36665c54033ef819bac311222a308e995d8a52bfa83804",
+   "fields": {
+    "academic": {
+     "text": "a) A three year undergraduate degree in any field of study, and b) Two years of full-time professional or volunteer experience in a relevant field*.",
+     "quote": "a) A three year undergraduate degree in any field of study, and b) Two years of full-time professional or volunteer experience in a relevant field*.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "6.5 overall (min. 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Medicine & Health",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "min_band": 22,
+     "quote": "90 overall (min. 23 in writing, 22 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Medicine & Health",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Landscape Architecture",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-landscape-architecture",
+   "cricos_code": "094952G",
+   "snapshot_sha256": "d74413352636d4b09deab4212dcb4493d630631f10440a92aafa06104464e5d3",
+   "fields": {
+    "academic": {
+     "text": "Have achieved a credit average (Weighted Average Mark 65+) in your bachelor’s degree",
+     "quote": "Have achieved a credit average (Weighted Average Mark 65+) in your bachelor’s degree",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "6.5 overall (min 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Arts, Design & Architecture",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "min_band": 22,
+     "quote": "90 overall (min. 23 in writing, 22 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Arts, Design & Architecture",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Simulation and Immersive Technologies",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-simulation-and-immersive-technologies",
+   "cricos_code": "099986A",
+   "snapshot_sha256": "b2f10feb2fd53ccb89424bb28480085c06b99e80aa95a04023ca3da472f18e81",
+   "fields": {
+    "academic": {
+     "text": "Entry into the Master of Simulation and Immersive Technologies requires a recognised bachelor's degree with an equivalent of a UNSW 65 weighted average mark (WAM). Entry isn’t dependent upon a degree related to the creative disciplines, given that the programs aim to enable practitioners from a wide range of industry sectors to integrate visualisation, simulation and immersive environments into their work contexts.",
+     "quote": "Entry into the Master of Simulation and Immersive Technologies requires a recognised bachelor's degree with an equivalent of a UNSW 65 weighted average mark (WAM). Entry isn’t dependent upon a degree related to the creative disciplines, given that the programs aim to enable practitioners from a wide range of industry sectors to integrate visualisation, simulation and immersive environments into their work contexts.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Applied Economics",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-applied-economics",
+   "cricos_code": "102633G",
+   "snapshot_sha256": "6c80893e62a95714009a4ceee3a62f1308166489b249ea656dad78e219a3af8a",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have graduated from a recognised bachelor's degree from an Australian university or equivalent overseas institution with a minimum overall grade of 65%, as determined by UNSW Postgraduate Coursework Entry Calculator.",
+     "quote": "Applicants must have graduated from a recognised bachelor's degree from an Australian university or equivalent overseas institution with a minimum overall grade of 65%, as determined by UNSW Postgraduate Coursework Entry Calculator.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Applicants from non-211 universities in China need a minimum overall average of 88 in their current university's grading system (UNSW Business School)",
+     "min_mark_other": 88,
+     "quote": "Applicants from non-211 universities in China wishing to study Postgraduate Coursework in the UNSW Business School must achieve a minimum overall average of 88 in their current university’s grading system.",
+     "source_sha256": "6c80893e62a95714009a4ceee3a62f1308166489b249ea656dad78e219a3af8a",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "7.0 overall (min 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Business",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 94,
+     "min_band": 23,
+     "quote": "94 overall (min. 25 in writing, 23 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Business",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Physical Oceanography",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-physical-oceanography",
+   "cricos_code": "106823B",
+   "snapshot_sha256": "8c89211342e77a27b0523543e7d761cf017d3561399019da9597b9a4d79fee9d",
+   "fields": {
+    "academic": {
+     "text": "The minimum entry requirement is a Bachelor (Pass) degree with a minimum weighted average mark of 70% or equivalent in a cognate discipline (oceanography, meteorology, physics, science, mathematics, statistics, engineering etc.) from a recognised tertiary institution.",
+     "quote": "The minimum entry requirement is a Bachelor (Pass) degree with a minimum weighted average mark of 70% or equivalent in a cognate discipline (oceanography, meteorology, physics, science, mathematics, statistics, engineering etc.) from a recognised tertiary institution.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "6.5 overall (min. 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Science",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "min_band": 22,
+     "quote": "90 overall (min. 23 in writing, 22 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Science",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Animation and Visual Effects",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-animation-and-visual-effects",
+   "cricos_code": "113670M",
+   "snapshot_sha256": "b3325f3320e0d763cf4dc025119ec52e4d871515d8b04f7257d4c3df3890af33",
+   "fields": {
+    "academic": {
+     "text": "A bachelor's degree (AQF level 7) in any field with a weighted average mark (WAM) of at least 65 or equivalent. This provides admission into the full two-year program, requiring completion of 96 UOC (2 years full-time equivalent).",
+     "quote": "A bachelor's degree (AQF level 7) in any field with a weighted average mark (WAM) of at least 65 or equivalent. This provides admission into the full two-year program, requiring completion of 96 UOC (2 years full-time equivalent).",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Clinical Neuropsychology",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-clinical-neuropsychology",
+   "cricos_code": "114034J",
+   "snapshot_sha256": "2914e6f0ff2148b59427bdc6957e5ab776e0de26e25cf967f2822ebc0721c746",
+   "fields": {
+    "academic": {
+     "text": "To be eligible, applicants must have successfully completed a 6-year APAC accredited sequence of study in psychology, including a major research thesis. All degrees must be submitted as part of your direct application to confirm your study sequence. All applicants must currently be registered as a psychologist with the Psychology Board of Australia with Area of Practice Endorsement in Clinical Psychology, Forensic Psychology, Educational and Developmental Psychology or equivalent.",
+     "quote": "To be eligible, applicants must have successfully completed a 6-year APAC accredited sequence of study in psychology, including a major research thesis. All degrees must be submitted as part of your direct application to confirm your study sequence. All applicants must currently be registered as a psychologist with the Psychology Board of Australia with Area of Practice Endorsement in Clinical Psychology, Forensic Psychology, Educational and Developmental Psychology or equivalent.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.5,
+     "quote": "Master of Clinical Neuropsychology: 7.0 overall (min 7.0 in listening, speaking & reading, 6.5 in writing)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Master of Clinical Neuropsychology exception",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 91,
+     "min_band": 22,
+     "quote": "Master of Clinical Neuropsychology: 91 overall (min. 23 in writing, 22 in reading and listening, 24 in speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Master of Clinical Neuropsychology exception",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts and Social Sciences (Combined)",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-arts-social-sciences-combined",
+   "cricos_code": "065349M",
+   "snapshot_sha256": "8ad70e7f9d77cbb98cbf09eb57bfb38fdd8c1d40f099c934532fccdfb973d85f",
+   "fields": {
+    "academic": {
+     "text": "A bachelor's degree (or equivalent qualification) in a relevant discipline** with a record of academic achievement equivalent to a UNSW credit average of 65%.",
+     "quote": "A bachelor's degree (or equivalent qualification) in a relevant discipline** with a record of academic achievement equivalent to a UNSW credit average of 65%.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Students from a non-211 university in China need academic achievement equivalent to a UNSW distinction average (75%); no Chinese-scale mark is stated",
+     "quote": "Students from a non-211 university in China are now required to have a record of academic achievement equivalent to a UNSW distinction average (75%).",
+     "source_sha256": "8ad70e7f9d77cbb98cbf09eb57bfb38fdd8c1d40f099c934532fccdfb973d85f",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "6.5 overall (min 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Arts, Design & Architecture",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "min_band": 22,
+     "quote": "90 overall (min. 23 in writing, 22 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Arts, Design & Architecture",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Administration (AGSM)",
+   "url": "https://www.unsw.edu.au/study/postgraduate/agsm-mba-master-of-business-administration",
+   "cricos_code": "106822C",
+   "snapshot_sha256": "3b08de84f1138f972d862b734aa8f87c4a7189f49c7ce1c980756596a1cd90a6",
+   "fields": {
+    "academic": {
+     "text": "An undergraduate degree (or equivalent) and at least 2 years of full-time professional work experience are required",
+     "quote": "An undergraduate degree (or equivalent) and at least 2 years of full-time professional work experience are required",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Commerce",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-commerce",
+   "cricos_code": "000933K",
+   "snapshot_sha256": "e5f65679040ac051bfebca3b1a9ab2da200831aafdd01e73f6dbd9db5df36529",
+   "fields": {
+    "academic": {
+     "text": "The degree’s admission requirements are based on you having a recognised undergraduate degree (or equivalent qualification) with a credit average (WAM 65% or higher), as determined by the UNSW Business School. You may be considered eligible if your undergraduate degree WAM is between 60-64% and your score for the GMAT is at least 600 for the GMAT Exam or at least 565 for the GMAT Focus Edition.",
+     "quote": "The degree’s admission requirements are based on you having a recognised undergraduate degree (or equivalent qualification) with a credit average (WAM 65% or higher), as determined by the UNSW Business School. You may be considered eligible if your undergraduate degree WAM is between 60-64% and your score for the GMAT is at least 600 for the GMAT Exam or at least 565 for the GMAT Focus Edition.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Applicants from non-211 universities in China need a minimum overall average of 88 in their current university's grading system (UNSW Business School)",
+     "min_mark_other": 88,
+     "quote": "Applicants from non-211 universities in China wishing to study Postgraduate Coursework in the UNSW Business School must achieve a minimum overall average of 88 in their current university’s grading system.",
+     "source_sha256": "e5f65679040ac051bfebca3b1a9ab2da200831aafdd01e73f6dbd9db5df36529",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "7.0 overall (min 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Business",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 94,
+     "min_band": 23,
+     "quote": "94 overall (min. 25 in writing, 23 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Business",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Finance",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-finance",
+   "cricos_code": "116979K",
+   "snapshot_sha256": "010e5475ae3d0b3633812e787b7c21ec5b80ccbf00c74177d41820a582c3282a",
+   "fields": {
+    "academic": {
+     "text": "A bachelor’s degree in any field with a credit average (65% or higher) as determined by the UNSW Postgraduate Coursework Entry Calculator.",
+     "quote": "A bachelor’s degree in any field with a credit average (65% or higher) as determined by the UNSW Postgraduate Coursework Entry Calculator.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Applicants from non-211 universities in China need a minimum overall average of 88 in their current university's grading system (UNSW Business School)",
+     "min_mark_other": 88,
+     "quote": "Applicants from non-211 universities in China wishing to study Postgraduate Coursework in the UNSW Business School, must achieve a minimum overall average of 88 in their current university’s grading system.",
+     "source_sha256": "010e5475ae3d0b3633812e787b7c21ec5b80ccbf00c74177d41820a582c3282a",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "7.0 overall (min 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Business",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 94,
+     "min_band": 23,
+     "quote": "94 overall (min. 25 in writing, 23 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Business",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Laws",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-laws",
+   "cricos_code": "000733G",
+   "snapshot_sha256": "166fad8e7166da45452697450b816080798f56cbcfb26f79acb430d7eef48a50",
+   "fields": {
+    "academic": {
+     "text": "To be eligible for the Master of Laws (LLM) by Coursework, you must have achieved a credit average (WAM of 65% or higher, as determined by UNSW Postgraduate Admissions) in one of the following qualifications:",
+     "quote": "To be eligible for the Master of Laws (LLM) by Coursework, you must have achieved a credit average (WAM of 65% or higher, as determined by UNSW Postgraduate Admissions) in one of the following qualifications:",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "7.0 overall (min 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Law & Justice",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 94,
+     "min_band": 23,
+     "quote": "94 overall (min. 25 in writing, 23 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Law & Justice",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering Science",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-engineering-science",
+   "cricos_code": "084282A",
+   "snapshot_sha256": "cf78db4f0b4dce842403d94eff3ede8a90cbb5bb0c444871b5238d38491c5566",
+   "fields": {
+    "academic": {
+     "text": "A minimum 65% average, or its equivalent, throughout the qualifying bachelor’s degree is mandatory.*",
+     "quote": "A minimum 65% average, or its equivalent, throughout the qualifying bachelor’s degree is mandatory.*",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Qualifications from non-211 Chinese universities require a 70% average",
+     "min_mark_other": 70,
+     "quote": "Qualifications from non-211 Chinese Universities will require a 70% average",
+     "source_sha256": "cf78db4f0b4dce842403d94eff3ede8a90cbb5bb0c444871b5238d38491c5566",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "6.5 overall (min 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Engineering",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "min_band": 22,
+     "quote": "90 overall (min. 23 in writing, 22 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Engineering",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Health",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-public-health",
+   "cricos_code": "008969M",
+   "snapshot_sha256": "3c7994eab74b49bf75962ff15d1b68109282ee8bee2a5bf69f21ab42478ef50f",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have both: a) A three year undergraduate degree in any field of study, and b) Two years of full-time professional or volunteer experience in a relevant field*.",
+     "quote": "Applicants must have both: a) A three year undergraduate degree in any field of study, and b) Two years of full-time professional or volunteer experience in a relevant field*.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "6.5 overall (min. 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Medicine & Health",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "min_band": 22,
+     "quote": "90 overall (min. 23 in writing, 22 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Medicine & Health",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Information Technology",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-information-technology",
+   "cricos_code": "061294J",
+   "snapshot_sha256": "e360228cee68169e2f115135f52a06cd76a7ddd5ac9696694cdc415f075de3f9",
+   "fields": {
+    "academic": {
+     "text": "A bachelor degree (AQF Level 7 equivalent) in a cognate discipline with a minimum weighted average mark of 65%*.",
+     "quote": "A bachelor degree (AQF Level 7 equivalent) in a cognate discipline with a minimum weighted average mark of 65%*.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Qualifications from non-211 Chinese universities require a 70% average",
+     "min_mark_other": 70,
+     "quote": "Qualifications from non-211 Chinese Universities will require a 70% average",
+     "source_sha256": "e360228cee68169e2f115135f52a06cd76a7ddd5ac9696694cdc415f075de3f9",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "6.5 overall (min 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Engineering",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "min_band": 22,
+     "quote": "90 overall (min. 23 in writing, 22 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Engineering",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Property Development",
+   "url": "https://www.unsw.edu.au/study/postgraduate/master-of-property-and-development",
+   "cricos_code": "055094A",
+   "snapshot_sha256": "7ad1ae1a9e385c74868c447c5b65112d12c4a6fa0742b600742ed5e83494d48e",
+   "fields": {
+    "academic": {
+     "text": "A bachelor degree with a credit average in a related field*, OR",
+     "quote": "A bachelor degree with a credit average in a related field*, OR",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "6.5 overall (min 6.0 in each subtest)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Arts, Design & Architecture",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "min_band": 22,
+     "quote": "90 overall (min. 23 in writing, 22 in reading, listening and speaking)",
+     "source_sha256": "070367df00e7a1b2ab1209bb118570626de6a49e1a503a1b7853e1df04a55b2a",
+     "text": "UNSW English language requirements page, postgraduate coursework column, Arts, Design & Architecture",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 54,
+  "机器核对": 54,
+  "待人工": 0
+ }
+}
