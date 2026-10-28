@@ -42,7 +42,9 @@ def test_lists_every_seeded_program_with_its_source(require_db, db_session):
     seeded program" from being satisfied by repetition.
     """
     seed_programs(db_session)
-    response = TestClient(app).get("/api/programs")
+    # By id: the catalogue holds thousands of rows and pages them, so a bare listing need not reach
+    # the seeded ones.
+    response = TestClient(app).get("/api/programs", params={"ids": ",".join(PROGRAM_IDS)})
     assert response.status_code == 200
 
     programs = response.json()

@@ -28,6 +28,7 @@ from app.seed import PROGRAMS, UNIVERSITIES, seed_programs
 
 PROGRAM_IDS = [row["id"] for row in PROGRAMS]
 UNIVERSITY_IDS = [row["id"] for row in UNIVERSITIES]
+SOURCE_URLS = sorted({row["source_url"] for row in PROGRAMS})
 
 # The column names a displaced portfolio row is snapshotted by, taken from the table rather than
 # written out, so a column added later is carried by the restore without anyone remembering to add it
@@ -66,13 +67,16 @@ def clear_catalogue(session) -> list[dict]:
         session.delete(row)
     session.flush()
 
-    source_ids = select(Source.id).where(Source.publisher.in_(UNIVERSITY_IDS)).scalar_subquery()
-    session.execute(delete(SourceVersion).where(SourceVersion.source_id.in_(source_ids)))
     # Programs reference their source, so they have to go before it.
     session.execute(delete(ProgramPrerequisite).where(ProgramPrerequisite.program_id.in_(PROGRAM_IDS)))
     session.execute(delete(Program).where(Program.id.in_(PROGRAM_IDS)))
+    # Only the seed's own sources, and only once no other program cites them: the CRICOS catalogue and
+    # the requirement importer share these universities and may cite the same pages. The universities
+    # stay for the same reason; `seed_programs` only inserts the ones that are missing.
+    still_cited = select(Program.source_id).where(Program.source_id.is_not(None))
+    source_ids = select(Source.id).where(Source.url.in_(SOURCE_URLS), Source.id.not_in(still_cited)).scalar_subquery()
+    session.execute(delete(SourceVersion).where(SourceVersion.source_id.in_(source_ids)))
     session.execute(delete(Source).where(Source.id.in_(source_ids)))
-    session.execute(delete(University).where(University.id.in_(UNIVERSITY_IDS)))
     session.commit()
     return displaced
 
@@ -219,7 +223,12 @@ def test_seed_does_not_duplicate_sources_or_prerequisites(db_session, require_db
 
 
 def test_seeded_programs_are_not_marked_verified(db_session, require_db):
-    """Every seeded program is placeholder data and must say so."""
+    """Every seeded program is placeholder data and must say so.
+
+    Cleared first: on a database the requirement importer has filled, the same ids legitimately carry
+    `机器核对`, and the seed (which skips existing rows) is not what wrote it.
+    """
+    applications_displaced_mid_run.extend(clear_catalogue(db_session))
     seed_programs(db_session)
     statuses = db_session.execute(
         select(func.distinct(Program.data_status)).where(Program.id.in_(PROGRAM_IDS))
@@ -228,12 +237,11 @@ def test_seeded_programs_are_not_marked_verified(db_session, require_db):
 
 
 def test_seeded_sources_have_no_verification_date(db_session, require_db):
+    applications_displaced_mid_run.extend(clear_catalogue(db_session))
     seed_programs(db_session)
-    rows = db_session.execute(
-        select(Source).where(Source.publisher.in_(UNIVERSITY_IDS))
-    ).scalars().all()
+    rows = db_session.execute(select(Source).where(Source.url.in_(SOURCE_URLS))).scalars().all()
     assert rows, "the seed must create sources"
-    assert len(rows) == len(PROGRAMS), "one source per program"
+    assert len(rows) == len(SOURCE_URLS), "one source per seeded page"
     assert all(row.verified_at is None for row in rows)
     assert all(row.status == SourceStatus.UNVERIFIED for row in rows)
 
