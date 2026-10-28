@@ -1,0 +1,161 @@
+"""Check a school's requirement file against the snapshots it cites.
+
+    python -m app.collect.verify api/data/requirements/<school-key>.json [--write]
+
+A field passes when (1) its `quote` appears verbatim, after `normalize`, in the text of the snapshot
+it cites, and (2) every number the field states (a mark, an IELTS score, a deadline's day) appears
+inside that quote. A program is `机器核对` when it reports at least one field and every reported
+field passes; otherwise it is `待人工` and goes to the human queue. With `--write` the result is
+stored back into the file; without it the file is only checked.
+"""
+
+import argparse
+import json
+import re
+import sys
+from datetime import date
+from pathlib import Path
+
+from app.collect.snapshot import SNAPSHOT_ROOT
+from app.collect.text import normalize
+
+MACHINE_CHECKED = "机器核对"
+NEEDS_HUMAN = "待人工"
+SHA = re.compile(r"^[0-9a-f]{64}$")
+FIELD_NAMES = ("academic", "china_requirement", "ielts", "toefl", "prerequisites", "deadlines")
+LIST_FIELDS = ("prerequisites", "deadlines")
+NUMERIC_KEYS = {
+    "china_requirement": ("min_mark_211", "min_mark_other"),
+    "ielts": ("overall", "min_band"),
+    "toefl": ("overall", "min_band"),
+}
+
+
+class SchemaError(ValueError):
+    pass
+
+
+def _number_forms(value: float) -> set[str]:
+    """The ways a stated number can be written: 6.5, 6.50; 65, 65.0, 65%."""
+    forms = {f"{value:g}"}
+    if float(value).is_integer():
+        forms |= {str(int(value)), f"{int(value)}.0"}
+    else:
+        forms.add(f"{value:.2f}")
+    return forms
+
+
+def _contains_number(quote: str, value: float) -> bool:
+    return any(re.search(rf"(?<![\d.]){re.escape(form)}(?![\d])", quote) for form in _number_forms(value))
+
+
+def validate(data: dict) -> None:
+    """Raise SchemaError when the file is not in the agreed shape."""
+    for key in ("school_key", "school_name_en", "programs"):
+        if key not in data:
+            raise SchemaError(f"missing top-level key {key!r}")
+    if not isinstance(data["programs"], list):
+        raise SchemaError("programs must be a list")
+    for i, program in enumerate(data["programs"]):
+        where = f"programs[{i}]"
+        for key in ("name", "url", "snapshot_sha256"):
+            if not program.get(key):
+                raise SchemaError(f"{where} missing {key!r}")
+        # A page that states no requirement is still a program: it reports nothing and is queued.
+        if not isinstance(program.get("fields"), dict):
+            raise SchemaError(f"{where}.fields must be an object")
+        if not SHA.match(program["snapshot_sha256"]):
+            raise SchemaError(f"{where}.snapshot_sha256 is not a sha256")
+        fields = program["fields"]
+        unknown = set(fields) - set(FIELD_NAMES)
+        if unknown:
+            raise SchemaError(f"{where} has unknown fields {sorted(unknown)}")
+        for name, field in fields.items():
+            items = field if name in LIST_FIELDS else [field]
+            if name in LIST_FIELDS and not isinstance(field, list):
+                raise SchemaError(f"{where}.{name} must be a list")
+            for item in items:
+                if not isinstance(item, dict) or not str(item.get("quote", "")).strip():
+                    raise SchemaError(f"{where}.{name} needs a non-empty quote")
+                if "source_sha256" in item and not SHA.match(item["source_sha256"]):
+                    raise SchemaError(f"{where}.{name}.source_sha256 is not a sha256")
+                if name == "deadlines":
+                    try:
+                        date.fromisoformat(item["date"])
+                    except (KeyError, TypeError, ValueError) as error:
+                        raise SchemaError(f"{where}.deadlines needs an ISO date") from error
+                for key in NUMERIC_KEYS.get(name, ()):
+                    if item.get(key) is not None and not isinstance(item[key], (int, float)):
+                        raise SchemaError(f"{where}.{name}.{key} must be a number")
+
+
+def check_item(name: str, item: dict, text: str) -> list[str]:
+    """The reasons this item fails; empty when it passes."""
+    problems = []
+    quote = item["quote"]
+    if normalize(quote) not in text:
+        problems.append("quote not found in snapshot")
+    for key in NUMERIC_KEYS.get(name, ()):
+        value = item.get(key)
+        if value is not None and not _contains_number(quote, value):
+            problems.append(f"{key}={value:g} not in quote")
+    if name == "deadlines":
+        day = date.fromisoformat(item["date"]).day
+        if not re.search(rf"(?<!\d)0?{day}(?!\d)", quote):
+            problems.append(f"deadline day {day} not in quote")
+    return problems
+
+
+def verify(data: dict, root: Path = SNAPSHOT_ROOT) -> dict:
+    """Return a copy of `data` with each item's `check` and each program's `status` filled in."""
+    validate(data)
+    school = data["school_key"]
+    cache: dict[str, str | None] = {}
+
+    def snapshot_text(sha: str) -> str | None:
+        if sha not in cache:
+            path = root / school / f"{sha}.txt"
+            cache[sha] = normalize(path.read_text(encoding="utf-8")) if path.exists() else None
+        return cache[sha]
+
+    summary = {"programs": 0, MACHINE_CHECKED: 0, NEEDS_HUMAN: 0}
+    for program in data["programs"]:
+        all_ok, reported = True, 0
+        for name, field in program["fields"].items():
+            for item in field if name in LIST_FIELDS else [field]:
+                reported += 1
+                text = snapshot_text(item.get("source_sha256") or program["snapshot_sha256"])
+                problems = ["snapshot missing"] if text is None else check_item(name, item, text)
+                item["check"] = "ok" if not problems else "; ".join(problems)
+                all_ok = all_ok and not problems
+        program["status"] = MACHINE_CHECKED if reported and all_ok else NEEDS_HUMAN
+        summary["programs"] += 1
+        summary[program["status"]] += 1
+    data["verification"] = summary
+    return data
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
+    parser.add_argument("path", type=Path)
+    parser.add_argument("--write", action="store_true")
+    args = parser.parse_args(argv)
+    data = json.loads(args.path.read_text(encoding="utf-8"))
+    try:
+        result = verify(data)
+    except SchemaError as error:
+        print(json.dumps({"schema_error": str(error)}, ensure_ascii=False))
+        return 3
+    if args.write:
+        args.path.write_text(json.dumps(result, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    failing = [
+        {"program": p["name"], "problems": [f"{n}: {i['check']}" for n, f in p["fields"].items()
+                                            for i in (f if n in LIST_FIELDS else [f]) if i["check"] != "ok"]}
+        for p in result["programs"] if p["status"] != MACHINE_CHECKED
+    ]
+    print(json.dumps({"summary": result["verification"], "failing": failing[:20]}, ensure_ascii=False, indent=1))
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
