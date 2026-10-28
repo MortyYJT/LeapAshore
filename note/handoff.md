@@ -22,12 +22,13 @@
 
 ## 采集进度（每校一个 json，在 `api/data/requirements/`；表由脚本从文件生成）
 
-共 48 所、2565 个项目、2556 个机器核对。各校的特殊情况写在各自 json 的 `notes` 和提交说明里。
+共 51 所、2692 个项目、2683 个机器核对。各校的特殊情况写在各自 json 的 `notes` 和提交说明里。
 
 | school_key | 项目 | 机器核对 | 状态 |
 | --- | --- | --- | --- |
 | adelaide-university | 60 | 60 | partial |
 | australian-national-university | 53 | 53 | partial |
+| california-institute-of-technology | 3 | 3 | complete |
 | cardiff-university | 0 | 0 | blocked |
 | chinese-university-of-hong-kong | 61 | 61 | partial |
 | city-university-of-hong-kong | 66 | 66 | complete |
@@ -36,6 +37,7 @@
 | hong-kong-polytechnic-university | 113 | 113 | complete |
 | hong-kong-university-of-science-and-technology | 54 | 54 | complete |
 | imperial-college-london | 165 | 165 | complete |
+| king-s-college-london | 61 | 61 | partial |
 | lancaster-university | 62 | 62 | complete |
 | london-school-of-economics-and-political-science | 64 | 64 | partial |
 | macquarie-university | 0 | 0 | blocked |
@@ -65,6 +67,7 @@
 | university-of-nottingham | 64 | 64 | partial |
 | university-of-oxford | 9 | 6 | blocked |
 | university-of-queensland | 60 | 60 | partial |
+| university-of-reading | 63 | 63 | partial |
 | university-of-sheffield | 67 | 67 | partial |
 | university-of-southampton | 77 | 77 | partial |
 | university-of-st-andrews | 51 | 51 | partial |
@@ -77,7 +80,7 @@
 
 被拦截（按规则不绕过）：Monash、Melbourne、Macquarie、NUS 大部分、Oxford 主站、UCL（50 个后 403）、Bristol、Durham、Bath、Cardiff、York（16 个后 429）、QUB（robots.txt 403）、Stanford 计算机系（robots.txt 禁止）。
 需人工确认：UNSW 英语分数的学院对应、悉尼「Not available to student visa holders」、剑桥 "High II.i"↔"High 2:1"、帝国理工 46 个 MRes 是否算授课型、RMIT 7 条按名称匹配 CRICOS、St Andrews 英语分数取自页面 data 属性、Exeter 中国要求表标注的是 2026 入学、Stanford 等校 TOEFL 同时给 0-120 和新 1-6 分制（界面怎么显示要定）。
-进行中：KCL、Reading、Harvard、Caltech、Penn、Cornell、Yale；之后是美国其余学校（JHU、Berkeley、Chicago、Princeton、Columbia……）、加拿大 9、新西兰 2、日本 8、韩国 7、马来西亚 5、欧洲 52、其他 21，再给 partial 的学校补跑。
+进行中：Harvard、Penn、Cornell、Yale、Johns Hopkins、Berkeley；之后是美国其余学校（Chicago、Princeton、Columbia……）、加拿大 9、新西兰 2、日本 8、韩国 7、马来西亚 5、欧洲 52、其他 21，再给 partial 的学校补跑。
 
 ## 校徽
 
@@ -100,7 +103,9 @@
 
 ## 验证状态
 
-- 后端：266 条通过；前端 205 条通过（`make test` 全过）
+- 后端：269 条通过（含重定向 robots 检查的 2 条新测试）；前端 205 条通过
+- 快照工具原先只对请求的 URL 查 robots.txt、不查重定向落点（Caltech 子代理发现），已修；4 个不该存的本地快照已删，没有数据引用它们
+- 种子测试原先依赖开发库只有种子数据，导入采集数据后 5 条失败；已改成不依赖。注意：跑 `test_seed.py` 会把 5 个占位项目重置成种子版本，要看导入效果就重跑 importer
 - `make verify`：构建和测试通过；走查在「为你筛出的申请组合」一步失败，这是 PR #26 已记录的旧问题（新入口流程后走查需重写），不是今晚的改动造成的
 - 本机 Turbopack dev server 报 "Next.js package not found" 后会无限刷新，走查改用生产构建（`BASE_URL=http://localhost:3100`）
 - 一个全新上下文的审查子代理审过后端改动，1 个阻断 + 6 个应修问题已全部修复
