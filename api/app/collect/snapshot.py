@@ -127,11 +127,26 @@ def allowed_by_robots(url: str, root: Path = SNAPSHOT_ROOT) -> bool:
     return parser.can_fetch(USER_AGENT, url)
 
 
-def fetch_html(url: str) -> tuple[int, str, str, str]:
+class CheckedRedirects(urllib.request.HTTPRedirectHandler):
+    """Follow a redirect only where a fresh request would be allowed (robots.txt, refused hosts)."""
+
+    def __init__(self, refusal) -> None:
+        super().__init__()
+        self.refusal = refusal  # url -> reason it may not be fetched, or None
+
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        reason = self.refusal(newurl)
+        if reason:
+            raise Blocked(f"redirected to {newurl}: {reason}")
+        return super().redirect_request(req, fp, code, msg, headers, newurl)
+
+
+def fetch_html(url: str, refusal=lambda url: None) -> tuple[int, str, str, str]:
     """(status, final_url, content_type, html) over plain HTTP."""
     request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept": "text/html,*/*"})
+    opener = urllib.request.build_opener(CheckedRedirects(refusal))
     try:
-        with urllib.request.urlopen(request, timeout=TIMEOUT) as response:
+        with opener.open(request, timeout=TIMEOUT) as response:
             raw = response.read()
             charset = response.headers.get_content_charset() or "utf-8"
             return response.status, response.geturl(), response.headers.get("Content-Type", ""), raw.decode(charset, "replace")
@@ -182,19 +197,43 @@ def save_snapshot(school: str, requested_url: str, final_url: str, status: int, 
     return meta
 
 
+def refusal(url: str, root: Path = SNAPSHOT_ROOT) -> str | None:
+    """Why `url` may not be fetched: its host refused us before, or robots.txt disallows it."""
+    earlier = blocked_host(urlsplit(url).netloc, root)
+    if earlier:
+        return f"{urlsplit(url).netloc} refused an earlier request ({earlier}); not asking again"
+    if not allowed_by_robots(url, root):
+        return "robots.txt disallows"
+    return None
+
+
 def snapshot(url: str, school: str, render: bool = False, root: Path = SNAPSHOT_ROOT) -> dict:
     host = urlsplit(url).netloc
-    earlier = blocked_host(host, root)
-    if earlier:
-        raise Blocked(f"{host} refused an earlier request ({earlier}); not asking again")
-    if not allowed_by_robots(url, root):
-        record_block(school, url, "robots.txt disallows", root)
-        raise Blocked(f"robots.txt disallows {url}")
+    reason = refusal(url, root)
+    if reason:
+        if reason.startswith("robots"):
+            record_block(school, url, reason, root)
+            raise Blocked(f"robots.txt disallows {url}")
+        raise Blocked(reason)
     wait_for_turn(host, root)
-    status, final_url, content_type, html = render_html(url) if render else fetch_html(url)
+    try:
+        if render:
+            status, final_url, content_type, html = render_html(url)
+        else:
+            status, final_url, content_type, html = fetch_html(url, refusal=lambda u: refusal(u, root))
+    except Blocked as blocked:
+        record_block(school, url, str(blocked), root)
+        raise
+    # A rendered page follows redirects inside Chrome, so its destination is checked after the fact:
+    # a page we may not fetch is discarded, never saved or quoted.
+    if final_url != url:
+        reason = refusal(final_url, root)
+        if reason:
+            record_block(school, url, f"redirected to {urlsplit(final_url).netloc}: {reason}", root)
+            raise Blocked(f"{url} redirected to {final_url}: {reason}")
     if status in (401, 403, 429):
         record_block(school, url, f"HTTP {status}", root)
-        block_host(host, f"HTTP {status}", root)
+        block_host(urlsplit(final_url).netloc or host, f"HTTP {status}", root)
         raise Blocked(f"HTTP {status} for {url}")
     if status >= 400 or not html:
         raise RuntimeError(f"HTTP {status} for {url}")

@@ -127,7 +127,7 @@ def test_requests_to_one_domain_are_spaced_out(tmp_path):
 
 def test_a_refused_request_is_recorded_and_not_saved(tmp_path, monkeypatch):
     monkeypatch.setattr(snap, "allowed_by_robots", lambda url, root=None: True)
-    monkeypatch.setattr(snap, "fetch_html", lambda url: (403, url, "text/html", ""))
+    monkeypatch.setattr(snap, "fetch_html", lambda url, **_: (403, url, "text/html", ""))
     monkeypatch.setattr(snap, "MIN_INTERVAL", 0)
     with pytest.raises(snap.Blocked):
         snap.snapshot("https://example.edu/p", "example", root=tmp_path)
@@ -138,14 +138,14 @@ def test_a_refused_request_is_recorded_and_not_saved(tmp_path, monkeypatch):
 
 def test_robots_disallow_is_honoured_without_fetching(tmp_path, monkeypatch):
     monkeypatch.setattr(snap, "allowed_by_robots", lambda url, root=None: False)
-    monkeypatch.setattr(snap, "fetch_html", lambda url: pytest.fail("fetched a disallowed page"))
+    monkeypatch.setattr(snap, "fetch_html", lambda url, **_: pytest.fail("fetched a disallowed page"))
     with pytest.raises(snap.Blocked):
         snap.snapshot("https://example.edu/private", "example", root=tmp_path)
 
 
 def test_a_saved_snapshot_is_named_by_the_hash_of_its_html(tmp_path, monkeypatch):
     monkeypatch.setattr(snap, "allowed_by_robots", lambda url, root=None: True)
-    monkeypatch.setattr(snap, "fetch_html", lambda url: (200, url, "text/html", PAGE))
+    monkeypatch.setattr(snap, "fetch_html", lambda url, **_: (200, url, "text/html", PAGE))
     monkeypatch.setattr(snap, "MIN_INTERVAL", 0)
     meta = snap.snapshot("https://example.edu/mds", "example", root=tmp_path)
     assert (tmp_path / "example" / f"{meta['sha256']}.txt").read_text().startswith("Master of Data Science")
@@ -183,12 +183,34 @@ def test_dropping_failing_values_keeps_the_ones_that_passed(tmp_path):
 def test_a_host_that_refused_once_is_not_asked_again(tmp_path, monkeypatch):
     monkeypatch.setattr(snap, "allowed_by_robots", lambda url, root=None: True)
     monkeypatch.setattr(snap, "MIN_INTERVAL", 0)
-    monkeypatch.setattr(snap, "fetch_html", lambda url: (429, url, "text/html", ""))
+    monkeypatch.setattr(snap, "fetch_html", lambda url, **_: (429, url, "text/html", ""))
     with pytest.raises(snap.Blocked):
         snap.snapshot("https://example.edu/a", "example", root=tmp_path)
-    monkeypatch.setattr(snap, "fetch_html", lambda url: pytest.fail("asked a host that had refused us"))
+    monkeypatch.setattr(snap, "fetch_html", lambda url, **_: pytest.fail("asked a host that had refused us"))
     with pytest.raises(snap.Blocked, match="not asking again"):
         snap.snapshot("https://example.edu/b", "example", root=tmp_path)
+
+
+def test_a_redirect_into_a_disallowed_page_is_not_saved(tmp_path, monkeypatch):
+    """robots.txt governs where a request ends up, not only the URL that was asked for."""
+    monkeypatch.setattr(snap, "allowed_by_robots", lambda url, root=None: "gradoffice" not in url)
+    monkeypatch.setattr(snap, "MIN_INTERVAL", 0)
+    monkeypatch.setattr(snap, "fetch_html", lambda url, **_: (200, "https://gradoffice.example.edu/", "text/html", PAGE))
+    with pytest.raises(snap.Blocked, match="redirected"):
+        snap.snapshot("https://www.example.edu/graduate", "example", root=tmp_path)
+    assert not list((tmp_path / "example").glob("*.html"))
+    blocked = json.loads((tmp_path / "example" / "_blocked.json").read_text())
+    assert "gradoffice.example.edu" in blocked[0]["reason"]
+
+
+def test_a_plain_fetch_stops_before_following_a_redirect_it_may_not_follow():
+    import urllib.request
+
+    handler = snap.CheckedRedirects(lambda url: "robots.txt disallows" if "gradoffice" in url else None)
+    request = urllib.request.Request("https://www.example.edu/graduate")
+    with pytest.raises(snap.Blocked, match="gradoffice"):
+        handler.redirect_request(request, None, 302, "Found", {}, "https://gradoffice.example.edu/")
+    assert handler.redirect_request(request, None, 302, "Found", {}, "https://www.example.edu/graduate/") is not None
 
 
 @pytest.mark.parametrize("code, allowed", [(404, True), (403, False), (429, False), (503, False)])
