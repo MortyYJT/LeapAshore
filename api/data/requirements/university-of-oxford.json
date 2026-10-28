@@ -1,0 +1,170 @@
+{
+ "school_key": "university-of-oxford",
+ "school_name_en": "University of Oxford",
+ "country": "United Kingdom",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [],
+ "blocked": [
+  {
+   "url": "https://www.ox.ac.uk/admissions/graduate/courses/courses-a-z-listing",
+   "reason": "robots.txt disallows www.ox.ac.uk/admissions (the course pages, English language page and international qualifications page all live there)"
+  },
+  {
+   "url": "https://www.sbs.ox.ac.uk/programmes/msc-financial-economics",
+   "reason": "HTTP 403 (Said Business School host)"
+  },
+  {
+   "url": "https://www.cs.ox.ac.uk/admissions/grad/MSc_in_Computer_Science",
+   "reason": "HTTP 403 (Department of Computer Science host)"
+  },
+  {
+   "url": "https://education.ox.ac.uk/programmes/msc-education",
+   "reason": "robots.txt disallows (Department of Education host)"
+  },
+  {
+   "url": "https://www.bsg.ox.ac.uk/degree-programmes/master-public-policy",
+   "reason": "robots.txt disallows (Blavatnik School host)"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.ox.ac.uk/admissions/graduate/courses/courses-a-z-listing"
+ ],
+ "notes": "Oxford's central course pages, English-level scores and China-equivalence pages are on www.ox.ac.uk, which blocks us via robots.txt, so no IELTS/TOEFL scores or china_requirement could be collected. Only taught MSc pages on unblocked departmental hosts (OII, Maths, Statistics, ECI, Smith School) were used; Maths/Statistics/OMMS pages state only 'Higher level required' for English with no score, and MPhil/MBA/MSt courses were not reached.",
+ "programs": [
+  {
+   "name": "MSc in Social Data Science",
+   "url": "https://www.oii.ox.ac.uk/study/msc-in-social-data-science/",
+   "snapshot_sha256": "3c9ee77171292ed1bf82413f9e06b542691b09bf700adf8b96871bcec6b9f694",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "MSc entry October 2027, first deadline (earlier decisions)",
+      "date": "2026-11-13",
+      "quote": "Friday 13 November 2026",
+      "check": "ok"
+     },
+     {
+      "label": "MSc entry October 2027, second deadline",
+      "date": "2027-01-07",
+      "quote": "Thursday 7 January 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Social Science of the Internet",
+   "url": "https://www.oii.ox.ac.uk/study/msc-in-social-science-of-the-internet/",
+   "snapshot_sha256": "8f801d76af1b7d2ad7f85a6d8d888269adfd388d4f7a656099b7dd0869421b46",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "MSc entry October 2027, first deadline (earlier decisions)",
+      "date": "2026-11-13",
+      "quote": "Friday 13 November 2026",
+      "check": "ok"
+     },
+     {
+      "label": "MSc entry October 2027, second deadline",
+      "date": "2027-01-07",
+      "quote": "Thursday 7 January 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Mathematical Modelling and Scientific Computing",
+   "url": "https://www.maths.ox.ac.uk/study-here/postgraduate-study/msc-courses/msc-mathematical-modelling-and-scientific-computing",
+   "snapshot_sha256": "a7cd6df94076e9bc4d75c879fb2ebccb60418047436667a672cee94bf1fd822e",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "Familiarity with the listed minimum prerequisite material (linear algebra, real analysis, calculus of several variables, complex analysis, ODEs, PDEs)",
+      "quote": "Whatever your background, we expect that you will be familiar with all the material listed below.",
+      "source_sha256": "fed4fa3291609d14245f0471923f95eae20574667257efca6ead95f28e7bf3ef",
+      "source_url": "https://www.maths.ox.ac.uk/study-here/postgraduate-study/msc-courses/msc-mathematical-modelling-and-scientific-computing/prerequisites",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Mathematical and Computational Finance",
+   "url": "https://www.maths.ox.ac.uk/study-here/postgraduate-study/msc-mathematical-and-computational-finance",
+   "snapshot_sha256": "38939233d8256f0573fbcf993ae40e924efe71a125526a51b6f4a4c0393f53de",
+   "fields": {
+    "academic": {
+     "text": "Describes past students (not a stated minimum): typically top of their cohort, often holding a First Class degree or equivalent GPA",
+     "quote": "Previous students typically ranked at the top of their cohort, often holding a First Class degree or equivalent GPA.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Strong foundation in probability, statistics, ordinary and partial differential equations, linear algebra, and analysis",
+      "quote": "Applicants should have a strong foundation in probability, statistics, ordinary and partial differential equations, linear algebra, and analysis.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Mathematical Sciences (OMMS)",
+   "url": "https://www.maths.ox.ac.uk/study-here/postgraduate-study/msc-courses/msc-mathematical-sciences-omms",
+   "snapshot_sha256": "a7364e8d52f375f721aa52dbdc133036edfc9ddbeabdd57066b6e7e4f7806b1a",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "MSc in Mathematics and Foundations of Computer Science",
+   "url": "https://www.maths.ox.ac.uk/study-here/postgraduate-study/msc-courses/msc-mathematics-and-foundations-computer-science",
+   "snapshot_sha256": "85f1de9a7f88c61f989fae7cb338890cc2c7e1abe4adb3963bb624605f43801b",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "MSc in Statistical Science",
+   "url": "https://www.stats.ox.ac.uk/msc-statistical-science",
+   "snapshot_sha256": "01dd33d73b74c75b98affe7484ecf70965e0f6a6b700a61b61df82c0f163c1b4",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "MSc in Environmental Change and Policy",
+   "url": "https://www.eci.ox.ac.uk/msc",
+   "snapshot_sha256": "07250a2a4768eeb18e349dbd0218747bed7488668d39de8e3d6c95a96b3cde2b",
+   "fields": {
+    "academic": {
+     "text": "UK first-class or strong upper second-class undergraduate degree with honours in environmental and natural sciences, geography, social sciences or other relevant discipline (or equivalent)",
+     "quote": "a first-class or strong upper second-class undergraduate degree with honours in a subject within environmental and natural sciences, geography, social sciences or other relevant discipline.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Sustainability, Enterprise and the Environment",
+   "url": "https://www.smithschool.ox.ac.uk/course/msc-sustainability-enterprise-and-environment",
+   "snapshot_sha256": "c27dd99fd129742321b3dfe584b93049f865e5dbaa24241f02c18387862b3205",
+   "fields": {
+    "academic": {
+     "text": "UK first-class or strong upper second-class undergraduate degree with honours, in any discipline (or equivalent); US GPA 3.6/4.0",
+     "quote": "As a minimum, you should hold or be predicted to achieve the equivalent of a UK first-class or strong upper second-class undergraduate degree with honours, in any discipline.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 9,
+  "机器核对": 6,
+  "待人工": 3
+ }
+}
