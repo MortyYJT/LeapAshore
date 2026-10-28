@@ -45,6 +45,19 @@ def _number_forms(value: float) -> set[str]:
     return forms
 
 
+MONTHS = ("january", "february", "march", "april", "may", "june", "july", "august", "september",
+          "october", "november", "december")
+
+
+def _mentions_month(quote: str, month: int) -> bool:
+    """The month by name or abbreviation, as 5月, or inside a numeric date (2026-05-31, 31/05/2026)."""
+    low = quote.lower()
+    name = MONTHS[month - 1]
+    if re.search(rf"\b({name}|{name[:3]})\b", low) or re.search(rf"(?<!\d){month}\s*月", quote):
+        return True
+    return bool(re.search(rf"\d{{4}}[-/.]0?{month}[-/.]\d{{1,2}}|\d{{1,2}}[-/.]0?{month}[-/.]\d{{2,4}}", quote))
+
+
 def _contains_number(quote: str, value: float) -> bool:
     return any(re.search(rf"(?<![\d.]){re.escape(form)}(?![\d])", quote) for form in _number_forms(value))
 
@@ -100,9 +113,15 @@ def check_item(name: str, item: dict, text: str) -> list[str]:
         if value is not None and not _contains_number(quote, value):
             problems.append(f"{key}={value:g} not in quote")
     if name == "deadlines":
-        day = date.fromisoformat(item["date"]).day
-        if not re.search(rf"(?<!\d)0?{day}(?!\d)", quote):
-            problems.append(f"deadline day {day} not in quote")
+        when = date.fromisoformat(item["date"])
+        if not re.search(rf"(?<!\d)0?{when.day}(?!\d)", quote):
+            problems.append(f"deadline day {when.day} not in quote")
+        # The year and month have to be stated too: a year read off another part of the page
+        # ("31 May of the previous year") is an inference, not a quote.
+        if str(when.year) not in quote:
+            problems.append(f"deadline year {when.year} not in quote")
+        if not _mentions_month(quote, when.month):
+            problems.append(f"deadline month {when.month} not in quote")
     return problems
 
 
@@ -135,14 +154,33 @@ def verify(data: dict, root: Path = SNAPSHOT_ROOT) -> dict:
     return data
 
 
+def drop_failing(data: dict) -> dict:
+    """Remove the values that failed their check, keeping the ones that passed."""
+    for program in data["programs"]:
+        kept = {}
+        for name, field in program["fields"].items():
+            if name in LIST_FIELDS:
+                items = [item for item in field if item.get("check") == "ok"]
+                if items:
+                    kept[name] = items
+            elif field.get("check") == "ok":
+                kept[name] = field
+        program["fields"] = kept
+    return data
+
+
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     parser.add_argument("path", type=Path)
     parser.add_argument("--write", action="store_true")
+    parser.add_argument("--drop-failing", action="store_true",
+                        help="remove every value whose check fails (never edit one to make it pass)")
     args = parser.parse_args(argv)
     data = json.loads(args.path.read_text(encoding="utf-8"))
     try:
         result = verify(data)
+        if args.drop_failing:
+            result = verify(drop_failing(result))
     except SchemaError as error:
         print(json.dumps({"schema_error": str(error)}, ensure_ascii=False))
         return 3

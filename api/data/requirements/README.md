@@ -58,8 +58,9 @@ Use `api/.venv/bin/python` for the tools.
 4. Write the file incrementally: after every ~10 programs, save `api/data/requirements/<school_key>.json`,
    so nothing is lost if you stop. Then run
    `api/.venv/bin/python -m app.collect.verify api/data/requirements/<school_key>.json --write`.
-   For each failing field, re-copy the exact text from the snapshot or **delete the field**. Never
-   change a value to make it pass.
+   For each failing field, re-copy the exact text from the snapshot or **delete the field**
+   (`verify.py --drop-failing --write` removes every failing value at once). Never change a value to
+   make it pass.
 5. Stop after about **60 programs** or when your context is getting long, whichever comes first.
    Set `"complete": false` and list the program URLs you did not reach in `"remaining_urls"`, so the
    next run can continue. Set `"complete": true` only when the list is done.
@@ -104,8 +105,9 @@ Use `api/.venv/bin/python` for the tools.
   (or "Double First-Class" / top-tier lists); `min_mark_other` = for other Chinese universities. Fill a
   number only when the official page states it as a percentage for Chinese degrees; otherwise give
   only `text` + `quote`.
-- `deadlines` are application closing dates for the next intake, as ISO dates, each with the quote
-  that states the date.
+- `deadlines` are application closing dates for the next intake, as ISO dates. The quote must state
+  the day, the month **and the year**; a year read off another part of the page ("31 May of the
+  previous year") is an inference and fails the check.
 - Run `verify.py --write` last; it adds `check`, `status`, and `verification`.
 
 ### What to report when you finish

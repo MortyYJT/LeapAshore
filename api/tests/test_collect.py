@@ -150,3 +150,31 @@ def test_a_saved_snapshot_is_named_by_the_hash_of_its_html(tmp_path, monkeypatch
     meta = snap.snapshot("https://example.edu/mds", "example", root=tmp_path)
     assert (tmp_path / "example" / f"{meta['sha256']}.txt").read_text().startswith("Master of Data Science")
     assert meta["fetched_at"]
+
+
+def test_a_deadline_needs_its_year_and_month_in_the_quote(tmp_path):
+    """A year taken from elsewhere on the page ("31 May of the previous year") is an inference."""
+    write_snapshot(tmp_path, "example", SHA, "<p>Applications close 31 May of the previous year.</p><p>Round 1 closes 30 November 2026</p><p>Deadline: 2026-12-15</p>")
+    result = verify(data(program({"deadlines": [{"label": "S1", "date": "2026-05-31", "quote": "Applications close 31 May of the previous year."}]})), root=tmp_path)
+    assert "year 2026 not in quote" in result["programs"][0]["fields"]["deadlines"][0]["check"]
+    wrong_month = verify(data(program({"deadlines": [{"label": "R1", "date": "2026-10-30", "quote": "Round 1 closes 30 November 2026"}]})), root=tmp_path)
+    assert "month 10 not in quote" in wrong_month["programs"][0]["fields"]["deadlines"][0]["check"]
+    numeric = verify(data(program({"deadlines": [{"label": "R2", "date": "2026-12-15", "quote": "Deadline: 2026-12-15"}]})), root=tmp_path)
+    assert numeric["programs"][0]["status"] == MACHINE_CHECKED
+
+
+def test_dropping_failing_values_keeps_the_ones_that_passed(tmp_path):
+    from app.collect.verify import drop_failing
+
+    write_snapshot(tmp_path, "example", SHA, PAGE)
+    checked = verify(data(program({
+        "ielts": {"overall": 6.5, "quote": "overall IELTS score of 6.5"},
+        "deadlines": [{"label": "S1", "date": "2026-05-31", "quote": "Round 1 closes 30 November 2026"},
+                      {"label": "R1", "date": "2026-11-30", "quote": "Round 1 closes 30 November 2026"}],
+        "toefl": {"overall": 90, "quote": "TOEFL 90"},
+    })), root=tmp_path)
+    cleaned = verify(drop_failing(checked), root=tmp_path)
+    fields = cleaned["programs"][0]["fields"]
+    assert set(fields) == {"ielts", "deadlines"}
+    assert [d["date"] for d in fields["deadlines"]] == ["2026-11-30"]
+    assert cleaned["programs"][0]["status"] == MACHINE_CHECKED

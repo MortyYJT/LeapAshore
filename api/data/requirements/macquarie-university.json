@@ -1,0 +1,36 @@
+{
+ "school_key": "macquarie-university",
+ "school_name_en": "Macquarie University",
+ "country": "Australia",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [],
+ "blocked": [
+  {
+   "url": "https://www.mq.edu.au/study/find-a-course/courses",
+   "reason": "robots.txt disallows https://www.mq.edu.au/study/find-a-course/courses (snapshot tool refused the fetch; no further www.mq.edu.au URLs were tried, per brief rule 3)"
+  },
+  {
+   "url": "https://courses.mq.edu.au/",
+   "reason": "HTTP 403"
+  },
+  {
+   "url": "https://handbook.mq.edu.au/",
+   "reason": "connection timed out on 4 attempts (/, /2026/, and a 2019 course page); not a block, host unreachable from the tool"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.mq.edu.au/study/find-a-course/courses/master-of-data-science/",
+  "https://www.mq.edu.au/study/find-a-course/courses/master-of-information-technology/",
+  "https://www.mq.edu.au/study/find-a-course/courses/master-of-information-technology-in-cyber-security",
+  "https://www.mq.edu.au/study/admissions-and-entry/apply/international/international-academic-requirements"
+ ],
+ "notes": "The www.mq.edu.au course finder listing is disallowed by robots.txt, courses.mq.edu.au returns 403, and handbook.mq.edu.au times out, so no Macquarie page could be snapshotted. No values were collected; the remaining URLs were found by web search only and never fetched. 146 CRICOS courses in cricos-au-masters.json are the unreached checklist.",
+ "programs": [],
+ "verification": {
+  "programs": 0,
+  "机器核对": 0,
+  "待人工": 0
+ }
+}

@@ -1,0 +1,1534 @@
+{
+ "school_key": "university-of-technology-sydney",
+ "school_name_en": "University of Technology Sydney",
+ "country": "Australia",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://www.uts.edu.au/courses",
+  "https://www.uts.edu.au/sitemap.xml"
+ ],
+ "blocked": [],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.uts.edu.au/courses/master-of-business-analytics-extension",
+  "https://www.uts.edu.au/courses/master-of-cybersecurity-extension",
+  "https://www.uts.edu.au/courses/master-of-engineering-extension",
+  "https://www.uts.edu.au/courses/master-of-event-management-extension",
+  "https://www.uts.edu.au/courses/master-of-finance-extension",
+  "https://www.uts.edu.au/courses/master-of-forensic-science-extension",
+  "https://www.uts.edu.au/courses/master-of-human-resource-management-extension",
+  "https://www.uts.edu.au/courses/master-of-information-technology-extension",
+  "https://www.uts.edu.au/courses/master-of-interaction-design-extension",
+  "https://www.uts.edu.au/courses/master-of-management-extension",
+  "https://www.uts.edu.au/courses/master-of-marketing-extension",
+  "https://www.uts.edu.au/courses/master-of-medical-biotechnology-extension",
+  "https://www.uts.edu.au/courses/master-of-professional-accounting-extension",
+  "https://www.uts.edu.au/courses/master-of-quantitative-finance-extension",
+  "https://www.uts.edu.au/courses/master-of-science-extension",
+  "https://www.uts.edu.au/courses/master-of-screen-arts-and-production-extension",
+  "https://www.uts.edu.au/courses/master-of-social-impact-and-not-for-profit-management-extension",
+  "https://www.uts.edu.au/courses/master-of-sport-management-extension",
+  "https://www.uts.edu.au/courses/master-of-strategic-communication-extension",
+  "https://www.uts.edu.au/courses/master-of-strategic-supply-chain-management-extension",
+  "https://www.uts.edu.au/courses/master-of-tesol-and-applied-linguistics-extension"
+ ],
+ "notes": "Program list taken from the course URLs in UTS's sitemap (www.uts.edu.au/courses/<slug>); pages checked against the CRICOS checklist. UTS publishes no China-specific postgraduate requirement (its country table on the academic-entry page is for undergraduate entry), so no china_requirement is recorded. International closing dates are generic ('30 November' etc., no year, 'some courses differ') and are not on the program pages, so no deadlines are recorded. Skipped: research degrees, Juris Doctor and its double degrees, Master of Palliative Care (not offered to international students), Master of High Performance Sport and Master of Intellectual Property (online-only, no CRICOS code). Extension (Extension) variants and CRICOS-listed courses with no page in the sitemap (e.g. Master of Technology, Financial Analysis, Landscape Architecture) not reached. ielts/toefl 'writing' is the writing sub-score stated on the page; min_band is set only when every stated IELTS sub-score is identical. Where a page lists two CRICOS codes, cricos_code is the first and cricos_codes holds both.",
+ "programs": [
+  {
+   "name": "Executive Master of Business Administration",
+   "url": "https://www.uts.edu.au/courses/executive-master-of-business-administration",
+   "snapshot_sha256": "04b32d5e9fd3aebaae1b6744733e60c8cf7687a59fa274acbe9a7328466a5362",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have the following: Completed C11327 Graduate Certificate in Leadership and Strategy, with more than 75% of all subjects completed at pass level.",
+     "quote": "Applicants must have the following: Completed C11327 Graduate Certificate in Leadership and Strategy, with more than 75% of all subjects completed at pass level.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS Academic: overall 7.0, writing 6.5",
+     "writing": 6.5,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 94,
+     "quote": "TOEFL iBT (0-120): overall 94, writing 24",
+     "writing": 24,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "104623D",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Medical Biotechnology",
+   "url": "https://www.uts.edu.au/courses/master-of-medical-biotechnology",
+   "snapshot_sha256": "087781da89322aa780c40eb5026e0e1e01b865f29cbe1677e991852100a3e068",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, in biochemistry and cell biology, microbiology, human biology, genetics, laboratory technology, medical science, food science and biotechnology, or pharmacology",
+     "quote": "Applicants must have the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, in biochemistry and cell biology, microbiology, human biology, genetics, laboratory technology, medical science, food science and biotechnology, or pharmacology",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "098057F",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering",
+   "url": "https://www.uts.edu.au/courses/master-of-engineering",
+   "snapshot_sha256": "0e66b906e806dba2f1e109a355a8a1b8a4b462bdc49cc05c34f85d486f27c9d8",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have one of the following qualifications in Engineering or Computer Science in an area relevant to the proposed major: Completed Australian master's or doctoral degree, or overseas equivalent. OR Completed Australian bachelor's degree, graduate diploma or graduate certificate, or overseas equivalent, with at least 75% of all subjects completed at pass level (conceded pass not included).",
+     "quote": "Applicants must have one of the following qualifications in Engineering or Computer Science in an area relevant to the proposed major: Completed Australian master's or doctoral degree, or overseas equivalent. OR Completed Australian bachelor's degree, graduate diploma or graduate certificate, or overseas equivalent, with at least 75% of all subjects completed at pass level (conceded pass not included).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "081087F",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Orthoptics",
+   "url": "https://www.uts.edu.au/courses/master-of-orthoptics",
+   "snapshot_sha256": "17743c34a455f66ba58013da3ef415e5d32ab03933ea8eecf280e64edd3a17ef",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, with a minimum GPA of 4/7 AND Communication skills, interpersonal skills, interest in eye health, and commitment to orthoptics as a career (assessed in an interview by the faculty)",
+     "quote": "Applicants must have the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, with a minimum GPA of 4/7 AND Communication skills, interpersonal skills, interest in eye health, and commitment to orthoptics as a career (assessed in an interview by the faculty)",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.5",
+     "writing": 6.5,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT: overall 79, writing 24",
+     "writing": 24,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "084265B",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Human Resource Management",
+   "url": "https://www.uts.edu.au/courses/master-of-human-resource-management",
+   "snapshot_sha256": "181dc9461bdb1c8c5d52b5b00a2331d4bdc866327d1cb2e09998671d1d1061a9",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, with more than 75% of all subjects completed at pass level (conceded pass not included)",
+     "quote": "Applicants must have the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, with more than 75% of all subjects completed at pass level (conceded pass not included)",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "084674G",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Laws",
+   "url": "https://www.uts.edu.au/courses/master-of-laws",
+   "snapshot_sha256": "1f827adbb25b271bd183c00c5632403952c7010536d92885185bf8fa525e9635",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have one of the following: Completed Australian Doctoral degree in Law, or overseas equivalent (excluding a Shari’a law degree) OR Passed the Chinese Legal Professional Qualification Examination to practise law AND A minimum of 1 year full-time, or equivalent part-time, relevant legal experience OR Completed Australian Master of Laws, Australian Juris Doctor, or Australian Bachelor of Laws with a minimum GPA of 5/7, or overseas equivalent (excluding a Shari’a law degree) with a minimum GPA of 5/7 OR Completed Australian Master of Laws, Australian Juris Doctor, or Australian Bachelor of Laws with a minimum GPA of 4/7 AND A minimum of 1 year full-time, or equivalent part-time, relevant legal experience, or overseas equivalent (excluding a Shari’a law degree) with a minimum GPA of 4/7 AND A minimum of 1 year full-time, or equivalent part-time, relevant legal experience OR Completed NSW Legal Profession Admission Board (LPAB) Diploma in Law AND Completed Australian Graduate Certificate in a legal discipline OR Completed NSW Legal Profession Admission Board (LPAB) Diploma in Law AND A minimum of 1 year full-time, or equivalent part-time, relevant legal experience OR Completed an overseas legal qualification supported by evidence the qualification enables admission to practice as a legal practitioner in an overseas jurisdiction (excluding a Shari’a law degree) AND capacity to study the course demonstrated through a minimum of 1 year full time, or equivalent part time, relevant professional work experience",
+     "quote": "Applicants must have one of the following: Completed Australian Doctoral degree in Law, or overseas equivalent (excluding a Shari’a law degree) OR Passed the Chinese Legal Professional Qualification Examination to practise law AND A minimum of 1 year full-time, or equivalent part-time, relevant legal experience OR Completed Australian Master of Laws, Australian Juris Doctor, or Australian Bachelor of Laws with a minimum GPA of 5/7, or overseas equivalent (excluding a Shari’a law degree) with a minimum GPA of 5/7 OR Completed Australian Master of Laws, Australian Juris Doctor, or Australian Bachelor of Laws with a minimum GPA of 4/7 AND A minimum of 1 year full-time, or equivalent part-time, relevant legal experience, or overseas equivalent (excluding a Shari’a law degree) with a minimum GPA of 4/7 AND A minimum of 1 year full-time, or equivalent part-time, relevant legal experience OR Completed NSW Legal Profession Admission Board (LPAB) Diploma in Law AND Completed Australian Graduate Certificate in a legal discipline OR Completed NSW Legal Profession Admission Board (LPAB) Diploma in Law AND A minimum of 1 year full-time, or equivalent part-time, relevant legal experience OR Completed an overseas legal qualification supported by evidence the qualification enables admission to practice as a legal practitioner in an overseas jurisdiction (excluding a Shari’a law degree) AND capacity to study the course demonstrated through a minimum of 1 year full time, or equivalent part time, relevant professional work experience",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS Academic: overall 7.0, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 94,
+     "quote": "TOEFL iBT (0-120): overall 94, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "001125A",
+   "cricos_codes": [
+    "001125A",
+    "113536F"
+   ],
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of TESOL and Applied Linguistics",
+   "url": "https://www.uts.edu.au/courses/master-of-tesol-and-applied-linguistics",
+   "snapshot_sha256": "23640dab3a5c213c8832a1cd3fa05c5408b872c313333b9319a3b6ef42bfa93e",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have one of the following: Completed Australian master's degree, or overseas equivalent, in any field of study OR Completed Australian graduate diploma or graduate certificate, or overseas equivalent, in TESOL and must be recognised as an AQF Level 8 qualification by being either: awarded by an Australian university; or listed on the National Register of Higher Education Providers and Courses with a valid accreditation at the time of the qualification being awarded to the applicant; or assessed as an overseas equivalent by NOOSR/CEP or NARIC/ECCTIS OR Completed Australian bachelor's degree or bachelor's honours degree, or overseas equivalent, in Education, Management and Commerce, Society and Culture, Creative Arts or Mixed Field Programmes OR Completed Australian bachelor's degree, or bachelor honours degree, or overseas equivalent, in any field of study AND A minimum of 2 years full-time, or equivalent part-time, relevant professional work experience",
+     "quote": "Applicants must have one of the following: Completed Australian master's degree, or overseas equivalent, in any field of study OR Completed Australian graduate diploma or graduate certificate, or overseas equivalent, in TESOL and must be recognised as an AQF Level 8 qualification by being either: awarded by an Australian university; or listed on the National Register of Higher Education Providers and Courses with a valid accreditation at the time of the qualification being awarded to the applicant; or assessed as an overseas equivalent by NOOSR/CEP or NARIC/ECCTIS OR Completed Australian bachelor's degree or bachelor's honours degree, or overseas equivalent, in Education, Management and Commerce, Society and Culture, Creative Arts or Mixed Field Programmes OR Completed Australian bachelor's degree, or bachelor honours degree, or overseas equivalent, in any field of study AND A minimum of 2 years full-time, or equivalent part-time, relevant professional work experience",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "088012B",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Interaction Design",
+   "url": "https://www.uts.edu.au/courses/master-of-interaction-design",
+   "snapshot_sha256": "32a561f06e47aea31e3dbd135ac522285c4fce02d141b972e761239b866c818f",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have one of the following: Completed Australian master's or doctoral degree, or overseas equivalent. OR Completed Australian bachelor's degree, graduate certificate, or graduate diploma, or overseas equivalent with at least 75% of all subjects completed at pass level (conceded pass not included).",
+     "quote": "Applicants must have one of the following: Completed Australian master's or doctoral degree, or overseas equivalent. OR Completed Australian bachelor's degree, graduate certificate, or graduate diploma, or overseas equivalent with at least 75% of all subjects completed at pass level (conceded pass not included).",
+     "check": "ok"
+    }
+   },
+   "cricos_code": "096325G",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Property Development and Project Management",
+   "url": "https://www.uts.edu.au/courses/master-of-property-development-and-project-management",
+   "snapshot_sha256": "33b692d22ade0ac394d7f33a55c92bd323b286d9373cd55bfc40e7cad4645a96",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have one of the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, in Architecture and Building, Engineering, Management and Commerce, Law, or Economics and Econometrics OR Completed Australian bachelor's degree or higher qualification, or overseas equivalent, in any field of study AND A minimum of 1 year full-time, or equivalent part-time, relevant professional work experience",
+     "quote": "Applicants must have one of the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, in Architecture and Building, Engineering, Management and Commerce, Law, or Economics and Econometrics OR Completed Australian bachelor's degree or higher qualification, or overseas equivalent, in any field of study AND A minimum of 1 year full-time, or equivalent part-time, relevant professional work experience",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "089508C",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Clinical Psychology",
+   "url": "https://www.uts.edu.au/courses/master-of-clinical-psychology",
+   "snapshot_sha256": "36a7cd0cd463985de099f8069d9c56d529c2e15b4ef67d34da171f5ebafd0226",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have the following: Completed Australian Psychology Accreditation Council (APAC) accredited Level 1 and Level 2 program in psychology within the last 10 years with at least an upper second class Honours (H2A) or equivalent overall mark AND a minimum GPA of 5.8/7 AND a period of at least 6 months of relevant professional work experience in mental health.",
+     "quote": "Applicants must have the following: Completed Australian Psychology Accreditation Council (APAC) accredited Level 1 and Level 2 program in psychology within the last 10 years with at least an upper second class Honours (H2A) or equivalent overall mark AND a minimum GPA of 5.8/7 AND a period of at least 6 months of relevant professional work experience in mental health.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS Academic: overall 7.0, listening 7.0, speaking 7.0, reading 7.0, writing 6.5",
+     "writing": 6.5,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 91,
+     "quote": "TOEFL iBT (0-120): overall 91, listening 22, speaking 24, reading 22, writing 23",
+     "writing": 23,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "084263D",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Marketing",
+   "url": "https://www.uts.edu.au/courses/master-of-marketing",
+   "snapshot_sha256": "36c05ba32789f04c44517049270ed495baa647b636c58fa550f2c125cfa157cd",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, with more than 75% of all subjects completed at pass level (conceded pass not included)",
+     "quote": "Applicants must have the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, with more than 75% of all subjects completed at pass level (conceded pass not included)",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "098047G",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering Management Master of Business Administration",
+   "url": "https://www.uts.edu.au/courses/master-of-engineering-management-master-of-business-administration",
+   "snapshot_sha256": "3c10913c41394d0b09002c8efa042d6b4d9cc792b8523af57eeba4d6ff727d95",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have one of the following qualifications in Engineering or Information Technology: Completed Australian master's or doctoral degree, or overseas equivalent OR Completed Australian graduate certificate or graduate diploma, or overseas equivalent, with at least 75% of all subjects completed at pass level (conceded pass not included) OR Completed Australian bachelor's degree, or overseas equivalent, with a minimum GPA of 5/7 and at least 90% of all subjects completed at pass level (conceded pass not included) OR Completed Australian bachelor's degree or higher qualification, or overseas equivalent AND one of the following: A minimum of 4 years full-time, or equivalent part-time, relevant professional work experience Graduate Management Admission Test (GMAT) overall minimum score of 550. If completed pre-Feb 2024, GMAT Exam (includes AWA) with an overall minimum score of 550 with verbal 25, quantitative 35 and AWA 4.0",
+     "quote": "Applicants must have one of the following qualifications in Engineering or Information Technology: Completed Australian master's or doctoral degree, or overseas equivalent OR Completed Australian graduate certificate or graduate diploma, or overseas equivalent, with at least 75% of all subjects completed at pass level (conceded pass not included) OR Completed Australian bachelor's degree, or overseas equivalent, with a minimum GPA of 5/7 and at least 90% of all subjects completed at pass level (conceded pass not included) OR Completed Australian bachelor's degree or higher qualification, or overseas equivalent AND one of the following: A minimum of 4 years full-time, or equivalent part-time, relevant professional work experience Graduate Management Admission Test (GMAT) overall minimum score of 550. If completed pre-Feb 2024, GMAT Exam (includes AWA) with an overall minimum score of 550 with verbal 25, quantitative 35 and AWA 4.0",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "081096E",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Management",
+   "url": "https://www.uts.edu.au/courses/master-of-management",
+   "snapshot_sha256": "3dcc5267f35a7d1334237f07c083c1b52b5b272867ba680e823441fe855da05f",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, with more than 75% of all subjects completed at pass level (conceded pass not included)",
+     "quote": "Applicants must have the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, with more than 75% of all subjects completed at pass level (conceded pass not included)",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "084675F",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Architecture",
+   "url": "https://www.uts.edu.au/courses/master-of-architecture",
+   "snapshot_sha256": "3ef2b59b670cbdeebc61e70c5739b8d21cc831ea923e523b08e3c3f5d761ca89",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have one of the following: Completed within the last 8 years UTS Bachelor of Design in Architecture, UTS Bachelor of Design (Honours) in Architecture (Architectural Studies for Interior Architecture), or UTS Bachelor of Design (Honours) in Architecture (Architectural Studies for Landscape Architects) with: a minimum GPA of 5.5/7, OR a minimum GPA between 5 and 5.49/7 AND A portfolio AND related professional work experience (if any but not required), OR Completed within the last 8 years any other Australian bachelor's degree or higher qualification, or overseas equivalent, in Design in Architecture with a minimum GPA of 5/7 AND A portfolio AND related professional work experience (if any but not required).",
+     "quote": "Applicants must have one of the following: Completed within the last 8 years UTS Bachelor of Design in Architecture, UTS Bachelor of Design (Honours) in Architecture (Architectural Studies for Interior Architecture), or UTS Bachelor of Design (Honours) in Architecture (Architectural Studies for Landscape Architects) with: a minimum GPA of 5.5/7, OR a minimum GPA between 5 and 5.49/7 AND A portfolio AND related professional work experience (if any but not required), OR Completed within the last 8 years any other Australian bachelor's degree or higher qualification, or overseas equivalent, in Design in Architecture with a minimum GPA of 5/7 AND A portfolio AND related professional work experience (if any but not required).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "061397B",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Project Management",
+   "url": "https://www.uts.edu.au/courses/master-of-project-management",
+   "snapshot_sha256": "41953cdfb1a3254eb7d56c3c3330ea3713f7c22ce82c02665c202be0cfba44a0",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have one of the following: Completed UTS Graduate Certificate in Project Management, UTS Graduate Diploma in Project Management, or UTS Graduate Diploma in Construction Management OR Completed Australian bachelor's degree or higher qualification, or overseas equivalent AND A minimum of 1 year full-time, or equivalent part-time, relevant professional work experience",
+     "quote": "Applicants must have one of the following: Completed UTS Graduate Certificate in Project Management, UTS Graduate Diploma in Project Management, or UTS Graduate Diploma in Construction Management OR Completed Australian bachelor's degree or higher qualification, or overseas equivalent AND A minimum of 1 year full-time, or equivalent part-time, relevant professional work experience",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "001099J",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Property Development and Investment",
+   "url": "https://www.uts.edu.au/courses/master-of-property-development-and-investment",
+   "snapshot_sha256": "457456b69b44feef59b3ec58f0d65e1a5a4e128c4c4f154f5ab92cc65026979e",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have one of the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, in Architecture and Building, Engineering, Management and Commerce, Law, Economics and Econometrics, Real Estate, or Finance OR Completed Australian bachelor's degree or higher qualification, or overseas equivalent, in any field of study AND A minimum of 2 years full-time, or equivalent part-time, relevant professional work experience",
+     "quote": "Applicants must have one of the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, in Architecture and Building, Engineering, Management and Commerce, Law, Economics and Econometrics, Real Estate, or Finance OR Completed Australian bachelor's degree or higher qualification, or overseas equivalent, in any field of study AND A minimum of 2 years full-time, or equivalent part-time, relevant professional work experience",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "089510J",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Analytics",
+   "url": "https://www.uts.edu.au/courses/master-of-business-analytics",
+   "snapshot_sha256": "483feb9ec6ee4fe75d65ea2831b4a2506d876591b6930051abbc0ce6f88e1b97",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, with more than 75% of all subjects completed at pass level (conceded pass not included)",
+     "quote": "Applicants must have the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, with more than 75% of all subjects completed at pass level (conceded pass not included)",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "0100398",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Sport Management",
+   "url": "https://www.uts.edu.au/courses/master-of-sport-management",
+   "snapshot_sha256": "489d177e065fbec3de48ce5eca8276c6276f11e51796e2eb7ce6d2b852034c81",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, with more than 75% of all subjects completed at pass level (conceded pass not included)",
+     "quote": "Applicants must have the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, with more than 75% of all subjects completed at pass level (conceded pass not included)",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "084677D",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Quantitative Finance",
+   "url": "https://www.uts.edu.au/courses/master-of-quantitative-finance",
+   "snapshot_sha256": "490bef8349de34d1b3f1a5e151d4e64248a920e1ce0fb66d3c41387be508a643",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have one of the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, in mathematical sciences, mathematical finance, insurance and actuarial studies, or a related field of study with a substantial quantitative component for example, physics and astronomy, engineering and related technology, computer science, banking, finance, and economics and econometrics",
+     "quote": "Applicants must have one of the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, in mathematical sciences, mathematical finance, insurance and actuarial studies, or a related field of study with a substantial quantitative component for example, physics and astronomy, engineering and related technology, computer science, banking, finance, and economics and econometrics",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "088930G",
+   "status": "机器核对"
+  },
+  {
+   "name": "Executive Master of Data Science and Innovation",
+   "url": "https://www.uts.edu.au/courses/executive-master-of-data-science-and-innovation",
+   "snapshot_sha256": "491eb63dd30095351ab751f12d749fad0f6b5c7954c15433861976baafd5ae1e",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have one of the following: Completed Australian bachelor's degree, or overseas equivalent, in a relevant discipline (listed below) AND a minimum of five (5) years full-time, or equivalent part-time, management work experience AND among all work experience, a minimum of two (2) years in a relevant professional occupation (listed below). OR Completed Australian doctorate, master's degree, graduate diploma, graduate certificate, or honours degree, or overseas equivalent, in a relevant discipline (listed below) AND a minimum of five (5) years full-time, or equivalent part-time, management work experience. OR Completed Australian bachelor's degree, or overseas equivalent, or higher qualification in any discipline AND a minimum of five (5) years full-time, or equivalent part-time, management work experience AND among all work experience, a minimum of three (3) years in a relevant professional occupation (listed below).",
+     "quote": "Applicants must have one of the following: Completed Australian bachelor's degree, or overseas equivalent, in a relevant discipline (listed below) AND a minimum of five (5) years full-time, or equivalent part-time, management work experience AND among all work experience, a minimum of two (2) years in a relevant professional occupation (listed below). OR Completed Australian doctorate, master's degree, graduate diploma, graduate certificate, or honours degree, or overseas equivalent, in a relevant discipline (listed below) AND a minimum of five (5) years full-time, or equivalent part-time, management work experience. OR Completed Australian bachelor's degree, or overseas equivalent, or higher qualification in any discipline AND a minimum of five (5) years full-time, or equivalent part-time, management work experience AND among all work experience, a minimum of three (3) years in a relevant professional occupation (listed below).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "109317G",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Property Development",
+   "url": "https://www.uts.edu.au/courses/master-of-property-development",
+   "snapshot_sha256": "4e1652526098d57e77304afca073749aeb07d6c8f278bc49de45028029146774",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have one of the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, in Architecture and Building, Engineering, Management and Commerce, Law and legal studies, or Economics and Econometrics OR Completed Australian bachelor's degree or higher qualification, or overseas equivalent, in any field of study AND A minimum of 1 year full-time, or equivalent part-time, relevant professional work experience",
+     "quote": "Applicants must have one of the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, in Architecture and Building, Engineering, Management and Commerce, Law and legal studies, or Economics and Econometrics OR Completed Australian bachelor's degree or higher qualification, or overseas equivalent, in any field of study AND A minimum of 1 year full-time, or equivalent part-time, relevant professional work experience",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "019745C",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science",
+   "url": "https://www.uts.edu.au/courses/master-of-science",
+   "snapshot_sha256": "563e0c94fcfbea963143cc33b48c080d99f8f8d9a183860f209046edb2baf43a",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, in a field of study related to applicant’s chosen major",
+     "quote": "Applicants must have the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, in a field of study related to applicant’s chosen major",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "071909M",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Good Manufacturing Practice",
+   "url": "https://www.uts.edu.au/courses/master-of-good-manufacturing-practice",
+   "snapshot_sha256": "663723a420e5fe94e60458ea4a1cfa79076eaba8131c1f3440e183995e181c6d",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have one of the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, in a related field of study with a minimum GPA of 5/7 OR Completed Australian bachelor's degree or higher qualification, or overseas equivalent, in a related field of study AND A minimum of 2 years full-time, or equivalent part-time, relevant professional work experience AND Communication skills, interpersonal skills, an interest in an industry where good manufacturing practices are involved, and a commitment to good manufacturing practice as a career (assessed through an interview by the faculty)",
+     "quote": "Applicants must have one of the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, in a related field of study with a minimum GPA of 5/7 OR Completed Australian bachelor's degree or higher qualification, or overseas equivalent, in a related field of study AND A minimum of 2 years full-time, or equivalent part-time, relevant professional work experience AND Communication skills, interpersonal skills, an interest in an industry where good manufacturing practices are involved, and a commitment to good manufacturing practice as a career (assessed through an interview by the faculty)",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "084264C",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Forensic Science",
+   "url": "https://www.uts.edu.au/courses/master-of-forensic-science",
+   "snapshot_sha256": "67f8e12d295c5b266cc64f7ade9b98db98944cd150c57ab367f6d35b7be5722a",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, in chemical sciences, biochemistry and cell biology, human biology, forensic science, or medical science",
+     "quote": "Applicants must have the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, in chemical sciences, biochemistry and cell biology, human biology, forensic science, or medical science",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "098061K",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Event Management",
+   "url": "https://www.uts.edu.au/courses/master-of-event-management",
+   "snapshot_sha256": "6943420fb2bfe1c1f2b11072ecb948c9ed71d1cdc2fa72dd09d0211fcc96f07c",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, with more than 75% of all subjects completed at pass level (conceded pass not included)",
+     "quote": "Applicants must have the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, with more than 75% of all subjects completed at pass level (conceded pass not included)",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "084673G",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Artificial Intelligence",
+   "url": "https://www.uts.edu.au/courses/master-of-artificial-intelligence",
+   "snapshot_sha256": "6976bb7c71c8acdc645113ff5f89d566e2b2475df272bc256c30c6fd57ac088d",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have one of the following: Completed Australian master's or doctoral degree, or overseas equivalent, in Information Technology or Electrical and Electronic Engineering and Technology or Mathematical Sciences OR Completed Australian bachelor's degree, graduate diploma, or graduate certificate, or overseas equivalent, in Information Technology or Electrical and Electronic Engineering and Technology or Mathematical Sciences with at least 75% of all subjects completed at pass level (conceded pass not included) OR Completed Australian bachelor's degree, graduate diploma, or graduate certificate, or overseas equivalent, in Information Technology or Electrical and Electronic Engineering or Mathematical Sciences AND a minimum of 2 years full-time, or equivalent part-time, Information Technology relevant post-secondary professional work experience",
+     "quote": "Applicants must have one of the following: Completed Australian master's or doctoral degree, or overseas equivalent, in Information Technology or Electrical and Electronic Engineering and Technology or Mathematical Sciences OR Completed Australian bachelor's degree, graduate diploma, or graduate certificate, or overseas equivalent, in Information Technology or Electrical and Electronic Engineering and Technology or Mathematical Sciences with at least 75% of all subjects completed at pass level (conceded pass not included) OR Completed Australian bachelor's degree, graduate diploma, or graduate certificate, or overseas equivalent, in Information Technology or Electrical and Electronic Engineering or Mathematical Sciences AND a minimum of 2 years full-time, or equivalent part-time, Information Technology relevant post-secondary professional work experience",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "108843D",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Pharmacy",
+   "url": "https://www.uts.edu.au/courses/master-of-pharmacy",
+   "snapshot_sha256": "6af084b6efae248289498b00e83bf899bc59d8ba692a4a3683cb6bbbcc430625",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, with a minimum GPA of 4/7 AND Completed the following prerequisite subjects at a tertiary level within the last 10 years: one pharmacology subject two chemistry subjects one biochemistry subject one human physiology subject, and one mathematics or statistics subject AND Communication skills, interpersonal skills, interest in pharmacy, and commitment to pharmacy as a career (assessed through an interview by the faculty) AND For applicants with a pharmacy degree completed overseas, demonstrated motivation for repeating a pharmacy qualification (assessed through a personal statement) OR Completed UTS Bachelor of Advanced Science (Pharmaceutical Sciences), or Bachelor of Advanced Science (Pre-Medicine) at the end of 2025 or later, with a minimum GPA of 5/7.",
+     "quote": "Applicants must have the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, with a minimum GPA of 4/7 AND Completed the following prerequisite subjects at a tertiary level within the last 10 years: one pharmacology subject two chemistry subjects one biochemistry subject one human physiology subject, and one mathematics or statistics subject AND Communication skills, interpersonal skills, interest in pharmacy, and commitment to pharmacy as a career (assessed through an interview by the faculty) AND For applicants with a pharmacy degree completed overseas, demonstrated motivation for repeating a pharmacy qualification (assessed through a personal statement) OR Completed UTS Bachelor of Advanced Science (Pharmaceutical Sciences), or Bachelor of Advanced Science (Pre-Medicine) at the end of 2025 or later, with a minimum GPA of 5/7.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS Academic: overall 7.0, listening 7.0, speaking 7.0, reading 7.0, writing 6.5",
+     "writing": 6.5,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 91,
+     "quote": "TOEFL iBT (0-120): overall 91, listening 22, speaking 24, reading 22, writing 23",
+     "writing": 23,
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "one pharmacology subject",
+      "quote": "one pharmacology subject",
+      "check": "ok"
+     },
+     {
+      "text": "two chemistry subjects",
+      "quote": "two chemistry subjects",
+      "check": "ok"
+     },
+     {
+      "text": "one biochemistry subject",
+      "quote": "one biochemistry subject",
+      "check": "ok"
+     },
+     {
+      "text": "one human physiology subject",
+      "quote": "one human physiology subject",
+      "check": "ok"
+     },
+     {
+      "text": "one mathematics or statistics subject",
+      "quote": "one mathematics or statistics subject",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "074915M",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Real Estate Investment",
+   "url": "https://www.uts.edu.au/courses/master-of-real-estate-investment",
+   "snapshot_sha256": "6dc4a7e47f43d3499d7dd77d5cbb38f9a1cdaf332a5133675576357fc07fc625",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have one of the following: Completed Australian bachelor's degree or Australian bachelor honours degree, or overseas equivalent, in Real Estate, Valuation, Building Construction Economics, Engineering, Business Management, Finance, or Management and Commerce OR Completed Australian master's degree, or overseas equivalent, in Property or Real Estate, Business, Finance, Valuation and Commerce, or Economics OR Completed UTS Graduate Certificate or UTS Graduate Diploma in Property Development OR Completed Australian bachelor's degree or higher qualification, or overseas equivalent, in any field of study AND A minimum of 2 years full-time, or equivalent part-time, relevant professional work experience",
+     "quote": "Applicants must have one of the following: Completed Australian bachelor's degree or Australian bachelor honours degree, or overseas equivalent, in Real Estate, Valuation, Building Construction Economics, Engineering, Business Management, Finance, or Management and Commerce OR Completed Australian master's degree, or overseas equivalent, in Property or Real Estate, Business, Finance, Valuation and Commerce, or Economics OR Completed UTS Graduate Certificate or UTS Graduate Diploma in Property Development OR Completed Australian bachelor's degree or higher qualification, or overseas equivalent, in any field of study AND A minimum of 2 years full-time, or equivalent part-time, relevant professional work experience",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "084258A",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of International Commercial and Business Law Master of Business Administration",
+   "url": "https://www.uts.edu.au/courses/master-of-international-commercial-and-business-law-master-of-business-administration",
+   "snapshot_sha256": "6f847edc89e3410bff35b087c9d9daa5f454f0d3fbe8d7ad0d91750e77d75f93",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have one of the following: Completed Australian doctorate, or overseas equivalent, in any field of study OR Completed Australian bachelor's degree, Australian bachelor honours degree, or Australian master's degree, or overseas equivalent, in any field of study with a minimum GPA of 4.5/7 OR Completed Australian bachelor's degree, Australian bachelor honours degree or Australian master's degree, or overseas equivalent, in any field of study with a minimum GPA of 3.8/7 AND Capacity to study demonstrated through a minimum of 1 year full-time or equivalent part-time relevant professional work experience OR Completed Australian bachelor's degree or Australian master's degree, or overseas equivalent, in any field of study with a minimum GPA between 3.3 and 3.79/7 AND Completed graduate certificate or graduate diploma with a minimum GPA of 4.5/7 OR Completed UTS Graduate Diploma in Business Administration OR Completed UTS Graduate Certificate in Business Administration with a minimum GPA of 5/7",
+     "quote": "Applicants must have one of the following: Completed Australian doctorate, or overseas equivalent, in any field of study OR Completed Australian bachelor's degree, Australian bachelor honours degree, or Australian master's degree, or overseas equivalent, in any field of study with a minimum GPA of 4.5/7 OR Completed Australian bachelor's degree, Australian bachelor honours degree or Australian master's degree, or overseas equivalent, in any field of study with a minimum GPA of 3.8/7 AND Capacity to study demonstrated through a minimum of 1 year full-time or equivalent part-time relevant professional work experience OR Completed Australian bachelor's degree or Australian master's degree, or overseas equivalent, in any field of study with a minimum GPA between 3.3 and 3.79/7 AND Completed graduate certificate or graduate diploma with a minimum GPA of 4.5/7 OR Completed UTS Graduate Diploma in Business Administration OR Completed UTS Graduate Certificate in Business Administration with a minimum GPA of 5/7",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "106476E",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Finance",
+   "url": "https://www.uts.edu.au/courses/master-of-finance",
+   "snapshot_sha256": "7ddf1a3e7b1caa665609093ec9edce3b20bec54e25f3ef29093864c26e8b6d87",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, with more than 75% of all subjects completed at pass level (conceded pass not included)",
+     "quote": "Applicants must have the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, with more than 75% of all subjects completed at pass level (conceded pass not included)",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "036581K",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Strategic Supply Chain Management",
+   "url": "https://www.uts.edu.au/courses/master-of-strategic-supply-chain-management",
+   "snapshot_sha256": "82e53795d27ba0e9338da2aee2083314a1201a80000f58fa35ea88bc78fbc34a",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, with more than 75% of all subjects completed at pass level (conceded pass not included)",
+     "quote": "Applicants must have the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, with more than 75% of all subjects completed at pass level (conceded pass not included)",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "084678C",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Teaching in Secondary Education",
+   "url": "https://www.uts.edu.au/courses/master-of-teaching-in-secondary-education",
+   "snapshot_sha256": "85f381ba362a5a548f1599739a4ba4d9183fb2b13f9c0696a6040e1de3c981f8",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have the following: Completed Australian bachelor's degree, bachelor's honours, master's degree, doctorate, or overseas equivalent, with at least one major discipline study relevant to the teaching area, as described by the NSW curriculum and consistent with NESA Subject Content Knowledge Requirements",
+     "quote": "Applicants must have the following: Completed Australian bachelor's degree, bachelor's honours, master's degree, doctorate, or overseas equivalent, with at least one major discipline study relevant to the teaching area, as described by the NSW curriculum and consistent with NESA Subject Content Knowledge Requirements",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "IELTS Academic: overall 7.5, listening 8.0, speaking 8.0, reading 7.0, writing 7.0",
+     "writing": 7.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 102,
+     "quote": "TOEFL iBT (0-120): overall 102, listening 28, speaking 26, reading 24, writing 27",
+     "writing": 27,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "080952M",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Property Development and Planning",
+   "url": "https://www.uts.edu.au/courses/master-of-property-development-and-planning",
+   "snapshot_sha256": "8abd8fa941d348111f40b9f4054c194796985567e03d469846a269d8328cc850",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have one of the following: Completed Australian bachelor's, bachelor honours degree, or master's degree, or overseas equivalent OR Completed UTS Graduate Certificate or UTS Graduate Diploma in Property Development, UTS Graduate Certificate or UTS Graduate Diploma in Planning, UTS Graduate Certificate or UTS Graduate Diploma in Property and Planning, or UTS Graduate Certificate or UTS Graduate Diploma in Urban Planning (online) or UTS Graduate Certificate or UTS Graduate Diploma in Urban Planning and Design (online) or UTS Graduate Certificate or UTS Graduate Diploma in Urban Design (online) with a minimum GPA of 5/7 OR Completed Australian graduate certificate or graduate diploma, or overseas equivalent, in a related field of study with a minimum GPA of 5/7 AND A minimum of 3 years full-time, or equivalent part-time, relevant professional work experience",
+     "quote": "Applicants must have one of the following: Completed Australian bachelor's, bachelor honours degree, or master's degree, or overseas equivalent OR Completed UTS Graduate Certificate or UTS Graduate Diploma in Property Development, UTS Graduate Certificate or UTS Graduate Diploma in Planning, UTS Graduate Certificate or UTS Graduate Diploma in Property and Planning, or UTS Graduate Certificate or UTS Graduate Diploma in Urban Planning (online) or UTS Graduate Certificate or UTS Graduate Diploma in Urban Planning and Design (online) or UTS Graduate Certificate or UTS Graduate Diploma in Urban Design (online) with a minimum GPA of 5/7 OR Completed Australian graduate certificate or graduate diploma, or overseas equivalent, in a related field of study with a minimum GPA of 5/7 AND A minimum of 3 years full-time, or equivalent part-time, relevant professional work experience",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "089509B",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Clinical Exercise Physiology",
+   "url": "https://www.uts.edu.au/courses/master-of-clinical-exercise-physiology",
+   "snapshot_sha256": "8e8a8f59fe882fca77323971b68ae0be864872f533f6771e8809a6479dab6a4c",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have completed an Australian bachelor's degree (or higher), or an overseas equivalent, in exercise science with a minimum GPA of 5/7, and be CURRENT in one of the following Exercise and Sports Science Australia (ESSA) requirements: Accreditation as an Exercise Scientist (AES) with ESSA OR An approved or partially approved Graduate Entry Assessment from ESSA OR An approved Legacy Pathway Assessment from ESSA OR Completed a course in exercise science that is fully or provisionally accredited by ESSA.",
+     "quote": "Applicants must have completed an Australian bachelor's degree (or higher), or an overseas equivalent, in exercise science with a minimum GPA of 5/7, and be CURRENT in one of the following Exercise and Sports Science Australia (ESSA) requirements: Accreditation as an Exercise Scientist (AES) with ESSA OR An approved or partially approved Graduate Entry Assessment from ESSA OR An approved Legacy Pathway Assessment from ESSA OR Completed a course in exercise science that is fully or provisionally accredited by ESSA.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "113073K",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Legal Studies",
+   "url": "https://www.uts.edu.au/courses/master-of-legal-studies",
+   "snapshot_sha256": "8f444f62411e439b9fdb020c32c373a8a0eee990bbe3e7220f7740ca90507b21",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have one of the following: Completed Australian doctorate, or overseas equivalent OR Completed Australian bachelor's degree, Australian bachelor honours degree, or Australian master's degree, or overseas equivalent, with a minimum GPA of 3.8/7 OR Completed Australian graduate certificate or Australian graduate diploma, or overseas equivalent, with a minimum GPA of 5/7 OR Completed Australian bachelor's degree, Australian bachelor honours degree, or Australian master's degree, or overseas equivalent, with a GPA between 3.30/7 and 3.79/7 AND Capacity to study the course demonstrated through a minimum of 1 year full-time or equivalent part-time relevant professional work experience The qualification must be in a field of study other than law or, if the qualification is in a legal field of study, it shall not be an academic qualification for legal practice.",
+     "quote": "Applicants must have one of the following: Completed Australian doctorate, or overseas equivalent OR Completed Australian bachelor's degree, Australian bachelor honours degree, or Australian master's degree, or overseas equivalent, with a minimum GPA of 3.8/7 OR Completed Australian graduate certificate or Australian graduate diploma, or overseas equivalent, with a minimum GPA of 5/7 OR Completed Australian bachelor's degree, Australian bachelor honours degree, or Australian master's degree, or overseas equivalent, with a GPA between 3.30/7 and 3.79/7 AND Capacity to study the course demonstrated through a minimum of 1 year full-time or equivalent part-time relevant professional work experience The qualification must be in a field of study other than law or, if the qualification is in a legal field of study, it shall not be an academic qualification for legal practice.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "080598B",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Professional Engineering",
+   "url": "https://www.uts.edu.au/courses/master-of-professional-engineering",
+   "snapshot_sha256": "907820bcd752fd8c06582cb05e9362636e28247632a60166043d633e8a3dbc09",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have the following qualifications in Engineering or Computer Science in an area relevant to the proposed major: Completed Australian bachelor's degree, or overseas equivalent, in Engineering at the Engineering technologist level or below, or Computer Science with at least 75% of all subjects completed at pass level (conceded pass not included).",
+     "quote": "Applicants must have the following qualifications in Engineering or Computer Science in an area relevant to the proposed major: Completed Australian bachelor's degree, or overseas equivalent, in Engineering at the Engineering technologist level or below, or Computer Science with at least 75% of all subjects completed at pass level (conceded pass not included).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "088084G",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering Management",
+   "url": "https://www.uts.edu.au/courses/master-of-engineering-management",
+   "snapshot_sha256": "97c227ec97535dd5be61c9e7c1b482f72cfb1aa13d8af788eb65eab510a6dad3",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have one of the following: Completed Australian master's or doctoral degree, or overseas equivalent. OR Completed Australian bachelor's degree, graduate diploma, or graduate certificate, or overseas equivalent, with at least 75% of all subjects completed at pass level (conceded pass not included).",
+     "quote": "Applicants must have one of the following: Completed Australian master's or doctoral degree, or overseas equivalent. OR Completed Australian bachelor's degree, graduate diploma, or graduate certificate, or overseas equivalent, with at least 75% of all subjects completed at pass level (conceded pass not included).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "081088E",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Social Impact and Not-for-Profit Management",
+   "url": "https://www.uts.edu.au/courses/master-of-social-impact-and-not-for-profit-management",
+   "snapshot_sha256": "999d21cf5e492186aa399282e041beacaa02aa065f63d6181d1dad250024c530",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, with more than 75% of all subjects completed at pass level (conceded pass not included)",
+     "quote": "Applicants must have the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, with more than 75% of all subjects completed at pass level (conceded pass not included)",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "084676E",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Speech Pathology",
+   "url": "https://www.uts.edu.au/courses/master-of-speech-pathology",
+   "snapshot_sha256": "aeccb88bf934120d4fcbb3b349fbc667fbbe78ca0e73dac919aec51cb7bf500d",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, with a minimum GPA of 4.75/7 AND Communication skills, interpersonal skills, interest in speech pathology, and commitment to speech pathology as a career (assessed through an interview) AND For applicants with a speech pathology/speech therapy degree completed overseas, demonstrated motivation for repeating a speech pathology qualification (assessed through a personal statement)",
+     "quote": "Applicants must have the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, with a minimum GPA of 4.75/7 AND Communication skills, interpersonal skills, interest in speech pathology, and commitment to speech pathology as a career (assessed through an interview) AND For applicants with a speech pathology/speech therapy degree completed overseas, demonstrated motivation for repeating a speech pathology qualification (assessed through a personal statement)",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS Academic: overall 7.0; listening 7.0; speaking 7.0; reading 7.0; writing 7.0",
+     "writing": 7.0,
+     "min_band": 7.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 94,
+     "quote": "TOEFL iBT (0-120): overall 94; listening 24; speaking 23; reading 24; writing 27",
+     "writing": 27,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "098167M",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Screen Arts and Production",
+   "url": "https://www.uts.edu.au/courses/master-of-screen-arts-and-production",
+   "snapshot_sha256": "afcb2c0ee4d0d15919de6320280753f51dcaad9a5f7f7d29146d45efb9f79d75",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have one of the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent in Society and Culture or Creative Arts OR Completed Australian bachelor's degree or higher qualification, or overseas equivalent in any field of study AND A minimum of 2 years full-time, or equivalent part-time, relevant professional work experience in the screen industry AND an interest in the course and demonstrated understanding of the opportunities present in Screen Arts and Production.",
+     "quote": "Applicants must have one of the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent in Society and Culture or Creative Arts OR Completed Australian bachelor's degree or higher qualification, or overseas equivalent in any field of study AND A minimum of 2 years full-time, or equivalent part-time, relevant professional work experience in the screen industry AND an interest in the course and demonstrated understanding of the opportunities present in Screen Arts and Production.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "116224J",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of International Commercial and Business Law",
+   "url": "https://www.uts.edu.au/courses/master-of-international-commercial-and-business-law",
+   "snapshot_sha256": "ba24415ec2c460a8a1c1ff9b14021a811fb70278e3b03cf35b1bbd2de0a1c65a",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have one of the following: Completed Australian doctorate, or overseas equivalent, in any field of study OR Completed Australian bachelor's degree, Australian bachelor honours degree, or Australian master's degree, or overseas equivalent, in any field of study with a minimum GPA of 4.5/7 OR Completed Australian bachelor's degree, Australian bachelor honours degree or Australian master's degree, or overseas equivalent, in any field of study with a minimum GPA of 3.8/7 AND Capacity to study demonstrated through a minimum of 1 year full-time or equivalent part-time relevant professional work experience OR Completed Australian bachelor's degree or Australian master's degree, or overseas equivalent, in any field of study with a minimum GPA between 3.3 and 3.79/7 AND Completed graduate certificate or graduate diploma with a minimum GPA of 4.5/7 OR Completed UTS Graduate Diploma in Business Administration OR Completed UTS Graduate Certificate in Business Administration with a minimum GPA of 5/7",
+     "quote": "Applicants must have one of the following: Completed Australian doctorate, or overseas equivalent, in any field of study OR Completed Australian bachelor's degree, Australian bachelor honours degree, or Australian master's degree, or overseas equivalent, in any field of study with a minimum GPA of 4.5/7 OR Completed Australian bachelor's degree, Australian bachelor honours degree or Australian master's degree, or overseas equivalent, in any field of study with a minimum GPA of 3.8/7 AND Capacity to study demonstrated through a minimum of 1 year full-time or equivalent part-time relevant professional work experience OR Completed Australian bachelor's degree or Australian master's degree, or overseas equivalent, in any field of study with a minimum GPA between 3.3 and 3.79/7 AND Completed graduate certificate or graduate diploma with a minimum GPA of 4.5/7 OR Completed UTS Graduate Diploma in Business Administration OR Completed UTS Graduate Certificate in Business Administration with a minimum GPA of 5/7",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "106475F",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering Master of Engineering Management",
+   "url": "https://www.uts.edu.au/courses/master-of-engineering-master-of-engineering-management",
+   "snapshot_sha256": "ce1b3b97c26ed8dfe04d10f87d567b4088b6b2da1c85fac8eaac09f752ff585d",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have one of the following qualifications in Engineering or Computer Science in an area relevant to the proposed major: Completed Australian master's or doctoral degree, or overseas equivalent. OR Completed Australian bachelor's degree, graduate diploma or graduate certificate, or overseas equivalent, with at least 75% of all subjects completed at pass level (conceded pass not included).",
+     "quote": "Applicants must have one of the following qualifications in Engineering or Computer Science in an area relevant to the proposed major: Completed Australian master's or doctoral degree, or overseas equivalent. OR Completed Australian bachelor's degree, graduate diploma or graduate certificate, or overseas equivalent, with at least 75% of all subjects completed at pass level (conceded pass not included).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "081095F",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Strategic Communication",
+   "url": "https://www.uts.edu.au/courses/master-of-strategic-communication",
+   "snapshot_sha256": "ce9c291e488bf97236176466350ba79f8eb8ad17e76701b0ea591ba9ceffc97d",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have one of the following: Completed Australian master’s degree, Australian graduate certificate, or Australian graduate diploma, or overseas equivalent, in any field of study OR Completed Australian bachelor's degree, or overseas equivalent, in Management and Commerce, Society and Culture, or Creative Arts OR Completed Australian bachelor's degree, or overseas equivalent, in any field of study AND A minimum of 2 years full-time, or equivalent part-time, relevant professional experience",
+     "quote": "Applicants must have one of the following: Completed Australian master’s degree, Australian graduate certificate, or Australian graduate diploma, or overseas equivalent, in any field of study OR Completed Australian bachelor's degree, or overseas equivalent, in Management and Commerce, Society and Culture, or Creative Arts OR Completed Australian bachelor's degree, or overseas equivalent, in any field of study AND A minimum of 2 years full-time, or equivalent part-time, relevant professional experience",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "116217H",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Data Science and Innovation",
+   "url": "https://www.uts.edu.au/courses/master-of-data-science-and-innovation",
+   "snapshot_sha256": "dc4e50316f858cc819d4b2b1b08ab98738c8a7d4f92885bf56587eed104d4aff",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have one of the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, in any discipline with a minimum GPA of 4/7 OR Completed Australian bachelor's degree or higher qualification, or overseas equivalent, in any discipline AND A minimum of 2 years full-time, or equivalent part-time, professional work experience in a relevant professional occupation (listed below) OR Completed Australian bachelor's degree or higher qualification, or overseas equivalent, in a relevant discipline (listed below)",
+     "quote": "Applicants must have one of the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, in any discipline with a minimum GPA of 4/7 OR Completed Australian bachelor's degree or higher qualification, or overseas equivalent, in any discipline AND A minimum of 2 years full-time, or equivalent part-time, professional work experience in a relevant professional occupation (listed below) OR Completed Australian bachelor's degree or higher qualification, or overseas equivalent, in a relevant discipline (listed below)",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "084268K",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Teaching in Primary Education",
+   "url": "https://www.uts.edu.au/courses/master-of-teaching-in-primary-education",
+   "snapshot_sha256": "dd510da5632b1d1c292e698c0dc47dba0215a67e993553df63e12361d29fec63",
+   "fields": {
+    "academic": {
+     "text": "Completed Australian bachelor's degree, bachelor's (honours), master's degree or doctorate, or overseas equivalent AND A minimum of 1 year full-time, or equivalent part-time, study (normally 8 units of study) that is relevant to one or more Key Learning Areas of the primary school curriculum (this is a prerequisite requirement from the NSW Education Standards Authority (NESA)",
+     "quote": "Completed Australian bachelor's degree, bachelor's (honours), master's degree or doctorate, or overseas equivalent AND A minimum of 1 year full-time, or equivalent part-time, study (normally 8 units of study) that is relevant to one or more Key Learning Areas of the primary school curriculum (this is a prerequisite requirement from the NSW Education Standards Authority (NESA)",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "IELTS Academic: overall 7.5, listening 8.0, speaking 8.0, reading 7.0, writing 7.0",
+     "writing": 7.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 102,
+     "quote": "TOEFL iBT (0-120): overall 102, listening 28, speaking 26, reading 24, writing 27",
+     "writing": 27,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "114584A",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Cybersecurity",
+   "url": "https://www.uts.edu.au/courses/master-of-cybersecurity",
+   "snapshot_sha256": "dd6ebfb1b56e33a8a267f9666f37cf63d621d8f72a50c26e496b1b73463ba32b",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have one of the following: Completed Australian master's or doctoral degree, or overseas equivalent, in Information Technology or Electrical and Electronic Engineering and Technology. OR Completed Australian bachelor's degree, graduate diploma, or graduate certificate, or overseas equivalent, in Information Technology or Electrical and Electronic Engineering and Technology with at least 75% of all subjects completed at pass level (conceded pass not included). OR Completed Australian bachelor's degree, graduate diploma, or graduate certificate, or overseas equivalent, in Information Technology AND A minimum of 2 years full-time, or equivalent part-time, relevant post-secondary professional work experience.",
+     "quote": "Applicants must have one of the following: Completed Australian master's or doctoral degree, or overseas equivalent, in Information Technology or Electrical and Electronic Engineering and Technology. OR Completed Australian bachelor's degree, graduate diploma, or graduate certificate, or overseas equivalent, in Information Technology or Electrical and Electronic Engineering and Technology with at least 75% of all subjects completed at pass level (conceded pass not included). OR Completed Australian bachelor's degree, graduate diploma, or graduate certificate, or overseas equivalent, in Information Technology AND A minimum of 2 years full-time, or equivalent part-time, relevant post-secondary professional work experience.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "107870J",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Behavioural Economics",
+   "url": "https://www.uts.edu.au/courses/master-of-behavioural-economics",
+   "snapshot_sha256": "e3294fd7044cd44a3a6304f3f3e40cd2397fa339198b134d06583ffb65dbc995",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, with more than 75% of all subjects completed at pass level (conceded pass not included)",
+     "quote": "Applicants must have the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, with more than 75% of all subjects completed at pass level (conceded pass not included)",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "106031A",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Administration",
+   "url": "https://www.uts.edu.au/courses/master-of-business-administration",
+   "snapshot_sha256": "e706179bae4669efa8b476d11d2d51cf1a92ea167cc2ca9624ed01dc7cfd2f88",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have one of the following: Completed Australian graduate certificate or higher qualification, or overseas equivalent, with more than 75% of all subjects completed at pass level (conceded pass not included) OR Completed Australian bachelor's degree, or overseas equivalent, with a minimum GPA of 5.25/7 with more than 90% of all subjects completed at pass level (conceded pass not included) OR Completed Australian bachelor's degree, or overseas equivalent, with more than 75% of all subjects completed at pass level (conceded pass not included) and one of the following: A minimum of 4 years full-time or equivalent part-time, relevant post-secondary professional work experience Graduate Management Admission Test (GMAT) overall minimum score of 550. If completed pre-Feb 2024, GMAT Exam (includes AWA) with an overall minimum score of 550 with verbal 25, quantitative 35 and AWA 4.0.",
+     "quote": "Applicants must have one of the following: Completed Australian graduate certificate or higher qualification, or overseas equivalent, with more than 75% of all subjects completed at pass level (conceded pass not included) OR Completed Australian bachelor's degree, or overseas equivalent, with a minimum GPA of 5.25/7 with more than 90% of all subjects completed at pass level (conceded pass not included) OR Completed Australian bachelor's degree, or overseas equivalent, with more than 75% of all subjects completed at pass level (conceded pass not included) and one of the following: A minimum of 4 years full-time or equivalent part-time, relevant post-secondary professional work experience Graduate Management Admission Test (GMAT) overall minimum score of 550. If completed pre-Feb 2024, GMAT Exam (includes AWA) with an overall minimum score of 550 with verbal 25, quantitative 35 and AWA 4.0.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "025004A",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Planning",
+   "url": "https://www.uts.edu.au/courses/master-of-planning",
+   "snapshot_sha256": "ea18a73c39bea221895403bae01716a1e8927b8f66ca29e2fe8b7c72adbc58f7",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have one of the following: Completed UTS Bachelor of Property Economics OR Completed UTS Graduate Certificate or UTS Graduate Diploma in Planning, Property and Planning, Property Development, or Urban Planning/Urban Design with a minimum GPA of 5/7 OR Completed Australian bachelor's, bachelor honours degree, or master's degree, or overseas equivalent, in a related field of study OR Completed Australian Graduate Certificate or Graduate Diploma, or overseas equivalent, in a related field of study with a minimum GPA of 5/7 AND A minimum of 3 years full-time, or equivalent part-time, relevant professional work experience. OR Completed Australian bachelor's degree or higher qualification, or overseas equivalent, in any field of study AND A minimum of 3 years full-time, or equivalent part-time, relevant professional work experience.",
+     "quote": "Applicants must have one of the following: Completed UTS Bachelor of Property Economics OR Completed UTS Graduate Certificate or UTS Graduate Diploma in Planning, Property and Planning, Property Development, or Urban Planning/Urban Design with a minimum GPA of 5/7 OR Completed Australian bachelor's, bachelor honours degree, or master's degree, or overseas equivalent, in a related field of study OR Completed Australian Graduate Certificate or Graduate Diploma, or overseas equivalent, in a related field of study with a minimum GPA of 5/7 AND A minimum of 3 years full-time, or equivalent part-time, relevant professional work experience. OR Completed Australian bachelor's degree or higher qualification, or overseas equivalent, in any field of study AND A minimum of 3 years full-time, or equivalent part-time, relevant professional work experience.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "064794J",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Animation and Visualisation",
+   "url": "https://www.uts.edu.au/courses/master-of-animation-and-visualisation",
+   "snapshot_sha256": "ec9a4c14ad48d99ebfb39e495410ffd0618dd8e92a185d99df9cf2c15c3e687a",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, in any field of study, AND advanced skills and aptitude in the nominated specialisation in 3D animation or visual effects production as demonstrated by their portfolio and work experience covered in their Curriculum Vitae (CV).",
+     "quote": "Applicants must have the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, in any field of study, AND advanced skills and aptitude in the nominated specialisation in 3D animation or visual effects production as demonstrated by their portfolio and work experience covered in their Curriculum Vitae (CV).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, listening 6.5, speaking 6.5, reading 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, listening 20, speaking 20, reading 19, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "092411G",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Physiotherapy",
+   "url": "https://www.uts.edu.au/courses/master-of-physiotherapy",
+   "snapshot_sha256": "ee073e67c388093b351b059f2099f31bb4dfac30eb1f56a079d0b9cbcc0b013d",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, with a minimum GPA of 5.15/7 AND Completed the prerequisite subjects listed below at a tertiary level within the last 10 years AND Communication skills, interpersonal skills, interest in physiotherapy, and commitment to physiotherapy as a career (assessed through an interview) AND For applicants with a physiotherapy degree completed overseas, demonstrated motivation for repeating a physiotherapy qualification (assessed through a personal statement)",
+     "quote": "Applicants must have the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, with a minimum GPA of 5.15/7 AND Completed the prerequisite subjects listed below at a tertiary level within the last 10 years AND Communication skills, interpersonal skills, interest in physiotherapy, and commitment to physiotherapy as a career (assessed through an interview) AND For applicants with a physiotherapy degree completed overseas, demonstrated motivation for repeating a physiotherapy qualification (assessed through a personal statement)",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS Academic: overall 7.0, listening 7.0, speaking 7.0, reading 7.0, writing 6.5",
+     "writing": 6.5,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 91,
+     "quote": "TOEFL iBT (0-120): overall 91, listening 22, speaking 24, reading 22, writing 23",
+     "writing": 23,
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "two human anatomy subjects (structural and functional)",
+      "quote": "two human anatomy subjects (structural and functional)",
+      "check": "ok"
+     },
+     {
+      "text": "one human physiology subject",
+      "quote": "one human physiology subject",
+      "check": "ok"
+     },
+     {
+      "text": "one exercise physiology subject",
+      "quote": "one exercise physiology subject",
+      "check": "ok"
+     },
+     {
+      "text": "one neuroscience subject",
+      "quote": "one neuroscience subject",
+      "check": "ok"
+     },
+     {
+      "text": "one psychology subject",
+      "quote": "one psychology subject",
+      "check": "ok"
+     },
+     {
+      "text": "one research methods subject",
+      "quote": "one research methods subject",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "091975B",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Genetic Counselling",
+   "url": "https://www.uts.edu.au/courses/master-of-genetic-counselling",
+   "snapshot_sha256": "f0f46bb0d6a55e2280a568c3e1bf4a103dd28dd80b377abf50312cf600909631",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have one of the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, in related field of study with a minimum GPA of 4/7 AND Completed one human genetics subject (to second- or third-year undergraduate level, or equivalent) within the last 10 years AND An interest in the course and demonstrated understanding of the opportunities present in Genetic Counselling OR Completed Australian bachelor's degree or higher qualification, or overseas equivalent, in any field of study with a minimum GPA of 4/7 AND A minimum of 3 years full-time, or equivalent part-time, relevant professional work experience in human genetics AND Completed one human genetics subject (to second- or third-year undergraduate level, or equivalent) within the last 10 years AND An interest in the course and demonstrated understanding of the opportunities present in Genetic Counselling",
+     "quote": "Applicants must have one of the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, in related field of study with a minimum GPA of 4/7 AND Completed one human genetics subject (to second- or third-year undergraduate level, or equivalent) within the last 10 years AND An interest in the course and demonstrated understanding of the opportunities present in Genetic Counselling OR Completed Australian bachelor's degree or higher qualification, or overseas equivalent, in any field of study with a minimum GPA of 4/7 AND A minimum of 3 years full-time, or equivalent part-time, relevant professional work experience in human genetics AND Completed one human genetics subject (to second- or third-year undergraduate level, or equivalent) within the last 10 years AND An interest in the course and demonstrated understanding of the opportunities present in Genetic Counselling",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS Academic: overall 7.0, listening 7.0, speaking 7.0, reading 7.0, writing 7.0",
+     "writing": 7.0,
+     "min_band": 7.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 98,
+     "quote": "TOEFL iBT (0-120): overall 98, listening 24, speaking 23, reading 24, writing 27",
+     "writing": 27,
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "one human genetics subject (to second- or third-year undergraduate level, or equivalent) within the last 10 years",
+      "quote": "one human genetics subject (to second- or third-year undergraduate level, or equivalent) within the last 10 years",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "098052M",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Information Technology",
+   "url": "https://www.uts.edu.au/courses/master-of-information-technology",
+   "snapshot_sha256": "f62cfb25b485456548e7cd5b62a577d1a85070599bb16a4fcb7f602bf4679085",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have one of the following: Completed Australian master's or doctoral degree, or overseas equivalent. OR Completed Australian bachelor's degree, graduate certificate or graduate diploma, or overseas equivalent, with at least 75% of all subjects completed at pass level (conceded pass not included). OR Completed Australian bachelor's degree, graduate certificate or graduate diploma, or overseas equivalent, in any field of study AND A minimum of 2 years full-time, or equivalent part-time, relevant post-secondary professional work experience.",
+     "quote": "Applicants must have one of the following: Completed Australian master's or doctoral degree, or overseas equivalent. OR Completed Australian bachelor's degree, graduate certificate or graduate diploma, or overseas equivalent, with at least 75% of all subjects completed at pass level (conceded pass not included). OR Completed Australian bachelor's degree, graduate certificate or graduate diploma, or overseas equivalent, in any field of study AND A minimum of 2 years full-time, or equivalent part-time, relevant post-secondary professional work experience.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "084256C",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Design",
+   "url": "https://www.uts.edu.au/courses/master-of-design",
+   "snapshot_sha256": "f7c386697c049aeb20361baf96560e8907949c5d7882516824eee35fe28318e4",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent.",
+     "quote": "Applicants must have the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "121204D",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Professional Accounting",
+   "url": "https://www.uts.edu.au/courses/master-of-professional-accounting",
+   "snapshot_sha256": "f8f9c7c937d519d4f7eb4408d4bae04c2eb013c3bb7e7bad5742fa4af38cfd99",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, in a field of study other than Accounting with more than 75% of all subjects completed at pass level (conceded pass not included)",
+     "quote": "Applicants must have the following: Completed Australian bachelor's degree or higher qualification, or overseas equivalent, in a field of study other than Accounting with more than 75% of all subjects completed at pass level (conceded pass not included)",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic: overall 6.5, writing 6.0",
+     "writing": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL iBT (0-120): overall 79, writing 21",
+     "writing": 21,
+     "check": "ok"
+    }
+   },
+   "cricos_code": "061285K",
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 55,
+  "机器核对": 55,
+  "待人工": 0
+ }
+}
