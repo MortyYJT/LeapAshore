@@ -40,7 +40,9 @@ Use `api/.venv/bin/python` for the tools.
 6. Only **taught / coursework master's** (MSc, MA, MEng, MBA, Master of X by coursework, LLM, MPH…).
    Skip research degrees (MPhil, MRes, MSc by research), PhDs, graduate certificates/diplomas,
    and programs closed to international students.
-7. Do not edit any other file in the repository, do not commit, do not install anything.
+7. Do not edit any other file in the repository, do not commit, do not install anything. Keep your
+   own working files in a folder named after your `school_key` (other agents run at the same time
+   and share the scratch space).
 
 ### How to work
 

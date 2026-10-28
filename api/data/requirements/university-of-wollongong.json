@@ -1,0 +1,1524 @@
+{
+ "school_key": "university-of-wollongong",
+ "school_name_en": "University of Wollongong",
+ "country": "Australia",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://www.uow.edu.au/study/courses/"
+ ],
+ "china_page": {
+  "url": "https://www.uow.edu.au/study/international/representatives/international-entry-requirements/",
+  "sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd"
+ },
+ "blocked": [],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.uow.edu.au/study/courses/master-of-innovation-and-entrepreneurship/?students=international",
+  "https://www.uow.edu.au/study/courses/master-of-management/?students=international",
+  "https://www.uow.edu.au/study/courses/master-of-financial-management/?students=international",
+  "https://www.uow.edu.au/study/courses/master-of-professional-computing/?students=international",
+  "https://www.uow.edu.au/study/courses/master-of-information-and-communication-technology-advanced/?students=international",
+  "https://www.uow.edu.au/study/courses/master-of-health-informatics/?students=international",
+  "https://www.uow.edu.au/study/courses/master-of-nursing/?students=international",
+  "https://www.uow.edu.au/study/courses/master-of-applied-finance/?students=international",
+  "https://www.uow.edu.au/study/courses/master-of-applied-finance/?students=international",
+  "https://www.uow.edu.au/study/courses/master-of-education-advanced/?students=international",
+  "https://www.uow.edu.au/study/courses/master-of-nursing-international/?students=international",
+  "https://www.uow.edu.au/study/courses/master-of-engineering-science/?students=international",
+  "https://www.uow.edu.au/study/courses/master-of-global-science-and-management/?students=international",
+  "https://www.uow.edu.au/study/courses/master-of-conservation-biology/?students=international",
+  "https://www.uow.edu.au/study/courses/master-of-international-relations/?students=international",
+  "https://www.uow.edu.au/study/courses/master-of-international-relations/?students=international",
+  "https://www.uow.edu.au/study/courses/master-of-business-administration-executive/?students=international",
+  "https://www.uow.edu.au/study/courses/master-of-business-administration-health/?students=international"
+ ],
+ "notes": "Course pages were fetched in the international view (?students=international), which is where UOW prints per-course IELTS scores; the default view is domestic. UOW's China section only covers the Graduation Certificate vs Bachelor Degree Certificate rule, with no China-specific percentage marks, so china_requirement has text only. TOEFL is not stated per course, so it is left out. 18 CRICOS courses got HTTP 404 at the URL guessed from the course name (some have renamed pages, e.g. Applied Finance single/double specialisation, which cannot be mapped to a CRICOS code without inference); they are listed in remaining_urls. International deadlines are recorded only when a future date with day, month and year is printed; most intakes say 'See International students page'. Prerequisites are left inside the academic text, not split out. Master of Science (067084D) returned the domestic view even with the international parameter and shows no international entry or IELTS, so no values were taken from it.",
+ "programs": [
+  {
+   "name": "Master of Nutrition and Dietetics",
+   "url": "https://www.uow.edu.au/study/courses/master-of-nutrition-and-dietetics/?students=international",
+   "cricos_code": "007054G",
+   "snapshot_sha256": "31daf4405ae89ad6de5ba24c6ef80f7e96aaaa40b67fd3a8586cead5c205852c",
+   "fields": {
+    "academic": {
+     "text": "A bachelor’s degree of at least three years’ duration from a recognised tertiary institution, including content in human biosciences, food, and nutrition, taught within an evidence-based paradigm. Human Biosciences and Food and Nutrition Science must include: Chemistry (0.25 EFTSL) followed by Biochemistry (0.25 EFTSL – typically two subjects at second-year level or higher, including metabolic biochemistry and laboratory practicals); Human Biology (0.25 EFTSL) followed by Human Physiology (0.25 EFTSL – typically two subjects at second-year level or higher, including systems physiology with laboratory practicals); Nutrition Science scaffolded across years of study (0.5 EFTSL – typically four subjects at different year levels across the degree); and Statistics, preferably biostatistics. Candidates must meet the prerequisites for study. These prerequisites are detailed in the Supplementary Information Form. Candidates must provide two referees' reports and submit their completed Supplementary Information Form with their application. Referee reports do not need to be requested as they go directly to the Faculty.",
+     "quote": "A bachelor’s degree of at least three years’ duration from a recognised tertiary institution, including content in human biosciences, food, and nutrition, taught within an evidence-based paradigm. Human Biosciences and Food and Nutrition Science must include: Chemistry (0.25 EFTSL) followed by Biochemistry (0.25 EFTSL – typically two subjects at second-year level or higher, including metabolic biochemistry and laboratory practicals); Human Biology (0.25 EFTSL) followed by Human Physiology (0.25 EFTSL – typically two subjects at second-year level or higher, including systems physiology with laboratory practicals); Nutrition Science scaffolded across years of study (0.5 EFTSL – typically four subjects at different year levels across the degree); and Statistics, preferably biostatistics. Candidates must meet the prerequisites for study. These prerequisites are detailed in the Supplementary Information Form. Candidates must provide two referees' reports and submit their completed Supplementary Information Form with their application. Referee reports do not need to be requested as they go directly to the Faculty.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 7.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 7.0 7.0 7.0 7.0 7.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business",
+   "url": "https://www.uow.edu.au/study/courses/master-of-business/?students=international",
+   "cricos_code": "0100307",
+   "snapshot_sha256": "952cdbed5a8ac5634c598444a2724408fe103d26067137372dee3b09e6ee186e",
+   "fields": {
+    "academic": {
+     "text": "A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%, OR A Graduate Certificate or Graduate Diploma in any discipline with an equivalent average mark of 50%, OR A recognised master’s degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, may also be considered.",
+     "quote": "A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%, OR A Graduate Certificate or Graduate Diploma in any discipline with an equivalent average mark of 50%, OR A recognised master’s degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, may also be considered.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Human Resource Management",
+   "url": "https://www.uow.edu.au/study/courses/master-of-human-resource-management/?students=international",
+   "cricos_code": "0100309",
+   "snapshot_sha256": "0b7dbf7f48777a2d6fed2c6f93c01578a529655af1d75accbebf6ee9666a4707",
+   "fields": {
+    "academic": {
+     "text": "A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%, OR A Graduate Certificate or Graduate Diploma in any discipline with an equivalent average mark of 50%, OR A recognised master’s degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, may also be considered.",
+     "quote": "A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%, OR A Graduate Certificate or Graduate Diploma in any discipline with an equivalent average mark of 50%, OR A recognised master’s degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, may also be considered.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of International Business",
+   "url": "https://www.uow.edu.au/study/courses/master-of-international-business/?students=international",
+   "cricos_code": "0100310",
+   "snapshot_sha256": "cb9f0e2ec1d892d3929ea2ab67573cee74f5f4b8d23ee9c8c7c83200497bfa19",
+   "fields": {
+    "academic": {
+     "text": "A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%, OR A Graduate Certificate or Graduate Diploma in any discipline with an equivalent average mark of 50%, OR A recognised master’s degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, will be considered.",
+     "quote": "A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%, OR A Graduate Certificate or Graduate Diploma in any discipline with an equivalent average mark of 50%, OR A recognised master’s degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, will be considered.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Marketing",
+   "url": "https://www.uow.edu.au/study/courses/master-of-marketing/?students=international",
+   "cricos_code": "0100315",
+   "snapshot_sha256": "05c9fa346a8b4e2728411bc97d8546b40a88e0d272ab5f7fd5ee62e3922229e4",
+   "fields": {
+    "academic": {
+     "text": "A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%, OR A Graduate Certificate or Graduate Diploma in any discipline with an equivalent average mark of 50%, OR A recognised master’s degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, will be considered.",
+     "quote": "A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%, OR A Graduate Certificate or Graduate Diploma in any discipline with an equivalent average mark of 50%, OR A recognised master’s degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, will be considered.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Analytics",
+   "url": "https://www.uow.edu.au/study/courses/master-of-business-analytics/?students=international",
+   "cricos_code": "0100316",
+   "snapshot_sha256": "33a5905349fc118c0cd297e06d3e375bdd368a4a8b64f0bd6e15e7cc3f616352",
+   "fields": {
+    "academic": {
+     "text": "A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%, OR A Graduate Certificate or Graduate Diploma in any discipline with an equivalent average mark of 50%, OR A recognised master’s degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, may also be considered.",
+     "quote": "A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%, OR A Graduate Certificate or Graduate Diploma in any discipline with an equivalent average mark of 50%, OR A recognised master’s degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, may also be considered.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Health Extension",
+   "url": "https://www.uow.edu.au/study/courses/master-of-public-health-extension/?students=international",
+   "cricos_code": "0100648",
+   "snapshot_sha256": "a5eb13b752c8f27fc6d4e4eb88d449d6ebd5ad0313560eeb75d0f31462ce358e",
+   "fields": {
+    "academic": {
+     "text": "A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%. Public Health Research Specialisation Students applying for the Public Health Research specialisation must, in addition to the admissions requirements outlined below, have obtained a minimum WAM of 75% in all current or previous postgraduate coursework or a minimum WAM of 75% in their undergraduate degree. Students wishing to take PGPH940 Public Health Practice will require a WAM of 65 across all completed subjects.",
+     "quote": "A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%. Public Health Research Specialisation Students applying for the Public Health Research specialisation must, in addition to the admissions requirements outlined below, have obtained a minimum WAM of 75% in all current or previous postgraduate coursework or a minimum WAM of 75% in their undergraduate degree. Students wishing to take PGPH940 Public Health Practice will require a WAM of 65 across all completed subjects.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Occupational Health and Safety Extension",
+   "url": "https://www.uow.edu.au/study/courses/master-of-occupational-health-and-safety-extension/?students=international",
+   "cricos_code": "0100649",
+   "snapshot_sha256": "20167b46d780dcf5ec53de3e086aa30894f04145c93fe6aa46ea4aaac866db95",
+   "fields": {
+    "academic": {
+     "text": "A recognised bachelor’s degree with an equivalent average mark of 50, OR A Master of Occupational Health and Safety with an equivalent average mark of 50, OR A Graduate Diploma in Occupational Health and Safety with an equivalent average mark of 50, OR Either a Graduate Certificate in Occupational Health and Safety or a Graduate Certificate in Occupational Hygiene with an equivalent average mark of at least 65. Applicants with other relevant qualifications and/or work experience may also be considered.",
+     "quote": "A recognised bachelor’s degree with an equivalent average mark of 50, OR A Master of Occupational Health and Safety with an equivalent average mark of 50, OR A Graduate Diploma in Occupational Health and Safety with an equivalent average mark of 50, OR Either a Graduate Certificate in Occupational Health and Safety or a Graduate Certificate in Occupational Hygiene with an equivalent average mark of at least 65. Applicants with other relevant qualifications and/or work experience may also be considered.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Occupational Health and Safety",
+   "url": "https://www.uow.edu.au/study/courses/master-of-occupational-health-and-safety/?students=international",
+   "cricos_code": "0100650",
+   "snapshot_sha256": "af985b6b536f5be2f5f835aafabb16cc5638664cf01e885039a1e8225f44c712",
+   "fields": {
+    "academic": {
+     "text": "A recognised bachelor’s degree with an equivalent average mark of 50%, OR A Graduate Diploma in Occupational Health and Safety with an equivalent average mark of 50%, OR Either a Graduate Certificate in Occupational Health and Safety or a Graduate Certificate in Occupational Hygiene with an equivalent average mark of at least 65%. Applicants with other relevant qualifications and/or work experience may also be considered.",
+     "quote": "A recognised bachelor’s degree with an equivalent average mark of 50%, OR A Graduate Diploma in Occupational Health and Safety with an equivalent average mark of 50%, OR Either a Graduate Certificate in Occupational Health and Safety or a Graduate Certificate in Occupational Hygiene with an equivalent average mark of at least 65%. Applicants with other relevant qualifications and/or work experience may also be considered.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Occupational Hygiene",
+   "url": "https://www.uow.edu.au/study/courses/master-of-occupational-hygiene/?students=international",
+   "cricos_code": "0100652",
+   "snapshot_sha256": "fbcadb618124bdc5b83f5ad1b5aa694cf60cd98286d3a34d68a0d21eaf938d66",
+   "fields": {
+    "academic": {
+     "text": "A recognised bachelor’s degree with a major in a science or health-related discipline, OR A degree in another relevant area (for example, Engineering) that contains at least one year of science-based subjects with an equivalent average mark of 50%, OR A Graduate Certificate with an equivalent average mark of 65%. Note: Applicants seeking admission based on other relevant qualifications and/or work experience will be considered by the Faculty on an individual basis.",
+     "quote": "A recognised bachelor’s degree with a major in a science or health-related discipline, OR A degree in another relevant area (for example, Engineering) that contains at least one year of science-based subjects with an equivalent average mark of 50%, OR A Graduate Certificate with an equivalent average mark of 65%. Note: Applicants seeking admission based on other relevant qualifications and/or work experience will be considered by the Faculty on an individual basis.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Education Extension",
+   "url": "https://www.uow.edu.au/study/courses/master-of-education-extension/?students=international",
+   "cricos_code": "0101659",
+   "snapshot_sha256": "e9cb366b7ec8fcceea12899fccc17c3c4d983d6fe2d0acbd4bb01d1549582d1e",
+   "fields": {
+    "academic": {
+     "text": "Educational Leadership A recognised bachelor’s degree with an equivalent mark of 50% in either education or teaching, plus one of the following: A postgraduate qualification in any discipline, OR One year of full-time professional experience in the education field, as deemed appropriate to the program of study by the School. OR A recognised bachelor’s degree in any discipline, plus one of the following: A postgraduate qualification in education or teaching, OR Two years of full-time professional experience in the education field, as deemed appropriate to the program of study by the School. TESOL A recognised bachelor’s degree in any discipline with a minimum equivalent average mark of 50%. Students who wish to enrol in the subject EDGT938 Professional Experience in TESOL must demonstrate proficient professional and communication skills. This subject requires students to complete 20 hours of supervised professional experience in an ESL classroom.",
+     "quote": "Educational Leadership A recognised bachelor’s degree with an equivalent mark of 50% in either education or teaching, plus one of the following: A postgraduate qualification in any discipline, OR One year of full-time professional experience in the education field, as deemed appropriate to the program of study by the School. OR A recognised bachelor’s degree in any discipline, plus one of the following: A postgraduate qualification in education or teaching, OR Two years of full-time professional experience in the education field, as deemed appropriate to the program of study by the School. TESOL A recognised bachelor’s degree in any discipline with a minimum equivalent average mark of 50%. Students who wish to enrol in the subject EDGT938 Professional Experience in TESOL must demonstrate proficient professional and communication skills. This subject requires students to complete 20 hours of supervised professional experience in an ESL classroom.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Administration",
+   "url": "https://www.uow.edu.au/study/courses/master-of-business-administration/?students=international",
+   "cricos_code": "013031G",
+   "snapshot_sha256": "3afa7bf050a4d0dfcd9e3473d7d25c2d49f16cefb30de66a8c2e4dcf724f9a26",
+   "fields": {
+    "academic": {
+     "text": "A recognised bachelor's degree with an equivalent average mark of at least 50%, plus a minimum of three years of relevant full-time professional or managerial experience, or the part-time equivalent, OR A recognised Graduate Diploma or Graduate Certificate with an equivalent average mark of at least 50%, together with a minimum of five years of relevant full-time professional or managerial experience, or the part-time equivalent, OR Full membership of a qualifying professional body, together with a minimum of five years of relevant full-time professional or managerial experience, or the part-time equivalent, OR For candidates who do not hold tertiary qualifications, the Academic Program Director may accept those with substantial and proven managerial and/or entrepreneurial experience who demonstrate the potential to meet the learning requirements of the MBA. Each case is considered holistically on its individual merits. Applications must also include a Statement of Motivation (SOM) which should: Address your motivation for studying the Master of Business Administration and how the degree will help you achieve your career goals and aspirations Be no more than one page Written in English",
+     "quote": "A recognised bachelor's degree with an equivalent average mark of at least 50%, plus a minimum of three years of relevant full-time professional or managerial experience, or the part-time equivalent, OR A recognised Graduate Diploma or Graduate Certificate with an equivalent average mark of at least 50%, together with a minimum of five years of relevant full-time professional or managerial experience, or the part-time equivalent, OR Full membership of a qualifying professional body, together with a minimum of five years of relevant full-time professional or managerial experience, or the part-time equivalent, OR For candidates who do not hold tertiary qualifications, the Academic Program Director may accept those with substantial and proven managerial and/or entrepreneurial experience who demonstrate the potential to meet the learning requirements of the MBA. Each case is considered holistically on its individual merits. Applications must also include a Statement of Motivation (SOM) which should: Address your motivation for studying the Master of Business Administration and how the degree will help you achieve your career goals and aspirations Be no more than one page Written in English",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Maritime Policy",
+   "url": "https://www.uow.edu.au/study/courses/master-of-maritime-policy/?students=international",
+   "cricos_code": "017740B",
+   "snapshot_sha256": "c7b72f6cdc4b20eeeb872626ca340e5e1fcdffb82b626ead0e3540bb170c4446",
+   "fields": {
+    "academic": {
+     "text": "A recognised Bachelor Honours degree with an equivalent average mark of 50%, or a recognised bachelor’s degree plus a Graduate Certificate in a relevant area with an equivalent average mark of 50%, OR A recognised bachelor’s degree with an equivalent average mark of 50% and appropriate professional experience (e.g., the ability to demonstrate several years of employment in a maritime-related field, such as naval officers, public servants, or enforcement personnel). Supporting evidence should include a statement of service or an employment reference. Consideration will be given to aspects such as the length and field of professional experience. Course enquiries can be directed to the ANCORS Postgraduate Coordinator, Ms Ruth Davis, at rdavis@uow.edu.au.",
+     "quote": "A recognised Bachelor Honours degree with an equivalent average mark of 50%, or a recognised bachelor’s degree plus a Graduate Certificate in a relevant area with an equivalent average mark of 50%, OR A recognised bachelor’s degree with an equivalent average mark of 50% and appropriate professional experience (e.g., the ability to demonstrate several years of employment in a maritime-related field, such as naval officers, public servants, or enforcement personnel). Supporting evidence should include a statement of service or an employment reference. Consideration will be given to aspects such as the length and field of professional experience. Course enquiries can be directed to the ANCORS Postgraduate Coordinator, Ms Ruth Davis, at rdavis@uow.edu.au.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Psychology (Clinical)",
+   "url": "https://www.uow.edu.au/study/courses/master-of-psychology-clinical/?students=international",
+   "cricos_code": "027467J",
+   "snapshot_sha256": "25d183bbffe8ed58f1ae693a4b418a5d5e4db56f64fb4a507d6727e88d60efd9",
+   "fields": {
+    "academic": {
+     "text": "A four-year, or three-year plus a fourth-year, Australian Psychology Accreditation Council (APAC) accredited sequence in psychology within the last 10 years. Applicants must also be eligible for registration with the Psychology Board of Australia (PsyBA) as a provisional psychologist. Places in this course are limited. Entry is competitive and based on academic merit and personal suitability. For information on how to apply, please visit the Application Information for Postgraduate Training in Clinical Psychology webpage. Here you will find step-by-step instructions and additional supporting documentation required to complete your application.",
+     "quote": "A four-year, or three-year plus a fourth-year, Australian Psychology Accreditation Council (APAC) accredited sequence in psychology within the last 10 years. Applicants must also be eligible for registration with the Psychology Board of Australia (PsyBA) as a provisional psychologist. Places in this course are limited. Entry is competitive and based on academic merit and personal suitability. For information on how to apply, please visit the Application Information for Postgraduate Training in Clinical Psychology webpage. Here you will find step-by-step instructions and additional supporting documentation required to complete your application.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 7.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 7.0 7.0 7.0 7.0 7.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Administration Advanced",
+   "url": "https://www.uow.edu.au/study/courses/master-of-business-administration-advanced/?students=international",
+   "cricos_code": "048696M",
+   "snapshot_sha256": "c9af0886ab65e5a632c361914843dd9372334838907d1ddd4c908120b2859bc4",
+   "fields": {
+    "academic": {
+     "text": "A recognised bachelor's degree with an equivalent average mark of at least 50%, plus a minimum of three years of relevant full-time professional or managerial experience, or the part-time equivalent, OR A recognised Graduate Diploma or Graduate Certificate with an equivalent average mark of at least 50%, together with a minimum of five years of relevant full-time professional or managerial experience, or the part-time equivalent, OR Full membership of a qualifying professional body, together with a minimum of five years of relevant full-time professional or managerial experience, or the part-time equivalent, OR For candidates who do not hold tertiary qualifications, the Academic Program Director may accept those with substantial and proven managerial and/or entrepreneurial experience who demonstrate the potential to meet the learning requirements of the MBA. Each case is considered holistically on its individual merits. Applications must also include a Statement of Motivation (SOM) which should: Address your motivation for studying the Master of Business Administration (Advanced) and how the degree will help you achieve your career goals and aspirations Be no more than one page Written in English",
+     "quote": "A recognised bachelor's degree with an equivalent average mark of at least 50%, plus a minimum of three years of relevant full-time professional or managerial experience, or the part-time equivalent, OR A recognised Graduate Diploma or Graduate Certificate with an equivalent average mark of at least 50%, together with a minimum of five years of relevant full-time professional or managerial experience, or the part-time equivalent, OR Full membership of a qualifying professional body, together with a minimum of five years of relevant full-time professional or managerial experience, or the part-time equivalent, OR For candidates who do not hold tertiary qualifications, the Academic Program Director may accept those with substantial and proven managerial and/or entrepreneurial experience who demonstrate the potential to meet the learning requirements of the MBA. Each case is considered holistically on its individual merits. Applications must also include a Statement of Motivation (SOM) which should: Address your motivation for studying the Master of Business Administration (Advanced) and how the degree will help you achieve your career goals and aspirations Be no more than one page Written in English",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering Management",
+   "url": "https://www.uow.edu.au/study/courses/master-of-engineering-management/?students=international",
+   "cricos_code": "051350M",
+   "snapshot_sha256": "5740b4a74bacca078085cf15a12ca51a008bf42f7ef50010401b47528d31cd5f",
+   "fields": {
+    "academic": {
+     "text": "A 4-year Bachelor of Engineering (Honours) degree from a recognised tertiary institution.",
+     "quote": "A 4-year Bachelor of Engineering (Honours) degree from a recognised tertiary institution.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science",
+   "url": "https://www.uow.edu.au/study/courses/master-of-science/?students=international",
+   "cricos_code": "067084D",
+   "snapshot_sha256": "8629726f9dc68d36717d7d781a0977b67d1c5882dcfcd3a67401c297b131cfd0",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Master of Science (Medical Radiation Physics)",
+   "url": "https://www.uow.edu.au/study/courses/master-of-science-medical-radiation-physics/?students=international",
+   "cricos_code": "067176M",
+   "snapshot_sha256": "362b6f08b6ed66e5eae4fcd5e63f15e2d885086c46746594f1139f8a85a039e8",
+   "fields": {
+    "academic": {
+     "text": "A recognised bachelor’s degree in Physics with an equivalent average mark of 65%, or a bachelor’s degree in any field with at least first-year university-level physics and mathematics, with an equivalent average mark of 75%.",
+     "quote": "A recognised bachelor’s degree in Physics with an equivalent average mark of 65%, or a bachelor’s degree in any field with at least first-year university-level physics and mathematics, with an equivalent average mark of 75%.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Fisheries Policy",
+   "url": "https://www.uow.edu.au/study/courses/master-of-fisheries-policy/?students=international",
+   "cricos_code": "068542G",
+   "snapshot_sha256": "453cca06b17b34c31c60a26173362bc35ca518056ec9d2bf3da37f17e9e0e152",
+   "fields": {
+    "academic": {
+     "text": "A recognised Bachelor Honours degree, or a recognised bachelor’s degree plus a Graduate Certificate in a relevant area, OR A recognised bachelor’s degree and appropriate professional experience (e.g., the ability to demonstrate several years of employment in a maritime-related field, such as naval officers, public servants, or enforcement personnel). Supporting evidence should include a statement of service or an employment reference. Consideration will be given to aspects such as the length and field of professional experience.",
+     "quote": "A recognised Bachelor Honours degree, or a recognised bachelor’s degree plus a Graduate Certificate in a relevant area, OR A recognised bachelor’s degree and appropriate professional experience (e.g., the ability to demonstrate several years of employment in a maritime-related field, such as naval officers, public servants, or enforcement personnel). Supporting evidence should include a statement of service or an employment reference. Consideration will be given to aspects such as the length and field of professional experience.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Teaching (Primary)",
+   "url": "https://www.uow.edu.au/study/courses/master-of-teaching-primary/?students=international",
+   "cricos_code": "080833G",
+   "snapshot_sha256": "ba18e938ba1a8f3c293c5f26df06af85afbd0817812f8b5e6e2f580fe95795c6",
+   "fields": {
+    "academic": {
+     "text": "An undergraduate degree equivalent to a three-year Australian bachelor’s degree with a minimum average mark of 65%, meeting the requirements of the NSW Education Standards Authority (NESA) for teaching in primary schools. The NESA requirements must be assessed by the School of Education before submitting your application. A valid IELTS score is required if the degree was not completed in English in Australia, New Zealand, the United Kingdom, the United States, Canada, or the Republic of Ireland. Students who have studied overseas may need to meet additional requirements set by the NSW Education Standards Authority to qualify as teachers in NSW. For application procedures and course information, please refer to the School of Education.",
+     "quote": "An undergraduate degree equivalent to a three-year Australian bachelor’s degree with a minimum average mark of 65%, meeting the requirements of the NSW Education Standards Authority (NESA) for teaching in primary schools. The NESA requirements must be assessed by the School of Education before submitting your application. A valid IELTS score is required if the degree was not completed in English in Australia, New Zealand, the United Kingdom, the United States, Canada, or the Republic of Ireland. Students who have studied overseas may need to meet additional requirements set by the NSW Education Standards Authority to qualify as teachers in NSW. For application procedures and course information, please refer to the School of Education.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "min_band": 7.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 7.5 7.0 7.0 8.0 8.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Autumn Session, 2027",
+      "date": "2026-12-06",
+      "quote": "International 6 December, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Teaching (Secondary)",
+   "url": "https://www.uow.edu.au/study/courses/master-of-teaching-secondary/?students=international",
+   "cricos_code": "080834F",
+   "snapshot_sha256": "172044f947f9625c5a3fa46831fa3df0e08a9ea292bf2e608e5ec344389bac01",
+   "fields": {
+    "academic": {
+     "text": "An undergraduate degree equivalent to a three-year Australian bachelor’s degree with a minimum average mark of 65%, which meets the requirements of the NSW Education Standards Authority (NESA) for teaching in secondary schools. The NESA requirements must be assessed by the School of Education before submitting your application. A valid IELTS score is required if the degree was not completed in English in Australia, New Zealand, the United Kingdom, the United States, Canada, or the Republic of Ireland. Students who have studied overseas may need to meet additional requirements set by the NSW Education Standards Authority to qualify as teachers in NSW. For application procedures and course information, please refer to the School of Education.",
+     "quote": "An undergraduate degree equivalent to a three-year Australian bachelor’s degree with a minimum average mark of 65%, which meets the requirements of the NSW Education Standards Authority (NESA) for teaching in secondary schools. The NESA requirements must be assessed by the School of Education before submitting your application. A valid IELTS score is required if the degree was not completed in English in Australia, New Zealand, the United Kingdom, the United States, Canada, or the Republic of Ireland. Students who have studied overseas may need to meet additional requirements set by the NSW Education Standards Authority to qualify as teachers in NSW. For application procedures and course information, please refer to the School of Education.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "min_band": 7.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 7.5 7.0 7.0 8.0 8.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Autumn Session, 2027",
+      "date": "2026-12-06",
+      "quote": "International 6 December, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Clinical Exercise Physiology",
+   "url": "https://www.uow.edu.au/study/courses/master-of-clinical-exercise-physiology/?students=international",
+   "cricos_code": "083831G",
+   "snapshot_sha256": "451652c2378f889397ff823ae77ff821d716318aa91f979507c3841812b054c8",
+   "fields": {
+    "academic": {
+     "text": "A recognised bachelor’s degree in Exercise Science of at least three years' duration, or ESSA-approved Graduate Entry status. Applicants must also have completed a minimum of 140 hours of supervised clinical placement with healthy populations prior to entry into the master’s program. Places in the master’s program are limited, and a minimum credit average across all completed undergraduate subjects is required to be considered competitive for entry. Please note that allied health degrees (e.g., medicine, physiotherapy, nursing) do not meet the minimum requirements for entry into this course. Candidates must provide a Selection Supplement Form with their application.",
+     "quote": "A recognised bachelor’s degree in Exercise Science of at least three years' duration, or ESSA-approved Graduate Entry status. Applicants must also have completed a minimum of 140 hours of supervised clinical placement with healthy populations prior to entry into the master’s program. Places in the master’s program are limited, and a minimum credit average across all completed undergraduate subjects is required to be considered competitive for entry. Please note that allied health degrees (e.g., medicine, physiotherapy, nursing) do not meet the minimum requirements for entry into this course. Candidates must provide a Selection Supplement Form with their application.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.5,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.5 6.5 6.5 6.5",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Education",
+   "url": "https://www.uow.edu.au/study/courses/master-of-education/?students=international",
+   "cricos_code": "083833E",
+   "snapshot_sha256": "873346277e111ac960ad6847fc162243e10c99e3a17f46ebdd958b4c02a6b440",
+   "fields": {
+    "academic": {
+     "text": "Educational Leadership A recognised bachelor’s degree with an equivalent mark of 50% in either education or teaching, plus one of the following: A postgraduate qualification in any discipline, OR One year of full-time professional experience in the education field, as deemed appropriate to the program of study by the School. OR A recognised bachelor’s degree in any discipline, plus one of the following: A postgraduate qualification in education or teaching, OR Two years of full-time professional experience in the education field, as deemed appropriate to the program of study by the School TESOL, Interdisciplinary Studies & Digital Technologies for Learning A recognised bachelor’s degree with an equivalent average mark of 50% in any area.",
+     "quote": "Educational Leadership A recognised bachelor’s degree with an equivalent mark of 50% in either education or teaching, plus one of the following: A postgraduate qualification in any discipline, OR One year of full-time professional experience in the education field, as deemed appropriate to the program of study by the School. OR A recognised bachelor’s degree in any discipline, plus one of the following: A postgraduate qualification in education or teaching, OR Two years of full-time professional experience in the education field, as deemed appropriate to the program of study by the School TESOL, Interdisciplinary Studies & Digital Technologies for Learning A recognised bachelor’s degree with an equivalent average mark of 50% in any area.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Nursing (Mental Health)",
+   "url": "https://www.uow.edu.au/study/courses/master-of-nursing-mental-health/?students=international",
+   "cricos_code": "083835C",
+   "snapshot_sha256": "1500b4b4462e3815c5c8906cf9a35eacc7c6da9224d7f3b8213992b33b7e5107",
+   "fields": {
+    "academic": {
+     "text": "A recognised bachelors degree in nursing, or a qualification to practice as a Registered Nurse or equivalent.",
+     "quote": "A recognised bachelors degree in nursing, or a qualification to practice as a Registered Nurse or equivalent.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Computer Science",
+   "url": "https://www.uow.edu.au/study/courses/master-of-computer-science/?students=international",
+   "cricos_code": "083839K",
+   "snapshot_sha256": "5333327eff533d53965ec6baede3341aa4d58a7971bbb57415c8b80fe9bb030e",
+   "fields": {
+    "academic": {
+     "text": "Recognised bachelor’s degree with an equivalent average mark of 60% in any area. Applicants with other qualifications and substantial relevant professional experience may also be considered.",
+     "quote": "Recognised bachelor’s degree with an equivalent average mark of 60% in any area. Applicants with other qualifications and substantial relevant professional experience may also be considered.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Information Technology",
+   "url": "https://www.uow.edu.au/study/courses/master-of-information-technology/?students=international",
+   "cricos_code": "083840F",
+   "snapshot_sha256": "0d57ae5a439a0368e0c7e1c639d7dd8b523917de6609d57a7cd691f6babd1fa7",
+   "fields": {
+    "academic": {
+     "text": "A recognised bachelor’s degree with an equivalent average mark of 60% in any area. Applicants with other qualifications and substantial relevant professional experience may also be considered.",
+     "quote": "A recognised bachelor’s degree with an equivalent average mark of 60% in any area. Applicants with other qualifications and substantial relevant professional experience may also be considered.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering",
+   "url": "https://www.uow.edu.au/study/courses/master-of-engineering/?students=international",
+   "cricos_code": "083844B",
+   "snapshot_sha256": "0014b4bc1ef406577b141ee48eeea68009cf649c424249e633d544e2635c76e3",
+   "fields": {
+    "academic": {
+     "text": "A recognised 4-year Bachelor of Engineering degree with an equivalent average mark of 60%.",
+     "quote": "A recognised 4-year Bachelor of Engineering degree with an equivalent average mark of 60%.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Professional Accounting Advanced",
+   "url": "https://www.uow.edu.au/study/courses/master-of-professional-accounting-advanced/?students=international",
+   "cricos_code": "087680G",
+   "snapshot_sha256": "8fabeb79f41a0581e78ad3aaf50929552d8c28ba575af513df764c4fb227b13d",
+   "fields": {
+    "academic": {
+     "text": "A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%, OR A Graduate Certificate or Graduate Diploma in Accounting with an equivalent average mark of 50%, OR A recognised master’s degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, will be considered.",
+     "quote": "A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%, OR A Graduate Certificate or Graduate Diploma in Accounting with an equivalent average mark of 50%, OR A recognised master’s degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, will be considered.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Professional Accounting",
+   "url": "https://www.uow.edu.au/study/courses/master-of-professional-accounting/?students=international",
+   "cricos_code": "087681F",
+   "snapshot_sha256": "46f2aaf8262878b912b0aa5e2e2277efe44e3ea44cac14e4018c18d957662b71",
+   "fields": {
+    "academic": {
+     "text": "A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%, OR A Graduate Certificate or Graduate Diploma in Accounting with an equivalent average mark of 50%, OR A recognised master’s degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, will be considered.",
+     "quote": "A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%, OR A Graduate Certificate or Graduate Diploma in Accounting with an equivalent average mark of 50%, OR A recognised master’s degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, will be considered.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Social Work (Qualifying)",
+   "url": "https://www.uow.edu.au/study/courses/master-of-social-work-qualifying/?students=international",
+   "cricos_code": "094540E",
+   "snapshot_sha256": "eac4b8a81c8c59efff516233ad1a41146bf7a92916139f9be34062c3fae3bec2",
+   "fields": {
+    "academic": {
+     "text": "A recognised bachelor's degree in social sciences, psychology, public health, education, nursing, or a related undergraduate qualification with at least one year of Social Science content (i.e., studies of the individual and society), completed in the last 10 years. If qualifications are older than 10 years, applicants may still be considered if they have current relevant work experience.",
+     "quote": "A recognised bachelor's degree in social sciences, psychology, public health, education, nursing, or a related undergraduate qualification with at least one year of Social Science content (i.e., studies of the individual and society), completed in the last 10 years. If qualifications are older than 10 years, applicants may still be considered if they have current relevant work experience.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 7.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 7.0 7.0 7.0 7.0 7.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Medicinal Chemistry",
+   "url": "https://www.uow.edu.au/study/courses/master-of-medicinal-chemistry/?students=international",
+   "cricos_code": "097263G",
+   "snapshot_sha256": "06f44fe4e8a99b2a7aa924853afdae14849b2c14e07798cc9bad049868bcfb97",
+   "fields": {
+    "academic": {
+     "text": "A recognised Bachelor of Science degree with an equivalent average mark of 50% in chemistry or medicinal chemistry, including at least 24 credit points (or equivalent) of third-year chemistry, as well as at least second-year biology and biochemistry.",
+     "quote": "A recognised Bachelor of Science degree with an equivalent average mark of 50% in chemistry or medicinal chemistry, including at least 24 credit points (or equivalent) of third-year chemistry, as well as at least second-year biology and biochemistry.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Medical Biotechnology",
+   "url": "https://www.uow.edu.au/study/courses/master-of-medical-biotechnology/?students=international",
+   "cricos_code": "097264G",
+   "snapshot_sha256": "cf4c5945ffd7cb9f57629328c29ab79d4c89beb1fd057637c8088616a7719461",
+   "fields": {
+    "academic": {
+     "text": "A recognised Bachelor of Science degree with an equivalent average mark of 50% that includes subjects in the areas of biochemistry, cell medical biology, molecular biology, microbiology, immunology, or an equivalent field.",
+     "quote": "A recognised Bachelor of Science degree with an equivalent average mark of 50% that includes subjects in the areas of biochemistry, cell medical biology, molecular biology, microbiology, immunology, or an equivalent field.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Earth and Environmental Sciences",
+   "url": "https://www.uow.edu.au/study/courses/master-of-earth-and-environmental-sciences/?students=international",
+   "cricos_code": "097266E",
+   "snapshot_sha256": "c35a16c9a4fabbf467dc2e2059f7c476eaa1a8f110f539e077216d8c699ef091",
+   "fields": {
+    "academic": {
+     "text": "⁠A recognised bachelor’s degree with an equivalent average mark of at least 50%, including subjects in environmental science, earth science, geology, marine science, ecology, conservation biology, or a related field.",
+     "quote": "⁠A recognised bachelor’s degree with an equivalent average mark of at least 50%, including subjects in environmental science, earth science, geology, marine science, ecology, conservation biology, or a related field.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Professional Psychology",
+   "url": "https://www.uow.edu.au/study/courses/master-of-professional-psychology/?students=international",
+   "cricos_code": "099429G",
+   "snapshot_sha256": "5743da948ea6f2b81f32cc61cd3be5568a121ecbf462e7f60b812651398cb10e",
+   "fields": {
+    "academic": {
+     "text": "A four-year, or three-year plus a fourth-year, Australian Psychology Accreditation Council (APAC) accredited sequence in psychology within the last 10 years. Applicants must also be eligible for registration with the Psychology Board of Australia (PsyBA) as a provisional psychologist. Places in this course are limited. Entry is competitive and based on academic merit and personal suitability. For information on how to apply, please visit the Application Information for Postgraduate Training in Clinical Psychology webpage. Here you will find step-by-step instructions and additional supporting documentation required to complete your application.",
+     "quote": "A four-year, or three-year plus a fourth-year, Australian Psychology Accreditation Council (APAC) accredited sequence in psychology within the last 10 years. Applicants must also be eligible for registration with the Psychology Board of Australia (PsyBA) as a provisional psychologist. Places in this course are limited. Entry is competitive and based on academic merit and personal suitability. For information on how to apply, please visit the Application Information for Postgraduate Training in Clinical Psychology webpage. Here you will find step-by-step instructions and additional supporting documentation required to complete your application.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 7.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 7.0 7.0 7.0 7.0 7.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of International Relations Extension",
+   "url": "https://www.uow.edu.au/study/courses/master-of-international-relations-extension/?students=international",
+   "cricos_code": "099680G",
+   "snapshot_sha256": "22e6739ffba55868c168e4dc87ffcbc5c7c5a89127a5287af5a94d9b18d5fe3e",
+   "fields": {
+    "academic": {
+     "text": "A recognised bachelor’s degree in any discipline, OR Completion of a Graduate Certificate in International Relations, or equivalent, OR Completion of a Master of International Relations, or equivalent, OR Other tertiary qualifications combined with extensive professional work experience and a one-page Statement of Motivation (SOM). Applications that require a SOM should: Address your motivation for studying the Master of International Relations Extension and how the degree will help you achieve your career goals and aspirations Be no more than one page Written in English",
+     "quote": "A recognised bachelor’s degree in any discipline, OR Completion of a Graduate Certificate in International Relations, or equivalent, OR Completion of a Master of International Relations, or equivalent, OR Other tertiary qualifications combined with extensive professional work experience and a one-page Statement of Motivation (SOM). Applications that require a SOM should: Address your motivation for studying the Master of International Relations Extension and how the degree will help you achieve your career goals and aspirations Be no more than one page Written in English",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Supply Chain Management",
+   "url": "https://www.uow.edu.au/study/courses/master-of-supply-chain-management/?students=international",
+   "cricos_code": "099973F",
+   "snapshot_sha256": "f5ab651cc65bcf3aedba9b5990a90772832ccae56c9360363db9449c05ea825c",
+   "fields": {
+    "academic": {
+     "text": "A recognised bachelor’s degree in a Business, Engineering, Maths, or IT-related specialisation with an equivalent average mark of 50%, OR A recognised master’s degree in a Business, Engineering, Maths, or IT-related specialisation with an equivalent average mark of 50%, OR Any Graduate Certificate or Diploma in a Business, Engineering, Maths, or IT-related specialisation with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, will be considered.",
+     "quote": "A recognised bachelor’s degree in a Business, Engineering, Maths, or IT-related specialisation with an equivalent average mark of 50%, OR A recognised master’s degree in a Business, Engineering, Maths, or IT-related specialisation with an equivalent average mark of 50%, OR Any Graduate Certificate or Diploma in a Business, Engineering, Maths, or IT-related specialisation with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, will be considered.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Project Management",
+   "url": "https://www.uow.edu.au/study/courses/master-of-project-management/?students=international",
+   "cricos_code": "099974E",
+   "snapshot_sha256": "9654aca91442f4113f1fdd916446bd8bc318d013bc932f089f8e1c9648729b82",
+   "fields": {
+    "academic": {
+     "text": "A recognised bachelor’s degree in a Business, Engineering, Maths, or IT-related specialisation with an equivalent average mark of 50%, OR A recognised master’s degree in a Business, Engineering, Maths, or IT-related specialisation with an equivalent average mark of 50%, OR Any Graduate Certificate or Diploma in a Business, Engineering, Maths, or IT-related specialisation with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, will be considered.",
+     "quote": "A recognised bachelor’s degree in a Business, Engineering, Maths, or IT-related specialisation with an equivalent average mark of 50%, OR A recognised master’s degree in a Business, Engineering, Maths, or IT-related specialisation with an equivalent average mark of 50%, OR Any Graduate Certificate or Diploma in a Business, Engineering, Maths, or IT-related specialisation with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, will be considered.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Computing",
+   "url": "https://www.uow.edu.au/study/courses/master-of-computing/?students=international",
+   "cricos_code": "108454F",
+   "snapshot_sha256": "23a3a2cd03425c65ffa65eeff3a26fe932672f276537a3af6ceabbd5af174e75",
+   "fields": {
+    "academic": {
+     "text": "A recognised 3-year Bachelor degree in any area. Applicants with other qualifications and substantial relevant professional experience may be considered.",
+     "quote": "A recognised 3-year Bachelor degree in any area. Applicants with other qualifications and substantial relevant professional experience may be considered.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Nursing (Pre-Registration)",
+   "url": "https://www.uow.edu.au/study/courses/master-of-nursing-pre-registration/?students=international",
+   "cricos_code": "108467A",
+   "snapshot_sha256": "59f2661435ca5c7b02481547edafe8072bfbebc6b87544bb47d8e1b8190013f5",
+   "fields": {
+    "academic": {
+     "text": "A recognised bachelor’s degree with an equivalent average mark of 60%, completed less than 10 years prior to the date of application; OR A recognised bachelor’s degree with an equivalent average mark of 60%, completed more than 10 years ago, plus a completed postgraduate qualification with an equivalent average mark greater than 60%, completed within the last 10 years. Faculty consideration may be given to applicants with a qualification older than 10 years and relevant work experience. In addition to these criteria, nursing degrees also have inherent requirements that must be met.",
+     "quote": "A recognised bachelor’s degree with an equivalent average mark of 60%, completed less than 10 years prior to the date of application; OR A recognised bachelor’s degree with an equivalent average mark of 60%, completed more than 10 years ago, plus a completed postgraduate qualification with an equivalent average mark greater than 60%, completed within the last 10 years. Faculty consideration may be given to applicants with a qualification older than 10 years and relevant work experience. In addition to these criteria, nursing degrees also have inherent requirements that must be met.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.5,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 7.0 7.0 6.5 7.0 7.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Health",
+   "url": "https://www.uow.edu.au/study/courses/master-of-public-health/?students=international",
+   "cricos_code": "109392G",
+   "snapshot_sha256": "2e719eb1aa6f9f9b5ed5b6f2b6ea33519464e0285427f75d0febed3c442c9982",
+   "fields": {
+    "academic": {
+     "text": "A bachelor’s degree (AQF 7 or recognised overseas equivalent) plus one of the following: A one-year honours degree A graduate certificate A graduate diploma A master’s or higher degree At least one of these qualifications must be in a field relevant to public health* with a minimum WAM or 65% in at least one of these qualifications. OR A bachelor’s degree (AQF 7 or recognised overseas equivalent) with a minimum  WAM of 65%, plus significant professional or volunteer experience in a field relevant to public health (equivalent to two years full-time). ** OR A MBBS (Bachelor of Medicine, Bachelor of Surgery) or Doctor of Medicine (MD) of four or more years duration. OR A UOW Graduate Certificate in Public Health with a minimum WAM of 65%. * Examples of relevant fields include allied health (nutrition science, dietetics, exercise science, psychology, optometry), behavioural and social sciences, biomedical sciences, dentistry, development studies, emergency services, environmental health, health administration, health sciences, human services, medicine, nursing, policy studies, sociology, veterinary science. ** Examples of relevant fields include allied health (nutrition science, dietetics, exercise science, psychology, optometry), medicine, nursing, occupational health and safety, social work. Note: Entry to the Public Health Research specialisation requires a minimum WAM of 75%. Applicants who do not meet the above requirements may be offered the Graduate Certificate in Public Health as a pathway into the Master of Public Health.  Qualifications in other disciplines may be considered. Academic Entry Requirements To succeed in your chosen course, you should have completed relevant subjects in senior high school or other qualifications. For more information, refer to UOW's Entry Requirements page.",
+     "quote": "A bachelor’s degree (AQF 7 or recognised overseas equivalent) plus one of the following: A one-year honours degree A graduate certificate A graduate diploma A master’s or higher degree At least one of these qualifications must be in a field relevant to public health* with a minimum WAM or 65% in at least one of these qualifications. OR A bachelor’s degree (AQF 7 or recognised overseas equivalent) with a minimum  WAM of 65%, plus significant professional or volunteer experience in a field relevant to public health (equivalent to two years full-time). ** OR A MBBS (Bachelor of Medicine, Bachelor of Surgery) or Doctor of Medicine (MD) of four or more years duration. OR A UOW Graduate Certificate in Public Health with a minimum WAM of 65%. * Examples of relevant fields include allied health (nutrition science, dietetics, exercise science, psychology, optometry), behavioural and social sciences, biomedical sciences, dentistry, development studies, emergency services, environmental health, health administration, health sciences, human services, medicine, nursing, policy studies, sociology, veterinary science. ** Examples of relevant fields include allied health (nutrition science, dietetics, exercise science, psychology, optometry), medicine, nursing, occupational health and safety, social work. Note: Entry to the Public Health Research specialisation requires a minimum WAM of 75%. Applicants who do not meet the above requirements may be offered the Graduate Certificate in Public Health as a pathway into the Master of Public Health.  Qualifications in other disciplines may be considered. Academic Entry Requirements To succeed in your chosen course, you should have completed relevant subjects in senior high school or other qualifications. For more information, refer to UOW's Entry Requirements page.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Mathematical Sciences",
+   "url": "https://www.uow.edu.au/study/courses/master-of-mathematical-sciences/?students=international",
+   "cricos_code": "111163B",
+   "snapshot_sha256": "2232cad003d16e66c66c9932f0d5be91a742e02c3258707886769de73c59d67e",
+   "fields": {
+    "academic": {
+     "text": "A bachelor’s degree with an equivalent average mark of 50% with a major or minor in mathematics or statistics. If applying based on a mathematics or statistics minor, it must include a minimum of 12 credit points of mathematics or statistics subjects at the 200-level or higher. Academic Entry Requirements To succeed in your chosen course, you should have completed relevant subjects in senior high school or other qualifications. For more information, refer to UOW's Entry Requirements page.",
+     "quote": "A bachelor’s degree with an equivalent average mark of 50% with a major or minor in mathematics or statistics. If applying based on a mathematics or statistics minor, it must include a minimum of 12 credit points of mathematics or statistics subjects at the 200-level or higher. Academic Entry Requirements To succeed in your chosen course, you should have completed relevant subjects in senior high school or other qualifications. For more information, refer to UOW's Entry Requirements page.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Financial Technology",
+   "url": "https://www.uow.edu.au/study/courses/master-of-financial-technology/?students=international",
+   "cricos_code": "115301J",
+   "snapshot_sha256": "beb0cb50d61ca6cc47ca8599ab96ecfa239aa27ae1601b1814b7f9dc6594eb5f",
+   "fields": {
+    "academic": {
+     "text": "A recognised bachelor degree with an average mark of 50% or a UOW Graduate Certificate in Financial Technology. Other tertiary qualifications along with extensive professional work experience will be considered.",
+     "quote": "A recognised bachelor degree with an average mark of 50% or a UOW Graduate Certificate in Financial Technology. Other tertiary qualifications along with extensive professional work experience will be considered.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Analytics - Master of International Business",
+   "url": "https://www.uow.edu.au/study/courses/master-of-business-analytics---master-of-international-business/?students=international",
+   "cricos_code": "120532G",
+   "snapshot_sha256": "8e68380967336ebff59358e6b2fc16f11e5e2d7e64d02b9b25eb14cf9f737cec",
+   "fields": {
+    "academic": {
+     "text": "Academic Entry Requirements A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%. OR A Graduate Certificate or Graduate Diploma in any discipline with an equivalent average mark of 50%. OR A recognised master's degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, may also be considered.",
+     "quote": "Academic Entry Requirements A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%. OR A Graduate Certificate or Graduate Diploma in any discipline with an equivalent average mark of 50%. OR A recognised master's degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, may also be considered.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Analytics - Master of Marketing",
+   "url": "https://www.uow.edu.au/study/courses/master-of-business-analytics---master-of-marketing/?students=international",
+   "cricos_code": "120533F",
+   "snapshot_sha256": "ae04a84a20c08d6fee9cf91cdf841dbf3c9768ceed118c6d936585ffc13bdbe6",
+   "fields": {
+    "academic": {
+     "text": "Academic Entry Requirements A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%. OR A Graduate Certificate or Graduate Diploma in any discipline with an equivalent average mark of 50%. OR A recognised master's degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, may also be considered.",
+     "quote": "Academic Entry Requirements A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%. OR A Graduate Certificate or Graduate Diploma in any discipline with an equivalent average mark of 50%. OR A recognised master's degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, may also be considered.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Analytics - Master of Project Management",
+   "url": "https://www.uow.edu.au/study/courses/master-of-business-analytics---master-of-project-management/?students=international",
+   "cricos_code": "120534E",
+   "snapshot_sha256": "059331274ff8d1ffa4b8bb9c64ad66b85046351e4b1b63eb4c2218a43205ce55",
+   "fields": {
+    "academic": {
+     "text": "Academic Entry Requirements A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%. OR A Graduate Certificate or Graduate Diploma in any discipline with an equivalent average mark of 50%. OR A recognised master's degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, may also be considered.",
+     "quote": "Academic Entry Requirements A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%. OR A Graduate Certificate or Graduate Diploma in any discipline with an equivalent average mark of 50%. OR A recognised master's degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, may also be considered.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Marketing - Master of Project Management",
+   "url": "https://www.uow.edu.au/study/courses/master-of-marketing---master-of-project-management/?students=international",
+   "cricos_code": "120535D",
+   "snapshot_sha256": "ae87703c1fd2fb35332a7bc344f270b0dc33bcc2187015777c7793cf3d60115e",
+   "fields": {
+    "academic": {
+     "text": "Academic Entry Requirements A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%. OR A Graduate Certificate or Graduate Diploma in any discipline with an equivalent average mark of 50%. OR A recognised master's degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, may also be considered.",
+     "quote": "Academic Entry Requirements A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%. OR A Graduate Certificate or Graduate Diploma in any discipline with an equivalent average mark of 50%. OR A recognised master's degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, may also be considered.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of International Business - Master of Marketing",
+   "url": "https://www.uow.edu.au/study/courses/master-of-international-business---master-of-marketing/?students=international",
+   "cricos_code": "120537B",
+   "snapshot_sha256": "dd7678357f4b306d6f44057b7a5f0a7dba115e637286043cae7594c84dcd663c",
+   "fields": {
+    "academic": {
+     "text": "Academic Entry Requirements A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%. OR A Graduate Certificate or Graduate Diploma in any discipline with an equivalent average mark of 50%. OR A recognised master's degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, may also be considered.",
+     "quote": "Academic Entry Requirements A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%. OR A Graduate Certificate or Graduate Diploma in any discipline with an equivalent average mark of 50%. OR A recognised master's degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, may also be considered.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Project Management - Master of Supply Chain Management",
+   "url": "https://www.uow.edu.au/study/courses/master-of-project-management---master-of-supply-chain-management/?students=international",
+   "cricos_code": "120538A",
+   "snapshot_sha256": "839338e69643acf812070b9fa04dce734b621a770b8188c162bf16db11dc73dd",
+   "fields": {
+    "academic": {
+     "text": "Academic Entry Requirements A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%. OR A Graduate Certificate or Graduate Diploma in any discipline with an equivalent average mark of 50%. OR A recognised master's degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, may also be considered.",
+     "quote": "Academic Entry Requirements A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%. OR A Graduate Certificate or Graduate Diploma in any discipline with an equivalent average mark of 50%. OR A recognised master's degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, may also be considered.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Analytics - Master of Supply Chain Management",
+   "url": "https://www.uow.edu.au/study/courses/master-of-business-analytics---master-of-supply-chain-management/?students=international",
+   "cricos_code": "120539M",
+   "snapshot_sha256": "bb5d3cdd21da68839c8fdd22f61856ab6d8bbf9434e55016a70680dc27c48f77",
+   "fields": {
+    "academic": {
+     "text": "Academic Entry Requirements A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%. OR A Graduate Certificate or Graduate Diploma in any discipline with an equivalent average mark of 50%. OR A recognised master's degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, may also be considered.",
+     "quote": "Academic Entry Requirements A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%. OR A Graduate Certificate or Graduate Diploma in any discipline with an equivalent average mark of 50%. OR A recognised master's degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, may also be considered.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Human Resource Management - Master of Marketing",
+   "url": "https://www.uow.edu.au/study/courses/master-of-human-resource-management---master-of-marketing/?students=international",
+   "cricos_code": "120543D",
+   "snapshot_sha256": "c0fe40cb9ba66815c0ea2fdef3937660aed0af730e49cc0ea14862c523f841c1",
+   "fields": {
+    "academic": {
+     "text": "Academic Entry Requirements A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%. OR A Graduate Certificate or Graduate Diploma in any discipline with an equivalent average mark of 50%. OR A recognised master's degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, may also be considered.",
+     "quote": "Academic Entry Requirements A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%. OR A Graduate Certificate or Graduate Diploma in any discipline with an equivalent average mark of 50%. OR A recognised master's degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, may also be considered.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Analytics - Master of Professional Accounting",
+   "url": "https://www.uow.edu.au/study/courses/master-of-business-analytics---master-of-professional-accounting/?students=international",
+   "cricos_code": "120546A",
+   "snapshot_sha256": "bbcc650c71394ae4a8de7e953b73fa31169489d5a313e67a258c185c37d47fa8",
+   "fields": {
+    "academic": {
+     "text": "A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%, OR A Graduate Certificate or Graduate Diploma in any discipline with an equivalent average mark of 50%, OR A recognised master’s degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, may also be considered.",
+     "quote": "A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%, OR A Graduate Certificate or Graduate Diploma in any discipline with an equivalent average mark of 50%, OR A recognised master’s degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, may also be considered.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business - Master of Marketing",
+   "url": "https://www.uow.edu.au/study/courses/master-of-business---master-of-marketing/?students=international",
+   "cricos_code": "120554A",
+   "snapshot_sha256": "3b826134cb9f5ce027a601b345df5d94eeb7d541d016cc0d5542ee8fc1fa556d",
+   "fields": {
+    "academic": {
+     "text": "Academic Entry Requirements A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%. OR A Graduate Certificate or Graduate Diploma in any discipline with an equivalent average mark of 50%. OR A recognised master's degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, may also be considered.",
+     "quote": "Academic Entry Requirements A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%. OR A Graduate Certificate or Graduate Diploma in any discipline with an equivalent average mark of 50%. OR A recognised master's degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, may also be considered.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business - Master of Project Management",
+   "url": "https://www.uow.edu.au/study/courses/master-of-business---master-of-project-management/?students=international",
+   "cricos_code": "120555M",
+   "snapshot_sha256": "facb497272cd06689056b79b3630ac44e9ad08c02037a0be0e857f72859784a6",
+   "fields": {
+    "academic": {
+     "text": "Academic Entry Requirements A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%. OR A Graduate Certificate or Graduate Diploma in any discipline with an equivalent average mark of 50%. OR A recognised master's degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, may also be considered.",
+     "quote": "Academic Entry Requirements A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%. OR A Graduate Certificate or Graduate Diploma in any discipline with an equivalent average mark of 50%. OR A recognised master's degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, may also be considered.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business - Master of International Business",
+   "url": "https://www.uow.edu.au/study/courses/master-of-business---master-of-international-business/?students=international",
+   "cricos_code": "120556K",
+   "snapshot_sha256": "2c1a445b68b3bcb2a100e391957dcb7675d1803b2b4b043418876e5e538012ac",
+   "fields": {
+    "academic": {
+     "text": "Academic Entry Requirements A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%. OR A Graduate Certificate or Graduate Diploma in any discipline with an equivalent average mark of 50%. OR A recognised master's degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, may also be considered.",
+     "quote": "Academic Entry Requirements A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%. OR A Graduate Certificate or Graduate Diploma in any discipline with an equivalent average mark of 50%. OR A recognised master's degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, may also be considered.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business - Master of Human Resource Management",
+   "url": "https://www.uow.edu.au/study/courses/master-of-business---master-of-human-resource-management/?students=international",
+   "cricos_code": "120557J",
+   "snapshot_sha256": "bb6f3a2dc6c8650ad0f12d86afd9a6eb3a14644aeefe1ba5ab3c4b4e31c8de6e",
+   "fields": {
+    "academic": {
+     "text": "Academic Entry Requirements A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%. OR A Graduate Certificate or Graduate Diploma in any discipline with an equivalent average mark of 50%. OR A recognised master's degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, may also be considered.",
+     "quote": "Academic Entry Requirements A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%. OR A Graduate Certificate or Graduate Diploma in any discipline with an equivalent average mark of 50%. OR A recognised master's degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, may also be considered.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business - Master of Business Analytics",
+   "url": "https://www.uow.edu.au/study/courses/master-of-business---master-of-business-analytics/?students=international",
+   "cricos_code": "120569E",
+   "snapshot_sha256": "c289dbde669843afc33bea8b90914e6c20dcba7431dae3ed3fb5beb169113cc2",
+   "fields": {
+    "academic": {
+     "text": "Academic Entry Requirements A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%. OR A Graduate Certificate or Graduate Diploma in any discipline with an equivalent average mark of 50%. OR A recognised master's degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, may also be considered.",
+     "quote": "Academic Entry Requirements A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%. OR A Graduate Certificate or Graduate Diploma in any discipline with an equivalent average mark of 50%. OR A recognised master's degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, may also be considered.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Analytics - Master of Human Resource Management",
+   "url": "https://www.uow.edu.au/study/courses/master-of-business-analytics---master-of-human-resource-management/?students=international",
+   "cricos_code": "120570A",
+   "snapshot_sha256": "c0b91c4331274bd4012bebc79ec7fa708610aecb50e4a69db9e0af3ac57e8aed",
+   "fields": {
+    "academic": {
+     "text": "Academic Entry Requirements A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%. OR A Graduate Certificate or Graduate Diploma in any discipline with an equivalent average mark of 50%. OR A recognised master's degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, may also be considered.",
+     "quote": "Academic Entry Requirements A recognised bachelor’s degree in any discipline with an equivalent average mark of 50%. OR A Graduate Certificate or Graduate Diploma in any discipline with an equivalent average mark of 50%. OR A recognised master's degree in any discipline with an equivalent average mark of 50%. Other tertiary qualifications, combined with extensive professional work experience, may also be considered.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "English Test Overall Score Reading Writing Listening Speaking IELTS Academic 6.5 6.0 6.0 6.0 6.0",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Master's programs require a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone does not meet Masters entry",
+     "quote": "Master's programs require evidence of a Bachelor Degree Certificate (学士学位证书); a Graduation Certificate alone (even from a 4-year benke program) does not meet Masters entry because it does not verify the academic degree award.",
+     "source_sha256": "4277ee15179db4985209acab3956c3d39f4dc6fc5bdbaec19d2fc68e93d5dccd",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 57,
+  "机器核对": 56,
+  "待人工": 1
+ }
+}

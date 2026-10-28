@@ -1,0 +1,1340 @@
+{
+ "school_key": "curtin-university",
+ "school_name_en": "Curtin University",
+ "country": "Australia",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://www.curtin.edu.au/study/study-areas/",
+  "https://www.curtin.edu.au/study/postgraduate/",
+  "https://www.curtin.edu.au/study/study-areas/information-technology/postgraduate-information-technology/",
+  "https://www.curtin.edu.au/study/study-areas/business-management-law/postgraduate-business/",
+  "https://www.curtin.edu.au/study/study-areas/health/postgraduate-health/",
+  "https://www.curtin.edu.au/study/study-areas/education/postgraduate-education/",
+  "https://www.curtin.edu.au/study/study-areas/science-engineering-postgraduate/"
+ ],
+ "blocked": [],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.curtin.edu.au/study/offering/course-pg-master-of-corporate-governance-and-leadership--mc-govl/",
+  "https://www.curtin.edu.au/study/offering/course-pg-master-of-health-administration--mc-hladmn/",
+  "https://www.curtin.edu.au/study/offering/course-pg-master-of-international-security--mc-intsec/",
+  "https://www.curtin.edu.au/study/offering/course-pg-master-of-multimedia-journalism--mc-mmjrn/",
+  "https://www.curtin.edu.au/study/offering/course-pg-master-of-multimedia-journalism-global--mc-mmjrg/",
+  "https://www.curtin.edu.au/study/offering/course-pg-master-of-urban-and-regional-planning--mg-urplan2/"
+ ],
+ "notes": "Curtin course pages state the academic entry text, an IELTS table and Curtin Perth application dates, but no per-program TOEFL/PTE and no China-specific mark requirement. No Curtin page with country-specific academic requirements for China was found (the international applying pages and the country-representative page list none), so china_page is omitted. The six remaining URLs are linked from Curtin study-area pages but returned HTTP 404 when snapshotted (also with --render); they were not retried through other hosts. Several CRICOS fixture courses (e.g. Master of Marketing, Finance, Human Resources, International Business, Computing, Supply Chain Management, Global Engagement, Pharmacy, Accounting 0101368/107620E) have no current Curtin course page in the study-area listings and are unmatched; Master of Accounting (mc-accntg) redirects to Master of Professional Accounting. Deadlines are the earliest upcoming Curtin Perth (or Perth City) close date on the page; the page does not say whether the dates apply to international applicants. Master of Arts (Applied Linguistics) and Teaching report no academic text because their entry rules are multi-way alternatives per specialisation. Pages without an IELTS table (Actuarial Science, Teaching) report none. cricos_code for Master of Advanced Practice and Master of Occupational Health and Safety comes from an exact unique name match in the CRICOS fixture because the page does not print it; Allied Health Practice and Information Science (Extended) have no CRICOS match.",
+ "programs": [
+  {
+   "name": "Master of Professional Accounting",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-professional-accounting--mc-prfacc/",
+   "snapshot_sha256": "416c28b5a07b496af521039578fa7d233ec8fc4c446f1c8cd44b6f7fa4697bd1",
+   "fields": {
+    "academic": {
+     "text": "An undergraduate degree in any discipline OR Graduate Certificate in Professional Accounting. In addition, you must meet Curtin's English language proficiency",
+     "quote": "An undergraduate degree in any discipline OR Graduate Certificate in Professional Accounting. In addition, you must meet Curtin's English language proficiency",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 6.0,
+     "overall": 6.5,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 6 Speaking 6 Reading 6 Listening 6 Overall band score 6.5",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 1, 2027 (Curtin course page; audience not stated)",
+      "date": "2027-01-28",
+      "quote": "Semester 1, 2027 Applications now open 28 Jan 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "107625M",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Actuarial Science",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-actuarial-science--mx-actsci/",
+   "snapshot_sha256": "1da73e5e83f7538131d5a74c82ce6eb1d5a33b7e36b0dfebf9fc971cbc80ea01",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "Semester 1, 2027 (Curtin course page; audience not stated)",
+      "date": "2027-01-28",
+      "quote": "Semester 1, 2027 Applications now open 28 Jan 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "121217K",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Advanced Allied Health Practice",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-advanced-allied-health-practice--mc-aahp/",
+   "snapshot_sha256": "ba7692c9b2ef83153db0c1df02d5f787cd7f8f0860c7bdb6c1a91e4b26ee2cba",
+   "fields": {
+    "academic": {
+     "text": "You will need: A Bachelor degree or equivalent qualification in an allied health discipline, and Currently registration with the relevant professional body or regulatory authority, and A minimum of two years post-qualification clinical experience in your specialist area, and Current employment in an allied health role where you undertake work-integrated learning activities.",
+     "quote": "You will need: A Bachelor degree or equivalent qualification in an allied health discipline, and Currently registration with the relevant professional body or regulatory authority, and A minimum of two years post-qualification clinical experience in your specialist area, and Current employment in an allied health role where you undertake work-integrated learning activities.",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 6.0,
+     "overall": 6.5,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 6 Speaking 6 Reading 6 Listening 6 Overall band score 6.5",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Advanced Practice",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-advanced-practice--mc-advprc/",
+   "snapshot_sha256": "2e0a308763713f0e15eea9b4b49167f6f106b0a77f2345418adcce80ac9019aa",
+   "fields": {
+    "academic": {
+     "text": "Applicants for the Master of Advanced Practice Degree (Coursework) are required to meet University academic and English language standards. Applicants will require a Bachelor Degree, Bachelor Honours Degree, Graduate Certificate or Graduate Diploma in their related field. Applicants must also hold three (3) years' experience in their related field post Bachelor degree. Enrolment can be full time or part time. Study plan can be negotiated. A part time study plan is essential for specialisations that are linked to employment.",
+     "quote": "Applicants for the Master of Advanced Practice Degree (Coursework) are required to meet University academic and English language standards. Applicants will require a Bachelor Degree, Bachelor Honours Degree, Graduate Certificate or Graduate Diploma in their related field. Applicants must also hold three (3) years' experience in their related field post Bachelor degree. Enrolment can be full time or part time. Study plan can be negotiated. A part time study plan is essential for specialisations that are linked to employment.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 1, 2027 (Curtin course page; audience not stated)",
+      "date": "2027-01-28",
+      "quote": "Semester 1, 2027 Applications now open 28 Jan 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "108520A",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Architecture",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-architecture--mc-arch/",
+   "snapshot_sha256": "47c9135ef3dbf8cbac8f2dbacade3006f42a655e2294641808910fa8a67da579",
+   "fields": {
+    "academic": {
+     "text": "Applicants require a Bachelor of Applied Science (Architectural Science), equivalent qualification (e.g. Graduate Diploma in Architecture) or qualification from cognate areas (e.g. Bachelor of Interior Architecture/Interior Design). Entry to the course is competitive and a high semester weighted average is required. Students with a Bachelor's degree from a non-AACA accredited architecture/cognate program are required to submit a folio at the time of application.",
+     "quote": "Applicants require a Bachelor of Applied Science (Architectural Science), equivalent qualification (e.g. Graduate Diploma in Architecture) or qualification from cognate areas (e.g. Bachelor of Interior Architecture/Interior Design). Entry to the course is competitive and a high semester weighted average is required. Students with a Bachelor's degree from a non-AACA accredited architecture/cognate program are required to submit a folio at the time of application.",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 6.0,
+     "overall": 6.5,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 6.0 Speaking 6.0 Reading 6.0 Listening 6.0 Overall band score 6.5",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 1, 2027 (Curtin course page; audience not stated)",
+      "date": "2027-01-28",
+      "quote": "Semester 1, 2027 Applications now open 28 Jan 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "058728C",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Artificial Intelligence",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-artificial-intelligence--mc-aintl/",
+   "snapshot_sha256": "e8ac3b07681552a491d3b3c101ce5ac3c2f506217bd9544e55f5b7843b738a2e",
+   "fields": {
+    "academic": {
+     "text": "A 3-year recognised Bachelor degree in Information Technology or Computational Science or Engineering with a minimum of 2 years relevant work experience or a 4-year degree in Information Technology or Computational Science or Engineering",
+     "quote": "A 3-year recognised Bachelor degree in Information Technology or Computational Science or Engineering with a minimum of 2 years relevant work experience or a 4-year degree in Information Technology or Computational Science or Engineering",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 6.0,
+     "overall": 6.0,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 6.0 Speaking 6.0 Reading 6.0 Listening 6.0 Overall band score 6.0",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 1, 2027 (Curtin course page; audience not stated)",
+      "date": "2027-01-28",
+      "quote": "Semester 1, 2027 Applications now open 28 Jan 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "105742M",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-arts--mc-arts/",
+   "snapshot_sha256": "78a25743c963ecf9c81decc8524e34088c54320756bc6f7af0d6a5bb6c10875e",
+   "fields": {
+    "academic": {
+     "text": "For admission to this course, you must have either: a bachelor degree or equivalent from a recognised institution (you may require relevant work experience) OR a bachelor degree with honours OR a graduate certificate or diploma from a recognised institution AND meet Curtin’s English language proficiency requirements.",
+     "quote": "For admission to this course, you must have either: a bachelor degree or equivalent from a recognised institution (you may require relevant work experience) OR a bachelor degree with honours OR a graduate certificate or diploma from a recognised institution AND meet Curtin’s English language proficiency requirements.",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 6.0,
+     "overall": 6.5,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 6 Speaking 6 Reading 6 Listening 6 Overall band score 6.5",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 1, 2027 (Curtin course page; audience not stated)",
+      "date": "2027-01-28",
+      "quote": "Semester 1, 2027 Applications now open 28 Jan 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "098146E",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts (Applied Linguistics)",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-arts-tesol--mc-apling/",
+   "snapshot_sha256": "14c12c6917e863f218db27a7535c2517412ee26a36494663f7bcdcc7c86f2876",
+   "fields": {
+    "ielts": {
+     "min_band": 6.0,
+     "overall": 6.5,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 6 Speaking 6 Reading 6 Listening 6 Overall band score 6.5",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Special Study Period 1, 2027 (Curtin course page; audience not stated)",
+      "date": "2027-02-11",
+      "quote": "Special Study Period 1, 2027 Applications now open 11 Feb 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "023985G",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Administration",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-business-administration--mc-busadm/",
+   "snapshot_sha256": "ff1d08238c860fe3813ccfa3bd3e4e57bdfad61fba61d0691d8f512fbe59c44f",
+   "fields": {
+    "academic": {
+     "text": "For entry into the MBA, applicants require a relevant undergraduate degree from a recognised tertiary institution and at least three (3) years of relevant work experience. Alternatively, applicants to the MBA may have a relevant Graduate Certificate or Graduate Diploma with a Course Weighted Average of 65%, and three (3) years of relevant work experience. Entry to the course is competitive and applicants will be required to undertake an interview as the final stage of application assessment.",
+     "quote": "For entry into the MBA, applicants require a relevant undergraduate degree from a recognised tertiary institution and at least three (3) years of relevant work experience. Alternatively, applicants to the MBA may have a relevant Graduate Certificate or Graduate Diploma with a Course Weighted Average of 65%, and three (3) years of relevant work experience. Entry to the course is competitive and applicants will be required to undertake an interview as the final stage of application assessment.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Trimester 1, 2027 (Curtin course page; audience not stated)",
+      "date": "2026-12-17",
+      "quote": "Trimester 1, 2027 Applications now open 17 Dec 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "074577B",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Clinical Exercise Physiology",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-clinical-exercise-physiology--mc-cexphy/",
+   "snapshot_sha256": "085ee89ff22b4e317e5f4480554f4126d27f49e041d1807dd7575667ce2935f9",
+   "fields": {
+    "academic": {
+     "text": "Applicants require a three-year Bachelor degree in Exercise and Sport Science or Human Movement from an Exercise and Sports Science Australia level 1 accredited course with a CWA (course weighted average) of at least 60.",
+     "quote": "Applicants require a three-year Bachelor degree in Exercise and Sport Science or Human Movement from an Exercise and Sports Science Australia level 1 accredited course with a CWA (course weighted average) of at least 60.",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 7.0,
+     "overall": 7.0,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 7 Speaking 7 Reading 7 Listening 7 Overall band score 7",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 1, 2027 (Curtin course page; audience not stated)",
+      "date": "2026-12-14",
+      "quote": "Semester 1, 2027 Applications now open 14 Dec 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "097865D",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Clinical Physiotherapy",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-clinical-physiotherapy--mc-phyth/",
+   "snapshot_sha256": "70ec3971a051830157985632cd09b7b79a7a99bd8157261de26e209cd7f34a1c",
+   "fields": {
+    "academic": {
+     "text": "A bachelor degree in physiotherapy or equivalent, plus at least two years of relevant clinical experience. You must be a registered physiotherapist with the Physiotherapy Board of Australia, or be eligible for limited registration for postgraduate training in Australia.",
+     "quote": "A bachelor degree in physiotherapy or equivalent, plus at least two years of relevant clinical experience. You must be a registered physiotherapist with the Physiotherapy Board of Australia, or be eligible for limited registration for postgraduate training in Australia.",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 7.0,
+     "overall": 7.0,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 7 Speaking 7 Reading 7 Listening 7 Overall band score 7",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 1, 2027 (Curtin course page; audience not stated)",
+      "date": "2027-01-21",
+      "quote": "Semester 1, 2027 Applications now open 21 Jan 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "049888F",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Clinical Psychology",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-clinical-psychology--mc-clips/",
+   "snapshot_sha256": "df1c4802c4072d58d7fdc2cd672226799861cd0013c116ff0818f4e4c1c5a515",
+   "fields": {
+    "academic": {
+     "text": "You must have completed an APAC Level 3 professional competencies qualification (typically achieved through the Master of Psychology (Professional)), or be a registered psychologist who previously completed the APAC-accredited 4 + 2 pathway with evidence of Level 3 competencies. If you apply via the 4 + 2 pathway, you will require a minimum of 12 months of registration with AHPRA without conditions. Entry is competitive and shortlisted candidates will be interviewed.",
+     "quote": "You must have completed an APAC Level 3 professional competencies qualification (typically achieved through the Master of Psychology (Professional)), or be a registered psychologist who previously completed the APAC-accredited 4 + 2 pathway with evidence of Level 3 competencies. If you apply via the 4 + 2 pathway, you will require a minimum of 12 months of registration with AHPRA without conditions. Entry is competitive and shortlisted candidates will be interviewed.",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 7.0,
+     "overall": 7.0,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 7 Speaking 7 Reading 7 Listening 7 Overall band score 7",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 1, 2028 (Curtin course page; audience not stated)",
+      "date": "2028-01-27",
+      "quote": "Semester 1, 2028 30 Apr 2027 27 Jan 2028",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "0100584",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Commerce",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-commerce--mc-comm/",
+   "snapshot_sha256": "00a258786fc8986c3fba52e6c995c99d71893f1714beb46ee4088655efb557df",
+   "fields": {
+    "academic": {
+     "text": "Specifically, applicants require a Bachelor Degree or an equivalent qualification in any discipline from a recognised tertiary institution. The Master of Commerce course length can vary between one to two years depending on your prior qualifications and experience, however, students can choose to study the two-year course length despite their prior qualifications or experience, if they desire. For those students that have completed a postgraduate degree in a relevant field and have 5 years of documented work experience in a related role, you can complete a Discipline Master degree in one year.",
+     "quote": "Specifically, applicants require a Bachelor Degree or an equivalent qualification in any discipline from a recognised tertiary institution. The Master of Commerce course length can vary between one to two years depending on your prior qualifications and experience, however, students can choose to study the two-year course length despite their prior qualifications or experience, if they desire. For those students that have completed a postgraduate degree in a relevant field and have 5 years of documented work experience in a related role, you can complete a Discipline Master degree in one year.",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 6.0,
+     "overall": 6.5,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 6 Speaking 6 Reading 6 Listening 6 Overall band score 6.5",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 1, 2027 (Curtin course page; audience not stated)",
+      "date": "2027-01-28",
+      "quote": "Semester 1, 2027 Applications now open 28 Jan 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "078409G",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Cyber Security",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-cyber-security--mc-cybse/",
+   "snapshot_sha256": "97fe5be0565292e0f86581bae8284dfb32113c213ad94179fa140a0f5fa59b46",
+   "fields": {
+    "academic": {
+     "text": "A 3-year recognised Bachelor degree in Information Technology or Computational Science or Engineering with a minimum of 2 years relevant work experience or a 4-year degree in Information Technology or Computational Science or Engineering.",
+     "quote": "A 3-year recognised Bachelor degree in Information Technology or Computational Science or Engineering with a minimum of 2 years relevant work experience or a 4-year degree in Information Technology or Computational Science or Engineering.",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 6.0,
+     "overall": 6.0,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 6 Speaking 6 Reading 6 Listening 6 Overall band score 6",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 1, 2027 (Curtin course page; audience not stated)",
+      "date": "2027-01-28",
+      "quote": "Semester 1, 2027 Applications now open 28 Jan 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "105743K",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Design",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-design--mc-design/",
+   "snapshot_sha256": "39bb766071ef59dd7d737f6633e526f437f56ad916c0e024b5b5d47151a64c77",
+   "fields": {
+    "academic": {
+     "text": "Applicants are required to have either: work experience in Design or cognate areas, or a Bachelor degree in Design or cognate areas to enter this course. Applicants with work experience or a Bachelor degree in non-cognate areas, or other pathways, should contact the Course Coordinator.",
+     "quote": "Applicants are required to have either: work experience in Design or cognate areas, or a Bachelor degree in Design or cognate areas to enter this course. Applicants with work experience or a Bachelor degree in non-cognate areas, or other pathways, should contact the Course Coordinator.",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 6.0,
+     "overall": 6.5,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 6.0 Speaking 6.0 Reading 6.0 Listening 6.0 Overall band score 6.5",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 1, 2027 (Curtin course page; audience not stated)",
+      "date": "2027-01-28",
+      "quote": "Semester 1, 2027 Applications now open 28 Jan 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "103008B",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Dietetics",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-dietetics--mg-diets/",
+   "snapshot_sha256": "19ae6e4f8a7c8b476e591513f548fbc98db540052a0c3eda630d07eba6d22fd3",
+   "fields": {
+    "academic": {
+     "text": "Prospective applicants to Curtin’s Master of Dietetics need an undergraduate degree that meets Dietitians Australia’s requirements. Dietitians Australia requires that human sciences underpin the application of science in nutrition and dietetic practice. To meet these criteria, 50% of the first year of undergraduate study must be composed of introductory bioscience (examples include chemistry, biology, introductory physiology). Prospective applicants also need to have completed two units of biochemistry, two units of human physiology, and four units of nutrition at second- and third-year level. Eligible applicants must also submit a personal statement. External applicants must arrange for two academic referee reports to be submitted to the Course Coordinator.",
+     "quote": "Prospective applicants to Curtin’s Master of Dietetics need an undergraduate degree that meets Dietitians Australia’s requirements. Dietitians Australia requires that human sciences underpin the application of science in nutrition and dietetic practice. To meet these criteria, 50% of the first year of undergraduate study must be composed of introductory bioscience (examples include chemistry, biology, introductory physiology). Prospective applicants also need to have completed two units of biochemistry, two units of human physiology, and four units of nutrition at second- and third-year level. Eligible applicants must also submit a personal statement. External applicants must arrange for two academic referee reports to be submitted to the Course Coordinator.",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 7.0,
+     "overall": 7.0,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 7 Speaking 7 Reading 7 Listening 7 Overall band score 7",
+     "check": "ok"
+    }
+   },
+   "cricos_code": "079872K",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Education",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-education--mc-educ/",
+   "snapshot_sha256": "ff721265a25a614f11e855251bd13202d1b5a985f1a6e7f70ff2b33b09a4249a",
+   "fields": {
+    "academic": {
+     "text": "Applicants require an education/teaching degree assessed as being the equivalent of a four-year Australian degree (normally a Bachelor of Education or a four-year combined/double education degree e.g. BSc/BEd); OR a three-year degree in a non-education discipline (e.g. Arts, Science, Commerce) plus a postgraduate teaching qualification with a minimum duration of one-year, such as a Graduate Diploma in Education or Master of Teaching.",
+     "quote": "Applicants require an education/teaching degree assessed as being the equivalent of a four-year Australian degree (normally a Bachelor of Education or a four-year combined/double education degree e.g. BSc/BEd); OR a three-year degree in a non-education discipline (e.g. Arts, Science, Commerce) plus a postgraduate teaching qualification with a minimum duration of one-year, such as a Graduate Diploma in Education or Master of Teaching.",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 6.0,
+     "overall": 6.5,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 6 Speaking 6 Reading 6 Listening 6 Overall band score 6.5",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Special Study Period 1, 2027 (Curtin course page; audience not stated)",
+      "date": "2027-02-11",
+      "quote": "Special Study Period 1, 2027 Applications now open 11 Feb 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "004005G",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering Management",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-engineering-management--mc-engrmg/",
+   "snapshot_sha256": "e974e45d14978e362e8ddaaf6282d261850d03534145a3ce3775ecae0443583e",
+   "fields": {
+    "academic": {
+     "text": "You require a Bachelor of Engineering or an equivalent qualification in a recognised discipline of construction with at least one year of relevant work experience since graduation. Practical engineering experience will be beneficial.",
+     "quote": "You require a Bachelor of Engineering or an equivalent qualification in a recognised discipline of construction with at least one year of relevant work experience since graduation. Practical engineering experience will be beneficial.",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 6.0,
+     "overall": 6.0,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 6 Speaking 6 Reading 6 Listening 6 Overall band score 6",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 1, 2027 (Curtin course page; audience not stated)",
+      "date": "2027-01-28",
+      "quote": "Semester 1, 2027 Applications now open 28 Jan 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "109150C",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Geoscience",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-geoscience--mc-geosci/",
+   "snapshot_sha256": "30316f8a3b7d59a9a216ef4cbd6fa9bc78a966b39bc6fbd5e6ab9c87657bea44",
+   "fields": {
+    "academic": {
+     "text": "A recognised bachelors degree in science or a related degree. Students who wish to study the Exploration and Mining Geology major will be required to have completed foundation geoscience units at undergraduate or postgraduate level. Graduates in other disciplines with significant relevant industry experience will be considered on a case-by-case basis.",
+     "quote": "A recognised bachelors degree in science or a related degree. Students who wish to study the Exploration and Mining Geology major will be required to have completed foundation geoscience units at undergraduate or postgraduate level. Graduates in other disciplines with significant relevant industry experience will be considered on a case-by-case basis.",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 6.0,
+     "overall": 6.0,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 6 Speaking 6 Reading 6 Listening 6 Overall band score 6",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 1, 2027 (Curtin course page; audience not stated)",
+      "date": "2027-01-28",
+      "quote": "Semester 1, 2027 Applications now open 28 Jan 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "108524H",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Geospatial Intelligence",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-geospatial-intelligence--mc-geospi/",
+   "snapshot_sha256": "0b32167a57bac30d6e418d0759431b3e752e309445e5ed23d8db2c87fbc2108a",
+   "fields": {
+    "academic": {
+     "text": "Applicants require a recognised Bachelor Degree in any discipline.",
+     "quote": "Applicants require a recognised Bachelor Degree in any discipline.",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 6.0,
+     "overall": 6.0,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 6.0 Speaking 6.0 Reading 6.0 Listening 6.0 Overall band score 6.0",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 1, 2027 (Curtin course page; audience not stated)",
+      "date": "2027-01-28",
+      "quote": "Semester 1, 2027 Applications now open 28 Jan 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "0100574",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Human Rights",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-human-rights--mc-hright/",
+   "snapshot_sha256": "6947871e54029296b3f940d6744fde8da1f75fcd87c71e14908bc7cf74fda05e",
+   "fields": {
+    "academic": {
+     "text": "Subject to the duration of the course applicants usually require a Bachelor Degree or equivalent (and may require relevant work experience), Bachelor Honours Degree, Graduate Certificate or Graduate Diploma. Any specific course entry and completion requirements must also be met.",
+     "quote": "Subject to the duration of the course applicants usually require a Bachelor Degree or equivalent (and may require relevant work experience), Bachelor Honours Degree, Graduate Certificate or Graduate Diploma. Any specific course entry and completion requirements must also be met.",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 6.0,
+     "overall": 6.5,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 6 Speaking 6 Reading 6 Listening 6 Overall band score 6.5",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 1, 2027 (Curtin course page; audience not stated)",
+      "date": "2027-01-28",
+      "quote": "Semester 1, 2027 Applications now open 28 Jan 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "061485B",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Human Rights and Global Engagement",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-human-rights-and-global-engagement--mc-hriglo/",
+   "snapshot_sha256": "70eb5db3c12d46cd0846a710b3c10c60af2ac351d5e877fa13e70f44a236b85f",
+   "fields": {
+    "academic": {
+     "text": "A Bachelor Degree or equivalent (and may require relevant work experience), Bachelor Honours Degree, Graduate Certificate or Graduate Diploma.",
+     "quote": "A Bachelor Degree or equivalent (and may require relevant work experience), Bachelor Honours Degree, Graduate Certificate or Graduate Diploma.",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 6.0,
+     "overall": 6.5,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 6 Speaking 6 Reading 6 Listening 6 Overall band score 6.5",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 1, 2027 (Curtin course page; audience not stated)",
+      "date": "2027-01-28",
+      "quote": "Semester 1, 2027 Applications now open 28 Jan 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "114112M",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Information Science",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-information-science--mc-infsci/",
+   "snapshot_sha256": "8e1de579ed928274c4870174c6473f6b6c42f5f6a930b546a2e4244283c7018b",
+   "fields": {
+    "academic": {
+     "text": "Applicants require a minimum of a three-year bachelor's degree from a recognised tertiary education provider. The course relies on technology skills, so applicants must be competent in word processing and the use of the internet, including web browsing software, before starting the course.",
+     "quote": "Applicants require a minimum of a three-year bachelor's degree from a recognised tertiary education provider. The course relies on technology skills, so applicants must be competent in word processing and the use of the internet, including web browsing software, before starting the course.",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 6.0,
+     "overall": 6.5,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 6 Speaking 6 Reading 6 Listening 6 Overall band score 6.5",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Special Study Period 4, 2026 (Curtin course page; audience not stated)",
+      "date": "2026-11-12",
+      "quote": "Special Study Period 4, 2026 Applications now open 12 Nov 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Information Science (Extended)",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-information-science-extended--mc-infscx/",
+   "snapshot_sha256": "d3c978a0b317ac77c63848d610ce9e2085834d45853c88eb71178c0084844432",
+   "fields": {
+    "academic": {
+     "text": "Applicants require a minimum of a three-year bachelor's degree from a recognised tertiary education provider. The course relies on technology skills, so applicants must be competent in word processing and the use of the internet, including web browsing software, before starting the course.",
+     "quote": "Applicants require a minimum of a three-year bachelor's degree from a recognised tertiary education provider. The course relies on technology skills, so applicants must be competent in word processing and the use of the internet, including web browsing software, before starting the course.",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 6.0,
+     "overall": 6.5,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 6.0 Speaking 6.0 Reading 6.0 Listening 6.0 Overall band score 6.5",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Special Study Period 4, 2026 (Curtin course page; audience not stated)",
+      "date": "2026-11-05",
+      "quote": "Special Study Period 4, 2026 Applications now open 5 Nov 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Information Systems and Technology",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-information-systems-and-technology--mc-mist/",
+   "snapshot_sha256": "6becbd486ea8dc7d7ad82c5d413b00b738b41e5cc32853de9985ad6537829dea",
+   "fields": {
+    "academic": {
+     "text": "Applicants require an undergraduate degree in any discipline OR a relevant Graduate Certificate.",
+     "quote": "Applicants require an undergraduate degree in any discipline OR a relevant Graduate Certificate.",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 6.0,
+     "overall": 6.5,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 6 Speaking 6 Reading 6 Listening 6 Overall band score 6.5",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 1, 2027 (Curtin course page; audience not stated)",
+      "date": "2027-01-28",
+      "quote": "Semester 1, 2027 Applications now open 28 Jan 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "117077G",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Innovation and Entrepreneurship",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-innovation-and-entrepreneurship--mc-innent/",
+   "snapshot_sha256": "f2aeeee3ece1742d67e42eeb88cbf6689db43b6fa8a222bbc881f1ac97777fbb",
+   "fields": {
+    "academic": {
+     "text": "Specifically, applicants require a bachelor degree in any discipline.",
+     "quote": "Specifically, applicants require a bachelor degree in any discipline.",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 6.0,
+     "overall": 6.5,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 6 Speaking 6 Reading 6 Listening 6 Overall band score 6.5",
+     "check": "ok"
+    }
+   },
+   "cricos_code": "110823A",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of International Relations",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-international-relations--mc-intrel/",
+   "snapshot_sha256": "221c377443323f25794cb1c88bbcda66ad4c04a97dceac3bb5c755a2511d3005",
+   "fields": {
+    "academic": {
+     "text": "A three- or four-year Bachelor degree in a relevant field, OR successful completion of a Graduate Certificate or Graduate Diploma in International Relations or related field.",
+     "quote": "A three- or four-year Bachelor degree in a relevant field, OR successful completion of a Graduate Certificate or Graduate Diploma in International Relations or related field.",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 6.0,
+     "overall": 6.5,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 6 Speaking 6 Reading 6 Listening 6 Overall band score 6.5",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 1, 2027 (Curtin course page; audience not stated)",
+      "date": "2027-01-28",
+      "quote": "Semester 1, 2027 Applications now open 28 Jan 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "117068H",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Midwifery",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-midwifery--mg-midw/",
+   "snapshot_sha256": "f582c68c1088bdaf3a1abb41073839bdac17e647a9ad2fb65d6ba968bf9851ba",
+   "fields": {
+    "academic": {
+     "text": "All applicants must hold a recognised Bachelor’s degree or graduate degree. Entry to this course is competitive and a strong academic achievement is required.",
+     "quote": "All applicants must hold a recognised Bachelor’s degree or graduate degree. Entry to this course is competitive and a strong academic achievement is required.",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 6.5,
+     "overall": 7.0,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 6.5 Speaking 7 Reading 7 Listening 7 Overall band score 7",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Extended Delivery Period 2, 2027 (Curtin course page; audience not stated)",
+      "date": "2027-06-14",
+      "quote": "Extended Delivery Period 2, 2027 Applications now open 14 Jun 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "114106J",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Nursing Practice",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-nursing-practice--mg-nurspr/",
+   "snapshot_sha256": "ad1f89ebccf8a2c74987802529035cd84e853d72fb99c6ba5ba60e396981c463",
+   "fields": {
+    "academic": {
+     "text": "All applicants must hold a recognised Bachelor’s degree or graduate degree. Entry to this course is competitive and a strong academic achievement is required.  It is essential that applicants have successfully completed a human biology related unit with an anatomy and physiology focus at tertiary level. Domestic students who have not completed a tertiary unit in the above mentioned area will be able to study this unit through the Health Sciences Graduate Entry Foundation course. Aboriginal students are encouraged to apply.  Curtin University requires all students to demonstrate competency in English. International students are required to demonstrate an IELTS of 7.0. Please refer to the following for further information http://futurestudents.curtin.edu.au/postgraduates/how-to-get-in/.",
+     "quote": "All applicants must hold a recognised Bachelor’s degree or graduate degree. Entry to this course is competitive and a strong academic achievement is required.  It is essential that applicants have successfully completed a human biology related unit with an anatomy and physiology focus at tertiary level. Domestic students who have not completed a tertiary unit in the above mentioned area will be able to study this unit through the Health Sciences Graduate Entry Foundation course. Aboriginal students are encouraged to apply.  Curtin University requires all students to demonstrate competency in English. International students are required to demonstrate an IELTS of 7.0. Please refer to the following for further information http://futurestudents.curtin.edu.au/postgraduates/how-to-get-in/.",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 6.5,
+     "overall": 7.0,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 6.5 Speaking 7 Reading 7 Listening 7 Overall band score 7",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Extended Delivery Period 2, 2027 (Curtin course page; audience not stated)",
+      "date": "2027-06-14",
+      "quote": "Extended Delivery Period 2, 2027 Applications now open 14 Jun 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "064467B",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Occupational Health and Safety",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-occupational-health-and-safety--mc-ochlsf/",
+   "snapshot_sha256": "f226b110d66842029b8fb7616a694ce951ff983e03e7c3c1dcae0fd2a9824201",
+   "fields": {
+    "academic": {
+     "text": "A bachelor degree with a health, science, engineering or management-related background, or a Graduate Diploma in Occupational Health and Safety.",
+     "quote": "A bachelor degree with a health, science, engineering or management-related background, or a Graduate Diploma in Occupational Health and Safety.",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 6.0,
+     "overall": 6.5,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 6 Speaking 6 Reading 6 Listening 6 Overall band score 6.5",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 1, 2027 (Curtin course page; audience not stated)",
+      "date": "2027-01-28",
+      "quote": "Semester 1, 2027 Applications now open 28 Jan 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "099031G",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Occupational Therapy",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-occupational-therapy--mg-occt/",
+   "snapshot_sha256": "9cea66a51349050843cb88c46857023a643bf1cb64c358ceac3be6d3f11fe1d8",
+   "fields": {
+    "academic": {
+     "text": "You must have a bachelor degree or equivalent, preferably in a health or human science related discipline, and evidence of studies in human biosciences (e.g. human biology) at tertiary level is required.",
+     "quote": "You must have a bachelor degree or equivalent, preferably in a health or human science related discipline, and evidence of studies in human biosciences (e.g. human biology) at tertiary level is required.",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 7.0,
+     "overall": 7.0,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 7 Speaking 7 Reading 7 Listening 7 Overall band score 7",
+     "check": "ok"
+    }
+   },
+   "cricos_code": "077383K",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Predictive Analytics",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-predictive-analytics--mc-predan/",
+   "snapshot_sha256": "d92ab4fd71ab610b5303791ee10984829ff52ae00ae0927ecf0925dcb8ba0f8f",
+   "fields": {
+    "academic": {
+     "text": "A recognised bachelor degree.",
+     "quote": "A recognised bachelor degree.",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 6.0,
+     "overall": 6.0,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 6 Speaking 6 Reading 6 Listening 6 Overall band score 6",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 1, 2027 (Curtin course page; audience not stated)",
+      "date": "2027-01-28",
+      "quote": "Semester 1, 2027 Applications now open 28 Jan 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "092977C",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Professional Engineering",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-professional-engineering--mc-proeng/",
+   "snapshot_sha256": "ca3d9d2fe76bfd4bf7ef9e1ceb6c1be27c1e0293e0fca5aa0b7d8a5fcb0230f5",
+   "fields": {
+    "academic": {
+     "text": "Applicants require a 4-year Engineering degree from a recognised institution in the same discipline of study. Students who have completed the Graduate Diploma in Professional Engineering degree at Curtin will be considered to have met the above course requirement.",
+     "quote": "Applicants require a 4-year Engineering degree from a recognised institution in the same discipline of study. Students who have completed the Graduate Diploma in Professional Engineering degree at Curtin will be considered to have met the above course requirement.",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 6.0,
+     "overall": 6.0,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 6 Speaking 6 Reading 6 Listening 6 Overall band score 6",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 1, 2027 (Curtin course page; audience not stated)",
+      "date": "2027-01-28",
+      "quote": "Semester 1, 2027 Applications now open 28 Jan 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "0100657",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Project Management",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-project-management--mc-projm2/",
+   "snapshot_sha256": "99dd9a76448d0a8f1cb9650da6cd4cf48a6fe2b3f7e221765cb97211d7569352",
+   "fields": {
+    "academic": {
+     "text": "Applicants require a bachelor degree; or a Graduate Certificate in Project Management or a Graduate Diploma in Project Management.",
+     "quote": "Applicants require a bachelor degree; or a Graduate Certificate in Project Management or a Graduate Diploma in Project Management.",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 6.0,
+     "overall": 6.5,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 6 Speaking 6 Reading 6 Listening 6 Overall band score 6.5",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 1, 2027 (Curtin course page; audience not stated)",
+      "date": "2027-01-28",
+      "quote": "Semester 1, 2027 Applications now open 28 Jan 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "098520K",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Psychology (Clinical)",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-psychology-clinical--mc-psycli/",
+   "snapshot_sha256": "e810c2e3d97170cefd6e07a375faef65b863e38b7fb956a04068164502b9c0f3",
+   "fields": {
+    "academic": {
+     "text": "You require a four-year APAC-accredited psychology degree. Entry is competitive and shortlisted candidates will be interviewed.",
+     "quote": "You require a four-year APAC-accredited psychology degree. Entry is competitive and shortlisted candidates will be interviewed.",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 7.0,
+     "overall": 7.0,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 7 Speaking 7 Reading 7 Listening 7 Overall band score 7",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 1, 2028 (Curtin course page; audience not stated)",
+      "date": "2027-09-02",
+      "quote": "Semester 1, 2028 30 Apr 2027 2 Sep 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "121210F",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Psychology (Professional)",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-psychology-professional--mc-psychp/",
+   "snapshot_sha256": "354ae46f0ea33b06f01f9a182d047738ef611fe6b3dd27d6eb4929d70b3f6bea",
+   "fields": {
+    "academic": {
+     "text": "You require a four-year APAC-accredited psychology degree. Entry is competitive and shortlisted candidates will be interviewed.",
+     "quote": "You require a four-year APAC-accredited psychology degree. Entry is competitive and shortlisted candidates will be interviewed.",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 7.0,
+     "overall": 7.0,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 7 Speaking 7 Reading 7 Listening 7 Overall band score 7",
+     "check": "ok"
+    }
+   },
+   "cricos_code": "084066J",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Health",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-public-health--mc-pubhl/",
+   "snapshot_sha256": "9ef7e6c2233d5de85a40095f5fda53b9e3a6494ff86c0db6282b305961f62ece",
+   "fields": {
+    "academic": {
+     "text": "A bachelor degree from a tertiary institution preferably in health, education, behavioural sciences, social sciences or management. You may also be required to provide supplementary information with your application such as a CV and Personal Statement.",
+     "quote": "A bachelor degree from a tertiary institution preferably in health, education, behavioural sciences, social sciences or management. You may also be required to provide supplementary information with your application such as a CV and Personal Statement.",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 6.0,
+     "overall": 6.5,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 6 Speaking 6 Reading 6 Listening 6 Overall band score 6.5",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 1, 2027 (Curtin course page; audience not stated)",
+      "date": "2027-01-28",
+      "quote": "Semester 1, 2027 Applications now open 28 Jan 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "064462G",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Health (Practice)",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-public-health-practice--mc-pubhp/",
+   "snapshot_sha256": "907a6b8f2c522a3bcedba125068f40740479209af00e5c8284b49ed3fc4f2b96",
+   "fields": {
+    "academic": {
+     "text": "Applicants require an undergraduate degree or higher from a tertiary institution. Satisfying the admission requirements enables an applicant to be considered for admission, but does not guarantee an offer of admission to the program. Admission into program is at the discretion of the course coordinator/School and is dependent on a number of considerations including the applicant’s academic background and work experience along with assessment of supplementary information provided by the applicant.",
+     "quote": "Applicants require an undergraduate degree or higher from a tertiary institution. Satisfying the admission requirements enables an applicant to be considered for admission, but does not guarantee an offer of admission to the program. Admission into program is at the discretion of the course coordinator/School and is dependent on a number of considerations including the applicant’s academic background and work experience along with assessment of supplementary information provided by the applicant.",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 6.0,
+     "overall": 6.5,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 6.0 Speaking 6.0 Reading 6.0 Listening 6.0 Overall band score 6.5",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 1, 2027 (Curtin course page; audience not stated)",
+      "date": "2027-01-28",
+      "quote": "Semester 1, 2027 Applications now open 28 Jan 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "104514J",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (Actuarial and Financial Science)",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-science-actuarial-and-financial-science--mc-actfns/",
+   "snapshot_sha256": "c25dfdcf7f44c520bc420f9bbeaeececebe10fd96c627f6f82d87c8a75393ce9",
+   "fields": {
+    "ielts": {
+     "min_band": 6.0,
+     "overall": 6.0,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 6.0 Speaking 6.0 Reading 6.0 Listening 6.0 Overall band score 6.0",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 1, 2027 (Curtin course page; audience not stated)",
+      "date": "2027-01-28",
+      "quote": "Semester 1, 2027 Applications now open 28 Jan 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "054627G",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (Agriculture and Food Security)",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-science-agriculture-and-food-security--mc-agfood/",
+   "snapshot_sha256": "bec817b72eac46dc5b50183edf84708dcdb8c690ad541166641e15e4eb50553e",
+   "fields": {
+    "academic": {
+     "text": "You require a bachelor degree in a science field.",
+     "quote": "You require a bachelor degree in a science field.",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 6.0,
+     "overall": 6.0,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 6 Speaking 6 Reading 6 Listening 6 Overall band score 6",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 1, 2027 (Curtin course page; audience not stated)",
+      "date": "2027-01-28",
+      "quote": "Semester 1, 2027 Applications now open 28 Jan 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "107626K",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (Food Science and Technology)",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-science-food-science-and-technology--mc-foodst/",
+   "snapshot_sha256": "3a28cf1790a3dc7f58e49726c42ab5938eded1944da652195cf8af1b71f14397",
+   "fields": {
+    "academic": {
+     "text": "You require a bachelor degree or equivalent (and may require relevant work experience), bachelor honours degree, graduate certificate or graduate diploma.",
+     "quote": "You require a bachelor degree or equivalent (and may require relevant work experience), bachelor honours degree, graduate certificate or graduate diploma.",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 6.0,
+     "overall": 6.0,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 6 Speaking 6 Reading 6 Listening 6 Overall band score 6",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 1, 2027 (Curtin course page; audience not stated)",
+      "date": "2027-01-28",
+      "quote": "Semester 1, 2027 Applications now open 28 Jan 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "064466C",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (Industrial Engineering)",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-science-industrial-engineering--mc-indeng/",
+   "snapshot_sha256": "d91b57dcf79e430f7b5fc8ecf9d516f68c3f5fa64d29069e106d3b9a4ed5122a",
+   "fields": {
+    "academic": {
+     "text": "A recognised bachelor degree in science or engineering and have achieved competency in mathematics or a related discipline to the level of second year tertiary study.",
+     "quote": "A recognised bachelor degree in science or engineering and have achieved competency in mathematics or a related discipline to the level of second year tertiary study.",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 6.0,
+     "overall": 6.0,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 6.0 Speaking 6.0 Reading 6.0 Listening 6.0 Overall band score 6.0",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 1, 2027 (Curtin course page; audience not stated)",
+      "date": "2027-01-28",
+      "quote": "Semester 1, 2027 Applications now open 28 Jan 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "107627J",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (Minerals and Energy Economics), Master of Business Administration",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-science-minerals-and-energy-economics-master-of-business-administration--mm-mecbad/",
+   "snapshot_sha256": "f316215f9cc08b81109f044505dd58919fc16cc4d406fdd5afab6fa2feee1326",
+   "fields": {
+    "academic": {
+     "text": "You require a bachelor degree from a recognised tertiary institution and at least three years subsequent, relevant work experience. Graduates from either the Curtin Graduate Certificate in Business or the Curtin Graduate Certificate in Mineral and Energy Economics will be considered qualified for entry. Entry to the course is competitive and applicants will be required to undertake an interview as the final stage of application assessment.",
+     "quote": "You require a bachelor degree from a recognised tertiary institution and at least three years subsequent, relevant work experience. Graduates from either the Curtin Graduate Certificate in Business or the Curtin Graduate Certificate in Mineral and Energy Economics will be considered qualified for entry. Entry to the course is competitive and applicants will be required to undertake an interview as the final stage of application assessment.",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 6.0,
+     "overall": 6.0,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 6 Speaking 6 Reading 6 Listening 6 Overall band score 6",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Trimester 1, 2027 (Curtin course page; audience not stated)",
+      "date": "2026-12-17",
+      "quote": "Trimester 1, 2027 Applications now open 17 Dec 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "050596G",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (Project Management)",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-science-project-management--mc-projm/",
+   "snapshot_sha256": "d9447fc5d88974f8e71eb39408b171b29b306bc5c0533ed1bc4e29d17f7e5f98",
+   "fields": {
+    "academic": {
+     "text": "Applicants require a bachelor degree; or a Graduate Certificate in Project Management or a Graduate Diploma in Project Management.",
+     "quote": "Applicants require a bachelor degree; or a Graduate Certificate in Project Management or a Graduate Diploma in Project Management.",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 6.0,
+     "overall": 6.5,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 6 Speaking 6 Reading 6 Listening 6 Overall band score 6.5",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 1, 2027 (Curtin course page; audience not stated)",
+      "date": "2027-01-28",
+      "quote": "Semester 1, 2027 Applications now open 28 Jan 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "027245A",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Sexology (Professional)",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-sexology-professional--mc-sxlpr/",
+   "snapshot_sha256": "39402834592d3e5d1d0254d48faad259d48f63017effb8b77bd41b299aee7e64",
+   "fields": {
+    "academic": {
+     "text": "You require a recognised bachelor degree in a related health profession, such as medical, social work or welfare studies, theology, education, health promotion, health sciences, psychology, sociology, anthropology, biological sciences or related disciplines. Interviews will be conducted where required.",
+     "quote": "You require a recognised bachelor degree in a related health profession, such as medical, social work or welfare studies, theology, education, health promotion, health sciences, psychology, sociology, anthropology, biological sciences or related disciplines. Interviews will be conducted where required.",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 6.0,
+     "overall": 6.5,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 6 Speaking 6 Reading 6 Listening 6 Overall band score 6.5",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 1, 2027 (Curtin course page; audience not stated)",
+      "date": "2027-01-28",
+      "quote": "Semester 1, 2027 Applications now open 28 Jan 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "107629G",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Social Work (Qualifying)",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-social-work-qualifying--mg-scwk/",
+   "snapshot_sha256": "13b0ef3d782f14591d39ab05e66662aff355335e231cc685cdf4dae65404e891",
+   "fields": {
+    "academic": {
+     "text": "You must have a relevant bachelor degree completed, including at least one year of full-time studies in social sciences (studies of the individual and society), or equivalent prior learning, including appropriate professional experience. If your prior degree is not considered relevant, you may be required to undertake prerequisite bridging units before commencing the program.",
+     "quote": "You must have a relevant bachelor degree completed, including at least one year of full-time studies in social sciences (studies of the individual and society), or equivalent prior learning, including appropriate professional experience. If your prior degree is not considered relevant, you may be required to undertake prerequisite bridging units before commencing the program.",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 7.0,
+     "overall": 7.0,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 7 Speaking 7 Reading 7 Listening 7 Overall band score 7",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Block Session 5, 2027 (Curtin course page; audience not stated)",
+      "date": "2027-04-26",
+      "quote": "Block Session 5, 2027 1 Mar 2027 26 Apr 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "0100481",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Speech Pathology",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-speech-pathology--mg-sppath/",
+   "snapshot_sha256": "00e6c94a2301f7b155b721579564fb115be6450459b9f972c046a39c6a9794d4",
+   "fields": {
+    "academic": {
+     "text": "You need an honours degree or a bachelor degree with a course weighted average (CWA) of 65% or higher, and evidence of successful tertiary level study of human biology is required. Applications with a CWA below 65% will be considered should you demonstrate equivalent prior learning, including appropriate professional experience.",
+     "quote": "You need an honours degree or a bachelor degree with a course weighted average (CWA) of 65% or higher, and evidence of successful tertiary level study of human biology is required. Applications with a CWA below 65% will be considered should you demonstrate equivalent prior learning, including appropriate professional experience.",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 7.0,
+     "overall": 7.0,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 7 Speaking 7 Reading 7 Listening 7 Overall band score 7",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Block Session 1, 2027 (Curtin course page; audience not stated)",
+      "date": "2026-11-05",
+      "quote": "Block Session 1, 2027 Applications now open 5 Nov 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "033868G",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Sustainability and Climate Leadership",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-sustainability-and-climate-leadership--mc-sclead/",
+   "snapshot_sha256": "73dba67a956e59b31904987e8de0a5e0be64aab8e680b01c6bc0abe3e531cc63",
+   "fields": {
+    "ielts": {
+     "min_band": 6.0,
+     "overall": 6.5,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 6 Speaking 6 Reading 6 Listening 6 Overall band score 6.5",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 1, 2027 (Curtin course page; audience not stated)",
+      "date": "2027-01-28",
+      "quote": "Semester 1, 2027 Applications now open 28 Jan 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "121214B",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Taxation",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-taxation--mc-taxat/",
+   "snapshot_sha256": "0fa09e26ff7a8723ed87596ca95165f10afdb99719d5bed0a1902f013a209213",
+   "fields": {
+    "academic": {
+     "text": "Applicants require a recognised bachelor degree (or equivalent) in the field of taxation or a related discipline, or a Graduate Certificate or Graduate Diploma in the field of taxation or a related discipline. In addition, applicants must meet Curtin's English language proficiency requirements. Applicants without a related (cognate) Bachelor's degree will need to complete the Graduate Certificate in Taxation Practice to proceed to be considered for the Master of Taxation degree program.",
+     "quote": "Applicants require a recognised bachelor degree (or equivalent) in the field of taxation or a related discipline, or a Graduate Certificate or Graduate Diploma in the field of taxation or a related discipline. In addition, applicants must meet Curtin's English language proficiency requirements. Applicants without a related (cognate) Bachelor's degree will need to complete the Graduate Certificate in Taxation Practice to proceed to be considered for the Master of Taxation degree program.",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 6.0,
+     "overall": 6.5,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 6 Speaking 6 Reading 6 Listening 6 Overall band score 6.5",
+     "check": "ok"
+    }
+   },
+   "cricos_code": "102741C",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Teaching",
+   "url": "https://www.curtin.edu.au/study/offering/course-pg-master-of-teaching--mc-teach/",
+   "snapshot_sha256": "21cc97e6aee36add5a6cd7efe3a55b73d0ae0c6ad777a62c2b6534f5c7671d68",
+   "fields": {
+    "ielts": {
+     "min_band": 7.0,
+     "overall": 7.5,
+     "quote": "IELTS Academic (International English Language Testing System) Writing 7 Speaking 8 Reading 7 Listening 8 Overall band score 7.5",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Special Study Period 1, 2027 (Curtin course page; audience not stated)",
+      "date": "2027-02-11",
+      "quote": "Special Study Period 1, 2027 Applications now open 11 Feb 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "cricos_code": "098318A",
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 50,
+  "机器核对": 50,
+  "待人工": 0
+ }
+}

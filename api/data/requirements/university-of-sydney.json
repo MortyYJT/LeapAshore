@@ -1,0 +1,938 @@
+{
+ "school_key": "university-of-sydney",
+ "school_name_en": "The University of Sydney",
+ "country": "Australia",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-28",
+ "listing_urls": [
+  "https://www.sydney.edu.au/courses/sitemap.xml"
+ ],
+ "blocked": [],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.sydney.edu.au/courses/courses/pc/master-of-data-science0.html",
+  "https://www.sydney.edu.au/courses/courses/pc/master-of-logistics-and-supply-chain-management.html",
+  "https://www.sydney.edu.au/courses/courses/pc/master-of-business-administration-leadership-and-enterprise.html",
+  "https://www.sydney.edu.au/courses/courses/pc/master-of-crosscultural-and-applied-linguistics.html",
+  "https://www.sydney.edu.au/courses/courses/pc/master-of-global-health.html",
+  "https://www.sydney.edu.au/courses/courses/pc/master-of-transport.html",
+  "https://www.sydney.edu.au/courses/courses/pc/master-of-dental-public-health.html",
+  "https://www.sydney.edu.au/courses/courses/pc/master-of-biomedical-science-infection-and-immunity.html",
+  "https://www.sydney.edu.au/courses/courses/pc/master-of-digital-health-and-data-science0.html",
+  "https://www.sydney.edu.au/courses/courses/pc/master-of-medicine-sexual-and-reproductive-health0.html",
+  "https://www.sydney.edu.au/courses/courses/pc/master-of-science-in-medicine-sexual-and-reproductive-health0.html",
+  "https://www.sydney.edu.au/courses/courses/pc/master-of-medicine-advanced-sexual-and-reproductive-health0.html",
+  "https://www.sydney.edu.au/courses/courses/pc/master-of-science-in-medicine-advanced-sexual-and-reproductive-health0.html",
+  "https://www.sydney.edu.au/courses/courses/pc/master-of-professional-accounting-and-business-performance.html",
+  "https://www.sydney.edu.au/courses/courses/pc/master-of-cybersecurity.html",
+  "https://www.sydney.edu.au/courses/courses/pc/master-of-computer-science.html",
+  "https://www.sydney.edu.au/courses/courses/pc/master-of-film-and-screen-arts.html",
+  "https://www.sydney.edu.au/courses/courses/pc/master-of-building-performance-and-sustainable-design.html",
+  "https://www.sydney.edu.au/courses/courses/pc/master-of-teaching-english-to-speakers-of-other-languages.html",
+  "https://www.sydney.edu.au/courses/courses/pc/master-of-education-special-and-inclusive-education1.html"
+ ],
+ "notes": "No official Sydney page with China-specific postgraduate coursework requirements was found (the only China table, recognised-qualifications.html, is undergraduate/Gaokao), so china_page and china_requirement are omitted. Course pages render the domestic view only: the International qualifications and English accordions are empty, so IELTS/TOEFL are left out (the general English page states IELTS 6.5 overall, no band below 6.0 for postgraduate coursework but says courses may differ) and deadlines are left out (relative dates only). Overview lines 'Not available to student visa holders' follow '(Available part-time)' and were read as part-time only, not as closing the course to international students. 80 distinct CRICOS course names have no page in the courses sitemap; 4 doctorates (Doctor of Medicine, Doctor of Dental Medicine, Doctor of Clinical Dentistry, Juris Doctor) were skipped as not master's. Duplicate CRICOS names (other duration variants) share one page; only the first code is recorded.",
+ "programs": [
+  {
+   "name": "Master of Education",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-education0.html",
+   "cricos_code": "000674B",
+   "snapshot_sha256": "2322a79551e6f4492f91445b60e888ea0b189207b023bb20f6e606f3f46ba675",
+   "fields": {
+    "academic": {
+     "text": "Admission to this course requires: (i) a bachelor degree or higher in a cognate discipline from the University of Sydney, or equivalent; OR (ii) a bachelor honours degree in a non-cognate discipline from the University of Sydney or equivalent qualification; OR (iii) A graduate certificate or a graduate diploma in the same stream as that in which the applicant wishes to proceed, or equivalent.",
+     "quote": "Admission to this course requires: (i) a bachelor degree or higher in a cognate discipline from the University of Sydney, or equivalent; OR (ii) a bachelor honours degree in a non-cognate discipline from the University of Sydney or equivalent qualification; OR (iii) A graduate certificate or a graduate diploma in the same stream as that in which the applicant wishes to proceed, or equivalent.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Urban and Regional Planning",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-urban-and-regional-planning.html",
+   "cricos_code": "000677K",
+   "snapshot_sha256": "1eaab5aabd80c3035c6ced0a04ace5199933c996078875742e857639461d1873",
+   "fields": {
+    "academic": {
+     "text": "Admission to the Master of Urban and Regional Planning requires: a bachelor's degree in design, human geography or related field from the University of Sydney or an equivalent qualification with a credit average mark across all units; or completion of the requirements of the embedded graduate diploma with an average mark of at least 70.",
+     "quote": "Admission to the Master of Urban and Regional Planning requires: a bachelor's degree in design, human geography or related field from the University of Sydney or an equivalent qualification with a credit average mark across all units; or completion of the requirements of the embedded graduate diploma with an average mark of at least 70.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Urban Design",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-urban-design.html",
+   "cricos_code": "000681C",
+   "snapshot_sha256": "f3136ab2bfa580cc9c5a267da18104f28ef26dd90c2b1ee2789427fd32389ac7",
+   "fields": {
+    "academic": {
+     "text": "Admission to the Master of Urban Design requires: an undergraduate degree in architecture, landscape architecture, urban planning, town planning, urbanism, geography or a related field; or completion of the requirements of the embedded Graduate Certificate with an average mark of at least 65. Based on the applicant's undergraduate performance, the Program Director reserves the right to require a portfolio of work indicating relevant design interests and capabilities for admission to the Master of Urban Design. A portfolio should only be provided if requested by the Program Director.",
+     "quote": "Admission to the Master of Urban Design requires: an undergraduate degree in architecture, landscape architecture, urban planning, town planning, urbanism, geography or a related field; or completion of the requirements of the embedded Graduate Certificate with an average mark of at least 65. Based on the applicant's undergraduate performance, the Program Director reserves the right to require a portfolio of work indicating relevant design interests and capabilities for admission to the Master of Urban Design. A portfolio should only be provided if requested by the Program Director.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Heritage Conservation",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-heritage-conservation0.html",
+   "cricos_code": "000682B",
+   "snapshot_sha256": "6f8f888c478dcb7702db7db10bb12579b4ccedd80dfa6e71ead9c99d4e582ca4",
+   "fields": {
+    "academic": {
+     "text": "a) a bachelor's degree or higher from the University of Sydney or an equivalent qualification with a credit average mark; or (b) completion of the requirements of the embedded graduate diploma with a credit average mark .",
+     "quote": "a) a bachelor's degree or higher from the University of Sydney or an equivalent qualification with a credit average mark; or (b) completion of the requirements of the embedded graduate diploma with a credit average mark .",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Laws",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-laws.html",
+   "cricos_code": "006449G",
+   "snapshot_sha256": "571d1f65b157628c636b515d5d8a918028dbe519df619320777cbb0bb5071321",
+   "fields": {
+    "academic": {
+     "text": "Admission to candidature for this course required a Bachelor of Laws or Juris Doctor with a credit average (65 percent) from the University of Sydney, or an equivalent qualification.",
+     "quote": "Admission to candidature for this course required a Bachelor of Laws or Juris Doctor with a credit average (65 percent) from the University of Sydney, or an equivalent qualification.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Criminology",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-criminology.html",
+   "cricos_code": "008404D",
+   "snapshot_sha256": "d0f019aebcfba01b6887555bbf39500fcf4bbe1b21e7d90549862ac0966dcdb4",
+   "fields": {
+    "academic": {
+     "text": "Admission to candidature for the Master of Criminology requires: a bachelor's degree with a minimum credit average from the University of Sydney, or an equivalent qualification; or a bachelor's degree from the University of Sydney, or an equivalent qualification; and the applicant provides evidence of two years of relevant professional experience.",
+     "quote": "Admission to candidature for the Master of Criminology requires: a bachelor's degree with a minimum credit average from the University of Sydney, or an equivalent qualification; or a bachelor's degree from the University of Sydney, or an equivalent qualification; and the applicant provides evidence of two years of relevant professional experience.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Labour Law and Relations",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-labour-law-and-relations.html",
+   "cricos_code": "008405C",
+   "snapshot_sha256": "125da295e8c9f2ec5362a1266e2b00a8be6c6d38b40ebc9fd3a41b0e5b447fd3",
+   "fields": {
+    "academic": {
+     "text": "Admission to the degree requires: a bachelor's degree with a credit average (65 percent) from the University of Sydney, or an equivalent qualification.; or a bachelor's degree from the University of Sydney, or an equivalent qualification; and the applicant provides evidence of two years of relevant professional experience.",
+     "quote": "Admission to the degree requires: a bachelor's degree with a credit average (65 percent) from the University of Sydney, or an equivalent qualification.; or a bachelor's degree from the University of Sydney, or an equivalent qualification; and the applicant provides evidence of two years of relevant professional experience.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Taxation",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-taxation.html",
+   "cricos_code": "008407A",
+   "snapshot_sha256": "18d341aa2a1ba279591d857428b64ea36a08b6c60f5e6a1f7d01f4cca9a78f46",
+   "fields": {
+    "academic": {
+     "text": "Admission to candidature for the Master of Taxation requires: a bachelor's degree with a minimum credit average from the University of Sydney, or an equivalent qualification; or a bachelor's degree from the University of Sydney, or an equivalent qualification and evidence of two years of relevant professional experience.",
+     "quote": "Admission to candidature for the Master of Taxation requires: a bachelor's degree with a minimum credit average from the University of Sydney, or an equivalent qualification; or a bachelor's degree from the University of Sydney, or an equivalent qualification and evidence of two years of relevant professional experience.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "It is assumed that students undertaking specified tax units have an understanding of Australian income taxation law commensurate with that which would be obtained from completing undergraduate study in Australian taxation law or five years working with Australian taxation law in a law or accounting practice, in an industry role or in the Australian Taxation Office. For students who do not have such knowledge or work experience, they first should undertake LAWS6825 Introduction to Australian Business Tax before enrolling in this unit.",
+      "quote": "It is assumed that students undertaking specified tax units have an understanding of Australian income taxation law commensurate with that which would be obtained from completing undergraduate study in Australian taxation law or five years working with Australian taxation law in a law or accounting practice, in an industry role or in the Australian Taxation Office. For students who do not have such knowledge or work experience, they first should undertake LAWS6825 Introduction to Australian Business Tax before enrolling in this unit.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Nutrition and Dietetics",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-nutrition-and-dietetics0.html",
+   "cricos_code": "008414B",
+   "snapshot_sha256": "de5d5f4e3d357c608690f3f18c5dda63281a6c612c32836ef277cfae6dd76d70",
+   "fields": {
+    "academic": {
+     "text": "Admission to the degree requires a Bachelor of Science degree with a credit average. The applicant must also have successfully completed the following prerequisite units of study within the last 10 years: 12 credit points of junior chemistry, or equivalent; and 12 credit points of junior human biology, or equivalent; and 12 credit points of intermediate or senior Biochemistry and/or Molecular Biology, or equivalent; and 12 credit points of intermediate or senior Human Physiology, or equivalent; and 6 credit points of intermediate or senior Nutrition Science, or equivalent; and 6 credit points of intermediate or senior Food Science, or equivalent.",
+     "quote": "Admission to the degree requires a Bachelor of Science degree with a credit average. The applicant must also have successfully completed the following prerequisite units of study within the last 10 years: 12 credit points of junior chemistry, or equivalent; and 12 credit points of junior human biology, or equivalent; and 12 credit points of intermediate or senior Biochemistry and/or Molecular Biology, or equivalent; and 12 credit points of intermediate or senior Human Physiology, or equivalent; and 6 credit points of intermediate or senior Nutrition Science, or equivalent; and 6 credit points of intermediate or senior Food Science, or equivalent.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Exercise Physiology",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-exercise-physiology0.html",
+   "cricos_code": "0100634",
+   "snapshot_sha256": "74a6fe34f0891055578b97755015b6b053facc271167fd7e10783becbbd47ee7",
+   "fields": {
+    "academic": {
+     "text": "Admission to candidature for the Master of Exercise Physiology requires the applicant to have: A bachelor or master’s degree or a PhD in exercise science or a health-related discipline from the University of Sydney, or qualifications deemed by the faculty to be equivalent; and A minimum average mark of 60 out of 100 or equivalent (GPA of 4.5 out of 7) any other minimum standards specified by the Faculty of Medicine and Health. Evidence of*: a current Exercise Scientist Accreditation (AES) with Exercise and Sport Science Australia; or completion of a bachelor or master’s degree accredited by Exercise and Sport Science Australia at the level of Exercise Science; or an approved Graduate Entry Assessment from Exercise and Sport Science Australia *by providing evidence of accreditation, applicants are also proving extensive pre-existing knowledge in human anatomy, human or exercise physiology and research design and statistics. For domestic applicants, the Indigenous Facilitated Entry Scheme and the Rural Applicants Facilitated Entry Scheme are available for eligible applicants. Please refer to the Sydney School of Health Sciences Special Admission Pathways Guide for definitions and information on facilitated entry schemes.",
+     "quote": "Admission to candidature for the Master of Exercise Physiology requires the applicant to have: A bachelor or master’s degree or a PhD in exercise science or a health-related discipline from the University of Sydney, or qualifications deemed by the faculty to be equivalent; and A minimum average mark of 60 out of 100 or equivalent (GPA of 4.5 out of 7) any other minimum standards specified by the Faculty of Medicine and Health. Evidence of*: a current Exercise Scientist Accreditation (AES) with Exercise and Sport Science Australia; or completion of a bachelor or master’s degree accredited by Exercise and Sport Science Australia at the level of Exercise Science; or an approved Graduate Entry Assessment from Exercise and Sport Science Australia *by providing evidence of accreditation, applicants are also proving extensive pre-existing knowledge in human anatomy, human or exercise physiology and research design and statistics. For domestic applicants, the Indigenous Facilitated Entry Scheme and the Rural Applicants Facilitated Entry Scheme are available for eligible applicants. Please refer to the Sydney School of Health Sciences Special Admission Pathways Guide for definitions and information on facilitated entry schemes.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Policy",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-public-policy.html",
+   "cricos_code": "016228D",
+   "snapshot_sha256": "cb8f1dfe6e8d66dd05b2ce6cbf87e3598f989f3f821588e0ebd9f94316ad87e4",
+   "fields": {
+    "academic": {
+     "text": "Admission to candidature for the Master of Public Policy requires: a bachelor’s degree from the University of Sydney with a minimum credit (65%) average, calculated over the whole degree, or an equivalent qualification; or completion of the embedded Graduate Certificate or Graduate Diploma in Public Policy with a minimum credit (65%) average, or an equivalent qualification. If you do not meet the requirements listed above for direct entry to the Master’s, you may be able to enter via the Graduate Certificate  or Graduate Diploma  and upgrade to the Master’s after successful completion of the shorter course.",
+     "quote": "Admission to candidature for the Master of Public Policy requires: a bachelor’s degree from the University of Sydney with a minimum credit (65%) average, calculated over the whole degree, or an equivalent qualification; or completion of the embedded Graduate Certificate or Graduate Diploma in Public Policy with a minimum credit (65%) average, or an equivalent qualification. If you do not meet the requirements listed above for direct entry to the Master’s, you may be able to enter via the Graduate Certificate  or Graduate Diploma  and upgrade to the Master’s after successful completion of the shorter course.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Environmental Law",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-environmental-law.html",
+   "cricos_code": "016239A",
+   "snapshot_sha256": "71ea51ef69e2e704f07f69202f0ff33c77fef676543d56e0139eec35dcdacf03",
+   "fields": {
+    "academic": {
+     "text": "Admission to candidature for the Master of Environmental Law requires: a bachelor's degree with a credit average (65 percent) from the University of Sydney, or an equivalent qualification.; or a bachelor's degree from the University of Sydney, or an equivalent qualification; and the applicant provides evidence of two years of relevant professional experience.",
+     "quote": "Admission to candidature for the Master of Environmental Law requires: a bachelor's degree with a credit average (65 percent) from the University of Sydney, or an equivalent qualification.; or a bachelor's degree from the University of Sydney, or an equivalent qualification; and the applicant provides evidence of two years of relevant professional experience.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Students who do not hold a law degree or equivalent from a common law jurisdiction must either have completed or be concurrently enrolled in LAWS6252 Legal Reasoning and the Common Law System prior to undertaking other law units of study.",
+      "quote": "Students who do not hold a law degree or equivalent from a common law jurisdiction must either have completed or be concurrently enrolled in LAWS6252 Legal Reasoning and the Common Law System prior to undertaking other law units of study.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Commerce",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-commerce0.html",
+   "cricos_code": "019181A",
+   "snapshot_sha256": "8f63d605f6b3f67bb700e4e8ea8d339cd0c5af4c069c92fe81f9d13d0c6a2644",
+   "fields": {
+    "academic": {
+     "text": "To be considered for admission, an applicant is required to have: an Australian bachelor's degree in commerce, business or related discipline with a credit average (65 percent) or equivalent qualification, or an Australian bachelor's degree or higher in commerce, business or related discipline (minimum 50 percent average) or equivalent qualification, and satisfactory performance in the GMAT (for guidance, the class average score is 630) or GMAT Focus Edition (for guidance, the class average score is 585), or an Australian bachelor's degree in any discipline with a credit average (65 percent) or equivalent qualification and a minimum of one-year relevant work experience, or an Australian bachelor's degree with honours or higher in any discipline with a credit average (65 percent) or equivalent qualification, or the University of Sydney Graduate Diploma or Graduate Certificate in Commerce with a credit average (65 percent).",
+     "quote": "To be considered for admission, an applicant is required to have: an Australian bachelor's degree in commerce, business or related discipline with a credit average (65 percent) or equivalent qualification, or an Australian bachelor's degree or higher in commerce, business or related discipline (minimum 50 percent average) or equivalent qualification, and satisfactory performance in the GMAT (for guidance, the class average score is 630) or GMAT Focus Edition (for guidance, the class average score is 585), or an Australian bachelor's degree in any discipline with a credit average (65 percent) or equivalent qualification and a minimum of one-year relevant work experience, or an Australian bachelor's degree with honours or higher in any discipline with a credit average (65 percent) or equivalent qualification, or the University of Sydney Graduate Diploma or Graduate Certificate in Commerce with a credit average (65 percent).",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Administrative Law and Policy",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-administrative-law-and-policy.html",
+   "cricos_code": "020152G",
+   "snapshot_sha256": "9450115f865c1e5e621c68dc629419b34dcb0f55b571f9e45d7d8fe6e14e9d85",
+   "fields": {
+    "academic": {
+     "text": "Admission to the degree requires: a bachelor's degree with a minimum credit average from the University of Sydney, or an equivalent qualification; or a bachelor's degree from the University of Sydney, or an equivalent qualification; and evidence of two years of relevant professional experience",
+     "quote": "Admission to the degree requires: a bachelor's degree with a minimum credit average from the University of Sydney, or an equivalent qualification; or a bachelor's degree from the University of Sydney, or an equivalent qualification; and evidence of two years of relevant professional experience",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Students who do not hold a law degree or equivalent from a common law jurisdiction must either have completed or be concurrently enrolled in LAWS6825 Legal Reasoning and the Common Law System prior to undertaking other law units of study.",
+      "quote": "Students who do not hold a law degree or equivalent from a common law jurisdiction must either have completed or be concurrently enrolled in LAWS6825 Legal Reasoning and the Common Law System prior to undertaking other law units of study.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Occupational Therapy",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-occupational-therapy.html",
+   "cricos_code": "027888K",
+   "snapshot_sha256": "ff4d761e06e3006f72335d1fd78675abbaab0b63d2e59732199aec543182be05",
+   "fields": {
+    "academic": {
+     "text": "To be eligible to apply you will need to fulfill the following criteria; A bachelor's degree, master's degree or PhD from an Australian institution or equivalent. A minimum average mark of 60 out of 100 or equivalent. This does not guarantee an offer as the places are limited and offers are made based on academic merit. Evidence of any other minimum standards specified by the Faculty of Medicine and Health. For domestic applicants, the Indigenous Facilitated Entry Scheme, the Rural Applicants Facilitated Entry Scheme, and Applicants Living with Disabilities Facilitated Entry Scheme are available for eligible applicants. Applicants under the facilitated entry scheme must upload the required supporting documentation at the time of application.",
+     "quote": "To be eligible to apply you will need to fulfill the following criteria; A bachelor's degree, master's degree or PhD from an Australian institution or equivalent. A minimum average mark of 60 out of 100 or equivalent. This does not guarantee an offer as the places are limited and offers are made based on academic merit. Evidence of any other minimum standards specified by the Faculty of Medicine and Health. For domestic applicants, the Indigenous Facilitated Entry Scheme, the Rural Applicants Facilitated Entry Scheme, and Applicants Living with Disabilities Facilitated Entry Scheme are available for eligible applicants. Applicants under the facilitated entry scheme must upload the required supporting documentation at the time of application.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of International Law",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-international-law.html",
+   "cricos_code": "029884J",
+   "snapshot_sha256": "d84c73c296104718379cd9b58125bdb63e2d8edd22537bf3b1e2f71fe8cddffe",
+   "fields": {
+    "academic": {
+     "text": "Admission to this degree requires: a bachelor's degree with a credit average (65 percent) from the University of Sydney, or an equivalent qualification; or a bachelor's degree from the University of Sydney, or an equivalent qualification; and the applicant provides evidence of two years of relevant professional experience.",
+     "quote": "Admission to this degree requires: a bachelor's degree with a credit average (65 percent) from the University of Sydney, or an equivalent qualification; or a bachelor's degree from the University of Sydney, or an equivalent qualification; and the applicant provides evidence of two years of relevant professional experience.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Health Law",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-health-law.html",
+   "cricos_code": "031432G",
+   "snapshot_sha256": "2cc2135144bc238ba6add8f6d4487c3d108e3354b50246fafc1bccdff43f9cb7",
+   "fields": {
+    "academic": {
+     "text": "Admission to candidature for the Master of Health Law requires: a bachelor's degree with a credit average (65 percent) from the University of Sydney, or an equivalent qualification.; or a bachelor's degree from the University of Sydney, or an equivalent qualification; and the applicant provides evidence of two years of relevant professional experience.",
+     "quote": "Admission to candidature for the Master of Health Law requires: a bachelor's degree with a credit average (65 percent) from the University of Sydney, or an equivalent qualification.; or a bachelor's degree from the University of Sydney, or an equivalent qualification; and the applicant provides evidence of two years of relevant professional experience.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Students who do not hold a law degree or equivalent from a common law jurisdiction must either have completed or be concurrently enrolled in LAWS6252 Legal Reasoning and the Common Law System prior to undertaking other law units of study.",
+      "quote": "Students who do not hold a law degree or equivalent from a common law jurisdiction must either have completed or be concurrently enrolled in LAWS6252 Legal Reasoning and the Common Law System prior to undertaking other law units of study.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Project Management",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-project-management.html",
+   "cricos_code": "031911D",
+   "snapshot_sha256": "a1403f173e6ab105699bba7b0a8733c3cde2f80aa6e18e937f33a6b4b6d6027d",
+   "fields": {
+    "academic": {
+     "text": "To be eligible for admission, an applicant is required to have: a bachelor's degree in any discipline with a minimum credit average (65 percent) or an Australian bachelor's degree (with honours), or equivalent qualification or a combination of a bachelor's degree and relevant industry experience and certifications or a University of Sydney Graduate Diploma/Graduate Certificate in Project Management with a credit average (65 percent)",
+     "quote": "To be eligible for admission, an applicant is required to have: a bachelor's degree in any discipline with a minimum credit average (65 percent) or an Australian bachelor's degree (with honours), or equivalent qualification or a combination of a bachelor's degree and relevant industry experience and certifications or a University of Sydney Graduate Diploma/Graduate Certificate in Project Management with a credit average (65 percent)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Pharmacy",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-pharmacy0.html",
+   "cricos_code": "050004D",
+   "snapshot_sha256": "f9245349f249336f09b48fd2b5d121cbe6c45add4d5360cd422a7e3d3c96284e",
+   "fields": {
+    "academic": {
+     "text": "Admission requirements from 2026: To be eligible to apply for the Master of Pharmacy applicants will need to fulfill the following criteria: A bachelor's degree from an Australian institution or equivalent A minimum Grade Point Average (GPA), currently 5.0 over 7.0 (equivalent to 65% at USYD), or Graduate Australian Medical Admissions Test (GAMSAT), currently 55 with 50 in each section, or Medical College Admission Test (MCAT), currently 8 (previous test version) / 500 (new test version). 36 credit points, or equivalent, in five prerequisite subjects at university level (see below) English language proficiency of IELTS 7.0 overall with 6.5 in each band (if relevant) Admission pathway Course transfers from current Master of Pharmacy programs across Australia will be considered. Subject exemptions are assessed on a case-by-case basis. International pharmacy graduates with registration from outside of Australia are accepted provided pharmacy registration has been within the last ten years. It is not a requirement to have a GPA, MCAT or GAMSAT for this application. Applicants with relevant professional experience (eg pharmaceutical industry or related research area) within the last ten years will be considered on a case-by-case basis. It is not a requirement to have a GPA, MCAT or GAMSAT for this application.",
+     "quote": "Admission requirements from 2026: To be eligible to apply for the Master of Pharmacy applicants will need to fulfill the following criteria: A bachelor's degree from an Australian institution or equivalent A minimum Grade Point Average (GPA), currently 5.0 over 7.0 (equivalent to 65% at USYD), or Graduate Australian Medical Admissions Test (GAMSAT), currently 55 with 50 in each section, or Medical College Admission Test (MCAT), currently 8 (previous test version) / 500 (new test version). 36 credit points, or equivalent, in five prerequisite subjects at university level (see below) English language proficiency of IELTS 7.0 overall with 6.5 in each band (if relevant) Admission pathway Course transfers from current Master of Pharmacy programs across Australia will be considered. Subject exemptions are assessed on a case-by-case basis. International pharmacy graduates with registration from outside of Australia are accepted provided pharmacy registration has been within the last ten years. It is not a requirement to have a GPA, MCAT or GAMSAT for this application. Applicants with relevant professional experience (eg pharmaceutical industry or related research area) within the last ten years will be considered on a case-by-case basis. It is not a requirement to have a GPA, MCAT or GAMSAT for this application.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Prerequisites from 2026: Chemistry (12cp) Biochemistry (6cp) Pharmacology (Foundational) (6cp) Physiology (6cp) Mathematics (6cp) All prerequisite subjects must have been completed in the last ten years. Students can enrol in the program with 12 credit points of prerequisite subjects outstanding as long as these subjects are completed by the end of the first year of the Master of Pharmacy program. All applicants are also required to submit a supplementary form as part of their application. Supplementary form When completing the form, please list all associated subjects you have completed (or you are enrolled to complete) at a University level within the last 10 years that you believe may be related to the pre-requisite requirements. Assessment on pre-requisite knowledge will be based on the subjects you have listed on this form.  You must nominate at least 36 credit points of pre-requisites before your form can be assessed.",
+      "quote": "Prerequisites from 2026: Chemistry (12cp) Biochemistry (6cp) Pharmacology (Foundational) (6cp) Physiology (6cp) Mathematics (6cp) All prerequisite subjects must have been completed in the last ten years. Students can enrol in the program with 12 credit points of prerequisite subjects outstanding as long as these subjects are completed by the end of the first year of the Master of Pharmacy program. All applicants are also required to submit a supplementary form as part of their application. Supplementary form When completing the form, please list all associated subjects you have completed (or you are enrolled to complete) at a University level within the last 10 years that you believe may be related to the pre-requisite requirements. Assessment on pre-requisite knowledge will be based on the subjects you have listed on this form.  You must nominate at least 36 credit points of pre-requisites before your form can be assessed.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Medical Physics",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-medical-physics.html",
+   "cricos_code": "050097E",
+   "snapshot_sha256": "c65588de2091fd58d5fa493a6ab8e885f75b72261202c3e1c8068ae2aa00ec04",
+   "fields": {
+    "academic": {
+     "text": "Admission to this course requires: a bachelor's degree in Science or Engineering with a minimum credit average and a major in physics or equivalent; or completion of the requirements for the Graduate Diploma in Medical Physics with a credit average or better.",
+     "quote": "Admission to this course requires: a bachelor's degree in Science or Engineering with a minimum credit average and a major in physics or equivalent; or completion of the requirements for the Graduate Diploma in Medical Physics with a credit average or better.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Law",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-business-law.html",
+   "cricos_code": "050921M",
+   "snapshot_sha256": "fd7d3f030b643bbb5860993ba8bc3c75fa2a010af5ba520f14910c6a13a4086d",
+   "fields": {
+    "academic": {
+     "text": "Admission to the degree requires: a bachelor's degree with a credit average (65 percent) from the University of Sydney, or an equivalent qualification.; or a bachelor's degree from the University of Sydney, or an equivalent qualification; and the applicant provides evidence of two years of relevant professional experience.",
+     "quote": "Admission to the degree requires: a bachelor's degree with a credit average (65 percent) from the University of Sydney, or an equivalent qualification.; or a bachelor's degree from the University of Sydney, or an equivalent qualification; and the applicant provides evidence of two years of relevant professional experience.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "3 English Language Requirements Mandatory for course entry You may need to provide evidence of your English proficiency to study with us. Find out which requirements are applicable to you below: Option 1 English language requirements Option 2 English is NOT my first language",
+      "quote": "3 English Language Requirements Mandatory for course entry You may need to provide evidence of your English proficiency to study with us. Find out which requirements are applicable to you below: Option 1 English language requirements Option 2 English is NOT my first language",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Speech Language Pathology",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-speech-language-pathology.html",
+   "cricos_code": "052756C",
+   "snapshot_sha256": "384e1039fe7b80f2c13a070fd7e6113e93f4230af615121da030c8ea90695c42",
+   "fields": {
+    "academic": {
+     "text": "To be eligible to apply you will need to fulfil the following criteria: An Australian bachelor's degree, master's or PhD from an Australian institution or equivalent. A minimum average mark of 60 out of 100 or equivalent (GPA of 4.5 out of 7). This does not guarantee an offer as the places are limited and offers are made based on academic merit. Evidence of any other minimum standards specified by the Faculty of Medicine and Health. For domestic applicants, the Indigenous Facilitated Entry Scheme and the Rural Applicants Facilitated Entry Scheme are available for eligible applicants. Please refer to the Sydney School of Health Sciences Special Admission Pathways Guide for definitions and information on facilitated entry schemes.",
+     "quote": "To be eligible to apply you will need to fulfil the following criteria: An Australian bachelor's degree, master's or PhD from an Australian institution or equivalent. A minimum average mark of 60 out of 100 or equivalent (GPA of 4.5 out of 7). This does not guarantee an offer as the places are limited and offers are made based on academic merit. Evidence of any other minimum standards specified by the Faculty of Medicine and Health. For domestic applicants, the Indigenous Facilitated Entry Scheme and the Rural Applicants Facilitated Entry Scheme are available for eligible applicants. Please refer to the Sydney School of Health Sciences Special Admission Pathways Guide for definitions and information on facilitated entry schemes.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "There are no mandatory prerequisites for this course. All new students will be given access to online modules designed to help them meet the assumed knowledge requirements listed below. The modules are available from late November, after enrolment, in the year before students commence their studies. Assumed knowledge When commencing this course it will be assumed that you have reached a certain level of knowledge or skills in: Linguistics Phonetics Functional anatomy of the speech system Functional neurology of the Speech system If you do not have the assumed knowledge for the Master of Speech Language Pathology, the University strongly recommends that you do not commence the degree until you have undertaken studies in these areas. Learn more: Assumed knowledge requirements",
+      "quote": "There are no mandatory prerequisites for this course. All new students will be given access to online modules designed to help them meet the assumed knowledge requirements listed below. The modules are available from late November, after enrolment, in the year before students commence their studies. Assumed knowledge When commencing this course it will be assumed that you have reached a certain level of knowledge or skills in: Linguistics Phonetics Functional anatomy of the speech system Functional neurology of the Speech system If you do not have the assumed knowledge for the Master of Speech Language Pathology, the University strongly recommends that you do not commence the degree until you have undertaken studies in these areas. Learn more: Assumed knowledge requirements",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Medicine (Clinical Epidemiology)",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-science-in-medicine-clinical-epidemiology.html",
+   "cricos_code": "053863C",
+   "snapshot_sha256": "5d3972d70dbce8e3bc105ba22a20eadbdbe4adda6b5a0fca8927e86f4ff7668e",
+   "fields": {
+    "academic": {
+     "text": "Admission to the course requires: a bachelor's degree in a health-related discipline with first or second class honours from the University of Sydney or equivalent qualification; or a pass bachelor's degree in a health-related discipline from the University of Sydney or equivalent qualification. Applicants must have completed work equivalent to a first or second class honours bachelor's degree or pass a preliminary examination(s) as prescribed by the Faculty; or completion of the first 4 years of an undergraduate medical degree that is accredited by the Australian Medical Council, and a letter of recommendation from the head of clinical school/medical program supporting concurrent enrolment while completing degree requirements. All students entering the program are expected to have some clinical experience.",
+     "quote": "Admission to the course requires: a bachelor's degree in a health-related discipline with first or second class honours from the University of Sydney or equivalent qualification; or a pass bachelor's degree in a health-related discipline from the University of Sydney or equivalent qualification. Applicants must have completed work equivalent to a first or second class honours bachelor's degree or pass a preliminary examination(s) as prescribed by the Faculty; or completion of the first 4 years of an undergraduate medical degree that is accredited by the Australian Medical Council, and a letter of recommendation from the head of clinical school/medical program supporting concurrent enrolment while completing degree requirements. All students entering the program are expected to have some clinical experience.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Medicine (Clinical Epidemiology)",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-medicine-clinical-epidemiology.html",
+   "cricos_code": "053865A",
+   "snapshot_sha256": "4e5ef49734050c144dce135d071c4528be0740121e4f72f62697f773d48f7da7",
+   "fields": {
+    "academic": {
+     "text": "Admission to the course requires: a medical degree from the University of Sydney or an equivalent qualification.",
+     "quote": "Admission to the course requires: a medical degree from the University of Sydney or an equivalent qualification.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Health Policy and Planning",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-health-policy-and-planning.html",
+   "cricos_code": "053869G",
+   "snapshot_sha256": "859870db7048c04ad1513dc5da9e6b96f59b0a65ba78df5f9be30031701513ac",
+   "fields": {
+    "academic": {
+     "text": "Admission to this course requires: a bachelor's degree with first or second class honours from the University of Sydney, or equivalent qualification and a minimum of 1 year of work experience in a health or policy related field; or completion of the requirements of the embedded graduate certificate; or completion of the requirements of the embedded graduate diploma, or equivalent qualification.",
+     "quote": "Admission to this course requires: a bachelor's degree with first or second class honours from the University of Sydney, or equivalent qualification and a minimum of 1 year of work experience in a health or policy related field; or completion of the requirements of the embedded graduate certificate; or completion of the requirements of the embedded graduate diploma, or equivalent qualification.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Economics",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-economics.html",
+   "cricos_code": "053963K",
+   "snapshot_sha256": "f6f3b68f6e34e4c206d88f7902ad294884df0c5b7674eefcd16a30ca09274d6e",
+   "fields": {
+    "academic": {
+     "text": "Admission to the Master of Economics (2 years full-time) requires: a bachelor's degree from the University of Sydney, with a minimum credit (65%) average, or an equivalent qualification; or completion of the requirements for the embedded Graduate Certificate or Graduate Diploma in Economics with a minimum credit (65%) average, or an equivalent qualification. Reduced volume of learning If you have completed previous studies in a related area or have relevant work experience, you may be able to reduce the duration of your studies based on the criteria below: Admission to the Master of Economics (1.5 years full-time) requires: a bachelor's degree from the University of Sydney, with a major in Economics and with a minimum credit (65%) average, or an equivalent qualification; or relevant professional experience and a bachelor's degree with a minimum credit (65%) average, or an equivalent qualification. Admission to the Master of Economics (1 year full-time) requires: an Honours degree in Economics. If you do not meet the requirements listed above for direct entry to the Master’s degree, you may be able to enter via a Graduate Certificate or Graduate Diploma in the same subject area and upgrade to the Master’s after successful completion of the shorter course.",
+     "quote": "Admission to the Master of Economics (2 years full-time) requires: a bachelor's degree from the University of Sydney, with a minimum credit (65%) average, or an equivalent qualification; or completion of the requirements for the embedded Graduate Certificate or Graduate Diploma in Economics with a minimum credit (65%) average, or an equivalent qualification. Reduced volume of learning If you have completed previous studies in a related area or have relevant work experience, you may be able to reduce the duration of your studies based on the criteria below: Admission to the Master of Economics (1.5 years full-time) requires: a bachelor's degree from the University of Sydney, with a major in Economics and with a minimum credit (65%) average, or an equivalent qualification; or relevant professional experience and a bachelor's degree with a minimum credit (65%) average, or an equivalent qualification. Admission to the Master of Economics (1 year full-time) requires: an Honours degree in Economics. If you do not meet the requirements listed above for direct entry to the Master’s degree, you may be able to enter via a Graduate Certificate or Graduate Diploma in the same subject area and upgrade to the Master’s after successful completion of the shorter course.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Health",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-public-health0.html",
+   "cricos_code": "054757G",
+   "snapshot_sha256": "0dce2309aee663ce5d817c8cf56a121cc30d1cfb9c2e81729122dce16e90493d",
+   "fields": {
+    "academic": {
+     "text": "Admission to the Master of Public Health requires: completion of the requirements for the embedded Graduate Diploma with at least a credit average in the core units of study; or a bachelor’s degree in public health, medicine, medical science, nursing, allied health (including physiotherapy, occupational therapy, optometry), dentistry, veterinary science, education, communication and journalism, science, arts, psychology, social science, political science, policy analysis, government, international relations, engineering, architecture, mathematics, law, economics, commerce, business, accounting and marketing from the University of Sydney or an equivalent qualification.",
+     "quote": "Admission to the Master of Public Health requires: completion of the requirements for the embedded Graduate Diploma with at least a credit average in the core units of study; or a bachelor’s degree in public health, medicine, medical science, nursing, allied health (including physiotherapy, occupational therapy, optometry), dentistry, veterinary science, education, communication and journalism, science, arts, psychology, social science, political science, policy analysis, government, international relations, engineering, architecture, mathematics, law, economics, commerce, business, accounting and marketing from the University of Sydney or an equivalent qualification.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Bioethics",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-bioethics.html",
+   "cricos_code": "054972A",
+   "snapshot_sha256": "440ae403ffd9205a327ba28a575a140006e286ddf9fbd920867e51f8c81a6deb",
+   "fields": {
+    "academic": {
+     "text": "Admission to the Master of Bioethics requires: a bachelor's degree with a credit average from the University of Sydney or equivalent qualification in the field of science, medicine, nursing, allied health sciences, philosophy/ethics, sociology, anthropology, history, law or other relevant fields; or completion of the requirements of an embedded graduate certificate or graduate diploma or equivalent qualification.",
+     "quote": "Admission to the Master of Bioethics requires: a bachelor's degree with a credit average from the University of Sydney or equivalent qualification in the field of science, medicine, nursing, allied health sciences, philosophy/ethics, sociology, anthropology, history, law or other relevant fields; or completion of the requirements of an embedded graduate certificate or graduate diploma or equivalent qualification.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Digital Communication and Culture",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-digital-communication-and-culture.html",
+   "cricos_code": "057888F",
+   "snapshot_sha256": "54857a806c7972548f5c36c557bcf898fb1185f39d1aef7fa6e921c743f18197",
+   "fields": {
+    "academic": {
+     "text": "Entry in the 1 year or 1.5 year degree program is determined by the Recognition of Prior Learning (RPL) criteria below: Master of Digital Communication and Culture (1.5 years full-time) Admission to the Master of Digital Communication and Culture (1.5 years full-time) requires: a bachelor's degree with a minimum credit (65%) average calculated over the whole degree from the University of Sydney, or an equivalent qualification. Master of Digital Communication and Culture (1 year full-time) Admission to the Master of Digital Communication and Culture (1 year full-time) requires: completion of the embedded Graduate Certificate or Graduate Diploma in Digital Communication and Culture with a minimum credit (65%) average, or an equivalent qualification; or an Honours degree in a relevant discipline; or relevant professional work experience and a bachelor's degree with a minimum credit (65%) average or an equivalent qualification. If you do not meet the requirements listed above for direct entry to the Master’s degree, you may be able to enter via a Graduate Certificate or Graduate Diploma in the same subject area and upgrade to the Master’s after successful completion of the shorter course.",
+     "quote": "Entry in the 1 year or 1.5 year degree program is determined by the Recognition of Prior Learning (RPL) criteria below: Master of Digital Communication and Culture (1.5 years full-time) Admission to the Master of Digital Communication and Culture (1.5 years full-time) requires: a bachelor's degree with a minimum credit (65%) average calculated over the whole degree from the University of Sydney, or an equivalent qualification. Master of Digital Communication and Culture (1 year full-time) Admission to the Master of Digital Communication and Culture (1 year full-time) requires: completion of the embedded Graduate Certificate or Graduate Diploma in Digital Communication and Culture with a minimum credit (65%) average, or an equivalent qualification; or an Honours degree in a relevant discipline; or relevant professional work experience and a bachelor's degree with a minimum credit (65%) average or an equivalent qualification. If you do not meet the requirements listed above for direct entry to the Master’s degree, you may be able to enter via a Graduate Certificate or Graduate Diploma in the same subject area and upgrade to the Master’s after successful completion of the shorter course.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Diagnostic Radiography",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-diagnostic-radiography.html",
+   "cricos_code": "058352G",
+   "snapshot_sha256": "8abf274adbf55a65e1c98de1dc5f7d940c7374f329e1dcb3e32627d1fc6d9253",
+   "fields": {
+    "academic": {
+     "text": "To be eligible to apply you will need to fulfill the following criteria: a bachelor's degree, master's degree or PhD from an Australian institution or equivalent a minimum average mark of 60 out of 100 or equivalent. This does not guarantee an offer as the places are limited and offers are made based on academic merit. evidence of any other minimum standards specified by the Faculty of Medicine and Health. Prospective students must ensure that they understand the Medical Radiation Practice Board of Australia's (MRPBA) registration requirements for graduates of this program prior to enrolment. For domestic applicants, the Indigenous Facilitated Entry Scheme and the Rural Applicants Facilitated Entry Scheme are available for eligible applicants. Please refer to the Sydney School of Health Sciences Special Admission Pathways Guide for definitions and information on facilitated entry schemes.",
+     "quote": "To be eligible to apply you will need to fulfill the following criteria: a bachelor's degree, master's degree or PhD from an Australian institution or equivalent a minimum average mark of 60 out of 100 or equivalent. This does not guarantee an offer as the places are limited and offers are made based on academic merit. evidence of any other minimum standards specified by the Faculty of Medicine and Health. Prospective students must ensure that they understand the Medical Radiation Practice Board of Australia's (MRPBA) registration requirements for graduates of this program prior to enrolment. For domestic applicants, the Indigenous Facilitated Entry Scheme and the Rural Applicants Facilitated Entry Scheme are available for eligible applicants. Please refer to the Sydney School of Health Sciences Special Admission Pathways Guide for definitions and information on facilitated entry schemes.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Music Studies (Performance)",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-music-studies-performance.html",
+   "cricos_code": "058373C",
+   "snapshot_sha256": "ec00166e8534eb0028ab457d54ae3f209c6e08a530f1cc107a3895f0e079e887",
+   "fields": {
+    "academic": {
+     "text": "Admission requires: a master's degree in an appropriate discipline as determined by the Sydney Conservatorium of Music; or a pass bachelor's degree with a credit average, or an honours bachelor's degree from the University of Sydney, or equivalent qualification in an appropriate discipline as determined by the Conservatorium; or an award of graduate diploma from the University of Sydney, or equivalent qualification in an appropriate discipline as determined by the Conservatorium; or completion of the requirements of the embedded graduate diploma in this discipline from the University of Sydney, or equivalent qualification; and successful completion of an audition. Available places will be offered to qualified applicants in the order in which complete applications are received, and according to the admissions criteria. Applicants who do not have a recognised tertiary award but who demonstrate an equivalent musical ability and maturity at the audition and interview, and who can show considerable performing experience may be admitted.",
+     "quote": "Admission requires: a master's degree in an appropriate discipline as determined by the Sydney Conservatorium of Music; or a pass bachelor's degree with a credit average, or an honours bachelor's degree from the University of Sydney, or equivalent qualification in an appropriate discipline as determined by the Conservatorium; or an award of graduate diploma from the University of Sydney, or equivalent qualification in an appropriate discipline as determined by the Conservatorium; or completion of the requirements of the embedded graduate diploma in this discipline from the University of Sydney, or equivalent qualification; and successful completion of an audition. Available places will be offered to qualified applicants in the order in which complete applications are received, and according to the admissions criteria. Applicants who do not have a recognised tertiary award but who demonstrate an equivalent musical ability and maturity at the audition and interview, and who can show considerable performing experience may be admitted.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Architecture",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-architecture.html",
+   "cricos_code": "060904G",
+   "snapshot_sha256": "f09ed3f33d99e4643dd91277528d63ed5059e70e902a719f645af75db83b7ee7",
+   "fields": {
+    "academic": {
+     "text": "For admission to the Master of Architecture, you need to hold a Bachelor of Design in Architecture, or a Bachelor of Architecture and Environments or an equivalent from another university. Bachelor of Design in Architecture Students who have completed the Bachelor of Design in Architecture at the University of Sydney need to have completed the Master of Architecture prerequisite unit of study BDES3025 (Architectural Professional Practice) and have an average mark of 65. Bachelor of Architecture and Environments Students who have completed the Bachelor of Architecture and Environments at the University of Sydney need to have completed the Master of Architecture prerequisite unit of study BDES3025 (Architectural Professional Practice), have an average mark of 65, and are required to submit a portfolio. Equivalent undergraduate architecture degree Students who have completed an equivalent undergraduate architecture degree at another university will need a credit average (65 percent or equivalent) over the final two years of their degree, and must submit a portfolio of work to the school and/or demonstrate practical experience.",
+     "quote": "For admission to the Master of Architecture, you need to hold a Bachelor of Design in Architecture, or a Bachelor of Architecture and Environments or an equivalent from another university. Bachelor of Design in Architecture Students who have completed the Bachelor of Design in Architecture at the University of Sydney need to have completed the Master of Architecture prerequisite unit of study BDES3025 (Architectural Professional Practice) and have an average mark of 65. Bachelor of Architecture and Environments Students who have completed the Bachelor of Architecture and Environments at the University of Sydney need to have completed the Master of Architecture prerequisite unit of study BDES3025 (Architectural Professional Practice), have an average mark of 65, and are required to submit a portfolio. Equivalent undergraduate architecture degree Students who have completed an equivalent undergraduate architecture degree at another university will need a credit average (65 percent or equivalent) over the final two years of their degree, and must submit a portfolio of work to the school and/or demonstrate practical experience.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Human Resource Management & Industrial Relations",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-human-resource-management-and-industrial-relations.html",
+   "cricos_code": "061140E",
+   "snapshot_sha256": "6e0e65b3562764fb43bc32afe5ec796989935b65e5c71e028024112ffeb553f8",
+   "fields": {
+    "academic": {
+     "text": "To be considered for admission, an applicant is required to have: an Australian bachelor's degree with honours or higher in any discipline with a credit average (65 percent) or equivalent qualification or an Australian bachelor's degree or higher in a related discipline with a credit average (65 percent) or equivalent qualification or an Australian bachelor's degree in an unrelated discipline with a credit average (65 percent) or equivalent qualification, and relevant professional work experience (typically two years) or any of the above combinations of qualifications and/or experience with less than a credit average (minimum 50 percent required) and satisfactory performance in the GMAT (for guidance, the class average score is 630) or GMAT Focus Edition (for guidance, the class average score is 585) or equivalent Business School approved admissions test, or the University of Sydney Graduate Diploma or Graduate Certificate in Human Resource Management and Industrial Relations with a credit average (65 percent).",
+     "quote": "To be considered for admission, an applicant is required to have: an Australian bachelor's degree with honours or higher in any discipline with a credit average (65 percent) or equivalent qualification or an Australian bachelor's degree or higher in a related discipline with a credit average (65 percent) or equivalent qualification or an Australian bachelor's degree in an unrelated discipline with a credit average (65 percent) or equivalent qualification, and relevant professional work experience (typically two years) or any of the above combinations of qualifications and/or experience with less than a credit average (minimum 50 percent required) and satisfactory performance in the GMAT (for guidance, the class average score is 630) or GMAT Focus Edition (for guidance, the class average score is 585) or equivalent Business School approved admissions test, or the University of Sydney Graduate Diploma or Graduate Certificate in Human Resource Management and Industrial Relations with a credit average (65 percent).",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Management",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-management.html",
+   "cricos_code": "063099G",
+   "snapshot_sha256": "2df2b80fc7b1da2bdf7798d23ec819a8b00eb0627edc9c019b83e7932d66113b",
+   "fields": {
+    "academic": {
+     "text": "To be considered for admission, an applicant is required to have: an Australian bachelor's degree or higher with a credit average (65 percent) or equivalent qualification or an Australian bachelor's degree or higher with less than a credit average (minimum 50 percent required), and satisfactory performance in the GMAT (for guidance, the class average score is 630) or GMAT Focus Edition (for guidance, the class average score is 585) or equivalent Business School approved admissions test.",
+     "quote": "To be considered for admission, an applicant is required to have: an Australian bachelor's degree or higher with a credit average (65 percent) or equivalent qualification or an Australian bachelor's degree or higher with less than a credit average (minimum 50 percent required), and satisfactory performance in the GMAT (for guidance, the class average score is 630) or GMAT Focus Edition (for guidance, the class average score is 585) or equivalent Business School approved admissions test.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Interaction Design and Electronic Arts",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-interaction-design-and-electronic-arts.html",
+   "cricos_code": "064060C",
+   "snapshot_sha256": "edc2dbd1366d0efd4df52095bd1bb9d32322b7ce4fae8b666a2b58f2ac619360",
+   "fields": {
+    "academic": {
+     "text": "Admission to the Master of Interaction Design and Electronic Arts requires: a bachelor's degree from the University of Sydney or an equivalent qualification with a credit average mark across all units; or completion of the requirements of the embedded graduate diploma; or completion of the requirements of the embedded graduate certificate with an average mark of at least 70.",
+     "quote": "Admission to the Master of Interaction Design and Electronic Arts requires: a bachelor's degree from the University of Sydney or an equivalent qualification with a credit average mark across all units; or completion of the requirements of the embedded graduate diploma; or completion of the requirements of the embedded graduate certificate with an average mark of at least 70.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Political Economy",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-political-economy.html",
+   "cricos_code": "064136K",
+   "snapshot_sha256": "3c1e9b3cc2731b638a5ddc108e8351c30b9994634cf8e39b0c0009e2bac45be1",
+   "fields": {
+    "academic": {
+     "text": "Admission to the Master of Political Economy (1.5 years full-time) requires: a bachelor's degree from the University of Sydney with a minimum credit (65%) average calculated over the whole degree,including a major in the social sciences, or an equivalent qualification; or completion of the embedded Graduate Certificate or Graduate Diploma in Political Economy with a minimum credit (65%) average, or an equivalent qualification. Reduced volume of learning If you have completed a qualification in a relevant discipline or have relevant professional experience, you may be eligible for a reduction in course requirements based on the criteria below. Admission to the Master of Political Economy (1 year full-time) requires: an Honours degree in a relevant discipline; or relevant professional experience and a bachelor's degree with a minimum credit (65%) average, or an equivalent qualification. If you do not meet the requirements listed above for direct entry to the Master’s, you may be able to enter via the Graduate Certificate or Graduate Diploma and upgrade to the Master’s after successful completion of the shorter course.",
+     "quote": "Admission to the Master of Political Economy (1.5 years full-time) requires: a bachelor's degree from the University of Sydney with a minimum credit (65%) average calculated over the whole degree,including a major in the social sciences, or an equivalent qualification; or completion of the embedded Graduate Certificate or Graduate Diploma in Political Economy with a minimum credit (65%) average, or an equivalent qualification. Reduced volume of learning If you have completed a qualification in a relevant discipline or have relevant professional experience, you may be eligible for a reduction in course requirements based on the criteria below. Admission to the Master of Political Economy (1 year full-time) requires: an Honours degree in a relevant discipline; or relevant professional experience and a bachelor's degree with a minimum credit (65%) average, or an equivalent qualification. If you do not meet the requirements listed above for direct entry to the Master’s, you may be able to enter via the Graduate Certificate or Graduate Diploma and upgrade to the Master’s after successful completion of the shorter course.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Sustainability",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-sustainability0.html",
+   "cricos_code": "068694C",
+   "snapshot_sha256": "face668569925e8661680f38a832c13d18f47e289584f7dd3078000e01e6fbf2",
+   "fields": {
+    "academic": {
+     "text": "For admission to this course, you should have a bachelor's degree or higher from the University of Sydney or equivalent qualification. Applicants who do not meet the requirements for admission into the Master of Sustainability may wish to consider applying for entry into the Graduate Diploma in Sustainability or the Graduate Certificate in Sustainability.",
+     "quote": "For admission to this course, you should have a bachelor's degree or higher from the University of Sydney or equivalent qualification. Applicants who do not meet the requirements for admission into the Master of Sustainability may wish to consider applying for entry into the Graduate Diploma in Sustainability or the Graduate Certificate in Sustainability.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Nursing",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-nursing.html",
+   "cricos_code": "068773D",
+   "snapshot_sha256": "1a4c095f90dfc249894c5b98f5213519ead562dd6f0e41c62b01973f20ae0b87",
+   "fields": {
+    "academic": {
+     "text": "You must have: a previous Australian level bachelor degree (or equivalent) in any discipline other than nursing, AND this qualification has been completed within 10 years prior to applying Overseas nursing qualifications are acceptable. See our Master of Nursing Admissions Guide (pdf, 1.00MB) for more information.",
+     "quote": "You must have: a previous Australian level bachelor degree (or equivalent) in any discipline other than nursing, AND this qualification has been completed within 10 years prior to applying Overseas nursing qualifications are acceptable. See our Master of Nursing Admissions Guide (pdf, 1.00MB) for more information.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Brain and Mind Sciences",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-brain-and-mind-sciences.html",
+   "cricos_code": "068825G",
+   "snapshot_sha256": "5431fc41f0bfdc639d0729bf217412b91c4c0ec8a926f64e6f79e59afd088270",
+   "fields": {
+    "academic": {
+     "text": "A successful applicant for admission to the Master of Brain and Mind Sciences will: have completed the requirements of the embedded graduate certificate or graduate diploma in this discipline, without graduating, from the University of Sydney, or equivalent qualification; or hold a bachelor's degree in a relevant discipline from the University of Sydney or equivalent qualification; and satisfactorily perform at an interview where required.",
+     "quote": "A successful applicant for admission to the Master of Brain and Mind Sciences will: have completed the requirements of the embedded graduate certificate or graduate diploma in this discipline, without graduating, from the University of Sydney, or equivalent qualification; or hold a bachelor's degree in a relevant discipline from the University of Sydney or equivalent qualification; and satisfactorily perform at an interview where required.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Social Work (Qualifying)",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-social-work-qualifying.html",
+   "cricos_code": "072217J",
+   "snapshot_sha256": "3be2ec380ac242c21a81cf0810aaf3df00dc5aaa2e81879bebcc292dfa91f373",
+   "fields": {
+    "academic": {
+     "text": "Admission to candidature for the Master of Social Work (Qualifying) requires: a relevant Australian bachelor's degree or equivalent qualification; and evidence of the ability to meet the required prerequisite knowledge in relation to human development and of society; and evidence of relevant employment history in human and community services industry (generally evidence of at least 2 years is required). In exceptional circumstances, the Dean may admit applicants without a bachelor's degree who, in the opinion of the faculty, have qualifications and evidence of experience and achievement sufficient to successfully undertake the award. This may include evidence through publications or authorship of official documents.",
+     "quote": "Admission to candidature for the Master of Social Work (Qualifying) requires: a relevant Australian bachelor's degree or equivalent qualification; and evidence of the ability to meet the required prerequisite knowledge in relation to human development and of society; and evidence of relevant employment history in human and community services industry (generally evidence of at least 2 years is required). In exceptional circumstances, the Dean may admit applicants without a bachelor's degree who, in the opinion of the faculty, have qualifications and evidence of experience and achievement sufficient to successfully undertake the award. This may include evidence through publications or authorship of official documents.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of International Business",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-international-business.html",
+   "cricos_code": "074087J",
+   "snapshot_sha256": "e597eebed25a7523a595df1fa37ae77015b42113d3140e9a72e817940e0af2cb",
+   "fields": {
+    "academic": {
+     "text": "Education To be considered for admission, an applicant is required to have: an Australian bachelor's degree or higher in a related discipline with a credit average (65 percent) or equivalent qualification, or an Australian bachelor's degree or higher in an unrelated discipline with a credit average (65 percent) or equivalent qualification and relevant professional work experience (typically three years), or an Australian bachelor's degree or higher in a related discipline with less than a credit average (minimum 50 percent required) or equivalent qualification and satisfactory performance in the GMAT (for guidance, the class average score is 630) or GMAT Focus Edition (for guidance, the class average score is 585) or equivalent Business School approved admissions test. Demonstrated commitment Applicants must demonstrate commitment by providing a statement of motivation that demonstrates clear evidence that the candidate has researched the program and has the capability and mindset to learn in an experiential environment. Selection interview All applications will be ranked according to academic merit after the application closing date. Successfully ranked applicants will be invited to participate in an interview.",
+     "quote": "Education To be considered for admission, an applicant is required to have: an Australian bachelor's degree or higher in a related discipline with a credit average (65 percent) or equivalent qualification, or an Australian bachelor's degree or higher in an unrelated discipline with a credit average (65 percent) or equivalent qualification and relevant professional work experience (typically three years), or an Australian bachelor's degree or higher in a related discipline with less than a credit average (minimum 50 percent required) or equivalent qualification and satisfactory performance in the GMAT (for guidance, the class average score is 630) or GMAT Focus Edition (for guidance, the class average score is 585) or equivalent Business School approved admissions test. Demonstrated commitment Applicants must demonstrate commitment by providing a statement of motivation that demonstrates clear evidence that the candidate has researched the program and has the capability and mindset to learn in an experiential environment. Selection interview All applications will be ranked according to academic merit after the application closing date. Successfully ranked applicants will be invited to participate in an interview.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Coaching Psychology",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-science-in-coaching-psychology.html",
+   "cricos_code": "074185G",
+   "snapshot_sha256": "bbfb0b454def4d5ee46b5af682ad300b66709792e44b3500624f8ab6593e1fbe",
+   "fields": {
+    "academic": {
+     "text": "Admission to this degree requires: An undergraduate degree with Honours in Psychology or  a postgraduate degree in a cognate discipline from the University of Sydney or equivalent institution; and a minimum of three years relevant employment experience* *Relevant work experience may include counselling, experience in organisational learning and development, management experience, employment in applied psychology settings, professional coaching or other areas directly related to coaching.",
+     "quote": "Admission to this degree requires: An undergraduate degree with Honours in Psychology or  a postgraduate degree in a cognate discipline from the University of Sydney or equivalent institution; and a minimum of three years relevant employment experience* *Relevant work experience may include counselling, experience in organisational learning and development, management experience, employment in applied psychology settings, professional coaching or other areas directly related to coaching.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Commerce (Extension)",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-commerce-extension.html",
+   "cricos_code": "077328F",
+   "snapshot_sha256": "db3e6735fc96fd0fc174733f165db0003cddebd31d1aad6537af38cb260e7574",
+   "fields": {
+    "academic": {
+     "text": "To be considered for admission, an applicant is required to have: an Australian bachelor's degree or higher with a credit average (65 percent) or equivalent qualification, or an Australian bachelor's degree or higher (minimum 50 percent average) or equivalent qualification, and satisfactory performance in the GMAT (for guidance, the class average score is 630) or GMAT Focus Edition (for guidance, the class average score is 585), or the University of Sydney Graduate Diploma or Graduate Certificate in Commerce with a credit average (65 percent).",
+     "quote": "To be considered for admission, an applicant is required to have: an Australian bachelor's degree or higher with a credit average (65 percent) or equivalent qualification, or an Australian bachelor's degree or higher (minimum 50 percent average) or equivalent qualification, and satisfactory performance in the GMAT (for guidance, the class average score is 630) or GMAT Focus Edition (for guidance, the class average score is 585), or the University of Sydney Graduate Diploma or Graduate Certificate in Commerce with a credit average (65 percent).",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Music Studies (Opera Performance)",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-music-studies-opera-performance.html",
+   "cricos_code": "077459F",
+   "snapshot_sha256": "a4b9ae31c0dd9166776a65893dbd43c6a8d56da1b6949f8f8e6d4e9d80801009",
+   "fields": {
+    "academic": {
+     "text": "Admission requires: a master's degree in an appropriate discipline as determined by the Sydney Conservatorium of Music; or a pass bachelor's degree with a credit average, or an honours bachelor's degree from the University of Sydney, or equivalent qualification in an appropriate discipline as determined by the Conservatorium; or an award of graduate diploma from the University of Sydney, or equivalent qualification in an appropriate discipline as determined by the Conservatorium; or completion of the requirements of the embedded graduate diploma in this discipline from the University of Sydney, or equivalent qualification; and successful completion of an audition. Available places will be offered to qualified applicants in the order in which complete applications are received, and according to the admissions criteria. Applicants who do not have a recognised tertiary award but who demonstrate an equivalent musical ability and maturity at the audition and interview, and who can show considerable performing experience may be admitted.",
+     "quote": "Admission requires: a master's degree in an appropriate discipline as determined by the Sydney Conservatorium of Music; or a pass bachelor's degree with a credit average, or an honours bachelor's degree from the University of Sydney, or equivalent qualification in an appropriate discipline as determined by the Conservatorium; or an award of graduate diploma from the University of Sydney, or equivalent qualification in an appropriate discipline as determined by the Conservatorium; or completion of the requirements of the embedded graduate diploma in this discipline from the University of Sydney, or equivalent qualification; and successful completion of an audition. Available places will be offered to qualified applicants in the order in which complete applications are received, and according to the admissions criteria. Applicants who do not have a recognised tertiary award but who demonstrate an equivalent musical ability and maturity at the audition and interview, and who can show considerable performing experience may be admitted.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Media Practice",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-media-practice.html",
+   "cricos_code": "078670F",
+   "snapshot_sha256": "9d5505df434d49bde6d1604781993c5c035b8cc71276faf75ed0153d8d408330",
+   "fields": {
+    "academic": {
+     "text": "Entry in the 1 year or 1.5 year degree program is determined by the Recognition of Prior Learning (RPL) criteria below: Master of Media Practice (1.5 years full-time) Admission to the Master of Media Practice (1.5 years full-time) requires: a bachelor's degree with a minimum credit (65%) average calculated over the whole degree, from the University of Sydney, or an equivalent qualification. Master of Media Practice (1 year full-time) Admission to the Master of Media Practice (1 year full-time) requires: completion of the embedded Graduate Certificate or Graduate Diploma in Media Practice with a minimum credit (65%) average, or an equivalent qualification; or an Honours degree in a relevant discipline; or relevant professional work experience and a bachelor's degree with a minimum credit (65%) average or an equivalent qualification. If you do not meet the requirements listed above for direct entry to the Master’s degree, you may be able to enter via a Graduate Certificate or Graduate Diploma in the same subject area and upgrade to the Master’s after successful completion of the shorter course.",
+     "quote": "Entry in the 1 year or 1.5 year degree program is determined by the Recognition of Prior Learning (RPL) criteria below: Master of Media Practice (1.5 years full-time) Admission to the Master of Media Practice (1.5 years full-time) requires: a bachelor's degree with a minimum credit (65%) average calculated over the whole degree, from the University of Sydney, or an equivalent qualification. Master of Media Practice (1 year full-time) Admission to the Master of Media Practice (1 year full-time) requires: completion of the embedded Graduate Certificate or Graduate Diploma in Media Practice with a minimum credit (65%) average, or an equivalent qualification; or an Honours degree in a relevant discipline; or relevant professional work experience and a bachelor's degree with a minimum credit (65%) average or an equivalent qualification. If you do not meet the requirements listed above for direct entry to the Master’s degree, you may be able to enter via a Graduate Certificate or Graduate Diploma in the same subject area and upgrade to the Master’s after successful completion of the shorter course.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Economic Analysis",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-economic-analysis.html",
+   "cricos_code": "079202D",
+   "snapshot_sha256": "5510b0d6aafce71b18d697ed35880fb004d018978431b3268ede46160157bcc7",
+   "fields": {
+    "academic": {
+     "text": "Admission to candidature for the Master of Economic Analysis requires: a bachelor's degree from the University of Sydney, including a major in Economics with a minimum high distinction (85%) average, or an equivalent qualification; or completion of the embedded Graduate Certificate in Economic Analysis or Graduate Diploma in Economic Analysis with a minimum distinction (75%) average, or an equivalent qualification. If you do not meet the requirements listed above for direct entry to the Master’s degree, you may be able to enter via a Graduate Certificate or Graduate Diploma in the same subject area and upgrade to the Master’s after successful completion of the shorter course with the relevant minimum average mark.",
+     "quote": "Admission to candidature for the Master of Economic Analysis requires: a bachelor's degree from the University of Sydney, including a major in Economics with a minimum high distinction (85%) average, or an equivalent qualification; or completion of the embedded Graduate Certificate in Economic Analysis or Graduate Diploma in Economic Analysis with a minimum distinction (75%) average, or an equivalent qualification. If you do not meet the requirements listed above for direct entry to the Master’s degree, you may be able to enter via a Graduate Certificate or Graduate Diploma in the same subject area and upgrade to the Master’s after successful completion of the shorter course with the relevant minimum average mark.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of International Relations",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-international-relations.html",
+   "cricos_code": "079205A",
+   "snapshot_sha256": "77902fef015d27e9d17d4e3fc0360e175017a5f061aa443348ad25cd1abf9693",
+   "fields": {
+    "academic": {
+     "text": "Admission to the Master of International Relations (2 years full-time) requires: a bachelor’s degree from the University of Sydney with a minimum credit (65%) average calculated over the whole degree, or an equivalent qualification; or completion of the embedded Graduate Certificate  or Graduate Diploma in International Relations with a minimum credit (65%) average, or an equivalent qualification. Reduced volume of learning If you have completed a qualification in a relevant discipline or have relevant professional experience, you may be eligible for a reduction in course requirements based on the criteria below. Admission to the Master of International Relations (1.5 years full-time) requires: a bachelor’s degree from the University of Sydney with a minimum credit (65%) average calculated over the whole degree, including a major in the humanities, social sciences, or law, or an equivalent qualification; or relevant professional experience and a bachelor’s degree with a minimum credit (65%) average. Admission to the Master of International Relations (1 year full-time) requires: an honours degree in the humanities, social sciences, or law. If you do not meet the requirements listed above for direct entry to the Master’s, you may be able to enter via the Graduate Certificate or Graduate Diploma and upgrade to the Master’s after successful completion of the shorter course.",
+     "quote": "Admission to the Master of International Relations (2 years full-time) requires: a bachelor’s degree from the University of Sydney with a minimum credit (65%) average calculated over the whole degree, or an equivalent qualification; or completion of the embedded Graduate Certificate  or Graduate Diploma in International Relations with a minimum credit (65%) average, or an equivalent qualification. Reduced volume of learning If you have completed a qualification in a relevant discipline or have relevant professional experience, you may be eligible for a reduction in course requirements based on the criteria below. Admission to the Master of International Relations (1.5 years full-time) requires: a bachelor’s degree from the University of Sydney with a minimum credit (65%) average calculated over the whole degree, including a major in the humanities, social sciences, or law, or an equivalent qualification; or relevant professional experience and a bachelor’s degree with a minimum credit (65%) average. Admission to the Master of International Relations (1 year full-time) requires: an honours degree in the humanities, social sciences, or law. If you do not meet the requirements listed above for direct entry to the Master’s, you may be able to enter via the Graduate Certificate or Graduate Diploma and upgrade to the Master’s after successful completion of the shorter course.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Museum and Heritage Studies",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-museum-and-heritage-studies.html",
+   "cricos_code": "079208J",
+   "snapshot_sha256": "08f9179d54aa4054be72979c0ef84c7f7dc94d6c5a19494541389e9d7ee82a5d",
+   "fields": {
+    "academic": {
+     "text": "Entry in the 1 year or 1.5 year degree program is determined by the Recognition of Prior Learning (RPL) criteria below: Admission to candidature for the Master of Museum and Heritage Studies (1.5 years full-time) requires: a bachelor's degree with a major in one of Anthropology, Archaeology, Art History, Classics and Ancient History, Cultural Geography, Cultural Studies, Education, English, Gender Studies, History, Indigenous Studies or another major with an equivalent skills and knowledge base; and a minimum credit (65%) average calculated over the whole degree, from the University of Sydney, or an equivalent qualification. Admission to candidature for the Master of Museum & Heritage Studies (1 year full-time) requires: completion of the requirements for the embedded Graduate Certificate or Graduate Diploma in Museum and Heritage Studies with a minimum credit (65%) average, or an equivalent qualification; or an Honours degree in a relevant discipline; or relevant professional work experience and a bachelor's degree with a minimum credit (65%) average or an equivalent qualification. If you do not meet the requirements listed above for direct entry to the Master’s degree, you may be able to enter via a Graduate Certificate or Graduate Diploma in the same subject area and upgrade to the Master’s after successful completion of the shorter course.",
+     "quote": "Entry in the 1 year or 1.5 year degree program is determined by the Recognition of Prior Learning (RPL) criteria below: Admission to candidature for the Master of Museum and Heritage Studies (1.5 years full-time) requires: a bachelor's degree with a major in one of Anthropology, Archaeology, Art History, Classics and Ancient History, Cultural Geography, Cultural Studies, Education, English, Gender Studies, History, Indigenous Studies or another major with an equivalent skills and knowledge base; and a minimum credit (65%) average calculated over the whole degree, from the University of Sydney, or an equivalent qualification. Admission to candidature for the Master of Museum & Heritage Studies (1 year full-time) requires: completion of the requirements for the embedded Graduate Certificate or Graduate Diploma in Museum and Heritage Studies with a minimum credit (65%) average, or an equivalent qualification; or an Honours degree in a relevant discipline; or relevant professional work experience and a bachelor's degree with a minimum credit (65%) average or an equivalent qualification. If you do not meet the requirements listed above for direct entry to the Master’s degree, you may be able to enter via a Graduate Certificate or Graduate Diploma in the same subject area and upgrade to the Master’s after successful completion of the shorter course.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Art Curating",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-art-curating.html",
+   "cricos_code": "079211C",
+   "snapshot_sha256": "07bef99a935bf67f18a869d4c57e3b2f5f62fd2f6c2ce875d25b282c4ae316da",
+   "fields": {
+    "academic": {
+     "text": "Entry in the 1 year or 1.5 year degree program is determined by the Recognition of Prior Learning (RPL) criteria below: Admission to candidature for the Master of Art Curating (1.5 year full-time) requires: a bachelor's degree with a major in Anthropology, Archaeology, Art History, Cultural Geography, Cultural Studies, Education, English, Gender Studies, History, Indigenous Studies or related field, and a minimum credit (65%) average calculated over the whole degree, from the University of Sydney, or an equivalent qualification Admission to candidature for the Master of Art Curating (1 year full-time) requires: completion of the embedded Graduate Certificate or Graduate Diploma in Art Curating with a minimum credit (65%) average, or an equivalent qualification; or an Honours degree in a relevant discipline; or relevant professional work experience and a bachelor's degree with a minimum credit (65%) average or an equivalent qualification If you do not meet the requirements listed above for direct entry to the Master’s degree, you may be able to enter via a Graduate Certificate or Graduate Diploma in the same subject area and upgrade to the Master’s after successful completion of the shorter course.",
+     "quote": "Entry in the 1 year or 1.5 year degree program is determined by the Recognition of Prior Learning (RPL) criteria below: Admission to candidature for the Master of Art Curating (1.5 year full-time) requires: a bachelor's degree with a major in Anthropology, Archaeology, Art History, Cultural Geography, Cultural Studies, Education, English, Gender Studies, History, Indigenous Studies or related field, and a minimum credit (65%) average calculated over the whole degree, from the University of Sydney, or an equivalent qualification Admission to candidature for the Master of Art Curating (1 year full-time) requires: completion of the embedded Graduate Certificate or Graduate Diploma in Art Curating with a minimum credit (65%) average, or an equivalent qualification; or an Honours degree in a relevant discipline; or relevant professional work experience and a bachelor's degree with a minimum credit (65%) average or an equivalent qualification If you do not meet the requirements listed above for direct entry to the Master’s degree, you may be able to enter via a Graduate Certificate or Graduate Diploma in the same subject area and upgrade to the Master’s after successful completion of the shorter course.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of English Studies",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-english-studies.html",
+   "cricos_code": "079214M",
+   "snapshot_sha256": "8613b88f0829c0fe3a14f0e0a04dd99835e38b6e0e80d083a21cf01accf0c0aa",
+   "fields": {
+    "academic": {
+     "text": "Entry in the 1 or 1.5 year degree program is determined by the Recognition of Prior Learning (RPL) criteria below. Admission to candidature for 1.5 years full-time requires: a bachelor's degree with a major in English Literature and a minimum credit (65%) average calculated over the whole degree, from the University of Sydney, or an equivalent qualification. Admission to candidature 1 year full-time requires: completion of the requirements for the embedded Graduate Certificate or Graduate Diploma in English Studies with a minimum credit (65%) average, or an equivalent qualification; or an Honours degree in a relevant discipline. If you do not meet the requirements listed above for direct entry to the Master’s degree, you may be able to enter via a Graduate Certificate or Graduate Diploma in the same subject area and upgrade to the Master’s after successful completion of the shorter course.",
+     "quote": "Entry in the 1 or 1.5 year degree program is determined by the Recognition of Prior Learning (RPL) criteria below. Admission to candidature for 1.5 years full-time requires: a bachelor's degree with a major in English Literature and a minimum credit (65%) average calculated over the whole degree, from the University of Sydney, or an equivalent qualification. Admission to candidature 1 year full-time requires: completion of the requirements for the embedded Graduate Certificate or Graduate Diploma in English Studies with a minimum credit (65%) average, or an equivalent qualification; or an Honours degree in a relevant discipline. If you do not meet the requirements listed above for direct entry to the Master’s degree, you may be able to enter via a Graduate Certificate or Graduate Diploma in the same subject area and upgrade to the Master’s after successful completion of the shorter course.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Cultural Studies",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-cultural-studies.html",
+   "cricos_code": "079640D",
+   "snapshot_sha256": "498672c6d7b62a1369ab34456ce59e9a06a9bacc672bbd8cd757a987f49ddd9c",
+   "fields": {
+    "academic": {
+     "text": "Entry in the 1 year or 1.5 year degree program is determined by the Recognition of Prior Learning (RPL) criteria below: Admission to candidature for the Master of Cultural Studies (1.5 years full-time) requires: a bachelor's degree with a minimum credit (65%) average calculated over the whole degree, from the University of Sydney including a major in a relevant subject area in the humanities or social sciences, or an equivalent qualification. Admission to candidature for the Master of Cultural Studies (1 year full-time) requires: completion of the embedded Graduate Certificate or Graduate Diploma in Cultural Studies with a minimum credit (65%) average, or an equivalent qualification; or an Honours degree in a relevant discipline; or relevant professional work experience and a bachelor's degree with a minimum credit (65%) average or an equivalent qualification. If you do not meet the requirements listed above for direct entry to the Master’s degree, you may be able to enter via a Graduate Certificate or Graduate Diploma in the same subject area and upgrade to the Master’s after successful completion of the shorter course.",
+     "quote": "Entry in the 1 year or 1.5 year degree program is determined by the Recognition of Prior Learning (RPL) criteria below: Admission to candidature for the Master of Cultural Studies (1.5 years full-time) requires: a bachelor's degree with a minimum credit (65%) average calculated over the whole degree, from the University of Sydney including a major in a relevant subject area in the humanities or social sciences, or an equivalent qualification. Admission to candidature for the Master of Cultural Studies (1 year full-time) requires: completion of the embedded Graduate Certificate or Graduate Diploma in Cultural Studies with a minimum credit (65%) average, or an equivalent qualification; or an Honours degree in a relevant discipline; or relevant professional work experience and a bachelor's degree with a minimum credit (65%) average or an equivalent qualification. If you do not meet the requirements listed above for direct entry to the Master’s degree, you may be able to enter via a Graduate Certificate or Graduate Diploma in the same subject area and upgrade to the Master’s after successful completion of the shorter course.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Publishing",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-publishing.html",
+   "cricos_code": "079643A",
+   "snapshot_sha256": "529574f7ed1b68c005d3af8e66ab7e331adf6fabb74812357f8e1a7507811b20",
+   "fields": {
+    "academic": {
+     "text": "Entry in the 1 year or 1.5 year degree program is determined by the Recognition of Prior Learning (RPL) criteria below: Admission to candidature for the Master of Publishing (1.5 years full-time) requires: a bachelor's degree with a minimum credit (65%) average calculated over the whole degree, from the University of Sydney, including a major in the humanities or social sciences, or an equivalent qualification. Admission to candidature for the Master of Publishing (1 year full-time) requires: completion of the embedded Graduate Certificate or Graduate Diploma in Publishing with a minimum credit (65%) average, or an equivalent qualification; or an Honours degree in a relevant discipline; or relevant professional work experience and a bachelor's degree with a minimum credit (65%) average or an equivalent qualification. If you do not meet the requirements listed above for direct entry to the Master’s degree, you may be able to enter via a Graduate Certificate or Graduate Diploma in the same subject area and upgrade to the Master’s after successful completion of the shorter course.",
+     "quote": "Entry in the 1 year or 1.5 year degree program is determined by the Recognition of Prior Learning (RPL) criteria below: Admission to candidature for the Master of Publishing (1.5 years full-time) requires: a bachelor's degree with a minimum credit (65%) average calculated over the whole degree, from the University of Sydney, including a major in the humanities or social sciences, or an equivalent qualification. Admission to candidature for the Master of Publishing (1 year full-time) requires: completion of the embedded Graduate Certificate or Graduate Diploma in Publishing with a minimum credit (65%) average, or an equivalent qualification; or an Honours degree in a relevant discipline; or relevant professional work experience and a bachelor's degree with a minimum credit (65%) average or an equivalent qualification. If you do not meet the requirements listed above for direct entry to the Master’s degree, you may be able to enter via a Graduate Certificate or Graduate Diploma in the same subject area and upgrade to the Master’s after successful completion of the shorter course.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Strategic Public Relations",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-strategic-public-relations.html",
+   "cricos_code": "079644M",
+   "snapshot_sha256": "1f2216ba4a9564bb4f7e1884b5008631f68ea66a2614338183567762792acebf",
+   "fields": {
+    "academic": {
+     "text": "Entry in the 1 year or 1.5 year degree program is determined by the Recognition of Prior Learning (RPL) criteria below: Admission to candidature for the Master of Strategic Public Relations (1.5 years full-time) requires: a bachelor's degree with a minimum credit (65%) average calculated over the whole degree, from the University of Sydney, or an equivalent qualification. Admission to candidature for the Master of Strategic Public Relations (1 year full-time) requires: completion of the embedded Graduate Certificate or Graduate Diploma in Strategic Public Relations with a minimum credit (65%) average, or an equivalent qualification; or an Honours degree in a relevant discipline; or relevant professional work experience and a bachelor's degree with a minimum credit (65%) average or an equivalent qualification. If you do not meet the requirements listed above for direct entry to the Master’s degree, you may be able to enter via a Graduate Certificate or Graduate Diploma in the same subject area and upgrade to the Master’s after successful completion of the shorter course.",
+     "quote": "Entry in the 1 year or 1.5 year degree program is determined by the Recognition of Prior Learning (RPL) criteria below: Admission to candidature for the Master of Strategic Public Relations (1.5 years full-time) requires: a bachelor's degree with a minimum credit (65%) average calculated over the whole degree, from the University of Sydney, or an equivalent qualification. Admission to candidature for the Master of Strategic Public Relations (1 year full-time) requires: completion of the embedded Graduate Certificate or Graduate Diploma in Strategic Public Relations with a minimum credit (65%) average, or an equivalent qualification; or an Honours degree in a relevant discipline; or relevant professional work experience and a bachelor's degree with a minimum credit (65%) average or an equivalent qualification. If you do not meet the requirements listed above for direct entry to the Master’s degree, you may be able to enter via a Graduate Certificate or Graduate Diploma in the same subject area and upgrade to the Master’s after successful completion of the shorter course.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Environmental Science",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-environmental-science0.html",
+   "cricos_code": "082877A",
+   "snapshot_sha256": "25b884e4bc979bbf39f1361e6b90a1595009beba32fd183123e5ba1841e65614",
+   "fields": {
+    "academic": {
+     "text": "For admission into this course, you should have: a Bachelor of Science or higher with a credit average in one of the following disciplines: Biology, Chemistry, Physics, Mathematics, Ecology, Climate and Atmospheric Sciences, Marine Science, Geology, Geography, Environmental Studies, Environmental Science, Environmental Engineering, Environmental Economics, Environmental Archaeology, Sustainability, Agriculture, Forestry, and Natural Resource Management; or equivalent qualification or a Bachelor of Science (Honours) or postgraduate qualification in a non-cognate discipline or equivalent qualification; or completion of the embedded Graduate Certificate or Graduate Diploma in this discipline, from the University of Sydney, or equivalent qualification. A credit average means a minimum Grade Point Average (GPA) of 65.",
+     "quote": "For admission into this course, you should have: a Bachelor of Science or higher with a credit average in one of the following disciplines: Biology, Chemistry, Physics, Mathematics, Ecology, Climate and Atmospheric Sciences, Marine Science, Geology, Geography, Environmental Studies, Environmental Science, Environmental Engineering, Environmental Economics, Environmental Archaeology, Sustainability, Agriculture, Forestry, and Natural Resource Management; or equivalent qualification or a Bachelor of Science (Honours) or postgraduate qualification in a non-cognate discipline or equivalent qualification; or completion of the embedded Graduate Certificate or Graduate Diploma in this discipline, from the University of Sydney, or equivalent qualification. A credit average means a minimum Grade Point Average (GPA) of 65.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Clinical Psychology",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-clinical-psychology.html",
+   "cricos_code": "082878M",
+   "snapshot_sha256": "d4a3e4567b13522949d04fdacc266acf2ae6e7ff4009176960c2f125d605a774",
+   "fields": {
+    "academic": {
+     "text": "Completion of an Australian Psychology Accreditation Council (APAC) accredited four year bachelors degree with honours in psychology from a higher education provider, gaining at least first class honours or equivalent. The bachelors degree with honours must include a major research project and thesis as an essential part of the degree. You must satisfy the Head of the School of Psychology (or delegate) of your personal suitability for the practice of clinical psychology through your application, references and selection interview. Applicants for the MCP/PhD must additionally meet the PhD admission requirements. Gadigal Program applicant qualifications Please note that Gadigal Program applicants have different qualification requirements, please see detailed information below. Non-Australian qualifications (if relevant) The Australian Psychological Accreditation Council (APAC) provides information on APAC accredited psychology qualifications in Australia. The Australian Psychological Society (APS) assesses non-Australian qualifications for APAC equivalence. All qualifications obtained from a non-Australian Higher Education Provider must be assessed as equivalent by the Australian Psychological Society (APS) before an application may be submitted.",
+     "quote": "Completion of an Australian Psychology Accreditation Council (APAC) accredited four year bachelors degree with honours in psychology from a higher education provider, gaining at least first class honours or equivalent. The bachelors degree with honours must include a major research project and thesis as an essential part of the degree. You must satisfy the Head of the School of Psychology (or delegate) of your personal suitability for the practice of clinical psychology through your application, references and selection interview. Applicants for the MCP/PhD must additionally meet the PhD admission requirements. Gadigal Program applicant qualifications Please note that Gadigal Program applicants have different qualification requirements, please see detailed information below. Non-Australian qualifications (if relevant) The Australian Psychological Accreditation Council (APAC) provides information on APAC accredited psychology qualifications in Australia. The Australian Psychological Society (APS) assesses non-Australian qualifications for APAC equivalence. All qualifications obtained from a non-Australian Higher Education Provider must be assessed as equivalent by the Australian Psychological Society (APS) before an application may be submitted.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Provisional registration Before commencing candidature in the MCP degree, all students are required to have applied for provisional registration with AHPRA's Psychology Board of Australia (PsyBA). Students must hold provisional registration with the Psychology Board of Australia (PsyBA) in order to commence clinical placements in the first year of the MCP degree.",
+      "quote": "Provisional registration Before commencing candidature in the MCP degree, all students are required to have applied for provisional registration with AHPRA's Psychology Board of Australia (PsyBA). Students must hold provisional registration with the Psychology Board of Australia (PsyBA) in order to commence clinical placements in the first year of the MCP degree.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Creative Writing",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-creative-writing.html",
+   "cricos_code": "082900G",
+   "snapshot_sha256": "6d80a35d980971ad0f9c6d328953476b51099adbf1c0cd6b7445d54176834642",
+   "fields": {
+    "academic": {
+     "text": "Entry in the 1 year or 1.5 year degree program is determined by the Recognition of Prior Learning (RPL) criteria below: Admission to candidature for the Master of Creative Writing (1.5 years full-time) requires: a bachelor's degree with a minimum credit (65%) average calculated over the whole degree, from the University of Sydney, including a major in a relevant subject area in the humanities or social sciences, or an equivalent qualification; or completion of the requirements for the embedded Graduate Certificate or Graduate Diploma in Creative Writing with a minimum credit (65%) average, or an equivalent qualification. Admission to candidature for the Master of Creative Writing (1 year full-time) requires: an Honours degree in a relevant discipline; or relevant professional work experience and a bachelor's degree with a minimum credit (65%) average or an equivalent qualification. If you do not meet the requirements listed above for direct entry to the Master’s degree, you may be able to enter via a Graduate Certificate or Graduate Diploma in the same subject area and upgrade to the Master’s after successful completion of the shorter course with the relevant minimum average mark.",
+     "quote": "Entry in the 1 year or 1.5 year degree program is determined by the Recognition of Prior Learning (RPL) criteria below: Admission to candidature for the Master of Creative Writing (1.5 years full-time) requires: a bachelor's degree with a minimum credit (65%) average calculated over the whole degree, from the University of Sydney, including a major in a relevant subject area in the humanities or social sciences, or an equivalent qualification; or completion of the requirements for the embedded Graduate Certificate or Graduate Diploma in Creative Writing with a minimum credit (65%) average, or an equivalent qualification. Admission to candidature for the Master of Creative Writing (1 year full-time) requires: an Honours degree in a relevant discipline; or relevant professional work experience and a bachelor's degree with a minimum credit (65%) average or an equivalent qualification. If you do not meet the requirements listed above for direct entry to the Master’s degree, you may be able to enter via a Graduate Certificate or Graduate Diploma in the same subject area and upgrade to the Master’s after successful completion of the shorter course with the relevant minimum average mark.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Marine Science and Management",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-marine-science-and-management.html",
+   "cricos_code": "083318B",
+   "snapshot_sha256": "5e06cf329ced64f9aa147208e759e30074ded334f59005f4494bca525ec1eb04",
+   "fields": {
+    "academic": {
+     "text": "For admission into this course, you should have: a Bachelor of Science with a credit average in one of the following disciplines: biology, chemistry, physics, mathematics, ecology, climate and atmospheric sciences, marine science, geosciences, geography, geology environmental studies, environmental engineering, civil engineering, aquaculture, agriculture or natural resource management; or a Bachelor of Science with Honours in one for the disciplines listed above. A credit average means a minimum Grade Point Average (GPA) of 65.",
+     "quote": "For admission into this course, you should have: a Bachelor of Science with a credit average in one of the following disciplines: biology, chemistry, physics, mathematics, ecology, climate and atmospheric sciences, marine science, geosciences, geography, geology environmental studies, environmental engineering, civil engineering, aquaculture, agriculture or natural resource management; or a Bachelor of Science with Honours in one for the disciplines listed above. A credit average means a minimum Grade Point Average (GPA) of 65.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Environmental Science and Law",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-environmental-science-and-law0.html",
+   "cricos_code": "083651M",
+   "snapshot_sha256": "1c2787c3eeb0509fbe65991d92cbcf00ca17c46864efe7087e5673170773e49c",
+   "fields": {
+    "academic": {
+     "text": "For admission into this course, you should have: a bachelors degree or higher with a credit average in one of the following disciplines: Biology, Chemistry, Physics, Mathematics, Ecology, Climate and Atmospheric Sciences, Marine Science, Geology, Geography, Environmental Studies, Environmental Science, Environmental Engineering, Environmental Economics, Environmental Archaeology, Sustainability, Agriculture, Forestry, Natural Resource Management, Environmental Policy, and Law, or equivalent qualification; or a bachelor honours degree or postgraduate qualification in a noncognate discipline, or equivalent qualification. A credit average means a minimum Grade Point Average (GPA) of 65.",
+     "quote": "For admission into this course, you should have: a bachelors degree or higher with a credit average in one of the following disciplines: Biology, Chemistry, Physics, Mathematics, Ecology, Climate and Atmospheric Sciences, Marine Science, Geology, Geography, Environmental Studies, Environmental Science, Environmental Engineering, Environmental Economics, Environmental Archaeology, Sustainability, Agriculture, Forestry, Natural Resource Management, Environmental Policy, and Law, or equivalent qualification; or a bachelor honours degree or postgraduate qualification in a noncognate discipline, or equivalent qualification. A credit average means a minimum Grade Point Average (GPA) of 65.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Advanced Nursing Practice",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-advanced-nursing-practice0.html",
+   "cricos_code": "084691F",
+   "snapshot_sha256": "9c852e6bae0d73db84e2f43103ebbd0d24605909f093b91f4fab01d290b86a01",
+   "fields": {
+    "academic": {
+     "text": "A successful applicant for admission to the Master of Advanced Nursing Practice will hold: Current general registration with the Australian Health Practitioner Regulation Agency (AHPRA) as a (Division 1) Registered Nurse and proof of current employment in this capacity at an appropriate health facility. A minimum of three years full-time equivalent experience as a registered nurse. A pre-registration nursing degree at bachelor level or higher with a credit average.",
+     "quote": "A successful applicant for admission to the Master of Advanced Nursing Practice will hold: Current general registration with the Australian Health Practitioner Regulation Agency (AHPRA) as a (Division 1) Registered Nurse and proof of current employment in this capacity at an appropriate health facility. A minimum of three years full-time equivalent experience as a registered nurse. A pre-registration nursing degree at bachelor level or higher with a credit average.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Agriculture and Environment",
+   "url": "https://www.sydney.edu.au/courses/courses/pc/master-of-agriculture-and-environment.html",
+   "cricos_code": "084693D",
+   "snapshot_sha256": "5f436b20c68a293e8fb209ef02d9012f5514511c82ee482247129653401aed6a",
+   "fields": {
+    "academic": {
+     "text": "Admission to this course requires: bachelor’s degree with a credit average (65 percent) in agriculture, science, economics, or an equivalent qualification, or have completed the requirements for the award of the Graduate Certificate in Agriculture and Environment from the University of Sydney or equivalent qualification.",
+     "quote": "Admission to this course requires: bachelor’s degree with a credit average (65 percent) in agriculture, science, economics, or an equivalent qualification, or have completed the requirements for the award of the Graduate Certificate in Agriculture and Environment from the University of Sydney or equivalent qualification.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 60,
+  "机器核对": 60,
+  "待人工": 0
+ }
+}
