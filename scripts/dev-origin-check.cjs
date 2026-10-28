@@ -13,11 +13,10 @@
 const fs = require("fs");
 const path = require("path");
 
+const { chromium } = require("./playwright.cjs");
+
 const ROOT = path.resolve(__dirname, "..");
 
-const PLAYWRIGHT =
-  process.env.PLAYWRIGHT_PATH || path.join(ROOT, "web/node_modules/@playwright/test");
-const { chromium } = require(PLAYWRIGHT);
 const PORT = process.env.PORT || "3000";
 
 // Read the allowlist straight from the config so this check cannot drift away from it.

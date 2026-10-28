@@ -79,9 +79,10 @@ jobs:
 # Not covered by this workflow, and deliberately so:
 #
 # - The end-to-end walkthrough (`make screenshots`) drives a real Chromium through
-#   `scripts/e2e-walkthrough.cjs`. It currently borrows Playwright from a sibling
-#   checkout, so it only runs locally. Adding it here means installing Playwright
-#   in CI first.
+#   `scripts/e2e-walkthrough.cjs`. `npm ci` above already installs the
+#   `@playwright/test` package from `web/`, but not a browser, and the walkthrough
+#   also needs the database, the API and a dev server, so it only runs locally.
+#   Adding it here means `npx playwright install chromium` plus those services.
 # - Automated interface checks are handled by the Vibe-coding exception in
 #   AGENTS.md: pages are accepted from real browser output, not from TDD.
 # - The four guards `make test` runs first (`scripts/check-no-fake-dates.cjs`,

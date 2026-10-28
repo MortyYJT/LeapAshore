@@ -191,7 +191,7 @@ def test_event_survives_its_task_being_deleted(db_session, require_db):
 - [ ] **Step 2: 跑测试确认失败**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot/api
+cd "$(git rev-parse --show-toplevel)/api"
 .venv/bin/pytest tests/test_task_model.py -v
 ```
 
@@ -327,7 +327,7 @@ Expected: 四个测试全部 PASS；`make test` 绿。
 - [ ] **Step 7: 提交**
 
 ```bash
-cd ~/Documents/留学agent/offerpilot
+cd "$(git rev-parse --show-toplevel)"
 git add api
 git diff --cached --check
 git commit -F - <<'EOF'

@@ -232,7 +232,7 @@
 ### 关键产出与评审结论
 
 - **找到了**。项目一的这两个文件不在 GitHub（`main` 已被 reset 成只剩 LICENSE），而在本地：
-  `~/Desktop/commerce-support-agent/{AGENTS.md,CONTRIBUTING.md}`（`codex/stage-1-mvp` 分支把 `MEWHELP python` 改名为 `commerce-support-agent`）。
+  同级 `commerce-support-agent` 仓库的 `{AGENTS.md,CONTRIBUTING.md}`（`codex/stage-1-mvp` 分支把 `MEWHELP python` 改名为 `commerce-support-agent`）。
 - `AGENTS.md` 只有 **962 字节**，是个指针文件，真正的规则在 `CONTRIBUTING.md`：
   1. **语言规则**：源码注释、docstring、README、贡献指南、工程文档一律**英文**；中文规划与学习记录放 `note/`；**界面文案、prompt、公开错误信息、测试输入输出保持中文**，不得在文档整理时翻译掉。
   2. **提交规范**：Conventional Commits 1.0.0，本仓库额外强制 **scope 必填 + 英文 body 非空**，每条 body 以 `- ` 开头，说明改了什么、为什么、怎么验证的。
@@ -299,7 +299,7 @@
 
 ### 关键产出与评审结论
 
-- 此前没有 git 仓库，也没有配置 git 身份。本轮 `git init`，身份取自既有仓库（`MortyYJT <213947413+MortyYJT@users.noreply.github.com>`），工作分支 `codex/stage-1-mvp`。
+- 此前没有 git 仓库，也没有配置 git 身份。本轮 `git init`，身份取自既有仓库的本地配置（真实姓名与个人邮箱，已不在仓库内容中记录），工作分支 `codex/stage-1-mvp`。
 - **T4 完成**：41 个测试，用 Node 内置 `node:test` 跑，**零新增依赖**（符合 AGENTS.md「不要自行加依赖」）。需要给 `tsconfig.json` 开 `allowImportingTsExtensions`，因为 Node 的 ESM 解析要求写全 `.ts` 后缀。
 - 三条已知缺口**用测试显式钉住**，而不是留在注释里等以后忘掉：
   1. 211 名单 76 条（合计 115），**未经权威来源核验**；
