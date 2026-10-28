@@ -1,0 +1,957 @@
+{
+ "school_key": "massachusetts-institute-of-technology",
+ "school_name_en": "Massachusetts Institute of Technology (MIT)",
+ "country": "United States",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://oge.mit.edu/programs/",
+  "https://oge.mit.edu/graduate-admissions/programs/masters-degrees/"
+ ],
+ "blocked": [],
+ "complete": true,
+ "remaining_urls": [],
+ "notes": "All values come from MIT Office of Graduate Education (oge.mit.edu) program pages, which carry each program's deadline and English score requirements; the graduate-school ELP page (recommended 7 IELTS / 100 TOEFL) is not used because every program page states its own minimum. Sloan programmes (MFin, MBAn, MBA, MSMS) state they do not require or accept TOEFL/IELTS, so no ielts/toefl fields. Deadlines are recorded only where the page states the year and the date is not past; many departmental pages give the deadline without a year and are left out. Skipped: EECS (no terminal master's; MEng for MIT undergraduates only), MIT-WHOI SM (US Naval Officers only), IDSS and CSE (PhD only), and Music Technology SM (MIT undergraduates only). Several departments list an SM next to the PhD without saying whether SM-only applicants are admitted; they are included because the page lists the SM as an application degree. Programme-specific sites (e.g. mitsloan.mit.edu, department sites) were not read, so academic-background requirements are not captured.",
+ "programs": [
+  {
+   "name": "Master of Science in Aeronautics and Astronautics (SM)",
+   "url": "https://oge.mit.edu/programs/aeronautics-and-astronautics/",
+   "snapshot_sha256": "9b02bba0d3fea6ef93b0f2c228ba0058a9ed4ef9e3638ba6c9ab5631626411b6",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS) Minimum score required: 7",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT Minimum score: 100 (iBT) or 5 (iBT26)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Architecture (MArch)",
+   "url": "https://oge.mit.edu/programs/architecture/",
+   "snapshot_sha256": "790a5039be61ed38960323feeb0d6b8176b6eb07fc8529cce45eea321a4767aa",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS) Minimum score required: 7",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Test of English as a Foreign Language (TOEFL) Minimum score required: 100 (iBT) or 5 (iBT26)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Architecture Studies (SMArchS)",
+   "url": "https://oge.mit.edu/programs/architecture/",
+   "snapshot_sha256": "790a5039be61ed38960323feeb0d6b8176b6eb07fc8529cce45eea321a4767aa",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS) Minimum score required: 7",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Test of English as a Foreign Language (TOEFL) Minimum score required: 100 (iBT) or 5 (iBT26)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Building Technology (SMBT)",
+   "url": "https://oge.mit.edu/programs/architecture/",
+   "snapshot_sha256": "790a5039be61ed38960323feeb0d6b8176b6eb07fc8529cce45eea321a4767aa",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS) Minimum score required: 7",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Test of English as a Foreign Language (TOEFL) Minimum score required: 100 (iBT) or 5 (iBT26)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Art, Culture and Technology (SMACT)",
+   "url": "https://oge.mit.edu/programs/architecture/",
+   "snapshot_sha256": "790a5039be61ed38960323feeb0d6b8176b6eb07fc8529cce45eea321a4767aa",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS) Minimum score required: 7",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Test of English as a Foreign Language (TOEFL) Minimum score required: 100 (iBT) or 5 (iBT26)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Real Estate Development (SM)",
+   "url": "https://oge.mit.edu/programs/center-for-real-estate/",
+   "snapshot_sha256": "bbfcaef456ba2591e2c0fffc5bb243e7573cd78dbb0c9c4906fbe69a4d8da6ae",
+   "fields": {
+    "ielts": {
+     "overall": 7.5,
+     "quote": "International English Language Testing System (IELTS) Minimum score required: 7.5",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Test of English as a Foreign Language (TOEFL) Minimum score required: 100 (iBT) or 5 (iBT26)",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "extensive professional real estate work experience (minimum 3-5 years); 0-3 years may apply as MSRED Young Leaders",
+      "quote": "Qualified candidates should have an extensive amount of professional real estate work experience (minimum of 3-5 years).",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Chemical Engineering Practice (MSCEP)",
+   "url": "https://oge.mit.edu/programs/chemical-engineering/",
+   "snapshot_sha256": "5a1f188327051e18310f6c9a7e4864c9062b77ecfae601127eff6dfc1a444334",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS) Minimum score required: 7",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT Minimum score: 100 (iBT) or 5 (iBT26)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering (MEng), Civil and Environmental Engineering",
+   "url": "https://oge.mit.edu/programs/civil-and-environmental-engineering/",
+   "snapshot_sha256": "6e7e5ace8dbba302aa588cb8956b3304c523b99ea419b82c02ded910fda56564",
+   "fields": {
+    "ielts": {
+     "overall": 7.5,
+     "quote": "International English Language Testing System (IELTS) Minimum score required: 7.5",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Test of English as a Foreign Language (TOEFL) Minimum score required: 100 (iBT) or 5 (iBT26)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (SM), Civil and Environmental Engineering",
+   "url": "https://oge.mit.edu/programs/civil-and-environmental-engineering/",
+   "snapshot_sha256": "6e7e5ace8dbba302aa588cb8956b3304c523b99ea419b82c02ded910fda56564",
+   "fields": {
+    "ielts": {
+     "overall": 7.5,
+     "quote": "International English Language Testing System (IELTS) Minimum score required: 7.5",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Test of English as a Foreign Language (TOEFL) Minimum score required: 100 (iBT) or 5 (iBT26)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Applied Science in Data, Economics, and Design of Policy (MASc)",
+   "url": "https://oge.mit.edu/programs/data-economics-and-development-policy/",
+   "snapshot_sha256": "eab861947ab9ee1f6e3177b9cbb45c70ff5bea598ad5ac4aa946432211858ace",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS) Minimum score required: 7",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Test of English as a Foreign Language (TOEFL) Minimum score required: 100 (iBT) 600 (PBT)",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "complete the MITx MicroMasters credential in Data, Economics, and Design of Policy before applying",
+      "quote": "All students must first successfully complete the online MITx MicroMasters credential at their own pace before applying to MIT for the DEDP master's program.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Earth and Planetary Sciences (SM)",
+   "url": "https://oge.mit.edu/programs/earth-atmospheric-and-planetary-sciences/",
+   "snapshot_sha256": "0b27e716f304ba92683487b9f71aba04aed54682793ae0dd5325248bc91dc5fd",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS) Minimum score required: 7",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Test of English as a Foreign Language (TOEFL) Minimum Score: 100 (iBT) or 5 (iBT26)",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General test required",
+      "quote": "Graduate Record Examination (GRE) – required",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Atmospheric Science (SM)",
+   "url": "https://oge.mit.edu/programs/earth-atmospheric-and-planetary-sciences/",
+   "snapshot_sha256": "0b27e716f304ba92683487b9f71aba04aed54682793ae0dd5325248bc91dc5fd",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS) Minimum score required: 7",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Test of English as a Foreign Language (TOEFL) Minimum Score: 100 (iBT) or 5 (iBT26)",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General test required",
+      "quote": "Graduate Record Examination (GRE) – required",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Climate Physics and Chemistry (SM)",
+   "url": "https://oge.mit.edu/programs/earth-atmospheric-and-planetary-sciences/",
+   "snapshot_sha256": "0b27e716f304ba92683487b9f71aba04aed54682793ae0dd5325248bc91dc5fd",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS) Minimum score required: 7",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Test of English as a Foreign Language (TOEFL) Minimum Score: 100 (iBT) or 5 (iBT26)",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General test required",
+      "quote": "Graduate Record Examination (GRE) – required",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Materials Science and Engineering (SM)",
+   "url": "https://oge.mit.edu/programs/materials-science-and-engineering/",
+   "snapshot_sha256": "8e486d90b48544c901cb22a91da754aa810825056cc8ce4772a07cfc57fa32d7",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS) Minimum score required: 7",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT Minimum score: 100 (iBT) or 5 (iBT26)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering in Manufacturing (MEng)",
+   "url": "https://oge.mit.edu/programs/mechanical-engineering/",
+   "snapshot_sha256": "ebb79951133b358fcd5db3aaca4ad0624fc0949500c8d7528410412282a54dee",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS) Minimum score required: 7",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT Minimum score: 100 (iBT) or 5 (iBT26)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Mechanical Engineering (SM)",
+   "url": "https://oge.mit.edu/programs/mechanical-engineering/",
+   "snapshot_sha256": "ebb79951133b358fcd5db3aaca4ad0624fc0949500c8d7528410412282a54dee",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS) Minimum score required: 7",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT Minimum score: 100 (iBT) or 5 (iBT26)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Ocean Engineering (SM)",
+   "url": "https://oge.mit.edu/programs/mechanical-engineering/",
+   "snapshot_sha256": "ebb79951133b358fcd5db3aaca4ad0624fc0949500c8d7528410412282a54dee",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS) Minimum score required: 7",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT Minimum score: 100 (iBT) or 5 (iBT26)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Oceanographic Engineering (SM)",
+   "url": "https://oge.mit.edu/programs/mechanical-engineering/",
+   "snapshot_sha256": "ebb79951133b358fcd5db3aaca4ad0624fc0949500c8d7528410412282a54dee",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS) Minimum score required: 7",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT Minimum score: 100 (iBT) or 5 (iBT26)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Naval Architecture and Marine Engineering (SM)",
+   "url": "https://oge.mit.edu/programs/mechanical-engineering/",
+   "snapshot_sha256": "ebb79951133b358fcd5db3aaca4ad0624fc0949500c8d7528410412282a54dee",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS) Minimum score required: 7",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT Minimum score: 100 (iBT) or 5 (iBT26)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Media Arts and Sciences (SM)",
+   "url": "https://oge.mit.edu/programs/media-arts-and-sciences/",
+   "snapshot_sha256": "b3cbbf628d5314ac6aaa8899b7b3253b8c5e295b322c6f09eb90d7a5290b02ed",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS) Minimum score required: 7",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Test of English as a Foreign Language (TOEFL) Minimum score required: 100 (iBT)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Applied Science in Music Technology and Computation (MASc)",
+   "url": "https://oge.mit.edu/programs/music-technology-and-computation/",
+   "snapshot_sha256": "c15ef80461c509535d74b19214d5f0c51bec62ebe5d64e64800a1a00ace7b13c",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS) Minimum score required: 7",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Test of English as a Foreign Language (TOEFL) Minimum score required: 100 (iBT) or 5 (iBT26)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Nuclear Science and Engineering (SM)",
+   "url": "https://oge.mit.edu/programs/nuclear-science-and-engineering/",
+   "snapshot_sha256": "a02d30eaab735e058ff70dd3e0c0e5c4a2ab0427ab0d53a69e4fd23547168fc4",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS) Minimum score required: 7",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Test of English as a Foreign Language (TOEFL) Minimum score required: 100 (iBT) or 5 (iBT26)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Operations Research (SM)",
+   "url": "https://oge.mit.edu/programs/operations-research-center/",
+   "snapshot_sha256": "3d6c2a6923c937c66e57dec50e83212e1dcc9b6ef3c5204c07f99b3395b6594b",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS) Minimum score required: 7",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Test of English as a Foreign Language (TOEFL) Minimum score required: 100 (iBT) or 5 (iBT26)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Science Writing (SM)",
+   "url": "https://oge.mit.edu/programs/science-writing/",
+   "snapshot_sha256": "c90c3d9d16be7f4e85da764565b148ee93cfd13fe06670d0806055bdbb75cf00",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS) Minimum score required: 7",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Test of English as a Foreign Language (TOEFL) Minimum score required: 100 (iBT) or 5 (iBT26)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Technology and Policy (SM)",
+   "url": "https://oge.mit.edu/programs/technology-and-policy-program/",
+   "snapshot_sha256": "80ecf10f58677a3a9d2b54ab976c29888aeb0aa7d04fdbf282c99596620de44c",
+   "fields": {
+    "ielts": {
+     "overall": 7.5,
+     "quote": "International English Language Testing System (IELTS) Minimum score required: 7.5",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Transportation (MST)",
+   "url": "https://oge.mit.edu/programs/transportation/",
+   "snapshot_sha256": "523a17ded16abc52f0742870e01b62297ba9edc5ad0d2e6cefa5aa815d542f19",
+   "fields": {
+    "ielts": {
+     "overall": 7.5,
+     "quote": "International English Language Testing System (IELTS) Minimum score required: 7.5",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Test of English as a Foreign Language (TOEFL) Minimum score required: 100 (iBT) or 5 (iBT26)",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE required",
+      "quote": "GRE scores – required",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in City Planning (MCP)",
+   "url": "https://oge.mit.edu/programs/urban-studies-and-planning/",
+   "snapshot_sha256": "ceffac69c3f056da75106c514785aa5b15f85ddf1b5d4417676d6f127597e3a2",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS) Minimum score required: 7",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Test of English as a Foreign Language (TOEFL) Minimum score required: 100 (iBT) or 5 (iBT 26)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Sustainability Studies and Urban Planning (SM)",
+   "url": "https://oge.mit.edu/programs/urban-studies-and-planning/",
+   "snapshot_sha256": "ceffac69c3f056da75106c514785aa5b15f85ddf1b5d4417676d6f127597e3a2",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS) Minimum score required: 7",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Test of English as a Foreign Language (TOEFL) Minimum score required: 100 (iBT) or 5 (iBT 26)",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE required for SM applicants",
+      "quote": "GRE scores – required for SM applicants only",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Political Science (SM)",
+   "url": "https://oge.mit.edu/programs/political-science/",
+   "snapshot_sha256": "ed691d40f68c5d2d65a9faf42272aad077a1da711fcdf58883b827a71d3c77df",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS) Minimum score required: 7",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Test of English as a Foreign Language (TOEFL) Minimum score required: 100 (iBT) or 5 (iBT26)",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General test required",
+      "quote": "General test is required",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Engineering and Management (SM), System Design and Management",
+   "url": "https://oge.mit.edu/programs/system-design-and-management/",
+   "snapshot_sha256": "95603dc9ea492ad2c1fd6323816ce56026937528fed9c8b2cf5677d753061154",
+   "fields": {
+    "ielts": {
+     "overall": 7.5,
+     "quote": "International English Language Testing System (IELTS) Minimum score required: 7.5",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "Test of English as a Foreign Language (TOEFL) Minimum score required: 90 (iBT) or 4.5 (iBT26)",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Round 1",
+      "date": "2026-12-11",
+      "quote": "Round 1: December 11, 2026 at at 11:59 PM Eastern Time",
+      "check": "ok"
+     },
+     {
+      "label": "Round 2",
+      "date": "2027-02-26",
+      "quote": "Round 2: February 26, 2027 at at 11:59 PM Eastern Time",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Applied Science in Supply Chain Management (blended)",
+   "url": "https://oge.mit.edu/programs/supply-chain-management-blended/",
+   "snapshot_sha256": "a526e1de39868dd3a8f576201b17a6bfe81d9adae7c803f89f95bb04e6a55c72",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS) Minimum score required: 7",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Test of English as a Foreign Language (TOEFL) Minimum score required: 100 (iBT) or 5 (iBT26)",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "earned the MITx MicroMasters credential in Supply Chain Management before applying",
+      "quote": "Applicants to the SCMb program must have earned the MITx MicroMasters® Program in Supply Chain Management credential before submitting a completed application to the master’s program.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Round 1",
+      "date": "2027-01-10",
+      "quote": "Round 1: January 10, 2027 at 11:59 PM Eastern Time",
+      "check": "ok"
+     },
+     {
+      "label": "Round 2",
+      "date": "2027-06-19",
+      "quote": "Round 2: June 19, 2027 at 11:59 PM Eastern Time",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering in Supply Chain Management (blended)",
+   "url": "https://oge.mit.edu/programs/supply-chain-management-blended/",
+   "snapshot_sha256": "a526e1de39868dd3a8f576201b17a6bfe81d9adae7c803f89f95bb04e6a55c72",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS) Minimum score required: 7",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Test of English as a Foreign Language (TOEFL) Minimum score required: 100 (iBT) or 5 (iBT26)",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "earned the MITx MicroMasters credential in Supply Chain Management before applying",
+      "quote": "Applicants to the SCMb program must have earned the MITx MicroMasters® Program in Supply Chain Management credential before submitting a completed application to the master’s program.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Round 1",
+      "date": "2027-01-10",
+      "quote": "Round 1: January 10, 2027 at 11:59 PM Eastern Time",
+      "check": "ok"
+     },
+     {
+      "label": "Round 2",
+      "date": "2027-06-19",
+      "quote": "Round 2: June 19, 2027 at 11:59 PM Eastern Time",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering in Logistics and Supply Chain Management (residential)",
+   "url": "https://oge.mit.edu/programs/supply-chain-management-residential/",
+   "snapshot_sha256": "f05e44fe440452159d65147667bccf2d40d609c2355186e9fe30de248948c711",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS) Minimum score required: 7",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Test of English as a Foreign Language (TOEFL) Minimum score required: 100 (iBT) or 5 (iBT26)",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "SC0x, GRE or GMAT scores required",
+      "quote": "SC0x, GRE or GMAT scores",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Round 1",
+      "date": "2026-11-01",
+      "quote": "Round 1: November 1, 2026 at 11:59 PM Eastern Time",
+      "check": "ok"
+     },
+     {
+      "label": "Round 2",
+      "date": "2027-01-31",
+      "quote": "Round 2: January 31, 2027 at 11:59 PM Eastern Time",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3",
+      "date": "2027-04-01",
+      "quote": "Round 3: April 1, 2027 at 11:59 PM Eastern Time",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Applied Science in Supply Chain Management (residential)",
+   "url": "https://oge.mit.edu/programs/supply-chain-management-residential/",
+   "snapshot_sha256": "f05e44fe440452159d65147667bccf2d40d609c2355186e9fe30de248948c711",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS) Minimum score required: 7",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Test of English as a Foreign Language (TOEFL) Minimum score required: 100 (iBT) or 5 (iBT26)",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "SC0x, GRE or GMAT scores required",
+      "quote": "SC0x, GRE or GMAT scores",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Round 1",
+      "date": "2026-11-01",
+      "quote": "Round 1: November 1, 2026 at 11:59 PM Eastern Time",
+      "check": "ok"
+     },
+     {
+      "label": "Round 2",
+      "date": "2027-01-31",
+      "quote": "Round 2: January 31, 2027 at 11:59 PM Eastern Time",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3",
+      "date": "2027-04-01",
+      "quote": "Round 3: April 1, 2027 at 11:59 PM Eastern Time",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MIT Sloan Master of Business Analytics (MBAn)",
+   "url": "https://oge.mit.edu/programs/mit-sloan-master-of-business-analytics/",
+   "snapshot_sha256": "d363224748b1b487b570ade3572d7ca7b27828e75f5de6227e98341138e92e76",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "2027 entry",
+      "date": "2027-01-05",
+      "quote": "January 5, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MIT Sloan Master of Finance (MFin)",
+   "url": "https://oge.mit.edu/programs/mit-sloan-master-of-finance/",
+   "snapshot_sha256": "491ad0eb8b0cc557e768b55f47fbb11fd14bd9037c38bb17ed47bfce5f7305a1",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "Summer 2027 entry",
+      "date": "2027-01-05",
+      "quote": "January 5, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MIT Sloan Master of Science in Management Studies (MSMS)",
+   "url": "https://oge.mit.edu/programs/mit-sloan-master-of-science-in-management-studies/",
+   "snapshot_sha256": "ecb1dccace7a1bd0d02c7960c5096db21dd3478c4f8a425c4fb1064b005f22b2",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "GMAT or GRE score required",
+      "quote": "GRE or GMAT (Focus Edition and 10th Edition) scores are required.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MIT Sloan Traditional MBA",
+   "url": "https://oge.mit.edu/programs/mit-sloan-mba-program/",
+   "snapshot_sha256": "6a856621dc4151d131d64894fbcac653aa3b5147d79788ac744b06b39b63758a",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "GMAT or GRE score required",
+      "quote": "GRE or GMAT (Focus Edition and 10th Edition) scores are required.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Round 2",
+      "date": "2027-01-12",
+      "quote": "Round 2: January 12, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MIT Sloan Evening MBA",
+   "url": "https://oge.mit.edu/programs/mit-sloan-evening-mba-program/",
+   "snapshot_sha256": "9c82cc03c3211b32ee3b290393b47c4bc5600b4731ec99c8b731cf867de3df19",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "GMAT or GRE score required",
+      "quote": "GRE or GMAT (Focus Edition and 10th Edition) scores are required.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Round 1",
+      "date": "2026-11-03",
+      "quote": "Round 1: November 3, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Round 2",
+      "date": "2027-02-02",
+      "quote": "Round 2: February 2, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3",
+      "date": "2027-04-02",
+      "quote": "Round 3: April 2, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Round 4",
+      "date": "2027-06-01",
+      "quote": "Round 4: June 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MIT Sloan Fellows MBA",
+   "url": "https://oge.mit.edu/programs/mit-sloan-fellows-mba-program/",
+   "snapshot_sha256": "01f4f55532474bb6281b47274baa4c591741a7f6de7095de169b54122a1d6ae6",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "Round 2",
+      "date": "2027-01-26",
+      "quote": "Round 2: January 26, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MIT Sloan Executive MBA",
+   "url": "https://oge.mit.edu/programs/mit-sloan-executive-mba-program/",
+   "snapshot_sha256": "fff5b94928fe7db5cae509a32d8024ce939a55c6cddb51f05b469c5c2ec51682",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "at least ten years of work experience before the program start",
+      "quote": "Mid-career executive professionals with at least ten years of work experience (prior to the program start date) are qualified to apply to the Executive MBA.",
+      "check": "ok"
+     },
+     {
+      "text": "prior courses in calculus and statistics with a final grade of B or higher",
+      "quote": "Prior courses in calculus and statistics with a final grade of B or higher",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Leaders for Global Operations (MBA and SM dual degree)",
+   "url": "https://oge.mit.edu/programs/leaders-for-global-operations/",
+   "snapshot_sha256": "27948932ac77d7fafbad7f4836cfe3721c15589e7cfcaef12c01874065f39457",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "GMAT or GRE score required",
+      "quote": "GRE or GMAT score required",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 42,
+  "机器核对": 42,
+  "待人工": 0
+ }
+}

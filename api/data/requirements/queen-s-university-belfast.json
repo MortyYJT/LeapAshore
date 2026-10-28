@@ -1,0 +1,35 @@
+{
+ "school_key": "queen-s-university-belfast",
+ "school_name_en": "Queen's University Belfast",
+ "country": "United Kingdom",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://www.qub.ac.uk/courses/postgraduate-taught/"
+ ],
+ "blocked": [
+  {
+   "url": "https://www.qub.ac.uk/courses/postgraduate-taught/",
+   "reason": "snapshot tool: robots.txt disallows (a direct request for https://www.qub.ac.uk/robots.txt returns HTTP 403 from CloudFront)"
+  },
+  {
+   "url": "https://www.qub.ac.uk/courses/",
+   "reason": "snapshot tool: robots.txt disallows"
+  },
+  {
+   "url": "https://www.qub.ac.uk/International/",
+   "reason": "snapshot tool: robots.txt disallows"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.qub.ac.uk/courses/postgraduate-taught/"
+ ],
+ "notes": "The whole www.qub.ac.uk host is blocked for this collector (robots.txt not retrievable, the tool treats it as disallow). Fetching stopped after three URLs on that host; no other official QUB host publishing course requirements was identified. No programmes collected.",
+ "programs": [],
+ "verification": {
+  "programs": 0,
+  "机器核对": 0,
+  "待人工": 0
+ }
+}

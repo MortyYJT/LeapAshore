@@ -1,0 +1,3167 @@
+{
+ "school_key": "queen-mary-university-of-london",
+ "school_name_en": "Queen Mary University of London",
+ "country": "United Kingdom",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/"
+ ],
+ "china_page": {
+  "url": "https://www.qmul.ac.uk/international-students/regions/east-asia/entry-requirements/mainland-china/",
+  "sha256": "3a70c1f9cf063a786623dfac21b5dfe5a63a6c2c4aa29b75f0051593d473907b"
+ },
+ "blocked": [],
+ "complete": false,
+ "remaining_urls": [],
+ "notes": "The course finder is a JavaScript listing that shows only 10 results per query and cannot be paged, so programmes were found by about 100 keyword searches (business, finance, economics, computing, AI, engineering, law, social sciences, psychology); of the 286 listed items the PGCert, PGDip, MRes and research items were skipped, and some taught MSc/MA/LLM pages outside the priority subjects were probably not reached. China ranges (e.g. 2:1 = 70 to 80%) come from each programme page's own China block and give no 985/211 split, so only text and quote are stored. IELTS is stored only where the programme page states it; TOEFL is not stored because QMUL's shared English page splits TOEFL scores across an old 0-120 scale (tests up to 20 January 2026) and a new scale. Deadlines are stored only where the programme page states a full date (one programme).",
+ "programs": [
+  {
+   "name": "Accounting and Finance MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/accounting-and-finance-msc/",
+   "snapshot_sha256": "6385bf2b378637fd2cbc582dea419049a20097405521ae520209cc9bbb851d8b",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in any subject, provided the degree contains satisfactory study of Mathematics and Statistics. Subjects likely to contain sufficient quantitative elements include Accounting, Mathematics, Sciences, Engineering, Computer Science, Economics and Finance.",
+     "quote": "A 2:2 or above at undergraduate level in any subject, provided the degree contains satisfactory study of Mathematics and Statistics. Subjects likely to contain sufficient quantitative elements include Accounting, Mathematics, Sciences, Engineering, Computer Science, Economics and Finance.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Accounting and Management MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/accounting-and-management-msc/",
+   "snapshot_sha256": "b2ce9f0550e4140eda998ac529ce9ec764f7977ba621a03ea5c000ab9b8eea9c",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in any subject.",
+     "quote": "A 2:2 or above at undergraduate level in any subject.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Actuarial Science and Data Analytics MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/actuarial-science-and-data-analytics-msc/",
+   "snapshot_sha256": "9a093fc57bb9f4c469f3ade4b538c72dcdb7f337480be11a57dd2ff12e435999",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in actuarial science, mathematics, statistics, econometrics, mathematical economics, finance, or engineering.",
+     "quote": "A 2:1 or above at undergraduate level in actuarial science, mathematics, statistics, econometrics, mathematical economics, finance, or engineering.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Advanced Aerospace Engineering MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/advanced-aerospace-engineering-msc/",
+   "snapshot_sha256": "341debc88a64824199cc788a2aa8bb28f4c9f7f5c03b2be430665769c5c97c54",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in Engineering (Aerospace, Mechanical, Automotive, Nautical, Marine, Hydraulic, Civil, Chemical), Physics, Mathematics or a related discipline.",
+     "quote": "A 2:2 or above at undergraduate level in Engineering (Aerospace, Mechanical, Automotive, Nautical, Marine, Hydraulic, Civil, Chemical), Physics, Mathematics or a related discipline.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Advanced Chemical Engineering MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/advanced-chemical-engineering-msc/",
+   "snapshot_sha256": "faa53b950e1bbfc39e36c6b852a9f8ff42228ba27f57bae2c32ec659d80e70ee",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in Engineering, Physical Sciences, Mathematics or related Life Sciences (Biochemistry, Biotechnology, Bioinformatics and Biophysics).",
+     "quote": "A 2:2 or above at undergraduate level in Engineering, Physical Sciences, Mathematics or related Life Sciences (Biochemistry, Biotechnology, Bioinformatics and Biophysics).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Advanced Computer Science MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/advanced-computer-science-msc/",
+   "snapshot_sha256": "a004c1351fc918b4122773e9bfd1df807fc0f4d986b010dbcceb150d969bbce9",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Electronic Engineering, Computer Science, Software Engineering, Information Technology, Mathematics or a related discipline.",
+     "quote": "A 2:1 or above at undergraduate level in Electronic Engineering, Computer Science, Software Engineering, Information Technology, Mathematics or a related discipline.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Advanced Electronic and Electrical Engineering MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/advanced-electronic-and-electrical-engineering-msc/",
+   "snapshot_sha256": "185595be34c6e8eeafb4f63a2fffc5398a949401d976fb27f36d53657da36704",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Electronic Engineering, Electrical Engineering, Computer Science, Software Engineering, Information Technology, Mathematics or a related discipline.",
+     "quote": "A 2:1 or above at undergraduate level in Electronic Engineering, Electrical Engineering, Computer Science, Software Engineering, Information Technology, Mathematics or a related discipline.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Advanced Materials Science and Engineering MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/advanced-materials-science-and-engineering-msc/",
+   "snapshot_sha256": "5f93d472150b31afbbeb56a29e924aba90f28cd92dcc80ed50433da4e27457d0",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in Materials Science, Materials Engineering, related disciplines (Biomaterials, Metallurgical Engineering, Mechanical Engineering, Structural Engineering, etc), Physics, Chemistry or Mathematics.",
+     "quote": "A 2:2 or above at undergraduate level in Materials Science, Materials Engineering, related disciplines (Biomaterials, Metallurgical Engineering, Mechanical Engineering, Structural Engineering, etc), Physics, Chemistry or Mathematics.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Advanced Mechanical Engineering MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/advanced-mechanical-engineering-msc/",
+   "snapshot_sha256": "dd04450c5e076df06cfa48ee67bb5299a4aa44fd4afdd7d06e63d8528b801422",
+   "fields": {
+    "academic": {
+     "text": "A good 2:2 (55%) or above at undergraduate level in Mechanical Engineering, Mechatronics, Automotive Engineering, Aerospace/Aeronautical Engineering, or Electrical/Electronic Engineering.",
+     "quote": "A good 2:2 (55%) or above at undergraduate level in Mechanical Engineering, Mechatronics, Automotive Engineering, Aerospace/Aeronautical Engineering, or Electrical/Electronic Engineering.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "AI and the Law LLM",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/ai-and-the-law-llm/",
+   "snapshot_sha256": "bcf49b05ac0a9b0e1bf61a7741fb9e6329041ede6dc1ed11e83bc9fba16bd5f6",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content. Other related degrees may be accepted.",
+     "quote": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content. Other related degrees may be accepted.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic) minimum score 7.0 overall with 6.5 in Writing and 6.0 in Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Art, Business and Law LLM",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/art-business-and-law-llm/",
+   "snapshot_sha256": "9fec21c6056739665dbca5481955b15207815c67753117b0d20f7756af496064",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content. We will also consider an undergraduate degree in Art studies, Cultural studies or other related subject.",
+     "quote": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content. We will also consider an undergraduate degree in Art studies, Cultural studies or other related subject.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic) minimum score 7.0 overall with 6.5 in Writing and 6.0 in Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Artificial Intelligence and Machine Learning in Science MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/artificial-intelligence-and-machine-learning-in-science-msc/",
+   "snapshot_sha256": "66e068b15d6ef49f4a64fd1d0abaa8db66a58acc2d1ad328b3d1c573e299bc59",
+   "fields": {
+    "academic": {
+     "text": "A good 2:2 (55% or above) or above at undergraduate level in Mathematics, Physics, Chemistry, Computing, Engineering or any other STEM subjects.",
+     "quote": "A good 2:2 (55% or above) or above at undergraduate level in Mathematics, Physics, Chemistry, Computing, Engineering or any other STEM subjects.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Artificial Intelligence (Conversion) MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/artificial-intelligence-conversion-msc/",
+   "snapshot_sha256": "809bc3176ff72cac330986f70ffbf34ff8383c11ace8d7d0f7c62130d986740b",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in a degree not related to Computer Science, Software Engineering, Information Technology or Electronic Engineering.",
+     "quote": "A 2:1 or above at undergraduate level in a degree not related to Computer Science, Software Engineering, Information Technology or Electronic Engineering.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Artificial Intelligence for Drug Discovery MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/artificial-intelligence-for-drug-discovery-msc/",
+   "snapshot_sha256": "614ee2434102c90cba16fec328326310d792cb884399bfb5657aa2e9ab1cce97",
+   "fields": {
+    "academic": {
+     "text": "A good 2:2 (55% or above) or above at undergraduate level in Chemistry, Pharmaceutical Chemistry, Medicinal Chemistry, Biochemistry, Pharmacy, Biomedical Sciences or a related discipline.",
+     "quote": "A good 2:2 (55% or above) or above at undergraduate level in Chemistry, Pharmaceutical Chemistry, Medicinal Chemistry, Biochemistry, Pharmacy, Biomedical Sciences or a related discipline.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Artificial Intelligence in the Biosciences MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/artificial-intelligence-in-the-biosciences-msc/",
+   "snapshot_sha256": "9a9c186f2eb6933a2da32a3c88f69cc80ee29b2fb16e4d8228156ce307b3d3c6",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in a Science subject such as Biology, Chemistry, Mathematics or a related subject.",
+     "quote": "A 2:1 or above at undergraduate level in a Science subject such as Biology, Chemistry, Mathematics or a related subject.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Artificial Intelligence MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/artificial-intelligence-msc/",
+   "snapshot_sha256": "fd256e0784046f103e28f5fdddd4659377696eec6f9601ed972ba58238689935",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Electronic Engineering, Computer Science, Software Engineering, Information Technology, Mathematics or a related discipline.",
+     "quote": "A 2:1 or above at undergraduate level in Electronic Engineering, Computer Science, Software Engineering, Information Technology, Mathematics or a related discipline.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Banking and Finance Law LLM",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/banking-and-finance-law-llm/",
+   "snapshot_sha256": "54014ade5aea6e64e85ed344faae790951a8f67a9e6a29873418ba4956c21d70",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content. We will also consider an undergradaute degree in Economics, Business, Finance, Accounting, Management or other related subject.",
+     "quote": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content. We will also consider an undergradaute degree in Economics, Business, Finance, Accounting, Management or other related subject.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic) minimum score 7.0 overall with 6.5 in Writing and 6.0 in Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Banking and Finance MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/banking-and-finance-msc/",
+   "snapshot_sha256": "cd87dc92d3ad8d709f73b4842de254c019e26941b8af9298167a2bafbc5d24ff",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in any subject",
+     "quote": "A 2:2 or above at undergraduate level in any subject",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Biodiversity and Conservation MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/biodiversity-and-conservation-msc/",
+   "snapshot_sha256": "b5a908e0b3c3b3a6f4634aa82030f1dbe66c4813cc07ca2ea52edc94774ff117",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in n a relevant subject such as Biology, Ecology, Zoology, Plant Sciences, Biochemistry, Medicine, or Genetics.",
+     "quote": "A 2:1 or above at undergraduate level in n a relevant subject such as Biology, Ecology, Zoology, Plant Sciences, Biochemistry, Medicine, or Genetics.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Bioinformatics MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/bioinformatics-msc/",
+   "snapshot_sha256": "4bd56ec8dc958789505c3a80baa65ecf84ad34df800e4dadb583b9a394ad0b7d",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Biology or a relevant natural sciences subject.",
+     "quote": "A 2:1 or above at undergraduate level in Biology or a relevant natural sciences subject.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Biomedical Engineering (conversion) MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/biomedical-engineering-conversion-msc/",
+   "snapshot_sha256": "f4cb737daed922390f52cf54e4cc8e16853a978ebef23469ba410e24727d4ff1",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in a science subject (such as Biology, Biotechnology, Biomedical Science, Biochemistry, Medicine, Life Sciences, Chemical Sciences, Pharmacology, Pharmaceutical Science etc).",
+     "quote": "A 2:2 or above at undergraduate level in a science subject (such as Biology, Biotechnology, Biomedical Science, Biochemistry, Medicine, Life Sciences, Chemical Sciences, Pharmacology, Pharmaceutical Science etc).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Biomedical Engineering MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/biomedical-engineering-msc/",
+   "snapshot_sha256": "75ed9954f8a0fdaf856a7fe0aee8decd4cce678b7eacdd61c49b9a32ac82a931",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in an Engineering subject (e.g. Biomedical, Mechanical, Chemical, Civil, Aerospace, Robotics) or a related discipline (Materials Science, Maths, Physics).",
+     "quote": "A 2:2 or above at undergraduate level in an Engineering subject (e.g. Biomedical, Mechanical, Chemical, Civil, Aerospace, Robotics) or a related discipline (Materials Science, Maths, Physics).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Biomedical Science (Medical Microbiology) MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/biomedical-science-medical-microbiology-msc/",
+   "snapshot_sha256": "68405425e063b359110a22228ab26ba69e735f07ba2c4464f0e4bdb0a96e8e0d",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Biomedical Science.",
+     "quote": "A 2:1 or above at undergraduate level in Biomedical Science.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Biotechnology MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/biotechnology-msc/",
+   "snapshot_sha256": "e0623487d4bfe16fcf52d7791b6731ef4b942c5dfbab45799c45cd82637c9d39",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Biomedical Sciences; Biochemistry or related subjects.",
+     "quote": "A 2:1 or above at undergraduate level in Biomedical Sciences; Biochemistry or related subjects.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Business Analytics MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/business-analytics-msc/",
+   "snapshot_sha256": "345dafce305526a5767dd63a9b29b459ca704737fd0ecbdd6e1cee2f2bce2534",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in any subject, provided the degree contains good levels of study of Mathematics and Statistics. Subjects likely to contain sufficient quantitative elements include Mathematics, Sciences, Engineering, Computer Science, Economics and Finance.",
+     "quote": "A 2:1 or above at undergraduate level in any subject, provided the degree contains good levels of study of Mathematics and Statistics. Subjects likely to contain sufficient quantitative elements include Mathematics, Sciences, Engineering, Computer Science, Economics and Finance.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Cancer Genomics and Data Science MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/cancer-genomics-and-data-science-msc/",
+   "snapshot_sha256": "7d3b4d02efc94a16ef26a212940784aed163f46ff90d369bc22425d5ecd8cf3d",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in any subject, provided the degree contains satisfactory study of Mathematics and Statistics. Subjects likely to contain sufficient quantitative elements include Genetics, Genomics, Bioinformatics, Mathematics, Statistics, Engineering, and Computer Science.",
+     "quote": "A 2:1 or above at undergraduate level in any subject, provided the degree contains satisfactory study of Mathematics and Statistics. Subjects likely to contain sufficient quantitative elements include Genetics, Genomics, Bioinformatics, Mathematics, Statistics, Engineering, and Computer Science.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Cancer Genomics and Data Science Online MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/cancer-genomics-and-data-science-online-msc/",
+   "snapshot_sha256": "ea40d0df59065187c1b71df739b86e30bfd30a1630d62ebd73cf46e157843556",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in any subject, provided the degree contains satisfactory study of Mathematics and Statistics. Subjects likely to contain sufficient quantitative elements include Genetics, Genomics, Bioinformatics, Mathematics, Statistics, Engineering, and Computer Science.",
+     "quote": "A 2:1 or above at undergraduate level in any subject, provided the degree contains satisfactory study of Mathematics and Statistics. Subjects likely to contain sufficient quantitative elements include Genetics, Genomics, Bioinformatics, Mathematics, Statistics, Engineering, and Computer Science.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Chemical Research MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/chemical-research-msc/",
+   "snapshot_sha256": "dc13101a88cde327ef606c3725a80ef1698e8cd20939be280119ed23eddf2c1e",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above or above at undergraduate level in Chemistry or a degree with a significant Chemistry component.",
+     "quote": "A 2:2 or above or above at undergraduate level in Chemistry or a degree with a significant Chemistry component.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Clinical Drug Development MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/clinical-drug-development-msc/",
+   "snapshot_sha256": "f6bafb1275909349dd74e8c649f3485e66719b468fa2e14168094ffc200d8502",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in a related subject from a recognised academic institution.",
+     "quote": "A 2:2 or above at undergraduate level in a related subject from a recognised academic institution.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Clinical Drug Development Online MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/clinical-drug-development-online-msc/",
+   "snapshot_sha256": "eff65045ab3e06f5657f69b0442652b09cb301507b555c79a6f30a42386f4a9a",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in a related subject from a recognised academic institution.",
+     "quote": "A 2:2 or above at undergraduate level in a related subject from a recognised academic institution.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Clinical Microbiology MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/clinical-microbiology-msc/",
+   "snapshot_sha256": "c6b8ad335bd5053e4b2b24f6bc86e85a775052b18f695ad0ea389bd745199e3a",
+   "fields": {
+    "academic": {
+     "text": "A MBBS or basic medical degree from a university recognised by the General Medical Council (GMC).",
+     "quote": "A MBBS or basic medical degree from a university recognised by the General Medical Council (GMC).",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Commercial and Corporate Law LLM",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/commercial-and-corporate-law-llm/",
+   "snapshot_sha256": "a7dbdae37664755ba42b3225776b837888bbd86ee43665994ab173317f8b2678",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content. We will also consider an undergraduate degree in Economics, Business, Finance, Accounting, Management or other related subject.",
+     "quote": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content. We will also consider an undergraduate degree in Economics, Business, Finance, Accounting, Management or other related subject.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic) minimum score 7.0 overall with 6.5 in Writing and 6.0 in Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Commercial Law Dual LLM (London and Singapore) LLM",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/commercial-law-dual-llm-london-and-singapore-llm/",
+   "snapshot_sha256": "dd9d325f0c60f428e22305f57f4c857c5636a1b2f62cae6aaad17ec1eb1a507a",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content.",
+     "quote": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic) minimum score 7.0 overall with 6.5 in Writing and 6.0 in Listening, Reading and Speaking",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "January 2027 start",
+      "date": "2026-10-30",
+      "quote": "Application deadline: 30th October 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Comparative and International Dispute Resolution LLM",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/comparative-and-international-dispute-resolution-llm/",
+   "snapshot_sha256": "b5f8d5bbb0cc62f49a21d99724fde0e5172f27409e8e81c3526ff67dd66f7b73",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content.",
+     "quote": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic) minimum score 7.0 overall with 6.5 in Writing and 6.0 in Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Competition Law LLM",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/competition-law-llm/",
+   "snapshot_sha256": "bcd479d5e448f18d6136c86013c73c0de4de3ecdc6a48f6e6567239296bc95f1",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content.",
+     "quote": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic) minimum score 7.0 overall with 6.5 in Writing and 6.0 in Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Computer Science (Conversion) MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/computer-science-conversion-msc/",
+   "snapshot_sha256": "4b8f9dd7180f157c634889f90be16b546c8c825389c952687390b97db43029f8",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in a degree not related to Computer Science, Software Engineering, Information Technology or Electronic Engineering.",
+     "quote": "A 2:1 or above at undergraduate level in a degree not related to Computer Science, Software Engineering, Information Technology or Electronic Engineering.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Corporate Finance MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/corporate-finance-msc/",
+   "snapshot_sha256": "13dd4abe48b642c7619d0e936f6bdf6fa7ddc4c8a37cdd3a3cd1566f784694b5",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in any subject. Postgraduate studies will also be taken into consideration..",
+     "quote": "A 2:2 or above at undergraduate level in any subject. Postgraduate studies will also be taken into consideration..",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Creative Arts and Media MA",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/creative-arts-and-media-ma/",
+   "snapshot_sha256": "33ff13103762071a958f97010092fb9e574e2c3dae32fb1181e2a08a96f9f5dd",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in any subject",
+     "quote": "A 2:2 or above at undergraduate level in any subject",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Creative Industries and Arts Organisation MA",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/creative-industries-and-arts-organisation-ma/",
+   "snapshot_sha256": "28ce2b6e59508a17aea9a80c751c3db957085d094a0cbf1f6bfe69b4913439a0",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in any subject.",
+     "quote": "A 2:2 or above at undergraduate level in any subject.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Criminal Justice LLM",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/criminal-justice-llm/",
+   "snapshot_sha256": "eb914c50705cb3cb6554c6641dba15beedb130aeaa350685ca8619a180323627",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content.",
+     "quote": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic) minimum score 7.0 overall with 6.5 in Writing and 6.0 in Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Critical Care Online MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/critical-care-online-msc/",
+   "snapshot_sha256": "193ce52215869f01fe8ca17cd7a313b87a7ac4ccec781687afbc4c050c55f253",
+   "fields": {
+    "academic": {
+     "text": "This programme is aimed at doctors, nurses and allied health professionals. Postgraduate experience of critical care medicine is essential.",
+     "quote": "This programme is aimed at doctors, nurses and allied health professionals. Postgraduate experience of critical care medicine is essential.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Data Analytics MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/data-analytics-msc/",
+   "snapshot_sha256": "47b30ca4f3efa754f7d678b55f29e67c1234eb5b432043a2adeaf2c42ae4459b",
+   "fields": {
+    "academic": {
+     "text": "A good 2:2 (55% or above) or above at undergraduate level in a subject with substantial mathematical content, including Mathematics, Statistics, Physics, Engineering, Economics and Computer Science..",
+     "quote": "A good 2:2 (55% or above) or above at undergraduate level in a subject with substantial mathematical content, including Mathematics, Statistics, Physics, Engineering, Economics and Computer Science..",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Data Science and Artificial Intelligence (Conversion Programme) MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/data-science-and-artificial-intelligence-conversion-programme-msc/",
+   "snapshot_sha256": "467b29ae2607a9725cb578af49bd8832f02c13ef1cebe11a2d2bacc1126496a5",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in a Science, Technology, Engineering or Mathematics (STEM) subject not related to Computer Science, Software Engineering, Information Technology, Electrical Engineering or Electronic Engineering",
+     "quote": "A 2:1 or above at undergraduate level in a Science, Technology, Engineering or Mathematics (STEM) subject not related to Computer Science, Software Engineering, Information Technology, Electrical Engineering or Electronic Engineering",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Data Science MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/data-science-msc/",
+   "snapshot_sha256": "293386739c46a38f8db7fbb24af0525c6a24e5d153abc3ce8a2a1d18ef7bc8f7",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Electronic Engineering, Computer Science, Software Engineering, Information Technology or a related discipline.",
+     "quote": "A 2:1 or above at undergraduate level in Electronic Engineering, Computer Science, Software Engineering, Information Technology or a related discipline.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Dental Materials MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/dental-materials-msc/",
+   "snapshot_sha256": "ac68a07b22dd86317635111b1376e5d9ee135e79eefdd323aa52dfec5ec07bf4",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in a relevant subject. Degree disciplines such as Medicine, Dentistry, Chemistry, Biology or related subjects in the Sciences will be considered.",
+     "quote": "A 2:2 or above at undergraduate level in a relevant subject. Degree disciplines such as Medicine, Dentistry, Chemistry, Biology or related subjects in the Sciences will be considered.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Dental Public Health, Policy and Leadership Online MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/dental-public-health-policy-and-leadership-online-msc/",
+   "snapshot_sha256": "1f2069d028752d85c3b5207daf5589a02e432a98f4b8576b5eccbea000665fe1",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in a relevant discipline such as Dentistry, Medicine, Nursing, Health Sciences, Oral Health Sciences, Public Health or Social Sciences.",
+     "quote": "A 2:1 or above at undergraduate level in a relevant discipline such as Dentistry, Medicine, Nursing, Health Sciences, Oral Health Sciences, Public Health or Social Sciences.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Dental Technology MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/dental-technology-msc/",
+   "snapshot_sha256": "f1ea3900ccc8913466c599c7fea72248b739dfbde02f89feacc35410ec14e5ef",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in a relevant subject such as Medicine, Dentistry, Dental Technology, Chemistry or Biology.",
+     "quote": "A 2:2 or above at undergraduate level in a relevant subject such as Medicine, Dentistry, Dental Technology, Chemistry or Biology.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Development and International Business MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/development-and-international-business-msc/",
+   "snapshot_sha256": "c3250b58bad230ff692417cfd0c06c8f95881d512991eaf20afde76d64e7d44e",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in a relevant subject.",
+     "quote": "A 2:1 or above at undergraduate level in a relevant subject.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Digital Marketing MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/digital-marketing-msc/",
+   "snapshot_sha256": "2426dd90b1d21e1ece8d954b1e78a9590ca598c74595717e51645b1c8c8f821c",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in any subject.",
+     "quote": "A 2:1 or above at undergraduate level in any subject.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Digital Media and Global Cultures MA",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/digital-media-and-global-cultures-ma/",
+   "snapshot_sha256": "9f0d450b6f3a2deef01eedb7cef04fb16cc89a5735c4bd029098fc1a18dc121e",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in any subject",
+     "quote": "A 2:2 or above at undergraduate level in any subject",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Dual Masters in Intellectual Property, Data and the Law LLM",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/dual-masters-in-intellectual-property-data-and-the-law-llm/",
+   "snapshot_sha256": "565c44ef220d64168aade1e7ad3e5d693e488f3b52d661dde672c6a6d28ecb82",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Law or a degree with substantial Law content..",
+     "quote": "A 2:1 or above at undergraduate level in Law or a degree with substantial Law content..",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic) minimum score 7.0 overall with 6.5 in Writing and 6.0 in Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Economics MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/economics-msc/",
+   "snapshot_sha256": "efca416137f198c982263ddf87a8fdfdf8530fe7fe0e3654547f67f92b8c7f66",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in any subject area, with good performance in 2 quantitative modules at university level.",
+     "quote": "A 2:1 or above at undergraduate level in any subject area, with good performance in 2 quantitative modules at university level.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Emergency and Resuscitation Medicine Online MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/emergency-and-resuscitation-medicine-online-msc/",
+   "snapshot_sha256": "7487667ee0fd20d1427591f07c6d243ee064e992b998ff0c2d4d179c6a8e0e62",
+   "fields": {
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Endodontics MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/endodontics-msc/",
+   "snapshot_sha256": "37badb723ee601ce7a78b2a84f7b209cd7b78c860b3fad4b074d9d5aa53b7ec5",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have a primary qualification in Dentistry (Bachelor of Dental Surgery or equivalent). Two years full time post qualification clinical practice of dentistry is also required.",
+     "quote": "Applicants must have a primary qualification in Dentistry (Bachelor of Dental Surgery or equivalent). Two years full time post qualification clinical practice of dentistry is also required.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Energy and Climate Change Law LLM",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/energy-and-climate-change-law-llm/",
+   "snapshot_sha256": "f5dd63eed9c8ca84643d109cda9274bd9306de3725ec8ca960458c08fca05882",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Law or a degree with substantial Law content. We will also consider a degree in Economics, Business, Finance, Management, Environmental/climate studies or other related subject.",
+     "quote": "A 2:1 or above at undergraduate level in Law or a degree with substantial Law content. We will also consider a degree in Economics, Business, Finance, Management, Environmental/climate studies or other related subject.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic) minimum score 7.0 overall with 6.5 in Writing and 6.0 in Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Engineering Management MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/engineering-management-msc/",
+   "snapshot_sha256": "bde7d2818867fb21e71a8577cb0c2abbf194eec1fb7de93467f6037448ecde0a",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in a STEM subject (Physical, Chemical and Biological Sciences, Engineering, Mathematics, Information Technology, Computer Science, etc).",
+     "quote": "A 2:2 or above at undergraduate level in a STEM subject (Physical, Chemical and Biological Sciences, Engineering, Mathematics, Information Technology, Computer Science, etc).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Entrepreneurship and Innovation Management MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/entrepreneurship-and-innovation-management-msc/",
+   "snapshot_sha256": "e44d9ef4f9d2f5d48fbfc81bacdd8512769c25df6f2a25340af49f5e66c96421",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in any subject.",
+     "quote": "A 2:2 or above at undergraduate level in any subject.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Environment, Sustainability and Development MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/environment-sustainability-and-development-msc/",
+   "snapshot_sha256": "f5c566d8945869b4df22915720475561e9897e187676a9c64371831ad8fd3eeb",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in relevant subject.",
+     "quote": "A 2:1 or above at undergraduate level in relevant subject.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Environmental Law LLM",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/environmental-law-llm/",
+   "snapshot_sha256": "dd14073a6c29443fdedf4fbba02239eb3f55365331dd0f5773904560e6943c5f",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content.",
+     "quote": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic) minimum score 7.0 overall with 6.5 in Writing and 6.0 in Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Experimental Oral Pathology (Oral Sciences) MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/experimental-oral-pathology-oral-sciences-msc/",
+   "snapshot_sha256": "7c33101eee75d2d164094604a645d53126b8edb3cdd2d8af0ba7f0f97c979a54",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in a relevant subject such as Medicine, Dentistry, Chemistry or Biology.",
+     "quote": "A 2:2 or above at undergraduate level in a relevant subject such as Medicine, Dentistry, Chemistry or Biology.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Fashion Law LLM",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/fashion-law-llm/",
+   "snapshot_sha256": "82f1721446439a5f7989876aeb8fae1cca074434718929d9ec5d216cc8a5cad4",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content. Other related degrees may be accepted.",
+     "quote": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content. Other related degrees may be accepted.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic) minimum score 7.0 overall with 6.5 in Writing and 6.0 in Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Film and Performing Arts Law LLM",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/film-and-performing-arts-law-llm/",
+   "snapshot_sha256": "dacf1d9213f61921de3563391decad6e078024a733c382ceb366e189e80dd556",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic) minimum score 7.0 overall with 6.5 in Writing and 6.0 in Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Finance and Banking MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/finance-and-banking-msc/",
+   "snapshot_sha256": "b2af570571dd3f87ed7c74e0bc5063a76040efb0632c251193807c26f4937621",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in any subject. Postgraduate studies will also be taken into consideration..",
+     "quote": "A 2:2 or above at undergraduate level in any subject. Postgraduate studies will also be taken into consideration..",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Finance and Banking with Integrated Pre-Masters MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/finance-and-banking-with-integrated-pre-masters-msc/",
+   "snapshot_sha256": "453ab9f898aad2fc7bdfed683e276b58e2cac2b6e405072a1ca50d83a5be5852",
+   "fields": {
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Finance and Investment MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/finance-and-investment-msc/",
+   "snapshot_sha256": "a00e5bdbe9b9bcac268536d8c84613669e700ee2443034f23bc1296b8d42ebec",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in any subject. Postgraduate studies will also be taken into consideration.",
+     "quote": "A 2:2 or above at undergraduate level in any subject. Postgraduate studies will also be taken into consideration.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Finance and Investment with Integrated Pre-Masters MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/finance-and-investment-with-integrated-pre-masters-msc/",
+   "snapshot_sha256": "f3ff99a7822dec0ce1efd2a55d2043da1e897d3bd6df576659aaa1d150a82f08",
+   "fields": {
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Finance MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/finance-msc/",
+   "snapshot_sha256": "8ae8518aa4ab827bbfdd034089502464a874c3b84f21ab60cca091c89cb1c642",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in any subject area with good performance in 1 quantitative module at university level.",
+     "quote": "A 2:1 or above at undergraduate level in any subject area with good performance in 1 quantitative module at university level.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Financial Data Analytics MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/financial-data-analytics-msc/",
+   "snapshot_sha256": "c7cd6662bea43d8239ae616250d877bd2ef3da1b2d177fee6ba9d725f6c2dc74",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 (50% or above) or above at undergraduate level in Mathematics, Statistics, Physics, Engineering, Computer Science, Quantitative Economics, or a closely",
+     "quote": "A 2:2 (50% or above) or above at undergraduate level in Mathematics, Statistics, Physics, Engineering, Computer Science, Quantitative Economics, or a closely",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Financial Mathematics MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/financial-mathematics-msc/",
+   "snapshot_sha256": "c9f92decef894034afbe00ddda733a50aa44eca271af7d20cb3bab3b7266b8fa",
+   "fields": {
+    "academic": {
+     "text": "A good 2:2 (55% or above) or above at undergraduate level in Mathematics or a subject with a strong Mathematics component such as Physics, Engineering or Computer Science",
+     "quote": "A good 2:2 (55% or above) or above at undergraduate level in Mathematics or a subject with a strong Mathematics component such as Physics, Engineering or Computer Science",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Financial Technology (FinTech) MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/financial-technology-fintech-msc/",
+   "snapshot_sha256": "edf89ebdd33dd329590ffcf850064b752bf98b5f740bf46892568dee1917dd0d",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in any subject area, with good performance in 2 quantitative modules at university level.",
+     "quote": "A 2:1 or above at undergraduate level in any subject area, with good performance in 2 quantitative modules at university level.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Forensic Medical Sciences MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/forensic-medical-sciences-msc/",
+   "snapshot_sha256": "b292f524a87d01348c9b3df6a2e2f01beaf8e4d16ab99e5a09c0c3dded9594bb",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in a Life Sciences subject.",
+     "quote": "A 2:2 or above at undergraduate level in a Life Sciences subject.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Forensic Mental Health: Research and Practice MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/forensic-mental-health-research-and-practice-msc/",
+   "snapshot_sha256": "55466344ae8ffe9288455abc4d56d2f6232e56cceec60cf45a5fae5207584480",
+   "fields": {
+    "academic": {
+     "text": "A good 2:2 or above at undergraduate level in Psychology or a related discipline such as Sociology, Criminology, Law, or a Medical degree (non-UK medical degrees marked on a grading scale must be equivalent to UK good 2:2).",
+     "quote": "A good 2:2 or above at undergraduate level in Psychology or a related discipline such as Sociology, Criminology, Law, or a Medical degree (non-UK medical degrees marked on a grading scale must be equivalent to UK good 2:2).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Forensic Psychology and Mental Health MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/forensic-psychology-and-mental-health-msc/",
+   "snapshot_sha256": "0c26d7f9dda01078e2961b7cca9e9f9a6dd0689d7012659e8497afc7d0a4e275",
+   "fields": {
+    "academic": {
+     "text": "A good 2:1 or above at undergraduate level in Psychology or a related discipline.",
+     "quote": "A good 2:1 or above at undergraduate level in Psychology or a related discipline.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "FT Marketing with Integrated Pre-Masters MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/ft-marketing-with-integrated-pre-masters-msc/",
+   "snapshot_sha256": "94e90bb4e5bb61d14199eca9736d35d70d26748d4d3c23e4d33f03be9ceecdfb",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Global Business and Sustainability MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/global-business-and-sustainability-msc/",
+   "snapshot_sha256": "f6121ad5c179cc5deb8ae2f8a42197be49d9a7f2bb78a5ae112d18c3bd8671fe",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in a Business, Humanities or Social Sciences subject.",
+     "quote": "A 2:2 or above at undergraduate level in a Business, Humanities or Social Sciences subject.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Global Development MA",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/global-development-ma/",
+   "snapshot_sha256": "c69fed83b55549337ce2ca6cfa0bc25f4ecb8ef3fa71e3667ca652c444d1bc59",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in a relevant subject.",
+     "quote": "A 2:1 or above at undergraduate level in a relevant subject.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Global Public Health and Policy MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/global-public-health-and-policy-msc/",
+   "snapshot_sha256": "313c592abe86d280757eedc0f98941b67d53902a0a514ddac1b6ad5ee53c6e02",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in a relevant subject, such as Medicine, Nursing, the health sciences or the social sciences.",
+     "quote": "A 2:1 or above at undergraduate level in a relevant subject, such as Medicine, Nursing, the health sciences or the social sciences.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Global Public Health Online MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/global-public-health-online-msc/",
+   "snapshot_sha256": "34c6d7d417afb2abbcfabef04f819b518e348b37d3a1bd1e4c5de74f2d9e239e",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in a relevant subject, such as Medicine, Nursing, the health sciences or the social sciences..",
+     "quote": "A 2:1 or above at undergraduate level in a relevant subject, such as Medicine, Nursing, the health sciences or the social sciences..",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Health Data in Practice MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/health-data-in-practice-msc/",
+   "snapshot_sha256": "61157e28874fedc0fadf8247d56308cf7a058a9011c570bdeb4462ca19cb6fc2",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in a related discipline. Relevant subjects include quantitative disciplines such as Statistics, Computer Sciences, Mathematics, Bioinformatics and Biomedical Sciences, and qualitative disciplines such as Epidemiology and Public Health.",
+     "quote": "A 2:1 or above at undergraduate level in a related discipline. Relevant subjects include quantitative disciplines such as Statistics, Computer Sciences, Mathematics, Bioinformatics and Biomedical Sciences, and qualitative disciplines such as Epidemiology and Public Health.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Heritage Management MA",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/heritage-management-ma/",
+   "snapshot_sha256": "f43f1e8c78ccf6a1dde38a0df0e3deac24e93abe78a9302d780b60ce8f8e4fc9",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in any subject.",
+     "quote": "A 2:1 or above at undergraduate level in any subject.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "History of Political Thought and Intellectual History MA",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/history-of-political-thought-and-intellectual-history-ma/",
+   "snapshot_sha256": "837ee845c500d0917fe116316d1cef81826fad7ae5afe3735d56dd07e29187e6",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in a Humanities subject.",
+     "quote": "A 2:1 or above at undergraduate level in a Humanities subject.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Human Rights Law LLM",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/human-rights-law-llm/",
+   "snapshot_sha256": "12f3f1d4272a8a267d439d60c026ca273c426f608a8505f1ea99e9eef68ea45a",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content.",
+     "quote": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic) minimum score 7.0 overall with 6.5 in Writing and 6.0 in Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Innovation and Entrepreneurship for Smart Technology MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/innovation-and-entrepreneurship-for-smart-technology-msc/",
+   "snapshot_sha256": "492d8f31bc3ca4e0f407f994da8041aa96fafccfb254352a475a3ee99c9592cc",
+   "fields": {
+    "academic": {
+     "text": "A 2.1 or above at undergraduate level in Electronic Engineering, Computer Science, Software Engineering, Information Technology, Mathematics or a related discipline",
+     "quote": "A 2.1 or above at undergraduate level in Electronic Engineering, Computer Science, Software Engineering, Information Technology, Mathematics or a related discipline",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Intellectual Property Law LLM",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/intellectual-property-law-llm/",
+   "snapshot_sha256": "96875042cd84bd041a69fd44ec09bae875b8d70dc31afc3ba47862e09b032189",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content. We will also consider an undergraduate degree in Arts Management, Cultural studies, Intellectual Property, STEM or other related subject .",
+     "quote": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content. We will also consider an undergraduate degree in Arts Management, Cultural studies, Intellectual Property, STEM or other related subject .",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic) minimum score 7.0 overall with 6.5 in Writing and 6.0 in Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Business and Politics MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/international-business-and-politics-msc/",
+   "snapshot_sha256": "4ba1b3569c9becec2ca7a2a45ada375ad5516fa5e48c6b1e527a770e54aaadd0",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Politics or a related discipline.",
+     "quote": "A 2:1 or above at undergraduate level in Politics or a related discipline.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Business Law LLM",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/international-business-law-llm/",
+   "snapshot_sha256": "1a3ee3428f068cd71f6644c89c2f271b9999665eac3897493bb1215b30ddcd4e",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content. We will also consider an undergraduate degree in Economics, Business, Finance, Accounting, Management or other related subject.",
+     "quote": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content. We will also consider an undergraduate degree in Economics, Business, Finance, Accounting, Management or other related subject.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic) minimum score 7.0 overall with 6.5 in Writing and 6.0 in Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Business MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/international-business-msc/",
+   "snapshot_sha256": "3e66e7d17eca8ba5c5e7d431207d4f9953caab793e5979a8cbbc9b0f495e0d6b",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in any subject.",
+     "quote": "A 2:1 or above at undergraduate level in any subject.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Dispute Resolution Online LLM",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/international-dispute-resolution-online-llm/",
+   "snapshot_sha256": "1fb1fd3dfa39c99a77246e8f68a2b76a69c65ad13c4faf755821e99733141553",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content.",
+     "quote": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic) minimum score 7.0 overall with 6.5 in Writing and 6.0 in Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Economic Law LLM",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/international-economic-law-llm/",
+   "snapshot_sha256": "17d343f0c86008b1e86e3f797eb392c9e748589e7de21099435d3db20ebd3598",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content.",
+     "quote": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic) minimum score 7.0 overall with 6.5 in Writing and 6.0 in Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Financial Management MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/international-financial-management-msc/",
+   "snapshot_sha256": "64716e8d2ad6f6baa0ca0ff4d25c7de81b30abca0be29691ccc2f37d3740bcc5",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in any subject.",
+     "quote": "A 2:2 or above at undergraduate level in any subject.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Human Resource Management MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/international-human-resource-management-msc/",
+   "snapshot_sha256": "9737493db3142b32b895ba623eb593c7beaf649087de1fb9a48148a361ca26ae",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in any subject.",
+     "quote": "A 2:2 or above at undergraduate level in any subject.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Maritime Law LLM",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/international-maritime-law-llm/",
+   "snapshot_sha256": "c1d909162528e48e74f611e0f051b50219478ad0255c6b113c2c720c087f6286",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content. We will also consider an undergraduate degree in Economics, Business, Shipping, Maritime, Finance, Accounting or other related subject.",
+     "quote": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content. We will also consider an undergraduate degree in Economics, Business, Shipping, Maritime, Finance, Accounting or other related subject.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic) minimum score 7.0 overall with 6.5 in Writing and 6.0 in Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Marketing and Business Strategies MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/international-marketing-and-business-strategies-msc/",
+   "snapshot_sha256": "e3f16b41eaff8e7718fce6b4477d13ac155276429e87b6bcaf0632560ec80f9e",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in any subject.",
+     "quote": "A 2:2 or above at undergraduate level in any subject.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Marketing and Consumer Psychology MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/international-marketing-and-consumer-psychology-msc/",
+   "snapshot_sha256": "2827422ec1ee1c9951e2db87a5a13071f7686e9cda2c25b152b4aa27293cd4b5",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in any subject.",
+     "quote": "A 2:2 or above at undergraduate level in any subject.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Political Economy MA",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/international-political-economy-ma/",
+   "snapshot_sha256": "fe59dafaa59265d831a55e5a798f44bed7e01245200478668e48ca60aac702a1",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in a relevant social science or humanities discipline (for example Politics, Economics, Sociology, International Relations, Human Geography, History, Anthropology, Philosophy, Law, Literature).",
+     "quote": "A 2:1 or above at undergraduate level in a relevant social science or humanities discipline (for example Politics, Economics, Sociology, International Relations, Human Geography, History, Anthropology, Philosophy, Law, Literature).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Political Sociology MA",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/international-political-sociology-ma/",
+   "snapshot_sha256": "6353569e09d976283d00f9763eb199033ddde1556b1cfb3dafcf180fdb0cb747",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in a relevant Social Science or Humanities discipline (for example Politics, Sociology, International Relations, Human Geography, History, Anthropology, Philosophy, Law, Literature).",
+     "quote": "A 2:1 or above at undergraduate level in a relevant Social Science or Humanities discipline (for example Politics, Sociology, International Relations, Human Geography, History, Anthropology, Philosophy, Law, Literature).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Public Policy MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/international-public-policy-msc/",
+   "snapshot_sha256": "a2d3ee8583d828c89bdf4115f8f02f9c85f8139b243aad56798e5f15fdcc8622",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Politics or a related discipline.",
+     "quote": "A 2:1 or above at undergraduate level in Politics or a related discipline.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Public Policy Online MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/international-public-policy-online-msc/",
+   "snapshot_sha256": "d0ed9e6014dfa814c6050e059ced8e5b91026f706263c6e81e8045040263adfb",
+   "fields": {
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Relations MA",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/international-relations-ma/",
+   "snapshot_sha256": "6cdc4e3a673ef02697d22b6dc9638f31b4408d8145a88c949556c71b16b94811",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Politics or a related discipline.",
+     "quote": "A 2:1 or above at undergraduate level in Politics or a related discipline.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Relations Online MA",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/international-relations-online-ma/",
+   "snapshot_sha256": "cfd654d1bd0b098ff9671234d54f2de88a3307daef87028201805ddc00f1cc49",
+   "fields": {
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Tax Law LLM",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/international-tax-law-llm/",
+   "snapshot_sha256": "1684d300060f45a2caab8a80c6c6deda027fd6fd379ef83f0d261e8ca2356db3",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content. We will also consider an undergraduate degree in Economics, Business, Finance, Accounting, or other related subject.",
+     "quote": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content. We will also consider an undergraduate degree in Economics, Business, Finance, Accounting, or other related subject.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic) minimum score 7.0 overall with 6.5 in Writing and 6.0 in Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Trade and Economic Law LLM",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/international-trade-and-economic-law-llm/",
+   "snapshot_sha256": "fb5162ffb3ed14df6607abd80d176ac1ae3a5780b6b2a3d1d6798f5ebf57c807",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Law, Economics, Business, Finance, Accounting or other related degree may be accepted.",
+     "quote": "A 2:1 or above at undergraduate level in Law, Economics, Business, Finance, Accounting or other related degree may be accepted.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic) minimum score 7.0 overall with 6.5 in Writing and 6.0 in Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Law and Economics LLM",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/law-and-economics-llm/",
+   "snapshot_sha256": "1f41925894d618818fb4d21551047aa004cb8ed3275b7091ff8d2adfc5ec6427",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Law, Economics, Business, Finance, Accounting or other related degree may be accepted",
+     "quote": "A 2:1 or above at undergraduate level in Law, Economics, Business, Finance, Accounting or other related degree may be accepted",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic) minimum score 7.0 overall with 6.5 in Writing and 6.0 in Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Law and Finance MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/law-and-finance-msc/",
+   "snapshot_sha256": "3832316b14a75bdf329023ed80c29bcbb57838ff81e0546bb4f3bcebb5460b90",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Law, Economics, Business, Finance, Accounting or other related degree may be accepted.",
+     "quote": "A 2:1 or above at undergraduate level in Law, Economics, Business, Finance, Accounting or other related degree may be accepted.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic) minimum score 7.0 overall with 6.5 in Writing and 6.0 in Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Laws LLM",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/laws-llm/",
+   "snapshot_sha256": "97e5eaf9b2d12afb5e5667521ec9d07fe89965df1702a8ef104c64cdf2bf2587",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content.",
+     "quote": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic) minimum score 7.0 overall with 6.5 in Writing and 6.0 in Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Laws (Paris) LLM",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/laws-paris-llm/",
+   "snapshot_sha256": "716c05ba2f1a2ee0e651fdd651b7ad218ce9ed98f8d16ed47a3b9a8c284759b6",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content.",
+     "quote": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic) minimum score 7.0 overall with 6.5 in Writing and 6.0 in Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Linguistics and AI MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/linguistics-and-ai-msc/",
+   "snapshot_sha256": "03f2171afaeee33e3229832617da6f3b6e5f4c21d01b0e22d77858230ff55fa0",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in any subject",
+     "quote": "A 2:1 or above at undergraduate level in any subject",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Machine Learning for Visual Data Analytics MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/machine-learning-for-visual-data-analytics-msc/",
+   "snapshot_sha256": "f8c8c663eea4b981a21692896be8a5a620a3f4d1793b8f1fdbd52f686faea89b",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Electronic Engineering, Computer Science, Software Engineering, Information Technology, Mathematics or a related discipline.",
+     "quote": "A 2:1 or above at undergraduate level in Electronic Engineering, Computer Science, Software Engineering, Information Technology, Mathematics or a related discipline.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Management MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/management-msc/",
+   "snapshot_sha256": "4544b493695a18fb2844036c1230044e0504ed1875adffd3caf91e338aeaa481",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in any subject.",
+     "quote": "A 2:2 or above at undergraduate level in any subject.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Management of Intellectual Property MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/management-of-intellectual-property-msc/",
+   "snapshot_sha256": "f51737ba1c40c36105b80a16f7a5d234cbe670369348e50af4ed05c040f69881",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in any subject",
+     "quote": "A 2:2 or above at undergraduate level in any subject",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic) minimum score 7.0 overall with 6.5 in Writing and 6.0 in Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Management with Integrated Pre-Masters MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/management-with-integrated-pre-masters-msc/",
+   "snapshot_sha256": "fe2ea50fe46a82ffd0702293f89522bc7a377155d2042ae2fad5c85b86749ee1",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Marketing and Digital Analytics MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/marketing-and-digital-analytics-msc/",
+   "snapshot_sha256": "b553f3103c9cc05f621803686bacb809adab5048f69fc4d1530398725f2a5b78",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in any subject.",
+     "quote": "A 2:2 or above at undergraduate level in any subject.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Marketing and Digital Communications MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/marketing-and-digital-communications-msc/",
+   "snapshot_sha256": "e3549eadb63f01859853fcdfa5181750e320f21d84a20d56744f5e6c9c5bdd8c",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in any subject.",
+     "quote": "A 2:2 or above at undergraduate level in any subject.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Marketing in the Creative Industries MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/marketing-in-the-creative-industries-msc/",
+   "snapshot_sha256": "6af32eaaa34a825cabfe696796755006004f7fdb5e02020cc2bcaf33d54483c7",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in any subject.",
+     "quote": "A 2:2 or above at undergraduate level in any subject.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Marketing MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/marketing-msc/",
+   "snapshot_sha256": "72f395fe532b5fe9743dbccfefde57c89f08794f396946eb7b53e28a33884777",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in any subject.",
+     "quote": "A 2:2 or above at undergraduate level in any subject.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Mathematics MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/mathematics-msc/",
+   "snapshot_sha256": "937bbe78e62f7276aeffb5d1d2820445ef13c692cdeeef3db6853ab60613163a",
+   "fields": {
+    "academic": {
+     "text": "A good 2:2 (55% or above) or above at undergraduate level in in Mathematics or Mathematics with another subject such as Statistics, Physics or Computing.",
+     "quote": "A good 2:2 (55% or above) or above at undergraduate level in in Mathematics or Mathematics with another subject such as Statistics, Physics or Computing.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Medical Education Online MA",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/medical-education-online-ma/",
+   "snapshot_sha256": "185f3c4ab0060cb156fa29dfa2be08a0ff62636f45057cb0bd0ec43ecb689226",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in a relevant subject.",
+     "quote": "A 2:2 or above at undergraduate level in a relevant subject.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Mental Health: Cultural Psychology and Psychiatry MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/mental-health-cultural-psychology-and-psychiatry-msc/",
+   "snapshot_sha256": "c542152f3117d159701a5a6c985dc056d928b9d3be3245f5f1944b7644b9c0ff",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in Psychology, Medicine or a related discipline.",
+     "quote": "A 2:2 or above at undergraduate level in Psychology, Medicine or a related discipline.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Mental Health: Psychological Therapies MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/mental-health-psychological-therapies-msc/",
+   "snapshot_sha256": "b9b6fc929eed5a300b156c1e3e2d6ce2dbb8de5826d296e7e66673841f0dee02",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in Psychology, Medicine or a related discipline.",
+     "quote": "A 2:2 or above at undergraduate level in Psychology, Medicine or a related discipline.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Mental Health: Psychological Therapies Online MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/mental-health-psychological-therapies-online-msc/",
+   "snapshot_sha256": "6325cd97e159c09cbbfe6e7db5c4159a67306b357221478a376c59dc3c6bc414",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in Psychology, Medicine or a related discipline.",
+     "quote": "A 2:2 or above at undergraduate level in Psychology, Medicine or a related discipline.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Minimally Invasive Dentistry MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/minimally-invasive-dentistry-msc/",
+   "snapshot_sha256": "9cd1f29fbb94155f8cadf5bbecab65c721f4561952dd35ac587fbc9e363abbfe",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have a primary qualification in Dentistry (BDS or equivalent). Applicants must also have at least one year experience of working as Dentist. Additional information",
+     "quote": "Applicants must have a primary qualification in Dentistry (BDS or equivalent). Applicants must also have at least one year experience of working as Dentist. Additional information",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "Band 5: IELTS (Academic) minimum score 7.0 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Molecular Cell Biology MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/molecular-cell-biology-msc/",
+   "snapshot_sha256": "d24d529369adf6f8918d635fba77e3d274008e6fcf114e724d60191b8eae50d2",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Molecular Biology, Cell Biology, Biochemistry, Biology, Biomedical Sciences, or other relevant disciplines.",
+     "quote": "A 2:1 or above at undergraduate level in Molecular Biology, Cell Biology, Biochemistry, Biology, Biomedical Sciences, or other relevant disciplines.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Oral Biology MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/oral-biology-msc/",
+   "snapshot_sha256": "41e8c0e6f42bbdab3d69070db98513e643cb394c549b8967d5fda931ef391b8f",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in a relevant subject such as Medicine, Dentistry, Chemistry or Biology.",
+     "quote": "A 2:2 or above at undergraduate level in a relevant subject such as Medicine, Dentistry, Chemistry or Biology.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Organ-on-a-Chip Technologies MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/organ-on-a-chip-technologies-msc/",
+   "snapshot_sha256": "2800ff55575a1a6a9321d5c90e2d6ae41357e03e96c1b6555362668bd658d3a0",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in Engineering (Biomedical, Mechanical, Chemical, Aerospace, Robotics etc), or a related discipline (Materials Science, Mathematics).",
+     "quote": "A 2:2 or above at undergraduate level in Engineering (Biomedical, Mechanical, Chemical, Aerospace, Robotics etc), or a related discipline (Materials Science, Mathematics).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Paediatric Emergency Medicine Online MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/paediatric-emergency-medicine-online-msc/",
+   "snapshot_sha256": "5b67933573ff3d6765b5940ca326ae0befe2567af55340cfa5d41296eaf937fd",
+   "fields": {
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Psychology (Conversion) MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/psychology-conversion-msc/",
+   "snapshot_sha256": "6a46c994fe10a8927660ef3517afb2331e5f9da271b3ce40280c1905196cea02",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in any subject. Those with previous study in Psychology that may overlap with the Masters will be considered on an individual basis.",
+     "quote": "A 2:1 or above at undergraduate level in any subject. Those with previous study in Psychology that may overlap with the Masters will be considered on an individual basis.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Psychology: Mental Health Sciences MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/psychology-mental-health-sciences-msc/",
+   "snapshot_sha256": "86b5f32bfc9e23c292178d03bc71f201daa08adc9e429820c80fc7fa7f2e9388",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Psychology with suitable content will be considered. Degrees in Medical, Health, and Biological Sciences or other fields related to Psychology will be considered on an individual basis.",
+     "quote": "A 2:1 or above at undergraduate level in Psychology with suitable content will be considered. Degrees in Medical, Health, and Biological Sciences or other fields related to Psychology will be considered on an individual basis.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Public International Law LLM",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/public-international-law-llm/",
+   "snapshot_sha256": "966af46396de7e760fba45d6b8a18e19e137800602a20981e163aafe683d08b8",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content.",
+     "quote": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic) minimum score 7.0 overall with 6.5 in Writing and 6.0 in Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Public Policy MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/public-policy-msc/",
+   "snapshot_sha256": "9fa1a7816afae0beab1091ffd72af5da76168e97248fca0df9f2ac9d19594d62",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Politics or a related discipline.",
+     "quote": "A 2:1 or above at undergraduate level in Politics or a related discipline.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Regenerative Medicine MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/regenerative-medicine-msc/",
+   "snapshot_sha256": "bf69e7b1a23e87840eddb43022ed2b4407beb08f68ce9468214d6375b7d7877a",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in a relevant subject such as Biological Sciences, Physical Sciences, Medicine or Dentistry (non-UK medical degrees marked on a grading scale must be equivalent to a UK 2:2 degree).",
+     "quote": "A 2:2 or above at undergraduate level in a relevant subject such as Biological Sciences, Physical Sciences, Medicine or Dentistry (non-UK medical degrees marked on a grading scale must be equivalent to a UK 2:2 degree).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Risk Analytics MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/risk-analytics-msc/",
+   "snapshot_sha256": "6f560b53048a7db9e1a4ad59ba21919f53930a2f747c8f886008961bca4f1ef1",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in any subject.",
+     "quote": "A 2:2 or above at undergraduate level in any subject.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Robotics and Artificial Intelligence MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/robotics-and-artificial-intelligence-msc/",
+   "snapshot_sha256": "1fb8f467244eb7d72cbe3aa839d4519df1dc089d3971cf2fd7c72b08aadea448",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in Engineering subjects, Computer Science, or Applied Mathematics.",
+     "quote": "A 2:2 or above at undergraduate level in Engineering subjects, Computer Science, or Applied Mathematics.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Sound and Music Computing MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/sound-and-music-computing-msc/",
+   "snapshot_sha256": "915c23659333226fb353d7ad6046906ee1f9c5d3aebd96b62c9602aba445459b",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Electronic Engineering, Computer Science, Software Engineering, Information Technology, Mathematics, Sound and Music Production or a related discipline.",
+     "quote": "A 2:1 or above at undergraduate level in Electronic Engineering, Computer Science, Software Engineering, Information Technology, Mathematics, Sound and Music Production or a related discipline.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Supply Chain Management MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/supply-chain-management-msc/",
+   "snapshot_sha256": "0c3be78e13dca19fa82db89805b5c97d88623b8589aa0dc26d67f7d580468277",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or above at undergraduate level in in any subject, provided the degree contains satisfactory study of Mathematics and Statistics. Subjects likely to contain sufficient quantitative elements include Accounting, Mathematics, Sciences, Engineering, Computer Science, Economics and Finance.",
+     "quote": "A 2:2 or above at undergraduate level in in any subject, provided the degree contains satisfactory study of Mathematics and Statistics. Subjects likely to contain sufficient quantitative elements include Accounting, Mathematics, Sciences, Engineering, Computer Science, Economics and Finance.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Sustainable Energy Systems MSc",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/sustainable-energy-systems-msc/",
+   "snapshot_sha256": "20f5e379ef89cf14a7e29d4d5ffcffdc22983feacd4e3ce861c3367639ebb87c",
+   "fields": {
+    "academic": {
+     "text": "A good 2:2 (55% or above) or above at undergraduate level in Engineering subjects, Physics, Chemistry, Materials Science or Materials Engineering, or related disciplines (e.g. Mechatronics, Electronic/Electrical Engineering).",
+     "quote": "A good 2:2 (55% or above) or above at undergraduate level in Engineering subjects, Physics, Chemistry, Materials Science or Materials Engineering, or related disciplines (e.g. Mechatronics, Electronic/Electrical Engineering).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:2 equivalent is 65 to 75% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Tax Law LLM",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/tax-law-llm/",
+   "snapshot_sha256": "1e58d24de3dfc79145b8a512f008674a28ca2f2af3d489158cc66f7573c87385",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content. We will also consider an undergraduate degree in Economics, Business, Finance, Accounting, or other related subject",
+     "quote": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content. We will also consider an undergraduate degree in Economics, Business, Finance, Accounting, or other related subject",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic) minimum score 7.0 overall with 6.5 in Writing and 6.0 in Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Technology, Media and Telecommunications Law LLM",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/technology-media-and-telecommunications-law-llm/",
+   "snapshot_sha256": "705d8fa5b06af6c00817b51e13f913e2c9bb6b7030261426d8caf00b8455fde7",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content. We will also consider an undergraduate degree in Media studies, Computer science, IT, telecoms, or other related subject.",
+     "quote": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content. We will also consider an undergraduate degree in Media studies, Computer science, IT, telecoms, or other related subject.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic) minimum score 7.0 overall with 6.5 in Writing and 6.0 in Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Technology, Media and Telecommunications Law Online LLM",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/technology-media-and-telecommunications-law-online-llm/",
+   "snapshot_sha256": "d65cb8e2eb1e57601e52b06c5316e8e73c6d3cf07d8f22d9cb153ff69a3eb782",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content. We will also consider an undergraduate degree in Media studies, Computer science, IT, telecoms, or other related subject.",
+     "quote": "A 2:1 or above at undergraduate level in Law or a degree with substantial law content. We will also consider an undergraduate degree in Media studies, Computer science, IT, telecoms, or other related subject.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic) minimum score 7.0 overall with 6.5 in Writing and 6.0 in Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "War Studies MA",
+   "url": "https://www.qmul.ac.uk/postgraduate/taught/coursefinder/courses/war-studies-ma/",
+   "snapshot_sha256": "109466ebcd5686bb3140f9775aa1595cc7a7ff4ec66adb0c8607dde2fa1bc566",
+   "fields": {
+    "academic": {
+     "text": "A 2:1 or above at undergraduate level in History, Politics, International Relations, or another relevant Humanities or Social Science related subject.",
+     "quote": "A 2:1 or above at undergraduate level in History, Politics, International Relations, or another relevant Humanities or Social Science related subject.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Chinese bachelor degree (minimum 4 years) from selected institutions; UK 2:1 equivalent is 70 to 80% (offer conditions vary by institution)",
+     "quote": "We normally consider the following qualifications for entry to our postgraduate taught programmes: Bachelor Degree (minimum 4 years) from selected institutions. UK 1st class degree: 85 to 95% UK 2:1 degree: 70 to 80% UK 2:2 degree: 65 to 75% Offer conditions will vary depending on the institution you are applying from.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Band 4: IELTS (Academic) minimum score 6.5 overall with 6.0 in each of Writing, Listening, Reading and Speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 139,
+  "机器核对": 137,
+  "待人工": 2
+ }
+}
