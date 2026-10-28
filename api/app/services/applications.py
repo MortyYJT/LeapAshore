@@ -87,7 +87,7 @@ from sqlalchemy import select
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
-from app.models.application import Application, ApplicationOrigin
+from app.models.application import Application, ApplicationOrigin, ApplicationStatus
 from app.models.program import Program
 from app.models.task import TaskOrigin
 from app.services.writes import carries, row_value, write_history
@@ -231,8 +231,14 @@ def _status_of(payload: Any, program_id: str) -> str:
     if status is None:
         raise InvalidApplicationPayload(
             f"the row for program {program_id!r} states no status: a portfolio row always holds "
-            "considering, applying or excluded, and an explicit null is the claim that it holds none. "
-            "An omitted status is how 'leave it as it is' is spelled."
+            "one of considering, applying, submitted, offered, rejected or excluded, and an explicit "
+            "null is the claim that it holds none. An omitted status is how 'leave it as it is' is "
+            "spelled."
+        )
+    if str(status) not in {member.value for member in ApplicationStatus}:
+        raise InvalidApplicationPayload(
+            f"the row for program {program_id!r} states the status {str(status)!r}, which is not one "
+            "of considering, applying, submitted, offered, rejected or excluded."
         )
     return str(status)
 

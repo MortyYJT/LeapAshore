@@ -801,3 +801,35 @@ def test_a_write_postgresql_refuses_twice_is_a_mapped_refusal_not_a_500(require_
     assert "could not be written" in str(raised.value), str(raised.value)
     assert _stored(db_session, absent) == {}, "a refused write left a row behind"
     assert _events(db_session, absent) == []
+
+
+@pytest.mark.parametrize("status", ["submitted", "offered", "rejected"])
+def test_the_later_application_statuses_are_stored_and_served(require_db, db_session, status):
+    """The portfolio tracks an application past `applying`: submitted, offered, rejected (spec:
+    application-portfolio, "Each application has a status")."""
+    seed_programs(db_session)
+    client = TestClient(app)
+
+    stored = _put(client, [_row(REACH, status=status)])
+    assert stored.status_code == 200, stored.text
+    assert [row["status"] for row in client.get("/api/applications").json()] == [status]
+
+
+def test_an_unknown_status_is_refused_and_the_portfolio_is_unchanged(require_db, db_session):
+    seed_programs(db_session)
+    client = TestClient(app)
+    assert _put(client, [_row(REACH, status="applying")]).status_code == 200
+
+    refused = _put(client, [_row(REACH, status="waitlisted")])
+    assert refused.status_code == 422
+    assert [row["status"] for row in client.get("/api/applications").json()] == ["applying"]
+
+
+def test_the_service_refuses_a_status_outside_the_model(require_db, db_session):
+    """The advisor writes through the service with plain mappings, so the service checks membership too."""
+    seed_programs(db_session)
+    client_id = str(uuid.uuid4())
+    db_session.add(Client(id=client_id))
+    db_session.commit()
+    with pytest.raises(InvalidApplicationPayload, match="waitlisted"):
+        replace_applications(db_session, client_id, [{"program_id": REACH, "tier": "冲", "status": "waitlisted"}])
