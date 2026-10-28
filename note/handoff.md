@@ -22,46 +22,62 @@
 
 ## 采集进度（每校一个 json，在 `api/data/requirements/`；表由脚本从文件生成）
 
-共 32 所、1764 个项目、1758 个机器核对。各校的特殊情况写在各自 json 的 `notes` 和提交说明里。
+共 48 所、2565 个项目、2556 个机器核对。各校的特殊情况写在各自 json 的 `notes` 和提交说明里。
 
 | school_key | 项目 | 机器核对 | 状态 |
 | --- | --- | --- | --- |
 | adelaide-university | 60 | 60 | partial |
 | australian-national-university | 53 | 53 | partial |
+| cardiff-university | 0 | 0 | blocked |
 | chinese-university-of-hong-kong | 61 | 61 | partial |
 | city-university-of-hong-kong | 66 | 66 | complete |
 | curtin-university | 50 | 50 | partial |
+| durham-university | 0 | 0 | blocked |
 | hong-kong-polytechnic-university | 113 | 113 | complete |
 | hong-kong-university-of-science-and-technology | 54 | 54 | complete |
 | imperial-college-london | 165 | 165 | complete |
+| lancaster-university | 62 | 62 | complete |
 | london-school-of-economics-and-political-science | 64 | 64 | partial |
 | macquarie-university | 0 | 0 | blocked |
+| massachusetts-institute-of-technology | 42 | 42 | complete |
 | monash-university | 1 | 0 | blocked |
 | nanyang-technological-university-singapore | 65 | 64 | partial |
 | national-university-of-singapore | 6 | 6 | blocked |
+| newcastle-university | 62 | 62 | partial |
+| queen-mary-university-of-london | 139 | 137 | partial |
+| queen-s-university-belfast | 0 | 0 | blocked |
 | rmit-university | 79 | 79 | complete |
-| ucl | 50 | 50 | blocked |
+| stanford-university | 19 | 19 | partial |
+| ucl | 50 | 50 | partial |
+| university-of-bath | 0 | 0 | blocked |
+| university-of-birmingham | 60 | 60 | partial |
 | university-of-bristol | 1 | 1 | blocked |
 | university-of-cambridge | 59 | 59 | partial |
 | university-of-edinburgh | 62 | 62 | partial |
+| university-of-exeter | 143 | 142 | complete |
 | university-of-glasgow | 60 | 60 | partial |
 | university-of-hong-kong | 66 | 66 | partial |
 | university-of-leeds | 78 | 78 | partial |
+| university-of-liverpool | 67 | 67 | partial |
 | university-of-manchester | 61 | 61 | partial |
 | university-of-melbourne | 0 | 0 | blocked |
 | university-of-new-south-wales | 54 | 54 | partial |
+| university-of-nottingham | 64 | 64 | partial |
 | university-of-oxford | 9 | 6 | blocked |
 | university-of-queensland | 60 | 60 | partial |
 | university-of-sheffield | 67 | 67 | partial |
+| university-of-southampton | 77 | 77 | partial |
+| university-of-st-andrews | 51 | 51 | partial |
 | university-of-sydney | 60 | 60 | partial |
 | university-of-technology-sydney | 55 | 55 | partial |
-| university-of-warwick | 64 | 64 | blocked |
+| university-of-warwick | 64 | 64 | partial |
 | university-of-western-australia | 64 | 64 | partial |
 | university-of-wollongong | 57 | 56 | partial |
+| university-of-york | 15 | 15 | partial |
 
-被拦截（按规则不绕过）：Monash、Melbourne、Macquarie、NUS 大部分、Oxford 主站、UCL（50 个后 403）、Bristol（5 个请求后 403）。
-需人工确认：UNSW 英语分数的学院对应、悉尼「Not available to student visa holders」、剑桥 "High II.i"↔"High 2:1"、帝国理工 46 个 MRes 是否算授课型、RMIT 7 条按名称匹配 CRICOS。
-进行中：KCL、Birmingham、Durham、Nottingham、QMUL、Southampton；英国还剩 St Andrews 起 10 所，然后美国 38 所、其余地区。
+被拦截（按规则不绕过）：Monash、Melbourne、Macquarie、NUS 大部分、Oxford 主站、UCL（50 个后 403）、Bristol、Durham、Bath、Cardiff、York（16 个后 429）、QUB（robots.txt 403）、Stanford 计算机系（robots.txt 禁止）。
+需人工确认：UNSW 英语分数的学院对应、悉尼「Not available to student visa holders」、剑桥 "High II.i"↔"High 2:1"、帝国理工 46 个 MRes 是否算授课型、RMIT 7 条按名称匹配 CRICOS、St Andrews 英语分数取自页面 data 属性、Exeter 中国要求表标注的是 2026 入学、Stanford 等校 TOEFL 同时给 0-120 和新 1-6 分制（界面怎么显示要定）。
+进行中：KCL、Reading、Harvard、Caltech、Penn、Cornell、Yale；之后是美国其余学校（JHU、Berkeley、Chicago、Princeton、Columbia……）、加拿大 9、新西兰 2、日本 8、韩国 7、马来西亚 5、欧洲 52、其他 21，再给 partial 的学校补跑。
 
 ## 校徽
 
