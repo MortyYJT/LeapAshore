@@ -5,64 +5,65 @@ Verify it against `git status` and `git log` before trusting it.
 
 ## Where we are
 
-- 日期：2026-10-08
-- `main` = M3 全部合入（后端 PR #8、前端 PR #9、归档 PR #10、审查命令 PR #11），M3 的 spec 已归档
-- **要测试就照 `note/testing-m3.md` 走**：前端已起在 <http://localhost:3001>（避开你另一个项目的 3000），
-  API 在 :8000，数据库已 seed；那份指引里的每条命令我都跑过一遍
-- `openspec/specs/` 现在是 current truth：`document-library`(13) / `document-review`(8) /
-  `review-criteria`(5)，共 26 条需求
-- 归档件：`openspec/changes/archive/2026-10-08-stage-2-m3-document-library/`（proposal / design / specs / tasks，
-  58 项全部勾完）
-- 路线图里 M3 已从待办移进"已完成"，下一个是 M4
+- 日期：2026-10-28；**11 月 1 日开始投递**（岗位：agent 开发 + 后端），本项目是面试作品集
+- 分支：`claude/deploy-mvp`（从 `codex/static-prototype` 的 `ea2c91a` 切出），已提交并推送，PR 待合并
+- 线上：<http://43.161.224.82>（腾讯云香港，Ubuntu 24.04，2 核 3.6G + 4G swap），已在跑
+- **正在等**：用户买的域名 `mortyyjt.site` 实名审核。通过后用户加 A 记录（`@` 与 `yuyue` → `43.161.224.82`）并放行安全组 443
 
-## 本次会话交付了什么
+## 本次会话做了什么
 
-- 后端：5 张表与迁移；材料的上传 / 版本 / 归档 / 送审 / 下载接口（按 cookie 隔离，别人的材料一律 404）；
-  内容寻址存储、按魔数判类型、20 MiB 两处限流、下载路径限制在存储根内、版本号在行锁下取；
-  10 条 Genuine Student 要点种入（全部 `待核验`）；维护者 CLI `api/review_cli.py`（全仓库唯一写 `verified_at` 的地方）
-- 前端：材料适配层（对照两份真实响应体）、五个接口调用、`MaterialsView` 材料库页、`材料库` 标签、
-  任务行上传入口
-- 证据：后端 200 用例、前端 175 用例；`make verify` 在**合并后的 main 上**退出码 0，29 张走查截图，无 JS 错误
-- 验证文档：`docs/verification/stage-2-m3-document-library-{backend,frontend}.md`（后者第 7 节是 26 条需求
-  到代码与检查的对应表）
-- 两轮独立审查的问题全部修完。前端那个 blocker 值得记：分类下拉框默认"成绩单"，点一次归档就把未分类的
-  材料写成了成绩单——已改成"请选择分类"且未选时按钮不可点
+- **PRD**：`docs/product/PRD.md`（中文）。已定：D1 两套前端合并、D5 覆盖范围 = 学校库 346 所（QS 2027 前 300 + 46 所地区补齐）、
+  分档去掉"信息不足"（未知项改为表单必填 + 项目侧"要求待采集"）。未定：D2、D3
+- **部署**：`deploy/compose.prod.yaml`（db / api / web / caddy）、`deploy/Caddyfile`（`/api/*` → FastAPI，其余 → Next）、
+  `api/Dockerfile`（启动时跑迁移和幂等种子）、`web/Dockerfile`（`NEXT_OUTPUT=standalone`）。服务器密钥在 `~/offerpilot/deploy/.env`（不进库）
+- **顾问 agent**：`api/app/agent/`，移植自用户自己的 MEWHELP（LangGraph）。分意图 → 问官方要求走检索 + 证据门禁（拒答记知识缺口日志）→
+  ReAct（步数封顶）→ 改档案直接写、改选校组合 `interrupt` 等确认。接口 `api/app/routers/advisor.py`（SSE）。
+  模型：DeepSeek 官方（`CHAT_BASE_URL=https://api.deepseek.com`，`CHAT_MODEL=deepseek-chat`）
+- **前端**：`AdvisorView` 接流式 agent（意图/门禁/工具标签、来源列表、确认卡片），`/prototype/advisor` 改用它
+- **网站入口**：`/` 只保留首次引导问卷；填完 → `/prototype/assess/result`（背景经 `web/lib/prototype-handoff.ts` 写入原型的 sessionStorage）；
+  cookie `offerpilot_onboarded=1` + `web/proxy.ts` 让回访直接进 `/prototype`。旧主界面（选校组合、路线图）不再可达
+- **README** 重写（英文，含架构图与 agent 图）
 
-## 还没做
+## 验证状态
 
-- 没有部署过。线上有两个已知限制：存储根是本地目录；Vercel 函数请求体上限约 4.5 MB，20 MiB 上传到不了后端
-- "来源已核验"的渲染分支没在浏览器里出现过（种子里没有已核验的要点）
-- 走查的材料库步骤会在 `api/var/documents` 留下孤儿 blob（主体清理了、文件不删，是 D11 的决定）
+- 后端：全量 213 条通过（2026-10-28，新建库后先 `make migrate` + `make seed`）
+- 前端：`npm test` 205 条通过，`next build` 通过
+- 线上端到端（curl + 浏览器）：问要求带来源 ✅、未收录学校拒答 ✅、写档案 ✅、改组合确认后落库 ✅、重复确认被拒 ✅、首访问卷 → 原型带背景 ✅、回访跳转 ✅
+- 引导问卷 10 步没有在浏览器里手动点完（代码未改）
 
-## 已知问题
+## 已决定、待执行
 
-- **测试偶发红，属既有问题**：症状是某行在用例还需要它时消失（`applications_client_id_fkey` 等）。
-  证据：`main` 的 worktree 上、把 M3 的表降级掉之后，单跑 `test_applications_api.py` 六次仍有两次失败。
-  记在 `note/product/backlog.md` 与后端验证文档第 3 节
-- `test_sources.py` 每次运行泄漏一行 `sources`（既有）
-- 开发库里有一批遗留匿名 `clients`（本会话的探针、审查与走查留下的），没有删
+- **改名已完成**：中文「鱼跃彼岸」、英文 LeapAshore，cookie / 存储键 / 包名 / 响应头全改。**数据库用户名、库名、卷名仍是 `offerpilot`**（改了线上数据卷会丢）。GitHub 仓库 `MortyYJT/offerpilot` 尚未改名
+- **域名**：`mortyyjt.site` 放个人网站，`yuyue.mortyyjt.site` 放本项目。GitHub 用户名保持 MortyYJT（`guyuy` 已被占）
+- **个人网站**：本地已删，用 GitHub 上 `MortyYJT/MortyYJT.github.io` 的静态构建（源码 `personal-website-guyuy`），Caddy 按域名分流
+- 注册登录先不做；背景仍只存在 sessionStorage
 
-## 下一步（M4）
+## 下一步
 
-按 `note/product/roadmap.md` 第 1 项开新的 OpenSpec change：会话、消息、提案（agent 写操作待确认）。
-M3 留下的接口在这里要用到：`document_reviews` 现在只由 CLI 写，M4 的 agent 送审要接上
-（`openspec/specs/document-review/spec.md` 与归档的 design.md D10 记了 `run_id` 推迟到 M4 加）。
+0. 前端改版 + 注册登录（用户 10-28 提出，待设计）
+2. 域名审核通过 → Caddyfile 改成两个站点块（自动 HTTPS）、compose 暴露 443、服务器上 clone 个人网站静态构建、更新 README 线上地址
+4. 热门学校真实录取要求：先几所，带官网来源，状态"机器核对"，人工核验后才写 `verified_at`
+5. PRD 7.4 与实现不一致：实现里"待核验"数据照答但打标签，只有"未收录 / 无可引用来源"才拒答。等用户确认后改 PRD
 
-## 怎么跑
+## 已知限制
 
-- `make dev`（同时起数据库、:8000 的 API、:3000 前端）→ `make verify`（检查命令，CI 跑同样的步骤）
-- 后端单跑 `make api-test`；CLI `cd api && .venv/bin/python review_cli.py --help`
-- 归档：`openspec archive <change>`；`openspec list` 看活跃 change
+- 对话存在 `InMemorySaver`，API 重启即丢；换 Postgres checkpointer 是 schema 变更，要先问
+- 知识缺口只写日志（logger `offerpilot.knowledge_gap`），没有后台队列
+- 只有 HTTP；没有评测集
+- 旧限制仍在：测试偶发红（`applications_client_id_fkey` 等，既有问题，见 `note/product/backlog.md`）、`test_sources.py` 泄漏一行
+
+## 怎么跑与部署
+
+- 本地：`make dev` / `make test`。本会话的 venv 用的是 `../offerpilot/.runtime-tools/` 下的 uv 建的 `api/.venv`
+- 部署（从仓库根目录）：
+  `rsync -az --exclude node_modules --exclude .next --exclude .next-build --exclude .venv --exclude api/var --exclude .git --exclude .runtime-tools --exclude .npm-cache --exclude .env --exclude deploy/.env --exclude docs/screenshots -e "ssh -i ~/.ssh/offerpilot_codex -o IdentitiesOnly=yes" ./ ubuntu@43.161.224.82:~/offerpilot/`
+  然后 `ssh ... 'cd ~/offerpilot/deploy && sudo docker compose -f compose.prod.yaml up -d --build'`
+- 看日志：`sudo docker compose -f compose.prod.yaml logs api --since 5m`
 
 ## 坑
 
-- 端口 3000 上跑着**用户另一个项目**的 dev 服务器（IPv4）；本项目的 next dev 绑 IPv6 :3000，
-  `localhost:3000` 解析到 `::1` 才是本项目。若 `make dev` 报 "Port 3000 is in use"，那是它；
-  若报 "Another next dev server is already running" 且进程已死，删掉 `web/.next/dev/lock` 即可
-  （本会话遇到过一次；`web/.next` 的 Turbopack 缓存坏掉时报 AMQF 反序列化失败，删掉整个 `.next` 重启）
-- **合并两个批次时用 merge commit**：预演过，squash #8 之后再合 #9 会在 `note/handoff.md`、
-  `note/product/backlog.md`、`tasks.md` 三个文件上冲突
-- git 的**仓库本地**身份是公开 handle + GitHub noreply（原来的真实姓名与个人邮箱不符合
-  `docs/engineering/agent-guidelines.md`）；全局配置未动
-- 测试直接跑在共享开发库上；`conftest` 的清扫会删掉路线图定义、GS 来源与要点并在收尾还原
-  （还会把人工核验过的 `status`/`verified_at` 快照还原），改它之前先读它的 docstring
+- **流式响应要自己写 cookie**：FastAPI 只把依赖里 `Response` 的头合并进它自己构造的响应；返回 `StreamingResponse` 时必须调用 `set_client_cookie`，否则每条消息都是新访客
+- **interrupt 前不能有写操作**：恢复时整个节点从头重跑
+- **新访客可能还没有 `clients` 行**：任何写组合的路径先 `load_or_create_profile`
+- interrupt 的载荷自带 `type`，SSE 事件里要把 `type` 放在最后，免得被覆盖
+- 不要把模型密钥发给它所属以外的服务商（试过被安全规则拦下）

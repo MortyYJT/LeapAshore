@@ -38,7 +38,7 @@ const SECTIONS = [
   {
     key: "about",
     title: "关于",
-    body: [`OfferPilot 第一阶段 MVP，版本 ${VERSION}。`],
+    body: [`鱼跃彼岸第一阶段 MVP，版本 ${VERSION}。`],
   },
 ];
 

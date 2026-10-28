@@ -7,12 +7,12 @@ from sqlalchemy.orm import Session
 
 from app.models.client import Client, Profile, new_client_id
 
-COOKIE_NAME = "offerpilot_client"
+COOKIE_NAME = "leapashore_client"
 
 
 def get_client_id(
     response: Response,
-    offerpilot_client: Annotated[str | None, Cookie()] = None,
+    leapashore_client: Annotated[str | None, Cookie()] = None,
 ) -> str:
     """Resolve the anonymous subject id, minting one on the first request.
 
@@ -29,7 +29,7 @@ def get_client_id(
     pairs, 184 of them with a null `school_name`, before this moved. `load_or_create_profile` does
     the writing instead, and the endpoints call it once FastAPI has accepted the request.
     """
-    client_id = offerpilot_client
+    client_id = leapashore_client
     if client_id:
         try:
             client_id = str(uuid.UUID(client_id))
@@ -39,10 +39,17 @@ def get_client_id(
     if not client_id:
         client_id = new_client_id()
 
+    set_client_cookie(response, client_id)
+    return client_id
+
+
+def set_client_cookie(response: Response, client_id: str) -> None:
+    """Write the subject cookie. An endpoint that returns its own `Response` object (a stream, for
+    one) must call this on that object: FastAPI merges the dependency's response headers only into
+    responses it builds itself, so the cookie `get_client_id` wrote would otherwise be dropped."""
     response.set_cookie(
         COOKIE_NAME, client_id, httponly=True, samesite="lax", max_age=60 * 60 * 24 * 365
     )
-    return client_id
 
 
 def load_or_create_profile(session: Session, client_id: str) -> Profile:

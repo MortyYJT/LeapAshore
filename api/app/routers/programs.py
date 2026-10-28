@@ -18,7 +18,7 @@ logger = logging.getLogger(__name__)
 # programs, because every consumer reads it that way, so the defect travels beside it rather than in
 # it: a caller that reads only the body still gets the healthy rows, and one that watches the header
 # learns that the catalogue is short and which ids are missing.
-WITHOUT_SOURCE_HEADER = "X-OfferPilot-Programs-Without-Source"
+WITHOUT_SOURCE_HEADER = "X-LeapAshore-Programs-Without-Source"
 
 
 @router.get("", response_model=list[ProgramOut])
@@ -46,7 +46,7 @@ def list_programs(
     request. Refusing the response was the first version, and one bad row made `GET /api/programs`
     answer 500 for the entire catalogue: five healthy programs became invisible to every applicant
     because a sixth had no provenance. The defect still surfaces — the ids go out in the
-    `X-OfferPilot-Programs-Without-Source` header and into an error log — but the applicant keeps
+    `X-LeapAshore-Programs-Without-Source` header and into an error log — but the applicant keeps
     the catalogue. What does not happen either way is serving a program with no provenance:
     `source: null` is never written, and a defective row is never passed off as sound.
 

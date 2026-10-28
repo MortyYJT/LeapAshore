@@ -20,7 +20,7 @@ from app.db import SessionLocal
 from app.main import app
 from app.models.client import Client, new_client_id
 
-COOKIE = "offerpilot_client"
+COOKIE = "leapashore_client"
 BOTH_ARRIVED = 2
 # Long enough that a slow machine still reaches the window, short enough that a request which never
 # does fails the test instead of hanging the suite.

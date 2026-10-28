@@ -4,7 +4,7 @@
 
 import type { AppStage, PortfolioItem, Profile } from "./types";
 
-const STORAGE_KEY = "offerpilot.state.v1";
+const STORAGE_KEY = "leapashore.state.v1";
 
 export const EMPTY_PROFILE: Profile = {
   educationLevel: null,

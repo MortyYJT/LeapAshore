@@ -75,14 +75,14 @@ def test_a_field_that_matches_nothing_is_an_empty_list(require_db, db_session):
 def test_the_catalogue_needs_no_client_cookie(require_db, db_session):
     """This endpoint serves reference data, not applicant data, so it must not mint a subject.
 
-    `/api/profile` hands out an `offerpilot_client` cookie on first contact. If the catalogue did
+    `/api/profile` hands out an `leapashore_client` cookie on first contact. If the catalogue did
     the same, merely opening the school list would create an anonymous applicant row.
     """
     seed_programs(db_session)
     client = TestClient(app)
     response = client.get("/api/programs")
     assert response.status_code == 200
-    assert "offerpilot_client" not in client.cookies
+    assert "leapashore_client" not in client.cookies
     assert "set-cookie" not in {key.lower() for key in response.headers}
 
 
@@ -148,7 +148,7 @@ def test_a_program_without_a_source_does_not_take_the_healthy_rows_down():
     because a sixth had no provenance.
 
     The healthy rows are served, `source: null` is never written, and the defective ids travel in the
-    `X-OfferPilot-Programs-Without-Source` header rather than being dropped in silence. The header is
+    `X-LeapAshore-Programs-Without-Source` header rather than being dropped in silence. The header is
     what makes this "serve what can be served and say what could not" rather than "skip the bad row".
     """
     orphan = Program(

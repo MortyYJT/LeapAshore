@@ -1,4 +1,4 @@
-// OfferPilot domain model, front-end MVP version.
+// LeapAshore domain model, front-end MVP version.
 // Mirrors the Pydantic models the FastAPI service will expose, so it can be swapped for API responses.
 
 import type { PortfolioProgram } from "./programs-source";

@@ -84,7 +84,7 @@ Rules:
 
 ## Project-specific
 
-- **What this is:** OfferPilot — an application-planning agent for master's degrees at Australia's Group
+- **What this is:** LeapAshore — an application-planning agent for master's degrees at Australia's Group
   of Eight universities. The product is a visual application roadmap: open a phase and see what to
   prepare, when, and which official page the requirement came from.
 - **Stack and commands:** Next.js + TypeScript in `web/`; FastAPI + PostgreSQL in `api/`. `make install`,

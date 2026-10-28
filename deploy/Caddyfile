@@ -1,0 +1,14 @@
+# Plain HTTP on :80 until the site has a domain; Caddy switches to automatic HTTPS once this block is
+# addressed by a hostname instead.
+:80 {
+	encode gzip
+	handle /api/* {
+		reverse_proxy api:8000 {
+			# Streamed agent replies must reach the browser as they are produced.
+			flush_interval -1
+		}
+	}
+	handle {
+		reverse_proxy web:3000
+	}
+}

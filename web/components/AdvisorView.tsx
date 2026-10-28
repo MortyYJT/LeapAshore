@@ -1,19 +1,31 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import {
+  type AdvisorEvent,
+  type Citation,
+  TOOL_LABELS,
+  confirmAdvisorAction,
+  sendAdvisorMessage,
+} from "../lib/advisor";
 
 /**
- * Front-end skeleton for the advisor. The layout follows a chat product: a conversation rail on the
- * left, the message column in the middle and a composer pinned to the bottom.
- *
- * No model is connected yet. Sending a message appends it and then answers with a fixed notice, so the
- * interaction can be reviewed without pretending an assistant replied.
+ * The advisor chat. A conversation rail on the left, the message column in the middle and a
+ * composer pinned to the bottom. Replies stream from the LangGraph agent behind `/api/advisor`; each
+ * assistant message also shows what the agent decided along the way — the routed intent, the tools
+ * it called, the official sources the evidence gate let through — so its reasoning is visible.
  */
 
 interface Message {
   id: string;
   role: "user" | "assistant";
   content: string;
+  intent?: string;
+  tools?: string[];
+  citations?: Citation[];
+  gate?: "pass" | "refuse";
+  confirm?: { summary: string; state: "pending" | "approved" | "rejected" };
+  error?: string;
 }
 
 interface Conversation {
@@ -22,13 +34,10 @@ interface Conversation {
   messages: Message[];
 }
 
-const NOT_CONNECTED =
-  "留学顾问还没接入模型，暂时不能回答。你可以先在「流程进度」里看每个阶段要准备的材料，或者到「个人信息」补充档案。";
-
 const SUGGESTIONS = [
-  "帮我看看现在的选校组合合不合理",
-  "语言成绩还不够，我该怎么安排",
-  "提交申请前还差哪些材料",
+  "悉尼大学计算机硕士要什么均分和雅思？",
+  "我是武汉大学计算机专业，均分 85，雅思 7.0",
+  "把蒙纳士人工智能硕士加进我的选校组合，作为冲刺",
 ];
 
 function uid() {
@@ -61,38 +70,81 @@ export default function AdvisorView() {
     if (el) el.scrollTop = el.scrollHeight;
   }, [active?.messages.length, thinking]);
 
+  function patchAssistant(convId: string, msgId: string, patch: (m: Message) => Message) {
+    setConversations((prev) =>
+      prev.map((c) =>
+        c.id === convId ? { ...c, messages: c.messages.map((m) => (m.id === msgId ? patch(m) : m)) } : c,
+      ),
+    );
+  }
+
+  function handlerFor(convId: string, msgId: string) {
+    return (e: AdvisorEvent) => {
+      if (e.type === "done") {
+        setThinking(false);
+        return;
+      }
+      patchAssistant(convId, msgId, (m) => {
+        switch (e.type) {
+          case "intent":
+            return { ...m, intent: e.intent };
+          case "citations":
+            return { ...m, citations: e.citations, gate: e.gate };
+          case "tool":
+            return { ...m, tools: [...(m.tools ?? []), e.name] };
+          case "token":
+            return { ...m, content: m.content + e.text };
+          case "confirm":
+            return { ...m, confirm: { summary: e.summary, state: "pending" } };
+          case "error":
+            return { ...m, error: e.message };
+        }
+      });
+    };
+  }
+
   function send(text: string) {
     const content = text.trim();
-    if (!content || !active) return;
+    if (!content || !active || thinking) return;
     const userMessage: Message = { id: uid(), role: "user", content };
+    const reply: Message = { id: uid(), role: "assistant", content: "" };
+    const convId = active.id;
 
     setConversations((prev) =>
       prev.map((c) =>
-        c.id === active.id
+        c.id === convId
           ? {
               ...c,
               title: c.messages.length === 0 ? content.slice(0, 16) : c.title,
-              messages: [...c.messages, userMessage],
+              messages: [...c.messages, userMessage, reply],
             }
           : c,
       ),
     );
     setDraft("");
     setThinking(true);
-
-    window.setTimeout(() => {
-      setConversations((prev) =>
-        prev.map((c) =>
-          c.id === active.id
-            ? {
-                ...c,
-                messages: [...c.messages, { id: uid(), role: "assistant", content: NOT_CONNECTED }],
-              }
-            : c,
-        ),
-      );
+    sendAdvisorMessage(convId, content, handlerFor(convId, reply.id)).catch(() => {
+      patchAssistant(convId, reply.id, (m) => ({ ...m, error: "网络错误，请稍后再试。" }));
       setThinking(false);
-    }, 500);
+    });
+  }
+
+  function answerConfirm(msg: Message, approved: boolean) {
+    if (!active || thinking) return;
+    const convId = active.id;
+    patchAssistant(convId, msg.id, (m) => ({
+      ...m,
+      confirm: m.confirm && { ...m.confirm, state: approved ? "approved" : "rejected" },
+    }));
+    const reply: Message = { id: uid(), role: "assistant", content: "" };
+    setConversations((prev) =>
+      prev.map((c) => (c.id === convId ? { ...c, messages: [...c.messages, reply] } : c)),
+    );
+    setThinking(true);
+    confirmAdvisorAction(convId, approved, handlerFor(convId, reply.id)).catch(() => {
+      patchAssistant(convId, reply.id, (m) => ({ ...m, error: "网络错误，请稍后再试。" }));
+      setThinking(false);
+    });
   }
 
   function startNew() {
@@ -152,7 +204,7 @@ export default function AdvisorView() {
               <div className="mb-3 text-3xl">🧭</div>
               <h2 className="text-lg font-extrabold">有什么可以帮你？</h2>
               <p className="mt-2 text-sm leading-relaxed text-[var(--color-ink-soft)]">
-                顾问能力还在搭建中。上线后你可以用一句话推进申请：问官方要求、更新档案、调整申请组合。
+                用一句话推进申请：问官方要求、补充背景、调整选校组合。涉及官方要求的回答都会附上来源；查不到来源时我会直接说查不到。
               </p>
               <div className="mt-6 grid w-full gap-2">
                 {SUGGESTIONS.map((s) => (
@@ -186,11 +238,11 @@ export default function AdvisorView() {
                     >
                       🧭
                     </span>
-                    <div className="text-sm leading-relaxed text-[var(--color-ink)]">{m.content}</div>
+                    <AssistantBody message={m} busy={thinking} onConfirm={answerConfirm} />
                   </div>
                 ),
               )}
-              {thinking && (
+              {thinking && active?.messages.at(-1)?.content === "" && (
                 <div className="flex gap-3">
                   <span
                     className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-sm"
@@ -239,10 +291,91 @@ export default function AdvisorView() {
             </button>
           </div>
           <p className="mx-auto mt-2 max-w-2xl text-center text-[11px] text-[var(--color-ink-soft)]">
-            顾问尚未接入模型，当前只演示交互。
+            回答只引用已收录的官方来源；标"待核验"的数据请以学校官网为准。
           </p>
         </div>
       </section>
+    </div>
+  );
+}
+
+const INTENT_COLORS: Record<string, string> = {
+  官方要求核验: "var(--color-brand-soft)",
+};
+
+function AssistantBody({
+  message: m,
+  busy,
+  onConfirm,
+}: {
+  message: Message;
+  busy: boolean;
+  onConfirm: (m: Message, approved: boolean) => void;
+}) {
+  return (
+    <div className="min-w-0 flex-1 text-sm leading-relaxed text-[var(--color-ink)]">
+      {(m.intent || (m.tools && m.tools.length > 0)) && (
+        <div className="mb-2 flex flex-wrap gap-1.5 text-[11px]">
+          {m.intent && (
+            <span
+              className="rounded-full px-2 py-0.5 font-bold"
+              style={{ background: INTENT_COLORS[m.intent] ?? "var(--color-surface)" }}
+            >
+              意图：{m.intent}
+            </span>
+          )}
+          {m.gate && (
+            <span className="rounded-full bg-[var(--color-surface)] px-2 py-0.5 font-bold">
+              证据门禁：{m.gate === "pass" ? "通过" : "拒答"}
+            </span>
+          )}
+          {m.tools?.map((t, i) => (
+            <span key={i} className="rounded-full bg-[var(--color-surface)] px-2 py-0.5">
+              🔧 {TOOL_LABELS[t] ?? t}
+            </span>
+          ))}
+        </div>
+      )}
+      {m.content && <div className="whitespace-pre-wrap">{m.content}</div>}
+      {m.citations && m.citations.length > 0 && (
+        <ol className="mt-3 grid gap-1 rounded-xl border-2 border-[var(--color-line)] p-3 text-xs">
+          {m.citations.map((c) => (
+            <li key={c.n}>
+              [{c.n}]{" "}
+              <a href={c.url} target="_blank" rel="noreferrer" className="underline">
+                {c.title}
+              </a>{" "}
+              <span
+                className="rounded px-1 font-bold"
+                style={{ color: c.status === "已核验" ? "var(--color-brand-dark)" : "#b45309" }}
+              >
+                {c.status}
+              </span>
+            </li>
+          ))}
+        </ol>
+      )}
+      {m.confirm && (
+        <div className="mt-3 rounded-xl border-2 border-[var(--color-brand)] p-3">
+          <div className="text-xs font-bold text-[var(--color-ink-soft)]">需要你确认</div>
+          <div className="mt-1 font-semibold">{m.confirm.summary}</div>
+          {m.confirm.state === "pending" ? (
+            <div className="mt-2 flex gap-2">
+              <button className="btn btn-primary !px-3 !py-1.5 !text-xs" disabled={busy} onClick={() => onConfirm(m, true)}>
+                确认执行
+              </button>
+              <button className="btn btn-ghost !px-3 !py-1.5 !text-xs" disabled={busy} onClick={() => onConfirm(m, false)}>
+                取消
+              </button>
+            </div>
+          ) : (
+            <div className="mt-2 text-xs text-[var(--color-ink-soft)]">
+              {m.confirm.state === "approved" ? "已确认" : "已取消"}
+            </div>
+          )}
+        </div>
+      )}
+      {m.error && <div className="mt-2 text-xs font-bold text-red-700">{m.error}</div>}
     </div>
   );
 }

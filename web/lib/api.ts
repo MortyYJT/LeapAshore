@@ -3,7 +3,7 @@
 // has not moved to the backend, and nothing that has.
 //
 // Requests go to a same-origin `/api` path that `next.config.ts` rewrites to the backend, so the
-// httpOnly `offerpilot_client` cookie rides along on its own and no CORS setup is needed.
+// httpOnly `leapashore_client` cookie rides along on its own and no CORS setup is needed.
 //
 // These functions fetch, refuse a body this side cannot read, and hand the wire shape back. They do
 // not map: `roadmap-source.ts` and `programs-source.ts` own the mappings from the served field names
@@ -115,7 +115,7 @@ function unwalkableReason(definition: ServedRoadmapDefinition): string | null {
  *
  * The definition half is shared configuration — the phases and materials are the same for everyone —
  * but the response is not: it also carries the caller's own `tasks`, so the route reads and sets the
- * `offerpilot_client` cookie and the answer differs per subject. Reading it still writes no row: a
+ * `leapashore_client` cookie and the answer differs per subject. Reading it still writes no row: a
  * first-time visitor simply has no tasks, and the subject row is created by the first write. The
  * cookie is repeated on every response rather than only on the first, which is what `deps.py` records
  * having once got wrong in the other direction.
@@ -423,7 +423,7 @@ export async function fetchPrograms(): Promise<ServedProgram[]> {
 /**
  * Read the applicant's own portfolio.
  *
- * Addressed by the `offerpilot_client` cookie, like the profile, so the answer differs per subject and
+ * Addressed by the `leapashore_client` cookie, like the profile, so the answer differs per subject and
  * the route mints the cookie for a first-time visitor. Reading it writes nothing: a subject with no
  * rows yet simply has no rows. The body is returned as the wire shape — `toPortfolioItems` in
  * `programs-source.ts` is what turns it into the items the interface passes around — for the same
@@ -499,7 +499,7 @@ async function refusalOf(response: Response, fallback: string): Promise<Error> {
 /**
  * Read the applicant's own material library.
  *
- * Addressed by the `offerpilot_client` cookie, like the portfolio, so the answer differs per subject
+ * Addressed by the `leapashore_client` cookie, like the portfolio, so the answer differs per subject
  * and the route mints the cookie for a first-time visitor. Reading it writes nothing. The body is
  * returned as the wire shape — `materials-source.ts` owns the mapping onto the shape the interface
  * renders, and it is a pure function with its own tests against captured bodies — because mapping here
