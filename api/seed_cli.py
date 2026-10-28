@@ -2,12 +2,15 @@
 
 from app.db import SessionLocal
 from app.seed import seed_programs
+from app.seed_catalog import seed_catalog
 from app.seed_review_criteria import seed_review_criteria
 from app.seed_roadmap import seed_roadmap
 
 if __name__ == "__main__":
     with SessionLocal() as session:
         print(f"seeded {seed_programs(session)} programs")
+        # After the hand-entered rows, which hold the ids the placeholder slugs are folded onto.
+        print(f"seeded the CRICOS catalogue: {seed_catalog(session)}")
         # Both counts are printed, so a run that adds nothing is distinguishable at a glance from a
         # run whose output was truncated.
         phases, materials = seed_roadmap(session)

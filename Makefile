@@ -1,7 +1,7 @@
 .PHONY: help dev build test verify install clean screenshots check-origins
 .PHONY: api-install api-test api-dev api-dev-bg wait-api check-api check-venv
 .PHONY: db-up db-down migrate revision seed
-.PHONY: check-dates check-programs-mirror check-programs-readers check-roadmap-mirror
+.PHONY: check-dates check-programs-readers check-roadmap-mirror
 
 WEB := web
 SHOTS := docs/screenshots
@@ -17,7 +17,7 @@ export UV_CACHE_DIR := $(CURDIR)/.runtime-tools/uv-cache
 # With many targets it is hard to remember prerequisites, so list the ones annotated with ##.
 # The pattern accepts any run of whitespace before `##` and after it, because the annotations are
 # hand-written and an extra space used to be enough to hide a target from this list. The name column
-# is wider than the longest target (`check-programs-mirror`), or its description runs into its name.
+# is wider than the longest target (`check-programs-readers`), or its description runs into its name.
 help:  ## List documented targets
 	@grep -E '^[a-z][a-z0-9-]*:.*##[[:space:]]+[^[:space:]]' $(MAKEFILE_LIST) \
 	  | sed 's/:.*##[[:space:]]*/\t/' | sort | awk -F'\t' '{printf "  %-24s %s\n", $$1, $$2}'
@@ -40,7 +40,7 @@ build:  ## Type-check and build into .next-build so a running dev server is unto
 
 # `npm test` type-checks before it runs the tests, because `next build` skips `lib/*.test.ts` and
 # would otherwise let a type error in a test file sit in the tree until someone ran tsc by hand.
-test: check-dates check-programs-mirror check-programs-readers check-roadmap-mirror api-test  ## Run the frontend type-check and unit tests, plus the backend tests
+test: check-dates check-programs-readers check-roadmap-mirror api-test  ## Run the frontend type-check and unit tests, plus the backend tests
 	cd $(WEB) && npm test
 
 verify: check-venv build test screenshots  ## Verify: build, unit tests and the end-to-end walkthrough
@@ -65,16 +65,8 @@ wait-api:  ## Wait for the API started by api-dev-bg to answer
 check-dates:  ## Fail if a verification date is hardcoded in source or seed data
 	node scripts/check-no-fake-dates.cjs
 
-# Without a database dump this still compares web/lib/programs.ts against the committed snapshot, so
-# the check runs even when the container is down. api/tests/test_seed.py compares the seeded rows
-# against the same snapshot, which is what binds the tables to the frontend data.
-check-programs-mirror:  ## Fail if the seeded catalogue stops mirroring web/lib/programs.ts
-	node scripts/verify-programs-mirror.cjs
-
-# The mirror guard binds the constants to the seed; this one binds the pages to the served row. The
-# walkthrough's M2d check compares the page against the server's own answer, and the two catalogues
-# agree on all six seeded programs, so restoring a `PROGRAMS.find(...)` in a view kept it green. This
-# is the cheap, deterministic half: it walks the import graph out of the App Router's entry points and
+# Pages must read programs from the served row, never from web/lib/programs.ts (now only test data for
+# web/lib/eligibility.test.ts). This walks the import graph out of the App Router's entry points and
 # fails if web/lib/programs.ts is reachable from any of them, however many hops away. A grep over
 # web/components and web/app was bypassable one re-export away — a lookup in web/lib kept it green.
 check-programs-readers:  ## Fail if a page can reach web/lib/programs.ts through the import graph

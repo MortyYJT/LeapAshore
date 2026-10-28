@@ -1,13 +1,10 @@
-"""Tests for the placeholder catalogue seed.
+"""Tests for the hand-entered program seed.
 
 The fixtures run against the shared development database. The tests that assert on how many rows a
 run adds — and the last one, which compares stored values against the frontend source — clear the
 catalogue first, so they cannot be answered by whatever a developer happened to leave in the
 database. The rest seed on top of the existing rows and assert only on the seeded rows, which the
 seed's own idempotency makes safe.
-
-The last test hands the seeded rows to scripts/verify-programs-mirror.cjs, the guard that keeps the
-seed and web/lib/programs.ts from drifting apart.
 
 Clearing the catalogue also displaces the portfolio rows that name a seeded program, because
 ``applications.program_id`` is RESTRICT: a developer with a portfolio in a browser used to be able to
@@ -18,11 +15,7 @@ fixture that puts them back once the test that swept has restored the catalogue,
 removed are lost.
 """
 
-import json
-import subprocess
 import warnings
-from decimal import Decimal
-from pathlib import Path
 
 import pytest
 from sqlalchemy import delete, func, select
@@ -45,20 +38,6 @@ APPLICATION_COLUMNS = tuple(column.key for column in Application.__table__.colum
 # the fixture below can put them back. Module scope because the list has to outlive the test that
 # filled it — `conftest.task_rows_displaced_mid_run` is the session-scoped version of the same idea.
 applications_displaced_mid_run: list[dict] = []
-
-# tests/ -> api/ -> the repository root, where the guard and the frontend data live.
-REPO_ROOT = Path(__file__).resolve().parents[2]
-MIRROR_GUARD = REPO_ROOT / "scripts" / "verify-programs-mirror.cjs"
-
-
-def json_number(value):
-    """Numeric columns come back as Decimal; JSON wants a number, and null must stay null."""
-    if value is None:
-        return None
-    if isinstance(value, Decimal):
-        return float(value)
-    return value
-
 
 def clear_catalogue(session) -> list[dict]:
     """Remove the seeded catalogue, displacing any portfolio row that names a seeded program.
@@ -225,8 +204,15 @@ def test_seed_does_not_duplicate_sources_or_prerequisites(db_session, require_db
     seed_programs(db_session)
     seed_programs(db_session)
 
-    programs = db_session.execute(select(func.count()).select_from(Program)).scalar()
-    prerequisites = db_session.execute(select(func.count()).select_from(ProgramPrerequisite)).scalar()
+    # Counted over the seeded ids: the CRICOS catalogue (`seed_catalog`) shares the table.
+    programs = db_session.execute(
+        select(func.count()).select_from(Program).where(Program.id.in_(PROGRAM_IDS))
+    ).scalar()
+    prerequisites = db_session.execute(
+        select(func.count())
+        .select_from(ProgramPrerequisite)
+        .where(ProgramPrerequisite.program_id.in_(PROGRAM_IDS))
+    ).scalar()
 
     assert programs == len(PROGRAMS)
     assert prerequisites == expected
@@ -235,7 +221,9 @@ def test_seed_does_not_duplicate_sources_or_prerequisites(db_session, require_db
 def test_seeded_programs_are_not_marked_verified(db_session, require_db):
     """Every seeded program is placeholder data and must say so."""
     seed_programs(db_session)
-    statuses = db_session.execute(select(func.distinct(Program.data_status))).scalars().all()
+    statuses = db_session.execute(
+        select(func.distinct(Program.data_status)).where(Program.id.in_(PROGRAM_IDS))
+    ).scalars().all()
     assert statuses == ["待核验"]
 
 
@@ -261,64 +249,6 @@ def test_every_program_points_at_a_source(db_session, require_db):
 def test_expected_universities_are_present(db_session, require_db):
     seed_programs(db_session)
     names = set(db_session.execute(select(University.name)).scalars().all())
-    # The plan wrote 莫纳什大学 here; web/lib/programs.ts, which this seed must mirror exactly,
-    # has always spelled Monash 蒙纳士大学. The frontend value wins.
+    # The seed spells Monash 蒙纳士大学, as the interface always has; the school library's
+    # 莫纳什大学 is the other common rendering of the same name.
     assert {"新南威尔士大学", "悉尼大学", "蒙纳士大学"} <= names
-
-
-def test_seeded_values_still_mirror_the_typescript_source(db_session, require_db, tmp_path):
-    """Every seeded value must equal the value web/lib/programs.ts carries today.
-
-    Nothing else in the suite ties a stored value to the file the seed was transcribed from, so a
-    changed mark, a dropped prerequisite or a truncated url used to leave the build green. The
-    comparison itself lives in scripts/verify-programs-mirror.cjs: it imports the TypeScript through
-    Node's own type stripping, so the expected values come from the source of truth rather than from
-    a second hand-copied table, and it fails loudly when it finds nothing to compare.
-
-    The catalogue is cleared first because ``seed_programs`` skips any program id that already
-    exists. Without that, a row left behind by an earlier run — or by a different tree — would be
-    read back and compared, and the verdict would describe the database's history instead of
-    api/app/seed.py. Clearing means the rows read back are the ones this run of the seed wrote.
-    """
-    applications_displaced_mid_run.extend(clear_catalogue(db_session))
-    seed_programs(db_session)
-
-    # `Program` has no `source` relationship, so the url is read from the row the program points at.
-    source_urls = dict(db_session.execute(select(Source.id, Source.url)).all())
-    dump = {
-        "programs": [
-            {
-                "id": program.id,
-                "city": program.city,
-                "degree_level": program.degree_level,
-                "field": program.field,
-                "duration": program.duration,
-                "minimum_mark": json_number(program.minimum_mark),
-                "non_211_minimum_mark": json_number(program.non_211_minimum_mark),
-                "requires_cognate": program.requires_cognate,
-                "english_requirement": program.english_requirement,
-                "source_url": source_urls.get(program.source_id),
-                "prerequisites": [
-                    row.label
-                    for row in sorted(program.prerequisites, key=lambda row: row.sort_order)
-                ],
-            }
-            for program in db_session.execute(select(Program).order_by(Program.id)).scalars()
-        ]
-    }
-    # Nothing here filters the rows: when the database holds no program the dump is empty and the
-    # guard reports that as a failure, so a broken seed can never look like a clean comparison.
-    dump_path = tmp_path / "programs-from-database.json"
-    dump_path.write_text(json.dumps(dump, ensure_ascii=False), encoding="utf-8")
-
-    result = subprocess.run(
-        ["node", str(MIRROR_GUARD), str(dump_path)],
-        cwd=REPO_ROOT,
-        capture_output=True,
-        text=True,
-    )
-    assert result.returncode == 0, (
-        f"{MIRROR_GUARD.name} rejected the seeded values\n"
-        f"stdout:\n{result.stdout}\nstderr:\n{result.stderr}"
-    )
-    assert "MISMATCH" not in result.stdout
