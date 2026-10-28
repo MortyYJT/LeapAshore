@@ -3,7 +3,7 @@
 //
 // The mapping is not decorative. `GET /api/programs` and `web/lib/types.ts` disagree about two things,
 // both recorded in `api/app/schemas/program.py` and ruled on in
-// `note/superpowers/specs/2026-10-06-stage-2-m2-design.md` §3.6, and neither disagreement is a type
+// `note/design/2026-10-06-stage-2-m2-design.md` §3.6, and neither disagreement is a type
 // error on this side:
 //
 // - the frontend's `Program.name` is the **English** program name, while the route's `name` is the

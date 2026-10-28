@@ -1,7 +1,7 @@
 """Seed the review criteria the Genuine Student review checks a statement against.
 
 Every entry here is a transcription of the ten-point skeleton recorded in
-`note/superpowers/specs/2026-10-06-stage-2-database-design.md` §6, which was itself read from the
+`note/design/2026-10-06-stage-2-database-design.md` §6, which was itself read from the
 Department of Home Affairs' Genuine Student requirement page on 2026-10-06. Nothing is added,
 reworded into a new requirement, or given a threshold the page does not state: the point of a
 criterion is that someone can check it, and a criterion nobody can trace is exactly the invented

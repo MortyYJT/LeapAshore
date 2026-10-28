@@ -7,7 +7,7 @@
 
 | Entry | What to try |
 | --- | --- |
-| [`/`](http://43.161.224.82/) | Ten-step onboarding → portfolio picker → the application roadmap |
+| [`/`](http://43.161.224.82/) | Ten-step onboarding; finishing it opens the assessment result |
 | [`/prototype/schools`](http://43.161.224.82/prototype/schools) | 346 schools, filterable by region, QS band and alliance |
 | [`/prototype/assess`](http://43.161.224.82/prototype/assess) | Enter a background, get every program tiered 冲刺 / 匹配 / 保底 / 不满足 with rule-by-rule evidence |
 | [`/prototype/advisor`](http://43.161.224.82/prototype/advisor) | Chat with the LangGraph advisor agent |
@@ -155,5 +155,5 @@ Not yet:
 - [Product requirements (Chinese)](docs/product/PRD.md)
 - [Contribution and commit rules](CONTRIBUTING.md)
 - [Repository instructions for agents](AGENTS.md)
-- [Verification reports](docs/verification/)
-- [Chinese learning log](note/stage-1-MVP.md)
+- [Cross-change decisions (Chinese)](note/decisions.md)
+- [Backend design (Chinese)](note/design/)

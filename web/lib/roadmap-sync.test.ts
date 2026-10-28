@@ -2,7 +2,7 @@
 // `PUT /api/roadmap/tasks`, and what may not.
 //
 // The function under test takes no network and holds no state, so the three claims the design makes
-// about a write are pinned here rather than in a browser. `note/superpowers/specs/2026-10-06-stage-2-m2-design.md`
+// about a write are pinned here rather than in a browser. `note/design/2026-10-06-stage-2-m2-design.md`
 // section 3.8 is the reason two of them exist:
 //
 // - the applicable keys travel **separately** from the rows, because "this key no longer applies" and

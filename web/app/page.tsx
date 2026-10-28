@@ -114,7 +114,7 @@ export default function Page() {
    *
    * It is also the write gate, which is the part that matters most here. A write is only ever built
    * from a definition this state actually holds, so the built-in copy — which has no visa phase — can
-   * never drive one; see `note/superpowers/specs/2026-10-06-stage-2-m2-design.md` §3.8 and
+   * never drive one; see `note/design/2026-10-06-stage-2-m2-design.md` §3.8 and
    * `roadmap-sync.ts`. Keeping the fallback out of this state rather than out of the payload function
    * means there is exactly one way to have a definition and that is to have read it.
    *

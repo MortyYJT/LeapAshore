@@ -1,7 +1,7 @@
 // Characterisation tests for the deterministic eligibility rules.
 //
 // The rules shipped in T2 before any test existed, so these lock in current behaviour. Several
-// documented gaps are asserted explicitly rather than papered over; see note/stage-1-MVP.md.
+// documented gaps are asserted explicitly rather than papered over.
 
 import { test } from "node:test";
 import assert from "node:assert/strict";

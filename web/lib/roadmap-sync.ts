@@ -11,7 +11,7 @@
 // rows is prevented, because a payload that disagrees with the rule is a bug that would otherwise
 // show up as a count nobody expected.
 //
-// The second rule is section 3.8 of `note/superpowers/specs/2026-10-06-stage-2-m2-design.md`. The
+// The second rule is section 3.8 of `note/design/2026-10-06-stage-2-m2-design.md`. The
 // built-in `DEFAULT_DEFINITION` in `roadmap.ts` deliberately omits the visa phase — it is the copy
 // for a page that cannot reach the server, not a second version of the truth. A recomputation driven
 // by it computes zero visa materials, so it would state an applicable-key set without the visa keys

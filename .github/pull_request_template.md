@@ -1,8 +1,6 @@
 ## What and why
 
-<!-- One or two sentences. Link the issue and the OpenSpec change if there is one. -->
-
-Closes #
+<!-- One or two sentences. Link the OpenSpec change if there is one. -->
 
 Baseline: <!-- the check command on main before this change: passed / failed (pre-existing) -->
 
@@ -25,8 +23,7 @@ Baseline: <!-- the check command on main before this change: passed / failed (pr
 
 ## Checklist
 
-- [ ] Branch carries an agent or owner prefix (`claude/…`, `codex/…`, `dsh/…`, `me/…`); commits follow CONTRIBUTING.md
+- [ ] Branch carries an agent or owner prefix; commits follow CONTRIBUTING.md
 - [ ] No secrets, real names, or identifying local paths
 - [ ] OpenSpec change updated or archived (product/logic changes only)
 - [ ] One commit per plan step; about 400 changed lines or fewer (excluding tests and lockfiles)
-- [ ] `TODO(human)` parts left for the user

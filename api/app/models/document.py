@@ -7,7 +7,7 @@ the review moves; `document_versions` is the immutable list of files, one per up
 The file itself is deliberately absent from both: bytes live on disk under
 `settings.document_storage_root`, addressed by their SHA-256 digest, and the row carries only a path
 relative to that root. Storing them here would make backup and migration carry every scan the
-applicant ever uploaded, and the parent design (`note/superpowers/specs/2026-10-06-stage-2-database-design.md`
+applicant ever uploaded, and the parent design (`note/design/2026-10-06-stage-2-database-design.md`
 §3.3) already rejected it.
 
 No ORM relationship is declared between these two tables, on purpose. They reference each other —

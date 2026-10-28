@@ -29,9 +29,8 @@ Each body item starts with `- `. A wrapped continuation line is indented, not a 
 
 ## Branches and pull requests
 
-- Branch from an up-to-date `main` as `<owner>/<topic>`, where `<owner>` is the agent that did the work
-  (`codex/`, `claude/`, `dsh/`, …) or `me/` for your own. New agents take their own prefix; do not reuse
-  another agent's. Use short kebab-case topics, e.g. `codex/stage-2-m2a-roadmap-definition`.
+- Branch from an up-to-date `main` as `<agent>/<topic>` (for example `claude/` or `codex/`), or `me/` for
+  your own work. Use short kebab-case topics, e.g. `claude/repo-cleanup`.
 - Open a pull request into `main`. The user merges; do not merge your own work.
 - Never push to `main`, force-push, or rewrite already-pushed history.
 - Run `git diff --cached --check` before each commit.
