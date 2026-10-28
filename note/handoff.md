@@ -2,7 +2,7 @@
 
 **唯一的当前状态文件。会话结束时覆盖，开始时读，并先对照 `git status` 和 `git log`。**
 
-## 现在在哪（2026-10-29 深夜，MortyYJT 在睡觉，Claude 自动推进）
+## 现在在哪（2026-10-30 凌晨，夜间采集因额度用完停止）
 
 - 分支 `claude/ledger-redesign`（从 main 拉出，未合并）。线上 http://43.161.224.82 仍是改名前的版本。
 - 今晚做三件事（MortyYJT 原话：「补数据，爬取 qs 前 200 的……还有补一下缺失校徽，然后去写代码，就那些不太可能会变动的后端部分」）：
@@ -80,7 +80,7 @@
 
 被拦截（按规则不绕过）：Monash、Melbourne、Macquarie、NUS 大部分、Oxford 主站、UCL（50 个后 403）、Bristol、Durham、Bath、Cardiff、York（16 个后 429）、QUB（robots.txt 403）、Stanford 计算机系（robots.txt 禁止）。
 需人工确认：UNSW 英语分数的学院对应、悉尼「Not available to student visa holders」、剑桥 "High II.i"↔"High 2:1"、帝国理工 46 个 MRes 是否算授课型、RMIT 7 条按名称匹配 CRICOS、St Andrews 英语分数取自页面 data 属性、Exeter 中国要求表标注的是 2026 入学、Stanford 等校 TOEFL 同时给 0-120 和新 1-6 分制（界面怎么显示要定）。
-进行中：Harvard、Penn、Cornell、Yale、Johns Hopkins、Berkeley；之后是美国其余学校（Chicago、Princeton、Columbia……）、加拿大 9、新西兰 2、日本 8、韩国 7、马来西亚 5、欧洲 52、其他 21，再给 partial 的学校补跑。
+额度用完（子代理报 session limit，墨尔本时间 8 点重置）。被中断、没有产出文件的：Harvard、Penn、Cornell、Yale、Johns Hopkins、Berkeley——快照已在 `api/var/snapshots/<key>/`，重跑时直接派同样的子代理即可。之后是美国其余学校（Chicago、Princeton、Columbia……）、加拿大 9、新西兰 2、日本 8、韩国 7、马来西亚 5、欧洲 52、其他 21，再给 partial 的学校补跑。
 
 ## 校徽
 
