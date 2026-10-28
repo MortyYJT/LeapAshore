@@ -43,7 +43,6 @@ Verify it against `git status` and `git log` before trusting it.
 0. 前端改版 + 注册登录（用户 10-28 提出，待设计）
 2. 域名审核通过 → Caddyfile 改成两个站点块（自动 HTTPS）、compose 暴露 443、服务器上 clone 个人网站静态构建、更新 README 线上地址
 4. 热门学校真实录取要求：先几所，带官网来源，状态"机器核对"，人工核验后才写 `verified_at`
-5. PRD 7.4 与实现不一致：实现里"待核验"数据照答但打标签，只有"未收录 / 无可引用来源"才拒答。等用户确认后改 PRD
 
 ## 已知限制
 
