@@ -112,6 +112,22 @@ Use `api/.venv/bin/python` for the tools.
   previous year") is an inference and fails the check.
 - Run `verify.py --write` last; it adds `check`, `status`, and `verification`.
 
+### Combining two official pages
+
+Some requirements live on a shared page rather than the programme page: a graduate school's general
+requirements, a faculty's English table, a "requirements by country: China" page. Use one only when
+the **programme page itself names it** (its faculty, its English level, its required degree class),
+and cite it with `source_sha256`. Typical cases:
+
+- **UK**: a country page gives the percentage a Chinese degree needs for each UK class ("2:1: 80%
+  from a 211 university, 85% from others"). When the programme's academic quote states its class,
+  fill `china_requirement` with that class's percentages; its quote must contain both the class and
+  the percentages. If the page groups universities by named lists other than 985/211 (or Double
+  First-Class), give `text` + `quote` only, without `min_mark_*`.
+- **English levels** ("Standard", "Higher", "Band B") defined on a separate page: cite that page's
+  scores only for programmes whose page names the level.
+- A **conversion table** (GPA scale ↔ percentage) is not a requirement: never turn it into a number.
+
 ### What to report when you finish
 
 One line of JSON: `{"school_key": …, "programs": N, "machine_checked": N, "human_queue": N,
