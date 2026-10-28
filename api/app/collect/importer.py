@@ -188,7 +188,9 @@ def import_school(session: Session, data: dict, schools: dict[str, dict], root: 
                          for item in fields.get("prerequisites", []) if passed(item)]
         session.execute(delete(ProgramPrerequisite).where(ProgramPrerequisite.program_id == pid))
         for index, label in enumerate(prerequisites):
-            session.add(ProgramPrerequisite(id=f"{pid}-pre-{index}"[:64], program_id=pid, label=label,
+            # A program id can be 64 characters, so a suffixed id would be cut back onto its neighbour.
+            prerequisite_id = str(uuid.uuid5(SOURCE_NAMESPACE, f"{pid}#prerequisite#{index}"))
+            session.add(ProgramPrerequisite(id=prerequisite_id, program_id=pid, label=label,
                                             category="collected", sort_order=index))
     session.commit()
     return {"school": key, "programs_added": added, "programs_updated": updated}
@@ -207,10 +209,17 @@ def main(argv: list[str]) -> int:
 
     paths = [Path(a) for a in argv] or requirement_files()
     schools = load_schools()
+    failed = 0
     with SessionLocal() as session:
         for path in paths:
-            print(json.dumps(import_school(session, json.loads(path.read_text(encoding="utf-8")), schools), ensure_ascii=False))
-    return 0
+            try:
+                result = import_school(session, json.loads(path.read_text(encoding="utf-8")), schools)
+            except Exception as error:  # noqa: BLE001 - one bad file must not stop the others
+                session.rollback()
+                failed += 1
+                result = {"school": path.stem, "error": str(error).splitlines()[0][:300]}
+            print(json.dumps(result, ensure_ascii=False))
+    return 1 if failed else 0
 
 
 if __name__ == "__main__":

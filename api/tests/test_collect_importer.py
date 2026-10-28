@@ -148,3 +148,25 @@ def test_new_content_on_a_reviewed_page_returns_it_to_unverified(db_session, req
     import_school(db_session, changed, SCHOOLS, root=tmp_path)
     source = db_session.get(Source, source_id_for(URL))
     assert source.status == "待核验" and source.verified_at is None
+
+
+def test_two_prerequisites_of_a_long_named_program_get_distinct_ids(db_session, require_db, tmp_path):
+    long_name = "Master of Business Administration in Global Supply Chain and Operations Strategy"
+    url = "https://example.test/very-long-programme-name"
+    data = school_file(prerequisites=[{"text": "GMAT", "quote": "GMAT", "check": "ok"},
+                                      {"text": "two years of work", "quote": "two years", "check": "ok"}])
+    data["programs"][0].update({"name": long_name, "url": url})
+    pid = program_id_for(KEY, {"url": url, "name": long_name})
+    assert len(pid) <= 64
+    try:
+        import_school(db_session, data, SCHOOLS, root=tmp_path)
+        labels = [p.label for p in db_session.get(Program, pid).prerequisites]
+        assert sorted(labels) == ["GMAT", "two years of work"]
+    finally:
+        db_session.rollback()
+        db_session.execute(delete(ProgramPrerequisite).where(ProgramPrerequisite.program_id == pid))
+        db_session.execute(delete(Program).where(Program.id == pid))
+        db_session.execute(delete(SourceVersion).where(SourceVersion.source_id == source_id_for(url)))
+        db_session.execute(delete(Source).where(Source.id == source_id_for(url)))
+        db_session.execute(delete(University).where(University.id == KEY))
+        db_session.commit()
