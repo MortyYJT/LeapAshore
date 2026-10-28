@@ -7,7 +7,7 @@ from app.db import SessionLocal
 from app.main import app
 from app.models.client import Client, Profile
 
-COOKIE = "offerpilot_client"
+COOKIE = "leapashore_client"
 
 
 def row_counts() -> tuple[int, int]:

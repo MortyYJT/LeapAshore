@@ -15,6 +15,15 @@ class Settings(BaseSettings):
     # `app.services.documents`.
     document_storage_root: Path = Path(__file__).resolve().parent.parent / "var" / "documents"
 
+    # The advisor's chat model, spoken to over the OpenAI protocol. An empty key leaves the rest of
+    # the API working and makes the advisor answer that it is not configured, instead of failing at
+    # import time.
+    chat_base_url: str = "https://api.siliconflow.cn/v1"
+    chat_model: str = "deepseek-ai/DeepSeek-V4-Flash"
+    chat_api_key: str = ""
+    # Upper bound on model calls in one ReAct loop; counting steps is what stops a tool loop.
+    max_agent_steps: int = 6
+
     model_config = {"env_file": ".env", "extra": "ignore"}
 
 

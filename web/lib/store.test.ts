@@ -9,7 +9,7 @@ import assert from "node:assert/strict";
 
 import { EMPTY_PROFILE, clearState, initialState, loadState, saveState } from "./store.ts";
 
-const STORAGE_KEY = "offerpilot.state.v1";
+const STORAGE_KEY = "leapashore.state.v1";
 
 /** Run `body` with a `window.localStorage` backed by a Map, and hand it that Map. */
 function withLocalStorage<T>(body: (stored: Map<string, string>) => T): T {

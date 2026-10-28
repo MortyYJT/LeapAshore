@@ -32,7 +32,7 @@ dev: db-up api-dev-bg  ## Start the database, the API on :8000 and the frontend 
 # renders a page whose profile is permanently empty. Start it in the background, detached from this
 # shell's job control, and wait for the health probe instead of assuming the port answers.
 api-dev-bg:  ## Start the API in the background and wait until it answers
-	@cd api && nohup .venv/bin/uvicorn app.main:app --port 8000 >/tmp/offerpilot-api.log 2>&1 &
+	@cd api && nohup .venv/bin/uvicorn app.main:app --port 8000 >/tmp/leapashore-api.log 2>&1 &
 	@$(MAKE) --no-print-directory wait-api
 
 build:  ## Type-check and build into .next-build so a running dev server is untouched
@@ -58,7 +58,7 @@ check-api:  ## Fail unless the API answers on :8000
 wait-api:  ## Wait for the API started by api-dev-bg to answer
 	@for i in $$(seq 1 40); do \
 	  curl -fsS -o /dev/null --max-time 2 http://127.0.0.1:8000/api/health && break; \
-	  test $$i -lt 40 || { echo "后端 20 秒内未启动，见 /tmp/offerpilot-api.log" >&2; exit 1; }; \
+	  test $$i -lt 40 || { echo "后端 20 秒内未启动，见 /tmp/leapashore-api.log" >&2; exit 1; }; \
 	  sleep 0.5; \
 	done
 

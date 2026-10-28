@@ -14,6 +14,7 @@ const { execFileSync } = require("child_process");
 const { chromium } = require("./playwright.cjs");
 
 const ROOT = path.resolve(__dirname, "..");
+
 const OUT = path.join(ROOT, "docs/screenshots");
 const BASE = process.env.BASE_URL || "http://localhost:3000";
 
@@ -79,7 +80,7 @@ function dbRun(sql) {
    * There is more than one, and the count is printed below so the number is measured rather than
    * assumed. Two sources, because they answer different halves:
    *
-   * - the route sets `offerpilot_client` on **every** answer, and the frontend mounts up to four
+   * - the route sets `leapashore_client` on **every** answer, and the frontend mounts up to four
    *   readers at once (`/api/profile`, `/api/roadmap`, `/api/programs`, `/api/applications`). Any of
    *   them can be the first request to arrive without a cookie, so a first page load mints several.
    *   Measured: three, from one `page.goto` on a cold context.
@@ -97,7 +98,7 @@ function dbRun(sql) {
   };
   const rememberCookies = (response) => {
     for (const value of response.headers.getSetCookie()) {
-      const match = /(?:^|;\s*)offerpilot_client=([^;]+)/.exec(value);
+      const match = /(?:^|;\s*)leapashore_client=([^;]+)/.exec(value);
       if (match) rememberSubject(decodeURIComponent(match[1]));
     }
   };
@@ -145,7 +146,7 @@ function dbRun(sql) {
     try {
       for (const value of await response.headersArray()) {
         if (value.name.toLowerCase() !== "set-cookie") continue;
-        const match = /(?:^|;\s*)offerpilot_client=([^;]+)/.exec(value.value);
+        const match = /(?:^|;\s*)leapashore_client=([^;]+)/.exec(value.value);
         if (match) rememberSubject(decodeURIComponent(match[1]));
       }
     } catch {
@@ -252,7 +253,7 @@ function dbRun(sql) {
       // It is only the first: `subjects` accumulates every id the run was given, and the cleanup below
       // removes all of them, because any one of them can hold the portfolio rows that block the
       // catalogue seed's sweep.
-      const clientCookie = (await context.cookies()).find((c) => c.name === "offerpilot_client");
+      const clientCookie = (await context.cookies()).find((c) => c.name === "leapashore_client");
       rememberSubject(clientCookie?.value);
       console.log("本次走查的主体:", clientCookie?.value ?? "未取得 cookie");
 
@@ -365,7 +366,7 @@ function dbRun(sql) {
       await page.waitForTimeout(500);
       const avatarShown = (await page.locator('button[aria-label="账户"] img').count()) === 1;
       const avatarStored = await page.evaluate(() => {
-        const raw = window.localStorage.getItem("offerpilot.state.v1");
+        const raw = window.localStorage.getItem("leapashore.state.v1");
         return Boolean(raw && JSON.parse(raw).avatar);
       });
       console.log("上传后头像已显示:", avatarShown ? "是" : "否");
@@ -477,7 +478,7 @@ function dbRun(sql) {
       // page is *supposed* to fall back, and reporting that is this block's job. Crashing on the read
       // instead would fail the run without saying which of the two things was wrong.
       await page.evaluate(() => {
-        window.localStorage.setItem("offerpilot.state.v1", JSON.stringify({ stage: "app" }));
+        window.localStorage.setItem("leapashore.state.v1", JSON.stringify({ stage: "app" }));
       });
       await page.reload({ waitUntil: "networkidle" });
       await page.getByText("申请流程").first().waitFor({ timeout: 15000 });
@@ -870,7 +871,7 @@ function dbRun(sql) {
       );
       await page.evaluate(() => {
         window.localStorage.clear();
-        window.localStorage.setItem("offerpilot.state.v1", JSON.stringify({ stage: "portfolio" }));
+        window.localStorage.setItem("leapashore.state.v1", JSON.stringify({ stage: "portfolio" }));
       });
       await page.reload({ waitUntil: "networkidle" });
       await page.getByText("为你筛出的申请组合").waitFor({ timeout: 15000 });
@@ -930,7 +931,7 @@ function dbRun(sql) {
       await page.evaluate((sentinel) => {
         window.localStorage.clear();
         window.localStorage.setItem(
-          "offerpilot.state.v1",
+          "leapashore.state.v1",
           JSON.stringify({
             stage: "app",
             // A program that is in no catalogue. If anything on this page rendered from storage, this
@@ -1069,7 +1070,7 @@ function dbRun(sql) {
       await page.route("**/api/applications", rejectPortfolio);
       await page.evaluate(() => {
         window.localStorage.clear();
-        window.localStorage.setItem("offerpilot.state.v1", JSON.stringify({ stage: "portfolio" }));
+        window.localStorage.setItem("leapashore.state.v1", JSON.stringify({ stage: "portfolio" }));
       });
       await page.reload({ waitUntil: "networkidle" });
       await page.getByText("为你筛出的申请组合").waitFor({ timeout: 15000 });
@@ -1131,7 +1132,7 @@ function dbRun(sql) {
       // called `.pdf` holding PDF bytes is declared correctly and the check below could not tell a server
       // that sniffs from one that believes the declaration. With PDF bytes in a `.png`, the two answers
       // differ and the check can fail: the route must store `application/pdf`.
-      const materialPath = path.join(os.tmpdir(), "offerpilot-walkthrough-material.png");
+      const materialPath = path.join(os.tmpdir(), "leapashore-walkthrough-material.png");
       const materialBytes =
         "%PDF-1.4\n1 0 obj\n<< /Type /Catalog >>\nendobj\ntrailer\n<< /Root 1 0 R >>\n%%EOF\n";
       fs.writeFileSync(materialPath, materialBytes);
@@ -1377,12 +1378,12 @@ function dbRun(sql) {
     // ---------------------------------------------------------------------------------------------
     console.log("\n=== 清理 ===");
     for (const cookie of await context.cookies()) {
-      if (cookie.name === "offerpilot_client") rememberSubject(cookie.value);
+      if (cookie.name === "leapashore_client") rememberSubject(cookie.value);
     }
     const captured = [...subjects.keys()];
     console.log("本次走查创建的主体数:", captured.length, JSON.stringify(captured));
     if (captured.length === 0) {
-      check("走查结束时清理了本次主体", false, "没有读到任何 offerpilot_client cookie");
+      check("走查结束时清理了本次主体", false, "没有读到任何 leapashore_client cookie");
     } else {
       const quoted = captured.map((id) => `'${id}'`).join(", ");
       const removedRows = dbRun(`DELETE FROM applications WHERE client_id IN (${quoted})`);

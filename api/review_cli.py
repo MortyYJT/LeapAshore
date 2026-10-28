@@ -47,7 +47,7 @@ def _parse_finding(value: str) -> dict:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="OfferPilot 审核依据与审核结论的维护命令")
+    parser = argparse.ArgumentParser(description="鱼跃彼岸审核依据与审核结论的维护命令")
     commands = parser.add_subparsers(dest="command", required=True)
 
     for name, help_text in (

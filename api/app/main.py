@@ -2,6 +2,7 @@ from fastapi import FastAPI
 
 from app.middleware import BodySizeLimitMiddleware
 from app.routers import (
+    advisor,
     applications,
     documents,
     profile,
@@ -11,7 +12,7 @@ from app.routers import (
 )
 from app.services.documents import MAX_UPLOAD_BYTES, TOO_LARGE
 
-app = FastAPI(title="OfferPilot API")
+app = FastAPI(title="LeapAshore API")
 
 # Registered before the routes so an oversize upload is refused before the multipart parser spools
 # it to a temporary file; the upload service counts the bytes as a second line of defence.
@@ -22,6 +23,7 @@ app.add_middleware(
     detail=TOO_LARGE,
 )
 
+app.include_router(advisor.router)
 app.include_router(applications.router)
 app.include_router(documents.router)
 app.include_router(profile.router)

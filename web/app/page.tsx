@@ -29,6 +29,8 @@ import { toApplicationRows, toPortfolioItems, toProgramView } from "@/lib/progra
 import { toTaskRows } from "@/lib/roadmap-source";
 import { alreadyStored, toReplacePayload, type TaskRow } from "@/lib/roadmap-sync";
 import { clearState, initialState, loadState, saveState, type PersistedState } from "@/lib/store";
+import { storageKey as prototypeBackgroundKey } from "@/components/prototype/storage";
+import { markOnboarded, toPrototypeBackground } from "@/lib/prototype-handoff";
 import type {
   Material,
   MaterialKind,
@@ -821,47 +823,27 @@ export default function Page() {
     );
   }
 
-  if (state.stage === "generating") {
-    return <Generating onDone={() => setState((prev) => ({ ...prev, stage: "portfolio" }))} />;
-  }
+  // The onboarding is the site's front door. Once it is done the applicant continues in the
+  // prototype; the portfolio picker and the roadmap shell below are no longer reachable from here.
+  return <EnterPrototype profile={state.profile} />;
+}
 
-  if (state.stage === "portfolio") {
-    return (
-      <PortfolioPicker
-        profile={state.profile}
-        programs={programs}
-        portfolio={portfolio}
-        programsError={programsError}
-        onConfirm={handlePortfolioConfirm}
-        onBack={restart}
-      />
-    );
+/**
+ * Show the "generating" moment, then hand the answers to the prototype and move there.
+ *
+ * The answers become the prototype's assessment background (session storage, the same key the
+ * prototype's own form writes), and the onboarding cookie makes `proxy.ts` skip `/` next time.
+ * `replace` rather than `assign`, so Back does not return to a questionnaire that is already done.
+ */
+function EnterPrototype({ profile }: { profile: Profile }) {
+  function enter() {
+    try {
+      sessionStorage.setItem(prototypeBackgroundKey, JSON.stringify(toPrototypeBackground(profile)));
+    } catch {
+      // Storage refused: the prototype still works, its assessment form just starts empty.
+    }
+    markOnboarded();
+    window.location.replace("/prototype/assess/result");
   }
-
-  return (
-    <AppShell
-      profile={state.profile}
-      roadmap={roadmap}
-      portfolio={portfolio}
-      onToggleMaterial={toggleMaterial}
-      onUpdateProfile={updateProfile}
-      avatar={state.avatar}
-      onAvatarChange={setAvatar}
-      onClear={clearAll}
-      profileError={profileError}
-      roadmapNotice={definitionRead.notice}
-      taskSyncError={taskSyncError}
-      onUploadMaterial={uploadMaterialForRequirement}
-      library={{
-        materials,
-        detail: materialDetail,
-        error: materialsError,
-        busy: materialsBusy,
-        onOpen: openMaterial,
-        onArchive: archiveMaterialById,
-        onSubmit: submitMaterialById,
-        onAddVersion: addVersionToMaterial,
-      }}
-    />
-  );
+  return <Generating onDone={enter} />;
 }

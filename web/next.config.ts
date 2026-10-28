@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  // The browser reaches the API through this origin, so the httpOnly `offerpilot_client` cookie is
+  // The browser reaches the API through this origin, so the httpOnly `leapashore_client` cookie is
   // same-origin and no CORS or credentials plumbing is needed. The cost is that the backend must be
   // running: `make dev` starts both, and `screenshots` refuses to drive the browser without it.
   async rewrites() {
@@ -21,6 +21,9 @@ const nextConfig: NextConfig = {
   // chunks: the page still rendered from HTML and CSS but never hydrated, so every control was dead
   // with no visible error. `make build` now points the build at its own directory.
   distDir: process.env.NEXT_DIST_DIR || ".next",
+  // The production image runs the self-contained server Next emits under .next/standalone, so the
+  // runtime layer needs no node_modules. Opt-in, so local builds keep their usual layout.
+  output: process.env.NEXT_OUTPUT === "standalone" ? "standalone" : undefined,
 };
 
 export default nextConfig;

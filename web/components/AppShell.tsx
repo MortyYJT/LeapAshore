@@ -147,7 +147,7 @@ export default function AppShell({
             }}
           >
             <span className="text-xl">🧭</span>
-            <strong className="hidden text-[15px] lg:inline">OfferPilot</strong>
+            <strong className="hidden text-[15px] lg:inline">鱼跃彼岸</strong>
           </button>
 
           <nav className="flex justify-self-center gap-1 overflow-x-auto py-2">

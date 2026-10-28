@@ -16,6 +16,7 @@ const path = require("path");
 const { chromium } = require("./playwright.cjs");
 
 const ROOT = path.resolve(__dirname, "..");
+
 const PORT = process.env.PORT || "3000";
 
 // Read the allowlist straight from the config so this check cannot drift away from it.

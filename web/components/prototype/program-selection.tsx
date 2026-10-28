@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { createContext, useContext, useEffect, useState } from 'react';
 import { button } from './shared';
 const Selection = createContext<{selected: string[]; toggle: (code: string) => void}>({selected:[],toggle:() => {}});
-const key = 'offerpilot-prototype-comparison';
+const key = 'leapashore-prototype-comparison';
 export function ProgramSelection({children}: {children: React.ReactNode; codes?: string[]}) {
   const [selected, setSelected] = useState<string[]>([]);
   useEffect(() => { try { const stored = JSON.parse(sessionStorage.getItem(key) || '[]'); if (Array.isArray(stored)) setSelected([...new Set(stored.filter((c): c is string => typeof c === 'string' && /^[a-z0-9]+$/i.test(c)))].slice(0,4)); } catch {} }, []);

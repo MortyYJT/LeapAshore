@@ -1,49 +1,68 @@
 # Session handoff
 
 **This is the only current-state file. Overwrite it at the end of a session; read it at the start.**
-Verify it against `git status`, `git log` and `gh pr list` before trusting it.
+Verify it against `git status` and `git log` before trusting it.
 
-## Where we are（2026-10-10）
+## Where we are
 
-- `main` 仍是 M3 合入后的 `794a911`。今天的工作都在 PR 里，**等 MortyYJT 合并**：
-  - PR #13 `claude/workflow-v2`：装开发流程 v2 + guard hook；`note/decisions.md`（今天全部决定及理由）；
-    愿景 / 路线图 / 想法池按新定位重写；本文件
-  - PR #14 `dsh/interview-m1-m3`：M1–M3 中文复盘和题目（dsh 写，`note/interview/`），不阻塞
-  - PR #16 `codex/static-prototype`：10 页静态原型（`/prototype`），关 issue #15
-- **产品定位已变**：OfferPilot 是 MortyYJT 留学中介的获客与初筛工具（见 `note/product/vision.md`）
-- **当前阶段**：静态原型定功能点 → 原型定稿后再拆后端、排期。之前的 S1–S5 草案**未批准**，排期作废
-- M4（会话与提案）已移进想法池；分支 `dsh/stage-2-m4-conversations` 保留
+- 日期：2026-10-28；**11 月 1 日开始投递**（岗位：agent 开发 + 后端），本项目是面试作品集
+- 分支：`claude/deploy-mvp`（从 `codex/static-prototype` 的 `ea2c91a` 切出），已提交并推送，PR 待合并
+- 线上：<http://43.161.224.82>（腾讯云香港，Ubuntu 24.04，2 核 3.6G + 4G swap），已在跑
+- **正在等**：用户买的域名 `mortyyjt.site` 实名审核。通过后用户加 A 记录（`@` 与 `yuyue` → `43.161.224.82`）并放行安全组 443
 
-## 分工（v2）
+## 本次会话做了什么
 
-MortyYJT 决策 + 合并；Claude 调研、出方案、派活、审查、推送、开 PR；Codex 按 issue 在独立 worktree
-里实现；dsh 出题。阻塞关口只有「批准方案」和「合并 PR」。所有决定连同理由写进 `note/decisions.md`。
+- **PRD**：`docs/product/PRD.md`（中文）。已定：D1 两套前端合并、D5 覆盖范围 = 学校库 346 所（QS 2027 前 300 + 46 所地区补齐）、
+  分档去掉"信息不足"（未知项改为表单必填 + 项目侧"要求待采集"）。未定：D2、D3
+- **部署**：`deploy/compose.prod.yaml`（db / api / web / caddy）、`deploy/Caddyfile`（`/api/*` → FastAPI，其余 → Next）、
+  `api/Dockerfile`（启动时跑迁移和幂等种子）、`web/Dockerfile`（`NEXT_OUTPUT=standalone`）。服务器密钥在 `~/offerpilot/deploy/.env`（不进库）
+- **顾问 agent**：`api/app/agent/`，移植自用户自己的 MEWHELP（LangGraph）。分意图 → 问官方要求走检索 + 证据门禁（拒答记知识缺口日志）→
+  ReAct（步数封顶）→ 改档案直接写、改选校组合 `interrupt` 等确认。接口 `api/app/routers/advisor.py`（SSE）。
+  模型：DeepSeek 官方（`CHAT_BASE_URL=https://api.deepseek.com`，`CHAT_MODEL=deepseek-chat`）
+- **前端**：`AdvisorView` 接流式 agent（意图/门禁/工具标签、来源列表、确认卡片），`/prototype/advisor` 改用它
+- **网站入口**：`/` 只保留首次引导问卷；填完 → `/prototype/assess/result`（背景经 `web/lib/prototype-handoff.ts` 写入原型的 sessionStorage）；
+  cookie `offerpilot_onboarded=1` + `web/proxy.ts` 让回访直接进 `/prototype`。旧主界面（选校组合、路线图）不再可达
+- **README** 重写（英文，含架构图与 agent 图）
+
+## 验证状态
+
+- 后端：全量 213 条通过（2026-10-28，新建库后先 `make migrate` + `make seed`）
+- 前端：`npm test` 205 条通过，`next build` 通过
+- 线上端到端（curl + 浏览器）：问要求带来源 ✅、未收录学校拒答 ✅、写档案 ✅、改组合确认后落库 ✅、重复确认被拒 ✅、首访问卷 → 原型带背景 ✅、回访跳转 ✅
+- 引导问卷 10 步没有在浏览器里手动点完（代码未改）
+
+## 已决定、待执行
+
+- **改名已完成**：中文「鱼跃彼岸」、英文 LeapAshore，cookie / 存储键 / 包名 / 响应头全改。**数据库用户名、库名、卷名仍是 `offerpilot`**（改了线上数据卷会丢）。GitHub 仓库 `MortyYJT/offerpilot` 尚未改名
+- **域名**：`mortyyjt.site` 放个人网站，`yuyue.mortyyjt.site` 放本项目。GitHub 用户名保持 MortyYJT（`guyuy` 已被占）
+- **个人网站**：本地已删，用 GitHub 上 `MortyYJT/MortyYJT.github.io` 的静态构建（源码 `personal-website-guyuy`），Caddy 按域名分流
+- 注册登录先不做；背景仍只存在 sessionStorage
 
 ## 下一步
 
-1. MortyYJT 看原型（PR #16 的截图在 `docs/screenshots/prototype/`，或本地 `cd web && npm run dev` 打开 `/prototype`），
-   提出要增删改的功能点
-2. 原型定稿后：把已定的后端决定（CRICOS 骨架、三档核验、官方页采集 + Claude API 抽取、规则分档、
-   留资与转人工）拆成 OpenSpec change，排期，派给 Codex
-3. 原型合并后，按 dispatch 第 7 步给 dsh 派出题（提示词开头写【offerpilot · Stage 原型：静态原型】）
+0. 前端改版 + 注册登录（用户 10-28 提出，待设计）
+2. 域名审核通过 → Caddyfile 改成两个站点块（自动 HTTPS）、compose 暴露 443、服务器上 clone 个人网站静态构建、更新 README 线上地址
+4. 热门学校真实录取要求：先几所，带官网来源，状态"机器核对"，人工核验后才写 `verified_at`
 
-## 待用户回答
+## 已知限制
 
-- `.git/config` 的本地身份是占位的 `rehearsal <rehearsal@example.com>`（main 上已有 3 个提交用了它）；
-  要不要改回 `MortyYJT` + noreply。本会话每次提交都用 `git -c user.name=... -c user.email=...` 绕过
-- 是否在 GitHub 设置里隐藏个人邮箱（网页合并的 merge commit 用的是个人邮箱）
-- 原型示例门槛偏高：典型 211 / 78 / 雅思 6.5 的背景全部「不满足」，要不要调低示例门槛让演示更好看
+- 对话存在 `InMemorySaver`，API 重启即丢；换 Postgres checkpointer 是 schema 变更，要先问
+- 知识缺口只写日志（logger `offerpilot.knowledge_gap`），没有后台队列
+- 只有 HTTP；没有评测集
+- 旧限制仍在：测试偶发红（`applications_client_id_fkey` 等，既有问题，见 `note/product/backlog.md`）、`test_sources.py` 泄漏一行
+
+## 怎么跑与部署
+
+- 本地：`make dev` / `make test`。本会话的 venv 用的是 `../offerpilot/.runtime-tools/` 下的 uv 建的 `api/.venv`
+- 部署（从仓库根目录）：
+  `rsync -az --exclude node_modules --exclude .next --exclude .next-build --exclude .venv --exclude api/var --exclude .git --exclude .runtime-tools --exclude .npm-cache --exclude .env --exclude deploy/.env --exclude docs/screenshots -e "ssh -i ~/.ssh/offerpilot_codex -o IdentitiesOnly=yes" ./ ubuntu@43.161.224.82:~/offerpilot/`
+  然后 `ssh ... 'cd ~/offerpilot/deploy && sudo docker compose -f compose.prod.yaml up -d --build'`
+- 看日志：`sudo docker compose -f compose.prod.yaml logs api --since 5m`
 
 ## 坑
 
-- Codex 沙箱：worktree 里提交不了（要 `--add-dir "$(git rev-parse --git-common-dir)"`，未实测）；
-  不能联网（先 `cp -Rc` 复制 `web/node_modules`）；不能监听端口（浏览器走查由 Claude 做）
-- dsh 会话：`~/.dsh/sessions/<path>/` 下带 `session-` 前缀的才是对话，纯 UUID 是子 agent
-- `scripts/e2e-walkthrough.cjs` 写死了能认出机主的绝对路径（既有问题，已开 chip 任务）
-- 端口 3000 有另一个项目；原型验证用的是 `next start -p 3015`
-- 其余旧坑（测试偶发红、合批次用 merge commit、conftest 清扫）见 git 历史里上一版 handoff（`794a911`）
-
-## 怎么跑
-
-- `make dev` → `make verify`；只看前端：`cd web && npm test && npm run build`
-- 工作树：`../offerpilot-workflow-v2`（PR #13）、`../offerpilot-prototype`（PR #16）；合并后可删
+- **流式响应要自己写 cookie**：FastAPI 只把依赖里 `Response` 的头合并进它自己构造的响应；返回 `StreamingResponse` 时必须调用 `set_client_cookie`，否则每条消息都是新访客
+- **interrupt 前不能有写操作**：恢复时整个节点从头重跑
+- **新访客可能还没有 `clients` 行**：任何写组合的路径先 `load_or_create_profile`
+- interrupt 的载荷自带 `type`，SSE 事件里要把 `type` 放在最后，免得被覆盖
+- 不要把模型密钥发给它所属以外的服务商（试过被安全规则拦下）
