@@ -2,36 +2,62 @@
 
 **唯一的当前状态文件。会话结束时覆盖，开始时读，并先对照 `git status` 和 `git log`。**
 
-## 现在在哪
+## 现在在哪（2026-10-29 深夜，MortyYJT 在睡觉，Claude 自动推进）
 
-- 2026-10-29。**11 月 1 日开始投递**（agent 开发 + 后端岗），本项目是面试作品集
-- 项目名：鱼跃彼岸 / LeapAshore（数据库用户名、库名、卷名仍是 `offerpilot`，故意不改，改了线上数据卷会丢）
-- 线上：<http://43.161.224.82>（腾讯云香港），**跑的还是改名前的版本，没重新部署**
-- 域名 `mortyyjt.site` 在等实名审核；通过后 `@` → 个人网站，`yuyue` → 本项目，Caddy 按域名分流 + HTTPS
-- 开发工具改用 Cindy（makecindy/cindy，底层跑 Claude Code / Codex），多 agent 分工规则已删
+- 分支 `claude/ledger-redesign`（从 main 拉出，未合并）。线上 http://43.161.224.82 仍是改名前的版本。
+- 今晚做三件事（MortyYJT 原话：「补数据，爬取 qs 前 200 的……还有补一下缺失校徽，然后去写代码，就那些不太可能会变动的后端部分」）：
+  1. **录取要求采集**：QS 2027 前 200 中除中国大陆外的 190 所，按 `api/data/requirements/_schools.json` 的 wave 顺序（澳 → 港 → 新 → 英 → 美 → 其余），由子代理逐校采集，额度用完为止。
+  2. **补校徽**：`scripts/fill-logos.py`（官网图标 → Wikidata P154/P8972/P158 → Commons 自由许可文件）。
+  3. **稳定的后端**：已完成，见下。
+- 界面原型（个人网站配色 + 渐变 + 动画）在 `.taste-skill/prototype/`（被 git 忽略，只在本机），MortyYJT 已认可「总体没问题」。
 
-## 规则从哪读
+## 已完成并提交（按提交顺序）
 
-- 需求：`docs/product/PRD.md`，和其他文件冲突时以它为准
-- 工程规则：`AGENTS.md`（+ `docs/engineering/agent-guidelines.md`）；`CLAUDE.md` 只是引用它
-- 跨 change 的决定：`note/decisions.md`；想法池：`note/product/backlog.md`
-- 后端设计：`note/design/`；材料库现行规格：`openspec/specs/`
+- `docs(openspec)`：OpenSpec change `ledger-redesign`（前端合并 + 视觉），PRD 档位改「稳妥」、§7.7 第 5 条界面用词对照表
+- `feat(collect)`：`app.collect.snapshot`（robots.txt、同域 2 秒间隔、403/429 记录不绕过、`--render` 用本机 Chrome）、`app.collect.verify`（引文逐字核对 + 数字必须在引文里 + 截止日期的年月日都要在引文里；`--drop-failing` 删掉不过的值）、`app.collect.importer`（只写核对通过的字段，`verified_at` 永不写）
+- `feat(catalog)`：`app.seed_catalog` 导入 2920 个 CRICOS 项目（id `cricos-<code>`），6 个占位项目并入 CRICOS 行（Monash CS 无对应，删除），删掉 6 项目镜像校验；`make seed` 已接上
+- `feat(applications)`：申请状态加 submitted / offered / rejected；服务层也校验
+- `feat(programs)`：`/api/programs` 支持 ids / field / provider / has_requirements / limit≤100 / offset，`X-Total-Count`，有要求的排前面
+- 数据：见下表
 
-## 已决定、待做（按顺序）
+## 采集进度（每校一个 json，在 `api/data/requirements/`）
 
-1. **原型重做**（走 OpenSpec）：选校组合、申请路线图（主界面）、材料库按原型样式重做并接后端；
-   测评从 `/api/profile` 读背景（不再读 sessionStorage）；顾问后台 / 联系顾问先从导航隐藏；
-   做完删旧界面（`AppShell` `FlowView` `HomeView` `MaterialsView` `ProfileView` `SettingsView`
-   `PortfolioPicker` `Generating`、`lib/store.ts` 等）、旧走查 `scripts/e2e-walkthrough.cjs` 与
-   `docs/screenshots/01…29`、6 个占位项目的镜像校验（`web/lib/programs.ts` + 两个 check 脚本）
-2. 重新部署（改名后的版本）；域名审核过后上 HTTPS
-3. 热门学校真实录取要求（官网来源，状态"机器核对"，人工核验才写 `verified_at`）
-4. 注册登录：先不做
+| 学校 | 项目 | 机器核对 | 备注 |
+| --- | --- | --- | --- |
+| UNSW | 54 | 54 | 英语分数来自学院表，引文短，建议人工抽查 |
+| ANU | 53 | 53 | 还剩 ~71 个没抓（remaining_urls） |
+| Adelaide | 60 | 60 | 还剩 56 |
+| UQ | 60 | 60 | 截止日期因年份是推断的已删除 |
+| UTS | 55 | 55 | |
+| UWA | 64 | 64 | 有带年份的截止日期 |
+| Sydney | 60 | 60 | 只有学术要求；「Not available to student visa holders」需人工确认含义 |
+| Wollongong | 57 | 56 | |
+| RMIT | 79 | 79 | 7 条按名称匹配 CRICOS |
+| Curtin | 50 | 50 | |
+| CUHK | 61 | 61 | 还剩 77 |
+| Monash / Melbourne / Macquarie | 0–1 | 0 | 被 Cloudflare / Incapsula / robots 拦截，按规则不绕过 |
+
+进行中：HKU；接着排 HKUST、PolyU、CityU、NUS、NTU，然后英国 28 所。
+
+## 怎么继续采集
+
+- 子代理简报：`api/data/requirements/README.md`（规则、格式、怎么省上下文）
+- 起一个学校：让子代理读简报，给它 `school_key`；跑完后在主会话里 `cd api && .venv/bin/python -m app.collect.verify ../api/data/requirements/<key>.json` 复核再提交
+- 入库：`cd api && .venv/bin/python -m app.collect.importer`（先 `make seed`）
+- 快照在 `api/var/snapshots/`（不进库）；生产库没有快照，导入只依赖 json 里已写好的 `check`
+
+## 已知问题 / 要 MortyYJT 决定
+
+- 占位种子给 UNSW、悉尼的「均分门槛 65」其实是澳洲学位的 credit average，不是对中国学位的要求；导入采集数据后这两行会被覆盖为空（更诚实）
+- 学术要求原文、截止日期目前只存在 json 和 `source_versions.body_text` 里，`programs` 表没有列；要展示就得加列（schema 变更，要先问）
+- shell 里 `NODE_ENV=development` 会让 `next build` 失败，跑构建前 `unset NODE_ENV NODE_DEBUG`
+- Playwright 自带 Chromium 截中文会截掉半个字，截图要用 `channel: 'chrome'`
 
 ## 验证状态
 
-- 后端 213 条、前端 205 条通过（2026-10-29，本地 Docker Postgres，新库要先 `make migrate` + `make seed`）
-- `make verify` 的走查一步测的是旧界面，见清理 PR 里的结果
+- 后端：252 条通过（2026-10-29 深夜，本地 Docker Postgres）
+- 前端单测、`make verify`：今晚还没跑
+- CI：没跑；部署：没动
 
 ## 怎么跑与部署
 
@@ -40,6 +66,7 @@
   .git、.env、deploy/.env、api/var、docs/screenshots），然后在服务器上
   `cd ~/offerpilot/deploy && sudo docker compose -f compose.prod.yaml up -d --build`
 - 服务器密钥在服务器的 `~/offerpilot/deploy/.env`，不进库
+- 这个分支上线前要在生产库跑一次 `make seed`（会导入 CRICOS 并迁移旧 slug）和 importer
 
 ## 坑
 
