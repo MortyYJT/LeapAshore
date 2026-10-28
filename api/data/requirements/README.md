@@ -24,7 +24,9 @@ Use `api/.venv/bin/python` for the tools.
 2. **Fetch every page you quote with the snapshot tool**, never with WebFetch or curl:
    `api/.venv/bin/python -m app.collect.snapshot <url> --school <school_key>`
    Add `--render` when the text file is near-empty or lacks the requirements (pages built by
-   JavaScript). The tool prints JSON with `sha256` and `text_path`. It honours robots.txt and spaces
+   JavaScript). `--render` keeps our honest User-Agent; if the rendered page still shows a
+   challenge, a CAPTCHA, or "access denied", that host is blocking us: record it and stop. Never
+   solve a challenge or change identity to get past one. The tool prints JSON with `sha256` and `text_path`. It honours robots.txt and spaces
    requests out; do not try to make it faster.
    WebSearch / WebFetch may be used **only to find URLs**, never as the source of a quote.
 3. **If the tool prints `{"blocked": …}` (403, 429, or robots.txt), stop fetching that host.** Do not
