@@ -16,6 +16,7 @@ file can cite exactly the version its quotes were checked against.
 """
 
 import argparse
+import fcntl
 import hashlib
 import json
 import os
@@ -52,38 +53,77 @@ def _rate_file(domain: str, root: Path) -> Path:
 
 
 def wait_for_turn(domain: str, root: Path = SNAPSHOT_ROOT, now=time.time, sleep=time.sleep) -> None:
-    """Sleep until `MIN_INTERVAL` has passed since the last request to `domain`, then claim it."""
+    """Sleep until `MIN_INTERVAL` has passed since the last request to `domain`, then claim it.
+
+    The marker is locked while it is read and rewritten, so collectors running at the same time
+    take turns instead of both reading an old timestamp.
+    """
     marker = _rate_file(domain, root)
     marker.parent.mkdir(parents=True, exist_ok=True)
-    try:
-        last = float(marker.read_text() or 0)
-    except (FileNotFoundError, ValueError):
-        last = 0.0
-    gap = last + MIN_INTERVAL - now()
-    if gap > 0:
-        sleep(gap)
-    marker.write_text(str(now()))
-
-
-_robots: dict[str, urllib.robotparser.RobotFileParser] = {}
-
-
-def allowed_by_robots(url: str) -> bool:
-    parts = urlsplit(url)
-    base = f"{parts.scheme}://{parts.netloc}"
-    parser = _robots.get(base)
-    if parser is None:
-        parser = urllib.robotparser.RobotFileParser()
+    with open(marker, "a+", encoding="utf-8") as handle:
+        fcntl.flock(handle, fcntl.LOCK_EX)
+        handle.seek(0)
         try:
-            request = urllib.request.Request(f"{base}/robots.txt", headers={"User-Agent": USER_AGENT})
-            with urllib.request.urlopen(request, timeout=TIMEOUT) as response:
-                parser.parse(response.read().decode("utf-8", "replace").splitlines())
-        except urllib.error.HTTPError as error:
-            # 401/403 on robots.txt means "keep out" by convention; a missing file means no rules.
-            parser.parse(["User-agent: *", "Disallow: /"] if error.code in (401, 403) else [])
-        except Exception:
-            parser.parse([])
-        _robots[base] = parser
+            last = float(handle.read() or 0)
+        except ValueError:
+            last = 0.0
+        gap = last + MIN_INTERVAL - now()
+        if gap > 0:
+            sleep(gap)
+        handle.seek(0)
+        handle.truncate()
+        handle.write(str(now()))
+
+
+def _blocked_hosts_file(root: Path) -> Path:
+    return root / "_blocked_hosts.json"
+
+
+def blocked_host(host: str, root: Path = SNAPSHOT_ROOT) -> str | None:
+    """Why `host` refused us before, or None. A refusal holds for every later request to it."""
+    path = _blocked_hosts_file(root)
+    return json.loads(path.read_text()).get(host) if path.exists() else None
+
+
+def block_host(host: str, reason: str, root: Path = SNAPSHOT_ROOT) -> None:
+    path = _blocked_hosts_file(root)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    hosts = json.loads(path.read_text()) if path.exists() else {}
+    hosts.setdefault(host, reason)
+    path.write_text(json.dumps(hosts, ensure_ascii=False, indent=1))
+
+
+ROBOTS_TTL = 24 * 3600
+
+
+def robots_rules(base: str, root: Path = SNAPSHOT_ROOT) -> list[str]:
+    """The robots.txt lines for `base`, cached on disk for a day so each fetch does not ask again.
+
+    Per RFC 9309: a missing file (404 and other 4xx) means no rules; 401/403/429, a server error, or
+    no answer means "keep out", because a site that cannot say what it allows has not allowed it.
+    """
+    cache = root / "_robots" / urlsplit(base).netloc
+    if cache.exists() and time.time() - cache.stat().st_mtime < ROBOTS_TTL:
+        return cache.read_text(encoding="utf-8").splitlines()
+    wait_for_turn(urlsplit(base).netloc, root)
+    keep_out = ["User-agent: *", "Disallow: /"]
+    try:
+        request = urllib.request.Request(f"{base}/robots.txt", headers={"User-Agent": USER_AGENT})
+        with urllib.request.urlopen(request, timeout=TIMEOUT) as response:
+            lines = response.read().decode("utf-8", "replace").splitlines()
+    except urllib.error.HTTPError as error:
+        lines = keep_out if error.code in (401, 403, 429) or error.code >= 500 else []
+    except Exception:  # noqa: BLE001 - timeouts and resets: no answer is not permission
+        lines = keep_out
+    cache.parent.mkdir(parents=True, exist_ok=True)
+    cache.write_text("\n".join(lines), encoding="utf-8")
+    return lines
+
+
+def allowed_by_robots(url: str, root: Path = SNAPSHOT_ROOT) -> bool:
+    parts = urlsplit(url)
+    parser = urllib.robotparser.RobotFileParser()
+    parser.parse(robots_rules(f"{parts.scheme}://{parts.netloc}", root))
     return parser.can_fetch(USER_AGENT, url)
 
 
@@ -143,13 +183,18 @@ def save_snapshot(school: str, requested_url: str, final_url: str, status: int, 
 
 
 def snapshot(url: str, school: str, render: bool = False, root: Path = SNAPSHOT_ROOT) -> dict:
-    if not allowed_by_robots(url):
+    host = urlsplit(url).netloc
+    earlier = blocked_host(host, root)
+    if earlier:
+        raise Blocked(f"{host} refused an earlier request ({earlier}); not asking again")
+    if not allowed_by_robots(url, root):
         record_block(school, url, "robots.txt disallows", root)
         raise Blocked(f"robots.txt disallows {url}")
-    wait_for_turn(urlsplit(url).netloc, root)
+    wait_for_turn(host, root)
     status, final_url, content_type, html = render_html(url) if render else fetch_html(url)
     if status in (401, 403, 429):
         record_block(school, url, f"HTTP {status}", root)
+        block_host(host, f"HTTP {status}", root)
         raise Blocked(f"HTTP {status} for {url}")
     if status >= 400 or not html:
         raise RuntimeError(f"HTTP {status} for {url}")

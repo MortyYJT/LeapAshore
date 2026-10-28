@@ -59,7 +59,24 @@ def _mentions_month(quote: str, month: int) -> bool:
 
 
 def _contains_number(quote: str, value: float) -> bool:
-    return any(re.search(rf"(?<![\d.]){re.escape(form)}(?![\d])", quote) for form in _number_forms(value))
+    # Not inside a longer number either way: 6 must not match the 6 of 6.5, nor 5 the 5 of 65.
+    return any(re.search(rf"(?<![\d.]){re.escape(form)}(?![\d]|\.\d)", quote) for form in _number_forms(value))
+
+
+NUMERIC_DATES = re.compile(r"(\d{4})[-/.](\d{1,2})[-/.](\d{1,2})|(\d{1,2})[-/.](\d{1,2})[-/.](\d{4})")
+
+
+def _numeric_dates(quote: str) -> list[date]:
+    found = []
+    for match in NUMERIC_DATES.finditer(quote):
+        try:
+            if match.group(1):
+                found.append(date(int(match.group(1)), int(match.group(2)), int(match.group(3))))
+            else:  # day/month/year, the order every non-US official page in scope uses
+                found.append(date(int(match.group(6)), int(match.group(5)), int(match.group(4))))
+        except ValueError:
+            continue
+    return found
 
 
 def validate(data: dict) -> None:
@@ -114,7 +131,13 @@ def check_item(name: str, item: dict, text: str) -> list[str]:
             problems.append(f"{key}={value:g} not in quote")
     if name == "deadlines":
         when = date.fromisoformat(item["date"])
-        if not re.search(rf"(?<!\d)0?{when.day}(?!\d)", quote):
+        numeric = _numeric_dates(quote)
+        if numeric:
+            # A quote that writes the date in digits has to write this date.
+            if when not in numeric:
+                problems.append(f"deadline {when.isoformat()} is not the date the quote states")
+            return problems
+        if not re.search(rf"(?<![\d.\-/])0?{when.day}(?![\d\-/])", quote):
             problems.append(f"deadline day {when.day} not in quote")
         # The year and month have to be stated too: a year read off another part of the page
         # ("31 May of the previous year") is an inference, not a quote.
@@ -144,6 +167,12 @@ def verify(data: dict, root: Path = SNAPSHOT_ROOT) -> dict:
             for item in field if name in LIST_FIELDS else [field]:
                 reported += 1
                 text = snapshot_text(item.get("source_sha256") or program["snapshot_sha256"])
+                if item.get("source_sha256"):
+                    # Record which page the quote is on, so an import can cite that page, not the
+                    # programme page (the snapshot store itself is not published).
+                    meta = root / school / f"{item['source_sha256']}.json"
+                    if meta.exists():
+                        item["source_url"] = json.loads(meta.read_text(encoding="utf-8")).get("final_url") or item.get("source_url")
                 problems = ["snapshot missing"] if text is None else check_item(name, item, text)
                 item["check"] = "ok" if not problems else "; ".join(problems)
                 all_ok = all_ok and not problems

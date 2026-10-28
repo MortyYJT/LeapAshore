@@ -2,8 +2,11 @@
 
     python -m app.collect.importer [api/data/requirements/<school>.json ...]
 
-Only fields whose quote passed `verify` (`check == "ok"`) are written. A program is `机器核对` when every
-field it reports passed, otherwise `待核验`. Nothing here writes `verified_at`: the page source stays
+Only fields whose quote passed `verify` (`check == "ok"`) are written. A program with no verified value
+is skipped, so an empty collection never blanks a row another source describes. When a program has
+verified values, its requirement columns (English, marks, prerequisites) are replaced as one set, so
+every value on the row comes from the same collection. A program is `机器核对` when every field it
+reports passed, otherwise `待核验`. Nothing here writes `verified_at`: the page source stays
 `待核验` until a person reviews it, and its snapshot version stays `pending_review`.
 
 Australian programs land on their CRICOS row (`cricos-<code>`); everything else gets
@@ -76,12 +79,20 @@ def english_text(fields: dict) -> str | None:
 
 
 def verified_quotes(fields: dict) -> str:
+    """The verified quotes, one per line; a quote from a shared page names that page."""
     lines = []
     for name, field in fields.items():
         for item in field if name in LIST_FIELDS else [field]:
             if passed(item):
-                lines.append(f"[{name}] {item['quote']}")
+                line = f"[{name}] {item['quote']}"
+                if item.get("source_sha256"):
+                    line += f" (出处: {item.get('source_url') or 'sha256 ' + item['source_sha256']})"
+                lines.append(line)
     return "\n".join(lines)
+
+
+def has_verified_value(fields: dict) -> bool:
+    return any(passed(item) for name, field in fields.items() for item in (field if name in LIST_FIELDS else [field]))
 
 
 def _university(session: Session, data: dict, school: dict | None, program_ids: list[str]) -> str:
@@ -116,6 +127,10 @@ def import_school(session: Session, data: dict, schools: dict[str, dict], root: 
     added = updated = 0
     for program, pid in zip(programs, ids):
         fields = program.get("fields", {})
+        if not has_verified_value(fields):
+            # Nothing usable was collected (a blocked site, an empty page): the row keeps whatever
+            # another source says about it, rather than being blanked by an empty collection.
+            continue
         meta = _snapshot_meta(key, program["snapshot_sha256"], root)
 
         source = session.get(Source, source_id_for(program["url"])) or session.execute(
@@ -132,6 +147,10 @@ def import_school(session: Session, data: dict, schools: dict[str, dict], root: 
         known = session.scalar(select(SourceVersion.id).where(
             SourceVersion.source_id == source.id, SourceVersion.content_sha256 == program["snapshot_sha256"]))
         if known is None:
+            if source.status != SourceStatus.UNVERIFIED or source.verified_at is not None:
+                # A person verified an older version of this page; the new content is not covered by
+                # that review, so the page goes back to unverified until someone looks again.
+                source.status, source.verified_at = SourceStatus.UNVERIFIED, None
             number = (session.scalar(select(func.max(SourceVersion.version_no)).where(SourceVersion.source_id == source.id)) or 0) + 1
             fetched = meta.get("fetched_at") or program.get("fetched_at")
             session.add(SourceVersion(

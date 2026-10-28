@@ -1,0 +1,2353 @@
+{
+ "school_key": "hong-kong-university-of-science-and-technology",
+ "school_name_en": "The Hong Kong University of Science and Technology",
+ "country": "Hong Kong SAR",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://prog-crs.hkust.edu.hk/pgprog/2027-28",
+  "https://fytgs.hkust.edu.hk/admissions/Admission-to-Hong-Kong-Campus/submitting-an-application/admission-requirements"
+ ],
+ "blocked": [],
+ "complete": true,
+ "remaining_urls": [],
+ "notes": "All programme pages of the HKUST Program and Course Catalog for 2027/28 entry (taught MSc/MA/MEng/MPM/MPP/MBA/EMBA and combined PGD pages) were collected; DBA programmes skipped as doctoral. HKUST states no separate requirement or minimum mark for Mainland China degree holders, so china_requirement is left out. TOEFL iBT has two scales (80 for tests before 21 Jan 2026, 4.5 from 21 Jan 2026), so no numeric TOEFL value is reported, only the quote. Deadlines are non-local applicant deadlines not yet passed on 2026-10-29; MBA/EMBA/Global Finance pages state no deadline.",
+ "programs": [
+  {
+   "name": "Master of Business Administration Program",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/ft-pt-mba",
+   "snapshot_sha256": "eab219c58fe4db70e6164f1c52745eb0714c57009eb773aeb3d86ea92ab9c1b4",
+   "fields": {
+    "academic": {
+     "text": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "quote": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Full-time MBA Program: a GMAT or a GRE score, and",
+      "quote": "Full-time MBA Program: a GMAT or a GRE score, and",
+      "check": "ok"
+     },
+     {
+      "text": "Work experience: Full-time MBA Program: two years Part-time MBA Program: three years",
+      "quote": "Work experience:\nFull-time MBA Program: two years\nPart-time MBA Program: three years",
+      "check": "ok"
+     }
+    ],
+    "toefl": {
+     "text": "TOEFL-iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL-iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5*",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "HKUST Executive Master of Business Administration Program",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/hkust-emba",
+   "snapshot_sha256": "a9217303a5349072a660c75701d2ac958aea236fc6b0c7cf22dfcb9fbd4f7e6d",
+   "fields": {
+    "academic": {
+     "text": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "quote": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Eight years of work experience.",
+      "quote": "Eight years of work experience.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Kellogg-HKUST Executive Master of Business Administration Program",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/kh-emba",
+   "snapshot_sha256": "dea70beab24d52034a76009844744ccea3cac65824db0ebc6f9368a6a7e32c77",
+   "fields": {
+    "academic": {
+     "text": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "quote": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Eight years of full-time post-qualification work experience",
+      "quote": "Eight years of full-time post-qualification work experience",
+      "check": "ok"
+     },
+     {
+      "text": "Must be sponsored and supported by the company",
+      "quote": "Must be sponsored and supported by the company",
+      "check": "ok"
+     }
+    ],
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts Program in Arts and Machine Creativity",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/ma-amc",
+   "snapshot_sha256": "1beff42712d4467faf9f5a7b78a04a2cace5d73513308c34642570d4fd2cdec0",
+   "fields": {
+    "academic": {
+     "text": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "quote": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time",
+      "date": "2027-05-01",
+      "quote": "Full-time: 1 May 2027",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time",
+      "date": "2027-05-01",
+      "quote": "Part-time: 1 May 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts Program in Chinese Culture",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/ma-cc",
+   "snapshot_sha256": "07f1e2267f1d481573bb96df4b494af1098a35d587e68c892afdc00efaabd232",
+   "fields": {
+    "academic": {
+     "text": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "quote": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "One of the following: Level 4 in Hanyu Shuiping Kaoshi (HSK by Hanban or the “New HSK”) First language being Chinese Having (i) obtained a bachelor’s degree award by an institution where the medium of instruction was Chinese or (ii) completed a Chinese-medium academic program",
+      "quote": "One of the following:\nLevel 4 in Hanyu Shuiping Kaoshi (HSK by Hanban or the “New HSK”)\nFirst language being Chinese\nHaving (i) obtained a bachelor’s degree award by an institution where the medium of instruction was Chinese or (ii) completed a Chinese-medium academic program",
+      "check": "ok"
+     }
+    ],
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time",
+      "date": "2027-04-06",
+      "quote": "Full-time: 6 Apr 2027",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time",
+      "date": "2027-04-06",
+      "quote": "Part-time: 6 Apr 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts Program in International Language Education (TESL concentration)",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/ma-ile",
+   "snapshot_sha256": "346adee20346ed5552b0167b242f060802aa5f30b903b95af280ecf188688c0b",
+   "fields": {
+    "academic": {
+     "text": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "quote": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 100 (Writing: 27/30) (for tests taken prior to 21 January 2026) * 5 (Writing: 5.5) (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 100 (Writing: 27/30) (for tests taken prior to 21 January 2026) *\n5 (Writing: 5.5) (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time",
+      "date": "2027-04-01",
+      "quote": "Full-time: 1 Apr 2027",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 7.0,
+     "text": "IELTS 7.0 overall (Writing 7.0, other sub-scores 5.5)",
+     "quote": "IELTS: 7.0 (Writing: 7.0, and other sub-scores: 5.5) *",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts Program in International Language Education (TCSL concentration)",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/ma-ile",
+   "snapshot_sha256": "346adee20346ed5552b0167b242f060802aa5f30b903b95af280ecf188688c0b",
+   "fields": {
+    "academic": {
+     "text": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "quote": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 85 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 85 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time",
+      "date": "2027-04-01",
+      "quote": "Full-time: 1 Apr 2027",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS: 6.5 (all sub-scores: 5.5) *",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Chinese proficiency: HSK Level 5 or PSC Grade 2B depending on first language and medium of instruction",
+      "quote": "For applicant whose first language is not Chinese and whose bachelor’s degree is awarded by an institution where the medium of instruction was not Chinese:\nLevel 5 in Hanyu Shuiping Kaoshi (HSK by Hanban or the “New HSK”) ; OR\nFor applicant whose first language is Chinese or whose bachelor’s degree is awarded by an institution where the medium of instruction was Chinese:\nGrade 2B in National Putonghua Proficiency Test (PSC)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering Program in AI and Entrepreneurship",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/meng-aie",
+   "snapshot_sha256": "1319d59d69fd8aa641234460180e03023770f43d788a6ce4dfbf97e45164ef4a",
+   "fields": {
+    "academic": {
+     "text": "A bachelor’s degree in Computer Engineering, Computer Science or a related discipline, or A bachelor’s degree in other disciplines with at least two years of post-qualification work experience relevant to the program",
+     "quote": "A bachelor’s degree in Computer Engineering, Computer Science or a related discipline, or\nA bachelor’s degree in other disciplines with at least two years of post-qualification work experience relevant to the program",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time, Round 1",
+      "date": "2026-12-01",
+      "quote": "Full-time: 1 Dec 2026 (Round 1); 1 Mar 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time, Round 2",
+      "date": "2027-03-01",
+      "quote": "Full-time: 1 Dec 2026 (Round 1); 1 Mar 2027 (Round 2)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering Program in Design Intelligence",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/meng-di",
+   "snapshot_sha256": "cf67418e87f94b8cb89e784371f84519374603962cfb0527ab22bbff2c407390",
+   "fields": {
+    "academic": {
+     "text": "A bachelor’s degree in design, technological areas, business, or related disciplines (e.g., communication, multimedia, psychology or ergonomics).",
+     "quote": "A bachelor’s degree in design, technological areas, business, or related disciplines (e.g., communication, multimedia, psychology or ergonomics).",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time, Round 1",
+      "date": "2026-12-01",
+      "quote": "Full-time: 1 Dec 2026 (Round 1); 15 Feb 2027 (Round 2); 30 Apr 2027 (Round 3)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time, Round 2",
+      "date": "2027-02-15",
+      "quote": "Full-time: 1 Dec 2026 (Round 1); 15 Feb 2027 (Round 2); 30 Apr 2027 (Round 3)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time, Round 3",
+      "date": "2027-04-30",
+      "quote": "Full-time: 1 Dec 2026 (Round 1); 15 Feb 2027 (Round 2); 30 Apr 2027 (Round 3)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Management Program",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/mpm",
+   "snapshot_sha256": "7054dc7351d699ac507757dfe8a745a950dfc2838e986fec5dbcfd85064860ac",
+   "fields": {
+    "academic": {
+     "text": "A bachelor’s degree with second class honors.",
+     "quote": "A bachelor’s degree with second class honors.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "At least 3 years of working experience.",
+      "quote": "At least 3 years of working experience.",
+      "check": "ok"
+     }
+    ],
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time",
+      "date": "2027-05-31",
+      "quote": "Full-time: 31 May 2027",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time",
+      "date": "2027-05-31",
+      "quote": "Part-time: 31 May 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Policy Program",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/mpp",
+   "snapshot_sha256": "9753a6a70a023723805e013581fff71b444ef78cb10481205dda8a7b30947b43",
+   "fields": {
+    "academic": {
+     "text": "A bachelor’s degree with second class honors.",
+     "quote": "A bachelor’s degree with second class honors.",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time",
+      "date": "2027-05-31",
+      "quote": "Full-time: 31 May 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science Program in Accounting",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/msc-acct",
+   "snapshot_sha256": "890c2bbc1eab01f0b59a7180f6d63dac4b4d18747422778a1bdc3e95cfae0e5d",
+   "fields": {
+    "academic": {
+     "text": "A bachelor’s degree in a business discipline, or (i) A bachelor’s degree in a non-business discipline and (ii) one of the following:",
+     "quote": "A bachelor’s degree in a business discipline, or\n(i) A bachelor’s degree in a non-business discipline and (ii) one of the following:",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Having studied a course in Statistics at undergraduate level with satisfactory performance",
+      "quote": "Having studied a course in Statistics at undergraduate level with satisfactory performance",
+      "check": "ok"
+     },
+     {
+      "text": "Having passed the module/paper on Financial Reporting or Financial Accounting from a recognized Certified Public Accountant (CPA) examination",
+      "quote": "Having passed the module/paper on Financial Reporting or Financial Accounting from a recognized Certified Public Accountant (CPA) examination",
+      "check": "ok"
+     },
+     {
+      "text": "Two years’ full-time post-qualification work experience in an accounting related field",
+      "quote": "Two years’ full-time post-qualification work experience in an accounting related field",
+      "check": "ok"
+     }
+    ],
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time",
+      "date": "2027-04-01",
+      "quote": "Full-time: 1 Apr 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science Program in Aeronautical Engineering",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/msc-ae",
+   "snapshot_sha256": "c117d04e504124d2e2eb199a61cb653a1e57edc53adc74fe2e8fbc659fbe32be",
+   "fields": {
+    "academic": {
+     "text": "A bachelor’s degree in Engineering, Science or related areas, with second class honors or above.",
+     "quote": "A bachelor’s degree in Engineering, Science or related areas, with second class honors or above.",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time, Round 1",
+      "date": "2026-12-01",
+      "quote": "Full-time: 1 Dec 2026 (Round 1); 1 Mar 2027 (Round 2); 1 Jun 2027 (Round 3)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time, Round 2",
+      "date": "2027-03-01",
+      "quote": "Full-time: 1 Dec 2026 (Round 1); 1 Mar 2027 (Round 2); 1 Jun 2027 (Round 3)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time, Round 3",
+      "date": "2027-06-01",
+      "quote": "Full-time: 1 Dec 2026 (Round 1); 1 Mar 2027 (Round 2); 1 Jun 2027 (Round 3)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time, Round 1",
+      "date": "2026-12-01",
+      "quote": "Part-time: 1 Dec 2026 (Round 1); 1 Mar 2027 (Round 2); 1 Jun 2027 (Round 3)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time, Round 2",
+      "date": "2027-03-01",
+      "quote": "Part-time: 1 Dec 2026 (Round 1); 1 Mar 2027 (Round 2); 1 Jun 2027 (Round 3)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time, Round 3",
+      "date": "2027-06-01",
+      "quote": "Part-time: 1 Dec 2026 (Round 1); 1 Mar 2027 (Round 2); 1 Jun 2027 (Round 3)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2026/27 Spring Term Intake, non-local, full-time",
+      "date": "2026-11-01",
+      "quote": "Full-time: 1 Nov 2026",
+      "check": "ok"
+     },
+     {
+      "label": "For 2026/27 Spring Term Intake, non-local, part-time",
+      "date": "2026-11-01",
+      "quote": "Part-time: 1 Nov 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science Program in Artificial Intelligence",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/msc-ai",
+   "snapshot_sha256": "94aeed16897f39811f0f6cb1605d9dff2c08f7f118465f6f53f441f5d823ba9e",
+   "fields": {
+    "academic": {
+     "text": "A bachelor’s degree in Computer Engineering, Computer Science or a related discipline, or A bachelor’s degree in other disciplines with at least two years of post-qualification work experience relevant to the program",
+     "quote": "A bachelor’s degree in Computer Engineering, Computer Science or a related discipline, or\nA bachelor’s degree in other disciplines with at least two years of post-qualification work experience relevant to the program",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time, Round 1",
+      "date": "2026-12-01",
+      "quote": "Full-time: 1 Dec 2026 (Round 1); 1 Mar 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time, Round 2",
+      "date": "2027-03-01",
+      "quote": "Full-time: 1 Dec 2026 (Round 1); 1 Mar 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time, Round 1",
+      "date": "2026-12-01",
+      "quote": "Part-time: 1 Dec 2026 (Round 1); 1 Mar 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time, Round 2",
+      "date": "2027-03-01",
+      "quote": "Part-time: 1 Dec 2026 (Round 1); 1 Mar 2027 (Round 2)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science Program in Analytical Chemistry",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/msc-anchem",
+   "snapshot_sha256": "0b2b5a2805b0df51d08ae8d71287c3fb1efe130f02247ac767512d8fbd63d145",
+   "fields": {
+    "academic": {
+     "text": "A bachelor's degree with second class honors in Chemistry or a related area",
+     "quote": "A bachelor's degree with second class honors in Chemistry or a related area",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time",
+      "date": "2027-06-01",
+      "quote": "Full-time: 1 Jun 2027",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time",
+      "date": "2027-06-01",
+      "quote": "Part-time: 1 Jun 2027",
+      "check": "ok"
+     },
+     {
+      "label": "For 2026/27 Spring Term Intake, non-local, full-time",
+      "date": "2026-11-01",
+      "quote": "Full-time: 1 Nov 2026",
+      "check": "ok"
+     },
+     {
+      "label": "For 2026/27 Spring Term Intake, non-local, part-time",
+      "date": "2026-11-01",
+      "quote": "Part-time: 1 Nov 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science Program in Business Analytics",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/msc-ba",
+   "snapshot_sha256": "b703199fc6edece94f374ebb6220372e59d175c974374580152a3831b68b41f8",
+   "fields": {
+    "academic": {
+     "text": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "quote": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time",
+      "date": "2027-02-28",
+      "quote": "Full-time: 28 Feb 2027",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time",
+      "date": "2027-05-02",
+      "quote": "Part-time: 2 May 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science Program in Big Data Technology",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/msc-bdt",
+   "snapshot_sha256": "8ecf15868c16cedeb118ab9586fb14f26bdc21cea599d1d08fa28c803f586f67",
+   "fields": {
+    "academic": {
+     "text": "A bachelor's degree in Computer Engineering, Computer Science, Mathematics or a related area, or (i) A bachelor’s degree in other disciplines and (ii) relevant work experience in IT and Mathematics related fields",
+     "quote": "A bachelor's degree in Computer Engineering, Computer Science, Mathematics or a related area, or\n(i) A bachelor’s degree in other disciplines and (ii) relevant work experience in IT and Mathematics related fields",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time, Round 1",
+      "date": "2026-12-01",
+      "quote": "Full-time: 1 Dec 2026 (Round 1); 1 Mar 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time, Round 2",
+      "date": "2027-03-01",
+      "quote": "Full-time: 1 Dec 2026 (Round 1); 1 Mar 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time, Round 1",
+      "date": "2026-12-01",
+      "quote": "Part-time: 1 Dec 2026 (Round 1); 1 Mar 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time, Round 2",
+      "date": "2027-03-01",
+      "quote": "Part-time: 1 Dec 2026 (Round 1); 1 Mar 2027 (Round 2)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science Program in Biomolecular Engineering and Health Informatics",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/msc-behi",
+   "snapshot_sha256": "f79cbc64616c8b305ae6d56f779e4d2f20d6f6c9a51c1d5735ab6db3e331651a",
+   "fields": {
+    "academic": {
+     "text": "A bachelor’s degree with second class honors in Biomolecular Engineering, Health Informatics, Chemical Engineering, Biological Engineering, Biotechnology, Biomedical Engineering, Food Engineering, Materials Science, Chemistry, Physics, Polymer Science, Bioinformatics, Computer Science or a related area",
+     "quote": "A bachelor’s degree with second class honors in Biomolecular Engineering, Health Informatics, Chemical Engineering, Biological Engineering, Biotechnology, Biomedical Engineering, Food Engineering, Materials Science, Chemistry, Physics, Polymer Science, Bioinformatics, Computer Science or a related area",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time, Round 1",
+      "date": "2026-12-01",
+      "quote": "Full-time: 1 Dec 2026 (Round 1); 15 Feb 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time, Round 2",
+      "date": "2027-02-15",
+      "quote": "Full-time: 1 Dec 2026 (Round 1); 15 Feb 2027 (Round 2)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science Program in Biotechnology",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/msc-biot",
+   "snapshot_sha256": "ecf7328734fcff7ca16193774ee26023f97104546c40860d5555505298b0dfb5",
+   "fields": {
+    "academic": {
+     "text": "A bachelor's degree in Biological Science or a related area",
+     "quote": "A bachelor's degree in Biological Science or a related area",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time",
+      "date": "2027-06-01",
+      "quote": "Full-time: 1 Jun 2027",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time",
+      "date": "2027-06-01",
+      "quote": "Part-time: 1 Jun 2027",
+      "check": "ok"
+     },
+     {
+      "label": "For 2026/27 Spring Term Intake, non-local, full-time",
+      "date": "2026-11-01",
+      "quote": "Full-time: 1 Nov 2026",
+      "check": "ok"
+     },
+     {
+      "label": "For 2026/27 Spring Term Intake, non-local, part-time",
+      "date": "2026-11-01",
+      "quote": "Part-time: 1 Nov 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science Program in Chemical and Energy Engineering",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/msc-cee",
+   "snapshot_sha256": "3ed3a83b24772ee41f3bae31705c0e28e7609dc94623bb5ab13cfa2d3a68f8d1",
+   "fields": {
+    "academic": {
+     "text": "A bachelor's degree in Chemical Engineering, Energy Engineering or a related area.",
+     "quote": "A bachelor's degree in Chemical Engineering, Energy Engineering or a related area.",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time, Round 1",
+      "date": "2026-12-01",
+      "quote": "Full-time: 1 Dec 2026 (Round 1); 1 Mar 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time, Round 2",
+      "date": "2027-03-01",
+      "quote": "Full-time: 1 Dec 2026 (Round 1); 1 Mar 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time, Round 1",
+      "date": "2026-12-01",
+      "quote": "Part-time: 1 Dec 2026 (Round 1); 1 Mar 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time, Round 2",
+      "date": "2027-03-01",
+      "quote": "Part-time: 1 Dec 2026 (Round 1); 1 Mar 2027 (Round 2)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science Program in Data-Driven Modeling",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/msc-ddm",
+   "snapshot_sha256": "9b61026b4c9c4693041747ec72bd6ca9601b5af1701e1c2a9309b569426d7c5e",
+   "fields": {
+    "academic": {
+     "text": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "quote": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time, Round 1",
+      "date": "2026-11-01",
+      "quote": "Full-time: 1 Nov 2026 (Round 1); 15 Feb 2027 (Round 2); 15 Apr 2027 (Round 3)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time, Round 2",
+      "date": "2027-02-15",
+      "quote": "Full-time: 1 Nov 2026 (Round 1); 15 Feb 2027 (Round 2); 15 Apr 2027 (Round 3)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time, Round 3",
+      "date": "2027-04-15",
+      "quote": "Full-time: 1 Nov 2026 (Round 1); 15 Feb 2027 (Round 2); 15 Apr 2027 (Round 3)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time, Round 1",
+      "date": "2026-11-01",
+      "quote": "Part-time: 1 Nov 2026 (Round 1); 15 Feb 2027 (Round 2); 15 Apr 2027 (Round 3)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time, Round 2",
+      "date": "2027-02-15",
+      "quote": "Part-time: 1 Nov 2026 (Round 1); 15 Feb 2027 (Round 2); 15 Apr 2027 (Round 3)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time, Round 3",
+      "date": "2027-04-15",
+      "quote": "Part-time: 1 Nov 2026 (Round 1); 15 Feb 2027 (Round 2); 15 Apr 2027 (Round 3)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science Program in Drug Regulatory Affairs and Policy",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/msc-drap",
+   "snapshot_sha256": "941e5101b3462cd9c5bb6c3f51adbdc5afdcaf9f58634131889fc3531dbcf1b7",
+   "fields": {
+    "academic": {
+     "text": "A bachelor's degree or above in life sciences, business management, engineering, health science, law, computer sciences, mathematics, and other relevant disciplines.",
+     "quote": "A bachelor's degree or above in life sciences, business management, engineering, health science, law, computer sciences, mathematics, and other relevant disciplines.",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time",
+      "date": "2027-06-01",
+      "quote": "Full-time: 1 Jun 2027",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time",
+      "date": "2027-06-01",
+      "quote": "Part-time: 1 Jun 2027",
+      "check": "ok"
+     },
+     {
+      "label": "For 2026/27 Spring Term Intake, non-local, full-time",
+      "date": "2026-11-01",
+      "quote": "Full-time: 1 Nov 2026",
+      "check": "ok"
+     },
+     {
+      "label": "For 2026/27 Spring Term Intake, non-local, part-time",
+      "date": "2026-11-01",
+      "quote": "Part-time: 1 Nov 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science Program in Economics",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/msc-econ",
+   "snapshot_sha256": "4563351409f7f937014af00c6b13470e2c8be070209d5fdea2adcb41e1f1fc8f",
+   "fields": {
+    "academic": {
+     "text": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "quote": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time",
+      "date": "2027-02-15",
+      "quote": "Full-time: 15 Feb 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science Program in Engineering Enterprise Management",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/msc-eem",
+   "snapshot_sha256": "9899abc15f732d8c71b183431896f090dbbf3e8ceb0cf8982e35a4c6af93fbc7",
+   "fields": {
+    "academic": {
+     "text": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "quote": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time, Round 1",
+      "date": "2026-12-01",
+      "quote": "Full-time: 1 Dec 2026 (Round 1); 1 Mar 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time, Round 2",
+      "date": "2027-03-01",
+      "quote": "Full-time: 1 Dec 2026 (Round 1); 1 Mar 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time, Round 1",
+      "date": "2026-12-01",
+      "quote": "Part-time: 1 Dec 2026 (Round 1); 1 Mar 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time, Round 2",
+      "date": "2027-03-01",
+      "quote": "Part-time: 1 Dec 2026 (Round 1); 1 Mar 2027 (Round 2)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science Program in Environmental Health and Safety",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/msc-ehs",
+   "snapshot_sha256": "baa81db87dbb67aad74eec8b187626e3ef528d5177d43beee3fe8ddeb3bb59df",
+   "fields": {
+    "academic": {
+     "text": "A bachelor's degree with second class honors in Life Science, Chemistry, Environmental Science or a related area",
+     "quote": "A bachelor's degree with second class honors in Life Science, Chemistry, Environmental Science or a related area",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time",
+      "date": "2027-06-01",
+      "quote": "Full-time: 1 Jun 2027",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time",
+      "date": "2027-06-01",
+      "quote": "Part-time: 1 Jun 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science Program in Entrepreneurial Leadership in Biotechnology",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/msc-elbt",
+   "snapshot_sha256": "fd16f107225e2512428abc1ffee8b42c6f1a929b614c0eb90db8b3d59a82f408",
+   "fields": {
+    "academic": {
+     "text": "A bachelor's degree or above in Business, Engineering, Science, Medicine or other relevant disciplines",
+     "quote": "A bachelor's degree or above in Business, Engineering, Science, Medicine or other relevant disciplines",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time",
+      "date": "2027-06-01",
+      "quote": "Full-time: 1 Jun 2027",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time",
+      "date": "2027-06-01",
+      "quote": "Part-time: 1 Jun 2027",
+      "check": "ok"
+     },
+     {
+      "label": "For 2026/27 Spring Term Intake, non-local, full-time",
+      "date": "2026-11-01",
+      "quote": "Full-time: 1 Nov 2026",
+      "check": "ok"
+     },
+     {
+      "label": "For 2026/27 Spring Term Intake, non-local, part-time",
+      "date": "2026-11-01",
+      "quote": "Part-time: 1 Nov 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science Program in Electronic Engineering",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/msc-eleg",
+   "snapshot_sha256": "f27e73faff65da43948f93d1f70356e229ed5f14d63be5b480c203f07fdf91d3",
+   "fields": {
+    "academic": {
+     "text": "A bachelor's degree in Electrical, Electronic, Computer Engineering or a related area.",
+     "quote": "A bachelor's degree in Electrical, Electronic, Computer Engineering or a related area.",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time, Round 1",
+      "date": "2026-12-01",
+      "quote": "Full-time: 1 Dec 2026 (Round 1); 1 Apr 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time, Round 2",
+      "date": "2027-04-01",
+      "quote": "Full-time: 1 Dec 2026 (Round 1); 1 Apr 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time, Round 1",
+      "date": "2026-12-01",
+      "quote": "Part-time: 1 Dec 2026 (Round 1); 1 Apr 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time, Round 2",
+      "date": "2027-04-01",
+      "quote": "Part-time: 1 Dec 2026 (Round 1); 1 Apr 2027 (Round 2)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science Program in Environmental Science, Management and Sustainability",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/msc-evsm",
+   "snapshot_sha256": "994bdcd885f444316b78544aebe9869edcdc7aa1f8725d5fbbb94a127254e64d",
+   "fields": {
+    "academic": {
+     "text": "A bachelor's degree with second class honors",
+     "quote": "A bachelor's degree with second class honors",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time",
+      "date": "2027-06-01",
+      "quote": "Full-time: 1 Jun 2027",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time",
+      "date": "2027-06-01",
+      "quote": "Part-time: 1 Jun 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science Program in Finance",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/msc-fina",
+   "snapshot_sha256": "8bfb446074c653b335d967ee58397bfdcabe5ffc006144738ec9506420be0302",
+   "fields": {
+    "academic": {
+     "text": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "quote": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Work experience: Full-time program: Not required Part-time program: One year of full-time post-qualification work experience",
+      "quote": "Work experience:\nFull-time program: Not required\nPart-time program: One year of full-time post-qualification work experience",
+      "check": "ok"
+     }
+    ],
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time",
+      "date": "2027-02-28",
+      "quote": "Full-time: 28 Feb 2027",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time",
+      "date": "2027-05-02",
+      "quote": "Part-time: 2 May 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science Program in Financial Technology",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/msc-fintech",
+   "snapshot_sha256": "f872bc4cb0ec6a5b7ea81a380fc0c3f7368ad216f9c8f582ee881db55cd8aa4d",
+   "fields": {
+    "academic": {
+     "text": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "quote": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time, Round 1",
+      "date": "2026-12-01",
+      "quote": "Full-time: 1 Dec 2026 (Round 1); 1 Mar 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time, Round 2",
+      "date": "2027-03-01",
+      "quote": "Full-time: 1 Dec 2026 (Round 1); 1 Mar 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time, Round 1",
+      "date": "2026-12-01",
+      "quote": "Part-time: 1 Dec 2026 (Round 1); 1 Mar 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time, Round 2",
+      "date": "2027-03-01",
+      "quote": "Part-time: 1 Dec 2026 (Round 1); 1 Mar 2027 (Round 2)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science Program in Family Office and Family Business",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/msc-fofb",
+   "snapshot_sha256": "9154a2350921c1537c7862c80c027ebe82728407ca8d645b9dd181e2d15b0b24",
+   "fields": {
+    "academic": {
+     "text": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "quote": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time",
+      "date": "2027-02-28",
+      "quote": "Full-time: 28 Feb 2027",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time",
+      "date": "2027-05-02",
+      "quote": "Part-time: 2 May 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science Program in Global China Studies",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/msc-gcs",
+   "snapshot_sha256": "1197a09760b04e1e87811578ef550221441707645855a9da5f86a66a67b04eb4",
+   "fields": {
+    "academic": {
+     "text": "A bachelor’s degree with a grade average of 3.0 out of 4.0; and",
+     "quote": "A bachelor’s degree with a grade average of 3.0 out of 4.0; and",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 7.0 and All sub-scores: 5.5 *",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 100 (for tests taken prior to 21 January 2026) *",
+     "quote": "TOEFL iBT: 100 (for tests taken prior to 21 January 2026) *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time",
+      "date": "2027-05-01",
+      "quote": "Full-time: 1 May 2027",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time",
+      "date": "2027-05-01",
+      "quote": "Part-time: 1 May 2027",
+      "check": "ok"
+     },
+     {
+      "label": "For 2026/27 Spring Term Intake, non-local, full-time",
+      "date": "2026-11-01",
+      "quote": "Full-time: 1 Nov 2026",
+      "check": "ok"
+     },
+     {
+      "label": "For 2026/27 Spring Term Intake, non-local, part-time",
+      "date": "2026-11-01",
+      "quote": "Part-time: 1 Nov 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science Program in Global Finance",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/msc-gfin",
+   "snapshot_sha256": "ba8dfc8583c38f761e97ff372a4d0e6774a8ffd09a023dd91c550f47add99cf8",
+   "fields": {
+    "academic": {
+     "text": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "quote": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Five years of full-time work experience after obtaining the bachelor’s degree",
+      "quote": "Five years of full-time work experience after obtaining the bachelor’s degree",
+      "check": "ok"
+     }
+    ],
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science Program in Global Marine Resources Management",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/msc-gmrm",
+   "snapshot_sha256": "610838c7761fef374603d4bdf2ea2993bd89def6ed9ebab1f4670c598b26669c",
+   "fields": {
+    "academic": {
+     "text": "A bachelor’s degree relevant to Ocean Science, Marine Science, Life Science, Environmental Science or Earth Science, with at least second class honors or an overall GPA of at least 70% of the maximum.",
+     "quote": "A bachelor’s degree relevant to Ocean Science, Marine Science, Life Science, Environmental Science or Earth Science, with at least second class honors or an overall GPA of at least 70% of the maximum.",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake(commencing in Sep 2027), non-local, full-time",
+      "date": "2027-06-01",
+      "quote": "Full-time: 1 Jun 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science Program in Global Operations",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/msc-go",
+   "snapshot_sha256": "b257a65e921338959786d215b531e37ad75f9715581e924c0ed9377c9db62457",
+   "fields": {
+    "academic": {
+     "text": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "quote": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time",
+      "date": "2027-02-28",
+      "quote": "Full-time: 28 Feb 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science Program in Intelligent Building Technology and Management",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/msc-ibtm",
+   "snapshot_sha256": "ca974832736e204e17a955e2657a49e283f1d8aa4f4ff8b4ee2a50f81c1b7550",
+   "fields": {
+    "academic": {
+     "text": "A bachelor's degree with second class honors in Mechanical Engineering, Civil Engineering, Electrical Engineering, Building Services Engineering, Architectural Science, Physical Science or a related area",
+     "quote": "A bachelor's degree with second class honors in Mechanical Engineering, Civil Engineering, Electrical Engineering, Building Services Engineering, Architectural Science, Physical Science or a related area",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time, Round 1",
+      "date": "2027-01-01",
+      "quote": "Full-time: 1 Jan 2027 (Round 1); 1 Apr 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time, Round 2",
+      "date": "2027-04-01",
+      "quote": "Full-time: 1 Jan 2027 (Round 1); 1 Apr 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time, Round 1",
+      "date": "2027-01-01",
+      "quote": "Part-time: 1 Jan 2027 (Round 1); 1 Apr 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time, Round 2",
+      "date": "2027-04-01",
+      "quote": "Part-time: 1 Jan 2027 (Round 1); 1 Apr 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2026/27 Spring Term Intake, non-local, full-time, Round 2",
+      "date": "2026-11-01",
+      "quote": "Full-time: 15 Oct 2026 (Round 1); 1 Nov 2026 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2026/27 Spring Term Intake, non-local, part-time, Round 2",
+      "date": "2026-11-01",
+      "quote": "Part-time: 15 Oct 2026 (Round 1); 1 Nov 2026 (Round 2)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science Program in Integrated Circuits",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/msc-ic",
+   "snapshot_sha256": "74083e1d724934e7bfef86d79bf7889ba0f87a592782c2617e494a64eb47db38",
+   "fields": {
+    "academic": {
+     "text": "A bachelor's degree with second class honors in Electronic Engineering, Engineering Science or Physical Sciences.",
+     "quote": "A bachelor's degree with second class honors in Electronic Engineering, Engineering Science or Physical Sciences.",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time, Round 1",
+      "date": "2026-12-01",
+      "quote": "Full-time: 1 Dec 2026 (Round 1); 1 Apr 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time, Round 2",
+      "date": "2027-04-01",
+      "quote": "Full-time: 1 Dec 2026 (Round 1); 1 Apr 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time, Round 1",
+      "date": "2026-12-01",
+      "quote": "Part-time: 1 Dec 2026 (Round 1); 1 Apr 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time, Round 2",
+      "date": "2027-04-01",
+      "quote": "Part-time: 1 Dec 2026 (Round 1); 1 Apr 2027 (Round 2)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science Program in Information and Cyber Security Management",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/msc-icsm",
+   "snapshot_sha256": "6096b44be888a30592ab8a6e37aa6ca4f0060c1a5dd269334e894fac5e2c6ab2",
+   "fields": {
+    "academic": {
+     "text": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "quote": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time",
+      "date": "2027-02-28",
+      "quote": "Full-time: 28 Feb 2027",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time",
+      "date": "2027-05-02",
+      "quote": "Part-time: 2 May 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science Program in International Management",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/msc-imt",
+   "snapshot_sha256": "d06f4815e1e8f7ddc18002d62eaf525fe06d9235ddaaadd2930dd8dca8398367",
+   "fields": {
+    "academic": {
+     "text": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "quote": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time",
+      "date": "2027-02-27",
+      "quote": "Full-time: 27 Feb 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science Program in Information Systems Management",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/msc-ism",
+   "snapshot_sha256": "428c59513964893fef239362f9b7ce26df39dee3366f5d3f50d839ec7d643b9f",
+   "fields": {
+    "academic": {
+     "text": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "quote": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time",
+      "date": "2027-02-28",
+      "quote": "Full-time: 28 Feb 2027",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time",
+      "date": "2027-05-02",
+      "quote": "Part-time: 2 May 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science Program in Information Technology",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/msc-it",
+   "snapshot_sha256": "2c52b42fb9a8145f00ac6ee300aecc66f99ed7a3cbb7ca8c9d9d638a7fb6e698",
+   "fields": {
+    "academic": {
+     "text": "A bachelor's degree in Computer Engineering, Computer Science or a related area",
+     "quote": "A bachelor's degree in Computer Engineering, Computer Science or a related area",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time, Round 1",
+      "date": "2026-12-01",
+      "quote": "Full-time: 1 Dec 2026 (Round 1); 1 Mar 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time, Round 2",
+      "date": "2027-03-01",
+      "quote": "Full-time: 1 Dec 2026 (Round 1); 1 Mar 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time, Round 1",
+      "date": "2026-12-01",
+      "quote": "Part-time: 1 Dec 2026 (Round 1); 1 Mar 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time, Round 2",
+      "date": "2027-03-01",
+      "quote": "Part-time: 1 Dec 2026 (Round 1); 1 Mar 2027 (Round 2)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science Program in Mathematics for Educators",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/msc-maed",
+   "snapshot_sha256": "2f4f26f476f8aebc460ecc95864aec3c6a4e20dba3487c482af87a33af408ba2",
+   "fields": {
+    "academic": {
+     "text": "A bachelor's degree in Mathematics or a related Science or Engineering area",
+     "quote": "A bachelor's degree in Mathematics or a related Science or Engineering area",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time",
+      "date": "2027-06-01",
+      "quote": "Full-time: 1 Jun 2027",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time",
+      "date": "2027-06-01",
+      "quote": "Part-time: 1 Jun 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science Program in Financial Mathematics",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/msc-mafm",
+   "snapshot_sha256": "213749125acddd987d5f9974c40760d5f46c4b5e7ecf797d464b3cf79d023a4d",
+   "fields": {
+    "academic": {
+     "text": "A bachelor's degree in Mathematics, Engineering or Physical Sciences",
+     "quote": "A bachelor's degree in Mathematics, Engineering or Physical Sciences",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time",
+      "date": "2027-04-30",
+      "quote": "Full-time: 30 Apr 2027",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time",
+      "date": "2027-04-30",
+      "quote": "Part-time: 30 Apr 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science Program in Marketing",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/msc-mark",
+   "snapshot_sha256": "06ea7171356437b52b45c33272f15dc6754ea1d628bb218ef7bcf21a045edbce",
+   "fields": {
+    "academic": {
+     "text": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "quote": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time",
+      "date": "2027-02-28",
+      "quote": "Full-time: 28 Feb 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science Program in Materials Engineering",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/msc-mate",
+   "snapshot_sha256": "e52d1415cdf47a0aacc61c1a227aaac125aff4e5a6d59e3ef16a269d57e2a115",
+   "fields": {
+    "academic": {
+     "text": "A bachelor’s degree with second-class honors in Materials Science and Engineering, Chemical Engineering, Electrical Engineering, Energy Engineering, Biological Engineering, Chemistry, Physics, Polymer Science, or a related area",
+     "quote": "A bachelor’s degree with second-class honors in Materials Science and Engineering, Chemical Engineering, Electrical Engineering, Energy Engineering, Biological Engineering, Chemistry, Physics, Polymer Science, or a related area",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time, Round 1",
+      "date": "2026-12-01",
+      "quote": "Full-time: 1 Dec 2026 (Round 1); 1 Mar 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time, Round 2",
+      "date": "2027-03-01",
+      "quote": "Full-time: 1 Dec 2026 (Round 1); 1 Mar 2027 (Round 2)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science Program in Mechanical Engineering",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/msc-mech",
+   "snapshot_sha256": "2b424ccf3aff3ebb7e638d4ea8cbcc1a8c5ef836979ec1866361224821f6b677",
+   "fields": {
+    "academic": {
+     "text": "A bachelor's degree with second class honors in Mechanical Engineering, Manufacturing Engineering, Engineering Management, Materials Science and Engineering, Electrical and Electronic Engineering, Civil Engineering, Environmental Engineering or a related area",
+     "quote": "A bachelor's degree with second class honors in Mechanical Engineering, Manufacturing Engineering, Engineering Management, Materials Science and Engineering, Electrical and Electronic Engineering, Civil Engineering, Environmental Engineering or a related area",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time, Round 1",
+      "date": "2026-12-01",
+      "quote": "Full-time: 1 Dec 2026 (Round 1); 1 Mar 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time, Round 2",
+      "date": "2027-03-01",
+      "quote": "Full-time: 1 Dec 2026 (Round 1); 1 Mar 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time, Round 1",
+      "date": "2026-12-01",
+      "quote": "Part-time: 1 Dec 2026 (Round 1); 1 Mar 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time, Round 2",
+      "date": "2027-03-01",
+      "quote": "Part-time: 1 Dec 2026 (Round 1); 1 Mar 2027 (Round 2)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science and Master of Engineering Programs in Digital and Sustainable Cities",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/msc-meng-disc",
+   "snapshot_sha256": "4dc8c544efa085a531e5ea2c874c8081c46961879e8b60e1d8db8bf97e94ddeb",
+   "fields": {
+    "academic": {
+     "text": "A bachelor's degree with second-class honors or above in Civil Engineering, or a related engineering area.",
+     "quote": "A bachelor's degree with second-class honors or above in Civil Engineering, or a related engineering area.",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time, Round 1",
+      "date": "2026-12-15",
+      "quote": "Full-time: 15 Dec 2026 (Round 1); 1 Apr 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time, Round 2",
+      "date": "2027-04-01",
+      "quote": "Full-time: 15 Dec 2026 (Round 1); 1 Apr 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time, Round 1",
+      "date": "2026-12-15",
+      "quote": "Part-time: 15 Dec 2026 (Round 1); 1 Apr 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time, Round 2",
+      "date": "2027-04-01",
+      "quote": "Part-time: 15 Dec 2026 (Round 1); 1 Apr 2027 (Round 2)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science Program in Physics",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/msc-phys",
+   "snapshot_sha256": "ad676991e51fff4ac50f952c5e924bd8fbbea7d2345e1f2edb5d72ce5983702a",
+   "fields": {
+    "academic": {
+     "text": "A bachelor’s degree in Physics/Applied Physics, Optics/Photonic, Mathematics, Materials Science, Computer Science, Electronics and Electrical Engineering or a related discipline, or A bachelor’s degree in other disciplines with at least two years of relevant full-time post-qualification work experience.\u0002",
+     "quote": "A bachelor’s degree in Physics/Applied Physics, Optics/Photonic, Mathematics, Materials Science, Computer Science, Electronics and Electrical Engineering or a related discipline, or\nA bachelor’s degree in other disciplines with at least two years of relevant full-time post-qualification work experience.\u0002",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL-iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL-iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time",
+      "date": "2027-06-01",
+      "quote": "Full-time: 1 Jun 2027",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time",
+      "date": "2027-06-01",
+      "quote": "Part-time: 1 Jun 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science Program in Telecommunications",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/msc-telecom",
+   "snapshot_sha256": "c34a306afe394038a4d5b1f6bbff4828b12ab2f8949cc2fa6de3758ffb199e71",
+   "fields": {
+    "academic": {
+     "text": "A bachelor's degree in Electronic Engineering, Engineering, Physical Sciences or a related area",
+     "quote": "A bachelor's degree in Electronic Engineering, Engineering, Physical Sciences or a related area",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time, Round 1",
+      "date": "2026-12-01",
+      "quote": "Full-time: 1 Dec 2026 (Round 1); 1 Apr 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time, Round 2",
+      "date": "2027-04-01",
+      "quote": "Full-time: 1 Dec 2026 (Round 1); 1 Apr 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time, Round 1",
+      "date": "2026-12-01",
+      "quote": "Part-time: 1 Dec 2026 (Round 1); 1 Apr 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time, Round 2",
+      "date": "2027-04-01",
+      "quote": "Part-time: 1 Dec 2026 (Round 1); 1 Apr 2027 (Round 2)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science Program in Technology Leadership and Entrepreneurship",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/msc-tle",
+   "snapshot_sha256": "7d3d43cf28c837295ecf518eab84096597dfe6e4dbca82f4138ce52eaa17f1c4",
+   "fields": {
+    "academic": {
+     "text": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "quote": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time",
+      "date": "2027-04-30",
+      "quote": "Full-time: 30 Apr 2027",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time",
+      "date": "2027-04-30",
+      "quote": "Part-time: 30 Apr 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Postgraduate Diploma and Master of Arts Programs in Social Science",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/pgd-ma-sosc",
+   "snapshot_sha256": "319fd18aa4800e54b4187f857a0ebd36967c506e4117cbb9714f14f3128d5f2f",
+   "fields": {
+    "academic": {
+     "text": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "quote": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time",
+      "date": "2027-03-28",
+      "quote": "Full-time: 28 Mar 2027",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time",
+      "date": "2027-03-28",
+      "quote": "Part-time: 28 Mar 2027",
+      "check": "ok"
+     },
+     {
+      "label": "For 2026/27 Spring Term Intake, non-local, full-time",
+      "date": "2026-11-01",
+      "quote": "Full-time: 1 Nov 2026",
+      "check": "ok"
+     },
+     {
+      "label": "For 2026/27 Spring Term Intake, non-local, part-time",
+      "date": "2026-11-01",
+      "quote": "Part-time: 1 Nov 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Postgraduate Diploma and Master of Science Programs in Civil Infrastructural Engineering and Management",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/pgd-msc-ciem",
+   "snapshot_sha256": "73125b0c1f48962007a7e46b00e9b41976ea21b2cef59f8734ca26f5a87d04d1",
+   "fields": {
+    "academic": {
+     "text": "A bachelor's degree with second class honors in Civil Engineering or a related engineering area",
+     "quote": "A bachelor's degree with second class honors in Civil Engineering or a related engineering area",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time, Round 1",
+      "date": "2026-12-15",
+      "quote": "Part-time: 15 Dec 2026 (Round 1); 1 Apr 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time, Round 2",
+      "date": "2027-04-01",
+      "quote": "Part-time: 15 Dec 2026 (Round 1); 1 Apr 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2026/27 Spring Term Intake, non-local, part-time",
+      "date": "2026-11-01",
+      "quote": "Part-time: 1 Nov 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Postgraduate Diploma and Master of Science Programs in Environmental Engineering and Management",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/pgd-msc-evem",
+   "snapshot_sha256": "b7651e80d81982c06bc66fe55d05a2b93b2b922a21cda8ac2a00f50807edd750",
+   "fields": {
+    "academic": {
+     "text": "A bachelor’s degree with second class honors in Civil Engineering, Chemical Engineering, Mechanical Engineering or a related area",
+     "quote": "A bachelor’s degree with second class honors in Civil Engineering, Chemical Engineering, Mechanical Engineering or a related area",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5 *",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time, Round 1",
+      "date": "2026-12-15",
+      "quote": "Full-time: 15 Dec 2026 (Round 1); 1 Apr 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, full-time, Round 2",
+      "date": "2027-04-01",
+      "quote": "Full-time: 15 Dec 2026 (Round 1); 1 Apr 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time, Round 1",
+      "date": "2026-12-15",
+      "quote": "Part-time: 15 Dec 2026 (Round 1); 1 Apr 2027 (Round 2",
+      "check": "ok"
+     },
+     {
+      "label": "For 2027/28 Fall Term Intake, non-local, part-time",
+      "date": "2027-04-01",
+      "quote": "Part-time: 15 Dec 2026 (Round 1); 1 Apr 2027 (Round 2",
+      "check": "ok"
+     },
+     {
+      "label": "For 2026/27 Spring Term Intake, non-local, full-time",
+      "date": "2026-11-01",
+      "quote": "Full-time: 1 Nov 2026",
+      "check": "ok"
+     },
+     {
+      "label": "For 2026/27 Spring Term Intake, non-local, part-time",
+      "date": "2026-11-01",
+      "quote": "Part-time: 1 Nov 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Part-time Master of Business Administration Program (Bi-weekly)",
+   "url": "https://prog-crs.hkust.edu.hk/pgprog/2027-28/pt-mba-biweekly",
+   "snapshot_sha256": "1ba405735d2a5eeeaac3a304986f3d35d85966281fce849f3c32527de2c9700e",
+   "fields": {
+    "academic": {
+     "text": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "quote": "Applicants seeking admission to a master's degree program should have obtained a bachelor’s degree from a recognized institution, or an approved equivalent qualification.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Three years of work experience",
+      "quote": "Three years of work experience",
+      "check": "ok"
+     }
+    ],
+    "toefl": {
+     "text": "TOEFL-iBT: 80 (for tests taken prior to 21 January 2026) * 4.5 (for tests taken from 21 January 2026 onwards) *",
+     "quote": "TOEFL-iBT: 80 (for tests taken prior to 21 January 2026) *\n4.5 (for tests taken from 21 January 2026 onwards) *",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic Module): Overall score: 6.5 and All sub-score: 5.5*",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 54,
+  "机器核对": 54,
+  "待人工": 0
+ }
+}

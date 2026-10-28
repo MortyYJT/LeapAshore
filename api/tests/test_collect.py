@@ -126,7 +126,7 @@ def test_requests_to_one_domain_are_spaced_out(tmp_path):
 
 
 def test_a_refused_request_is_recorded_and_not_saved(tmp_path, monkeypatch):
-    monkeypatch.setattr(snap, "allowed_by_robots", lambda url: True)
+    monkeypatch.setattr(snap, "allowed_by_robots", lambda url, root=None: True)
     monkeypatch.setattr(snap, "fetch_html", lambda url: (403, url, "text/html", ""))
     monkeypatch.setattr(snap, "MIN_INTERVAL", 0)
     with pytest.raises(snap.Blocked):
@@ -137,14 +137,14 @@ def test_a_refused_request_is_recorded_and_not_saved(tmp_path, monkeypatch):
 
 
 def test_robots_disallow_is_honoured_without_fetching(tmp_path, monkeypatch):
-    monkeypatch.setattr(snap, "allowed_by_robots", lambda url: False)
+    monkeypatch.setattr(snap, "allowed_by_robots", lambda url, root=None: False)
     monkeypatch.setattr(snap, "fetch_html", lambda url: pytest.fail("fetched a disallowed page"))
     with pytest.raises(snap.Blocked):
         snap.snapshot("https://example.edu/private", "example", root=tmp_path)
 
 
 def test_a_saved_snapshot_is_named_by_the_hash_of_its_html(tmp_path, monkeypatch):
-    monkeypatch.setattr(snap, "allowed_by_robots", lambda url: True)
+    monkeypatch.setattr(snap, "allowed_by_robots", lambda url, root=None: True)
     monkeypatch.setattr(snap, "fetch_html", lambda url: (200, url, "text/html", PAGE))
     monkeypatch.setattr(snap, "MIN_INTERVAL", 0)
     meta = snap.snapshot("https://example.edu/mds", "example", root=tmp_path)
@@ -178,3 +178,75 @@ def test_dropping_failing_values_keeps_the_ones_that_passed(tmp_path):
     assert set(fields) == {"ielts", "deadlines"}
     assert [d["date"] for d in fields["deadlines"]] == ["2026-11-30"]
     assert cleaned["programs"][0]["status"] == MACHINE_CHECKED
+
+
+def test_a_host_that_refused_once_is_not_asked_again(tmp_path, monkeypatch):
+    monkeypatch.setattr(snap, "allowed_by_robots", lambda url, root=None: True)
+    monkeypatch.setattr(snap, "MIN_INTERVAL", 0)
+    monkeypatch.setattr(snap, "fetch_html", lambda url: (429, url, "text/html", ""))
+    with pytest.raises(snap.Blocked):
+        snap.snapshot("https://example.edu/a", "example", root=tmp_path)
+    monkeypatch.setattr(snap, "fetch_html", lambda url: pytest.fail("asked a host that had refused us"))
+    with pytest.raises(snap.Blocked, match="not asking again"):
+        snap.snapshot("https://example.edu/b", "example", root=tmp_path)
+
+
+@pytest.mark.parametrize("code, allowed", [(404, True), (403, False), (429, False), (503, False)])
+def test_robots_txt_errors_mean_keep_out_unless_the_file_is_simply_missing(tmp_path, monkeypatch, code, allowed):
+    import urllib.error
+
+    def refuse(request, timeout=None):
+        raise urllib.error.HTTPError(request.full_url, code, "x", {}, None)
+
+    monkeypatch.setattr(snap.urllib.request, "urlopen", refuse)
+    monkeypatch.setattr(snap, "MIN_INTERVAL", 0)
+    assert snap.allowed_by_robots(f"https://e{code}.example/page", root=tmp_path) is allowed
+
+
+def test_a_whole_number_does_not_match_inside_a_decimal(tmp_path):
+    write_snapshot(tmp_path, "example", SHA, "<p>overall 6.5, no band below 6.5</p>")
+    result = verify(data(program({"ielts": {"overall": 6.5, "min_band": 6, "quote": "overall 6.5, no band below 6.5"}})), root=tmp_path)
+    assert "min_band=6 not in quote" in result["programs"][0]["fields"]["ielts"]["check"]
+
+
+def test_a_numeric_date_must_be_the_deadline_itself(tmp_path):
+    write_snapshot(tmp_path, "example", SHA, "<p>Deadline: 2026-05-31</p>")
+    result = verify(data(program({"deadlines": [{"label": "x", "date": "2026-05-05", "quote": "Deadline: 2026-05-31"}]})), root=tmp_path)
+    assert "not the date the quote states" in result["programs"][0]["fields"]["deadlines"][0]["check"]
+
+
+def test_a_quote_from_another_page_records_that_page(tmp_path):
+    write_snapshot(tmp_path, "example", SHA, "<p>Course page</p>")
+    write_snapshot(tmp_path, "example", OTHER_SHA, PAGE)
+    (tmp_path / "example" / f"{OTHER_SHA}.json").write_text(json.dumps({"final_url": "https://example.edu/china"}))
+    result = verify(data(program({"china_requirement": {"min_mark_211": 80, "source_sha256": OTHER_SHA,
+                                                        "quote": "weighted average of 80% from a 211 university"}})), root=tmp_path)
+    assert result["programs"][0]["fields"]["china_requirement"]["source_url"] == "https://example.edu/china"
+
+
+def test_every_committed_file_still_matches_its_snapshots():
+    """A value edited after `verify --write` would import as machine-checked; re-check what we can.
+
+    Snapshots are not committed, so this runs only on a machine that collected them, and skips the
+    programmes whose snapshots are absent rather than calling them failures.
+    """
+    import copy
+    from pathlib import Path
+
+    from app.collect.snapshot import SNAPSHOT_ROOT
+
+    data_dir = Path(__file__).resolve().parents[1] / "data" / "requirements"
+    checked = 0
+    for path in sorted(p for p in data_dir.glob("*.json") if not p.name.startswith("_")):
+        stored = json.loads(path.read_text(encoding="utf-8"))
+        if not (SNAPSHOT_ROOT / stored["school_key"]).exists():
+            continue
+        fresh = verify(copy.deepcopy(stored))
+        for before, after in zip(stored["programs"], fresh["programs"]):
+            if any(item.get("check") == "snapshot missing" for name, f in after["fields"].items()
+                   for item in (f if isinstance(f, list) else [f])):
+                continue
+            assert before.get("status") == after["status"], f"{path.name}: {before['name']} changed since verify"
+            checked += 1
+    if not checked:
+        pytest.skip("no local snapshots to re-check against")

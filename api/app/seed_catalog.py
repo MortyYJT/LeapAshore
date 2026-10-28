@@ -150,7 +150,16 @@ def fold_legacy_slugs(session: Session) -> dict:
         held = set(session.scalars(select(Application.client_id).where(Application.program_id == target))) if target else set()
         for application in session.scalars(select(Application).where(Application.program_id == slug)).all():
             if target is None or application.client_id in held:
-                session.delete(application)
+                if application.is_primary and target is not None:
+                    # The subject's first choice was this slug; it carries over to the row they keep.
+                    kept = session.scalars(select(Application).where(
+                        Application.client_id == application.client_id, Application.program_id == target)).first()
+                    session.delete(application)
+                    session.flush()
+                    if kept is not None:
+                        kept.is_primary = True
+                else:
+                    session.delete(application)
                 removed += 1
             else:
                 application.program_id = target

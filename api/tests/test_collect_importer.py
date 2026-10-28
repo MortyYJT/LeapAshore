@@ -111,3 +111,40 @@ def test_an_australian_program_lands_on_its_cricos_row(db_session, require_db, t
         db_session.execute(delete(SourceVersion).where(SourceVersion.source_id == source_id_for(url)))
         db_session.execute(delete(Source).where(Source.id == source_id_for(url)))
         db_session.commit()
+
+
+def test_a_program_with_nothing_verified_leaves_its_row_alone(db_session, require_db, tmp_path):
+    seed_programs(db_session)
+    seed_catalog(db_session)
+    before = db_session.get(Program, "cricos-103000K")
+    snapshot = (before.minimum_mark, before.english_requirement, before.source_id, before.data_status)
+    data = {"school_key": "monash-university", "school_name_en": "Monash University", "country": "Australia",
+            "programs": [{"name": "Master of Artificial Intelligence", "url": "https://handbook.example/c6007",
+                          "cricos_code": "103000K", "snapshot_sha256": SHA, "fields": {}, "status": "待人工"}]}
+    result = import_school(db_session, data, {}, root=tmp_path)
+    assert result["programs_updated"] == 0
+    after = db_session.get(Program, "cricos-103000K")
+    assert (after.minimum_mark, after.english_requirement, after.source_id, after.data_status) == snapshot
+
+
+def test_a_quote_from_a_shared_page_names_that_page(db_session, require_db, cleanup, tmp_path):
+    data = school_file(china_requirement={"min_mark_211": 80, "min_mark_other": 85, "quote": "80% (211) or 85%",
+                                          "check": "ok", "source_sha256": "d" * 64,
+                                          "source_url": "https://example.test/china"})
+    import_school(db_session, data, SCHOOLS, root=tmp_path)
+    version = db_session.scalars(select(SourceVersion).where(SourceVersion.source_id == source_id_for(URL))).one()
+    assert "[china_requirement] 80% (211) or 85% (出处: https://example.test/china)" in version.body_text
+
+
+def test_new_content_on_a_reviewed_page_returns_it_to_unverified(db_session, require_db, cleanup, tmp_path):
+    from datetime import datetime, timezone
+
+    import_school(db_session, school_file(), SCHOOLS, root=tmp_path)
+    source = db_session.get(Source, source_id_for(URL))
+    source.status, source.verified_at = "已核验", datetime.now(timezone.utc)
+    db_session.commit()
+    changed = school_file()
+    changed["programs"][0]["snapshot_sha256"] = "e" * 64
+    import_school(db_session, changed, SCHOOLS, root=tmp_path)
+    source = db_session.get(Source, source_id_for(URL))
+    assert source.status == "待核验" and source.verified_at is None
