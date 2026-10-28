@@ -1,68 +1,51 @@
 # Session handoff
 
-**This is the only current-state file. Overwrite it at the end of a session; read it at the start.**
-Verify it against `git status` and `git log` before trusting it.
+**唯一的当前状态文件。会话结束时覆盖，开始时读，并先对照 `git status` 和 `git log`。**
 
-## Where we are
+## 现在在哪
 
-- 日期：2026-10-28；**11 月 1 日开始投递**（岗位：agent 开发 + 后端），本项目是面试作品集
-- 分支：`claude/deploy-mvp`（从 `codex/static-prototype` 的 `ea2c91a` 切出），已提交并推送，PR 待合并
-- 线上：<http://43.161.224.82>（腾讯云香港，Ubuntu 24.04，2 核 3.6G + 4G swap），已在跑
-- **正在等**：用户买的域名 `mortyyjt.site` 实名审核。通过后用户加 A 记录（`@` 与 `yuyue` → `43.161.224.82`）并放行安全组 443
+- 2026-10-29。**11 月 1 日开始投递**（agent 开发 + 后端岗），本项目是面试作品集
+- 项目名：鱼跃彼岸 / LeapAshore（数据库用户名、库名、卷名仍是 `offerpilot`，故意不改，改了线上数据卷会丢）
+- 线上：<http://43.161.224.82>（腾讯云香港），**跑的还是改名前的版本，没重新部署**
+- 域名 `mortyyjt.site` 在等实名审核；通过后 `@` → 个人网站，`yuyue` → 本项目，Caddy 按域名分流 + HTTPS
+- 开发工具改用 Cindy（makecindy/cindy，底层跑 Claude Code / Codex），多 agent 分工规则已删
 
-## 本次会话做了什么
+## 规则从哪读
 
-- **PRD**：`docs/product/PRD.md`（中文）。已定：D1 两套前端合并、D5 覆盖范围 = 学校库 346 所（QS 2027 前 300 + 46 所地区补齐）、
-  分档去掉"信息不足"（未知项改为表单必填 + 项目侧"要求待采集"）。未定：D2、D3
-- **部署**：`deploy/compose.prod.yaml`（db / api / web / caddy）、`deploy/Caddyfile`（`/api/*` → FastAPI，其余 → Next）、
-  `api/Dockerfile`（启动时跑迁移和幂等种子）、`web/Dockerfile`（`NEXT_OUTPUT=standalone`）。服务器密钥在 `~/offerpilot/deploy/.env`（不进库）
-- **顾问 agent**：`api/app/agent/`，移植自用户自己的 MEWHELP（LangGraph）。分意图 → 问官方要求走检索 + 证据门禁（拒答记知识缺口日志）→
-  ReAct（步数封顶）→ 改档案直接写、改选校组合 `interrupt` 等确认。接口 `api/app/routers/advisor.py`（SSE）。
-  模型：DeepSeek 官方（`CHAT_BASE_URL=https://api.deepseek.com`，`CHAT_MODEL=deepseek-chat`）
-- **前端**：`AdvisorView` 接流式 agent（意图/门禁/工具标签、来源列表、确认卡片），`/prototype/advisor` 改用它
-- **网站入口**：`/` 只保留首次引导问卷；填完 → `/prototype/assess/result`（背景经 `web/lib/prototype-handoff.ts` 写入原型的 sessionStorage）；
-  cookie `offerpilot_onboarded=1` + `web/proxy.ts` 让回访直接进 `/prototype`。旧主界面（选校组合、路线图）不再可达
-- **README** 重写（英文，含架构图与 agent 图）
+- 需求：`docs/product/PRD.md`，和其他文件冲突时以它为准
+- 工程规则：`AGENTS.md`（+ `docs/engineering/agent-guidelines.md`）；`CLAUDE.md` 只是引用它
+- 跨 change 的决定：`note/decisions.md`；想法池：`note/product/backlog.md`
+- 后端设计：`note/design/`；材料库现行规格：`openspec/specs/`
+
+## 已决定、待做（按顺序）
+
+1. **原型重做**（走 OpenSpec）：选校组合、申请路线图（主界面）、材料库按原型样式重做并接后端；
+   测评从 `/api/profile` 读背景（不再读 sessionStorage）；顾问后台 / 联系顾问先从导航隐藏；
+   做完删旧界面（`AppShell` `FlowView` `HomeView` `MaterialsView` `ProfileView` `SettingsView`
+   `PortfolioPicker` `Generating`、`lib/store.ts` 等）、旧走查 `scripts/e2e-walkthrough.cjs` 与
+   `docs/screenshots/01…29`、6 个占位项目的镜像校验（`web/lib/programs.ts` + 两个 check 脚本）
+2. 重新部署（改名后的版本）；域名审核过后上 HTTPS
+3. 热门学校真实录取要求（官网来源，状态"机器核对"，人工核验才写 `verified_at`）
+4. 注册登录：先不做
 
 ## 验证状态
 
-- 后端：全量 213 条通过（2026-10-28，新建库后先 `make migrate` + `make seed`）
-- 前端：`npm test` 205 条通过，`next build` 通过
-- 线上端到端（curl + 浏览器）：问要求带来源 ✅、未收录学校拒答 ✅、写档案 ✅、改组合确认后落库 ✅、重复确认被拒 ✅、首访问卷 → 原型带背景 ✅、回访跳转 ✅
-- 引导问卷 10 步没有在浏览器里手动点完（代码未改）
-
-## 已决定、待执行
-
-- **改名已完成**：中文「鱼跃彼岸」、英文 LeapAshore，cookie / 存储键 / 包名 / 响应头全改。**数据库用户名、库名、卷名仍是 `offerpilot`**（改了线上数据卷会丢）。GitHub 仓库 `MortyYJT/offerpilot` 尚未改名
-- **域名**：`mortyyjt.site` 放个人网站，`yuyue.mortyyjt.site` 放本项目。GitHub 用户名保持 MortyYJT（`guyuy` 已被占）
-- **个人网站**：本地已删，用 GitHub 上 `MortyYJT/MortyYJT.github.io` 的静态构建（源码 `personal-website-guyuy`），Caddy 按域名分流
-- 注册登录先不做；背景仍只存在 sessionStorage
-
-## 下一步
-
-0. 前端改版 + 注册登录（用户 10-28 提出，待设计）
-2. 域名审核通过 → Caddyfile 改成两个站点块（自动 HTTPS）、compose 暴露 443、服务器上 clone 个人网站静态构建、更新 README 线上地址
-4. 热门学校真实录取要求：先几所，带官网来源，状态"机器核对"，人工核验后才写 `verified_at`
-
-## 已知限制
-
-- 对话存在 `InMemorySaver`，API 重启即丢；换 Postgres checkpointer 是 schema 变更，要先问
-- 知识缺口只写日志（logger `offerpilot.knowledge_gap`），没有后台队列
-- 只有 HTTP；没有评测集
-- 旧限制仍在：测试偶发红（`applications_client_id_fkey` 等，既有问题，见 `note/product/backlog.md`）、`test_sources.py` 泄漏一行
+- 后端 213 条、前端 205 条通过（2026-10-29，本地 Docker Postgres，新库要先 `make migrate` + `make seed`）
+- `make verify` 的走查一步测的是旧界面，见清理 PR 里的结果
 
 ## 怎么跑与部署
 
-- 本地：`make dev` / `make test`。本会话的 venv 用的是 `../offerpilot/.runtime-tools/` 下的 uv 建的 `api/.venv`
-- 部署（从仓库根目录）：
-  `rsync -az --exclude node_modules --exclude .next --exclude .next-build --exclude .venv --exclude api/var --exclude .git --exclude .runtime-tools --exclude .npm-cache --exclude .env --exclude deploy/.env --exclude docs/screenshots -e "ssh -i ~/.ssh/offerpilot_codex -o IdentitiesOnly=yes" ./ ubuntu@43.161.224.82:~/offerpilot/`
-  然后 `ssh ... 'cd ~/offerpilot/deploy && sudo docker compose -f compose.prod.yaml up -d --build'`
-- 看日志：`sudo docker compose -f compose.prod.yaml logs api --since 5m`
+- 本地：`make dev` / `make test` / `make verify`
+- 部署（仓库根目录）：rsync 到 `ubuntu@43.161.224.82:~/offerpilot/`（排除 node_modules、.next、.venv、
+  .git、.env、deploy/.env、api/var、docs/screenshots），然后在服务器上
+  `cd ~/offerpilot/deploy && sudo docker compose -f compose.prod.yaml up -d --build`
+- 服务器密钥在服务器的 `~/offerpilot/deploy/.env`，不进库
 
 ## 坑
 
-- **流式响应要自己写 cookie**：FastAPI 只把依赖里 `Response` 的头合并进它自己构造的响应；返回 `StreamingResponse` 时必须调用 `set_client_cookie`，否则每条消息都是新访客
-- **interrupt 前不能有写操作**：恢复时整个节点从头重跑
-- **新访客可能还没有 `clients` 行**：任何写组合的路径先 `load_or_create_profile`
-- interrupt 的载荷自带 `type`，SSE 事件里要把 `type` 放在最后，免得被覆盖
-- 不要把模型密钥发给它所属以外的服务商（试过被安全规则拦下）
+- 流式响应要自己写 cookie：返回 `StreamingResponse` 时必须调 `set_client_cookie`
+- LangGraph `interrupt` 前不能有写操作：恢复时整个节点从头重跑
+- 新访客可能还没有 `clients` 行：写组合前先 `load_or_create_profile`
+- 对话存在 `InMemorySaver`，API 重启即丢；换 Postgres checkpointer 是 schema 变更，要先问
+- 仓库本地 git 身份必须是 `MortyYJT` + noreply 邮箱（曾被设成 `rehearsal`）
+- 公开仓库历史已于 10-28 改写去掉真名；已合并 PR 页面仍引用旧提交

@@ -42,18 +42,6 @@ spec — do not write a second one.**
   correctness or the stated requirements, not style.
 - Verification: run `make verify` and show its output. Do not claim done without it.
 
-## Agents and human gates
-
-- **User** decides at key points (picks from proposed options and states why). **Claude Code** researches,
-  proposes, writes the OpenSpec change and a scheduled plan, splits it into GitHub issues, dispatches,
-  reviews, pushes, and opens PRs. **Codex** implements one issue per worktree with TDD and commits locally.
-  **dsh** writes learning quizzes on merged work into `note/interview/`.
-- Speed comes first. Two gates block and are always human: approving the design and merging a PR. Never
-  automate them. Quizzes are asynchronous and never block development.
-- Record every user decision with its reason in the OpenSpec change or `note/decisions.md`.
-- Hand off through files and GitHub (issue -> PR -> review), never chat memory. The `dispatch` skill runs
-  the loop; formats are in the guidelines, "Multi-agent collaboration".
-
 ## Reporting format
 
 Every delivery report uses exactly these four sections, in this order, and nothing else.
@@ -93,13 +81,13 @@ Rules:
 | Git state, commits, pushes, pull requests | Git and changes; Identity and privacy |
 | Deploying or releasing | Verification and deployment; Git and changes |
 | Writing docs or reporting milestones | Communication and documentation |
-| Dispatching, reviewing, or handing work between agents | Multi-agent collaboration; Git and changes |
 
 ## Project-specific
 
-- **What this is:** LeapAshore — an application-planning agent for master's degrees at Australia's Group
-  of Eight universities. The product is a visual application roadmap: open a phase and see what to
-  prepare, when, and which official page the requirement came from.
+- **What this is:** LeapAshore (鱼跃彼岸) — an application-planning agent for master's degrees at the
+  QS 2027 top 300 universities plus regional additions (346 schools). The product is a visual application
+  roadmap: open a phase and see what to prepare, when, and which official page the requirement came
+  from. Requirements live in [docs/product/PRD.md](docs/product/PRD.md); it wins over any other note.
 - **Stack and commands:** Next.js + TypeScript in `web/`; FastAPI + PostgreSQL in `api/`. `make install`,
   `make dev`, `make verify` (the check command, same steps CI runs). `make help` lists everything.
 - **Domain red lines:**

@@ -75,7 +75,7 @@ export interface Program {
    * The English program name, which is what the product shows.
    *
    * The served catalogue names it `nameEn` and calls its own `name` the Chinese one; the adapter in
-   * `programs-source.ts` makes that mapping, and `note/superpowers/specs/2026-10-06-stage-2-m2-design.md`
+   * `programs-source.ts` makes that mapping, and `note/design/2026-10-06-stage-2-m2-design.md`
    * §3.6 is the ruling. `null` on the wire means the catalogue has no English name yet, and the render
    * sites show `UNKNOWN` rather than an empty string.
    */
@@ -226,7 +226,7 @@ export type AppStage = "onboarding" | "generating" | "portfolio" | "app";
  * A material in the applicant's library, as the interface renders it.
  *
  * The applicant uploads files, classifies each one, sends it for review and reads what came back —
- * `documents` and `document_versions` on the server. `note/superpowers/specs/2026-10-06-stage-2-database-design.md`
+ * `documents` and `document_versions` on the server. `note/design/2026-10-06-stage-2-database-design.md`
  * §3.3 is why a material is an identity with versions rather than one file: a revision is a new
  * version, and a review binds to the exact version it judged.
  */

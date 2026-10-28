@@ -6,7 +6,7 @@
 | 日期 | 2026-10-28 |
 | 作者 | MortyYJT |
 | 状态 | 草稿，标【待定】的条目需要拍板 |
-| 素材来源 | `note/product/vision.md`、`note/stage-1-MVP.md` 设计依据、`openspec/specs/`、`/prototype` 静态原型 |
+| 素材来源 | `note/decisions.md`、`openspec/specs/`、`/prototype` 原型 |
 
 ---
 

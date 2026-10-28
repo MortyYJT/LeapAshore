@@ -1,7 +1,7 @@
 // The page's read of the served roadmap definition, and the state that read leaves it holding.
 //
 // This is a module rather than a few lines inside the page's effect because of what the failure
-// branch decides. Section 3.8 of `note/superpowers/specs/2026-10-06-stage-2-m2-design.md` is why the
+// branch decides. Section 3.8 of `note/design/2026-10-06-stage-2-m2-design.md` is why the
 // built-in `DEFAULT_DEFINITION` must never reach the recomputation: it deliberately omits the visa
 // phase, so a write built from it would state an applicable-key set without the visa keys, and the
 // server would read that as "no longer applicable" and delete the applicant's visa rows together with

@@ -1,7 +1,7 @@
 // Characterisation tests for the school tier detector.
 //
 // These lock in current behaviour rather than driving new code: the detector shipped in T1 before any
-// test existed, so there is no failing-first state to record. See note/stage-1-MVP.md.
+// test existed, so there is no failing-first state to record.
 
 import { test } from "node:test";
 import assert from "node:assert/strict";

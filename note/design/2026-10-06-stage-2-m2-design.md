@@ -3,7 +3,7 @@
 日期：2026-10-06
 状态：**待用户批准**（批准前不写代码）
 前置：M1 已合并进 `main`（PR #2，merge commit `946b867`）
-上位 spec：`note/superpowers/specs/2026-10-06-stage-2-database-design.md`
+上位 spec：`note/design/2026-10-06-stage-2-database-design.md`
 
 ---
 
