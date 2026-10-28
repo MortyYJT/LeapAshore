@@ -41,8 +41,8 @@ Use `api/.venv/bin/python` for the tools.
    Skip research degrees (MPhil, MRes, MSc by research), PhDs, graduate certificates/diplomas,
    and programs closed to international students.
 7. Do not edit any other file in the repository, do not commit, do not install anything. Keep your
-   own working files in a folder named after your `school_key` (other agents run at the same time
-   and share the scratch space).
+   own working files (scripts, notes, lists) in `api/var/work/<school_key>/`, which is not committed;
+   never in the repository root or the shared scratch space (other agents run at the same time).
 
 ### How to work
 
