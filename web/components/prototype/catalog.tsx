@@ -1,0 +1,7 @@
+import Link from 'next/link';
+import { Heading, Attribution, Sample } from './shared';
+import type { MasterProgram } from '../../lib/prototype-library';
+import type { Requirement } from '../../prototype-fixtures/data';
+export function Comparison({selected}: {selected: {program: MasterProgram; rules: Requirement[] | null}[]}) {
+  return <><Heading title="把选择放在一起">并排查看 CRICOS 事实。九个原始项目的录取要求是示例，其余未知（待采集）。</Heading>{selected.length < 2 || selected.length > 4 ? <p>请选择 2–4 个有效项目。<Link className="ml-2 underline" href="/prototype/programs">返回项目库</Link></p> : <div className="overflow-x-auto rounded-2xl bg-white"><table className="w-full min-w-[720px] text-left text-sm"><caption className="p-4 text-left">小屏可横向滚动查看全部项目。<Attribution/></caption><thead><tr><th className="p-5">比较项目</th>{selected.map(({program:p}) => <th className="max-w-64 p-5" key={p.code}><Link className="text-emerald-800 underline" href={`/prototype/programs/${p.code}`}>{p.name || '未知'}</Link></th>)}</tr></thead><tbody>{['学校','CRICOS 编码','学科','学制（周）','CRICOS 登记总学费（澳元）','985 均分要求','雅思总分','专业领域'].map((label,i) => <tr key={label} className="border-t"><th className="p-5">{label}</th>{selected.map(({program:p,rules}) => <td className="p-5" key={p.code}>{i < 5 ? [p.institution || '未知',p.code,p.field || '未知',p.weeks ?? '未知',p.tuition || '未知'][i] : rules ? <>{rules[i-5].value ?? '未知'} <Sample/><p className="mt-2">{rules[i-5].verification} <Sample/></p></> : '未知（待采集）'}</td>)}</tr>)}</tbody></table></div>}</>;
+}
