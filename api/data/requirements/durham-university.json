@@ -1,0 +1,27 @@
+{
+ "school_key": "durham-university",
+ "school_name_en": "Durham University",
+ "country": "United Kingdom",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://www.durham.ac.uk/study/courses/?level=postgraduate"
+ ],
+ "blocked": [
+  {
+   "url": "https://www.durham.ac.uk/study/courses/?level=postgraduate",
+   "reason": "snapshot tool: robots.txt disallows the URL (a direct request for www.durham.ac.uk/robots.txt returned HTTP 403 from CloudFront)"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.durham.ac.uk/study/courses/?level=postgraduate"
+ ],
+ "notes": "The snapshot tool refused the postgraduate course listing because of robots.txt, and www.durham.ac.uk is the only official host for course pages, so fetching stopped after one attempt. No programmes were collected. Retry later or collect by hand.",
+ "programs": [],
+ "verification": {
+  "programs": 0,
+  "机器核对": 0,
+  "待人工": 0
+ }
+}
