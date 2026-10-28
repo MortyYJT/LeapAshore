@@ -131,6 +131,12 @@ and cite it with `source_sha256`. Typical cases:
 - **English levels** ("Standard", "Higher", "Band B") defined on a separate page: cite that page's
   scores only for programmes whose page names the level.
 - A **conversion table** (GPA scale ↔ percentage) is not a requirement: never turn it into a number.
+- **US**: master's programmes live on department or professional-school sites, and the graduate
+  school publishes the university-wide minimums (TOEFL/IELTS, "a bachelor's degree or equivalent").
+  Use the graduate-school figure only for programmes whose page refers to it. A GPA expressed on a
+  US 4.0 scale is not a Chinese percentage: quote it in `academic`, never in `min_mark_*`. Skip
+  research-only master's (MS thesis track if listed separately as research), certificates, and
+  programmes not open to international students.
 
 ### What to report when you finish
 
