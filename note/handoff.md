@@ -35,9 +35,19 @@
 | RMIT | 79 | 79 | 7 条按名称匹配 CRICOS |
 | Curtin | 50 | 50 | |
 | CUHK | 61 | 61 | 还剩 77 |
+| HKUST | 54 | 54 | 全部 |
+| PolyU | 113 | 113 | 全部 |
+| CityU | 66 | 66 | 全部；页面要 `--render` 才有内容（诚实 UA，没破解挑战） |
+| NTU | 65 | 64 | 还剩 48 |
+| NUS | 6 | 6 | 只有计算机学院能访问，其余 Incapsula 拦截 |
 | Monash / Melbourne / Macquarie | 0–1 | 0 | 被 Cloudflare / Incapsula / robots 拦截，按规则不绕过 |
 
-进行中：HKU；接着排 HKUST、PolyU、CityU、NUS、NTU，然后英国 28 所。
+进行中：HKU、Imperial、Oxford、Cambridge、UCL、Edinburgh；英国其余 22 所、美国 38 所、其余地区还没开始。
+
+## 校徽
+
+- `scripts/fill-logos.py` 补了 16 个（5 个官网图标、11 个 Commons 校徽/印章），还剩 43 所用首字圆标
+- Commons 的 CC BY / CC BY-SA 文件**需要在界面上署名**（`logo_license`、`logo_source` 已记在 fixture 行上），学校库页面还没有署名区
 
 ## 怎么继续采集
 
@@ -55,8 +65,10 @@
 
 ## 验证状态
 
-- 后端：252 条通过（2026-10-29 深夜，本地 Docker Postgres）
-- 前端单测、`make verify`：今晚还没跑
+- 后端：266 条通过；前端 205 条通过（`make test` 全过）
+- `make verify`：构建和测试通过；走查在「为你筛出的申请组合」一步失败，这是 PR #26 已记录的旧问题（新入口流程后走查需重写），不是今晚的改动造成的
+- 本机 Turbopack dev server 报 "Next.js package not found" 后会无限刷新，走查改用生产构建（`BASE_URL=http://localhost:3100`）
+- 一个全新上下文的审查子代理审过后端改动，1 个阻断 + 6 个应修问题已全部修复
 - CI：没跑；部署：没动
 
 ## 怎么跑与部署

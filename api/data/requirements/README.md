@@ -45,6 +45,8 @@ Use `api/.venv/bin/python` for the tools.
 7. Do not edit any other file in the repository, do not commit, do not install anything. Keep your
    own working files (scripts, notes, lists) in `api/var/work/<school_key>/`, which is not committed;
    never in the repository root or the shared scratch space (other agents run at the same time).
+   Never stop processes by name (`pkill -f …`): that kills other collectors' fetches too. Stop only
+   a process you started, by its pid.
 
 ### How to work
 
