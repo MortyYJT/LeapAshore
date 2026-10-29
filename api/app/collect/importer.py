@@ -51,9 +51,10 @@ def slugify(text: str, limit: int) -> str:
 def program_id_for(school_key: str, program: dict) -> str:
     if program.get("cricos_code"):
         return f"cricos-{program['cricos_code']}"
-    # 64 characters at most, and stable for one program page: the slug of its name, then a short
-    # hash of its url so two programs with one name (a part-time variant) stay apart.
-    digest = uuid.uuid5(SOURCE_NAMESPACE, program["url"]).hex[:6]
+    # 64 characters at most, and stable for one program: the slug of its name, then a short hash of
+    # its url and full name, so two programs with one name (a part-time variant) and two variants on
+    # one page whose names differ past the slug's length (45 vs 65 credits) all stay apart.
+    digest = uuid.uuid5(SOURCE_NAMESPACE, f"{program['url']}\n{program['name']}").hex[:6]
     return f"{slugify(school_key, 24)}-{slugify(program['name'], 32)}-{digest}"
 
 

@@ -170,3 +170,29 @@ def test_two_prerequisites_of_a_long_named_program_get_distinct_ids(db_session, 
         db_session.execute(delete(Source).where(Source.id == source_id_for(url)))
         db_session.execute(delete(University).where(University.id == KEY))
         db_session.commit()
+
+
+def test_two_programs_on_one_page_get_distinct_ids():
+    """A page can list two variants whose names differ only past the slug's length (45 vs 65 credits)."""
+    url = "https://example.edu/health-management"
+    short = program_id_for("example-university", {"name": "Master of Science in Health Management (45-credit)", "url": url})
+    long = program_id_for("example-university", {"name": "Master of Science in Health Management (65-credit)", "url": url})
+    assert short != long
+    assert len(short) <= 64 and len(long) <= 64
+
+
+def test_no_two_collected_programs_share_an_id():
+    """Across every committed requirement file: a collision would make one program overwrite another."""
+    import json
+    from pathlib import Path
+
+    seen: dict[str, str] = {}
+    for path in sorted((Path(__file__).resolve().parents[1] / "data" / "requirements").glob("*.json")):
+        if path.name.startswith("_"):
+            continue
+        data = json.loads(path.read_text(encoding="utf-8"))
+        for program in data["programs"]:
+            key = program_id_for(data["school_key"], program)
+            where = f"{path.name}: {program['name']}"
+            assert key not in seen or program.get("cricos_code"), f"{where} and {seen.get(key)} share {key}"
+            seen[key] = where
