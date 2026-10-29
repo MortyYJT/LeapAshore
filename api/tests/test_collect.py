@@ -344,3 +344,24 @@ def test_an_abbreviated_month_with_a_dot_is_a_date_but_a_decimal_is_not(tmp_path
 
     assert check("2026-11-06", "Deadline: Nov.6, 2026") == MACHINE_CHECKED
     assert check("2026-11-06", "Score 2.6 by November 2026") == NEEDS_HUMAN
+
+
+def test_an_unanswered_robots_txt_says_so_and_is_asked_again_sooner(tmp_path, monkeypatch):
+    """No answer keeps us out, but the refusal says it was no answer, and it is retried within the hour."""
+    import os
+    import time as _time
+
+    def timeout(request, timeout=None):
+        raise TimeoutError("timed out")
+
+    monkeypatch.setattr(snap.urllib.request, "urlopen", timeout)
+    monkeypatch.setattr(snap, "MIN_INTERVAL", 0)
+    reason = snap.refusal("https://ips.example.my/programmes", tmp_path)
+    assert reason and "no answer" in reason
+    cache = tmp_path / "_robots" / "ips.example.my"
+    old = _time.time() - 2 * 3600
+    os.utime(cache, (old, old))
+    asked = []
+    monkeypatch.setattr(snap.urllib.request, "urlopen", lambda request, timeout=None: asked.append(1) or (_ for _ in ()).throw(TimeoutError()))
+    snap.refusal("https://ips.example.my/programmes", tmp_path)
+    assert asked, "a cached non-answer older than an hour is asked again"

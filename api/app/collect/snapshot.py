@@ -101,28 +101,47 @@ def block_host(host: str, reason: str, root: Path = SNAPSHOT_ROOT) -> None:
 ROBOTS_TTL = 24 * 3600
 
 
+KEEP_OUT_MARK = "# leapashore keep-out: "
+NO_ANSWER_TTL = 3600
+
+
+def _keep_out(reason: str) -> list[str]:
+    # robots.txt parsers ignore comments, so the reason rides along without changing the rules.
+    return [f"{KEEP_OUT_MARK}{reason}", "User-agent: *", "Disallow: /"]
+
+
 def robots_rules(base: str, root: Path = SNAPSHOT_ROOT) -> list[str]:
     """The robots.txt lines for `base`, cached on disk for a day so each fetch does not ask again.
 
     Per RFC 9309: a missing file (404 and other 4xx) means no rules; 401/403/429, a server error, or
     no answer means "keep out", because a site that cannot say what it allows has not allowed it.
+    A keep-out the site did not state (no answer, a server error) is asked again after an hour.
     """
     cache = root / "_robots" / urlsplit(base).netloc
-    if cache.exists() and time.time() - cache.stat().st_mtime < ROBOTS_TTL:
-        return cache.read_text(encoding="utf-8").splitlines()
+    if cache.exists():
+        lines = cache.read_text(encoding="utf-8").splitlines()
+        transient = bool(lines) and lines[0].startswith(KEEP_OUT_MARK + "no answer") or (
+            bool(lines) and lines[0].startswith(KEEP_OUT_MARK + "HTTP 5"))
+        if time.time() - cache.stat().st_mtime < (NO_ANSWER_TTL if transient else ROBOTS_TTL):
+            return lines
     wait_for_turn(urlsplit(base).netloc, root)
-    keep_out = ["User-agent: *", "Disallow: /"]
     try:
         request = urllib.request.Request(f"{base}/robots.txt", headers={"User-Agent": USER_AGENT})
         with urllib.request.urlopen(request, timeout=TIMEOUT) as response:
             lines = response.read().decode("utf-8", "replace").splitlines()
     except urllib.error.HTTPError as error:
-        lines = keep_out if error.code in (401, 403, 429) or error.code >= 500 else []
-    except Exception:  # noqa: BLE001 - timeouts and resets: no answer is not permission
-        lines = keep_out
+        lines = _keep_out(f"HTTP {error.code}") if error.code in (401, 403, 429) or error.code >= 500 else []
+    except Exception as error:  # noqa: BLE001 - timeouts and resets: no answer is not permission
+        lines = _keep_out(f"no answer ({type(error).__name__})")
     cache.parent.mkdir(parents=True, exist_ok=True)
     cache.write_text("\n".join(lines), encoding="utf-8")
     return lines
+
+
+def robots_keep_out_reason(url: str, root: Path = SNAPSHOT_ROOT) -> str | None:
+    """Why robots.txt keeps us out of the whole host, when the site did not say so itself."""
+    lines = robots_rules(f"{urlsplit(url).scheme}://{urlsplit(url).netloc}", root)
+    return lines[0][len(KEEP_OUT_MARK):] if lines and lines[0].startswith(KEEP_OUT_MARK) else None
 
 
 def allowed_by_robots(url: str, root: Path = SNAPSHOT_ROOT) -> bool:
@@ -208,7 +227,8 @@ def refusal(url: str, root: Path = SNAPSHOT_ROOT) -> str | None:
     if earlier:
         return f"{urlsplit(url).netloc} refused an earlier request ({earlier}); not asking again"
     if not allowed_by_robots(url, root):
-        return "robots.txt disallows"
+        why = robots_keep_out_reason(url, root)
+        return f"robots.txt disallows (robots.txt itself: {why})" if why else "robots.txt disallows"
     return None
 
 
@@ -218,7 +238,7 @@ def snapshot(url: str, school: str, render: bool = False, root: Path = SNAPSHOT_
     if reason:
         if reason.startswith("robots"):
             record_block(school, url, reason, root)
-            raise Blocked(f"robots.txt disallows {url}")
+            raise Blocked(f"{reason}: {url}")
         raise Blocked(reason)
     wait_for_turn(host, root)
     try:
