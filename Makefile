@@ -99,8 +99,8 @@ api-test: check-venv  ## Run the backend tests in the project-local venv
 api-dev:  ## Start the backend dev server on :8000
 	cd api && .venv/bin/uvicorn app.main:app --reload --port 8000
 
-db-up:  ## Start the database container
-	docker compose up -d db
+db-up:  ## Start the database and Redis containers
+	docker compose up -d db redis
 
 db-down:  ## Stop the database container
 	docker compose down

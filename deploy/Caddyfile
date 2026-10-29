@@ -6,6 +6,9 @@ leapashore.mortyyjt.site {
 		reverse_proxy api:8000 {
 			# Streamed agent replies must reach the browser as they are produced.
 			flush_interval -1
+			# The API counts advisor limits against this address and reads it only from this proxy
+			# (TRUSTED_PROXIES). Set, not appended, so a client's own X-Forwarded-For never reaches it.
+			header_up X-Forwarded-For {remote_host}
 		}
 	}
 	handle {

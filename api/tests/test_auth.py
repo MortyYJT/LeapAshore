@@ -216,7 +216,7 @@ def test_daily_cap_per_ip(login_mode, monkeypatch):
 
 
 def test_forwarded_for_is_ignored_unless_trusted(login_mode, monkeypatch):
-    monkeypatch.setattr(settings, "trust_forwarded_for", False)
+    monkeypatch.setattr(settings, "trusted_proxies", "")
     email = unique_email()
     request_code(new_client(), email, "203.0.113.9")
     assert _codes(email)[0].ip != "203.0.113.9"

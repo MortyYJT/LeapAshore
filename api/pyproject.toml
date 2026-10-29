@@ -19,6 +19,8 @@ dependencies = [
   "langgraph==1.2.9",
   "langchain-core==1.4.9",
   "langchain-openai==1.3.5",
+  # Advisor rate limits and token quotas (openspec/changes/advisor-limits); its asyncio client.
+  "redis",
 ]
 
 [project.optional-dependencies]

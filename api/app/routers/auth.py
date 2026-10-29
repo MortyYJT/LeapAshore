@@ -11,11 +11,11 @@ from app.config import settings
 from app.db import get_session
 from app.deps import COOKIE_NAME, SESSION_COOKIE
 from app.models.account import Account
+from app.net import client_ip
 from app.services.accounts import delete_subject
 from app.services.auth import (
     AuthError,
     account_for_token,
-    client_ip,
     end_session,
     normalize_email,
     request_code,

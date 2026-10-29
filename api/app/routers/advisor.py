@@ -11,16 +11,18 @@ import re
 from collections.abc import AsyncIterator
 from typing import Annotated
 
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Request, Response
 from fastapi.responses import StreamingResponse
 from langchain_core.messages import AIMessage, AIMessageChunk, HumanMessage
 from langgraph.types import Command
 from pydantic import BaseModel, Field
 
+from app import limits
 from app.agent.graph import graph
 from app.agent.llm import model_configured
 from app.config import settings
-from app.deps import get_subject, set_client_cookie
+from app.deps import get_subject, set_client_cookie, subject_cookie_header
+from app.net import client_ip
 
 router = APIRouter(prefix="/api/advisor", tags=["advisor"])
 logger = logging.getLogger(__name__)
@@ -38,12 +40,56 @@ class ConfirmIn(BaseModel):
     approved: bool
 
 
-def _config(client_id: str, conversation_id: str) -> dict:
+class Caller(BaseModel):
+    """Who a turn is charged to: the subject (account or anonymous cookie) and the client IP."""
+
+    subject: str
+    ip: str | None
+
+
+async def _admit(request: Request, response: Response, subject: str, *, windows: bool) -> Caller:
+    """Refuse with 429 over a limit, 503 when the limit store is down (openspec advisor-limits)."""
+    caller = Caller(subject=subject, ip=client_ip(request))
+    try:
+        refusal = await limits.check(caller.subject, caller.ip, windows=windows)
+    except limits.LimitsUnavailable:
+        logger.exception("advisor limits unavailable; refusing the turn")
+        raise HTTPException(
+            503,
+            {"code": "limits_unavailable", "message": limits.UNAVAILABLE},
+            headers=subject_cookie_header(response),
+        ) from None
+    if refusal is not None:
+        headers = {"Retry-After": str(refusal.retry_after), **(subject_cookie_header(response) or {})}
+        raise HTTPException(429, refusal.detail(), headers=headers)
+    return caller
+
+
+async def chat_caller(
+    request: Request, response: Response, subject: Annotated[str, Depends(get_subject)]
+) -> Caller:
+    return await _admit(request, response, subject, windows=True)
+
+
+async def confirm_caller(
+    request: Request, response: Response, subject: Annotated[str, Depends(get_subject)]
+) -> Caller:
+    # A confirm resumes a turn that already took a window slot, and only when a change is pending, so
+    # it is checked against the token caps only; refusing it on a window would strand the change (D7).
+    return await _admit(request, response, subject, windows=False)
+
+
+def _config(caller: Caller, conversation_id: str) -> dict:
     if not _CONVERSATION_ID.match(conversation_id):
         raise HTTPException(422, "conversationId must be 1-40 letters, digits, '-' or '_'")
+    client_id = caller.subject
     # The thread is scoped by the cookie's client id, so one applicant cannot resume another's thread
-    # by guessing a conversation id; tools read the same client id from here.
-    return {"configurable": {"thread_id": f"{client_id}:{conversation_id}", "client_id": client_id}}
+    # by guessing a conversation id; tools read the same client id from here. The recorder charges
+    # every model call in the turn to the caller's daily token counters.
+    return {
+        "configurable": {"thread_id": f"{client_id}:{conversation_id}", "client_id": client_id},
+        "callbacks": [limits.UsageRecorder(caller.subject, caller.ip)],
+    }
 
 
 def _event(payload: dict) -> str:
@@ -116,20 +162,20 @@ async def _nothing_to_confirm() -> AsyncIterator[str]:
 
 
 @router.post("/chat")
-async def chat(body: ChatIn, client_id: Annotated[str, Depends(get_subject)]) -> StreamingResponse:
-    config = _config(client_id, body.conversation_id)
-    return _sse(_stream({"messages": [HumanMessage(content=body.message)], "trace": None}, config), client_id)
+async def chat(body: ChatIn, caller: Annotated[Caller, Depends(chat_caller)]) -> StreamingResponse:
+    config = _config(caller, body.conversation_id)
+    return _sse(_stream({"messages": [HumanMessage(content=body.message)], "trace": None}, config), caller.subject)
 
 
 @router.post("/confirm")
-async def confirm(body: ConfirmIn, client_id: Annotated[str, Depends(get_subject)]) -> StreamingResponse:
+async def confirm(body: ConfirmIn, caller: Annotated[Caller, Depends(confirm_caller)]) -> StreamingResponse:
     """Resume a turn the agent paused on a portfolio change, with the applicant's answer."""
-    config = _config(client_id, body.conversation_id)
+    config = _config(caller, body.conversation_id)
     # Resuming a thread that is not paused would start a fresh turn with no message in it.
     snapshot = await graph.aget_state(config)
     if not snapshot.interrupts:
-        return _sse(_nothing_to_confirm(), client_id)
-    return _sse(_stream(Command(resume=body.approved), config), client_id)
+        return _sse(_nothing_to_confirm(), caller.subject)
+    return _sse(_stream(Command(resume=body.approved), config), caller.subject)
 
 
 @router.get("/status")

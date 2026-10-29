@@ -11,7 +11,8 @@
 - 账号与登录（PR #36）：邮箱 + 6 位验证码登录，服务端会话，`/assess` 删掉换成登录弹窗里的信息页，分档页搬到 `/tiers`，隐私政策草稿 `/privacy`。设计和匿名合并规则见 `openspec/changes/account-login/design.md`（change 还没归档，tasks.md 是进度清单）。**生产登录模式没开**（`AUTH_ENABLED` 未设），行为和以前一样是匿名 cookie；开之前要 MortyYJT 配 SES，见下面「切到登录模式」。
 - 本机 `make api-dev-bg` 默认开登录模式，验证码写到 `api/var/mail.log`（不发信）；走查要求后端在登录模式，否则直接退出并说明。
 - 顾问检索（PR #38）：校名按数据识别（繁简折叠、英文名、括号缩写、简称表 `api/data/advisor/university_aliases.json`），学科按 `Program.field`（`api/data/advisor/subjects.json`），门槛要求项目有录取要求数据，筛选在 SQL 里（新索引 Alembic `5c1e7f0a2b3d`），拒答文案按计数生成。评估集和跑法在 `api/evals/`（`python -m evals.run_advisor`）；**报数组 30 条已在最终代码上跑过一次，以后别再拿它调参**——P1「混合检索」要用它重跑对比时照实记录即可。CI 的 `advisor-eval` 任务只跑调参组。
-- 下一步：`TASKS.md` P0 第五条「顾问接口限流与额度」。
+- 顾问限流与额度（PR #40）：Redis 滑动窗口（主体 + IP）和每日 token 上限（主体、IP、全站 200 万），超限 429、Redis 连不上 503（fail-closed）；`max_tokens` 放请求体（DeepSeek 忽略 `max_completion_tokens`）；IP 只在对端是 `TRUSTED_PROXIES`（生产 `caddy`）时读 `X-Forwarded-For`。设计 `openspec/changes/advisor-limits/`，压测 `python -m evals.load_advisor_limits`。默认数字是估的，待 MortyYJT 复核。
+- 下一步：`TASKS.md` P0 第六条「抽取写成代码」。
 - 线上运行的是 main（截至 PR #38 合并，10-30 部署，登录模式关；生产库已用 `remove_schools --apply` 删掉日本 8 所），地址 https://leapashore.mortyyjt.site 。个人网站 https://mortyyjt.site 也由这里的 Caddy 出。
 - 生产库（10-30，PR #34 部署后）：programs 7496（删日本 8 所前 7586），范围外国家项目 0，`verified_at` 非空 0。最近一次部署前的备份在服务器 `~/db-backup-20261030-pre-retrieval.sql.gz`（PR #38 前；Alembic 现在是 `5c1e7f0a2b3d`）。
 - `make verify`（PR #38，10-30）：后端 436、前端 232、走查 106/106（对 `make build` 产物，本机登录模式）。
@@ -20,6 +21,7 @@
 
 - **登录模式等 MortyYJT 配发信（卡在本人）**：步骤见「部署 → 切到登录模式」。隐私政策 `/privacy` 是 AI 草稿，要 MortyYJT 审核正文、补联系方式。
 - 生产顾问用的是 `api.deepseek.com` 的 `deepseek-chat`（服务器 `deploy/.env`），不是 TASKS.md 写的硅基流动 DeepSeek-V4-Flash；隐私政策按生产实际写的 DeepSeek。10-30 跑意图评估时 DeepSeek 返回的模型名是 `deepseek-flash`（价格页已不列 `deepseek-chat`，旧名仍可调用）。本机评估用的是 shell 里的 `DEEPSEEK_API_KEY`：`CHAT_BASE_URL=https://api.deepseek.com CHAT_MODEL=deepseek-chat CHAT_API_KEY="$DEEPSEEK_API_KEY"`。
+- **待 MortyYJT 复核（顾问限流）**：默认额度（主体 10 次/分钟、60 次/小时；IP 30 次/分钟、200 次/小时；每天每主体 20 万、每 IP 60 万、全站 200 万 token）；Redis 挂了顾问就 503 是否可接受。改数字只要改服务器 `deploy/.env`（变量名见 `deploy/.env.example`）再重建 api。
 - **待 MortyYJT 复核（顾问检索）**：简称表是否地道；门槛「只有 CRICOS 课程名不算证据」是否太严（本机 31 所学校因此对要求问题全部拒答，如墨尔本、麦考瑞）；评估集标签是 AI 标的。
 
 - **GitHub 合并会写入 MortyYJT 的私人邮箱**：在 GitHub 网页或 `gh pr merge` 合并时，提交者字段用的是账号主邮箱。要 MortyYJT 在 GitHub → Settings → Emails 勾选「Keep my email addresses private」。已推送的历史不改写。
@@ -45,9 +47,14 @@
   5. `sudo docker compose -f compose.prod.yaml up -d --force-recreate --no-deps api`；`docker compose logs api` 里没有 `AUTH_ENABLED=true in production needs a real mail backend` 才算启动成功。用自己的邮箱在网站上登录一次，确认收到信（看一下是不是进了垃圾箱）。
   6. 加 90 天清理的 cron（`crontab -e`，用服务器本地时间）：`17 3 * * * cd ~/offerpilot/deploy && sudo docker compose -f compose.prod.yaml exec -T api python -m app.cleanup --apply >> ~/cleanup.log 2>&1`。先手动跑一次不带 `--apply` 的看报告。
   7. 回滚：删掉 `.env` 里的 `AUTH_ENABLED=true` 再重建 api，回到匿名模式；表可以留着。
+- compose 里有 `redis` 服务（顾问限流，P1 Celery 复用），数据卷 `redis-data`；api 依赖它健康才启动。Caddyfile 改了的部署，`up -d --build` 之后还要单独 `up -d --force-recreate --no-deps caddy`（见下一条）。看今天的用量：`sudo docker compose -f compose.prod.yaml exec redis redis-cli --scan --pattern 'leapashore:tokens:site:*'` 再 `GET` 对应键。
 - 只改 Caddy 配置时，只重启 caddy：`sudo docker compose -f compose.prod.yaml up -d --force-recreate --no-deps caddy`（不加 `--force-recreate` 时，只改 Caddyfile 内容 compose 不会重建容器，rsync 换掉的新文件也不会进到旧容器的单文件挂载里）。
 
 ## 坑
+
+- 后端测试要 Redis（`make db-up` 现在同时起 db 和 redis，本机端口 56379）；没起时顾问相关测试会 503 失败。每个测试用自己的键前缀（conftest 的 `isolate_the_advisor_limits`），结束时删掉。
+- `get_chat_model` 的输出上限必须走 `extra_body={"max_tokens": …}`：LangChain 的 `max_tokens` 字段发出去是 `max_completion_tokens`，DeepSeek 不认（实测）。
+- 生产上顾问的无效请求（比如空消息，422）也占限流名额：依赖先于请求体校验运行。线上只读检查可以利用这一点验证 IP 限制而不调模型。
 
 - 顾问的学科名称模式（`subjects.json` 的 `name`）在 PostgreSQL 里跑，别写 `\b`（PG 里是退格），用 `(^|[^a-z])…([^a-z]|$)`。改简称表后跑 `python -m evals.run_advisor --split tune`：它会检查每个 id 都在库里、标签和库一致。
 - 本机 :3000 的 dev server 若是很早起的旧进程，`/assess` 会 404、走查 28/30；对 `make build` 产物走查即可（见下一条）。

@@ -23,8 +23,29 @@ export type AdvisorEvent =
   | { type: "error"; message: string }
   | { type: "done" };
 
-/** `unauthorized` when the server refused for want of a session (login mode, session expired). */
-export type StreamOutcome = "ok" | "unauthorized" | "failed";
+/**
+ * `unauthorized` when the server refused for want of a session (login mode, session expired);
+ * `limited` when a rate limit or a daily token quota refused the turn, or the limit store was down
+ * (openspec/changes/advisor-limits) — nothing ran, so a refused confirm can be answered again.
+ */
+export type StreamOutcome = "ok" | "unauthorized" | "limited" | "failed";
+
+const LIMITED_FALLBACK: Record<number, string> = {
+  429: "发送太频繁或今天的额度已用完，请稍后再试。",
+  503: "顾问暂时不可用，请稍后再试。",
+};
+
+/** What to tell the applicant when the server refused a turn before streaming anything. */
+export function advisorRefusal(status: number, body: unknown): { outcome: Exclude<StreamOutcome, "ok">; message: string } {
+  if (status === 401) return { outcome: "unauthorized", message: "登录已失效，请重新登录后再发。" };
+  const detail = (body as { detail?: unknown } | null)?.detail;
+  const serverMessage =
+    detail && typeof detail === "object" && typeof (detail as { message?: unknown }).message === "string"
+      ? (detail as { message: string }).message
+      : null;
+  if (status in LIMITED_FALLBACK) return { outcome: "limited", message: serverMessage || LIMITED_FALLBACK[status] };
+  return { outcome: "failed", message: `顾问服务不可用（HTTP ${status}）` };
+}
 
 async function stream(path: string, body: unknown, onEvent: (e: AdvisorEvent) => void): Promise<StreamOutcome> {
   const response = await fetch(path, {
@@ -33,15 +54,11 @@ async function stream(path: string, body: unknown, onEvent: (e: AdvisorEvent) =>
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
   });
-  if (response.status === 401) {
-    onEvent({ type: "error", message: "登录已失效，请重新登录后再发。" });
-    onEvent({ type: "done" });
-    return "unauthorized";
-  }
   if (!response.ok || !response.body) {
-    onEvent({ type: "error", message: `顾问服务不可用（HTTP ${response.status}）` });
+    const refusal = advisorRefusal(response.status, await response.json().catch(() => null));
+    onEvent({ type: "error", message: refusal.message });
     onEvent({ type: "done" });
-    return "failed";
+    return refusal.outcome;
   }
   const reader = response.body.getReader();
   const decoder = new TextDecoder();

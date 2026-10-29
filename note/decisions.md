@@ -147,3 +147,16 @@
   - 意图分类没改（基线两组都是 100%）。
 - **理由**：TASKS.md P0 第四条；MortyYJT 2026-10-30 授权 AI 自主决定。
 - **待 MortyYJT 复核**：简称表里的说法是否地道；「只有课程名不算证据」这条门槛是否太严（本机库 151 所有项目的学校里，31 所——墨尔本、麦考瑞等只有 CRICOS 课程名或采集没拿到要求字段的——会对所有要求问题拒答）。
+
+## 2026-10-30 顾问限流与额度：Redis 滑动窗口 + 每日 token 上限，Redis 不可用时拒绝（Claude 自主（待 MortyYJT 复核））
+
+- **决定**：设计全文在 `openspec/changes/advisor-limits/design.md`。要点：
+  - Redis（`redis:7-alpine`）进本机和生产 compose，客户端 `redis`（redis-py 的 asyncio 客户端）；P1 的 Celery 复用它，所以 `noeviction` + 256 MB，满了宁可拒写也不悄悄丢计数或任务。生产不对外暴露端口、不设密码。
+  - 身份：主体（登录模式下是账号，匿名模式下是匿名 cookie 的 id）和 IP 都查，任何一个超限就拒。匿名用户清 cookie 就是新主体，所以真正兜底的是 IP 限制和全站上限。
+  - 滑动窗口（有序集合）+ 每日 token 计数，一个 Lua 脚本一次查完、全过才记一笔，被拒的请求不占名额。默认：主体 10 次/分钟、60 次/小时；IP 30 次/分钟、200 次/小时；每天 token 每主体 20 万、每 IP 60 万、全站 200 万（TASKS.md 定的）；一天按北京时间。全部是环境变量。
+  - token 按模型回报的用量事后累加，开始前检查，一轮最多超一轮的量；`/confirm` 只查日额度不占窗口。
+  - **Redis 连不上时顾问返回 503（fail-closed）**。没选 fail-open：顾问是唯一花钱的接口，fail-open 等于 Redis 一挂额度就失效；网站其他部分不依赖 Redis，影响只限顾问。
+  - `max_tokens`：回答 1,500、意图分类 200，放请求体里——实测 DeepSeek 忽略 LangChain 默认发送的 `max_completion_tokens`。
+  - IP：只有连接对端在 `TRUSTED_PROXIES`（生产是 `caddy`）里才读 `X-Forwarded-For` 最右一项；Caddyfile 显式把它设成 `{remote_host}`。替换原来的 `TRUST_FORWARDED_FOR`。
+- **理由**：TASKS.md P0 第五条；MortyYJT 2026-10-30 授权 AI 自主决定。
+- **待 MortyYJT 复核**：各项默认数字（没量过一轮完整对话的 token 数）；fail-closed 是否可接受。
