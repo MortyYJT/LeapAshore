@@ -1,0 +1,933 @@
+{
+ "school_key": "brown-university",
+ "school_name_en": "Brown University",
+ "country": "United States",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://graduateprograms.brown.edu/",
+  "https://graduateschool.brown.edu/apply/international-applicants/language-proficiency-toefl-or-ielts"
+ ],
+ "blocked": [],
+ "complete": true,
+ "remaining_urls": [],
+ "notes": "Programme list from graduateprograms.brown.edu (rendered). Deadlines on most pages state no year and were left out; only deadlines quoted with a full date are given. MFA, MD, PhD and the IE Brown Executive MBA were skipped; the engineering overview page is not a programme. TOEFL minimums are the pre-2026 0-120 value; the 1-6 value is in the quote. Medical Sciences (ScM) removed by the coordinator: open only to US college graduates.",
+ "programs": [
+  {
+   "name": "Biomedical Engineering (M.Eng., Sc.M.)",
+   "url": "https://graduateprograms.brown.edu/graduate-program/biomedical-engineering-meng-scm",
+   "snapshot_sha256": "342588232d14c9a67ab3e6da3699822905b0b1037a88f1be6c33ca7b85bef078",
+   "fields": {
+    "toefl": {
+     "overall": 90,
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 90. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 4.5.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "For IELTS, the minimum score is 7.0.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Biostatistics (A.M., Sc.M.)",
+   "url": "https://graduateprograms.brown.edu/graduate-program/biostatistics-am-scm",
+   "snapshot_sha256": "3f9e479945015e96d6ad5caca2160cf4c97ac94e6ed4aa30eca2d9af4909bddb",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 100. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "For IELTS, the minimum score is 7.0.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Experience with numerical computing and two to three semesters of calculus (recommended)",
+      "quote": "Experience with numerical computing and two to three semesters of calculus are recommended",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Biostatistics, Online (Sc.M.)",
+   "url": "https://graduateprograms.brown.edu/graduate-program/biostatistics-online-scm",
+   "snapshot_sha256": "9a2896cb3545922d06e446bd683f275242702baf3e7c7642e21963494312b7df",
+   "fields": {
+    "academic": {
+     "text": "Bachelor’s degree from an accredited institution",
+     "quote": "A bachelor’s degree from an accredited institution.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 100. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "For IELTS, the minimum score is 7.0.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "At least one semester of calculus (including differentiation and integration); B or better recommended",
+      "quote": "At least one semester of calculus (including differentiation & integration) with a recommended grade of B or better.",
+      "check": "ok"
+     },
+     {
+      "text": "At least one semester of linear algebra; B or better recommended",
+      "quote": "At least one semester of linear algebra, with a recommended grade of B or better.",
+      "check": "ok"
+     },
+     {
+      "text": "At least one semester of probability; B or better recommended",
+      "quote": "At least one semester of probability, with a recommended grade of B or better.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Biotechnology (A.M., Sc.M.)",
+   "url": "https://graduateprograms.brown.edu/graduate-program/biotechnology-am-scm",
+   "snapshot_sha256": "b7159f0e3fae5c05dc80a30af037d89d6677c51cef907d895a87c8c24eaff847",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 100. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 8.0,
+     "quote": "For IELTS, the minimum score is 8.0.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Business Analytics, Online (Sc.M.)",
+   "url": "https://graduateprograms.brown.edu/graduate-program/business-analytics-online-scm",
+   "snapshot_sha256": "6011e0f3ee3b8da6189cc03080a7d03fd4631905ffc1c19b7f30833e8671795b",
+   "fields": {
+    "academic": {
+     "text": "Bachelor’s degree from an accredited institution and at least two years of full-time professional experience",
+     "quote": "A bachelor’s degree from an accredited institution and a minimum of two years of full-time professional experience is required. If you have any questions regarding the application process for this program, please email onlinemasters_admissions@brown.edu.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 90. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "For IELTS, the minimum score is 7.0.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "At least one semester of foundational college-level math or statistics; B or better recommended",
+      "quote": "At least one semester of foundational college-level math or statistics is required. A grade of B or better is recommended.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Chemical Engineering (Sc.M.)",
+   "url": "https://graduateprograms.brown.edu/graduate-program/chemical-engineering-scm",
+   "snapshot_sha256": "76a5861d8f64014d3acacc70723cd1c55353001246a35753ad2971fc5e80aa28",
+   "fields": {
+    "toefl": {
+     "overall": 90,
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 90. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "For IELTS, the minimum score is 7.0.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Computer Science (Sc.M.)",
+   "url": "https://graduateprograms.brown.edu/graduate-program/computer-science-scm",
+   "snapshot_sha256": "ffdede7f6ac686e492b9501efafbbb6eb827a8e7d54d93ed8b1f6fe7de8067f5",
+   "fields": {
+    "academic": {
+     "text": "Typically an undergraduate CS degree or the equivalent",
+     "quote": "There are exceptions, but typically we look for outstanding students who already have an undergraduate CS degree or the equivalent and are ready to take our Master's-level courses. While we sometimes discount weaknesses in some areas if there are strengths in others, we'd like to see most of the following courses:",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 105,
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 105. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0, but a score of 5.5 or higher is strongly recommended.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 8.0,
+     "quote": "For IELTS, the minimum score is 8.0.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Introductory programming",
+      "quote": "Introductory Programming",
+      "check": "ok"
+     },
+     {
+      "text": "Introductory algorithms and data structures",
+      "quote": "Introductory Algorithms and Data Structures",
+      "check": "ok"
+     },
+     {
+      "text": "Computer systems or software engineering (preferably both)",
+      "quote": "Computer Systems or Software Engineering (preferably both)",
+      "check": "ok"
+     },
+     {
+      "text": "Discrete mathematics and basic probability",
+      "quote": "Discrete Mathematics and basic Probability",
+      "check": "ok"
+     },
+     {
+      "text": "Linear algebra",
+      "quote": "Linear Algebra",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Artificial Intelligence & Machine Learning Track, Computer Science (Sc.M.)",
+   "url": "https://graduateprograms.brown.edu/graduate-program/computer-science-scm-ai-ml-track",
+   "snapshot_sha256": "76981abdfd19987ee78a022cc693b40f33f48fbefd678181ba6a8c10c1ab87a8",
+   "fields": {
+    "academic": {
+     "text": "Typically an undergraduate CS degree or the equivalent",
+     "quote": "There are exceptions, but typically we look for outstanding students who already have an undergraduate CS degree or the equivalent and are ready to take our Master's-level courses. While we sometimes discount weaknesses in some areas if there are strengths in others, we'd like to see most of the following courses:",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 105,
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 105. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0, but a score of 5.5 or higher is strongly recommended.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 8.0,
+     "quote": "For IELTS, the minimum score is 8.0.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Introductory programming",
+      "quote": "Introductory Programming",
+      "check": "ok"
+     },
+     {
+      "text": "Introductory algorithms and data structures",
+      "quote": "Introductory Algorithms and Data Structures",
+      "check": "ok"
+     },
+     {
+      "text": "Computer systems or software engineering (preferably both)",
+      "quote": "Computer Systems or Software Engineering (preferably both)",
+      "check": "ok"
+     },
+     {
+      "text": "Discrete mathematics and basic probability",
+      "quote": "Discrete Mathematics and basic Probability",
+      "check": "ok"
+     },
+     {
+      "text": "Linear algebra",
+      "quote": "Linear Algebra",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Cybersecurity (Sc.M.)",
+   "url": "https://graduateprograms.brown.edu/graduate-program/cybersecurity-scm",
+   "snapshot_sha256": "ed4c39cc74d6afdc9ecec324e6904cf40fe95a205a11b768ca384829d9d4282f",
+   "fields": {
+    "academic": {
+     "text": "Computer Science Track: undergraduate degree in a STEM or social sciences discipline",
+     "quote": "An undergraduate degree in a STEM or social sciences discipline",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 105,
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 105. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.5.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 8.0,
+     "quote": "For IELTS, the minimum score is 8.0.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Computer Science Track: coursework in mathematics (calculus, discrete mathematics, probability or statistics) and introductory computer science (programming, data structures and algorithms)",
+      "quote": "Undergraduate-level coursework in (1) mathematics that covers calculus, discrete mathematics, and probability or statistics, and (2) introductory computer science that covers computer programming and data structures and algorithms",
+      "check": "ok"
+     },
+     {
+      "text": "Policy Track: an undergraduate degree in any subject",
+      "quote": "An undergraduate degree in any subject",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Data-Enabled Computational Engineering and Science (Sc.M.)",
+   "url": "https://graduateprograms.brown.edu/graduate-program/data-enabled-computational-engineering-and-science-scm",
+   "snapshot_sha256": "122a2386e41b3f077098b0188ff0d92dd9de993be6770afe1546d9802c580bb6",
+   "fields": {
+    "academic": {
+     "text": "Bachelor’s degree in Engineering, Physical Sciences, Natural Sciences, or related subject",
+     "quote": "Bachelor’s degree in Engineering, Physical Sciences, Natural Sciences, or related subject",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 90. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.5.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "For IELTS, the minimum score is 7.0.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Strongest preference to applicants with an undergraduate GPA of at least 3.4",
+      "quote": "The strongest preference is given to those with an undergraduate GPA of at least 3.4.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Data Science: Policy, Governance & Society, Online (Sc.M.)",
+   "url": "https://graduateprograms.brown.edu/graduate-program/data-science-policy-governance-society-online-scm",
+   "snapshot_sha256": "27b03652c2e7cded80491f2ceab83633e21e13886b0dbc066a56e4f3fb995bb9",
+   "fields": {
+    "academic": {
+     "text": "Bachelor’s degree from an accredited institution",
+     "quote": "A bachelor’s degree from an accredited institution",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 105,
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 105. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "For IELTS, the minimum score is 7.5.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Python experience preferred; other languages may be accepted",
+      "quote": "Python experience is preferred; other languages (SAS, STATA, R, Julia, etc) may be accepted.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Data Science (Sc.M.)",
+   "url": "https://graduateprograms.brown.edu/graduate-program/data-science-scm",
+   "snapshot_sha256": "d2fb3500128096ea2bd68251e23668de3daa888801538d36a367b000b12555ed",
+   "fields": {
+    "toefl": {
+     "overall": 105,
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 105. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.5.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "For IELTS, the minimum score is 7.5.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Design Engineering (A.M.)",
+   "url": "https://graduateprograms.brown.edu/graduate-program/design-engineering-am",
+   "snapshot_sha256": "0f59babef740859eafddf446770d237f3a1bbb63e06828730bd2c7b253d99115",
+   "fields": {
+    "toefl": {
+     "overall": 90,
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 90. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "For IELTS, the minimum score is 7.0.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Education: Master of Arts in Teaching (MAT)",
+   "url": "https://graduateprograms.brown.edu/graduate-program/education-master-arts-teaching-mat",
+   "snapshot_sha256": "1a0c7ac462eb21a8c2d2a982c60b8828aca05f7d3c9549d06650d635e7361cda",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or significant coursework in the content area for which the applicant plans to seek certification",
+     "quote": "Applicants should have a bachelor's degree or significant coursework completed in the content area for which they plan to seek certification.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 90. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 4.5.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "For IELTS, the minimum score is 7.0.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Education: Urban Education Policy (A.M.)",
+   "url": "https://graduateprograms.brown.edu/graduate-program/education-urban-education-policy-am",
+   "snapshot_sha256": "60268034424101b69ec62540cef1d9e422b4c903707f37788f795370c8a6e6da",
+   "fields": {
+    "toefl": {
+     "overall": 90,
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 90. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 4.5.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "For IELTS, the minimum score is 7.0.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Electrical and Computer Engineering (Sc.M.)",
+   "url": "https://graduateprograms.brown.edu/graduate-program/electrical-and-computer-engineering-scm",
+   "snapshot_sha256": "3c1bd1f8fdbb08dd81d0a9c2e6f7c3b1759fb0d9120258b23f841be783ab1c07",
+   "fields": {
+    "toefl": {
+     "overall": 90,
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 90. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "For IELTS, the minimum score is 7.0.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Environmental Engineering (Sc.M.)",
+   "url": "https://graduateprograms.brown.edu/graduate-program/environmental-engineering-scm",
+   "snapshot_sha256": "1a682402fd80b5c27721ef1aade5aca8f369b15bff1542e7dd4ec26f7ce74855",
+   "fields": {
+    "toefl": {
+     "overall": 90,
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 90. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "For IELTS, the minimum score is 7.0.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Health Informatics and AI (Sc.M.)",
+   "url": "https://graduateprograms.brown.edu/graduate-program/health-informatics-and-ai-scm",
+   "snapshot_sha256": "677473060e6181e267d16b5b029626fa7211c337269dbca82ba46d52de3be0f1",
+   "fields": {
+    "toefl": {
+     "overall": 90,
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 90. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "For IELTS, the minimum score is 7.0.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Healthcare Leadership (Sc.M.)",
+   "url": "https://graduateprograms.brown.edu/graduate-program/healthcare-leadership-scm",
+   "snapshot_sha256": "dc0c244ed12c82d6f6a7b88e22060f0e9bbfa802c060af801721389681a93211",
+   "fields": {
+    "academic": {
+     "text": "Minimum of 2 years of experience working within healthcare-related fields",
+     "quote": "Professionals with a minimum of 2 years experience working within healthcare-related fields",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 105,
+     "quote": "We require a minimum score of 105 on the TOEFL internet-based exam or a minimum score of 7.5 on the IELTS.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "We require a minimum score of 105 on the TOEFL internet-based exam or a minimum score of 7.5 on the IELTS.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Innovation Management and Entrepreneurship, Online (Sc.M.)",
+   "url": "https://graduateprograms.brown.edu/graduate-program/innovation-management-and-entrepreneurship-online-scm",
+   "snapshot_sha256": "3133764111debf3977260fbee9955014ceb91ea6c3c23dc3b93d1354f8b7b802",
+   "fields": {
+    "toefl": {
+     "overall": 105,
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 105. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 8.0,
+     "quote": "For IELTS, the minimum score is 8.0.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Innovation Management and Entrepreneurship (Sc.M.)",
+   "url": "https://graduateprograms.brown.edu/graduate-program/innovation-management-and-entrepreneurship-scm",
+   "snapshot_sha256": "29c9de5de2fafe31e8780881720874f2857546194fcde32038c7deaf8422b418",
+   "fields": {
+    "toefl": {
+     "overall": 105,
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 105. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 8.0,
+     "quote": "For IELTS, the minimum score is 8.0.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Integrative Studies (A.M., Sc.M.)",
+   "url": "https://graduateprograms.brown.edu/graduate-program/integrative-studies-am-scm",
+   "snapshot_sha256": "b53018822a1508d64ef6cf679e8c5ec647bbf2e06abfefa2d5e1f9a541a761b8",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Management, Online (MiM)",
+   "url": "https://graduateprograms.brown.edu/graduate-program/management-online-mim",
+   "snapshot_sha256": "8b3a3edec24f621bd321ac246285de200b821a6c47915ee75cc599c2f2ece61d",
+   "fields": {
+    "academic": {
+     "text": "Bachelor’s degree from an accredited institution",
+     "quote": "A bachelor’s degree from an accredited institution is required.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 90. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 4.5.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "For IELTS, the minimum score is 7.0.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "One semester of college-level math or statistics; B or better recommended",
+      "quote": "One semester of college-level math or statistics. A grade of B or better is recommended.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Materials Science and Engineering (Sc.M.)",
+   "url": "https://graduateprograms.brown.edu/graduate-program/materials-science-and-engineering-scm",
+   "snapshot_sha256": "c42b50a7ecdf3e8030e6d926374b83752a9dfae38ef951b52de101c9ec73cfbd",
+   "fields": {
+    "toefl": {
+     "overall": 90,
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 90. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "For IELTS, the minimum score is 7.0.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Mechanical Engineering and Applied Mechanics (Sc.M.)",
+   "url": "https://graduateprograms.brown.edu/graduate-program/mechanical-engineering-and-applied-mechanics-scm",
+   "snapshot_sha256": "983605cab63fecb2a8d92381bc26ecd20f0acf95d9b6cec7a75244ccb464c388",
+   "fields": {
+    "toefl": {
+     "overall": 90,
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 90. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "For IELTS, the minimum score is 7.0.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Medical Physics (Sc.M.)",
+   "url": "https://graduateprograms.brown.edu/graduate-program/medical-physics-scm",
+   "snapshot_sha256": "91c1dda693ff2b3dc1480db77be99bf75e4b288e406cc806bd412b2072f301a2",
+   "fields": {
+    "academic": {
+     "text": "At least a minor in physics, or equivalent",
+     "quote": "All students must possess at least a minor in physics, or equivalent",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Demonstrated programming skills (coursework, research, or technical experience)",
+      "quote": "Demonstration of programming skills is required, whether through successful completion of relevant coursework, research, or technical experience.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application Deadline",
+      "date": "2027-03-01",
+      "quote": "Application Deadline March 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Organizational Leadership, Online (Sc.M.)",
+   "url": "https://graduateprograms.brown.edu/graduate-program/organizational-leadership-online-scm",
+   "snapshot_sha256": "2e28d67808ae711d3f360687b23a6c2ba010d72ebc4e2b2e78e6d69a500a8dce",
+   "fields": {
+    "academic": {
+     "text": "Bachelor’s degree from an accredited institution and three years of professional employment",
+     "quote": "A bachelor’s degree from an accredited institution and three years of professional employment are required.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 90. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 4.5.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "For IELTS, the minimum score is 7.0.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Physics (Sc.M.)",
+   "url": "https://graduateprograms.brown.edu/graduate-program/physics-scm",
+   "snapshot_sha256": "215ee859474869b7e8cf1e2fae56b3624e08c43af42dc96987283ffb07a69ff0",
+   "fields": {
+    "academic": {
+     "text": "Strong undergraduate background in physics or closely related subjects",
+     "quote": "Applicants are expected to have a strong background in physics or closely related subjects at the undergraduate level.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 90. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "For IELTS, the minimum score is 6.5.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Public Affairs (MPA)",
+   "url": "https://graduateprograms.brown.edu/graduate-program/public-affairs-mpa",
+   "snapshot_sha256": "4a3ddfe1729cb365033dd21803a4e025ddecdc371cbe92ce0e7d0b37dd4ea936",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 100. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "For IELTS, the minimum score is 7.0.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Public Health, Accelerated (MPH)",
+   "url": "https://graduateprograms.brown.edu/graduate-program/public-health-accelerated-mph",
+   "snapshot_sha256": "d840ce211296495101c9c095fff90ce42f755a2d99c653127b296774553355a9",
+   "fields": {
+    "academic": {
+     "text": "Advanced clinical degree (or international equivalent), or completion of at least two years of medical school",
+     "quote": "Applicants must either possess an advanced clinical degree (e.g., M.D., Ph.D., D.O., Pharm.D., DDS, DMD, O.D., DVM, DNP, DPT, or the international equivalent) or be a medical student who has completed at least two years of medical school.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Application Deadline",
+      "date": "2027-01-15",
+      "quote": "Application Deadline January 15, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Public Health and Public Affairs Dual Degree (MPA, MPH)",
+   "url": "https://graduateprograms.brown.edu/graduate-program/public-health-and-public-affairs-dual-degree-mpa-mph",
+   "snapshot_sha256": "3ebcea5546681c951562881ce58d837d6971ac586229519c3d9d4db5f3376ab5",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "Application Deadline",
+      "date": "2027-01-15",
+      "quote": "Application Deadline January 15, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Public Health (MPH)",
+   "url": "https://graduateprograms.brown.edu/graduate-program/public-health-mph",
+   "snapshot_sha256": "0cdcbfbcb1e448befa8e15b9371f13f81d953226a65319e297d53f27cf752955",
+   "fields": {
+    "toefl": {
+     "overall": 90,
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 90. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.5.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "For IELTS, the minimum score is 7.0.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Public Health, Online (MPH)",
+   "url": "https://graduateprograms.brown.edu/graduate-program/public-health-online-mph",
+   "snapshot_sha256": "81320f4e79030a85fb4933d5413ef91fd2b0a269cdc58db22a5dfa842a56480d",
+   "fields": {
+    "academic": {
+     "text": "Undergraduate degree and professional work experience",
+     "quote": "Candidates should have an undergraduate degree and professional work experience. The program is ideal for those looking to advance or pivot their career and want to protect and improve the health of populations.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 100. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.5.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "For IELTS, the minimum score is 7.5.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Public Humanities, Integrative Studies (A.M.)",
+   "url": "https://graduateprograms.brown.edu/graduate-program/public-humanities-integrative-studies-am",
+   "snapshot_sha256": "8c071adcd28d915bb42320afdcb7030dcad124ccb51e72b0750b88f05b3a935d",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 100. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.5.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "For IELTS, the minimum score is 7.0.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Public Policy, Online (MPP)",
+   "url": "https://graduateprograms.brown.edu/graduate-program/public-policy-online-mpp",
+   "snapshot_sha256": "6ab88ddf65f60a3f6de046e184c36397f3f953e7599aace518858e19aff4cbdc",
+   "fields": {
+    "academic": {
+     "text": "Bachelor’s degree from an accredited college/university and three years of full-time employment before the program starts",
+     "quote": "A bachelor’s degree from an accredited college/university and three years of full-time employment are required prior to the start of the program. This program is ideally suited for currently employed, working-professionals.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 100. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "For IELTS, the minimum score is 7.0.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Social Data Analytics (Sc.M.)",
+   "url": "https://graduateprograms.brown.edu/graduate-program/social-data-analytics-scm",
+   "snapshot_sha256": "d18bfbfdc4d38df30fd4e0f8bd396719391b84610cf1ad8dce1cbed1ee720fba",
+   "fields": {
+    "toefl": {
+     "overall": 105,
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 105. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.5.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 8.0,
+     "quote": "For IELTS, the minimum score is 8.0.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "One-semester introductory statistics course; a more advanced statistics course or college calculus; one-semester research methods course",
+      "quote": "All entering students are required to have (1) a one–semester introductory statistics course (SOC 1100 Introductory Statistics for Social Research or an equivalent), (2) a more advanced course in statistics or a course in college calculus (MATH 0050 and 0060, or MATH 0090 or an equivalent), and (3) a one–semester course in research methods (SOC 1020 Methods of Social Research or an equivalent).",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Sustainable Energy (Sc.M.)",
+   "url": "https://graduateprograms.brown.edu/graduate-program/sustainable-energy-scm",
+   "snapshot_sha256": "4b315d75343f58903a733124fd4d4a14904edd7f49ee9ad257f08ae69e1b52d5",
+   "fields": {
+    "toefl": {
+     "overall": 90,
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 90. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "For IELTS, the minimum score is 7.0.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Technology Leadership (Sc.M.)",
+   "url": "https://graduateprograms.brown.edu/graduate-program/technology-leadership-scm",
+   "snapshot_sha256": "656cc2ae2477469a2b07c09f6d9d2cf2e56b9ee2fe7434b8cd63d3e698984070",
+   "fields": {
+    "toefl": {
+     "overall": 105,
+     "quote": "We require a minimum score of 105 on the TOEFL internet-based exam or a minimum score of 7.5 on the IELTS.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "We require a minimum score of 105 on the TOEFL internet-based exam or a minimum score of 7.5 on the IELTS.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 38,
+  "机器核对": 37,
+  "待人工": 1
+ }
+}
