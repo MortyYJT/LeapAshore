@@ -7,8 +7,8 @@
 - 规则已收成一份 `CLAUDE.md`；任务清单是根目录的 `TASKS.md`，按顺序做。
 - 个人网站 mortyyjt.site 已修复（PR #28，10-30 部署，只重建了 caddy 容器）。
 - 下一步：`TASKS.md` P0 第二条「按新范围收缩学校库」。
-- 线上运行的是 main（截至 PR #30），地址 https://leapashore.mortyyjt.site 。
-- 生产库（10-29）：programs 7586，`verified_at` 非空 0。上次部署前的备份在服务器 `~/db-backup-20261029-pre-frontend.sql.gz`。
+- 线上运行的是 main（截至 PR #28 合并，10-30；应用代码与 PR #30 时相同，这次只重建了 caddy），地址 https://leapashore.mortyyjt.site 。个人网站 https://mortyyjt.site 也由这里的 Caddy 出。
+- 生产库（10-29）：programs 7586，`verified_at` 非空 0。最近一次部署前的备份在服务器 `~/db-backup-20261030-pre-site.sql.gz`。
 - `make verify` 自 PR #29 之后没有重跑；`TASKS.md` P0 里有这一项。
 
 ## 开放问题
