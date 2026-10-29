@@ -96,7 +96,7 @@ test("ships every date as a system suggestion, never as an official deadline", (
   }
 });
 
-// The honesty rule from AGENTS.md: the official deadline is left empty and rendered as pending
+// The honesty rule from CLAUDE.md: the official deadline is left empty and rendered as pending
 // verification rather than filled with an invented date.
 test("leaves official deadlines empty", () => {
   const tasks = build().phases.flatMap((p) => p.tasks);
