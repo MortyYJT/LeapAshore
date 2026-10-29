@@ -1,0 +1,1311 @@
+{
+ "school_key": "emory-university",
+ "school_name_en": "Emory University",
+ "country": "United States",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://gs.emory.edu/masters.html",
+  "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+  "https://sph.emory.edu/degrees-programs/mph",
+  "https://sph.emory.edu/degrees-programs/msph"
+ ],
+ "blocked": [],
+ "complete": false,
+ "remaining_urls": [
+  "https://goizueta.emory.edu/mba/apply"
+ ],
+ "notes": "Rollins general figures (bachelor's equivalent, IELTS 6, deadlines) come from the Rollins master's and international-applicant pages, cited per field with source_sha256. Not collected: Nursing MSN (F-1 eligibility not confirmed on an official page snapshot), Candler MDiv/MTS, Goizueta MBA, online part-time MPH tracks, MHA, LGS biomedical/clinical-research master's.",
+ "programs": [
+  {
+   "name": "MPH in Biostatistics (Rollins)",
+   "url": "https://sph.emory.edu/degrees-programs/mph/biostatistics",
+   "snapshot_sha256": "fa4f2202f4026897e04939c8a596f0bf39ade9af5c264cb50ed84bffcf791e82",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a U.S. four-year bachelor's degree at a minimum",
+     "quote": "All applicants to Rollins must have (at a minimum) the equivalent of a U.S. four-year bachelor's degree.",
+     "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+     "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "The minimum score required for TOEFL is 550 (paper); 213 (CBT); 79-80 (iBT before January 21, 2026); 4-Overall Total (iBT after January 21, 2026) and IELTS score of 6-Overall.",
+     "source_sha256": "8408b541b31432c8d68a2f2610a439e61fc3b01899e9dd999243a3984c21cba7",
+     "source_url": "https://sph.emory.edu/admissions/how-to-apply/international-applicants",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL minimum stated as a range (79-80 iBT before January 21, 2026) and 4 overall on the new 1-6 scale; paper 550, CBT 213",
+     "quote": "The minimum score required for TOEFL is 550 (paper); 213 (CBT); 79-80 (iBT before January 21, 2026); 4-Overall Total (iBT after January 21, 2026) and IELTS score of 6-Overall.",
+     "source_sha256": "8408b541b31432c8d68a2f2610a439e61fc3b01899e9dd999243a3984c21cba7",
+     "source_url": "https://sph.emory.edu/admissions/how-to-apply/international-applicants",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Multivariate calculus (Calculus III) with a grade of B+ or better",
+      "quote": "Have completed multivariate calculus (calculus III) with a grade of B+ or better",
+      "check": "ok"
+     },
+     {
+      "text": "Undergraduate GPA of 3.0 or higher (stated as a department requirement for admitted students)",
+      "quote": "Had an undergraduate GPA of 3.0 or higher",
+      "check": "ok"
+     },
+     {
+      "text": "A GPA of 3.0 or higher is considered competitive for admission at Rollins (competitive level, not a stated minimum)",
+      "quote": "A GPA of 3.0 or higher is considered competitive for admission at RSPH.",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority deadline (full-time master's)",
+      "date": "2027-01-05",
+      "quote": "January 5, 2027 Priority Deadline for full-time master's students",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 preferred deadline for international applicants",
+      "date": "2027-05-01",
+      "quote": "May 1, 2027 Preferred deadline for international applicants to complete and submit fall 2027 SOPHAS application.",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 SOPHAS application closes",
+      "date": "2027-08-02",
+      "quote": "August 2, 2027 Fall 2027 SOPHAS application closes at 11:59 p.m. ET.",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSPH in Biostatistics (Rollins)",
+   "url": "https://sph.emory.edu/degrees-programs/msph/biostatistics",
+   "snapshot_sha256": "5598fb88e479f010adcb943e8f7c964b9d23261ebb4d70107d0160dc8f84bfb2",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a U.S. four-year bachelor's degree at a minimum",
+     "quote": "All applicants to Rollins must have (at a minimum) the equivalent of a U.S. four-year bachelor's degree.",
+     "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+     "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "The minimum score required for TOEFL is 550 (paper); 213 (CBT); 79-80 (iBT before January 21, 2026); 4-Overall Total (iBT after January 21, 2026) and IELTS score of 6-Overall.",
+     "source_sha256": "8408b541b31432c8d68a2f2610a439e61fc3b01899e9dd999243a3984c21cba7",
+     "source_url": "https://sph.emory.edu/admissions/how-to-apply/international-applicants",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL minimum stated as a range (79-80 iBT before January 21, 2026) and 4 overall on the new 1-6 scale; paper 550, CBT 213",
+     "quote": "The minimum score required for TOEFL is 550 (paper); 213 (CBT); 79-80 (iBT before January 21, 2026); 4-Overall Total (iBT after January 21, 2026) and IELTS score of 6-Overall.",
+     "source_sha256": "8408b541b31432c8d68a2f2610a439e61fc3b01899e9dd999243a3984c21cba7",
+     "source_url": "https://sph.emory.edu/admissions/how-to-apply/international-applicants",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Multivariate calculus (Calculus III) with a grade of B+ or better",
+      "quote": "Have completed multivariate calculus (calculus III) with a grade of B+ or better",
+      "check": "ok"
+     },
+     {
+      "text": "One semester of linear algebra with a grade of B+ or better",
+      "quote": "One semester of linear algebra with a grade of B+ or better",
+      "check": "ok"
+     },
+     {
+      "text": "Undergraduate GPA of 3.0 or higher (stated as a department requirement for admitted students)",
+      "quote": "Had an undergraduate GPA of 3.0 or higher",
+      "check": "ok"
+     },
+     {
+      "text": "A GPA of 3.0 or higher is considered competitive for admission at Rollins (competitive level, not a stated minimum)",
+      "quote": "A GPA of 3.0 or higher is considered competitive for admission at RSPH.",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority deadline (full-time master's)",
+      "date": "2027-01-05",
+      "quote": "January 5, 2027 Priority Deadline for full-time master's students",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 preferred deadline for international applicants",
+      "date": "2027-05-01",
+      "quote": "May 1, 2027 Preferred deadline for international applicants to complete and submit fall 2027 SOPHAS application.",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 SOPHAS application closes",
+      "date": "2027-08-02",
+      "quote": "August 2, 2027 Fall 2027 SOPHAS application closes at 11:59 p.m. ET.",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MPH in Epidemiology (Rollins)",
+   "url": "https://sph.emory.edu/degrees-programs/mph/epidemiology",
+   "snapshot_sha256": "067ad5e6e2671429c2eb0832a942d71bba8bba7d0af7943625cbe68ce50fa100",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a U.S. four-year bachelor's degree at a minimum",
+     "quote": "All applicants to Rollins must have (at a minimum) the equivalent of a U.S. four-year bachelor's degree.",
+     "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+     "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "The minimum score required for TOEFL is 550 (paper); 213 (CBT); 79-80 (iBT before January 21, 2026); 4-Overall Total (iBT after January 21, 2026) and IELTS score of 6-Overall.",
+     "source_sha256": "8408b541b31432c8d68a2f2610a439e61fc3b01899e9dd999243a3984c21cba7",
+     "source_url": "https://sph.emory.edu/admissions/how-to-apply/international-applicants",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL minimum stated as a range (79-80 iBT before January 21, 2026) and 4 overall on the new 1-6 scale; paper 550, CBT 213",
+     "quote": "The minimum score required for TOEFL is 550 (paper); 213 (CBT); 79-80 (iBT before January 21, 2026); 4-Overall Total (iBT after January 21, 2026) and IELTS score of 6-Overall.",
+     "source_sha256": "8408b541b31432c8d68a2f2610a439e61fc3b01899e9dd999243a3984c21cba7",
+     "source_url": "https://sph.emory.edu/admissions/how-to-apply/international-applicants",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "One college-level math course (calculus or statistics recommended, not required)",
+      "quote": "One college-level math course—calculus or statistics is recommended, but not required.",
+      "check": "ok"
+     },
+     {
+      "text": "One college-level science course (biology, chemistry or physics recommended, not required)",
+      "quote": "One college-level science course—biology, chemistry, or physics is recommended, but not required.",
+      "check": "ok"
+     },
+     {
+      "text": "Minimum preferred GPA of 3.0",
+      "quote": "Minimum preferred GPA of 3.0",
+      "check": "ok"
+     },
+     {
+      "text": "A GPA of 3.0 or higher is considered competitive for admission at Rollins (competitive level, not a stated minimum)",
+      "quote": "A GPA of 3.0 or higher is considered competitive for admission at RSPH.",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority deadline (full-time master's)",
+      "date": "2027-01-05",
+      "quote": "January 5, 2027 Priority Deadline for full-time master's students",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 preferred deadline for international applicants",
+      "date": "2027-05-01",
+      "quote": "May 1, 2027 Preferred deadline for international applicants to complete and submit fall 2027 SOPHAS application.",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 SOPHAS application closes",
+      "date": "2027-08-02",
+      "quote": "August 2, 2027 Fall 2027 SOPHAS application closes at 11:59 p.m. ET.",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MPH in Global Epidemiology (Rollins)",
+   "url": "https://sph.emory.edu/degrees-programs/mph/global-epidemiology",
+   "snapshot_sha256": "183ea76b699726d55d70785ce954ae72035be9e934a4543eef770480960cd381",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a U.S. four-year bachelor's degree at a minimum",
+     "quote": "All applicants to Rollins must have (at a minimum) the equivalent of a U.S. four-year bachelor's degree.",
+     "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+     "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "The minimum score required for TOEFL is 550 (paper); 213 (CBT); 79-80 (iBT before January 21, 2026); 4-Overall Total (iBT after January 21, 2026) and IELTS score of 6-Overall.",
+     "source_sha256": "8408b541b31432c8d68a2f2610a439e61fc3b01899e9dd999243a3984c21cba7",
+     "source_url": "https://sph.emory.edu/admissions/how-to-apply/international-applicants",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL minimum stated as a range (79-80 iBT before January 21, 2026) and 4 overall on the new 1-6 scale; paper 550, CBT 213",
+     "quote": "The minimum score required for TOEFL is 550 (paper); 213 (CBT); 79-80 (iBT before January 21, 2026); 4-Overall Total (iBT after January 21, 2026) and IELTS score of 6-Overall.",
+     "source_sha256": "8408b541b31432c8d68a2f2610a439e61fc3b01899e9dd999243a3984c21cba7",
+     "source_url": "https://sph.emory.edu/admissions/how-to-apply/international-applicants",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "One college math and one college science class (biology and calculus preferred), per the Rollins department requirements page",
+      "quote": "One college math and one college science class (biology and calculus preferred).",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     },
+     {
+      "text": "A GPA of 3.0 or higher is considered competitive for admission at Rollins (competitive level, not a stated minimum)",
+      "quote": "A GPA of 3.0 or higher is considered competitive for admission at RSPH.",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority deadline (full-time master's)",
+      "date": "2027-01-05",
+      "quote": "January 5, 2027 Priority Deadline for full-time master's students",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 preferred deadline for international applicants",
+      "date": "2027-05-01",
+      "quote": "May 1, 2027 Preferred deadline for international applicants to complete and submit fall 2027 SOPHAS application.",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 SOPHAS application closes",
+      "date": "2027-08-02",
+      "quote": "August 2, 2027 Fall 2027 SOPHAS application closes at 11:59 p.m. ET.",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MPH in Environmental Health (Rollins)",
+   "url": "https://sph.emory.edu/degrees-programs/mph/environmental-health",
+   "snapshot_sha256": "115a6520e99e89fb50820ea19ff4ed55520057694f95ad8ba1c7d5b2f7d619c3",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a U.S. four-year bachelor's degree at a minimum",
+     "quote": "All applicants to Rollins must have (at a minimum) the equivalent of a U.S. four-year bachelor's degree.",
+     "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+     "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "The minimum score required for TOEFL is 550 (paper); 213 (CBT); 79-80 (iBT before January 21, 2026); 4-Overall Total (iBT after January 21, 2026) and IELTS score of 6-Overall.",
+     "source_sha256": "8408b541b31432c8d68a2f2610a439e61fc3b01899e9dd999243a3984c21cba7",
+     "source_url": "https://sph.emory.edu/admissions/how-to-apply/international-applicants",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL minimum stated as a range (79-80 iBT before January 21, 2026) and 4 overall on the new 1-6 scale; paper 550, CBT 213",
+     "quote": "The minimum score required for TOEFL is 550 (paper); 213 (CBT); 79-80 (iBT before January 21, 2026); 4-Overall Total (iBT after January 21, 2026) and IELTS score of 6-Overall.",
+     "source_sha256": "8408b541b31432c8d68a2f2610a439e61fc3b01899e9dd999243a3984c21cba7",
+     "source_url": "https://sph.emory.edu/admissions/how-to-apply/international-applicants",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "College-level biology and chemistry course required before matriculation; statistics, calculus and organic chemistry preferred",
+      "quote": "requires that all students complete both a college-level biology and chemistry course prior to matriculation. Courses in statistics, calculus, and organic chemistry are also preferred.",
+      "check": "ok"
+     },
+     {
+      "text": "A GPA of 3.0 or higher is considered competitive for admission at Rollins (competitive level, not a stated minimum)",
+      "quote": "A GPA of 3.0 or higher is considered competitive for admission at RSPH.",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority deadline (full-time master's)",
+      "date": "2027-01-05",
+      "quote": "January 5, 2027 Priority Deadline for full-time master's students",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 preferred deadline for international applicants",
+      "date": "2027-05-01",
+      "quote": "May 1, 2027 Preferred deadline for international applicants to complete and submit fall 2027 SOPHAS application.",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 SOPHAS application closes",
+      "date": "2027-08-02",
+      "quote": "August 2, 2027 Fall 2027 SOPHAS application closes at 11:59 p.m. ET.",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MPH in Global Environmental Health (Rollins)",
+   "url": "https://sph.emory.edu/degrees-programs/mph/global-environmental-health",
+   "snapshot_sha256": "2267e20cdd65f909f1f166fdb041a0383373aa4d2b114ed56811238b855bdea8",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a U.S. four-year bachelor's degree at a minimum",
+     "quote": "All applicants to Rollins must have (at a minimum) the equivalent of a U.S. four-year bachelor's degree.",
+     "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+     "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "The minimum score required for TOEFL is 550 (paper); 213 (CBT); 79-80 (iBT before January 21, 2026); 4-Overall Total (iBT after January 21, 2026) and IELTS score of 6-Overall.",
+     "source_sha256": "8408b541b31432c8d68a2f2610a439e61fc3b01899e9dd999243a3984c21cba7",
+     "source_url": "https://sph.emory.edu/admissions/how-to-apply/international-applicants",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL minimum stated as a range (79-80 iBT before January 21, 2026) and 4 overall on the new 1-6 scale; paper 550, CBT 213",
+     "quote": "The minimum score required for TOEFL is 550 (paper); 213 (CBT); 79-80 (iBT before January 21, 2026); 4-Overall Total (iBT after January 21, 2026) and IELTS score of 6-Overall.",
+     "source_sha256": "8408b541b31432c8d68a2f2610a439e61fc3b01899e9dd999243a3984c21cba7",
+     "source_url": "https://sph.emory.edu/admissions/how-to-apply/international-applicants",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "College-level biology and chemistry course required before matriculation; statistics, calculus and organic chemistry preferred",
+      "quote": "requires that all students complete both a college-level biology and chemistry course prior to matriculation. Courses in statistics, calculus, and organic chemistry are also preferred.",
+      "check": "ok"
+     },
+     {
+      "text": "A GPA of 3.0 or higher is considered competitive for admission at Rollins (competitive level, not a stated minimum)",
+      "quote": "A GPA of 3.0 or higher is considered competitive for admission at RSPH.",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority deadline (full-time master's)",
+      "date": "2027-01-05",
+      "quote": "January 5, 2027 Priority Deadline for full-time master's students",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 preferred deadline for international applicants",
+      "date": "2027-05-01",
+      "quote": "May 1, 2027 Preferred deadline for international applicants to complete and submit fall 2027 SOPHAS application.",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 SOPHAS application closes",
+      "date": "2027-08-02",
+      "quote": "August 2, 2027 Fall 2027 SOPHAS application closes at 11:59 p.m. ET.",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MPH in Behavioral, Social, and Health Education Sciences (Rollins)",
+   "url": "https://sph.emory.edu/degrees-programs/mph/behavioral-social-and-health-education-sciences",
+   "snapshot_sha256": "414e2077e4ea45fd4149d780b19c6fe7c487beaee8a5fb132ed9040bd3f45d76",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a U.S. four-year bachelor's degree at a minimum",
+     "quote": "All applicants to Rollins must have (at a minimum) the equivalent of a U.S. four-year bachelor's degree.",
+     "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+     "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "The minimum score required for TOEFL is 550 (paper); 213 (CBT); 79-80 (iBT before January 21, 2026); 4-Overall Total (iBT after January 21, 2026) and IELTS score of 6-Overall.",
+     "source_sha256": "8408b541b31432c8d68a2f2610a439e61fc3b01899e9dd999243a3984c21cba7",
+     "source_url": "https://sph.emory.edu/admissions/how-to-apply/international-applicants",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL minimum stated as a range (79-80 iBT before January 21, 2026) and 4 overall on the new 1-6 scale; paper 550, CBT 213",
+     "quote": "The minimum score required for TOEFL is 550 (paper); 213 (CBT); 79-80 (iBT before January 21, 2026); 4-Overall Total (iBT after January 21, 2026) and IELTS score of 6-Overall.",
+     "source_sha256": "8408b541b31432c8d68a2f2610a439e61fc3b01899e9dd999243a3984c21cba7",
+     "source_url": "https://sph.emory.edu/admissions/how-to-apply/international-applicants",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Evidence of quantitative skill and writing ability must be expressed in the application",
+      "quote": "Evidence of quantitative skill and writing ability must be expressed in the application.",
+      "check": "ok"
+     },
+     {
+      "text": "A GPA of 3.0 or higher is considered competitive for admission at Rollins (competitive level, not a stated minimum)",
+      "quote": "A GPA of 3.0 or higher is considered competitive for admission at RSPH.",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority deadline (full-time master's)",
+      "date": "2027-01-05",
+      "quote": "January 5, 2027 Priority Deadline for full-time master's students",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 preferred deadline for international applicants",
+      "date": "2027-05-01",
+      "quote": "May 1, 2027 Preferred deadline for international applicants to complete and submit fall 2027 SOPHAS application.",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 SOPHAS application closes",
+      "date": "2027-08-02",
+      "quote": "August 2, 2027 Fall 2027 SOPHAS application closes at 11:59 p.m. ET.",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MPH in Global Health (Rollins)",
+   "url": "https://sph.emory.edu/degrees-programs/mph/global-health",
+   "snapshot_sha256": "a3521b55ea4c81cc420039e7383042325060f2caf21c9d49db9e6722b5cf5936",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a U.S. four-year bachelor's degree at a minimum",
+     "quote": "All applicants to Rollins must have (at a minimum) the equivalent of a U.S. four-year bachelor's degree.",
+     "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+     "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "The minimum score required for TOEFL is 550 (paper); 213 (CBT); 79-80 (iBT before January 21, 2026); 4-Overall Total (iBT after January 21, 2026) and IELTS score of 6-Overall.",
+     "source_sha256": "8408b541b31432c8d68a2f2610a439e61fc3b01899e9dd999243a3984c21cba7",
+     "source_url": "https://sph.emory.edu/admissions/how-to-apply/international-applicants",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL minimum stated as a range (79-80 iBT before January 21, 2026) and 4 overall on the new 1-6 scale; paper 550, CBT 213",
+     "quote": "The minimum score required for TOEFL is 550 (paper); 213 (CBT); 79-80 (iBT before January 21, 2026); 4-Overall Total (iBT after January 21, 2026) and IELTS score of 6-Overall.",
+     "source_sha256": "8408b541b31432c8d68a2f2610a439e61fc3b01899e9dd999243a3984c21cba7",
+     "source_url": "https://sph.emory.edu/admissions/how-to-apply/international-applicants",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "A GPA of 3.0 or higher is considered competitive for admission at Rollins (competitive level, not a stated minimum)",
+      "quote": "A GPA of 3.0 or higher is considered competitive for admission at RSPH.",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority deadline (full-time master's)",
+      "date": "2027-01-05",
+      "quote": "January 5, 2027 Priority Deadline for full-time master's students",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 preferred deadline for international applicants",
+      "date": "2027-05-01",
+      "quote": "May 1, 2027 Preferred deadline for international applicants to complete and submit fall 2027 SOPHAS application.",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 SOPHAS application closes",
+      "date": "2027-08-02",
+      "quote": "August 2, 2027 Fall 2027 SOPHAS application closes at 11:59 p.m. ET.",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MPH in Health Policy (Rollins)",
+   "url": "https://sph.emory.edu/degrees-programs/mph/health-policy",
+   "snapshot_sha256": "364718bac928104d8798d2bffbf847f318b9860066b4c728657a1a6d42c3f0dd",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a U.S. four-year bachelor's degree at a minimum",
+     "quote": "All applicants to Rollins must have (at a minimum) the equivalent of a U.S. four-year bachelor's degree.",
+     "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+     "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "The minimum score required for TOEFL is 550 (paper); 213 (CBT); 79-80 (iBT before January 21, 2026); 4-Overall Total (iBT after January 21, 2026) and IELTS score of 6-Overall.",
+     "source_sha256": "8408b541b31432c8d68a2f2610a439e61fc3b01899e9dd999243a3984c21cba7",
+     "source_url": "https://sph.emory.edu/admissions/how-to-apply/international-applicants",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL minimum stated as a range (79-80 iBT before January 21, 2026) and 4 overall on the new 1-6 scale; paper 550, CBT 213",
+     "quote": "The minimum score required for TOEFL is 550 (paper); 213 (CBT); 79-80 (iBT before January 21, 2026); 4-Overall Total (iBT after January 21, 2026) and IELTS score of 6-Overall.",
+     "source_sha256": "8408b541b31432c8d68a2f2610a439e61fc3b01899e9dd999243a3984c21cba7",
+     "source_url": "https://sph.emory.edu/admissions/how-to-apply/international-applicants",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "A GPA of 3.0 or higher is considered competitive for admission at Rollins (competitive level, not a stated minimum)",
+      "quote": "A GPA of 3.0 or higher is considered competitive for admission at RSPH.",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority deadline (full-time master's)",
+      "date": "2027-01-05",
+      "quote": "January 5, 2027 Priority Deadline for full-time master's students",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 preferred deadline for international applicants",
+      "date": "2027-05-01",
+      "quote": "May 1, 2027 Preferred deadline for international applicants to complete and submit fall 2027 SOPHAS application.",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 SOPHAS application closes",
+      "date": "2027-08-02",
+      "quote": "August 2, 2027 Fall 2027 SOPHAS application closes at 11:59 p.m. ET.",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MPH in Health Care Management (Rollins)",
+   "url": "https://sph.emory.edu/degrees-programs/mph/health-care-management",
+   "snapshot_sha256": "8fd5b3900ac074e4fa4fed1075b7854d581695da45aac8185cca15ca793e7475",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a U.S. four-year bachelor's degree at a minimum",
+     "quote": "All applicants to Rollins must have (at a minimum) the equivalent of a U.S. four-year bachelor's degree.",
+     "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+     "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "The minimum score required for TOEFL is 550 (paper); 213 (CBT); 79-80 (iBT before January 21, 2026); 4-Overall Total (iBT after January 21, 2026) and IELTS score of 6-Overall.",
+     "source_sha256": "8408b541b31432c8d68a2f2610a439e61fc3b01899e9dd999243a3984c21cba7",
+     "source_url": "https://sph.emory.edu/admissions/how-to-apply/international-applicants",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL minimum stated as a range (79-80 iBT before January 21, 2026) and 4 overall on the new 1-6 scale; paper 550, CBT 213",
+     "quote": "The minimum score required for TOEFL is 550 (paper); 213 (CBT); 79-80 (iBT before January 21, 2026); 4-Overall Total (iBT after January 21, 2026) and IELTS score of 6-Overall.",
+     "source_sha256": "8408b541b31432c8d68a2f2610a439e61fc3b01899e9dd999243a3984c21cba7",
+     "source_url": "https://sph.emory.edu/admissions/how-to-apply/international-applicants",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "A GPA of 3.0 or higher is considered competitive for admission at Rollins (competitive level, not a stated minimum)",
+      "quote": "A GPA of 3.0 or higher is considered competitive for admission at RSPH.",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority deadline (full-time master's)",
+      "date": "2027-01-05",
+      "quote": "January 5, 2027 Priority Deadline for full-time master's students",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 preferred deadline for international applicants",
+      "date": "2027-05-01",
+      "quote": "May 1, 2027 Preferred deadline for international applicants to complete and submit fall 2027 SOPHAS application.",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 SOPHAS application closes",
+      "date": "2027-08-02",
+      "quote": "August 2, 2027 Fall 2027 SOPHAS application closes at 11:59 p.m. ET.",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSPH in Epidemiology (Rollins)",
+   "url": "https://sph.emory.edu/degrees-programs/msph/epidemiology",
+   "snapshot_sha256": "4b1d4fcf7c457ce9d0d31a20c38b11db04051adecd9f487b96459664a719a55a",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a U.S. four-year bachelor's degree at a minimum",
+     "quote": "All applicants to Rollins must have (at a minimum) the equivalent of a U.S. four-year bachelor's degree.",
+     "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+     "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "The minimum score required for TOEFL is 550 (paper); 213 (CBT); 79-80 (iBT before January 21, 2026); 4-Overall Total (iBT after January 21, 2026) and IELTS score of 6-Overall.",
+     "source_sha256": "8408b541b31432c8d68a2f2610a439e61fc3b01899e9dd999243a3984c21cba7",
+     "source_url": "https://sph.emory.edu/admissions/how-to-apply/international-applicants",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL minimum stated as a range (79-80 iBT before January 21, 2026) and 4 overall on the new 1-6 scale; paper 550, CBT 213",
+     "quote": "The minimum score required for TOEFL is 550 (paper); 213 (CBT); 79-80 (iBT before January 21, 2026); 4-Overall Total (iBT after January 21, 2026) and IELTS score of 6-Overall.",
+     "source_sha256": "8408b541b31432c8d68a2f2610a439e61fc3b01899e9dd999243a3984c21cba7",
+     "source_url": "https://sph.emory.edu/admissions/how-to-apply/international-applicants",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "One college-level calculus course",
+      "quote": "One college-level calculus course",
+      "check": "ok"
+     },
+     {
+      "text": "One college-level science course",
+      "quote": "One college-level science course",
+      "check": "ok"
+     },
+     {
+      "text": "Minimum preferred GPA of 3.5",
+      "quote": "Minimum preferred GPA of 3.5",
+      "check": "ok"
+     },
+     {
+      "text": "A GPA of 3.0 or higher is considered competitive for admission at Rollins (competitive level, not a stated minimum)",
+      "quote": "A GPA of 3.0 or higher is considered competitive for admission at RSPH.",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority deadline (full-time master's)",
+      "date": "2027-01-05",
+      "quote": "January 5, 2027 Priority Deadline for full-time master's students",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 preferred deadline for international applicants",
+      "date": "2027-05-01",
+      "quote": "May 1, 2027 Preferred deadline for international applicants to complete and submit fall 2027 SOPHAS application.",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 SOPHAS application closes",
+      "date": "2027-08-02",
+      "quote": "August 2, 2027 Fall 2027 SOPHAS application closes at 11:59 p.m. ET.",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSPH in Global Epidemiology (Rollins)",
+   "url": "https://sph.emory.edu/degrees-programs/msph/global-epidemiology",
+   "snapshot_sha256": "5fb274687074ee2a08ba5c73a6178bcef5fddd509f4a2e7bcfe2dda64eaffd97",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a U.S. four-year bachelor's degree at a minimum",
+     "quote": "All applicants to Rollins must have (at a minimum) the equivalent of a U.S. four-year bachelor's degree.",
+     "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+     "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "The minimum score required for TOEFL is 550 (paper); 213 (CBT); 79-80 (iBT before January 21, 2026); 4-Overall Total (iBT after January 21, 2026) and IELTS score of 6-Overall.",
+     "source_sha256": "8408b541b31432c8d68a2f2610a439e61fc3b01899e9dd999243a3984c21cba7",
+     "source_url": "https://sph.emory.edu/admissions/how-to-apply/international-applicants",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL minimum stated as a range (79-80 iBT before January 21, 2026) and 4 overall on the new 1-6 scale; paper 550, CBT 213",
+     "quote": "The minimum score required for TOEFL is 550 (paper); 213 (CBT); 79-80 (iBT before January 21, 2026); 4-Overall Total (iBT after January 21, 2026) and IELTS score of 6-Overall.",
+     "source_sha256": "8408b541b31432c8d68a2f2610a439e61fc3b01899e9dd999243a3984c21cba7",
+     "source_url": "https://sph.emory.edu/admissions/how-to-apply/international-applicants",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "One college-level calculus course",
+      "quote": "One college-level calculus course",
+      "check": "ok"
+     },
+     {
+      "text": "One college-level science course",
+      "quote": "One college-level science course",
+      "check": "ok"
+     },
+     {
+      "text": "Minimum preferred GPA of 3.5",
+      "quote": "Minimum preferred GPA of 3.5",
+      "check": "ok"
+     },
+     {
+      "text": "A GPA of 3.0 or higher is considered competitive for admission at Rollins (competitive level, not a stated minimum)",
+      "quote": "A GPA of 3.0 or higher is considered competitive for admission at RSPH.",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority deadline (full-time master's)",
+      "date": "2027-01-05",
+      "quote": "January 5, 2027 Priority Deadline for full-time master's students",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 preferred deadline for international applicants",
+      "date": "2027-05-01",
+      "quote": "May 1, 2027 Preferred deadline for international applicants to complete and submit fall 2027 SOPHAS application.",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 SOPHAS application closes",
+      "date": "2027-08-02",
+      "quote": "August 2, 2027 Fall 2027 SOPHAS application closes at 11:59 p.m. ET.",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSPH in Health Services Research (Rollins)",
+   "url": "https://sph.emory.edu/degrees-programs/msph/health-services-research",
+   "snapshot_sha256": "7cf5e6867ad197f55727d939c10fd66a6204418d865db01637107d8c95cba2b2",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a U.S. four-year bachelor's degree at a minimum",
+     "quote": "All applicants to Rollins must have (at a minimum) the equivalent of a U.S. four-year bachelor's degree.",
+     "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+     "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "The minimum score required for TOEFL is 550 (paper); 213 (CBT); 79-80 (iBT before January 21, 2026); 4-Overall Total (iBT after January 21, 2026) and IELTS score of 6-Overall.",
+     "source_sha256": "8408b541b31432c8d68a2f2610a439e61fc3b01899e9dd999243a3984c21cba7",
+     "source_url": "https://sph.emory.edu/admissions/how-to-apply/international-applicants",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL minimum stated as a range (79-80 iBT before January 21, 2026) and 4 overall on the new 1-6 scale; paper 550, CBT 213",
+     "quote": "The minimum score required for TOEFL is 550 (paper); 213 (CBT); 79-80 (iBT before January 21, 2026); 4-Overall Total (iBT after January 21, 2026) and IELTS score of 6-Overall.",
+     "source_sha256": "8408b541b31432c8d68a2f2610a439e61fc3b01899e9dd999243a3984c21cba7",
+     "source_url": "https://sph.emory.edu/admissions/how-to-apply/international-applicants",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "MSPH applicants should possess strong quantitative skills",
+      "quote": "MSPH applicants should possess strong quantitative skills",
+      "check": "ok"
+     },
+     {
+      "text": "A GPA of 3.0 or higher is considered competitive for admission at Rollins (competitive level, not a stated minimum)",
+      "quote": "A GPA of 3.0 or higher is considered competitive for admission at RSPH.",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority deadline (full-time master's)",
+      "date": "2027-01-05",
+      "quote": "January 5, 2027 Priority Deadline for full-time master's students",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 preferred deadline for international applicants",
+      "date": "2027-05-01",
+      "quote": "May 1, 2027 Preferred deadline for international applicants to complete and submit fall 2027 SOPHAS application.",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 SOPHAS application closes",
+      "date": "2027-08-02",
+      "quote": "August 2, 2027 Fall 2027 SOPHAS application closes at 11:59 p.m. ET.",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSPH in Data Science (Rollins)",
+   "url": "https://sph.emory.edu/degrees-programs/msph/data-science",
+   "snapshot_sha256": "019bd88cecea24bd005df88660bc8d40f1d11f913810f174f735c43fb03bae8a",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a U.S. four-year bachelor's degree at a minimum",
+     "quote": "All applicants to Rollins must have (at a minimum) the equivalent of a U.S. four-year bachelor's degree.",
+     "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+     "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "The minimum score required for TOEFL is 550 (paper); 213 (CBT); 79-80 (iBT before January 21, 2026); 4-Overall Total (iBT after January 21, 2026) and IELTS score of 6-Overall.",
+     "source_sha256": "8408b541b31432c8d68a2f2610a439e61fc3b01899e9dd999243a3984c21cba7",
+     "source_url": "https://sph.emory.edu/admissions/how-to-apply/international-applicants",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL minimum stated as a range (79-80 iBT before January 21, 2026) and 4 overall on the new 1-6 scale; paper 550, CBT 213",
+     "quote": "The minimum score required for TOEFL is 550 (paper); 213 (CBT); 79-80 (iBT before January 21, 2026); 4-Overall Total (iBT after January 21, 2026) and IELTS score of 6-Overall.",
+     "source_sha256": "8408b541b31432c8d68a2f2610a439e61fc3b01899e9dd999243a3984c21cba7",
+     "source_url": "https://sph.emory.edu/admissions/how-to-apply/international-applicants",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "A GPA of 3.0 or higher is considered competitive for admission at Rollins (competitive level, not a stated minimum)",
+      "quote": "A GPA of 3.0 or higher is considered competitive for admission at RSPH.",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority deadline (full-time master's)",
+      "date": "2027-01-05",
+      "quote": "January 5, 2027 Priority Deadline for full-time master's students",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 preferred deadline for international applicants",
+      "date": "2027-05-01",
+      "quote": "May 1, 2027 Preferred deadline for international applicants to complete and submit fall 2027 SOPHAS application.",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 SOPHAS application closes",
+      "date": "2027-08-02",
+      "quote": "August 2, 2027 Fall 2027 SOPHAS application closes at 11:59 p.m. ET.",
+      "source_sha256": "821336577eac96feef8b9b6d3473151e84a9eaced820efeacc606e30317d22cd",
+      "source_url": "https://sph.emory.edu/admissions/how-to-apply/masters-programs",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Computer Science (Laney Graduate School)",
+   "url": "https://computerscience.emory.edu/graduate-ms/admissions/index.html",
+   "snapshot_sha256": "05656a492716375d551576003bf426a87ff53991ffe3084ce90296208f598497",
+   "fields": {
+    "toefl": {
+     "overall": 85,
+     "quote": "The Internet-based TOEFL test serves as the default test with a required minimum combined score of 85.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "IELTS - Minimum score of 7",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Working knowledge of programming in a high-level language",
+      "quote": "Working knowledge of programming in a high-level language",
+      "check": "ok"
+     },
+     {
+      "text": "Experience with foundational quantitative and computer science concepts (no fixed course list); linear algebra, discrete structures, algorithms, data structures and intro to programming are highly suggested",
+      "quote": "our curriculum requires that you have experience with foundational quantitative and computer science concepts.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 final deadline",
+      "date": "2026-12-01",
+      "quote": "Spring 2027 Admission Priority Deadline: November 1, 2026 Final Deadline: December 1, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final deadline",
+      "date": "2027-04-15",
+      "quote": "Fall 2027 Admission Priority Deadline: January 15, 2027 Final Deadline: April 15, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Artificial Intelligence and Economics (Laney Graduate School; pending Board approval, first class Fall 2027)",
+   "url": "https://computerscience.emory.edu/graduate-ms/admissions/econ_ai.html",
+   "snapshot_sha256": "8ee1eb718197833c7830585c43a1df503d7ac907743f7565b64640f948b497f5",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree by enrolment and a minimum cumulative GPA of 3.0 on a 4.0 scale (3.5 preferred)",
+     "quote": "Applicants must have a minimum cumulative grade point average of at least 3.0 on a 4.0 scale. A GPA of at least 3.5 is preferred.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 85,
+     "quote": "The Internet-based TOEFL test serves as the default test with a required minimum combined score of 85.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "IELTS - Minimum score of 7",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Foundational courses: calculus, probability and statistics, principles and intermediate microeconomics and macroeconomics, econometrics",
+      "quote": "we require applicants to have completed the following foundational courses:",
+      "check": "ok"
+     },
+     {
+      "text": "Working knowledge of programming in a high level language",
+      "quote": "Working knowledge of programming in a high level language is required.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Economics (Laney Graduate School)",
+   "url": "https://economics.emory.edu/masters/master-of-science-in-economics.html",
+   "snapshot_sha256": "775899fb29d22acbc6d741c68ea7ed05851b22d25057fd63e7b1a13bd8a08bd4",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree by enrolment; minimum cumulative GPA of at least 3.0 on a 4.0 scale (3.5 preferred)",
+     "quote": "Minimum cumulative grade point average of at least 3.0 on a 4.0 scale. A GPA of at least 3.5 is preferred.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Preparation guide: calculus, micro and macro economics (principles and intermediate), probability and statistics, econometrics, two upper division economics electives",
+      "quote": "The courses listed below serve as a guide to help you evaluate your preparation for the program:",
+      "check": "ok"
+     },
+     {
+      "text": "Competitive applicants will also have some experience in Python, R, or Stata (competitive level, not a stated minimum)",
+      "quote": "Competitive applicants will also have some experience in Python, R, or Stata.",
+      "check": "ok"
+     },
+     {
+      "text": "TOEFL or IELTS score required of international applicants (no score stated)",
+      "quote": "TOEFL or IELTS score (for international applicants)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Data Science (Department of Data and Decision Sciences, Laney Graduate School)",
+   "url": "https://datascience.emory.edu/graduate/admissions/requirements.html",
+   "snapshot_sha256": "611f27e97274fc4939af0dadff0020965112dff29f5433cff4084ad8d73c7804",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL exam score (minimum of 100)",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "IELTS exam score (minimum of 7)",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "College credit for at least one calculus course (or equivalent test credit)",
+      "quote": "College credit for at least one calculus course (or equivalent test credit)",
+      "check": "ok"
+     },
+     {
+      "text": "College credit for at least one statistics course",
+      "quote": "College credit for at least one statistics course",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Development Practice (MDP, Laney Graduate School)",
+   "url": "https://web.gs.emory.edu/mdp/admission/applicationguidelines.html",
+   "snapshot_sha256": "3551eb986813d5b4d05521d503b35cc86a71a9983e5ed39bf15a032ac25674fe",
+   "fields": {
+    "academic": {
+     "text": "Completed four-year degree (or equivalent) from an accredited university or college",
+     "quote": "You must submit transcripts showing that you have completed a four-year degree (or equivalent) from an accredited university or college with your application.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 88,
+     "quote": "The minimum TOEFL score of 570 on the paper test, 230 on the computer-based test or 88 on the internet-based test is required.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "MDP also accepts IELTS, with a minimum score of 7.0.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA in Bioethics (Laney Graduate School)",
+   "url": "https://ethics.emory.edu/mabioethics/admissions/requirements.html",
+   "snapshot_sha256": "70833dde82b95c34b9821a276f53df609e0ce048e18ee24b1185e1e605723493",
+   "fields": {
+    "academic": {
+     "text": "Degree from an accredited four-year college or university before beginning the program",
+     "quote": "All successful applicants must have a degree from an accredited four year college or university before beginning the program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL required where English is not the primary language; scores no older than 5 years; no minimum stated",
+     "quote": "Applicants for whom English is not the primary language must submit scores from the TOEFL no greater than 5 years old.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Mathematics (Laney Graduate School)",
+   "url": "https://mathematics.emory.edu/graduate/admissions/index.html",
+   "snapshot_sha256": "e613584eb5ee53fadc6a8bccb2d2417edd031047a36a827ac48787a853ec56b6",
+   "fields": {
+    "toefl": {
+     "text": "Non-native English speakers must submit TOEFL scores (exceptions possible); no minimum stated",
+     "quote": "non-native English speakers will need to submit TOEFL scores. (Exceptions can be made for non-native speakers who have lived in English-speaking countries for a significant time.)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Business Analytics (Goizueta Business School)",
+   "url": "https://goizueta.emory.edu/msba/admissions",
+   "snapshot_sha256": "226e6d9f9946ee9bb0951e024abb3f32a3bbe4509108563b01d90e03337df41f",
+   "fields": {
+    "academic": {
+     "text": "Typically an undergraduate degree in business, engineering, computer science, math/statistics, or economics",
+     "quote": "An undergraduate degree in business, engineering, computer science, math/statistics, or economics",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Taken at least calculus I, calculus II, and statistics",
+      "quote": "Taken at least calculus I, calculus II, and statistics",
+      "check": "ok"
+     },
+     {
+      "text": "TOEFL not required if undergraduate degree completed in English and applicant works primarily in an English environment; no minimum score stated",
+      "quote": "Please note that TOEFL is NOT required if you completed your undergraduate degree in English and work primarily in an English environment.",
+      "source_sha256": "1b00a31439da37dad167d2f683bebbb495825a4cff7905fe2e2609fea80da2bb",
+      "source_url": "https://goizueta.emory.edu/msba/faq",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Round 2 (final deadline for international-institution applicants)",
+      "date": "2027-01-13",
+      "quote": "Round 2 Application Deadline January 13, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3",
+      "date": "2027-03-10",
+      "quote": "Round 3 Application Deadline March 10, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Finance (Goizueta Business School)",
+   "url": "https://goizueta.emory.edu/masters-in-finance/admissions/application",
+   "snapshot_sha256": "5f6d5d6c7406b5d5aba984b975b32f9fcff9cbdd6320f6e5c106ab38bed5d4ea",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "recommended": true,
+     "quote": "IELTS: 7.0 or higher recommended",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT 5.0 or higher recommended (stated on the 1-6 band scale only)",
+     "quote": "TOEFL iBT: 5.0 or higher recommended",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English test not generally required with a degree from an institution where English is the primary language of instruction, or 2 years of full-time professional experience in English within the past 5 years",
+      "quote": "An English language proficiency test is generally not required for applicants who:",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Round 2",
+      "date": "2027-01-13",
+      "quote": "Application Deadline January 13, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3",
+      "date": "2027-03-03",
+      "quote": "Application Deadline March 3, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Laws (LLM, Emory School of Law)",
+   "url": "https://law.emory.edu/admission/master-of-laws-llm/llm-admission.html",
+   "snapshot_sha256": "88875a5e6ad5891ad529b9d277e4231e0a9f0091b72545912a36263f16a9e237",
+   "fields": {
+    "academic": {
+     "text": "A first degree in law that allows the candidate to practice law in their home country (JD from an ABA-accredited school for US graduates)",
+     "quote": "candidates must have received a first degree in law that allows them to practice law in their home country prior to LLM enrollment.",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL or IELTS required for non-native speakers; evaluative interview for scores below 90 TOEFL or 7 IELTS; no hard minimum stated",
+     "quote": "Evaluative interview for applicants whose score falls below a 90 on TOEFL or 7 on IELTS.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 24,
+  "机器核对": 24,
+  "待人工": 0
+ }
+}
