@@ -333,3 +333,14 @@ def test_a_month_name_in_another_language_still_has_to_be_the_right_month(tmp_pa
     write_snapshot(tmp_path, "example", SHA, "<p>Date limite : 15 février 2027</p>")
     result = verify(data(program({"deadlines": [{"label": "x", "date": "2027-03-15", "quote": "Date limite : 15 février 2027"}]})), root=tmp_path)
     assert result["programs"][0]["status"] == NEEDS_HUMAN
+
+
+def test_an_abbreviated_month_with_a_dot_is_a_date_but_a_decimal_is_not(tmp_path):
+    write_snapshot(tmp_path, "example", SHA, "<p>Deadline: Nov.6, 2026</p><p>Score 2.6 by November 2026</p>")
+
+    def check(when, quote):
+        result = verify(data(program({"deadlines": [{"label": "x", "date": when, "quote": quote}]})), root=tmp_path)
+        return result["programs"][0]["status"]
+
+    assert check("2026-11-06", "Deadline: Nov.6, 2026") == MACHINE_CHECKED
+    assert check("2026-11-06", "Score 2.6 by November 2026") == NEEDS_HUMAN

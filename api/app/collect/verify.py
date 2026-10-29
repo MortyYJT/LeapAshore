@@ -175,7 +175,8 @@ def check_item(name: str, item: dict, text: str, month_first: bool = False, eith
             if when not in numeric:
                 problems.append(f"deadline {when.isoformat()} is not the date the quote states")
             return problems
-        if not re.search(rf"(?<![\d.\-/])0?{when.day}(?![\d\-/])", quote):
+        # Not inside a decimal (2.6) or a numeric date, but "Nov.6" is a day.
+        if not re.search(rf"(?<![\d\-/])(?<!\d\.)0?{when.day}(?![\d\-/])", quote):
             problems.append(f"deadline day {when.day} not in quote")
         # The year and month have to be stated too: a year read off another part of the page
         # ("31 May of the previous year") is an inference, not a quote.
