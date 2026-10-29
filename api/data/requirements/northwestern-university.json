@@ -1,0 +1,1008 @@
+{
+ "school_key": "northwestern-university",
+ "school_name_en": "Northwestern University",
+ "country": "United States",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://www.tgs.northwestern.edu/admission/academic-programs/explore-programs/index.html",
+  "https://www.mccormick.northwestern.edu/academics/graduate/admissions/",
+  "https://design.northwestern.edu/",
+  "https://www.kellogg.northwestern.edu/programs/",
+  "https://www.medill.northwestern.edu/",
+  "https://sesp.northwestern.edu/graduate-professional/"
+ ],
+ "blocked": [
+  {
+   "url": "https://communication.northwestern.edu/graduate",
+   "reason": "robots.txt disallows",
+   "at": "2026-10-29T03:00:00+00:00"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.feinberg.northwestern.edu/sites/artificial-intelligence/health-data-science/ms-biomedical-informatics.html",
+  "https://www.feinberg.northwestern.edu/sites/pph/",
+  "https://www.tgs.northwestern.edu/admission/academic-programs/explore-programs/counseling.html",
+  "https://www.tgs.northwestern.edu/admission/academic-programs/explore-programs/marriage-and-family-therapy.html",
+  "https://www.tgs.northwestern.edu/admission/academic-programs/explore-programs/health-services-and-outcomes-research.html",
+  "https://www.tgs.northwestern.edu/admission/academic-programs/explore-programs/genetic-counseling.html",
+  "https://sesp.northwestern.edu/graduate-professional/computer-science-and-learning-sciences/apply.html",
+  "https://www.kellogg.northwestern.edu/admissions/ft-admissions/ (MBAi, MMM tracks)",
+  "https://www.mccormick.northwestern.edu/executive-management-design-construction/index.html"
+ ],
+ "notes": "Covered McCormick (direct-admit and departmental MS), Design (MPD2, EDI, MMM), Kellogg MBA and MiM, Medill MSJ and full-time IMC, SESP MSEd/MSHE/MTePP, Feinberg biostatistics and epidemiology. School of Communication is blocked by robots.txt. Many deadlines lack a year in the quote and were left out; Medill states no English minimum; MS Statistics is only an ad hoc degree for PhD students and was skipped; MS in Organizational Dynamics/LOC (part-time) and Professional Studies programmes were skipped. Some university-wide TGS minimums (TOEFL 80, IELTS 7) were used only for MS Computer Science, whose page refers to the Graduate School.",
+ "programs": [
+  {
+   "name": "Master of Science in Machine Learning and Data Science (McCormick)",
+   "url": "https://www.mccormick.northwestern.edu/machine-learning-data-science/admissions/application-materials.html",
+   "snapshot_sha256": "94cee0e62dda500a4775ce01b6d3ea618fab25607c9bb244c935cc4b1921b429",
+   "fields": {
+    "academic": {
+     "text": "Minimum cumulative GPA of 3.0 on a 4.0 scale",
+     "quote": "We require a minimum, cumulative GPA of 3.0 on a 4.0 scale to be eligible for admission.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT: Minimum score of 100",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "IELTS: Minimum score of 7.5",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "No strict prerequisites; strong quantitative and programming background encouraged",
+      "quote": "We do not have strict prerequisites for admission into the program and encourage prospective students from a wide variety of academic backgrounds to apply.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Scholarship priority deadline",
+      "date": "2026-12-01",
+      "quote": "Scholarship Priority Deadline: December 1, 2026, 11:59 PM CT",
+      "source_sha256": "7c957676fa5030757523528fefb5a80d192eedc3f530fab848bb5c7232d015a8",
+      "source_url": "https://www.mccormick.northwestern.edu/machine-learning-data-science/admissions/",
+      "check": "ok"
+     },
+     {
+      "label": "Regular decision deadline",
+      "date": "2027-01-15",
+      "quote": "Regular Decision Deadline: January 15, 2027, 11:59 PM CT",
+      "source_sha256": "7c957676fa5030757523528fefb5a80d192eedc3f530fab848bb5c7232d015a8",
+      "source_url": "https://www.mccormick.northwestern.edu/machine-learning-data-science/admissions/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Artificial Intelligence (McCormick)",
+   "url": "https://www.mccormick.northwestern.edu/artificial-intelligence/admissions/",
+   "snapshot_sha256": "80c6ed4608f69e3a4b275713d45282c840da2f42a9047cbaa3e952bbea62e09e",
+   "fields": {
+    "academic": {
+     "text": "BA/BS in Computer Science or a related field",
+     "quote": "Individuals should have completed a BA/BS in Computer Science or in a related field.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "For the TOEFL, applicants must score 600 or higher on the paper-based test or 100 or higher on the internet based test.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "For the IELTS exam, applicants must receive a score of 7.0 or higher.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Robotics (McCormick)",
+   "url": "https://www.mccormick.northwestern.edu/robotics/admissions/",
+   "snapshot_sha256": "ea09ca66a21aca7cd001c4347f9936885c2ca99effb7edad89bdc3cfc6ced45e",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in a robotics-related field (mechanical, electrical, biomedical engineering, computer science, etc.)",
+     "quote": "Bachelor's degree in robotics-related field (mechanical engineering, electrical engineering, biomedical engineering, computer science, etc.).",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "We require a minimum TOEFL score of 100 on the internet-based test and 600 on the paper-based test.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "If an applicant is unable to take the TOEFL, we will accept results from the IELTS exam; the minimum score is a 7.0.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Information Technology (MSIT)",
+   "url": "https://www.mccormick.northwestern.edu/information-technology/admissions/index.html",
+   "snapshot_sha256": "3f124e16e9d1c603d5aa84ec81e31ea7439dd9c81f30bd84c2c0da954ab3f0cb",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from a regionally accredited institution; eligible three-year foreign degrees also considered",
+     "quote": "Applicants must possess a bachelor's degree from a regionally accredited institution. Applicants with eligible three-year degrees from foreign institutions will also be considered.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "The MSIT program requires a minimum TOEFL score of 90 or a minimum IELTS score of 7.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "The MSIT program requires a minimum TOEFL score of 90 or a minimum IELTS score of 7.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering Management (MEM)",
+   "url": "https://www.mccormick.northwestern.edu/engineering-management/admissions/application-materials.html",
+   "snapshot_sha256": "de4e9ee9da4fc2b68342985c418b946373c6f3a84db07ffa203450701e10db01",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "quote": "The minimum acceptable score for the TOEFL is 100 (Internet-based test) and for the IELTS, 7.0.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "The minimum acceptable score for the TOEFL is 100 (Internet-based test) and for the IELTS, 7.0.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Calculus-based statistics course (can be taken as the free online MEM statistics course after admission)",
+      "quote": "A calculus based statistics course is a prerequisite for some of the MEM coursework.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Project Management (MPM)",
+   "url": "https://www.mccormick.northwestern.edu/project-management/admissions/index.html",
+   "snapshot_sha256": "eb2d4e223e0cf7f69dd4439a4535619f0238f9faffb70449f22f08b6c9b23473",
+   "fields": {
+    "academic": {
+     "text": "Minimum 3.0 overall GPA on a 4.0 scale for all undergraduate work",
+     "quote": "Minimum of 3.0 overall grade point average on a 4.0 scale for all undergraduate work.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 85,
+     "quote": "A minimum TOEFL iBT score of 85 or a minimum IELTS score of 7 is required for admission.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "A minimum TOEFL iBT score of 85 or a minimum IELTS score of 7 is required for admission.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Biotechnology (MBP)",
+   "url": "https://www.mccormick.northwestern.edu/biotechnology/admissions/index.html",
+   "snapshot_sha256": "dd406c9c95525ba22ff4eaf5957ed43879e84b9a506873125c87ae765dce1e82",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "Preferred: organic chemistry or biochemistry; general or physical chemistry; biology; calculus",
+      "quote": "At least one course in each of the following areas: Organic chemistry or biochemistry General or physical chemistry Biology (e.g., cellular or molecular) Calculus",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Computer Science (McCormick, terminal MS)",
+   "url": "https://www.mccormick.northwestern.edu/computer-science/academics/graduate/admissions/index.html",
+   "snapshot_sha256": "8047c78a3b6dc0f3719b0aa813354bbe0439ebb52ec4d479cc76fa0313c35439",
+   "fields": {
+    "academic": {
+     "text": "Typical applicant has a bachelor of science in electrical engineering, computer engineering, computer science, or a related discipline; MS students with a CS minor and another major encouraged",
+     "quote": "A typical applicant is expected to have a bachelor of science in electrical engineering, computer engineering, computer science, or a related discipline from a recognized institution.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "The Graduate School Minimum TOEFL score for master's applicants= 80",
+     "source_sha256": "5b3abf9f091155546bcd3ea36af5c4aa9e581e7590556780b5aa7acc25650f81",
+     "source_url": "https://www.tgs.northwestern.edu/admission/application-procedures/international-applicants1.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "The Graduate School Minimum IELTS score = 7",
+     "source_sha256": "5b3abf9f091155546bcd3ea36af5c4aa9e581e7590556780b5aa7acc25650f81",
+     "source_url": "https://www.tgs.northwestern.edu/admission/application-procedures/international-applicants1.html",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Electrical Engineering (McCormick)",
+   "url": "https://www.mccormick.northwestern.edu/electrical-computer/academics/graduate/admissions/index.html",
+   "snapshot_sha256": "eefff44fe54ed11fe7ff81a9c35b1a8bcd97a3e18a469fecf55ca155d0c0bd22",
+   "fields": {
+    "academic": {
+     "text": "Typical applicant has a BS in electrical engineering, computer engineering, or a related discipline",
+     "quote": "A typical applicant is expected to have a Bachelor of Science in Electrical Engineering, Computer Engineering, or a related discipline from a recognized institution.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "The required minimum scores for both MS and PhD students, for exams taken before January 21, 2026: 90 IBT (Internet-based test), 233 CBT (computer-based test), and 577 PBT (paper-based test). The required minimum scores for both MS and PhD students, for exams taken after January 21, 2026: 4.5 IBT (Internet-based test)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Computer Engineering (McCormick)",
+   "url": "https://www.mccormick.northwestern.edu/electrical-computer/academics/graduate/admissions/index.html#computer-engineering",
+   "snapshot_sha256": "eefff44fe54ed11fe7ff81a9c35b1a8bcd97a3e18a469fecf55ca155d0c0bd22",
+   "fields": {
+    "academic": {
+     "text": "Typical applicant has a BS in electrical engineering, computer engineering, or a related discipline",
+     "quote": "A typical applicant is expected to have a Bachelor of Science in Electrical Engineering, Computer Engineering, or a related discipline from a recognized institution.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "The required minimum scores for both MS and PhD students, for exams taken before January 21, 2026: 90 IBT (Internet-based test), 233 CBT (computer-based test), and 577 PBT (paper-based test). The required minimum scores for both MS and PhD students, for exams taken after January 21, 2026: 4.5 IBT (Internet-based test)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Mechanical Engineering (McCormick)",
+   "url": "https://www.mccormick.northwestern.edu/mechanical/academics/graduate/prospective-masters/how-to-apply.html",
+   "snapshot_sha256": "2cd16ffed8e5a85f0a0a41f491a138bce45dec470193780cbde5ea45d13745a9",
+   "fields": {
+    "toefl": {
+     "overall": 90,
+     "quote": "TOEFL (minimum of 90 if required) or IELTS (minimum of 7.0 if required)",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "TOEFL (minimum of 90 if required) or IELTS (minimum of 7.0 if required)",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Winter quarter admission",
+      "date": "2026-11-09",
+      "quote": "November 9th, 2026 for winter quarter admission",
+      "check": "ok"
+     },
+     {
+      "label": "Spring quarter admission",
+      "date": "2027-02-01",
+      "quote": "February 1st, 2027 for spring quarter admission",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Biomedical Engineering (McCormick)",
+   "url": "https://www.mccormick.northwestern.edu/biomedical/academics/graduate/masters/admissions.html",
+   "snapshot_sha256": "070595361a17337faca4f63d3311718a8feee3938d4ab9ba57557fd6b3ee5ecc",
+   "fields": {
+    "academic": {
+     "text": "Minimum GPA of 3.0; applications below 3.0 are not reviewed",
+     "quote": "The Graduate School minimum GPA for applicants is 3.0. The BME department follows this requirement. Applications with a GPA below 3.0 will not be reviewed.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "Test of English as a Foreign Language (TOEFL) score: If taken before January 21, 2026: 90 or better If taken after January 21, 2026: 4.5 or better",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS) score of 7.0 or better",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Winter 2027 admission",
+      "date": "2026-11-01",
+      "quote": "Winter 2027 Admission - November 1, 2026 by 11:59PM Central Time",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027 admission",
+      "date": "2027-01-31",
+      "quote": "Spring 2027 Admission - January 31, 2027 by 11:59PM Central Time",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 admission",
+      "date": "2027-05-01",
+      "quote": "Fall 2027 Admission - May 1, 2027 by 11:59PM Central Time",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Engineering Sciences and Applied Mathematics (McCormick)",
+   "url": "https://www.mccormick.northwestern.edu/applied-math/academics/graduate/masters/admissions.html",
+   "snapshot_sha256": "c8bc80ced57c85dae16a2470cc1eaef3d62efe3ed8db2975f918ea2310cab52c",
+   "fields": {
+    "toefl": {
+     "overall": 90,
+     "quote": "The only minimum we set is for the TOEFL on which an international applicant must score 550 or higher on the paper-based test, 213 or higher on the computer-based test, and 90 or higher on the Internet-based test. On the IELTS, an applicant must score 7.0 or higher.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "The only minimum we set is for the TOEFL on which an international applicant must score 550 or higher on the paper-based test, 213 or higher on the computer-based test, and 90 or higher on the Internet-based test. On the IELTS, an applicant must score 7.0 or higher.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall quarter 2027 admission",
+      "date": "2027-06-30",
+      "quote": "The application deadline for fall quarter admission is June 30, 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Materials Science and Engineering (McCormick)",
+   "url": "https://www.mccormick.northwestern.edu/materials-science/academics/graduate/masters/admissions.html",
+   "snapshot_sha256": "d69717355ece03fd2f26bf45695ba4817308fc6e7dc94c703923861b091ef35a",
+   "fields": {
+    "toefl": {
+     "overall": 80,
+     "quote": "The only minimum we set is TOEFL, on which an international applicant must score 550 or higher on the paper-based test, 213 or higher on the computer-based test, 80 or higher on the internet-based test. On the IELTS, an applicant must score 7.0 or higher.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "The only minimum we set is TOEFL, on which an international applicant must score 550 or higher on the paper-based test, 213 or higher on the computer-based test, 80 or higher on the internet-based test. On the IELTS, an applicant must score 7.0 or higher.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Advanced Manufacturing (McCormick)",
+   "url": "https://www.mccormick.northwestern.edu/masters-advanced-manufacturing/admissions/index.html",
+   "snapshot_sha256": "bcb6bf1251155cac34048a0cccde8cbba658941c7b2c98f47e85f514fddac059",
+   "fields": {
+    "academic": {
+     "text": "Recently completed BS/BA in Mechanical Engineering, Manufacturing & Design Engineering, Manufacturing Engineering, Materials Science and Engineering, Industrial Engineering or related fields",
+     "quote": "This program is aimed at students who have recently completed a BS/BA in Mechanical Engineering, Manufacturing & Design Engineering, Manufacturing Engineering, Materials Science and Engineering, Industrial Engineering or related fields.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall application deadline",
+      "date": "2027-07-14",
+      "quote": "Application deadline: July 14, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Energy and Sustainability (MSES)",
+   "url": "https://www.northwestern.edu/mses/prospective-students/deadlines-how-to-apply.html",
+   "snapshot_sha256": "2f3d2c5126a8520801b5270bed4a055e1cde9a09c857d1e485da074f8a7fc2f3",
+   "fields": {
+    "academic": {
+     "text": "No required degree background; minimum 3.0 GPA on a 4.0 scale is recommended, not required",
+     "quote": "GPA - Minimum 3.0 overall Grade Point Average (on a 4.0 scale) for all undergraduate work is recommended, but not required for application.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "applicants must score at least a 100 on the TOEFL (send to institutional code C527), or 7.0 on the IELTS",
+     "source_sha256": "050b0e084a293cd8e7df47d20c400c2b0de9674d850b7e061db0aff56ecbc208",
+     "source_url": "https://www.northwestern.edu/mses/prospective-students/international-students.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "applicants must score at least a 100 on the TOEFL (send to institutional code C527), or 7.0 on the IELTS",
+     "source_sha256": "050b0e084a293cd8e7df47d20c400c2b0de9674d850b7e061db0aff56ecbc208",
+     "source_url": "https://www.northwestern.edu/mses/prospective-students/international-students.html",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Round 1 priority deadline (Fall 2027)",
+      "date": "2026-12-07",
+      "quote": "December 7, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Round 2 final round for international applicants (Fall 2027)",
+      "date": "2027-02-15",
+      "quote": "February 15, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Civil and Environmental Engineering (McCormick)",
+   "url": "https://www.mccormick.northwestern.edu/civil-environmental/academics/masters/admissions/index.html",
+   "snapshot_sha256": "68b118d1733e2d9f81cec2df4711f2006b3d0e2b4a2bbee1b757fefa03098654",
+   "fields": {
+    "toefl": {
+     "overall": 85,
+     "quote": "Internet-based TOEFL: To meet the admission requirement, MS applicants should score 85 or higher.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "The IELTS exam: To meet the admission requirement, MS applicants should score 7 or higher.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Hard deadline for MS applications",
+      "date": "2027-06-30",
+      "quote": "The hard deadline for electronic submission of completed MS applications and application fees is June 30, 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Chemical and Biological Engineering (McCormick)",
+   "url": "https://www.mccormick.northwestern.edu/chemical-biological/academics/graduate/admissions.html",
+   "snapshot_sha256": "95472b3de9ef74088fd0d8f1068e72b076e496b33b584453fe2fbd0e3216db2c",
+   "fields": {
+    "toefl": {
+     "text": "TOEFL minimum for MS applicants is 4.5 (new 1-6 scale)",
+     "quote": "The TOEFL minimum requirement is 5.0 for PhD and 4.5 for MS applicants.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "The requirement is 7.5 for PhD and 7.0 for MS applicants.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "MS Fall 2027 deadline",
+      "date": "2027-05-01",
+      "quote": "Applications for admission to the MS program in Fall 2027 will open on September 15th. Space in the MS program is limited. The deadline to apply is May 1st, 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Theoretical and Applied Mechanics (McCormick)",
+   "url": "https://www.mccormick.northwestern.edu/theoretical-applied-mechanics/admissions/index.html",
+   "snapshot_sha256": "a80c7d67012abe6560d12450583adcc1f74f8e33e00669cc09156ab771fe0791",
+   "fields": {
+    "toefl": {
+     "overall": 80,
+     "quote": "MS applicants must have 80 (213 computer-based and 550 paper-based) on the internet-based TOEFL.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Product Design and Development Management (MPD2)",
+   "url": "https://design.northwestern.edu/product-design-development-management/admissions/index.html",
+   "snapshot_sha256": "a8ea1062936ce530250f1d83a6bc3d3af3f49cb93e3d9ba95a81c6f0faa93bd9",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or international equivalent) plus at least one year of full-time post-undergraduate work experience",
+     "quote": "You must have earned a bachelor's degree (or the international equivalent) to be eligible to apply for admission.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT: Minimum score of 100",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS: Minimum score of 7.0",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Engineering Design Innovation (EDI)",
+   "url": "https://design.northwestern.edu/engineering-design-innovation/admissions/application-requirements.html",
+   "snapshot_sha256": "b8ee68657969773ff6fd1d08edbfb38e8ab405cb2232a175e164f757a15fd006",
+   "fields": {
+    "academic": {
+     "text": "Typical EDI student has an undergraduate degree in engineering, STEM, or a related discipline",
+     "quote": "The typical EDI student has an undergraduate degree in engineering, STEM, or a related discipline.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 95,
+     "quote": "The EDI program strongly prefers a minimum TOEFL score of 95 or a minimum IELTS score of 7 or a minimum MET score of 54.",
+     "recommended": true,
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "The EDI program strongly prefers a minimum TOEFL score of 95 or a minimum IELTS score of 7 or a minimum MET score of 54.",
+     "recommended": true,
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority deadline",
+      "date": "2027-01-15",
+      "quote": "Admission decisions for applications received by the January 15, 2027 priority deadline",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Management and Manufacturing (MMM, dual MBA and MS)",
+   "url": "https://design.northwestern.edu/mmm-program/admissions/index.html",
+   "snapshot_sha256": "f41b87ab5e0b8065639aecbf2c590a16bb18f26538df9845276b65358d750832",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's or equivalent degree from an accredited college or university",
+     "quote": "Prospective students holding a bachelor's or equivalent degree from an accredited college or university are eligible to apply.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Kellogg Full-Time MBA (One-Year and Two-Year)",
+   "url": "https://www.kellogg.northwestern.edu/admissions/ft-admissions/ft-how-to-apply/",
+   "snapshot_sha256": "9b1359813ee6198363057f434f78a339abedc273aa212ab2312210364ec523a4",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's or equivalent degree from an accredited college or university by matriculation; no prior business study required except for the One-Year Program",
+     "quote": "A bachelor’s or equivalent degree from an accredited college or university by the time of matriculation is required to apply. Previous study in business or economics is not required, with the exception of the One-Year Program.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GMAT or GRE required; no minimum acceptable score",
+      "quote": "Kellogg requires you to submit a GMAT or GRE score from a single sitting (no test superscores).",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Round 2 application deadline",
+      "date": "2027-01-06",
+      "quote": "Upcoming deadline for Full-Time MBA program Jan. 6, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Kellogg Master in Management (MiM)",
+   "url": "https://www.kellogg.northwestern.edu/programs/master-in-management/",
+   "snapshot_sha256": "9e945c47d549ac8de9ee4768299cfcab1008d5d9cd3bac90c9a476493318947d",
+   "fields": {
+    "academic": {
+     "text": "For students with an undergraduate background in liberal arts, economics or STEM; fewer than two years of full-time work experience",
+     "quote": "The MiM Program is intended to provide a foundation of business for those who have an undergraduate background in liberal arts, economics or STEM.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Round 2 application deadline",
+      "date": "2027-01-13",
+      "quote": "Round 2: Jan. 13, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Journalism (Medill, one-year)",
+   "url": "https://www.medill.northwestern.edu/journalism/graduate-journalism/admissions/application-requirements.html",
+   "snapshot_sha256": "ed26f460fc35730512c793ce555dbfcfc784265a99e4debccafb28d66c7bb54e",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree earned before starting; may apply before completing it",
+     "quote": "You must have earned your four-year bachelor's degree before starting the MSJ program. You may apply prior to completing your degree.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English test (TOEFL or Duolingo) required for international applicants; no minimum score; IELTS not accepted; GRE/GMAT not required",
+      "quote": "Medill no longer accepts IELTS scores. There is no minimum test score for our language proficiency requirement, but it is best to score in the top third of the scoring range.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Round 2 MSJ application deadline",
+      "date": "2027-01-18",
+      "quote": "Monday, January 18, 2027",
+      "source_sha256": "5437f6519eca87a119502d68451b3d7af1772289c2d4871f4550979cf6f46435",
+      "source_url": "https://www.medill.northwestern.edu/journalism/graduate-journalism/admissions/",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3 MSJ application deadline",
+      "date": "2027-03-29",
+      "quote": "Monday, March 29, 2027",
+      "source_sha256": "5437f6519eca87a119502d68451b3d7af1772289c2d4871f4550979cf6f46435",
+      "source_url": "https://www.medill.northwestern.edu/journalism/graduate-journalism/admissions/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Integrated Marketing Communications (Medill, full-time)",
+   "url": "https://www.medill.northwestern.edu/imc/full-time/admissions/application-requirements.html",
+   "snapshot_sha256": "1fb67a26fd2e496b23a70abcacbb8892ec3cd970d86b428adb7d840b89e7b7cc",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree earned before starting; may apply before completing it",
+     "quote": "You must have earned a four-year bachelor's degree before starting the IMC program. You may apply prior to completing your degree.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English test (TOEFL or Duolingo) required for international applicants; no minimum score; IELTS not accepted",
+      "quote": "Medill does not accept IELTS scores. There is no minimum test score for our language proficiency requirement.",
+      "source_sha256": "8635fd7594439be368df8e83ad8f40cc7482f45b89c4dd3bee98a8904c8298a2",
+      "source_url": "https://www.medill.northwestern.edu/imc/full-time/admissions/international-applicants.html",
+      "check": "ok"
+     },
+     {
+      "text": "GRE or GMAT scores required (waiver available)",
+      "quote": "Medill requires GRE or GMAT scores.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Round 2 full-time IMC application deadline",
+      "date": "2026-11-30",
+      "quote": "Monday, November 30, 2026",
+      "source_sha256": "2272956d2bea9ed315829a2d51cff7d9467708ce89f7d325af643b885ca2176e",
+      "source_url": "https://www.medill.northwestern.edu/imc/full-time/admissions/",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3 full-time IMC application deadline",
+      "date": "2027-03-15",
+      "quote": "Monday, March 15, 2027",
+      "source_sha256": "2272956d2bea9ed315829a2d51cff7d9467708ce89f7d325af643b885ca2176e",
+      "source_url": "https://www.medill.northwestern.edu/imc/full-time/admissions/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Education: Learning Sciences (SESP)",
+   "url": "https://sesp.northwestern.edu/graduate-professional/teaching-learning-and-education/msed-learning-sciences/apply.html",
+   "snapshot_sha256": "a3c4d5d2d86a2ec185ce17b5f9f46b81457efec59e68b921e1706f14e87539ab",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a bachelor's degree from a regionally accredited US institution",
+     "quote": "You must have the equivalent of a bachelor's degree from a regionally-accredited US institution to be eligible for the MSEd Program.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "To be considered for the MSEd Program, you must earn an IELTS score of at least 7.5; for the TOEFL iBT, you must receive a score of 100 or higher on the former 120‑point scale, or 5.0 or higher on the new 6.0‑point scale.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "To be considered for the MSEd Program, you must earn an IELTS score of at least 7.5; for the TOEFL iBT, you must receive a score of 100 or higher on the former 120‑point scale, or 5.0 or higher on the new 6.0‑point scale.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority deadline",
+      "date": "2027-01-11",
+      "quote": "January 11th, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 regular deadline",
+      "date": "2027-04-05",
+      "quote": "April 5th, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Education: Educational Studies (SESP)",
+   "url": "https://sesp.northwestern.edu/graduate-professional/teaching-learning-and-education/msed-educational-studies/apply.html",
+   "snapshot_sha256": "fd4b22ce2c46a80e464d0660ac2d2a268d5739d319f10e142d47cc123f968003",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a bachelor's degree from a regionally accredited US institution",
+     "quote": "You must have the equivalent of a bachelor's degree from a regionally-accredited US institution to be eligible for the MSEd Program.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "To be considered for the MSEd Program, you must earn an IELTS score of at least 7.5; for the TOEFL iBT, you must receive a score of 100 or higher on the former 120‑point scale, or 5.0 or higher on the new 6.0‑point scale.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "To be considered for the MSEd Program, you must earn an IELTS score of at least 7.5; for the TOEFL iBT, you must receive a score of 100 or higher on the former 120‑point scale, or 5.0 or higher on the new 6.0‑point scale.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority deadline",
+      "date": "2027-01-11",
+      "quote": "January 11th, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 regular deadline",
+      "date": "2027-04-05",
+      "quote": "April 5th, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Education: Elementary Teaching (SESP)",
+   "url": "https://sesp.northwestern.edu/graduate-professional/teaching-learning-and-education/msed-elementary-teaching/apply.html",
+   "snapshot_sha256": "29e75536bf39629cd7c12c2574a5d1c18bdda381511f992cdbd599ea3a41ee0b",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a bachelor's degree from a regionally accredited US institution",
+     "quote": "You must have the equivalent of a bachelor's degree from a regionally-accredited US institution to be eligible for the MSEd Program.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "To be considered for the MSEd Program, you must earn an IELTS score of at least 7.5; for the TOEFL iBT, you must receive a score of 100 or higher on the former 120‑point scale, or 5.0 or higher on the new 6.0‑point scale.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "To be considered for the MSEd Program, you must earn an IELTS score of at least 7.5; for the TOEFL iBT, you must receive a score of 100 or higher on the former 120‑point scale, or 5.0 or higher on the new 6.0‑point scale.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority deadline",
+      "date": "2027-01-11",
+      "quote": "January 11th, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 regular deadline",
+      "date": "2027-04-05",
+      "quote": "April 5th, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Education: Secondary Teaching (SESP)",
+   "url": "https://sesp.northwestern.edu/graduate-professional/teaching-learning-and-education/msed-secondary-teaching/apply.html",
+   "snapshot_sha256": "8120b4dbd5ff6f665cb449e28e1ad98513e60276152218cea3c256a4be81f4d2",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a bachelor's degree from a regionally accredited US institution",
+     "quote": "You must have the equivalent of a bachelor's degree from a regionally-accredited US institution to be eligible for the MSEd Program.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "To be considered for the MSEd Program, you must earn an IELTS score of at least 7.5; for the TOEFL iBT, you must receive a score of 100 or higher on the former 120‑point scale, or 5.0 or higher on the new 6.0‑point scale.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "To be considered for the MSEd Program, you must earn an IELTS score of at least 7.5; for the TOEFL iBT, you must receive a score of 100 or higher on the former 120‑point scale, or 5.0 or higher on the new 6.0‑point scale.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority deadline",
+      "date": "2027-01-11",
+      "quote": "January 11th, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 regular deadline",
+      "date": "2027-04-05",
+      "quote": "April 5th, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Higher Education Administration and Policy (SESP)",
+   "url": "https://sesp.northwestern.edu/graduate-professional/higher-education-administration-and-policy/ms-higher-education-administration-policy/apply.html",
+   "snapshot_sha256": "960a6b06d307e939aa1f05e1c99499218d78277c7ed25e096778201b0d7a0a5d",
+   "fields": {
+    "academic": {
+     "text": "Transcript GPA(s) cannot be lower than 3.0",
+     "quote": "The transcript GPA(s) is an important indicator of an applicant’s academic capabilities and cannot be lower than a 3.0.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 full-time early application",
+      "date": "2027-01-11",
+      "quote": "Master's Degree full-time early application: January 11, 2027.",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final deadline",
+      "date": "2027-08-16",
+      "quote": "Full-Time, part-time, and Certificate: August 16, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Technology, People, and Policy (SESP, MTePP)",
+   "url": "https://sesp.northwestern.edu/graduate-professional/technology-people-and-policy/ms-technology-people-and-policy/apply.html",
+   "snapshot_sha256": "406492f9cba3f92ef20f949b1d1a71ab854e364339d5580f7e4c67d62bd767dc",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from a recognized college or university; at least 3.0 GPA on a 4.0 scale in the U.S.",
+     "quote": "You'll need a strong academic record from a recognized college or university with a bachelor’s degree; in the U.S., this implies at least a 3.0 grade point average on a 4.0 point scale.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "You must receive a score of 100 or higher on the TOEFL iBT or 7.5 or higher on the IELTS in order to be considered for the MTePP Program.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "You must receive a score of 100 or higher on the TOEFL iBT or 7.5 or higher on the IELTS in order to be considered for the MTePP Program.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority deadline",
+      "date": "2027-01-11",
+      "quote": "January 11, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 regular deadline",
+      "date": "2027-04-05",
+      "quote": "April 5, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Biostatistics (Feinberg)",
+   "url": "https://www.feinberg.northwestern.edu/sites/biostatistics/admissions/requirements.html",
+   "snapshot_sha256": "d8eca982c56f4760239476ecaf4371148af60022e5bc4604e8a0643fb03417f2",
+   "fields": {
+    "academic": {
+     "text": "Baccalaureate or professional degree and undergraduate GPA of 3.0 or higher",
+     "quote": "Undergraduate GPA of 3.0 or higher.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Differential and integral calculus before starting the program",
+      "quote": "Taken differential and integral calculus (prerequisite courses) before starting the program.",
+      "check": "ok"
+     }
+    ],
+    "toefl": {
+     "overall": 100,
+     "quote": "For the TOEFL, you must score 600 or higher on the paper-based test, 250 or higher on the computer-based test or 100 or higher on the internet-based test. For the IELTS, you must receive a score of 7.0 or higher.",
+     "source_sha256": "769ef11ecd76037cc3a1e8aca8cff10944afc6b3605cd2fa85c0169266064c20",
+     "source_url": "https://www.feinberg.northwestern.edu/sites/biostatistics/admissions/how-to-apply.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "For the TOEFL, you must score 600 or higher on the paper-based test, 250 or higher on the computer-based test or 100 or higher on the internet-based test. For the IELTS, you must receive a score of 7.0 or higher.",
+     "source_sha256": "769ef11ecd76037cc3a1e8aca8cff10944afc6b3605cd2fa85c0169266064c20",
+     "source_url": "https://www.feinberg.northwestern.edu/sites/biostatistics/admissions/how-to-apply.html",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Epidemiology (Feinberg)",
+   "url": "https://www.feinberg.northwestern.edu/sites/ms-epi/admissions/index.html",
+   "snapshot_sha256": "b145bbf291463887e69728df189b4d695cd07a574018cd16e6a70cff1c919c2e",
+   "fields": {
+    "academic": {
+     "text": "Undergraduate GPA of 3.0 or higher",
+     "quote": "Earned an undergraduate GPA of 3.0 or higher",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "For the TOEFL, you must score 600 or higher on the paper-based test, 250 or higher on the computer-based test or 100 or higher on the internet-based test. For the IELTS, you must receive a score of 7.0 or higher.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "For the TOEFL, you must score 600 or higher on the paper-based test, 250 or higher on the computer-based test or 100 or higher on the internet-based test. For the IELTS, you must receive a score of 7.0 or higher.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 34,
+  "机器核对": 34,
+  "待人工": 0
+ }
+}
