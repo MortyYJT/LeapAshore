@@ -20,6 +20,7 @@ import fcntl
 import hashlib
 import json
 import os
+import ssl
 import subprocess
 import sys
 import time
@@ -101,6 +102,21 @@ def block_host(host: str, reason: str, root: Path = SNAPSHOT_ROOT) -> None:
 ROBOTS_TTL = 24 * 3600
 
 
+def tls_context() -> ssl.SSLContext:
+    """A verifying TLS context against a current root store.
+
+    Verification is never turned off. macOS's /etc/ssl/cert.pem lacks newer roots such as HARICA TLS
+    RSA Root CA 2021, which signs the GEANT certificates of many European universities, so every
+    such site failed as "self-signed certificate in chain". certifi's bundle has them; it is used
+    when installed (it comes with httpx and requests) and the system store otherwise.
+    """
+    try:
+        import certifi
+    except ImportError:
+        return ssl.create_default_context()
+    return ssl.create_default_context(cafile=certifi.where())
+
+
 KEEP_OUT_MARK = "# leapashore keep-out: "
 NO_ANSWER_TTL = 3600
 
@@ -127,7 +143,7 @@ def robots_rules(base: str, root: Path = SNAPSHOT_ROOT) -> list[str]:
     wait_for_turn(urlsplit(base).netloc, root)
     try:
         request = urllib.request.Request(f"{base}/robots.txt", headers={"User-Agent": USER_AGENT})
-        with urllib.request.urlopen(request, timeout=TIMEOUT) as response:
+        with urllib.request.urlopen(request, timeout=TIMEOUT, context=tls_context()) as response:
             lines = response.read().decode("utf-8", "replace").splitlines()
     except urllib.error.HTTPError as error:
         lines = _keep_out(f"HTTP {error.code}") if error.code in (401, 403, 429) or error.code >= 500 else []
@@ -169,7 +185,7 @@ class CheckedRedirects(urllib.request.HTTPRedirectHandler):
 def fetch_html(url: str, refusal=lambda url: None) -> tuple[int, str, str, str]:
     """(status, final_url, content_type, html) over plain HTTP."""
     request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept": "text/html,*/*"})
-    opener = urllib.request.build_opener(CheckedRedirects(refusal))
+    opener = urllib.request.build_opener(CheckedRedirects(refusal), urllib.request.HTTPSHandler(context=tls_context()))
     try:
         with opener.open(request, timeout=TIMEOUT) as response:
             raw = response.read()

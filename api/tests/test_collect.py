@@ -217,7 +217,7 @@ def test_a_plain_fetch_stops_before_following_a_redirect_it_may_not_follow():
 def test_robots_txt_errors_mean_keep_out_unless_the_file_is_simply_missing(tmp_path, monkeypatch, code, allowed):
     import urllib.error
 
-    def refuse(request, timeout=None):
+    def refuse(request, timeout=None, context=None):
         raise urllib.error.HTTPError(request.full_url, code, "x", {}, None)
 
     monkeypatch.setattr(snap.urllib.request, "urlopen", refuse)
@@ -351,7 +351,7 @@ def test_an_unanswered_robots_txt_says_so_and_is_asked_again_sooner(tmp_path, mo
     import os
     import time as _time
 
-    def timeout(request, timeout=None):
+    def timeout(request, timeout=None, context=None):
         raise TimeoutError("timed out")
 
     monkeypatch.setattr(snap.urllib.request, "urlopen", timeout)
@@ -362,6 +362,17 @@ def test_an_unanswered_robots_txt_says_so_and_is_asked_again_sooner(tmp_path, mo
     old = _time.time() - 2 * 3600
     os.utime(cache, (old, old))
     asked = []
-    monkeypatch.setattr(snap.urllib.request, "urlopen", lambda request, timeout=None: asked.append(1) or (_ for _ in ()).throw(TimeoutError()))
+    monkeypatch.setattr(snap.urllib.request, "urlopen", lambda request, timeout=None, context=None: asked.append(1) or (_ for _ in ()).throw(TimeoutError()))
     snap.refusal("https://ips.example.my/programmes", tmp_path)
     assert asked, "a cached non-answer older than an hour is asked again"
+
+
+def test_tls_verification_stays_on_and_uses_a_current_root_store():
+    """macOS's /etc/ssl/cert.pem lacks HARICA TLS RSA Root CA 2021, which signs the GEANT certificates
+    of many European universities; the context must verify, against a store that has it."""
+    import ssl
+
+    context = snap.tls_context()
+    assert context.verify_mode == ssl.CERT_REQUIRED and context.check_hostname
+    subjects = {dict(x[0] for x in cert["subject"]).get("commonName") for cert in context.get_ca_certs()}
+    assert "HARICA TLS RSA Root CA 2021" in subjects
