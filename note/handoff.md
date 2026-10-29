@@ -13,7 +13,7 @@
 - 下一步：`TASKS.md` P0 第四条「修顾问检索：先测基线，再改」。
 - 线上运行的是 main（截至 PR #34 合并，10-30 部署；生产库已用 `remove_schools --apply` 删掉日本 8 所），地址 https://leapashore.mortyyjt.site 。个人网站 https://mortyyjt.site 也由这里的 Caddy 出。
 - 生产库（10-30，PR #34 部署后）：programs 7496（删日本 8 所前 7586），范围外国家项目 0，`verified_at` 非空 0。最近一次部署前的备份在服务器 `~/db-backup-20261030-pre-scope.sql.gz`。
-- `make verify`（PR #36，10-30）：后端 393、前端 232、走查 106/106（本机登录模式）。
+- `make verify`（PR #36，10-30）：后端 394、前端 232、走查 106/106（本机登录模式）。
 
 ## 开放问题
 
