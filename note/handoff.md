@@ -19,7 +19,8 @@
 - **P0 全部做完**（只剩卡在 MortyYJT 本人的部分，见下面「卡在 MortyYJT」）。
 - 截止日期和学术要求入库（P1 第一条，PR #48）：Alembic `b7d4e2a91c60` 加 `programs.academic_requirement`、`programs.academic_source_url` 和表 `program_deadlines`；导入器写过了 `verify` 的学术要求摘要和截止日期，重跑不改任何行。截止日期**不写进** `applications.official_deadline`（那是组合行自己记的日期）；`GET /api/applications` 的 `program.deadlines` 带上项目的截止日期，前端 `web/lib/deadlines.ts` 的 `deadlineOf` 决定显示哪个（组合行自己的 > 下一轮 > 全部已过的标「已截止」> 未收录），「今天」按北京时间在渲染时算。「有要求」口径加了学术要求和截止日期（后端 `has_requirement_data`、前端 `statesARequirement`、顾问评估 `evals/run_advisor.py` 的相关集，三处一起改）。本机：3,986 条截止日期、4,831 个学术要求、「有要求」5,161。设计 `openspec/changes/requirement-dates/`（未归档）。
 - 截止日期入库已部署（10-30，只重建 api 和 web）：部署前备份服务器 `~/db-backup-20261030-pre-deadlines.sql.gz`，Alembic 现在是 `b7d4e2a91c60`；生产数和本机一致（3,986 / 4,831 / 「有要求」5,161 / 已截止 130）；用户的组合行和路线图行部署前后整表 md5 相同（记录在服务器 `~/pre-deadlines-user-dates.txt`）。
-- 下一步：`TASKS.md` P1 第二条「采集队列 + 变更检测」。
+- 采集队列（P1 第二条，第一阶段代码 PR #50）：Celery + Redis，每页一个任务，状态在新表 `collect_pages`，要求变化记 `requirement_changes`（Alembic `6afe86aaf7b6`）。设计 `openspec/changes/collect-queue/`（tasks.md 是进度清单，第二阶段补采的进度也记在那里）。本机跑法：`make worker`（或 `api/var/work/start-worker.sh`，带 DeepSeek 配置），`python -m app.collect.queue status|discover|enqueue|resume|export`（在 `api/` 下）。队列**不写目录库**：`export` 写回采集文件 → 审阅提交 → 原导入器入库。
+- 下一步：P1 第二条第二阶段（补采数据，见 `openspec/changes/collect-queue/tasks.md` 的 Run log），然后 P1 第三条「对话持久化」。
 - 线上（10-30）已跑 PR #40：compose 多了 `redis` 容器；部署前备份在服务器 `~/db-backup-20261030-pre-limits.sql.gz`（Alembic 仍是 `5c1e7f0a2b3d`，PR #40 没改表）。
 - 线上运行的是 main（截至 PR #38 合并，10-30 部署，登录模式关；生产库已用 `remove_schools --apply` 删掉日本 8 所），地址 https://leapashore.mortyyjt.site 。个人网站 https://mortyyjt.site 也由这里的 Caddy 出。
 - 生产库（10-30，PR #34 部署后）：programs 7496（删日本 8 所前 7586），范围外国家项目 0，`verified_at` 非空 0。最近一次部署前的备份在服务器 `~/db-backup-20261030-pre-retrieval.sql.gz`（PR #38 前；Alembic 现在是 `5c1e7f0a2b3d`）。
@@ -68,10 +69,15 @@
   5. `sudo docker compose -f compose.prod.yaml up -d --force-recreate --no-deps api`；`docker compose logs api` 里没有 `AUTH_ENABLED=true in production needs a real mail backend` 才算启动成功。用自己的邮箱在网站上登录一次，确认收到信（看一下是不是进了垃圾箱）。
   6. 加 90 天清理的 cron（`crontab -e`，用服务器本地时间）：`17 3 * * * cd ~/offerpilot/deploy && sudo docker compose -f compose.prod.yaml exec -T api python -m app.cleanup --apply >> ~/cleanup.log 2>&1`。先手动跑一次不带 `--apply` 的看报告。
   7. 回滚：删掉 `.env` 里的 `AUTH_ENABLED=true` 再重建 api，回到匿名模式；表可以留着。
+- 采集队列（PR #50 起）：生产 compose 多了 `worker`（`--pool threads --concurrency 2`）和 `beat`（只能有一个），快照在命名卷 `snapshots`（`/app/var/snapshots`），beat 调度文件在卷 `beat-data`。beat 每天 04:07（北京）重采 30 天没采过的页面（默认每天 200 页、模型费 1 元，`deploy/.env` 里 `COLLECT_*` 可调），03:17 跑 90 天匿名清理（只在 `AUTH_ENABLED=true` 时删，所以「切到登录模式」第 6 步的 cron 不用加了）。看进度：`sudo docker compose -f compose.prod.yaml exec -T worker python -m app.collect.queue status --budget daily:$(TZ=Asia/Shanghai date +%F)`。要把生产发现的变化入库：容器里 `python -m app.collect.queue export --out /app/var/snapshots/_export`，`docker cp` 出来对比仓库里的文件，审阅、提交、按上面的导入步骤导入。生产镜像没 Chrome，要渲染的页面在生产记 `deferred`。
 - compose 里有 `redis` 服务（顾问限流，P1 Celery 复用），数据卷 `redis-data`；api 依赖它健康才启动。Caddyfile 改了的部署，`up -d --build` 之后还要单独 `up -d --force-recreate --no-deps caddy`（见下一条）。看今天的用量：`sudo docker compose -f compose.prod.yaml exec redis redis-cli --scan --pattern 'leapashore:tokens:site:*'` 再 `GET` 对应键。
 - 只改 Caddy 配置时，只重启 caddy：`sudo docker compose -f compose.prod.yaml up -d --force-recreate --no-deps caddy`（不加 `--force-recreate` 时，只改 Caddyfile 内容 compose 不会重建容器，rsync 换掉的新文件也不会进到旧容器的单文件挂载里）。
 
 ## 坑
+
+- Celery worker 在 macOS 上必须 `--pool threads`（prefork 在 Python 3.12/macOS 是 spawn，任务一跑就 `ValueError: not enough values to unpack`）。生产也用 threads，保持一致。快照工具的文件写入（robots 缓存、拒绝名单、快照）因此都改成了加锁 + 原子替换。
+- 采集队列的 broker 是 Redis 1 号库（`CELERY_BROKER_URL`），顾问计数在 0 号库；清空队列用 `celery -A app.worker purge -f`，别 `FLUSHALL`。
+- 拒绝记录（`api/var/snapshots/_blocked_hosts.json`）新条目带时间、30 天后过期；10-30 之前的旧条目是纯字符串、永久有效，要重试只能人手删那一行。
 
 - 后端测试要 Redis（`make db-up` 现在同时起 db 和 redis，本机端口 56379）；没起时顾问相关测试会 503 失败。每个测试用自己的键前缀（conftest 的 `isolate_the_advisor_limits`），结束时删掉；这个清理 10-30 有一次在 redis-py 的握手里抛了 `AttributeError`（不可复现），已改成一并吞掉。
 - 抽取器测试回放 `api/tests/fixtures/extract/response.json`（对虚构页面录的真实响应）；改了 `ProgramRequirements` 的结构就要重录：对 `page.html` 调一次真实 API，把原始响应体存下来（录制脚本没进库，思路是给 `ChatOpenAI` 传带 response hook 的 `httpx.Client`）。
