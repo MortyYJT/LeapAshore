@@ -11,6 +11,10 @@
 
 ## P0：最先修
 
+- [ ] **修复个人网站 mortyyjt.site（线上故障，最先做）**
+  - 现状（2026-10-30）：`mortyyjt.site` 和 `www.mortyyjt.site` 的 DNS 已经指向本服务器，网站文件也已在服务器 `/srv/mortyyjt.site`，但线上 Caddy 配置里没有这两个域名，HTTPS 握手报错，个人网站打不开。原因：一次前端部署用 main 覆盖了 Caddy 配置，而托管个人网站的 PR #28 一直没合并。
+  - 要做：解决 PR #28 和 main 在 `note/handoff.md` 上的冲突，并把 handoff 里"主域名归个人网站，本项目不要占用"改成"由本服务器的 Caddy 托管，文件在 `/srv/mortyyjt.site`，由个人网站仓库的 GitHub Actions 上传"；然后合并 #28，部署时只重启 caddy 容器。
+  - 完成标准：`https://mortyyjt.site` 返回 200；`www.mortyyjt.site` 跳转到主域名；`https://leapashore.mortyyjt.site` 仍返回 200。
 - [ ] **按新范围收缩学校库**
   - 从 346 所里移除 59 所：中国大陆 16、日本 10、印度 6、台湾 4、印尼 4、泰国 1、哈萨克斯坦 1、南非 3、拉美 9、以色列 2、黎巴嫩 1、土耳其 1、俄罗斯 1。
   - 只动目标院校列表（`web/prototype-fixtures/overseas-institutions.json` 和相关数据）；申请人本科院校库（`cn-institutions.json`）不动。

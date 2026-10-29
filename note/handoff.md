@@ -5,7 +5,7 @@
 ## 现在（2026-10-30）
 
 - 规则已收成一份 `CLAUDE.md`；任务清单是根目录的 `TASKS.md`，按顺序做。
-- 下一步：`TASKS.md` P0 第一条「按新范围收缩学校库」。
+- 下一步：`TASKS.md` P0 第一条「修复个人网站 mortyyjt.site」（线上故障）。
 - 线上运行的是 main（截至 PR #30），地址 https://leapashore.mortyyjt.site 。
 - 生产库（10-29）：programs 7586，`verified_at` 非空 0。上次部署前的备份在服务器 `~/db-backup-20261029-pre-frontend.sql.gz`。
 - `make verify` 自 PR #29 之后没有重跑；`TASKS.md` P0 里有这一项。
