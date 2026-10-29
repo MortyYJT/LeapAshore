@@ -22,7 +22,7 @@ import argparse
 import json
 import sys
 from collections import Counter
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import FIRST_COMPLETED, ThreadPoolExecutor, wait
 from dataclasses import asdict
 from datetime import date
 from pathlib import Path
@@ -125,12 +125,10 @@ def main(argv: list[str] | None = None) -> int:
         jobs += [(data, program) for program in programs]
 
     spent = 0.0
-    rows: list[dict] = []
+    rows: list[dict | None] = [None] * len(jobs)
 
     def one(job):
         data, program = job
-        if spent > args.budget_cny:
-            return {"school": data["school_key"], "program": program["name"], "skipped": "budget"}
         try:
             result = extract_snapshot(data["school_key"], program["snapshot_sha256"], program_name=program["name"],
                                       school_name=data["school_name_en"], country=data.get("country"),
@@ -142,17 +140,31 @@ def main(argv: list[str] | None = None) -> int:
             "school": data["school_key"], "program": program["name"], "snapshot_sha256": program["snapshot_sha256"],
             "model": result.model, "usage": result.usage, "truncated": result.truncated, "error": result.error,
             "kept": kept, "fields": result.program["fields"], "rejected": result.rejected,
-            "unused": result.unused, "attempts": result.attempts, "status": result.program["status"],
+            "unused": result.unused, "attempts": result.attempts,
+            "status": result.program["status"],
             "coverage": coverage(program["fields"], result.program["fields"]),
         }
 
+    # At most `workers` calls in flight, and a new one starts only while the cost so far is within the
+    # budget, so a run overshoots it by at most the calls already running.
+    pending = list(enumerate(jobs))
     with ThreadPoolExecutor(max_workers=args.workers) as pool:
-        for row in pool.map(one, jobs):
-            rows.append(row)
-            if "usage" in row:
-                spent += cost_cny(row["usage"])
-            print(f"{row['school'][:28]:28} {row['program'][:50]:50} kept={row.get('kept')} "
-                  f"rejected={len(row.get('rejected', []))} {row.get('error') or row.get('skipped') or ''}", flush=True)
+        running = {}
+        while pending or running:
+            while pending and len(running) < args.workers and spent <= args.budget_cny:
+                index, job = pending.pop(0)
+                running[pool.submit(one, job)] = index
+            if not running:
+                break
+            finished, _ = wait(running, return_when=FIRST_COMPLETED)
+            for future in finished:
+                row = rows[running.pop(future)] = future.result()
+                if "usage" in row:
+                    spent += cost_cny(row["usage"])
+                print(f"{row['school'][:28]:28} {row['program'][:50]:50} kept={row.get('kept')} "
+                      f"rejected={len(row.get('rejected', []))} {row.get('error') or ''}", flush=True)
+    for index, (data, program) in pending:
+        rows[index] = {"school": data["school_key"], "program": program["name"], "skipped": "budget"}
 
     done = [r for r in rows if "usage" in r]
     kept = sum(r["kept"] for r in done)
@@ -167,7 +179,8 @@ def main(argv: list[str] | None = None) -> int:
         "schools": list(SAMPLE),
         "programs_attempted": len(jobs),
         "programs_extracted": len(done),
-        "call_errors": [r for r in rows if "usage" not in r],
+        "call_errors": [r for r in rows if "usage" not in r and "skipped" not in r],
+        "skipped_for_budget": sum(1 for r in rows if "skipped" in r),
         "answer_errors": sum(1 for r in done if r["error"]),
         "truncated_pages": sum(1 for r in done if r["truncated"]),
         "values_returned": kept + len(rejected),

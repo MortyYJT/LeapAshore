@@ -17,7 +17,7 @@
 - 线上（10-30）已跑 PR #40：compose 多了 `redis` 容器；部署前备份在服务器 `~/db-backup-20261030-pre-limits.sql.gz`（Alembic 仍是 `5c1e7f0a2b3d`，PR #40 没改表）。
 - 线上运行的是 main（截至 PR #38 合并，10-30 部署，登录模式关；生产库已用 `remove_schools --apply` 删掉日本 8 所），地址 https://leapashore.mortyyjt.site 。个人网站 https://mortyyjt.site 也由这里的 Caddy 出。
 - 生产库（10-30，PR #34 部署后）：programs 7496（删日本 8 所前 7586），范围外国家项目 0，`verified_at` 非空 0。最近一次部署前的备份在服务器 `~/db-backup-20261030-pre-retrieval.sql.gz`（PR #38 前；Alembic 现在是 `5c1e7f0a2b3d`）。
-- `make verify`（抽取这条，10-30）：后端 485、前端 235、走查对 :3000 旧 dev server 28/30（`/assess` 404 和一处超时，老问题），对 `make build` 产物 106/106。
+- `make verify`（抽取这条，10-30）：后端 489（审查修复后）、前端 235、走查对 :3000 旧 dev server 28/30（`/assess` 404 和一处超时，老问题），对 `make build` 产物 106/106。
 
 ## 开放问题
 

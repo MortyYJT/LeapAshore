@@ -252,3 +252,25 @@ def test_a_number_outside_its_scale_is_refused_whole(root, name, key, value):
     assert name not in result.program["fields"]
     [refusal] = result.rejected
     assert refusal["field"] == name and refusal["reason"].startswith(f"{key}={value:g} is outside")
+
+
+@pytest.mark.parametrize("name", ["academic", "prerequisites", "deadlines"])
+def test_a_null_list_is_nothing_stated_not_a_lost_answer(root, name):
+    def plant(args):
+        args[name] = None
+        return args
+
+    result = run(answering(with_arguments(plant)), root)
+    assert result.error is None and result.attempts == 1
+    assert name not in result.program["fields"]
+    assert {"ielts", "toefl"} <= set(result.program["fields"])
+
+
+def test_the_two_scales_note_needs_a_band_score_in_the_quote(root):
+    def plant(args):
+        args["toefl"]["quote"] = "TOEFL iBT: for tests taken on or before 20 January 2026, a total of 90"
+        return args
+
+    toefl = run(answering(with_arguments(plant)), root).program["fields"]["toefl"]
+    assert toefl["check"] == "ok" and toefl["overall"] == 90
+    assert "scale_note" not in toefl

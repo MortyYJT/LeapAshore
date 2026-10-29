@@ -100,16 +100,20 @@ class ProgramRequirements(BaseModel):
 
     academic: list[Academic] = Field(
         default_factory=list, description="One entry per alternative academic route the page states, in page order.")
-
-    @field_validator("academic", mode="before")
-    @classmethod
-    def _one_route_is_a_list_of_one(cls, value):
-        return [value] if isinstance(value, dict) else value
     china_requirement: ChinaRequirement | None = None
     ielts: Ielts | None = None
     toefl: Toefl | None = None
     prerequisites: list[Prerequisite] = Field(default_factory=list)
     deadlines: list[Deadline] = Field(default_factory=list)
+
+    @field_validator("academic", "prerequisites", "deadlines", mode="before")
+    @classmethod
+    def _lists_accept_null_and_one_object(cls, value):
+        # The prompt says "leave it null (or the list empty)": a null list is nothing stated, and one
+        # object where a list was asked for is a list of one. Neither should throw the answer away.
+        if value is None:
+            return []
+        return [value] if isinstance(value, dict) else value
 
 
 PROMPT = """You extract the admission requirements of one taught master's program from the text of its \
@@ -210,6 +214,11 @@ def _number_problem(name: str, item: dict, keys: tuple[str, ...]) -> str | None:
     return None
 
 
+def _states_a_band_score(quote: str) -> bool:
+    """Whether the quote states a score between 1 and 6, the range of the TOEFL band scale."""
+    return any(1 <= float(number) <= 6 for number in re.findall(r"(?<![\d.])\d+(?:\.\d+)?(?!\.?\d)", quote))
+
+
 def to_fields(parsed: ProgramRequirements) -> tuple[dict, list[dict], list[dict]]:
     """The model's answer in the requirement-file shape, the items refused before the quote check, and
     the academic routes after the first, which the file's single `academic` field has no room for.
@@ -258,7 +267,9 @@ def to_fields(parsed: ProgramRequirements) -> tuple[dict, list[dict], list[dict]
         single("ielts", parsed.ielts.model_dump(), ("overall", "min_band"))
     if parsed.toefl:
         toefl = parsed.toefl.model_dump()
-        if toefl.pop("two_scales"):
+        # The note is a claim about the quote, so it is written only when the quote also states a
+        # number on the 1-6 scale; otherwise the model's flag is not repeated.
+        if toefl.pop("two_scales") and _states_a_band_score(toefl.get("quote") or ""):
             toefl["scale_note"] = TOEFL_TWO_SCALES
         single("toefl", toefl, ("overall", "min_band"))
     for item in parsed.prerequisites:
