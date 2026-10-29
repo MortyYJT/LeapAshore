@@ -9,8 +9,8 @@
 - 学校库已收缩到范围内 287 所（PR #34）：29 个国家和地区，日本 8 所采集文件已删。
 - **范围内采集统计（10-30 重算，「仓库清理」直接用）**：133 所有采集文件，其中 120 所有项目（13 所 0 项目：被拦或连不上），共 5,223 个项目，5,163 个 `机器核对`、60 个 `待核验`；学校库里还有 154 所未采。README 和 PRD 已改成这组数。重算命令见 `TASKS.md` 该条。
 - 下一步：`TASKS.md` P0 第三条「账号与登录」。
-- 线上运行的是 main（截至 PR #28 合并，10-30；应用代码与 PR #30 时相同，这次只重建了 caddy），地址 https://leapashore.mortyyjt.site 。个人网站 https://mortyyjt.site 也由这里的 Caddy 出。
-- 生产库（10-29）：programs 7586，`verified_at` 非空 0。最近一次部署前的备份在服务器 `~/db-backup-20261030-pre-site.sql.gz`。
+- 线上运行的是 main（截至 PR #34 合并，10-30 部署；生产库已用 `remove_schools --apply` 删掉日本 8 所），地址 https://leapashore.mortyyjt.site 。个人网站 https://mortyyjt.site 也由这里的 Caddy 出。
+- 生产库（10-30，PR #34 部署后）：programs 7496（删日本 8 所前 7586），范围外国家项目 0，`verified_at` 非空 0。最近一次部署前的备份在服务器 `~/db-backup-20261030-pre-scope.sql.gz`。
 - `make verify`（PR #34，10-30）：后端 325、前端 226 全过，走查对 `make build` 产物 73/73。
 
 ## 开放问题
