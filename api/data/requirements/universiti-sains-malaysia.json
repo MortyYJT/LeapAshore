@@ -4,31 +4,1378 @@
  "country": "Malaysia",
  "collector": "claude-code-subagent",
  "collected_at": "2026-10-29",
- "listing_urls": [],
- "blocked": [
-  {
-   "url": "https://admission.usm.my/",
-   "reason": "robots.txt itself: no answer (URLError) in run 3, after the TLS root-store fix; treated as keep-out"
-  },
-  {
-   "url": "https://ips.usm.my/",
-   "reason": "robots.txt itself: no answer (URLError) in run 3, after the TLS root-store fix; treated as keep-out"
-  },
-  {
-   "url": "https://www.usm.my/",
-   "reason": "robots.txt itself: no answer (URLError) in run 3, after the TLS root-store fix; treated as keep-out"
-  }
+ "listing_urls": [
+  "https://admission.usm.my/index.php/postgraduate/programmes",
+  "https://admission.usm.my/index.php/main/postgraduate",
+  "https://course.usm.my/postgraduate-en"
  ],
+ "blocked": [],
  "complete": false,
  "remaining_urls": [
-  "https://admission.usm.my/",
-  "https://ips.usm.my/"
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=223:msc-architecture-school-of-housing-building-and-planning&catid=51",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=229:msc-building-surveying-school-of-housing-building-and-planning&catid=51",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=188:msc-building-technology-school-of-housing-building-and-planning-2&catid=51",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=201:msc-housing-school-of-housing-building-and-planning&catid=51",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=203:msc-interior-design-school-of-housing-building-and-planning&catid=51",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=199:msc-planning-studies-school-of-housing-building-and-planning&catid=51",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=228:msc-project-management-school-of-housing-building-and-planning&catid=51",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=204:msc-quantity-surveying-school-of-housing-building-and-planning&catid=51",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=224:msc-bioprocess-technology-school-of-industrial-technology&catid=51",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=225:msc-bioresource-paper-and-coatings-technology-school-of-industrial-technology&catid=51",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=207:msc-environmental-technology-school-of-industrial-technology&catid=51",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=205:msc-food-technology-school-of-industrial-technology&catid=51",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=227:msc-clinical-pharmacy-school-of-pharmaceutical-sciences&catid=51",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=214:msc-pharmaceutical-chemistry-school-of-pharmaceutical-sciences&catid=51",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=216:msc-pharmaceutical-sciences-school-of-pharmaceutical-sciences&catid=51",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=211:msc-pharmaceutical-technology-school-of-pharmaceutical-sciences&catid=51",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=209:msc-pharmacology-school-of-pharmaceutical-sciences&catid=51",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=210:msc-physiology-school-of-pharmaceutical-sciences&catid=51",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=213:msc-social-and-administrative-pharmacy-school-of-pharmaceutical-sciences&catid=51",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=248:msc-sustainability-centre-for-global-sustainability-studies&catid=51",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=230:msc-healthcare-biotechnology-malaysian-institute-of-pharmaceuticals-and-nutraceuticals&catid=51",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=197:msc-pharmacy-national-poison-centre&catid=51",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=276:ma-civilisation-studies-school-of-distance-education&catid=52",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=274:ma-education-school-of-distance-education&catid=52",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=275:ma-educational-technology-school-of-distance-education&catid=52",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=295:ma-geography-school-of-distance-education&catid=52",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=297:ma-history-school-of-distance-education&catid=52",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=296:ma-literature-school-of-distance-education&catid=52",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=381:ma-management-school-of-distance-education&catid=52",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=298:master-of-social-science-anthropology-sociology-school-of-distance-education&catid=52",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=299:master-of-social-science-economics-school-of-distance-education&catid=52",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=300:master-of-social-science-political-science-school-of-distance-education&catid=52",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=256:ma-literature-school-of-humanities-2&catid=52",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=253:master-of-arts-in-malay-linguistics&catid=52",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=287:ma-interpretation-school-of-languages-literacies-translation&catid=52",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=285:ma-language-studies-school-of-languages-literacies-translation&catid=52",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=288:master-of-social-science-anthropology-sociology-school-of-social-sciences&catid=52",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=291:master-of-social-science-development-planning-management-school-of-social-sciences&catid=52",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=292:master-of-social-science-political-science-school-of-social-sciences&catid=52",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=293:master-of-social-science-psychology-school-of-social-sciences&catid=52",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=290:master-of-social-science-social-work-school-of-social-sciences&catid=52",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=272:master-of-islamic-development-management-centre-for-islamic-development-management-studies&catid=52",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=1427:master-of-public-administration-mpa-school-of-social-sciences-2&catid=52",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=368:ma-drama-theatre-school-of-arts&catid=53",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=367:ma-fine-arts-school-of-arts&catid=53",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=371:ma-music-school-of-arts&catid=53",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=363:master-of-arts-communication-school-of-communication&catid=53",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=345:mc-integrated-marketing-communication-school-of-communication&catid=53",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=369:ma-sustainability-centre-for-global-sustainability-studies&catid=53",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=360:ma-educational-technology-centre-for-instructional-technology-and-multimedia&catid=53",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=1425:ma-communication-school-of-communication-2&catid=53",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=399:msc-materials-engineering-school-of-materials-and-mineral-resources-engineering&catid=54",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=401:msc-mineral-resources-engineering-school-of-materials-and-mineral-resources-engineering&catid=54",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=400:msc-polymer-engineering-school-of-materials-and-mineral-resources-engineering&catid=54",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=805:master-of-science-in-materials-engineering-mixed-mode&catid=54",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=398:msc-mechanical-engineering-school-of-mechanical-engineering&catid=54",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=385:msc-microelectronic-engineering-collaborative-microelectronic-design-excellence-centre&catid=54",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=391:msc-river-urban-drainage-engineering-river-engineering-and-urban-drainage-research-centre&catid=54",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=459:msc-biomedicine-school-of-health-sciences-2&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=456:msc-forensic-science-school-of-health-sciences&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=509:msc-medical-radiation-school-of-health-sciences&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=508:msc-nursing-school-of-health-sciences&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=507:msc-nutrition-school-of-health-sciences&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=506:msc-sports-science-school-of-health-sciences&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=435:master-of-pathology-anatomic-pathology-school-of-medical-sciences&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=437:master-of-pathology-clinical-immunology-school-of-medical-sciences&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=436:master-of-pathology-haematology-school-of-medical-sciences&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=438:master-of-pathology-medical-microbiology-school-of-medical-sciences&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=501:msc-anatomy-school-of-medical-sciences&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=497:msc-chemical-pathology-school-of-medical-sciences&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=414:msc-clinical-anatomy-school-of-medical-sciences&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=489:msc-clinical-sciences-school-of-medical-sciences&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=502:msc-community-medicine-school-of-medical-sciences&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=483:msc-endocrinology-and-metabolism-school-of-medical-sciences&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=482:msc-epidemiology-school-of-medical-sciences&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=485:msc-health-education-school-of-medical-sciences&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=492:msc-human-genetics-school-of-medical-sciences&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=488:msc-medical-audiology-school-of-medical-sciences&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=455:msc-medical-education-school-of-medical-sciences-usm&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=487:msc-medical-imaging-school-of-medical-sciences&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=493:msc-medical-immunology-school-of-medical-sciences&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=494:msc-medical-microbiology-school-of-medical-sciences&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=495:msc-medical-parasitology-school-of-medical-sciences&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=503:msc-medical-physics-school-of-medical-sciences&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=491:msc-medical-physiology-school-of-medical-sciences&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=486:msc-medical-psychology-school-of-medical-sciences&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=484:msc-medical-radiation-school-of-medical-sciences&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=451:msc-medical-statistic-school-of-medical-sciences&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=454:msc-medical-statistic-school-of-medical-sciences-usm&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=481:msc-molecular-biology-school-of-medical-sciences&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=500:msc-neurosciences-school-of-medical-sciences&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=498:msc-nuclear-medicine-school-of-medical-sciences&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=496:msc-nutrition-school-of-medical-sciences&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=499:msc-pathology-school-of-medical-sciences&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=490:msc-pharmacology-school-of-medical-sciences&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=504:msc-reconstructive-science-school-of-medical-sciences&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=806:master-of-science-womens-health&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=443:master-of-surgery-neurosurgery-school-of-medical-sciences&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=444:master-of-surgery-plastic-surgery-school-of-medical-sciences&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=480:msc-psychology-advanced-medical-and-dental-institute&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=477:msc-community-medicine-advanced-medical-and-dental-institute&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=471:msc-medical-immunology-advanced-medical-and-dental-institute&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=472:msc-medical-microbiology-advanced-medical-and-dental-institute&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=478:msc-medical-physics-advanced-medical-and-dental-institute&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=468:msc-molecular-biology-advanced-medical-and-dental-institute&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=476:msc-neurosciences-advanced-medical-and-dental-institute&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=473:msc-nuclear-medicine-advanced-medical-and-dental-institute&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=465:msc-nutrition-advanced-medical-and-dental-institute&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=474:msc-pathology-advanced-medical-and-dental-institute&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=462:msc-pharmaceutical-chemistry-advanced-medical-and-dental-institute&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=461:msc-pharmaceutical-technology-advanced-medical-and-dental-institute&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=469:msc-pharmacology-advanced-medical-and-dental-institute&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=463:msc-pharmacy-advanced-medical-and-dental-institute&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=475:msc-sports-science-advanced-medical-and-dental-institute&catid=55",
+  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=568:master-of-psychology-clinical-sains-kl&catid=59"
  ],
- "notes": "Earlier runs failed on a TLS certificate error caused by our stale root store. In run 3 (store fixed) the snapshot tool still got no answer for robots.txt on admission.usm.my, ips.usm.my and www.usm.my, so nothing was fetched and no program was collected.",
- "programs": [],
+ "notes": "Earlier runs failed on a TLS certificate error caused by our stale root store (and a stale cached robots.txt). Run 3 read admission.usm.my and its linked course.usm.my; ips.usm.my and www.usm.my were not needed. Programme pages state CGPA and IELTS/TOEFL for international applicants but no application deadlines or China-specific rules, and the semester intake is not in the schema so it is left out. Programmes whose page did not show a coursework or mixed mode, and research, offshore, online and dual-degree entries, were skipped; the remaining master's pages on the programmes list were not reached.",
+ "programs": [
+  {
+   "name": "Master of Computer Science (Mixed Mode)",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=198:msc-computer-science-school-of-computer-sciences&catid=51",
+   "snapshot_sha256": "cfd7e1d7bfc8ab5b403b0daae6b78f83fd1837af894db8362cd5902e32a1f5cb",
+   "fields": {
+    "academic": {
+     "text": "A Bachelor’s degree in Computer Science/Computing/Information Technology or equivalent CGPA of at least 2.75/4.00",
+     "quote": "A Bachelor’s degree in Computer Science/Computing/Information Technology or equivalent CGPA of at least 2.75/4.00",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "A minimum of Band 6 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 60,
+     "quote": "A minimum score of 60 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Data Science - Coursework",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=191:msc-data-science-analytics-school-of-computer-sciences&catid=51",
+   "snapshot_sha256": "93c388cfa8c7a04754be2d509e4afd987d00b44d11394ef3339fbd34879c4f09",
+   "fields": {
+    "academic": {
+     "text": "A Bachelor’s degree in Computer Science/Computing/Information Technology or equivalent CGPA of at least 2.75/4.00",
+     "quote": "A Bachelor’s degree in Computer Science/Computing/Information Technology or equivalent CGPA of at least 2.75/4.00",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "A minimum of Band 6 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 60,
+     "quote": "A minimum score of 60 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Digital Transformation (Coursework)",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=194:msc-in-digital-transformation-school-of-computer-sciences-2022&catid=51",
+   "snapshot_sha256": "f62642c711c1786e554604d8e038bc9c5077a46431c46eb25fb9594be5ea3814",
+   "fields": {
+    "academic": {
+     "text": "A Bachelor’s degree in Computer Science/Computing/Information Technology or equivalent CGPA of at least 2.75/4.00",
+     "quote": "A Bachelor’s degree in Computer Science/Computing/Information Technology or equivalent CGPA of at least 2.75/4.00",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "A minimum of Band 6 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 60,
+     "quote": "A minimum score of 60 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Architecture by Coursework",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=190:master-of-architecture-school-of-housing-building-and-planning&catid=51",
+   "snapshot_sha256": "f6dd4c3c4c774555c318eb3db16bb143ca930f43ce74fd910affe6a44d8a6837",
+   "fields": {
+    "academic": {
+     "text": "2) Candidate should hold a good first degree in Bachelor of Science HBP (Architecture), USM or Bachelor of Architecture (equivalent to LAM Part I) from other universities of higher institutions accredited by the Board of Architects Malaysia (LAM) i. Hold a CGPA minimum of 2.75 for the Bachelor of Science HBP (Architecture) or from other universities or institutions with equivalent of LAM Part I with at least 6 months of working experience in relevant fields after graduation",
+     "quote": "2) Candidate should hold a good first degree in Bachelor of Science HBP (Architecture), USM or Bachelor of Architecture (equivalent to LAM Part I) from other universities of higher institutions accredited by the Board of Architects Malaysia (LAM) i. Hold a CGPA minimum of 2.75 for the Bachelor of Science HBP (Architecture) or from other universities or institutions with equivalent of LAM Part I with at least 6 months of working experience in relevant fields after graduation",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "A minimum of Band 6 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 60,
+     "quote": "A minimum score of 60 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Landscape Architecture by Coursework",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=193:master-of-landscape-architecture-school-of-housing-building-and-planning&catid=51",
+   "snapshot_sha256": "42ebba84cf651042c745c5a0398179546215a8592e1e6bc23cc0bb5d46e3f4a6",
+   "fields": {
+    "academic": {
+     "text": "A. Bachelor degree in Landscape Architecture or related area 1. CGPA of at least 2.75 / 4.00",
+     "quote": "A. Bachelor degree in Landscape Architecture or related area 1. CGPA of at least 2.75 / 4.00",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.0,
+     "quote": "A minimum of Band 5 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 40,
+     "quote": "A minimum score of 40 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Building Technology by Coursework",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=183:msc-building-technology-school-of-housing-building-and-planning-3&catid=51",
+   "snapshot_sha256": "740376a3ed2e2d558a7bba674fc22959b440db6ad8b8d10ce94c3c5579a0a59e",
+   "fields": {
+    "academic": {
+     "text": "A. Bachelor's degree in related area 1. CGPA of at least 2.75 / 4.00",
+     "quote": "A. Bachelor's degree in related area 1. CGPA of at least 2.75 / 4.00",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.0,
+     "quote": "A minimum of Band 5 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 40,
+     "quote": "A minimum score of 40 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Building Technology by Mixed",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=226:msc-building-technology-school-of-housing-building-and-planning&catid=51",
+   "snapshot_sha256": "853321432661775442861100aa3c767531c9b91219e37a64456787cd8d9c3ba5",
+   "fields": {
+    "academic": {
+     "text": "A. Bachelor's degree in Housing, Building and Planning USM or from other universities such as Engineering, Architecture, Building, Planning, Quantity Surveying, Building Surveying with: 1. CGPA of at least 2.75 / 4.00",
+     "quote": "A. Bachelor's degree in Housing, Building and Planning USM or from other universities such as Engineering, Architecture, Building, Planning, Quantity Surveying, Building Surveying with: 1. CGPA of at least 2.75 / 4.00",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.0,
+     "quote": "A minimum of Band 5 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 40,
+     "quote": "A minimum score of 40 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Project Management by Coursework",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=189:msc-project-management-school-of-building-housing-and-planning&catid=51",
+   "snapshot_sha256": "23d7ab75a8b55f5d7e2d6cab53c37e80da5145043911053cb8e35c73a5c8ef6e",
+   "fields": {
+    "academic": {
+     "text": "A. Bachelor's degree in related area 1. CGPA of at least 2.75 / 4.00",
+     "quote": "A. Bachelor's degree in related area 1. CGPA of at least 2.75 / 4.00",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.0,
+     "quote": "A minimum of Band 5 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 40,
+     "quote": "A minimum score of 40 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Tourism Development by Mixed",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=184:msc-tourism-development-school-of-housing-building-and-planning&catid=51",
+   "snapshot_sha256": "430f3e5e77bad48c51d25e383f2c445e50cc7b4dff8b3d77935d9fa59ec30739",
+   "fields": {
+    "academic": {
+     "text": "A. Bachelor's degree in related area 1. CGPA of at least 2.75 / 4.00",
+     "quote": "A. Bachelor's degree in related area 1. CGPA of at least 2.75 / 4.00",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.0,
+     "quote": "A minimum of Band 5 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 40,
+     "quote": "A minimum score of 40 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Geomatic for Disaster Risk Reduction (MSc GeoDRR) by Coursework",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=179:master-of-science-in-geomatic-for-disaster-risk-reduction-msc-geodrr&catid=51",
+   "snapshot_sha256": "3fb3967dbbbaab70da27e9aec7df2d002d843a79d8fb79b9f193e3335def82ea",
+   "fields": {
+    "academic": {
+     "text": "A. Bachelor's degree CGPA of at least 3.00 / 4.00",
+     "quote": "A. Bachelor's degree CGPA of at least 3.00 / 4.00",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "A minimum of Band 6 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 60,
+     "quote": "A minimum score of 60 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Bioprocess Technology (Mixed Mode)",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=178:master-in-bioprocess-technology-school-of-industrial-technology&catid=51",
+   "snapshot_sha256": "cb728a2f9b2edd2e51780cc210b262bc4d2f10a1910fb40e5f374052eddd1a96",
+   "fields": {
+    "academic": {
+     "text": "A. Bachelor's degree in related area (Science or Technology) (Bioprocess, Biology, Biochemistry, Biotechnology, Microbiology, Bioscience, Chemistry, Chemical Engineering, Bioprocess Engineering, Environmental Engineering, Genetic, etc.) 1. CGPA of at least 2.75 / 4.00",
+     "quote": "A. Bachelor's degree in related area (Science or Technology) (Bioprocess, Biology, Biochemistry, Biotechnology, Microbiology, Bioscience, Chemistry, Chemical Engineering, Bioprocess Engineering, Environmental Engineering, Genetic, etc.) 1. CGPA of at least 2.75 / 4.00",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.0,
+     "quote": "A minimum of Band 5 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 40,
+     "quote": "A minimum score of 40 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Environmental Science (Coursework)",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=192:msc-environmental-science-school-of-industrial-technology&catid=51",
+   "snapshot_sha256": "3451966fa87707cdf5af03b869727109a1c270c1f957b49dedbab518c19b8cf3",
+   "fields": {
+    "academic": {
+     "text": "A. Bachelor's degree in related area 1. CGPA of at least 2.75 / 4.00",
+     "quote": "A. Bachelor's degree in related area 1. CGPA of at least 2.75 / 4.00",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.0,
+     "quote": "A minimum of Band 5 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 40,
+     "quote": "A minimum score of 40 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Pharmacy (Public Health) - Mixed Mode",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=1471:master-of-pharmacy-public-health-mixed-mode&catid=51",
+   "snapshot_sha256": "d942d0e3c1303c6fab37102437c6b03f2264ffe8000a985906ba18a507a1ec88",
+   "fields": {
+    "academic": {
+     "text": "A BSc (Pharmacy) with CGPA of 3.00/4.00 or equivalent",
+     "quote": "A BSc (Pharmacy) with CGPA of 3.00/4.00 or equivalent",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "A minimum score of Band 6.0 in IELTS (International English Language Testing System)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 70,
+     "quote": "A minimum score of 70 in Internet- Based TOEFL (Test of English as a Foreign Language)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Pharmacy in Clinical Pharmacy - Coursework",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=187:mpharm-clinical-pharmacy-school-of-pharmaceutical-sciences&catid=51",
+   "snapshot_sha256": "a2aeb41cb1823dcd13d6e3fe8f0d72d4cffc6ba2236db071b22b5c8a2bd334da",
+   "fields": {
+    "academic": {
+     "text": "A BSc (Pharmacy) with CGPA of 3.00/4.00 or equivalent",
+     "quote": "A BSc (Pharmacy) with CGPA of 3.00/4.00 or equivalent",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "A minimum score of Band 6.0 in IELTS (International English Language Testing System)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 70,
+     "quote": "A minimum score of 70 in Internet- Based TOEFL (Test of English as a Foreign Language)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Nano-Optoelectronics by Coursework",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=186:msc-nano-optoelectronics-institute-of-nano-optoelectronics-research-technology&catid=51",
+   "snapshot_sha256": "ab28d19f8eb4cabe5636992b6dc487f42f63414046356b6473edbc6055dab432",
+   "fields": {
+    "academic": {
+     "text": "A. Bachelor's degree in related area 1. CGPA of at least 2.75 / 4.00",
+     "quote": "A. Bachelor's degree in related area 1. CGPA of at least 2.75 / 4.00",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.0,
+     "quote": "A minimum of Band 5 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 40,
+     "quote": "A minimum score of 40 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Cybersecurity by Coursework",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=883:master-in-cybersecurity-cyb-coursework&catid=51",
+   "snapshot_sha256": "ce329b739d1f1a6f963e42fa214af6e5990c398a87da2bae91fd7129f27c0311",
+   "fields": {
+    "academic": {
+     "text": "1. CGPA of at least 2.75 / 4.00",
+     "quote": "1. CGPA of at least 2.75 / 4.00",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.0,
+     "quote": "A minimum of Band 5 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 40,
+     "quote": "A minimum score of 40 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts in Southeast Asian History by Mixed",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=257:ma-southeast-asian-history-school-of-humanities&catid=52",
+   "snapshot_sha256": "c764a6cd6661d2eb04bad3cb4aa1cea12f2b57102fd01dff8d97f3a8c51ce236",
+   "fields": {
+    "academic": {
+     "text": "A. Bachelor's degree in related area 1. CGPA of at least 2.75 / 4.00",
+     "quote": "A. Bachelor's degree in related area 1. CGPA of at least 2.75 / 4.00",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "A minimum of Band 6 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 60,
+     "quote": "A minimum score of 60 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts in Hadith - Mixed",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=258:ma-hadith-school-of-humanities&catid=52",
+   "snapshot_sha256": "b53f7363d899dcf6e0248f335f8836269c6958a305176d558484cf3ad6d7aa3f",
+   "fields": {
+    "academic": {
+     "text": "A. Bachelor's degree in related area 1. CGPA of at least 2.75 / 4.00",
+     "quote": "A. Bachelor's degree in related area 1. CGPA of at least 2.75 / 4.00",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "A minimum of Band 6 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 60,
+     "quote": "A minimum score of 60 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts in Linguistics and English Language Studies by Mixed",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=259:ma-linguistics-and-english-language-studies-school-of-humanities&catid=52",
+   "snapshot_sha256": "6b516ee1fe1d9bdd457c10a7222a4c505c186759d9dbb4c4959722ceff1d99c4",
+   "fields": {
+    "academic": {
+     "text": "A) Bachelor’s degree in related field or equivalent CGPA of at least 2.75/4.00",
+     "quote": "A) Bachelor’s degree in related field or equivalent CGPA of at least 2.75/4.00",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "A minimum of Band 6 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 60,
+     "quote": "A minimum score of 60 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts in Translation for Professionals (Coursework)",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=264:master-of-arts-translation-for-professionals-school-of-languages-literacies-and-translation&catid=52",
+   "snapshot_sha256": "21ffa316635cf5be7280dcf66fc119488020e8dd13483709e62b432cc2652b5a",
+   "fields": {
+    "academic": {
+     "text": "A. Bachelor's degree in related area 1. CGPA of at least 2.75 / 4.00",
+     "quote": "A. Bachelor's degree in related area 1. CGPA of at least 2.75 / 4.00",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "A minimum of Band 5.5 in IELTS (International English Language Testing System)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 46,
+     "quote": "A minimum score of 46 in Internet-based TOEFL (Test of English as a Foreign Language)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Social Sciences in Islamic-Based Development Management (Mixed mode)",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=261:master-of-social-science-islamic-development-management-centre-for-islamic-development-management-studies&catid=52",
+   "snapshot_sha256": "2714f3d3037035357360cd8b0c2abd4b7da8c0b34c0653780959f6a763e9a07f",
+   "fields": {
+    "academic": {
+     "text": "A. Bachelor's degree in related field 1. CGPA of at least 2.75 / 4.00",
+     "quote": "A. Bachelor's degree in related field 1. CGPA of at least 2.75 / 4.00",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "A minimum of Band 6 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 60,
+     "quote": "A minimum score of 60 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Design in Creative Industry (Coursework) - School of Arts",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=816:master-of-design-in-creative-industry-school-of-arts-2&catid=53",
+   "snapshot_sha256": "39814c1935f266cde3ebe051447e95cd66966b346c8ac491b87b997ecee1a535",
+   "fields": {
+    "academic": {
+     "text": "Bachelor’s Degree (Hons) in New Media Design & Technology, Communication Graphics and Products Design from Universiti Sains Malaysia OR other institutions that recognized by the Senate of Universiti Sains Malaysia or the MQA with a CGPA of at least 2.75 and above; OR",
+     "quote": "Bachelor’s Degree (Hons) in New Media Design & Technology, Communication Graphics and Products Design from Universiti Sains Malaysia OR other institutions that recognized by the Senate of Universiti Sains Malaysia or the MQA with a CGPA of at least 2.75 and above; OR",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "A minimum of Band 5.5 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 46,
+     "quote": "A minimum score of 46 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Counselling by Coursework",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=342:master-in-counselling-school-of-educational-studies&catid=53",
+   "snapshot_sha256": "c68b8416a1185903e37e11cff6119eb5afaae6732dc68f7736d0a56753c98884",
+   "fields": {
+    "academic": {
+     "text": "A. Bachelor's degree in related field 1. CGPA of at least 2.75 / 4.00",
+     "quote": "A. Bachelor's degree in related field 1. CGPA of at least 2.75 / 4.00",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.0,
+     "quote": "A minimum of Band 5 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 40,
+     "quote": "A minimum score of 40 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts (Education) by Mixed",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=362:ma-education-school-of-educational-studies-v2&catid=53",
+   "snapshot_sha256": "04eec5652e18a24cce1083dd75197c9688c47b00fcd2e052a29e3e9d08424c8b",
+   "fields": {
+    "academic": {
+     "text": "A Bachelor's degree in Education or related areas",
+     "quote": "A Bachelor's degree in Education or related areas",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.0,
+     "quote": "A minimum of Band 5 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 40,
+     "quote": "A minimum score of 40 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Education by Coursework",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=334:master-of-education&catid=53",
+   "snapshot_sha256": "ac0283432154f07fd287eb58d52b3cef719958a2b3280001dae937c20f71cb8e",
+   "fields": {
+    "academic": {
+     "text": "Applicants should possess a recognized Bachelor’s Degree with a minimum CGPA of 2.50 and have at least two years of teaching or other education-related experience",
+     "quote": "Applicants should possess a recognized Bachelor’s Degree with a minimum CGPA of 2.50 and have at least two years of teaching or other education-related experience",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.0,
+     "quote": "A minimum of Band 5 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 40,
+     "quote": "A minimum score of 40 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Analytics - Coursework",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=355:master-of-business-analytics-school-of-management&catid=53",
+   "snapshot_sha256": "f9366768674d35220ed2a597852178f3c7a39ebece361737b3950ac36d0ecc0b",
+   "fields": {
+    "academic": {
+     "text": "A. Bachelor's degree in Management, or any other related and recognized degree 1. CGPA of at least 2.75 / 4.00",
+     "quote": "A. Bachelor's degree in Management, or any other related and recognized degree 1. CGPA of at least 2.75 / 4.00",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.0,
+     "quote": "A minimum of Band 5 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 40,
+     "quote": "A minimum score of 40 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Professional Management - Coursework",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=357:master-of-professional-management-school-of-management&catid=53",
+   "snapshot_sha256": "254715154811f49f807b2b1ddb530c52fd9c9f5c8a8b697676a051495392c75e",
+   "fields": {
+    "academic": {
+     "text": "A) Bachelor’s degree in related field or equivalent CGPA of at least 2.75/4.00",
+     "quote": "A) Bachelor’s degree in related field or equivalent CGPA of at least 2.75/4.00",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.0,
+     "quote": "A minimum of Band 5 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 40,
+     "quote": "A minimum score of 40 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Masters in Sustainable Development Practice (Coursework) - USM@KL",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=351:masters-in-sustainable-development-practice-centre-for-global-sustainability-studies&catid=53",
+   "snapshot_sha256": "8bb40d1411ec17cbe9f3f6c772b980761b3ca82c9245b00aa2be9d51df15f927",
+   "fields": {
+    "academic": {
+     "text": "A minimum of 2.75/4.00 for Bachelor degree",
+     "quote": "A minimum of 2.75/4.00 for Bachelor degree",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.0,
+     "quote": "A minimum of Band 5 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 40,
+     "quote": "A minimum score of 40 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Instructional Multimedia (Coursework) - Centre for Instructional Technology and Multimedia",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=350:master-of-instructional-multimedia-centre-for-instructional-technology-and-multimedia&catid=53",
+   "snapshot_sha256": "1e9cdf03b4afc4fda9be1fe403b071c87335948e24c4da84be5c70ee409ef752",
+   "fields": {
+    "academic": {
+     "text": "1. Have a Bachelor Degree with a Second Class Upper (with Honors or a minimum CGPA of 2.75) from a recognized university.",
+     "quote": "1. Have a Bachelor Degree with a Second Class Upper (with Honors or a minimum CGPA of 2.75) from a recognized university.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.0,
+     "quote": "A minimum of Band 5 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 40,
+     "quote": "A minimum score of 40 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Analytics (Coursework) - USM@KL",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=1424:master-of-business-analytics-coursework-usm-kl&catid=53",
+   "snapshot_sha256": "c26df60db483f6cc30d3c71acc62517cde02c53a022a4b53006d60d284e53e26",
+   "fields": {
+    "academic": {
+     "text": "A. Bachelor's degree in Management, or any other related and recognized degree 1. CGPA of at least 2.75 / 4.00",
+     "quote": "A. Bachelor's degree in Management, or any other related and recognized degree 1. CGPA of at least 2.75 / 4.00",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.0,
+     "quote": "A minimum of Band 5 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 40,
+     "quote": "A minimum score of 40 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Design in Creative Industry (Coursework) - USM@KL",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=1226:master-of-design-in-creative-industry-usmkl&catid=53",
+   "snapshot_sha256": "12e351de827431024d43fd695d8393dfaa1c7ead2288326746360d18b3bd8093",
+   "fields": {
+    "academic": {
+     "text": "Bachelor’s Degree (Hons) in New Media Design & Technology, Communication Graphics and Products Design from Universiti Sains Malaysia OR other institutions that recognized by the Senate of Universiti Sains Malaysia or the MQA with a CGPA of at least 2.75 and above; OR",
+     "quote": "Bachelor’s Degree (Hons) in New Media Design & Technology, Communication Graphics and Products Design from Universiti Sains Malaysia OR other institutions that recognized by the Senate of Universiti Sains Malaysia or the MQA with a CGPA of at least 2.75 and above; OR",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "A minimum of Band 5.5 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 46,
+     "quote": "A minimum score of 46 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Instructional Multimedia (Coursework) - USM@KL",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=1543:master-of-instructional-multimedia-centre-for-instructional-technology-and-multimedia-2&catid=53",
+   "snapshot_sha256": "1c386151aba14ff192e86a529f5aab23c264f7973d9606ae719443c2b649d8b5",
+   "fields": {
+    "academic": {
+     "text": "1. Have a Bachelor Degree with a Second Class Upper (with Honors or a minimum CGPA of 2.75) from a recognized university.",
+     "quote": "1. Have a Bachelor Degree with a Second Class Upper (with Honors or a minimum CGPA of 2.75) from a recognized university.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.0,
+     "quote": "A minimum of Band 5 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 40,
+     "quote": "A minimum score of 40 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Professional Management (Coursework) - USM@KL",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=890:mpm-coursework-usmkl&catid=53",
+   "snapshot_sha256": "0e6e7452d30d576b171a4de6ed2de0511d45366fce2865fa6f65047ccc78e34f",
+   "fields": {
+    "academic": {
+     "text": "A. Bachelor's degree in Management, or any other related and recognized degree; or 1. CGPA of at least 2.75 / 4.00",
+     "quote": "A. Bachelor's degree in Management, or any other related and recognized degree; or 1. CGPA of at least 2.75 / 4.00",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.0,
+     "quote": "A minimum of Band 5 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 40,
+     "quote": "A minimum score of 40 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Electronic Systems Design Engineering (Mixed Mode)",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=386:msc-electronic-systems-design-engineering-school-of-electrical-and-electronic-engineering&catid=54",
+   "snapshot_sha256": "12dd01ee8ac420a3610c94156899d3d17cbd793a9da13c7c223eb91158257ed4",
+   "fields": {
+    "academic": {
+     "text": "A. Bachelor's degree in Electrical and Electronic Engineering or related fields CGPA of at least 2.75/4.00",
+     "quote": "A. Bachelor's degree in Electrical and Electronic Engineering or related fields CGPA of at least 2.75/4.00",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.0,
+     "quote": "A minimum of Band 5 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 40,
+     "quote": "A minimum score of 40 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Data-Driven Sustainable Engineering (Mixed Mode)",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=1532:master-of-science-in-data-driven-sustainable-engineering-mixed-mode&catid=54",
+   "snapshot_sha256": "dfc26571518653275bca3a5925d77f220ec79aa28f1a9bf95e9a31b19f5d88e7",
+   "fields": {
+    "academic": {
+     "text": "(i)         A Bachelor's Degree in Engineering, Technology, or Applied Science with a) A minimum CGPA of 2.75 out of 4.00",
+     "quote": "(i)         A Bachelor's Degree in Engineering, Technology, or Applied Science with a) A minimum CGPA of 2.75 out of 4.00",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.0,
+     "quote": "A minimum IELTS score of 5.0",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 40,
+     "quote": "A minimum TOEFL iBT score of 40",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (Fire Safety Engineering) - Mixed Mode",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=387:msc-fire-safety-engineering-school-of-civil-engineering&catid=54",
+   "snapshot_sha256": "a8969aaa8063b52fe44a6ad6a49c661e4284e5031671ec27cef7f1036305ceea",
+   "fields": {
+    "academic": {
+     "text": "A. Bachelor's degree in STEM 1. CGPA of at least 2.75 / 4.00",
+     "quote": "A. Bachelor's degree in STEM 1. CGPA of at least 2.75 / 4.00",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "A minimum of Band 6.0 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 60,
+     "quote": "A minimum score of 60 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Advanced Semiconductor Packaging (Mixed-Mode)",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=892:master-of-science-in-advanced-semiconductor-packaging-mixed-mode&catid=54",
+   "snapshot_sha256": "7be864e3905511471d77238683138feda7a710184f94d162aacdfa5059677f17",
+   "fields": {
+    "academic": {
+     "text": "CGPA of at least 2.75 / 4.00",
+     "quote": "CGPA of at least 2.75 / 4.00",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.0,
+     "quote": "A minimum of Band 5 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 40,
+     "quote": "A minimum score of 40 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Advanced Manufacturing Engineering Management (Coursework)",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=882:msc-in-advanced-manufacturing-engineering-with-management-coursework-mec&catid=54",
+   "snapshot_sha256": "bf878caae9da304ae8506fee6c275679006c392f3f3fd043e0e4d11cb9e54141",
+   "fields": {
+    "academic": {
+     "text": "A. Bachelor's degree in STEM 1. A minimum CGPA of 2.75/4.00 or equivalent and a minimum of 1 year of working experience in business/management background",
+     "quote": "A. Bachelor's degree in STEM 1. A minimum CGPA of 2.75/4.00 or equivalent and a minimum of 1 year of working experience in business/management background",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.0,
+     "quote": "A minimum of Band 5 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 40,
+     "quote": "A minimum score of 40 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (Microelectronic Engineering) (Mixed Mode)",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=389:msc-microelectronic-systems-engineering-collaborative-microelectronic-design-excellence-centre&catid=54",
+   "snapshot_sha256": "6d1922484576977a120ee8a26608cf09a74cff5adc9b0115ba0f437e207bc3d0",
+   "fields": {
+    "academic": {
+     "text": "A Bachelor’s degree in Electrical Engineering, Electronic Engineering, Mechatronic Engineering, Computer Engineering, Applied Physics or equivalent with minimum CGPA 2.75/4.00",
+     "quote": "A Bachelor’s degree in Electrical Engineering, Electronic Engineering, Mechatronic Engineering, Computer Engineering, Applied Physics or equivalent with minimum CGPA 2.75/4.00",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.0,
+     "quote": "A minimum of Band 5 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 40,
+     "quote": "A minimum score of 40 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Biomedical Science (Mixed) - School of Health Sciences",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=453:msc-biomedicine-school-of-health-sciences&catid=55",
+   "snapshot_sha256": "7d8fa12a7b590a7d61a6d8e950056ffc3b39d3b4d9643b5ac31bd75f67636375",
+   "fields": {
+    "academic": {
+     "text": "A. Bachelor's degree in Biomedicine, Applied Science, Health Science, Medicine or other related and recognised degrees 1. CGPA of at least 2.75 / 4.00",
+     "quote": "A. Bachelor's degree in Biomedicine, Applied Science, Health Science, Medicine or other related and recognised degrees 1. CGPA of at least 2.75 / 4.00",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.0,
+     "quote": "A minimum of Band 5 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 40,
+     "quote": "A minimum score of 40 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Forensic Science (Mixed) - School of Health Sciences",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=418:msc-forensic-science-school-of-health-sciences-2&catid=55",
+   "snapshot_sha256": "ea7ee4203754d2c9dce223314e362fb7037e854f48613fdd0c7cc472f48598ef",
+   "fields": {
+    "academic": {
+     "text": "A. Bachelor's degree in Forensic Science, Biology, Chemistry, Health Science or other related and recognised degree 1. CGPA of at least 2.75 / 4.00",
+     "quote": "A. Bachelor's degree in Forensic Science, Biology, Chemistry, Health Science or other related and recognised degree 1. CGPA of at least 2.75 / 4.00",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.0,
+     "quote": "A minimum of Band 5 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 40,
+     "quote": "A minimum score of 40 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (Medical Education) - mixed mode",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=452:msc-medical-education-school-of-medical-sciences&catid=55",
+   "snapshot_sha256": "7c1eb487b8ba9f995c52badf8054319bf0e21894a834708917a076280e1c51fb",
+   "fields": {
+    "academic": {
+     "text": "A Bachelor's degree in Medicine/Dentistry/Allied Health (e.g. MD, MBBS, MBBCh, BSc Dentistry/BSc Nursing) or other relevant degrees.",
+     "quote": "A Bachelor's degree in Medicine/Dentistry/Allied Health (e.g. MD, MBBS, MBBCh, BSc Dentistry/BSc Nursing) or other relevant degrees.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.0,
+     "quote": "A minimum of Band 5 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 40,
+     "quote": "A minimum score of 40 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Medicine in Nuclear Medicine - Coursework",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=446:master-of-medicine-nuclear-medicine-advanced-medical-dental-institute&catid=55",
+   "snapshot_sha256": "52810e1716704a5f06ebe22249af619dcfb3fa88d20ebef1b7c5f8b0bef20715",
+   "fields": {
+    "academic": {
+     "text": "MBBS/MD with at least 2 years working experience",
+     "quote": "MBBS/MD with at least 2 years working experience",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.0,
+     "quote": "A minimum of Band 5 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 40,
+     "quote": "A minimum score of 40 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Medicine in Transfusion Medicine - Coursework",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=445:master-of-medicine-transfusion-medicine-advanced-medical-dental-institute&catid=55",
+   "snapshot_sha256": "0b841023d0916a72d2afe3174868ca62b5b1fa23a05d2293f84dc84d2e320bec",
+   "fields": {
+    "academic": {
+     "text": "MBBS/MD with at least 2 years working experience",
+     "quote": "MBBS/MD with at least 2 years working experience",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.0,
+     "quote": "A minimum of Band 5 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 40,
+     "quote": "A minimum score of 40 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Clinical Exercise Science - Coursework",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=424:msc-clinical-exercise-science-advanced-medical-dental-institute&catid=55",
+   "snapshot_sha256": "4e07e116cdf7488f9ef7d5117e2dae1f407a8d0b610b9245af49461f452553dc",
+   "fields": {
+    "academic": {
+     "text": "A. Bachelor's degree in Health Sciences, Physiotherapy, Nutrition and Dietetics, Biomedical Science and Exercise and Sport Science with: 1. CGPA of at least 2.75 / 4.00",
+     "quote": "A. Bachelor's degree in Health Sciences, Physiotherapy, Nutrition and Dietetics, Biomedical Science and Exercise and Sport Science with: 1. CGPA of at least 2.75 / 4.00",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.0,
+     "quote": "A minimum of Band 5 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 40,
+     "quote": "A minimum score of 40 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Molecular Medicine - Mixed Mode",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=419:msc-molecular-medicine-institute-for-research-in-molecular-medicine-2&catid=55",
+   "snapshot_sha256": "3e924723537ca6364944891f4660d645b7b77c2b6ff932e9dd76db9a878447da",
+   "fields": {
+    "academic": {
+     "text": "A. Bachelor's degree in Science or related area with: 1. CGPA of at least 2.75 / 4.00",
+     "quote": "A. Bachelor's degree in Science or related area with: 1. CGPA of at least 2.75 / 4.00",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.0,
+     "quote": "A minimum of Band 5 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 40,
+     "quote": "A minimum score of 40 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Administration (MBA) - Graduate School of Business",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=343:master-of-business-administration-mba-graduate-school-of-business&catid=53",
+   "snapshot_sha256": "61c38d438a624233f1dbe0d6db5f1c2446b9547dac31a0a0f737e3c2092c6e2a",
+   "fields": {
+    "academic": {
+     "text": "A Bachelor’s degree from a university recognised by the USM’s Senate or an equivalent qualification: A minimum CGPA of 2.75/4.00 or equivalent and a minimum of 1 year working experience",
+     "quote": "A Bachelor’s degree from a university recognised by the USM’s Senate or an equivalent qualification: A minimum CGPA of 2.75/4.00 or equivalent and a minimum of 1 year working experience",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "A minimum of Band 6 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 60,
+     "quote": "A minimum score of 60 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Health",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=423:master-of-public-health-school-of-medical-sciences&catid=55",
+   "snapshot_sha256": "7721ffa8460920fd66c75aa1295536770a3f42e776ac852271eafe4110377262",
+   "fields": {
+    "academic": {
+     "text": "1.    Candidate MUST possess Medical Degree, such as MBBS, MD, MBChB or equivalent qualification accepted by the University Senate and is registered with the Malaysian Medical Council [MMC]",
+     "quote": "1.    Candidate MUST possess Medical Degree, such as MBBS, MD, MBChB or equivalent qualification accepted by the University Senate and is registered with the Malaysian Medical Council [MMC]",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.0,
+     "quote": "A minimum of Band 5 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 40,
+     "quote": "A minimum score of 40 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Global Islamic Finance",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=356:master-in-global-islamic-finance-school-of-management&catid=53",
+   "snapshot_sha256": "3871554121c664840834a9ec0559a9b10984535b1b6f73b8c33ce376db6ee6b7",
+   "fields": {
+    "academic": {
+     "text": "A. Bachelor's degree in Management, Finance, Islamic Studies or any other related and recognized degree 1. CGPA of at least 2.75 / 4.00",
+     "quote": "A. Bachelor's degree in Management, Finance, Islamic Studies or any other related and recognized degree 1. CGPA of at least 2.75 / 4.00",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.0,
+     "quote": "A minimum of Band 5 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 40,
+     "quote": "A minimum score of 40 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Management in Global Islamic Finance",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=341:master-of-management-global-islamic-finance-school-of-management&catid=53",
+   "snapshot_sha256": "d02885592eec704e7cf97d637613cbde1db13b2b020c3645a85140041ff35943",
+   "fields": {
+    "academic": {
+     "text": "A) Bachelor’s degree in related field or equivalent CGPA of at least 2.75/4.00",
+     "quote": "A) Bachelor’s degree in related field or equivalent CGPA of at least 2.75/4.00",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.0,
+     "quote": "A minimum of Band 5 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 40,
+     "quote": "A minimum score of 40 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Clinical Psychology",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=449:master-of-psychology-clinical-sains-kl&catid=55",
+   "snapshot_sha256": "d9d037a0515f33d760be0f23d931a7d423a5d89ce6893f1418fe41f64a1ed10a",
+   "fields": {
+    "academic": {
+     "text": "i. A Bachelor’s degree in Psychology or its equivalent with minimum CGPA 2.75 out of 4.00 ; (A Bachelor’s degree in Psychology not meeting CGPA of 2.75 (but not lower 2.25) can be accepted subject to internal assessment by an independent review panel)",
+     "quote": "i. A Bachelor’s degree in Psychology or its equivalent with minimum CGPA 2.75 out of 4.00 ; (A Bachelor’s degree in Psychology not meeting CGPA of 2.75 (but not lower 2.25) can be accepted subject to internal assessment by an independent review panel)",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.0,
+     "quote": "A minimum of Band 5 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 40,
+     "quote": "A minimum score of 40 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Cognitive Neurosciences",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=450:master-of-cognitive-neurosciences-sains-kl&catid=55",
+   "snapshot_sha256": "c1378a25c6b5b1c8fa1c58183dabad1e1887a4c4e1a6a18bcb434706008d4b8c",
+   "fields": {
+    "academic": {
+     "text": "A) Bachelor’s degree in related field or equivalent CGPA of at least 2.75/4.00",
+     "quote": "A) Bachelor’s degree in related field or equivalent CGPA of at least 2.75/4.00",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.0,
+     "quote": "A minimum of Band 5 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 40,
+     "quote": "A minimum score of 40 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Neuroscience",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=421:master-of-neuroscience-school-of-medical-sciences&catid=55",
+   "snapshot_sha256": "445fbc2044684cbd3d354346808d6ff0d08701f50e245c319f864b4b9d9c7f25",
+   "fields": {
+    "academic": {
+     "text": "A Bachelor Degree (in Basic Sciences, Medical & Health Sciences or related fields) with a CGPA > 3.0/4 from a recognised institution",
+     "quote": "A Bachelor Degree (in Basic Sciences, Medical & Health Sciences or related fields) with a CGPA > 3.0/4 from a recognised institution",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.0,
+     "quote": "A minimum of Band 5 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 40,
+     "quote": "A minimum score of 40 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Dental Science (MDSc)",
+   "url": "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=947:master-in-dental-science-mdsc&catid=55",
+   "snapshot_sha256": "9e910acba4790e34923156ce1f9706030d3ff95878179101debfadaa3bd12a71",
+   "fields": {
+    "academic": {
+     "text": "1. Bachelor of Dental Surgery or equivalent qualification",
+     "quote": "1. Bachelor of Dental Surgery or equivalent qualification",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.0,
+     "quote": "A minimum of Band 5 for IELTS",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 40,
+     "quote": "A minimum score of 40 for TOEFL (Internet-based)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  }
+ ],
  "verification": {
-  "programs": 0,
-  "机器核对": 0,
+  "programs": 54,
+  "机器核对": 54,
   "待人工": 0
  }
 }
