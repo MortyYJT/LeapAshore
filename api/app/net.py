@@ -14,8 +14,11 @@ from starlette.requests import Request
 
 from app.config import settings
 
-# Hostname entries are resolved at most this often; a restarted proxy container gets a new address.
+# Hostname entries are resolved at most this often while the peer keeps matching. A peer that does not
+# match triggers a fresh lookup (at most once a second): a recreated proxy container comes back on a
+# new address, and until it is trusted every client would be counted as the proxy itself.
 RESOLVE_TTL_SECONDS = 30.0
+RESOLVE_ON_MISS_SECONDS = 1.0
 _resolved: dict[str, tuple[float, set[str]]] = {}
 
 
@@ -26,11 +29,13 @@ def _resolve(host: str) -> set[str]:
         return set()
 
 
-def _addresses_of(host: str) -> set[str]:
+def _addresses_of(host: str, peer: str) -> set[str]:
     now = time.monotonic()
     cached = _resolved.get(host)
-    if cached and now - cached[0] < RESOLVE_TTL_SECONDS:
-        return cached[1]
+    if cached:
+        age = now - cached[0]
+        if age < RESOLVE_ON_MISS_SECONDS or (age < RESOLVE_TTL_SECONDS and peer in cached[1]):
+            return cached[1]
     addresses = _resolve(host)
     _resolved[host] = (now, addresses)
     return addresses
@@ -50,7 +55,7 @@ def is_trusted_proxy(peer: str) -> bool:
         try:
             network = ipaddress.ip_network(entry, strict=False)
         except ValueError:
-            if peer in _addresses_of(entry):
+            if peer in _addresses_of(entry, peer):
                 return True
             continue
         if peer_ip is not None and peer_ip in network:

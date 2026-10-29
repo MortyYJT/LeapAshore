@@ -154,7 +154,7 @@
   - Redis（`redis:7-alpine`）进本机和生产 compose，客户端 `redis`（redis-py 的 asyncio 客户端）；P1 的 Celery 复用它，所以 `noeviction` + 256 MB，满了宁可拒写也不悄悄丢计数或任务。生产不对外暴露端口、不设密码。
   - 身份：主体（登录模式下是账号，匿名模式下是匿名 cookie 的 id）和 IP 都查，任何一个超限就拒。匿名用户清 cookie 就是新主体，所以真正兜底的是 IP 限制和全站上限。
   - 滑动窗口（有序集合）+ 每日 token 计数，一个 Lua 脚本一次查完、全过才记一笔，被拒的请求不占名额。默认：主体 10 次/分钟、60 次/小时；IP 30 次/分钟、200 次/小时；每天 token 每主体 20 万、每 IP 60 万、全站 200 万（TASKS.md 定的）；一天按北京时间。全部是环境变量。
-  - token 按模型回报的用量事后累加，开始前检查，一轮最多超一轮的量；`/confirm` 只查日额度不占窗口。
+  - 日额度：放行时预扣 8,000 token（环境变量），按模型回报的用量累加，一轮结束归还预扣；一轮在后台任务里跑完，客户端断开也照样记账。没选「只事后记账」：新上下文审查指出客户端在最后一块（带用量）到达前断开就能让用量不入账，同时进来的多轮也会一起越过上限。`/confirm` 有待确认操作时才查，只查日额度不占窗口。
   - **Redis 连不上时顾问返回 503（fail-closed）**。没选 fail-open：顾问是唯一花钱的接口，fail-open 等于 Redis 一挂额度就失效；网站其他部分不依赖 Redis，影响只限顾问。
   - `max_tokens`：回答 1,500、意图分类 200，放请求体里——实测 DeepSeek 忽略 LangChain 默认发送的 `max_completion_tokens`。
   - IP：只有连接对端在 `TRUSTED_PROXIES`（生产是 `caddy`）里才读 `X-Forwarded-For` 最右一项；Caddyfile 显式把它设成 `{remote_host}`。替换原来的 `TRUST_FORWARDED_FOR`。

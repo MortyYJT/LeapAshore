@@ -5,9 +5,12 @@ Two kinds of limit, both checked by one Lua script before a turn starts:
 - Sliding windows (a sorted set of request times per subject and per IP, one key per window). The
   script records the request in every window only when every window and every cap passes, so a
   refused request never lengthens its own wait.
-- Daily token caps per subject, per IP and for the whole site (a counter per Beijing day). The model's
-  reported usage is added after each call by `UsageRecorder`, so a turn that starts under a cap may end
-  over it by at most one turn's worth.
+- Daily token caps per subject, per IP and for the whole site (a counter per Beijing day). An admitted
+  turn reserves `ADVISOR_TURN_TOKEN_RESERVE` tokens on all three counters in the same script, so turns
+  admitted side by side see each other before any of them has spent anything. Each model call's
+  reported usage is added as it ends (`UsageRecorder`), and the reservation is returned when the turn
+  ends (`settle`), leaving the counters at what was actually spent. A turn that costs more than the
+  reservation can take a counter past its cap by the difference.
 
 When Redis does not answer, `check` raises `LimitsUnavailable` and the advisor refuses with 503
 (fail closed, D6): the advisor is the only endpoint that spends money.
@@ -40,8 +43,9 @@ REDIS_TIMEOUT_SECONDS = 0.5
 _WINDOW = re.compile(r"^(\d+)/(\d+)$")
 
 # KEYS: 3 day counters (subject, ip, site), then one sorted set per window.
-# ARGV: 3 caps, the request's member id, the window count, then (limit, span ms) per window.
-# Returns {0, 0} when allowed; {i, wait_ms} with i the 1-based KEYS index that refused otherwise.
+# ARGV: 3 caps, the reservation, the request's member id, the window count, then (limit, span ms) per
+# window, then the day counters' TTL.
+# Returns {0, 0} when admitted (and reserved); {i, wait_ms} with i the 1-based KEYS index that refused.
 _CHECK = """
 for i = 1, 3 do
   local used = tonumber(redis.call('GET', KEYS[i]) or '0')
@@ -49,16 +53,16 @@ for i = 1, 3 do
     return {i, 0}
   end
 end
-local n = tonumber(ARGV[5])
-if n == 0 then
-  return {0, 0}
+local n = tonumber(ARGV[6])
+local now = 0
+if n > 0 then
+  local t = redis.call('TIME')
+  now = tonumber(t[1]) * 1000 + math.floor(tonumber(t[2]) / 1000)
 end
-local t = redis.call('TIME')
-local now = tonumber(t[1]) * 1000 + math.floor(tonumber(t[2]) / 1000)
 for j = 1, n do
   local key = KEYS[3 + j]
-  local limit = tonumber(ARGV[4 + 2 * j])
-  local span = tonumber(ARGV[5 + 2 * j])
+  local limit = tonumber(ARGV[5 + 2 * j])
+  local span = tonumber(ARGV[6 + 2 * j])
   redis.call('ZREMRANGEBYSCORE', key, '-inf', now - span)
   local count = redis.call('ZCARD', key)
   if count >= limit then
@@ -72,9 +76,15 @@ for j = 1, n do
 end
 for j = 1, n do
   local key = KEYS[3 + j]
-  local span = tonumber(ARGV[5 + 2 * j])
-  redis.call('ZADD', key, now, ARGV[4])
+  local span = tonumber(ARGV[6 + 2 * j])
+  redis.call('ZADD', key, now, ARGV[5])
   redis.call('PEXPIRE', key, span)
+end
+local reserve = tonumber(ARGV[4])
+local ttl = tonumber(ARGV[7 + 2 * n])
+for i = 1, 3 do
+  redis.call('INCRBY', KEYS[i], reserve)
+  redis.call('EXPIRE', KEYS[i], ttl)
 end
 return {0, 0}
 """
@@ -99,6 +109,16 @@ class Refusal:
 
     def detail(self) -> dict:
         return {"code": self.code, "message": self.message, "retryAfter": self.retry_after}
+
+
+@dataclass(frozen=True)
+class Ticket:
+    """An admitted turn: who it is charged to, and the reservation `settle` gives back."""
+
+    subject: str
+    ip: str
+    day: str
+    reserved: int
 
 
 def parse_windows(spec: str) -> list[tuple[int, int]]:
@@ -151,14 +171,17 @@ def _day_keys(subject: str, ip: str, day: str) -> list[str]:
     return [f"{p}tokens:subject:{subject}:{day}", f"{p}tokens:ip:{ip}:{day}", f"{p}tokens:site:{day}"]
 
 
-async def check(subject: str, ip: str | None, *, windows: bool = True) -> Refusal | None:
-    """None when the turn may run (and, with `windows`, record it); otherwise why not.
+async def check(subject: str, ip: str | None, *, windows: bool = True) -> Ticket | Refusal:
+    """A `Ticket` when the turn may run (its windows recorded, its tokens reserved), else why not.
 
-    Raises `LimitsUnavailable` when Redis cannot be reached in time.
+    Raises `LimitsUnavailable` when Redis cannot be reached in time. Every ticket must be given to
+    `settle` once the turn is over, or its reservation stays on today's counters.
     """
     ip = ip or "unknown"
+    day = _day()
     p = settings.limits_key_prefix
-    keys = _day_keys(subject, ip, _day())
+    keys = _day_keys(subject, ip, day)
+    reserve = max(0, settings.advisor_turn_token_reserve)
     caps = [
         settings.advisor_daily_tokens_per_subject,
         settings.advisor_daily_tokens_per_ip,
@@ -172,16 +195,17 @@ async def check(subject: str, ip: str | None, *, windows: bool = True) -> Refusa
         ):
             for limit, seconds in parse_windows(spec):
                 spans.append((f"{p}win:{scope}:{ident}:{seconds}", limit, seconds * 1000))
-    argv: list[Any] = [*caps, uuid.uuid4().hex, len(spans)]
+    argv: list[Any] = [*caps, reserve, uuid.uuid4().hex, len(spans)]
     for _key, limit, span_ms in spans:
         argv += [limit, span_ms]
+    argv.append(DAY_KEY_TTL_SECONDS)
     try:
         index, wait_ms = await _client().eval(_CHECK, 3 + len(spans), *keys, *(k for k, _, _ in spans), *argv)
     except (RedisError, OSError, asyncio.TimeoutError) as error:
         raise LimitsUnavailable(str(error)) from error
     index, wait_ms = int(index), int(wait_ms)
     if index == 0:
-        return None
+        return Ticket(subject=subject, ip=ip, day=day, reserved=reserve)
     if index <= 3:
         scope = ("subject", "ip", "site")[index - 1]
         return Refusal(f"daily_tokens_{scope}", _CAP_MESSAGES[scope], seconds_until_tomorrow())
@@ -189,18 +213,31 @@ async def check(subject: str, ip: str | None, *, windows: bool = True) -> Refusa
     return Refusal("rate_limited", f"发送太频繁了，请 {wait} 秒后再试。", wait)
 
 
-async def record_usage(subject: str, ip: str | None, tokens: int) -> None:
-    """Add `tokens` to today's subject, IP and site counters. Raises `LimitsUnavailable`."""
-    if tokens <= 0:
-        return
+async def _add(keys: list[str], tokens: int) -> None:
     try:
         async with _client().pipeline(transaction=True) as pipe:
-            for key in _day_keys(subject, ip or "unknown", _day()):
+            for key in keys:
                 pipe.incrby(key, tokens)
                 pipe.expire(key, DAY_KEY_TTL_SECONDS)
             await pipe.execute()
     except (RedisError, OSError, asyncio.TimeoutError) as error:
         raise LimitsUnavailable(str(error)) from error
+
+
+async def record_usage(subject: str, ip: str | None, tokens: int) -> None:
+    """Add `tokens` to today's subject, IP and site counters. Raises `LimitsUnavailable`."""
+    if tokens > 0:
+        await _add(_day_keys(subject, ip or "unknown", _day()), tokens)
+
+
+async def settle(ticket: Ticket) -> None:
+    """Give back a ticket's reservation, on the day it was taken. Failures are logged."""
+    if ticket.reserved <= 0:
+        return
+    try:
+        await _add(_day_keys(ticket.subject, ticket.ip, ticket.day), -ticket.reserved)
+    except LimitsUnavailable:
+        logger.exception("could not return a reservation of %d advisor tokens", ticket.reserved)
 
 
 async def usage_today(subject: str, ip: str | None) -> dict[str, int]:

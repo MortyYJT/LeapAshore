@@ -6,6 +6,7 @@ stream is replaced, or the key is left empty so the advisor answers that it is n
 """
 
 import asyncio
+import types
 import uuid
 
 import pytest
@@ -183,7 +184,13 @@ def test_a_subject_over_its_daily_tokens_is_refused(quiet_stream, generous, monk
     assert detail["code"] == "daily_tokens_subject"
     assert "额度" in detail["message"]
     assert 0 < detail["retryAfter"] <= 24 * 3600
-    # A confirm is a model call too, so the cap applies to it.
+    # A confirm with a change pending resumes the model, so the cap applies to it.
+    pending = types.SimpleNamespace(interrupts=["pending change"])
+
+    async def paused(config):
+        return pending
+
+    monkeypatch.setattr(advisor.graph, "aget_state", paused)
     assert client.post(CONFIRM, json={"conversationId": "c1", "approved": True}).status_code == 429
     # Someone else is unaffected.
     assert ask(TestClient(app)).status_code == 200
@@ -229,8 +236,16 @@ def test_usage_is_counted_from_the_model_report(generous):
     assert used == {"subject": 130, "ip": 130, "site": 130}
 
 
-def test_a_turn_charges_the_tokens_its_model_calls_report(generous, monkeypatch):
-    """The recorder rides the graph config into the model call inside the agent node."""
+USAGE = {"input_tokens": 40, "output_tokens": 2, "total_tokens": 42}
+
+
+@pytest.fixture
+def streaming_model(monkeypatch):
+    """A model that streams like ChatOpenAI with `stream_usage`: text chunks, then a usage chunk.
+
+    The graph runs for real around it (intent fixed to general Q&A), so the test sees whether the
+    recorder rides the graph config into the model call inside the agent node.
+    """
     from langchain_core.language_models import BaseChatModel
     from langchain_core.messages import AIMessageChunk
     from langchain_core.outputs import ChatGenerationChunk, ChatResult
@@ -238,10 +253,8 @@ def test_a_turn_charges_the_tokens_its_model_calls_report(generous, monkeypatch)
     from app.agent import graph as graph_module
     from app.agent import intent, llm
 
-    usage = {"input_tokens": 40, "output_tokens": 2, "total_tokens": 42}
-
     class Streaming(BaseChatModel):
-        """Streams like ChatOpenAI with `stream_usage`: text chunks, then a chunk carrying usage."""
+        delay: float = 0.0
 
         @property
         def _llm_type(self) -> str:
@@ -251,32 +264,96 @@ def test_a_turn_charges_the_tokens_its_model_calls_report(generous, monkeypatch)
             return self
 
         def _generate(self, messages, stop=None, run_manager=None, **kwargs):
-            return ChatResult(generations=[ChatGeneration(message=AIMessage(content="好的", usage_metadata=usage))])
+            return ChatResult(generations=[ChatGeneration(message=AIMessage(content="好的", usage_metadata=USAGE))])
 
         async def _astream(self, messages, stop=None, run_manager=None, **kwargs):
             for text in ("好", "的"):
+                await asyncio.sleep(self.delay)
                 chunk = ChatGenerationChunk(message=AIMessageChunk(content=text))
                 if run_manager:
                     await run_manager.on_llm_new_token(text, chunk=chunk)
                 yield chunk
-            yield ChatGenerationChunk(message=AIMessageChunk(content="", usage_metadata=usage))
+            await asyncio.sleep(self.delay)
+            yield ChatGenerationChunk(message=AIMessageChunk(content="", usage_metadata=USAGE))
 
-    def fake_model(**kwargs):
-        return Streaming()
+    model = Streaming()
 
     async def fixed_intent(query, history):
         return {"intent": "通用问答", "confidence": 1.0}
 
     monkeypatch.setattr(llm.settings, "chat_api_key", "test-key")
-    monkeypatch.setattr(graph_module, "get_chat_model", fake_model)
+    monkeypatch.setattr(graph_module, "get_chat_model", lambda **kwargs: model)
     monkeypatch.setattr(intent, "classify", fixed_intent)
+    return model
+
+
+def test_a_turn_charges_the_tokens_its_model_calls_report(generous, streaming_model):
     client = TestClient(app)
     response = ask(client, conversation=f"t{uuid.uuid4().hex[:8]}")
     assert response.status_code == 200
     assert '"type": "token"' in response.text
     used = asyncio.run(limits.usage_today(subject_of(client), "testclient"))
-    assert used["subject"] == 42
-    assert used["site"] == 42
+    # The reservation has been given back: what is left is what the model reported.
+    assert used == {"subject": 42, "ip": 42, "site": 42}
+
+
+def test_a_client_that_hangs_up_is_still_charged(generous, streaming_model, monkeypatch):
+    """The usage arrives in the last chunk; a client gone before it must not make the turn free."""
+    from langchain_core.messages import HumanMessage
+
+    monkeypatch.setattr(settings, "advisor_turn_token_reserve", 1000)
+    streaming_model.delay = 0.05
+    subject, ip = str(uuid.uuid4()), unique_ip()
+
+    async def hang_up_after_the_first_event() -> None:
+        ticket = await limits.check(subject, ip)
+        config = advisor._config(subject, "c1", ticket)
+        body = advisor._detached(advisor._stream({"messages": [HumanMessage(content="你好")], "trace": None}, config), ticket)
+        await body.__anext__()
+        await body.aclose()
+        assert (await limits.usage_today(subject, ip))["subject"] >= 1000
+        await asyncio.gather(*advisor._turns)
+
+    asyncio.run(hang_up_after_the_first_event())
+    assert asyncio.run(limits.usage_today(subject, ip)) == {"subject": 42, "ip": 42, "site": 42}
+
+
+def test_a_running_turn_holds_its_reservation(generous, monkeypatch):
+    monkeypatch.setattr(settings, "advisor_turn_token_reserve", 1000)
+    during = []
+
+    async def fake_stream(graph_input, config):
+        recorder = config["callbacks"][0]
+        during.append(await limits.usage_today(recorder.subject, recorder.ip))
+        yield advisor._event({"type": "done"})
+
+    monkeypatch.setattr(advisor, "_stream", fake_stream)
+    client = TestClient(app)
+    assert ask(client).status_code == 200
+    assert during == [{"subject": 1000, "ip": 1000, "site": 1000}]
+    assert asyncio.run(limits.usage_today(subject_of(client), "testclient")) == {"subject": 0, "ip": 0, "site": 0}
+
+
+def test_turns_admitted_together_count_each_other_s_reservation(generous, monkeypatch):
+    monkeypatch.setattr(settings, "advisor_turn_token_reserve", 1000)
+    monkeypatch.setattr(settings, "advisor_daily_tokens_site", 2000)
+
+    async def three_at_once():
+        return await asyncio.gather(*(limits.check(str(uuid.uuid4()), unique_ip()) for _ in range(3)))
+
+    outcomes = asyncio.run(three_at_once())
+    assert sum(isinstance(o, limits.Ticket) for o in outcomes) == 2
+    assert [o.code for o in outcomes if isinstance(o, limits.Refusal)] == ["daily_tokens_site"]
+
+
+def test_an_invalid_request_takes_no_slot(quiet_stream, generous, monkeypatch):
+    monkeypatch.setattr(settings, "advisor_subject_limits", "1/60")
+    monkeypatch.setattr(settings, "advisor_ip_limits", "1/60")
+    client = TestClient(app)
+    assert client.post(CHAT, json={"conversationId": "c1", "message": ""}).status_code == 422
+    assert client.post(CHAT, json={"conversationId": "bad id!", "message": "你好"}).status_code == 422
+    assert ask(client).status_code == 200
+    assert ask(client).status_code == 429
 
 
 # ---------- the store is down ----------

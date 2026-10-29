@@ -25,6 +25,16 @@ reached its daily token cap. Usage SHALL be counted from the model's reported to
 - **WHEN** the site's tokens today have reached the site cap
 - **THEN** every subject is refused with a message that says the site's quota is used up
 
+#### Scenario: A client that hangs up is still charged
+
+- **WHEN** a client disconnects before the model has reported the turn's usage
+- **THEN** the turn still runs to the end and its usage is counted
+
+#### Scenario: Turns admitted together see each other
+
+- **WHEN** several turns are admitted before any of them has reported usage
+- **THEN** each holds a reservation on the counters, so the caps refuse once the reservations reach them
+
 ### Requirement: Limits fail closed
 
 The advisor SHALL return 503 and call no model when the limit store cannot be reached.

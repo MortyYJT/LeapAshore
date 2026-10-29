@@ -19,11 +19,18 @@ Caddy, with DeepSeek as the chat upstream.
   calls); a full agent turn has not been measured, but with 1,500 output tokens per step and a system
   prompt plus evidence of a few thousand, 200,000 is still dozens of turns. The IP numbers leave room
   for a shared campus NAT.
-- **D4 Token accounting after the fact.** A LangChain callback adds each finished call's
-  `total_tokens` to the subject, IP and site day counters as the call ends. Caps are checked before a
-  turn starts (`used >= cap` refuses), so a turn that starts under the cap may finish over it; the
-  overshoot is bounded by one turn (`MAX_AGENT_STEPS + 1` calls, each output-capped by D5). A call cut
-  off by a client disconnect before the model reports usage is not counted.
+- **D4 Reserve, then settle on reported usage.** An admitted turn reserves
+  `ADVISOR_TURN_TOKEN_RESERVE` (8,000) on the subject, IP and site day counters in the admitting
+  script, so turns admitted side by side see each other. A LangChain callback adds each finished call's
+  `total_tokens` as the call ends, and the reservation is returned when the turn ends, leaving the
+  counters at the reported usage. Caps refuse when `used >= cap`, so a counter can pass its cap by what
+  a turn costs beyond its reservation (`MAX_AGENT_STEPS + 1` calls, each output-capped by D5).
+- **D4a The turn runs detached from the connection.** The usage arrives in a stream's last chunk, and
+  Starlette cancels the response generator when the client disconnects; a turn run inside it could be
+  made free by hanging up just before the end. The graph runs in its own task that relays events
+  through a queue; it finishes, records usage and returns the reservation whatever the client does.
+- **D4b Admission happens in the endpoint, after validation.** A FastAPI dependency runs before the
+  body is validated, so a 422 would take a window slot and a reservation.
 - **D5 `max_tokens`** 1,500 for agent replies and 200 for the intent router, passed in the request body
   as `max_tokens`. LangChain's `max_tokens` field is sent as `max_completion_tokens`, which DeepSeek
   ignored in a measured call (206 tokens back with a limit of 8); `extra_body` reaches the wire as is.
@@ -32,11 +39,12 @@ Caddy, with DeepSeek as the chat upstream.
   costs the advisor alone; failing open would make the caps void exactly when nobody is watching.
   Recording usage after a call is best effort (logged), since the money is already spent.
 - **D7 Confirm is not windowed, only capped.** `/confirm` resumes a turn the applicant already paid a
-  window slot for and only runs when a change is pending, so it checks the token caps but not the
-  windows; refusing it would strand the pending change.
+  window slot for; it is admitted only when a change is pending, against the token caps but not the
+  windows, since refusing it on a window would strand the pending change.
 - **D8 Client IP.** `TRUSTED_PROXIES` lists IPs, CIDRs or hostnames (resolved, cached 30 s). The
   right-most `X-Forwarded-For` entry is used only when the connection's peer matches; otherwise the
-  peer address. Caddy's `reverse_proxy` already replaces a client's `X-Forwarded-For` when it has no
+  peer address. A peer that does not match a hostname's cached addresses triggers a fresh lookup (at
+  most once a second), so a recreated `caddy` container is trusted again within a second. Caddy's `reverse_proxy` already replaces a client's `X-Forwarded-For` when it has no
   `trusted_proxies` (measured on 2.11.4); the Caddyfile now sets it explicitly to `{remote_host}` so a
   future change to that default cannot reopen it. `TRUST_FORWARDED_FOR` is replaced by this setting.
 - **D9 Day boundary** is midnight Beijing time (UTC+8, fixed offset, no DST): the users are in China.

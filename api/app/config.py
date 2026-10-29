@@ -40,6 +40,9 @@ class Settings(BaseSettings):
     advisor_daily_tokens_per_subject: int = 200_000
     advisor_daily_tokens_per_ip: int = 600_000
     advisor_daily_tokens_site: int = 2_000_000
+    # Held on the three day counters while a turn runs, so turns admitted together see each other;
+    # given back when the turn ends, leaving the counters at the reported usage (D4).
+    advisor_turn_token_reserve: int = 8_000
 
     # --- Accounts (openspec/changes/account-login) ---
     # Login mode. Off keeps the anonymous-cookie behaviour, which is what production runs until

@@ -4,8 +4,8 @@ Two measurements:
 
 ``--mode check`` calls `app.limits.check` in-process against the Redis in `REDIS_URL`: `--requests`
 checks from `--concurrency` tasks, spread round-robin over `--subjects` subjects and `--ips` IPs, with
-the configured windows. Reports the latency of the check (p50/p95/p99/max) and the blocked ratio, and
-compares the admitted count with the most the windows allow, which is how a race in the script would
+the configured windows. Reports the latency of the check (p50/p95/p99/max; an admitted check also reserves
+tokens, a refused one only reads) and the blocked ratio, and compares the admitted count with the most the windows allow, which is how a race in the script would
 show.
 
 ``--mode http`` sends the same pattern to ``POST /api/advisor/chat`` on `--base-url` (start a server
@@ -69,9 +69,14 @@ async def run_check(args) -> None:
             except asyncio.QueueEmpty:
                 return
             started = time.perf_counter()
-            refusal = await limits.check(subjects[n % len(subjects)], ips[n % len(ips)])
+            outcome = await limits.check(subjects[n % len(subjects)], ips[n % len(ips)])
             latencies.append((time.perf_counter() - started) * 1000)
-            blocked += refusal is not None
+            if isinstance(outcome, limits.Refusal):
+                blocked += 1
+            else:
+                # Not timed: the turn is taken to end at once and give its reservation back, or the
+                # site cap (2,000,000 / 8,000 reserved = 250 turns in flight) would bind, not the windows.
+                await limits.settle(outcome)
 
     started = time.perf_counter()
     await asyncio.gather(*(worker() for _ in range(args.concurrency)))

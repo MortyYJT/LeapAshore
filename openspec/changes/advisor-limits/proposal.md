@@ -12,8 +12,9 @@ anonymous mode, where a new cookie is a new identity, so a per-identity limit al
 - **Sliding-window rate limits** on `POST /api/advisor/chat`, per subject (the account in login mode,
   the anonymous client id otherwise) and per client IP, checked together in one Lua script so a refused
   request consumes nothing.
-- **Daily token caps** per subject, per IP and site-wide (default 2,000,000), counted from the model's
-  reported usage and checked before each chat and confirm. Days run on Beijing time.
+- **Daily token caps** per subject, per IP and site-wide (default 2,000,000): a turn reserves tokens
+  when admitted and settles on the model's reported usage when it ends; the turn runs to the end even
+  if the client disconnects. Days run on Beijing time.
 - Over a limit: **429** with `{"detail": {"code", "message", "retryAfter"}}` and `Retry-After`; the
   advisor page shows the Chinese message. Redis unreachable: **503**, fail closed.
 - **`max_tokens`** on every model call, sent as `max_tokens` (DeepSeek ignores the

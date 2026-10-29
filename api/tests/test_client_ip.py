@@ -62,3 +62,15 @@ def test_an_unresolvable_hostname_trusts_nobody(monkeypatch):
     monkeypatch.setattr(settings, "trusted_proxies", "no-such-host.invalid")
     monkeypatch.setattr(net, "_resolve", lambda host: set())
     assert net.client_ip(request_from("172.18.0.2", "203.0.113.7")) == "172.18.0.2"
+
+
+def test_a_peer_that_stops_matching_triggers_a_fresh_lookup(monkeypatch):
+    """A recreated proxy comes back on a new address; it is trusted within a second, not after 30."""
+    answers = iter([{"172.18.0.2"}, {"172.18.0.7"}])
+    clock = [100.0]
+    monkeypatch.setattr(settings, "trusted_proxies", "caddy")
+    monkeypatch.setattr(net, "_resolve", lambda host: next(answers))
+    monkeypatch.setattr(net.time, "monotonic", lambda: clock[0])
+    assert net.client_ip(request_from("172.18.0.2", "203.0.113.7")) == "203.0.113.7"
+    clock[0] += 2
+    assert net.client_ip(request_from("172.18.0.7", "203.0.113.7")) == "203.0.113.7"
