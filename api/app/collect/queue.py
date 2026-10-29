@@ -186,6 +186,13 @@ def prior_state(page: CollectPage, data_dir: Path, root: Path) -> tuple[str | No
 # --- One page ----------------------------------------------------------------------------------------
 
 
+def _unanswered(blocked: Blocked) -> bool:
+    """A keep-out the site did not state: robots.txt timed out or answered 5xx. The snapshot tool asks
+    again after an hour, so this is a failure to retry, not a refusal (D4)."""
+    text = str(blocked)
+    return "robots.txt itself: no answer" in text or "robots.txt itself: HTTP 5" in text
+
+
 def _name_from_heading(page: CollectPage, html_path: Path) -> None:
     """A discovered page is named by its link's text; when that text names no degree ("Learn more"),
     the page's own first heading is used instead, if it does."""
@@ -222,11 +229,15 @@ def collect_page(session: Session, page_id: str, *, budget: Budget, fetch=snapsh
     school = school_info(page.school_key, data_dir)
     page.attempts += 1
     # The last attempt, whatever its outcome: a refused page is not due again the next day.
-    page.fetched_at = now()
+    previous_attempt, page.fetched_at = page.fetched_at, now()
 
     try:
         meta = fetch(page.url, page.school_key, render=page.render, root=root)
     except Blocked as blocked:
+        if _unanswered(blocked):
+            page.last_error = str(blocked)[:500]
+            session.commit()
+            raise Transient(page.last_error) from blocked
         return _settle(session, page, PageState.BLOCKED, str(blocked)[:500])
     except HttpError as error:
         if error.status >= 500:
@@ -261,6 +272,8 @@ def collect_page(session: Session, page_id: str, *, budget: Budget, fetch=snapsh
         page.snapshot_sha256, page.text_sha256 = sha, new_text_sha
         return _settle(session, page, PageState.UNCHANGED)
     if not budget.allows():
+        # Not extracted, so not collected: due again as soon as there is money, not in a month.
+        page.fetched_at = previous_attempt
         return _settle(session, page, PageState.DEFERRED, f"budget {budget.name} reached ({budget.cap} CNY)")
 
     try:
@@ -379,13 +392,14 @@ def export_school(session: Session, school_key: str, data_dir: Path = DATA_DIR, 
     """Merge the queue's results for one school into its requirement file (D8).
 
     A collected program replaces the file's program with the same URL and name, else the only one on
-    that URL, else it is appended; programs the queue did not collect are kept as they are. Only `done`
-    pages are exported: an unusable answer or a page that lost every value leaves the file alone.
+    that URL, else it is appended; programs the queue did not collect are kept as they are. A page's
+    result is its last good one: an unusable answer or a page that lost every value does not replace it.
     """
     out_dir = out_dir or data_dir
+    # Every page with a result: a later `unchanged` or `needs_human` keeps the last good result (D8).
     pages = list(session.scalars(select(CollectPage).where(
-        CollectPage.school_key == school_key, CollectPage.state == PageState.DONE,
-        CollectPage.result.is_not(None)).order_by(CollectPage.created_at, CollectPage.url)))
+        CollectPage.school_key == school_key, CollectPage.result.is_not(None))
+        .order_by(CollectPage.created_at, CollectPage.url)))
     path = data_dir / f"{school_key}.json"
     if path.exists():
         data = json.loads(path.read_text(encoding="utf-8"))
@@ -474,7 +488,7 @@ def main(argv: list[str] | None = None) -> int:
             return 0
         if args.command == "export":
             schools = args.school or sorted(set(session.scalars(
-                select(CollectPage.school_key).where(CollectPage.state == PageState.DONE))))
+                select(CollectPage.school_key).where(CollectPage.result.is_not(None)))))
             for key in schools:
                 print(json.dumps(export_school(session, key, out_dir=args.out), ensure_ascii=False))
             return 0

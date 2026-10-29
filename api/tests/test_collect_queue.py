@@ -179,6 +179,47 @@ def test_a_transient_failure_is_raised_for_a_retry(db_session, school, client, e
     assert db_session.get(CollectPage, page.id).state == PageState.QUEUED
 
 
+def test_a_robots_txt_that_did_not_answer_is_retried_not_blocked(db_session, school, client):
+    page = add_page(db_session, school)
+    error = snap.Blocked("robots.txt disallows (robots.txt itself: no answer (TimeoutError: timed out)): x")
+    with pytest.raises(queue.Transient):
+        run(db_session, school, page, budget=budget(client), fetch=fake_fetch({page.url: error}), extract=fake_extract({}))
+    assert db_session.get(CollectPage, page.id).state == PageState.QUEUED
+
+
+def test_a_page_deferred_for_money_after_its_fetch_is_due_again_soon(db_session, school, client):
+    page = add_page(db_session, school)
+    spent = budget(client, cap=0.01)
+
+    def fetch_then_spend(url, school_key, render=False, root=None):
+        spent.add(1.0)  # another worker spends the rest while this page is being fetched
+        return fake_fetch({url: PAGE})(url, school_key, render, root)
+
+    state = run(db_session, school, page, budget=spent, fetch=fetch_then_spend, extract=fake_extract({}))
+    assert state == PageState.DEFERRED and db_session.get(CollectPage, page.id).fetched_at is None
+
+
+def test_a_later_unchanged_fetch_still_exports_the_last_result(db_session, school, client):
+    page = add_page(db_session, school)
+    fetch = fake_fetch({page.url: PAGE})
+    run(db_session, school, page, budget=budget(client), fetch=fetch, extract=fake_extract({"ielts": ielts(6.5)}))
+    page.state = PageState.QUEUED
+    db_session.commit()
+    assert run(db_session, school, page, budget=budget(client), fetch=fetch, extract=fake_extract({})) == PageState.UNCHANGED
+    assert queue.export_school(db_session, school["key"], data_dir=school["data_dir"])["added"] == 1
+
+
+def test_concurrent_refusals_are_all_kept(tmp_path):
+    import threading
+
+    threads = [threading.Thread(target=snap.block_host, args=(f"h{i}.example.edu", "HTTP 403", tmp_path)) for i in range(20)]
+    for t in threads:
+        t.start()
+    for t in threads:
+        t.join()
+    assert len(json.loads((tmp_path / "_blocked_hosts.json").read_text())) == 20
+
+
 def test_a_missing_page_fails_without_a_retry(db_session, school, client):
     page = add_page(db_session, school)
     state = run(db_session, school, page, budget=budget(client), fetch=fake_fetch({page.url: snap.HttpError(404, "x")}),

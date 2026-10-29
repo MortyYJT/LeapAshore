@@ -27,6 +27,7 @@ import os
 import ssl
 import subprocess
 import sys
+import threading
 import time
 import urllib.error
 import urllib.request
@@ -107,6 +108,27 @@ def wait_for_turn(domain: str, root: Path = SNAPSHOT_ROOT, now=time.time, sleep=
         handle.write(str(now()))
 
 
+def _write_atomic(path: Path, text: str) -> None:
+    """Write via a temporary file and a rename, so a reader in another thread or process sees the old
+    file or the new one, never an empty or half-written one."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_name(f".{path.name}.{os.getpid()}.{threading.get_ident()}.tmp")
+    tmp.write_text(text, encoding="utf-8")
+    os.replace(tmp, path)
+
+
+@contextlib.contextmanager
+def _locked(path: Path):
+    """An exclusive lock for a read-modify-write of `path`, across threads and processes."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path.with_name(f".{path.name}.lock"), "a+") as handle:
+        fcntl.flock(handle, fcntl.LOCK_EX)
+        try:
+            yield
+        finally:
+            fcntl.flock(handle, fcntl.LOCK_UN)
+
+
 def _blocked_hosts_file(root: Path) -> Path:
     return root / "_blocked_hosts.json"
 
@@ -148,12 +170,12 @@ def blocked_host(host: str, root: Path = SNAPSHOT_ROOT, now: datetime | None = N
 def block_host(host: str, reason: str, root: Path = SNAPSHOT_ROOT, now: datetime | None = None) -> None:
     """Record that `host` refused us, and when. An earlier refusal that still holds is kept as it is."""
     path = _blocked_hosts_file(root)
-    path.parent.mkdir(parents=True, exist_ok=True)
-    hosts = json.loads(path.read_text()) if path.exists() else {}
     now = now or datetime.now(timezone.utc)
-    if _active_reason(hosts.get(host), now) is None:
-        hosts[host] = {"reason": reason, "at": now.isoformat(timespec="seconds")}
-    path.write_text(json.dumps(hosts, ensure_ascii=False, indent=1))
+    with _locked(path):
+        hosts = json.loads(path.read_text()) if path.exists() else {}
+        if _active_reason(hosts.get(host), now) is None:
+            hosts[host] = {"reason": reason, "at": now.isoformat(timespec="seconds")}
+        _write_atomic(path, json.dumps(hosts, ensure_ascii=False, indent=1))
 
 
 ROBOTS_TTL = 24 * 3600
@@ -207,8 +229,7 @@ def robots_rules(base: str, root: Path = SNAPSHOT_ROOT) -> list[str]:
     except Exception as error:  # noqa: BLE001 - timeouts and resets: no answer is not permission
         detail = str(getattr(error, "reason", error))[:100].replace("\n", " ")
         lines = _keep_out(f"no answer ({type(error).__name__}: {detail})")
-    cache.parent.mkdir(parents=True, exist_ok=True)
-    cache.write_text("\n".join(lines), encoding="utf-8")
+    _write_atomic(cache, "\n".join(lines))
     return lines
 
 
@@ -269,10 +290,10 @@ def render_html(url: str) -> tuple[int, str, str, str]:
 
 def record_block(school: str, url: str, reason: str, root: Path = SNAPSHOT_ROOT) -> None:
     path = snapshot_dir(school, root) / "_blocked.json"
-    path.parent.mkdir(parents=True, exist_ok=True)
-    blocked = json.loads(path.read_text()) if path.exists() else []
-    blocked.append({"url": url, "reason": reason, "at": datetime.now(timezone.utc).isoformat(timespec="seconds")})
-    path.write_text(json.dumps(blocked, ensure_ascii=False, indent=1))
+    with _locked(path):
+        blocked = json.loads(path.read_text()) if path.exists() else []
+        blocked.append({"url": url, "reason": reason, "at": datetime.now(timezone.utc).isoformat(timespec="seconds")})
+        _write_atomic(path, json.dumps(blocked, ensure_ascii=False, indent=1))
 
 
 def save_snapshot(school: str, requested_url: str, final_url: str, status: int, content_type: str,
@@ -281,8 +302,8 @@ def save_snapshot(school: str, requested_url: str, final_url: str, status: int, 
     folder = snapshot_dir(school, root)
     folder.mkdir(parents=True, exist_ok=True)
     text = html_to_text(html)
-    (folder / f"{sha}.html").write_text(html, encoding="utf-8")
-    (folder / f"{sha}.txt").write_text(text, encoding="utf-8")
+    _write_atomic(folder / f"{sha}.html", html)
+    _write_atomic(folder / f"{sha}.txt", text)
     meta = {
         "sha256": sha,
         "requested_url": requested_url,
@@ -294,7 +315,7 @@ def save_snapshot(school: str, requested_url: str, final_url: str, status: int, 
         "text_path": str(folder / f"{sha}.txt"),
         "text_chars": len(text),
     }
-    (folder / f"{sha}.json").write_text(json.dumps(meta, ensure_ascii=False, indent=1))
+    _write_atomic(folder / f"{sha}.json", json.dumps(meta, ensure_ascii=False, indent=1))
     return meta
 
 
