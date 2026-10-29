@@ -34,6 +34,7 @@ PROGRAMS = [
     ("imperial-college-london", "MSc Applied Machine Learning", "计算机与数据", False),
     ("university-of-hong-kong", "Master of Science in Computer Science", "计算机与数据", True),
     ("university-of-hong-kong", "Master of Finance", "商科与金融", True),
+    ("university-of-hong-kong", "Master of Data Science", "计算机与数据", False),
     ("chinese-university-of-hong-kong", "MSc in Computer Science", "计算机与数据", True),
 ]
 
@@ -143,6 +144,20 @@ def test_a_school_without_the_subject_is_refused_by_name(catalogue):
     assert "帝国理工学院" in update["refusal_text"] and "法律与犯罪学" in update["refusal_text"]
 
 
+def test_a_specific_subject_that_fits_only_uncollected_rows_is_refused(catalogue):
+    """"港大 数据科学" where the only data-science row has no requirement data: the gate refuses rather
+    than handing over the computer science row. The full local catalogue has HKU's real, collected
+    Master of Data Science, so there the answer is that row; on the fixture alone (CI) it is the
+    refusal."""
+    update = gate("港大 数据科学")
+    if update["evidence_strong"]:
+        assert all("data" in p.name_en.lower() or "analytics" in p.name_en.lower() for p in cited(update))
+        assert all(p.id not in catalogue for p in cited(update))
+    else:
+        assert update["refusal"] == "no_program_in_field"
+        assert "还没有采到它们的官方录取要求" in update["refusal_text"]
+
+
 def test_a_school_with_no_collected_programs_is_refused_as_not_collected(catalogue):
     update = gate("测试零项目大学的硕士要求")
     assert update["refusal"] == "school_not_collected"
@@ -186,3 +201,13 @@ def test_the_portfolio_search_tool_understands_short_forms(catalogue):
     result = search_programs.invoke({"keyword": "港大 计算机"})
     assert "Master of Science in Computer Science" in result
     assert "Master of Finance" not in result
+
+
+def test_the_portfolio_search_tool_keeps_the_other_words(catalogue):
+    """Review of PR #38: once a school was recognised the program's own name was ignored, so
+    "<school> Juris Doctor" listed the school's first ten programs instead."""
+    result = search_programs.invoke({"keyword": "港大 Master of Finance"})
+    assert "Master of Finance" in result
+    assert "Computer Science" not in result
+    # Words that match no name ("硕士") are filler and do not empty the result.
+    assert "Master of Science in Computer Science" in search_programs.invoke({"keyword": "港大 计算机 硕士"})

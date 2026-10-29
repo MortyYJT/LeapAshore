@@ -243,12 +243,13 @@ def _scope_counts(session: Session, found: "Retrieval") -> dict:
             func.count().filter(in_field),
             func.count().filter(and_(in_field, data)),
             func.count().filter(and_(in_field, fits)),
+            func.count().filter(and_(in_field, fits, data)),
         )
         .select_from(Program)
         .join(Source, Source.id == Program.source_id)
         .where(Program.university_id.in_(found.schools))
     ).one()
-    return dict(zip(("programs", "with_data", "in_field", "in_field_with_data", "fitting"), row))
+    return dict(zip(("programs", "with_data", "in_field", "in_field_with_data", "fitting", "fitting_with_data"), row))
 
 
 def _subject_label(found: "Retrieval") -> str:
@@ -273,7 +274,7 @@ def refusal(session: Session, found: Retrieval) -> tuple[str, str]:
         held = f"目前只收录了 {counts['programs']} 个项目的名称，" if counts["programs"] else ""
         return "school_not_collected", f"{names}{held}还没有采到官方录取要求，{tail}"
     subject = _subject_label(found)
-    if found.narrowing_pattern and counts["fitting"]:
+    if found.narrowing_pattern and counts["fitting"] and not counts["fitting_with_data"]:
         return "no_program_in_field", (
             f"{names}有 {counts['fitting']} 个与{subject}相符的项目，但还没有采到它们的官方录取要求。{tail}"
         )

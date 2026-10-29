@@ -26,6 +26,10 @@ ROWS = [
     ("cricos-00002J", "麦考瑞大学", "Macquarie University (Sydney, Australia)"),
     ("university-of-british-columbia", "不列颠哥伦比亚大学", "University of British Columbia"),
     ("columbia-university", "哥伦比亚大学", "Columbia University"),
+    ("unsw", "新南威尔士大学", "UNSW Sydney"),
+    ("hong-kong-polytechnic-university", "香港理工大學", "The Hong Kong Polytechnic University"),
+    ("university-of-oxford", "牛津大学", "University of Oxford"),
+    ("university-of-cambridge", "剑桥大学", "University of Cambridge"),
 ]
 INDEX = SchoolIndex(ROWS)
 
@@ -73,6 +77,33 @@ def test_the_longest_name_wins_where_two_overlap():
     assert schools("西悉尼大学的计算机硕士") == ["cricos-00917K"]
     assert schools("不列颠哥伦比亚大学 商科") == ["university-of-british-columbia"]
     assert schools("哥伦比亚大学 商科") == ["columbia-university"]
+
+
+def test_a_short_form_inside_a_longer_unknown_school_name_is_not_that_school():
+    """Review of PR #38: 牛津 inside 牛津布鲁克斯大学 and 哥大 inside 圣地亚哥大学 handed over Oxford's and
+    Columbia's requirements for schools the catalogue does not hold."""
+    assert schools("牛津布鲁克斯大学 计算机硕士要求") == []
+    assert schools("圣地亚哥大学 数据科学硕士要求") == []
+
+
+def test_a_broken_off_copy_of_a_full_name_is_not_the_short_form():
+    assert schools("香港大湾区的学校有哪些要求") == []
+
+
+def test_two_common_characters_are_not_a_school():
+    assert schools("UNSW 物理大概要多少分") == ["unsw"]
+    assert fields("UNSW 物理大概要多少分") == ["自然科学与数学"]
+
+
+def test_short_forms_still_work_next_to_each_other_and_before_a_subject():
+    assert schools("牛津和剑桥的计算机") == ["university-of-oxford", "university-of-cambridge"]
+    assert schools("牛津剑桥大学") == ["university-of-oxford", "university-of-cambridge"]
+    assert schools("港大计算机学院的硕士") == ["university-of-hong-kong"]
+    assert schools("哥大 TESOL") == ["columbia-university"]
+
+
+def test_the_rest_of_the_question_is_kept_for_name_search():
+    assert parse(INDEX, "UNSW Juris Doctor").rest == "juris doctor"
 
 
 def test_one_name_for_two_schools_returns_both():

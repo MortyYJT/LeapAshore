@@ -63,7 +63,9 @@ SEARCH_LIMIT = 10
 
 def _search_by_school(session, keyword: str) -> list[Program] | None:
     """When the keyword names a school (any spelling the advisor knows), that school's programs in the
-    named subject area, best name fit first. None when no school is named."""
+    named subject area, best name fit first. The keyword's other words ("Juris Doctor") must each
+    appear in the program's name; when that leaves nothing, they were filler ("硕士") and are dropped.
+    None when no school is named."""
     index = catalog_match.school_index(
         [tuple(r) for r in session.execute(select(University.id, University.name, University.name_en))]
     )
@@ -80,7 +82,14 @@ def _search_by_school(session, keyword: str) -> list[Program] | None:
     if parsed.name_pattern:
         # CASE rather than the bare match: a row with no English name would sort first under DESC.
         query = query.order_by(case((Program.name_en.regexp_match(parsed.name_pattern, "i"), 1), else_=0).desc())
-    return list(session.scalars(query.order_by(Program.name, Program.id).limit(SEARCH_LIMIT)))
+    query = query.order_by(Program.name, Program.id).limit(SEARCH_LIMIT)
+    words = parsed.rest.split()
+    if words:
+        named = query.where(*[or_(Program.name.ilike(f"%{w}%"), Program.name_en.ilike(f"%{w}%")) for w in words])
+        rows = list(session.scalars(named))
+        if rows:
+            return rows
+    return list(session.scalars(query))
 
 
 def _search_by_words(session, keyword: str) -> list[Program]:

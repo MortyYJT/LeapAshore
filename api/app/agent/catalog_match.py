@@ -121,26 +121,84 @@ def names_for(university_id: str, name: str | None, name_en: str | None) -> set[
     return {n for n in out if len(n) >= 2}
 
 
+# A Chinese school name ends with one of these; text running on into one after a match is a longer
+# name the catalogue does not hold ("牛津布鲁克斯大学" is not 牛津).
+_SCHOOL_SUFFIXES = ("大学", "学院")
+# Characters that end a name in running text, so "牛津和剑桥大学" is two names, not one unknown one.
+_NAME_STOPS = set("的和与及跟或同对比在里、")
+_SUFFIX_REACH = 8
+
+
+def _cjk(ch: str) -> bool:
+    return "㐀" <= ch <= "鿿"
+
+
 class SchoolIndex:
     """Folded name -> university ids, built from the catalogue's rows and the curated aliases."""
 
     def __init__(self, rows: list[tuple[str, str | None, str | None]]):
         self.names: dict[str, str] = {uid: (name or name_en or uid) for uid, name, name_en in rows}
         self.vocabulary: dict[str, set[str]] = {}
+        # The catalogue's own Chinese names per school, to tell an abbreviation from a broken-off
+        # copy of the full name ("港大" inside "香港大湾区").
+        self.full_names: dict[str, set[str]] = {}
         for uid, name, name_en in rows:
             for term in names_for(uid, name, name_en):
                 self.vocabulary.setdefault(term, set()).add(uid)
+            folded = normalize(name or "")
+            self.full_names[uid] = {folded, _PARENS.sub(" ", folded).strip()} - {""}
+
+    def _incomplete_full_name(self, text: str, start: int, end: int, uids: set[str]) -> bool:
+        """The match sits where one of its schools' full names starts, but the full name does not
+        follow: "香港大湾区" holds 港大 at the place 香港大学 would have it."""
+        term = text[start:end]
+        for uid in uids:
+            for full in self.full_names.get(uid, ()):
+                i = full.find(term)
+                if i > 0 and start - i >= 0 and text[start - i:start] == full[:i] \
+                        and text[start - i:start - i + len(full)] != full:
+                    return True
+        return False
+
+    @staticmethod
+    def _runs_into_unknown_name(text: str, start: int, end: int, others: list[tuple[int, int]]) -> bool:
+        """Chinese text that carries on into 大学 or 学院 right after the match, with no break and no
+        other name or subject in between, is a longer school name: "牛津布鲁克斯大学", "圣地亚哥大学"
+        (which holds 哥大)."""
+        term = text[start:end]
+        if not term or not _cjk(term[-1]) or term.endswith(_SCHOOL_SUFFIXES):
+            return False
+        window_end = min(len(text), end + _SUFFIX_REACH)
+        for suffix in _SCHOOL_SUFFIXES:
+            at = text.find(suffix, max(start + 1, end - len(suffix) + 1), window_end)
+            if at == -1 or at + len(suffix) <= end:
+                continue
+            between = text[end:at]
+            if any(not _cjk(c) or c in _NAME_STOPS for c in between):
+                continue
+            if any(end <= s < at for s, _ in others):
+                continue
+            if _longest_matches(between, _subject_vocabulary()):
+                continue
+            return True
+        return False
 
     def match(self, text: str) -> tuple[list[str], list[tuple[int, int]]]:
         """University ids named in `text` (folded), in the order they appear, and their spans."""
+        found = _longest_matches(text, self.vocabulary)
+        spans = [span for span, _ in found]
         ids: list[str] = []
-        spans = []
-        for span, uids in _longest_matches(text, self.vocabulary):
-            spans.append(span)
+        kept = []
+        for (start, end), uids in found:
+            if self._incomplete_full_name(text, start, end, uids):
+                continue
+            if self._runs_into_unknown_name(text, start, end, [s for s in spans if s != (start, end)]):
+                continue
+            kept.append((start, end))
             for uid in sorted(uids):
                 if uid not in ids:
                     ids.append(uid)
-        return ids, spans
+        return ids, kept
 
 
 _index_cache: dict[tuple, SchoolIndex] = {}
@@ -180,16 +238,19 @@ def _subject_vocabulary() -> dict[str, set[Subject]]:
     return vocabulary
 
 
-def match_subjects(text: str) -> tuple[list[Subject], list[str]]:
-    """Subjects named in `text` (folded, with school names already blanked out), and the words used."""
+def match_subjects(text: str) -> tuple[list[Subject], list[str], list[tuple[int, int]]]:
+    """Subjects named in `text` (folded, with school names already blanked out), the words used, and
+    where they are."""
     out: list[Subject] = []
     words: list[str] = []
+    spans: list[tuple[int, int]] = []
     for (start, end), subjects in _longest_matches(text, _subject_vocabulary()):
         words.append(text[start:end])
+        spans.append((start, end))
         for s in sorted(subjects, key=lambda s: (s.field, s.name_pattern)):
             if s not in out:
                 out.append(s)
-    return out, list(dict.fromkeys(words))
+    return out, list(dict.fromkeys(words)), spans
 
 
 @dataclass
@@ -197,6 +258,7 @@ class Parsed:
     schools: list[str]
     subjects: list[Subject]
     subject_words: list[str] = field(default_factory=list)  # as the question wrote them, folded
+    rest: str = ""  # the folded question with the school names and subject words blanked out
 
     @property
     def fields(self) -> list[str]:
@@ -224,5 +286,7 @@ def parse(index: SchoolIndex, question: str) -> Parsed:
     """Schools first; their names are then blanked so "伦敦政治经济学院" is not also a subject."""
     text = normalize(question)
     schools, spans = index.match(text)
-    subjects, words = match_subjects(_blank(text, spans))
-    return Parsed(schools=schools, subjects=subjects, subject_words=words)
+    without_schools = _blank(text, spans)
+    subjects, words, subject_spans = match_subjects(without_schools)
+    return Parsed(schools=schools, subjects=subjects, subject_words=words,
+                  rest=_SPACES.sub(" ", _blank(without_schools, subject_spans)).strip())
