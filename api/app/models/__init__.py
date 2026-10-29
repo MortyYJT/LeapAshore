@@ -6,6 +6,7 @@ from app.models.application import (
     ApplicationTier,
 )
 from app.models.client import Client, Profile
+from app.models.collect import CollectPage, PageState, RequirementChange
 from app.models.document import (
     Document,
     DocumentKind,
@@ -44,6 +45,7 @@ __all__ = [
     "ApplicationTier",
     "CheckType",
     "Client",
+    "CollectPage",
     "CriterionScope",
     "CriterionStatus",
     "Document",
@@ -54,11 +56,13 @@ __all__ = [
     "DocumentVersion",
     "FindingSeverity",
     "MaterialTemplate",
+    "PageState",
     "Profile",
     "Program",
     "ProgramDeadline",
     "ProgramPrerequisite",
     "ReviewCriterion",
+    "RequirementChange",
     "ReviewOverall",
     "RoadmapPhase",
     "RoadmapTask",

@@ -7,7 +7,8 @@ Rules this enforces, so a collecting agent cannot forget them:
 - `robots.txt` is honoured; a disallowed URL is not fetched.
 - At most one request every `MIN_INTERVAL` seconds per domain, shared across processes.
 - A 403 or 429 is recorded as a block and never retried with a different identity: a site that
-  refuses us is left alone.
+  refuses us is left alone. A refusal recorded with a time holds for `REFUSAL_DAYS` days; one recorded
+  before refusals carried a time holds until it is removed by hand.
 - The User-Agent names the project.
 
 The raw HTML and its visible text are written under `api/var/snapshots/<school>/<sha256>.*`, with a
@@ -16,6 +17,8 @@ file can cite exactly the version its quotes were checked against.
 """
 
 import argparse
+import contextlib
+import contextvars
 import fcntl
 import gzip
 import hashlib
@@ -24,11 +27,12 @@ import os
 import ssl
 import subprocess
 import sys
+import threading
 import time
 import urllib.error
 import urllib.request
 import urllib.robotparser
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from urllib.parse import urlsplit
 
@@ -46,6 +50,29 @@ class Blocked(Exception):
     """The site refused the request (403/429) or robots.txt disallows it."""
 
 
+class HttpError(RuntimeError):
+    """The page answered with an error status other than a refusal (404, 500…)."""
+
+    def __init__(self, status: int, url: str) -> None:
+        super().__init__(f"HTTP {status} for {url}")
+        self.status = status
+
+
+# A limiter other than the file lock below, for the code running in this context: the queue installs
+# its Redis token bucket here (`use_limiter`), so robots.txt and page fetches both take its turns.
+_LIMITER: contextvars.ContextVar = contextvars.ContextVar("snapshot_limiter", default=None)
+
+
+@contextlib.contextmanager
+def use_limiter(limiter):
+    """Within the block, every request waits on `limiter(host)` instead of the file lock."""
+    token = _LIMITER.set(limiter)
+    try:
+        yield
+    finally:
+        _LIMITER.reset(token)
+
+
 def snapshot_dir(school: str, root: Path = SNAPSHOT_ROOT) -> Path:
     return root / school
 
@@ -60,6 +87,10 @@ def wait_for_turn(domain: str, root: Path = SNAPSHOT_ROOT, now=time.time, sleep=
     The marker is locked while it is read and rewritten, so collectors running at the same time
     take turns instead of both reading an old timestamp.
     """
+    limiter = _LIMITER.get()
+    if limiter is not None:
+        limiter(domain)
+        return
     marker = _rate_file(domain, root)
     marker.parent.mkdir(parents=True, exist_ok=True)
     with open(marker, "a+", encoding="utf-8") as handle:
@@ -77,27 +108,74 @@ def wait_for_turn(domain: str, root: Path = SNAPSHOT_ROOT, now=time.time, sleep=
         handle.write(str(now()))
 
 
+def _write_atomic(path: Path, text: str) -> None:
+    """Write via a temporary file and a rename, so a reader in another thread or process sees the old
+    file or the new one, never an empty or half-written one."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    tmp = path.with_name(f".{path.name}.{os.getpid()}.{threading.get_ident()}.tmp")
+    tmp.write_text(text, encoding="utf-8")
+    os.replace(tmp, path)
+
+
+@contextlib.contextmanager
+def _locked(path: Path):
+    """An exclusive lock for a read-modify-write of `path`, across threads and processes."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    with open(path.with_name(f".{path.name}.lock"), "a+") as handle:
+        fcntl.flock(handle, fcntl.LOCK_EX)
+        try:
+            yield
+        finally:
+            fcntl.flock(handle, fcntl.LOCK_UN)
+
+
 def _blocked_hosts_file(root: Path) -> Path:
     return root / "_blocked_hosts.json"
 
 
-def blocked_host(host: str, root: Path = SNAPSHOT_ROOT) -> str | None:
-    """Why `host` refused us before, or None. A refusal holds for every later request to it."""
+# A refusal is honoured this long, then the host may be asked again with the same identity
+# (openspec collect-queue D5). Sites change their rules; a monthly re-collection must be able to return.
+REFUSAL_DAYS = 30
+
+
+def _active_reason(entry, now: datetime) -> str | None:
+    """The reason of a refusal that still holds. A bare string predates refusal times: it holds."""
+    if entry is None:
+        return None
+    if isinstance(entry, str):
+        return entry
+    try:
+        at = datetime.fromisoformat(entry["at"])
+    except (KeyError, TypeError, ValueError):
+        return entry.get("reason") or "refused"
+    return entry.get("reason") if now - at < timedelta(days=REFUSAL_DAYS) else None
+
+
+def blocked_host(host: str, root: Path = SNAPSHOT_ROOT, now: datetime | None = None) -> str | None:
+    """Why `host` refused us, while that refusal holds, or None."""
     path = _blocked_hosts_file(root)
     if not path.exists():
         return None
     hosts = json.loads(path.read_text())
+    now = now or datetime.now(timezone.utc)
     # www.x and x are one site: a refusal from either holds for both.
     bare = host.lower().removeprefix("www.")
-    return hosts.get(host) or hosts.get(bare) or hosts.get(f"www.{bare}")
+    for name in (host, bare, f"www.{bare}"):
+        reason = _active_reason(hosts.get(name), now)
+        if reason:
+            return reason
+    return None
 
 
-def block_host(host: str, reason: str, root: Path = SNAPSHOT_ROOT) -> None:
+def block_host(host: str, reason: str, root: Path = SNAPSHOT_ROOT, now: datetime | None = None) -> None:
+    """Record that `host` refused us, and when. An earlier refusal that still holds is kept as it is."""
     path = _blocked_hosts_file(root)
-    path.parent.mkdir(parents=True, exist_ok=True)
-    hosts = json.loads(path.read_text()) if path.exists() else {}
-    hosts.setdefault(host, reason)
-    path.write_text(json.dumps(hosts, ensure_ascii=False, indent=1))
+    now = now or datetime.now(timezone.utc)
+    with _locked(path):
+        hosts = json.loads(path.read_text()) if path.exists() else {}
+        if _active_reason(hosts.get(host), now) is None:
+            hosts[host] = {"reason": reason, "at": now.isoformat(timespec="seconds")}
+        _write_atomic(path, json.dumps(hosts, ensure_ascii=False, indent=1))
 
 
 ROBOTS_TTL = 24 * 3600
@@ -151,8 +229,7 @@ def robots_rules(base: str, root: Path = SNAPSHOT_ROOT) -> list[str]:
     except Exception as error:  # noqa: BLE001 - timeouts and resets: no answer is not permission
         detail = str(getattr(error, "reason", error))[:100].replace("\n", " ")
         lines = _keep_out(f"no answer ({type(error).__name__}: {detail})")
-    cache.parent.mkdir(parents=True, exist_ok=True)
-    cache.write_text("\n".join(lines), encoding="utf-8")
+    _write_atomic(cache, "\n".join(lines))
     return lines
 
 
@@ -213,10 +290,10 @@ def render_html(url: str) -> tuple[int, str, str, str]:
 
 def record_block(school: str, url: str, reason: str, root: Path = SNAPSHOT_ROOT) -> None:
     path = snapshot_dir(school, root) / "_blocked.json"
-    path.parent.mkdir(parents=True, exist_ok=True)
-    blocked = json.loads(path.read_text()) if path.exists() else []
-    blocked.append({"url": url, "reason": reason, "at": datetime.now(timezone.utc).isoformat(timespec="seconds")})
-    path.write_text(json.dumps(blocked, ensure_ascii=False, indent=1))
+    with _locked(path):
+        blocked = json.loads(path.read_text()) if path.exists() else []
+        blocked.append({"url": url, "reason": reason, "at": datetime.now(timezone.utc).isoformat(timespec="seconds")})
+        _write_atomic(path, json.dumps(blocked, ensure_ascii=False, indent=1))
 
 
 def save_snapshot(school: str, requested_url: str, final_url: str, status: int, content_type: str,
@@ -225,8 +302,8 @@ def save_snapshot(school: str, requested_url: str, final_url: str, status: int, 
     folder = snapshot_dir(school, root)
     folder.mkdir(parents=True, exist_ok=True)
     text = html_to_text(html)
-    (folder / f"{sha}.html").write_text(html, encoding="utf-8")
-    (folder / f"{sha}.txt").write_text(text, encoding="utf-8")
+    _write_atomic(folder / f"{sha}.html", html)
+    _write_atomic(folder / f"{sha}.txt", text)
     meta = {
         "sha256": sha,
         "requested_url": requested_url,
@@ -238,7 +315,7 @@ def save_snapshot(school: str, requested_url: str, final_url: str, status: int, 
         "text_path": str(folder / f"{sha}.txt"),
         "text_chars": len(text),
     }
-    (folder / f"{sha}.json").write_text(json.dumps(meta, ensure_ascii=False, indent=1))
+    _write_atomic(folder / f"{sha}.json", json.dumps(meta, ensure_ascii=False, indent=1))
     return meta
 
 
@@ -282,7 +359,7 @@ def snapshot(url: str, school: str, render: bool = False, root: Path = SNAPSHOT_
         block_host(urlsplit(final_url).netloc or host, f"HTTP {status}", root)
         raise Blocked(f"HTTP {status} for {url}")
     if status >= 400 or not html:
-        raise RuntimeError(f"HTTP {status} for {url}")
+        raise HttpError(status, url)
     return save_snapshot(school, url, final_url, status, content_type, html, root, rendered=render)
 
 

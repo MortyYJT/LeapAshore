@@ -1,6 +1,6 @@
 .PHONY: help dev build test verify install clean screenshots check-origins
 .PHONY: api-install api-test api-dev api-dev-bg wait-api check-api check-venv
-.PHONY: db-up db-down migrate revision seed
+.PHONY: db-up db-down migrate revision seed worker beat
 .PHONY: check-dates check-roadmap-mirror
 
 WEB := web
@@ -98,6 +98,13 @@ api-test: check-venv  ## Run the backend tests in the project-local venv
 
 api-dev:  ## Start the backend dev server on :8000
 	cd api && .venv/bin/uvicorn app.main:app --reload --port 8000
+
+# The collection queue (openspec/changes/collect-queue) from the venv, where Chrome can render pages.
+worker:  ## Run a collection-queue worker (Celery) against the local Redis and database
+	cd api && .venv/bin/celery -A app.worker worker --pool threads --concurrency 4 --loglevel INFO
+
+beat:  ## Run the collection-queue beat (daily re-collection, cleanup in login mode)
+	cd api && .venv/bin/celery -A app.worker beat --loglevel INFO --schedule var/celerybeat-schedule
 
 db-up:  ## Start the database and Redis containers
 	docker compose up -d db redis

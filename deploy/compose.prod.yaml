@@ -53,6 +53,51 @@ services:
       timeout: 3s
       retries: 20
 
+  # The collection queue (openspec/changes/collect-queue). The worker fetches official pages (robots.txt,
+  # one request per host every 2 s, refusals recorded) and extracts them with the advisor's model under
+  # a daily spend cap; it never writes the catalogue (D8). Snapshots live in the `snapshots` volume; the
+  # database stores only school keys and sha256s, never a path (D9). The image has no Chrome, so pages
+  # that need rendering are deferred here and collected locally.
+  worker:
+    build: ../api
+    restart: unless-stopped
+    command: ["celery", "-A", "app.worker", "worker", "--pool", "threads", "--concurrency", "2", "--loglevel", "INFO"]
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql+psycopg://offerpilot:${POSTGRES_PASSWORD}@db:5432/offerpilot
+      APP_ENV: production
+      REDIS_URL: redis://redis:6379/0
+      CELERY_BROKER_URL: redis://redis:6379/1
+      COLLECT_CAN_RENDER: "false"
+    volumes:
+      - snapshots:/app/var/snapshots
+      - documents:/app/var/documents
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      api:
+        condition: service_started
+
+  # Daily: re-collect pages not fetched for 30 days (04:07 Beijing), and the 90-day anonymous-data
+  # sweep (03:17), which does nothing until AUTH_ENABLED is on. One beat only: two would send twice.
+  beat:
+    build: ../api
+    restart: unless-stopped
+    command: ["celery", "-A", "app.worker", "beat", "--loglevel", "INFO", "--schedule", "/app/var/beat/celerybeat-schedule"]
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql+psycopg://offerpilot:${POSTGRES_PASSWORD}@db:5432/offerpilot
+      APP_ENV: production
+      REDIS_URL: redis://redis:6379/0
+      CELERY_BROKER_URL: redis://redis:6379/1
+    volumes:
+      - beat-data:/app/var/beat
+    depends_on:
+      redis:
+        condition: service_healthy
+
   web:
     build: ../web
     restart: unless-stopped
@@ -85,5 +130,7 @@ volumes:
   db-data:
   redis-data:
   documents:
+  snapshots:
+  beat-data:
   caddy-data:
   caddy-config:

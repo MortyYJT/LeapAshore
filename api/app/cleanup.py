@@ -7,7 +7,8 @@
 - expired sessions;
 - login codes older than two days (the daily rate limits only look back 24 hours).
 
-Celery beat arrives in P1; until then this runs from the host's cron (see `note/handoff.md`).
+In production the Celery beat runs it daily with `--apply` once login mode is on (`app.worker.cleanup`,
+openspec/changes/collect-queue D12); in anonymous mode it does nothing.
 """
 
 import argparse
