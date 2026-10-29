@@ -132,7 +132,8 @@ def robots_rules(base: str, root: Path = SNAPSHOT_ROOT) -> list[str]:
     except urllib.error.HTTPError as error:
         lines = _keep_out(f"HTTP {error.code}") if error.code in (401, 403, 429) or error.code >= 500 else []
     except Exception as error:  # noqa: BLE001 - timeouts and resets: no answer is not permission
-        lines = _keep_out(f"no answer ({type(error).__name__})")
+        detail = str(getattr(error, "reason", error))[:100].replace("\n", " ")
+        lines = _keep_out(f"no answer ({type(error).__name__}: {detail})")
     cache.parent.mkdir(parents=True, exist_ok=True)
     cache.write_text("\n".join(lines), encoding="utf-8")
     return lines
