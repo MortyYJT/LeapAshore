@@ -1,6 +1,6 @@
 # Addressing the site by hostname turns on Caddy's automatic HTTPS: it obtains and renews the
 # certificate itself and redirects plain HTTP to HTTPS. Certificates persist in the caddy-data volume.
-mortyyjt.site {
+leapashore.mortyyjt.site {
 	encode gzip
 	handle /api/* {
 		reverse_proxy api:8000 {
@@ -13,12 +13,7 @@ mortyyjt.site {
 	}
 }
 
-# One canonical host, so the anonymous client cookie is never split across two origins.
-www.mortyyjt.site {
-	redir https://mortyyjt.site{uri} permanent
-}
-
-# Links that still point at the bare IP land on the domain.
+# Links that still point at the bare IP land on the domain, so the client cookie stays on one origin.
 http://43.161.224.82 {
-	redir https://mortyyjt.site{uri} permanent
+	redir https://leapashore.mortyyjt.site{uri} permanent
 }
