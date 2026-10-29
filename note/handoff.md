@@ -15,13 +15,24 @@
 - 抽取（PR #42）：`python -m app.collect.extract <school_key> <sha256> [--name …]`（在 `api/` 下）用顾问的模型把一份快照抽成采集文件格式的一个项目，预检 + `verify` 后不过的值删掉、原因进 `rejected`；只打印，不写文件。测量 `python -m evals.extract_rejection --per-school 10`（要 `CHAT_*` 指向 DeepSeek，见下面「开放问题」第二条；花约 1 元），10-30 结果：10 所 95 页拒收率 10.3%，结果文件 `api/evals/results/extract-2026-10-30.json`。离线工具，没部署。
 - 仓库清理（PR #43）：删了 4 处移植说法和一处本机路径，加了 MIT LICENSE；README/PRD 的截止日期写成「已采集、未入库」（79 所、2,335 个项目、3,986 条）。P1 第一条里的 4,055 / 4,874 是删日本前的数，现在是 3,986 条截止日期、4,831 个带学术要求的机器核对项目。
 - 限流超时撤回（PR #44，10-30 部署，只重建 api）：放行回复超时时撤回本次放行，503 不再留下 8,000 token 预扣。部署前备份 `~/db-backup-20261030-pre-withdraw.sql.gz`。
-- 下一步：`TASKS.md` P0 第八条「跑 `make verify` + 查生产库」。
+- 「有要求」口径统一（PR #46，10-30 部署 api + web）：生产库「带要求的项目 4,389 个」（删日本前；删后 4,383）和本机 5,163 不一样是口径不同，不是导入过期——生产库和采集文件逐项一致，没重新导入。现在只有一个口径 `has_requirement_data()`（`api/app/models/program.py`：英语、985/211 均分、其他院校均分、先修课之一），项目库筛选、学校库计数、顾问门槛共用；前端项目表和详情页用同规则的 `statesARequirement`（`web/lib/catalog.ts`），改一处要两处一起改。生产 4,815。三个数的含义：5,163 = 采集文件里机器核对、已入库的项目；4,813 = 其中详情页能显示要求的；4,815 = 4,813 + 2 个手填占位。查询见 `TASKS.md` 该条。
+- **P0 全部做完**（只剩卡在 MortyYJT 本人的部分，见下面「卡在 MortyYJT」）。下一步：`TASKS.md` P1 第一条「截止日期和学术要求入库」（数以重算为准：3,986 条截止日期、4,831 个带学术要求的机器核对项目；入库后上面那 350 个只有学术要求/截止日期的项目会进「有要求」，记得同步改 `has_requirement_data` 和 README/PRD 的数）。
 - 线上（10-30）已跑 PR #40：compose 多了 `redis` 容器；部署前备份在服务器 `~/db-backup-20261030-pre-limits.sql.gz`（Alembic 仍是 `5c1e7f0a2b3d`，PR #40 没改表）。
 - 线上运行的是 main（截至 PR #38 合并，10-30 部署，登录模式关；生产库已用 `remove_schools --apply` 删掉日本 8 所），地址 https://leapashore.mortyyjt.site 。个人网站 https://mortyyjt.site 也由这里的 Caddy 出。
 - 生产库（10-30，PR #34 部署后）：programs 7496（删日本 8 所前 7586），范围外国家项目 0，`verified_at` 非空 0。最近一次部署前的备份在服务器 `~/db-backup-20261030-pre-retrieval.sql.gz`（PR #38 前；Alembic 现在是 `5c1e7f0a2b3d`）。
-- `make verify`（抽取这条，10-30）：后端 489（审查修复后）、前端 235、走查对 :3000 旧 dev server 28/30（`/assess` 404 和一处超时，老问题），对 `make build` 产物 106/106。
+- `make verify`（P0 第八条，10-30，审查修复后）：后端 495、前端 236、走查 106/106，走查对**新起的** :3000 dev server（旧的 01:46 进程已杀掉，删了 `web/.next` 重起；:8000 的 API 也重起了，是登录模式）。
+
+## 卡在 MortyYJT（P0 汇总，10-30）
+
+1. **开登录模式**：开通腾讯云 SES、DNSPod 加发信域名记录（SPF/DKIM/DMARC）、建发信地址并把 SMTP 账号密码填进服务器 `deploy/.env`。步骤见「部署 → 切到登录模式」第 1–3 步；之后任何 agent 都能做第 4–7 步。
+2. **审核隐私政策** `/privacy`（AI 草稿）正文，补联系方式。
+3. **GitHub 邮箱隐私**：Settings → Emails 勾选「Keep my email addresses private」，否则合并提交会带私人邮箱。
+4. **复核 AI 自主决定**（`note/decisions.md` 里标「待 MortyYJT 复核」的各条），主要是：顾问限流默认额度和 Redis 挂了就 503；顾问门槛「只有 CRICOS 课程名不算证据」是否太严、简称表、评估集标签；抽取器多条学术路线只留第一条；README 数据条款措辞和 QS 转载授权；两个手填占位项目要不要删（见下）。
 
 ## 开放问题
+
+- 两个手填的 `待核验` 占位项目（`api/app/seed.py`：`cricos-103000K` Monash 人工智能、`cricos-111671D` 悉尼计算机）仍算「有要求」：英语一栏是「需同时满足 Monash 英语要求」这类指引，均分 60/65 是早期手填、没过 `verify`。待 MortyYJT 决定是否删掉这些手填值（删要连 `test_seed.py` 一起改）。
+- 有 350 个机器核对项目在界面上看不到任何要求：266 个只有学术要求和/或截止日期；其余还带有只有说明、没有数字的值——语言 30 个（导入器 `english_text` 只写带分数的）、中国学生要求 55 个（只写均分），其中 1 个两样都有。前一类 P1 第一条入库；后两类入库时一并考虑要不要显示说明文字。（重算：按导入器规则遍历 `api/data/requirements/*.json`，对已导入但不满足 `has_requirement_data` 的项目按通过核对的字段分组。）
 
 - **登录模式等 MortyYJT 配发信（卡在本人）**：步骤见「部署 → 切到登录模式」。隐私政策 `/privacy` 是 AI 草稿，要 MortyYJT 审核正文、补联系方式。
 - 生产顾问用的是 `api.deepseek.com` 的 `deepseek-chat`（服务器 `deploy/.env`），不是 TASKS.md 写的硅基流动 DeepSeek-V4-Flash；隐私政策按生产实际写的 DeepSeek。10-30 跑意图评估时 DeepSeek 返回的模型名是 `deepseek-flash`（价格页已不列 `deepseek-chat`，旧名仍可调用）。本机评估用的是 shell 里的 `DEEPSEEK_API_KEY`：`CHAT_BASE_URL=https://api.deepseek.com CHAT_MODEL=deepseek-chat CHAT_API_KEY="$DEEPSEEK_API_KEY"`。

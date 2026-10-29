@@ -23,11 +23,11 @@ import re
 import time
 from dataclasses import dataclass, field
 
-from sqlalchemy import and_, case, exists, func, literal, or_, select
+from sqlalchemy import and_, case, func, literal, select
 from sqlalchemy.orm import Session, joinedload, selectinload
 
 from app.agent import catalog_match
-from app.models.program import Program, ProgramPrerequisite, University
+from app.models.program import Program, University, has_requirement_data
 from app.models.source import Source
 
 logger = logging.getLogger("leapashore.knowledge_gap")
@@ -37,16 +37,6 @@ logger = logging.getLogger("leapashore.knowledge_gap")
 TOP_K = 4
 
 MACHINE_CHECKED = "机器核对"
-
-
-def has_requirement_data():
-    """SQL: the row states at least one requirement the evidence line can show."""
-    return or_(
-        Program.english_requirement.is_not(None),
-        Program.minimum_mark.is_not(None),
-        Program.non_211_minimum_mark.is_not(None),
-        exists().where(ProgramPrerequisite.program_id == Program.id),
-    )
 
 
 def citable_source():
