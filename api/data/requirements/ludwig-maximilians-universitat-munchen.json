@@ -1,0 +1,1124 @@
+{
+ "school_key": "ludwig-maximilians-universitat-munchen",
+ "school_name_en": "Ludwig-Maximilians-Universität München",
+ "country": "Germany",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://www.lmu.de/en/study/all-degrees-and-programs/",
+  "https://www.lmu.de/en/study/all-degrees-and-programs/international-degree-programs/"
+ ],
+ "blocked": [
+  {
+   "url": "https://www.en.math.lmu.de/studium/fachstudium/studiengaenge/master_wima/index.html",
+   "reason": "robots.txt disallows (robots.txt itself did not answer: timeout)"
+  },
+  {
+   "url": "https://www.psy.lmu.de/ncp/index.html",
+   "reason": "robots.txt disallows (robots.txt itself: SSL certificate verify failed); the LMU psy page lmu.de/psy was used instead"
+  },
+  {
+   "url": "https://www.international-health.uni-muenchen.de/education/master_programs/msc_int_health/index.html",
+   "reason": "robots.txt disallows (robots.txt itself: host did not resolve)"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.en.gsi.uni-muenchen.de/studies/programmes/master/index.html",
+  "https://www.mcmp.philosophie.uni-muenchen.de/students/ma/index.html",
+  "https://www.anglistik.uni-muenchen.de/studium_neu/engl_studies/index.html",
+  "https://www.assyriologie.uni-muenchen.de/studium_lehre/ma/index.html",
+  "https://www.theaterwissenschaft.uni-muenchen.de/studiengaenge/master_tdp-research/index.html",
+  "https://www.fm.mathematik.uni-muenchen.de/study_programs/int_msc/index.html",
+  "https://www.cih.lmu.de/education/study-programs/master-programs/msc-int-health",
+  "https://www.bio.lmu.de/en/study/for-students/master-programs/mcb/",
+  "https://www.lmu.de/en/study/all-degrees-and-programs/international-degree-programs/ (Political Science, Psychology: Learning Sciences, Evolution Ecology and Systematics, Quantum Science and Technology, Software Engineering, Meteorology double-degree programmes not reached)"
+ ],
+ "notes": "Programme pages of the faculties sit on many LMU hosts; requirements were read from each programme's application subpage. Deadlines without a stated year, or for closed 2026 rounds, were left out. MSc Data Science (Elitenetzwerk) is no longer admitting (last intake WS 2024/25 per third-party search; official page not snapshotted). Journalism, Media and Globalisation is an Erasmus Mundus programme applied for only via mundusjournalism.com (not collected). Informatik M.Sc. is German-taught (C1 German); no English-taught Computer Science or Geography master found. Important PDF-only documents: Satzung ueber das Eignungsverfahren (Statistics and Data Science, Physics, Astrophysics, Meteorology), grade-conversion forms, accepted English tests list (gsi), MCB application flowchart. Chinese applicants: APS certificate required for LMU International Office and several programmes (Geology, Geomaterials, Quantitative Economics, LL.M.). uni-assist is not used for these programmes; LMU International Office runs the parallel formal application.",
+ "programs": [
+  {
+   "name": "Master of Science (M.Sc.) in Economics",
+   "url": "https://www.en.master.econ.uni-muenchen.de/index.html",
+   "snapshot_sha256": "96b714adc8187d60ad4f78796018ab64024e6f1e6764ccf378ce7a9fd60bdfe2",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in economics or equivalent, with a grade better than 2.5 (German scale); taught in English, 2 years",
+     "quote": "Bachelor degree in economics or equivalent with a grade >2.5 (further details)",
+     "source_sha256": "d96a6378056a903200be8add4169faf9abd1fb0bafb8020b02646a3af9ec4614",
+     "source_url": "https://www.en.master.econ.uni-muenchen.de/profile/fast_facts/index.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "an academic IELTS overall band score of 6.5 points",
+     "source_sha256": "7ab8fce4b232737ddf04607a089c92f70baf42b1ddbd7217f54f5ea176ef8542",
+     "source_url": "https://www.en.master.econ.uni-muenchen.de/application/application_process/requirements/index.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "a TOEFL total score of at least 80 points (iBT)",
+     "source_sha256": "7ab8fce4b232737ddf04607a089c92f70baf42b1ddbd7217f54f5ea176ef8542",
+     "source_url": "https://www.en.master.econ.uni-muenchen.de/application/application_process/requirements/index.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Good understanding of Bachelor-level Microeconomics, Macroeconomics and Empirical Economics",
+      "quote": "Requirements include a good understanding of the subjects and methods covered in a Bachelor’s Program in Economics, particularly in Microeconomics, Macroeconomics and Empirical Economics.",
+      "source_sha256": "88d92730ae2d124a77d71d2f846ae70cc55d22b6b2870ece41873809df84a55c",
+      "source_url": "https://www.en.master.econ.uni-muenchen.de/application/prerequisites/index.html",
+      "check": "ok"
+     },
+     {
+      "text": "Written test of admission (held in Munich) for applicants whose qualification is not clearly equivalent or whose GPA is between 2.0 and 2.5",
+      "quote": "Applicants will get an invitation for our Test of Admission if the qualification could not unambiguously established as equivalent to our Bachelor's degree in Economics and/or the GPA is worse than 2.0 but at least 2.5",
+      "source_sha256": "4462c7efbefbf39984bcd64a77caa26a98d60ecbc8ea74a265697a765da76dc5",
+      "source_url": "https://www.en.master.econ.uni-muenchen.de/application/application_2024/index.html",
+      "check": "ok"
+     },
+     {
+      "text": "A business studies degree is not treated as equivalent to the LMU Bachelor in Economics",
+      "quote": "Please note that a degree in business studies is not equivalent to our Bachelor's degree in Economics.",
+      "source_sha256": "4462c7efbefbf39984bcd64a77caa26a98d60ecbc8ea74a265697a765da76dc5",
+      "source_url": "https://www.en.master.econ.uni-muenchen.de/application/application_2024/index.html",
+      "check": "ok"
+     },
+     {
+      "text": "International applicants must also apply to the LMU International Office (uni-assist is not the faculty's own requirement)",
+      "quote": "All Applicants from EU and non-EU countries must in addition to their application at our department apply at the University’s International Office",
+      "source_sha256": "d5300905f6db91337b76b2d52a8e15d566a4812673386a5ab87e7a06bf779eb4",
+      "source_url": "https://www.en.master.econ.uni-muenchen.de/application/info_foreign/index.html",
+      "check": "ok"
+     },
+     {
+      "text": "GRE/GMAT not required",
+      "quote": "GRE/GMAT are NOT required for application.",
+      "source_sha256": "7ab8fce4b232737ddf04607a089c92f70baf42b1ddbd7217f54f5ea176ef8542",
+      "source_url": "https://www.en.master.econ.uni-muenchen.de/application/application_process/requirements/index.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (M.Sc.) in Quantitative Economics",
+   "url": "https://www.en.mqe.econ.uni-muenchen.de/index.html",
+   "snapshot_sha256": "25a36d557f85489faff8067fad8afccee44bf112619528d420035a98ef58dfbf",
+   "fields": {
+    "academic": {
+     "text": "Completed bachelor's program in economics with at least the grade 'good' (German scale)",
+     "quote": "the completion of a bachelor’s program in economics with at least a grade \"good\".",
+     "source_sha256": "0febd9c875e2d8abc9ea1490af50455ab6f2dee66928e69974c920ba45e45659",
+     "source_url": "https://www.en.mqe.econ.uni-muenchen.de/application/admission/index.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Excellent advanced-Bachelor knowledge of microeconomics, macroeconomics, statistics, empirical research and econometrics I and II",
+      "quote": "We expect excellent knowledge in microeconomics, macroeconomics, statistics, empirical research and, especially, econometrics I and II at an advanced Bachelor’s level",
+      "source_sha256": "88d0e87193cad9d03a70041cb1e09df4a420ca2b9728f7e5504a2483af625642",
+      "source_url": "https://www.en.mqe.econ.uni-muenchen.de/application/prerequisites/index.html",
+      "check": "ok"
+     },
+     {
+      "text": "GRE quantitative reasoning at or above the 75th percentile, or a written admission test at LMU Munich",
+      "quote": "GRE test score (Graduate Record Examination): 75th GRE percentile score (only quantitative reasoning section) is required.",
+      "source_sha256": "0febd9c875e2d8abc9ea1490af50455ab6f2dee66928e69974c920ba45e45659",
+      "source_url": "https://www.en.mqe.econ.uni-muenchen.de/application/admission/index.html",
+      "check": "ok"
+     },
+     {
+      "text": "Very good English: English-language degree/entrance qualification, GRE verbal 75th percentile, or CEFR C1 proof",
+      "quote": "Very good knowledge of English documented by either",
+      "source_sha256": "0febd9c875e2d8abc9ea1490af50455ab6f2dee66928e69974c920ba45e45659",
+      "source_url": "https://www.en.mqe.econ.uni-muenchen.de/application/admission/index.html",
+      "check": "ok"
+     },
+     {
+      "text": "English proof of at least CEFR C1",
+      "quote": "another proof for proficiency in English of at least level C1 of the Common European Framework",
+      "source_sha256": "0febd9c875e2d8abc9ea1490af50455ab6f2dee66928e69974c920ba45e45659",
+      "source_url": "https://www.en.mqe.econ.uni-muenchen.de/application/admission/index.html",
+      "check": "ok"
+     },
+     {
+      "text": "Personal interview after positive document evaluation",
+      "quote": "Given a positive evaluation of your documents as described above you will be invited to a personal interview.",
+      "source_sha256": "0febd9c875e2d8abc9ea1490af50455ab6f2dee66928e69974c920ba45e45659",
+      "source_url": "https://www.en.mqe.econ.uni-muenchen.de/application/admission/index.html",
+      "check": "ok"
+     }
+    ],
+    "china_requirement": {
+     "text": "Applicants from China need an APS certificate for the application to the LMU International Office",
+     "quote": "Applicants from China, Vietnam and Mongolia, need an APS for the application to the International Office.",
+     "source_sha256": "9eaf3a70a8437b22dcb6643b04ef8f301f61f84515ed05a82ede2255ecf639a8",
+     "source_url": "https://www.en.mqe.econ.uni-muenchen.de/application/info_foreign/index.html",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Statistics and Data Science (Master)",
+   "url": "https://www.stat.lmu.de/en/studies/interested-master/",
+   "snapshot_sha256": "e5348ff47db984fd5ed959306e49a5c0e24ff9f8ddff8af065d669c342676771",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (180 ECTS) in Statistics or Data Science as a major, minor, or focus; at least 150 ECTS proven at application",
+     "quote": "Bachelor's degree (180 ECTS) in Statistics or Data Science as a major, minor, or focus.",
+     "source_sha256": "e5348ff47db984fd5ed959306e49a5c0e24ff9f8ddff8af065d669c342676771",
+     "source_url": "https://www.stat.lmu.de/en/studies/interested-master/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "At least 150 ECTS (5 semesters) must be proven by the time of application",
+      "quote": "At least 150 ECTS (equal to 5 semesters) must be proven by the time of application, final degree can be submitted later.",
+      "source_sha256": "e5348ff47db984fd5ed959306e49a5c0e24ff9f8ddff8af065d669c342676771",
+      "source_url": "https://www.stat.lmu.de/en/studies/interested-master/",
+      "check": "ok"
+     },
+     {
+      "text": "English proficiency CEFR B2 (or an English-taught degree); all common B2 certificates accepted",
+      "quote": "English proficiency B2 (or English degree).",
+      "source_sha256": "e5348ff47db984fd5ed959306e49a5c0e24ff9f8ddff8af065d669c342676771",
+      "source_url": "https://www.stat.lmu.de/en/studies/interested-master/",
+      "check": "ok"
+     },
+     {
+      "text": "Proficiency in R or Python",
+      "quote": "Statistical software and statistical programming: Proficiency in a statistical programming language (R or python)",
+      "source_sha256": "e5348ff47db984fd5ed959306e49a5c0e24ff9f8ddff8af065d669c342676771",
+      "source_url": "https://www.stat.lmu.de/en/studies/interested-master/",
+      "check": "ok"
+     },
+     {
+      "text": "Linear algebra prerequisite: abstract vector spaces and basis systems (among other listed mathematics and statistics prerequisites)",
+      "quote": "Linear algebra: abstract vector spaces, basis systems;",
+      "source_sha256": "e5348ff47db984fd5ed959306e49a5c0e24ff9f8ddff8af065d669c342676771",
+      "source_url": "https://www.stat.lmu.de/en/studies/interested-master/",
+      "check": "ok"
+     },
+     {
+      "text": "Applicants eligible for the second stage receive a written test, then a selection interview",
+      "quote": "If you are eligible for the second stage, we will send you a written test.",
+      "source_sha256": "e5348ff47db984fd5ed959306e49a5c0e24ff9f8ddff8af065d669c342676771",
+      "source_url": "https://www.stat.lmu.de/en/studies/interested-master/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Management and Digital Technologies (MMT)",
+   "url": "https://www.som.lmu.de/en/studies/study-offer/master-management-digital-technologies/application-and-submission/",
+   "snapshot_sha256": "a75761b3f841a6ff8694a3d5cbad3064aec9dfceeb060381d2e0a23224314595",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (min. 180 ECTS) in business with at least 20 ECTS in informatics, or informatics with at least 20 ECTS in business, or an interdisciplinary programme with 20 ECTS in each",
+     "quote": "Certificate of a Bachelor's degree and Transcript (min. 180 ECTS credits) either in:",
+     "source_sha256": "a75761b3f841a6ff8694a3d5cbad3064aec9dfceeb060381d2e0a23224314595",
+     "source_url": "https://www.som.lmu.de/en/studies/study-offer/master-management-digital-technologies/application-and-submission/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Bachelor grade of 2.3 or better on the German scale (2.39 sufficient)",
+      "quote": "Grade of 2.3 or better (i.e. lower than 2.40, e.g. 2.39 would be sufficient) according to the German grading system",
+      "source_sha256": "a75761b3f841a6ff8694a3d5cbad3064aec9dfceeb060381d2e0a23224314595",
+      "source_url": "https://www.som.lmu.de/en/studies/study-offer/master-management-digital-technologies/application-and-submission/",
+      "check": "ok"
+     },
+     {
+      "text": "English CEFR C1 proof required",
+      "quote": "Proof of English language proficiency at CEFR level C1 is required (see below for accepted certificates)",
+      "source_sha256": "a75761b3f841a6ff8694a3d5cbad3064aec9dfceeb060381d2e0a23224314595",
+      "source_url": "https://www.som.lmu.de/en/studies/study-offer/master-management-digital-technologies/application-and-submission/",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS (academic version): min. 7.0 points out of 9.0 points.",
+     "source_sha256": "a75761b3f841a6ff8694a3d5cbad3064aec9dfceeb060381d2e0a23224314595",
+     "source_url": "https://www.som.lmu.de/en/studies/study-offer/master-management-digital-technologies/application-and-submission/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 95,
+     "quote": "TOEFL: min. 95 out of 120 points (iBT).",
+     "source_sha256": "a75761b3f841a6ff8694a3d5cbad3064aec9dfceeb060381d2e0a23224314595",
+     "source_url": "https://www.som.lmu.de/en/studies/study-offer/master-management-digital-technologies/application-and-submission/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Winter intake 2027/28",
+      "date": "2027-05-15",
+      "quote": "The application form is available from February 1st, 2027 until May 15th, 2027.",
+      "source_sha256": "a75761b3f841a6ff8694a3d5cbad3064aec9dfceeb060381d2e0a23224314595",
+      "source_url": "https://www.som.lmu.de/en/studies/study-offer/master-management-digital-technologies/application-and-submission/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Management - International Triple Degree (MBA, M.Sc.)",
+   "url": "https://www.som.lmu.de/en/studies/study-offer/master-international-triple-degree/index.html",
+   "snapshot_sha256": "6f18e2873b3453e9d20e7d0ea2669040fd409d92aa43728f91c833a0ba77f05d",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (not necessarily in business-related subjects) plus a short exposé demonstrating suitability",
+     "quote": "you will need a Bachelor's degree (not necessarily in business-related subjects)",
+     "source_sha256": "6f18e2873b3453e9d20e7d0ea2669040fd409d92aa43728f91c833a0ba77f05d",
+     "source_url": "https://www.som.lmu.de/en/studies/study-offer/master-international-triple-degree/index.html",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Physics",
+   "url": "https://www.physik.lmu.de/en/studies/study-programs/msc-physics/index.html",
+   "snapshot_sha256": "359e8013656c5ca41398f25474eee6f889a0e719f31124728ad5e62be785df50",
+   "fields": {
+    "academic": {
+     "text": "First professional university degree or equivalent from Germany or abroad in physics, astrophysics or another mathematical-scientific subject",
+     "quote": "The application for the MSc Physics requires a first professional university degree or an equivalent degree from Germany or abroad in physics, astrophysics or in another mathematical-scientific subject area.",
+     "source_sha256": "752100a0c659f2b5144cfb73b8581750b5bf7f35fa8b0def41fe25ed601c0e5f",
+     "source_url": "https://www.physik.lmu.de/en/studies/study-programs/applying-to-a-masters-program/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE Subject score in physics or mathematics, only for applicants whose first degree was not from an EU university",
+      "quote": "4. a proof of subject knowledge in the form of Graduate Record Examination (GRE) Scores in physics or mathematics (only for applicants whose first degree was not completed at a university in a country of the European Union).",
+      "source_sha256": "752100a0c659f2b5144cfb73b8581750b5bf7f35fa8b0def41fe25ed601c0e5f",
+      "source_url": "https://www.physik.lmu.de/en/studies/study-programs/applying-to-a-masters-program/",
+      "check": "ok"
+     },
+     {
+      "text": "Essay of up to 1,000 words (German or English) as part of the aptitude procedure",
+      "quote": "3. an essay of no more than 1,000 words in German or English",
+      "source_sha256": "752100a0c659f2b5144cfb73b8581750b5bf7f35fa8b0def41fe25ed601c0e5f",
+      "source_url": "https://www.physik.lmu.de/en/studies/study-programs/applying-to-a-masters-program/",
+      "check": "ok"
+     },
+     {
+      "text": "Applicants can only apply twice",
+      "quote": "- You can only apply twice.",
+      "source_sha256": "752100a0c659f2b5144cfb73b8581750b5bf7f35fa8b0def41fe25ed601c0e5f",
+      "source_url": "https://www.physik.lmu.de/en/studies/study-programs/applying-to-a-masters-program/",
+      "check": "ok"
+     },
+     {
+      "text": "Language of instruction is English",
+      "quote": "The language of instruction is English.",
+      "source_sha256": "359e8013656c5ca41398f25474eee6f889a0e719f31124728ad5e62be785df50",
+      "source_url": "https://www.physik.lmu.de/en/studies/study-programs/msc-physics/index.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Astrophysics",
+   "url": "https://www.physik.lmu.de/en/studies/study-programs/msc-astrophysics/",
+   "snapshot_sha256": "01c845d19f12e132067299d4fa0ab84ef568825f7dde3309914a6d518e986f87",
+   "fields": {
+    "academic": {
+     "text": "Strong physics background required; typically Bachelor in physics or astrophysics; engineering Bachelors generally do not meet the requirements",
+     "quote": "A strong physics background is required to succeed in our program. Typically, this only applies to holders of Bachelor degrees in physics or astrophysics.",
+     "source_sha256": "752100a0c659f2b5144cfb73b8581750b5bf7f35fa8b0def41fe25ed601c0e5f",
+     "source_url": "https://www.physik.lmu.de/en/studies/study-programs/applying-to-a-masters-program/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Solid foundation in theoretical physics and mathematics, plus research experience (Bachelor-thesis-scale project)",
+      "quote": "Among the prerequisites is a solid foundation in theoretical physics (mechanics, quantum mechanics, electrodynamics, and thermodynamics and statistics), a solid education in mathematics, and research experience",
+      "source_sha256": "752100a0c659f2b5144cfb73b8581750b5bf7f35fa8b0def41fe25ed601c0e5f",
+      "source_url": "https://www.physik.lmu.de/en/studies/study-programs/applying-to-a-masters-program/",
+      "check": "ok"
+     },
+     {
+      "text": "English proof (TOEFL, IELTS or comparable) if available for non-native speakers; exempt if the Bachelor was taught in English; no score stated",
+      "quote": "5. If available and if you are a non-native English speaker, please provide proof of English language proficiency through the TOEFL, IELTS or a comparable standardized exam.",
+      "source_sha256": "752100a0c659f2b5144cfb73b8581750b5bf7f35fa8b0def41fe25ed601c0e5f",
+      "source_url": "https://www.physik.lmu.de/en/studies/study-programs/applying-to-a-masters-program/",
+      "check": "ok"
+     },
+     {
+      "text": "No German proficiency required; programme taught in English",
+      "quote": "The MSc program is taught in English. Therefore, no proof of German proficiency is required.",
+      "source_sha256": "752100a0c659f2b5144cfb73b8581750b5bf7f35fa8b0def41fe25ed601c0e5f",
+      "source_url": "https://www.physik.lmu.de/en/studies/study-programs/applying-to-a-masters-program/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Meteorology",
+   "url": "https://www.physik.lmu.de/en/studies/study-programs/msc-meteorology/index.html",
+   "snapshot_sha256": "0f889db7d1f6f728eefddae3a5a1ee5a9259ad780de77f2f364f267f2774c729",
+   "fields": {
+    "academic": {
+     "text": "First professional university degree or equivalent in physics, astrophysics, meteorology or another mathematical-scientific subject",
+     "quote": "The application for the MSc Meteorology requires a first professional university degree or an equivalent degree from Germany or abroad in one of the subject areas physics, astrophysics or meteorology or in another mathematical-scientific subject area.",
+     "source_sha256": "752100a0c659f2b5144cfb73b8581750b5bf7f35fa8b0def41fe25ed601c0e5f",
+     "source_url": "https://www.physik.lmu.de/en/studies/study-programs/applying-to-a-masters-program/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE Subject score in physics or mathematics, only for applicants whose first degree was not from an EU university",
+      "quote": "4. a proof of subject knowledge in the form of Graduate Record Examination (GRE) Scores in physics or mathematics (only for applicants whose first degree was not completed at a university in a country of the European Union).",
+      "source_sha256": "752100a0c659f2b5144cfb73b8581750b5bf7f35fa8b0def41fe25ed601c0e5f",
+      "source_url": "https://www.physik.lmu.de/en/studies/study-programs/applying-to-a-masters-program/",
+      "check": "ok"
+     },
+     {
+      "text": "Language of instruction is English",
+      "quote": "The language of instruction ist English.",
+      "source_sha256": "0f889db7d1f6f728eefddae3a5a1ee5a9259ad780de77f2f364f267f2774c729",
+      "source_url": "https://www.physik.lmu.de/en/studies/study-programs/msc-meteorology/index.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Integrated M.Sc. Neurosciences (GSN-LMU)",
+   "url": "https://www.lmu.de/gsn/en/studying-at-gsn-lmu/programs-tracks/m.sc.-programs-tracks/integrated-m.sc.-neurosciences.html",
+   "snapshot_sha256": "a3d418694ed970b0658f56973abfbe8acd6d9e0783e5afc9e7fa1861efa357b2",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or equivalent in biology, psychology, medicine, physics or a related field; degree must be conferred before courses begin in October",
+     "quote": "Applicants must hold a Bachelor’s degree or equivalent in biology, psychology, medicine, physics, or a related field.",
+     "source_sha256": "ae3fbbf2f66d008adbd217aff97c7bba5211c37329d14fe98d9246cbf554f754",
+     "source_url": "https://www.lmu.de/gsn/en/studying-at-gsn-lmu/become-a-gsn-student/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Two separate letters of recommendation, submitted by the referees via the online portal",
+      "quote": "Two separate letters of recommendation",
+      "source_sha256": "ae3fbbf2f66d008adbd217aff97c7bba5211c37329d14fe98d9246cbf554f754",
+      "source_url": "https://www.lmu.de/gsn/en/studying-at-gsn-lmu/become-a-gsn-student/",
+      "check": "ok"
+     },
+     {
+      "text": "Application only via the GSN online application site; uni-assist is not accepted",
+      "quote": "Applications via email or through external platforms such as Uni-Assist.de or similar are not possible.",
+      "source_sha256": "ae3fbbf2f66d008adbd217aff97c7bba5211c37329d14fe98d9246cbf554f754",
+      "source_url": "https://www.lmu.de/gsn/en/studying-at-gsn-lmu/become-a-gsn-student/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts (M.A.) Global Public Policy",
+   "url": "https://www.gsi.uni-muenchen.de/studium/studiengaenge/master1/gpp_master1/index.html",
+   "snapshot_sha256": "28e2303d6f3ad604b60029c5cd7897393adccd91fb5e476c305e30395d18c0ee",
+   "fields": {
+    "academic": {
+     "text": "At least 90 ECTS in political science in the first degree (political theory, political systems, international relations), plus at least 9 ECTS in political science methods and a grade average of 1.7 or better (German scale)",
+     "quote": "You must have obtained at least 90 ECTS in political science classes in your first degree, in particular in the areas political theory, political systems and international relations.",
+     "source_sha256": "4ff3b417a8dc4c28b0ac500b4bf214c70290a6474f6d5e669b9d466aca692d14",
+     "source_url": "https://www.en.gsi.uni-muenchen.de/studies/application/appl_mas/appl_gpp_c/index.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "At least 9 ECTS in political science methods (quantitative methods)",
+      "quote": "You must have obtained at least 9 ECTS in classes on political science methods (quantitative methods).",
+      "source_sha256": "4ff3b417a8dc4c28b0ac500b4bf214c70290a6474f6d5e669b9d466aca692d14",
+      "source_url": "https://www.en.gsi.uni-muenchen.de/studies/application/appl_mas/appl_gpp_c/index.html",
+      "check": "ok"
+     },
+     {
+      "text": "Grade point average of 1.7 or better on the German scale; below that, the admission commission decides on the basis of a written assignment",
+      "quote": "You must have obtained a grade point average of 1.7 or better in your first degree.",
+      "source_sha256": "4ff3b417a8dc4c28b0ac500b4bf214c70290a6474f6d5e669b9d466aca692d14",
+      "source_url": "https://www.en.gsi.uni-muenchen.de/studies/application/appl_mas/appl_gpp_c/index.html",
+      "check": "ok"
+     },
+     {
+      "text": "English proof at CEFR C1 minimum",
+      "quote": "The minimum acceptable level is C1.",
+      "source_sha256": "4ff3b417a8dc4c28b0ac500b4bf214c70290a6474f6d5e669b9d466aca692d14",
+      "source_url": "https://www.en.gsi.uni-muenchen.de/studies/application/appl_mas/appl_gpp_c/index.html",
+      "check": "ok"
+     },
+     {
+      "text": "International applicants must also apply to the LMU International Office",
+      "quote": "Foreign applications, who have neither a German higher education entrance qualification, nor a first university degree taken in Germany, are required to submit an additional application to the International Office.",
+      "source_sha256": "4ff3b417a8dc4c28b0ac500b4bf214c70290a6474f6d5e669b9d466aca692d14",
+      "source_url": "https://www.en.gsi.uni-muenchen.de/studies/application/appl_mas/appl_gpp_c/index.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts Environment and Society",
+   "url": "https://www.environmentmaster.carsoncenter.uni-muenchen.de/index.html",
+   "snapshot_sha256": "061a14039e1b8b5bd20b4b2c0458df5201acd963783c13160602c8c2bdb15ccf",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (180 ECTS or equivalent) in a related field with a grade of at least 2.5 on the German scale",
+     "quote": "A transcript of records showing a grade of at least 2.5 on the German scale (or equivalent);",
+     "source_sha256": "f38b927852a5a0f9c8f7d9d4ac4a8af36bf690a4600dfbf4928a63fdfcd6c9b7",
+     "source_url": "https://www.sprachlit.lmu.de/carsoncenter/en/graduate-programs/master-of-arts-environment-and-society/application/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS (7.0 or above)",
+     "source_sha256": "f38b927852a5a0f9c8f7d9d4ac4a8af36bf690a4600dfbf4928a63fdfcd6c9b7",
+     "source_url": "https://www.sprachlit.lmu.de/carsoncenter/en/graduate-programs/master-of-arts-environment-and-society/application/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "TOEFL iBT 'over 95' accepted as English proof (also Duolingo 120+, Cambridge C1 Advanced)",
+      "quote": "TOEFL (iBT over 95)",
+      "source_sha256": "f38b927852a5a0f9c8f7d9d4ac4a8af36bf690a4600dfbf4928a63fdfcd6c9b7",
+      "source_url": "https://www.sprachlit.lmu.de/carsoncenter/en/graduate-programs/master-of-arts-environment-and-society/application/",
+      "check": "ok"
+     },
+     {
+      "text": "Motivation letter up to 800 words and a writing sample up to 2,000 words",
+      "quote": "A motivational letter introducing yourself and explaining your motivation for selecting this program of study (up to 800 words).",
+      "source_sha256": "f38b927852a5a0f9c8f7d9d4ac4a8af36bf690a4600dfbf4928a63fdfcd6c9b7",
+      "source_url": "https://www.sprachlit.lmu.de/carsoncenter/en/graduate-programs/master-of-arts-environment-and-society/application/",
+      "check": "ok"
+     },
+     {
+      "text": "International applicants must also apply to the LMU International Office",
+      "quote": "If you are an international student, you will need to submit an additional application with the LMU International Office.",
+      "source_sha256": "f38b927852a5a0f9c8f7d9d4ac4a8af36bf690a4600dfbf4928a63fdfcd6c9b7",
+      "source_url": "https://www.sprachlit.lmu.de/carsoncenter/en/graduate-programs/master-of-arts-environment-and-society/application/",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Winter semester 2027/28",
+      "date": "2027-03-10",
+      "quote": "The current application deadline is 10 March 2027 for an October 2027 start.",
+      "source_sha256": "f38b927852a5a0f9c8f7d9d4ac4a8af36bf690a4600dfbf4928a63fdfcd6c9b7",
+      "source_url": "https://www.sprachlit.lmu.de/carsoncenter/en/graduate-programs/master-of-arts-environment-and-society/application/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's program Digital Cultural Heritage",
+   "url": "https://www.kw.lmu.de/dch/en/study/master-digital-cultural-heritage/",
+   "snapshot_sha256": "4faaa69a1916ea7e75a4fa1cea66b43066daded7d758be330054124cfcb060b8",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree of at least 180 ECTS in humanities/cultural studies, environmental science, IT/data science or a related subject",
+     "quote": "you need a Bachelor’s degree comprising at least 180 ECTS credits or an equivalent degree from Germany or abroad.",
+     "source_sha256": "29a996e59f6bcbf7a29336735ded3a2334fe183f9a9658498d2a920e3af24ee2",
+     "source_url": "https://www.kw.lmu.de/dch/en/study/master-digital-cultural-heritage/application-and-admission/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS 6.5",
+     "source_sha256": "29a996e59f6bcbf7a29336735ded3a2334fe183f9a9658498d2a920e3af24ee2",
+     "source_url": "https://www.kw.lmu.de/dch/en/study/master-digital-cultural-heritage/application-and-admission/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 95,
+     "quote": "TOEFL (internet-based) 95",
+     "source_sha256": "29a996e59f6bcbf7a29336735ded3a2334fe183f9a9658498d2a920e3af24ee2",
+     "source_url": "https://www.kw.lmu.de/dch/en/study/master-digital-cultural-heritage/application-and-admission/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English at CEFR C1",
+      "quote": "it requires high competencies in English (level C1 of the Common European Framework of Reference for Languages).",
+      "source_sha256": "29a996e59f6bcbf7a29336735ded3a2334fe183f9a9658498d2a920e3af24ee2",
+      "source_url": "https://www.kw.lmu.de/dch/en/study/master-digital-cultural-heritage/application-and-admission/",
+      "check": "ok"
+     },
+     {
+      "text": "No German proof required",
+      "quote": "No proof of German language proficiency is required for admission to the program.",
+      "source_sha256": "29a996e59f6bcbf7a29336735ded3a2334fe183f9a9658498d2a920e3af24ee2",
+      "source_url": "https://www.kw.lmu.de/dch/en/study/master-digital-cultural-heritage/application-and-admission/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "European and International Economic Law (LL.M.)",
+   "url": "https://www.jura.lmu.de/en/study/aufbaustudium-ll.m/european-and-international-economic-law-ll.m/",
+   "snapshot_sha256": "1f54aac9469329281be0c9110409a6f62b826b727dafd4feb6c165f719ac5b8e",
+   "fields": {
+    "academic": {
+     "text": "First law degree: 240 ECTS (approx. 4 years of legal education), or 210 ECTS plus professionally acquired entry qualification",
+     "quote": "Proof of having earned 240 ECTS (approx. 4 years of legal education); or proof of having earned 210 ECTS (approx. 3,5 years of legal education) and proof of a professionally acquired entry qualification",
+     "source_sha256": "1f54aac9469329281be0c9110409a6f62b826b727dafd4feb6c165f719ac5b8e",
+     "source_url": "https://www.jura.lmu.de/en/study/aufbaustudium-ll.m/european-and-international-economic-law-ll.m/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English certificate at C1 level; exempt if English is the native language or the previous degree was English-taught",
+      "quote": "English Language certificate at C1 level (e.g. TOEFL, IELTS, Cambridge exam)",
+      "source_sha256": "1f54aac9469329281be0c9110409a6f62b826b727dafd4feb6c165f719ac5b8e",
+      "source_url": "https://www.jura.lmu.de/en/study/aufbaustudium-ll.m/european-and-international-economic-law-ll.m/",
+      "check": "ok"
+     },
+     {
+      "text": "German not required for admission",
+      "quote": "Knowledge of German is not required for admission",
+      "source_sha256": "1f54aac9469329281be0c9110409a6f62b826b727dafd4feb6c165f719ac5b8e",
+      "source_url": "https://www.jura.lmu.de/en/study/aufbaustudium-ll.m/european-and-international-economic-law-ll.m/",
+      "check": "ok"
+     }
+    ],
+    "china_requirement": {
+     "text": "Applicants with a previous degree from China must submit an APS certificate",
+     "quote": "Applicants who have obtained their previous degree in China, India, or Vietnam are required to submit an APS certificate issued by the German embassy in their respective countries.",
+     "source_sha256": "1f54aac9469329281be0c9110409a6f62b826b727dafd4feb6c165f719ac5b8e",
+     "source_url": "https://www.jura.lmu.de/en/study/aufbaustudium-ll.m/european-and-international-economic-law-ll.m/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Master's Program in Geophysics (LMU/TUM)",
+   "url": "https://www.geo.lmu.de/geoumwelt/en/studies/degree-programs/master-geophysics/for-prospective-students/",
+   "snapshot_sha256": "4a893c405cfc13cc105af11365dcb8886bea46e04cf6d0e97e034e13134e89ff",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "English at CEFR C1 or higher (TOEFL, IELTS, Cambridge CAE/CPE preferred)",
+      "quote": "Applicants must demonstrate C1-level or higher (CEFR).",
+      "source_sha256": "4a893c405cfc13cc105af11365dcb8886bea46e04cf6d0e97e034e13134e89ff",
+      "source_url": "https://www.geo.lmu.de/geoumwelt/en/studies/degree-programs/master-geophysics/for-prospective-students/",
+      "check": "ok"
+     },
+     {
+      "text": "Solid background in mathematics (linear algebra, multidimensional calculus) and physics",
+      "quote": "applicants are expected to have a solid background in mathematics (at minimum: linear algebra and multidimensional calculus; ideally also ordinary differential equations) and physics.",
+      "source_sha256": "dad7faa3e5732cfaf488d92fc483e21bf96b2d01829c27c21a596d80b6202441",
+      "source_url": "https://www.geo.lmu.de/geoumwelt/en/studies/degree-programs/master-geophysics/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Biochemistry",
+   "url": "https://www.genzentrum.uni-muenchen.de/study-program/master/index.html",
+   "snapshot_sha256": "3c45b723f56b9cab53073c395580fbd0cc4cf74c1697a23dc34313d4bc6713c6",
+   "fields": {
+    "academic": {
+     "text": "Bachelor in Biochemistry, Biology, Chemistry or a related topic, with practical courses in biochemistry, cell biology, chemistry and molecular biology/genetics",
+     "quote": "Bachelor in Biochemistry, Biology, Chemistry or a related topic.",
+     "source_sha256": "38176a9c5cb16ec7dfef3037626900c53b1c4686bffce90f345f4ed7c62a2cf3",
+     "source_url": "https://www.genzentrum.uni-muenchen.de/study-program/master/application/index.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Excellent English command expected; no proof of English proficiency required",
+      "quote": "excellent command of the English language. We do not require a proof of English proficiency",
+      "source_sha256": "38176a9c5cb16ec7dfef3037626900c53b1c4686bffce90f345f4ed7c62a2cf3",
+      "source_url": "https://www.genzentrum.uni-muenchen.de/study-program/master/application/index.html",
+      "check": "ok"
+     },
+     {
+      "text": "Mandatory written entrance exam (90 min) in Munich for invited applicants, except EU Biochemistry graduates with average 2.0 or better",
+      "quote": "the entrance exam is mandatory for invited applicants",
+      "source_sha256": "38176a9c5cb16ec7dfef3037626900c53b1c4686bffce90f345f4ed7c62a2cf3",
+      "source_url": "https://www.genzentrum.uni-muenchen.de/study-program/master/application/index.html",
+      "check": "ok"
+     },
+     {
+      "text": "Bachelors in Pharmacy are not considered",
+      "quote": "Bachelors in Pharmacy are not considered.",
+      "source_sha256": "38176a9c5cb16ec7dfef3037626900c53b1c4686bffce90f345f4ed7c62a2cf3",
+      "source_url": "https://www.genzentrum.uni-muenchen.de/study-program/master/application/index.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Geobiology and Paleobiology (MGAP)",
+   "url": "https://www.mgap.geo.uni-muenchen.de/index.html",
+   "snapshot_sha256": "fa3c86e837d3cb600dbaa9701649b52b65ceeaf6e77d1973bd50b8e486f1b932",
+   "fields": {
+    "academic": {
+     "text": "B.Sc. in Geology, Biology, Physical Geography or a related subject completed before the start of the programme",
+     "quote": "A B.Sc. degree in Geology, Biology, Physical Geography, or a related subject completed before the start of the master's program",
+     "source_sha256": "7aa0a526d9cd57433551d5db845b4a62953541b76aab232a5f7897a4e38c9c33",
+     "source_url": "https://www.mgap.geo.uni-muenchen.de/admission/index.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 5.0,
+     "quote": "IELTS (International English Language Testing Service): minimum of 7.0 points, and no part less than 5.0 points.",
+     "source_sha256": "7aa0a526d9cd57433551d5db845b4a62953541b76aab232a5f7897a4e38c9c33",
+     "source_url": "https://www.mgap.geo.uni-muenchen.de/admission/index.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 95,
+     "quote": "TOEFL (iBT) (Test of English as a Foreign Language, internet-based): at least 95 points.",
+     "source_sha256": "7aa0a526d9cd57433551d5db845b4a62953541b76aab232a5f7897a4e38c9c33",
+     "source_url": "https://www.mgap.geo.uni-muenchen.de/admission/index.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "German language proficiency CEFR A1; may be handed in latest one year after beginning the studies",
+      "quote": "Proof of German language proficiency of level A1 according to the Common European Framework of Reference for Languages (CEFR).",
+      "source_sha256": "7aa0a526d9cd57433551d5db845b4a62953541b76aab232a5f7897a4e38c9c33",
+      "source_url": "https://www.mgap.geo.uni-muenchen.de/admission/index.html",
+      "check": "ok"
+     },
+     {
+      "text": "English proficiency CEFR C1",
+      "quote": "Proof of English language proficiency of level C1 according to the Common European Framework of Reference for Languages (CEFR)",
+      "source_sha256": "7aa0a526d9cd57433551d5db845b4a62953541b76aab232a5f7897a4e38c9c33",
+      "source_url": "https://www.mgap.geo.uni-muenchen.de/admission/index.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Elite Master Course Theoretical and Mathematical Physics (TMP)",
+   "url": "https://www.theorie.physik.uni-muenchen.de/TMP/index.html",
+   "snapshot_sha256": "9b3906b07ec96126318c7e79ae75201ec37ca8f4770f3960dd31b4d2359ab57b",
+   "fields": {
+    "academic": {
+     "text": "Bachelor certificate in physics or mathematics with grades",
+     "quote": "Your bachelor certificate in physics or mathematics displaying your grades",
+     "source_sha256": "17fcbe8d6dc5d9b7b628d8f38ecacde7d8173443e7fe09d2d193ef95cef28517",
+     "source_url": "https://www.theorie.physik.uni-muenchen.de/TMP/application/index.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE subject test in physics or mathematics, required for applicants without a Bachelor's degree from within the EEA (if available)",
+      "quote": "GRE subject test in physics or mathematics (preferably sent directly to us, our Institution Code is 7263), required for applicants without a Bachelor's degree from within the European Economic Area",
+      "source_sha256": "17fcbe8d6dc5d9b7b628d8f38ecacde7d8173443e7fe09d2d193ef95cef28517",
+      "source_url": "https://www.theorie.physik.uni-muenchen.de/TMP/application/index.html",
+      "check": "ok"
+     },
+     {
+      "text": "One letter of recommendation, sent separately by the referee",
+      "quote": "A letter of recommendation (should be sent separately by email",
+      "source_sha256": "17fcbe8d6dc5d9b7b628d8f38ecacde7d8173443e7fe09d2d193ef95cef28517",
+      "source_url": "https://www.theorie.physik.uni-muenchen.de/TMP/application/index.html",
+      "check": "ok"
+     },
+     {
+      "text": "Interview of promising applicants before the final decision",
+      "quote": "Promising applicants will be invited to an interview after which the final decision about admission will be made.",
+      "source_sha256": "17fcbe8d6dc5d9b7b628d8f38ecacde7d8173443e7fe09d2d193ef95cef28517",
+      "source_url": "https://www.theorie.physik.uni-muenchen.de/TMP/application/index.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "American History, Culture and Society (M.A.)",
+   "url": "https://www.en.amerikanistik.uni-muenchen.de/studium/ma/index.html",
+   "snapshot_sha256": "6209dc877ecb341eeec60dc39a4b841a8e2a6083535d183077e9d98601ec5318",
+   "fields": {
+    "academic": {
+     "text": "First university degree (e.g. bachelor's) in humanities or social sciences with a substantial share of North American topics",
+     "quote": "The program only accepts students with a first university degree (e.g. a bachelor’s degree) earned in a program of the humanities or social sciences with a substantial share of North American topics.",
+     "source_sha256": "8e30b7218e390f6fe0366b47ee3d5a432c9d7626d0e83d52d68995c998c5be13",
+     "source_url": "https://www.en.amerikanistik.uni-muenchen.de/studium/ma/application/index.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS: 7",
+     "source_sha256": "8e30b7218e390f6fe0366b47ee3d5a432c9d7626d0e83d52d68995c998c5be13",
+     "source_url": "https://www.en.amerikanistik.uni-muenchen.de/studium/ma/application/index.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL (internet-based): 100",
+     "source_sha256": "8e30b7218e390f6fe0366b47ee3d5a432c9d7626d0e83d52d68995c998c5be13",
+     "source_url": "https://www.en.amerikanistik.uni-muenchen.de/studium/ma/application/index.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English proof at CEFR C1 (C-Test LMU 70, Cambridge CPE C or CAE B also accepted)",
+      "quote": "Proof of English language skills at the C1-level of the “Common European Framework of Reference for Languages”.",
+      "source_sha256": "8e30b7218e390f6fe0366b47ee3d5a432c9d7626d0e83d52d68995c998c5be13",
+      "source_url": "https://www.en.amerikanistik.uni-muenchen.de/studium/ma/application/index.html",
+      "check": "ok"
+     },
+     {
+      "text": "German proficiency not required to apply",
+      "quote": "Proof of German language proficiency is not required to apply to the Master's program “American History, Culture and Society”.",
+      "source_sha256": "8e30b7218e390f6fe0366b47ee3d5a432c9d7626d0e83d52d68995c998c5be13",
+      "source_url": "https://www.en.amerikanistik.uni-muenchen.de/studium/ma/application/index.html",
+      "check": "ok"
+     },
+     {
+      "text": "International applicants must also apply to the LMU International Office",
+      "quote": "International students who did not receive their first degree from a German university need to apply, in a separate procedure, to the International Office at LMU.",
+      "source_sha256": "8e30b7218e390f6fe0366b47ee3d5a432c9d7626d0e83d52d68995c998c5be13",
+      "source_url": "https://www.en.amerikanistik.uni-muenchen.de/studium/ma/application/index.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Geomaterials and Geochemistry (LMU/TUM)",
+   "url": "https://www.geo.lmu.de/geoumwelt/en/studies/degree-programs/master-geomaterials-and-geochemistry/for-prospective-students/",
+   "snapshot_sha256": "6aceee508af4a98f768ca9b5921b2c2ad49a204cc5e5004fc97b271e70dcfab6",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in geosciences, ideally with mineralogy and crystallography; related bachelors (earth sciences, materials science, physics, chemistry) encouraged",
+     "quote": "The Master’s program is a specialized program based on a successful Bachelor’s degree in Geosciences, ideally with a course specialization in mineralogy and crystallography.",
+     "source_sha256": "6aceee508af4a98f768ca9b5921b2c2ad49a204cc5e5004fc97b271e70dcfab6",
+     "source_url": "https://www.geo.lmu.de/geoumwelt/en/studies/degree-programs/master-geomaterials-and-geochemistry/for-prospective-students/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English proof at CEFR C1",
+      "quote": "Proof of English language proficiency of C1 level (e.g., test certificate, B.Sc. program in English language)",
+      "source_sha256": "6aceee508af4a98f768ca9b5921b2c2ad49a204cc5e5004fc97b271e70dcfab6",
+      "source_url": "https://www.geo.lmu.de/geoumwelt/en/studies/degree-programs/master-geomaterials-and-geochemistry/for-prospective-students/",
+      "check": "ok"
+     },
+     {
+      "text": "German CEFR A1; may be submitted within the first year after admission; waived with Abitur or a German-language B.Sc.",
+      "quote": "Proof of German language proficiency of A1 level",
+      "source_sha256": "6aceee508af4a98f768ca9b5921b2c2ad49a204cc5e5004fc97b271e70dcfab6",
+      "source_url": "https://www.geo.lmu.de/geoumwelt/en/studies/degree-programs/master-geomaterials-and-geochemistry/for-prospective-students/",
+      "check": "ok"
+     },
+     {
+      "text": "Transcript showing at least 150 ECTS of the Bachelor programme",
+      "quote": "Transcript of records of the courses and credits in your Bachelor program (minimum 150 ECTS).",
+      "source_sha256": "6aceee508af4a98f768ca9b5921b2c2ad49a204cc5e5004fc97b271e70dcfab6",
+      "source_url": "https://www.geo.lmu.de/geoumwelt/en/studies/degree-programs/master-geomaterials-and-geochemistry/for-prospective-students/",
+      "check": "ok"
+     }
+    ],
+    "china_requirement": {
+     "text": "Applicants from China must also upload the APS certificate of the German Embassy",
+     "quote": "Applicants from the People's Republic of China, Mongolia, or Vietnam please also upload the APS-certificate of the German Embassy",
+     "source_sha256": "6aceee508af4a98f768ca9b5921b2c2ad49a204cc5e5004fc97b271e70dcfab6",
+     "source_url": "https://www.geo.lmu.de/geoumwelt/en/studies/degree-programs/master-geomaterials-and-geochemistry/for-prospective-students/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Human Biology - Principles of Health and Disease (M.Sc.)",
+   "url": "https://www.mhb.uni-muenchen.de/index.html",
+   "snapshot_sha256": "a69313a304d1f08379b127c3500e1734a06e5bd9a79fecec150718f0389ddbae",
+   "fields": {
+    "academic": {
+     "text": "Bachelor of Science with at least 180 ECTS in biology or a related subject, including a bachelor's thesis of at least 10 ECTS",
+     "quote": "Bachelor of Science degree with a total of at least 180 ECTS-credits in biology or a related subject",
+     "source_sha256": "a69313a304d1f08379b127c3500e1734a06e5bd9a79fecec150718f0389ddbae",
+     "source_url": "https://www.bio.lmu.de/de/studium/fuer-studierende/masterstudiengaenge/mhb/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English proficiency CEFR C1",
+      "quote": "Proficiency in English (C1 CEFR)",
+      "source_sha256": "a69313a304d1f08379b127c3500e1734a06e5bd9a79fecec150718f0389ddbae",
+      "source_url": "https://www.bio.lmu.de/de/studium/fuer-studierende/masterstudiengaenge/mhb/",
+      "check": "ok"
+     },
+     {
+      "text": "dMAT test required for applicants without a German university bachelor's degree",
+      "quote": "If you do not hold a bachelor's degree from a German university, you are required to take the dMAT.",
+      "source_sha256": "a69313a304d1f08379b127c3500e1734a06e5bd9a79fecec150718f0389ddbae",
+      "source_url": "https://www.bio.lmu.de/de/studium/fuer-studierende/masterstudiengaenge/mhb/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Epidemiology (M.Sc.)",
+   "url": "https://www.med.lmu.de/en/study/masters-of-science/epidemiology/how-to-apply/",
+   "snapshot_sha256": "8640f7d286c511b2528a5936850e69fa29319219fba6946929e5ef53ac0d23e9",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or equivalent in a relevant discipline (health science, medicine, pharmacy, psychology, social science, statistics, biology, chemistry, economics and others)",
+     "quote": "A bachelor’s degree or its equivalent in a relevant discipline such as health science, medicine, pharmacy, psychology, social science, statistics, other scientific disciplines such as biology or chemistry, sports science, physical therapy, economics, business administration, or communications is required.",
+     "source_sha256": "8640f7d286c511b2528a5936850e69fa29319219fba6946929e5ef53ac0d23e9",
+     "source_url": "https://www.med.lmu.de/en/study/masters-of-science/epidemiology/how-to-apply/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Average grade of at least 2.5 on the German scale",
+      "quote": "Applicants that have not achieved an average grade of at least 2.5 according to the German grading system will be rejected.",
+      "source_sha256": "8640f7d286c511b2528a5936850e69fa29319219fba6946929e5ef53ac0d23e9",
+      "source_url": "https://www.med.lmu.de/en/study/masters-of-science/epidemiology/how-to-apply/",
+      "check": "ok"
+     },
+     {
+      "text": "Passing the on-site entry test, or GRE General Test at or above the 75th percentile in at least one section",
+      "quote": "Applicants that have not passed our entry test or who have not scored in the 75th percentile or higher for at least one of the sections on the GRE General Test will be rejected.",
+      "source_sha256": "8640f7d286c511b2528a5936850e69fa29319219fba6946929e5ef53ac0d23e9",
+      "source_url": "https://www.med.lmu.de/en/study/masters-of-science/epidemiology/how-to-apply/",
+      "check": "ok"
+     },
+     {
+      "text": "No formal English proof required (IELTS/TOEFL); English assessed via entry test or GRE and interview",
+      "quote": "We require no formal proof of your English language ability such as IELTS or TOEFL, as your proficiency will be assessed via the entry test or GRE General Test score.",
+      "source_sha256": "8640f7d286c511b2528a5936850e69fa29319219fba6946929e5ef53ac0d23e9",
+      "source_url": "https://www.med.lmu.de/en/study/masters-of-science/epidemiology/how-to-apply/",
+      "check": "ok"
+     },
+     {
+      "text": "Taught entirely in English; advanced English competency required",
+      "quote": "Our program is taught entirely in English, therefore advanced competency in English is required.",
+      "source_sha256": "8640f7d286c511b2528a5936850e69fa29319219fba6946929e5ef53ac0d23e9",
+      "source_url": "https://www.med.lmu.de/en/study/masters-of-science/epidemiology/how-to-apply/",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Winter semester 2027/28",
+      "date": "2027-05-15",
+      "quote": "Applications for winter semester 2027/2028 will be open from 1 February to 15 May 2027 on our online application tool (APTE).",
+      "source_sha256": "8640f7d286c511b2528a5936850e69fa29319219fba6946929e5ef53ac0d23e9",
+      "source_url": "https://www.med.lmu.de/en/study/masters-of-science/epidemiology/how-to-apply/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Molecular Plant Sciences (M.Sc.)",
+   "url": "https://www.bio.lmu.de/en/study/for-students/master-programs/mps/",
+   "snapshot_sha256": "3019ee800829ccaf076f67a8aa166d99c5629b1c40c9badc61b05d1f3eda9456",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree of at least 180 ECTS in biology or a related field (completed or expected soon)",
+     "quote": "You have successfully completed a bachelor’s degree comprising at least 180 ECTS points in biology or a related field - such as bioinformatics, (bio)chemistry, biophysics, biotechnology, or agricultural biology - or you are expected to complete it in the near future.",
+     "source_sha256": "3019ee800829ccaf076f67a8aa166d99c5629b1c40c9badc61b05d1f3eda9456",
+     "source_url": "https://www.bio.lmu.de/en/study/for-students/master-programs/mps/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English proficiency at CEFR C1 or higher",
+      "quote": "You must provide proof of English proficiency at the C1 level or higher as defined by the Common European Framework of Reference for Languages (CEFR), or demonstrate an equivalent level of proficiency.",
+      "source_sha256": "3019ee800829ccaf076f67a8aa166d99c5629b1c40c9badc61b05d1f3eda9456",
+      "source_url": "https://www.bio.lmu.de/en/study/for-students/master-programs/mps/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Molecular Principles of Life (M.Sc.)",
+   "url": "https://www.bio.lmu.de/en/study/for-students/master-programs/mpl/",
+   "snapshot_sha256": "e3aae74f985989ae464845e035a76ddc40a2edb20b20cdb81ce9198ecc193955",
+   "fields": {
+    "academic": {
+     "text": "Bachelor of Science with at least 180 ECTS in biology or a related subject, plus a current transcript of records",
+     "quote": "Bachelor of Science degree with a total of at least 180 ECTS-credits in biology or a related subject",
+     "source_sha256": "e3aae74f985989ae464845e035a76ddc40a2edb20b20cdb81ce9198ecc193955",
+     "source_url": "https://www.bio.lmu.de/en/study/for-students/master-programs/mpl/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English proficiency CEFR C1",
+      "quote": "Proficiency in English (C1 CEFR)",
+      "source_sha256": "e3aae74f985989ae464845e035a76ddc40a2edb20b20cdb81ce9198ecc193955",
+      "source_url": "https://www.bio.lmu.de/en/study/for-students/master-programs/mpl/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Neuro-Cognitive Psychology (M.Sc.)",
+   "url": "https://www.lmu.de/psy/de/studium/m.sc.-neuro-cognitive-psychology/",
+   "snapshot_sha256": "21fb3009a98af30a9fc9c74290efaab3513c2379101f6b4549ea3a5b93857360",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or equivalent in psychology, biology, medicine or a closely related subject",
+     "quote": "Applicants must hold a Bachelor degree, or equivalent, in psychology, biology, medicine, or a closely related subject area.",
+     "source_sha256": "21fb3009a98af30a9fc9c74290efaab3513c2379101f6b4549ea3a5b93857360",
+     "source_url": "https://www.lmu.de/psy/de/studium/m.sc.-neuro-cognitive-psychology/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English proficiency at least CEFR B2; not required if the qualifying degree or entrance qualification was fully English-taught",
+      "quote": "A proof of English proficiency of at least B2 level is necessary according to the Common European Framework of Reference for Languages (CEFR).",
+      "source_sha256": "21fb3009a98af30a9fc9c74290efaab3513c2379101f6b4549ea3a5b93857360",
+      "source_url": "https://www.lmu.de/psy/de/studium/m.sc.-neuro-cognitive-psychology/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science Geology",
+   "url": "https://www.en.geologie.geowissenschaften.uni-muenchen.de/academics/degree_programs/master/index.html",
+   "snapshot_sha256": "34adc47e5bba71960733b215bd04b7c1afdb2e0e42575bc934a66d009dbc22a8",
+   "fields": {
+    "academic": {
+     "text": "B.Sc. or equivalent degree of at least 6 semesters, with at least 150 ECTS at the time of application and passed exams in specified geology subject groups",
+     "quote": "B.Sc. or equivalent degree of minimum 6 semesters of study.",
+     "source_sha256": "9da1d1ce52adc2c975fc1639d327796b93db44352dfd952ea0e51ee0740a3854",
+     "source_url": "https://www.geo.lmu.de/geoumwelt/en/studies/degree-programs/master-geology/for-prospective-students/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.5,
+     "quote": "IELTS (Academic Version) with at least 7.0 final score, and no less than 6.5 in any sub-score.",
+     "source_sha256": "9da1d1ce52adc2c975fc1639d327796b93db44352dfd952ea0e51ee0740a3854",
+     "source_url": "https://www.geo.lmu.de/geoumwelt/en/studies/degree-programs/master-geology/for-prospective-students/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 97,
+     "min_band": 22,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "TOEFL iBT with at least 97 points and with no individual section below 22 points (for tests taken before Jan. 26th, 2026) or at least 5.0 score and with no individual section below 4.5 (for tests taken after Jan. 26th, 2026)",
+     "source_sha256": "9da1d1ce52adc2c975fc1639d327796b93db44352dfd952ea0e51ee0740a3854",
+     "source_url": "https://www.geo.lmu.de/geoumwelt/en/studies/degree-programs/master-geology/for-prospective-students/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Taught in English; CEFR level C1 required",
+      "quote": "International program: the language of instruction is English (CEFR level C1 required).",
+      "source_sha256": "34adc47e5bba71960733b215bd04b7c1afdb2e0e42575bc934a66d009dbc22a8",
+      "source_url": "https://www.en.geologie.geowissenschaften.uni-muenchen.de/academics/degree_programs/master/index.html",
+      "check": "ok"
+     },
+     {
+      "text": "German A1 required unless the previous degree or entrance qualification was German-language; may be submitted within one year of starting",
+      "quote": "German proficiency at level A1 is required if neither the previous degree was completed in a German-language program nor the higher education entrance qualification was obtained in German.",
+      "source_sha256": "9da1d1ce52adc2c975fc1639d327796b93db44352dfd952ea0e51ee0740a3854",
+      "source_url": "https://www.geo.lmu.de/geoumwelt/en/studies/degree-programs/master-geology/for-prospective-students/",
+      "check": "ok"
+     },
+     {
+      "text": "Non-German applicants must also apply in parallel to the LMU International Office",
+      "quote": "If you are neither a German citizen nor a \"Bildungsinlander\" you must also in parallel submit a second application to the International Office of LMU (deadline July 15th).",
+      "source_sha256": "9da1d1ce52adc2c975fc1639d327796b93db44352dfd952ea0e51ee0740a3854",
+      "source_url": "https://www.geo.lmu.de/geoumwelt/en/studies/degree-programs/master-geology/for-prospective-students/",
+      "check": "ok"
+     }
+    ],
+    "china_requirement": {
+     "text": "Applicants from China must additionally submit the original APS certificate of the German Embassy",
+     "quote": "Applicants from People's Republic of China, Mongolia and Vietnam need to additionally submit the original certificate from the Akademische Prüfstelle (APS) of the respective German Embassy.",
+     "source_sha256": "9da1d1ce52adc2c975fc1639d327796b93db44352dfd952ea0e51ee0740a3854",
+     "source_url": "https://www.geo.lmu.de/geoumwelt/en/studies/degree-programs/master-geology/for-prospective-students/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Informatik (M.Sc.) - German-taught",
+   "url": "https://www.ifi.lmu.de/studium/studiengaenge/master/master_informatik/bewerbung/",
+   "snapshot_sha256": "7ef362af45a532df9200cc8162cd1f6639bbdad6fd1513fd52a8f2341bf04db2",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "Programming, algorithms and data structures, theoretical computer science, analysis and linear algebra",
+      "quote": "Programmierfähigkeiten, Algorithmen und Datenstrukturen, Theoretische Informatik, Analysis und Lineare Algebra",
+      "source_sha256": "7ef362af45a532df9200cc8162cd1f6639bbdad6fd1513fd52a8f2341bf04db2",
+      "source_url": "https://www.ifi.lmu.de/studium/studiengaenge/master/master_informatik/bewerbung/",
+      "check": "ok"
+     },
+     {
+      "text": "Foreign applicants: proof of German at least CEFR C1 (TestDaF or DSH accepted at enrolment); lectures are mostly in German",
+      "quote": "Ausländische Bewerberinnen und Bewerber: Nachweis über Deutschkenntnisse (mindestens Niveau C1 des Gemeinsamen Europäischen Referenzrahmens für Sprachen)",
+      "source_sha256": "7ef362af45a532df9200cc8162cd1f6639bbdad6fd1513fd52a8f2341bf04db2",
+      "source_url": "https://www.ifi.lmu.de/studium/studiengaenge/master/master_informatik/bewerbung/",
+      "check": "ok"
+     },
+     {
+      "text": "Non-German applicants with non-German degrees must also apply to the LMU International Office",
+      "quote": "Falls Sie keine deutsche Staatsangehörigkeit besitzen und ihre Zeugnisse und Abschlüsse nicht in Deutschland erworben haben, bewerben Sie sich gleichzeitig auch beim International Office",
+      "source_sha256": "7ef362af45a532df9200cc8162cd1f6639bbdad6fd1513fd52a8f2341bf04db2",
+      "source_url": "https://www.ifi.lmu.de/studium/studiengaenge/master/master_informatik/bewerbung/",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Summer semester 2027",
+      "date": "2027-01-15",
+      "quote": "Die Frist für die Teilnahme am nächsten EV zum Sommersemester 2027 beginnt am 01. Dezember 2026 und endet am 15. Januar 2027 (Ausschlussfrist!).",
+      "source_sha256": "7ef362af45a532df9200cc8162cd1f6639bbdad6fd1513fd52a8f2341bf04db2",
+      "source_url": "https://www.ifi.lmu.de/studium/studiengaenge/master/master_informatik/bewerbung/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 26,
+  "机器核对": 26,
+  "待人工": 0
+ }
+}
