@@ -3,19 +3,19 @@
 **An application-planning agent for master's degrees at the world's top universities.**
 留学申请 agent：覆盖 QS 2027 前 300 的大学，把申请拆成一张能点开的路线图，每条要求都能追溯到官方页面。
 
-**Live demo:** <http://43.161.224.82>
+**Live demo:** <https://leapashore.mortyyjt.site>
 
 | Entry | What to try |
 | --- | --- |
-| [`/`](http://43.161.224.82/) | Ten-step onboarding; finishing it opens the assessment result |
-| [`/prototype/schools`](http://43.161.224.82/prototype/schools) | 346 schools, filterable by region, QS band and alliance |
-| [`/prototype/assess`](http://43.161.224.82/prototype/assess) | Enter a background, get every program tiered 冲刺 / 匹配 / 保底 / 不满足 with rule-by-rule evidence |
-| [`/prototype/advisor`](http://43.161.224.82/prototype/advisor) | Chat with the LangGraph advisor agent |
+| [`/`](https://leapashore.mortyyjt.site/) | Ten-step onboarding; finishing it opens the assessment result |
+| [`/prototype/schools`](https://leapashore.mortyyjt.site/prototype/schools) | 346 schools, filterable by region, QS band and alliance |
+| [`/prototype/assess`](https://leapashore.mortyyjt.site/prototype/assess) | Enter a background, get every program tiered 冲刺 / 匹配 / 保底 / 不满足 with rule-by-rule evidence |
+| [`/prototype/advisor`](https://leapashore.mortyyjt.site/prototype/advisor) | Chat with the LangGraph advisor agent |
 
 Things to ask the advisor:
 
 - `悉尼大学计算机硕士要什么均分和雅思？` — retrieval, evidence gate, numbered citations to the official page
-- `MIT 的计算机硕士要什么条件？` — the gate refuses: the school has no sourced data yet
+- `乌得勒支大学数据科学硕士要什么条件？` — the gate refuses: that school is not collected yet
 - `我是武汉大学计算机专业，均分 85，雅思 7.0` — the agent writes the profile (low-risk write, runs at once)
 - `把蒙纳士人工智能硕士加进我的选校组合，作为冲刺` — the agent proposes the change and waits for a confirm click
 
@@ -33,7 +33,7 @@ source an answer it says so instead of guessing.** The full product requirements
 
 ```mermaid
 flowchart LR
-    B[Browser] --> C[Caddy :80]
+    B[Browser] --> C[Caddy :443<br/>automatic HTTPS]
     C -->|/api/*| A[FastAPI]
     C -->|everything else| W[Next.js 16<br/>standalone server]
     A --> G[LangGraph advisor]
@@ -87,7 +87,7 @@ customer-service agent and re-pointed at application state.
 | Australian master's programs (2,920) | CRICOS, data.gov.au, CC BY 2.5 AU | Real, attributed, dated |
 | Chinese institutions (3,167) and tier tags | Public lists | Real; known gaps recorded in the fixture |
 | Overseas schools (346) | QS World University Rankings 2027 top 300 + 46 for regional coverage | Real |
-| Admission requirements | Official course pages | **Pending verification (待核验)** |
+| Admission requirements (5,337 programs at 128 schools) | Official course pages, each quote checked against a saved snapshot | **Machine-checked (机器核对)** for 5,253; the rest 待核验. None human-verified yet |
 | Deadlines | Official pages | **Not collected** |
 
 These rules exist because an earlier version of this product generated a plausible verification
@@ -138,17 +138,19 @@ Done:
 - School and program libraries, background assessment with rule-by-rule tiers
 - Material library: upload, versions, archive, download (size limit, type sniffed from bytes)
 - Advisor agent: intent routing, evidence gate, ReAct tools, confirm-before-write, streamed replies
-- Production deployment
+- Production deployment over HTTPS
+- Requirement collection: snapshot each official page, check every quote against it, import only what passed
 
 Not yet:
 
-- Admission requirements are unverified placeholders for six Australian programs; every other school
-  shows its program data as 待采集 (to be collected)
+- Requirements are collected for 141 of the 346 schools (13 of those blocked or unreachable); the rest
+  show 待采集 (to be collected). Requirements published only in PDFs are not read yet
+- No requirement has been verified by a person (`verified_at` is empty everywhere)
 - Conversations live in an in-memory checkpointer and are lost on restart (a Postgres checkpointer is
   a schema change and needs its own migration)
 - Knowledge gaps go to the log, not to a review queue
 - No evaluation set for the router or the gate yet
-- HTTP only until the site has a domain; no accounts, the profile is tied to an anonymous cookie
+- No accounts; the profile is tied to an anonymous cookie
 
 ## Project records
 
