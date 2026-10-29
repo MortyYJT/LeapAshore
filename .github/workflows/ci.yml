@@ -76,6 +76,50 @@ jobs:
       - name: Run the backend tests
         run: python -m pytest -q
 
+  # The model-free half of the advisor eval (api/evals/). It needs the whole catalogue, so it runs in
+  # its own database: migrate, seed, import every committed requirement file, then score the tune
+  # split and fail below api/evals/advisor_thresholds.json. The held-out split and the intent router
+  # (which calls the model) never run here.
+  advisor-eval:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: api
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: offerpilot
+          POSTGRES_PASSWORD: offerpilot
+          POSTGRES_DB: offerpilot
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U offerpilot"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      DATABASE_URL: postgresql+psycopg://offerpilot:offerpilot@localhost:5432/offerpilot
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: api/pyproject.toml
+      - name: Install the backend dependencies
+        run: python -m pip install -e .
+      - name: Apply the database migrations
+        run: python -m alembic upgrade head
+      - name: Seed and import the catalogue
+        run: |
+          python seed_cli.py
+          python -m app.collect.importer
+      - name: Score the advisor retrieval (tune split)
+        run: python -m evals.run_advisor --split tune --check
+
 # Not covered by this workflow, and deliberately so:
 #
 # - The end-to-end walkthrough (`make screenshots`) drives a real Chromium through

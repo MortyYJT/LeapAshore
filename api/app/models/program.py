@@ -28,8 +28,9 @@ class Program(Base):
     __tablename__ = "programs"
 
     id: Mapped[str] = mapped_column(String(64), primary_key=True)
+    # Indexed because the advisor filters programs by school in SQL (alembic 5c1e7f0a2b3d).
     university_id: Mapped[str] = mapped_column(
-        String(64), ForeignKey("universities.id", ondelete="CASCADE")
+        String(64), ForeignKey("universities.id", ondelete="CASCADE"), index=True
     )
 
     name: Mapped[str] = mapped_column(Text)
@@ -74,7 +75,7 @@ class ProgramPrerequisite(Base):
 
     id: Mapped[str] = mapped_column(String(64), primary_key=True)
     program_id: Mapped[str] = mapped_column(
-        String(64), ForeignKey("programs.id", ondelete="CASCADE")
+        String(64), ForeignKey("programs.id", ondelete="CASCADE"), index=True
     )
     label: Mapped[str] = mapped_column(Text)
     category: Mapped[str | None] = mapped_column(String(32))

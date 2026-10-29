@@ -64,14 +64,16 @@ def test_an_unknown_mark_is_written_as_unknown_not_zero():
     assert evidence._fmt_mark(65) == "65"
 
 
-def test_a_field_match_alone_is_refused_as_no_hit(monkeypatch):
-    """Asking about an uncollected school must not borrow another school's requirements."""
-    source = SimpleNamespace(id="s1", title="UNSW MIT", url="https://www.unsw.edu.au/x", verified_at=None)
-    field_only = evidence.Hit(program=SimpleNamespace(), source=source, score=evidence.FIELD_SCORE)
-    monkeypatch.setattr(evidence, "search_requirements", lambda session, query: [field_only])
+def test_a_subject_alone_is_refused_as_no_school(monkeypatch):
+    """Asking about an uncollected school must not borrow another school's requirements: a subject
+    with no school named returns no rows and is refused."""
+    found = evidence.Retrieval(schools=[], fields=["计算机与数据"], hits=[])
+    monkeypatch.setattr(evidence, "search_requirements", lambda session, query: found)
+    monkeypatch.setattr(evidence, "_catalogue_counts", lambda session: (2, 10, ["甲大学", "乙大学"]))
     update = evidence.gate(session=None, query="MIT 的计算机硕士要什么条件？")
     assert update["evidence_strong"] is False
-    assert update["refusal"] == "no_hit"
+    assert update["refusal"] == "no_school"
+    assert "2 所学校" in update["refusal_text"] and "甲大学" in update["refusal_text"]
 
 
 def test_the_graph_compiles_with_every_node_wired():

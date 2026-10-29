@@ -1,0 +1,5 @@
+{
+ "_note": "CI floor for `python -m evals.run_advisor --split tune --check` (the model-free part). Set from the first run after the retrieval rewrite (2026-10-30: recall 1.0, precision 0.98, false-pass 0, false-block 0, at most 189 rows read), with a little room so one relabelled question does not fail the build. The held-out split is never checked here.",
+ "min": {"recall_at_k": 0.95, "precision_at_k": 0.9},
+ "max": {"false_pass_rate": 0.0, "false_block_rate": 0.05, "max_rows_read": 400}
+}

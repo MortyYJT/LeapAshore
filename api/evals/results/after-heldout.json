@@ -1,0 +1,581 @@
+{
+ "split": "heldout",
+ "retrieval": {
+  "summary": {
+   "k": 4,
+   "questions": 21,
+   "answerable": 15,
+   "unanswerable": 6,
+   "recall_at_k": 0.8889,
+   "precision_at_k": 0.9333,
+   "false_pass_rate": 0.0,
+   "false_block_rate": 0.0,
+   "false_passes": 0,
+   "false_blocks": 0,
+   "mean_rows_read": 172.5714,
+   "max_rows_read": 181,
+   "mean_statements": 4.3333,
+   "mean_ms": 5.8286
+  },
+  "questions": [
+   {
+    "id": "h01",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "imperial-college-london-msc-advanced-mechanical-engineer-7c126d"
+    ],
+    "relevant": 1,
+    "hit": 1,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 5,
+    "rows_read": 168,
+    "ms": 17.8
+   },
+   {
+    "id": "h02",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "hong-kong-university-of-master-of-science-program-in-big-c5b76c",
+     "hong-kong-university-of-master-of-science-program-in-dat-f3656e"
+    ],
+    "relevant": 2,
+    "hit": 2,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 5,
+    "rows_read": 171,
+    "ms": 4.8
+   },
+   {
+    "id": "h03",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "hong-kong-polytechnic-un-master-of-arts-in-global-fashion-43f297",
+     "hong-kong-polytechnic-un-master-of-finance-investment-man-fea4e9",
+     "hong-kong-polytechnic-un-master-of-science-scheme-in-hosp-d68097",
+     "hong-kong-polytechnic-un-master-of-science-in-asset-and-w-b6ff25"
+    ],
+    "relevant": 28,
+    "hit": 4,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 5,
+    "rows_read": 177,
+    "ms": 6.1
+   },
+   {
+    "id": "h04",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "city-university-of-hong-msc-computer-science-3bc376",
+     "city-university-of-hong-msc-computer-and-information-eng-09ebde",
+     "city-university-of-hong-msc-digital-commerce-and-computi-6e4aa6",
+     "city-university-of-hong-msc-artificial-intelligence-a0fa2d"
+    ],
+    "relevant": 13,
+    "hit": 4,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 5,
+    "rows_read": 177,
+    "ms": 4.9
+   },
+   {
+    "id": "h05",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "king-s-college-london-construction-law-dispute-resolut-a2831a",
+     "king-s-college-london-economics-for-competition-law-pg-570a8e",
+     "king-s-college-london-master-of-laws-llm-de347d",
+     "king-s-college-london-medical-ethics-law-medical-law-m-485edb"
+    ],
+    "relevant": 5,
+    "hit": 4,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 5,
+    "rows_read": 177,
+    "ms": 4.7
+   },
+   {
+    "id": "h06",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "london-school-of-economi-msc-accounting-and-finance-e8ccb5",
+     "london-school-of-economi-msc-finance-full-time-d9ef58",
+     "london-school-of-economi-msc-finance-part-time-e336ab",
+     "london-school-of-economi-msc-finance-and-private-equity-a2ad6e"
+    ],
+    "relevant": 8,
+    "hit": 4,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 5,
+    "rows_read": 181,
+    "ms": 4.8
+   },
+   {
+    "id": "h07",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "nanyang-technological-un-master-of-computing-in-applied-a-a34ef1",
+     "nanyang-technological-un-master-of-science-in-computer-co-5c48e3",
+     "nanyang-technological-un-master-of-science-in-artificial-e7fb81",
+     "nanyang-technological-un-master-of-science-in-cybersecuri-d18557"
+    ],
+    "relevant": 9,
+    "hit": 4,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 5,
+    "rows_read": 177,
+    "ms": 4.7
+   },
+   {
+    "id": "h08",
+    "answerable": false,
+    "passed": false,
+    "refusal": "no_program_in_field",
+    "returned": [],
+    "relevant": 0,
+    "hit": 0,
+    "recall": null,
+    "precision": null,
+    "statements": 3,
+    "rows_read": 166,
+    "ms": 6.6
+   },
+   {
+    "id": "h09",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "cricos-067604G",
+     "cricos-084282A",
+     "cricos-084284K",
+     "cricos-084283M"
+    ],
+    "relevant": 5,
+    "hit": 4,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 5,
+    "rows_read": 177,
+    "ms": 4.6
+   },
+   {
+    "id": "h10",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "university-of-toronto-master-of-engineering-electrical-f8c888",
+     "university-of-toronto-master-of-science-in-applied-com-d0bf10"
+    ],
+    "relevant": 2,
+    "hit": 2,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 5,
+    "rows_read": 172,
+    "ms": 4.5
+   },
+   {
+    "id": "h11",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "university-of-british-co-master-of-business-administratio-227ad0",
+     "university-of-british-co-master-of-business-analytics-mba-cb3fc4",
+     "university-of-british-co-master-of-geomatics-for-environm-539110",
+     "university-of-british-co-master-of-management-mm-6d7134"
+    ],
+    "relevant": 8,
+    "hit": 4,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 5,
+    "rows_read": 180,
+    "ms": 5.0
+   },
+   {
+    "id": "h12",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "columbia-university-adult-learning-and-leadership-ma-7773cb",
+     "columbia-university-anthropology-and-education-ma-te-ec30a3",
+     "columbia-university-applied-anthropology-ma-teachers-64dbe5",
+     "columbia-university-applied-statistics-ms-teachers-c-4e5de6"
+    ],
+    "relevant": 1,
+    "hit": 0,
+    "recall": 0.0,
+    "precision": 0.0,
+    "statements": 5,
+    "rows_read": 178,
+    "ms": 5.0
+   },
+   {
+    "id": "h13",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "university-of-pennsylvan-master-of-applied-science-in-com-b9e366",
+     "university-of-pennsylvan-master-of-science-in-engineering-226763",
+     "university-of-pennsylvan-master-of-science-in-engineering-20a81b",
+     "university-of-pennsylvan-master-of-science-in-engineering-f06df2"
+    ],
+    "relevant": 11,
+    "hit": 4,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 5,
+    "rows_read": 174,
+    "ms": 4.5
+   },
+   {
+    "id": "h14",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "university-of-warwick-statistics-msc-e404eb"
+    ],
+    "relevant": 3,
+    "hit": 1,
+    "recall": 0.3333333333333333,
+    "precision": 1.0,
+    "statements": 5,
+    "rows_read": 168,
+    "ms": 4.5
+   },
+   {
+    "id": "h15",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "university-of-hong-kong-master-of-science-in-computer-sc-d36e99",
+     "university-of-hong-kong-master-of-science-in-computer-sc-b9098c",
+     "university-of-hong-kong-master-of-science-in-computer-sc-760391"
+    ],
+    "relevant": 3,
+    "hit": 3,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 5,
+    "rows_read": 174,
+    "ms": 5.0
+   },
+   {
+    "id": "h16",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "seoul-national-universit-full-time-mba-graduate-school-of-9ef537",
+     "seoul-national-universit-graduate-programs-international-46263b"
+    ],
+    "relevant": 2,
+    "hit": 2,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 5,
+    "rows_read": 175,
+    "ms": 5.2
+   },
+   {
+    "id": "h17",
+    "answerable": false,
+    "passed": false,
+    "refusal": "no_program_in_field",
+    "returned": [],
+    "relevant": 0,
+    "hit": 0,
+    "recall": null,
+    "precision": null,
+    "statements": 3,
+    "rows_read": 166,
+    "ms": 4.0
+   },
+   {
+    "id": "h18",
+    "answerable": false,
+    "passed": false,
+    "refusal": "no_school",
+    "returned": [],
+    "relevant": 0,
+    "hit": 0,
+    "recall": null,
+    "precision": null,
+    "statements": 3,
+    "rows_read": 169,
+    "ms": 14.3
+   },
+   {
+    "id": "h19",
+    "answerable": false,
+    "passed": false,
+    "refusal": "no_program_in_field",
+    "returned": [],
+    "relevant": 0,
+    "hit": 0,
+    "recall": null,
+    "precision": null,
+    "statements": 3,
+    "rows_read": 166,
+    "ms": 5.7
+   },
+   {
+    "id": "h20",
+    "answerable": false,
+    "passed": false,
+    "refusal": "school_not_collected",
+    "returned": [],
+    "relevant": 0,
+    "hit": 0,
+    "recall": null,
+    "precision": null,
+    "statements": 3,
+    "rows_read": 166,
+    "ms": 3.9
+   },
+   {
+    "id": "h21",
+    "answerable": false,
+    "passed": false,
+    "refusal": "no_school",
+    "returned": [],
+    "relevant": 0,
+    "hit": 0,
+    "recall": null,
+    "precision": null,
+    "statements": 1,
+    "rows_read": 165,
+    "ms": 1.8
+   }
+  ]
+ },
+ "intent": {
+  "summary": {
+   "model": "deepseek-chat",
+   "base_url": "https://api.deepseek.com",
+   "questions": 30,
+   "intent_accuracy": 1.0,
+   "fallbacks": 0,
+   "usage": {
+    "deepseek-flash": {
+     "total_tokens": 15862,
+     "input_token_details": {
+      "cache_read": 7680
+     },
+     "output_tokens": 1600,
+     "input_tokens": 14262,
+     "output_token_details": {}
+    }
+   }
+  },
+  "questions": [
+   {
+    "id": "h01",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "h02",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "h03",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "h04",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "h05",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "h06",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "h07",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "h08",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "h09",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "h10",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "h11",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "h12",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "h13",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "h14",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "h15",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.97
+   },
+   {
+    "id": "h16",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "h17",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "h18",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "h19",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "h20",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "h21",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "h22",
+    "expected": "规划",
+    "got": "规划",
+    "confidence": 0.97
+   },
+   {
+    "id": "h23",
+    "expected": "规划",
+    "got": "规划",
+    "confidence": 0.95
+   },
+   {
+    "id": "h24",
+    "expected": "资料补充",
+    "got": "资料补充",
+    "confidence": 0.95
+   },
+   {
+    "id": "h25",
+    "expected": "资料补充",
+    "got": "资料补充",
+    "confidence": 0.95
+   },
+   {
+    "id": "h26",
+    "expected": "业务操作",
+    "got": "业务操作",
+    "confidence": 0.97
+   },
+   {
+    "id": "h27",
+    "expected": "通用问答",
+    "got": "通用问答",
+    "confidence": 0.95
+   },
+   {
+    "id": "h28",
+    "expected": "通用问答",
+    "got": "通用问答",
+    "confidence": 0.97
+   },
+   {
+    "id": "h29",
+    "expected": "通用问答",
+    "got": "通用问答",
+    "confidence": 0.85
+   },
+   {
+    "id": "h30",
+    "expected": "通用问答",
+    "got": "通用问答",
+    "confidence": 0.9
+   }
+  ]
+ }
+}

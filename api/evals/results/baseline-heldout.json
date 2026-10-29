@@ -1,0 +1,43 @@
+{
+ "split": "heldout",
+ "retrieval": {
+  "summary": {
+   "k": 4,
+   "questions": 21,
+   "answerable": 15,
+   "unanswerable": 6,
+   "recall_at_k": 0.1,
+   "precision_at_k": 0.2083,
+   "false_pass_rate": 0.5,
+   "false_block_rate": 0.6,
+   "false_passes": 3,
+   "false_blocks": 9,
+   "mean_rows_read": 11101.0952,
+   "max_rows_read": 11154,
+   "mean_statements": 33.0952,
+   "mean_ms": 143.9905
+  },
+  "questions": []
+ },
+ "intent": {
+  "summary": {
+   "model": "deepseek-chat",
+   "base_url": "https://api.deepseek.com",
+   "questions": 30,
+   "intent_accuracy": 1.0,
+   "fallbacks": 0,
+   "usage": {
+    "deepseek-flash": {
+     "total_tokens": 15862,
+     "output_tokens": 1600,
+     "input_token_details": {
+      "cache_read": 7680
+     },
+     "input_tokens": 14262,
+     "output_token_details": {}
+    }
+   }
+  },
+  "questions": []
+ }
+}

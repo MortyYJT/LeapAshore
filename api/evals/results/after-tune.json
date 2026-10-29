@@ -1,0 +1,603 @@
+{
+ "split": "tune",
+ "retrieval": {
+  "summary": {
+   "k": 4,
+   "questions": 34,
+   "answerable": 25,
+   "unanswerable": 9,
+   "recall_at_k": 1.0,
+   "precision_at_k": 0.98,
+   "false_pass_rate": 0.0,
+   "false_block_rate": 0.0,
+   "false_passes": 0,
+   "false_blocks": 0,
+   "mean_rows_read": 172.8824,
+   "max_rows_read": 181,
+   "mean_statements": 4.2941,
+   "mean_ms": 4.8353
+  },
+  "questions": [
+   {
+    "id": "t01",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "imperial-college-london-msc-advanced-computing-307bf8",
+     "imperial-college-london-msc-computing-f38aa7",
+     "imperial-college-london-msc-computing-artificial-intelli-8f9151",
+     "imperial-college-london-msc-computing-security-and-relia-8f4ffe"
+    ],
+    "relevant": 6,
+    "hit": 4,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 5,
+    "rows_read": 177,
+    "ms": 22.2
+   },
+   {
+    "id": "t02",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "imperial-college-london-msc-advanced-computing-307bf8",
+     "imperial-college-london-msc-computing-f38aa7",
+     "imperial-college-london-msc-computing-artificial-intelli-8f9151",
+     "imperial-college-london-msc-computing-security-and-relia-8f4ffe"
+    ],
+    "relevant": 6,
+    "hit": 4,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 5,
+    "rows_read": 177,
+    "ms": 5.7
+   },
+   {
+    "id": "t03",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "university-of-hong-kong-master-of-science-in-computer-sc-d36e99",
+     "university-of-hong-kong-master-of-science-in-computer-sc-b9098c",
+     "university-of-hong-kong-master-of-science-in-computer-sc-760391"
+    ],
+    "relevant": 3,
+    "hit": 3,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 5,
+    "rows_read": 174,
+    "ms": 5.9
+   },
+   {
+    "id": "t04",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "university-of-hong-kong-master-of-finance-4cdc31",
+     "university-of-hong-kong-master-of-finance-in-financial-t-cfb079",
+     "university-of-hong-kong-master-of-sustainable-accounting-c803b3"
+    ],
+    "relevant": 3,
+    "hit": 3,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 5,
+    "rows_read": 174,
+    "ms": 4.5
+   },
+   {
+    "id": "t05",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "chinese-university-of-ho-ma-in-cultural-management-f669f9",
+     "chinese-university-of-ho-mba-e72661",
+     "chinese-university-of-ho-mba-in-finance-fbe075",
+     "chinese-university-of-ho-msc-in-aviation-management-89a526"
+    ],
+    "relevant": 19,
+    "hit": 4,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 5,
+    "rows_read": 179,
+    "ms": 4.7
+   },
+   {
+    "id": "t06",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "chinese-university-of-ho-msc-in-advanced-studies-in-stati-4b75b7",
+     "chinese-university-of-ho-msc-in-data-science-and-business-eedf23",
+     "chinese-university-of-ho-msc-in-risk-management-science-a-e72028"
+    ],
+    "relevant": 3,
+    "hit": 3,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 5,
+    "rows_read": 174,
+    "ms": 4.6
+   },
+   {
+    "id": "t07",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "hong-kong-university-of-master-of-engineering-program-in-0a555c",
+     "hong-kong-university-of-master-of-engineering-program-in-72eed7",
+     "hong-kong-university-of-master-of-science-program-in-aer-7e3da6",
+     "hong-kong-university-of-master-of-science-program-in-che-db0f3f"
+    ],
+    "relevant": 12,
+    "hit": 4,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 5,
+    "rows_read": 177,
+    "ms": 4.2
+   },
+   {
+    "id": "t08",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "hong-kong-polytechnic-un-master-of-science-in-accountancy-b6d305",
+     "hong-kong-polytechnic-un-master-of-science-in-accounting-8549a2",
+     "hong-kong-polytechnic-un-master-of-postgraduate-diploma-i-854af4"
+    ],
+    "relevant": 3,
+    "hit": 3,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 5,
+    "rows_read": 174,
+    "ms": 4.8
+   },
+   {
+    "id": "t09",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "city-university-of-hong-msc-electrical-and-electronic-en-350881"
+    ],
+    "relevant": 1,
+    "hit": 1,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 5,
+    "rows_read": 168,
+    "ms": 4.3
+   },
+   {
+    "id": "t10",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "imperial-college-london-msc-advanced-computing-307bf8",
+     "imperial-college-london-msc-computing-f38aa7",
+     "imperial-college-london-msc-computing-artificial-intelli-8f9151",
+     "imperial-college-london-msc-computing-security-and-relia-8f4ffe"
+    ],
+    "relevant": 6,
+    "hit": 4,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 5,
+    "rows_read": 177,
+    "ms": 4.3
+   },
+   {
+    "id": "t11",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "ucl-computer-science-msc-9d29ee"
+    ],
+    "relevant": 1,
+    "hit": 1,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 5,
+    "rows_read": 168,
+    "ms": 4.1
+   },
+   {
+    "id": "t12",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "london-school-of-economi-msc-development-management-appli-3da1f8",
+     "london-school-of-economi-msc-development-management-polit-b7a3a0",
+     "london-school-of-economi-msc-econometrics-and-mathematica-e1d31c",
+     "london-school-of-economi-msc-economics-3ea5da"
+    ],
+    "relevant": 15,
+    "hit": 4,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 5,
+    "rows_read": 178,
+    "ms": 4.4
+   },
+   {
+    "id": "t13",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "national-university-of-s-master-of-computing-computer-sci-96b220",
+     "national-university-of-s-master-of-computing-general-trac-9030ee",
+     "national-university-of-s-master-of-computing-infocomm-sec-09a842",
+     "national-university-of-s-master-of-computing-information-1fe4a7"
+    ],
+    "relevant": 5,
+    "hit": 4,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 5,
+    "rows_read": 177,
+    "ms": 4.0
+   },
+   {
+    "id": "t14",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "nanyang-technological-un-master-of-science-in-biomedical-d41331",
+     "nanyang-technological-un-master-of-science-in-chemical-en-598636",
+     "nanyang-technological-un-master-of-science-in-civil-engin-dfe175",
+     "nanyang-technological-un-master-of-science-in-communicati-1a69a8"
+    ],
+    "relevant": 16,
+    "hit": 4,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 5,
+    "rows_read": 177,
+    "ms": 4.1
+   },
+   {
+    "id": "t15",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "cricos-111671D"
+    ],
+    "relevant": 1,
+    "hit": 1,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 5,
+    "rows_read": 168,
+    "ms": 3.8
+   },
+   {
+    "id": "t16",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "cricos-059315E",
+     "cricos-078546K",
+     "cricos-051222G",
+     "cricos-000933K"
+    ],
+    "relevant": 8,
+    "hit": 4,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 5,
+    "rows_read": 177,
+    "ms": 4.7
+   },
+   {
+    "id": "t17",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "cricos-078940M",
+     "cricos-097058B",
+     "cricos-050796M"
+    ],
+    "relevant": 3,
+    "hit": 3,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 5,
+    "rows_read": 174,
+    "ms": 4.0
+   },
+   {
+    "id": "t18",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "cricos-112562A",
+     "cricos-108878D",
+     "cricos-108880K",
+     "cricos-108881J"
+    ],
+    "relevant": 14,
+    "hit": 4,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 5,
+    "rows_read": 181,
+    "ms": 4.0
+   },
+   {
+    "id": "t19",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "university-of-manchester-financial-management-msc-7208c1",
+     "university-of-manchester-mathematical-finance-msc-d28a4a"
+    ],
+    "relevant": 2,
+    "hit": 2,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 5,
+    "rows_read": 171,
+    "ms": 3.8
+   },
+   {
+    "id": "t20",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "university-of-edinburgh-artificial-intelligence-msc-775ffc",
+     "university-of-edinburgh-data-and-artificial-intelligence-2d0fed",
+     "university-of-edinburgh-statistics-with-artificial-intel-80507f"
+    ],
+    "relevant": 3,
+    "hit": 3,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 5,
+    "rows_read": 177,
+    "ms": 4.6
+   },
+   {
+    "id": "t21",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "eth-zurich-master-of-science-eth-zurich-epf-f3e6a0",
+     "eth-zurich-master-of-science-eth-in-compute-dc8a9f"
+    ],
+    "relevant": 2,
+    "hit": 2,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 5,
+    "rows_read": 177,
+    "ms": 3.7
+   },
+   {
+    "id": "t22",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "university-of-hong-kong-master-of-common-law-9c2212",
+     "university-of-hong-kong-master-of-laws-general-or-with-s-dbd6ef",
+     "university-of-hong-kong-master-of-laws-in-arbitration-an-fd29f4",
+     "university-of-hong-kong-master-of-laws-in-chinese-law-4ff6c5"
+    ],
+    "relevant": 8,
+    "hit": 4,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 5,
+    "rows_read": 177,
+    "ms": 4.0
+   },
+   {
+    "id": "t23",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "university-of-hong-kong-master-of-science-in-computer-sc-d36e99",
+     "chinese-university-of-ho-msc-in-computer-science-402b13",
+     "university-of-hong-kong-master-of-science-in-computer-sc-b9098c",
+     "chinese-university-of-ho-msc-in-advanced-studies-in-stati-4b75b7"
+    ],
+    "relevant": 16,
+    "hit": 4,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 5,
+    "rows_read": 181,
+    "ms": 3.9
+   },
+   {
+    "id": "t24",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "newcastle-university-business-analytics-msc-128105",
+     "newcastle-university-digital-business-msc-662f89",
+     "newcastle-university-entrepreneurship-and-innovation-05fef2",
+     "newcastle-university-financial-analytics-and-risk-man-49ba6e"
+    ],
+    "relevant": 17,
+    "hit": 4,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 5,
+    "rows_read": 179,
+    "ms": 4.2
+   },
+   {
+    "id": "t25",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "university-of-hong-kong-master-of-arts-in-teaching-engli-30c558",
+     "university-of-hong-kong-master-of-education-bb0b07"
+    ],
+    "relevant": 1,
+    "hit": 1,
+    "recall": 1.0,
+    "precision": 0.5,
+    "statements": 5,
+    "rows_read": 171,
+    "ms": 3.8
+   },
+   {
+    "id": "t26",
+    "answerable": false,
+    "passed": false,
+    "refusal": "no_school",
+    "returned": [],
+    "relevant": 0,
+    "hit": 0,
+    "recall": null,
+    "precision": null,
+    "statements": 3,
+    "rows_read": 169,
+    "ms": 10.5
+   },
+   {
+    "id": "t27",
+    "answerable": false,
+    "passed": false,
+    "refusal": "no_school",
+    "returned": [],
+    "relevant": 0,
+    "hit": 0,
+    "recall": null,
+    "precision": null,
+    "statements": 1,
+    "rows_read": 165,
+    "ms": 1.8
+   },
+   {
+    "id": "t28",
+    "answerable": false,
+    "passed": false,
+    "refusal": "school_not_collected",
+    "returned": [],
+    "relevant": 0,
+    "hit": 0,
+    "recall": null,
+    "precision": null,
+    "statements": 3,
+    "rows_read": 166,
+    "ms": 4.4
+   },
+   {
+    "id": "t29",
+    "answerable": false,
+    "passed": false,
+    "refusal": "school_not_collected",
+    "returned": [],
+    "relevant": 0,
+    "hit": 0,
+    "recall": null,
+    "precision": null,
+    "statements": 3,
+    "rows_read": 166,
+    "ms": 6.7
+   },
+   {
+    "id": "t30",
+    "answerable": false,
+    "passed": false,
+    "refusal": "no_program_in_field",
+    "returned": [],
+    "relevant": 0,
+    "hit": 0,
+    "recall": null,
+    "precision": null,
+    "statements": 3,
+    "rows_read": 166,
+    "ms": 3.5
+   },
+   {
+    "id": "t31",
+    "answerable": false,
+    "passed": false,
+    "refusal": "no_program_in_field",
+    "returned": [],
+    "relevant": 0,
+    "hit": 0,
+    "recall": null,
+    "precision": null,
+    "statements": 3,
+    "rows_read": 166,
+    "ms": 3.8
+   },
+   {
+    "id": "t32",
+    "answerable": false,
+    "passed": false,
+    "refusal": "no_school",
+    "returned": [],
+    "relevant": 0,
+    "hit": 0,
+    "recall": null,
+    "precision": null,
+    "statements": 1,
+    "rows_read": 165,
+    "ms": 1.7
+   },
+   {
+    "id": "t33",
+    "answerable": false,
+    "passed": false,
+    "refusal": "no_school",
+    "returned": [],
+    "relevant": 0,
+    "hit": 0,
+    "recall": null,
+    "precision": null,
+    "statements": 1,
+    "rows_read": 165,
+    "ms": 1.7
+   },
+   {
+    "id": "t34",
+    "answerable": false,
+    "passed": false,
+    "refusal": "school_not_collected",
+    "returned": [],
+    "relevant": 0,
+    "hit": 0,
+    "recall": null,
+    "precision": null,
+    "statements": 3,
+    "rows_read": 166,
+    "ms": 4.0
+   }
+  ]
+ }
+}
