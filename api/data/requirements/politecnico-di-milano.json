@@ -1,0 +1,1913 @@
+{
+ "school_key": "politecnico-di-milano",
+ "school_name_en": "Politecnico di Milano",
+ "country": "Italy",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://www.polimi.it/en/education/laurea-magistrale-programmes",
+  "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification"
+ ],
+ "china_page": {
+  "url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+  "sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d"
+ },
+ "blocked": [],
+ "complete": true,
+ "remaining_urls": [],
+ "notes": "English-taught Laurea Magistrale (MSc) programmes from the official programme list. Agricultural Engineering skipped (applications closed, programme suppressed). IELTS/TOEFL minimums come from the shared language-requirements page and are attached only to programmes whose page names an English requirement; the general table also lists PTE 59, Cambridge B2 First and other tests, and a TOEFL band 4,5. Deadlines are the shared application calls (Engineering vs Architecture and Design); Design & Engineering, Cyber Risk Strategy and Governance, Health Informatics and Transformative Sustainability are not on the calls or places page, so no deadline is given. Engineering page labels the calls 'Academic year 2026-2027' but the intake is September 2027. Application windows for the February intake and the EEA-only call are not recorded. PDFs (Application Guidelines, registration guidelines, programme regulations Section 6 with curricular requirements per programme) are not readable by the snapshot tool.",
+ "programs": [
+  {
+   "name": "Aeronautical Engineering",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/aeronautical-engineering",
+   "snapshot_sha256": "a5612eec34e46cbb18a123e6a852344480d471632693ec70c59ebb06cb6802ac",
+   "fields": {
+    "academic": {
+     "text": "Foreign bachelor's degree equivalent to a first-cycle degree; adequate preparation in mathematics, physics and aerospace or mechanical engineering; subject to comparability check and committee assessment",
+     "quote": "Admission is subject to verification of the comparability of the qualification and to an assessment of the consistency of the academic background with the objectives of the Master’s Degree Programme in Aeronautical Engineering. Applicants are required to demonstrate adequate preparation in mathematics and physics, as well as in the principal areas of aerospace or mechanical engineering.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6,
+     "quote": "IELTS Academic or IELTS General Training* ≥ 6",
+     "source_sha256": "b7b6f625796eee26ebdb70cbf0aacc9e2939e3d6ac5893bda72c5d8fe344d5f3",
+     "source_url": "https://www.polimi.it/en/students/language-requirements/students-of-laurea-magistrale-study-programmes",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 78,
+     "quote": "Internet Based ≥ 78 (total score) or ≥ 4,5",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "b7b6f625796eee26ebdb70cbf0aacc9e2939e3d6ac5893bda72c5d8fe344d5f3",
+     "source_url": "https://www.polimi.it/en/students/language-requirements/students-of-laurea-magistrale-study-programmes",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, Engineering 1st call",
+      "date": "2026-12-01",
+      "quote": "1st October - 1st December 2026 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     },
+     {
+      "label": "September 2027 intake, Engineering 2nd call",
+      "date": "2027-02-25",
+      "quote": "12th January - 25th February 2027 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Architectural Design and History",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/architectural-design-and-history",
+   "snapshot_sha256": "a9e9ae383e7911e61299da32b25cae3da40a4e04829e7ee83fa929b68e6e7b34",
+   "fields": {
+    "academic": {
+     "text": "Class L-17 qualification or a foreign qualification recognised as suitable, or a 3-year degree meeting the essential educational activities; admission only if the selection test is passed",
+     "quote": "a Class L-17 qualification (or Class 4 ex Min.Decree 509/1999), without curricular integrations, or a qualification obtained abroad that is recognised as being suitable;",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6,
+     "quote": "IELTS Academic or IELTS General Training* ≥ 6",
+     "source_sha256": "b7b6f625796eee26ebdb70cbf0aacc9e2939e3d6ac5893bda72c5d8fe344d5f3",
+     "source_url": "https://www.polimi.it/en/students/language-requirements/students-of-laurea-magistrale-study-programmes",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 78,
+     "quote": "Internet Based ≥ 78 (total score) or ≥ 4,5",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "b7b6f625796eee26ebdb70cbf0aacc9e2939e3d6ac5893bda72c5d8fe344d5f3",
+     "source_url": "https://www.polimi.it/en/students/language-requirements/students-of-laurea-magistrale-study-programmes",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, Architecture and Design general call",
+      "date": "2027-01-28",
+      "quote": "1st October 2026 - 28th January 2027 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Architectural Engineering",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/architectural-engineering",
+   "snapshot_sha256": "19dfd8dce31fcc507320a311db6bdf13ab514d74ec9d70ece150b0d63eddc329",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in various fields of Engineering (primarily Building and Civil Engineering) or Architecture, after committee evaluation of the previous curriculum",
+     "quote": "Admission to the Master’s Degree Programme in Architectural Engineering is subject, for all candidates, to the evaluation of their previous academic curriculum by a dedicated Committee. Applicants holding a Bachelor’s degree in various fields of Engineering (primarily Building and Civil Engineering) and Architecture are eligible to apply.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, Engineering 1st call",
+      "date": "2026-12-01",
+      "quote": "1st October - 1st December 2026 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Architecture",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/architecture",
+   "snapshot_sha256": "8308dedca24902ceb4c7cc096a25c0c18c0ca51352b3c6d7978374c6109ccfe5",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in Architecture and a portfolio are mandatory",
+     "quote": "A Bachelor Degree in Architecture and a portfolio are mandatory.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, Architecture and Design general call",
+      "date": "2027-01-28",
+      "quote": "1st October 2026 - 28th January 2027 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Automation and Control Engineering",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/automation-and-control-engineering",
+   "snapshot_sha256": "527d656dfa82813c1c6d7f1c22c83b8d83f7486125fe8a168c58bd23127d544f",
+   "fields": {
+    "academic": {
+     "text": "Foreign qualification equivalent to a bachelor's degree with an adequate background in fundamental engineering and industrial/information engineering subjects; academic-record assessment",
+     "quote": "Students holding a foreign qualification equivalent to a Bachelor’s Degree may apply for admission, provided they have an adequate background in fundamental engineering subjects and in the areas relevant to industrial and/or information engineering. Admission is subject to an Eligibility assessment of the applicant’s previous academic record, carried out in accordance with the procedures and criteria established by the Politecnico di Milano.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6,
+     "quote": "IELTS Academic or IELTS General Training* ≥ 6",
+     "source_sha256": "b7b6f625796eee26ebdb70cbf0aacc9e2939e3d6ac5893bda72c5d8fe344d5f3",
+     "source_url": "https://www.polimi.it/en/students/language-requirements/students-of-laurea-magistrale-study-programmes",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 78,
+     "quote": "Internet Based ≥ 78 (total score) or ≥ 4,5",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "b7b6f625796eee26ebdb70cbf0aacc9e2939e3d6ac5893bda72c5d8fe344d5f3",
+     "source_url": "https://www.polimi.it/en/students/language-requirements/students-of-laurea-magistrale-study-programmes",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, Engineering 1st call",
+      "date": "2026-12-01",
+      "quote": "1st October - 1st December 2026 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     },
+     {
+      "label": "September 2027 intake, Engineering 2nd call",
+      "date": "2027-02-25",
+      "quote": "12th January - 25th February 2027 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Bioinformatics for Computational Genomics",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/bioinformatics-for-computational-genomics",
+   "snapshot_sha256": "13c284a1ce044b7745b2d778a339a274b2b584e160e7d55b227f1bdfac4f1618",
+   "fields": {
+    "academic": {
+     "text": "Same criteria as for Italian qualifications; the Teaching Board judges foreign qualifications suitable if subjects and credits can be identified",
+     "quote": "The same criteria as those for Italian qualifications apply to candidates with foreign qualifications. The Teaching Board will consider foreign qualifications suitable if the subjects and the number of credits earned for each can be clearly identified (1 CFU = 1 ECTS – European Credit Transfer and Accumulation System). If this is not possible, the Teaching Board will examine the documentation certifying the candidates' educational background in detail to assess whether their preparation meets the requirements.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, Engineering 1st call",
+      "date": "2026-12-01",
+      "quote": "1st October - 1st December 2026 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     },
+     {
+      "label": "September 2027 intake, Engineering 2nd call",
+      "date": "2027-02-25",
+      "quote": "12th January - 25th February 2027 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Biomedical Engineering",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/biomedical-engineering-1",
+   "snapshot_sha256": "e69016420af83f85f7cd00a681891c2dfa10d43cd7c045ae4fd875069cb5043e",
+   "fields": {
+    "academic": {
+     "text": "Foreign bachelor's-equivalent qualification with adequate background in fundamental engineering subjects and disciplines relevant to Biomedical Engineering",
+     "quote": "Applicants holding a foreign academic qualification equivalent to a Bachelor’s Degree may apply, provided they have an adequate background in fundamental engineering subjects and disciplines relevant to Biomedical Engineering.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, Engineering 1st call",
+      "date": "2026-12-01",
+      "quote": "1st October - 1st December 2026 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     },
+     {
+      "label": "September 2027 intake, Engineering 2nd call",
+      "date": "2027-02-25",
+      "quote": "12th January - 25th February 2027 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Building Engineering for Sustainability",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/building-engineering-for-sustainability",
+   "snapshot_sha256": "c2613e6bf54a940a61e8a748aed3dbdb60a00bcdc5fbe233cdb823a52c988326",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in Architecture, Civil or Building Engineering; other backgrounds evaluated case by case by a committee",
+     "quote": "A Bachelor's Degree in Architecture, Civil or Building Engineering. A Committee will evaluate students with different backgrounds case by case.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, Engineering 1st call",
+      "date": "2026-12-01",
+      "quote": "1st October - 1st December 2026 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Chemical Engineering",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/chemical-engineering-1",
+   "snapshot_sha256": "e57e8132065ddf52a2ded4112b64780f1d2cbe6397f101aaeb3f875239d82c1b",
+   "fields": {
+    "academic": {
+     "text": "Foreign degree equivalent to a first-level bachelor's degree; solid preparation in core Chemical Engineering areas; proof of English proficiency",
+     "quote": "Applicants holding a degree obtained abroad must possess a qualification equivalent to a first-level Bachelor’s degree. Admission is subject to verification of degree comparability and assessment of the consistency of the academic background with the objectives of the Master’s programme. A solid preparation in the core areas of Chemical Engineering is required, together with proof of English language proficiency, as the programme is delivered primarily in English.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6,
+     "quote": "IELTS Academic or IELTS General Training* ≥ 6",
+     "source_sha256": "b7b6f625796eee26ebdb70cbf0aacc9e2939e3d6ac5893bda72c5d8fe344d5f3",
+     "source_url": "https://www.polimi.it/en/students/language-requirements/students-of-laurea-magistrale-study-programmes",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 78,
+     "quote": "Internet Based ≥ 78 (total score) or ≥ 4,5",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "b7b6f625796eee26ebdb70cbf0aacc9e2939e3d6ac5893bda72c5d8fe344d5f3",
+     "source_url": "https://www.polimi.it/en/students/language-requirements/students-of-laurea-magistrale-study-programmes",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, Engineering 1st call",
+      "date": "2026-12-01",
+      "quote": "1st October - 1st December 2026 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     },
+     {
+      "label": "September 2027 intake, Engineering 2nd call",
+      "date": "2027-02-25",
+      "quote": "12th January - 25th February 2027 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Civil Engineering",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/civil-engineering-1",
+   "snapshot_sha256": "07edeb5535b9314355b118fc34ce77b0f5ac11c2d895bfc045c3198a1bfb1055",
+   "fields": {
+    "academic": {
+     "text": "Entry requirements are in Section 6 of the programme's academic regulations; admission subject to eligibility evaluation of the previous academic career",
+     "quote": "Admission is subject to an Eligibility evaluation of the applicant’s previous academic career, carried out according to the procedures and criteria established by Politecnico di Milano.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, Engineering 1st call",
+      "date": "2026-12-01",
+      "quote": "1st October - 1st December 2026 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     },
+     {
+      "label": "September 2027 intake, Engineering 2nd call",
+      "date": "2027-02-25",
+      "quote": "12th January - 25th February 2027 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Civil Engineering for Risk Mitigation",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/civil-engineering-for-risk-mitigation",
+   "snapshot_sha256": "ba82b28d9f8884573a035bbf15312c17281850b44733d4bc8f870a0909e932c7",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in Engineering, Architecture or Land Use Planning",
+     "quote": "A Bachelor Degree in Engineering, Architecture or Land Use Planning.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, Engineering 1st call",
+      "date": "2026-12-01",
+      "quote": "1st October - 1st December 2026 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     },
+     {
+      "label": "September 2027 intake, Engineering 2nd call",
+      "date": "2027-02-25",
+      "quote": "12th January - 25th February 2027 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Communication Design",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/communication-design-1",
+   "snapshot_sha256": "65b65b4a55e76e0f5e772b7da78577e79cb4082e403fd8b9c8a8a665c319ee30",
+   "fields": {
+    "academic": {
+     "text": "Foreign qualification equivalent to a first-level degree in design or related fields; individual preparation assessed; adequate English proficiency demonstrated by minimum test scores",
+     "quote": "Applicants holding a foreign university qualification considered equivalent to a first-level degree in design or related fields may apply to the Master’s Degree programme in Communication Design. The qualification must allow the identification of the relevant disciplinary sectors and credits obtained; otherwise, the applicant’s academic record will be assessed individually by the Programme Board. Admission is subject to assessment of individual preparation and to possession of adequate English language proficiency, demonstrated by achieving the minimum scores in tests recognised by the University.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6,
+     "quote": "IELTS Academic or IELTS General Training* ≥ 6",
+     "source_sha256": "b7b6f625796eee26ebdb70cbf0aacc9e2939e3d6ac5893bda72c5d8fe344d5f3",
+     "source_url": "https://www.polimi.it/en/students/language-requirements/students-of-laurea-magistrale-study-programmes",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 78,
+     "quote": "Internet Based ≥ 78 (total score) or ≥ 4,5",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "b7b6f625796eee26ebdb70cbf0aacc9e2939e3d6ac5893bda72c5d8fe344d5f3",
+     "source_url": "https://www.polimi.it/en/students/language-requirements/students-of-laurea-magistrale-study-programmes",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Knowledge of Italian is required for tracks taught in Italian",
+      "quote": "International applicants must also demonstrate knowledge of Italian if they choose a track taught in Italian.",
+      "check": "ok"
+     }
+    ],
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, Architecture and Design general call",
+      "date": "2027-01-28",
+      "quote": "1st October 2026 - 28th January 2027 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Computer Science and Engineering",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/computer-science-and-engineering",
+   "snapshot_sha256": "eac82930add82db4199acea42301b42e60dd9a4360c81a98ee22b2186d945fa1",
+   "fields": {
+    "academic": {
+     "text": "Foreign bachelor's degree; a bachelor's in Computer Science and Engineering gives a good chance of admission, other programmes require some fundamental computer science, basic science and engineering courses",
+     "quote": "Students holding a degree from a foreign university who have earned a Bachelor’s degree in Computer Science and Engineering have a good chance of being admitted, although with some additional requirements. Admission is more complex for those who have completed a different program; in such cases, admission requires that the applicant has completed at least some fundamental courses in computer science, basic scientific subjects, and engineering. Even in this case, some obligations (mandatory courses) are typically assigned. For further details, please refer to Section 6 of the academic regulations.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6,
+     "quote": "IELTS Academic or IELTS General Training* ≥ 6",
+     "source_sha256": "b7b6f625796eee26ebdb70cbf0aacc9e2939e3d6ac5893bda72c5d8fe344d5f3",
+     "source_url": "https://www.polimi.it/en/students/language-requirements/students-of-laurea-magistrale-study-programmes",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 78,
+     "quote": "Internet Based ≥ 78 (total score) or ≥ 4,5",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "b7b6f625796eee26ebdb70cbf0aacc9e2939e3d6ac5893bda72c5d8fe344d5f3",
+     "source_url": "https://www.polimi.it/en/students/language-requirements/students-of-laurea-magistrale-study-programmes",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, Engineering 1st call",
+      "date": "2026-12-01",
+      "quote": "1st October - 1st December 2026 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     },
+     {
+      "label": "September 2027 intake, Engineering 2nd call",
+      "date": "2027-02-25",
+      "quote": "12th January - 25th February 2027 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Cyber Risk Strategy and Governance",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/cyber-risk-strategy-and-governance",
+   "snapshot_sha256": "22fd9b30c0ff4fe6b5680d69addc870ae93e862c06d0ad48ee077d50c7a80348",
+   "fields": {
+    "academic": {
+     "text": "Multidisciplinary background (computer science, engineering, management or economics) is ideal; no fixed admission criteria, competitive selection based on transcript, CV and motivation letter",
+     "quote": "Applicants should ideally have multidisciplinary backgrounds. Whether their undergraduate (B.Sc.) degree is in computer science, engineering, management or economics, it is useful to have studied a broad range of subjects and, of course, to have an interest in the prevention of and response to cyber risks. Applications will be evaluated in detail by a joint committee of professors of the program. As a consequence there are no fixed admission criteria, but the selection process is competitive. In addition to a transcript of grades, your curriculum and a motivation letter will be evaluated.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Design & Engineering",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/design-engineering",
+   "snapshot_sha256": "7cdb172c48c8659bbe15b4c03460b377536b5ff3bac33d0042a212a0188b1060",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or equivalent in design, architecture or engineering deemed suitable by the Programme Board; individual preparation and English proficiency assessed",
+     "quote": "Applicants holding a Bachelor’s Degree or an equivalent qualification consistent with the fields of design, architecture or engineering may apply to the Master’s Degree programme in Design & Engineering, provided that the qualification is deemed suitable by the Programme Board and that the Scientific Disciplinary Sectors and credits obtained in each sector can be identified. Where this is not possible, the applicant’s academic record will be assessed individually by the Programme Board. Admission is subject to assessment of individual preparation and to possession of adequate English language proficiency, demonstrated by achieving the minimum scores in tests recognised by the University.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6,
+     "quote": "IELTS Academic or IELTS General Training* ≥ 6",
+     "source_sha256": "b7b6f625796eee26ebdb70cbf0aacc9e2939e3d6ac5893bda72c5d8fe344d5f3",
+     "source_url": "https://www.polimi.it/en/students/language-requirements/students-of-laurea-magistrale-study-programmes",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 78,
+     "quote": "Internet Based ≥ 78 (total score) or ≥ 4,5",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "b7b6f625796eee26ebdb70cbf0aacc9e2939e3d6ac5893bda72c5d8fe344d5f3",
+     "source_url": "https://www.polimi.it/en/students/language-requirements/students-of-laurea-magistrale-study-programmes",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Design for the Fashion System",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/design-for-the-fashion-system",
+   "snapshot_sha256": "c4959f158d586ba22d07aaa8db71ddf6bcac17d56800450df7a17399df91f5af",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or equivalent in fashion, textile and accessories design, fashion communication or fashion materials, deemed suitable by the Programme Board",
+     "quote": "Applicants holding a Bachelor’s Degree or an equivalent qualification consistent with fashion, textile and accessories design, fashion communication, or fashion materials may apply to the Master’s Degree programme in Design for the Fashion System, provided that the qualification is deemed suitable by the Programme Board and that the Scientific Disciplinary Sectors and credits obtained in each sector can be identified. Where this is not possible, the applicant’s academic record will be assessed individually by the Programme Board.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6,
+     "quote": "IELTS Academic or IELTS General Training* ≥ 6",
+     "source_sha256": "b7b6f625796eee26ebdb70cbf0aacc9e2939e3d6ac5893bda72c5d8fe344d5f3",
+     "source_url": "https://www.polimi.it/en/students/language-requirements/students-of-laurea-magistrale-study-programmes",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 78,
+     "quote": "Internet Based ≥ 78 (total score) or ≥ 4,5",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "b7b6f625796eee26ebdb70cbf0aacc9e2939e3d6ac5893bda72c5d8fe344d5f3",
+     "source_url": "https://www.polimi.it/en/students/language-requirements/students-of-laurea-magistrale-study-programmes",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, Architecture and Design general call",
+      "date": "2027-01-28",
+      "quote": "1st October 2026 - 28th January 2027 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Digital and Interaction Design",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/digital-and-interaction-design",
+   "snapshot_sha256": "b40329aaeca610944f35ef506af2e560734a0bb045d462f7804322f90d7f91c0",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or equivalent in design, architecture or engineering deemed suitable by the Programme Board",
+     "quote": "Applicants holding a Bachelor’s Degree or an equivalent qualification consistent with the fields of design, architecture or engineering may apply to the Master’s Degree programme in Digital and Interaction Design, provided that the qualification is deemed suitable by the Programme Board and that the Scientific Disciplinary Sectors and credits obtained in each sector can be identified. Where this is not possible, the applicant’s academic record will be assessed individually by the Programme Board.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6,
+     "quote": "IELTS Academic or IELTS General Training* ≥ 6",
+     "source_sha256": "b7b6f625796eee26ebdb70cbf0aacc9e2939e3d6ac5893bda72c5d8fe344d5f3",
+     "source_url": "https://www.polimi.it/en/students/language-requirements/students-of-laurea-magistrale-study-programmes",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 78,
+     "quote": "Internet Based ≥ 78 (total score) or ≥ 4,5",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "b7b6f625796eee26ebdb70cbf0aacc9e2939e3d6ac5893bda72c5d8fe344d5f3",
+     "source_url": "https://www.polimi.it/en/students/language-requirements/students-of-laurea-magistrale-study-programmes",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, Architecture and Design general call",
+      "date": "2027-01-28",
+      "quote": "1st October 2026 - 28th January 2027 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Electrical Engineering",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/electrical-engineering-m",
+   "snapshot_sha256": "2743bcc7a9293cbf99c37d6c0d5ab41b430c989ed0083907a847044f32087ab7",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree as a prerequisite; curricular requirements and academic preparation evaluated by a committee",
+     "quote": "The Bachelor Degree is a prerequisite for admission to the Master Degree program.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6,
+     "quote": "IELTS Academic or IELTS General Training* ≥ 6",
+     "source_sha256": "b7b6f625796eee26ebdb70cbf0aacc9e2939e3d6ac5893bda72c5d8fe344d5f3",
+     "source_url": "https://www.polimi.it/en/students/language-requirements/students-of-laurea-magistrale-study-programmes",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 78,
+     "quote": "Internet Based ≥ 78 (total score) or ≥ 4,5",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "b7b6f625796eee26ebdb70cbf0aacc9e2939e3d6ac5893bda72c5d8fe344d5f3",
+     "source_url": "https://www.polimi.it/en/students/language-requirements/students-of-laurea-magistrale-study-programmes",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, Engineering 1st call",
+      "date": "2026-12-01",
+      "quote": "1st October - 1st December 2026 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     },
+     {
+      "label": "September 2027 intake, Engineering 2nd call",
+      "date": "2027-02-25",
+      "quote": "12th January - 25th February 2027 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Electronics Engineering",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/electronics-engineering",
+   "snapshot_sha256": "fb354964340d1b01871cd6ad26c582a41cd32af3f6b33bce7589c22e8f503970",
+   "fields": {
+    "academic": {
+     "text": "Bachelor of Science of at least three years recognised as equivalent to a first-level degree; curricular requirements and adequate preparation",
+     "quote": "To access the Master of Science in Electronics Engineering, a degree such as a Bachelor of Science is required, with a duration of at least three years and recognized by Politecnico di Milano as equivalent to a First Level degree or a University Diploma. Amission is subject to meeting precise curricular requirements and an adequate preparation, as specified in the Programme Regulations.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, Engineering 1st call",
+      "date": "2026-12-01",
+      "quote": "1st October - 1st December 2026 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     },
+     {
+      "label": "September 2027 intake, Engineering 2nd call",
+      "date": "2027-02-25",
+      "quote": "12th January - 25th February 2027 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Energy Engineering",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/energy-engineering-1",
+   "snapshot_sha256": "ea6b568f6142aee231bc9275a93cf207fa40b2f9c5ea92729849b8a20e516429",
+   "fields": {
+    "academic": {
+     "text": "Foreign bachelor's-equivalent qualification with adequate background in fundamental engineering and Energy Engineering disciplines",
+     "quote": "Applicants holding a foreign academic qualification equivalent to a Bachelor’s Degree may apply, provided they have an adequate background in fundamental engineering subjects and disciplines relevant to Energy Engineering.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, Engineering 1st call",
+      "date": "2026-12-01",
+      "quote": "1st October - 1st December 2026 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     },
+     {
+      "label": "September 2027 intake, Engineering 2nd call",
+      "date": "2027-02-25",
+      "quote": "12th January - 25th February 2027 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Engineering Physics",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/engineering-physics",
+   "snapshot_sha256": "e70fbaeddeabf8949ce33e256d3038f25683e735bf076452c311045d540e4b23",
+   "fields": {
+    "academic": {
+     "text": "First-cycle degree (EQF Level 6) or comparable qualification; admissions committee checks curricular requirements and adequacy of preparation",
+     "quote": "Applications for admission may be submitted by holders of a first-cycle degree (EQF Level 6) or a comparable qualification recognized in the country where it was awarded. Admission is subject to an evaluation process aimed at verifying the candidate’s eligibility. This assessment will be carried out by an Admissions Committee, which will evaluate compliance with the curricular requirements and the adequacy of the student’s academic preparation. Further information can be found in the Academic Regulations.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, Engineering 1st call",
+      "date": "2026-12-01",
+      "quote": "1st October - 1st December 2026 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     },
+     {
+      "label": "September 2027 intake, Engineering 2nd call",
+      "date": "2027-02-25",
+      "quote": "12th January - 25th February 2027 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Environmental and Land Planning Engineering",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/environmental-and-land-planning-engineering-1",
+   "snapshot_sha256": "80a39f3bfa5a1f4fc0e4ec16b9285ca52fb07c61f2c24626692736e2a7cf7232",
+   "fields": {
+    "academic": {
+     "text": "Foreign bachelor's-equivalent qualification with adequate background in fundamental engineering and relevant disciplines",
+     "quote": "Applicants holding a foreign academic qualification equivalent to a Bachelor’s Degree may apply, provided they have an adequate background in fundamental engineering subjects and disciplines relevant to Environmental and Land Planning Engineering.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, Engineering 1st call",
+      "date": "2026-12-01",
+      "quote": "1st October - 1st December 2026 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     },
+     {
+      "label": "September 2027 intake, Engineering 2nd call",
+      "date": "2027-02-25",
+      "quote": "12th January - 25th February 2027 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Food Engineering",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/food-engineering",
+   "snapshot_sha256": "6e7d4571b2b995025bded18ebc28de3bd4cb623b36c3f13baf56d27243aa19ea",
+   "fields": {
+    "academic": {
+     "text": "Valid bachelor's degree recognised in its country, consistent academic background, and compliance with the language requirements; committee assessment",
+     "quote": "For applicants holding a qualification obtained abroad, admission to the Master’s degree programme requires a valid Bachelor's degree recognised in the country where it was awarded, an academic background that is appropriate and consistent with the chosen course, and compliance with the specified language requirements.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6,
+     "quote": "IELTS Academic or IELTS General Training* ≥ 6",
+     "source_sha256": "b7b6f625796eee26ebdb70cbf0aacc9e2939e3d6ac5893bda72c5d8fe344d5f3",
+     "source_url": "https://www.polimi.it/en/students/language-requirements/students-of-laurea-magistrale-study-programmes",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 78,
+     "quote": "Internet Based ≥ 78 (total score) or ≥ 4,5",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "b7b6f625796eee26ebdb70cbf0aacc9e2939e3d6ac5893bda72c5d8fe344d5f3",
+     "source_url": "https://www.polimi.it/en/students/language-requirements/students-of-laurea-magistrale-study-programmes",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, Engineering 1st call",
+      "date": "2026-12-01",
+      "quote": "1st October - 1st December 2026 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     },
+     {
+      "label": "September 2027 intake, Engineering 2nd call",
+      "date": "2027-02-25",
+      "quote": "12th January - 25th February 2027 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Geoinformatics Engineering",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/geoinformatics-engineering",
+   "snapshot_sha256": "05189debf10bc85a0951ce4307bb1a365d0d543eac5c315fbeba4272d734c256",
+   "fields": {
+    "academic": {
+     "text": "Valid first-level degree recognised in its country, consistent academic background, and compliance with language proficiency criteria",
+     "quote": "For applicants holding a foreign qualification, admission to the Master’s Degree Programme requires a valid first-level degree recognized in the country where it was awarded, an academic background adequate and consistent with the chosen programme, and compliance with the required language proficiency criteria.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6,
+     "quote": "IELTS Academic or IELTS General Training* ≥ 6",
+     "source_sha256": "b7b6f625796eee26ebdb70cbf0aacc9e2939e3d6ac5893bda72c5d8fe344d5f3",
+     "source_url": "https://www.polimi.it/en/students/language-requirements/students-of-laurea-magistrale-study-programmes",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 78,
+     "quote": "Internet Based ≥ 78 (total score) or ≥ 4,5",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "b7b6f625796eee26ebdb70cbf0aacc9e2939e3d6ac5893bda72c5d8fe344d5f3",
+     "source_url": "https://www.polimi.it/en/students/language-requirements/students-of-laurea-magistrale-study-programmes",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, Engineering 1st call",
+      "date": "2026-12-01",
+      "quote": "1st October - 1st December 2026 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     },
+     {
+      "label": "September 2027 intake, Engineering 2nd call",
+      "date": "2027-02-25",
+      "quote": "12th January - 25th February 2027 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Health Informatics",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/health-informatics",
+   "snapshot_sha256": "0fc6566185070e923c19fca85fe829f67cd3276f477d503f62086f0f6f3201bd",
+   "fields": {
+    "academic": {
+     "text": "Evaluation of academic requirements, then a test (computer science, mathematics, biology, genetics, anatomy, physiology) and evaluation of the bachelor's academic record",
+     "quote": "Admission is subject to the evaluation of academic requirements. Candidates deemed eligible must also undergo a selection process divided into two parts:",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English certificate at CEFR level B2 or higher",
+      "quote": "For enrollment, applicants must hold an English language certificate at level B2 or higher.",
+      "check": "ok"
+     }
+    ],
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "High Performance Computing Engineering",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/high-performance-computing-engineering",
+   "snapshot_sha256": "f5ff12893c9996b900b6b041903474d5f3dc902575af11930ab8815e0b86f8a2",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in Computer Science Engineering, Mathematical Engineering or related fields; preference for a solid background in core disciplines; other backgrounds case by case",
+     "quote": "A Bachelor Degree in Computer Science Engineering, Mathematical Engineering or other related fields. Preference to graduates with a solid background in the core disciplines: computer science, applied mathematics, physics, engineering. A Committee will evaluate students with a different background case by case.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, Engineering 1st call",
+      "date": "2026-12-01",
+      "quote": "1st October - 1st December 2026 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     },
+     {
+      "label": "September 2027 intake, Engineering 2nd call",
+      "date": "2027-02-25",
+      "quote": "12th January - 25th February 2027 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Industrial Safety and Risk Engineering",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/industrial-safety-and-risk-engineering",
+   "snapshot_sha256": "a0fa1de5a3fdb833bbf716273054644314773331d51642d892f2a8c83b2bdd4b",
+   "fields": {
+    "academic": {
+     "text": "Degree in Industrial Engineering (L-9), Information Engineering (L-8) or Civil and Environmental Engineering (L-7), or equivalent, with at least 180 ECTS and specific credits in mathematical, scientific and engineering disciplines",
+     "quote": "Candidates must hold a degree in Industrial Engineering (L-9), Information Engineering (L-8), or Civil and Environmental Engineering (L-7), or equivalent with at least 180 ECTS credits. Specific credits in mathematical, scientific, and engineering disciplines are required. Interested students are referred to eligibility criteria and requirements provided here.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, Engineering 1st call",
+      "date": "2026-12-01",
+      "quote": "1st October - 1st December 2026 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     },
+     {
+      "label": "September 2027 intake, Engineering 2nd call",
+      "date": "2027-02-25",
+      "quote": "12th January - 25th February 2027 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Integrated Product Design",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/integrated-product-design",
+   "snapshot_sha256": "fe64df738ef8fe6b935a2cd092b8abadddb3be877c5b24666c8447886d9c06ac",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or equivalent in product design, architecture or engineering deemed suitable by the Programme Board; individual preparation assessed",
+     "quote": "Admission to the Master’s Degree programme in Integrated Product Design is reserved for candidates holding a first-level degree (EQF 6) or a comparable qualification in Class L-4, or in Classes L-3, L-8, L-9 or L-17, provided that they have obtained at least 36 ECTS credits in the Scientific Disciplinary Sectors CEAR-08/D (formerly ICAR/13) and 08/CEAR-10 (formerly ICAR/17).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6,
+     "quote": "IELTS Academic or IELTS General Training* ≥ 6",
+     "source_sha256": "b7b6f625796eee26ebdb70cbf0aacc9e2939e3d6ac5893bda72c5d8fe344d5f3",
+     "source_url": "https://www.polimi.it/en/students/language-requirements/students-of-laurea-magistrale-study-programmes",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 78,
+     "quote": "Internet Based ≥ 78 (total score) or ≥ 4,5",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "b7b6f625796eee26ebdb70cbf0aacc9e2939e3d6ac5893bda72c5d8fe344d5f3",
+     "source_url": "https://www.polimi.it/en/students/language-requirements/students-of-laurea-magistrale-study-programmes",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Knowledge of Italian is required for tracks taught in Italian",
+      "quote": "International applicants must also demonstrate knowledge of Italian if they choose a track taught in Italian.",
+      "check": "ok"
+     }
+    ],
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, Architecture and Design general call",
+      "date": "2027-01-28",
+      "quote": "1st October 2026 - 28th January 2027 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Interior and Spatial Design",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/interior-and-spatial-design",
+   "snapshot_sha256": "609ba58bceb7b564853a67290e2a7da180ea7e876c029a9f13cbd5cab28f02e9",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or equivalent in design, architecture or engineering deemed suitable by the Programme Board",
+     "quote": "Applicants holding a Bachelor’s Degree or an equivalent qualification consistent with the fields of design, architecture or engineering may apply to the Master’s Degree programme in Interior and Spatial Design, provided that the qualification is deemed suitable by the Programme Board and that the Scientific Disciplinary Sectors and credits obtained in each sector can be identified. Where this is not possible, the applicant’s academic record will be assessed individually by the Programme Board.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6,
+     "quote": "IELTS Academic or IELTS General Training* ≥ 6",
+     "source_sha256": "b7b6f625796eee26ebdb70cbf0aacc9e2939e3d6ac5893bda72c5d8fe344d5f3",
+     "source_url": "https://www.polimi.it/en/students/language-requirements/students-of-laurea-magistrale-study-programmes",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 78,
+     "quote": "Internet Based ≥ 78 (total score) or ≥ 4,5",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "b7b6f625796eee26ebdb70cbf0aacc9e2939e3d6ac5893bda72c5d8fe344d5f3",
+     "source_url": "https://www.polimi.it/en/students/language-requirements/students-of-laurea-magistrale-study-programmes",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Knowledge of Italian is required for tracks taught in Italian",
+      "quote": "International applicants must also demonstrate knowledge of Italian if they choose a track taught in Italian.",
+      "check": "ok"
+     }
+    ],
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, Architecture and Design general call",
+      "date": "2027-01-28",
+      "quote": "1st October 2026 - 28th January 2027 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Landscape Architecture. Land Landscape Heritage",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/landscape-architecture-land-landscape-heritage",
+   "snapshot_sha256": "7edcc32026f36c7cbe6606d43e8291643f4c545b0f81490241afc7dbff6d7aaf",
+   "fields": {
+    "academic": {
+     "text": "Minimum three-year bachelor's in Landscape architecture, Architecture or Urban Planning from a non-Italian university; other related fields subject to curriculum check; CV and portfolio required",
+     "quote": "To be eligible, students must hold a minimum three-year bachelor’s degree in Landscape architecture, Architecture or Urban Planning from a non-Italian university.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, Architecture and Design general call",
+      "date": "2027-01-28",
+      "quote": "1st October 2026 - 28th January 2027 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Management Engineering",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/management-engineering",
+   "snapshot_sha256": "a783f20e618265ef865716ce579434d8f6e5a234bc2f2645748a863b4a9b4cab",
+   "fields": {
+    "academic": {
+     "text": "First-cycle degree valid in its country of award, adequate consistent academic background and compliance with language prerequisites; committee evaluation",
+     "quote": "For applicants holding a foreign qualification, admission to the Master of Science programme requires a first‑cycle degree that is valid and officially recognized in the country where it was obtained, an adequate academic background consistent with the chosen programme, and compliance with the required language prerequisites. Admission is subject to the evaluation of the applicant’s academic record by the Committee, which verifies curricular requirements, the quality of the study programme, and the mandatory documentation to be submitted.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6,
+     "quote": "IELTS Academic or IELTS General Training* ≥ 6",
+     "source_sha256": "b7b6f625796eee26ebdb70cbf0aacc9e2939e3d6ac5893bda72c5d8fe344d5f3",
+     "source_url": "https://www.polimi.it/en/students/language-requirements/students-of-laurea-magistrale-study-programmes",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 78,
+     "quote": "Internet Based ≥ 78 (total score) or ≥ 4,5",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "b7b6f625796eee26ebdb70cbf0aacc9e2939e3d6ac5893bda72c5d8fe344d5f3",
+     "source_url": "https://www.polimi.it/en/students/language-requirements/students-of-laurea-magistrale-study-programmes",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, Engineering 1st call",
+      "date": "2026-12-01",
+      "quote": "1st October - 1st December 2026 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     },
+     {
+      "label": "September 2027 intake, Engineering 2nd call",
+      "date": "2027-02-25",
+      "quote": "12th January - 25th February 2027 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Management of Built Environment",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/management-of-built-environment",
+   "snapshot_sha256": "e85bd62d3de62258d9447476a25cd7c3743d17755472e81e17e90b004e33f2e6",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (EQF Level 6) or comparable foreign qualification, recognised as eligible; merit and content assessed by an admissions committee",
+     "quote": "Admission to the Master’s Degree Program is open to individuals who hold a bachelor’s degree (Level 6 of the European Qualifications Framework) or a comparable foreign qualification, if recognized as eligible.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6,
+     "quote": "IELTS Academic or IELTS General Training* ≥ 6",
+     "source_sha256": "b7b6f625796eee26ebdb70cbf0aacc9e2939e3d6ac5893bda72c5d8fe344d5f3",
+     "source_url": "https://www.polimi.it/en/students/language-requirements/students-of-laurea-magistrale-study-programmes",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 78,
+     "quote": "Internet Based ≥ 78 (total score) or ≥ 4,5",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "b7b6f625796eee26ebdb70cbf0aacc9e2939e3d6ac5893bda72c5d8fe344d5f3",
+     "source_url": "https://www.polimi.it/en/students/language-requirements/students-of-laurea-magistrale-study-programmes",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English certificate at CEFR level B2 or higher",
+      "quote": "An English language certification is required (level not lower than B2 of the Common European Framework).",
+      "check": "ok"
+     }
+    ],
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, Engineering 1st call",
+      "date": "2026-12-01",
+      "quote": "1st October - 1st December 2026 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Materials Engineering and Nanotechnology",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/materials-engineering-and-nanotechnology",
+   "snapshot_sha256": "005d297fe7c50f4dc9fed400e75d4a90b7a7a6adbd091047986379b9e7ab40b0",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in Industrial Engineering or other material-related degrees (e.g. Applied Physics and Chemistry)",
+     "quote": "A Bachelor Degree in Industrial Engineering or in other material-related Degrees (e.g. Applied Physics and Chemistry).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, Engineering 1st call",
+      "date": "2026-12-01",
+      "quote": "1st October - 1st December 2026 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     },
+     {
+      "label": "September 2027 intake, Engineering 2nd call",
+      "date": "2027-02-25",
+      "quote": "12th January - 25th February 2027 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Mathematical Engineering",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/mathematical-engineering-1",
+   "snapshot_sha256": "5e65fb062e280ac2553cc8cf07a4845030a67e1bf0f9597427751e27ea521f47",
+   "fields": {
+    "academic": {
+     "text": "Foreign bachelor's-equivalent qualification with adequate background in core engineering disciplines and relevant subject areas; assessed by an Admissions Committee",
+     "quote": "Applicants holding a foreign qualification equivalent to a Bachelor’s degree may apply for admission, provided they have an adequate background in core engineering disciplines and in subject areas relevant to Mathematical Engineering.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, Engineering 1st call",
+      "date": "2026-12-01",
+      "quote": "1st October - 1st December 2026 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     },
+     {
+      "label": "September 2027 intake, Engineering 2nd call",
+      "date": "2027-02-25",
+      "quote": "12th January - 25th February 2027 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Mechanical Engineering",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/mechanical-engineering-1",
+   "snapshot_sha256": "119c079a8cdeb1f50a4abff79a589ff17b377442d1228452795158f99ca89c5a",
+   "fields": {
+    "academic": {
+     "text": "Foreign bachelor's-equivalent qualification with adequate background in mathematics, physics and core industrial and mechanical engineering; committee evaluation of academic record",
+     "quote": "Applicants holding a foreign qualification equivalent to a Bachelor’s Degree (Bachelor of Science or comparable title), valid in the country where it was awarded, may apply for admission. An adequate academic background consistent with the educational objectives of the Master’s Degree in Mechanical Engineering is required, with particular reference to fundamental mathematics and physics and to the core areas of industrial and mechanical engineering.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6,
+     "quote": "IELTS Academic or IELTS General Training* ≥ 6",
+     "source_sha256": "b7b6f625796eee26ebdb70cbf0aacc9e2939e3d6ac5893bda72c5d8fe344d5f3",
+     "source_url": "https://www.polimi.it/en/students/language-requirements/students-of-laurea-magistrale-study-programmes",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 78,
+     "quote": "Internet Based ≥ 78 (total score) or ≥ 4,5",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "b7b6f625796eee26ebdb70cbf0aacc9e2939e3d6ac5893bda72c5d8fe344d5f3",
+     "source_url": "https://www.polimi.it/en/students/language-requirements/students-of-laurea-magistrale-study-programmes",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, Engineering 1st call",
+      "date": "2026-12-01",
+      "quote": "1st October - 1st December 2026 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     },
+     {
+      "label": "September 2027 intake, Engineering 2nd call",
+      "date": "2027-02-25",
+      "quote": "12th January - 25th February 2027 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Mobility Engineering",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/mobility-engineering",
+   "snapshot_sha256": "b9cec27885583731aa5362d4f6fee54c62f94b6e36d1fb04c534eae289f6fa02",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in a scientific or technical discipline; other backgrounds evaluated case by case by a committee",
+     "quote": "A Bachelor Degree in a scientific or technical discipline. A Committee will evaluate students with a different background case by case.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, Engineering 1st call",
+      "date": "2026-12-01",
+      "quote": "1st October - 1st December 2026 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     },
+     {
+      "label": "September 2027 intake, Engineering 2nd call",
+      "date": "2027-02-25",
+      "quote": "12th January - 25th February 2027 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Music and Acoustic Engineering",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/music-and-acoustic-engineering",
+   "snapshot_sha256": "f53466b3df32f863931e2cd91bef9895b3d2cccfb4eecd83c43938aa81a5b785",
+   "fields": {
+    "academic": {
+     "text": "Non-Italian bachelor's or master's degree recognised as equivalent to an Italian degree; adequate background in information and industrial engineering disciplines",
+     "quote": "Admission to the Master of Science in Music and Acoustic Engineering is open to students holding an Italian Bachelor’s or Master’s degree, with an adequate background in information and industrial engineering disciplines, in particular in computer engineering, electronics, telecommunications, mathematics, and physics.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, Engineering 1st call",
+      "date": "2026-12-01",
+      "quote": "1st October - 1st December 2026 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     },
+     {
+      "label": "September 2027 intake, Engineering 2nd call",
+      "date": "2027-02-25",
+      "quote": "12th January - 25th February 2027 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Nuclear Engineering",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/nuclear-engineering",
+   "snapshot_sha256": "73efde050cf0aff1955d9f7a4fcc5f802c420ed9d203570297c2dbc29e11ec0d",
+   "fields": {
+    "academic": {
+     "text": "Foreign bachelor's-equivalent qualification with adequate preparation in fundamental and core engineering disciplines; evaluated by the International Admissions Office and a degree-programme committee",
+     "quote": "Applicants holding a foreign academic qualification equivalent to a Bachelor’s Degree, with adequate preparation in the fundamental and core engineering disciplines, may apply for admission.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, Engineering 1st call",
+      "date": "2026-12-01",
+      "quote": "1st October - 1st December 2026 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     },
+     {
+      "label": "September 2027 intake, Engineering 2nd call",
+      "date": "2027-02-25",
+      "quote": "12th January - 25th February 2027 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Product Service System Design",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/product-service-system-design",
+   "snapshot_sha256": "a8c763e61a4bcd579fa41f0ed1ed8fb695be23cc7fbc650ec4036963a0d2f1e4",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in Design or relevant post-graduation work experience in design; individual preparation and English proficiency assessed",
+     "quote": "Applicants holding a Bachelor’s Degree in Design or relevant post-graduation work experience in the field of design may apply.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6,
+     "quote": "IELTS Academic or IELTS General Training* ≥ 6",
+     "source_sha256": "b7b6f625796eee26ebdb70cbf0aacc9e2939e3d6ac5893bda72c5d8fe344d5f3",
+     "source_url": "https://www.polimi.it/en/students/language-requirements/students-of-laurea-magistrale-study-programmes",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 78,
+     "quote": "Internet Based ≥ 78 (total score) or ≥ 4,5",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "b7b6f625796eee26ebdb70cbf0aacc9e2939e3d6ac5893bda72c5d8fe344d5f3",
+     "source_url": "https://www.polimi.it/en/students/language-requirements/students-of-laurea-magistrale-study-programmes",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, Architecture and Design general call",
+      "date": "2027-01-28",
+      "quote": "1st October 2026 - 28th January 2027 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Space Engineering",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/space-engineering",
+   "snapshot_sha256": "e054148e8abbf5baa9661883948b52916caf558dcf1c4097d159c01f6999d17e",
+   "fields": {
+    "academic": {
+     "text": "Foreign bachelor's-equivalent degree; adequate preparation in mathematics, physics and aerospace or mechanical engineering; committee assessment",
+     "quote": "Admission is subject to verification of the comparability of the degree and to an assessment of the consistency of the applicant’s academic background with the objectives of the Master’s Degree in Space Engineering. Adequate preparation in mathematical and physical disciplines, as well as in the main areas of aerospace or mechanical engineering, is required.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6,
+     "quote": "IELTS Academic or IELTS General Training* ≥ 6",
+     "source_sha256": "b7b6f625796eee26ebdb70cbf0aacc9e2939e3d6ac5893bda72c5d8fe344d5f3",
+     "source_url": "https://www.polimi.it/en/students/language-requirements/students-of-laurea-magistrale-study-programmes",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 78,
+     "quote": "Internet Based ≥ 78 (total score) or ≥ 4,5",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "b7b6f625796eee26ebdb70cbf0aacc9e2939e3d6ac5893bda72c5d8fe344d5f3",
+     "source_url": "https://www.polimi.it/en/students/language-requirements/students-of-laurea-magistrale-study-programmes",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, Engineering 1st call",
+      "date": "2026-12-01",
+      "quote": "1st October - 1st December 2026 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     },
+     {
+      "label": "September 2027 intake, Engineering 2nd call",
+      "date": "2027-02-25",
+      "quote": "12th January - 25th February 2027 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Sustainable Architecture and Landscape Design",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/sustainable-architecture-and-landscape-design",
+   "snapshot_sha256": "6b9a19ff6fbd7ca74e7f2b729a7db1d0de4db5b18836b058b7a775334e6d4201",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in Architecture and a portfolio",
+     "quote": "Candidates are required to have a Bachelor degree in Architecture and to produce a portfolio.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, Architecture and Design general call",
+      "date": "2027-01-28",
+      "quote": "1st October 2026 - 28th January 2027 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Telecommunication Engineering",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/telecommunication-engineering",
+   "snapshot_sha256": "22b341c02b11257e0f9c2873f8c0bca0d1dbde24ab172a1c8cd2e7a1f56ab103",
+   "fields": {
+    "academic": {
+     "text": "Foreign qualification equivalent to a bachelor's degree, if deemed suitable by the Programme Board; evaluated by a commission on previous studies and curricular requirements",
+     "quote": "Students with a foreign qualification equivalent to a bachelor's degree may apply, if deemed suitable by the Master's Degree Programme Board.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, Engineering 1st call",
+      "date": "2026-12-01",
+      "quote": "1st October - 1st December 2026 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     },
+     {
+      "label": "September 2027 intake, Engineering 2nd call",
+      "date": "2027-02-25",
+      "quote": "12th January - 25th February 2027 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Transformative Sustainability",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/transformative-sustainability",
+   "snapshot_sha256": "8ed1ba793648315daa9c03d3db90106d3a69a435041a8da87c04aeac144e13a5",
+   "fields": {
+    "academic": {
+     "text": "Joint programme with Bocconi: standard MSc application with a valid GMAT, GRE or Bocconi online test score; evaluated on GPA, dossier and motivation",
+     "quote": "For applicants holding a foreign qualification, admission to the Master of Science programmes requires submission through the standard MSc application (AY 2026/27), with programmes selected according to the chosen selection round, and a valid GMAT, GRE, or Bocconi online test score. Applications are evaluated based on the applicant’s GPA, application dossier and motivation, and the compulsory test score all candidates are required to pay a €100 application fee via the Bocconi Store.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Urban Planning and Policy Design",
+   "url": "https://www.polimi.it/en/education/laurea-magistrale-programmes/programme-detail/urban-planning-and-policy-design",
+   "snapshot_sha256": "573e3f391b850c4b00e09688ef81eab30966ecf136df75ba45c666a7c940793e",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in Urban planning, Architecture, Engineering, Sociology and Social Sciences, Geography, Economics, Political Sciences or Environmental Science; others case by case; architects need a portfolio",
+     "quote": "A Bachelor Degree in one of the main subjects related to the programme (Urban planning, Architecture, Engineering, Sociology and Social Sciences, Geography, Economics, Political Sciences and Environmental Science). A Committee will evaluate students with a different background case by case. Architects are required to produce a portfolio.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Chinese bachelor's degree certificate required; minimum GPA 80% (treated as equivalent to 3.0/4.0 unless the documents say otherwise)",
+     "quote": "Minimum GPA required for the application is 80%. Please note that, unless otherwise specified on your official documentation, we will consider 80% equivalent to a GPA of 3.0/4.0.",
+     "source_sha256": "64c7f33c2f76743f5b1dd15164a77338646b4e73cf7825d02b2dbaf26d4f7b8d",
+     "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/requirements",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, Architecture and Design general call",
+      "date": "2027-01-28",
+      "quote": "1st October 2026 - 28th January 2027 (11.59pm CET)",
+      "source_sha256": "d5bacabcc275dcf221e84d71ed6e6b1834337b71c1d6e6e346cc73be6f5e0931",
+      "source_url": "https://www.polimi.it/en/prospective-students/how-to-apply/admission-to-laurea-magistrale/foreign-qualification/deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 44,
+  "机器核对": 44,
+  "待人工": 0
+ }
+}
