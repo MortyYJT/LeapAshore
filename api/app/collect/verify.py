@@ -49,11 +49,29 @@ MONTHS = ("january", "february", "march", "april", "may", "june", "july", "augus
           "october", "november", "december")
 
 
+# Month names in the languages of the schools in scope, January first. Abbreviations are checked
+# only for English; elsewhere a short form is often another word.
+MONTH_NAMES = {
+    "fr": ("janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"),
+    "de": ("januar", "februar", "märz", "april", "mai", "juni", "juli", "august", "september", "oktober", "november", "dezember"),
+    "es": ("enero", "febrero", "marzo", "abril", "mayo", "junio", "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"),
+    "it": ("gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno", "luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"),
+    "nl": ("januari", "februari", "maart", "april", "mei", "juni", "juli", "augustus", "september", "oktober", "november", "december"),
+    "pt": ("janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho", "agosto", "setembro", "outubro", "novembro", "dezembro"),
+    "sv": ("januari", "februari", "mars", "april", "maj", "juni", "juli", "augusti", "september", "oktober", "november", "december"),
+    "da": ("januar", "februar", "marts", "april", "maj", "juni", "juli", "august", "september", "oktober", "november", "december"),
+    "no": ("januar", "februar", "mars", "april", "mai", "juni", "juli", "august", "september", "oktober", "november", "desember"),
+    "fi": ("tammikuuta", "helmikuuta", "maaliskuuta", "huhtikuuta", "toukokuuta", "kesäkuuta", "heinäkuuta", "elokuuta", "syyskuuta", "lokakuuta", "marraskuuta", "joulukuuta"),
+}
+
+
 def _mentions_month(quote: str, month: int) -> bool:
-    """The month by name or abbreviation, as 5月, or inside a numeric date (2026-05-31, 31/05/2026)."""
+    """The month by name (English, or the page's language), as 5月 / 5월, or inside a numeric date."""
     low = quote.lower()
     name = MONTHS[month - 1]
-    if re.search(rf"\b({name}|{name[:3]})\b", low) or re.search(rf"(?<!\d){month}\s*月", quote):
+    if re.search(rf"\b({name}|{name[:3]})\b", low) or re.search(rf"(?<!\d){month}\s*[月월]", quote):
+        return True
+    if any(re.search(rf"(?<!\w){re.escape(names[month - 1])}(?!\w)", low) for names in MONTH_NAMES.values()):
         return True
     return bool(re.search(rf"\d{{4}}[-/.]0?{month}[-/.]\d{{1,2}}|\d{{1,2}}[-/.]0?{month}[-/.]\d{{2,4}}", quote))
 

@@ -311,3 +311,25 @@ def test_a_numeric_date_in_a_mixed_order_country_must_be_unambiguous(tmp_path):
     assert check("2027-04-03", "Deadline A: 03/04/2027") == NEEDS_HUMAN
     assert check("2027-03-04", "Deadline A: 03/04/2027") == NEEDS_HUMAN
     assert check("2027-01-15", "Deadline B: 15/01/2027") == MACHINE_CHECKED
+
+
+@pytest.mark.parametrize("quote, when", [
+    ("Date limite : 15 février 2027", "2027-02-15"),
+    ("Bewerbungsschluss: 1. März 2027", "2027-03-01"),
+    ("Fecha límite: 30 de abril de 2027", "2027-04-30"),
+    ("Scadenza: 31 maggio 2027", "2027-05-31"),
+    ("Deadline: 1 juni 2027", "2027-06-01"),
+    ("Sista ansökningsdag: 15 januari 2027", "2027-01-15"),
+    ("2027년 3월 15일까지", "2027-03-15"),
+    ("2027年1月10日締切", "2027-01-10"),
+])
+def test_deadline_months_are_read_in_the_page_language(tmp_path, quote, when):
+    write_snapshot(tmp_path, "example", SHA, f"<p>{quote}</p>")
+    result = verify(data(program({"deadlines": [{"label": "x", "date": when, "quote": quote}]})), root=tmp_path)
+    assert result["programs"][0]["status"] == MACHINE_CHECKED, result["programs"][0]["fields"]["deadlines"][0]["check"]
+
+
+def test_a_month_name_in_another_language_still_has_to_be_the_right_month(tmp_path):
+    write_snapshot(tmp_path, "example", SHA, "<p>Date limite : 15 février 2027</p>")
+    result = verify(data(program({"deadlines": [{"label": "x", "date": "2027-03-15", "quote": "Date limite : 15 février 2027"}]})), root=tmp_path)
+    assert result["programs"][0]["status"] == NEEDS_HUMAN
