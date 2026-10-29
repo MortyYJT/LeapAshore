@@ -142,6 +142,24 @@ and cite it with `source_sha256`. Typical cases:
   quote, and add `"scale_note": "TOEFL stated on 0-120 and 1-6 scales"`. A 1-6 value alone is
   given as `text` + `quote` without `overall`.
 
+### Schools outside the English-speaking countries
+
+- **Which degrees count.** In Japan, Korea, continental Europe and Latin America the master's degree
+  (修士課程, 석사, Master, Laurea Magistrale, Mestrado…) is the normal postgraduate degree even when it
+  ends in a thesis: include it. Skip only programmes labelled research-only or doctoral, and
+  programmes with no intake from abroad. Prefer English-taught programmes and those that state an
+  international admission route; collect local-language programmes only after those.
+- **Which pages.** Use the school's own English pages where it publishes them; otherwise the
+  local-language page. Quote it verbatim in its own language and write `text` in English.
+- **Language requirements other than English** (German C1, TestDaF, JLPT N1, TOPIK 4, DELF B2…) go
+  into `prerequisites` as `{"text": …, "quote": …}`. Never translate them into an IELTS score.
+- **Entrance examinations** (Japan's 入学試験, Korea's 면접) and application windows: record a
+  deadline only when the quote states its day, month and year.
+- **Grade scales** (German 2.5, Dutch 7/10, Korean 3.0/4.5) stay in `academic` text. Only a
+  percentage stated for Chinese degrees goes into `min_mark_*`.
+- **Central portals** (uni-assist, Studyinfo.fi, Universityadmissions.se, Campus France) are
+  official only for the procedure they run; a programme's own requirement comes from the school.
+
 ### What to report when you finish
 
 One line of JSON: `{"school_key": …, "programs": N, "machine_checked": N, "human_queue": N,
