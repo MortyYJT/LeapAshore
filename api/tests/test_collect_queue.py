@@ -591,10 +591,27 @@ def test_a_non_ascii_address_is_sent_percent_encoded():
     assert snap.as_uri("https://x.edu/a%20b/c?q=1&r=2") == "https://x.edu/a%20b/c?q=1&r=2"
 
 
-def test_a_crawl_delay_spaces_the_next_request_that_far(client):
+def test_a_crawl_delay_is_waited_for_after_any_request(client):
+    """A robots.txt fetch (2 s) right before a page fetch (Crawl-delay 120 s) does not let the page in early."""
     bucket = HostBucket(client, settings.limits_key_prefix, interval=0.2)
-    assert bucket.try_take("slowsite.example.edu", interval=120) == 0
-    assert bucket.try_take("slowsite.example.edu") > 100
+    assert bucket.try_take("slowsite.example.edu") == 0
+    assert bucket.try_take("slowsite.example.edu", interval=120) > 100
+    assert bucket.try_take("other.example.edu", interval=120) == 0
+    assert bucket.try_take("other.example.edu", interval=120) > 100
+
+
+def test_a_far_crawl_delay_during_the_render_retry_reschedules_the_page(db_session, school, client):
+    page = add_page(db_session, school)
+    extracted = []
+
+    def fetch(url, school_key, render=False, root=None):
+        if render:
+            raise RetryLater("www.example.edu.au", 118)
+        return snap.save_snapshot(school_key, url, url, 200, "text/html", "<html><body>Loading</body></html>", root)
+
+    with pytest.raises(RetryLater):
+        run(db_session, school, page, budget=budget(client), fetch=fetch, extract=fake_extract({}, extracted))
+    assert not extracted
 
 
 def test_the_snapshot_tool_reads_crawl_delay_from_robots_txt(tmp_path):

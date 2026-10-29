@@ -1,6 +1,7 @@
 """One request per host at a time, shared by every queue worker (openspec/changes/collect-queue, D3).
 
-A token bucket with a capacity of one token per host, refilled every `interval` seconds, kept in Redis
+A token bucket with a capacity of one token per host, refilled every `interval` seconds (or the
+site's Crawl-delay, when the request says so), kept in Redis
 so every worker process and machine using that Redis takes turns. Redis's own clock decides, so two
 workers with skewed clocks cannot both think the turn is theirs. `www.x` and `x` share one bucket,
 as they share a refusal.
@@ -13,18 +14,20 @@ import time
 
 import redis
 
-# KEYS[1] = the host's key; ARGV[1] = interval in milliseconds. Returns 0 when the token was taken,
-# else the milliseconds until the next one. A refill that is not taken costs nothing.
+# KEYS[1] = the host's key, holding the time of its last request; ARGV[1] = this request's interval in
+# milliseconds. Returns 0 when the turn was taken, else the milliseconds until it comes. Like the
+# snapshot tool's file lock, the wait is measured from the last request with this request's interval,
+# so a page asking for its site's Crawl-delay waits that long whatever the request before it asked.
 _TAKE = """
 local t = redis.call('TIME')
 local now = tonumber(t[1]) * 1000 + math.floor(tonumber(t[2]) / 1000)
-local free_at = tonumber(redis.call('GET', KEYS[1]) or '0')
-if now >= free_at then
-  local interval = tonumber(ARGV[1])
-  redis.call('SET', KEYS[1], now + interval, 'PX', interval * 2 + 1000)
+local interval = tonumber(ARGV[1])
+local last = tonumber(redis.call('GET', KEYS[1]) or '-1e18')
+if now >= last + interval then
+  redis.call('SET', KEYS[1], now, 'PX', math.max(interval * 2, 3600000))
   return 0
 end
-return free_at - now
+return last + interval - now
 """
 
 
@@ -57,8 +60,8 @@ class HostBucket:
         return f"{self.prefix}collect:host:{bucket_host(host)}"
 
     def try_take(self, host: str, interval: float | None = None) -> float:
-        """0 when the token was taken now; otherwise the seconds until the next one. `interval`, when
-        longer than the bucket's own (a robots.txt Crawl-delay), spaces the next request that far."""
+        """0 when the token was taken now; otherwise the seconds until it can be. `interval`, when longer
+        than the bucket's own (a robots.txt Crawl-delay), is how long after the host's last request."""
         ms = max(self.interval_ms, int((interval or 0) * 1000))
         return int(self._take(keys=[self.key(host)], args=[ms])) / 1000
 

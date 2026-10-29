@@ -34,6 +34,7 @@ from sqlalchemy.orm import Session
 
 from app.collect.changes import diff_fields, has_verified_value
 from app.collect.extract import ExtractResult, extract_snapshot
+from app.collect.ratelimit import RetryLater
 from app.collect.snapshot import SNAPSHOT_ROOT, Blocked, HttpError, snapshot
 from app.collect.text import normalize
 from app.collect.verify import MACHINE_CHECKED, NEEDS_HUMAN
@@ -268,7 +269,9 @@ def collect_page(session: Session, page_id: str, *, budget: Budget, fetch=snapsh
             page.render = True
         except Blocked as blocked:
             return _settle(session, page, PageState.BLOCKED, str(blocked)[:500])
-        except Exception:  # noqa: BLE001 - the plain fetch still stands
+        except RetryLater:
+            raise  # the host's turn (its Crawl-delay) is far away: try the whole page again then
+        except Exception:  # noqa: BLE001 - a failed render: the plain fetch still stands
             pass
     sha = meta["sha256"]
     if page.origin == "discovered" and page.result is None:
