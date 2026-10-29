@@ -1,0 +1,150 @@
+{
+ "school_key": "hanyang-university",
+ "school_name_en": "Hanyang University",
+ "country": "South Korea",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://mba.hanyang.ac.kr/front/admission/recruitment/foreigner",
+  "https://studyerica.hanyang.ac.kr/eng/s3/s3_5_1.php"
+ ],
+ "blocked": [
+  {
+   "url": "https://www.hanyang.ac.kr/web/eng/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://oia.hanyang.ac.kr/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://gsis.hanyang.ac.kr/en/admission1",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://grad.hanyang.ac.kr/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://engineering.hanyang.ac.kr/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://cs.hanyang.ac.kr/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://business.hanyang.ac.kr/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://urban.hanyang.ac.kr/",
+   "reason": "robots.txt disallows"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://oia.hanyang.ac.kr/admission",
+  "https://gsis.hanyang.ac.kr/en/admission1",
+  "https://gsis.hanyang.ac.kr/en/master-s-degrees",
+  "https://www.hanyang.ac.kr/web/eng/global_s"
+ ],
+ "notes": "Nearly every Hanyang host (www, oia, gsis, grad, engineering, cs, business, urban, erica) disallows our tool via robots.txt, so Seoul-campus international graduate eligibility, language scores (TOEFL/IELTS/TOPIK) and Spring/Fall 2027 windows could not be read. The ERICA international admissions site (studyerica) publishes the graduate guideline only as a PDF (download.php?ds_no=6; per-term guideline PDFs), and the MBA school sends foreign applicants to OIA, so no HTML dates or scores were available; the MBA 2027 special-admission window (2026.10.15-10.29) is for domestic applicants and was not recorded. GBM and Global YES MBA tracks are marked closed and were left out. Useful PDF-only sources: 2024 Fall/2024 Spring Hanyang graduate admission guideline PDFs at oia.hanyang.ac.kr/files/attach/filebox/ and ERICA per-term English guidelines.",
+ "programs": [
+  {
+   "name": "HYU ERICA graduate master's programme via the GKS (Global Korea Scholarship) track",
+   "url": "https://studyerica.hanyang.ac.kr/eng/s3/s3_5_1.php",
+   "snapshot_sha256": "7102484c1cda291a7e2d4681b518b77169001d965062419dcd4b00160baef289",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's or master's degree earned as of February 28 of the year in which candidates are selected by the university",
+     "quote": "Applicants who have earned a bachelor's degree or master's degree as of February 28 of year in which candidates are selected by the university",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GPA of 80% (out of 100%) or higher for all grades in the most recent school attended",
+      "quote": "Applicants with a grade point average (GPA) of 80% (out of 100%) or higher for all grades in the most recent school they attended",
+      "check": "ok"
+     },
+     {
+      "text": "GKS master's route is 1 year of Korean language programme followed by a 2-year master's programme",
+      "quote": "Master's program: 1-year Korean language program + 2-year master's degree program",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Administration - Korea & Asia Business Studies (KABS) track, English track (Hanyang MBA, Seoul)",
+   "url": "https://mba.hanyang.ac.kr/front/admission/recruitment/foreigner",
+   "snapshot_sha256": "b470b7a34733744b085de64d2ea82c0e70ef877d0f13944cf5c7f3d91ee58b88",
+   "fields": {
+    "academic": {
+     "text": "Foreign admission is held by the Office of International Affairs (OIA), not by the MBA school",
+     "quote": "외국인 모집은 국제처(https://oia.hanyang.ac.kr/)에서 진행합니다. (Foreign admission is held in the OIA)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Administration - Global Enterprise Management track (Hanyang MBA, Seoul)",
+   "url": "https://mba.hanyang.ac.kr/front/admission/recruitment/foreigner",
+   "snapshot_sha256": "b470b7a34733744b085de64d2ea82c0e70ef877d0f13944cf5c7f3d91ee58b88",
+   "fields": {
+    "academic": {
+     "text": "Foreign admission is held by the Office of International Affairs (OIA), not by the MBA school",
+     "quote": "외국인 모집은 국제처(https://oia.hanyang.ac.kr/)에서 진행합니다. (Foreign admission is held in the OIA)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Administration - Arts, Culture and Entertainment track (Hanyang MBA, Seoul)",
+   "url": "https://mba.hanyang.ac.kr/front/admission/recruitment/foreigner",
+   "snapshot_sha256": "b470b7a34733744b085de64d2ea82c0e70ef877d0f13944cf5c7f3d91ee58b88",
+   "fields": {
+    "academic": {
+     "text": "Foreign admission is held by the Office of International Affairs (OIA), not by the MBA school",
+     "quote": "외국인 모집은 국제처(https://oia.hanyang.ac.kr/)에서 진행합니다. (Foreign admission is held in the OIA)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Administration - Global Digital Innovation track, Chinese track (China MBA, 3 semesters)",
+   "url": "https://mba.hanyang.ac.kr/front/admission/recruitment/foreigner",
+   "snapshot_sha256": "b470b7a34733744b085de64d2ea82c0e70ef877d0f13944cf5c7f3d91ee58b88",
+   "fields": {
+    "academic": {
+     "text": "Foreign admission is held by the Office of International Affairs (OIA), not by the MBA school",
+     "quote": "외국인 모집은 국제처(https://oia.hanyang.ac.kr/)에서 진행합니다. (Foreign admission is held in the OIA)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Administration - Cultural Content Management track, Chinese track (China MBA, 3 semesters)",
+   "url": "https://mba.hanyang.ac.kr/front/admission/recruitment/foreigner",
+   "snapshot_sha256": "b470b7a34733744b085de64d2ea82c0e70ef877d0f13944cf5c7f3d91ee58b88",
+   "fields": {
+    "academic": {
+     "text": "Foreign admission is held by the Office of International Affairs (OIA), not by the MBA school",
+     "quote": "외국인 모집은 국제처(https://oia.hanyang.ac.kr/)에서 진행합니다. (Foreign admission is held in the OIA)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 6,
+  "机器核对": 6,
+  "待人工": 0
+ }
+}
