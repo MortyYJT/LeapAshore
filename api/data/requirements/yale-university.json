@@ -1,0 +1,1963 @@
+{
+ "school_key": "yale-university",
+ "school_name_en": "Yale University",
+ "country": "United States",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://gsas.yale.edu/programs-of-study",
+  "https://som.yale.edu/programs",
+  "https://environment.yale.edu/academics/masters",
+  "https://law.yale.edu/study-law-yale/degree-programs/graduate-programs",
+  "https://www.architecture.yale.edu/admissions/requirements",
+  "https://music.yale.edu/degrees-and-programs",
+  "https://www.drama.yale.edu/admissions/",
+  "https://art.yale.edu/apply/how-to-apply",
+  "https://apply.nursing.yale.edu/portal/admissions?cmd=howtoapply"
+ ],
+ "blocked": [
+  {
+   "url": "https://ysph.yale.edu/academics/degree-programs/",
+   "reason": "robots.txt disallows; Yale School of Public Health MPH not collected (the three GSAS Public Health MS programmes were collected from gsas.yale.edu)"
+  },
+  {
+   "url": "https://ysph.yale.edu/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://bulletin.yale.edu/",
+   "reason": "HTTP 403; not retried"
+  }
+ ],
+ "complete": true,
+ "remaining_urls": [],
+ "notes": "Collected the GSAS terminal master's programmes (as listed on the GSAS programs page) plus SOM, Environment, Jackson, Law, Architecture, Music, Drama, Art and Nursing. GSAS values come from the graduate-school pages (international guidance, dates and deadlines) and each programme page; the GSAS publishes no TOEFL/IELTS minimum. Skipped: Public Health MPH (robots.txt), Master of Environmental Science/Forest Science and M.E.D. (thesis research degrees), SOM Technology Management (Yale College students only) and Public Education Management (US school-system leaders), MN and Hybrid MSN (cannot enroll F-1/J-1 students). Deadlines are recorded only where the page states day, month and year; YSE, Music, Law, Jackson and Systemic Risk deadlines lack a year and were left out. The SOM Global Business and Society page still says the Class of 2027 application opens in September 2025 while its round table shows 2026-27 dates. MAM and GBS round dates sit in a table; each date is labelled by its position. No Chinese-degree-specific page exists.",
+ "programs": [
+  {
+   "name": "MA in African Studies (Yale GSAS)",
+   "url": "https://gsas.yale.edu/programs-of-study/african-studies",
+   "snapshot_sha256": "f23520e52101834efd299af97e2b47f6d16e269c6dab56e6849d6b7e4df4fb15",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or international equivalent completed before enrolment; a three-year degree meets the requirement",
+     "quote": "All entering students must have earned a bachelor's degree or its international equivalent prior to enrolling at the Graduate School. You may submit an application before receiving your degree, or while your degree is still in progress, as long as the degree will be completed prior to matriculation. Some countries grant an undergraduate or bachelor's-equivalent degree in three years. In such cases, completion of a three-year degree will meet the application requirement.",
+     "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+     "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE policy: GRE is not accepted.",
+      "quote": "Standardized Testing Requirements GRE is not accepted.",
+      "check": "ok"
+     },
+     {
+      "text": "Program-specific requirement: A writing sample is required by this program.",
+      "quote": "Program-Specific Application Requirements A writing sample is required by this program.",
+      "check": "ok"
+     },
+     {
+      "text": "TOEFL iBT or IELTS Academic required of most applicants whose native language is not English (exemption for an English-medium bachelor's with three years in residence)",
+      "quote": "TOEFL iBT or IELTS Academic is required of most applicants whose native language is not English.",
+      "check": "ok"
+     },
+     {
+      "text": "The Graduate School sets no TOEFL/IELTS minimum; individual departments may",
+      "quote": "Although the Graduate School does not have test minimums for admission, individual departments may have a minimum requirement and will use these scores when they review your application. Please check with the department or program to which you are applying to see if it has a minimum requirement.",
+      "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 entry",
+      "date": "2027-01-02",
+      "quote": "January 2, 2027 Deadline for fee waiver requests. Application deadline for: African Studies",
+      "source_sha256": "1b2c27469027fc606ff0e549ba684af6b083bdca296a4f0963bf8b8cf18bde71",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/dates-deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA in American Studies (Yale GSAS)",
+   "url": "https://gsas.yale.edu/programs-of-study/american-studies",
+   "snapshot_sha256": "79afe0efcf827ab509c44f8f254d626b217efd6d3e530c7f63642fa7f13af3d7",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or international equivalent completed before enrolment; a three-year degree meets the requirement",
+     "quote": "All entering students must have earned a bachelor's degree or its international equivalent prior to enrolling at the Graduate School. You may submit an application before receiving your degree, or while your degree is still in progress, as long as the degree will be completed prior to matriculation. Some countries grant an undergraduate or bachelor's-equivalent degree in three years. In such cases, completion of a three-year degree will meet the application requirement.",
+     "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+     "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE policy: GRE is not accepted.",
+      "quote": "Standardized Testing Requirements GRE is not accepted.",
+      "check": "ok"
+     },
+     {
+      "text": "Program-specific requirement: A writing sample is required by this program.",
+      "quote": "Program-Specific Application Requirements A writing sample is required by this program.",
+      "check": "ok"
+     },
+     {
+      "text": "TOEFL iBT or IELTS Academic required of most applicants whose native language is not English (exemption for an English-medium bachelor's with three years in residence)",
+      "quote": "TOEFL iBT or IELTS Academic is required of most applicants whose native language is not English.",
+      "check": "ok"
+     },
+     {
+      "text": "The Graduate School sets no TOEFL/IELTS minimum; individual departments may",
+      "quote": "Although the Graduate School does not have test minimums for admission, individual departments may have a minimum requirement and will use these scores when they review your application. Please check with the department or program to which you are applying to see if it has a minimum requirement.",
+      "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 entry",
+      "date": "2026-12-15",
+      "quote": "December 15, 2026 Application deadline for: American Studies*",
+      "source_sha256": "1b2c27469027fc606ff0e549ba684af6b083bdca296a4f0963bf8b8cf18bde71",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/dates-deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Applied Physics (Yale GSAS)",
+   "url": "https://gsas.yale.edu/programs-of-study/applied-physics",
+   "snapshot_sha256": "ed71f63564bb804fd917573daf1a8beccd0cc0b108685c4aeb1410f4d19a0b67",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or international equivalent completed before enrolment; a three-year degree meets the requirement",
+     "quote": "All entering students must have earned a bachelor's degree or its international equivalent prior to enrolling at the Graduate School. You may submit an application before receiving your degree, or while your degree is still in progress, as long as the degree will be completed prior to matriculation. Some countries grant an undergraduate or bachelor's-equivalent degree in three years. In such cases, completion of a three-year degree will meet the application requirement.",
+     "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+     "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE policy: GRE and GRE Physics Subject Test are optional.",
+      "quote": "Standardized Testing Requirements GRE and GRE Physics Subject Test are optional.",
+      "check": "ok"
+     },
+     {
+      "text": "TOEFL iBT or IELTS Academic required of most applicants whose native language is not English (exemption for an English-medium bachelor's with three years in residence)",
+      "quote": "TOEFL iBT or IELTS Academic is required of most applicants whose native language is not English.",
+      "check": "ok"
+     },
+     {
+      "text": "The Graduate School sets no TOEFL/IELTS minimum; individual departments may",
+      "quote": "Although the Graduate School does not have test minimums for admission, individual departments may have a minimum requirement and will use these scores when they review your application. Please check with the department or program to which you are applying to see if it has a minimum requirement.",
+      "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 entry",
+      "date": "2026-12-15",
+      "quote": "December 15, 2026 Application deadline for: American Studies* Anthropology* Applied Physics",
+      "source_sha256": "1b2c27469027fc606ff0e549ba684af6b083bdca296a4f0963bf8b8cf18bde71",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/dates-deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA in Archaeological Studies (Yale GSAS)",
+   "url": "https://gsas.yale.edu/programs-of-study/archaeological-studies",
+   "snapshot_sha256": "45ac5d82fcc07dac319966e0bb88a47e6239149489b84c532e18fe03bcb13b9e",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or international equivalent completed before enrolment; a three-year degree meets the requirement",
+     "quote": "All entering students must have earned a bachelor's degree or its international equivalent prior to enrolling at the Graduate School. You may submit an application before receiving your degree, or while your degree is still in progress, as long as the degree will be completed prior to matriculation. Some countries grant an undergraduate or bachelor's-equivalent degree in three years. In such cases, completion of a three-year degree will meet the application requirement.",
+     "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+     "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE policy: GRE is optional.",
+      "quote": "Standardized Testing Requirements GRE is optional.",
+      "check": "ok"
+     },
+     {
+      "text": "TOEFL iBT or IELTS Academic required of most applicants whose native language is not English (exemption for an English-medium bachelor's with three years in residence)",
+      "quote": "TOEFL iBT or IELTS Academic is required of most applicants whose native language is not English.",
+      "check": "ok"
+     },
+     {
+      "text": "The Graduate School sets no TOEFL/IELTS minimum; individual departments may",
+      "quote": "Although the Graduate School does not have test minimums for admission, individual departments may have a minimum requirement and will use these scores when they review your application. Please check with the department or program to which you are applying to see if it has a minimum requirement.",
+      "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 entry",
+      "date": "2027-01-02",
+      "quote": "January 2, 2027 Deadline for fee waiver requests. Application deadline for: African Studies Applied and Computational Mathematics Archaeological Studies",
+      "source_sha256": "1b2c27469027fc606ff0e549ba684af6b083bdca296a4f0963bf8b8cf18bde71",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/dates-deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Biomedical Engineering (Yale GSAS)",
+   "url": "https://gsas.yale.edu/programs-of-study/biomedical-engineering",
+   "snapshot_sha256": "132b3bd3e12de48ca557c13cb289ff385016a6db8d617b04cbad8f49653c7cf5",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or international equivalent completed before enrolment; a three-year degree meets the requirement",
+     "quote": "All entering students must have earned a bachelor's degree or its international equivalent prior to enrolling at the Graduate School. You may submit an application before receiving your degree, or while your degree is still in progress, as long as the degree will be completed prior to matriculation. Some countries grant an undergraduate or bachelor's-equivalent degree in three years. In such cases, completion of a three-year degree will meet the application requirement.",
+     "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+     "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE policy: MS - GRE is required.",
+      "quote": "MS - GRE is required.",
+      "check": "ok"
+     },
+     {
+      "text": "TOEFL iBT or IELTS Academic required of most applicants whose native language is not English (exemption for an English-medium bachelor's with three years in residence)",
+      "quote": "TOEFL iBT or IELTS Academic is required of most applicants whose native language is not English.",
+      "check": "ok"
+     },
+     {
+      "text": "The Graduate School sets no TOEFL/IELTS minimum; individual departments may",
+      "quote": "Although the Graduate School does not have test minimums for admission, individual departments may have a minimum requirement and will use these scores when they review your application. Please check with the department or program to which you are applying to see if it has a minimum requirement.",
+      "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 entry",
+      "date": "2026-12-15",
+      "quote": "December 15, 2026 Application deadline for: American Studies* Anthropology* Applied Physics Astronomy Biomedical Engineering",
+      "source_sha256": "1b2c27469027fc606ff0e549ba684af6b083bdca296a4f0963bf8b8cf18bde71",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/dates-deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Chemical and Environmental Engineering (Yale GSAS)",
+   "url": "https://gsas.yale.edu/programs-of-study/chemical-environmental-engineering",
+   "snapshot_sha256": "b96dc758c5aa7a4a6987e5ca8e262f46b473f462a6172ca7e1a39e052fbdb7cc",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or international equivalent completed before enrolment; a three-year degree meets the requirement",
+     "quote": "All entering students must have earned a bachelor's degree or its international equivalent prior to enrolling at the Graduate School. You may submit an application before receiving your degree, or while your degree is still in progress, as long as the degree will be completed prior to matriculation. Some countries grant an undergraduate or bachelor's-equivalent degree in three years. In such cases, completion of a three-year degree will meet the application requirement.",
+     "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+     "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE policy: GRE is optional.",
+      "quote": "Standardized Testing Requirements GRE is optional.",
+      "check": "ok"
+     },
+     {
+      "text": "TOEFL iBT or IELTS Academic required of most applicants whose native language is not English (exemption for an English-medium bachelor's with three years in residence)",
+      "quote": "TOEFL iBT or IELTS Academic is required of most applicants whose native language is not English.",
+      "check": "ok"
+     },
+     {
+      "text": "The Graduate School sets no TOEFL/IELTS minimum; individual departments may",
+      "quote": "Although the Graduate School does not have test minimums for admission, individual departments may have a minimum requirement and will use these scores when they review your application. Please check with the department or program to which you are applying to see if it has a minimum requirement.",
+      "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 entry",
+      "date": "2026-12-15",
+      "quote": "December 15, 2026 Application deadline for: American Studies* Anthropology* Applied Physics Astronomy Biomedical Engineering Black Studies* Chemical and Environmental Engineering",
+      "source_sha256": "1b2c27469027fc606ff0e549ba684af6b083bdca296a4f0963bf8b8cf18bde71",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/dates-deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Computational Biology and Biomedical Informatics (Yale GSAS)",
+   "url": "https://gsas.yale.edu/programs-of-study/computational-biology-biomedical-informatics-ms-program",
+   "snapshot_sha256": "eea9ce9b8bf902ed8f127948b73cf8e7d1816f8aecacff01870924067a0d04d5",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or international equivalent completed before enrolment; a three-year degree meets the requirement",
+     "quote": "All entering students must have earned a bachelor's degree or its international equivalent prior to enrolling at the Graduate School. You may submit an application before receiving your degree, or while your degree is still in progress, as long as the degree will be completed prior to matriculation. Some countries grant an undergraduate or bachelor's-equivalent degree in three years. In such cases, completion of a three-year degree will meet the application requirement.",
+     "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+     "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE policy: GRE is not accepted.",
+      "quote": "Standardized Testing Requirements GRE is not accepted.",
+      "check": "ok"
+     },
+     {
+      "text": "TOEFL iBT or IELTS Academic required of most applicants whose native language is not English (exemption for an English-medium bachelor's with three years in residence)",
+      "quote": "TOEFL iBT or IELTS Academic is required of most applicants whose native language is not English.",
+      "check": "ok"
+     },
+     {
+      "text": "The Graduate School sets no TOEFL/IELTS minimum; individual departments may",
+      "quote": "Although the Graduate School does not have test minimums for admission, individual departments may have a minimum requirement and will use these scores when they review your application. Please check with the department or program to which you are applying to see if it has a minimum requirement.",
+      "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+      "check": "ok"
+     },
+     {
+      "text": "Page states a TOEFL minimum for BBS (the PhD umbrella program); it is not stated whether it applies to MS applicants",
+      "quote": "BBS requires a score of at least 600 on the paper version, 250 on the computer-based exam, and 100 on the internet-based exam.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 entry",
+      "date": "2026-12-01",
+      "quote": "December 1, 2026 Application deadline for: Biological and Biomedical Sciences (BBS) Chemistry Computational Biology and Biomedical Informatics (MS)",
+      "source_sha256": "1b2c27469027fc606ff0e549ba684af6b083bdca296a4f0963bf8b8cf18bde71",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/dates-deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Computer Science (Yale GSAS)",
+   "url": "https://gsas.yale.edu/programs-of-study/computer-science",
+   "snapshot_sha256": "851b319b63789acea1b25e648555bddb0b8d484dc2a2b43ab6493e9f634cdd43",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or international equivalent completed before enrolment; a three-year degree meets the requirement",
+     "quote": "All entering students must have earned a bachelor's degree or its international equivalent prior to enrolling at the Graduate School. You may submit an application before receiving your degree, or while your degree is still in progress, as long as the degree will be completed prior to matriculation. Some countries grant an undergraduate or bachelor's-equivalent degree in three years. In such cases, completion of a three-year degree will meet the application requirement.",
+     "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+     "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE policy: MS - GRE is required.",
+      "quote": "MS - GRE is required.",
+      "check": "ok"
+     },
+     {
+      "text": "TOEFL iBT or IELTS Academic required of most applicants whose native language is not English (exemption for an English-medium bachelor's with three years in residence)",
+      "quote": "TOEFL iBT or IELTS Academic is required of most applicants whose native language is not English.",
+      "check": "ok"
+     },
+     {
+      "text": "The Graduate School sets no TOEFL/IELTS minimum; individual departments may",
+      "quote": "Although the Graduate School does not have test minimums for admission, individual departments may have a minimum requirement and will use these scores when they review your application. Please check with the department or program to which you are applying to see if it has a minimum requirement.",
+      "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 entry (MS)",
+      "date": "2027-01-02",
+      "quote": "January 2, 2027 Deadline for fee waiver requests. Application deadline for: African Studies Applied and Computational Mathematics Archaeological Studies Architecture Computer Science (MS)",
+      "source_sha256": "1b2c27469027fc606ff0e549ba684af6b083bdca296a4f0963bf8b8cf18bde71",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/dates-deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA in East Asian Studies (Yale GSAS)",
+   "url": "https://gsas.yale.edu/programs-of-study/east-asian-studies",
+   "snapshot_sha256": "e6ad270a976ddcc5d1b5b25d0ae008239ee31feabac4564fd08a813a94afe6d3",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or international equivalent completed before enrolment; a three-year degree meets the requirement",
+     "quote": "All entering students must have earned a bachelor's degree or its international equivalent prior to enrolling at the Graduate School. You may submit an application before receiving your degree, or while your degree is still in progress, as long as the degree will be completed prior to matriculation. Some countries grant an undergraduate or bachelor's-equivalent degree in three years. In such cases, completion of a three-year degree will meet the application requirement.",
+     "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+     "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE policy: GRE is required.",
+      "quote": "Standardized Testing Requirements GRE is required.",
+      "check": "ok"
+     },
+     {
+      "text": "Program-specific requirement: A writing sample is required by this program.",
+      "quote": "Program-Specific Application Requirements A writing sample is required by this program.",
+      "check": "ok"
+     },
+     {
+      "text": "TOEFL iBT or IELTS Academic required of most applicants whose native language is not English (exemption for an English-medium bachelor's with three years in residence)",
+      "quote": "TOEFL iBT or IELTS Academic is required of most applicants whose native language is not English.",
+      "check": "ok"
+     },
+     {
+      "text": "The Graduate School sets no TOEFL/IELTS minimum; individual departments may",
+      "quote": "Although the Graduate School does not have test minimums for admission, individual departments may have a minimum requirement and will use these scores when they review your application. Please check with the department or program to which you are applying to see if it has a minimum requirement.",
+      "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 entry",
+      "date": "2027-01-02",
+      "quote": "January 2, 2027 Deadline for fee waiver requests. Application deadline for: African Studies Applied and Computational Mathematics Archaeological Studies Architecture Computer Science (MS) Earth and Planetary Sciences East Asian Languages and Literatures* East Asian Studies",
+      "source_sha256": "1b2c27469027fc606ff0e549ba684af6b083bdca296a4f0963bf8b8cf18bde71",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/dates-deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Electrical and Computer Engineering (Yale GSAS)",
+   "url": "https://gsas.yale.edu/programs-of-study/electrical-computer-engineering",
+   "snapshot_sha256": "5bf72b709938070c5657b177bfdc779702d64529d1ad140ac70e8114c09ee449",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or international equivalent completed before enrolment; a three-year degree meets the requirement",
+     "quote": "All entering students must have earned a bachelor's degree or its international equivalent prior to enrolling at the Graduate School. You may submit an application before receiving your degree, or while your degree is still in progress, as long as the degree will be completed prior to matriculation. Some countries grant an undergraduate or bachelor's-equivalent degree in three years. In such cases, completion of a three-year degree will meet the application requirement.",
+     "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+     "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE policy: GRE is optional.",
+      "quote": "Standardized Testing Requirements GRE is optional.",
+      "check": "ok"
+     },
+     {
+      "text": "TOEFL iBT or IELTS Academic required of most applicants whose native language is not English (exemption for an English-medium bachelor's with three years in residence)",
+      "quote": "TOEFL iBT or IELTS Academic is required of most applicants whose native language is not English.",
+      "check": "ok"
+     },
+     {
+      "text": "The Graduate School sets no TOEFL/IELTS minimum; individual departments may",
+      "quote": "Although the Graduate School does not have test minimums for admission, individual departments may have a minimum requirement and will use these scores when they review your application. Please check with the department or program to which you are applying to see if it has a minimum requirement.",
+      "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 entry",
+      "date": "2026-12-15",
+      "quote": "December 15, 2026 Application deadline for: American Studies* Anthropology* Applied Physics Astronomy Biomedical Engineering Black Studies* Chemical and Environmental Engineering Classics* Comparative Literature* Computer Science (PhD) Electrical & Computer Engineering",
+      "source_sha256": "1b2c27469027fc606ff0e549ba684af6b083bdca296a4f0963bf8b8cf18bde71",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/dates-deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA in English Language and Literature (Yale GSAS)",
+   "url": "https://gsas.yale.edu/programs-of-study/english-language-literature",
+   "snapshot_sha256": "d26fc6f9cba05e4b68d54af33d98e0f85401902c0dc0eef1f0af89ca60802c51",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or international equivalent completed before enrolment; a three-year degree meets the requirement",
+     "quote": "All entering students must have earned a bachelor's degree or its international equivalent prior to enrolling at the Graduate School. You may submit an application before receiving your degree, or while your degree is still in progress, as long as the degree will be completed prior to matriculation. Some countries grant an undergraduate or bachelor's-equivalent degree in three years. In such cases, completion of a three-year degree will meet the application requirement.",
+     "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+     "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE policy: GRE is not accepted.",
+      "quote": "Standardized Testing Requirements GRE is not accepted.",
+      "check": "ok"
+     },
+     {
+      "text": "Program-specific requirement: A writing sample is required by this program. See program website for more details.",
+      "quote": "Program-Specific Application Requirements A writing sample is required by this program. See program website for more details.",
+      "check": "ok"
+     },
+     {
+      "text": "TOEFL iBT or IELTS Academic required of most applicants whose native language is not English (exemption for an English-medium bachelor's with three years in residence)",
+      "quote": "TOEFL iBT or IELTS Academic is required of most applicants whose native language is not English.",
+      "check": "ok"
+     },
+     {
+      "text": "The Graduate School sets no TOEFL/IELTS minimum; individual departments may",
+      "quote": "Although the Graduate School does not have test minimums for admission, individual departments may have a minimum requirement and will use these scores when they review your application. Please check with the department or program to which you are applying to see if it has a minimum requirement.",
+      "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 entry",
+      "date": "2026-12-01",
+      "quote": "December 1, 2026 Application deadline for: Biological and Biomedical Sciences (BBS) Chemistry Computational Biology and Biomedical Informatics (MS) Ecology and Evolutionary Biology Economics English Language and Literature*",
+      "source_sha256": "1b2c27469027fc606ff0e549ba684af6b083bdca296a4f0963bf8b8cf18bde71",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/dates-deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA in European and Russian Studies (Yale GSAS)",
+   "url": "https://gsas.yale.edu/programs-of-study/european-russian-studies",
+   "snapshot_sha256": "f0f09cc9f0f526535ac28e92d5820882157b3c5eea9f539559ce3b1ff43fad38",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or international equivalent completed before enrolment; a three-year degree meets the requirement",
+     "quote": "All entering students must have earned a bachelor's degree or its international equivalent prior to enrolling at the Graduate School. You may submit an application before receiving your degree, or while your degree is still in progress, as long as the degree will be completed prior to matriculation. Some countries grant an undergraduate or bachelor's-equivalent degree in three years. In such cases, completion of a three-year degree will meet the application requirement.",
+     "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+     "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE policy: GRE is not accepted.",
+      "quote": "Standardized Testing Requirements GRE is not accepted.",
+      "check": "ok"
+     },
+     {
+      "text": "Program-specific requirement: A writing sample is required by this program.",
+      "quote": "Program-Specific Application Requirements A writing sample is required by this program.",
+      "check": "ok"
+     },
+     {
+      "text": "TOEFL iBT or IELTS Academic required of most applicants whose native language is not English (exemption for an English-medium bachelor's with three years in residence)",
+      "quote": "TOEFL iBT or IELTS Academic is required of most applicants whose native language is not English.",
+      "check": "ok"
+     },
+     {
+      "text": "The Graduate School sets no TOEFL/IELTS minimum; individual departments may",
+      "quote": "Although the Graduate School does not have test minimums for admission, individual departments may have a minimum requirement and will use these scores when they review your application. Please check with the department or program to which you are applying to see if it has a minimum requirement.",
+      "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 entry",
+      "date": "2027-01-02",
+      "quote": "January 2, 2027 Deadline for fee waiver requests. Application deadline for: African Studies Applied and Computational Mathematics Archaeological Studies Architecture Computer Science (MS) Earth and Planetary Sciences East Asian Languages and Literatures* East Asian Studies Environment* European and Russian Studies",
+      "source_sha256": "1b2c27469027fc606ff0e549ba684af6b083bdca296a4f0963bf8b8cf18bde71",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/dates-deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA in History (Yale GSAS)",
+   "url": "https://gsas.yale.edu/programs-of-study/history",
+   "snapshot_sha256": "58224fe2b1fe67a04cd6c7f29d4e83d07da06ae4428f145cb4293b7edabc831f",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or international equivalent completed before enrolment; a three-year degree meets the requirement",
+     "quote": "All entering students must have earned a bachelor's degree or its international equivalent prior to enrolling at the Graduate School. You may submit an application before receiving your degree, or while your degree is still in progress, as long as the degree will be completed prior to matriculation. Some countries grant an undergraduate or bachelor's-equivalent degree in three years. In such cases, completion of a three-year degree will meet the application requirement.",
+     "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+     "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE policy: GRE is not accepted.",
+      "quote": "Standardized Testing Requirements GRE is not accepted.",
+      "check": "ok"
+     },
+     {
+      "text": "Program-specific requirement: A writing sample and a book review are required by this program.",
+      "quote": "Program-Specific Application Requirements A writing sample and a book review are required by this program.",
+      "check": "ok"
+     },
+     {
+      "text": "TOEFL iBT or IELTS Academic required of most applicants whose native language is not English (exemption for an English-medium bachelor's with three years in residence)",
+      "quote": "TOEFL iBT or IELTS Academic is required of most applicants whose native language is not English.",
+      "check": "ok"
+     },
+     {
+      "text": "The Graduate School sets no TOEFL/IELTS minimum; individual departments may",
+      "quote": "Although the Graduate School does not have test minimums for admission, individual departments may have a minimum requirement and will use these scores when they review your application. Please check with the department or program to which you are applying to see if it has a minimum requirement.",
+      "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 entry",
+      "date": "2026-12-01",
+      "quote": "December 1, 2026 Application deadline for: Biological and Biomedical Sciences (BBS) Chemistry Computational Biology and Biomedical Informatics (MS) Ecology and Evolutionary Biology Economics English Language and Literature* History*",
+      "source_sha256": "1b2c27469027fc606ff0e549ba684af6b083bdca296a4f0963bf8b8cf18bde71",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/dates-deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA in History of Science and Medicine (Yale GSAS)",
+   "url": "https://gsas.yale.edu/programs-of-study/history-science-medicine",
+   "snapshot_sha256": "3f3dd014c849a130423d0df49de1c96b82a4c859c29aa73aaba2ec2e99115c89",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or international equivalent completed before enrolment; a three-year degree meets the requirement",
+     "quote": "All entering students must have earned a bachelor's degree or its international equivalent prior to enrolling at the Graduate School. You may submit an application before receiving your degree, or while your degree is still in progress, as long as the degree will be completed prior to matriculation. Some countries grant an undergraduate or bachelor's-equivalent degree in three years. In such cases, completion of a three-year degree will meet the application requirement.",
+     "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+     "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE policy: GRE is optional.",
+      "quote": "Standardized Testing Requirements GRE is optional.",
+      "check": "ok"
+     },
+     {
+      "text": "Program-specific requirement: A writing sample is required by this program.",
+      "quote": "Program-Specific Application Requirements A writing sample is required by this program.",
+      "check": "ok"
+     },
+     {
+      "text": "TOEFL iBT or IELTS Academic required of most applicants whose native language is not English (exemption for an English-medium bachelor's with three years in residence)",
+      "quote": "TOEFL iBT or IELTS Academic is required of most applicants whose native language is not English.",
+      "check": "ok"
+     },
+     {
+      "text": "The Graduate School sets no TOEFL/IELTS minimum; individual departments may",
+      "quote": "Although the Graduate School does not have test minimums for admission, individual departments may have a minimum requirement and will use these scores when they review your application. Please check with the department or program to which you are applying to see if it has a minimum requirement.",
+      "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 entry",
+      "date": "2026-12-01",
+      "quote": "December 1, 2026 Application deadline for: Biological and Biomedical Sciences (BBS) Chemistry Computational Biology and Biomedical Informatics (MS) Ecology and Evolutionary Biology Economics English Language and Literature* History* History of Art* History of Science and Medicine",
+      "source_sha256": "1b2c27469027fc606ff0e549ba684af6b083bdca296a4f0963bf8b8cf18bde71",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/dates-deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA in International and Development Economics (Yale GSAS)",
+   "url": "https://gsas.yale.edu/programs-of-study/international-development-economics",
+   "snapshot_sha256": "0b914c2c1f102b6e1998a8634d03eca497dd0376647991777d88adc4874c53fe",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or international equivalent completed before enrolment; a three-year degree meets the requirement",
+     "quote": "All entering students must have earned a bachelor's degree or its international equivalent prior to enrolling at the Graduate School. You may submit an application before receiving your degree, or while your degree is still in progress, as long as the degree will be completed prior to matriculation. Some countries grant an undergraduate or bachelor's-equivalent degree in three years. In such cases, completion of a three-year degree will meet the application requirement.",
+     "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+     "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE policy: GRE is required.",
+      "quote": "Standardized Testing Requirements GRE is required.",
+      "check": "ok"
+     },
+     {
+      "text": "TOEFL iBT or IELTS Academic required of most applicants whose native language is not English (exemption for an English-medium bachelor's with three years in residence)",
+      "quote": "TOEFL iBT or IELTS Academic is required of most applicants whose native language is not English.",
+      "check": "ok"
+     },
+     {
+      "text": "The Graduate School sets no TOEFL/IELTS minimum; individual departments may",
+      "quote": "Although the Graduate School does not have test minimums for admission, individual departments may have a minimum requirement and will use these scores when they review your application. Please check with the department or program to which you are applying to see if it has a minimum requirement.",
+      "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 entry",
+      "date": "2027-01-02",
+      "quote": "January 2, 2027 Deadline for fee waiver requests. Application deadline for: African Studies Applied and Computational Mathematics Archaeological Studies Architecture Computer Science (MS) Earth and Planetary Sciences East Asian Languages and Literatures* East Asian Studies Environment* European and Russian Studies French* International Development and Economics",
+      "source_sha256": "1b2c27469027fc606ff0e549ba684af6b083bdca296a4f0963bf8b8cf18bde71",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/dates-deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Mechanical Engineering (Yale GSAS)",
+   "url": "https://gsas.yale.edu/programs-of-study/mechanical-engineering",
+   "snapshot_sha256": "4a716cba8574f671f971b8ee2f8dc0fe1bf62c59cbebbbbe093a5c2794d21e37",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or international equivalent completed before enrolment; a three-year degree meets the requirement",
+     "quote": "All entering students must have earned a bachelor's degree or its international equivalent prior to enrolling at the Graduate School. You may submit an application before receiving your degree, or while your degree is still in progress, as long as the degree will be completed prior to matriculation. Some countries grant an undergraduate or bachelor's-equivalent degree in three years. In such cases, completion of a three-year degree will meet the application requirement.",
+     "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+     "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE policy: GRE is not accepted.",
+      "quote": "Standardized Testing Requirements GRE is not accepted.",
+      "check": "ok"
+     },
+     {
+      "text": "TOEFL iBT or IELTS Academic required of most applicants whose native language is not English (exemption for an English-medium bachelor's with three years in residence)",
+      "quote": "TOEFL iBT or IELTS Academic is required of most applicants whose native language is not English.",
+      "check": "ok"
+     },
+     {
+      "text": "The Graduate School sets no TOEFL/IELTS minimum; individual departments may",
+      "quote": "Although the Graduate School does not have test minimums for admission, individual departments may have a minimum requirement and will use these scores when they review your application. Please check with the department or program to which you are applying to see if it has a minimum requirement.",
+      "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 entry",
+      "date": "2026-12-15",
+      "quote": "December 15, 2026 Application deadline for: American Studies* Anthropology* Applied Physics Astronomy Biomedical Engineering Black Studies* Chemical and Environmental Engineering Classics* Comparative Literature* Computer Science (PhD) Electrical & Computer Engineering Film and Media Studies* Germanic Languages and Literatures* Law Management Materials Science Mathematics Mechanical Engineering",
+      "source_sha256": "1b2c27469027fc606ff0e549ba684af6b083bdca296a4f0963bf8b8cf18bde71",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/dates-deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA in Medieval Studies (Yale GSAS)",
+   "url": "https://gsas.yale.edu/programs-of-study/medieval-studies",
+   "snapshot_sha256": "314684a61ac79344f26c45aa5cac9ed4eb5e8f25e847d728e9fb9a31ab1598c6",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or international equivalent completed before enrolment; a three-year degree meets the requirement",
+     "quote": "All entering students must have earned a bachelor's degree or its international equivalent prior to enrolling at the Graduate School. You may submit an application before receiving your degree, or while your degree is still in progress, as long as the degree will be completed prior to matriculation. Some countries grant an undergraduate or bachelor's-equivalent degree in three years. In such cases, completion of a three-year degree will meet the application requirement.",
+     "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+     "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE policy: GRE is not accepted.",
+      "quote": "Standardized Testing Requirements GRE is not accepted.",
+      "check": "ok"
+     },
+     {
+      "text": "Program-specific requirement: A writing sample is required by this program.",
+      "quote": "Program-Specific Application Requirements A writing sample is required by this program.",
+      "check": "ok"
+     },
+     {
+      "text": "TOEFL iBT or IELTS Academic required of most applicants whose native language is not English (exemption for an English-medium bachelor's with three years in residence)",
+      "quote": "TOEFL iBT or IELTS Academic is required of most applicants whose native language is not English.",
+      "check": "ok"
+     },
+     {
+      "text": "The Graduate School sets no TOEFL/IELTS minimum; individual departments may",
+      "quote": "Although the Graduate School does not have test minimums for admission, individual departments may have a minimum requirement and will use these scores when they review your application. Please check with the department or program to which you are applying to see if it has a minimum requirement.",
+      "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 entry",
+      "date": "2027-01-02",
+      "quote": "January 2, 2027 Deadline for fee waiver requests. Application deadline for: African Studies Applied and Computational Mathematics Archaeological Studies Architecture Computer Science (MS) Earth and Planetary Sciences East Asian Languages and Literatures* East Asian Studies Environment* European and Russian Studies French* International Development and Economics Investigative Medicine Italian Studies* Medieval Studies",
+      "source_sha256": "1b2c27469027fc606ff0e549ba684af6b083bdca296a4f0963bf8b8cf18bde71",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/dates-deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA in Music (Yale GSAS, history, theory, ethnomusicology)",
+   "url": "https://gsas.yale.edu/programs-of-study/music",
+   "snapshot_sha256": "17e4a749072a36b9d9dda216d77eab7604678441c96d497327353fabcee57043",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or international equivalent completed before enrolment; a three-year degree meets the requirement",
+     "quote": "All entering students must have earned a bachelor's degree or its international equivalent prior to enrolling at the Graduate School. You may submit an application before receiving your degree, or while your degree is still in progress, as long as the degree will be completed prior to matriculation. Some countries grant an undergraduate or bachelor's-equivalent degree in three years. In such cases, completion of a three-year degree will meet the application requirement.",
+     "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+     "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE policy: GRE is not accepted.",
+      "quote": "Standardized Testing Requirements GRE is not accepted.",
+      "check": "ok"
+     },
+     {
+      "text": "Program-specific requirement: A writing sample is required by this program.",
+      "quote": "Program-Specific Application Requirements A writing sample is required by this program.",
+      "check": "ok"
+     },
+     {
+      "text": "TOEFL iBT or IELTS Academic required of most applicants whose native language is not English (exemption for an English-medium bachelor's with three years in residence)",
+      "quote": "TOEFL iBT or IELTS Academic is required of most applicants whose native language is not English.",
+      "check": "ok"
+     },
+     {
+      "text": "The Graduate School sets no TOEFL/IELTS minimum; individual departments may",
+      "quote": "Although the Graduate School does not have test minimums for admission, individual departments may have a minimum requirement and will use these scores when they review your application. Please check with the department or program to which you are applying to see if it has a minimum requirement.",
+      "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 entry",
+      "date": "2026-12-15",
+      "quote": "December 15, 2026 Application deadline for: American Studies* Anthropology* Applied Physics Astronomy Biomedical Engineering Black Studies* Chemical and Environmental Engineering Classics* Comparative Literature* Computer Science (PhD) Electrical & Computer Engineering Film and Media Studies* Germanic Languages and Literatures* Law Management Materials Science Mathematics Mechanical Engineering Music*",
+      "source_sha256": "1b2c27469027fc606ff0e549ba684af6b083bdca296a4f0963bf8b8cf18bde71",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/dates-deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA in Near Eastern Languages and Civilizations (Yale GSAS)",
+   "url": "https://gsas.yale.edu/programs-of-study/near-eastern-languages-civilizations",
+   "snapshot_sha256": "bff7681fbc5dc5a762868e2bac8c22f4cfca062c5006b4e842c036d8c231ea13",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or international equivalent completed before enrolment; a three-year degree meets the requirement",
+     "quote": "All entering students must have earned a bachelor's degree or its international equivalent prior to enrolling at the Graduate School. You may submit an application before receiving your degree, or while your degree is still in progress, as long as the degree will be completed prior to matriculation. Some countries grant an undergraduate or bachelor's-equivalent degree in three years. In such cases, completion of a three-year degree will meet the application requirement.",
+     "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+     "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE policy: GRE is not accepted.",
+      "quote": "Standardized Testing Requirements GRE is not accepted.",
+      "check": "ok"
+     },
+     {
+      "text": "Program-specific requirement: A writing sample is required by this program.",
+      "quote": "Program-Specific Application Requirements A writing sample is required by this program.",
+      "check": "ok"
+     },
+     {
+      "text": "TOEFL iBT or IELTS Academic required of most applicants whose native language is not English (exemption for an English-medium bachelor's with three years in residence)",
+      "quote": "TOEFL iBT or IELTS Academic is required of most applicants whose native language is not English.",
+      "check": "ok"
+     },
+     {
+      "text": "The Graduate School sets no TOEFL/IELTS minimum; individual departments may",
+      "quote": "Although the Graduate School does not have test minimums for admission, individual departments may have a minimum requirement and will use these scores when they review your application. Please check with the department or program to which you are applying to see if it has a minimum requirement.",
+      "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 entry",
+      "date": "2027-01-02",
+      "quote": "January 2, 2027 Deadline for fee waiver requests. Application deadline for: African Studies Applied and Computational Mathematics Archaeological Studies Architecture Computer Science (MS) Earth and Planetary Sciences East Asian Languages and Literatures* East Asian Studies Environment* European and Russian Studies French* International Development and Economics Investigative Medicine Italian Studies* Medieval Studies Near Eastern Languages and Civilizations",
+      "source_sha256": "1b2c27469027fc606ff0e549ba684af6b083bdca296a4f0963bf8b8cf18bde71",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/dates-deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Personalized Medicine and Applied Engineering (Yale GSAS)",
+   "url": "https://gsas.yale.edu/programs-of-study/personalized-medicine-applied-engineering",
+   "snapshot_sha256": "2be93ed56ea401febd73f9cc3cb75a2635b4924e47b8cd12c125b83e2ac544f2",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or international equivalent completed before enrolment; a three-year degree meets the requirement",
+     "quote": "All entering students must have earned a bachelor's degree or its international equivalent prior to enrolling at the Graduate School. You may submit an application before receiving your degree, or while your degree is still in progress, as long as the degree will be completed prior to matriculation. Some countries grant an undergraduate or bachelor's-equivalent degree in three years. In such cases, completion of a three-year degree will meet the application requirement.",
+     "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+     "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE policy: GRE is optional.",
+      "quote": "Standardized Testing Requirements GRE is optional.",
+      "check": "ok"
+     },
+     {
+      "text": "TOEFL iBT or IELTS Academic required of most applicants whose native language is not English (exemption for an English-medium bachelor's with three years in residence)",
+      "quote": "TOEFL iBT or IELTS Academic is required of most applicants whose native language is not English.",
+      "check": "ok"
+     },
+     {
+      "text": "The Graduate School sets no TOEFL/IELTS minimum; individual departments may",
+      "quote": "Although the Graduate School does not have test minimums for admission, individual departments may have a minimum requirement and will use these scores when they review your application. Please check with the department or program to which you are applying to see if it has a minimum requirement.",
+      "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 entry",
+      "date": "2026-12-15",
+      "quote": "December 15, 2026 Application deadline for: American Studies* Anthropology* Applied Physics Astronomy Biomedical Engineering Black Studies* Chemical and Environmental Engineering Classics* Comparative Literature* Computer Science (PhD) Electrical & Computer Engineering Film and Media Studies* Germanic Languages and Literatures* Law Management Materials Science Mathematics Mechanical Engineering Music* Personalized Medicine and Applied Engineering",
+      "source_sha256": "1b2c27469027fc606ff0e549ba684af6b083bdca296a4f0963bf8b8cf18bde71",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/dates-deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA in Statistics (Yale GSAS)",
+   "url": "https://gsas.yale.edu/programs-of-study/statistics",
+   "snapshot_sha256": "8c395b94d4c16201a2084fb2325100b941cd8ae2f6d0fb52bb571f0dadd892ad",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or international equivalent completed before enrolment; a three-year degree meets the requirement",
+     "quote": "All entering students must have earned a bachelor's degree or its international equivalent prior to enrolling at the Graduate School. You may submit an application before receiving your degree, or while your degree is still in progress, as long as the degree will be completed prior to matriculation. Some countries grant an undergraduate or bachelor's-equivalent degree in three years. In such cases, completion of a three-year degree will meet the application requirement.",
+     "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+     "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE policy: GRE is optional; GRE Mathematics Subject Test is optional.",
+      "quote": "Standardized Testing Requirements GRE is optional; GRE Mathematics Subject Test is optional.",
+      "check": "ok"
+     },
+     {
+      "text": "TOEFL iBT or IELTS Academic required of most applicants whose native language is not English (exemption for an English-medium bachelor's with three years in residence)",
+      "quote": "TOEFL iBT or IELTS Academic is required of most applicants whose native language is not English.",
+      "check": "ok"
+     },
+     {
+      "text": "The Graduate School sets no TOEFL/IELTS minimum; individual departments may",
+      "quote": "Although the Graduate School does not have test minimums for admission, individual departments may have a minimum requirement and will use these scores when they review your application. Please check with the department or program to which you are applying to see if it has a minimum requirement.",
+      "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 entry",
+      "date": "2026-12-01",
+      "quote": "December 1, 2026 Application deadline for: Biological and Biomedical Sciences (BBS) Chemistry Computational Biology and Biomedical Informatics (MS) Ecology and Evolutionary Biology Economics English Language and Literature* History* History of Art* History of Science and Medicine Jewish Studies* Linguistics Psychology* Public Health Statistics",
+      "source_sha256": "1b2c27469027fc606ff0e549ba684af6b083bdca296a4f0963bf8b8cf18bde71",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/dates-deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Statistics and Data Science (Yale GSAS)",
+   "url": "https://gsas.yale.edu/programs-of-study/statistics-data-science",
+   "snapshot_sha256": "64430c0eda626ac64e07d6cc222af60947961aacbd793a89db0bbe2d8a1e1559",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or international equivalent completed before enrolment; a three-year degree meets the requirement",
+     "quote": "All entering students must have earned a bachelor's degree or its international equivalent prior to enrolling at the Graduate School. You may submit an application before receiving your degree, or while your degree is still in progress, as long as the degree will be completed prior to matriculation. Some countries grant an undergraduate or bachelor's-equivalent degree in three years. In such cases, completion of a three-year degree will meet the application requirement.",
+     "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+     "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE policy: GRE is optional. GRE Mathematics Subject Test is optional.",
+      "quote": "Standardized Testing Requirements GRE is optional. GRE Mathematics Subject Test is optional.",
+      "check": "ok"
+     },
+     {
+      "text": "TOEFL iBT or IELTS Academic required of most applicants whose native language is not English (exemption for an English-medium bachelor's with three years in residence)",
+      "quote": "TOEFL iBT or IELTS Academic is required of most applicants whose native language is not English.",
+      "check": "ok"
+     },
+     {
+      "text": "The Graduate School sets no TOEFL/IELTS minimum; individual departments may",
+      "quote": "Although the Graduate School does not have test minimums for admission, individual departments may have a minimum requirement and will use these scores when they review your application. Please check with the department or program to which you are applying to see if it has a minimum requirement.",
+      "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 entry",
+      "date": "2026-12-01",
+      "quote": "December 1, 2026 Application deadline for: Biological and Biomedical Sciences (BBS) Chemistry Computational Biology and Biomedical Informatics (MS) Ecology and Evolutionary Biology Economics English Language and Literature* History* History of Art* History of Science and Medicine Jewish Studies* Linguistics Psychology* Public Health Statistics Statistics and Data Science*",
+      "source_sha256": "1b2c27469027fc606ff0e549ba684af6b083bdca296a4f0963bf8b8cf18bde71",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/dates-deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Biostatistics (Yale GSAS Public Health)",
+   "url": "https://gsas.yale.edu/programs-of-study/public-health",
+   "snapshot_sha256": "bae09283fc6de118607c3685735f5071a40d96268a8724a6be8c8b6cf7bfeb4f",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or international equivalent completed before enrolment; a three-year degree meets the requirement",
+     "quote": "All entering students must have earned a bachelor's degree or its international equivalent prior to enrolling at the Graduate School. You may submit an application before receiving your degree, or while your degree is still in progress, as long as the degree will be completed prior to matriculation. Some countries grant an undergraduate or bachelor's-equivalent degree in three years. In such cases, completion of a three-year degree will meet the application requirement.",
+     "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+     "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE required for Biostatistics (MS)",
+      "quote": "GRE is required for: Biostatistics (PhD and MS)",
+      "check": "ok"
+     },
+     {
+      "text": "TOEFL iBT or IELTS Academic required of most applicants whose native language is not English (exemption for an English-medium bachelor's with three years in residence)",
+      "quote": "TOEFL iBT or IELTS Academic is required of most applicants whose native language is not English.",
+      "check": "ok"
+     },
+     {
+      "text": "The Graduate School sets no TOEFL/IELTS minimum; individual departments may",
+      "quote": "Although the Graduate School does not have test minimums for admission, individual departments may have a minimum requirement and will use these scores when they review your application. Please check with the department or program to which you are applying to see if it has a minimum requirement.",
+      "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 entry",
+      "date": "2026-12-01",
+      "quote": "December 1, 2026 Application deadline for: Biological and Biomedical Sciences (BBS) Chemistry Computational Biology and Biomedical Informatics (MS) Ecology and Evolutionary Biology Economics English Language and Literature* History* History of Art* History of Science and Medicine Jewish Studies* Linguistics Psychology* Public Health",
+      "source_sha256": "1b2c27469027fc606ff0e549ba684af6b083bdca296a4f0963bf8b8cf18bde71",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/dates-deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Epidemiology (Yale GSAS Public Health)",
+   "url": "https://gsas.yale.edu/programs-of-study/public-health",
+   "snapshot_sha256": "bae09283fc6de118607c3685735f5071a40d96268a8724a6be8c8b6cf7bfeb4f",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or international equivalent completed before enrolment; a three-year degree meets the requirement",
+     "quote": "All entering students must have earned a bachelor's degree or its international equivalent prior to enrolling at the Graduate School. You may submit an application before receiving your degree, or while your degree is still in progress, as long as the degree will be completed prior to matriculation. Some countries grant an undergraduate or bachelor's-equivalent degree in three years. In such cases, completion of a three-year degree will meet the application requirement.",
+     "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+     "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE not accepted for Epidemiology (MS); the page lists the MS as a 10-month program",
+      "quote": "GRE is not accepted for: Chronic Disease Epidemiology (PhD) Environmental Health Sciences (PhD) Epidemiology (MS)",
+      "check": "ok"
+     },
+     {
+      "text": "TOEFL iBT or IELTS Academic required of most applicants whose native language is not English (exemption for an English-medium bachelor's with three years in residence)",
+      "quote": "TOEFL iBT or IELTS Academic is required of most applicants whose native language is not English.",
+      "check": "ok"
+     },
+     {
+      "text": "The Graduate School sets no TOEFL/IELTS minimum; individual departments may",
+      "quote": "Although the Graduate School does not have test minimums for admission, individual departments may have a minimum requirement and will use these scores when they review your application. Please check with the department or program to which you are applying to see if it has a minimum requirement.",
+      "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 entry",
+      "date": "2026-12-01",
+      "quote": "December 1, 2026 Application deadline for: Biological and Biomedical Sciences (BBS) Chemistry Computational Biology and Biomedical Informatics (MS) Ecology and Evolutionary Biology Economics English Language and Literature* History* History of Art* History of Science and Medicine Jewish Studies* Linguistics Psychology* Public Health",
+      "source_sha256": "1b2c27469027fc606ff0e549ba684af6b083bdca296a4f0963bf8b8cf18bde71",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/dates-deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Health Informatics (Yale GSAS Public Health)",
+   "url": "https://gsas.yale.edu/programs-of-study/public-health",
+   "snapshot_sha256": "bae09283fc6de118607c3685735f5071a40d96268a8724a6be8c8b6cf7bfeb4f",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or international equivalent completed before enrolment; a three-year degree meets the requirement",
+     "quote": "All entering students must have earned a bachelor's degree or its international equivalent prior to enrolling at the Graduate School. You may submit an application before receiving your degree, or while your degree is still in progress, as long as the degree will be completed prior to matriculation. Some countries grant an undergraduate or bachelor's-equivalent degree in three years. In such cases, completion of a three-year degree will meet the application requirement.",
+     "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+     "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE not accepted for Health Informatics (MS)",
+      "quote": "GRE is not accepted for: Chronic Disease Epidemiology (PhD) Environmental Health Sciences (PhD) Epidemiology (MS) Epidemiology of Microbial Diseases (PhD) Social and Behavioral Sciences (PhD) Health Informatics (MS)",
+      "check": "ok"
+     },
+     {
+      "text": "TOEFL iBT or IELTS Academic required of most applicants whose native language is not English (exemption for an English-medium bachelor's with three years in residence)",
+      "quote": "TOEFL iBT or IELTS Academic is required of most applicants whose native language is not English.",
+      "check": "ok"
+     },
+     {
+      "text": "The Graduate School sets no TOEFL/IELTS minimum; individual departments may",
+      "quote": "Although the Graduate School does not have test minimums for admission, individual departments may have a minimum requirement and will use these scores when they review your application. Please check with the department or program to which you are applying to see if it has a minimum requirement.",
+      "source_sha256": "8796fcce1527dd857884a9acae892f25f0fec735d21f72d4c23daaf99c87e65a",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/guidance-international-students",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 entry",
+      "date": "2026-12-01",
+      "quote": "December 1, 2026 Application deadline for: Biological and Biomedical Sciences (BBS) Chemistry Computational Biology and Biomedical Informatics (MS) Ecology and Evolutionary Biology Economics English Language and Literature* History* History of Art* History of Science and Medicine Jewish Studies* Linguistics Psychology* Public Health",
+      "source_sha256": "1b2c27469027fc606ff0e549ba684af6b083bdca296a4f0963bf8b8cf18bde71",
+      "source_url": "https://gsas.yale.edu/admissions/phdmasters-application-process/dates-deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Administration (Yale SOM)",
+   "url": "https://som.yale.edu/programs/mba",
+   "snapshot_sha256": "bbcb68f3fbc624badd43c1da87b30645428ca53e96959ec806717daa2538427b",
+   "fields": {
+    "academic": {
+     "text": "Any academic background; no quantitative coursework prerequisite (no degree level or grade threshold is stated on this page)",
+     "quote": "we welcome students from all academic backgrounds and disciplines; quantitative coursework is not a prerequisite for the program.",
+     "source_sha256": "ebe9d9d72d997c8a5d64cc8824dc36de8d4d86a579c6c487ef87908e352b98e1",
+     "source_url": "https://som.yale.edu/programs/mba/admissions/application-information/application-guide",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GMAT or GRE accepted (LSAT also accepted)",
+      "quote": "We accept both the GMAT and the GRE, including the online and newer, shorter versions of the exams.",
+      "source_sha256": "ebe9d9d72d997c8a5d64cc8824dc36de8d4d86a579c6c487ef87908e352b98e1",
+      "source_url": "https://som.yale.edu/programs/mba/admissions/application-information/application-guide",
+      "check": "ok"
+     },
+     {
+      "text": "No English language test required",
+      "quote": "we do not require non-native English speakers to submit an English language test such as the TOEFL, IELTS, or PTE.",
+      "source_sha256": "ebe9d9d72d997c8a5d64cc8824dc36de8d4d86a579c6c487ef87908e352b98e1",
+      "source_url": "https://som.yale.edu/programs/mba/admissions/application-information/application-guide",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Round 2",
+      "date": "2027-01-06",
+      "quote": "Round 2 January 6, 2027",
+      "source_sha256": "6345ecb4a6aa13461890e10212557405d0f62ccd663f71c002efc4ed8e4eaf5a",
+      "source_url": "https://som.yale.edu/programs/mba/admissions/application-information",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3",
+      "date": "2027-04-07",
+      "quote": "Round 3 April 7, 2027",
+      "source_sha256": "6345ecb4a6aa13461890e10212557405d0f62ccd663f71c002efc4ed8e4eaf5a",
+      "source_url": "https://som.yale.edu/programs/mba/admissions/application-information",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Advanced Management (Yale SOM)",
+   "url": "https://som.yale.edu/programs/mam",
+   "snapshot_sha256": "ffdce0f1781cded598ac060b5677ee1150dba3630e4efad9aa8fe5ab687c4f40",
+   "fields": {
+    "academic": {
+     "text": "Recent MBA graduates (or MBA students about to graduate) from top international business schools",
+     "quote": "Admission to the Master of Advanced Management program is available to MBA students from top international business schools, including those in the Global Network for Advanced Management, who either (1) have recently graduated with an MBA degree or (2) who are enrolled in an MBA program and expect to receive their MBA degree or equivalent before matriculating at Yale.",
+     "source_sha256": "304dd52d394be74bb8645dc2eeebcfd3c5032e14e6c5c67ece24f22fefaeb415",
+     "source_url": "https://som.yale.edu/programs/mam/admissions/application-information",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Round 1 (first date in the table; Global Network schools only)",
+      "date": "2026-12-01",
+      "quote": "Application Round Deadline December 1, 2026 January 12, 2027 February 23, 2027 March 30, 2027",
+      "source_sha256": "304dd52d394be74bb8645dc2eeebcfd3c5032e14e6c5c67ece24f22fefaeb415",
+      "source_url": "https://som.yale.edu/programs/mam/admissions/application-information",
+      "check": "ok"
+     },
+     {
+      "label": "Round 2 (second date in the table)",
+      "date": "2027-01-12",
+      "quote": "Application Round Deadline December 1, 2026 January 12, 2027 February 23, 2027 March 30, 2027",
+      "source_sha256": "304dd52d394be74bb8645dc2eeebcfd3c5032e14e6c5c67ece24f22fefaeb415",
+      "source_url": "https://som.yale.edu/programs/mam/admissions/application-information",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3 (third date in the table)",
+      "date": "2027-02-23",
+      "quote": "Application Round Deadline December 1, 2026 January 12, 2027 February 23, 2027 March 30, 2027",
+      "source_sha256": "304dd52d394be74bb8645dc2eeebcfd3c5032e14e6c5c67ece24f22fefaeb415",
+      "source_url": "https://som.yale.edu/programs/mam/admissions/application-information",
+      "check": "ok"
+     },
+     {
+      "label": "Round 4 (fourth date in the table)",
+      "date": "2027-03-30",
+      "quote": "Application Round Deadline December 1, 2026 January 12, 2027 February 23, 2027 March 30, 2027",
+      "source_sha256": "304dd52d394be74bb8645dc2eeebcfd3c5032e14e6c5c67ece24f22fefaeb415",
+      "source_url": "https://som.yale.edu/programs/mam/admissions/application-information",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Management Studies in Global Business and Society (Yale SOM)",
+   "url": "https://som.yale.edu/programs/mms-global-business-and-society",
+   "snapshot_sha256": "35c2a3383308eb67b6b20cad4fa49186d652a74ac4c0c47f6555deaca3b05098",
+   "fields": {
+    "academic": {
+     "text": "Enrolled in or recently graduated from a top business school with a master in management (or equivalent)",
+     "quote": "Admission to the MMS in Global Business and Society program is available to students who either are enrolled or have recently graduated from a top business school from around the world, including those in the Global Network for Advanced Management, with a master in management (or equivalent) degree.",
+     "source_sha256": "aa6b981e2123921704beede213bbd0fb1e215e762948111193e307583c9ce569",
+     "source_url": "https://som.yale.edu/programs/mms-global-business-and-society/admissions/application-information",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GMAT or GRE score report required; no minimum score",
+      "quote": "We accept both the GMAT and the GRE. This includes the online versions of the exams offered during the COVID-19 pandemic. You must submit an official GMAT or GRE score report as it is required as part of the application. There is no minimum score to apply.",
+      "source_sha256": "aa6b981e2123921704beede213bbd0fb1e215e762948111193e307583c9ce569",
+      "source_url": "https://som.yale.edu/programs/mms-global-business-and-society/admissions/application-information",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Round 1 (first date in the table; Global Network schools only)",
+      "date": "2026-12-01",
+      "quote": "Application Round Deadline December 1, 2026 January 12, 2027 February 23, 2027 March 30, 2027",
+      "source_sha256": "aa6b981e2123921704beede213bbd0fb1e215e762948111193e307583c9ce569",
+      "source_url": "https://som.yale.edu/programs/mms-global-business-and-society/admissions/application-information",
+      "check": "ok"
+     },
+     {
+      "label": "Round 2 (second date in the table)",
+      "date": "2027-01-12",
+      "quote": "Application Round Deadline December 1, 2026 January 12, 2027 February 23, 2027 March 30, 2027",
+      "source_sha256": "aa6b981e2123921704beede213bbd0fb1e215e762948111193e307583c9ce569",
+      "source_url": "https://som.yale.edu/programs/mms-global-business-and-society/admissions/application-information",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3 (third date in the table)",
+      "date": "2027-02-23",
+      "quote": "Application Round Deadline December 1, 2026 January 12, 2027 February 23, 2027 March 30, 2027",
+      "source_sha256": "aa6b981e2123921704beede213bbd0fb1e215e762948111193e307583c9ce569",
+      "source_url": "https://som.yale.edu/programs/mms-global-business-and-society/admissions/application-information",
+      "check": "ok"
+     },
+     {
+      "label": "Round 4 (fourth date in the table)",
+      "date": "2027-03-30",
+      "quote": "Application Round Deadline December 1, 2026 January 12, 2027 February 23, 2027 March 30, 2027",
+      "source_sha256": "aa6b981e2123921704beede213bbd0fb1e215e762948111193e307583c9ce569",
+      "source_url": "https://som.yale.edu/programs/mms-global-business-and-society/admissions/application-information",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's in Asset Management (Yale SOM)",
+   "url": "https://som.yale.edu/programs/mms-asset-management",
+   "snapshot_sha256": "83f2797349dd44e544b11f3ae5c706b701df40e649a9a1f4bbfd4a5116c81816",
+   "fields": {
+    "academic": {
+     "text": "Any academic background; no required major or prerequisite courses (no degree level or grade threshold is stated on this page)",
+     "quote": "We welcome students from every academic background and discipline. There is no required major, no single “right” path into the program, and no required prerequisite courses.",
+     "source_sha256": "baacfba62980ff05c109e15fb6683e3c436cc7f9e5f744f55ab31edd296e0807",
+     "source_url": "https://som.yale.edu/programs/mms-asset-management/admissions/application-guide",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GMAT or GRE required; no minimum score",
+      "quote": "We require either the GMAT or the GRE, and we have no preference between them.",
+      "source_sha256": "baacfba62980ff05c109e15fb6683e3c436cc7f9e5f744f55ab31edd296e0807",
+      "source_url": "https://som.yale.edu/programs/mms-asset-management/admissions/application-guide",
+      "check": "ok"
+     },
+     {
+      "text": "TOEFL, Duolingo (DET) or IELTS score for applicants whose native language is not English and who have no degree from an English-speaking country; no minimum score stated",
+      "quote": "If your native language is not English and you have not completed a degree in an English-speaking country, we ask you to submit a TOEFL, DET, or IELTS score.",
+      "source_sha256": "baacfba62980ff05c109e15fb6683e3c436cc7f9e5f744f55ab31edd296e0807",
+      "source_url": "https://som.yale.edu/programs/mms-asset-management/admissions/application-guide",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "2026-27 application",
+      "date": "2027-01-07",
+      "quote": "Application Deadline: January 7, 2027",
+      "source_sha256": "baacfba62980ff05c109e15fb6683e3c436cc7f9e5f744f55ab31edd296e0807",
+      "source_url": "https://som.yale.edu/programs/mms-asset-management/admissions/application-guide",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Management Studies in Systemic Risk (Yale SOM)",
+   "url": "https://som.yale.edu/programs/mms-systemic-risk",
+   "snapshot_sha256": "e778ad0c31ff79f6568bf46f489be85d4ac18a48ee7f13d249c6301290e1b7d9",
+   "fields": {
+    "academic": {
+     "text": "Undergraduate degree in economics, finance, statistics or a related field",
+     "quote": "Undergraduate degree in economics, finance, statistics, or a related field",
+     "source_sha256": "ddf07ac5c89131a1da62bbf7b2123f313fce7660b4be80626e521dd7d5ab3b21",
+     "source_url": "https://som.yale.edu/programs/mms-systemic-risk/admissions",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Nomination by a qualified institution (central bank or major regulatory agency) required",
+      "quote": "All candidates for admission to the Master’s Degree in Systemic Risk program must first be nominated by a qualified institution.",
+      "source_sha256": "ddf07ac5c89131a1da62bbf7b2123f313fce7660b4be80626e521dd7d5ab3b21",
+      "source_url": "https://som.yale.edu/programs/mms-systemic-risk/admissions",
+      "check": "ok"
+     },
+     {
+      "text": "GRE or GMAT required",
+      "quote": "GRE or GMAT",
+      "source_sha256": "ddf07ac5c89131a1da62bbf7b2123f313fce7660b4be80626e521dd7d5ab3b21",
+      "source_url": "https://som.yale.edu/programs/mms-systemic-risk/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Environmental Management (Yale School of the Environment)",
+   "url": "https://environment.yale.edu/academics/masters/mem",
+   "snapshot_sha256": "bc55d2a0085351c822ab0bfe0167c6dad675e1a6720b7fdc81129fd42db528a5",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree from an accredited U.S. institution or the international equivalent; a three-year degree is eligible subject to an equivalency evaluation",
+     "quote": "A four-year bachelor’s degree from an accredited U.S. institution or the international equivalent is required.",
+     "source_sha256": "91f0a58833cf9a662191767f7495e476d0929ecdb74d50de3cf554702d6a4be4",
+     "source_url": "https://environment.yale.edu/admissions/masters/application-materials-list",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "Yale School of the Environment requires a minimum overall score of 5.0 on the new scale, which reflects the same proficiency band as YSE’s previous minimum requirement of 100 on the 0–120 scale.",
+     "source_sha256": "331672db622a31c46e74985c837ec86f496fc256ebbf3dff6a9ec805c01540e3",
+     "source_url": "https://environment.yale.edu/admissions/masters/faq",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.5,
+     "quote": "Minimum overall band = 7.0 (please note: you must receive a minimum of a 6.5 on each individual section)",
+     "source_sha256": "91f0a58833cf9a662191767f7495e476d0929ecdb74d50de3cf554702d6a4be4",
+     "source_url": "https://environment.yale.edu/admissions/masters/application-materials-list",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE, GMAT or LSAT optional",
+      "quote": "The submission of the GRE, GMAT, or LSAT score is optional at this time.",
+      "source_sha256": "331672db622a31c46e74985c837ec86f496fc256ebbf3dff6a9ec805c01540e3",
+      "source_url": "https://environment.yale.edu/admissions/masters/faq",
+      "check": "ok"
+     },
+     {
+      "text": "TOEFL or IELTS required unless English was the language of instruction at the undergraduate institution; Duolingo not accepted",
+      "quote": "The TOEFL exam or the IELTS exam is required if your native language is not English or if English was not your primary language of instruction at your degree-granting undergraduate institution.",
+      "source_sha256": "91f0a58833cf9a662191767f7495e476d0929ecdb74d50de3cf554702d6a4be4",
+      "source_url": "https://environment.yale.edu/admissions/masters/application-materials-list",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Forestry (Yale School of the Environment)",
+   "url": "https://environment.yale.edu/academics/masters/mf",
+   "snapshot_sha256": "269d2c904369dfd32ace7854371ffc342e587d9bae73cc2f888d7b6ab0e3a240",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree from an accredited U.S. institution or the international equivalent; a three-year degree is eligible subject to an equivalency evaluation",
+     "quote": "A four-year bachelor’s degree from an accredited U.S. institution or the international equivalent is required.",
+     "source_sha256": "91f0a58833cf9a662191767f7495e476d0929ecdb74d50de3cf554702d6a4be4",
+     "source_url": "https://environment.yale.edu/admissions/masters/application-materials-list",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "Yale School of the Environment requires a minimum overall score of 5.0 on the new scale, which reflects the same proficiency band as YSE’s previous minimum requirement of 100 on the 0–120 scale.",
+     "source_sha256": "331672db622a31c46e74985c837ec86f496fc256ebbf3dff6a9ec805c01540e3",
+     "source_url": "https://environment.yale.edu/admissions/masters/faq",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.5,
+     "quote": "Minimum overall band = 7.0 (please note: you must receive a minimum of a 6.5 on each individual section)",
+     "source_sha256": "91f0a58833cf9a662191767f7495e476d0929ecdb74d50de3cf554702d6a4be4",
+     "source_url": "https://environment.yale.edu/admissions/masters/application-materials-list",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE, GMAT or LSAT optional",
+      "quote": "The submission of the GRE, GMAT, or LSAT score is optional at this time.",
+      "source_sha256": "331672db622a31c46e74985c837ec86f496fc256ebbf3dff6a9ec805c01540e3",
+      "source_url": "https://environment.yale.edu/admissions/masters/faq",
+      "check": "ok"
+     },
+     {
+      "text": "TOEFL or IELTS required unless English was the language of instruction at the undergraduate institution; Duolingo not accepted",
+      "quote": "The TOEFL exam or the IELTS exam is required if your native language is not English or if English was not your primary language of instruction at your degree-granting undergraduate institution.",
+      "source_sha256": "91f0a58833cf9a662191767f7495e476d0929ecdb74d50de3cf554702d6a4be4",
+      "source_url": "https://environment.yale.edu/admissions/masters/application-materials-list",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Public Policy (Yale Jackson School of Global Affairs)",
+   "url": "https://jackson.yale.edu/academics-admissions/master-public-policy",
+   "snapshot_sha256": "bb30fbc9a97ed49d73ed15649ac9be0c1f0fd3258e04b6a43e751288af09a78e",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or equivalent completed before matriculation; no minimum GPA",
+     "quote": "A Bachelor's degree (or equivalent) completed prior to matriculation.",
+     "source_sha256": "dc8f206886a7fda408b34d0533c68e572855e8a012f0fbc81a143a9d8761bdf0",
+     "source_url": "https://jackson.yale.edu/academics-admissions/mpp-admissions",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "General GRE required for MPP applicants; no cutoff or minimum",
+      "quote": "The general GRE is required for MPP applicants",
+      "source_sha256": "dc8f206886a7fda408b34d0533c68e572855e8a012f0fbc81a143a9d8761bdf0",
+      "source_url": "https://jackson.yale.edu/academics-admissions/mpp-admissions",
+      "check": "ok"
+     },
+     {
+      "text": "TOEFL, IELTS or Duolingo English Test for applicants whose native language is not English; no minimum stated",
+      "quote": "Applicants whose native language is not English are required to take the TOEFL, IELTS, or Duolingo English Test.",
+      "source_sha256": "dc8f206886a7fda408b34d0533c68e572855e8a012f0fbc81a143a9d8761bdf0",
+      "source_url": "https://jackson.yale.edu/academics-admissions/mpp-admissions",
+      "check": "ok"
+     },
+     {
+      "text": "Graduation requirement (not an admission test): Level 4 proficiency in a modern language other than English",
+      "quote": "By graduation, all MPP students must achieve Level 4 proficiency in a modern language (other than English).",
+      "source_sha256": "bb30fbc9a97ed49d73ed15649ac9be0c1f0fd3258e04b6a43e751288af09a78e",
+      "source_url": "https://jackson.yale.edu/academics-admissions/master-public-policy",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Advanced Study (Yale Jackson School of Global Affairs)",
+   "url": "https://jackson.yale.edu/academics-admissions/master-advanced-study",
+   "snapshot_sha256": "dce21f380d752061058b34b9da94d6c783ab267b923c9c21471f63da63de325b",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or equivalent completed before matriculation; no minimum GPA",
+     "quote": "A Bachelor's degree (or equivalent) completed prior to matriculation.",
+     "source_sha256": "5d76b2a9539b4ac1c156f918b9847c6f0342bda4219bcba5f14eb28a680ea3b9",
+     "source_url": "https://jackson.yale.edu/academics-admissions/mas-admissions",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "General GRE optional",
+      "quote": "The general GRE is optional for MAS applicants.",
+      "source_sha256": "5d76b2a9539b4ac1c156f918b9847c6f0342bda4219bcba5f14eb28a680ea3b9",
+      "source_url": "https://jackson.yale.edu/academics-admissions/mas-admissions",
+      "check": "ok"
+     },
+     {
+      "text": "TOEFL, IELTS or Duolingo English Test for applicants whose native language is not English; no minimum stated",
+      "quote": "Applicants whose native language is not English are required to take the TOEFL, IELTS, or Duolingo English Test.",
+      "source_sha256": "5d76b2a9539b4ac1c156f918b9847c6f0342bda4219bcba5f14eb28a680ea3b9",
+      "source_url": "https://jackson.yale.edu/academics-admissions/mas-admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Laws, LL.M. (Yale Law School)",
+   "url": "https://law.yale.edu/studying-law-yale/degree-programs/graduate-programs/llm-program",
+   "snapshot_sha256": "47f6f3861437ae86e3f7ac0e804360186fec898095e6b9794ac3e0db6b438daa",
+   "fields": {
+    "academic": {
+     "text": "First law degree with high rank from a law school or faculty substantially equivalent to U.S. law schools, completed by the summer before matriculation (non-U.S. applicants)",
+     "quote": "applicants must have graduated, or expect to graduate by the summer before their intended matriculation at Yale Law School, with high rank from a law school or law faculty with standards substantially equivalent to those of U.S. law schools.",
+     "source_sha256": "7ec7e25ffba0d712969e9c6b5b4f611666ecec05fd31f039e7b014102d892570",
+     "source_url": "https://law.yale.edu/studying-law-yale/degree-programs/graduate-programs/llm-program/llm-admission",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "min_band": 25,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "The Admissions Committee requires a minimum TOEFL score of 5.5 on the Internet-based test. Exams taken before January 21, 2026, require a minimum score of 100 with subsections scores of 25.",
+     "source_sha256": "7ec7e25ffba0d712969e9c6b5b4f611666ecec05fd31f039e7b014102d892570",
+     "source_url": "https://law.yale.edu/studying-law-yale/degree-programs/graduate-programs/llm-program/llm-admission",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Two to four letters of recommendation through LSAC",
+      "quote": "We require a minimum of two, and accept a maximum of four, letters of recommendation.",
+      "source_sha256": "7ec7e25ffba0d712969e9c6b5b4f611666ecec05fd31f039e7b014102d892570",
+      "source_url": "https://law.yale.edu/studying-law-yale/degree-programs/graduate-programs/llm-program/llm-admission",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Studies in Law, M.S.L. (Yale Law School)",
+   "url": "https://law.yale.edu/studying-law-yale/degree-programs/graduate-programs/msl-program",
+   "snapshot_sha256": "12be30d301ac641fb6ea05ada3f4b771b84b46f184b2df86ffb0a6b80dd627a2",
+   "fields": {
+    "academic": {
+     "text": "Doctoral degree or doctoral candidacy in a field other than law; working journalists need a bachelor's degree",
+     "quote": "applicants must have a doctoral degree or be a doctoral candidate in a field other than law, unless the applicant is a working journalist, for which a bachelor's degree is required.",
+     "source_sha256": "6c8d3af9f0d048d580575e85892136732d19eb0a5d59c32eba588127e878863b",
+     "source_url": "https://law.yale.edu/studying-law-yale/degree-programs/graduate-programs/msl-program/msl-admission",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "Minimum TOEFL iBT 5.5 on the 1-6 scale, unless the native language is English or the undergraduate instruction was in English",
+     "quote": "We require a minimum TOEFL score of 5.5 on the Internet-based test)",
+     "source_sha256": "6c8d3af9f0d048d580575e85892136732d19eb0a5d59c32eba588127e878863b",
+     "source_url": "https://law.yale.edu/studying-law-yale/degree-programs/graduate-programs/msl-program/msl-admission",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Architecture I (Yale School of Architecture)",
+   "url": "https://www.architecture.yale.edu/academics/programs/1-m-arch-i",
+   "snapshot_sha256": "7cd1c397979040f0e9cdc516e8213dfc0fa6c70397987451276916cde54b1dc9",
+   "fields": {
+    "academic": {
+     "text": "Undergraduate degree (e.g. B.A. or B.S.) in any discipline",
+     "quote": "This program, leading to a degree of Master of Architecture (M.Arch.), is for students holding undergraduate liberal arts degrees, such as a B.A. or B.S., who seek their first professional architectural degree.",
+     "source_sha256": "7cd1c397979040f0e9cdc516e8213dfc0fa6c70397987451276916cde54b1dc9",
+     "source_url": "https://www.architecture.yale.edu/academics/programs/1-m-arch-i",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "TOEFL iBT required unless three years of English-medium university study; IELTS not accepted; no minimum stated",
+      "quote": "The Internet-based Test of English as a Foreign Language (TOEFL iBT) is required of all applicants whose native language is not English.",
+      "source_sha256": "8a591371e2c96fc84d052ca8203e341ac10471c377a67c11bf307af2b164a337",
+      "source_url": "https://www.architecture.yale.edu/admissions/requirements",
+      "check": "ok"
+     },
+     {
+      "text": "GRE required",
+      "quote": "The Graduate Record Examination (GRE) is required for applications to the M.Arch. I, M.Arch II, and MED programs.",
+      "source_sha256": "8a591371e2c96fc84d052ca8203e341ac10471c377a67c11bf307af2b164a337",
+      "source_url": "https://www.architecture.yale.edu/admissions/requirements",
+      "check": "ok"
+     },
+     {
+      "text": "Digital portfolio required",
+      "quote": "A digital portfolio (a single pdf document optimized not to exceed 40MB) is required",
+      "source_sha256": "8a591371e2c96fc84d052ca8203e341ac10471c377a67c11bf307af2b164a337",
+      "source_url": "https://www.architecture.yale.edu/admissions/requirements",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "2027-2028 academic year",
+      "date": "2027-01-02",
+      "quote": "must be submitted no later than 5 p.m. Eastern Standard Time on January 2, 2027.",
+      "source_sha256": "8a591371e2c96fc84d052ca8203e341ac10471c377a67c11bf307af2b164a337",
+      "source_url": "https://www.architecture.yale.edu/admissions/requirements",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Architecture II, post-professional (Yale School of Architecture)",
+   "url": "https://www.architecture.yale.edu/academics/programs/2-m-arch",
+   "snapshot_sha256": "a1d08fa35bf32ac524de7368e48a09c9859c2dcbb9b1647d6f029262e1428cf2",
+   "fields": {
+    "academic": {
+     "text": "First professional degree in architecture (B.Arch. or equivalent)",
+     "quote": "The post-professional degree program is for students already holding a professional degree in architecture (B.Arch., or an equivalent first professional degree)",
+     "source_sha256": "a1d08fa35bf32ac524de7368e48a09c9859c2dcbb9b1647d6f029262e1428cf2",
+     "source_url": "https://www.architecture.yale.edu/academics/programs/2-m-arch",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "TOEFL iBT required unless three years of English-medium university study; IELTS not accepted; no minimum stated",
+      "quote": "The Internet-based Test of English as a Foreign Language (TOEFL iBT) is required of all applicants whose native language is not English.",
+      "source_sha256": "8a591371e2c96fc84d052ca8203e341ac10471c377a67c11bf307af2b164a337",
+      "source_url": "https://www.architecture.yale.edu/admissions/requirements",
+      "check": "ok"
+     },
+     {
+      "text": "GRE required",
+      "quote": "The Graduate Record Examination (GRE) is required for applications to the M.Arch. I, M.Arch II, and MED programs.",
+      "source_sha256": "8a591371e2c96fc84d052ca8203e341ac10471c377a67c11bf307af2b164a337",
+      "source_url": "https://www.architecture.yale.edu/admissions/requirements",
+      "check": "ok"
+     },
+     {
+      "text": "Digital portfolio and a design research thesis proposal required",
+      "quote": "A digital portfolio (a single pdf document optimized not to exceed 40MB) is required",
+      "source_sha256": "8a591371e2c96fc84d052ca8203e341ac10471c377a67c11bf307af2b164a337",
+      "source_url": "https://www.architecture.yale.edu/admissions/requirements",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "2027-2028 academic year",
+      "date": "2027-01-02",
+      "quote": "must be submitted no later than 5 p.m. Eastern Standard Time on January 2, 2027.",
+      "source_sha256": "8a591371e2c96fc84d052ca8203e341ac10471c377a67c11bf307af2b164a337",
+      "source_url": "https://www.architecture.yale.edu/admissions/requirements",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Music, M.M. (Yale School of Music)",
+   "url": "https://music.yale.edu/degrees-and-programs",
+   "snapshot_sha256": "721a26226b0e400a4b349367a3c84f9b3d07f913e473b3670b6c18ebf6ca56a1",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or equivalent in any major",
+     "quote": "It is a two-year program for students who hold a bachelor’s degree or its equivalent in any major and seek a master’s degree in their area of specialty.",
+     "source_sha256": "721a26226b0e400a4b349367a3c84f9b3d07f913e473b3670b6c18ebf6ca56a1",
+     "source_url": "https://music.yale.edu/degrees-and-programs",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 86,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "All other degree programs: 4.5 total score on the new scoring scale (iBT 86), 227 computer, or 567 paper",
+     "source_sha256": "d398c2f2b1c61dfc39e717a2af1de83f51b157f8e235a96339b0f0bf4eae46a4",
+     "source_url": "https://music.yale.edu/how-apply",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "All other degree programs: 6.5 overall band score",
+     "source_sha256": "d398c2f2b1c61dfc39e717a2af1de83f51b157f8e235a96339b0f0bf4eae46a4",
+     "source_url": "https://music.yale.edu/how-apply",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Prescreening recording and live audition",
+      "quote": "Admission to the M.M. program is through an application process that includes the submission of a prescreening recording and a live audition for the relevant area faculty.",
+      "source_sha256": "721a26226b0e400a4b349367a3c84f9b3d07f913e473b3670b6c18ebf6ca56a1",
+      "source_url": "https://music.yale.edu/degrees-and-programs",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Musical Arts, M.M.A. (Yale School of Music)",
+   "url": "https://music.yale.edu/degrees-and-programs",
+   "snapshot_sha256": "721a26226b0e400a4b349367a3c84f9b3d07f913e473b3670b6c18ebf6ca56a1",
+   "fields": {
+    "academic": {
+     "text": "Master of Music degree in the same major",
+     "quote": "An M.M. degree in the same major is required for admission to the M.M.A. program.",
+     "source_sha256": "721a26226b0e400a4b349367a3c84f9b3d07f913e473b3670b6c18ebf6ca56a1",
+     "source_url": "https://music.yale.edu/degrees-and-programs",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 86,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "All other degree programs: 4.5 total score on the new scoring scale (iBT 86), 227 computer, or 567 paper",
+     "source_sha256": "d398c2f2b1c61dfc39e717a2af1de83f51b157f8e235a96339b0f0bf4eae46a4",
+     "source_url": "https://music.yale.edu/how-apply",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "All other degree programs: 6.5 overall band score",
+     "source_sha256": "d398c2f2b1c61dfc39e717a2af1de83f51b157f8e235a96339b0f0bf4eae46a4",
+     "source_url": "https://music.yale.edu/how-apply",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Prescreening recording and live audition",
+      "quote": "includes a prescreening recording and a live audition for the relevant area faculty.",
+      "source_sha256": "721a26226b0e400a4b349367a3c84f9b3d07f913e473b3670b6c18ebf6ca56a1",
+      "source_url": "https://music.yale.edu/degrees-and-programs",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Fine Arts (David Geffen School of Drama)",
+   "url": "https://www.drama.yale.edu/admissions/",
+   "snapshot_sha256": "9061ce26865e8766b1199518e01b5d53f72eb03fe7ad9ba5ddd58b92d14672a6",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from an accredited college",
+     "quote": "on students holding a bachelor’s degree from an accredited college who complete with distinction",
+     "source_sha256": "9061ce26865e8766b1199518e01b5d53f72eb03fe7ad9ba5ddd58b92d14672a6",
+     "source_url": "https://www.drama.yale.edu/admissions/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "TOEFL iBT or IELTS by January 15 unless the bachelor's degree was taught in English; no minimum score",
+      "quote": "We do not have a minimum TOEFL or IELTS score but we expect candidates to be fluent in English.",
+      "source_sha256": "40d1675922cdf5d2adaec69f27a0f3e323e9634f91162ae33c9c49017a10ca74",
+      "source_url": "https://www.drama.yale.edu/admissions/international-student-applicants/",
+      "check": "ok"
+     },
+     {
+      "text": "GRE not required",
+      "quote": "David Geffen School of Drama has eliminated the Graduate Record Examination (GRE) requirement for prospective applicants.",
+      "source_sha256": "6cdd908860fc42a05a60666f3c0dde35926711c9adbd093f8a8d7662c3a0ad61",
+      "source_url": "https://www.drama.yale.edu/admissions/application-deadlines-and-fees/",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Playwriting; Technical Design and Production",
+      "date": "2026-11-23",
+      "quote": "November 23, 2026: Playwriting and Technical Design and Production",
+      "source_sha256": "6cdd908860fc42a05a60666f3c0dde35926711c9adbd093f8a8d7662c3a0ad61",
+      "source_url": "https://www.drama.yale.edu/admissions/application-deadlines-and-fees/",
+      "check": "ok"
+     },
+     {
+      "label": "Directing; Stage Management",
+      "date": "2026-12-01",
+      "quote": "December 1, 2026: Directing and Stage Management",
+      "source_sha256": "6cdd908860fc42a05a60666f3c0dde35926711c9adbd093f8a8d7662c3a0ad61",
+      "source_url": "https://www.drama.yale.edu/admissions/application-deadlines-and-fees/",
+      "check": "ok"
+     },
+     {
+      "label": "Acting; Design; Dramaturgy and Dramatic Criticism; Theater Management",
+      "date": "2027-01-04",
+      "quote": "January 4, 2027: Acting, Design, Dramaturgy and Dramatic Criticism, and Theater Management.",
+      "source_sha256": "6cdd908860fc42a05a60666f3c0dde35926711c9adbd093f8a8d7662c3a0ad61",
+      "source_url": "https://www.drama.yale.edu/admissions/application-deadlines-and-fees/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Fine Arts (Yale School of Art)",
+   "url": "https://art.yale.edu/apply/how-to-apply",
+   "snapshot_sha256": "411f185950c94236fc21cd6a736d56847525ea7ad3006f9151da0d6793f3579d",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from an accredited college or university, or a diploma from a four-year accredited art school",
+     "quote": "Standard educational requirements for the Yale School of Art include a bachelor’s degree from an accredited college or university or a diploma from a four-year accredited art school.",
+     "source_sha256": "411f185950c94236fc21cd6a736d56847525ea7ad3006f9151da0d6793f3579d",
+     "source_url": "https://art.yale.edu/apply/how-to-apply",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English test for applicants whose undergraduate instruction was not in English; the page gives recommended scores (TOEFL iBT 100, IELTS 7), not minimums",
+      "quote": "Test of English as a Foreign Language (TOEFL IBT, recommended score: 100 or higher. TOEFL code: 3982) The International English Language Testing System (IELTS, recommended score: 7 or higher)",
+      "source_sha256": "411f185950c94236fc21cd6a736d56847525ea7ad3006f9151da0d6793f3579d",
+      "source_url": "https://art.yale.edu/apply/how-to-apply",
+      "check": "ok"
+     },
+     {
+      "text": "GRE not required",
+      "quote": "Graduate Record Examination (GRE) scores are not required for admission.",
+      "source_sha256": "411f185950c94236fc21cd6a736d56847525ea7ad3006f9151da0d6793f3579d",
+      "source_url": "https://art.yale.edu/apply/how-to-apply",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "2027-2028 academic year",
+      "date": "2027-01-10",
+      "quote": "it is due January 10, 2027 at 11:59PM",
+      "source_sha256": "411f185950c94236fc21cd6a736d56847525ea7ad3006f9151da0d6793f3579d",
+      "source_url": "https://art.yale.edu/apply/how-to-apply",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Nursing, MSN (Yale School of Nursing)",
+   "url": "https://apply.nursing.yale.edu/portal/admissions?cmd=howtoapply",
+   "snapshot_sha256": "072d49a7f7be82971a155936167e5b77e814f1b49e05866bdbb9b1cb69228bad",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "Online application, CV, three letters, transcripts (WES/TEC evaluation for non-US coursework), TOEFL or IELTS if applicable, essay, video and timed writing assessment; GRE only if undergraduate GPA was below 3.0",
+      "quote": "Master of Science in Nursing (MSN) All MSN applicants must submit an online application along with a non-refundable application fee. You are required to select a single area of specialty when you apply. A complete application requires: Current resume/CV Three letters of recommendation submitted electronically through the application system Official transcripts for any postsecondary institutions attended, and/or TEC or WES evaluation for coursework outside the US or Canada English language proficiency exam results (TOEFL or IELTS) if applicable A personal essay (prompt available in the application) Asynchronous video and timed writing assessment GRE score results are NOT required unless cumulative undergraduate GPA was below 3.0",
+      "source_sha256": "072d49a7f7be82971a155936167e5b77e814f1b49e05866bdbb9b1cb69228bad",
+      "source_url": "https://apply.nursing.yale.edu/portal/admissions?cmd=howtoapply",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Graduate Entry Prespecialty in Nursing, MSN pathway (Yale School of Nursing)",
+   "url": "https://apply.nursing.yale.edu/portal/admissions?cmd=howtoapply",
+   "snapshot_sha256": "072d49a7f7be82971a155936167e5b77e814f1b49e05866bdbb9b1cb69228bad",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree; no prior nursing experience required",
+     "quote": "Holding a bachelor's degree, with no prior nursing experience required",
+     "source_sha256": "072d49a7f7be82971a155936167e5b77e814f1b49e05866bdbb9b1cb69228bad",
+     "source_url": "https://apply.nursing.yale.edu/portal/admissions?cmd=howtoapply",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Online application, CV, three letters, transcripts, TOEFL or IELTS if applicable, essay, video and timed writing assessment; GRE only if NursingCAS undergraduate GPA was below 3.0",
+      "quote": "Graduate Entry Prespecialty in Nursing (GEPN) These instructions apply to GEPN applicants applying to either the DNP or the MSN pathway. All GEPN applicants must submit an online application along with a non-refundable application fee. You are required to select a single area of specialty when you apply, and we encourage you to research the different specialties to identify one which best aligns with your interests. A complete application requires: Current resume/CV Three letters of recommendation submitted electronically through the application system Official transcripts for any postsecondary institutions attended, and/or TEC (formerly SpanTran) or WES evaluation of coursework taken outside the US or Canada English language proficiency exam results (TOEFL or IELTS) if applicable A personal essay (prompt available in the application) Asynchronous video and timed writing assessment GRE score results are NOT required unless cumulative undergraduate GPA as calculated by NursingCAS was below 3.0",
+      "source_sha256": "072d49a7f7be82971a155936167e5b77e814f1b49e05866bdbb9b1cb69228bad",
+      "source_url": "https://apply.nursing.yale.edu/portal/admissions?cmd=howtoapply",
+      "check": "ok"
+     },
+     {
+      "text": "International students may apply to the MSN pathway (the DNP pathway cannot enroll F-1/J-1 students)",
+      "quote": "The GEPN to DNP pathway cannot enroll students who require an F-1 or J-1 student visa. International students are welcome to apply to the MSN pathway.",
+      "source_sha256": "072d49a7f7be82971a155936167e5b77e814f1b49e05866bdbb9b1cb69228bad",
+      "source_url": "https://apply.nursing.yale.edu/portal/admissions?cmd=howtoapply",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 44,
+  "机器核对": 44,
+  "待人工": 0
+ }
+}
