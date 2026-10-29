@@ -4,7 +4,7 @@
                               |                                          +-> refuse -> END
                               +-> main_agent <-> tools -> END
 
-Ported from MEWHELP's graph: the router decides the exit from the intent, requirement questions take a
+The router decides the exit from the intent, requirement questions take a
 deterministic retrieval path whose gate runs *before* the model writes anything, and the ReAct loop
 stops on a step count rather than a token budget, because a step is one model call and is easy to
 count and explain.
