@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
+import { AUTH_CHANGED } from "../auth";
 import { INITIAL, settle, type LoadState, type Resource } from "./resource";
 
 /** Read `load` on mount and on `reload()`. A read that lands after a newer one started is dropped. */
@@ -23,6 +24,12 @@ export function useResource<T>(load: () => Promise<T>): Resource<T> & { set: (da
 
   useEffect(() => {
     reload();
+  }, [reload]);
+
+  // Logging in or out changes whose data every read returns.
+  useEffect(() => {
+    window.addEventListener(AUTH_CHANGED, reload);
+    return () => window.removeEventListener(AUTH_CHANGED, reload);
   }, [reload]);
 
   // A write whose answer the page already holds replaces the data without a second read.

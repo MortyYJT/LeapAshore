@@ -5,6 +5,7 @@ from sqlalchemy import delete, select, text
 
 from app.config import settings
 from app.db import SessionLocal, engine
+from app.models.account import LoginCode
 from app.models.client import Client
 from app.models.review import DocumentReview, DocumentReviewFinding, ReviewCriterion
 from app.models.roadmap import MaterialTemplate, RoadmapPhase
@@ -377,11 +378,17 @@ def remove_the_clients_these_tests_create():
 
     with SessionLocal() as session:
         before = set(session.scalars(select(Client.id)))
+        codes_before = set(session.scalars(select(LoginCode.id)))
     yield
     with SessionLocal() as session:
         after = set(session.scalars(select(Client.id)))
         created = after - before
         if created:
-            # The database cascade takes each profile with its client.
+            # The database cascade takes each profile with its client, and an account (with its
+            # sessions) with the client it owns.
             session.execute(delete(Client).where(Client.id.in_(created)))
-            session.commit()
+        # Login codes are keyed by email, not by a subject, so they are swept by id the same way.
+        new_codes = set(session.scalars(select(LoginCode.id))) - codes_before
+        if new_codes:
+            session.execute(delete(LoginCode).where(LoginCode.id.in_(new_codes)))
+        session.commit()

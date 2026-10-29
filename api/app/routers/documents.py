@@ -24,7 +24,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.db import get_session
-from app.deps import get_client_id, load_or_create_profile
+from app.deps import get_subject, load_or_create_profile, subject_cookie_header
 from app.models.document import Document, DocumentVersion
 from app.models.review import DocumentReview, DocumentReviewFinding, ReviewCriterion
 from app.models.source import Source
@@ -194,13 +194,13 @@ def _refusal(exc: Refused, response: Response) -> HTTPException:
     return HTTPException(
         status_code=exc.status_code,
         detail=exc.detail,
-        headers={"set-cookie": response.headers["set-cookie"]},
+        headers=subject_cookie_header(response),
     )
 
 
 @router.get("", response_model=list[DocumentSummaryOut])
 def read_documents(
-    client_id: Annotated[str, Depends(get_client_id)],
+    client_id: Annotated[str, Depends(get_subject)],
     session: Annotated[Session, Depends(get_session)],
 ) -> list[DocumentSummaryOut]:
     """The caller's own materials, newest first.
@@ -232,7 +232,7 @@ def read_documents(
 @router.get("/{document_id}", response_model=DocumentDetailOut)
 def read_document(
     document_id: str,
-    client_id: Annotated[str, Depends(get_client_id)],
+    client_id: Annotated[str, Depends(get_subject)],
     session: Annotated[Session, Depends(get_session)],
 ) -> DocumentDetailOut:
     """One material with its version list and its reviews."""
@@ -242,7 +242,7 @@ def read_document(
 @router.get("/{document_id}/reviews", response_model=list[ReviewOut])
 def read_reviews(
     document_id: str,
-    client_id: Annotated[str, Depends(get_client_id)],
+    client_id: Annotated[str, Depends(get_subject)],
     session: Annotated[Session, Depends(get_session)],
 ) -> list[ReviewOut]:
     """Just the reviews of one material. Read-only: reviews are recorded by an operator command."""
@@ -253,7 +253,7 @@ def read_reviews(
 @router.post("", response_model=DocumentDetailOut, status_code=201)
 def upload_document(
     file: Annotated[UploadFile, File()],
-    client_id: Annotated[str, Depends(get_client_id)],
+    client_id: Annotated[str, Depends(get_subject)],
     session: Annotated[Session, Depends(get_session)],
     response: Response,
     title: Annotated[str | None, Form()] = None,
@@ -277,7 +277,7 @@ def upload_document(
 def upload_version(
     document_id: str,
     file: Annotated[UploadFile, File()],
-    client_id: Annotated[str, Depends(get_client_id)],
+    client_id: Annotated[str, Depends(get_subject)],
     session: Annotated[Session, Depends(get_session)],
     response: Response,
 ) -> DocumentDetailOut:
@@ -294,7 +294,7 @@ def upload_version(
 def download_version(
     document_id: str,
     version_no: int,
-    client_id: Annotated[str, Depends(get_client_id)],
+    client_id: Annotated[str, Depends(get_subject)],
     session: Annotated[Session, Depends(get_session)],
 ) -> FileResponse:
     """Serve the stored bytes to the owning subject as an attachment.
@@ -341,7 +341,7 @@ def download_version(
 def archive_document_route(
     document_id: str,
     payload: ArchiveRequest,
-    client_id: Annotated[str, Depends(get_client_id)],
+    client_id: Annotated[str, Depends(get_subject)],
     session: Annotated[Session, Depends(get_session)],
     response: Response,
 ) -> DocumentDetailOut:
@@ -362,7 +362,7 @@ def archive_document_route(
 @router.post("/{document_id}/submit", response_model=DocumentDetailOut)
 def submit_document_route(
     document_id: str,
-    client_id: Annotated[str, Depends(get_client_id)],
+    client_id: Annotated[str, Depends(get_subject)],
     session: Annotated[Session, Depends(get_session)],
     response: Response,
 ) -> DocumentDetailOut:

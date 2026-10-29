@@ -1,3 +1,4 @@
+from app.models.account import Account, AuthSession, LoginCode
 from app.models.application import (
     Application,
     ApplicationOrigin,
@@ -34,6 +35,9 @@ from app.models.task import (
 )
 
 __all__ = [
+    "Account",
+    "AuthSession",
+    "LoginCode",
     "Application",
     "ApplicationOrigin",
     "ApplicationStatus",

@@ -19,7 +19,8 @@ from pydantic import BaseModel, Field
 
 from app.agent.graph import graph
 from app.agent.llm import model_configured
-from app.deps import get_client_id, set_client_cookie
+from app.config import settings
+from app.deps import get_subject, set_client_cookie
 
 router = APIRouter(prefix="/api/advisor", tags=["advisor"])
 logger = logging.getLogger(__name__)
@@ -102,8 +103,10 @@ def _sse(body: AsyncIterator[str], client_id: str) -> StreamingResponse:
         body, media_type="text/event-stream", headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"}
     )
     # Without this the stream carries no cookie, every message becomes a new subject, and the thread
-    # that holds the conversation (and any paused portfolio change) is never found again.
-    set_client_cookie(response, client_id)
+    # that holds the conversation (and any paused portfolio change) is never found again. In login
+    # mode the subject comes from the session cookie, and no anonymous cookie is minted.
+    if not settings.auth_enabled:
+        set_client_cookie(response, client_id)
     return response
 
 
@@ -113,13 +116,13 @@ async def _nothing_to_confirm() -> AsyncIterator[str]:
 
 
 @router.post("/chat")
-async def chat(body: ChatIn, client_id: Annotated[str, Depends(get_client_id)]) -> StreamingResponse:
+async def chat(body: ChatIn, client_id: Annotated[str, Depends(get_subject)]) -> StreamingResponse:
     config = _config(client_id, body.conversation_id)
     return _sse(_stream({"messages": [HumanMessage(content=body.message)], "trace": None}, config), client_id)
 
 
 @router.post("/confirm")
-async def confirm(body: ConfirmIn, client_id: Annotated[str, Depends(get_client_id)]) -> StreamingResponse:
+async def confirm(body: ConfirmIn, client_id: Annotated[str, Depends(get_subject)]) -> StreamingResponse:
     """Resume a turn the agent paused on a portfolio change, with the applicant's answer."""
     config = _config(client_id, body.conversation_id)
     # Resuming a thread that is not paused would start a fresh turn with no message in it.

@@ -3,7 +3,10 @@
 import Link from "next/link";
 import { useState } from "react";
 
+import { RequireAccount, useAuth } from "@/components/auth/AuthProvider";
+import { ProfileForm } from "@/components/profile/ProfileForm";
 import { Button, Loading, Notice, SourceNote } from "@/components/ui";
+import { deleteAccount, normalizeEmail } from "@/lib/auth";
 import { addMaterialVersion, archiveMaterial, fetchMaterial, submitMaterial } from "@/lib/api";
 import { useMaterials } from "@/lib/hooks/useMaterials";
 import { useProfile } from "@/lib/hooks/useProfile";
@@ -29,47 +32,132 @@ function rowsOf(p: Profile): [string, string][] {
   ];
 }
 
-/** 我的背景: the profile every page uses, and the materials library (spec document-library). */
+/** 我的: the profile every page uses, the materials library (spec document-library) and the account. */
 export default function MePage() {
-  const profile = useProfile();
-  const materials = useMaterials();
   return (
     <>
       <main className="page">
         <div className="title-row">
           <div>
-            <h1>我的背景</h1>
-            <p className="lede">测评、选校和路线图都用这一份。改了背景，测评结果会按新背景重算。</p>
-          </div>
-          <div className="toolbar">
-            <Link className="btn btn-secondary" href="/assess">
-              修改背景
-            </Link>
+            <h1>我的</h1>
+            <p className="lede">分档、选校和路线图都用这一份背景。改了背景，分档会按新背景重算。</p>
           </div>
         </div>
-        <div className="stagger">
-          <section className="panel section" aria-labelledby="bg-h">
-            <div className="panel-head">
-              <h2 id="bg-h">申请背景</h2>
-            </div>
-            {profile.loading && !profile.data && <div className="panel-pad"><Loading what="背景" /></div>}
-            {profile.error && !profile.data && <div className="panel-pad"><Notice error>没有读到背景（{profile.error}）。</Notice></div>}
-            {profile.data && (
-              <dl className="kv2">
-                {rowsOf(profile.data).map(([k, v]) => (
-                  <div key={k}>
-                    <dt>{k}</dt>
-                    <dd className="num">{v}</dd>
-                  </div>
-                ))}
-              </dl>
-            )}
-          </section>
-          <MaterialsLibrary materials={materials} />
-        </div>
+        <RequireAccount what="你的背景和材料">
+          <Mine />
+        </RequireAccount>
       </main>
       <SourceNote>背景和材料保存在服务器上，清空浏览器缓存不会丢。材料在路线图的任务上上传，会按任务归在这里。</SourceNote>
     </>
+  );
+}
+
+function Mine() {
+  const profile = useProfile();
+  const materials = useMaterials();
+  const [editing, setEditing] = useState(false);
+  return (
+    <div className="stagger">
+      <section className={editing ? "section" : "panel section"} aria-labelledby="bg-h">
+        <div className={editing ? "section-head" : "panel-head"}>
+          <h2 id="bg-h">申请背景</h2>
+          {!editing && profile.data && (
+            <Button small onClick={() => setEditing(true)}>
+              修改背景
+            </Button>
+          )}
+        </div>
+        {profile.loading && !profile.data && <div className="panel-pad"><Loading what="背景" /></div>}
+        {profile.error && !profile.data && <div className="panel-pad"><Notice error>没有读到背景（{profile.error}）。</Notice></div>}
+        {profile.data && editing && (
+          <ProfileForm
+            initial={profile.data}
+            mode="full"
+            idPrefix="me"
+            onSaved={() => {
+              setEditing(false);
+              profile.reload();
+            }}
+            onCancel={() => setEditing(false)}
+          />
+        )}
+        {profile.data && !editing && (
+          <dl className="kv2">
+            {rowsOf(profile.data).map(([k, v]) => (
+              <div key={k}>
+                <dt>{k}</dt>
+                <dd className="num">{v}</dd>
+              </div>
+            ))}
+          </dl>
+        )}
+      </section>
+      <MaterialsLibrary materials={materials} />
+      <AccountPanel />
+    </div>
+  );
+}
+
+/** The account: who is logged in, 退出登录, and 注销账号 with the email typed as confirmation. */
+function AccountPanel() {
+  const { state, signOut, refresh } = useAuth();
+  const [confirming, setConfirming] = useState(false);
+  const [typed, setTyped] = useState("");
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const account = state?.account;
+  if (!state?.authEnabled || !account) return null;
+
+  async function remove() {
+    setBusy(true);
+    setError(null);
+    try {
+      await deleteAccount(typed);
+      sessionStorage.clear();
+      await refresh();
+      window.location.assign("/");
+    } catch (e: unknown) {
+      setError(e instanceof Error ? e.message : "注销失败，请稍后再试。");
+      setBusy(false);
+    }
+  }
+
+  return (
+    <section className="panel section" aria-labelledby="acct-h">
+      <div className="panel-head">
+        <h2 id="acct-h">账号</h2>
+        <Button small onClick={() => void signOut()}>
+          退出登录
+        </Button>
+      </div>
+      <div className="panel-pad">
+        <p style={{ marginTop: 0 }}>
+          登录邮箱：<b>{account.email}</b>
+        </p>
+        <p className="muted small">
+          数据怎么保存、给谁处理、怎么删除，见<Link href="/privacy">隐私政策</Link>。
+        </p>
+        {!confirming ? (
+          <Button variant="text" className="negative" onClick={() => setConfirming(true)}>
+            注销账号
+          </Button>
+        ) : (
+          <div className="grid" style={{ gap: 8, maxWidth: 420 }}>
+            <label htmlFor="del-email">
+              注销会删除这个账号的背景、选校、路线图、上传的材料和登录记录，不能恢复。输入你的登录邮箱确认：
+            </label>
+            <input id="del-email" className="input" autoComplete="off" value={typed} onChange={(e) => setTyped(e.target.value)} />
+            {error && <p className="negative small" role="alert">{error}</p>}
+            <div className="toolbar">
+              <Button variant="primary" disabled={busy || normalizeEmail(typed) !== account.email} onClick={() => void remove()}>
+                {busy ? "正在注销…" : "永久注销"}
+              </Button>
+              <Button onClick={() => setConfirming(false)}>取消</Button>
+            </div>
+          </div>
+        )}
+      </div>
+    </section>
   );
 }
 

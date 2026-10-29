@@ -28,11 +28,13 @@ install: api-install  ## Install frontend and backend dependencies
 dev: db-up api-dev-bg  ## Start the database, the API on :8000 and the frontend dev server on :3000
 	@trap 'kill 0' EXIT INT TERM; cd $(WEB) && npm run dev
 
+# Login mode is on locally (codes go to api/var/mail.log, never mailed), so the walkthrough exercises
+# it; production stays anonymous until deploy/.env sets AUTH_ENABLED=true (openspec account-login D2).
 # The browser now reads the applicant's profile from the API, so a dev server without a backend
 # renders a page whose profile is permanently empty. Start it in the background, detached from this
 # shell's job control, and wait for the health probe instead of assuming the port answers.
 api-dev-bg:  ## Start the API in the background and wait until it answers
-	@cd api && nohup .venv/bin/uvicorn app.main:app --port 8000 >/tmp/leapashore-api.log 2>&1 &
+	@cd api && AUTH_ENABLED=$${AUTH_ENABLED:-true} nohup .venv/bin/uvicorn app.main:app --port 8000 >/tmp/leapashore-api.log 2>&1 &
 	@$(MAKE) --no-print-directory wait-api
 
 build:  ## Type-check and build into .next-build so a running dev server is untouched

@@ -119,3 +119,18 @@
 - **决定**：学校库只留 2026-10-29 定的 29 个国家和地区，346 → 287（移除 59 所，校徽文件一起删）；`_schools.json` 采集名单也去掉范围外 25 所。地区筛选去掉已空的「中国大陆」「日本」，中东 3 国从「其他」改名「中东」。日本 8 所的采集文件删除，数据库里的学校、项目、来源用 `python -m app.collect.remove_schools [--apply] <university_id>...` 删除（默认只报告）。
 - **用户数据**：被选校组合（`applications`）、材料（`documents`）或路线图任务（`roadmap_tasks`，无外键）引用的项目不删，连同学校和来源原样保留，列在 `kept_programs` 里等人处理。理由：`applications.program_id` 是 RESTRICT，硬删会被拒；`documents.program_id` 是 SET NULL，硬删会悄悄断开用户材料和项目的关联。没选「快照到选校行」或「软删除字段」：两者都要改表，软删除还要所有读项目的查询都加过滤，为一次性的范围调整不值得。和 importer `--prune` 已有做法一致。生产库删前查过：0 个被引用。
 - **来源**：只删没有任何项目、材料模板、审核标准还在引用的来源，所以共用的页面不会被删。
+
+## 2026-10-30 账号与登录：邮箱验证码 + 服务端会话，登录模式用开关（Claude 自主（待 MortyYJT 复核））
+
+- **决定**：设计全文在 `openspec/changes/account-login/design.md`。要点：
+  - 账号只拥有一个数据主体（`accounts.client_id` → `clients`），所有用户表仍按 `client_id`；登录后请求解析成账号的主体。没选「每张表加 account_id」：要改所有查询和迁移数据，换来的东西主体间接层都能表达。
+  - 登录模式是开关 `AUTH_ENABLED`，代码默认关；`make api-dev-bg` 本机打开；生产 compose 设 `APP_ENV=production`，生产在登录模式下没有 SMTP 配置就拒绝启动，日志发信后端在生产拒绝发送。所以先部署代码是安全的，SES 配好再开。
+  - 限流先放 PostgreSQL（Redis 在下一条才来）：发码用按邮箱的 advisory lock，校验用 `FOR UPDATE`，首次登录用 `INSERT … ON CONFLICT (email) DO NOTHING`。每邮箱每天 10 次、每 IP 每天 30 次（环境变量可调）；新码作废旧码，所以一个邮箱一次只能猜一个码，一天最多 50 次。
+  - 会话 30 天，cookie 只存随机 token，库里只存它的 SHA-256；`SameSite=Lax` 防 CSRF；生产加 `Secure`。
+  - IP 只在 `TRUST_FORWARDED_FOR=true`（生产，Caddy 后面）时取 `X-Forwarded-For` 最右一项，否则用连接对端。
+  - 匿名数据合并：新账号直接接管浏览器的匿名主体（不搬行）；已有账号则搬行，账号已有的一律不覆盖——档案整体判断（账号档案有任何已填字段就整份保留，否则整份取匿名的；不逐字段补，避免拼出 A 的均分配 B 的分制），选校同一项目保留账号的、首选只留一个，路线图任务重复的保留账号的并把材料改指向它，材料和历史全部搬过去。
+  - 90 天清理写成 `python -m app.cleanup [--apply]`（默认只报告），Celery 在 P1 才有，先用服务器 cron；cron 在切到登录模式时一起加——在那之前所有人都是匿名的，没人能认领。
+  - `/assess` 删掉，`/assess` 和 `/assess/result` 跳到新的 `/tiers`；信息页是登录弹窗的第三步（不跳页，登录完原地继续刚才的操作，顾问把输入框里那句话发出去）。
+  - 隐私政策 `/privacy` 由 Claude 按代码实际行为起草，标「草稿，待 MortyYJT 审核」；联系方式留空待补。
+- **理由**：TASKS.md P0 第三条；MortyYJT 2026-10-30 授权 AI 自主决定。
+- **待 MortyYJT 复核**：发信域名（建议子域 `mail.mortyyjt.site`，避免和主域名的其他邮件记录冲突）；隐私政策正文和联系方式；限额数字。

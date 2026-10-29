@@ -1,11 +1,15 @@
-// Browser walkthrough of the new routes (design D10). A fresh visitor goes / -> /assess -> /assess/result
-// -> /portfolio (confirm) -> /roadmap (tick, upload) -> /me -> /advisor -> /schools -> /programs/<code>,
-// then every page is opened again at 390px. Each step writes docs/screenshots/NN-*.png.
+// Browser walkthrough in login mode (openspec account-login). A logged-out visitor types a question in the
+// advisor and presses 发送 -> logs in with a mailed code -> fills the four basics -> the advisor sends the
+// sentence that was typed. Then /tiers -> /portfolio (confirm) -> 我的 (edit intake) -> /roadmap (tick,
+// upload) -> 我的 (materials) -> the library pages -> logout. A second visitor presses 加入选校组合 on a
+// program, registers, skips the info step, sees 先补信息 on /tiers and deletes the account. Every page is
+// then opened again at 390px. Each step writes docs/screenshots/NN-*.png.
 //
 // The run fails on a console error, a page error, a page that scrolls sideways, a page without an h1,
-// or a failed check. The subjects it creates are deleted from the database at the end, whatever happened.
+// or a failed check. The accounts it creates are deleted from the database at the end, whatever happened.
 //
-// Usage: node scripts/walkthrough.cjs   (needs `make dev`: the web app on :3000 and the API on :8000)
+// Usage: node scripts/walkthrough.cjs   (needs `make dev`: the web app on :3000 and the API on :8000 in
+// login mode, which `make api-dev-bg` turns on; codes are read from api/var/mail.log)
 // Set BASE_URL to drive another origin.
 
 const path = require("path");
@@ -19,6 +23,7 @@ const OUT = path.join(ROOT, "docs/screenshots");
 const BASE = process.env.BASE_URL || "http://localhost:3000";
 const API_PYTHON = path.join(ROOT, "api/.venv/bin/python");
 const API_APP = path.join(ROOT, "api/app");
+const MAIL_LOG = path.join(ROOT, "api/var/mail.log");
 const DESKTOP = { width: 1440, height: 900 };
 const PHONE = { width: 390, height: 844 };
 
@@ -49,8 +54,11 @@ function dbRun(sql) {
   }
 }
 
-/** Watch a page: console errors and page errors fail the run; every subject id it is given is kept. */
-function watch(page, label, errors, subjects, expected = []) {
+// A logged-out read of private data answers 401, and a refused code answers 400; the browser logs both.
+const EXPECTED = [/status of 404/, /status of 401/];
+
+/** Watch a page: console errors and page errors fail the run. */
+function watch(page, label, errors, expected = EXPECTED) {
   page.on("console", (msg) => {
     if (msg.type() !== "error") return;
     const text = msg.text();
@@ -58,10 +66,28 @@ function watch(page, label, errors, subjects, expected = []) {
     errors.push(`${label} console: ${text}`);
   });
   page.on("pageerror", (error) => errors.push(`${label} pageerror: ${error.message}`));
-  page.on("response", async (response) => {
-    const header = (await response.allHeaders().catch(() => ({})))["set-cookie"] || "";
-    for (const match of header.matchAll(/leapashore_client=([^;]+)/g)) subjects.add(decodeURIComponent(match[1]));
-  });
+}
+
+/** The newest code the log mail backend wrote for `email`. */
+async function codeFor(email, since) {
+  for (let i = 0; i < 40; i++) {
+    const lines = fs.existsSync(MAIL_LOG) ? fs.readFileSync(MAIL_LOG, "utf8").trim().split("\n") : [];
+    const hit = lines.reverse().find((line) => line.split(" ")[1] === email && Date.parse(line.split(" ")[0]) >= since);
+    if (hit) return hit.split(" ")[2];
+    await new Promise((r) => setTimeout(r, 250));
+  }
+  throw new Error(`no code for ${email} in ${MAIL_LOG}`);
+}
+
+/** Log in through the dialog that is already open. Returns once the code is accepted. */
+async function loginThroughDialog(page, email) {
+  const dialog = page.locator("dialog.dialog");
+  await dialog.locator("#login-email").fill(email);
+  const since = Date.now() - 2000;
+  await dialog.getByRole("button", { name: "发送验证码" }).click();
+  await dialog.locator("#login-code").waitFor();
+  await dialog.locator("#login-code").fill(await codeFor(email, since));
+  await dialog.getByRole("button", { name: "登录", exact: true }).click();
 }
 
 /** The layout checks every page gets: an h1, and nothing wider than the viewport. */
@@ -92,73 +118,112 @@ async function settle(page) {
   try {
     const response = await fetch(`${BASE}/api/health`);
     if (!response.ok) throw new Error(`GET /api/health responded ${response.status}`);
+    const auth = await (await fetch(`${BASE}/api/auth/me`)).json();
+    if (!auth.authEnabled) throw new Error("login mode is off: start the API with AUTH_ENABLED=true (make api-dev-bg does)");
   } catch (error) {
-    console.error(`后端不可达：${BASE}/api/health 失败（${error.message}）。先运行 make dev，再跑 make screenshots。`);
+    console.error(`后端不可达或没开登录模式：${error.message}。先运行 make dev，再跑 make screenshots。`);
     process.exitCode = 1;
     return;
   }
 
   for (const file of fs.readdirSync(OUT)) if (/^\d\d-.*\.png$/.test(file)) fs.unlinkSync(path.join(OUT, file));
 
-  const subjects = new Set();
+  const stamp = Date.now().toString(36);
+  const emails = [`walkthrough-${stamp}@example.test`, `walkthrough-${stamp}-b@example.test`];
   const errors = [];
+  let firstCodeAt = Date.now();
   const browser = await chromium.launch();
   try {
-    let kept = null;
-    // ---------- desktop: the whole first visit ----------
+    let session = null;
+    // ---------- desktop: logged out ----------
     const context = await browser.newContext({ viewport: DESKTOP });
     const page = await context.newPage();
-    watch(page, "desktop", errors, subjects, [/status of 404/]);
+    watch(page, "desktop", errors);
 
     await page.goto(`${BASE}/`);
     await settle(page);
     await layout(page, "首页");
-    check("首页：有“开始测评”和“先看学校”", (await page.getByRole("link", { name: "开始测评" }).count()) > 0 && (await page.getByRole("link", { name: "先看学校" }).count()) > 0);
+    check("首页：有“看看能申哪些”和“先看学校”", (await page.getByRole("link", { name: "看看能申哪些" }).count()) > 0 && (await page.getByRole("link", { name: "先看学校" }).count()) > 0);
     check("首页：示例时间线标了“示例”", (await page.locator("figure .pill-sample").count()) === 1);
+    check("首页：未登录时顶栏有“登录”", await page.locator(".bar").getByRole("button", { name: "登录" }).isVisible());
     await screenshot(page, "home");
 
-    await page.getByRole("link", { name: "开始测评" }).first().click();
-    await page.waitForURL("**/assess");
+    await page.goto(`${BASE}/roadmap`);
     await settle(page);
-    await page.getByRole("button", { name: "保存并查看结果" }).click();
-    check("测评：缺必填项时不提交，并标出原因", page.url().endsWith("/assess") && (await page.locator(".field .error").count()) >= 5);
-    await page.locator(".choice", { hasText: "本科" }).first().click();
-    await page.locator(".choice", { hasText: "中国大陆" }).click();
-    await page.locator("#school").fill("北京邮电");
-    await page.locator(".suggest button", { hasText: "北京邮电大学" }).first().click();
-    check("测评：选中名单里的学校后标出 211", (await page.locator(".field .hint", { hasText: "211" }).count()) > 0);
-    await page.locator("#major").fill("软件工程");
-    await page.locator("#gpa").fill("85");
-    await page.getByLabel("分制").selectOption("100");
-    await page.locator("#degree").selectOption("授课型硕士");
-    await page.locator("#field").selectOption("计算机与数据");
-    await page.locator("#english-test").selectOption("IELTS");
-    await page.locator("#score").fill("6.5");
-    await page.getByRole("button", { name: "保存并查看结果" }).click();
-    check("测评：没填入学时间时标出该项", (await page.locator("#intake-error").count()) === 1 && page.url().endsWith("/assess"));
-    await page.locator("#intake").selectOption("2027 S2");
-    await layout(page, "测评");
-    await screenshot(page, "assess");
-    await page.getByRole("button", { name: "保存并查看结果" }).click();
-    await page.waitForURL("**/assess/result");
+    check("未登录：路线图只显示示例并请你登录", (await page.locator("figure .pill-sample").count()) === 1 && (await page.getByText("登录后查看你自己的路线图").count()) === 1);
+    await layout(page, "路线图（未登录）");
+    await page.goto(`${BASE}/me`);
+    await settle(page);
+    check("未登录：我的页请你登录", (await page.getByText("登录后查看你的背景和材料").count()) === 1);
+    const anonymous = await page.evaluate(async () => (await fetch("/api/profile")).status);
+    check("未登录：读档案返回 401", anonymous === 401, anonymous);
+    const assess = await page.goto(`${BASE}/assess`);
+    check("背景测评页已删除，跳到分档页", page.url().endsWith("/tiers") && assess.status() === 200, page.url());
 
-    const saved = await page.evaluate(async () => (await fetch("/api/profile")).json());
-    check("测评：提交后服务器档案就是填的值", saved.major === "软件工程" && saved.intake === "2027 S2" && saved.domesticTier === "211", saved);
+    // ---------- 未登录点发送 -> 登录 -> 信息页 -> 回到顾问并发出原句 ----------
+    await page.goto(`${BASE}/advisor`);
+    await settle(page);
+    check("顾问：页面里没有 emoji", !/[\u{1F300}-\u{1FAFF}]/u.test(await page.locator("main").innerText()));
+    const question = "我是北邮软件工程，均分 85，雅思 6.5，能申哪些计算机硕士？";
+    await page.locator("#msg").fill(question);
+    await page.getByRole("button", { name: "发送" }).click();
+    const dialog = page.locator("dialog.dialog");
+    await dialog.waitFor();
+    check("顾问：未登录点发送弹出登录", await dialog.getByRole("heading", { name: "登录" }).isVisible());
+    check("顾问：登录时原句还在输入框里", (await page.locator("#msg").inputValue()) === question);
+    await layout(page, "登录弹窗");
+    await screenshot(page, "login");
+    await dialog.locator("#login-email").fill("not-an-email");
+    await dialog.getByRole("button", { name: "发送验证码" }).click();
+    check("登录：邮箱格式不对时不发送", (await dialog.getByRole("alert").innerText()).includes("邮箱"));
+    firstCodeAt = Date.now();
+    await loginThroughDialog(page, emails[0]);
+    await dialog.getByRole("heading", { name: "补充四项信息" }).waitFor({ timeout: 15000 });
+    check("注册：首次登录后弹出信息页", true);
+    const sentChat = page.waitForRequest((r) => r.url().endsWith("/api/advisor/chat") && r.method() === "POST", { timeout: 15000 });
+    await dialog.getByRole("button", { name: "保存，继续" }).click();
+    check("信息页：缺必填项时不提交", (await dialog.locator(".field .error").count()) >= 3 && (await dialog.isVisible()));
+    await dialog.locator(".choice", { hasText: "中国大陆" }).click();
+    await dialog.locator("#basics-school").fill("北京邮电");
+    await dialog.locator(".suggest button", { hasText: "北京邮电大学" }).first().click();
+    check("信息页：选中名单里的学校后标出 211", (await dialog.locator(".field .hint", { hasText: "211" }).count()) > 0);
+    await dialog.locator("#basics-gpa").fill("85");
+    await dialog.getByLabel("分制").selectOption("100");
+    await dialog.locator("#basics-field").selectOption("计算机与数据");
+    await dialog.locator("#basics-english-test").selectOption("IELTS");
+    await dialog.locator("#basics-score").fill("6.5");
+    await screenshot(page, "basics");
+    await dialog.getByRole("button", { name: "保存，继续" }).click();
+    const chat = await sentChat;
+    const sentBody = JSON.parse(chat.postData() || "{}");
+    check("顾问：登录后发出的就是原句", sentBody.message === question, sentBody);
+    await page.locator(".msg-user", { hasText: question }).waitFor({ timeout: 15000 });
+    check("顾问：对话里显示原句，输入框已清空", (await page.locator("#msg").inputValue()) === "");
+    const chatResponse = await chat.response();
+    check("顾问：发送请求带着登录会话（不是 401）", chatResponse && chatResponse.status() === 200, chatResponse && chatResponse.status());
+    await settle(page);
+    await layout(page, "顾问");
+    await screenshot(page, "advisor");
+    const basics = await page.evaluate(async () => (await fetch("/api/profile")).json());
+    check("信息页：服务器档案就是填的四项", basics.schoolName === "北京邮电大学" && basics.domesticTier === "211" && Number(basics.gpaScore) === 85 && basics.targetField === "计算机与数据" && basics.englishScore === "IELTS 6.5", basics);
+    check("登录后顶栏显示“我的”", await page.locator(".bar .me-link").isVisible());
 
+    // ---------- tiers -> portfolio ----------
+    await page.goto(`${BASE}/tiers`);
     await page.locator("#t-保底, #t-稳妥, #t-冲刺").first().waitFor({ timeout: 30000 });
     await page.locator("#not-collected").waitFor({ timeout: 30000 });
     await settle(page);
-    check("结果：说明分档不是录取概率", (await page.getByText("不是录取概率").count()) > 0);
-    check("结果：没有“信息不足”这一档", (await page.getByText("信息不足").count()) === 0);
-    await layout(page, "测评结果");
-    await screenshot(page, "result");
+    check("分档：说明分档不是录取概率", (await page.getByText("不是录取概率").count()) > 0);
+    check("分档：没有“信息不足”这一档", (await page.getByText("信息不足").count()) === 0);
+    await layout(page, "分档结果");
+    await screenshot(page, "tiers");
     const addButtons = page.getByRole("button", { name: "加入组合" });
     const tieredCount = Math.min(3, await addButtons.count());
     for (let i = 0; i < tieredCount; i++) await addButtons.first().click();
     await page.locator("#not-collected").locator("xpath=../..").getByRole("button", { name: "加入，自选档位" }).first().click();
     await page.getByRole("group", { name: "选择档位" }).getByRole("button", { name: "冲" }).click();
     const added = tieredCount + 1;
-    check("结果：加入后按钮显示“已加入”", (await page.getByRole("button", { name: /已加入|未分档/ }).count()) === added, { added });
+    check("分档：加入后按钮显示“已加入”", (await page.getByRole("button", { name: /已加入|未分档/ }).count()) === added, { added });
 
     await page.getByRole("link", { name: /去选校/ }).click();
     await page.waitForURL("**/portfolio");
@@ -178,6 +243,22 @@ async function settle(page) {
     check("组合：状态和首选按草稿保存", stored.some((r) => r.status === "offered") && stored.filter((r) => r.isPrimary).length === 1);
     check("组合：自选档位的项目保存为 needsReview", stored.filter((r) => r.needsReview).length === 1);
 
+    // ---------- 我的: the rest of the profile ----------
+    await page.goto(`${BASE}/me`);
+    await settle(page);
+    await page.getByRole("button", { name: "修改背景" }).click();
+    await page.locator(".choice", { hasText: "本科" }).first().click();
+    await page.locator("#me-major").fill("软件工程");
+    await page.locator("#me-degree").selectOption("授课型硕士");
+    await page.locator("#me-intake").selectOption("2027 S2");
+    await layout(page, "我的：编辑背景");
+    await screenshot(page, "me-edit");
+    await page.getByRole("button", { name: "保存" }).click();
+    await page.locator(".kv2").waitFor({ timeout: 15000 });
+    const full = await page.evaluate(async () => (await fetch("/api/profile")).json());
+    check("我的：入学时间等字段在“我的”里保存", full.intake === "2027 S2" && full.major === "软件工程" && full.schoolName === "北京邮电大学", full);
+
+    // ---------- roadmap ----------
     await page.getByRole("link", { name: "路线图" }).first().click();
     await page.waitForURL("**/roadmap");
     await page.locator("svg.timeline-svg").waitFor({ timeout: 20000 });
@@ -202,7 +283,7 @@ async function settle(page) {
     check("路线图：勾选在刷新后仍保存着", stillTicked, taskId);
     const upload = page.locator(".task input[type=file]").first();
     // The library sniffs the type from the bytes and takes PDFs and images, so the file is a minimal PDF.
-    const pdf = Buffer.from("%PDF-1.4\n1 0 obj << /Type /Catalog >> endobj\ntrailer << /Root 1 0 R >>\n%%EOF\n");
+    const pdf = Buffer.from(`%PDF-1.4\n% ${stamp}\n1 0 obj << /Type /Catalog >> endobj\ntrailer << /Root 1 0 R >>\n%%EOF\n`);
     await upload.setInputFiles({ name: "walkthrough-transcript.pdf", mimeType: "application/pdf", buffer: pdf });
     await page.getByText(/已上传 walkthrough-transcript\.pdf/).waitFor({ timeout: 15000 });
     check("路线图：任务行上传了文件", true);
@@ -212,15 +293,10 @@ async function settle(page) {
     await page.goto(`${BASE}/me`);
     await page.getByText("walkthrough-transcript.pdf").first().waitFor({ timeout: 15000 });
     await settle(page);
-    check("我的背景：材料库列出上传的文件", true);
-    await layout(page, "我的背景");
+    check("我的：材料库列出上传的文件", true);
+    check("我的：显示登录邮箱", (await page.getByText(emails[0]).count()) > 0);
+    await layout(page, "我的");
     await screenshot(page, "me");
-
-    await page.goto(`${BASE}/advisor`);
-    await settle(page);
-    check("顾问：页面里没有 emoji", !/[\u{1F300}-\u{1FAFF}]/u.test(await page.locator("main").innerText()));
-    await layout(page, "顾问");
-    await screenshot(page, "advisor");
 
     await page.goto(`${BASE}/schools`);
     await settle(page);
@@ -244,6 +320,11 @@ async function settle(page) {
     await page.goto(`${BASE}/programs`);
     await settle(page);
     await layout(page, "项目库");
+    await page.goto(`${BASE}/privacy`);
+    await settle(page);
+    check("隐私政策：公开可读并标明是草稿", (await page.getByText("等待 MortyYJT 审核").count()) === 1);
+    await layout(page, "隐私政策");
+    await screenshot(page, "privacy");
 
     await page.evaluate(() => {
       localStorage.clear();
@@ -255,56 +336,102 @@ async function settle(page) {
     check("旧的原型路由已移除", gone.status() === 404, gone.status());
     const admin = await page.goto(`${BASE}/admin`);
     check("顾问后台不提供", admin.status() === 404, admin.status());
-    // The phone pass shows the same applicant, so it takes the cookie the browser actually kept.
-    kept = (await context.cookies(BASE)).find((c) => c.name === "leapashore_client") ?? null;
-    if (kept) subjects.add(kept.value);
+    session = (await context.cookies(BASE)).find((c) => c.name === "leapashore_session") ?? null;
+    check("登录会话是 httpOnly cookie", session && session.httpOnly, session && { httpOnly: session.httpOnly });
+
+    // ---------- logout ----------
+    const other = await browser.newContext({ viewport: DESKTOP });
+    if (session) await other.addCookies([{ name: "leapashore_session", value: session.value, url: BASE }]);
+    const leaving = await other.newPage();
+    watch(leaving, "logout", errors);
+    await leaving.goto(`${BASE}/me`);
+    await leaving.getByRole("button", { name: "退出登录" }).click();
+    await leaving.waitForURL(`${BASE}/`);
+    await leaving.locator(".bar").getByRole("button", { name: "登录" }).waitFor();
+    const afterLogout = await leaving.evaluate(async () => (await fetch("/api/profile")).status);
+    check("退出登录：之后读档案返回 401", afterLogout === 401, afterLogout);
+    await other.close();
+    // The first context's cookie was the same session, now ended; the phone pass logs in again below.
     await context.close();
+
+    // ---------- 加入选校 while logged out -> register -> skip -> 先补信息 -> delete ----------
+    const second = await browser.newContext({ viewport: DESKTOP });
+    const b = await second.newPage();
+    watch(b, "second", errors);
+    await b.goto(`${BASE}/programs/0100139`);
+    await settle(b);
+    await b.getByRole("button", { name: "加入选校组合" }).click();
+    await b.locator("dialog.dialog").waitFor();
+    await loginThroughDialog(b, emails[1]);
+    await b.locator("dialog.dialog").getByRole("heading", { name: "补充四项信息" }).waitFor({ timeout: 15000 });
+    await b.locator("dialog.dialog").getByRole("button", { name: "跳过，以后再填" }).click();
+    await b.getByRole("group", { name: "选择档位" }).waitFor({ timeout: 15000 });
+    check("加入选校：登录后回到项目页并接着选档位", true);
+    await b.getByRole("group", { name: "选择档位" }).getByRole("button", { name: "稳" }).click();
+    check("加入选校：选了档位后显示“已加入”", (await b.getByRole("button", { name: /已加入/ }).count()) === 1);
+    await b.goto(`${BASE}/tiers`);
+    await settle(b);
+    check("跳过信息页的用户在分档页看到“先补信息”", (await b.getByRole("heading", { name: "先补信息" }).count()) === 1);
+    await layout(b, "先补信息");
+    await screenshot(b, "tiers-basics");
+    await b.goto(`${BASE}/me`);
+    await settle(b);
+    await b.getByRole("button", { name: "注销账号" }).click();
+    await b.locator("#del-email").fill(emails[1]);
+    await b.getByRole("button", { name: "永久注销" }).click();
+    await b.waitForURL(`${BASE}/`);
+    const deleted = dbRun(`SELECT count(*) FROM accounts WHERE email = '${emails[1]}'`);
+    check("注销账号：账号行已删除", deleted === "0", deleted);
+    await second.close();
 
     // ---------- phone ----------
     const fresh = await browser.newContext({ viewport: PHONE });
     const intro = await fresh.newPage();
-    watch(intro, "phone-intro", errors, subjects);
+    watch(intro, "phone-intro", errors);
     await intro.goto(`${BASE}/`);
     await settle(intro);
     await layout(intro, "首页 390");
     check("390：导航收进菜单", !(await intro.locator("#main-nav").isVisible()) && (await intro.getByRole("button", { name: "菜单" }).isVisible()));
+    check("390：未登录时“登录”按钮可见", await intro.locator(".bar").getByRole("button", { name: "登录" }).isVisible());
     await intro.getByRole("button", { name: "菜单" }).click();
     check("390：按菜单后出现五个链接", await intro.locator("#main-nav").getByRole("link", { name: "学校库" }).isVisible());
     await screenshot(intro, "home-390");
-    await fresh.close();
-
-    const phone = await browser.newContext({ viewport: PHONE });
-    if (kept) await phone.addCookies([{ name: "leapashore_client", value: kept.value, url: BASE }]);
-    const p = await phone.newPage();
-    watch(p, "phone", errors, subjects);
+    await intro.locator(".bar").getByRole("button", { name: "登录" }).click();
+    await intro.locator("dialog.dialog").waitFor();
+    await layout(intro, "登录弹窗 390");
+    await screenshot(intro, "login-390");
+    // Logging in from the header lands on the tiers page; the code resend window is 60 s, so wait it out.
+    await new Promise((r) => setTimeout(r, Math.max(0, 61000 - (Date.now() - firstCodeAt))));
+    await loginThroughDialog(intro, emails[0]);
+    await intro.waitForURL("**/tiers", { timeout: 15000 });
+    check("直接点登录：登录后去分档页", true);
     for (const [route, name] of [
-      ["/assess", "assess-390"],
-      ["/assess/result", "result-390"],
+      ["/tiers", "tiers-390"],
       ["/portfolio", "portfolio-390"],
       ["/roadmap", "roadmap-390"],
       ["/me", "me-390"],
       ["/advisor", "advisor-390"],
       ["/schools", "schools-390"],
       ["/programs/cricos-0100139", "program-390"],
+      ["/privacy", "privacy-390"],
     ]) {
-      await p.goto(`${BASE}${route}`);
-      await settle(p);
-      if (route === "/assess/result") await p.locator("#not-collected").waitFor({ timeout: 30000 }).catch(() => {});
-      if (route === "/roadmap") await p.locator("svg.timeline-svg").waitFor({ timeout: 20000 }).catch(() => {});
-      await layout(p, `${route} 390`);
-      await screenshot(p, name);
+      await intro.goto(`${BASE}${route}`);
+      await settle(intro);
+      if (route === "/tiers") await intro.locator("#not-collected").waitFor({ timeout: 30000 }).catch(() => {});
+      if (route === "/roadmap") await intro.locator("svg.timeline-svg").waitFor({ timeout: 20000 }).catch(() => {});
+      await layout(intro, `${route} 390`);
+      await screenshot(intro, name);
     }
-    await phone.close();
+    await fresh.close();
   } catch (error) {
     check("走查顺利跑完", false, String(error && error.message ? error.message : error).split("\n")[0]);
   } finally {
     await browser.close();
-    if (subjects.size > 0) {
-      const quoted = [...subjects].map((id) => `'${id.replace(/'/g, "''")}'`).join(",");
-      dbRun(`DELETE FROM clients WHERE id IN (${quoted})`);
-      const left = dbRun(`SELECT count(*) FROM clients WHERE id IN (${quoted})`);
-      check(`走查结束时清理了本次创建的 ${subjects.size} 个主体`, left === "0", left);
-    }
+    const quoted = emails.map((e) => `'${e}'`).join(",");
+    dbRun(`DELETE FROM clients WHERE id IN (SELECT client_id FROM accounts WHERE email IN (${quoted}))`);
+    dbRun(`DELETE FROM login_codes WHERE email IN (${quoted})`);
+    const left = dbRun(`SELECT count(*) FROM accounts WHERE email IN (${quoted})`);
+    check(`走查结束时清理了本次创建的账号`, left === "0", left);
   }
 
   check("没有控制台错误或页面错误", errors.length === 0, errors.slice(0, 5));

@@ -1,13 +1,13 @@
 // Where `/` sends a visitor (spec app-navigation; design D2). The decision comes from the server's
 // profile, never from a cookie or browser storage alone, so clearing storage does not lose the return.
 
-import { EMPTY_PROFILE, isAssessmentComplete } from "./assess.ts";
+import { EMPTY_PROFILE, hasBasics } from "./assess.ts";
 import type { Profile } from "./types.ts";
 
 export const LANDING_TIMEOUT_MS = 1000;
 
 /**
- * `/roadmap` for a visitor whose server profile holds a complete assessment, otherwise null (render the
+ * `/roadmap` for a visitor whose server profile holds the four basics, otherwise null (render the
  * introduction). An API that fails or is slower than the timeout is treated as "no profile".
  */
 export async function landingFor(
@@ -26,7 +26,7 @@ export async function landingFor(
       const value = remote[key];
       if (value !== undefined && value !== null) (profile as unknown as Record<string, unknown>)[key] = value;
     }
-    return isAssessmentComplete(profile) ? "/roadmap" : null;
+    return hasBasics(profile) ? "/roadmap" : null;
   } catch {
     return null;
   } finally {

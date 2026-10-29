@@ -23,17 +23,25 @@ export type AdvisorEvent =
   | { type: "error"; message: string }
   | { type: "done" };
 
-async function stream(path: string, body: unknown, onEvent: (e: AdvisorEvent) => void) {
+/** `unauthorized` when the server refused for want of a session (login mode, session expired). */
+export type StreamOutcome = "ok" | "unauthorized" | "failed";
+
+async function stream(path: string, body: unknown, onEvent: (e: AdvisorEvent) => void): Promise<StreamOutcome> {
   const response = await fetch(path, {
     method: "POST",
     credentials: "same-origin",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
   });
+  if (response.status === 401) {
+    onEvent({ type: "error", message: "登录已失效，请重新登录后再发。" });
+    onEvent({ type: "done" });
+    return "unauthorized";
+  }
   if (!response.ok || !response.body) {
     onEvent({ type: "error", message: `顾问服务不可用（HTTP ${response.status}）` });
     onEvent({ type: "done" });
-    return;
+    return "failed";
   }
   const reader = response.body.getReader();
   const decoder = new TextDecoder();
@@ -50,6 +58,7 @@ async function stream(path: string, body: unknown, onEvent: (e: AdvisorEvent) =>
       end = buffer.indexOf("\n\n");
     }
   }
+  return "ok";
 }
 
 export function sendAdvisorMessage(conversationId: string, message: string, onEvent: (e: AdvisorEvent) => void) {

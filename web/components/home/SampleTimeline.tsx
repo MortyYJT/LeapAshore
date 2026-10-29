@@ -17,7 +17,7 @@ export function SampleTimeline() {
   const model = timelineOf(buildRoadmap(profile, done, today), today);
   return (
     <figure className="panel" style={{ margin: 0, padding: "16px 16px 8px" }}>
-      <Timeline model={model} today={today} deadlines={[]} selected={null} onSelect={() => router.push("/assess")} animate />
+      <Timeline model={model} today={today} deadlines={[]} selected={null} onSelect={() => router.push("/tiers")} animate />
       <figcaption className="muted small" style={{ padding: "4px 8px" }}>
         <span className="pill pill-sample" style={{ marginRight: 6 }}>示例</span>
         一位 {year} 年 7 月入学、计算机方向的申请人的路线图。虚线是系统建议的开始日期，不是官方日期。

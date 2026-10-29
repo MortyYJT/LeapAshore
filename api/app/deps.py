@@ -1,13 +1,19 @@
 import uuid
+from datetime import UTC, datetime, timedelta
 from typing import Annotated
 
-from fastapi import Cookie, Response
+from fastapi import Cookie, Depends, HTTPException, Request, Response
+from sqlalchemy import update
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
+from app.config import settings
+from app.db import get_session
 from app.models.client import Client, Profile, new_client_id
 
 COOKIE_NAME = "leapashore_client"
+SESSION_COOKIE = "leapashore_session"
+LOGIN_REQUIRED = "需要登录"
 
 
 def get_client_id(
@@ -41,6 +47,43 @@ def get_client_id(
 
     set_client_cookie(response, client_id)
     return client_id
+
+
+def get_optional_subject(
+    request: Request,
+    response: Response,
+    session: Annotated[Session, Depends(get_session)],
+    leapashore_client: Annotated[str | None, Cookie()] = None,
+) -> str | None:
+    """The data subject this request acts for (openspec/changes/account-login, D8).
+
+    Login mode: the account's subject when the session cookie is valid, otherwise None. The anonymous
+    cookie is ignored for this, so a former anonymous id grants nothing once accounts exist. Login mode
+    off: the anonymous cookie subject, minted on first contact, exactly as before.
+    """
+    if settings.auth_enabled:
+        from app.services.auth import account_for_token
+
+        account = account_for_token(session, request.cookies.get(SESSION_COOKIE))
+        return account.client_id if account else None
+    return get_client_id(response, leapashore_client)
+
+
+def get_subject(subject: Annotated[str | None, Depends(get_optional_subject)]) -> str:
+    """Like `get_optional_subject`, but a request without a subject is refused with 401."""
+    if subject is None:
+        raise HTTPException(401, LOGIN_REQUIRED)
+    return subject
+
+
+def subject_cookie_header(response: Response) -> dict[str, str] | None:
+    """The anonymous-subject `Set-Cookie` a dependency put on `response`, for an error to carry.
+
+    Only anonymous mode sets it; in login mode the subject comes from the session cookie and there is
+    nothing to forward, so this returns None instead of raising on the missing header.
+    """
+    value = response.headers.get("set-cookie")
+    return {"set-cookie": value} if value else None
 
 
 def set_client_cookie(response: Response, client_id: str) -> None:
@@ -84,4 +127,21 @@ def load_or_create_profile(session: Session, client_id: str) -> Profile:
         except IntegrityError:
             # Another request inserted this subject between the check and the insert.
             pass
+    else:
+        touch_subject(session, client_id)
     return session.get(Profile, client_id)
+
+
+def touch_subject(session: Session, client_id: str) -> None:
+    """Record activity for the 90-day sweep of unclaimed anonymous subjects, at most once a day.
+
+    A conditional UPDATE rather than a write per request: the row is rewritten only when the stored
+    time is a day old, so the sweep's clock is accurate to a day and a busy subject costs nothing.
+    """
+    result = session.execute(
+        update(Client)
+        .where(Client.id == client_id, Client.last_seen_at < datetime.now(UTC) - timedelta(days=1))
+        .values(last_seen_at=datetime.now(UTC))
+    )
+    if result.rowcount:
+        session.commit()

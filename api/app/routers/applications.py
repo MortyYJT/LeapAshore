@@ -5,7 +5,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session, selectinload
 
 from app.db import get_session
-from app.deps import get_client_id, load_or_create_profile
+from app.deps import get_subject, load_or_create_profile, subject_cookie_header
 from app.models.application import Application, ApplicationTier
 from app.models.program import Program
 from app.schemas.application import (
@@ -29,7 +29,7 @@ BAND_ORDER = {tier.value: index for index, tier in enumerate(ApplicationTier)}
 
 @router.get("", response_model=list[ApplicationOut])
 def read_applications(
-    client_id: Annotated[str, Depends(get_client_id)],
+    client_id: Annotated[str, Depends(get_subject)],
     session: Annotated[Session, Depends(get_session)],
 ) -> list[ApplicationOut]:
     """Serve the caller's own portfolio, with the program each row names.
@@ -101,7 +101,7 @@ def read_applications(
 @router.put("", response_model=ApplicationReplaceResult)
 def replace_the_applications(
     payload: ApplicationReplaceRequest,
-    client_id: Annotated[str, Depends(get_client_id)],
+    client_id: Annotated[str, Depends(get_subject)],
     session: Annotated[Session, Depends(get_session)],
     response: Response,
 ) -> dict:
@@ -150,5 +150,5 @@ def replace_the_applications(
         raise HTTPException(
             status_code=422,
             detail=str(exc),
-            headers={"set-cookie": response.headers["set-cookie"]},
+            headers=subject_cookie_header(response),
         ) from exc
