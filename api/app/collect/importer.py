@@ -1,6 +1,9 @@
 """Import the checked requirement files into the catalogue.
 
-    python -m app.collect.importer [api/data/requirements/<school>.json ...]
+    python -m app.collect.importer [--prune] [api/data/requirements/<school>.json ...]
+
+--prune also removes the programs an earlier import wrote that a file no longer lists (CRICOS rows
+and rows a portfolio names are kept).
 
 Only fields whose quote passed `verify` (`check == "ok"`) are written. A program with no verified value
 is skipped, so an empty collection never blanks a row another source describes. When a program has
@@ -216,16 +219,43 @@ def requirement_files(directory: Path = DATA_DIR) -> list[Path]:
     return sorted(p for p in directory.glob("*.json") if not p.name.startswith("_"))
 
 
+def prune_school(session: Session, data: dict, schools: dict[str, dict]) -> dict:
+    """Remove the programs an earlier import wrote for this school that its file no longer lists.
+
+    Only rows the importer owns are touched: a CRICOS catalogue row (`cricos-…`) stays, whatever
+    the file says. A row someone's portfolio names stays too (`applications.program_id` is
+    RESTRICT, and a portfolio should not lose a choice silently); it is reported instead.
+    """
+    from app.models.application import Application
+
+    key = data["school_key"]
+    ids = {program_id_for(key, p) for p in data.get("programs", [])}
+    university_id = _university(session, data, schools.get(key), sorted(ids))
+    stale = [pid for pid in session.scalars(select(Program.id).where(Program.university_id == university_id))
+             if not pid.startswith("cricos-") and pid not in ids]
+    held = set(session.scalars(select(Application.program_id).where(Application.program_id.in_(stale)))) if stale else set()
+    removable = [pid for pid in stale if pid not in held]
+    if removable:
+        session.execute(delete(ProgramPrerequisite).where(ProgramPrerequisite.program_id.in_(removable)))
+        session.execute(delete(Program).where(Program.id.in_(removable)))
+    session.commit()
+    return {"school": key, "pruned": len(removable), "kept_in_portfolios": sorted(held)}
+
+
 def main(argv: list[str]) -> int:
     from app.db import SessionLocal
 
-    paths = [Path(a) for a in argv] or requirement_files()
+    prune = "--prune" in argv
+    paths = [Path(a) for a in argv if a != "--prune"] or requirement_files()
     schools = load_schools()
     failed = 0
     with SessionLocal() as session:
         for path in paths:
             try:
-                result = import_school(session, json.loads(path.read_text(encoding="utf-8")), schools)
+                data = json.loads(path.read_text(encoding="utf-8"))
+                result = import_school(session, data, schools)
+                if prune:
+                    result.update(prune_school(session, data, schools))
             except Exception as error:  # noqa: BLE001 - one bad file must not stop the others
                 session.rollback()
                 failed += 1

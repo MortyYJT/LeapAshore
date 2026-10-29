@@ -221,3 +221,32 @@ def test_recommended_must_be_a_flag():
         validate({"school_key": "x", "school_name_en": "X", "programs": [{
             "name": "M", "url": "https://x.edu", "snapshot_sha256": "a" * 64,
             "fields": {"ielts": {"overall": 7, "recommended": "yes", "quote": "q"}}}]})
+
+
+def test_pruning_removes_rows_the_file_no_longer_lists_but_keeps_one_a_portfolio_holds(db_session, require_db, cleanup, tmp_path):
+    """A program dropped from a school's file leaves the catalogue, unless someone's portfolio names it."""
+    import uuid
+
+    from app.collect.importer import prune_school
+    from app.models.application import Application
+    from app.models.client import Client
+
+    import_school(db_session, school_file(), SCHOOLS, root=tmp_path)
+    for orphan in (f"{KEY}-dropped-a", f"{KEY}-dropped-b"):
+        db_session.add(Program(id=orphan, university_id=KEY, name=orphan, data_status="机器核对", source_id=source_id_for(URL)))
+    client = Client(id=str(uuid.uuid4()))
+    db_session.add(client)
+    db_session.flush()
+    db_session.add(Application(id=str(uuid.uuid4()), client_id=client.id, program_id=f"{KEY}-dropped-b", tier="稳妥"))
+    db_session.commit()
+    try:
+        result = prune_school(db_session, school_file(), SCHOOLS)
+        assert result == {"school": KEY, "pruned": 1, "kept_in_portfolios": [f"{KEY}-dropped-b"]}
+        assert db_session.get(Program, f"{KEY}-dropped-a") is None
+        assert db_session.get(Program, program_id_for(KEY, {"url": URL, "name": "MSc Data Science"})) is not None
+    finally:
+        db_session.rollback()
+        db_session.execute(delete(Application).where(Application.client_id == client.id))
+        db_session.execute(delete(Program).where(Program.id.in_([f"{KEY}-dropped-a", f"{KEY}-dropped-b"])))
+        db_session.execute(delete(Client).where(Client.id == client.id))
+        db_session.commit()
