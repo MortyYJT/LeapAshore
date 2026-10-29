@@ -1,0 +1,55 @@
+{
+ "school_key": "university-of-calgary",
+ "school_name_en": "University of Calgary",
+ "country": "Canada",
+ "collector": "leapashore-queue",
+ "collected_at": "2026-10-30",
+ "listing_urls": [
+  "https://grad.ucalgary.ca/future-students/graduate/discover-opportunities/explore-programs"
+ ],
+ "complete": false,
+ "programs": [
+  {
+   "name": "Biomedical Engineering - MEng - Course-Based",
+   "url": "https://grad.ucalgary.ca/future-students/explore-programs/biomedical-engineering-meng-course",
+   "snapshot_sha256": "b9770a78c5363136cc22a0e9f00d3bcd82a294b04ad07dd530cceee045c8bdef",
+   "fetched_at": "2026-10-29T20:32:22+00:00",
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "A minimum 3.0 GPA on a 4.0 point system over the past two years of full-time study (at least 10 full-course equivalents or 60 units) of the undergraduate degree.",
+     "quote": "A minimum of 3.0 GPA on a 4.0 point system, over the past two years of full-time study (a minimum of 10 full-course equivalents or 60 units) of the undergraduate degree.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Architecture - MArch - Course",
+   "url": "https://grad.ucalgary.ca/future-students/graduate/discover-opportunities/explore-programs/architecture-march-course",
+   "snapshot_sha256": "01041b00f6c30bd320b631fc483db2dede35718487b4047e87bbb84f4c0b4eca",
+   "fetched_at": "2026-10-29T20:34:53+00:00",
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "A minimum 3.0 GPA on a 4.0 point system over the past two years of study (at least 20 courses or 60 units) of the undergraduate degree.",
+     "quote": "A minimum of 3.0 GPA on a 4.0 point system, over the past two years of study (a minimum of 20 courses or 60 units) of the undergraduate degree.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Successful completion of one or more years of undergraduate-level coursework in Design, Technology, Graphics, and History/Theory.",
+      "quote": "Applicants must demonstrate successful completion of one or more years of undergraduate-level coursework in four areas: Design, Technology, Graphics, and History/Theory",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 2,
+  "机器核对": 2,
+  "待人工": 0
+ }
+}

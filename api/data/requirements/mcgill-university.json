@@ -23,11 +23,1648 @@
   "https://www.mcgill.ca/study/",
   "https://www.mcgill.ca/gradapplicants/programs"
  ],
- "notes": "www.mcgill.ca returned HTTP 403 on the faculty-filtered programme listing after /gradapplicants/, /gradapplicants/programs and /gradapplicants/how-apply loaded (200), so fetching stopped for this host. The programme finder is dynamic and the saved listing page holds only faculty links, so no individual programme pages were reached. University-wide minimums (cGPA 3.0/4.0, English proficiency) are on snapshot 741749d923a6b9a63b3834f8cf3e1347f7cc8a96665f5e5438d1af0cc426da22 but are not attached to any programme.",
- "programs": [],
+ "notes": "www.mcgill.ca returned HTTP 403 on the faculty-filtered programme listing after /gradapplicants/, /gradapplicants/programs and /gradapplicants/how-apply loaded (200), so fetching stopped for this host. The programme finder is dynamic and the saved listing page holds only faculty links, so no individual programme pages were reached. University-wide minimums (cGPA 3.0/4.0, English proficiency) are on snapshot 741749d923a6b9a63b3834f8cf3e1347f7cc8a96665f5e5438d1af0cc426da22 but are not attached to any programme. 2026-10-30: the collection queue (leapashore-queue) collected 59 programme pages from coursecatalogue.mcgill.ca, each fetched through the snapshot tool's robots.txt and refusal checks.",
+ "programs": [
+  {
+   "name": "Agricultural Economics",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/agri-env-sci/agricultural-economics/",
+   "snapshot_sha256": "150f869068469843f3650ab91dd69d2280b5c4c4160feb2e18b7ba0a5d5acaec",
+   "fetched_at": "2026-10-29T21:24:33+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "An undergraduate degree in Agricultural Economics or Economics, including courses in intermediate economic theory (micro and macro), calculus, algebra, statistics, and econometrics.",
+     "quote": "The ideal prior preparation is an undergraduate degree in Agricultural Economics or Economics, including undergraduate courses in intermediate economic theory (micro and macro), calculus, algebra, statistics, and econometrics.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Undergraduate courses in intermediate economic theory (micro and macro), calculus, algebra, statistics, and econometrics.",
+      "quote": "including undergraduate courses in intermediate economic theory (micro and macro), calculus, algebra, statistics, and econometrics",
+      "check": "ok"
+     },
+     {
+      "text": "Documented proof of English proficiency for applicants whose mother tongue is not English and who have not completed a degree at a recognized institution where English is the language of instruction.",
+      "quote": "For graduate applicants whose mother tongue is not English, and who have not completed an undergraduate or graduate degree from a recognized Canadian or American (English or French) institution or from a recognized foreign institution where English is the language of instruction, documented proof of English proficiency is required prior to admission.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Animal Science",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/agri-env-sci/animal-science/",
+   "snapshot_sha256": "440dfdcd646316a058ed9eba2c43f5c3dc7ef4fc998216b82167a1ff6cbcbd4f",
+   "fetched_at": "2026-10-29T21:25:04+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "M.Sc. (Thesis): a bachelor's degree in Agriculture, or a B.Sc. in an appropriate related discipline with a CGPA of 3.0/4.0 or a GPA of 3.2/4.0 over the last two years of full-time study.",
+     "quote": "Candidates are required to have either a bachelor's degree in Agriculture or a B.Sc. degree in an appropriate, related discipline with an equivalent cumulative grade point average (CGPA) of 3.0/4.0 (second class–upper division) or a grade point average (GPA) of 3.2/4.0 during the last two years of full-time university study.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "A staff member must agree to serve as the student's supervisor.",
+      "quote": "Acceptance to all programs depends on a staff member agreeing to serve as the student’s supervisor.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Bioresource Engineering",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/agri-env-sci/bioresource-engineering/",
+   "snapshot_sha256": "1d14e4d871155822055d2a272e413ca59e1cb385cac61f9b71e79b59d5ec15e5",
+   "fetched_at": "2026-10-29T21:24:57+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "An equivalent cumulative grade point average (CGPA) of 3.0/4.0 (second class–upper division) at the bachelor's level.",
+     "quote": "An equivalent cumulative grade point average (CGPA) of 3.0/4.0 (second class–upper division) or a grade point average (GPA) of 3.2/4.0 during the last two years of full-time university study is required at the bachelor's level.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "High grades in courses the academic unit considers preparatory to the graduate program.",
+      "quote": "High grades are expected in courses the academic unit considers to be preparatory to the graduate program.",
+      "check": "ok"
+     },
+     {
+      "text": "For the M.Sc.A. program: qualification as a professional engineer in a Canadian professional engineering association, such as the Ordre des ingénieurs du Québec (OIQ).",
+      "quote": "Candidates for the M.Sc.A. program must meet the qualification of a professional engineer in a Canadian professional engineering association,  such as the Ordre des ingénieurs du Québec (OIQ), either before or during their M.Sc.A. program.",
+      "check": "ok"
+     },
+     {
+      "text": "For the M.Sc.A. in Environmental Engineering: a completed undergraduate degree in engineering.",
+      "quote": "Candidates for the M.Sc.A. program in Environmental Engineering shall have completed an undergraduate degree in engineering.",
+      "check": "ok"
+     },
+     {
+      "text": "For the M.Sc.A. in Integrated Food and Bioprocessing: a Bachelor of Engineering, Bachelor of Science in Engineering or Bachelor of Technology, with strong knowledge of fluid mechanics, heat and/or mass transfer, thermodynamics, and engineering mathematics (including statistics).",
+      "quote": "Candidates for the M.Sc.A. in Integrated Food and Bioprocessing shall have graduated with a Bachelor of Engineering, Bachelor of Science in Engineering or a Bachelor of Technology, and possess a strong knowledge in the following core engineering areas: fluid mechanics, heat and/or mass transfer, thermodynamics, and engineering mathematics (including statistics).",
+      "check": "ok"
+     },
+     {
+      "text": "For the M.Sc. (Non-Thesis) in Integrated Water Resources Management: a Bachelor's degree, which need not be in engineering.",
+      "quote": "Candidates for the M.Sc. (Non-Thesis) program in Integrated Water Resources Management must hold a Bachelor's degree, but it does not need to be an engineering degree.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Biotechnology",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/agri-env-sci/biotechnology/",
+   "snapshot_sha256": "9281a7925ed612e9418553de393fe65cdc69e18679de38b0c8d871f49c806292",
+   "fetched_at": "2026-10-29T21:25:15+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "A bachelor's degree in biological sciences or equivalent with a minimum CGPA of 3.2/4.0.",
+     "quote": "Candidates for the M.Sc.(Applied) in Biotechnology must possess a bachelor’s degree in biological sciences or equivalent with a minimum cumulative grade point average (CGPA) of 3.2/4.0, as well as all prerequisites or their equivalents.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Sufficient background in biochemistry, cellular biology and molecular biology, preferably at an advanced level.",
+      "quote": "Applicants are required to have sufficient background in biochemistry, cellular biology, and molecular biology, preferably at an advanced level for the Master's Applied.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Food Science and Agricultural Chemistry",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/agri-env-sci/food-science-agricultural-chemistry/",
+   "snapshot_sha256": "d37f1b4aa366f93395584d0234b080959062d149c7adda724fb4c5355db82475",
+   "fetched_at": "2026-10-29T21:24:42+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "Applicants to the M.Sc. programs (thesis or non-thesis) must be graduates of a recognized university and hold a B.Sc. in Food Science or a related discipline such as Chemistry, Biochemistry, or Microbiology with a minimum CGPA of 3.4/4.0.",
+     "quote": "Applicants to the M.Sc. programs (thesis or non-thesis) must be graduates of a university of recognized reputation and hold a B.Sc. in Food Science or a related discipline such as Chemistry, Biochemistry, or Microbiology with a minimum cumulative grade point average (CGPA) of 3.4/4.0 (second class–upper division).",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "For applicants whose mother tongue is not English and who have not completed a degree at a recognized institution where English is the language of instruction, documented proof of English proficiency is required.",
+      "quote": "For graduate applicants whose mother tongue is not English, and who have not completed an undergraduate or graduate degree from a recognized Canadian or American (English or French) institution or from a recognized foreign institution where English is the language of instruction, documented proof of English proficiency is required prior to admission.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Human Nutrition",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/agri-env-sci/human-nutrition/",
+   "snapshot_sha256": "37e34c2723f4a4caeedce00697bb078e38ffee965c59c0daa7636cdf5e612389",
+   "fetched_at": "2026-10-29T21:25:03+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "Applicants must hold a B.Sc. degree equivalent to a McGill degree in a subject closely related to the one selected for graduate work, with a minimum CGPA of 3.3/4.0 for the M.Sc. Thesis and M.Sc. Applied.",
+     "quote": "Applicants must be graduates of a university of recognized reputation and hold a B.Sc. degree equivalent to a McGill degree in a subject closely related to the one selected for graduate work. Applicants must have a minimum cumulative grade point average (CGPA) in McGill University’s credit equivalency of 3.3/4.0 (high second class–upper division) for the M.Sc. Thesis and M.Sc. Applied during their bachelor's degree program.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "The dietetics credentialing option requires French proficiency at minimum level B2.",
+      "quote": "This program has a specific entrance CGPA requirement of 3.5/4.0 and French proficiency (minimum level B2) requirement.",
+      "check": "ok"
+     },
+     {
+      "text": "The practicum option is reserved for those who have completed a dietetics internship and six months of work experience and are members of the ODNQ.",
+      "quote": "The practicum option, which is reserved for those who have completed a dietetics internship and six months of work experience and are members of the ODNQ and wish to further develop their skills in a particular area of practice through an advanced internship;",
+      "check": "ok"
+     },
+     {
+      "text": "The GRE is required for all Ph.D. applicants submitting non-Canadian or non-U.S. transcripts.",
+      "quote": "Graduate Record Exam (GRE) – The GRE is required for all Ph.D. applicants to the School of Human Nutrition who are submitting non-Canadian or non-U.S. transcripts.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Natural Resource Sciences",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/agri-env-sci/natural-resource-sciences/",
+   "snapshot_sha256": "7a1f9248d2acaa26ec35774bbd3e79f1abf46eb683fa027ba23c1ad0200fe26f",
+   "fetched_at": "2026-10-29T21:25:00+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "Direct admission to the M.Sc. requires a B.Sc. in Agricultural Economics or a closely related area, with a minimum equivalent CGPA of 3.0/4.0 or a minimum GPA of 3.2/4.0 over the last two years of full-time study.",
+     "quote": "Direct admission to the M.Sc. requires the completion of a B.Sc. in Agricultural Economics or a closely related area, with the minimum equivalent cumulative grade point average (CGPA) of 3.0/4.0 (second class–upper division) or minimum grade point average (GPA) of 3.2/4.0 during the last two years of full-time university study.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Ideal preparation includes courses in agricultural economics, economic theory (intermediate micro and macro), calculus, linear algebra, and statistics.",
+      "quote": "The ideal preparation includes courses in agricultural economics, economic theory (intermediate micro and macro), calculus, linear algebra, and statistics.",
+      "check": "ok"
+     },
+     {
+      "text": "Applicants whose mother tongue is not English and who have not completed a degree where English was the language of instruction must provide documented proof of English proficiency.",
+      "quote": "For graduate applicants whose mother tongue is not English, and who have not completed an undergraduate or graduate degree from a recognized Canadian or American (English or French) institution or from a recognized foreign institution where English is the language of instruction, documented proof of English proficiency is required prior to admission.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Parasitology",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/agri-env-sci/parasitology/",
+   "snapshot_sha256": "b69e51c697708387393af64c50d5887c6eb5f86f5251a1bf872c89cea28c9101",
+   "fetched_at": "2026-10-29T21:25:06+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "A bachelor's degree in biological or medical sciences with a minimum CGPA of 3.2/4.0 (second class–upper division).",
+     "quote": "Candidates for either the M.Sc. or the Ph.D. degree should possess a bachelor's degree in biological or medical sciences with a minimum cumulative grade point average (CGPA) of 3.2/4.0 (second class–upper division).",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "High grades expected in courses the academic unit considers preparatory to the graduate program.",
+      "quote": "High grades are expected in courses considered by the academic unit to be preparatory to the graduate program.",
+      "check": "ok"
+     },
+     {
+      "text": "A staff member must agree to serve as the student's supervisor for acceptance to thesis research programs.",
+      "quote": "Acceptance to all thesis research programs depends on a staff member agreeing to serve as the student’s supervisor.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Plant Science",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/agri-env-sci/plant-science/",
+   "snapshot_sha256": "a3652f4b290b6724f34db4474cf0b0c3bd17a81b26e358c6aa82e0bbea423c93",
+   "fetched_at": "2026-10-29T21:25:08+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "Minimum CGPA of 3.0/4.0 (second class–upper division), or a minimum GPA of 3.2/4.0 during the last two years of full-time university study.",
+     "quote": "The minimum cumulative grade point average (CGPA) is 3.0/4.0 (second class–upper division) or a minimum GPA of 3.2/4.0 during the last two years of full-time university study.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Acceptance to all thesis research programs depends on a staff member agreeing to serve as the student's supervisor.",
+      "quote": "Acceptance to all thesis research programs depends on a staff member agreeing to serve as the student’s supervisor.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Anthropology",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/arts/anthropology/",
+   "snapshot_sha256": "4f830a8fef5c6051b6381e6e6f2713ebf40400ca83a30ec3e33d68f02bfb0d06",
+   "fetched_at": "2026-10-29T21:25:35+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "An Honours or Major B.A. in Anthropology or Archaeology.",
+     "quote": "Admission to the M.A. program is open competitively to students holding an Honours or Major B.A. in Anthropology or Archaeology.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Proof of English language competency (official TOEFL scores) if your mother tongue is not English and you have not graduated from an institution where English is the main language of instruction.",
+      "quote": "If your mother tongue is not English and you have not graduated from a university or college where English is the main language of instruction, you must provide proof of language competency, i.e., a copy of your official Test of English as a Second Language (TOEFL) scores.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Art History",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/arts/art-history/",
+   "snapshot_sha256": "0aed0717df8efe57f45467a3216cd9015ff5298fd026b955a091d79d3622d584",
+   "fetched_at": "2026-10-29T21:25:17+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "A B.A. degree in Art History or another closely related field, normally expected.",
+     "quote": "To apply to the M.A. program, candidates are normally expected to have a B.A. degree in Art History or in another closely related field",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "A research proposal of at least 500 words outlining the candidate's research interest in Art History.",
+      "quote": "The Department requires a research proposal of at least 500 words outlining the candidate's particular research interest in Art History",
+      "check": "ok"
+     },
+     {
+      "text": "A sample of written work, such as a seminar paper.",
+      "quote": "as well as a sample of their written work such as a seminar paper or, in the case of Ph.D. applicants, all or part of the M.A. paper or thesis.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Communication Studies",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/arts/communication-studies/",
+   "snapshot_sha256": "e2c3f6f5983457b13403942da54b53d8f7d9effb62ae204c802f620e753f39f6",
+   "fetched_at": "2026-10-29T21:25:24+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "A B.A. degree with a minimum CGPA of 3.3.",
+     "quote": "To apply to the M.A. program in Communication Studies, candidates are expected to have a B.A. degree with a minimum CGPA of 3.3.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Documented proof of English proficiency for applicants whose mother tongue is not English and who have not completed a degree at a recognized institution where English is the language of instruction.",
+      "quote": "For graduate applicants whose mother tongue is not English, and who have not completed an undergraduate or graduate degree from a recognized Canadian or American (English or French) institution or from a recognized foreign institution where English is the language of instruction, documented proof of English proficiency is required prior to admission.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "East Asian Studies",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/arts/east-asian-studies/",
+   "snapshot_sha256": "9db8099b761b4e25c4cf90db5025de442bf80aa769d717a51c1079b68fb09863",
+   "fetched_at": "2026-10-29T21:25:49+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Alternatively, students proving their English proficiency may use the International English Language Testing System (IELTS) examination, for which the minimum score is an overall band score of 6.5 (academic module).",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "A minimum standing equivalent to a cumulative GPA of 3.0/4.0, or a GPA of 3.2/4.0 for the last two full-time academic years.",
+     "quote": "A minimum Standing equivalent to a cumulative grade point average (CGPA) of 3.0/4.0, or a GPA of 3.2/4.0 for the last two full-time academic years.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Proficiency in the East Asian language(s) most useful for the proposed graduate work, preferably three years or more of coursework or equivalent.",
+      "quote": "Applicants are expected to have proficiency in the East Asian language(s) most useful for the proposed graduate work (preferably three years or more of coursework, or equivalent).",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Economics",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/arts/economics/",
+   "snapshot_sha256": "33f0d41313cec5cb883eea4297b03912e011cf81159f46388e0f5c7d3677b6da",
+   "fetched_at": "2026-10-29T21:25:32+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "A master's degree in economics is required for entry to the Ph.D. program.",
+     "quote": "You must hold, or reasonably expect to hold by September, a master's degree in economics for entry to the Ph.D. program",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Applicants whose education was interrupted or who lack an undergraduate or graduate degree in economics from a Canadian university must take the GRE General Test.",
+      "quote": "If your education has been interrupted or if you do not have an undergraduate or graduate degree in economics from a Canadian university, you must take the Graduate Record Examination (GRE; General Test) and arrange for your scores to be sent to us.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "English",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/arts/english/",
+   "snapshot_sha256": "d6708636422a7a9eac287f4b702062fe0a8464fce27bceddd17dab527ceeae52",
+   "fetched_at": "2026-10-29T21:25:31+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "A B.A. degree in English (honours or major) or its equivalent, with a very strong academic record.",
+     "quote": "Admission to the M.A. program requires a B.A. degree in English (honours or major) or its equivalent, with a very strong record of academic success (especially in the final two years of the B.A.).",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Solid training and coverage within the chosen area of theatre, cultural studies, or literature.",
+      "quote": "Typically, applicants will have solid training and coverage within their chosen area of theatre, cultural studies, or literature.",
+      "check": "ok"
+     },
+     {
+      "text": "Documented proof of English proficiency for applicants whose mother tongue is not English and who have not completed a degree at a recognized institution where English is the language of instruction.",
+      "quote": "For graduate applicants whose mother tongue is not English, and who have not completed an undergraduate or graduate degree from a recognized Canadian or American (English or French) institution or from a recognized foreign institution where English is the language of instruction, documented proof of English proficiency is required prior to admission.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "French Language and Literature",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/arts/french-language-literature/",
+   "snapshot_sha256": "ac457ab8638af2d647e89fb06cf85438f17e89842cc93a1270739e662c22d006",
+   "fetched_at": "2026-10-29T21:25:45+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "A bachelor's degree (B.A.) with a major or specialization in literary studies and practices or in translation, or a B.A. whose content and level are equivalent to the Department's B.A. with major or specialization, with a B+ average (CGPA 3.3 out of 4.0) during undergraduate studies.",
+     "quote": "Pour être admis directement en M.A. I, le candidat doit être titulaire d'un diplôme de 1er cycle universitaire (B.A.) avec majeur (ou spécialisation) en études et pratiques littéraires ou en traduction, ou encore d'un B.A. dont le contenu et le niveau doivent équivaloir au programme du B.A. avec majeure ou du B.A. avec spécialisation offert par le Département de langue et littérature françaises de l'Université McGill. En outre, le candidat devra avoir maintenu une moyenne générale de B+ (CGPA 3,3 sur 4,0) pendant ses études de 1er cycle universitaire.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Students from outside the Department must provide a sample of written work in French.",
+      "quote": "Échantillon de travail écrit – les étudiants de l'extérieur du Département doivent fournir un échantillon de travail écrit, en français",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Geography",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/arts/geography/",
+   "snapshot_sha256": "a2774bcba377e5aaacee49340683225bf7c8bf6de91edbe431193f80914bcba1",
+   "fetched_at": "2026-10-29T21:25:57+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "Applicants with primary undergraduate specialization in a cognate field who do not satisfy the general graduate admission conditions may be admitted to the M.A. or M.Sc. in Geography under certain circumstances.",
+     "quote": "Applicants not satisfying the conditions set out in Graduate Admissions and Application Procedures, but with primary undergraduate specialization in a cognate field, may be admitted to the M.A. or M.Sc. degree in Geography under certain circumstances.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Documented proof of English proficiency for applicants whose mother tongue is not English and who have not completed a degree at a recognized institution where English is the language of instruction.",
+      "quote": "For graduate applicants whose mother tongue is not English, and who have not completed an undergraduate or graduate degree from a recognized Canadian or American (English or French) institution or from a recognized foreign institution where English is the language of instruction, documented proof of English proficiency is required prior to admission.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Information Studies",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/arts/information-studies/",
+   "snapshot_sha256": "c6e15843e47347e0e2d30281da8dbeffa6fe3885035fdcf5a3230cbbcc90c7ec",
+   "fetched_at": "2026-10-29T21:25:53+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "ielts": {
+     "overall": 7.5,
+     "quote": "the International English Language Testing System (IELTS) with a minimum overall band score of 7.5",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT with a minimum score of 6, a written score of at least 5, and reading, speaking and listening scores not less than 4.5 (1-6 band scale).",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "the Test of English as a Foreign Language (TOEFL) with a minimum score of 6 on the Internet-based test (iBT), with a written score of at least 5 and a reading, speaking, and listening score not less than 4.5",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "A bachelor's degree from a recognized university with a minimum standing equivalent to a McGill CGPA of 3.0/4.0, or a GPA of 3.2/4.0 over the last two full-time academic years.",
+     "quote": "Applicants must have a bachelor's degree from a recognized university. The applicant must present evidence of academic achievement: a minimum Standing equivalent to a McGill cumulative grade point average (CGPA) of 3.0/4.0 or a grade point average (GPA) of 3.2/4.0 for the last two full-time academic years.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Applicants whose mother tongue is not English and who have not completed a degree where English is the language of instruction must submit documented proof of English proficiency.",
+      "quote": "Applicants to graduate studies whose mother tongue is not English, and who have not completed an undergraduate or graduate degree from a recognized foreign institution where English is the language of instruction or from a recognized Canadian institution (anglophone or francophone), must submit documented proof of competency in oral and written English prior to admission.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Development",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/arts/international-development/",
+   "snapshot_sha256": "6f4a1d72c1fd9b0b8cd486ef8a56c48ede61e0c2ae87808c3954b5e0efe6ae07",
+   "fetched_at": "2026-10-29T21:26:01+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "Applicants are only considered for the Development Studies Option after being accepted into a master's program in one of the six participating departments at McGill.",
+     "quote": "Students will only be considered for the Development Studies Option (DSO) once they have been accepted into a master's program in one of the six participating departments (Anthropology, Economics, Geography, History, Political Science, and Sociology) at McGill.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Proof of English proficiency is required for applicants whose mother tongue is not English and who have not completed a degree at a recognized Canadian or American institution or a recognized foreign institution where English is the language of instruction.",
+      "quote": "For graduate applicants whose mother tongue is not English, and who have not completed an undergraduate or graduate degree from a recognized Canadian or American (English or French) institution or from a recognized foreign institution where English is the language of instruction, documented proof of English proficiency is required prior to admission.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Islamic Studies",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/arts/islamic-studies/",
+   "snapshot_sha256": "bac8d60686589282cc1831534b834b5e6c880188756e4ac17ae4c5ae6916ba54",
+   "fetched_at": "2026-10-29T21:26:19+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "A B.A. or M.A. degree from a recognized university with a minimum CGPA of 3.0/4.0 (or equivalent), or a GPA of 3.2/4.0 in the last two years of full-time studies, in the Humanities or Social Sciences, preferably in Islamic or Middle Eastern Studies.",
+     "quote": "Applicants must have a B.A. or M.A. degree from a recognized university, with a minimum cumulative grade point average (CGPA) of 3.0/4.0 (or equivalent), or a grade point average (GPA) of 3.2/4.0 in the last two years of full-time studies, according to Canadian standards.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "The degree should be in the Humanities or Social Sciences, preferably in Islamic or Middle Eastern Studies.",
+      "quote": "The degree should be in the Humanities or Social Sciences, preferably in Islamic or Middle Eastern Studies.",
+      "check": "ok"
+     },
+     {
+      "text": "Knowledge of Arabic or Persian is an asset: one year of language training for M.A. applicants.",
+      "quote": "Knowledge of Arabic or Persian is an asset, as follows: one year of language training for M.A. applicants; two years for Ph.D. applicants",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Jewish Studies",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/arts/jewish-studies/",
+   "snapshot_sha256": "4a9ab35ecd1b1d5258309224c993bb32a921cf8053d337cdea7e35286ff0d281",
+   "fetched_at": "2026-10-29T21:26:07+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "Ideally, applicants would have completed a B.A. in Jewish Studies; otherwise acceptable applicants may be admitted to a Qualifying Year.",
+     "quote": "Ideally, applicants would have completed a B.A. in Jewish Studies. If an applicant is otherwise deemed acceptable, it is possible to be admitted to a Qualifying Year.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Applicants to the History of the Jewish Interpretation of the Bible stream must demonstrate competence in Hebrew before starting the program.",
+      "quote": "Students seeking admission to the History of the Jewish Interpretation of the Bible stream must demonstrate competence in Hebrew prior to beginning the program.",
+      "check": "ok"
+     },
+     {
+      "text": "Thesis students in Eastern European studies, Jewish thought or Hebrew literature must enter with a good command of Hebrew or Yiddish according to their specialization.",
+      "quote": "Students choosing Eastern European studies, Jewish thought, or Hebrew literature must enter the program with a good command of either Hebrew or Yiddish according to their chosen specialization.",
+      "check": "ok"
+     },
+     {
+      "text": "Thesis students in the History of the Jewish Interpretation of the Bible stream must enter with a good command of Hebrew.",
+      "quote": "Students choosing this path must enter the program with a good command of Hebrew.",
+      "check": "ok"
+     },
+     {
+      "text": "Non-thesis students must demonstrate a good command of Yiddish or Hebrew before graduating.",
+      "quote": "Students must demonstrate good command of Yiddish or Hebrew prior to graduation.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Languages, Literatures, and Cultures",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/arts/languages-literatures-cultures/",
+   "snapshot_sha256": "6d6ddcdff4c805c87ab3d6f6d537ab0ce41c26df4815b97c6180618169ce3eb0",
+   "fetched_at": "2026-10-29T21:26:16+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Students also have the option of taking the IELTS (International English Language Testing Service System) examination, for which the minimum score is an overall band average of 6.5 (academic module).",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "A B.A. degree in German from McGill or an equivalent degree from another recognized institution, for the German Studies M.A.",
+     "quote": "In order to be admitted to the M.A. program in German Studies, candidates must have at least a B.A. degree in German from McGill University or an equivalent degree from another recognized college or university.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Considerable fluency in German for graduate studies in German.",
+      "quote": "In order to pursue graduate studies in German, all candidates must have considerable fluency in German.",
+      "check": "ok"
+     },
+     {
+      "text": "Proficiency in Spanish and, when appropriate, Portuguese, plus a working knowledge of either French or English (Hispanic Studies Ph.D.).",
+      "quote": "Applicants must demonstrate proficiency in Spanish, and when appropriate, in Portuguese, plus a working knowledge of either French or English.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Linguistics",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/arts/linguistics/",
+   "snapshot_sha256": "c262181a48d9fab8938ef7d180056598bf3ffb004b6570a81dc9563165a88655",
+   "fetched_at": "2026-10-29T21:26:31+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "A B.A. with a specialization in linguistics.",
+     "quote": "Applicants to the M.A. or Ph.D. should have completed a B.A. with a specialization in linguistics.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Proof of English proficiency for non-native English speakers without a degree from a recognized institution where English is the language of instruction.",
+      "quote": "For graduate applicants whose mother tongue is not English, and who have not completed an undergraduate or graduate degree from a recognized Canadian or American (English or French) institution or from a recognized foreign institution where English is the language of instruction, documented proof of English proficiency is required prior to admission.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Mathematics and Statistics",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/arts/mathematics-statistics/",
+   "snapshot_sha256": "7bc5919982ceb5376c1986055ec9df7d514b61c54f4dec3409ecfbab71a09e57",
+   "fetched_at": "2026-10-29T21:26:11+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "A Canadian honours degree or its equivalent, with high Standing, in mathematics or a closely related discipline (for applicants concentrating in statistics or applied mathematics).",
+     "quote": "The normal entrance requirement for the master's programs is a Canadian honours degree or its equivalent, with high Standing, in mathematics or a closely related discipline in the case of applicants intending to concentrate in statistics or applied mathematics.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "For pure mathematics: a strong background in linear algebra, abstract algebra, and real and complex analysis.",
+      "quote": "Applicants wishing to concentrate in pure mathematics should have a strong background in linear algebra, abstract algebra, and real and complex analysis.",
+      "check": "ok"
+     },
+     {
+      "text": "For statistics: a strong background in linear algebra and basic real analysis; a calculus-based course in probability and one in statistics are required, plus some knowledge of computer programming.",
+      "quote": "Applicants wishing to concentrate in statistics should have a strong background in linear algebra and basic real analysis. A calculus-based course in probability and one in statistics are required, as well as some knowledge of computer programming.",
+      "check": "ok"
+     },
+     {
+      "text": "For applied mathematics: a strong background in most areas of linear algebra, analysis, differential equations, discrete mathematics, and numerical analysis.",
+      "quote": "Applicants wishing to concentrate in applied mathematics should have a strong background in most of the areas of linear algebra, analysis, differential equations, discrete mathematics, and numerical analysis.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Philosophy",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/arts/philosophy/",
+   "snapshot_sha256": "4a620c7d3d97918fd71b2d2fb5ac81a7a997792326503165dc7b25cfad3565c1",
+   "fetched_at": "2026-10-29T21:26:23+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "toefl": {
+     "text": "Documented proof of competency in oral and written English (TOEFL score) is required unless the applicant's mother tongue is English or they completed a degree at a recognized institution where English is the language of instruction.",
+     "quote": "Applicants to graduate studies whose mother tongue is not English, and who have not completed an undergraduate or graduate degree from a recognized foreign institution where English is the language of instruction or from a recognized Canadian institution (anglophone or francophone), must submit documented proof of competency in oral and written English (TOEFL score).",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "Ph.D. 1 is a direct-entry program for students with an Honours B.A. degree in Philosophy or the equivalent.",
+     "quote": "Ph.D. 1 is a direct-entry program for students with an Honours B.A. degree in Philosophy or the equivalent.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Adequate undergraduate training in philosophy, including general knowledge of the history of Western philosophy (Greek, Medieval, Modern).",
+      "quote": "a general knowledge of the history of Western philosophy: Greek, Medieval, Modern;",
+      "check": "ok"
+     },
+     {
+      "text": "Systematic knowledge of the main philosophical disciplines: logic, ethics, epistemology, and metaphysics.",
+      "quote": "a systematic knowledge of the main philosophical disciplines in their contemporary as well as historical contexts: logic, ethics, epistemology, and metaphysics;",
+      "check": "ok"
+     },
+     {
+      "text": "Ability to present clear and substantial written reconstructions and analyses of the materials studied in those areas.",
+      "quote": "an ability to present, in written form, clear and substantial reconstructions and analyses of the materials normally studied in the areas mentioned in (1) and (2).",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Political Science",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/arts/political-science/",
+   "snapshot_sha256": "355431fcd629b5589a37d9b854b4a96909f886133bbe5c8608aedee133508bdb",
+   "fetched_at": "2026-10-29T21:26:21+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "ielts": {
+     "overall": 6.5,
+     "quote": "The IELTS (International English Language Testing Systems) with a minimum overall band of 6.5 is also acceptable.",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "Applicants must already hold an undergraduate academic degree in political science or a closely related field.",
+     "quote": "The Graduate Admissions Committee only considers applications from those who already have an undergraduate academic degree in political science or a closely related field (e.g., international studies, sociology, philosophy for prospective political theorists, etc.).",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Applicants whose mother tongue is not English and who have not completed a degree where English is the language of instruction must submit TOEFL scores.",
+      "quote": "Applicants to graduate studies whose mother tongue is not English, and who have not completed an undergraduate or graduate degree from a recognized foreign institution where English is the language of instruction or from a recognized Canadian/American institution (anglophone or francophone), must submit TOEFL scores.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Psychology",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/arts/psychology/",
+   "snapshot_sha256": "fa80f407e4f4780f4653a23dde5ab8182ed0a8ef6b99cbf76ad172dde13d8f92",
+   "fetched_at": "2026-10-29T21:27:21+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "An Honours or Major degree (B.A. or B.Sc.) in Psychology is the usual requirement for admission.",
+     "quote": "The usual requirement for admission is an Honours or Major degree (B.A. or B.Sc.) in Psychology.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "An introductory psychology course plus twelve psychology courses, each equivalent to three term hours.",
+      "quote": "This usually includes an introductory course plus twelve courses in psychology (each equivalent to three term hours).",
+      "check": "ok"
+     },
+     {
+      "text": "Courses in experimental psychology, the theoretical development of modern ideas in psychology, and statistical methods applied to psychological problems (equivalent to an introductory course) are essential.",
+      "quote": "Courses in experimental psychology, the theoretical development of modern ideas in psychology, and statistical methods as applied to psychological problems (equivalent to an introductory course) are essential.",
+      "check": "ok"
+     },
+     {
+      "text": "Applicants to the clinical program are advised to complete 42 specific undergraduate psychology credits specified by the Order of Psychologists of Quebec.",
+      "quote": "Students applying to the clinical program are advised to complete 42 specific undergraduate credits in psychology as specified by the Order of Psychologists of Quebec (Ordre des psychologues du Québec).",
+      "check": "ok"
+     },
+     {
+      "text": "Documented proof of English proficiency is required for applicants whose mother tongue is not English and who have not completed a degree at a recognized institution where English is the language of instruction.",
+      "quote": "For graduate applicants whose mother tongue is not English, and who have not completed an undergraduate or graduate degree from a recognized Canadian or American (English or French) institution or from a recognized foreign institution where English is the language of instruction, documented proof of English proficiency is required prior to admission.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Public Policy",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/arts/public-policy/",
+   "snapshot_sha256": "a4eaa98d39ea630ddef17eff62564840b81a6f7681118c16b03a850b4c6432d4",
+   "fetched_at": "2026-10-29T21:26:23+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 7.0,
+     "quote": "A minimum overall band score of 7.0 is required, with each component score not less than 7.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "Minimum score of 5 on the Internet-based test (iBT) with each component score not less than 4.",
+     "quote": "A minimum score of 5 for the Internet-based test (iBT) with each component score not less than 4 is required.",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "A bachelor's degree (or equivalent as recognized by McGill University) is required.",
+     "quote": "A bachelor's degree (or equivalent as recognized by McGill University) is required.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Undergraduate courses in Political Science, Economics, Quantitative Methods, and Statistics (ideal applicant).",
+      "quote": "The ideal applicant will have completed undergraduate courses in Political Science, Economics, Quantitative Methods, and Statistics.",
+      "check": "ok"
+     },
+     {
+      "text": "Ideally two to five years of professional experience.",
+      "quote": "The Master of Public Policy (M.P.P.) program is directed at early career professionals—ideally with two to five years of professional experience—who are interested in developing expertise in the field of public policy.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Quebec Studies / Études sur le Québec",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/arts/quebec-studies/",
+   "snapshot_sha256": "a9a4895cb91b50fa27aed7bb7d80eefbb708d2d6a456f4b4e691b78c32861310",
+   "fetched_at": "2026-10-29T21:26:28+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Religious Studies",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/arts/religious-studies/",
+   "snapshot_sha256": "e6b550daef7dad7ba2355f3cef01dfce3ceed5b25a3b067c1354052f5e944810",
+   "fetched_at": "2026-10-29T21:26:31+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "A B.A. with a Major or Honours in Religious Studies, a Bachelor of Theology (B.Th.), or a Master of Divinity (M.Div.), normally with a minimum CGPA of 3.3/4.0 (B+).",
+     "quote": "Applicants must possess a B.A. with a Major or Honours in Religious Studies or a Bachelor of Theology (B.Th.), or a Master of Divinity (M.Div.) degree, normally with a minimum CGPA of 3.3/4.0 (B+) from an accredited university or college.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "M.A. students must give their area committee evidence of reading knowledge of a scholarly language other than English.",
+      "quote": "Students are required to give their area committee evidence of reading knowledge of a scholarly language other than English.",
+      "check": "ok"
+     },
+     {
+      "text": "Applicants with fewer than 30 appropriate credits in Religious Studies or Theology are normally required to complete a Qualifying program before entering the M.A.",
+      "quote": "Applicants with fewer than 30 appropriate credits in Religious Studies or Theology are normally required to complete a Qualifying program before entering the M.A.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Social Studies of Medicine",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/arts/social-studies-medicine/",
+   "snapshot_sha256": "d822bad44defa5651bbb62d22fc2c8b1adbc0f8718b0aec01fc8e6602dae0ae2",
+   "fetched_at": "2026-10-29T21:26:38+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "For the M.A. in Medical Anthropology, the program is open to students with backgrounds in the social sciences, medical professions, or medical sciences.",
+     "quote": "The program is open to students with backgrounds in the social sciences, medical professions, or medical sciences.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Social Work",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/arts/social-work/",
+   "snapshot_sha256": "440645a58ac5a36acbbb4636ae1aa76cfe5b2c000d7c08a62b5a606c2bf825e4",
+   "fetched_at": "2026-10-29T21:26:56+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "A DCS/DEC from CEGEP plus a minimum 90-credit (three-year) university degree, or a high school diploma plus a minimum 120-credit (four-year) university degree, with a minimum high B average (GPA 3.2/4.0), for the Qualifying Year.",
+     "quote": "Applicants who have completed a DCS/DEC from CEGEP plus a minimum  90-credit (three-year) university degree, or a high school diploma plus a minimum 120-credit (four-year) university degree before entry into the Qualifying Year, with a minimum high B average (GPA 3.2/4.0)",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "University-level coursework in Statistics and Human Development Across the Lifespan completed by August 15 for a September start (Qualifying Year).",
+      "quote": "who have completed university-level coursework in Statistics and Human Development Across the Lifespan by August 15 for a September start date, are admissible to the Qualifying Year of study for admission to the M.S.W (Non-Thesis) program",
+      "check": "ok"
+     },
+     {
+      "text": "One year of paid or volunteer professional social work experience before admission (Qualifying Year).",
+      "quote": "Applicants are also expected to have one year of paid or volunteer professional social work experience before admission.",
+      "check": "ok"
+     },
+     {
+      "text": "University-level coursework in Statistics and in Human Development Across the Lifespan completed by August 15 for a September start (M.S.W.).",
+      "quote": "who have completed university-level coursework in Statistics and in Human Development Across the Lifespan by August 15 for a September start date, are admissible to the Master of Social Work program",
+      "check": "ok"
+     },
+     {
+      "text": "One year of paid or volunteer professional social work experience before admission (M.S.W.).",
+      "quote": "Applicants are also expected to have one year of paid or volunteer professional social work experience before admission.",
+      "check": "ok"
+     },
+     {
+      "text": "University-level coursework in statistics and in research methods completed within the last five years (Ph.D.).",
+      "quote": "All applicants must also have completed, at the university level, coursework in statistics and in research methods within the last five years.",
+      "check": "ok"
+     },
+     {
+      "text": "Working knowledge of French, expected to be functional in French (comprehension, spoken, and written) for the field placement component of the Qualifying Year and the M.S.W. (Non-Thesis) program.",
+      "quote": "Students are expected to be functional in French (comprehension, spoken, and written) for the field placement component of the Qualifying Year and the M.S.W. (Non-Thesis) program.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Sociology",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/arts/sociology/",
+   "snapshot_sha256": "14184ac2050dae9af6469757d851220313659b4653c06c988c0631475c5c0669",
+   "fetched_at": "2026-10-29T21:26:44+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "A bachelor's degree with a standing equivalent to a cumulative GPA of 3.3/4.0, in sociology or another relevant social science.",
+     "quote": "Applicants—whether for an M.A. or Ph.D. program—should ideally have a bachelor's degree with a Standing equivalent to a cumulative grade point average (CGPA) of 3.3/4.0. The degree may be in sociology or another relevant social science.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Undergraduate courses in statistics, research methods, and sociological theory.",
+      "quote": "Applicants are expected to have taken courses in statistics, research methods, and sociological theory at the undergraduate level.",
+      "check": "ok"
+     },
+     {
+      "text": "Proof of English language proficiency for applicants whose mother tongue is not English and who have not completed a degree at a recognized English-language institution.",
+      "quote": "Applicants whose mother tongue is not English and who have not completed a degree at a recognized institution where English is the primary language of instruction are required to provide proof of English language proficiency.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Educational and Counselling Psychology",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/education/ecp/",
+   "snapshot_sha256": "190d205a595fc78a25fda762655e16ef92eb39513de4d05788d724e1304044ba",
+   "fetched_at": "2026-10-29T21:27:01+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Integrated Studies in Education",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/education/ise/",
+   "snapshot_sha256": "4d8a274148c13d165bf417180699d11c95fc1a3cee1d9628b61abfcb7174a9c1",
+   "fetched_at": "2026-10-29T21:27:01+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "ielts": {
+     "text": "Minimum overall band of 7.0 with a minimum writing score of 7.0.",
+     "overall": 7.0,
+     "min_band": 7.0,
+     "quote": "IELTS with a minimum overall band of 7.0 with a minimum writing score of 7.0; or",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT minimum overall band of 4.5 with a minimum score of 4 each for Writing and Speaking and a minimum of 20 each for Reading and Listening.",
+     "quote": "TOEFL iBT (Internet-based test) – minimum overall band of 4.5 with a minimum score of 4 each for the Writing and Speaking sections and a minimum of 20 each for the Reading and Listening sections.",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "Applicants to the Certificate and M.A. programs must hold a bachelor's degree from a recognized university, with a minimum standing equivalent to a CGPA of 3.0/4.0 (or 3.2/4.0 for the last two full-time academic years).",
+     "quote": "Applicants to the Certificate and M.A. programs must hold a bachelor's degree from a recognized university. A minimum Standing equivalent to a CGPA of 3.0/4.0, or 3.2/4.0 for the last two full-time academic years, is required.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "A concentration of courses related to the area chosen for graduate work is usually required.",
+      "quote": "A concentration of courses related to the area chosen for graduate work is usually required (see #5 below).",
+      "check": "ok"
+     },
+     {
+      "text": "For the M.A. in Second Language Education: normally a minimum of 36 credits including a combination of relevant courses in education and language studies, and at least two years of relevant professional experience in education.",
+      "quote": "Master of Arts in Second Language Education — Normally, applicants are required to have a minimum of 36 credits including a combination of relevant courses in education and language studies. Applicants are required to have at least two years of relevant professional experience in education.",
+      "check": "ok"
+     },
+     {
+      "text": "For the M.A. in Educational Leadership: normally at least two years of relevant leadership experience (teaching or related professional experience).",
+      "quote": "Master of Arts in Educational Leadership — Normally, applicants are required to have at least two years of relevant leadership experience (teaching or related professional experience).",
+      "check": "ok"
+     },
+     {
+      "text": "For the Graduate Certificates in Educational Leadership 1 and 2: normally at least two years of relevant educational experience.",
+      "quote": "Graduate Certificates in Educational Leadership 1 and 2 — Normally, applicants are required to have at least two years of relevant educational experience (in leadership roles or related professional experience).",
+      "check": "ok"
+     },
+     {
+      "text": "For the MATL (Non-Thesis): experience in educational settings (formal or informal).",
+      "quote": "Applicants are required to have experience in educational settings (formal or informal).",
+      "check": "ok"
+     },
+     {
+      "text": "For the MATL TESL option: functional proficiency in French is also required.",
+      "quote": "Functional proficiency in French is also required.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Kinesiology and Physical Education",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/education/kpe/",
+   "snapshot_sha256": "fd81c3f6e22daf1be715c84aeb5396952a59cca0ca64352553dd47415c233ad3",
+   "fetched_at": "2026-10-29T21:27:02+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "An undergraduate degree in Physical and Health Education, Exercise Science, Kinesiology, or its equivalent is required.",
+     "quote": "An undergraduate degree in Physical and Health Education, Exercise Science, Kinesiology, or its equivalent is required.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Architecture",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/engineering/architecture/",
+   "snapshot_sha256": "0597a635b20bea7ed105d334bc5375d71465de2c738707a872f1abdd89a45cde",
+   "fetched_at": "2026-10-29T21:26:54+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "Applicants holding the McGill B.Sc.(Arch.) degree, or equivalent, with a CGPA of at least 3.0 on a scale of 4.0, are eligible for the Professional M.Arch. (Non-Thesis).",
+     "quote": "Applicants holding the McGill B.Sc.(Arch.) degree, or equivalent, with a cumulative grade point average (CGPA) of at least 3.0 on a scale of 4.0, are eligible to apply for admission.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "A working knowledge of a language or languages relevant to the area of research is required (Ph.D.).",
+      "quote": "A working knowledge of a language or languages relevant to the area of research is required.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Chemical Engineering",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/engineering/chemical-engineering/",
+   "snapshot_sha256": "ea40aed3c3ede56f21c0aac9b29cb8176acfad2bf65cad944d8aba0ace6ca22d",
+   "fetched_at": "2026-10-29T21:27:08+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "quote": "or a minimum IELTS (International English Language Testing System) band score of 7 in order to apply",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "A bachelor's degree (or equivalent) in engineering or science disciplines is required for the M.Sc. (Thesis) and M.Eng. (Non-Thesis).",
+     "quote": "Admission requires a bachelor's degree (or equivalent) in engineering or science disciplines.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Ph.D. applicants must submit two letters of recommendation, one from their master's research supervisor.",
+      "quote": "Reference Letter – Ph.D. applicants must submit two letters of recommendation, one of which should be from their master's research supervisor.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Civil Engineering",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/engineering/civil-engineering/",
+   "snapshot_sha256": "1e9ca28ea5be7e3954c1661113f4583f7beff59816d769b6f9f4eea05d17bec1",
+   "fetched_at": "2026-10-29T21:27:14+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "ielts": {
+     "text": "Minimum band score of 7 required to apply.",
+     "overall": 7.0,
+     "quote": "the IELTS (International English Language Testing System); Applicants must achieve a minimum band score of 7 in order to apply.",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "A cumulative grade point average (CGPA) of 3.0–4.0 in a recognized program.",
+     "quote": "The minimum academic standard for admission is a cumulative grade point average (CGPA) of 3.0–4.0 in a recognized program.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Candidates must possess a bachelor's degree in engineering (M.Eng. Non-Thesis).",
+      "quote": "Candidates must possess a bachelor's degree in engineering.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Electrical and Computer Engineering",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/engineering/electrical-computer-engineering/",
+   "snapshot_sha256": "4c7941d30d4e8cd3691b815322b2e47cdce5991b5a79606320015fd235ce316f",
+   "fetched_at": "2026-10-29T21:27:35+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "A bachelor's degree or equivalent, as determined by McGill, in Electrical, Computer, or Software Engineering or a closely related field, from a recognized university, with high academic achievement (CGPA 3.0/4.0, or 3.2/4.0 for the last two full-time years).",
+     "quote": "The applicant must be the graduate of a recognized university and hold a bachelor's degree or its equivalent, as determined by McGill, in Electrical, Computer, or Software Engineering or a closely related field.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Documented proof of competency in English for applicants whose mother tongue is not English and who have not completed a degree where English is the language of instruction.",
+      "quote": "Applicants to graduate studies whose mother tongue is not English, and who have not completed an undergraduate or graduate degree from a recognized foreign institution where English is the language of instruction or from a recognized Canadian institution (anglophone or francophone), must submit documented proof of competency in English.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Mechanical Engineering",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/engineering/mechanical-engineering/",
+   "snapshot_sha256": "6f781565e9aa271e1647fe7fe8f2b623d0cb80f5cdbf9a940d614a74a465ccc2",
+   "fetched_at": "2026-10-29T21:27:36+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "quote": "or a minimum overall band of 7.0 on the IELTS test",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "M.Sc. (Thesis) applicants must hold an undergraduate degree (or equivalent) in Engineering or a degree in Physical, Math, or Computer Sciences.",
+     "quote": "Applicants to the M.Sc. (Thesis) program must hold an undergraduate degree (or equivalent) in Engineering or a degree in Physical, Math, or Computer Sciences.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Applicants to the M.Eng. (Aerospace) program must be proficient in French.",
+      "quote": "Applicants must be proficient in French.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Mining and Materials Engineering",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/engineering/mining-materials-engineering/",
+   "snapshot_sha256": "7110e443984ce7f7b59002be639d90131a8ac72bd5adf410f6e0712163d4dfa4",
+   "fetched_at": "2026-10-29T21:27:35+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "Graduates with suitable Academic Standing in any branch of engineering or science may enter the Graduate Diploma in Mining Engineering.",
+     "quote": "The Graduate Diploma in Mining Engineering is open to graduates with suitable Academic Standing in any branch of engineering or science.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "The Master of Engineering (Project) (Mining option) is designed for graduates who have received adequate academic training in modern mining technology, mineral economics, computer programming, and probabilities and statistics; those without it must complete a Qualifying term.",
+      "quote": "The Master of Engineering (Project) (Mining option) is primarily designed for graduates from mining engineering programs who have received adequate academic training in modern mining technology, mineral economics, computer programming, and probabilities and statistics. Students without this academic training must complete a Qualifying term.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Urban Planning",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/engineering/urban-planning/",
+   "snapshot_sha256": "4c6800efacee756de7eded8f7b24b66e369a3eae33953b51f5ad20edc1c6498d",
+   "fetched_at": "2026-10-29T21:28:06+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.5,
+     "quote": "The minimum score for the IELTS test is 7.0, with a score of at least 6.5 for each component.",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "Minimum TOEFL score of 5 on the Internet-based test (iBT), with each component score not less than 4.",
+     "quote": "The minimum requirement for the TOEFL is a score of 5 on the Internet-based test (iBT), with each component score not less than 4.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Environment",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/environment/",
+   "snapshot_sha256": "b428fbe2ff04156f3cec0aa11ad83dd18e69149cfa1b0c328a2172f24b2c8f1f",
+   "fetched_at": "2026-10-29T21:27:34+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "Admissibility is based on the applicant's academic experience and performance, and on the availability of a potential Bieler School-accredited supervisor or co-supervisor for the proposed research.",
+     "quote": "Their admissibility will be based on their academic experience and performance, and the availability of a potential Bieler School-accredited supervisor or co-supervisor for their proposed research.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "A supervisor or co-supervisor must be affiliated with the Bieler School (signed option supervisory form).",
+      "quote": "Signed option supervisory form (a supervisor or co-supervisor must be affiliated with the Bieler School)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Biological and Biomedical Engineering",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/interfaculty-studies/biological-biomedical-engineering/",
+   "snapshot_sha256": "757956fe1799e81e4dc7177015a8fd3433e7b1c3c9d68c90f6d645f3a8163046",
+   "fetched_at": "2026-10-29T21:27:42+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Neuroscience (Integrated Program)",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/interfaculty-studies/neuroscience/",
+   "snapshot_sha256": "e401d3885c5458f64e482caac26edffe5a3eddf2fb588760d065d8a66596a9fd",
+   "fetched_at": "2026-10-29T21:27:40+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "A bachelor's degree, or its equivalent, from a recognized institution in a field related to the subject selected for graduate work, with an adequate background in basic sciences.",
+     "quote": "Applicants must hold a bachelor's degree, or its equivalent, from a recognized institution in a field related to the subject selected for graduate work, and must display an adequate background in basic sciences.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Adequate background in basic sciences.",
+      "quote": "must display an adequate background in basic sciences",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Quantitative Life Sciences",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/interfaculty-studies/quantitative-life-sciences/",
+   "snapshot_sha256": "056179658c2ea2a84039aa8086f6aaf93fffb45eea67464017af8775b84d4183",
+   "fetched_at": "2026-10-29T21:27:41+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "Applicants are expected to hold an undergraduate degree in biology, chemistry, physiology, genetics, engineering, computer science, mathematics, statistics, physics, or chemistry (or equivalent).",
+     "quote": "Applicants are expected to hold an undergraduate degree in one of the following areas (or equivalent): biology, chemistry, physiology, genetics, engineering, computer science, mathematics, statistics, physics, or chemistry.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English language proficiency: applicants whose mother tongue is not English and who have not completed a degree where English is the language of instruction must submit TOEFL results.",
+      "quote": "Applicants to graduate studies whose mother tongue is not English, and who have not completed an undergraduate or graduate degree from a recognized foreign institution where English is the language of instruction or from a recognized Canadian institution (anglophone or francophone), must submit results of the TOEFL exam with their application",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Law",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/law/",
+   "snapshot_sha256": "bcd1cd42daab5ba9f260981e5711981363b6f42b55e3f78aaba456c4482e00e7",
+   "fetched_at": "2026-10-29T21:28:21+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "A bachelor's degree (or equivalent) in Law, such as an LL.B. or J.D., with a minimum CGPA of 3.0/4.0 (or equivalent).",
+     "quote": "Candidates for admission to the master's programs must hold a bachelor's degree (or equivalent) in Law (such as LL.B. or J.D.), with a minimum cumulative grade point average (CGPA) of 3.0/4.0 (or equivalent).",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Documented proof of English proficiency for applicants whose mother tongue is not English and who have not completed a degree at a recognized institution where English is the language of instruction.",
+      "quote": "For graduate applicants whose mother tongue is not English, and who have not completed an undergraduate or graduate degree from a recognized Canadian or American (English or French) institution or from a recognized foreign institution where English is the language of instruction, documented proof of English proficiency is required prior to admission.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Desautels Faculty of Management",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/management/",
+   "snapshot_sha256": "9c58de2b0203d23f9e90d412c1dcb79481881245349e83deeb4975372d915a4d",
+   "fetched_at": "2026-10-29T21:28:12+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "quote": "A minimum score of 7 is required for IELTS.",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "Candidates normally hold a master's-level degree with a strong academic record from a recognized university.",
+     "quote": "Candidates normally hold a master's-level degree, with a strong academic record from a recognized university.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Documented proof of competency in oral and written English for applicants whose mother tongue is not English and who have not completed a degree where English is the language of instruction.",
+      "quote": "Applicants to graduate studies whose mother tongue is not English, and who have not completed an undergraduate or graduate degree from a recognized foreign institution where English is the language of instruction or from a recognized Canadian institution (anglophone or francophone), must submit documented proof of competency in oral and written English.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Communication Sciences and Disorders",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/medicine-health-sciences/communication-sciences-disorders/",
+   "snapshot_sha256": "39255213817e342e9e53caa1156c4498075abd9bbfc03851d92a8ba81b9f2ea1",
+   "fetched_at": "2026-10-29T21:28:20+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "quote": "the International English Language Testing System (IELTS) with a minimum overall band score of 7.0.",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "An undergraduate degree with a minimum B average (3.0 on a 4.0 scale).",
+     "quote": "McGill University Graduate and Postdoctoral Studies requires that applicants to graduate programs hold an undergraduate degree with a minimum B average (3.0 on a 4.0 point scale) or better.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "For the M.Sc. (Applied), 21 credits of prerequisite coursework, including 3 credits in statistics.",
+      "quote": "There are 21 credits of prerequisite coursework, including 3 credits in statistics, and a total of 18 credits across the disciplines of linguistics and psychology or related areas (with a minimum of 6 credits each in linguistics and psychology).",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Medical Physics",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/medicine-health-sciences/medicine/",
+   "snapshot_sha256": "b0dfd0ee45a96e71ca15d3bfdef915ba3c4e99dbe1ff8579557446fa77236d8d",
+   "fetched_at": "2026-10-29T21:28:42+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "Applicants to the Graduate Diploma must hold a Ph.D. degree and also a B.Sc. in Physics, Physics Major, or related Physics-oriented science.",
+     "quote": "Candidates applying to the Graduate Diploma must hold a Ph.D. degree and also a B.Sc. in Physics, Physics Major, or related Physics-oriented science.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "A Ph.D. degree",
+      "quote": "Candidates applying to the Graduate Diploma must hold a Ph.D. degree",
+      "check": "ok"
+     },
+     {
+      "text": "A B.Sc. in Physics, Physics Major, or related Physics-oriented science",
+      "quote": "and also a B.Sc. in Physics, Physics Major, or related Physics-oriented science.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Schulich School of Music",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/music/",
+   "snapshot_sha256": "19eb0de68aea524ce411a47e3816ea7ba5647a007547a80f558f8b6d478a185f",
+   "fetched_at": "2026-10-29T21:28:17+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "A bachelor's degree or its equivalent, typically with a Major in music including considerable work in the area of specialization.",
+     "quote": "Applicants for the master's degree must hold a bachelor's degree or its equivalent (as determined by McGill University), typically with a Major in music, including considerable work done in the area of specialization.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Placement examinations for all applicants except Performance, Musicology and Sound Recording.",
+      "quote": "All applicants (except those for Performance, Musicology, and Sound Recording) will be required to take placement examinations.",
+      "check": "ok"
+     },
+     {
+      "text": "M.Mus. Performance applicants must pass an audition (live or recorded).",
+      "quote": "All M.Mus. Performance applicants are required to pass an audition. Applicants can attend a live audition or submit recorded material.",
+      "check": "ok"
+     },
+     {
+      "text": "Conducting and jazz applicants choosing the live audition must submit screening material for pre-selection.",
+      "quote": "Conducting and jazz applicants who apply for the live audition option must submit screening material for pre-selection.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Nursing",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/nursing/",
+   "snapshot_sha256": "1b9a0ab132f6606e70407cde747a9de5feb931c3c8970cf524c825e6d1e2e048",
+   "fetched_at": "2026-10-29T21:28:11+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "ielts": {
+     "overall": 7.5,
+     "quote": "IELTS: a minimum overall score of 7.5",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "Applicants to the master's degree must have completed a bachelor's degree in nursing with a minimum CGPA of 3.0/4.0, comparable to McGill's bachelor's in nursing programs including an Introductory Statistics course (3 credits).",
+     "quote": "Applicants to the master's degree must have completed a bachelor's degree in nursing with a minimum CGPA of 3.0/4.0. This preparation must be comparable to that offered in the bachelor's in nursing programs at McGill, which includes an Introductory Statistics course (3 credits).",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Introductory Statistics course (3 credits) as part of the nursing preparation.",
+      "quote": "which includes an Introductory Statistics course (3 credits)",
+      "check": "ok"
+     },
+     {
+      "text": "Current registration as a nurse in a Canadian province or in the United States.",
+      "quote": "Nurse applicants are expected to hold current registration in their Canadian province or in the United States.",
+      "check": "ok"
+     },
+     {
+      "text": "Nurses not licensed in Quebec must be registered with the Ordre des infirmières et infirmiers du Québec upon the start of their graduate studies.",
+      "quote": "Nurses who are not licensed in Quebec must be registered with the Ordre des infirmières et infirmiers du Québec upon the start of their graduate studies.",
+      "check": "ok"
+     },
+     {
+      "text": "Applicants whose nursing degree was completed outside Canada need at least one year of nursing experience in their country of origin plus one year in Canada.",
+      "quote": "Nurse applicants whose previous nursing degree(s) was completed outside of Canada are required to have at least one year of experience as nurses in their country of origin, in addition to one year of experience as nurses in Canada.",
+      "check": "ok"
+     },
+     {
+      "text": "Proficiency in French, necessary for clinical settings and successful completion of the program.",
+      "quote": "In the clinical settings where much of our program delivery takes place, the ability to communicate proficiently in French is necessary to effectively learn and safely work with and support patients, families, and healthcare teams. French is essential to the successful completion of this Nursing degree program.",
+      "check": "ok"
+     },
+     {
+      "text": "Nurse Practitioner applicants need a minimum of 3,360 hours of nursing experience, including within the specialty.",
+      "quote": "A minimum of 3,360 hours of experience in nursing, including within the specialty, is required.",
+      "check": "ok"
+     },
+     {
+      "text": "International applicants licensed in another country must have worked as a registered nurse in the United States or Canada for at least one year.",
+      "quote": "International applicants who have been licensed in another country must have worked as a registered nurse in the United States or Canada for at least one year, which will provide them with the necessary knowledge of the health care system required for advanced nursing studies.",
+      "check": "ok"
+     },
+     {
+      "text": "NP Program students must be proficient in French (oral and written comprehension, and oral and written expression).",
+      "quote": "The NP Program requires that students be proficient in French (oral and written comprehension, and oral and written expression) in alignment with the OIIQ requirements for licensing in Quebec.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Atmospheric and Oceanic Sciences",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/science/atmospheric-oceanic-sciences/",
+   "snapshot_sha256": "465ccaffd89f81af119eaa1c1089a7e585d310ca730a5f5fa75413e8720f861c",
+   "fetched_at": "2026-10-29T21:28:17+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "A bachelor's degree with high Standing in atmospheric science, oceanic science, physics, mathematics, engineering, chemistry, or a similar field, plus the general requirements of Graduate and Postdoctoral Studies.",
+     "quote": "Applicants to the M.Sc. program must meet the general requirements of Graduate and Postdoctoral Studies and hold a bachelor's degree with high Standing in atmospheric science, oceanic science, physics, mathematics, engineering, chemistry, or a similar field.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Documented proof of English proficiency, unless the applicant's mother tongue is English or they hold a degree from a recognized Canadian or American institution or a recognized institution where English is the language of instruction.",
+      "quote": "For graduate applicants whose mother tongue is not English, and who have not completed an undergraduate or graduate degree from a recognized Canadian or American (English or French) institution or from a recognized foreign institution where English is the language of instruction, documented proof of English proficiency is required prior to admission.",
+      "check": "ok"
+     },
+     {
+      "text": "Acceptance by a research supervisor (required for the Ph.D. program).",
+      "quote": "Acceptance by a research supervisor – required for the Ph.D. program",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Biology",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/science/biology/",
+   "snapshot_sha256": "222fed4db6b134c666bf691443007f3712d9b3198135daa56b5d267d81918446",
+   "fetched_at": "2026-10-29T21:28:25+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "ielts": {
+     "overall": 6.5,
+     "quote": "A score of 4.5 on the TOEFL Internet-based test (iBT) with each component score not less than 4, or 6.5 on IELTS is the minimum standard for admission.",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "A minimum CGPA of 3.0/4.0, or a GPA of 3.2/4.0 in the last two years of full-time studies.",
+     "quote": "The minimum cumulative grade point average (CGPA) is 3.0/4.0, or a grade point average (GPA) of 3.2/4.0 in the last two years of full-time studies.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "A strong background in the biological sciences.",
+      "quote": "Prospective Biology graduate students will have a strong background in the biological sciences, often with specific strengths in their proposed area of study.",
+      "check": "ok"
+     },
+     {
+      "text": "TOEFL required if mother tongue is not English and no degree from an English-language institution.",
+      "quote": "The Test of English as a Foreign Language (TOEFL) is required of applicants to graduate studies whose mother tongue is not English, and who have not completed an undergraduate or graduate degree from a recognized foreign institution where English is the language of instruction or from a recognized Canadian institution (anglophone or francophone).",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Chemistry",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/science/chemistry/",
+   "snapshot_sha256": "ae1b2f91fb4632a7595e4969eda63323d55754d9a1ef6709c29c6dae704f4f93",
+   "fetched_at": "2026-10-29T21:28:39+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "Normally a high Second-Class Standing (CGPA > 3.00) for the M.Sc. and Ph.D. programs.",
+     "quote": "The minimum academic standard for admission to the M.Sc. and Ph.D degree programs is normally a high Second-Class Standing (CGPA > 3.00).",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Computer Science",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/science/computer-science/",
+   "snapshot_sha256": "b7b71dee12dcbdab21d1146c5dfa022c6a74573e16cd29756dbc72d734b579f7",
+   "fetched_at": "2026-10-29T21:28:44+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "For the M.Sc.: a bachelor's degree with a cumulative GPA of 3.2/4.0 or better, or equivalent, with coursework in Computer Science and Mathematics as listed on the School's website.",
+     "quote": "The minimum requirement for admission is a bachelor's degree (cumulative grade point average (CGPA) of 3.2/4.0 or better, or equivalent) with the coursework in Computer Science and Mathematics as listed on our School's website.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Coursework in Computer Science and Mathematics as listed on the School's website.",
+      "quote": "with the coursework in Computer Science and Mathematics as listed on our School's website",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Earth and Planetary Sciences",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/science/earth-planetary-sciences/",
+   "snapshot_sha256": "7718251275f4da9f29784ed3261290ae24dfc887191a86820d5794296be4a3c6",
+   "fetched_at": "2026-10-29T21:29:10+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "An academic background equivalent to a McGill graduate in Honours or Major programs in geology, geophysics, chemistry, biology, physics, engineering or a related degree, with a minimum CGPA of 3.0/4.0.",
+     "quote": "Applicants should have an academic background equivalent to that of a McGill graduate in the Honours or Major programs in geology, geophysics, chemistry, biology, physics, engineering or a related degree (minimum CGPA of 3.0/4.0).",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Documented proof of English proficiency for applicants whose mother tongue is not English and who have not completed a degree at a recognized institution where English is the language of instruction.",
+      "quote": "For graduate applicants whose mother tongue is not English, and who have not completed an undergraduate or graduate degree from a recognized Canadian or American (English or French) institution or from a recognized foreign institution where English is the language of instruction, documented proof of English proficiency is required prior to admission.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Physics",
+   "url": "https://coursecatalogue.mcgill.ca/en/graduate/science/physics/",
+   "snapshot_sha256": "4a7362c6465826ec2a31d1af460f9c3ebc2233cf14fcee8fbfb9720ab8ad8a6c",
+   "fetched_at": "2026-10-29T21:28:51+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "For the M.Sc., a background equivalent to McGill's Physics Major (B.Sc.) of 63 credits is normally required.",
+     "quote": "We normally require a background that is equivalent to our Physics Major (B.Sc.) (63 credits).",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Two letters of reference.",
+      "quote": "two letters of reference;",
+      "check": "ok"
+     },
+     {
+      "text": "A Physics CV.",
+      "quote": "Physics CV;",
+      "check": "ok"
+     },
+     {
+      "text": "A personal statement.",
+      "quote": "personal statement;",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  }
+ ],
  "verification": {
-  "programs": 0,
-  "机器核对": 0,
-  "待人工": 0
+  "programs": 59,
+  "机器核对": 56,
+  "待人工": 3
  }
 }

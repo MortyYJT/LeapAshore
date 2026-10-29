@@ -36,11 +36,1325 @@
   "https://www.ualberta.ca/en/graduate-studies/",
   "https://www.ualberta.ca/en/graduate-programs/"
  ],
- "notes": "The snapshot tool reported robots.txt disallows for www.ualberta.ca (graduate studies and programme pages), calendar.ualberta.ca and the department sub-hosts, so no requirements could be fetched. The only reachable official host, apps.ualberta.ca, is a course catalogue and states no admission requirements.",
- "programs": [],
+ "notes": "The snapshot tool reported robots.txt disallows for www.ualberta.ca (graduate studies and programme pages), calendar.ualberta.ca and the department sub-hosts, so no requirements could be fetched. The only reachable official host, apps.ualberta.ca, is a course catalogue and states no admission requirements. 2026-10-30: the collection queue (leapashore-queue) collected 60 programme pages from ualberta.catalog.acalog.com, each fetched through the snapshot tool's robots.txt and refusal checks. That host's robots.txt asks for a 120-second Crawl-delay, which the snapshot tool did not honour at the time (pages were fetched every 2 seconds); it has honoured Crawl-delay since.",
+ "programs": [
+  {
+   "name": "Graduate Programs in Music",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83415",
+   "snapshot_sha256": "a185a3afcc84e79c7fa1734cac7a6f458d6c6a02c5ba3fbf3e2869212db4987b",
+   "fetched_at": "2026-10-29T21:34:24+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.5,
+     "quote": "a minimum overall band score of 7.0 on the IELTS with a minimum of 6.5 on each band",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "For tests written before January 21, 2026: 100 with at least 21 on each skill area; for tests written on or after January 21, 2026: 5 with at least 4.5 on each skill area.",
+     "overall": 100.0,
+     "min_band": 21.0,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "For tests written before January 21, 2026: 100 with at least 21 on each of the individual skill areas\nFor tests written on or after January 21, 2026: 5 with at least 4.5 on each of the individual skill areas",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "For the MA: a bachelor's degree with an admission GPA of at least 3.0 on the 4-point scale from the University of Alberta, or an equivalent qualification and standing from a recognized institution.",
+     "quote": "For the MA program the Department’s minimum admission requirements are a Bachelor’s degree with an admission GPA of at least 3.0 on the 4-point scale from the University of Alberta, or an equivalent qualification and standing from a recognized institution.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "An audition, preferably in person, for applicants to the MMus in Performance and in Choral Conducting.",
+      "quote": "An audition, preferably in person, is required as part of the admission procedure for applicants to the MMus in Performance and in Choral Conducting.",
+      "check": "ok"
+     },
+     {
+      "text": "A portfolio of compositions (with recordings if possible) for applicants to the MMus in Composition.",
+      "quote": "A portfolio of compositions (together with recordings if possible) is required for applicants to the MMus in Composition.",
+      "check": "ok"
+     },
+     {
+      "text": "An audition, preferably in person, for applicants to the DMus in Performance and in Choral Conducting.",
+      "quote": "An audition, preferably in person, is required as part of the admission procedure for applicants to the DMus in Performance and in Choral Conducting.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Graduate Programs in Agricultural, Food, and Nutritional Science",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83417",
+   "snapshot_sha256": "cd9dac14c5eb782e128b71d603cf55d808d14b87f3a356806fe7f069bfbd7357",
+   "fetched_at": "2026-10-29T21:29:44+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "For an MAg or course-based MSc: an undergraduate degree with an admission GPA of at least 3.0 on the 4-point scale from the University of Alberta, or an equivalent qualification and standing from a recognized institution.",
+     "quote": "For an MAg or a course-based MSc degree, the Department’s minimum admission requirements are an undergraduate degree with an admission GPA of at least 3.0 on the 4-point scale from the University of Alberta, or an equivalent qualification and standing from a recognized institution.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Applicants must meet the minimum English Language Requirement where applicable.",
+      "quote": "Where applicable, applicants must meet the minimum English Language Requirement .",
+      "check": "ok"
+     },
+     {
+      "text": "Applicants for all programs other than the course-based Food Safety and Quality or Meat Quality specializations must have a faculty member agree to supervise their program before applying.",
+      "quote": "Applicants for all other course-based and thesis-based programs are required to have a faculty member agree to supervise their program prior to applying to their program.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Graduate Programs in Anesthesiology and Pain Medicine",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83421",
+   "snapshot_sha256": "9459d3e7f4cf576ee60b7a7fb3132a27dab5395432f2c4f6fe458de6c319930b",
+   "fetched_at": "2026-10-29T21:29:39+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "toefl": {
+     "text": "TOEFL (internet-based) score of at least 95 or equivalent for tests written before January 21, 2026; at least 5 or equivalent for tests written on or after January 21, 2026.",
+     "overall": 95.0,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "candidates must obtain a TOEFL (internet-based) score of at least 95 or equivalent (for tests written before January 21, 2026), or a TOEFL (internet-based) score of at least 5 or equivalent (for tests written on or after January 21, 2026)",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "A baccalaureate degree or its academic equivalent.",
+     "quote": "Candidates must hold a baccalaureate or its academic equivalent to enter this program.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Graduate Programs in Anthropology",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83427",
+   "snapshot_sha256": "e5f6e4bb2104357a2e162897064029395ebf23aaefe076f2726016edef4e91bf",
+   "fetched_at": "2026-10-29T21:29:01+00:00",
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Graduate Programs in Art & Design",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83428",
+   "snapshot_sha256": "080d4350c43a505d3a526f843d21bef487d033d424d01a8703880ab033642cf2",
+   "fetched_at": "2026-10-29T21:29:34+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "toefl": {
+     "text": "For tests written before January 21, 2026: 95 with at least 21 per section; for tests written on or after January 21, 2026: 5.0 with at least 4.5 per section.",
+     "overall": 95.0,
+     "min_band": 21.0,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "For tests written before January 21, 2026: 95 (with at least 21 per section) or equivalent, or\nFor tests written on or after January 21, 2026: 5.0 (with at least 4.5 per section) or equivalent, or",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "A general undergraduate degree with a grade point average of 3.0 in the last two years of undergraduate work (or graduate work) at the University of Alberta, or an equivalent qualification from a recognized institution.",
+     "quote": "The Department’s minimum admission requirements for all master’s programs are a general undergraduate degree with a grade point average of 3.0 in the last two years of undergraduate work (or graduate work) at the University of Alberta, or an equivalent qualification from a recognized institution, and:",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Graduate Programs in Cell Biology",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83436",
+   "snapshot_sha256": "b446cdd73d2a08cf16266b0f1df67ac9686709538f0a585e44758c86b68ddb54",
+   "fetched_at": "2026-10-29T21:29:41+00:00",
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Graduate Programs in Biochemistry",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83437",
+   "snapshot_sha256": "8934ed3384acdc1546e87e4618f2c7a61174b7132e781d16e804b1b5bc92e817",
+   "fetched_at": "2026-10-29T21:30:04+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "Entrance requirements are those of the Faculty of Medicine and Dentistry Graduate Program.",
+     "quote": "See Faculty of Medicine and Dentistry Graduate Program Entrance Requirements .",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Graduate Programs in Biological Sciences",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83438",
+   "snapshot_sha256": "0bac55cd7dfa7f869b12356576000c0bc20d452d5efc59476ce70d80bf5c7be4",
+   "fetched_at": "2026-10-29T21:30:08+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "toefl": {
+     "text": "For tests written before January 21, 2026: 100 overall with at least 22 in each skill area; for tests written on or after January 21, 2026: 5 overall with at least 4.5 in each skill area.",
+     "overall": 100.0,
+     "min_band": 22.0,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "For tests written before January 21, 2026: 100 overall with a score of at least 22 on each of the individual skill areas For tests written on or after January 21, 2026: 5 overall with a score of at least 4.5 on each of the individual skill areas",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "A 4-year undergraduate degree with an admission GPA of at least 3.3 on the 4-point scale from the University of Alberta, or an equivalent qualification and standing from a recognized institution.",
+     "quote": "The Department’s minimum admission requirements are a 4-year undergraduate degree with an admission GPA of at least 3.3 on the 4-point scale from the University of Alberta, or an equivalent qualification and standing from a recognized institution.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Applicants must identify a potential supervisor willing to provide supervision.",
+      "quote": "Applicants must identify a potential supervisor willing to provide supervision.",
+      "check": "ok"
+     },
+     {
+      "text": "Applicants must have the minimum guaranteed funding, attained through one or a combination of scholarships, teaching assistantships or external funding.",
+      "quote": "Applicants must have the minimum guaranteed funding, attained through one or a combination of: Scholarships Teaching assistantships External funding",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Graduate Programs in Biomedical Engineering",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83444",
+   "snapshot_sha256": "c4cb6c1aa527a3f8c8e9fa21a48e6f90741befcf5bfa8554adb7bed1cac58c40",
+   "fetched_at": "2026-10-29T21:28:57+00:00",
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Graduate Programs in Business",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83482",
+   "snapshot_sha256": "d4010ac784ef2fb8f7eb959892560e0fcdd707caf3b02ec90340c055c4318deb",
+   "fetched_at": "2026-10-29T21:30:14+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "toefl": {
+     "text": "For tests written on or after January 21, 2026: 5 with a minimum band score of 4.5 or equivalent.",
+     "overall": 100.0,
+     "min_band": 21.0,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "For tests written before January 21, 2026: 100 with a minimum band score of 21 or equivalent\nFor tests written on or after January 21, 2026: 5 with a minimum band score of 4.5 or equivalent",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "An undergraduate degree with an admission GPA of at least 3.0 on the 4-point scale from the University of Alberta, or an equivalent qualification and standing from a recognized institution (MBA programs except Fast Track and Executive MBA).",
+     "quote": "For MBA programs except the Fast Track MBA and Executive MBA, the Faculty’s minimum admission requirements are an undergraduate degree with an admission GPA of at least 3.0 on the 4-point scale from the University of Alberta, or an equivalent qualification and standing from a recognized institution.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "All applicants must write the Graduate Management Admission Test (GMAT) and have scores forwarded to the Associate Dean – Master’s Programs.",
+      "quote": "All applicants are required to write the Graduate Management Admission Test, and have their scores forwarded to the Associate Dean – Master’s Programs.",
+      "check": "ok"
+     },
+     {
+      "text": "A minimum of three years of full-time work experience after the undergraduate degree (Fast Track MBA).",
+      "quote": "For Fast Track MBA programs, a minimum of three years of full-time work experience after the undergraduate degree is required.",
+      "check": "ok"
+     },
+     {
+      "text": "A minimum of seven years of work experience (Executive MBA).",
+      "quote": "For Executive MBA programs, a minimum of seven years of work experience is required.",
+      "check": "ok"
+     },
+     {
+      "text": "Relevant business or professional experience and a relevant undergraduate degree (Master of Accounting).",
+      "quote": "Applicants should have relevant business or professional experience and a relevant undergraduate degree.",
+      "check": "ok"
+     },
+     {
+      "text": "Relevant business or professional experience and a relevant undergraduate degree (Master of Financial Management).",
+      "quote": "Applicants should have relevant business or professional experience and a relevant undergraduate degree.",
+      "check": "ok"
+     },
+     {
+      "text": "Applicants to the Accounting specialization must provide evidence of accounting expertise, such as a professional accounting designation.",
+      "quote": "Applicants to the Accounting specialization must provide evidence of accounting expertise, such as a professional accounting designation.",
+      "check": "ok"
+     },
+     {
+      "text": "All applicants must submit GMAT or GRE scores from a test taken within the past five years (PhD).",
+      "quote": "All applicants are required to submit their scores from the Graduate Management Admission Test (GMAT) or Graduate Record Examination (GRE). Scores must be from a test taken within the past five years; scores above the 90th percentile are desirable.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Graduate Programs in Chemical and Materials Engineering",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83502",
+   "snapshot_sha256": "fe5e9730c2589cd73ef9b92f3ec2ee0353c03038f25c8dddf80eacaa941d883c",
+   "fetched_at": "2026-10-29T21:30:24+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "an overall band score of 7.0 on IELTS with at least 6.0 on each band",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "For tests written before January 21, 2026: 92 with at least 21 in each section; for tests written on or after January 21, 2026: 5 with at least 4.5 in each section.",
+     "overall": 92.0,
+     "min_band": 21.0,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "For tests written before January 21, 2026: 92 with at least 21 in each section or equivalent\nFor tests written on or after January 21, 2026: 5 with at least 4.5 in each section or equivalent",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "An undergraduate degree with an admission GPA of at least 3.0 on the 4-point scale from the University of Alberta, or an equivalent qualification and standing from a recognized institution.",
+     "quote": "The Department’s minimum admission requirements are an undergraduate degree with an admission GPA of at least 3.0 on the 4-point scale from the University of Alberta, or an equivalent qualification and standing from a recognized institution.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Proof of English Language Proficiency is required if the previous degree was not obtained from Canada, USA, UK, Australia or New Zealand.",
+      "quote": "For applicants with international qualifications, if the previous degree was not obtained from Canada, USA, UK, Australia or New Zealand, proof of English Language Proficiency is still required.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Graduate Programs in Chemistry",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83511",
+   "snapshot_sha256": "168a10d769e6aaa737d7cc5cf4252a44caa3796398bdc361ea79c4398d33fd2e",
+   "fetched_at": "2026-10-29T21:29:48+00:00",
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Graduate Programs in Civil and Environmental Engineering",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83523",
+   "snapshot_sha256": "c44db5bb0013f7f00f7eb17e2ef3a71fa6918b706d1c3edb22ac540675034494",
+   "fetched_at": "2026-10-29T21:30:02+00:00",
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Graduate Programs in Community-Based Research and Evaluation",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83527",
+   "snapshot_sha256": "176338fe1a36b71187aa09b0a51d37042d01f2e927d8116e6b5424f2e9ed1f61",
+   "fetched_at": "2026-10-29T21:31:08+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Graduate Programs in Communication Sciences and Disorders",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83538",
+   "snapshot_sha256": "9fdc558dc4c844af602cd04e54f541d8fb8e055ef794953ecca5b28c59da4628",
+   "fetched_at": "2026-10-29T21:30:47+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "ielts": {
+     "overall": 7.5,
+     "min_band": 7.5,
+     "quote": "Total: 7.5\nReading: 7.5\nListening: 7.5\nSpeaking: 7.5\nWriting: 7.5",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "For tests written before January 21, 2026: overall 102, Reading 22, Listening 26, Speaking 26, Writing 24. For tests written on or after January 21, 2026: overall 5.5, Reading 5, Listening 5, Speaking 5, Writing 5.5.",
+     "overall": 102.0,
+     "min_band": 22.0,
+     "quote": "Internet Test (iBT) (Maximum 120)\nCSD Minimum requirements:\nOverall score: 102\nReading: 22\nListening: 26\nSpeaking: 26\nWriting: 24",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "An undergraduate degree with an admission GPA of at least 3.3 on the 4-point scale from the University of Alberta, or an equivalent qualification and standing from a recognized institution.",
+     "quote": "The Department’s minimum admission requirements are an undergraduate degree with an admission GPA of at least 3.3 on the 4-point scale from the University of Alberta, or an equivalent qualification and standing from a recognized institution.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Statistics: Introduction to statistical methods (3 units)",
+      "quote": "Statistics: Introduction to statistical methods (3 units)",
+      "check": "ok"
+     },
+     {
+      "text": "Child Development (3 units)",
+      "quote": "Child Development (3 units)",
+      "check": "ok"
+     },
+     {
+      "text": "Cognitive Psychology (3 units)",
+      "quote": "Cognitive Psychology (3 units)",
+      "check": "ok"
+     },
+     {
+      "text": "Neuroanatomy/ Neuropsychology (3 units)",
+      "quote": "Neuroanatomy/ Neuropsychology (3 units)",
+      "check": "ok"
+     },
+     {
+      "text": "Introductory Linguistics (3 units)",
+      "quote": "Introductory Linguistics (3 units)",
+      "check": "ok"
+     },
+     {
+      "text": "Articulatory Phonetics (3 units)",
+      "quote": "Articulatory Phonetics (3 units)",
+      "check": "ok"
+     },
+     {
+      "text": "Child Language Acquisition (3 units)",
+      "quote": "Child Language Acquisition (3 units)",
+      "check": "ok"
+     },
+     {
+      "text": "A course focused on Indigenous perspectives, histories and/or experiences in Canada (or the Indigenous Canada MOOC certificate)",
+      "quote": "All students admitted to the MScSLP program are required to complete a course focused on Indigenous perspectives, histories and/or experiences in Canada.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Graduate Programs in Communications and Technology",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83547",
+   "snapshot_sha256": "ea0e7e882d72d461dcd6157c01dea1f519f09e97e43a7c644166d4334085847d",
+   "fetched_at": "2026-10-29T21:30:54+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "toefl": {
+     "text": "For tests written before January 21, 2026: minimum total score of 100 with at least 21 on each skill area; for tests written on or after January 21, 2026: minimum total score of 5 with at least 4.5 on each skill area.",
+     "overall": 100.0,
+     "min_band": 21.0,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "For tests written before January 21, 2026: minimum total score of 100 with a score of at least 21 on each of the individual skill areas, or equivalent; For tests written on or after January 21, 2026: minimum total score of 5 with a score of at least 4.5 on each of the individual skill areas, or equivalent;",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "An undergraduate degree with an admission GPA of at least 3.0 on the 4-point scale from the University of Alberta, or an equivalent qualification and standing from a recognized institution.",
+     "quote": "The Faculty’s minimum admission requirements are an undergraduate degree with an admission GPA of at least 3.0 on the 4-point scale from the University of Alberta, or an equivalent qualification and standing from a recognized institution.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "At least three years of relevant professional experience is preferred.",
+      "quote": "It is preferred that applicants have at least three years of relevant professional experience.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Graduate Programs in Computing Science",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83565",
+   "snapshot_sha256": "ffd8934490d558e577b4dc8f526c9669a2f5abd3f8aedef0290d6dab1e7f0656",
+   "fetched_at": "2026-10-29T21:30:21+00:00",
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Graduate Programs in Dentistry",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83573",
+   "snapshot_sha256": "af7521e800ab6ac3381a4257c7ed9bdce096a7d5de311da05883515ed229852b",
+   "fetched_at": "2026-10-29T21:31:08+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "The MSc and PhD in Medical Sciences are open to post-DDS applicants or to those proceeding from a BSc or equivalent degree.",
+     "quote": "The Department of Dentistry offers the MSc and PhD in Medical Sciences degrees (see Medical Sciences ) for post-DDS applicants or for those proceeding from a BSc or equivalent degree.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Graduate Programs in Psychology",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83574",
+   "snapshot_sha256": "eb88df3bd3b056d255ed0791f907431839f79ef093ac356a03246d03a6acfb9e",
+   "fetched_at": "2026-10-29T21:36:35+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "toefl": {
+     "text": "Minimum TOEFL (Internet-based) score of 90 with at least 21 on each skill area for tests written before January 21, 2026; or 4.5 with at least 4.5 on each skill area for tests written on or after January 21, 2026.",
+     "overall": 90.0,
+     "min_band": 21.0,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "Where applicable, applicants must have a minimum TOEFL (Internet-based) score of 90 with a score of at least 21 on each individual skill area (for tests written before January 21, 2026) or 4.5 with a score of at least 4.5 on each individual skill area (for tests written on or after January 21, 2026).",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "An undergraduate degree with an admission GPA of at least 3.0 on the 4-point scale from the University of Alberta, or an equivalent qualification and standing from a recognized institution.",
+     "quote": "The Department’s minimum admission requirements are an undergraduate degree with an admission GPA of at least 3.0 on the 4-point scale from the University of Alberta, or an equivalent qualification and standing from a recognized institution.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Scores on the Graduate Record Exam General Test (waivable with the explicit written consent of the potential supervisor(s)).",
+      "quote": "Applicants are required to submit scores on the Graduate Record Exam General Test. This requirement can be waived with the explicit written consent of the applicant’s potential supervisor(s).",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Graduate Programs in Psychiatry",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83579",
+   "snapshot_sha256": "6b414e58f4be83b8c5da959963f577cfb78f47f1bb5d782c28903c473fb792a5",
+   "fetched_at": "2026-10-29T21:35:28+00:00",
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Graduate Programs in Political Science",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83583",
+   "snapshot_sha256": "1f112d59d534e6b2d5b9ea379a09a19393a59a86e73e361bedc2c62f0887a324",
+   "fetched_at": "2026-10-29T21:36:03+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "toefl": {
+     "overall": 100.0,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "A TOEFL (Internet-based) score of 100 (for tests written before January 21, 2026) or 5 (for tests written on or after January 21, 2026) or an equivalent score on a test acceptable to GPS is required where applicable.",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "An undergraduate degree with an average of 3.3 in the last two years of undergraduate (or graduate) work at the University of Alberta, or an equivalent qualification from a recognized institution.",
+     "quote": "The Department’s minimum admission requirements are an undergraduate degree with an average of 3.3 in the last two years of undergraduate work (or graduate work) at the University of Alberta, or an equivalent qualification from a recognized institution.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "An undergraduate degree in Political Science or close cognates such as International Relations or International Political Economy is strongly preferred; other majors should normally have at least the equivalent of 30 units of graded credits in Political Science.",
+      "quote": "For all programs, an undergraduate degree in Political Science or close cognates such as International Relations or International Political Economy is strongly preferred. Applicants with other undergraduate majors should normally have at least equivalent to 30 units of graded credits of coursework in Political Science.",
+      "check": "ok"
+     },
+     {
+      "text": "For the MA in Policy Studies, an undergraduate degree in Public Policy is also acceptable.",
+      "quote": "For the MA in Policy Studies, an undergraduate degree in Public Policy is also acceptable.",
+      "check": "ok"
+     },
+     {
+      "text": "For the MA in Policy Studies course-based route, relevant work experience in the policy community is required.",
+      "quote": "For the MA in Policy Studies course-based route, relevant work experience in the policy community is required.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Graduate Programs in Drama",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83585",
+   "snapshot_sha256": "ddd711a988cda6b571b79b34584cc3e06d2a02352de384c6c29e2075998a3036",
+   "fetched_at": "2026-10-29T21:31:49+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "For the MA: an undergraduate degree with an admission GPA of at least 3.0 on the 4-point scale from the University of Alberta, or an equivalent qualification and standing from a recognized institution.",
+     "quote": "The Department’s minimum admission requirements for the MA degree are an undergraduate degree with an admission GPA of at least 3.0 on the 4-point scale from the University of Alberta, or an equivalent qualification and standing from a recognized institution.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "MFA applicants must have significant practical theatre experience.",
+      "quote": "Applicants to the MFA programs are required to have significant practical theatre experience.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Graduate Programs in Earth and Atmospheric Sciences",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83593",
+   "snapshot_sha256": "a4bec95791b7673d5b7b2d7f8f696f7dce858abaa43c771e7ea2ac5e8b0facba",
+   "fetched_at": "2026-10-29T21:31:49+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "toefl": {
+     "text": "TOEFL (Internet-based) score of 90 for tests written before January 21, 2026, or 4.5 for tests written on or after January 21, 2026, or equivalent where applicable.",
+     "overall": 90.0,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "a TOEFL (Internet-based) score of 90 (for tests written before January 21, 2026), or a TOEFL (Internet-based) score of 4.5 (for tests written on or after January 21, 2026) or equivalent where applicable",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "A relevant undergraduate degree with an average of 3.0 in the last two years of undergraduate work (or graduate work) at the University of Alberta, or an equivalent qualification from a recognized institution.",
+     "quote": "The Department’s minimum admission requirements are a relevant undergraduate degree with an average of 3.0 in the last two years of undergraduate work (or graduate work) at the University of Alberta, or an equivalent qualification from a recognized institution",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Graduate Programs in Physiology",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83596",
+   "snapshot_sha256": "e1056a90b3013b3a8ba549d24916b4c68aa15c743adf3b16e4ec908f1dbbb16c",
+   "fetched_at": "2026-10-29T21:36:20+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "Entrance requirements are those of the Faculty of Medicine and Dentistry Graduate Program.",
+     "quote": "See Faculty of Medicine and Dentistry Graduate Program Entrance Requirements .",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Completion of PHYSL 210A (online), PHYSL 210 or PHYSL 212, or an equivalent full year course in Human Physiology is highly recommended.",
+      "quote": "PHYSL 210A(online) , PHYSL 210  or PHYSL 212 , or an equivalent full year course in Human Physiology.",
+      "check": "ok"
+     },
+     {
+      "text": "BIOCH 200 and one of BIOCH 310, BIOCH 320, BIOCH 330, or an equivalent full year course in Biochemistry is highly recommended.",
+      "quote": "BIOCH 200  and one of BIOCH 310 , BIOCH 320 , BIOCH 330 , or an equivalent full year course in Biochemistry.",
+      "check": "ok"
+     },
+     {
+      "text": "Introductory courses in basic Physics and Calculus are recommended.",
+      "quote": "Introductory courses in basic Physics and Calculus are recommended.",
+      "check": "ok"
+     },
+     {
+      "text": "An introductory course in Statistics is recommended.",
+      "quote": "An introductory course in Statistics is recommended.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Graduate Programs in East Asian Studies",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83599",
+   "snapshot_sha256": "7448e55f372415a2ac1892a93db609bfa87ca88fe2afb05d3bce7e23d0f4ae83",
+   "fetched_at": "2026-10-29T21:30:58+00:00",
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Graduate Programs in Physics",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83601",
+   "snapshot_sha256": "5cfb61d15d6db8198ee2dcfc688209f5db4cf64b09552db2190196026a019695",
+   "fetched_at": "2026-10-29T21:35:16+00:00",
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Graduate Programs in Economics",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83607",
+   "snapshot_sha256": "2d10dfa071e87eb3bf51e4c2a7db96096f1883689a6373dd287651d953381cc9",
+   "fetched_at": "2026-10-29T21:31:28+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.5,
+     "quote": "A minimum overall band score of 7.0 on IELTS, with at least 6.5 in each band;",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "Internet-based TOEFL: 92 with a minimum of 21 in each band for tests written before January 21, 2026; 5 with a minimum of 4.5 in each band for tests written on or after January 21, 2026.",
+     "overall": 92.0,
+     "min_band": 21.0,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "For tests written before January 21, 2026: 92 where applicable with a minimum of 21 in each band, or equivalent; For tests written on or after January 21, 2026: 5 where applicable with a minimum of 4.5 in each band, or equilvalent;",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "For the MA: an undergraduate degree in Economics with an admission GPA of at least 3.0 on the 4-point scale from the University of Alberta, or an equivalent qualification and standing from a recognized institution.",
+     "quote": "For the MA program, the Department’s minimum admission requirements are an undergraduate degree in Economics with an admission GPA of at least 3.0 on the 4-point scale from the University of Alberta, or an equivalent qualification and standing from a recognized institution.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Completed coursework in calculus and linear algebra, as well as advanced coursework in microeconomics, macroeconomics, and econometrics.",
+      "quote": "All applicants must have completed coursework in calculus and linear algebra, as well as advanced coursework in microeconomics, macroeconomics, and econometrics.",
+      "check": "ok"
+     },
+     {
+      "text": "For the MA: a minimum cumulative grade point average of 3.2 on all third and fourth year Economics and Mathematics coursework.",
+      "quote": "In addition, applicants must have a minimum cumulative grade point average of 3.2 on all third and fourth year Economics and Mathematics coursework.",
+      "check": "ok"
+     },
+     {
+      "text": "For the PhD: a minimum cumulative grade point average of 3.2 on all Masters level Economics coursework.",
+      "quote": "In addition, applicants must have a minimum cumulative grade point average of 3.2 on all Masters level Economics coursework.",
+      "check": "ok"
+     },
+     {
+      "text": "Applicants whose most recent degree is from a non-Canadian university must write the GRE (verbal, quantitative, and analytical sections).",
+      "quote": "Applicants whose most recent degree is from a nonCanadian university are required to write the Graduate Record Examinations (verbal, quantitative, and analytical sections) administered by the Educational Testing Service (Princeton, NJ).",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Graduate Programs in Physical Therapy",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83619",
+   "snapshot_sha256": "6b70d6a9024f312d2bd8c383e9ed82d27d5f06f6b82a400d7f7502ae2562beee",
+   "fetched_at": "2026-10-29T21:35:52+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "ielts": {
+     "overall": 7.5,
+     "min_band": 7.0,
+     "quote": "must have an IELTS score of 7.5 or higher with no less than 7.0 in each band",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "Internet-based TOEFL 102 or higher with no less than 23 speaking, 24 listening, 24 reading and 27 writing (tests before January 21, 2026); or Internet-based TOEFL 5.5 or higher with no less than 5 in any component (tests on or after January 21, 2026).",
+     "overall": 102.0,
+     "min_band": 23.0,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "TOEFL (Internet-based) score of 102 or higher with no less than a score of 23 for the speaking component, 24 for the listening component, 24 for the reading component, and 27 for the writing component (for tests written before January 21, 2026), or TOEFL (Internet-based) score of 5.5 or higher with no less than a score of 5 in any component (for tests written on or after January 21, 2026)",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "An undergraduate degree with an admission GPA of at least 3.0 on the 4-point scale from the University of Alberta, or an equivalent qualification and standing from a recognized institution.",
+     "quote": "The Department’s minimum admission requirements are an undergraduate degree with an admission GPA of at least 3.0 on the 4-point scale from the University of Alberta, or an equivalent qualification and standing from a recognized institution.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Human Anatomy (3 units), completed within five years of the admission prerequisite course deadline",
+      "quote": "Human Anatomy must be completed within five years of the admission pre-requisite course deadline.",
+      "check": "ok"
+     },
+     {
+      "text": "Human Anatomy (3 units)",
+      "quote": "Prerequisite courses are required and include the following: Human Anatomy (3 units), Human Physiology (6 units), Human Movement (3 units), Statistics (3 units), Human Psychology (3 units), Humanities or Social Sciences (3 units), and Canadian Indigenous History.",
+      "check": "ok"
+     },
+     {
+      "text": "Human Physiology (6 units)",
+      "quote": "Human Physiology (6 units)",
+      "check": "ok"
+     },
+     {
+      "text": "Human Movement (3 units)",
+      "quote": "Human Movement (3 units)",
+      "check": "ok"
+     },
+     {
+      "text": "Statistics (3 units)",
+      "quote": "Statistics (3 units)",
+      "check": "ok"
+     },
+     {
+      "text": "Human Psychology (3 units)",
+      "quote": "Human Psychology (3 units)",
+      "check": "ok"
+     },
+     {
+      "text": "Humanities or Social Sciences (3 units)",
+      "quote": "Humanities or Social Sciences (3 units)",
+      "check": "ok"
+     },
+     {
+      "text": "Canadian Indigenous History (may be fulfilled through the certificate version of the University of Alberta Indigenous Canada MOOC, or an academic equivalent of 3 units)",
+      "quote": "The Canadian Indigenous History requirement may be fulfilled through the certificate version of the University of Alberta Indigenous Canada MOOC.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Graduate Programs in Kinesiology, Sport, and Recreation",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83630",
+   "snapshot_sha256": "5ff873efaaabcb8d14e10b242ec4753ed9e9e9c29b0ac085390740c5195b6baa",
+   "fetched_at": "2026-10-29T21:32:07+00:00",
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Graduate Programs in Philosophy",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83636",
+   "snapshot_sha256": "6ed339907be8b1e08045a802374a273fd8efd9610a8cf5afc0af01f2b427a8cd",
+   "fetched_at": "2026-10-29T21:35:43+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "An undergraduate degree with an admission GPA of at least 3.3 on the 4-point scale from the University of Alberta, or an equivalent qualification and standing from a recognized institution.",
+     "quote": "The Department’s minimum admission requirements are an undergraduate degree with an admission GPA of at least 3.3 on the 4-point scale from the University of Alberta, or an equivalent qualification and standing from a recognized institution.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Applicants with very little background in philosophy may be required to enroll as a qualifying or non-degree graduate student before being considered eligible.",
+      "quote": "Students with very little background in philosophy may be required to enroll as a qualifying student  or as a non-degree program graduate student , before being considered eligible for admission to a graduate degree program.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Graduate Programs in Electrical and Computer Engineering",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83637",
+   "snapshot_sha256": "f2283d94f60cd27b7aa6f8e5d20b3d7d068888acd36822539eeccfc4d6d703e1",
+   "fetched_at": "2026-10-29T21:32:08+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "an overall band score of 7.0 on IELTS with at least 6.0 on each band;",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "Internet-based TOEFL: 92 with at least 21 in each section for tests written before January 21, 2026; 5 with at least 4.5 in each section for tests written on or after January 21, 2026.",
+     "overall": 92.0,
+     "min_band": 21.0,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "a minimum TOEFL (Internet-based) score of: For tests written before January 21, 2026: 92 with at least 21 in each section or equivalent; For tests written on or after January 21, 2026: 5 with at least 4.5 in each section or equivalent;",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "For MEng or MSc: an undergraduate degree with an admission GPA of at least 3.0 on the 4-point scale from the University of Alberta, or an equivalent qualification and standing from a recognized institution.",
+     "quote": "The Department’s minimum requirements for admission to the MEng or MSc programs are an undergraduate degree with an admission GPA of at least 3.0 on the 4- point scale from the University of Alberta, or an equivalent qualification and standing from a recognized institution.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Proof of English Language Proficiency, where applicable.",
+      "quote": "Where applicable, applicants must provide proof of English Language Proficiency (refer to English Language Requirement ).",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Graduate Programs in Pharmacy and Pharmaceutical Sciences",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83651",
+   "snapshot_sha256": "59860f44975df580064024d36a55f933397f94f05489002964a990cfa633a8a7",
+   "fetched_at": "2026-10-29T21:36:01+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "An undergraduate degree with an admission GPA of at least 3.0 on the 4-point scale from the University of Alberta, or an equivalent qualification and standing from a recognized institution.",
+     "quote": "The Faculty’s minimum admission requirements are an undergraduate degree with an admission GPA of at least 3.0 on the 4-point scale from the University of Alberta, or an equivalent qualification and standing from a recognized institution.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Applicants should normally be graduates in pharmacy; the Faculty will accept qualified applicants with degrees in related fields.",
+      "quote": "Applicants should normally be graduates in pharmacy, however the Faculty will accept qualified applicants with degrees in related fields.",
+      "check": "ok"
+     },
+     {
+      "text": "A qualified faculty member must agree to provide supervision before applying.",
+      "quote": "Applicants must have a qualified faculty member agree to provide supervision before applying for admission.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Graduate Programs in Pharmacology",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83661",
+   "snapshot_sha256": "bbcd63a945b9f210deed02251d9e1c104a8581900fa616e74e38ed379dfcbcf0",
+   "fetched_at": "2026-10-29T21:34:47+00:00",
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Graduate Programs in English and Film Studies",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83662",
+   "snapshot_sha256": "1e4d51ee55e7cf92efacc2fe583e35b57a6090eb01dc3156d4deaae94349e989",
+   "fetched_at": "2026-10-29T21:31:27+00:00",
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Graduate Programs in Paediatrics",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83666",
+   "snapshot_sha256": "98c44e1e6d5a4bf16fac77b23a1a9e6b956c5f3eaa7a89b860d9a69967248678",
+   "fetched_at": "2026-10-29T21:35:25+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "Applicants must meet the Faculty of Medicine and Dentistry Graduate Program Entrance Requirements.",
+     "quote": "See Faculty of Medicine and Dentistry Graduate Program Entrance Requirements .",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Graduate Programs in Ophthalmology and Visual Sciences",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83674",
+   "snapshot_sha256": "d65c45976f483bca0d3c6b396878f12956c5c3b50187709e049e86d46a7d676d",
+   "fetched_at": "2026-10-29T21:35:17+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "Entrance requirements are those of the Faculty of Medicine and Dentistry Graduate Program Entrance Requirements.",
+     "quote": "See Faculty of Medicine and Dentistry Graduate Program Entrance Requirements .",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Graduate Programs in Faculté Saint-Jean",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83677",
+   "snapshot_sha256": "7de4fe23c0bf93964fc3d6457b59d967daf67c154d97ac0dccbffc808ea83335",
+   "fetched_at": "2026-10-29T21:31:35+00:00",
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Graduate Programs in History and Classics",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83687",
+   "snapshot_sha256": "3c77118a69246b3418d029af3dceb7fddb8d6990691024f68a78ebfcc1076dec",
+   "fetched_at": "2026-10-29T21:32:58+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "toefl": {
+     "text": "For tests written before January 21, 2026: 95 with a minimum of 21 on each skill area; for tests written on or after January 21, 2026: 5 with a minimum of 4.5 on each skill area.",
+     "overall": 95.0,
+     "min_band": 21.0,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "For tests written before January 21, 2026: 95 with a minimum score of 21 on each of the individual skill areas, or equivalent. For tests written on or after January 21, 2026: 5 with a minimum score of 4.5 on each of the individual skill areas, or equivalent.",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "MA in Classical Archaeology or Classical Languages: a BA with a major in Classics with an admission GPA of at least 3.5 on the 4-point scale from the University of Alberta, or an equivalent qualification and standing from a recognized institution.",
+     "quote": "For the MA programs in Classical Archaeology and Classical Languages, the Department’s minimum admission requirements are a BA with a major in Classics with an admission GPA of at least 3.5 on the 4-point scale from the University of Alberta, or an equivalent qualification and standing from a recognized institution.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "MA in Classical Archaeology: applicants with a major in Archaeology, Anthropology, History, or Art History must have taken the equivalent of at least six courses (18 units) in CLASS, LATIN or GREEK at the 200-level or above.",
+      "quote": "For the MA in Classical Archaeology, students with a major in Archaeology, Anthropology, History, or Art History may also be accepted, provided that they have taken the equivalent of at least six courses (18 units) in CLASS, LATIN or GREEK at the 200-level or above.",
+      "check": "ok"
+     },
+     {
+      "text": "MA in Classical Archaeology: at least 6 units of GREEK or LATIN.",
+      "quote": "Applicants to the MA in Classical Archaeology must have completed the equivalent of at least 6 units of GREEK or LATIN.",
+      "check": "ok"
+     },
+     {
+      "text": "MA in Classical Languages: GREEK 302 and LATIN 302 and a combined 9 units at the 400-level in GREEK and/or LATIN.",
+      "quote": "Applicants to the MA in Classical Languages must have completed the equivalent of GREEK 302 and LATIN 302 and a combined 9 units at the 400-level in GREEK and/or LATIN.",
+      "check": "ok"
+     },
+     {
+      "text": "MA in Ancient Societies and Cultures: appropriate language proficiency to conduct research on the primary sources (e.g., Ancient Greek, Hebrew, Latin and/or Sanskrit).",
+      "quote": "Applicants to the MA in Ancient Societies and Cultures must demonstrate appropriate level of language proficiency to conduct research on the primary sources, as applicable to the student’s program (e.g., suitable preparation in Ancient Greek, Hebrew, Latin and/or Sanskrit).",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Graduate Programs in Human Ecology",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83692",
+   "snapshot_sha256": "74643a3bcc97e8af3a2b367d0ff209f6c5b20ecf8e96fa8d4edff5139cd3a270",
+   "fetched_at": "2026-10-29T21:31:53+00:00",
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Graduate Programs in Digital Humanities",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83696",
+   "snapshot_sha256": "1dc1eb2cf9b6b3be2928c379956d4f144f56172bc846a251fc49547e71263225",
+   "fetched_at": "2026-10-29T21:30:49+00:00",
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Graduate Programs in Internetworking",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83698",
+   "snapshot_sha256": "f2c0064d38cb353e59d5e33ced9c56b23fc61dd04cbf4cc2bc977902f38b4d2a",
+   "fetched_at": "2026-10-29T21:31:55+00:00",
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Graduate Programs in Laboratory Medicine and Pathology",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83703",
+   "snapshot_sha256": "4f3f6bd1f73712cca3a17bf97d3cf955c3fb0373242e2668fb18167b832b2483",
+   "fetched_at": "2026-10-29T21:32:12+00:00",
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Graduate Programs in Oncology",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83704",
+   "snapshot_sha256": "fb704762c25869ca548508c3e8f3f6a844709a0511e372062b4230350b7668f1",
+   "fetched_at": "2026-10-29T21:34:57+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "Suitable graduates in biochemistry, cell biology, chemistry, genetics, physiology, immunology, medical sciences or nutrition for the Cancer Sciences specialization.",
+     "quote": "Programs leading to the degrees of Master of Science and Doctor of Philosophy in Cancer Sciences are open to suitable graduates in biochemistry, cell biology, chemistry, genetics, physiology, immunology, medical sciences or nutrition.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "A score of 850 or above in GRE Physics (Medical Physics program).",
+      "quote": "A score of 850 or above in GRE Physics",
+      "check": "ok"
+     },
+     {
+      "text": "Criminal Record Check (Medical Physics program).",
+      "quote": "Criminal Record Check",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Graduate Programs in Law",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83711",
+   "snapshot_sha256": "3cb5cc0facfb766abac6767221781fe5242ebefadf50b389c98b32b9ca403691",
+   "fetched_at": "2026-10-29T21:32:22+00:00",
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Graduate Programs in Occupational Therapy",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83717",
+   "snapshot_sha256": "3c2a054bf321d6bce028ded0c8276f6592be86f9fba74f92c560963cc99b3ea9",
+   "fetched_at": "2026-10-29T21:34:19+00:00",
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Graduate Programs in Obstetrics and Gynecology",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83719",
+   "snapshot_sha256": "a61314deab37e9a4054e26eaa7d4b1ac2d12ac30463a42cf870c043576683c1e",
+   "fetched_at": "2026-10-29T21:35:14+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Graduate Programs in Linguistics",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83723",
+   "snapshot_sha256": "8086534541f1430ada98ad2235190146839d1a1dfdf650c364afc5e1b9d12a53",
+   "fetched_at": "2026-10-29T21:33:02+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "A minimum IELTS overall band score of 6.5, with a score of at least 6.0 on each test band;",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "Minimum TOEFL (Internet-based) score of 100 or equivalent for tests written before January 21, 2026; 4.5 or equivalent for tests written on or after January 21, 2026.",
+     "overall": 100.0,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "A minimum TOEFL (Internet-based) score of:\nFor tests written before January 21, 2026: 100 or equivalent;\nFor tests written on or after January 21, 2026: 4.5 or equivalent;",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "For the MSc: an undergraduate degree with an admission GPA of at least 3.3 on the 4-point scale from the University of Alberta, or an equivalent qualification and standing from a recognized institution.",
+     "quote": "For the MSc program, the Department’s minimum admission requirements are an undergraduate degree with an admission GPA of at least 3.3 on the 4-point scale from the University of Alberta, or an equivalent qualification and standing from a recognized institution.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "MSc candidates must have completed certain core courses in linguistics, or their equivalents, to the Department's satisfaction.",
+      "quote": "Candidates for the MSc must have completed, to the satisfaction of the Department, certain core courses in linguistics, or their equivalents.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Graduate Programs in Nursing",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83732",
+   "snapshot_sha256": "1a5c9a78801f34843511501e66043f98b5a886c44c6f2ab4d43b8b833b109ad2",
+   "fetched_at": "2026-10-29T21:34:07+00:00",
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Graduate Programs in Neuroscience",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83736",
+   "snapshot_sha256": "332224021ab6f1e2aeba34e46e9faadd92e850a9bb44a5407ac4e427c792975b",
+   "fetched_at": "2026-10-29T21:34:41+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "Entrance requirements are those of the Faculty of Medicine and Dentistry Graduate Program Entrance Requirements.",
+     "quote": "See Faculty of Medicine and Dentistry Graduate Program Entrance Requirements .",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "MSc applicants are expected to have completed ZOOL 342 or PMCOL 371, or their equivalents.",
+      "quote": "Applicants to the MSc program are expected to have completed the following courses or their equivalents:\nZOOL 342  OR PMCOL 371",
+      "check": "ok"
+     },
+     {
+      "text": "MSc applicants are expected to have completed PHYSL 372, or its equivalent.",
+      "quote": "PHYSL 372",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Graduate Programs in Mathematical and Statistical Sciences",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83737",
+   "snapshot_sha256": "a0c28bf850176135531c364dd1cddf7e7c9271a65c2062b85802ea225743086e",
+   "fetched_at": "2026-10-29T21:33:18+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "a minimum IELTS score of 7.0 overall with a minimum of 6.0 on each band;",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "For tests written before January 21, 2026: 100 with a minimum of 22 in each skill area; for tests written on or after January 21, 2026: 5 with a minimum of 4.5 in each skill area.",
+     "overall": 100.0,
+     "min_band": 22.0,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "For tests written before January 21, 2026: 100 with a minimum score of 22 in each individual skill area, or equivalent; For tests written on or after January 21, 2026: 5 with a minimum score of 4.5 in each individual skill area, or equivalent;",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "For the MSc: a four-year undergraduate degree with a strong background in mathematics, physics and/or statistics, with an admission GPA of at least 3.3 on the 4-point scale from the University of Alberta, or an equivalent qualification and standing from a recognized institution.",
+     "quote": "For the MSc, the Department’s minimum admission requirements are a four-year undergraduate degree with a strong background in mathematics, physics and/or statistics, with an admission GPA of at least 3.3 on the 4- point scale from the University of Alberta, or an equivalent qualification and standing from a recognized institution.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Applicants to Mathematical Finance must have previous credentials in Mathematics, Statistics, Physics, Engineering or Finance.",
+      "quote": "Previous credentials for applicants to Mathematical Finance should be in Mathematics, Statistics, Physics, Engineering or Finance.",
+      "check": "ok"
+     },
+     {
+      "text": "Applicants to Statistical Machine Learning must have previous credentials in Mathematical and Statistical Sciences or Computing Science.",
+      "quote": "Previous credentials for applicants to Statistical Machine Learning should be in Mathematical and Statistical Sciences or Computing Science.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Graduate Programs in Mechanical Engineering",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83739",
+   "snapshot_sha256": "2b276680bcba12d605c1b4ea7c15f4394f2d9aa4e1c4496eb8d00e3c00add2ad",
+   "fetched_at": "2026-10-29T21:32:58+00:00",
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Graduate Programs in Medical Genetics",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83740",
+   "snapshot_sha256": "87f493aa90f1de854f14286e479b28013cb96aaadc19dc51fd4d29cb752f13dc",
+   "fetched_at": "2026-10-29T21:34:01+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Graduate Programs in Medical Sciences",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83743",
+   "snapshot_sha256": "c96b3755e6fa4b79d85decf55b0242f1d637fb8a99389372645f771b3ffe2a12",
+   "fetched_at": "2026-10-29T21:33:08+00:00",
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Graduate Programs in Medicine",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83751",
+   "snapshot_sha256": "09010c4471cf9b7a56c4ae8fa552bd186778d701ba06d9ed9d737ad9fa23f17b",
+   "fetched_at": "2026-10-29T21:33:10+00:00",
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Graduate Programs in Medical Microbiology and Immunology",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83752",
+   "snapshot_sha256": "f7a73a456dcb11b299555c61e33268b48f27f6755228acc251e3dfd47b581a81",
+   "fetched_at": "2026-10-29T21:33:05+00:00",
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Graduate Programs in Mining and Petroleum Engineering",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83756",
+   "snapshot_sha256": "c0fbc2d4d688f9b3d9613043fc3a857133ecd368a5edc461bf99efdc8e4a95d2",
+   "fetched_at": "2026-10-29T21:33:56+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Graduate Programs in Modern Languages and Cultural Studies",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83758",
+   "snapshot_sha256": "acae74bc8fafce71039d1b45b6fedc9380ae84819d2ff1fbb4b2273c316c135c",
+   "fetched_at": "2026-10-29T21:33:25+00:00",
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Graduate Programs in Native Studies",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83764",
+   "snapshot_sha256": "c190d04346f7dccda290c7fd4ecdde03347aa1d6efccfa87128e31923497957c",
+   "fetched_at": "2026-10-29T21:33:59+00:00",
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Graduate Programs in Education",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=84275",
+   "snapshot_sha256": "1011546aa309799fe5d6ff64034491c891436be25b64329decfc650ab1a360ac",
+   "fetched_at": "2026-10-29T21:32:14+00:00",
+   "rendered": true,
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 7.0,
+     "quote": "a minimum of 7.0 on each band on the IELTS with an overall minimum score of 7.0",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "93 (tests before January 21, 2026) with a minimum of 24 on speaking and writing; 5 with a minimum of 4.5 on speaking and writing for tests written on or after January 21, 2026.",
+     "overall": 93.0,
+     "min_band": 24.0,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "For tests written before January 21, 2026: 93 with a minimum of 24 on the speaking and writing bands of the test, or equivalent. (GPS’s minimum for the reading and listening bands of the TOEFL test is 21.), For tests written on or after January 21, 2026: 5 with a minimum of 4.5 on the speaking and writing bands of the test, or equivalent.",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "For the MEd in Educational Policy Studies: an undergraduate degree with an admission GPA of at least 3.0 on the 4-point scale from the University of Alberta, or an equivalent qualification and standing from a recognized institution.",
+     "quote": "For the MEd degree, the program’s minimum admission requirements are an undergraduate degree with an admission GPA of at least 3.0 on the 4-point scale from the University of Alberta, or an equivalent qualification and standing from a recognized institution.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Studies in Educational Leadership specialization: minimum of two years of teaching experience or equivalent.",
+      "quote": "The Studies in Educational Leadership specialization requires applicants to have a minimum of two years of teaching experience or equivalent.",
+      "check": "ok"
+     },
+     {
+      "text": "Social Justice and International Studies specialization: strong background in the social foundations of education and/or humanities and social sciences, plus substantial work experience in the educational sector.",
+      "quote": "Applicants must have a strong background in the social foundations of education and/or one or more of the following humanities and social sciences: philosophy, history, sociology, anthropology, political science, and cultural and communication studies. Applicants must also have substantial work experience in the educational sector (e.g., public or private schooling, adult education, NGOs, social movements, corporate or government communications).",
+      "check": "ok"
+     },
+     {
+      "text": "Educational Studies: at least two years of teaching experience or equivalent.",
+      "quote": "Applicants are required to have at least two years of teaching experience or equivalent.",
+      "check": "ok"
+     },
+     {
+      "text": "Elementary Education MEd: a valid teaching certificate and at least one year of successful teaching experience at the early childhood, elementary or middle classroom level.",
+      "quote": "Applicants to the MEd programs must also have a valid teaching certificate, and at least one year of successful teaching experience at the early childhood, elementary or middle classroom level (student teaching and substitute teaching do not qualify).",
+      "check": "ok"
+     },
+     {
+      "text": "Health Sciences Education: instructional experience in a health related discipline.",
+      "quote": "Applicants should also have instructional experience in a health related discipline.",
+      "check": "ok"
+     },
+     {
+      "text": "Secondary Education master's programs: two years teaching experience or equivalent.",
+      "quote": "Two years teaching experience or equivalent are also required.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Graduate Programs in Public Health",
+   "url": "https://ualberta.catalog.acalog.com/preview_program.php?catoid=56&poid=83564",
+   "snapshot_sha256": "bbd4339dab540581e92020a6dda6edf38b952c741dfef1d54a1f0c6bb19d459e",
+   "fetched_at": "2026-10-29T21:35:51+00:00",
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {},
+   "status": "待人工"
+  }
+ ],
  "verification": {
-  "programs": 0,
-  "机器核对": 0,
-  "待人工": 0
+  "programs": 60,
+  "机器核对": 29,
+  "待人工": 31
  }
 }

@@ -1,0 +1,200 @@
+{
+ "school_key": "dartmouth-college",
+ "school_name_en": "Dartmouth College",
+ "country": "United States",
+ "collector": "leapashore-queue",
+ "collected_at": "2026-10-30",
+ "listing_urls": [
+  "https://graduate.dartmouth.edu/admissions/programs",
+  "https://engineering.dartmouth.edu/graduate-admissions",
+  "https://online.dartmouth.edu/"
+ ],
+ "complete": false,
+ "programs": [
+  {
+   "name": "Master of Engineering",
+   "url": "https://engineering.dartmouth.edu/graduate/meng",
+   "snapshot_sha256": "01c6b075a44911bffcea1ad1caf0140daef0d44f28338927e81adb400112a96e",
+   "fetched_at": "2026-10-29T20:48:00+00:00",
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "A bachelor's degree in engineering or a scientific field such as physics, chemistry, or computer science from an accredited institution.",
+     "quote": "As an MEng candidate, you're required to hold a bachelor-level degree in engineering or a scientific field such as physics, chemistry, or computer science from an accredited institution.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Applicants with a degree from a non-accredited institution may need to take prerequisite courses.",
+      "quote": "If your degree is from a non-accredited institution, you may be required to take the necessary prerequisite courses, in addition to courses for the MEng, to fulfill degree requirements.",
+      "check": "ok"
+     },
+     {
+      "text": "Non-US citizens must submit language proficiency test scores unless exempt (degree from US/Canada or listed countries).",
+      "quote": "Non-US citizens must submit language proficiency test scores, unless you have earned a degree from institutions in the US or Canada, or you are from one of the following countries: Australia, Canada, Denmark, Germany, Ghana, Ireland, the Netherlands, New Zealand, Nigeria, Slovenia, Sweden, or the United Kingdom.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science",
+   "url": "https://engineering.dartmouth.edu/graduate/ms",
+   "snapshot_sha256": "a85b883df549374372106bbbc53b7e704685b4e553ba3cd7f28ffc6401f98bb8",
+   "fetched_at": "2026-10-29T20:32:40+00:00",
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "A bachelor's-level degree in engineering or one of the physical sciences from an accredited institution.",
+     "quote": "As an MS candidate, you are required to hold a bachelor's-level degree in engineering or in one of the physical sciences from an accredited institution.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Additional undergraduate engineering coursework may be required before beginning MS studies.",
+      "quote": "If you are admitted and require additional engineering coursework, you may be required to complete additional undergraduate engineering courses prior to beginning your MS studies.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering Management",
+   "url": "https://engineering.dartmouth.edu/mem",
+   "snapshot_sha256": "1883d58ecb4b0e03d995b6f27e315fa353fa63038e3832aaafcda733fc108ce9",
+   "fetched_at": "2026-10-29T20:40:47+00:00",
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Master of Arts in Liberal Studies",
+   "url": "https://graduate.dartmouth.edu/academics/programs/master-arts-liberal-studies-mals",
+   "snapshot_sha256": "db6165d8bd5a61b9cdaec445b67934b9ceaadc0eae54ed62596efad60017b4b3",
+   "fetched_at": "2026-10-29T20:39:26+00:00",
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Master of Energy Transition (MET)",
+   "url": "https://graduate.dartmouth.edu/academics/programs/master-energy-transition",
+   "snapshot_sha256": "d591ad28007dff909563d48f08a35c1cc8b575e507f047392f38bb412a32e39f",
+   "fetched_at": "2026-10-29T20:47:12+00:00",
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "Non-U.S. citizens must submit English language proficiency test scores unless they earned or are earning a bachelor's or higher degree after studying at least four years at an institution in the U.S., Canada, UK, Australia, Ireland, or New Zealand where English was the sole primary language of instruction.",
+      "quote": "Non-U.S. citizens are required to submit language proficiency test scores, with the exception of those who have earned, or are currently earning, an undergraduate (bachelor's degree or equivalent) or higher degree after having studied for at least four years at an institution in the United States, Canada, United Kingdom, Australia, Ireland, or New Zealand where English was the sole primary language of instruction.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts in Liberal Studies (MALS)",
+   "url": "https://graduate.dartmouth.edu/admissions/programs/master-arts-liberal-studies-mals",
+   "snapshot_sha256": "270f2b341155f52b90c998c09dbac65afefefed4e0d4cd2e1d2fecba600528ee",
+   "fetched_at": "2026-10-29T20:44:04+00:00",
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Master of Biotechnology",
+   "url": "https://graduate.dartmouth.edu/admissions/programs/master-biotechnology-mbt",
+   "snapshot_sha256": "e845cd0282394aea2c1e7f12efb49846f1c8c2ea98c0e144b3fab2578696905a",
+   "fetched_at": "2026-10-29T20:48:53+00:00",
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Master of Energy Transition",
+   "url": "https://graduate.dartmouth.edu/admissions/programs/master-energy-transition",
+   "snapshot_sha256": "d591ad28007dff909563d48f08a35c1cc8b575e507f047392f38bb412a32e39f",
+   "fetched_at": "2026-10-29T20:37:18+00:00",
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "ielts": {
+     "text": "IELTS accepted; no minimum score stated.",
+     "quote": "We accept TOEFL, IELTS, and Duolingo",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL accepted; no minimum score stated.",
+     "quote": "We accept TOEFL, IELTS, and Duolingo",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Health Data Science",
+   "url": "https://healthsciences.dartmouth.edu/education/degree-programs/master-science-health-data-science/online/program-overview",
+   "snapshot_sha256": "13d5b7d5471ab6e4777057728480df4fa153fe20335ce6c5e17ed877d9907183",
+   "fetched_at": "2026-10-29T20:41:57+00:00",
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "MS in Implementation Science",
+   "url": "https://healthsciences.dartmouth.edu/education/degree-programs/master-science-implementation-science/program-overview",
+   "snapshot_sha256": "2c69589ae84d733ea552b386b1d87ec698f9c9d50ce141242e502f642f1811f6",
+   "fetched_at": "2026-10-29T20:43:03+00:00",
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Master of Public Health (MPH)",
+   "url": "https://healthsciences.dartmouth.edu/education/degree-programs/masters-in-public-health/online/online-mph-programs",
+   "snapshot_sha256": "2fa6ebe2db481a3f261a9af352e3934a4e4bac15a7556b51d6339b07a9fad7d5",
+   "fetched_at": "2026-10-29T20:45:09+00:00",
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Master of Health Administration",
+   "url": "https://mha.dartmouth.edu/?utm_source=dartmouth-online",
+   "snapshot_sha256": "97a4ac0f0bc0b45916b5d94dd7bf9793e130a7e6949359f19522c823e66a78b7",
+   "fetched_at": "2026-10-29T20:46:12+00:00",
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Master of Health Care Delivery Science",
+   "url": "https://mhcds.dartmouth.edu/?utm_source=dartmouth-online",
+   "snapshot_sha256": "35c5a17dcc7da68672d23f856fed77e4fa9499ac27bd0613946fd19fa84d66ba",
+   "fetched_at": "2026-10-29T20:35:13+00:00",
+   "collector": "leapashore-queue (deepseek-flash)",
+   "fields": {
+    "academic": {
+     "text": "Significant professional experience of 10 or more years as a clinical or executive leader.",
+     "quote": "The Master of Health Care Delivery Science (MHCDS) is designed for accomplished clinical and executive leaders with significant professional experience (10+ years).",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Significant professional experience (10+ years).",
+      "quote": "designed for accomplished clinical and executive leaders with significant professional experience (10+ years)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 13,
+  "机器核对": 5,
+  "待人工": 8
+ }
+}
