@@ -1,0 +1,339 @@
+{
+ "school_key": "university-of-tokyo",
+ "school_name_en": "The University of Tokyo",
+ "country": "Japan",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://www.k.u-tokyo.ac.jp/en/exam/info/",
+  "https://www.t.u-tokyo.ac.jp/en/study-at-utokyo/soe/international-programs",
+  "https://www.student.e.u-tokyo.ac.jp/grad/m-nyushi-e.html",
+  "https://www.a.u-tokyo.ac.jp/english/pstudents_e/g_rcourses.html",
+  "https://www.i.u-tokyo.ac.jp/edu/entra/entra_e.shtml",
+  "https://www.pp.u-tokyo.ac.jp/en/mppip/admissions/general-information/"
+ ],
+ "blocked": [
+  {
+   "url": "https://www.u-tokyo.ac.jp/en/prospective-students/programs.html",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://www.u-tokyo.ac.jp/en/prospective-students/graduate_course_list.html",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://www.u-tokyo.ac.jp/en/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://www.s.u-tokyo.ac.jp/en/admission/graduate.html",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://israr.f.u-tokyo.ac.jp/en/admission/exam.html",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://www.gaia.e.u-tokyo.ac.jp/utipe/admission/index2016.html",
+   "reason": "robots.txt disallows"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.t.u-tokyo.ac.jp/hubfs/admission/2026/international-admission/I%E3%80%90%E5%85%B1%E9%80%9A%E3%80%91General%20Application%20Guidelines%202027_Masters%20Degree.pdf",
+  "https://www.pp.u-tokyo.ac.jp/wp-content/uploads/2026/07/2027-MPPIP-Application-Guidelines.pdf",
+  "https://www.i.u-tokyo.ac.jp/edu/entra/2026_admission-g_m_e.pdf",
+  "https://www.a.u-tokyo.ac.jp/english/pstudents_e/1-2_Admission_Guidelines_M_e_2027.pdf",
+  "https://www.student.e.u-tokyo.ac.jp/grad/2026M_keizaigaku_youkou_e.pdf",
+  "https://www.ms.u-tokyo.ac.jp/kyoumu_e/liaison/guide_e.html",
+  "https://www.m.u-tokyo.ac.jp/english/daigakuin/apply/appguidemain.html"
+ ],
+ "notes": "The central u-tokyo.ac.jp/en pages and the Science and Humanities-related graduate-school sites disallow crawling in robots.txt, so the master's list was built from graduate-school sites that allow it. Most scores, eligibility rules and department requirements sit in PDF application guidelines, which the snapshot tool stores as raw bytes without extracted text, so nothing could be quoted from them; those are listed in remaining_urls. Mathematical Sciences and Medicine pages were read but state no quotable requirement with a full date.",
+ "programs": [
+  {
+   "name": "Master of Public Policy, International Program (MPP/IP), Graduate School of Public Policy",
+   "url": "https://www.pp.u-tokyo.ac.jp/en/mppip/admissions/general-information/",
+   "snapshot_sha256": "e8fa34b2bf695cf18379d14081def115c400f5cfa421089b652ad39df00fefdf",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or equivalent completed or expected before the enrollment date",
+     "quote": "Those who have completed or expect to complete their undergraduate education (a bachelor’s degree or the equivalent) before the enrollment date are eligible to apply for MPP/IP.",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "Bachelor's degree holders from outside Australia, Canada, Ireland, New Zealand, the UK or the USA must submit an English proficiency test (IELTS/TOEFL) score; no minimum score is stated on this page",
+     "quote": "Bachelor’s degree holders from outside Australia, Canada, Ireland, New Zealand, the UK, or the U.S.A. must submit English proficiency test scores.",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "Same English proficiency requirement as TOEFL (IELTS or TOEFL); no minimum score is stated on this page",
+     "quote": "Bachelor’s degree holders from outside Australia, Canada, Ireland, New Zealand, the UK, or the U.S.A. must submit English proficiency test scores.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "October 2027 enrollment (application period closes)",
+      "date": "2026-12-01",
+      "quote": "Application period: November 1 to 5pm December 1, 2026 (JST)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's Program, Graduate School of Information Science and Technology",
+   "url": "https://www.i.u-tokyo.ac.jp/edu/entra/entra_e.shtml",
+   "snapshot_sha256": "48ec8eb3b18480db549b811b83a9f7af4f389995a6b9e9368a918dd985280029",
+   "fields": {
+    "toefl": {
+     "text": "TOEFL score must be submitted; the graduate school sets no minimum score, but some departments may (see each department's admission guide)",
+     "quote": "The graduate school sets no minimum score requirement, but some department may have such a requirement.",
+     "source_sha256": "f74c7bb9314d573d463aee83477b62f66734e4015623b3fe7ba10c72ff325539",
+     "source_url": "https://www.i.u-tokyo.ac.jp/edu/entra/faq_e.shtml",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "IELTS scores are not accepted in place of TOEFL",
+     "quote": "No, we do not accept an IELTS score.",
+     "source_sha256": "f74c7bb9314d573d463aee83477b62f66734e4015623b3fe7ba10c72ff325539",
+     "source_url": "https://www.i.u-tokyo.ac.jp/edu/entra/faq_e.shtml",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "AY2027 Winter Entrance Examinations (Master's and Doctoral programs)",
+      "date": "2026-11-17",
+      "quote": "Applications are accepted from Wednesday, November 11, until 14:00 on Tuesday, November 17, 2026 (JST).",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's Program, Department of Computer Science (Graduate School of Information Science and Technology)",
+   "url": "https://www.i.u-tokyo.ac.jp/edu/course/cs/admission_e.shtml",
+   "snapshot_sha256": "321b7f41ae7475c57f664b279ae2401b741b2cce0508d1c3cc4eeaa4ab7518ca",
+   "fields": {
+    "toefl": {
+     "text": "TOEFL score replaces the English language entrance exam",
+     "quote": "Since 2005, the TOEFL test has replaced the English language entrance exam.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's Program, Department of Mathematical Informatics (Graduate School of Information Science and Technology)",
+   "url": "https://www.i.u-tokyo.ac.jp/edu/course/mi/admission_e.shtml",
+   "snapshot_sha256": "f6e79d1842f539dbf3b5156a3731a8ec264d6c63ebc59e938b327c3870d757be",
+   "fields": {
+    "toefl": {
+     "text": "TOEFL score is used in the English language entrance examination",
+     "quote": "The TOEFL score is used in the English language entrance examination.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's Program, Department of Economics (English-taught), Graduate School of Economics",
+   "url": "https://www.student.e.u-tokyo.ac.jp/grad/m-nyushi-e.html",
+   "snapshot_sha256": "cf5ea4e53261ff41f8e1751368b825cdd5edb45b44ad088c473d9b3cb88483d5",
+   "fields": {
+    "toefl": {
+     "text": "TOEFL scores may be submitted on either the new 1-6 scale or the previous 0-120 scale; no minimum is stated on this page",
+     "quote": "Both the new TOEFL score scale (1–6), introduced in January 2026, and the previous scale (0–120) can be used for applications.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Schedule B (October enrollment)",
+      "date": "2026-11-06",
+      "quote": "Application Period: November 2, 2026 ～ November 6, 2026(JST)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's Program, other departments (Statistics, Area Studies, Economic History, Management, Quantitative Finance; Japanese-taught), Graduate School of Economics",
+   "url": "https://www.student.e.u-tokyo.ac.jp/grad/m-nyushi-e.html",
+   "snapshot_sha256": "cf5ea4e53261ff41f8e1751368b825cdd5edb45b44ad088c473d9b3cb88483d5",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "JLPT N1 certificate required of international applicants (exempt: graduates of a Japanese high school or university, or permanent residents of Japan)",
+      "quote": "students are required to submit the \"Certificate of Result and Score for the JLPT (Japanese Language Proficiency Test) N1 level, which is jointly administered by the Japan International Education Support Association and the Japan Foundation.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Schedule B (October enrollment)",
+      "date": "2026-11-06",
+      "quote": "Application Period: November 2, 2026 ～ November 6, 2026(JST)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's Course, Graduate School of Agricultural and Life Sciences",
+   "url": "https://www.a.u-tokyo.ac.jp/english/pstudents_e/g_rcourses.html",
+   "snapshot_sha256": "4ce0c5b5985ba3e0fa3e84ebd45dd9a24e05bf07c2462a309e6bd4fe23b76b32",
+   "fields": {
+    "academic": {
+     "text": "Graduation (or expected) from a Japanese university, or 16 years of regular studies abroad (completed or expected), or qualifications equivalent to a University of Tokyo undergraduate degree",
+     "quote": "Graduation or expected graduation from a Japanese university or -Completion or expected completion of 16 years of regular curricular studies abroad or -Qualifications equivalent to the undergraduate degree of the University of Tokyo",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc, International Program in Agricultural Development Studies (IPADS), Graduate School of Agricultural and Life Sciences",
+   "url": "https://ipads.a.u-tokyo.ac.jp/admissions/requirements/",
+   "snapshot_sha256": "d77652c17acc2b32268b05b0e392b1e0bf4aa27fe2aa7a2b3f1befe146b6b59d",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or equivalent from a recognized institution",
+     "quote": "hold a Bachelor’s degree or equivalent from a recognized institution (to enter MSc)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 98,
+     "recommended": true,
+     "quote": "While IPADS does not have the official cut-off scores for English proficiency tests, the program welcomes applicants who score TOEFL iBT – 98 and above, IELTS – 7.0 and above.",
+     "source_sha256": "4207aee7e66aaf49061224346ccee5b9fba4b5cc6111e98747af5092fa40b925",
+     "source_url": "https://ipads.a.u-tokyo.ac.jp/admissions/english-language-proficiency-2/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "recommended": true,
+     "quote": "While IPADS does not have the official cut-off scores for English proficiency tests, the program welcomes applicants who score TOEFL iBT – 98 and above, IELTS – 7.0 and above.",
+     "source_sha256": "4207aee7e66aaf49061224346ccee5b9fba4b5cc6111e98747af5092fa40b925",
+     "source_url": "https://ipads.a.u-tokyo.ac.jp/admissions/english-language-proficiency-2/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Round Two, October 2027 intake (online application closes)",
+      "date": "2027-02-14",
+      "quote": "Online application (pre-screening) closes 18 October 2026 14 February 2027",
+      "source_sha256": "1db5a066355dc18dae52778c57f62ea4057312911c0d46db241649f9c8fd5cf0",
+      "source_url": "https://ipads.a.u-tokyo.ac.jp/admissions/schedule/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's Program, Department of Ocean Technology, Policy, and Environment (Graduate School of Frontier Sciences)",
+   "url": "http://www.otpe.k.u-tokyo.ac.jp/en/examination.html",
+   "snapshot_sha256": "d412893d639a391f40f381edb819e543fc65cf13939a27ef2016c32b516821b2",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "Schedule B (enrollment April or October 2027)",
+      "date": "2026-11-17",
+      "quote": "Application Period: November 11 (Wed) to 17 (Tue), 2026, 23:00 (JST)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's Program, Department of International Studies (Graduate School of Frontier Sciences)",
+   "url": "http://inter.k.u-tokyo.ac.jp/prospective/admissions/?lang=en",
+   "snapshot_sha256": "43ca58a7447f63d56e9e611fbc318883505d49c756e0b4e934c375f8fc6fa9f0",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "Schedule B (enrollment April or October 2027)",
+      "date": "2026-11-17",
+      "quote": "Schedule B: November 11 (Wed) 2026 to 23:00 November 17 (Tue) 2026 (JST)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's Program, Department of Socio-Cultural Environmental Studies (Graduate School of Frontier Sciences)",
+   "url": "https://sbk.k.u-tokyo.ac.jp/admission_e.html",
+   "snapshot_sha256": "17ceb8e97d29658cfc36de6fd1872a4739385dc2109ec7c8b93a4b26c110c8d4",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "Schedule B",
+      "date": "2026-11-17",
+      "quote": "[Schedule B] Nov. 11 (Wed) to 17(Tue), 2026, at 23:00 (Japan Standard Time)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's Program, Department of Computational Biology and Medical Sciences (Graduate School of Frontier Sciences)",
+   "url": "https://www.cbms.k.u-tokyo.ac.jp/en/admission/schedule/",
+   "snapshot_sha256": "9e7e4ad9f7fb960d59503056150492a84d3d44b6511d0b11d80cfd001f1d12e9",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "Schedule B",
+      "date": "2026-11-17",
+      "quote": "Application Period: November 11 to 17, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's Program, Department of Complexity Science and Engineering (Graduate School of Frontier Sciences)",
+   "url": "https://www.k.u-tokyo.ac.jp/complex/html/examinee/examinee_e.html",
+   "snapshot_sha256": "6634e5d29fc218aea6336059d4f35f9f36431e1da79a8303bcbd111c9c90ca51",
+   "fields": {
+    "toefl": {
+     "text": "TOEFL iBT / TOEIC L&R score reports are not required for the Master's Program (Schedule A)",
+     "quote": "Submission of English proficiency score reports, such as TOEFL iBT or TOEIC L&R, is not required for the Special Oral Examination and the Regular Admission Examination of the Master's Program, or for the Doctoral Program entrance examination.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's Program, Department of Advanced Energy (Graduate School of Frontier Sciences)",
+   "url": "https://www.ae.k.u-tokyo.ac.jp/en/admission/",
+   "snapshot_sha256": "1530426d952de0e69b4e06dee6070151ded9471c2ed46e37f00155dd1a453d0e",
+   "fields": {
+    "toefl": {
+     "text": "A TOEFL or TOEIC score sheet is submitted for the English subject of the entrance examination; no minimum is stated",
+     "quote": "For English, you will be required to submit a TOEFL or TOEIC score sheet.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's International Admission Programs (IAP), Graduate School of Engineering (14 departments, English-medium)",
+   "url": "https://www.t.u-tokyo.ac.jp/en/study-at-utokyo/soe/international-programs",
+   "snapshot_sha256": "6d0024ccf681466890fb9b97296875bca14b016c3931728c4690e4b424cd319c",
+   "fields": {},
+   "status": "待人工"
+  }
+ ],
+ "verification": {
+  "programs": 15,
+  "机器核对": 14,
+  "待人工": 1
+ }
+}
