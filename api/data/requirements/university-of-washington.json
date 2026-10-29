@@ -1,0 +1,544 @@
+{
+ "school_key": "university-of-washington",
+ "school_name_en": "University of Washington",
+ "country": "United States",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://grad.uw.edu/programs/find-a-graduate-program/",
+  "https://foster.uw.edu/academics/degree-programs/",
+  "https://ischool.uw.edu/programs/msim",
+  "https://ischool.uw.edu/programs/mlis",
+  "https://www.engr.washington.edu/graduate-professional/professional-masters"
+ ],
+ "blocked": [
+  {
+   "url": "https://www.washington.edu/datasciencemasters/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://hcde.uw.edu/graduate/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://stat.uw.edu/academics/masters",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://www.stat.washington.edu/",
+   "reason": "robots.txt disallows"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://sph.washington.edu/admissions/mph-application",
+  "https://www.washington.edu/datasciencemasters/admission-requirements/",
+  "https://hcde.uw.edu/graduate/",
+  "https://stat.uw.edu/academics/masters"
+ ],
+ "notes": "Programme pages and the Graduate School minimums were used only where a programme page states the figure itself. Allen School PMP skipped: it does not support F-1/J-1 visas. ISE MISE skipped: international students may only study it online. MS Data Science, HCDE and Statistics sit on hosts whose robots.txt disallows us. Many department deadlines give a day and month without a year and are omitted.",
+ "programs": [
+  {
+   "name": "Master of Science in Information Management (MSIM)",
+   "url": "https://ischool.uw.edu/programs/msim/admissions",
+   "snapshot_sha256": "a0677a9d7d8d9b2055b3c173a70d19f394652d1a108b86354a04e50b70791f3c",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or equivalent in any field by the time MSIM courses begin",
+     "quote": "Applicants must have a bachelor’s degree or equivalent from a recognized accredited institution, in any field, by the time MSIM courses begin.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "UW Graduate School minimum GPA 3.0; applicants below 3.0 may still apply",
+      "quote": "The UW Graduate School has a minimum GPA requirement of 3.0. Any applicant with a GPA below 3.0 is welcome to apply to the MSIM program.",
+      "check": "ok"
+     },
+     {
+      "text": "Mid-Career track: at least five years of full-time professional work experience",
+      "quote": "Mid-Career MSIM applicants must demonstrate at least five years of full-time, professional work experience post-undergraduate degree.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Official IELTS scores — minimum score of 7.0 with speaking score of 7.0",
+     "source_sha256": "13eeb5bb8a8b3a266dc4497401f21376f786b3e2819d19b0ee3bbaa0522e11ef",
+     "source_url": "https://ischool.uw.edu/programs/msim/admissions/application-materials",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT (new 1-6 scale): minimum 4.5 with speaking score of 5",
+     "quote": "Official TOEFL scores — minimum score of 4.5 with speaking score of 5",
+     "source_sha256": "13eeb5bb8a8b3a266dc4497401f21376f786b3e2819d19b0ee3bbaa0522e11ef",
+     "source_url": "https://ischool.uw.edu/programs/msim/admissions/application-materials",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Library and Information Science (MLIS)",
+   "url": "https://ischool.uw.edu/programs/mlis/admissions",
+   "snapshot_sha256": "3b9a1c985d5ca9099ccbbedc882b6a6ee273ccd7b962b86290c2ce6fa84a3a78",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or equivalent in any field by the time courses begin; UW Graduate School GPA minimum, lower GPA may be considered",
+     "quote": "Applicants must have a bachelor’s degree or equivalent from a recognized accredited institution, in any field, by the time courses begin.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Official IELTS scores — minimum score of 6.5",
+     "source_sha256": "5c15af43a0859924affb9a0df9bbf37b26a70fc3f46da577466b86bd1119568f",
+     "source_url": "https://ischool.uw.edu/programs/mlis/admissions/application-materials",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "Official TOEFL scores — minimum score of 80",
+     "source_sha256": "5c15af43a0859924affb9a0df9bbf37b26a70fc3f46da577466b86bd1119568f",
+     "source_url": "https://ischool.uw.edu/programs/mlis/admissions/application-materials",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Autumn 2027, Round 1",
+      "date": "2026-12-09",
+      "quote": "Dec. 9, 2026, 11:59 p.m. PT",
+      "source_sha256": "bfcd3b97e90574abe48a04155449dae0ccdf468db31e2437e80c773a5320854a",
+      "source_url": "https://ischool.uw.edu/programs/mlis/admissions/application-process",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Full-time MBA (Foster School of Business)",
+   "url": "https://foster.uw.edu/academics/degree-programs/full-time-mba/admissions/",
+   "snapshot_sha256": "acafdee86f1df6f214e996068fb79be634c48e428b54b63d7dfe183148b7b06f",
+   "fields": {
+    "academic": {
+     "text": "Completed four-year U.S. bachelor's degree from a regionally accredited institution or the equivalent",
+     "quote": "Transcripts from a completed four-year U.S. bachelor’s degree from a regionally accredited college or university or the equivalent",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "No minimum GPA; 3.0 or better generally the standard for a competitive candidate",
+      "quote": "Although Foster does not have a minimum requirement, a GPA of 3.0 (B) or better is generally the standard we look for in a competitive candidate.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS 7.0 or higher",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL 5 (100iBT for tests taken before Jan. 21, 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Round 2 (final deadline for international applicants), 2026-2027 cycle",
+      "date": "2027-01-05",
+      "quote": "Application Deadline: January 5, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3, 2026-2027 cycle",
+      "date": "2027-03-23",
+      "quote": "Application Deadline: March 23, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Professional Accounting (MPAcc)",
+   "url": "https://foster.uw.edu/academics/degree-programs/master-of-professional-accounting/admissions/",
+   "snapshot_sha256": "a4e43f725a6b32979f1a4337831e795212e4713d6b1b3d0b90eacd07bb983e7d",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree completed by September of the start year",
+     "quote": "Your bachelor’s degree must be completed by the September of the year in which you wish to start the MPAcc Program.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Prerequisite accounting major classes completed before the September start",
+      "quote": "Satisfactory completion of prerequisite accounting major classes before the September in which you wish to start the program.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 7,
+     "quote": "We require a minimum iBT of 4.5 for TOEFL, 7 for IELTS, and 130 for Duolingo.",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT minimum 4.5 (new 1-6 scale)",
+     "quote": "We require a minimum iBT of 4.5 for TOEFL, 7 for IELTS, and 130 for Duolingo.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Finance (MSF)",
+   "url": "https://foster.uw.edu/academics/degree-programs/master-of-science-in-finance/msf-admissions/",
+   "snapshot_sha256": "0cebc36c6ac9c87886767877d0896d740c023b144d8cf9424c8a85e69fc06306",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a four-year U.S. bachelor's degree; minimum GPA 3.0 on a 4.0 scale for the most recent academic work",
+     "quote": "Applicants must hold the equivalent of a four-year U.S. bachelor’s degree. A minimum GPA of 3.0 on a 4.0 scale is required for the most recent academic work.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Complete the IELTS exam. Minimum score requirement is at least 7.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 92,
+     "quote": "Minimum score requirement is 4.5 iBT (new scoring) or 92 iBT (before Jan 21, 2026).",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Round 1, 2027 entry",
+      "date": "2027-02-02",
+      "quote": "Application Deadline: February 2nd, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Information Systems (MSIS)",
+   "url": "https://foster.uw.edu/academics/degree-programs/master-of-science-in-information-systems/msis-admissions/",
+   "snapshot_sha256": "35a9707721bf546480aefa01b02eb65e01f420c948d50796a2f96cdc63db691c",
+   "fields": {
+    "academic": {
+     "text": "Cumulative GPA of 3.0 minimum for each prior school",
+     "quote": "Cumulative GPAs are required (3.0 minimum) for each listed prior school.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Exposure to basic IT infrastructure: databases, data networking, an object-oriented development environment",
+      "quote": "Foster MSIS applicants must demonstrate exposure to basic IT infrastructure, including databases, data networking, and some object-oriented development environment.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Complete the IELTS exam. Minimum score requirement is 7.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 92,
+     "quote": "Complete the TOEFL exam. Minimum score requirement is 4.5 iBT (new scoring) or 92 iBT (before Jan 21, 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "MSIS Direct (Summer 2027 start), Round 1",
+      "date": "2026-11-10",
+      "quote": "Round 1 Deadline: November 10, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "MSIS Bridge (Spring 2027 start), Round 2",
+      "date": "2026-12-01",
+      "quote": "Round 2 Deadline: December 1, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "MSIS Direct (Summer 2027 start), Round 2",
+      "date": "2027-01-05",
+      "quote": "Round 2 Deadline: January 5, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Business Analytics (MSBA)",
+   "url": "https://foster.uw.edu/academics/degree-programs/master-science-business-analytics/admissions-msba/",
+   "snapshot_sha256": "8d74518938f445647b4247aae38e9d52d71d280909e951c4e3d74b9f046782d3",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a U.S. bachelor's degree; minimum GPA 3.0 for the last 90 quarter or 60 semester credits",
+     "quote": "You must have completed the equivalent of a U.S. bachelor’s degree from a regionally accredited college or university to be considered for admission. The minimum GPA is 3.0 for the last 90-quarter or 60-semester credits.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Complete the IELTS exam. Minimum score requirement is at least 7.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 92,
+     "quote": "Complete the TOEFL iBT or TOEFL iBT Home Edition exam. Minimum score requirement is 4.5 iBT (new scoring) or 92 iBT (before Jan 21, 2026).",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Round 1",
+      "date": "2026-10-20",
+      "quote": "Application Deadline: October 20, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Round 2",
+      "date": "2027-01-05",
+      "quote": "Application Deadline: January 5, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Administration (MPA)",
+   "url": "https://evans.uw.edu/programs/mpa/apply/",
+   "snapshot_sha256": "2f8a5a3cff6ce544f7596f4edb90a5499bceaf346a8614b4faf8d38c11b96a82",
+   "fields": {
+    "academic": {
+     "text": "Cumulative GPA of at least 3.0 on a 4-point scale (or equivalent from an accredited foreign institution)",
+     "quote": "Applicants must have at least a 3.0 cumulative grade-point-average on a 4 point scale (or equivalent measures of performance if a graduate of an institution with no grading system; or equivalent grade-point-average from an accredited foreign institution) for those credits earned at the regionally accredited institution awarding the bachelor’s degree OR at least a 3.0 grade-point-average (on a 4 point scale) for the last 90 graded quarter credits or 60 graded semester credits.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.5,
+     "recommended": true,
+     "quote": "IELTS 6.5 overall score, with a minimum speaking and listening score of 6.5",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 92,
+     "recommended": true,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "Competitive Score TOEFL (taken before January 2026): 92 total score, with a minimum speaking and listening subscore of 23 Competitive Score TOEFL (taken January 2026 or later): 4.5 total score, with a minimum speaking and listening score of 4.5",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Priority deadline (fellowship consideration)",
+      "date": "2027-01-15",
+      "quote": "Priority Deadline: January 15, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Professional Master's Program in Electrical and Computer Engineering (ECE PMP)",
+   "url": "https://www.ece.uw.edu/academics/pmp/",
+   "snapshot_sha256": "ffc631fb8fdd622af2c7fa7bdec3d059b66e5af52deeeac43be0604d2c55ab8f",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in a STEM field with a minimum 3.0 GPA in recent coursework",
+     "quote": "Bachelor’s degree in a STEM field, a minimum 3.0 GPA in recent coursework, and a strong foundation in mathematics, programming, and core engineering principles.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Minimum English Language Proficiency: 4.0 (TOEFL iBT), 110 (Duolingo), 6.5 (IELTS)",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT minimum 4.0 (new 1-6 scale)",
+     "quote": "Minimum English Language Proficiency: 4.0 (TOEFL iBT), 110 (Duolingo), 6.5 (IELTS)",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Cycle 1 (priority for international and domestic full-time students), Autumn 2027",
+      "date": "2027-01-05",
+      "quote": "Cycle 1 January 5, 2027",
+      "source_sha256": "306078c11be9aa965c83ad3f60c115e8f375649ee15bcd73ca2d906b3b32f767",
+      "source_url": "https://www.ece.uw.edu/academics/pmp/admissions/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Industrial Engineering (MSIE)",
+   "url": "https://ise.washington.edu/admissions/MSIE/criteria",
+   "snapshot_sha256": "a914e00b5587842a9fd33499e4e7b587934a7cf53f351c14946c335960ed3596",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in engineering, mathematics or science with a GPA of at least 3.0",
+     "quote": "applicants are expected to have a bachelor's degree in engineering, mathematics, or science, with a GPA of at least 3.0.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "Students must get a minimum of 92 or better on the TOEFL exam or a 7 on IELTS to be considered.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 92,
+     "quote": "Students must get a minimum of 92 or better on the TOEFL exam or a 7 on IELTS to be considered.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Priority deadline, Autumn 2027",
+      "date": "2027-02-01",
+      "quote": "Priority deadline: Feb. 1, 2027",
+      "source_sha256": "d2e3f6d3da0e03fc5bc0e9dda1ce4032decfc5d37219f46e5267898656d3901c",
+      "source_url": "https://ise.washington.edu/admissions/MSIE/procedure",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Mechanical Engineering (MSME)",
+   "url": "https://www.me.washington.edu/future-students/grad/admissions/criteria",
+   "snapshot_sha256": "8c08f58fb1ea09c94f71d05a361543367b433f259e3b0521940963a4f94e5b1d",
+   "fields": {
+    "academic": {
+     "text": "Department prefers a cumulative GPA of at least 3.3 for M.S. applicants; Graduate School requires at least 3.00",
+     "quote": "The Department of Mechanical Engineering prefers an overall cumulative GPA of at least 3.3 for M.S. applicants.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "7 on the IELTS",
+     "source_sha256": "f42234f934c1e33347aba497e8c6057874fe64666382a09a14e1ffdb6c1b3e1e",
+     "source_url": "https://www.me.washington.edu/future-students/grad/application/english-reqs",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 92,
+     "quote": "4.5 (92 for tests taken before Jan 21, 2026) on the TOEFL iBT",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "f42234f934c1e33347aba497e8c6057874fe64666382a09a14e1ffdb6c1b3e1e",
+     "source_url": "https://www.me.washington.edu/future-students/grad/application/english-reqs",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Civil Engineering (CEE)",
+   "url": "https://www.ce.washington.edu/future-students/grad/apply",
+   "snapshot_sha256": "40ceb6ef430036e02364a7f8edaf56815bd6e9ab19ecd7f851f37833ded98830",
+   "fields": {
+    "academic": {
+     "text": "Minimum 3.0 GPA over the past two years of study on a 4.0 scale",
+     "quote": "Applicants must enter a 3.0 minimum GPA for the past two years of study (or 90 quarter credits or 60 semester credits), based on a 4.0 scale.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "The minimum score required by the Graduate School is 92 for TOEFL, 120 for Duolingo and 7.0 for IELTS.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 92,
+     "quote": "The minimum score required by the Graduate School is 92 for TOEFL, 120 for Duolingo and 7.0 for IELTS.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Biostatistics (MS Capstone)",
+   "url": "https://www.biostat.washington.edu/apply/requirements",
+   "snapshot_sha256": "b6830f56f7b9813a5f366db717224b7c8d1054440bd9ff42037cd9c16fe24cd2",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or higher; department sets no minimum GPA beyond the Graduate School's 3.0",
+     "quote": "While our department does not have minimum GPA requirements besides the 3.0 GPA required by the graduate school,",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "About 30 or more quarter credits in mathematics and statistics, including multivariable calculus, linear algebra and calculus-based probability",
+      "quote": "All applicants to the MS and PhD program should have the equivalent of approximately 30 or more quarter credits in mathematics and statistics",
+      "check": "ok"
+     }
+    ],
+    "toefl": {
+     "overall": 100,
+     "recommended": true,
+     "quote": "While our department does not have minimum score requirements, most competitive applicants will have: TOEFL total score ≥ 100",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Urban Planning (MUP)",
+   "url": "https://urbdp.be.uw.edu/admissions/mup/apply/",
+   "snapshot_sha256": "13139192b389331876531a79986ec39a73184fc6bb46a7df804628c106699789",
+   "fields": {
+    "academic": {
+     "text": "GPA of at least 3.0 (4-point scale) for the last 90 graded quarter or 60 graded semester credits of the bachelor's degree",
+     "quote": "GPA [at least a 3.0 grade-point-average (on a 4 point scale) from a regionally accredited college or university in the U.S.1 or its equivalent from a foreign institution2 for the last 90 graded quarter credits or 60 graded semester credits from a baccalaureate degree]",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7.0 on the Academic IELTS exam",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 92,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "92 on the TOEFL iBT or TOEFL MyBest exam (for exams prior to January 21, 2026; scores will remain valid for two years after the exam date) 4.5 overall score (for TOEFL exams taken on or after January 21, 2026)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Architecture (M.Arch)",
+   "url": "https://arch.be.uw.edu/master-of-architecture-admissions-draft/",
+   "snapshot_sha256": "c1caa41b1bf9974873a4b1c2028f05446c7d6d007be8874196457f4b8ce0ac38",
+   "fields": {
+    "academic": {
+     "text": "GPA of at least 3.0 for the last 90 graded quarter or 60 graded semester credits",
+     "quote": "A minimum grade point average (GPA) of at least 3.0 for the last 90 graded quarter credits or 60 graded semester credits.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS: Minimum score of 7.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 92,
+     "quote": "TOEFL iBT: Minimum score of 92.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 15,
+  "机器核对": 15,
+  "待人工": 0
+ }
+}
