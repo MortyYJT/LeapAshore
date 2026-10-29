@@ -4,7 +4,10 @@
 
 ## 现在在哪（2026-10-30 凌晨，夜间采集因额度用完停止）
 
-- 分支 `claude/ledger-redesign`（从 main 拉出，未合并）。线上 http://43.161.224.82 仍是改名前的版本。
+- **10-29 晚更新**：PR #27 已按 MortyYJT 要求合并进 main（`e538a09`）。前端接着在新分支 `claude/ledger-frontend`（从 main 拉出）上做。
+- **线上 = main `e538a09`**，地址 https://leapashore.mortyyjt.site 。服务器代码用 `git archive origin/main` 导出后 `rsync --delete` 同步（保留 `deploy/.env`、`deploy/*.bak-*`、`api/var/`），再 `up -d --build`。生产库已导入 141 所学校的要求：programs 7586、universities 172、sources 5070 全部 `待核验`、`verified_at` 非空 0。导入时把本机快照的元数据 json 临时拷进 api 容器，导完已删除（其中 `text_path` 含本机绝对路径，导入器不读它）。
+- 线上页面仍是旧前端：项目库读的是前端写死的 CRICOS 数据，看不到新采集的要求，要等新前端。
+- README 和 GitHub About 已改成新域名和真实数据数字。
 - 今晚做三件事（MortyYJT 原话：「补数据，爬取 qs 前 200 的……还有补一下缺失校徽，然后去写代码，就那些不太可能会变动的后端部分」）：
   1. **录取要求采集**：QS 2027 前 200 中除中国大陆外的 190 所，按 `api/data/requirements/_schools.json` 的 wave 顺序（澳 → 港 → 新 → 英 → 美 → 其余），由子代理逐校采集，额度用完为止。
   2. **补校徽**：`scripts/fill-logos.py`（官网图标 → Wikidata P154/P8972/P158 → Commons 自由许可文件）。
