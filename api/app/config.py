@@ -23,6 +23,26 @@ class Settings(BaseSettings):
     chat_api_key: str = ""
     # Upper bound on model calls in one ReAct loop; counting steps is what stops a tool loop.
     max_agent_steps: int = 6
+    # Output caps per model call (openspec/changes/advisor-limits, D5). Sent as `max_tokens` in the
+    # request body, because DeepSeek ignores the `max_completion_tokens` field LangChain uses.
+    chat_max_tokens: int = 1500
+    intent_max_tokens: int = 200
+
+    # --- Advisor limits (openspec/changes/advisor-limits) ---
+    # The window store; also the Celery broker once P1 adds the queue. Local compose maps it to 56379.
+    redis_url: str = "redis://localhost:56379/0"
+    limits_key_prefix: str = "leapashore:"
+    # Sliding windows, "requests/seconds" separated by commas. Subject = the account in login mode,
+    # the anonymous cookie's id otherwise; IP = `app.net.client_ip`.
+    advisor_subject_limits: str = "10/60,60/3600"
+    advisor_ip_limits: str = "30/60,200/3600"
+    # Daily token caps (Beijing day), counted from the model's reported usage. 0 refuses every turn.
+    advisor_daily_tokens_per_subject: int = 200_000
+    advisor_daily_tokens_per_ip: int = 600_000
+    advisor_daily_tokens_site: int = 2_000_000
+    # Held on the three day counters while a turn runs, so turns admitted together see each other;
+    # given back when the turn ends, leaving the counters at the reported usage (D4).
+    advisor_turn_token_reserve: int = 8_000
 
     # --- Accounts (openspec/changes/account-login) ---
     # Login mode. Off keeps the anonymous-cookie behaviour, which is what production runs until
@@ -40,9 +60,10 @@ class Settings(BaseSettings):
     smtp_user: str = ""
     smtp_password: str = ""
     smtp_timeout_seconds: float = 15.0
-    # Read the client IP from the right-most X-Forwarded-For entry. Only true behind Caddy, which
-    # overwrites the header; anywhere else a client could forge it.
-    trust_forwarded_for: bool = False
+    # Peers whose right-most X-Forwarded-For entry is the client's address: IPs, CIDRs or hostnames,
+    # comma-separated. Production lists the `caddy` service, which overwrites the header; any other
+    # peer is counted as itself, so a client cannot forge an address (`app.net`).
+    trusted_proxies: str = ""
     auth_code_ttl_seconds: int = 600
     auth_code_resend_seconds: int = 60
     auth_code_max_attempts: int = 5
@@ -59,12 +80,17 @@ class Settings(BaseSettings):
 
 
 def check_settings(config: "Settings") -> None:
-    """Refuse a configuration that would put login codes only in a log in production.
+    """Refuse a configuration that would put login codes only in a log in production, or limits that
+    do not parse.
 
     Called at startup. Login mode in production with the `log` backend means nobody can ever log in,
     and the codes sit in the server log; with `smtp` and a missing credential the first send fails.
     Both are configuration mistakes, so the process stops with the reason instead of serving.
     """
+    from app.limits import parse_windows
+
+    parse_windows(config.advisor_subject_limits)
+    parse_windows(config.advisor_ip_limits)
     if not (config.is_production and config.auth_enabled):
         return
     missing = []

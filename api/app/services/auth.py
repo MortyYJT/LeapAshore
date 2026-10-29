@@ -17,7 +17,6 @@ import uuid
 from dataclasses import dataclass, field
 from datetime import UTC, datetime, timedelta
 
-from fastapi import Request
 from sqlalchemy import func, select, text, update
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.orm import Session
@@ -59,16 +58,6 @@ def normalize_email(raw: str) -> str | None:
     if len(email) > MAX_EMAIL_LENGTH or not _EMAIL.match(email):
         return None
     return email
-
-
-def client_ip(request: Request) -> str | None:
-    """The caller's IP: Caddy's right-most `X-Forwarded-For` entry when trusted, else the peer."""
-    if settings.trust_forwarded_for:
-        forwarded = request.headers.get("x-forwarded-for", "")
-        entries = [part.strip() for part in forwarded.split(",") if part.strip()]
-        if entries:
-            return entries[-1][:64]
-    return request.client.host[:64] if request.client else None
 
 
 def _hash_code(salt: str, code: str) -> str:

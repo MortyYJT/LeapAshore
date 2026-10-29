@@ -15,5 +15,21 @@ services:
       timeout: 3s
       retries: 20
 
+  # Advisor rate limits and token quotas (openspec/changes/advisor-limits); the Celery queue in P1
+  # reuses it. Bound to loopback because it has no password.
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--save", "60", "1", "--maxmemory", "256mb", "--maxmemory-policy", "noeviction"]
+    ports:
+      - "127.0.0.1:56379:6379"
+    volumes:
+      - offerpilot-redis:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
+
 volumes:
   offerpilot-db:
+  offerpilot-redis:

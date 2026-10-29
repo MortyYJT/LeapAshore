@@ -10,6 +10,7 @@ from typing import Literal
 from pydantic import BaseModel, Field
 
 from app.agent.llm import get_chat_model
+from app.config import settings
 
 logger = logging.getLogger(__name__)
 
@@ -49,7 +50,7 @@ class IntentResult(BaseModel):
 async def classify(query: str, history: str) -> dict:
     """Classify one message. Any failure falls back to general Q&A, the one exit that writes nothing."""
     try:
-        model = get_chat_model(temperature=0).with_structured_output(
+        model = get_chat_model(temperature=0, max_tokens=settings.intent_max_tokens).with_structured_output(
             IntentResult, method="function_calling"
         )
         result = await model.ainvoke(_PROMPT.format(history=history or "（无）", query=query))

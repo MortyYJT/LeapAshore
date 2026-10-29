@@ -124,7 +124,11 @@ export default function AdvisorPage() {
     setConversations((prev) => prev.map((c) => (c.id === convId ? { ...c, messages: [...c.messages, reply] } : c)));
     setThinking(true);
     confirmAdvisorAction(convId, approved, handlerFor(convId, reply.id))
-      .then((outcome) => outcome === "unauthorized" && void refresh())
+      .then((outcome) => {
+        if (outcome === "unauthorized") void refresh();
+        // Refused before anything ran: the change is still pending, so offer the buttons again.
+        if (outcome === "limited") patch(convId, message.id, (m) => ({ ...m, confirm: m.confirm && { ...m.confirm, state: "pending" } }));
+      })
       .catch(() => {
       patch(convId, reply.id, (m) => ({ ...m, error: "网络错误，请稍后再试。" }));
       setThinking(false);

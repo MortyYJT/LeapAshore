@@ -46,7 +46,8 @@ def outbox(monkeypatch) -> Outbox:
 @pytest.fixture
 def login_mode(monkeypatch, require_db, outbox):
     monkeypatch.setattr(settings, "auth_enabled", True)
-    monkeypatch.setattr(settings, "trust_forwarded_for", True)
+    # The TestClient connects as `testclient`; listing it stands in for Caddy.
+    monkeypatch.setattr(settings, "trusted_proxies", "testclient")
     return outbox
 
 

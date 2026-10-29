@@ -25,13 +25,33 @@ services:
       DATABASE_URL: postgresql+psycopg://offerpilot:${POSTGRES_PASSWORD}@db:5432/offerpilot
       # Arms the startup guard: login mode here refuses the log-only mail backend.
       APP_ENV: production
-      # Only Caddy reaches the API, and Caddy writes X-Forwarded-For itself.
-      TRUST_FORWARDED_FOR: "true"
+      # X-Forwarded-For is read only from the caddy container, which sets it to the address it
+      # accepted the connection from (Caddyfile); any other peer is counted as itself.
+      TRUSTED_PROXIES: caddy
+      REDIS_URL: redis://redis:6379/0
     volumes:
       - documents:/app/var/documents
     depends_on:
       db:
         condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  # Advisor rate limits and daily token counters (openspec/changes/advisor-limits); the P1 Celery
+  # queue reuses it. Not published: only containers on this network reach it, so no password.
+  # noeviction makes a full Redis refuse writes (the advisor then answers 503) instead of silently
+  # dropping counters or queued tasks.
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command: ["redis-server", "--save", "60", "1", "--maxmemory", "256mb", "--maxmemory-policy", "noeviction"]
+    volumes:
+      - redis-data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 3s
+      timeout: 3s
+      retries: 20
 
   web:
     build: ../web
@@ -63,6 +83,7 @@ services:
 
 volumes:
   db-data:
+  redis-data:
   documents:
   caddy-data:
   caddy-config:

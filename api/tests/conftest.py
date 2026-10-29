@@ -392,3 +392,28 @@ def remove_the_clients_these_tests_create():
         if new_codes:
             session.execute(delete(LoginCode).where(LoginCode.id.in_(new_codes)))
         session.commit()
+
+
+@pytest.fixture(autouse=True)
+def isolate_the_advisor_limits(monkeypatch):
+    """Give every test its own Redis key prefix, and delete what it wrote afterwards.
+
+    The advisor's windows and token counters live in the development Redis, keyed by subject and IP.
+    Every TestClient connects from the same peer, so without this one test's requests would count
+    against the next test's IP window, and a run would fail once a window filled up.
+    """
+    import uuid
+
+    import redis
+
+    prefix = f"test:{uuid.uuid4().hex[:12]}:"
+    monkeypatch.setattr(settings, "limits_key_prefix", prefix)
+    yield prefix
+    try:
+        client = redis.Redis.from_url(settings.redis_url, socket_timeout=1, socket_connect_timeout=1)
+        keys = list(client.scan_iter(match=prefix + "*", count=500))
+        if keys:
+            client.delete(*keys)
+        client.close()
+    except redis.RedisError:
+        pass
