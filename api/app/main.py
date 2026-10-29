@@ -1,9 +1,11 @@
 from fastapi import FastAPI
 
+from app.config import check_settings, settings
 from app.middleware import BodySizeLimitMiddleware
 from app.routers import (
     advisor,
     applications,
+    auth,
     documents,
     profile,
     programs,
@@ -12,6 +14,9 @@ from app.routers import (
     universities,
 )
 from app.services.documents import MAX_UPLOAD_BYTES, TOO_LARGE
+
+# Refuse to start with login mode on in production and no real mail backend (account-login D2).
+check_settings(settings)
 
 app = FastAPI(title="LeapAshore API")
 
@@ -26,6 +31,7 @@ app.add_middleware(
 
 app.include_router(advisor.router)
 app.include_router(applications.router)
+app.include_router(auth.router)
 app.include_router(documents.router)
 app.include_router(profile.router)
 app.include_router(programs.router)

@@ -4,7 +4,7 @@ from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
 from app.db import get_session
-from app.deps import get_client_id, load_or_create_profile
+from app.deps import get_subject, load_or_create_profile
 from app.models.client import Profile
 from app.schemas.profile import ProfileFields, ProfilePatch
 
@@ -13,7 +13,7 @@ router = APIRouter(prefix="/api/profile", tags=["profile"])
 
 @router.get("", response_model=ProfileFields)
 def read_profile(
-    client_id: Annotated[str, Depends(get_client_id)],
+    client_id: Annotated[str, Depends(get_subject)],
     session: Annotated[Session, Depends(get_session)],
 ) -> Profile:
     """Return the caller's profile, creating the subject on first contact.
@@ -29,7 +29,7 @@ def read_profile(
 @router.patch("", response_model=ProfileFields)
 def update_profile(
     patch: ProfilePatch,
-    client_id: Annotated[str, Depends(get_client_id)],
+    client_id: Annotated[str, Depends(get_subject)],
     session: Annotated[Session, Depends(get_session)],
 ) -> Profile:
     """Apply only the fields the caller actually sent, so a partial edit cannot blank the rest.

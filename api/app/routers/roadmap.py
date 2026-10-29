@@ -5,7 +5,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.db import get_session
-from app.deps import get_client_id, load_or_create_profile
+from app.deps import get_optional_subject, get_subject, load_or_create_profile
 from app.models.roadmap import MaterialTemplate, RoadmapPhase
 from app.models.source import Source
 from app.models.task import RoadmapTask
@@ -24,7 +24,7 @@ UNKNOWN_PHASE_ORDER = 1 << 30
 
 @router.get("", response_model=RoadmapDefinition)
 def read_roadmap(
-    client_id: Annotated[str, Depends(get_client_id)],
+    client_id: Annotated[str | None, Depends(get_optional_subject)],
     session: Annotated[Session, Depends(get_session)],
 ) -> RoadmapDefinition:
     """Serve the definition plus the caller's own task rows: the whole timeline in one response.
@@ -97,12 +97,18 @@ def read_roadmap(
     # `phase` would be the natural order for display, but it is redundant with the definition's own
     # phase order and can be stale on a row a human edited, so the stable identity is what this
     # orders by and the consumer places the rows against the definition it already has.
-    tasks = list(
-        session.execute(
-            select(RoadmapTask)
-            .where(RoadmapTask.client_id == client_id)
-            .order_by(RoadmapTask.material_key, RoadmapTask.program_id)
-        ).scalars()
+    # In login mode a logged-out visitor sees the definition alone: the sample roadmap is public,
+    # the task rows are not (openspec/changes/account-login, D8).
+    tasks = (
+        list(
+            session.execute(
+                select(RoadmapTask)
+                .where(RoadmapTask.client_id == client_id)
+                .order_by(RoadmapTask.material_key, RoadmapTask.program_id)
+            ).scalars()
+        )
+        if client_id is not None
+        else []
     )
 
     return RoadmapDefinition(
@@ -115,7 +121,7 @@ def read_roadmap(
 @router.put("/tasks", response_model=TaskReplaceResult)
 def replace_tasks(
     payload: TaskReplaceRequest,
-    client_id: Annotated[str, Depends(get_client_id)],
+    client_id: Annotated[str, Depends(get_subject)],
     session: Annotated[Session, Depends(get_session)],
     response: Response,
 ) -> dict:
@@ -166,7 +172,7 @@ def replace_tasks(
 def update_one_task(
     task_id: str,
     payload: TaskPatch,
-    client_id: Annotated[str, Depends(get_client_id)],
+    client_id: Annotated[str, Depends(get_subject)],
     session: Annotated[Session, Depends(get_session)],
 ) -> RoadmapTask:
     """Apply the applicant's edit to one of their own rows.
