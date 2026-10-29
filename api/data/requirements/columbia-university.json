@@ -1,0 +1,3192 @@
+{
+ "school_key": "columbia-university",
+ "school_name_en": "Columbia University",
+ "country": "United States",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://sps.columbia.edu/academics/masters",
+  "https://www.tc.columbia.edu/academics/programs-search/programs-by-application-deadline/",
+  "https://www.arch.columbia.edu/admissions/requirements",
+  "https://www.publichealth.columbia.edu/academics/degrees/master-science"
+ ],
+ "blocked": [
+  {
+   "url": "https://gradengineering.columbia.edu/",
+   "reason": "HTTP 403"
+  },
+  {
+   "url": "https://gsas.columbia.edu/",
+   "reason": "HTTP 403"
+  },
+  {
+   "url": "https://www.gsb.columbia.edu/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://socialwork.columbia.edu/",
+   "reason": "HTTP 403"
+  },
+  {
+   "url": "https://www.sipa.columbia.edu/admissions/apply",
+   "reason": "HTTP 403 (host refused further requests)"
+  },
+  {
+   "url": "https://www.engineering.columbia.edu/admissions-aid/graduate-admissions/apply-now",
+   "reason": "HTTP 403 (host refused further requests)"
+  },
+  {
+   "url": "https://journalism.columbia.edu/admissions",
+   "reason": "HTTP 403"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.tc.columbia.edu/arts-and-humanities/applied-linguistics-tesol/degrees--requirements/applied-linguistics-edm/",
+  "https://www.tc.columbia.edu/arts-and-humanities/applied-linguistics-tesol/degrees--requirements/tesol-edm/",
+  "https://www.tc.columbia.edu/arts-and-humanities/applied-linguistics-tesol/degrees--requirements/tesol-ma-initial/",
+  "https://www.tc.columbia.edu/arts-and-humanities/art-and-art-education/degrees--requirements/art-and-art-education-edm/",
+  "https://www.tc.columbia.edu/arts-and-humanities/art-and-art-education/degrees--requirements/art-and-art-education-ma-initial/",
+  "https://www.tc.columbia.edu/arts-and-humanities/art-and-art-education/degrees--requirements/studio-practice-for-art-educators-ma-hybrid/",
+  "https://www.tc.columbia.edu/arts-and-humanities/bilingual-bicultural-education/degrees--requirements/bbe-ma-extension/",
+  "https://www.tc.columbia.edu/arts-and-humanities/bilingual-bicultural-education/degrees--requirements/bbe-ma/",
+  "https://www.tc.columbia.edu/arts-and-humanities/english-education/degrees--requirements/teaching-of-english-edm/",
+  "https://www.tc.columbia.edu/arts-and-humanities/english-education/degrees--requirements/teaching-of-english-ma-initial/",
+  "https://www.tc.columbia.edu/arts-and-humanities/english-education/degrees--requirements/teaching-of-english-ma-professional/",
+  "https://www.tc.columbia.edu/arts-and-humanities/music-and-music-education/degrees--requirements/music-and-music-education-edm-initial/",
+  "https://www.tc.columbia.edu/arts-and-humanities/music-and-music-education/degrees--requirements/music-and-music-education-edm/",
+  "https://www.tc.columbia.edu/arts-and-humanities/music-and-music-education/degrees--requirements/music-and-music-education-ma-hybrid/",
+  "https://www.tc.columbia.edu/arts-and-humanities/music-and-music-education/degrees--requirements/music-and-music-education-ma-initial/",
+  "https://www.tc.columbia.edu/arts-and-humanities/music-and-music-education/degrees--requirements/music-and-music-education-ma-unitar/",
+  "https://www.tc.columbia.edu/arts-and-humanities/philosophy/degrees--requirements/philosophy-and-education-edm/",
+  "https://www.tc.columbia.edu/arts-and-humanities/social-studies-education/degrees--requirements/teaching-of-social-studies-edm/",
+  "https://www.tc.columbia.edu/arts-and-humanities/social-studies-education/degrees--requirements/teaching-of-social-studies-ma-initial/",
+  "https://www.tc.columbia.edu/arts-and-humanities/social-studies-education/degrees--requirements/teaching-of-social-studies-ma-professional/",
+  "https://www.tc.columbia.edu/biobehavioral-sciences/applied-exercise-physiology/degrees--requirements/applied-physiology-edm/",
+  "https://www.tc.columbia.edu/biobehavioral-sciences/communication-sciences-and-disorders/degrees--requirements/communication-sciences-and-disorders-ms-initial/",
+  "https://www.tc.columbia.edu/counseling-and-clinical-psychology/counseling/degrees--requirements/psychological-counseling-bilingual-latinao-mental-health-edm/",
+  "https://www.tc.columbia.edu/counseling-and-clinical-psychology/counseling/degrees--requirements/psychological-counseling-school-counselor-edm/",
+  "https://www.tc.columbia.edu/curriculum-and-teaching/curriculum-and-teaching/degrees--requirements/curriculum-and-teaching-edm/",
+  "https://www.tc.columbia.edu/curriculum-and-teaching/curriculum-and-teaching/degrees--requirements/curriculum-and-teaching-ma-online/",
+  "https://www.tc.columbia.edu/curriculum-and-teaching/early-childhood-education/degrees--requirements/early-childhood-education-ma-initial-extension/",
+  "https://www.tc.columbia.edu/curriculum-and-teaching/early-childhood-education/degrees--requirements/early-childhood-education-ma-initial/",
+  "https://www.tc.columbia.edu/curriculum-and-teaching/elementary-inclusive-education/degrees--requirements/elementary-inclusive-education-ma-initial/",
+  "https://www.tc.columbia.edu/education-policy-and-social-analysis/economics-and-education/degrees--requirements/economics-and-education-edm/",
+  "https://www.tc.columbia.edu/education-policy-and-social-analysis/education-policy/degrees--requirements/education-policy-edm/",
+  "https://www.tc.columbia.edu/education-policy-and-social-analysis/history-and-education/degrees--requirements/history-and-education-edm/",
+  "https://www.tc.columbia.edu/education-policy-and-social-analysis/politics-and-education/degrees--requirements/politics-and-education-edm/",
+  "https://www.tc.columbia.edu/education-policy-and-social-analysis/sociology-and-education/degrees--requirements/sociology-and-education-edm/",
+  "https://www.tc.columbia.edu/health-studies-applied-educational-psychology/deaf-and-hard-of-hearing/degrees--requirements/deaf-and-hard-of-hearing-edm-initial/",
+  "https://www.tc.columbia.edu/health-studies-applied-educational-psychology/deaf-and-hard-of-hearing/degrees--requirements/deaf-and-hard-of-hearing-ma-initial/",
+  "https://www.tc.columbia.edu/health-studies-applied-educational-psychology/deaf-and-hard-of-hearing/degrees--requirements/deaf-and-hard-of-hearing-ma/",
+  "https://www.tc.columbia.edu/health-studies-applied-educational-psychology/intellectual-disability-autism/degrees--requirements/severe-or-multiple-disabilities-ma-annotation/",
+  "https://www.tc.columbia.edu/health-studies-applied-educational-psychology/intellectual-disability-autism/degrees--requirements/special-ed-ma-initial/",
+  "https://www.tc.columbia.edu/health-studies-applied-educational-psychology/intellectual-disability-autism/degrees--requirements/special-ed-online-ma-initial/",
+  "https://www.tc.columbia.edu/health-studies-applied-educational-psychology/nutrition/degrees--requirements/community-nutrition-education-edm/",
+  "https://www.tc.columbia.edu/health-studies-applied-educational-psychology/reading-specialist/degrees--requirements/reading-specialist-ma-initial/",
+  "https://www.tc.columbia.edu/international-and-transcultural-studies/anthropology-and-education/degrees--requirements/anthropology-and-education-edm/",
+  "https://www.tc.columbia.edu/international-and-transcultural-studies/international-and-comparative-education/degrees--requirements/international-comparative-education-edm/",
+  "https://www.tc.columbia.edu/mathematics-science-and-technology/mathematics-education/degrees--requirements/mathematics-education-edm/",
+  "https://www.tc.columbia.edu/mathematics-science-and-technology/mathematics-education/degrees--requirements/mathematics-education-ma-initial/",
+  "https://www.tc.columbia.edu/mathematics-science-and-technology/mathematics-education/degrees--requirements/mathematics-education-ma-professional/",
+  "https://www.tc.columbia.edu/mathematics-science-and-technology/mathematics-education/degrees--requirements/mathematics-education-ms/",
+  "https://www.tc.columbia.edu/mathematics-science-and-technology/science-education/degrees--requirements/education-of-teachers-in-science-edm/",
+  "https://www.tc.columbia.edu/mathematics-science-and-technology/science-education/degrees--requirements/science-and-dental-education-ma/",
+  "https://www.tc.columbia.edu/mathematics-science-and-technology/science-education/degrees--requirements/supervision-in-science-education-ma/",
+  "https://www.tc.columbia.edu/mathematics-science-and-technology/science-education/degrees--requirements/teaching-biology-7-12-ma-initial/",
+  "https://www.tc.columbia.edu/mathematics-science-and-technology/science-education/degrees--requirements/teaching-chemistry-7-12-ma-initial/",
+  "https://www.tc.columbia.edu/mathematics-science-and-technology/science-education/degrees--requirements/teaching-earth-science-7-12-ma-initial/",
+  "https://www.tc.columbia.edu/mathematics-science-and-technology/science-education/degrees--requirements/teaching-physics-7-12-ma-initial/",
+  "https://www.tc.columbia.edu/mathematics-science-and-technology/technology-media-and-learning/degrees--requirements/learning-with-technology-online-ma/",
+  "https://www.tc.columbia.edu/organization-and-leadership/adult-learning-and-leadership/degrees--requirements/adult-learning-and-leadership-edm/",
+  "https://www.tc.columbia.edu/organization-and-leadership/adult-learning-and-leadership/degrees--requirements/adult-learning-and-leadership-online-ma/",
+  "https://www.tc.columbia.edu/organization-and-leadership/education-leadership/degrees--requirements/public-school-building-leadership-spa-ny-edm/",
+  "https://www.tc.columbia.edu/organization-and-leadership/education-leadership/degrees--requirements/public-school-building-leadership-spa-ny-ma/",
+  "https://www.tc.columbia.edu/organization-and-leadership/higher-and-postsecondary-education/degrees--requirements/higher-and-postsecondary-education-edm/",
+  "https://www.law.columbia.edu/admissions/graduate-admissions/llm",
+  "https://www.publichealth.columbia.edu/become-student/degree-programs"
+ ],
+ "notes": "Columbia Engineering (gradengineering, www.engineering), GSAS, SIPA, Business, Social Work and Journalism hosts returned 403 or robots.txt disallow, so none of those programmes are included. Collected SPS (full-time on-campus MS only; SPS gives no deadline with a year in one quote, so no deadlines), Teachers College (deadlines from each programme page), GSAPP and one Mailman MS. Mailman English minimums sit on an FAQ page its programme pages do not name, so they are not reported.",
+ "programs": [
+  {
+   "name": "M.S. in Actuarial Science (SPS)",
+   "url": "https://sps.columbia.edu/academics/masters/actuarial-science",
+   "snapshot_sha256": "13e6f2e94beadf2e44a958a5e1d1ed1c7979da4bba916f4638877518b3d32cbe",
+   "fields": {
+    "academic": {
+     "text": "Degree equivalent to a U.S. bachelor's degree from an accredited/recognized institution, earned before starting graduate study",
+     "quote": "Applicants who complete their undergraduate education outside the United States must have earned a degree equivalent to a U.S. bachelor’s degree from their respective accredited/recognized institution prior to beginning graduate study.",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "TOEFL iBT: A score of 100 or higher IELTS: A minimum overall score of 7.0 (A score of 7.5 or higher is preferred)",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "note": "7.5 or higher preferred; required if first and native language is not English unless the whole undergraduate degree was taught in English",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT: A score of 100 or higher IELTS: A minimum overall score of 7.0 (A score of 7.5 or higher is preferred)",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "note": "Required if first and native language is not English unless the whole undergraduate degree was taught in English",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Knowledge of elementary economics, linear algebra, and multivariate calculus",
+      "quote": "Knowledge of elementary economics, linear algebra, and multivariate calculus",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "M.S. in Applied Analytics (SPS)",
+   "url": "https://sps.columbia.edu/academics/masters/applied-analytics",
+   "snapshot_sha256": "d325928a276864771cb99880bb74c94f8ee016fea6fdf3fb3406501285c6b8dc",
+   "fields": {
+    "academic": {
+     "text": "Degree equivalent to a U.S. bachelor's degree from an accredited/recognized institution, earned before starting graduate study",
+     "quote": "Applicants who complete their undergraduate education outside the United States must have earned a degree equivalent to a U.S. bachelor’s degree from their respective accredited/recognized institution prior to beginning graduate study.",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "TOEFL iBT: A score of 100 or higher IELTS: A minimum overall score of 7.0 (A score of 7.5 or higher is preferred)",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "note": "7.5 or higher preferred; required if first and native language is not English unless the whole undergraduate degree was taught in English",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT: A score of 100 or higher IELTS: A minimum overall score of 7.0 (A score of 7.5 or higher is preferred)",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "note": "Required if first and native language is not English unless the whole undergraduate degree was taught in English",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Ability to demonstrate critical thinking and leadership skills",
+      "quote": "Ability to demonstrate critical thinking and leadership skills",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "M.S. in Bioethics (SPS)",
+   "url": "https://sps.columbia.edu/academics/masters/bioethics",
+   "snapshot_sha256": "fa5df06654b1246c994e1c84f5142c6db0bf1a9a0fe8c2abe075f8a6f5202bcb",
+   "fields": {
+    "academic": {
+     "text": "Degree equivalent to a U.S. bachelor's degree from an accredited/recognized institution, earned before starting graduate study",
+     "quote": "Applicants who complete their undergraduate education outside the United States must have earned a degree equivalent to a U.S. bachelor’s degree from their respective accredited/recognized institution prior to beginning graduate study.",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "TOEFL iBT: A score of 100 or higher IELTS: A minimum overall score of 7.0 (A score of 7.5 or higher is preferred)",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "note": "7.5 or higher preferred; required if first and native language is not English unless the whole undergraduate degree was taught in English",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT: A score of 100 or higher IELTS: A minimum overall score of 7.0 (A score of 7.5 or higher is preferred)",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "note": "Required if first and native language is not English unless the whole undergraduate degree was taught in English",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE, GMAT, LSAT or MCAT scores required (exempt with a JD, PhD or MD)",
+      "quote": "Applicants to the Bioethics program are required to submit scores to the Graduate Record Examination (GRE), Graduate Management Admission Test (GMAT), Law School Admission Test (LSAT), or Medical College Admission Test (MCAT) to be reviewed.",
+      "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+      "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "M.S. in Enterprise Risk Management (SPS)",
+   "url": "https://sps.columbia.edu/academics/masters/enterprise-risk-management",
+   "snapshot_sha256": "2087279630705ba6c87377af3a4023e2ff6ed373395fd4f88c5b6aa44e017634",
+   "fields": {
+    "academic": {
+     "text": "Degree equivalent to a U.S. bachelor's degree from an accredited/recognized institution, earned before starting graduate study",
+     "quote": "Applicants who complete their undergraduate education outside the United States must have earned a degree equivalent to a U.S. bachelor’s degree from their respective accredited/recognized institution prior to beginning graduate study.",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "TOEFL iBT: A score of 100 or higher IELTS: A minimum overall score of 7.0 (A score of 7.5 or higher is preferred)",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "note": "7.5 or higher preferred; required if first and native language is not English unless the whole undergraduate degree was taught in English",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT: A score of 100 or higher IELTS: A minimum overall score of 7.0 (A score of 7.5 or higher is preferred)",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "note": "Required if first and native language is not English unless the whole undergraduate degree was taught in English",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "M.S. in Human Capital Management (SPS)",
+   "url": "https://sps.columbia.edu/academics/masters/human-capital-management",
+   "snapshot_sha256": "05cc87138dab8a38013c3915042b9bef3617b1fdbf8cf9fc2c55adef26f25911",
+   "fields": {
+    "academic": {
+     "text": "Degree equivalent to a U.S. bachelor's degree from an accredited/recognized institution, earned before starting graduate study",
+     "quote": "Applicants who complete their undergraduate education outside the United States must have earned a degree equivalent to a U.S. bachelor’s degree from their respective accredited/recognized institution prior to beginning graduate study.",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "TOEFL iBT: A score of 100 or higher IELTS: A minimum overall score of 7.0 (A score of 7.5 or higher is preferred)",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "note": "7.5 or higher preferred; required if first and native language is not English unless the whole undergraduate degree was taught in English",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT: A score of 100 or higher IELTS: A minimum overall score of 7.0 (A score of 7.5 or higher is preferred)",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "note": "Required if first and native language is not English unless the whole undergraduate degree was taught in English",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "M.S. in Information and Knowledge Strategy (SPS)",
+   "url": "https://sps.columbia.edu/academics/masters/information-knowledge-strategy-ikns",
+   "snapshot_sha256": "4139e46cd759addffe0fc8547d966b134bd5f7978ee6677e01fa4de39847b958",
+   "fields": {
+    "academic": {
+     "text": "Degree equivalent to a U.S. bachelor's degree from an accredited/recognized institution, earned before starting graduate study",
+     "quote": "Applicants who complete their undergraduate education outside the United States must have earned a degree equivalent to a U.S. bachelor’s degree from their respective accredited/recognized institution prior to beginning graduate study.",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "TOEFL iBT: A score of 100 or higher IELTS: A minimum overall score of 7.0 (A score of 7.5 or higher is preferred)",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "note": "7.5 or higher preferred; required if first and native language is not English unless the whole undergraduate degree was taught in English",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT: A score of 100 or higher IELTS: A minimum overall score of 7.0 (A score of 7.5 or higher is preferred)",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "note": "Required if first and native language is not English unless the whole undergraduate degree was taught in English",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "M.S. in Narrative Medicine (SPS)",
+   "url": "https://sps.columbia.edu/academics/masters/narrative-medicine",
+   "snapshot_sha256": "efe9a472219916d63abb24db2b42fc3f938a9c3ca6c83ab6838430b3d5b7cf6e",
+   "fields": {
+    "academic": {
+     "text": "Degree equivalent to a U.S. bachelor's degree from an accredited/recognized institution, earned before starting graduate study",
+     "quote": "Applicants who complete their undergraduate education outside the United States must have earned a degree equivalent to a U.S. bachelor’s degree from their respective accredited/recognized institution prior to beginning graduate study.",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "TOEFL iBT: A score of 100 or higher IELTS: A minimum overall score of 7.0 (A score of 7.5 or higher is preferred)",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "note": "7.5 or higher preferred; required if first and native language is not English unless the whole undergraduate degree was taught in English",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT: A score of 100 or higher IELTS: A minimum overall score of 7.0 (A score of 7.5 or higher is preferred)",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "note": "Required if first and native language is not English unless the whole undergraduate degree was taught in English",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "M.S. in Negotiation and Conflict Resolution (SPS)",
+   "url": "https://sps.columbia.edu/academics/masters/negotiation-and-conflict-resolution",
+   "snapshot_sha256": "7a34cf47fc1f9ef3ea13d02cf38eb6a4b087e5a8695796e6c57543c63b4de92a",
+   "fields": {
+    "academic": {
+     "text": "Degree equivalent to a U.S. bachelor's degree from an accredited/recognized institution, earned before starting graduate study",
+     "quote": "Applicants who complete their undergraduate education outside the United States must have earned a degree equivalent to a U.S. bachelor’s degree from their respective accredited/recognized institution prior to beginning graduate study.",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "TOEFL iBT: A score of 100 or higher IELTS: A minimum overall score of 7.0 (A score of 7.5 or higher is preferred)",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "note": "7.5 or higher preferred; required if first and native language is not English unless the whole undergraduate degree was taught in English",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT: A score of 100 or higher IELTS: A minimum overall score of 7.0 (A score of 7.5 or higher is preferred)",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "note": "Required if first and native language is not English unless the whole undergraduate degree was taught in English",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "M.S. in Nonprofit Management (SPS)",
+   "url": "https://sps.columbia.edu/academics/masters/nonprofit-management",
+   "snapshot_sha256": "085b11bbf2e2b1274f4cc5b0b0516bae668cbe67a3b9e79e50a009e88707e30f",
+   "fields": {
+    "academic": {
+     "text": "Degree equivalent to a U.S. bachelor's degree from an accredited/recognized institution, earned before starting graduate study",
+     "quote": "Applicants who complete their undergraduate education outside the United States must have earned a degree equivalent to a U.S. bachelor’s degree from their respective accredited/recognized institution prior to beginning graduate study.",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "TOEFL iBT: A score of 100 or higher IELTS: A minimum overall score of 7.0 (A score of 7.5 or higher is preferred)",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "note": "7.5 or higher preferred; required if first and native language is not English unless the whole undergraduate degree was taught in English",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT: A score of 100 or higher IELTS: A minimum overall score of 7.0 (A score of 7.5 or higher is preferred)",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "note": "Required if first and native language is not English unless the whole undergraduate degree was taught in English",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Professional experience or interest in mission-driven work",
+      "quote": "Professional experience or interest in mission-driven work",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "M.S. in Political Analytics (SPS)",
+   "url": "https://sps.columbia.edu/academics/masters/political-analytics",
+   "snapshot_sha256": "d6e98f6eae4cce6214b11f415626d0b51e796ddf2d560e8d7cad37038d767ec0",
+   "fields": {
+    "academic": {
+     "text": "Degree equivalent to a U.S. bachelor's degree from an accredited/recognized institution, earned before starting graduate study",
+     "quote": "Applicants who complete their undergraduate education outside the United States must have earned a degree equivalent to a U.S. bachelor’s degree from their respective accredited/recognized institution prior to beginning graduate study.",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "TOEFL iBT: A score of 100 or higher IELTS: A minimum overall score of 7.0 (A score of 7.5 or higher is preferred)",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "note": "7.5 or higher preferred; required if first and native language is not English unless the whole undergraduate degree was taught in English",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT: A score of 100 or higher IELTS: A minimum overall score of 7.0 (A score of 7.5 or higher is preferred)",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "note": "Required if first and native language is not English unless the whole undergraduate degree was taught in English",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "M.S. in Project Management (SPS)",
+   "url": "https://sps.columbia.edu/academics/masters/project-management",
+   "snapshot_sha256": "55307e63b18cba5df583d8d915818021745c6711fc7a2ce02057939639bd463a",
+   "fields": {
+    "academic": {
+     "text": "Degree equivalent to a U.S. bachelor's degree from an accredited/recognized institution, earned before starting graduate study",
+     "quote": "Applicants who complete their undergraduate education outside the United States must have earned a degree equivalent to a U.S. bachelor’s degree from their respective accredited/recognized institution prior to beginning graduate study.",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "TOEFL iBT: A score of 100 or higher IELTS: A minimum overall score of 7.0 (A score of 7.5 or higher is preferred)",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "note": "7.5 or higher preferred; required if first and native language is not English unless the whole undergraduate degree was taught in English",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT: A score of 100 or higher IELTS: A minimum overall score of 7.0 (A score of 7.5 or higher is preferred)",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "note": "Required if first and native language is not English unless the whole undergraduate degree was taught in English",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "M.S. in Sports Management (SPS)",
+   "url": "https://sps.columbia.edu/academics/masters/sports-management",
+   "snapshot_sha256": "198741c0c635369fa04a1784ed6cd2ac7e09463f900a3a1e27f8d48a1946afd6",
+   "fields": {
+    "academic": {
+     "text": "Degree equivalent to a U.S. bachelor's degree from an accredited/recognized institution, earned before starting graduate study",
+     "quote": "Applicants who complete their undergraduate education outside the United States must have earned a degree equivalent to a U.S. bachelor’s degree from their respective accredited/recognized institution prior to beginning graduate study.",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "TOEFL iBT: A score of 100 or higher IELTS: A minimum overall score of 7.0 (A score of 7.5 or higher is preferred)",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "note": "7.5 or higher preferred; required if first and native language is not English unless the whole undergraduate degree was taught in English",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT: A score of 100 or higher IELTS: A minimum overall score of 7.0 (A score of 7.5 or higher is preferred)",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "note": "Required if first and native language is not English unless the whole undergraduate degree was taught in English",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Professional experience or interest in the sports industry",
+      "quote": "Professional experience or interest in the sports industry",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "M.S. in Strategic Communication (SPS)",
+   "url": "https://sps.columbia.edu/academics/masters/strategic-communication",
+   "snapshot_sha256": "08fb48a3ae87d2f923faa903c3a439779459b2c07f90c245119ad63ff31c16ef",
+   "fields": {
+    "academic": {
+     "text": "Degree equivalent to a U.S. bachelor's degree from an accredited/recognized institution, earned before starting graduate study",
+     "quote": "Applicants who complete their undergraduate education outside the United States must have earned a degree equivalent to a U.S. bachelor’s degree from their respective accredited/recognized institution prior to beginning graduate study.",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "min_band": 7.0,
+     "quote": "Applicants must meet the Columbia SPS minimum requirement of 100 (TOEFL iBT) or 7.5 (IELTS Academic) to be admissible AND must achieve minimum sub-scores of 24 points (5 points on the new scale) on the writing and 23 points on the speaking (4.5 points on the new scale) sections of the TOEFL exam or 7.0 points on the writing and 7.0 points on the speaking sections of the IELTS.",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "note": "Writing 7.0 and speaking 7.0 sub-scores required; no waiver considered",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Applicants must meet the Columbia SPS minimum requirement of 100 (TOEFL iBT) or 7.5 (IELTS Academic) to be admissible AND must achieve minimum sub-scores of 24 points (5 points on the new scale) on the writing and 23 points on the speaking (4.5 points on the new scale) sections of the TOEFL exam or 7.0 points on the writing and 7.0 points on the speaking sections of the IELTS.",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Writing 24 (5 on new scale) and speaking 23 (4.5 on new scale) sub-scores also required; no waiver considered",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "M.S. in Sustainability Management (SPS)",
+   "url": "https://sps.columbia.edu/academics/masters/sustainability-management",
+   "snapshot_sha256": "2faae904758928af482745e9f77b249b67783709ad3434898ab6d1090941b76d",
+   "fields": {
+    "academic": {
+     "text": "Degree equivalent to a U.S. bachelor's degree from an accredited/recognized institution, earned before starting graduate study",
+     "quote": "Applicants who complete their undergraduate education outside the United States must have earned a degree equivalent to a U.S. bachelor’s degree from their respective accredited/recognized institution prior to beginning graduate study.",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "TOEFL iBT: A score of 100 or higher IELTS: A minimum overall score of 7.0 (A score of 7.5 or higher is preferred)",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "note": "7.5 or higher preferred; required if first and native language is not English unless the whole undergraduate degree was taught in English",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT: A score of 100 or higher IELTS: A minimum overall score of 7.0 (A score of 7.5 or higher is preferred)",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "note": "Required if first and native language is not English unless the whole undergraduate degree was taught in English",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "M.S. in Sustainability Science (SPS)",
+   "url": "https://sps.columbia.edu/academics/masters/sustainability-science",
+   "snapshot_sha256": "29834b6d708dd24f2c74d29c33cee50ab4d36ff98fb928f9be5b39ee187598fb",
+   "fields": {
+    "academic": {
+     "text": "Degree equivalent to a U.S. bachelor's degree from an accredited/recognized institution, earned before starting graduate study",
+     "quote": "Applicants who complete their undergraduate education outside the United States must have earned a degree equivalent to a U.S. bachelor’s degree from their respective accredited/recognized institution prior to beginning graduate study.",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "TOEFL iBT: A score of 100 or higher IELTS: A minimum overall score of 7.0 (A score of 7.5 or higher is preferred)",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "note": "7.5 or higher preferred; required if first and native language is not English unless the whole undergraduate degree was taught in English",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT: A score of 100 or higher IELTS: A minimum overall score of 7.0 (A score of 7.5 or higher is preferred)",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "note": "Required if first and native language is not English unless the whole undergraduate degree was taught in English",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "An undergraduate degree is the only formal prerequisite",
+      "quote": "An undergraduate degree is the only formal prerequisite for admission.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "M.S. in Technology Management (SPS)",
+   "url": "https://sps.columbia.edu/academics/masters/technology-management",
+   "snapshot_sha256": "dac0d09e936b907ba4a62e0b8568469c0abb575b3b6604b686b2f47e0a896cd6",
+   "fields": {
+    "academic": {
+     "text": "Degree equivalent to a U.S. bachelor's degree from an accredited/recognized institution, earned before starting graduate study",
+     "quote": "Applicants who complete their undergraduate education outside the United States must have earned a degree equivalent to a U.S. bachelor’s degree from their respective accredited/recognized institution prior to beginning graduate study.",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "TOEFL iBT: A score of 100 or higher IELTS: A minimum overall score of 7.0 (A score of 7.5 or higher is preferred)",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "note": "7.5 or higher preferred; required if first and native language is not English unless the whole undergraduate degree was taught in English",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT: A score of 100 or higher IELTS: A minimum overall score of 7.0 (A score of 7.5 or higher is preferred)",
+     "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+     "note": "Required if first and native language is not English unless the whole undergraduate degree was taught in English",
+     "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Does not accept test scores",
+      "quote": "NOTE: The Technology Management program does not accept test scores.",
+      "source_sha256": "16039ed24a8cdc4a1cebe6941a71bca5c9ad2a68a2873fb6e1169d5639950668",
+      "source_url": "https://sps.columbia.edu/admissions/masters-degree-applicants",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Applied Linguistics (MA) - Teachers College",
+   "url": "https://www.tc.columbia.edu/arts-and-humanities/applied-linguistics-tesol/degrees--requirements/applied-linguistics-ma/",
+   "snapshot_sha256": "39b45c5fc81d783e288c44cdef61736712fc296020422b493d9979f3c0ae041a",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a 120-credit U.S. baccalaureate degree for international applicants, conferred before matriculating",
+     "quote": "International applicants must hold, or be in the process of obtaining, the equivalent of a 120-credit U.S. baccalaureate degree.",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): A minimum score of 7.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English; Duolingo 130 also accepted",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Internet-based Test of English as a Foreign Language (TOEFL iBT): Taken before January 21, 2026: A minimum score of 100 Taken on or after January 21, 2026: A minimum score of 5.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final",
+      "date": "2027-04-01",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "TESOL (MA) - Teachers College",
+   "url": "https://www.tc.columbia.edu/arts-and-humanities/applied-linguistics-tesol/degrees--requirements/tesol-ma/",
+   "snapshot_sha256": "b73558a09945e4969f4e9f20783e6e832073fd977be7f8511fa99f2cc56b0e78",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a 120-credit U.S. baccalaureate degree for international applicants, conferred before matriculating",
+     "quote": "International applicants must hold, or be in the process of obtaining, the equivalent of a 120-credit U.S. baccalaureate degree.",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): A minimum score of 7.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English; Duolingo 130 also accepted",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Internet-based Test of English as a Foreign Language (TOEFL iBT): Taken before January 21, 2026: A minimum score of 100 Taken on or after January 21, 2026: A minimum score of 5.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final",
+      "date": "2027-04-01",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Art and Art Education (MA) - Teachers College",
+   "url": "https://www.tc.columbia.edu/arts-and-humanities/art-and-art-education/degrees--requirements/art-and-art-education-ma/",
+   "snapshot_sha256": "e2aea7b2463e347529607616f79a4ba39989402f85b87673d4db1cb675be9f64",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a 120-credit U.S. baccalaureate degree for international applicants, conferred before matriculating",
+     "quote": "International applicants must hold, or be in the process of obtaining, the equivalent of a 120-credit U.S. baccalaureate degree.",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): A minimum score of 7.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English; Duolingo 130 also accepted",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Internet-based Test of English as a Foreign Language (TOEFL iBT): Taken before January 21, 2026: A minimum score of 100 Taken on or after January 21, 2026: A minimum score of 5.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Spring 2027 priority and final",
+      "date": "2026-11-15",
+      "quote": "Spring November 15, 2026 November 15, 2026 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Summer 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Summer January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Summer 2027 final",
+      "date": "2027-04-01",
+      "quote": "Summer January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final",
+      "date": "2027-04-01",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Arts Administration (MA) - Teachers College",
+   "url": "https://www.tc.columbia.edu/arts-and-humanities/arts-administration/degrees--requirements/arts-administration-ma/",
+   "snapshot_sha256": "079ceff9f8cc03f805cab23c870c32aedbf748c2e11abda6bc4afe0ebf3fd9f1",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a 120-credit U.S. baccalaureate degree for international applicants, conferred before matriculating",
+     "quote": "International applicants must hold, or be in the process of obtaining, the equivalent of a 120-credit U.S. baccalaureate degree.",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): A minimum score of 7.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English; Duolingo 130 also accepted",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Internet-based Test of English as a Foreign Language (TOEFL iBT): Taken before January 21, 2026: A minimum score of 100 Taken on or after January 21, 2026: A minimum score of 5.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority and final",
+      "date": "2027-01-15",
+      "quote": "Fall January 15, 2027 January 15, 2027 N/A",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "Strong written and verbal communication skills in English",
+      "quote": "Strong written and verbal communication skills in English",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Teaching of English (MA) - Teachers College",
+   "url": "https://www.tc.columbia.edu/arts-and-humanities/english-education/degrees--requirements/teaching-of-english-ma/",
+   "snapshot_sha256": "409d96238a17882adff8e4bff77f9bf8b031a8ce4ebad07b033987d82829110a",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a 120-credit U.S. baccalaureate degree for international applicants, conferred before matriculating",
+     "quote": "International applicants must hold, or be in the process of obtaining, the equivalent of a 120-credit U.S. baccalaureate degree.",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): A minimum score of 7.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English; Duolingo 130 also accepted",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Internet-based Test of English as a Foreign Language (TOEFL iBT): Taken before January 21, 2026: A minimum score of 100 Taken on or after January 21, 2026: A minimum score of 5.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Spring 2027 priority and final",
+      "date": "2026-11-15",
+      "quote": "Spring November 15, 2026 November 15, 2026 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Summer 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Summer January 15, 2027 June 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Summer 2027 final",
+      "date": "2027-06-01",
+      "quote": "Summer January 15, 2027 June 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Fall January 15, 2027 July 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final",
+      "date": "2027-07-01",
+      "quote": "Fall January 15, 2027 July 1, 2027 N/A",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Music and Music Education (MA) - Teachers College",
+   "url": "https://www.tc.columbia.edu/arts-and-humanities/music-and-music-education/degrees--requirements/music-and-music-education-ma/",
+   "snapshot_sha256": "4730d9ad803163a9c7d5315a425a5ba4844ae84a13cd7c9e3eabf12241717a50",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a 120-credit U.S. baccalaureate degree for international applicants, conferred before matriculating",
+     "quote": "International applicants must hold, or be in the process of obtaining, the equivalent of a 120-credit U.S. baccalaureate degree.",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): A minimum score of 7.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English; Duolingo 130 also accepted",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Internet-based Test of English as a Foreign Language (TOEFL iBT): Taken before January 21, 2026: A minimum score of 100 Taken on or after January 21, 2026: A minimum score of 5.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Spring 2027 priority and final",
+      "date": "2026-11-15",
+      "quote": "Spring November 15, 2026 November 15, 2026 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Summer 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Summer January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Summer 2027 final",
+      "date": "2027-04-01",
+      "quote": "Summer January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final",
+      "date": "2027-04-01",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Philosophy and Education (MA) - Teachers College",
+   "url": "https://www.tc.columbia.edu/arts-and-humanities/philosophy/degrees--requirements/philosophy-and-education-ma/",
+   "snapshot_sha256": "db4c3efdb32713f0dc489d101111a5eec8aa6e183ccad2289889e1e6d3982c6a",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a 120-credit U.S. baccalaureate degree for international applicants, conferred before matriculating",
+     "quote": "International applicants must hold, or be in the process of obtaining, the equivalent of a 120-credit U.S. baccalaureate degree.",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): A minimum score of 7.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English; Duolingo 130 also accepted",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Internet-based Test of English as a Foreign Language (TOEFL iBT): Taken before January 21, 2026: A minimum score of 100 Taken on or after January 21, 2026: A minimum score of 5.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Spring 2027 priority and final",
+      "date": "2026-11-15",
+      "quote": "Spring November 15, 2026 November 15, 2026 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Summer 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Summer January 15, 2027 June 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Summer 2027 final",
+      "date": "2027-06-01",
+      "quote": "Summer January 15, 2027 June 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Fall January 15, 2027 July 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final",
+      "date": "2027-07-01",
+      "quote": "Fall January 15, 2027 July 1, 2027 N/A",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Teaching of Social Studies (MA) - Teachers College",
+   "url": "https://www.tc.columbia.edu/arts-and-humanities/social-studies-education/degrees--requirements/teaching-of-social-studies-ma/",
+   "snapshot_sha256": "87f85b55e387b1c9bfbef8ad1303b87b4cd37be1ff1a06c0ab14c6aa13e376fe",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a 120-credit U.S. baccalaureate degree for international applicants, conferred before matriculating",
+     "quote": "International applicants must hold, or be in the process of obtaining, the equivalent of a 120-credit U.S. baccalaureate degree.",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): A minimum score of 7.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English; Duolingo 130 also accepted",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Internet-based Test of English as a Foreign Language (TOEFL iBT): Taken before January 21, 2026: A minimum score of 100 Taken on or after January 21, 2026: A minimum score of 5.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Summer 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Summer January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Summer 2027 final",
+      "date": "2027-04-01",
+      "quote": "Summer January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final",
+      "date": "2027-04-01",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Kinesiology (MS) - Teachers College",
+   "url": "https://www.tc.columbia.edu/biobehavioral-sciences/applied-exercise-physiology/degrees--requirements/kinesiology-ms/",
+   "snapshot_sha256": "8ecbf0ce78d429aba00440ed7e6f9b73d2ec1d33cd15a61b6dda184d3ddddf85",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a 120-credit U.S. baccalaureate degree for international applicants, conferred before matriculating",
+     "quote": "International applicants must hold, or be in the process of obtaining, the equivalent of a 120-credit U.S. baccalaureate degree.",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): A minimum score of 7.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English; Duolingo 130 also accepted",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Internet-based Test of English as a Foreign Language (TOEFL iBT): Taken before January 21, 2026: A minimum score of 100 Taken on or after January 21, 2026: A minimum score of 5.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final",
+      "date": "2027-04-01",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Nutrition and Exercise Physiology (MS) - Teachers College",
+   "url": "https://www.tc.columbia.edu/biobehavioral-sciences/applied-exercise-physiology/degrees--requirements/nutrition-and-exercise-physiology-ms/",
+   "snapshot_sha256": "79412d4b363d826977763b4391cd4dda39847b0f5b5c9b08bd63a465502c9622",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a 120-credit U.S. baccalaureate degree for international applicants, conferred before matriculating",
+     "quote": "International applicants must hold, or be in the process of obtaining, the equivalent of a 120-credit U.S. baccalaureate degree.",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): A minimum score of 7.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English; Duolingo 130 also accepted",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Internet-based Test of English as a Foreign Language (TOEFL iBT): Taken before January 21, 2026: A minimum score of 100 Taken on or after January 21, 2026: A minimum score of 5.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority",
+      "date": "2026-12-01",
+      "quote": "Fall December 1, 2026 January 15, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final",
+      "date": "2027-01-15",
+      "quote": "Fall December 1, 2026 January 15, 2027 N/A",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "Prerequisites required prior to enrollment",
+      "quote": "Prerequisites required prior to enrollment",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Neuroscience and Education (MS) - Teachers College",
+   "url": "https://www.tc.columbia.edu/biobehavioral-sciences/neuroscience-and-education/degrees--requirements/neuroscience-and-education-ms/",
+   "snapshot_sha256": "2da4a0fdc3666ffe444a4c5f79bcca5855d2c7b311346b57b5b30e57dd33469f",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a 120-credit U.S. baccalaureate degree for international applicants, conferred before matriculating",
+     "quote": "International applicants must hold, or be in the process of obtaining, the equivalent of a 120-credit U.S. baccalaureate degree.",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): A minimum score of 7.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English; Duolingo 130 also accepted",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Internet-based Test of English as a Foreign Language (TOEFL iBT): Taken before January 21, 2026: A minimum score of 100 Taken on or after January 21, 2026: A minimum score of 5.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final",
+      "date": "2027-04-01",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Psychology in Education: General Track (MA) - Teachers College",
+   "url": "https://www.tc.columbia.edu/counseling-and-clinical-psychology/clinical/degrees--requirements/psychology-in-education-general-track-ma/",
+   "snapshot_sha256": "5820da3ffe66694fc2cd5ecb38502470eb1a32b303d39a027009b3e54351655f",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a 120-credit U.S. baccalaureate degree for international applicants, conferred before matriculating",
+     "quote": "International applicants must hold, or be in the process of obtaining, the equivalent of a 120-credit U.S. baccalaureate degree.",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): A minimum score of 7.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English; Duolingo 130 also accepted",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Internet-based Test of English as a Foreign Language (TOEFL iBT): Taken before January 21, 2026: A minimum score of 100 Taken on or after January 21, 2026: A minimum score of 5.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final",
+      "date": "2027-04-01",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Spirituality and Psychology (MA) - Teachers College",
+   "url": "https://www.tc.columbia.edu/counseling-and-clinical-psychology/clinical/degrees--requirements/spirituality-and-psychology-ma/",
+   "snapshot_sha256": "1dfa15fef11cd94e156c95d20c2ac337b4b5b34702af9946637ac1def3cc0c03",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a 120-credit U.S. baccalaureate degree for international applicants, conferred before matriculating",
+     "quote": "International applicants must hold, or be in the process of obtaining, the equivalent of a 120-credit U.S. baccalaureate degree.",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): A minimum score of 7.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English; Duolingo 130 also accepted",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Internet-based Test of English as a Foreign Language (TOEFL iBT): Taken before January 21, 2026: A minimum score of 100 Taken on or after January 21, 2026: A minimum score of 5.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Summer 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Summer January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Summer 2027 final",
+      "date": "2027-04-01",
+      "quote": "Summer January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Psychological Counseling: Mental Health Counseling (EdM) - Teachers College",
+   "url": "https://www.tc.columbia.edu/counseling-and-clinical-psychology/counseling/degrees--requirements/psychological-counseling-mental-health-counseling-edm/",
+   "snapshot_sha256": "03c8276a4120fd419eb374b5a5d4f62a44383180679f6fc78360749c5e83fb28",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a 120-credit U.S. baccalaureate degree for international applicants, conferred before matriculating",
+     "quote": "International applicants must hold, or be in the process of obtaining, the equivalent of a 120-credit U.S. baccalaureate degree.",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): A minimum score of 7.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English; Duolingo 130 also accepted",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Internet-based Test of English as a Foreign Language (TOEFL iBT): Taken before January 21, 2026: A minimum score of 100 Taken on or after January 21, 2026: A minimum score of 5.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority and final",
+      "date": "2027-01-15",
+      "quote": "Fall January 15, 2027 January 15, 2027 N/A",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Curriculum and Teaching (MA) - Teachers College",
+   "url": "https://www.tc.columbia.edu/curriculum-and-teaching/curriculum-and-teaching/degrees--requirements/curriculum-and-teaching-ma/",
+   "snapshot_sha256": "b6600a44b0146e91aeea74c74033f499d015ed787d9db764ae2da0f345601078",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a 120-credit U.S. baccalaureate degree for international applicants, conferred before matriculating",
+     "quote": "International applicants must hold, or be in the process of obtaining, the equivalent of a 120-credit U.S. baccalaureate degree.",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): A minimum score of 7.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English; Duolingo 130 also accepted",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Internet-based Test of English as a Foreign Language (TOEFL iBT): Taken before January 21, 2026: A minimum score of 100 Taken on or after January 21, 2026: A minimum score of 5.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Summer 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Summer January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Summer 2027 final",
+      "date": "2027-04-01",
+      "quote": "Summer January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final",
+      "date": "2027-04-01",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "Prior teaching or other relevant educational experience strongly recommended",
+      "quote": "Prior teaching (not including student teaching) or other relevant educational experience is strongly recommended, preference will be given to candidates with such experience",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Economics and Education (MA) - Teachers College",
+   "url": "https://www.tc.columbia.edu/education-policy-and-social-analysis/economics-and-education/degrees--requirements/economics-and-education-ma/",
+   "snapshot_sha256": "f0b57b54d673b9e9b86d4b5e6964ad88b111610e87ca2d63d8475ad043e8b06d",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a 120-credit U.S. baccalaureate degree for international applicants, conferred before matriculating",
+     "quote": "International applicants must hold, or be in the process of obtaining, the equivalent of a 120-credit U.S. baccalaureate degree.",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): A minimum score of 7.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English; Duolingo 130 also accepted",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Internet-based Test of English as a Foreign Language (TOEFL iBT): Taken before January 21, 2026: A minimum score of 100 Taken on or after January 21, 2026: A minimum score of 5.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final",
+      "date": "2027-04-01",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Education Policy (MA) - Teachers College",
+   "url": "https://www.tc.columbia.edu/education-policy-and-social-analysis/education-policy/degrees--requirements/education-policy-ma/",
+   "snapshot_sha256": "53cb0c9ce11a37684fef1fab28bccb8d117d01d62f721a439b148279c96974da",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a 120-credit U.S. baccalaureate degree for international applicants, conferred before matriculating",
+     "quote": "International applicants must hold, or be in the process of obtaining, the equivalent of a 120-credit U.S. baccalaureate degree.",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): A minimum score of 7.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English; Duolingo 130 also accepted",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Internet-based Test of English as a Foreign Language (TOEFL iBT): Taken before January 21, 2026: A minimum score of 100 Taken on or after January 21, 2026: A minimum score of 5.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final",
+      "date": "2027-04-01",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Health Promotion (MA) - Teachers College",
+   "url": "https://www.tc.columbia.edu/health-studies-applied-educational-psychology/health-education/degrees--requirements/health-promotion-ma/",
+   "snapshot_sha256": "5c5d8cc1d44dcbcfc85724445a432ce551ce1a5826350a4518ab025ce4cedc73",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a 120-credit U.S. baccalaureate degree for international applicants, conferred before matriculating",
+     "quote": "International applicants must hold, or be in the process of obtaining, the equivalent of a 120-credit U.S. baccalaureate degree.",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): A minimum score of 7.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English; Duolingo 130 also accepted",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Internet-based Test of English as a Foreign Language (TOEFL iBT): Taken before January 21, 2026: A minimum score of 100 Taken on or after January 21, 2026: A minimum score of 5.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Spring 2027 priority and final",
+      "date": "2026-11-15",
+      "quote": "Spring November 15, 2026 November 15, 2026 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Summer 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Summer January 15, 2027 June 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Summer 2027 final",
+      "date": "2027-06-01",
+      "quote": "Summer January 15, 2027 June 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Fall January 15, 2027 July 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final",
+      "date": "2027-07-01",
+      "quote": "Fall January 15, 2027 July 1, 2027 N/A",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Community Health Promotion (MS) - Teachers College",
+   "url": "https://www.tc.columbia.edu/health-studies-applied-educational-psychology/health-education/degrees--requirements/community-health-promotion-ms/",
+   "snapshot_sha256": "6db4bd0eb8fe46828b89cb11a0c6249016a4042076b49584a25ff0464dd7344c",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a 120-credit U.S. baccalaureate degree for international applicants, conferred before matriculating",
+     "quote": "International applicants must hold, or be in the process of obtaining, the equivalent of a 120-credit U.S. baccalaureate degree.",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): A minimum score of 7.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English; Duolingo 130 also accepted",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Internet-based Test of English as a Foreign Language (TOEFL iBT): Taken before January 21, 2026: A minimum score of 100 Taken on or after January 21, 2026: A minimum score of 5.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Spring 2027 priority and final",
+      "date": "2026-11-15",
+      "quote": "Spring November 15, 2026 November 15, 2026 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Summer 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Summer January 15, 2027 June 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Summer 2027 final",
+      "date": "2027-06-01",
+      "quote": "Summer January 15, 2027 June 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Fall January 15, 2027 July 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final",
+      "date": "2027-07-01",
+      "quote": "Fall January 15, 2027 July 1, 2027 N/A",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Nutrition and Public Health (MS) - Teachers College",
+   "url": "https://www.tc.columbia.edu/health-studies-applied-educational-psychology/nutrition/degrees--requirements/nutrition-and-public-health-ms/",
+   "snapshot_sha256": "691ca8e289cdf0188b632fd3e2f4a4be19054ae18c8ffe25c1e7293b9e2948e8",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a 120-credit U.S. baccalaureate degree for international applicants, conferred before matriculating",
+     "quote": "International applicants must hold, or be in the process of obtaining, the equivalent of a 120-credit U.S. baccalaureate degree.",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): A minimum score of 7.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English; Duolingo 130 also accepted",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Internet-based Test of English as a Foreign Language (TOEFL iBT): Taken before January 21, 2026: A minimum score of 100 Taken on or after January 21, 2026: A minimum score of 5.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority",
+      "date": "2026-12-01",
+      "quote": "Fall December 1, 2026 January 15, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final",
+      "date": "2027-01-15",
+      "quote": "Fall December 1, 2026 January 15, 2027 N/A",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "Prerequisites required prior to enrollment",
+      "quote": "Prerequisites required prior to enrollment",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Nutrition Education (MS) - Teachers College",
+   "url": "https://www.tc.columbia.edu/health-studies-applied-educational-psychology/nutrition/degrees--requirements/nutrition-education-ms/",
+   "snapshot_sha256": "b3ae601aee5457751402bf34a72e0038a640f0485919a0745a9f09a5790947ac",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a 120-credit U.S. baccalaureate degree for international applicants, conferred before matriculating",
+     "quote": "International applicants must hold, or be in the process of obtaining, the equivalent of a 120-credit U.S. baccalaureate degree.",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): A minimum score of 7.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English; Duolingo 130 also accepted",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Internet-based Test of English as a Foreign Language (TOEFL iBT): Taken before January 21, 2026: A minimum score of 100 Taken on or after January 21, 2026: A minimum score of 5.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority",
+      "date": "2026-12-01",
+      "quote": "Fall December 1, 2026 January 15, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final",
+      "date": "2027-01-15",
+      "quote": "Fall December 1, 2026 January 15, 2027 N/A",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "Prerequisites required prior to enrollment",
+      "quote": "Prerequisites required prior to enrollment",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Cognitive Science in Education (MA) - Teachers College",
+   "url": "https://www.tc.columbia.edu/human-development/cognitive-studies-in-education/degrees--requirements/cognitive-science-in-education-ma/",
+   "snapshot_sha256": "930f26543fa946249f19b1f16d3bbf5b836c5621f8cc8ed3034949f7b9c6d6bd",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a 120-credit U.S. baccalaureate degree for international applicants, conferred before matriculating",
+     "quote": "International applicants must hold, or be in the process of obtaining, the equivalent of a 120-credit U.S. baccalaureate degree.",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): A minimum score of 7.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English; Duolingo 130 also accepted",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Internet-based Test of English as a Foreign Language (TOEFL iBT): Taken before January 21, 2026: A minimum score of 100 Taken on or after January 21, 2026: A minimum score of 5.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Summer 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Summer January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Summer 2027 final",
+      "date": "2027-04-01",
+      "quote": "Summer January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final",
+      "date": "2027-04-01",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Developmental Psychology (MA) - Teachers College",
+   "url": "https://www.tc.columbia.edu/human-development/developmental-psychology/degrees--requirements/developmental-psychology-ma/",
+   "snapshot_sha256": "0d019e7b282bca9582e90a0a1e8f5d99dc5d330965b95c73b54762e982f9f128",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a 120-credit U.S. baccalaureate degree for international applicants, conferred before matriculating",
+     "quote": "International applicants must hold, or be in the process of obtaining, the equivalent of a 120-credit U.S. baccalaureate degree.",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): A minimum score of 7.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English; Duolingo 130 also accepted",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Internet-based Test of English as a Foreign Language (TOEFL iBT): Taken before January 21, 2026: A minimum score of 100 Taken on or after January 21, 2026: A minimum score of 5.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Summer 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Summer January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Summer 2027 final",
+      "date": "2027-04-01",
+      "quote": "Summer January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final",
+      "date": "2027-04-01",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Learning Analytics (MS) - Teachers College",
+   "url": "https://www.tc.columbia.edu/human-development/learning-analytics/degrees--requirements/learning-analytics-ms/",
+   "snapshot_sha256": "2f589c16cd0d828c3f82a9cb36431a8e383dec339c9423d502e94e5bbd7e01e0",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a 120-credit U.S. baccalaureate degree for international applicants, conferred before matriculating",
+     "quote": "International applicants must hold, or be in the process of obtaining, the equivalent of a 120-credit U.S. baccalaureate degree.",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): A minimum score of 7.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English; Duolingo 130 also accepted",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Internet-based Test of English as a Foreign Language (TOEFL iBT): Taken before January 21, 2026: A minimum score of 100 Taken on or after January 21, 2026: A minimum score of 5.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final",
+      "date": "2027-04-01",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Applied Statistics (MS) - Teachers College",
+   "url": "https://www.tc.columbia.edu/human-development/measurement-evaluation-and-statistics/degrees--requirements/applied-statistics-ms/",
+   "snapshot_sha256": "129bb0596b7ab4ed5cd15e127e48823bc5bc5e8548561478e65f02896d7a5825",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a 120-credit U.S. baccalaureate degree for international applicants, conferred before matriculating",
+     "quote": "International applicants must hold, or be in the process of obtaining, the equivalent of a 120-credit U.S. baccalaureate degree.",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): A minimum score of 7.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English; Duolingo 130 also accepted",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Internet-based Test of English as a Foreign Language (TOEFL iBT): Taken before January 21, 2026: A minimum score of 100 Taken on or after January 21, 2026: A minimum score of 5.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final",
+      "date": "2027-04-01",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "GRE General Test required",
+      "quote": "GRE General Test",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Anthropology and Education (MA) - Teachers College",
+   "url": "https://www.tc.columbia.edu/international-and-transcultural-studies/anthropology-and-education/degrees--requirements/anthropology-and-education-ma/",
+   "snapshot_sha256": "b1432acfb94dac74f4da6ecc94591a7e5c9a3e533312c20a3d63e97f0c5bf030",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a 120-credit U.S. baccalaureate degree for international applicants, conferred before matriculating",
+     "quote": "International applicants must hold, or be in the process of obtaining, the equivalent of a 120-credit U.S. baccalaureate degree.",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): A minimum score of 7.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English; Duolingo 130 also accepted",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Internet-based Test of English as a Foreign Language (TOEFL iBT): Taken before January 21, 2026: A minimum score of 100 Taken on or after January 21, 2026: A minimum score of 5.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Spring 2027 priority and final",
+      "date": "2026-11-15",
+      "quote": "Spring November 15, 2026 November 15, 2026 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Summer 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Summer January 15, 2027 June 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Summer 2027 final",
+      "date": "2027-06-01",
+      "quote": "Summer January 15, 2027 June 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Fall January 15, 2027 July 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final",
+      "date": "2027-07-01",
+      "quote": "Fall January 15, 2027 July 1, 2027 N/A",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Comparative Education (MA) - Teachers College",
+   "url": "https://www.tc.columbia.edu/international-and-transcultural-studies/international-and-comparative-education/degrees--requirements/international-comparative-education-ma/",
+   "snapshot_sha256": "8c5f801f4088785c93128fd5c180b2af59bd62e7855fcdcac0dbcb430117b958",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a 120-credit U.S. baccalaureate degree for international applicants, conferred before matriculating",
+     "quote": "International applicants must hold, or be in the process of obtaining, the equivalent of a 120-credit U.S. baccalaureate degree.",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): A minimum score of 7.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English; Duolingo 130 also accepted",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Internet-based Test of English as a Foreign Language (TOEFL iBT): Taken before January 21, 2026: A minimum score of 100 Taken on or after January 21, 2026: A minimum score of 5.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final",
+      "date": "2027-04-01",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Mathematics Education (MA) - Teachers College",
+   "url": "https://www.tc.columbia.edu/mathematics-science-and-technology/mathematics-education/degrees--requirements/mathematics-education-ma/",
+   "snapshot_sha256": "8eef975bec87fb9a3eb60d83937e858f8227e611919d54c9d5df86b5aaa75f19",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a 120-credit U.S. baccalaureate degree for international applicants, conferred before matriculating",
+     "quote": "International applicants must hold, or be in the process of obtaining, the equivalent of a 120-credit U.S. baccalaureate degree.",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): A minimum score of 7.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English; Duolingo 130 also accepted",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Internet-based Test of English as a Foreign Language (TOEFL iBT): Taken before January 21, 2026: A minimum score of 100 Taken on or after January 21, 2026: A minimum score of 5.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Spring 2027 priority and final",
+      "date": "2026-11-15",
+      "quote": "Spring November 15, 2026 November 15, 2026 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Summer 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Summer January 15, 2027 June 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Summer 2027 final",
+      "date": "2027-06-01",
+      "quote": "Summer January 15, 2027 June 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Fall January 15, 2027 July 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final",
+      "date": "2027-07-01",
+      "quote": "Fall January 15, 2027 July 1, 2027 N/A",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Education of Teachers in Science (MS) - Teachers College",
+   "url": "https://www.tc.columbia.edu/mathematics-science-and-technology/science-education/degrees--requirements/education-of-teachers-in-science-ms/",
+   "snapshot_sha256": "e4182637545999796bec203a9e7be20d54d4a1685e13fc524e623c9c0fd76620",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a 120-credit U.S. baccalaureate degree for international applicants, conferred before matriculating",
+     "quote": "International applicants must hold, or be in the process of obtaining, the equivalent of a 120-credit U.S. baccalaureate degree.",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): A minimum score of 7.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English; Duolingo 130 also accepted",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Internet-based Test of English as a Foreign Language (TOEFL iBT): Taken before January 21, 2026: A minimum score of 100 Taken on or after January 21, 2026: A minimum score of 5.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Spring 2027 priority and final",
+      "date": "2026-11-15",
+      "quote": "Spring November 15, 2026 November 15, 2026 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Summer 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Summer January 15, 2027 June 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Summer 2027 final",
+      "date": "2027-06-01",
+      "quote": "Summer January 15, 2027 June 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Fall January 15, 2027 July 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final",
+      "date": "2027-07-01",
+      "quote": "Fall January 15, 2027 July 1, 2027 N/A",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Adult Learning and Leadership (MA) - Teachers College",
+   "url": "https://www.tc.columbia.edu/organization-and-leadership/adult-learning-and-leadership/degrees--requirements/adult-learning-and-leadership-ma/",
+   "snapshot_sha256": "7faa2325dedebd6fcf33d575ae0639d692ec84cecfddbc846206fdd59e762e43",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a 120-credit U.S. baccalaureate degree for international applicants, conferred before matriculating",
+     "quote": "International applicants must hold, or be in the process of obtaining, the equivalent of a 120-credit U.S. baccalaureate degree.",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): A minimum score of 7.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English; Duolingo 130 also accepted",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Internet-based Test of English as a Foreign Language (TOEFL iBT): Taken before January 21, 2026: A minimum score of 100 Taken on or after January 21, 2026: A minimum score of 5.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final",
+      "date": "2027-04-01",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Higher and Postsecondary Education (MA) - Teachers College",
+   "url": "https://www.tc.columbia.edu/organization-and-leadership/higher-and-postsecondary-education/degrees--requirements/higher-and-postsecondary-education-ma/",
+   "snapshot_sha256": "8c214cd16bdbb24a9211da2def3f2b2137883cfae2e8a9ce4d399c9f3a26de90",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a 120-credit U.S. baccalaureate degree for international applicants, conferred before matriculating",
+     "quote": "International applicants must hold, or be in the process of obtaining, the equivalent of a 120-credit U.S. baccalaureate degree.",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): A minimum score of 7.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English; Duolingo 130 also accepted",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Internet-based Test of English as a Foreign Language (TOEFL iBT): Taken before January 21, 2026: A minimum score of 100 Taken on or after January 21, 2026: A minimum score of 5.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final",
+      "date": "2027-04-01",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Social-Organizational Psychology (MA) - Teachers College",
+   "url": "https://www.tc.columbia.edu/organization-and-leadership/social-organizational-psychology/degrees--requirements/social-organizational-psychology-ma/",
+   "snapshot_sha256": "1d3e4be38ee3be7535247d3202fb1caeaf06bfda67202fd1c47abe566659b5f3",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a 120-credit U.S. baccalaureate degree for international applicants, conferred before matriculating",
+     "quote": "International applicants must hold, or be in the process of obtaining, the equivalent of a 120-credit U.S. baccalaureate degree.",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): A minimum score of 7.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English; Duolingo 130 also accepted",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Internet-based Test of English as a Foreign Language (TOEFL iBT): Taken before January 21, 2026: A minimum score of 100 Taken on or after January 21, 2026: A minimum score of 5.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Spring 2027 priority and final",
+      "date": "2026-11-15",
+      "quote": "Spring November 15, 2026 November 15, 2026 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Summer 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Summer January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Summer 2027 final",
+      "date": "2027-04-01",
+      "quote": "Summer January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final",
+      "date": "2027-04-01",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "At least one year of full-time work experience after undergraduate graduation",
+      "quote": "At least 1 (one) year of full-time work experience after graduation from an undergraduate institution is required",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Measurement and Evaluation (EdM) - Teachers College",
+   "url": "https://www.tc.columbia.edu/human-development/measurement-evaluation-and-statistics/degrees--requirements/measurement-and-evaluation-edm/",
+   "snapshot_sha256": "ffff826fc5692266e7765a5bb1c587224fd9b66d851202226d90a0b3ef3a3f3d",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a 120-credit U.S. baccalaureate degree for international applicants, conferred before matriculating",
+     "quote": "International applicants must hold, or be in the process of obtaining, the equivalent of a 120-credit U.S. baccalaureate degree.",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): A minimum score of 7.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English; Duolingo 130 also accepted",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Internet-based Test of English as a Foreign Language (TOEFL iBT): Taken before January 21, 2026: A minimum score of 100 Taken on or after January 21, 2026: A minimum score of 5.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Spring 2027 priority and final",
+      "date": "2026-11-15",
+      "quote": "Spring November 15, 2026 November 15, 2026 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Summer 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Summer January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Summer 2027 final",
+      "date": "2027-04-01",
+      "quote": "Summer January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final",
+      "date": "2027-04-01",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "GRE General Test required",
+      "quote": "GRE General Test",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Applied Anthropology (MA) - Teachers College",
+   "url": "https://www.tc.columbia.edu/international-and-transcultural-studies/anthropology-and-education/degrees--requirements/applied-anthropology-ma/",
+   "snapshot_sha256": "98b5dff50a99b57e5d57d41eaa0bccc06ea3dccb751cfd19e26d9b864a79f5ce",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a 120-credit U.S. baccalaureate degree for international applicants, conferred before matriculating",
+     "quote": "International applicants must hold, or be in the process of obtaining, the equivalent of a 120-credit U.S. baccalaureate degree.",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): A minimum score of 7.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English; Duolingo 130 also accepted",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Internet-based Test of English as a Foreign Language (TOEFL iBT): Taken before January 21, 2026: A minimum score of 100 Taken on or after January 21, 2026: A minimum score of 5.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Spring 2027 priority and final",
+      "date": "2026-11-15",
+      "quote": "Spring November 15, 2026 November 15, 2026 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Summer 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Summer January 15, 2027 June 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Summer 2027 final",
+      "date": "2027-06-01",
+      "quote": "Summer January 15, 2027 June 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Fall January 15, 2027 July 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final",
+      "date": "2027-07-01",
+      "quote": "Fall January 15, 2027 July 1, 2027 N/A",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "History and Education (MA) - Teachers College",
+   "url": "https://www.tc.columbia.edu/education-policy-and-social-analysis/history-and-education/degrees--requirements/history-and-education-ma/",
+   "snapshot_sha256": "e7a14b07e3b921792493bfa41a3ae8b1767280a84489111be1c0e88358962b22",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a 120-credit U.S. baccalaureate degree for international applicants, conferred before matriculating",
+     "quote": "International applicants must hold, or be in the process of obtaining, the equivalent of a 120-credit U.S. baccalaureate degree.",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): A minimum score of 7.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English; Duolingo 130 also accepted",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Internet-based Test of English as a Foreign Language (TOEFL iBT): Taken before January 21, 2026: A minimum score of 100 Taken on or after January 21, 2026: A minimum score of 5.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Spring 2027 priority and final",
+      "date": "2026-11-15",
+      "quote": "Spring November 15, 2026 November 15, 2026 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final",
+      "date": "2027-04-01",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Politics and Education (MA) - Teachers College",
+   "url": "https://www.tc.columbia.edu/education-policy-and-social-analysis/politics-and-education/degrees--requirements/politics-and-education-ma/",
+   "snapshot_sha256": "31d0e2a3839eb8d9d82b46149adae3054ab6b278e232a2a2e892a4db987bc909",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a 120-credit U.S. baccalaureate degree for international applicants, conferred before matriculating",
+     "quote": "International applicants must hold, or be in the process of obtaining, the equivalent of a 120-credit U.S. baccalaureate degree.",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): A minimum score of 7.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English; Duolingo 130 also accepted",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Internet-based Test of English as a Foreign Language (TOEFL iBT): Taken before January 21, 2026: A minimum score of 100 Taken on or after January 21, 2026: A minimum score of 5.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final",
+      "date": "2027-04-01",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Sociology and Education (MA) - Teachers College",
+   "url": "https://www.tc.columbia.edu/education-policy-and-social-analysis/sociology-and-education/degrees--requirements/sociology-and-education-ma/",
+   "snapshot_sha256": "6f593f7e1edf00e1fbb01fe708a16a638138d01d8b1d7b42653c959948b968e5",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a 120-credit U.S. baccalaureate degree for international applicants, conferred before matriculating",
+     "quote": "International applicants must hold, or be in the process of obtaining, the equivalent of a 120-credit U.S. baccalaureate degree.",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): A minimum score of 7.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English; Duolingo 130 also accepted",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Internet-based Test of English as a Foreign Language (TOEFL iBT): Taken before January 21, 2026: A minimum score of 100 Taken on or after January 21, 2026: A minimum score of 5.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Summer 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Summer January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Summer 2027 final",
+      "date": "2027-04-01",
+      "quote": "Summer January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final",
+      "date": "2027-04-01",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Executive Master's in Change Leadership (MA) - Teachers College",
+   "url": "https://www.tc.columbia.edu/organization-and-leadership/executive-education/xma/degrees--requirements/executive-masters-in-change-leadership-ma/",
+   "snapshot_sha256": "2153cc1a232c063db19e457b60b999749f2701d207f619202701fb4ee6409cd0",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a 120-credit U.S. baccalaureate degree for international applicants, conferred before matriculating",
+     "quote": "International applicants must hold, or be in the process of obtaining, the equivalent of a 120-credit U.S. baccalaureate degree.",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): A minimum score of 7.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English; Duolingo 130 also accepted",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Internet-based Test of English as a Foreign Language (TOEFL iBT): Taken before January 21, 2026: A minimum score of 100 Taken on or after January 21, 2026: A minimum score of 5.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Summer 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Summer January 15, 2027 March 15, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Summer 2027 final",
+      "date": "2027-03-15",
+      "quote": "Summer January 15, 2027 March 15, 2027 N/A",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "School Psychology (EdM) - Teachers College",
+   "url": "https://www.tc.columbia.edu/health-studies-applied-educational-psychology/school-psychology/degrees--requirements/school-psychology-edm/",
+   "snapshot_sha256": "4eebdbc3320cd685cbcaa5be953583171318d9ed6c1de5338629fb2067e3d640",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a 120-credit U.S. baccalaureate degree for international applicants, conferred before matriculating",
+     "quote": "International applicants must hold, or be in the process of obtaining, the equivalent of a 120-credit U.S. baccalaureate degree.",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): A minimum score of 7.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English; Duolingo 130 also accepted",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Internet-based Test of English as a Foreign Language (TOEFL iBT): Taken before January 21, 2026: A minimum score of 100 Taken on or after January 21, 2026: A minimum score of 5.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final",
+      "date": "2027-04-01",
+      "quote": "Fall January 15, 2027 April 1, 2027 N/A",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Motor Learning (EdM) - Teachers College",
+   "url": "https://www.tc.columbia.edu/biobehavioral-sciences/motor-learning-and-control/degrees--requirements/motor-learning-edm/",
+   "snapshot_sha256": "d2c964cc5f1da2767d2d69eb3fc81c5110863d8a472d81aa82b44c62dcecef2b",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a 120-credit U.S. baccalaureate degree for international applicants, conferred before matriculating",
+     "quote": "International applicants must hold, or be in the process of obtaining, the equivalent of a 120-credit U.S. baccalaureate degree.",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): A minimum score of 7.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English; Duolingo 130 also accepted",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Internet-based Test of English as a Foreign Language (TOEFL iBT): Taken before January 21, 2026: A minimum score of 100 Taken on or after January 21, 2026: A minimum score of 5.0",
+     "source_sha256": "628d4d33cc36c30ed2c6eed522baae841aa50b8afeb16f31b9bad0218938b7ef",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Required if native language is not English and the undergraduate degree was not taught solely in English",
+     "source_url": "https://www.tc.columbia.edu/admission/how-to-apply/degree-programs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Spring 2027 priority and final",
+      "date": "2026-11-15",
+      "quote": "Spring November 15, 2026 November 15, 2026 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Summer 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Summer January 15, 2027 June 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Summer 2027 final",
+      "date": "2027-06-01",
+      "quote": "Summer January 15, 2027 June 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Fall January 15, 2027 July 1, 2027 N/A",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final",
+      "date": "2027-07-01",
+      "quote": "Fall January 15, 2027 July 1, 2027 N/A",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Architecture (M.Arch) - GSAPP",
+   "url": "https://www.arch.columbia.edu/programs/1-master-of-architecture",
+   "snapshot_sha256": "ee71eaf966ee639bd6b475acad1878906e09ffed3f125f3325ae7432510d9dbf",
+   "fields": {
+    "academic": {
+     "text": "All applicants must have an undergraduate degree from an accredited college or university by the time they start the M.ARCH program.",
+     "quote": "All applicants must have an undergraduate degree from an accredited college or university by the time they start the M.ARCH program.",
+     "source_sha256": "b21d921d9a59faf3b7ab73e28cf97d2c10f0d42690d863a872aeb7b54e5f1407",
+     "source_url": "https://www.arch.columbia.edu/admissions/application-process",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-01-03",
+      "quote": "Application Deadline: January 3, 2027",
+      "source_sha256": "b21d921d9a59faf3b7ab73e28cf97d2c10f0d42690d863a872aeb7b54e5f1407",
+      "source_url": "https://www.arch.columbia.edu/admissions/application-process",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "History/theory: a 3-point survey course in architectural history",
+      "quote": "History/Theory Course Sequence: All applicants must have completed a 3-point survey course in architectural history at an accredited college or university dealing with any of the following periods: classical to Renaissance, Renaissance to modern, or modern.",
+      "source_sha256": "b21d921d9a59faf3b7ab73e28cf97d2c10f0d42690d863a872aeb7b54e5f1407",
+      "source_url": "https://www.arch.columbia.edu/admissions/application-process",
+      "check": "ok"
+     },
+     {
+      "text": "Building technologies: a 3-point course in general physics or two 3-point calculus courses",
+      "quote": "Building Technologies Course Sequence: All applicants must have completed a 3-point course in general physics or two 3-point calculus courses at an accredited college or university.",
+      "source_sha256": "b21d921d9a59faf3b7ab73e28cf97d2c10f0d42690d863a872aeb7b54e5f1407",
+      "source_url": "https://www.arch.columbia.edu/admissions/application-process",
+      "check": "ok"
+     },
+     {
+      "text": "Digital portfolio required",
+      "quote": "A digital portfolio is required for admission to the Master of Architecture program.",
+      "source_sha256": "b21d921d9a59faf3b7ab73e28cf97d2c10f0d42690d863a872aeb7b54e5f1407",
+      "source_url": "https://www.arch.columbia.edu/admissions/application-process",
+      "check": "ok"
+     },
+     {
+      "text": "English proficiency exam scores (TOEFL, IELTS or Duolingo) required if primary language is not English; no minimum score stated; waivable after two years of study in an English-speaking institution",
+      "quote": "All applicants whose primary language is not English must submit English Proficiency Exam scores",
+      "source_sha256": "b21d921d9a59faf3b7ab73e28cf97d2c10f0d42690d863a872aeb7b54e5f1407",
+      "source_url": "https://www.arch.columbia.edu/admissions/application-process",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "M.S. Advanced Architectural Design - GSAPP",
+   "url": "https://www.arch.columbia.edu/programs/3-m-s-advanced-architectural-design",
+   "snapshot_sha256": "ad3181449e465867cad0ef7588d029319b61f90fc9d03e1a37d4de9dd8cbce3b",
+   "fields": {
+    "academic": {
+     "text": "The MSAAD program is a second/post-professional degree in Architecture. All applicants must have a first professional degree, B.Arch, M.Arch, or equivalent degree (5 years, eligible for licensure) by the time they start the M.S. AAD program.",
+     "quote": "The MSAAD program is a second/post-professional degree in Architecture. All applicants must have a first professional degree, B.Arch, M.Arch, or equivalent degree (5 years, eligible for licensure) by the time they start the M.S. AAD program.",
+     "source_sha256": "b21d921d9a59faf3b7ab73e28cf97d2c10f0d42690d863a872aeb7b54e5f1407",
+     "source_url": "https://www.arch.columbia.edu/admissions/application-process",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-01-15",
+      "quote": "Application Deadline: January 15, 2027",
+      "source_sha256": "b21d921d9a59faf3b7ab73e28cf97d2c10f0d42690d863a872aeb7b54e5f1407",
+      "source_url": "https://www.arch.columbia.edu/admissions/application-process",
+      "check": "ok"
+     },
+     {
+      "label": "Early action",
+      "date": "2026-12-15",
+      "quote": "Early Action Deadline: December 15, 2026",
+      "source_sha256": "b21d921d9a59faf3b7ab73e28cf97d2c10f0d42690d863a872aeb7b54e5f1407",
+      "source_url": "https://www.arch.columbia.edu/admissions/application-process",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "English proficiency exam scores (TOEFL, IELTS or Duolingo) required if primary language is not English; no minimum score stated; waivable after two years of study in an English-speaking institution",
+      "quote": "All applicants whose primary language is not English must submit English Proficiency Exam scores",
+      "source_sha256": "b21d921d9a59faf3b7ab73e28cf97d2c10f0d42690d863a872aeb7b54e5f1407",
+      "source_url": "https://www.arch.columbia.edu/admissions/application-process",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "M.S. Architecture and Urban Design - GSAPP",
+   "url": "https://www.arch.columbia.edu/programs/9-m-s-architecture-and-urban-design",
+   "snapshot_sha256": "50eb560123fee5d6bd9b8068af86934118dfa735b18818516c7c287b58f9b39a",
+   "fields": {
+    "academic": {
+     "text": "All applicants must have an undergraduate degree from an accredited college or university by the time they start the M.S. AUD program.",
+     "quote": "All applicants must have an undergraduate degree from an accredited college or university by the time they start the M.S. AUD program.",
+     "source_sha256": "b21d921d9a59faf3b7ab73e28cf97d2c10f0d42690d863a872aeb7b54e5f1407",
+     "source_url": "https://www.arch.columbia.edu/admissions/application-process",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-01-15",
+      "quote": "Application Deadline: January 15, 2027",
+      "source_sha256": "b21d921d9a59faf3b7ab73e28cf97d2c10f0d42690d863a872aeb7b54e5f1407",
+      "source_url": "https://www.arch.columbia.edu/admissions/application-process",
+      "check": "ok"
+     },
+     {
+      "label": "Early action",
+      "date": "2026-12-15",
+      "quote": "Early Action Deadline: December 15, 2026",
+      "source_sha256": "b21d921d9a59faf3b7ab73e28cf97d2c10f0d42690d863a872aeb7b54e5f1407",
+      "source_url": "https://www.arch.columbia.edu/admissions/application-process",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "English proficiency exam scores (TOEFL, IELTS or Duolingo) required if primary language is not English; no minimum score stated; waivable after two years of study in an English-speaking institution",
+      "quote": "All applicants whose primary language is not English must submit English Proficiency Exam scores",
+      "source_sha256": "b21d921d9a59faf3b7ab73e28cf97d2c10f0d42690d863a872aeb7b54e5f1407",
+      "source_url": "https://www.arch.columbia.edu/admissions/application-process",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "M.S. Computational Design Practices - GSAPP",
+   "url": "https://www.arch.columbia.edu/programs/15-m-s-computational-design-practices",
+   "snapshot_sha256": "48c3988996b13664dee6a17040161833181b68651e5dbb82281a332b5759d0df",
+   "fields": {
+    "academic": {
+     "text": "All applicants must have an undergraduate degree from an accredited college or university by the time they start the M.S. CDP program.",
+     "quote": "All applicants must have an undergraduate degree from an accredited college or university by the time they start the M.S. CDP program.",
+     "source_sha256": "b21d921d9a59faf3b7ab73e28cf97d2c10f0d42690d863a872aeb7b54e5f1407",
+     "source_url": "https://www.arch.columbia.edu/admissions/application-process",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-01-15",
+      "quote": "Application Deadline: January 15, 2027",
+      "source_sha256": "b21d921d9a59faf3b7ab73e28cf97d2c10f0d42690d863a872aeb7b54e5f1407",
+      "source_url": "https://www.arch.columbia.edu/admissions/application-process",
+      "check": "ok"
+     },
+     {
+      "label": "Early action",
+      "date": "2026-12-15",
+      "quote": "Early Action Deadline: December 15, 2026",
+      "source_sha256": "b21d921d9a59faf3b7ab73e28cf97d2c10f0d42690d863a872aeb7b54e5f1407",
+      "source_url": "https://www.arch.columbia.edu/admissions/application-process",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "English proficiency exam scores (TOEFL, IELTS or Duolingo) required if primary language is not English; no minimum score stated; waivable after two years of study in an English-speaking institution",
+      "quote": "All applicants whose primary language is not English must submit English Proficiency Exam scores",
+      "source_sha256": "b21d921d9a59faf3b7ab73e28cf97d2c10f0d42690d863a872aeb7b54e5f1407",
+      "source_url": "https://www.arch.columbia.edu/admissions/application-process",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "M.S. Critical, Curatorial and Conceptual Practices - GSAPP",
+   "url": "https://www.arch.columbia.edu/programs/4-m-s-critical-curatorial-conceptual-practices",
+   "snapshot_sha256": "762b60643e2680732ca6c0852c88b56ccd8b95e95210fcaa5113f2ef3d81d125",
+   "fields": {
+    "academic": {
+     "text": "The MSCCCP program applicants must have a minimum of a four-year bachelor degree or equivalent from an accredited college or university by the time they start the M.S. CCCP program, including no less than 4 classes in architecture, architectural history, or a related form of aesthetic or cultural practice.",
+     "quote": "The MSCCCP program applicants must have a minimum of a four-year bachelor degree or equivalent from an accredited college or university by the time they start the M.S. CCCP program, including no less than 4 classes in architecture, architectural history, or a related form of aesthetic or cultural practice.",
+     "source_sha256": "b21d921d9a59faf3b7ab73e28cf97d2c10f0d42690d863a872aeb7b54e5f1407",
+     "source_url": "https://www.arch.columbia.edu/admissions/application-process",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-01-15",
+      "quote": "Application Deadline: January 15, 2027",
+      "source_sha256": "b21d921d9a59faf3b7ab73e28cf97d2c10f0d42690d863a872aeb7b54e5f1407",
+      "source_url": "https://www.arch.columbia.edu/admissions/application-process",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "English proficiency exam scores (TOEFL, IELTS or Duolingo) required if primary language is not English; no minimum score stated; waivable after two years of study in an English-speaking institution",
+      "quote": "All applicants whose primary language is not English must submit English Proficiency Exam scores",
+      "source_sha256": "b21d921d9a59faf3b7ab73e28cf97d2c10f0d42690d863a872aeb7b54e5f1407",
+      "source_url": "https://www.arch.columbia.edu/admissions/application-process",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "M.S. Historic Preservation - GSAPP",
+   "url": "https://www.arch.columbia.edu/programs/7-m-s-historic-preservation",
+   "snapshot_sha256": "480e2b5bdf7250cd001e00a18e8bdab9035f922fe1e7b960000d91f80f279cea",
+   "fields": {
+    "academic": {
+     "text": "All applicants must have an undergraduate degree from an accredited college or university by the time they start the M.S. HP program.",
+     "quote": "All applicants must have an undergraduate degree from an accredited college or university by the time they start the M.S. HP program.",
+     "source_sha256": "b21d921d9a59faf3b7ab73e28cf97d2c10f0d42690d863a872aeb7b54e5f1407",
+     "source_url": "https://www.arch.columbia.edu/admissions/application-process",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-01-15",
+      "quote": "Application Deadline: January 15, 2027",
+      "source_sha256": "b21d921d9a59faf3b7ab73e28cf97d2c10f0d42690d863a872aeb7b54e5f1407",
+      "source_url": "https://www.arch.columbia.edu/admissions/application-process",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "English proficiency exam scores (TOEFL, IELTS or Duolingo) required if primary language is not English; no minimum score stated; waivable after two years of study in an English-speaking institution",
+      "quote": "All applicants whose primary language is not English must submit English Proficiency Exam scores",
+      "source_sha256": "b21d921d9a59faf3b7ab73e28cf97d2c10f0d42690d863a872aeb7b54e5f1407",
+      "source_url": "https://www.arch.columbia.edu/admissions/application-process",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "M.S. Real Estate Development - GSAPP",
+   "url": "https://www.arch.columbia.edu/programs/8-m-s-real-estate-development",
+   "snapshot_sha256": "782b7885387f4a674ced5dda83fb02c9ecb0d6761a3f31256f9059b0d504db9c",
+   "fields": {
+    "academic": {
+     "text": "All applicants must have an undergraduate degree from an accredited college or university by the time they start the MSRED program.",
+     "quote": "All applicants must have an undergraduate degree from an accredited college or university by the time they start the MSRED program.",
+     "source_sha256": "b21d921d9a59faf3b7ab73e28cf97d2c10f0d42690d863a872aeb7b54e5f1407",
+     "source_url": "https://www.arch.columbia.edu/admissions/application-process",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-01-15",
+      "quote": "Application Deadline: January 15, 2027",
+      "source_sha256": "b21d921d9a59faf3b7ab73e28cf97d2c10f0d42690d863a872aeb7b54e5f1407",
+      "source_url": "https://www.arch.columbia.edu/admissions/application-process",
+      "check": "ok"
+     },
+     {
+      "label": "Early action",
+      "date": "2026-12-15",
+      "quote": "Early Action Deadline: December 15, 2026",
+      "source_sha256": "b21d921d9a59faf3b7ab73e28cf97d2c10f0d42690d863a872aeb7b54e5f1407",
+      "source_url": "https://www.arch.columbia.edu/admissions/application-process",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "English proficiency exam scores (TOEFL, IELTS or Duolingo) required if primary language is not English; no minimum score stated; waivable after two years of study in an English-speaking institution",
+      "quote": "All applicants whose primary language is not English must submit English Proficiency Exam scores",
+      "source_sha256": "b21d921d9a59faf3b7ab73e28cf97d2c10f0d42690d863a872aeb7b54e5f1407",
+      "source_url": "https://www.arch.columbia.edu/admissions/application-process",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "M.S. Urban Planning - GSAPP",
+   "url": "https://www.arch.columbia.edu/programs/10-m-s-urban-planning",
+   "snapshot_sha256": "2d7dc9686659070f7f5941637a3d71adc26427b72db6ce0aa928792160b9bb88",
+   "fields": {
+    "academic": {
+     "text": "All applicants must have an undergraduate degree from an accredited college or university by the time they start the MSUP program.",
+     "quote": "All applicants must have an undergraduate degree from an accredited college or university by the time they start the MSUP program.",
+     "source_sha256": "b21d921d9a59faf3b7ab73e28cf97d2c10f0d42690d863a872aeb7b54e5f1407",
+     "source_url": "https://www.arch.columbia.edu/admissions/application-process",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-01-15",
+      "quote": "Application Deadline: January 15, 2027",
+      "source_sha256": "b21d921d9a59faf3b7ab73e28cf97d2c10f0d42690d863a872aeb7b54e5f1407",
+      "source_url": "https://www.arch.columbia.edu/admissions/application-process",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "English proficiency exam scores (TOEFL, IELTS or Duolingo) required if primary language is not English; no minimum score stated; waivable after two years of study in an English-speaking institution",
+      "quote": "All applicants whose primary language is not English must submit English Proficiency Exam scores",
+      "source_sha256": "b21d921d9a59faf3b7ab73e28cf97d2c10f0d42690d863a872aeb7b54e5f1407",
+      "source_url": "https://www.arch.columbia.edu/admissions/application-process",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "M.S. in Public Health Data Science (Biostatistics) - Mailman",
+   "url": "https://www.publichealth.columbia.edu/academics/degrees/master-science/public-health-data-science",
+   "snapshot_sha256": "31179d9a2760e912f8936e39f956c6e4698dffa439c66c74e8e824481ff4d82e",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "Some college mathematics, including at least a year of calculus; a semester of linear/matrix algebra highly encouraged",
+      "quote": "Applicants should have some background in college mathematics, including at least a year of calculus. A semester of linear/matrix algebra is highly encouraged.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 65,
+  "机器核对": 65,
+  "待人工": 0
+ }
+}
