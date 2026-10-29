@@ -152,6 +152,23 @@ real Ministry data and keep their own label.
 horizontal scroll, or a missing `h1`. `make screenshots` points at it; the old script and screenshots 01–29 are
 deleted.
 
+### D11. The catalog is no longer Australian only (added 2026-10-29)
+
+Since this design was written, the requirement importer has added 5,337 programs at 141 schools in many
+countries (PR #27). D3's premise that every non-hand-entered program is a CRICOS course no longer holds, so:
+
+- **Study areas from names.** A collected program has no official field, so the importer files it under a
+  study area read from its English name (`app/collect/fields.py`, ordered keyword rules). The rules agree with
+  CRICOS's own field on 78.5% of the 2,920 Australian courses; the remaining differences are mostly CRICOS's
+  own filing (it puts clinical medicine under natural sciences and software engineering under engineering).
+  A name no rule matches stays unclassified. A row that already has an area, such as a CRICOS row, keeps it.
+  The area is a filing label for search, never an admission fact.
+- **The library and the result page read the API.** `/programs` lists `GET /api/programs` with a new `q`
+  search and paging; Australian rows add the CRICOS facts (tuition, weeks) by course code as D3 says. The
+  result page tiers every program in the target field that has a stated requirement, whatever its country.
+- **Programs link to their school.** `GET /api/programs` serves `universityId` and `country`, so a program row
+  links to `/schools/[id]` and a school page lists its programs with `provider=<id>`.
+
 ## Risks / Trade-offs
 
 - [Most programs have no requirements, so the result page tiers only a handful] → The page leads with the count

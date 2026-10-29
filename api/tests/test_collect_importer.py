@@ -67,6 +67,23 @@ def test_a_checked_program_is_imported_as_machine_checked_and_never_verified(db_
     assert "[ielts] IELTS 7.0 with 6.5 in each component" in version.body_text
 
 
+def test_a_collected_program_is_filed_under_the_study_area_its_name_points_to(db_session, require_db, cleanup, tmp_path):
+    import_school(db_session, school_file(), SCHOOLS, root=tmp_path)
+    program = db_session.get(Program, program_id_for(KEY, {"url": URL, "name": "MSc Data Science"}))
+    assert program.field == "计算机与数据"
+
+
+def test_a_row_with_a_study_area_keeps_it(db_session, require_db, cleanup, tmp_path):
+    import_school(db_session, school_file(), SCHOOLS, root=tmp_path)
+    program = db_session.get(Program, program_id_for(KEY, {"url": URL, "name": "MSc Data Science"}))
+    program.field = "自然科学与数学"
+    db_session.commit()
+
+    import_school(db_session, school_file(), SCHOOLS, root=tmp_path)
+
+    assert db_session.get(Program, program.id).field == "自然科学与数学"
+
+
 def test_a_field_that_failed_its_check_is_not_written(db_session, require_db, cleanup, tmp_path):
     data = school_file(ielts={"overall": 7.0, "quote": "IELTS 7", "check": "quote not found in snapshot"},
                        china_requirement={"min_mark_211": 80, "quote": "80%", "check": "quote not found in snapshot"})

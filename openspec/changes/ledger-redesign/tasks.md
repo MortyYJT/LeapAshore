@@ -14,6 +14,9 @@
 - [ ] 2.6 Advisor: test that `search_programs` finds a CRICOS course by English name and still returns at most 10
 - [x] 2.7 Run the backend suite on a fresh database (`make migrate`, `make seed`) and fix fallout from the larger catalog
 
+- [x] 2.8 (D11) File collected programs under a study area read from their name; test agreement with CRICOS
+- [x] 2.9 (D11) `GET /api/programs` gains `q` and serves `universityId` and `country`
+
 ## 3. Tiering and data adapters (web/lib)
 
 - [x] 3.1 Red: `lib/tiers.test.ts` covering every `program-tiering` scenario (safety, reach, two shortfalls, 要求未收录, text-only English, unknown / overseas / non-211 institution)
