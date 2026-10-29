@@ -376,3 +376,29 @@ def test_tls_verification_stays_on_and_uses_a_current_root_store():
     assert context.verify_mode == ssl.CERT_REQUIRED and context.check_hostname
     subjects = {dict(x[0] for x in cert["subject"]).get("commonName") for cert in context.get_ca_certs()}
     assert "HARICA TLS RSA Root CA 2021" in subjects
+
+
+def test_a_gzipped_answer_is_decoded_even_unasked(monkeypatch):
+    """Some servers gzip the body although we never sent Accept-Encoding; the text must still be text."""
+    import gzip
+    import io
+
+    class Response(io.BytesIO):
+        status = 200
+
+        def __init__(self):
+            super().__init__(gzip.compress("<p>Deadline: 1 March 2027</p>".encode()))
+            self.headers = __import__("email.message", fromlist=["Message"]).Message()
+            self.headers["Content-Type"] = "text/html; charset=utf-8"
+            self.headers["Content-Encoding"] = "gzip"
+
+        def geturl(self):
+            return "https://example.edu/p"
+
+    class Opener:
+        def open(self, request, timeout=None):
+            return Response()
+
+    monkeypatch.setattr(snap.urllib.request, "build_opener", lambda *handlers: Opener())
+    status, _, _, html = snap.fetch_html("https://example.edu/p")
+    assert status == 200 and "1 March 2027" in html

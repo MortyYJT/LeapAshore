@@ -17,6 +17,7 @@ file can cite exactly the version its quotes were checked against.
 
 import argparse
 import fcntl
+import gzip
 import hashlib
 import json
 import os
@@ -189,6 +190,9 @@ def fetch_html(url: str, refusal=lambda url: None) -> tuple[int, str, str, str]:
     try:
         with opener.open(request, timeout=TIMEOUT) as response:
             raw = response.read()
+            if (response.headers.get("Content-Encoding") or "").lower() == "gzip" or raw[:2] == b"\x1f\x8b":
+                # Sent compressed although we never asked for it.
+                raw = gzip.decompress(raw)
             charset = response.headers.get_content_charset() or "utf-8"
             return response.status, response.geturl(), response.headers.get("Content-Type", ""), raw.decode(charset, "replace")
     except urllib.error.HTTPError as error:
