@@ -6,7 +6,7 @@ from sqlalchemy import func, or_, select
 from sqlalchemy.orm import Session, selectinload
 
 from app.db import get_session
-from app.models.program import Program, University
+from app.models.program import Program, University, has_requirement_data
 from app.models.source import Source
 from app.schemas.program import ProgramOut, SourceOut
 
@@ -72,7 +72,7 @@ def list_programs(
       here and non-nullable `string` in the frontend's type, so the adapter has to narrow them
       instead of assuming they are always present.
     """
-    stated = or_(Program.minimum_mark.is_not(None), Program.english_requirement.is_not(None))
+    stated = has_requirement_data()
     conditions = []
     if field:
         conditions.append(Program.field == field)

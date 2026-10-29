@@ -88,7 +88,7 @@ Code: [api/app/agent/](api/app/agent/).
 | Australian master's programs (2,920) | CRICOS, data.gov.au, CC BY 2.5 AU | Real, attributed, dated |
 | Chinese institutions (3,167) and tier tags | Public lists | Real; known gaps recorded in the fixture |
 | Overseas schools (287) | QS World University Rankings 2027 top 300 in the 29 countries and regions in scope (241) + 46 for regional coverage | Real |
-| Admission requirements (5,223 programs at 120 schools) | Official course pages, each quote checked against a saved snapshot | **Machine-checked (机器核对)** for 5,163; the rest 待核验. None human-verified yet |
+| Admission requirements (5,223 programs at 120 schools) | Official course pages, each quote checked against a saved snapshot | **Machine-checked (机器核对)** for 5,163; the other 60 have no value that passed the check and are not imported. None human-verified yet. In the site's catalogue, 4,813 of the 5,163 state a requirement the program page shows (English, a mark, or a prerequisite); the other 350 have only values the catalogue does not store yet (academic routes, deadlines, test notes without a score). The catalogue's 「有要求」 count is 4,815: those 4,813 plus 2 hand-entered 待核验 placeholders |
 | Deadlines | Official pages, each quote checked against a saved snapshot | **Collected, not imported yet**: 3,986 dates for 2,335 programs at 79 schools sit in `api/data/requirements/*.json` (all 机器核对); the importer does not load them, so the site still shows official deadlines as 待核验 |
 
 These rules exist because an earlier version of this product generated a plausible verification

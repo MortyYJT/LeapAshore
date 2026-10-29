@@ -11,11 +11,11 @@ from typing import Annotated
 
 from fastapi import APIRouter, Depends
 from pydantic import BaseModel, ConfigDict
-from sqlalchemy import func, or_, select
+from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
 from app.db import get_session
-from app.models.program import Program, University
+from app.models.program import Program, University, has_requirement_data
 from app.schemas.common import _camel
 
 router = APIRouter(prefix="/api/universities", tags=["universities"])
@@ -35,7 +35,7 @@ class UniversityOut(BaseModel):
 @router.get("", response_model=list[UniversityOut])
 def list_universities(session: Annotated[Session, Depends(get_session)]) -> list[UniversityOut]:
     """Public data, like the program catalogue: no client cookie is read or issued."""
-    stated = or_(Program.minimum_mark.is_not(None), Program.english_requirement.is_not(None))
+    stated = has_requirement_data()
     counts = (
         select(
             Program.university_id,

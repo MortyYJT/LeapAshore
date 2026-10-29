@@ -1,7 +1,7 @@
 from datetime import datetime
 from decimal import Decimal
 
-from sqlalchemy import Boolean, DateTime, ForeignKey, Integer, Numeric, String, Text, func
+from sqlalchemy import Boolean, DateTime, ForeignKey, Integer, Numeric, String, Text, exists, func, or_
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db import Base
@@ -82,3 +82,21 @@ class ProgramPrerequisite(Base):
     sort_order: Mapped[int] = mapped_column(Integer, default=0)
 
     program: Mapped[Program] = relationship(back_populates="prerequisites")
+
+
+def has_requirement_data():
+    """SQL: the program states at least one requirement its page shows.
+
+    The one rule behind every "has a requirement" count: the catalogue's filter and order, the school
+    library's per-school count and the advisor's evidence gate. A requirement is an English line, a
+    mark for 985/211 or for other universities, or a prerequisite, the rows the program page lists
+    under 录取要求. Collected values the catalogue does not store yet (academic routes, deadlines) do
+    not count, so a program can be `机器核对` in its collection file and still have no stated
+    requirement here.
+    """
+    return or_(
+        Program.english_requirement.is_not(None),
+        Program.minimum_mark.is_not(None),
+        Program.non_211_minimum_mark.is_not(None),
+        exists().where(ProgramPrerequisite.program_id == Program.id),
+    )

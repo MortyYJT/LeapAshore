@@ -57,7 +57,8 @@ export default async function ProgramPage({ params }: { params: Promise<{ id: st
         ["学位", program.degreeLevel ?? "未知"],
         ["学制", program.duration ?? NOT_COLLECTED],
       ];
-  const stated = program.minimumMark !== null || program.englishRequirement !== null || program.prerequisites.length > 0;
+  // The rule of `has_requirement_data` in api/app/models/program.py, so this page and the catalogue counts agree.
+  const stated = program.minimumMark !== null || program.non211MinimumMark !== null || program.englishRequirement !== null || program.prerequisites.length > 0;
 
   return (
     <>

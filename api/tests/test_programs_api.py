@@ -348,13 +348,19 @@ def test_programs_with_a_stated_requirement_come_first_and_can_be_filtered(requi
     seed_catalog(db_session)
     client = TestClient(app)
 
+    def states(p: dict) -> bool:
+        # The rule of `app.models.program.has_requirement_data`, read off the wire.
+        return any(p[k] is not None for k in ("minimumMark", "non211MinimumMark", "englishRequirement")) or bool(
+            p["prerequisites"]
+        )
+
     first = client.get("/api/programs", params={"limit": 3}).json()
-    assert all(p["minimumMark"] is not None or p["englishRequirement"] is not None for p in first)
+    assert all(states(p) for p in first)
     stated = client.get("/api/programs", params={"has_requirements": "true", "provider": "usyd"}).json()
     assert "cricos-111671D" in [p["slug"] for p in stated]
-    assert all(p["minimumMark"] is not None or p["englishRequirement"] is not None for p in stated)
+    assert all(states(p) for p in stated)
     unstated = client.get("/api/programs", params={"has_requirements": "false", "provider": "usyd", "limit": 5}).json()
-    assert unstated and all(p["minimumMark"] is None and p["englishRequirement"] is None for p in unstated)
+    assert unstated and not any(states(p) for p in unstated)
 
 
 def test_the_catalogue_can_be_searched_by_program_or_school_name(require_db, db_session):
