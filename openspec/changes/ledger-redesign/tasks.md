@@ -16,7 +16,7 @@
 
 ## 3. Tiering and data adapters (web/lib)
 
-- [ ] 3.1 Red: `lib/tiers.test.ts` covering every `program-tiering` scenario (safety, reach, two shortfalls, 要求未收录, text-only English, unknown / overseas / non-211 institution)
+- [x] 3.1 Red: `lib/tiers.test.ts` covering every `program-tiering` scenario (safety, reach, two shortfalls, 要求未收录, text-only English, unknown / overseas / non-211 institution)
 - [ ] 3.2 Green: move `prototype-tiers.ts` to `tiers.ts` on the API program shape; remove the `信息不足` tier; delete `eligibility.ts`
 - [ ] 3.3 Rename `prototype-library-server.ts` to `catalog-server.ts`; test the join by course code against `/api/programs`
 - [ ] 3.4 Add `web/lib/hooks/` (`useProfile`, `usePortfolio`, `useRoadmap`, `useMaterials`), each `{ data, error, loading, reload }`, with tests for the error path
