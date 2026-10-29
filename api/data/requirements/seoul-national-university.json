@@ -1,0 +1,126 @@
+{
+ "school_key": "seoul-national-university",
+ "school_name_en": "Seoul National University",
+ "country": "South Korea",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://en.snu.ac.kr/academics/programs/graduate",
+  "https://en.snu.ac.kr/academics/programs/professional_graduate_schools",
+  "https://en.snu.ac.kr/admission/graduate/application"
+ ],
+ "blocked": [
+  {
+   "url": "http://gsds.snu.ac.kr/en",
+   "reason": "robots.txt disallows"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://eng.snu.ac.kr/academics/graduate-programs/computer-science-and-engineering",
+  "https://gses.snu.ac.kr/en/information/admissions"
+ ],
+ "notes": "The central international graduate guideline (Admissions for Graduate, Spring 2027, eligibility, per-college language levels such as TOPIK 6 for Business, TEPS) is PDF-only (https://en.snu.ac.kr/webdata/uploads/eng/file/2026/06/2027Spring_graduate_eng.pdf) and could not be read; the English/Korean minimums quoted here come from the admissions FAQ, which is marked 'Last updated in 2021' and also covers undergraduate, so treat them as 待核验 against the current PDF. Spring 2027 international graduate application closed on 2026-07-09; no Fall 2027 dates are published in HTML. GSDS site blocked by robots.txt; Engineering and Environmental Studies pages state no admission requirements in HTML; GSIS and GSPA publish only undated month ranges. Only the Full-time MBA (GSB) has a future dated deadline.",
+ "programs": [
+  {
+   "name": "Graduate programs, international admissions (master's and combined programs) - Spring 2027",
+   "url": "https://en.snu.ac.kr/admission/graduate/application",
+   "snapshot_sha256": "30ed242d19be770314c20219dff40222ecb8701bc8c446c11fc46a40e5ea7cc3",
+   "fields": {
+    "ielts": {
+     "overall": 6.0,
+     "quote": "2) English Proficiency: TOEFL iBT 80, TEPS 551, IELTS 6.0 or higher",
+     "source_sha256": "74f1c5ca84c8049b33d0dde9fd2092374f6f066a9750aa85dcce312582240772",
+     "source_url": "https://en.snu.ac.kr/admission/overview/faq/admission",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "2) English Proficiency: TOEFL iBT 80, TEPS 551, IELTS 6.0 or higher",
+     "source_sha256": "74f1c5ca84c8049b33d0dde9fd2092374f6f066a9750aa85dcce312582240772",
+     "source_url": "https://en.snu.ac.kr/admission/overview/faq/admission",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Korean proficiency: TOPIK level 3 or higher (alternative to English proficiency; either proof of Korean or English is required)",
+      "quote": "1) Korean Proficiency: TOPIK level 3 or higher",
+      "source_sha256": "74f1c5ca84c8049b33d0dde9fd2092374f6f066a9750aa85dcce312582240772",
+      "source_url": "https://en.snu.ac.kr/admission/overview/faq/admission",
+      "check": "ok"
+     },
+     {
+      "text": "Either proof of Korean or English proficiency is required; SNU Korean Language Center Level 4 or higher is also accepted as Korean proof",
+      "quote": "Either proof of Korean or English proficiency is required for the application.",
+      "source_sha256": "74f1c5ca84c8049b33d0dde9fd2092374f6f066a9750aa85dcce312582240772",
+      "source_url": "https://en.snu.ac.kr/admission/overview/faq/admission",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 intake, graduate international admissions, online application (closed)",
+      "date": "2026-07-09",
+      "quote": "Online Application: Monday, July 6, 2026, 10:00 - Thursday, July 9, 2026, 17:00 (KST)",
+      "source_sha256": "0c7d0978ad008abb74ef13d9cbac24b4711ef61a1a9a80a0dca70310e82a3fa9",
+      "source_url": "https://en.snu.ac.kr/admission/overview/notice?md=v&bbsidx=172490",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Full-time MBA, Graduate School of Business (SNU MBA) - 2027 admission",
+   "url": "https://gsb.snu.ac.kr/en/adminssions/overview",
+   "snapshot_sha256": "56135deea4004c418d39afcccaf8f689b5c5ccf83f017f76329c2ea77a9c3486",
+   "fields": {
+    "academic": {
+     "text": "International applicants must have completed the whole of their education abroad, equivalent to Korea's 12 years of schooling plus the undergraduate degree; work experience is not required",
+     "quote": "the entire year of your education, equivalent to Korea’s 12 years of education (elementary, middle, and high school) in addition to the undergraduate degree, should be completed abroad.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "No work experience required",
+      "quote": "No. Candidates without job experience are also eligible to apply.",
+      "check": "ok"
+     },
+     {
+      "text": "English test scores are exempt for applicants with a bachelor's or higher degree from an institution in a country where English is the official language; otherwise applicants must promise to take the TEPS special exam run by SNU Language Education Institute",
+      "quote": "you are exempted from the requirement to submit the test scores.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "2027 Full-time MBA, online application closes",
+      "date": "2027-03-12",
+      "quote": "February 25, 2027 (Thur) 10:00 ~ March 12 (Fri), 2027 17:00",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Graduate School of Public Administration (GSPA), Master's Program - international admission",
+   "url": "http://gspa.snu.ac.kr/en/curriculum/admission/info",
+   "snapshot_sha256": "89a6c673fd573752f025aa522791c5c479b6ad372101b6d81dd410d609d8b9ba",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Graduate School of International Studies (GSIS), Master's Program - international students",
+   "url": "https://gsis.snu.ac.kr/application/",
+   "snapshot_sha256": "bd2f3828fd39805bc72126d6c30fc41409939ca22b84e0304aec238c0cf87cc2",
+   "fields": {},
+   "status": "待人工"
+  }
+ ],
+ "verification": {
+  "programs": 4,
+  "机器核对": 2,
+  "待人工": 2
+ }
+}
