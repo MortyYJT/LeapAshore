@@ -1,0 +1,39 @@
+{
+ "id": "6d4e0ed9-b630-426d-aafb-b0701742982f",
+ "object": "chat.completion",
+ "created": 1793296895,
+ "model": "deepseek-flash",
+ "choices": [
+  {
+   "index": 0,
+   "message": {
+    "role": "assistant",
+    "content": "",
+    "tool_calls": [
+     {
+      "index": 0,
+      "id": "call_00_ypJhq1qpdX06ipfiAUTz4906",
+      "type": "function",
+      "function": {
+       "name": "ProgramRequirements",
+       "arguments": "{\"academic\": [{\"text\": \"A bachelor's degree in a quantitative discipline with a weighted average mark of at least 75%.\", \"quote\": \"Applicants need a bachelor's degree in a quantitative discipline with a weighted average mark of at least 75%.\"}], \"china_requirement\": {\"text\": \"A bachelor's degree with an average of 80% from a 985/211 university, or 85% from other recognised universities.\", \"quote\": \"Applicants from China: a bachelor's degree with an average of 80% from a 985/211 university, or 85% from other recognised universities.\", \"min_mark_211\": 80, \"min_mark_other\": 85}, \"ielts\": {\"overall\": 6.5, \"min_band\": 6.0, \"recommended\": false, \"quote\": \"IELTS Academic: an overall score of 6.5 with no band below 6.0.\"}, \"toefl\": {\"overall\": 90, \"min_band\": null, \"recommended\": false, \"two_scales\": true, \"text\": \"Total of 90 for tests taken on or before 20 January 2026; a score of 4.5 for tests taken on or after 21 January 2026.\", \"quote\": \"TOEFL iBT: for tests taken on or before 20 January 2026, a total of 90; for tests taken on or after 21 January 2026, a score of 4.5.\"}, \"prerequisites\": [{\"text\": \"At least one course in linear algebra.\", \"quote\": \"Applicants must have completed at least one course in linear algebra and one in programming.\"}, {\"text\": \"At least one course in programming.\", \"quote\": \"Applicants must have completed at least one course in linear algebra and one in programming.\"}], \"deadlines\": [{\"label\": \"2027 intake\", \"date\": \"2026-11-30\", \"quote\": \"Applications for the 2027 intake close on 30 November 2026.\"}]}"
+      }
+     }
+    ]
+   },
+   "logprobs": null,
+   "finish_reason": "tool_calls"
+  }
+ ],
+ "usage": {
+  "prompt_tokens": 2260,
+  "completion_tokens": 532,
+  "total_tokens": 2792,
+  "prompt_tokens_details": {
+   "cached_tokens": 1024
+  },
+  "prompt_cache_hit_tokens": 1024,
+  "prompt_cache_miss_tokens": 1236
+ },
+ "system_fingerprint": "bc19ba97cbe016479903222bb1578db6"
+}

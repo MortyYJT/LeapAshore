@@ -12,11 +12,12 @@
 - 本机 `make api-dev-bg` 默认开登录模式，验证码写到 `api/var/mail.log`（不发信）；走查要求后端在登录模式，否则直接退出并说明。
 - 顾问检索（PR #38）：校名按数据识别（繁简折叠、英文名、括号缩写、简称表 `api/data/advisor/university_aliases.json`），学科按 `Program.field`（`api/data/advisor/subjects.json`），门槛要求项目有录取要求数据，筛选在 SQL 里（新索引 Alembic `5c1e7f0a2b3d`），拒答文案按计数生成。评估集和跑法在 `api/evals/`（`python -m evals.run_advisor`）；**报数组 30 条已在最终代码上跑过一次，以后别再拿它调参**——P1「混合检索」要用它重跑对比时照实记录即可。CI 的 `advisor-eval` 任务只跑调参组。
 - 顾问限流与额度（PR #40）：Redis 滑动窗口（主体 + IP）和每日 token 上限（主体、IP、全站 200 万；放行时预扣、结束时按实际用量结算），超限 429、Redis 连不上 503（fail-closed）；`max_tokens` 放请求体（DeepSeek 忽略 `max_completion_tokens`）；IP 只在对端是 `TRUSTED_PROXIES`（生产 `caddy`）时读 `X-Forwarded-For`。设计 `openspec/changes/advisor-limits/`，压测 `python -m evals.load_advisor_limits`。默认数字是估的，待 MortyYJT 复核。
-- 下一步：`TASKS.md` P0 第六条「抽取写成代码」。
+- 抽取（PR #PRNUM）：`python -m app.collect.extract <school_key> <sha256> [--name …]`（在 `api/` 下）用顾问的模型把一份快照抽成采集文件格式的一个项目，预检 + `verify` 后不过的值删掉、原因进 `rejected`；只打印，不写文件。测量 `python -m evals.extract_rejection --per-school 10`（要 `CHAT_*` 指向 DeepSeek，见下面「开放问题」第二条；花约 1 元），10-30 结果：10 所 95 页拒收率 10.3%，结果文件 `api/evals/results/extract-2026-10-30.json`。离线工具，没部署。
+- 下一步：`TASKS.md` P0 第七条「仓库清理」。
 - 线上（10-30）已跑 PR #40：compose 多了 `redis` 容器；部署前备份在服务器 `~/db-backup-20261030-pre-limits.sql.gz`（Alembic 仍是 `5c1e7f0a2b3d`，PR #40 没改表）。
 - 线上运行的是 main（截至 PR #38 合并，10-30 部署，登录模式关；生产库已用 `remove_schools --apply` 删掉日本 8 所），地址 https://leapashore.mortyyjt.site 。个人网站 https://mortyyjt.site 也由这里的 Caddy 出。
 - 生产库（10-30，PR #34 部署后）：programs 7496（删日本 8 所前 7586），范围外国家项目 0，`verified_at` 非空 0。最近一次部署前的备份在服务器 `~/db-backup-20261030-pre-retrieval.sql.gz`（PR #38 前；Alembic 现在是 `5c1e7f0a2b3d`）。
-- `make verify`（PR #38，10-30）：后端 436、前端 232、走查 106/106（对 `make build` 产物，本机登录模式）。
+- `make verify`（抽取这条，10-30）：后端 485、前端 235、走查对 :3000 旧 dev server 28/30（`/assess` 404 和一处超时，老问题），对 `make build` 产物 106/106。
 
 ## 开放问题
 
@@ -26,6 +27,8 @@
 - **待 MortyYJT 复核（顾问检索）**：简称表是否地道；门槛「只有 CRICOS 课程名不算证据」是否太严（本机 31 所学校因此对要求问题全部拒答，如墨尔本、麦考瑞）；评估集标签是 AI 标的。
 
 - **GitHub 合并会写入 MortyYJT 的私人邮箱**：在 GitHub 网页或 `gh pr merge` 合并时，提交者字段用的是账号主邮箱。要 MortyYJT 在 GitHub → Settings → Emails 勾选「Keep my email addresses private」。已推送的历史不改写。
+- `nanyang-technological-university-singapore.json` 有 8 个项目的托福 `overall` 是 1–6 新分制的 4.5/5.0（采集说明要求这种只写 text），状态却是机器核对，界面会显示成「TOEFL iBT 4.5」。抽取那条发现的，没改；「仓库清理」或「截止日期和学术要求入库」时一并处理（删掉这几个 `overall` 或整条换成 text）。
+- 抽取器的已知局限：`verify` 只保证引文逐字在页上、数字在引文里，`text`/`label`/`recommended` 是否忠实没查；同温度 0 下截止日期的拒收数在跑与跑之间能差一倍（模型时而从页面别处推年份）。
 - 采集数据里需要人工确认的点写在各校 json 的 `notes` 里（旧清单可在提交 `1a9fa30` 的 handoff 里查到）。
 - 截止日期会过期：10-29 时已有 139 条早于当天。截止日期入库后，界面要按当天日期标「已截止」，不能当成未来日期排时间线。
 - Commons 上 CC BY / CC BY-SA 的校徽需要在界面上署名（`logo_license`、`logo_source` 已在 fixture 里），学校库页面还没有署名区。
@@ -53,7 +56,8 @@
 
 ## 坑
 
-- 后端测试要 Redis（`make db-up` 现在同时起 db 和 redis，本机端口 56379）；没起时顾问相关测试会 503 失败。每个测试用自己的键前缀（conftest 的 `isolate_the_advisor_limits`），结束时删掉。
+- 后端测试要 Redis（`make db-up` 现在同时起 db 和 redis，本机端口 56379）；没起时顾问相关测试会 503 失败。每个测试用自己的键前缀（conftest 的 `isolate_the_advisor_limits`），结束时删掉；这个清理 10-30 有一次在 redis-py 的握手里抛了 `AttributeError`（不可复现），已改成一并吞掉。
+- 抽取器测试回放 `api/tests/fixtures/extract/response.json`（对虚构页面录的真实响应）；改了 `ProgramRequirements` 的结构就要重录：对 `page.html` 调一次真实 API，把原始响应体存下来（录制脚本没进库，思路是给 `ChatOpenAI` 传带 response hook 的 `httpx.Client`）。
 - `get_chat_model` 的输出上限必须走 `extra_body={"max_tokens": …}`：LangChain 的 `max_tokens` 字段发出去是 `max_completion_tokens`，DeepSeek 不认（实测）。
 - 顾问的限流在 endpoint 里、请求体校验通过之后才查（不要改回 `Depends`：依赖先于校验运行，422 也会占名额、预扣也不会还）。一轮对话在后台任务（`advisor._detached`）里跑完，结束时 `limits.settle` 归还预扣；新加花钱的路径要拿 ticket 并保证 settle。
 

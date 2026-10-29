@@ -1,0 +1,5463 @@
+{
+ "summary": {
+  "date": "2026-10-30",
+  "endpoint": "https://api.deepseek.com",
+  "model_requested": "deepseek-chat",
+  "models_reported": [
+   "deepseek-flash"
+  ],
+  "schools": [
+   "australian-national-university",
+   "brown-university",
+   "chinese-university-of-hong-kong",
+   "eth-zurich",
+   "imperial-college-london",
+   "korea-university",
+   "nanyang-technological-university-singapore",
+   "technical-university-of-munich",
+   "university-of-toronto",
+   "universiti-malaya"
+  ],
+  "programs_attempted": 95,
+  "programs_extracted": 95,
+  "call_errors": [],
+  "answer_errors": 0,
+  "truncated_pages": 1,
+  "values_returned": 377,
+  "values_kept": 338,
+  "values_rejected": 39,
+  "values_unused": 69,
+  "retried_calls": 0,
+  "rejection_rate": 0.1034,
+  "rejected_by_reason": {
+   "deadline not as quoted": 38,
+   "number not in its quote": 1
+  },
+  "rejected_by_field": {
+   "deadlines": 38,
+   "ielts": 1
+  },
+  "programs_machine_checked": 89,
+  "coverage_vs_earlier": {
+   "earlier_same_page": 345,
+   "also_extracted": 245,
+   "numbers_compared": 64,
+   "numbers_agree": 64
+  },
+  "usage": {
+   "input_tokens": 530284,
+   "output_tokens": 30640,
+   "cache_read_tokens": 121600
+  },
+  "cost_cny_upper_bound": 1.0674,
+  "price_cny_per_million": {
+   "cache_hit": 0.04,
+   "cache_miss": 2.0,
+   "output": 8.0
+  }
+ },
+ "programs": [
+  {
+   "school": "australian-national-university",
+   "program": "Master of Accounting",
+   "snapshot_sha256": "193c2175aee316b998598fed941a8f87da3c08ceb7f12e8330fa8c5fbe2e5f70",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 4853,
+    "output_tokens": 270,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 2,
+   "fields": {
+    "academic": {
+     "text": "A Bachelor degree or international equivalent with a minimum GPA of 5.0/7.0.",
+     "quote": "a Bachelor degree or international equivalent with a minimum GPA of 5.0/7.0",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "A minimum of 10 years full-time equivalent work experience at OSCA Skill Level 1 in a field related to the program.",
+      "quote": "a minimum of 10 years full-time equivalent work experience at OSCA Skill Level 1 in a field related to the program",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [
+    {
+     "field": "academic",
+     "value": {
+      "text": "An ANU Graduate Certificate of Accounting with a minimum GPA of 4.5/7.0.",
+      "quote": "an ANU Graduate Certificate of Accounting with a minimum GPA of 4.5/7.0"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    },
+    {
+     "field": "academic",
+     "value": {
+      "text": "A minimum of 10 years full-time equivalent work experience at OSCA Skill Level 1 in a field related to the program.",
+      "quote": "a minimum of 10 years full-time equivalent work experience at OSCA Skill Level 1 in a field related to the program"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    }
+   ],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 1,
+    "also_extracted": 1,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "australian-national-university",
+   "program": "Master of Actuarial Practice",
+   "snapshot_sha256": "54ad0bd79754775ccbc640ef28db13ad896b208b51adddb6046e2c630d0698e5",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 5817,
+    "output_tokens": 263,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 2,
+   "fields": {
+    "academic": {
+     "text": "A Bachelor degree or international equivalent with a minimum GPA of 5.0/7.0, including at least one mathematics course covering calculus and linear algebra.",
+     "quote": "A Bachelor degree or international equivalent with a minimum GPA of 5.0/7.0, with at least one course in the field of mathematics that must cover calculus and linear algebra; or",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "At least one course in the field of mathematics covering calculus and linear algebra.",
+      "quote": "with at least one course in the field of mathematics that must cover calculus and linear algebra",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [
+    {
+     "field": "academic",
+     "value": {
+      "text": "An ANU Graduate Certificate of Actuarial Statistics with a minimum GPA of 4.5/7.0, including at least one university mathematics course covering calculus and linear algebra.",
+      "quote": "An ANU Graduate Certificate of Actuarial Statistics with a minimum GPA of 4.5/7.0, with at least one course in the field of mathematics from university studies that must cover calculus and linear algebra."
+     },
+     "reason": "another academic route; the requirement file holds one"
+    }
+   ],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 2,
+    "also_extracted": 2,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "australian-national-university",
+   "program": "Master of Actuarial Studies",
+   "snapshot_sha256": "071e7d1643008300d07ae052869c2b7f2504f753d2cbe216fae38dcd8539563e",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 5744,
+    "output_tokens": 263,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 2,
+   "fields": {
+    "academic": {
+     "text": "A Bachelor degree or international equivalent with a minimum GPA of 5.0/7.0, including at least one mathematics course covering calculus and linear algebra.",
+     "quote": "A Bachelor degree or international equivalent with a minimum GPA of 5.0/7.0, with at least one course in the field of mathematics that must cover calculus and linear algebra; or",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "At least one course in the field of mathematics covering calculus and linear algebra.",
+      "quote": "with at least one course in the field of mathematics that must cover calculus and linear algebra",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [
+    {
+     "field": "academic",
+     "value": {
+      "text": "An ANU Graduate Certificate of Actuarial Statistics with a minimum GPA of 4.5/7.0, including at least one university mathematics course covering calculus and linear algebra.",
+      "quote": "An ANU Graduate Certificate of Actuarial Statistics with a minimum GPA of 4.5/7.0, with at least one course in the field of mathematics from university studies that must cover calculus and linear algebra."
+     },
+     "reason": "another academic route; the requirement file holds one"
+    }
+   ],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 2,
+    "also_extracted": 2,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "australian-national-university",
+   "program": "Master of Anthropology and Planetary Futures",
+   "snapshot_sha256": "d5e2f82f7bf6de13b8dba207247d9de12e7e6cb7036d1dd17ca9886239d0b08e",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 4512,
+    "output_tokens": 199,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 2,
+   "fields": {
+    "academic": {
+     "text": "A cognate Bachelor degree or international equivalent with a minimum GPA of 5/7.",
+     "quote": "A cognate Bachelor degree or international equivalent with a minimum GPA of 5/7; or",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "All applicants must meet the University's English Language Admission Requirements for Students.",
+      "quote": "All applicants must meet the University’s English Language Admission Requirements for Students",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [
+    {
+     "field": "academic",
+     "value": {
+      "text": "A Bachelor degree or international equivalent AND a Graduate Certificate or Graduate Diploma in a cognate discipline with a minimum GPA of 4/7.",
+      "quote": "A Bachelor degree or international equivalent AND a Graduate Certificate or Graduate Diploma in a cognate discipline with a minimum GPA of 4/7"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    }
+   ],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 1,
+    "also_extracted": 1,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "australian-national-university",
+   "program": "Master of Applied Accounting",
+   "snapshot_sha256": "a0af3519f7c3840763592b5621481c51df18f44c0d9cf72f75bec4cdc2cd0d86",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 4159,
+    "output_tokens": 357,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 2,
+   "fields": {
+    "academic": {
+     "text": "A Bachelor Degree or international equivalent in a cognate discipline with a minimum GPA of 5.0/7.0.",
+     "quote": "a Bachelor Degree or international equivalent in a cognate discipline with a minimum GPA of 5.0/7.0; or",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "A minimum of 10 years full-time equivalent work experience at OSCA Skill Level 1 in a field related to the program.",
+      "quote": "a minimum of 10 years full-time equivalent work experience at OSCA Skill Level 1 in a field related to the program.",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [
+    {
+     "field": "academic",
+     "value": {
+      "text": "A Bachelor Degree or international equivalent plus a Graduate Certificate or international equivalent in a cognate discipline with a minimum GPA of 4/7.",
+      "quote": "a Bachelor Degree or international equivalent + Graduate Certificate or international equivalent in a cognate discipline with a minimum GPA of 4/7; or"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    },
+    {
+     "field": "academic",
+     "value": {
+      "text": "A Graduate Diploma or international equivalent in a cognate discipline with a minimum GPA of 4.0/7.0.",
+      "quote": "a Graduate Diploma or international equivalent in a cognate discipline with a minimum GPA of 4.0/7.0; or"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    },
+    {
+     "field": "academic",
+     "value": {
+      "text": "A minimum of 10 years full-time equivalent work experience at OSCA Skill Level 1 in a field related to the program.",
+      "quote": "a minimum of 10 years full-time equivalent work experience at OSCA Skill Level 1 in a field related to the program."
+     },
+     "reason": "another academic route; the requirement file holds one"
+    }
+   ],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 1,
+    "also_extracted": 1,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "australian-national-university",
+   "program": "Master of Applied Criminology",
+   "snapshot_sha256": "0619edf73834305a1146cb56d5a200ccc3c66679cffb9c94612ae6da93a174fb",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 4073,
+    "output_tokens": 615,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 2,
+   "fields": {
+    "academic": {
+     "text": "A cognate Bachelor degree or international equivalent with a minimum GPA of 5/7.",
+     "quote": "a cognate Bachelor degree or international equivalent with a minimum GPA of 5/7; or",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "The degree must be in a cognate discipline (e.g. Anthropology, Criminology, Development Studies, Economics, Engineering, Environmental Science, Geography, Indigenous Australian Studies, Law, Maths, Political Science, Psychology, Social Policy, Sociology, Statistics).",
+      "quote": "Anthropology, Criminology, Development Studies, Economics, Engineering, Environmental Science, Geography, Indigenous Australian Studies, Law, Maths, Political Science, Psychology, Social Policy, Sociology, Statistics.",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [
+    {
+     "field": "academic",
+     "value": {
+      "text": "A cognate Bachelor degree or international equivalent with a minimum GPA of 4/7 and a Graduate Certificate or international equivalent with a minimum GPA of 4/7.",
+      "quote": "a cognate Bachelor degree or international equivalent with a minimum GPA of 4/7 and a Graduate Certificate or international equivalent with a minimum GPA of 4/7; or"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    },
+    {
+     "field": "academic",
+     "value": {
+      "text": "A cognate Bachelor degree or international equivalent with a minimum GPA of 4/7 and at least 3 years full-time equivalent work experience at ANZSCO Skill Level 1 in a field related to the program.",
+      "quote": "a cognate Bachelor or international equivalent with a minimum GPA of 4/7 and a minimum of 3 years full-time equivalent work experience at ANZSCO Skill Level 1 in a field related to the program (for example in a police service, or the public service); or"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    },
+    {
+     "field": "academic",
+     "value": {
+      "text": "A cognate Graduate Certificate or international equivalent with a minimum GPA of 4/7 and at least 3 years full-time equivalent work experience at ANZSCO Skill Level 1 in a field related to the program.",
+      "quote": "a cognate Graduate Certificate or international equivalent with a minimum GPA of 4/7 and a minimum of 3 years full-time equivalent work experience at ANZSCO Skill Level 1 in a field related to the program (for example in a police service, or the public service); or"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    },
+    {
+     "field": "academic",
+     "value": {
+      "text": "A cognate Graduate Diploma or international equivalent with a minimum GPA of 4/7.",
+      "quote": "a cognate Graduate Diploma or international equivalent with a minimum GPA of 4/7; or"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    },
+    {
+     "field": "academic",
+     "value": {
+      "text": "A minimum of 10 years full-time equivalent work experience at ANZSCO Skill Level 1 in a field related to the program.",
+      "quote": "a minimum of 10 years full-time equivalent work experience at ANZSCO Skill Level 1 in a field related to the program (for example in a police service, or the public service)"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    }
+   ],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 1,
+    "also_extracted": 1,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "australian-national-university",
+   "program": "Master of Applied Cybernetics",
+   "snapshot_sha256": "f5fe971fc17cb9f412bc9eca96e411b5c033505133092398fab86c7c26bd556c",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 4024,
+    "output_tokens": 634,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 5,
+   "fields": {
+    "academic": {
+     "text": "A Bachelor degree with honours or international equivalent, or higher qualification, and GPA of 5/7.",
+     "quote": "A Bachelor degree with honours or international equivalent, or higher qualification, and GPA of 5/7; or",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "A cover letter addressing the program selection criteria.",
+      "quote": "a. cover letter addressing the program selection criteria;",
+      "check": "ok"
+     },
+     {
+      "text": "A portfolio piece.",
+      "quote": "b. portfolio piece;",
+      "check": "ok"
+     },
+     {
+      "text": "A full curriculum vitae clearly identifying periods of full-time and part-time professional experience.",
+      "quote": "c. a full curriculum vitae clearly identifying periods of full-time and part-time professional experience;",
+      "check": "ok"
+     },
+     {
+      "text": "Either a statement from the current employer confirming relevant experience, or both a statement as to why this cannot be provided and the contact details of two professional referees who can verify the experience.",
+      "quote": "d. either a statement from the current employer confirming relevant experience; or both a statement as at why this cannot be provided and the contact details of two professional referees who can verify the experience.",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [
+    {
+     "field": "academic",
+     "value": {
+      "text": "A Bachelor degree or international equivalent with a minimum GPA of 5/7 and a minimum of 3 years full-time, relevant work experience at ANZSCO Skill Level 1.",
+      "quote": "A Bachelor degree or international equivalent with a minimum GPA of 5/7 and a minimum of 3 years full-time, relevant work experience at ANZSCO Skill Level 1; or"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    },
+    {
+     "field": "academic",
+     "value": {
+      "text": "GMAT completed no more than 5 years before application, with a minimum score of 600 (minimum 5.0 in Analytical Writing) and a minimum of 8 years full-time, relevant work experience.",
+      "quote": "GMAT (Graduate Management Admission Test), completed no more than 5 years before the time of application, with a minimum score of 600 (minimum 5.0 in Analytical Writing) and a minimum of 8 years full-time, relevant work experience; or"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    },
+    {
+     "field": "academic",
+     "value": {
+      "text": "GRE General test completed no more than 5 years before application, with a minimum score of 155 Verbal Reasoning, 155 Quantitative Reasoning and 4.0 in Analytical Writing, and a minimum of 8 years full-time, relevant work experience.",
+      "quote": "GRE General test, completed no more than 5 years before the time of application, with a minimum score of 155 for Verbal Reasoning, 155 for Quantitative Reasoning and 4.0 in Analytical Writing and a minimum of 8 years full-time, relevant work experience; or"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    },
+    {
+     "field": "academic",
+     "value": {
+      "text": "A minimum of 15 years of full time, relevant work experience at ANZSCO Skill Level 1.",
+      "quote": "A minimum of 15 years of full time, relevant work experience at ANZSCO Skill Level 1"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    }
+   ],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 0,
+    "also_extracted": 0,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "australian-national-university",
+   "program": "Master of Applied Data Analytics",
+   "snapshot_sha256": "31591a17824a7e0d12be4c4f3ab08f6ec9588a5a04da89498e788a8b3bf3f527",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 4579,
+    "output_tokens": 278,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 2,
+   "fields": {
+    "academic": {
+     "text": "A Bachelor degree or international equivalent with a minimum GPA of 5.0/7.0.",
+     "quote": "A Bachelor degree or international equivalent with a minimum GPA of 5.0/7.0; or",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "A minimum of 10 years full-time equivalent work experience at OSCA Skill Level 1 in a field related to the program.",
+      "quote": "A minimum of 10 years full-time equivalent work experience at OSCA Skill Level 1 in a field related to the program.",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [
+    {
+     "field": "academic",
+     "value": {
+      "text": "An ANU Graduate Certificate of Applied Data Analytics with a minimum GPA of 4.5/7.0.",
+      "quote": "An ANU Graduate Certificate of Applied Data Analytics with a minimum GPA of 4.5/7.0; or"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    },
+    {
+     "field": "academic",
+     "value": {
+      "text": "A minimum of 10 years full-time equivalent work experience at OSCA Skill Level 1 in a field related to the program.",
+      "quote": "A minimum of 10 years full-time equivalent work experience at OSCA Skill Level 1 in a field related to the program."
+     },
+     "reason": "another academic route; the requirement file holds one"
+    }
+   ],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 1,
+    "also_extracted": 1,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "australian-national-university",
+   "program": "Master of Applied Economics",
+   "snapshot_sha256": "7a84774be35959e74825e1066846bc12ad76c2d81cab33e95d4a4edc3efefbc1",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 4975,
+    "output_tokens": 269,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 2,
+   "fields": {
+    "academic": {
+     "text": "A Bachelor degree or international equivalent with a minimum GPA of 4.5/7.0.",
+     "quote": "A Bachelor degree or international equivalent with a minimum GPA of 4.5/7.0",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "A minimum of 10 years' full-time equivalent work experience at OSCA Skill Level 1 in a field related to the program (alternative to the Graduate Certificate of Economics).",
+      "quote": "a minimum of 10 years' full-time equivalent work experience at OSCA Skill Level 1 in a field related to the program",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [
+    {
+     "field": "academic",
+     "value": {
+      "text": "ANU Graduate Certificate of Economics with a minimum GPA of 4.5/7, or a minimum of 10 years' full-time equivalent work experience at OSCA Skill Level 1 in a field related to the program.",
+      "quote": "ANU Graduate Certificate of Economics with a minimum GPA of 4.5/7, or a minimum of 10 years' full-time equivalent work experience at OSCA Skill Level 1 in a field related to the program."
+     },
+     "reason": "another academic route; the requirement file holds one"
+    }
+   ],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 1,
+    "also_extracted": 1,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "australian-national-university",
+   "program": "Master of Applied Finance",
+   "snapshot_sha256": "e3baa205d5737bf2d635610bdad276071d1cd7f1b896785b376c9e3bf76252b8",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 4744,
+    "output_tokens": 278,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 2,
+   "fields": {
+    "academic": {
+     "text": "A Bachelor degree or international equivalent with a minimum GPA of 5.0/7.0.",
+     "quote": "A Bachelor degree or international equivalent with a minimum GPA of 5.0/7.0; or",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "A minimum of 10 years full-time equivalent work experience at ANZSCO Skill Level 1 in a field related to the program.",
+      "quote": "A minimum of 10 years full-time equivalent work experience at ANZSCO Skill Level 1 in a field related to the program.",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [
+    {
+     "field": "academic",
+     "value": {
+      "text": "An ANU Graduate Certificate of Finance with a minimum GPA of 4.5/7.0.",
+      "quote": "An ANU Graduate Certificate of Finance with a minimum GPA of 4.5/7.0; or"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    },
+    {
+     "field": "academic",
+     "value": {
+      "text": "A minimum of 10 years full-time equivalent work experience at ANZSCO Skill Level 1 in a field related to the program.",
+      "quote": "A minimum of 10 years full-time equivalent work experience at ANZSCO Skill Level 1 in a field related to the program."
+     },
+     "reason": "another academic route; the requirement file holds one"
+    }
+   ],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 1,
+    "also_extracted": 1,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "brown-university",
+   "program": "Biomedical Engineering (M.Eng., Sc.M.)",
+   "snapshot_sha256": "342588232d14c9a67ab3e6da3699822905b0b1037a88f1be6c33ca7b85bef078",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 3867,
+    "output_tokens": 205,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 2,
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "quote": "For IELTS, the minimum score is 7.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90.0,
+     "text": "Minimum 90 for TOEFL iBT exams taken on or before January 20, 2026; minimum 4.5 for exams taken on or after January 21, 2026.",
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 90.",
+     "check": "ok"
+    }
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 2,
+    "also_extracted": 2,
+    "numbers_compared": 2,
+    "numbers_agree": 2
+   }
+  },
+  {
+   "school": "brown-university",
+   "program": "Biostatistics (A.M., Sc.M.)",
+   "snapshot_sha256": "3f9e479945015e96d6ad5caca2160cf4c97ac94e6ed4aa30eca2d9af4909bddb",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 4474,
+    "output_tokens": 444,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 6,
+   "fields": {
+    "academic": {
+     "text": "Assumed background: one semester of multivariate calculus, one semester of linear algebra, and one semester of probability using calculus.",
+     "quote": "One semester of multivariate calculus\nOne semester of linear algebra\nOne semester of probability using calculus",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "For IELTS, the minimum score is 7.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100.0,
+     "text": "Minimum 100 for TOEFL iBT exams taken on or before January 20, 2026; minimum 5.0 for exams taken on or after January 21, 2026.",
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 100.\nFor TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "One semester of multivariate calculus",
+      "quote": "One semester of multivariate calculus",
+      "check": "ok"
+     },
+     {
+      "text": "One semester of linear algebra",
+      "quote": "One semester of linear algebra",
+      "check": "ok"
+     },
+     {
+      "text": "One semester of probability using calculus",
+      "quote": "One semester of probability using calculus",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [
+    {
+     "field": "deadlines",
+     "value": {
+      "label": "Fall start, priority deadline",
+      "date": "2025-12-01",
+      "quote": "Priority Deadline\nDecember 1"
+     },
+     "reason": "deadline year 2025 not in quote"
+    },
+    {
+     "field": "deadlines",
+     "value": {
+      "label": "Fall start, final deadline",
+      "date": "2026-01-15",
+      "quote": "Final Deadline\nJanuary 15"
+     },
+     "reason": "deadline year 2026 not in quote"
+    },
+    {
+     "field": "deadlines",
+     "value": {
+      "label": "Fifth-year students",
+      "date": "2026-04-15",
+      "quote": "Fifth-Year Students\nApril 15"
+     },
+     "reason": "deadline year 2026 not in quote"
+    }
+   ],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 3,
+    "also_extracted": 3,
+    "numbers_compared": 2,
+    "numbers_agree": 2
+   }
+  },
+  {
+   "school": "brown-university",
+   "program": "Biostatistics, Online (Sc.M.)",
+   "snapshot_sha256": "9a2896cb3545922d06e446bd683f275242702baf3e7c7642e21963494312b7df",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 3976,
+    "output_tokens": 437,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 7,
+   "fields": {
+    "academic": {
+     "text": "A bachelor's degree from an accredited institution.",
+     "quote": "A bachelor’s degree from an accredited institution.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "For IELTS, the minimum score is 7.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100.0,
+     "text": "Minimum 100 for TOEFL iBT exams taken on or before January 20, 2026; minimum 5.0 for exams taken on or after January 21, 2026.",
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 100.\nFor TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "At least one semester of calculus (differentiation and integration).",
+      "quote": "At least one semester of calculus (including differentiation & integration) with a recommended grade of B or better.",
+      "check": "ok"
+     },
+     {
+      "text": "At least one semester of linear algebra.",
+      "quote": "At least one semester of linear algebra, with a recommended grade of B or better.",
+      "check": "ok"
+     },
+     {
+      "text": "At least one semester of probability.",
+      "quote": "At least one semester of probability, with a recommended grade of B or better.",
+      "check": "ok"
+     },
+     {
+      "text": "Prior experience in programming languages such as R or Python is recommended and preferred, but not required.",
+      "quote": "Prior experience in programming languages, such as R or Python is recommended and preferred, but not required.",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 6,
+    "also_extracted": 6,
+    "numbers_compared": 2,
+    "numbers_agree": 2
+   }
+  },
+  {
+   "school": "brown-university",
+   "program": "Biotechnology (A.M., Sc.M.)",
+   "snapshot_sha256": "b7159f0e3fae5c05dc80a30af037d89d6677c51cef907d895a87c8c24eaff847",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 4004,
+    "output_tokens": 364,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 4,
+   "fields": {
+    "academic": {
+     "text": "Open to students with appropriate backgrounds in the life sciences, biology, neuroscience, biochemistry, physics or chemistry.",
+     "quote": "Open to students with appropriate backgrounds in the life sciences biology, neuroscience, biochemistry, or physics or chemistry.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 8.0,
+     "quote": "For IELTS, the minimum score is 8.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100.0,
+     "text": "Minimum 100 for TOEFL iBT exams taken on or before January 20, 2026; minimum 5.0 for exams taken on or after January 21, 2026.",
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 100.\nFor TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Appropriate background in the life sciences, biology, neuroscience, biochemistry, physics or chemistry.",
+      "quote": "Open to students with appropriate backgrounds in the life sciences biology, neuroscience, biochemistry, or physics or chemistry.",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [
+    {
+     "field": "deadlines",
+     "value": {
+      "label": "Spring Start, Priority Deadline",
+      "date": "2025-09-15",
+      "quote": "Priority Deadline\nSeptember 15"
+     },
+     "reason": "deadline year 2025 not in quote"
+    }
+   ],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 2,
+    "also_extracted": 2,
+    "numbers_compared": 2,
+    "numbers_agree": 2
+   }
+  },
+  {
+   "school": "brown-university",
+   "program": "Business Analytics, Online (Sc.M.)",
+   "snapshot_sha256": "6011e0f3ee3b8da6189cc03080a7d03fd4631905ffc1c19b7f30833e8671795b",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 3798,
+    "output_tokens": 535,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 5,
+   "fields": {
+    "academic": {
+     "text": "A bachelor's degree from an accredited institution is required.",
+     "quote": "A bachelor’s degree from an accredited institution and a minimum of two years of full-time professional experience is required.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "For IELTS, the minimum score is 7.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90.0,
+     "text": "Minimum 90 for TOEFL iBT exams taken on or before January 20, 2026; minimum 5.0 for exams taken on or after January 21, 2026.",
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 90. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "At least two years of full-time professional work experience.",
+      "quote": "Minimum 2 years of full-time professional work experience",
+      "check": "ok"
+     },
+     {
+      "text": "At least one semester of foundational college-level math or statistics.",
+      "quote": "At least one semester of foundational college-level math or statistics is required.",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [
+    {
+     "field": "deadlines",
+     "value": {
+      "label": "Spring Start, Early Action",
+      "date": "2025-07-15",
+      "quote": "Early Action Deadline\nJuly 15"
+     },
+     "reason": "deadline year 2025 not in quote"
+    },
+    {
+     "field": "deadlines",
+     "value": {
+      "label": "Spring Start, Priority",
+      "date": "2025-09-15",
+      "quote": "Priority Deadline\nSeptember 15"
+     },
+     "reason": "deadline year 2025 not in quote"
+    },
+    {
+     "field": "deadlines",
+     "value": {
+      "label": "Spring Start, Final",
+      "date": "2025-10-15",
+      "quote": "Final Deadline\nOctober 15"
+     },
+     "reason": "deadline year 2025 not in quote"
+    },
+    {
+     "field": "deadlines",
+     "value": {
+      "label": "Fall Start, Early Action",
+      "date": "2026-03-15",
+      "quote": "Early Action Deadline\nMarch 15"
+     },
+     "reason": "deadline year 2026 not in quote"
+    },
+    {
+     "field": "deadlines",
+     "value": {
+      "label": "Fall Start, Priority",
+      "date": "2026-05-15",
+      "quote": "Priority Deadline\nMay 15"
+     },
+     "reason": "deadline year 2026 not in quote"
+    },
+    {
+     "field": "deadlines",
+     "value": {
+      "label": "Fall Start, Final",
+      "date": "2026-06-15",
+      "quote": "Final Deadline\nJune 15"
+     },
+     "reason": "deadline year 2026 not in quote"
+    }
+   ],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 4,
+    "also_extracted": 4,
+    "numbers_compared": 2,
+    "numbers_agree": 2
+   }
+  },
+  {
+   "school": "brown-university",
+   "program": "Chemical Engineering (Sc.M.)",
+   "snapshot_sha256": "76a5861d8f64014d3acacc70723cd1c55353001246a35753ad2971fc5e80aa28",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 3840,
+    "output_tokens": 392,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 2,
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "quote": "For IELTS, the minimum score is 7.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90.0,
+     "text": "Minimum 90 for TOEFL iBT taken on or before January 20, 2026; minimum 5.0 for exams taken on or after January 21, 2026.",
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 90.",
+     "check": "ok"
+    }
+   },
+   "rejected": [
+    {
+     "field": "deadlines",
+     "value": {
+      "label": "Spring Start, Priority Deadline",
+      "date": "2025-09-15",
+      "quote": "Priority Deadline September 15"
+     },
+     "reason": "deadline year 2025 not in quote"
+    },
+    {
+     "field": "deadlines",
+     "value": {
+      "label": "Spring Start, International Students",
+      "date": "2025-10-01",
+      "quote": "International Students* October 1"
+     },
+     "reason": "deadline year 2025 not in quote"
+    },
+    {
+     "field": "deadlines",
+     "value": {
+      "label": "Spring Start, Final Deadline",
+      "date": "2025-11-01",
+      "quote": "Final Deadline November 1"
+     },
+     "reason": "deadline year 2025 not in quote"
+    },
+    {
+     "field": "deadlines",
+     "value": {
+      "label": "Fall Start, Priority Deadline",
+      "date": "2026-02-01",
+      "quote": "Priority Deadline February 1"
+     },
+     "reason": "deadline year 2026 not in quote"
+    },
+    {
+     "field": "deadlines",
+     "value": {
+      "label": "Fall Start, International Students",
+      "date": "2026-04-01",
+      "quote": "International Students April 1"
+     },
+     "reason": "deadline year 2026 not in quote"
+    },
+    {
+     "field": "deadlines",
+     "value": {
+      "label": "Fall Start, Final Deadline",
+      "date": "2026-04-01",
+      "quote": "Final Deadline April 1"
+     },
+     "reason": "deadline year 2026 not in quote"
+    }
+   ],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 2,
+    "also_extracted": 2,
+    "numbers_compared": 2,
+    "numbers_agree": 2
+   }
+  },
+  {
+   "school": "brown-university",
+   "program": "Computer Science (Sc.M.)",
+   "snapshot_sha256": "ffdede7f6ac686e492b9501efafbbb6eb827a8e7d54d93ed8b1f6fe7de8067f5",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 4584,
+    "output_tokens": 498,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 9,
+   "fields": {
+    "academic": {
+     "text": "Typically an undergraduate CS degree or the equivalent, with most of the listed foundational courses.",
+     "quote": "There are exceptions, but typically we look for outstanding students who already have an undergraduate CS degree or the equivalent and are ready to take our Master's-level courses.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 8.0,
+     "quote": "For IELTS, the minimum score is 8.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 105.0,
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 105.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Introductory Programming",
+      "quote": "Introductory Programming",
+      "check": "ok"
+     },
+     {
+      "text": "Introductory Algorithms and Data Structures",
+      "quote": "Introductory Algorithms and Data Structures",
+      "check": "ok"
+     },
+     {
+      "text": "Computer Systems or Software Engineering (preferably both)",
+      "quote": "Computer Systems or Software Engineering (preferably both)",
+      "check": "ok"
+     },
+     {
+      "text": "Discrete Mathematics and basic Probability",
+      "quote": "Discrete Mathematics and basic Probability",
+      "check": "ok"
+     },
+     {
+      "text": "Linear Algebra",
+      "quote": "Linear Algebra",
+      "check": "ok"
+     },
+     {
+      "text": "A more advanced course (normally offered to juniors and seniors) in at least one area of CS",
+      "quote": "In addition, a student should have taken a more advanced course (normally offered to juniors and seniors) in at least one area of CS.",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [
+    {
+     "field": "deadlines",
+     "value": {
+      "label": "Spring Start, International Students",
+      "date": "2025-10-01",
+      "quote": "October 1"
+     },
+     "reason": "deadline year 2025 not in quote"
+    },
+    {
+     "field": "deadlines",
+     "value": {
+      "label": "Spring Start, Final Deadline",
+      "date": "2025-11-01",
+      "quote": "November 1"
+     },
+     "reason": "deadline year 2025 not in quote"
+    },
+    {
+     "field": "deadlines",
+     "value": {
+      "label": "Fall Start, International Students",
+      "date": "2026-01-15",
+      "quote": "January 15"
+     },
+     "reason": "deadline year 2026 not in quote"
+    },
+    {
+     "field": "deadlines",
+     "value": {
+      "label": "Fall Start, Final Deadline",
+      "date": "2026-01-15",
+      "quote": "January 15"
+     },
+     "reason": "deadline year 2026 not in quote"
+    }
+   ],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 8,
+    "also_extracted": 8,
+    "numbers_compared": 2,
+    "numbers_agree": 2
+   }
+  },
+  {
+   "school": "brown-university",
+   "program": "Artificial Intelligence & Machine Learning Track, Computer Science (Sc.M.)",
+   "snapshot_sha256": "76981abdfd19987ee78a022cc693b40f33f48fbefd678181ba6a8c10c1ab87a8",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 4046,
+    "output_tokens": 460,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 9,
+   "fields": {
+    "academic": {
+     "text": "Typically an undergraduate CS degree or the equivalent, with most of the listed courses.",
+     "quote": "There are exceptions, but typically we look for outstanding students who already have an undergraduate CS degree or the equivalent and are ready to take our Master's-level courses.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 8.0,
+     "quote": "For IELTS, the minimum score is 8.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 105.0,
+     "text": "Minimum 105 on TOEFL iBT exams taken on or before January 20, 2026; for exams taken on or after January 21, 2026 the minimum is 5.0 (1-6 scale), with 5.5 or higher strongly recommended.",
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 105.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Introductory Programming",
+      "quote": "Introductory Programming",
+      "check": "ok"
+     },
+     {
+      "text": "Introductory Algorithms and Data Structures",
+      "quote": "Introductory Algorithms and Data Structures",
+      "check": "ok"
+     },
+     {
+      "text": "Computer Systems or Software Engineering (preferably both)",
+      "quote": "Computer Systems or Software Engineering (preferably both)",
+      "check": "ok"
+     },
+     {
+      "text": "Discrete Mathematics and basic Probability",
+      "quote": "Discrete Mathematics and basic Probability",
+      "check": "ok"
+     },
+     {
+      "text": "Linear Algebra",
+      "quote": "Linear Algebra",
+      "check": "ok"
+     },
+     {
+      "text": "A more advanced course (normally offered to juniors and seniors) in at least one area of CS",
+      "quote": "In addition, a student should have taken a more advanced course (normally offered to juniors and seniors) in at least one area of CS.",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 8,
+    "also_extracted": 8,
+    "numbers_compared": 2,
+    "numbers_agree": 2
+   }
+  },
+  {
+   "school": "brown-university",
+   "program": "Cybersecurity (Sc.M.)",
+   "snapshot_sha256": "ed4c39cc74d6afdc9ecec324e6904cf40fe95a205a11b768ca384829d9d4282f",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 4877,
+    "output_tokens": 494,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 6,
+   "fields": {
+    "academic": {
+     "text": "For the Computer Science Track: an undergraduate degree in a STEM or social sciences discipline.",
+     "quote": "To apply to the Computer Science Track, you must have successfully completed: An undergraduate degree in a STEM or social sciences discipline",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 8.0,
+     "quote": "For IELTS, the minimum score is 8.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 105.0,
+     "text": "Minimum 105 for TOEFL iBT exams taken on or before January 20, 2026; minimum 5.5 for exams taken on or after January 21, 2026.",
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 105. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.5.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Computer Science Track: undergraduate coursework in mathematics covering calculus, discrete mathematics, and probability or statistics.",
+      "quote": "Undergraduate-level coursework in (1) mathematics that covers calculus, discrete mathematics, and probability or statistics",
+      "check": "ok"
+     },
+     {
+      "text": "Computer Science Track: undergraduate coursework in introductory computer science covering programming, data structures and algorithms.",
+      "quote": "(2) introductory computer science that covers computer programming and data structures and algorithms",
+      "check": "ok"
+     },
+     {
+      "text": "Policy Track: undergraduate coursework demonstrating writing and analytical skills relevant to cybersecurity policy.",
+      "quote": "Undergraduate-level coursework demonstrating writing and analytical skills relevant to the study of cybersecurity policy",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [
+    {
+     "field": "deadlines",
+     "value": {
+      "label": "Spring start, international students",
+      "date": "2025-09-14",
+      "quote": "International Students* September 14"
+     },
+     "reason": "deadline year 2025 not in quote"
+    }
+   ],
+   "unused": [
+    {
+     "field": "academic",
+     "value": {
+      "text": "For the Policy Track: an undergraduate degree in any subject.",
+      "quote": "To apply to the Policy Track, you must have successfully completed: An undergraduate degree in any subject"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    }
+   ],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 5,
+    "also_extracted": 5,
+    "numbers_compared": 2,
+    "numbers_agree": 2
+   }
+  },
+  {
+   "school": "brown-university",
+   "program": "Data-Enabled Computational Engineering and Science (Sc.M.)",
+   "snapshot_sha256": "122a2386e41b3f077098b0188ff0d92dd9de993be6770afe1546d9802c580bb6",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 4663,
+    "output_tokens": 523,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 4,
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in Engineering, Physical Sciences, Natural Sciences, or a related subject.",
+     "quote": "Bachelor’s degree in Engineering, Physical Sciences, Natural Sciences, or related subject",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "For IELTS, the minimum score is 7.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90.0,
+     "text": "Minimum 90 on TOEFL iBT exams taken on or before January 20, 2026; minimum 5.5 on exams taken on or after January 21, 2026.",
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 90.\nFor TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.5.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Bachelor's degree in engineering, physical sciences, natural sciences or a related subject.",
+      "quote": "Applicants should have a bachelor’s degree in engineering, physical sciences, natural sciences or a related subject.",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [
+    {
+     "field": "deadlines",
+     "value": {
+      "label": "Spring Start, Priority Deadline",
+      "date": "2025-09-15",
+      "quote": "Priority Deadline\nSeptember 15"
+     },
+     "reason": "deadline year 2025 not in quote"
+    },
+    {
+     "field": "deadlines",
+     "value": {
+      "label": "Spring Start, International Students",
+      "date": "2025-10-01",
+      "quote": "International Students*\nOctober 1"
+     },
+     "reason": "deadline year 2025 not in quote"
+    },
+    {
+     "field": "deadlines",
+     "value": {
+      "label": "Spring Start, Final Deadline",
+      "date": "2025-11-01",
+      "quote": "Final Deadline\nNovember 1"
+     },
+     "reason": "deadline year 2025 not in quote"
+    },
+    {
+     "field": "deadlines",
+     "value": {
+      "label": "Fall Start, Priority Deadline",
+      "date": "2026-02-01",
+      "quote": "Priority Deadline\nFebruary 1"
+     },
+     "reason": "deadline year 2026 not in quote"
+    },
+    {
+     "field": "deadlines",
+     "value": {
+      "label": "Fall Start, International Students",
+      "date": "2026-04-01",
+      "quote": "International Students\nApril 1"
+     },
+     "reason": "deadline year 2026 not in quote"
+    },
+    {
+     "field": "deadlines",
+     "value": {
+      "label": "Fall Start, Final Deadline",
+      "date": "2026-04-01",
+      "quote": "Final Deadline\nApril 1"
+     },
+     "reason": "deadline year 2026 not in quote"
+    }
+   ],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 4,
+    "also_extracted": 4,
+    "numbers_compared": 2,
+    "numbers_agree": 2
+   }
+  },
+  {
+   "school": "chinese-university-of-hong-kong",
+   "program": "Master of Accountancy",
+   "snapshot_sha256": "d43b36bdfebed29975913863206d7f3bc737595beb2f3bcec5a2394bfdc1a63b",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 4276,
+    "output_tokens": 270,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 6,
+   "fields": {
+    "academic": {
+     "text": "Applicants must meet the general requirements of the Graduate School.",
+     "quote": "Please refer to the general requirements of the Graduate School.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Relevant full-time post-qualification work experience is preferred.",
+      "quote": "In addition to the general requirements of the Graduate School, preference will be given to applicants with relevant full-time post-qualification work experience.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Early Round",
+      "date": "2026-07-31",
+      "quote": "31 July 2026 (Early Round)",
+      "check": "ok"
+     },
+     {
+      "label": "Main round",
+      "date": "2027-03-31",
+      "quote": "31 March 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Early Round",
+      "date": "2026-07-31",
+      "quote": "31 July 2026 (Early Round)",
+      "check": "ok"
+     },
+     {
+      "label": "Main round",
+      "date": "2027-04-30",
+      "quote": "30 April 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 1,
+    "also_extracted": 1,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "chinese-university-of-hong-kong",
+   "program": "Master of Science in Global Wealth Management",
+   "snapshot_sha256": "c1b458751a39c90c038917d6ea303d52782f8a632774d9f0463e11172c09cbe8",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 4014,
+    "output_tokens": 112,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 2,
+   "fields": {
+    "academic": {
+     "text": "Applicants must meet the general requirements of the Graduate School.",
+     "quote": "Please refer to the general requirements of the Graduate School.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Application deadline",
+      "date": "2027-03-31",
+      "quote": "March 31 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 1,
+    "also_extracted": 1,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "chinese-university-of-hong-kong",
+   "program": "MBA",
+   "snapshot_sha256": "f05bb6d6372cf85a05b0a617c6803c76b32375fb1c9d1d7a391b367bb162c6a0",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 4188,
+    "output_tokens": 313,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 7,
+   "fields": {
+    "academic": {
+     "text": "Applicants must meet the general requirements of the Graduate School.",
+     "quote": "In addition to the general requirements of the Graduate School, applicants should",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "At least 2 years of full-time post-qualification work experience.",
+      "quote": "have at least 2 years of full-time post-qualification work experience.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Round 1",
+      "date": "2026-10-31",
+      "quote": "1st round: 31 October 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Round 2",
+      "date": "2026-12-15",
+      "quote": "2nd round: 15 December 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3",
+      "date": "2027-01-31",
+      "quote": "3rd round: 31 January 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Round 4",
+      "date": "2027-03-15",
+      "quote": "4th round: 15 March 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Round 5",
+      "date": "2027-04-30",
+      "quote": "5th round: 30 April 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 6,
+    "also_extracted": 6,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "chinese-university-of-hong-kong",
+   "program": "MBA in Finance",
+   "snapshot_sha256": "e957fff5fbaac2a39883a0011778d8dd5f26a43b2ae65a98d19a1f372b76bf3f",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 4073,
+    "output_tokens": 132,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 2,
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "Preferably 3 years of post-qualification work experience.",
+      "quote": "preferably have 3 years of post-qualification work experience;",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application deadline",
+      "date": "2027-06-18",
+      "quote": "18 June 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 2,
+    "also_extracted": 2,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "chinese-university-of-hong-kong",
+   "program": "MSc in Actuarial Science and Insurance Analytics",
+   "snapshot_sha256": "69bc2eab41a92bde0516c993ae58e95ec0845271ecafa38da9722a3f46b0107e",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 4191,
+    "output_tokens": 245,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 4,
+   "fields": {
+    "academic": {
+     "text": "Applicants must have taken and passed at least one university-level course in calculus, probability, statistics, or an approved equivalent course.",
+     "quote": "applicants should have taken and passed at least one university-level course in either calculus, probability, statistics, or an approved equivalent course.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "At least one university-level course in calculus, probability, statistics, or an approved equivalent course.",
+      "quote": "applicants should have taken and passed at least one university-level course in either calculus, probability, statistics, or an approved equivalent course.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Early Round",
+      "date": "2026-07-31",
+      "quote": "31 July 2026 (Early Round)",
+      "check": "ok"
+     },
+     {
+      "label": "Main Round",
+      "date": "2027-03-31",
+      "quote": "31 March 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 2,
+    "also_extracted": 2,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "chinese-university-of-hong-kong",
+   "program": "MSc in Aviation Management",
+   "snapshot_sha256": "e6490a22191aa7e3519c47cf5857fdf8fb49b8595f487e18525f4cf834bf5c70",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 4137,
+    "output_tokens": 147,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 3,
+   "fields": {
+    "academic": {
+     "text": "Applicants must meet the general requirements of the Graduate School.",
+     "quote": "Please refer to the general requirements of the Graduate School.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Early Round",
+      "date": "2026-07-31",
+      "quote": "Early Round: 31 July 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Main Round",
+      "date": "2027-03-31",
+      "quote": "Main Round: 31 March 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 1,
+    "also_extracted": 1,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "chinese-university-of-hong-kong",
+   "program": "MSc in Business Analytics",
+   "snapshot_sha256": "6044595ecd6ffefa0af35bd2e89da19d1c4300c9de137d5bb6ba4c4bfe074d7f",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 4165,
+    "output_tokens": 143,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 3,
+   "fields": {
+    "academic": {
+     "text": "Applicants must meet the general requirements of the Graduate School.",
+     "quote": "Please refer to the general requirements of the Graduate School.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Early Round",
+      "date": "2026-07-31",
+      "quote": "31 July 2026 (Early Round)",
+      "check": "ok"
+     },
+     {
+      "label": "Main round",
+      "date": "2027-03-31",
+      "quote": "31 March 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 1,
+    "also_extracted": 1,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "chinese-university-of-hong-kong",
+   "program": "MSc in Family Business Management",
+   "snapshot_sha256": "4253fe475024a6421a4ed831d80334379aec62fb9c37aa032bb320018b9c1872",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 4124,
+    "output_tokens": 111,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 2,
+   "fields": {
+    "academic": {
+     "text": "Applicants must meet the general requirements of the Graduate School.",
+     "quote": "Please refer to the general requirements of the Graduate School.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Application deadline",
+      "date": "2027-03-31",
+      "quote": "31 March 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 1,
+    "also_extracted": 1,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "chinese-university-of-hong-kong",
+   "program": "MSc in Information Science and Technology Management (Full-time Mode Only)",
+   "snapshot_sha256": "682f6d5fc2cdbcabfa0b137cdf8c6c4d6d459ac6f774d11971058109e5c50b04",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 4184,
+    "output_tokens": 143,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 3,
+   "fields": {
+    "academic": {
+     "text": "Applicants must meet the general requirements of the Graduate School.",
+     "quote": "Please refer to the general requirements of the Graduate School.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Early Round",
+      "date": "2026-07-31",
+      "quote": "31 July 2026 (Early Round)",
+      "check": "ok"
+     },
+     {
+      "label": "Main Round",
+      "date": "2027-03-31",
+      "quote": "31 March 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 1,
+    "also_extracted": 1,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "chinese-university-of-hong-kong",
+   "program": "MSc in Leadership for Experience Economy",
+   "snapshot_sha256": "6bb4edc18224f9e28735bb733caf1f5a9c4f1df96cb35546b21dcf237e61c665",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 4152,
+    "output_tokens": 143,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 3,
+   "fields": {
+    "academic": {
+     "text": "Applicants must meet the general requirements of the Graduate School.",
+     "quote": "Please refer to the general requirements of the Graduate School.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Early Round",
+      "date": "2026-07-31",
+      "quote": "31 July 2026 (Early Round)",
+      "check": "ok"
+     },
+     {
+      "label": "Main Round",
+      "date": "2027-03-31",
+      "quote": "31 March 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 1,
+    "also_extracted": 1,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "eth-zurich",
+   "program": "Master of Science ETH in Physics",
+   "snapshot_sha256": "0abfe1da4264e81e64810ec7021d2797d4d15e73c950f0c4200502aeec05fcad",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 2802,
+    "output_tokens": 67,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 0,
+   "fields": {},
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "待人工",
+   "coverage": {
+    "earlier_same_page": 1,
+    "also_extracted": 0,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "eth-zurich",
+   "program": "Master of Science ETH in Pharmaceutical Sciences",
+   "snapshot_sha256": "0b3501851d23cfff4fe9304f7dc4dfdd8a8ec5bd270c96cb52997d3fbb9be509",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 2767,
+    "output_tokens": 121,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 0,
+   "fields": {},
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "待人工",
+   "coverage": {
+    "earlier_same_page": 1,
+    "also_extracted": 0,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "eth-zurich",
+   "program": "Master of Science in Physics ETH Zurich – University Paris-Saclay, Major in High Energy Physics",
+   "snapshot_sha256": "12757f86a48d7b3463db6cb85b760cd38b0ebe2f76d7d3074890f2671ac0c6a1",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 2838,
+    "output_tokens": 67,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 0,
+   "fields": {},
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "待人工",
+   "coverage": {
+    "earlier_same_page": 1,
+    "also_extracted": 0,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "eth-zurich",
+   "program": "Master of Arts ETH UZH in Comparative and International Studies",
+   "snapshot_sha256": "19508ba58a759864792d70e2dea953c86466ddc486077411a5feea2cc849b66c",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 2822,
+    "output_tokens": 182,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 1,
+   "fields": {
+    "academic": {
+     "text": "A qualifying first degree in one of the listed disciplines: Political Science, Public Policy, Economics, Sociology, Psychology, Humanities, Business Studies, Law.",
+     "quote": "Qualifying disciplines Political Science, Public Policy, Economics, Sociology, Psychology, Humanities, Business Studies, Law",
+     "check": "ok"
+    }
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 2,
+    "also_extracted": 1,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "eth-zurich",
+   "program": "Master of Science ETH in Geomatics",
+   "snapshot_sha256": "1df89d484cf6c6535a19a1e06453d88d08d7cab8e6cae893a13c8fb2244f86b0",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 2986,
+    "output_tokens": 113,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 1,
+   "fields": {
+    "academic": {
+     "text": "A Bachelor's degree in geospatial engineering or a related field such as geomatics, geodesy, or surveying and geoinformation.",
+     "quote": "Building upon a Bachelor's degree in geospatial engineering or a related field such as geomatics, geodesy, or surveying and geoinformation, the Master's programme enables students to broaden and deepen their expertise",
+     "check": "ok"
+    }
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 1,
+    "also_extracted": 0,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "eth-zurich",
+   "program": "Master of Science ETH in Materials Science and Engineering",
+   "snapshot_sha256": "2572c23f5b62e2f8640b4759afe8baa1a1f4563132678eb2b92d3eca9438e628",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 2959,
+    "output_tokens": 135,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 2,
+   "fields": {
+    "academic": {
+     "text": "An engineering or scientific degree that includes a background in materials science.",
+     "quote": "The Master's programme is open to students with an engineering or a scientific degree that includes a background in materials science.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Background in materials science within the degree.",
+      "quote": "The Master's programme is open to students with an engineering or a scientific degree that includes a background in materials science.",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 2,
+    "also_extracted": 2,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "eth-zurich",
+   "program": "Master of Science ETH in Biotechnology",
+   "snapshot_sha256": "282d9a9670e2aba5a7a996b99493f692517873c80c44165644ac3bbfe4cd832f",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 2813,
+    "output_tokens": 67,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 0,
+   "fields": {},
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "待人工",
+   "coverage": {
+    "earlier_same_page": 1,
+    "also_extracted": 0,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "eth-zurich",
+   "program": "Master History and Philosophy of Knowledge",
+   "snapshot_sha256": "2b3724e8f43cef34f7ce000e7e994e68d6a4a9d01c7e8bcffbcad73006e6ee5c",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 2788,
+    "output_tokens": 67,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 0,
+   "fields": {},
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "待人工",
+   "coverage": {
+    "earlier_same_page": 1,
+    "also_extracted": 0,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "eth-zurich",
+   "program": "Master of Science ETH in Mechanical Engineering",
+   "snapshot_sha256": "31d30dc794d3149d2d1445e3760e37a8bec9cc2eec572e2697d290ad023e8349",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 2898,
+    "output_tokens": 102,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 1,
+   "fields": {
+    "academic": {
+     "text": "A Bachelor-Diplom in Mechanical Engineering (qualifying discipline).",
+     "quote": "Qualifying disciplines\nBachelor-Diplom in Mechanical Engineering",
+     "check": "ok"
+    }
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 2,
+    "also_extracted": 1,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "eth-zurich",
+   "program": "Master of Science ETH in Energy Science and Technology",
+   "snapshot_sha256": "385f89940ce1c0a407482f1f753be582fa8f1e1b83cbee98eb15be649b97ac5a",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 2935,
+    "output_tokens": 225,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 1,
+   "fields": {
+    "academic": {
+     "text": "A qualifying first degree in one of the listed disciplines, in particular Civil Engineering, Communications Systems, Computer Science, Electrical Engineering (and Information Technology), Environmental Engineering, Geomatic Engineering, Mathematics, Mechanical Engineering, Microtechnology or Physics.",
+     "quote": "Qualifying disciplines\nin particular (listed alphabetically):\nCivil Engineering\nCommunications Systems\nComputer Science\nElectrical Engineering (and Information Technology)\nEnvironmental Engineering\nGeomatic Engineering\nMathematics\nMechanical Engineering\nMicrotechnology\nPhysics",
+     "check": "ok"
+    }
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 2,
+    "also_extracted": 1,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "imperial-college-london",
+   "program": "MSc Advanced Aeronautical Engineering",
+   "snapshot_sha256": "a6634f002d5b32bc3a1d5af1d395a7bca287d952074ca5e93055361afe2da692",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 7130,
+    "output_tokens": 326,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 6,
+   "fields": {
+    "academic": {
+     "text": "A 2:1, preferably First-Class Honours, in Aerospace or Mechanical Engineering with some experience of fluid and structural dynamics.",
+     "quote": "2:1, preferably First-Class Honours, in Aerospace or Mechanical Engineering with some experience of fluid and structural dynamics.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "A degree in Aerospace or Mechanical Engineering.",
+      "quote": "2:1, preferably First-Class Honours, in Aerospace or Mechanical Engineering with some experience of fluid and structural dynamics.",
+      "check": "ok"
+     },
+     {
+      "text": "Some experience of fluid and structural dynamics.",
+      "quote": "2:1, preferably First-Class Honours, in Aerospace or Mechanical Engineering with some experience of fluid and structural dynamics.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Round 2, 2027 entry",
+      "date": "2027-01-06",
+      "quote": "Applications close on Wednesday 6 January 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3, 2027 entry",
+      "date": "2027-03-10",
+      "quote": "Applications close on Wednesday 10 March 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Round 4, 2027 entry",
+      "date": "2027-04-28",
+      "quote": "Applications close on Wednesday 28 April 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 4,
+    "also_extracted": 4,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "imperial-college-london",
+   "program": "MSc Advanced Chemical Engineering",
+   "snapshot_sha256": "a108de8c135258b5ad36fb75513479bfb4c64fb0ac682d28b067b4afe87a084d",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 7529,
+    "output_tokens": 214,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 4,
+   "fields": {
+    "academic": {
+     "text": "A 2:1 degree in Engineering, Physical Sciences, Mathematics, Life Sciences or Biomedical Sciences.",
+     "quote": "2:1 in Engineering, Physical Sciences, Mathematics, Life Sciences or Biomedical Sciences.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Round 2, 2027 entry",
+      "date": "2027-01-06",
+      "quote": "Applications close on Wednesday 6 January 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3, 2027 entry",
+      "date": "2027-03-10",
+      "quote": "Applications close on Wednesday 10 March 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Round 4, 2027 entry",
+      "date": "2027-04-28",
+      "quote": "Applications close on Wednesday 28 April 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 4,
+    "also_extracted": 4,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "imperial-college-london",
+   "program": "MSc Advanced Computing",
+   "snapshot_sha256": "55e558c9eb4226864620ff6cc3602caaf38c475d79d619ceefcb8ef628a8916a",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 7297,
+    "output_tokens": 274,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 4,
+   "fields": {
+    "academic": {
+     "text": "First-class Honours in a subject with a substantial Computing component.",
+     "quote": "First-class Honours in a subject with a substantial Computing component.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Round 2, 2027 entry",
+      "date": "2027-01-06",
+      "quote": "Applications close on Wednesday 6 January 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3, 2027 entry",
+      "date": "2027-03-10",
+      "quote": "Applications close on Wednesday 10 March 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Round 4, 2027 entry",
+      "date": "2027-04-28",
+      "quote": "Applications close on Wednesday 28 April 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 4,
+    "also_extracted": 4,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "imperial-college-london",
+   "program": "MSc Advanced Materials for Sustainable Infrastructure",
+   "snapshot_sha256": "1124ef7730d039a9ca7253c943f6eae3b9d881d12b3210f4436ad11f877a4cb9",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 7390,
+    "output_tokens": 202,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 4,
+   "fields": {
+    "academic": {
+     "text": "A 2:1 degree in an Engineering or Science-based subject.",
+     "quote": "2:1 in an Engineering or Science-based subject.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Round 2, 2027 entry",
+      "date": "2027-01-06",
+      "quote": "Applications close on Wednesday 6 January 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3, 2027 entry",
+      "date": "2027-03-10",
+      "quote": "Applications close on Wednesday 10 March 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Round 4, 2027 entry",
+      "date": "2027-04-28",
+      "quote": "Applications close on Wednesday 28 April 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 7,
+    "also_extracted": 4,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "imperial-college-london",
+   "program": "MSc Advanced Materials Science and Engineering",
+   "snapshot_sha256": "3eaa154f6f2e5e27940e42ccdc852a8ea7f39f80df844260b69b4fadd177be20",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 7428,
+    "output_tokens": 276,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 5,
+   "fields": {
+    "academic": {
+     "text": "A 2:1 degree in Materials, Mechanical/Civil/Chemical Engineering, Physics or Chemistry.",
+     "quote": "2:1 in Materials, Mechanical/Civil/ Chemical Engineering, Physics or Chemistry.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Degree subject must be Materials, Mechanical/Civil/Chemical Engineering, Physics or Chemistry.",
+      "quote": "2:1 in Materials, Mechanical/Civil/ Chemical Engineering, Physics or Chemistry.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Round 2, 2027 entry",
+      "date": "2027-01-06",
+      "quote": "Applications close on Wednesday 6 January 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3, 2027 entry",
+      "date": "2027-03-10",
+      "quote": "Applications close on Wednesday 10 March 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Round 4, 2027 entry",
+      "date": "2027-04-28",
+      "quote": "Applications close on Wednesday 28 April 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 4,
+    "also_extracted": 4,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "imperial-college-london",
+   "program": "MSc Advanced Mechanical Engineering",
+   "snapshot_sha256": "b36849d1970b7350bb7205a495e8c10c5894559358c600e2c1fa27d9cc384b27",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 6697,
+    "output_tokens": 195,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 4,
+   "fields": {
+    "academic": {
+     "text": "First-Class Honours in Science or Engineering.",
+     "quote": "First-Class Honours in Science or Engineering.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Round 2, 2027 entry",
+      "date": "2027-01-06",
+      "quote": "Applications close on Wednesday 6 January 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3, 2027 entry",
+      "date": "2027-03-10",
+      "quote": "Applications close on Wednesday 10 March 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Round 4, 2027 entry",
+      "date": "2027-04-28",
+      "quote": "Applications close on Wednesday 28 April 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 4,
+    "also_extracted": 4,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "imperial-college-london",
+   "program": "MSc Advanced Structural Engineering",
+   "snapshot_sha256": "7d202944c116824b444f83c29d78a2611d5cdda52d11038201587c4908ee99f4",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 7762,
+    "output_tokens": 278,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 5,
+   "fields": {
+    "academic": {
+     "text": "A 2:1 degree in Civil Engineering, Natural Sciences, Earth Sciences or another numerate subject.",
+     "quote": "2:1 in Civil Engineering, Natural Sciences, Earth Sciences or other numerate subject.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "A suitable grounding in mathematics, for example A-level Mathematics at grade A or B.",
+      "quote": "A suitable grounding in mathematics is required, for example: A-level Mathematics grade A or B.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Round 2, 2027 entry",
+      "date": "2027-01-06",
+      "quote": "Applications close on Wednesday 6 January 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3, 2027 entry",
+      "date": "2027-03-10",
+      "quote": "Applications close on Wednesday 10 March 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Round 4, 2027 entry",
+      "date": "2027-04-28",
+      "quote": "Applications close on Wednesday 28 April 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 4,
+    "also_extracted": 4,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "imperial-college-london",
+   "program": "MRes Aerospace Sciences",
+   "snapshot_sha256": "085215e305eda51ff3e2a896b17fc2189086504d6225b39719d06df2d2729795",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 7285,
+    "output_tokens": 322,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 4,
+   "fields": {
+    "academic": {
+     "text": "At least a 2:1 UK Bachelor's degree with Honours (First class strongly preferred) or equivalent in Engineering, Mathematics, Physics, Materials Science, Computing or equivalent.",
+     "quote": "At least a 2.1 (First class degree strongly preferred) UK Bachelor’s degree with Honours or equivalent in Engineering, Mathematics, Physics, Materials Science, Computing or equivalent.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Round 2, 2027 entry",
+      "date": "2027-01-06",
+      "quote": "Applications close on Wednesday 6 January 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3, 2027 entry",
+      "date": "2027-03-10",
+      "quote": "Applications close on Wednesday 10 March 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Round 4, 2027 entry",
+      "date": "2027-04-28",
+      "quote": "Applications close on Wednesday 28 April 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 4,
+    "also_extracted": 4,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "imperial-college-london",
+   "program": "MSc AI, Economics and Policy",
+   "snapshot_sha256": "d9ae95b9b0028fd499a64a9b41806b3ec385abe5e6b356753644634b65757666",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 6345,
+    "output_tokens": 409,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 6,
+   "fields": {
+    "academic": {
+     "text": "A 2:1 UK Bachelor's degree with Honours (or an equivalent international qualification) in a relevant discipline.",
+     "quote": "2:1 UK Bachelor’s Degree with Honours (or an equivalent international qualification) in a relevant discipline.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "A relevant discipline background, such as computer science, data science, engineering, mathematics or other quantitative disciplines, economics, business, or social sciences with strong quantitative preparation.",
+      "quote": "Suitable backgrounds include ​Computer Science, Data Science, Engineering, Mathematics or related quantitative disciplines, Economics, Business, or other social sciences with strong quantitative preparation.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Round 1, 2027 entry",
+      "date": "2026-09-29",
+      "quote": "Applications close on Tuesday 29 September 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Round 2, 2027 entry",
+      "date": "2027-01-06",
+      "quote": "Applications close on Wednesday 6 January 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3, 2027 entry",
+      "date": "2027-03-10",
+      "quote": "Applications close on Wednesday 10 March 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Round 4, 2027 entry",
+      "date": "2027-04-28",
+      "quote": "Applications close on Wednesday 28 April 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 5,
+    "also_extracted": 5,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "imperial-college-london",
+   "program": "MRes Alternative Protein",
+   "snapshot_sha256": "505bc9c5d712b16da0c5de3d71e832d00f7a46fb516fdf2ba531361860d3f975",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 7054,
+    "output_tokens": 344,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 5,
+   "fields": {
+    "academic": {
+     "text": "A 2:1 degree in Life Sciences, Engineering, Food Sciences, Biomedical Science, or related fields.",
+     "quote": "2:1 in Life Sciences, Engineering, Food Sciences, Biomedical Science, or related fields.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Must contact at least one potential supervisor before applying to discuss the proposed research and confirm availability.",
+      "quote": "Before submitting your application, you must make contact with at least one potential supervisor to discuss your proposed research and confirm their availability to supervise you.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Round 2, 2027 entry",
+      "date": "2027-01-06",
+      "quote": "Applications close on Wednesday 6 January 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3, 2027 entry",
+      "date": "2027-03-10",
+      "quote": "Applications close on Wednesday 10 March 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Round 4, 2027 entry",
+      "date": "2027-04-28",
+      "quote": "Applications close on Wednesday 28 April 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 4,
+    "also_extracted": 4,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "korea-university",
+   "program": "M.A. in International Studies, Graduate School of International Studies (International Commerce; International Development & Cooperation; International Peace & Security; Area Studies)",
+   "snapshot_sha256": "598a729a9731e3a3b2c9706b21af9c681c9dc2f4f774d6c0523971fb8c4b9212",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 4804,
+    "output_tokens": 189,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 2,
+   "fields": {
+    "deadlines": [
+     {
+      "label": "Spring 2027, Online application and application fee payment",
+      "date": "2026-10-22",
+      "quote": "October 6 (Tue.) 10:00 ~ October 22 (Thur.) by 17:00, 2026 (KST)",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027, Application documents submission",
+      "date": "2026-10-23",
+      "quote": "October 6 (Tue.) 10:00 ~ October 23 (Fri.) by 17:00, 2026 (KST)",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 0,
+    "also_extracted": 0,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "korea-university",
+   "program": "MS in Business Administration, Korea University Business School (Management; Global Business; Marketing; Finance; Accounting; Strategy; LSOM; IS), international track",
+   "snapshot_sha256": "f6831d61497f74ba7483b1c60c567e252388adcec84a6a16a26094522a3a50b5",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 6235,
+    "output_tokens": 481,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 4,
+   "fields": {
+    "academic": {
+     "text": "Applicants must hold a bachelor's degree from a domestic or overseas university, or be expected to obtain one before enrollment (Master's and Integrated Master's-Doctoral Programs).",
+     "quote": "Master’s and Integrated\nMaster’s-Doctoral Programs: Applicants who hold a\nbachelor’s degree from a domestic or overseas university or are expected to\nobtain one before enrollment.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "Academic IELTS 5.5 or higher",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 71.0,
+     "min_band": 3.5,
+     "quote": "TOEFL iBT 71 or higher (3.5 or higher for test-takers\ntaking the exam on or after January 21, 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Business Analytics (BA) applicants must submit a TOPIK score.",
+      "quote": "Business Analytics (BA) applicants must\nsubmit a TOPIK score.",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [
+    {
+     "field": "academic",
+     "value": {
+      "text": "International applicants: applicant and both parents must be non-Korean citizens, with 16 years of regular primary, secondary and higher education, and must hold or expect to obtain the required bachelor's or master's degree before enrollment.",
+      "quote": "The applicant and both parent(s)\nmust be non-Korean citizens. The applicant must have completed regular\nprimary, secondary, and higher education equivalent to the Korean education\nsystem, totaling 16 years, either in Korea or overseas."
+     },
+     "reason": "another academic route; the requirement file holds one"
+    },
+    {
+     "field": "academic",
+     "value": {
+      "text": "Overseas Korean (+16 Years) applicants must have completed all regular education (Grades 1-12 and university-level) outside Korea, totaling 16 years, and must hold or expect to obtain the required degree before enrollment.",
+      "quote": "Applicants must have completed\nthe entire regular education equivalent to the Korean primary, secondary, and\nhigher education system, totaling 16 years, outside Korea."
+     },
+     "reason": "another academic route; the requirement file holds one"
+    }
+   ],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 6,
+    "also_extracted": 4,
+    "numbers_compared": 2,
+    "numbers_agree": 2
+   }
+  },
+  {
+   "school": "korea-university",
+   "program": "Global MBA (Master of Business Administration), Korea University Business School, international non-quota track",
+   "snapshot_sha256": "85148980c10395917a005be95d1462fa04734b4e771f7fc4c3534b0e2354a4c2",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 5583,
+    "output_tokens": 542,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 6,
+   "fields": {
+    "academic": {
+     "text": "A bachelor's degree earned, or expected by August 2026, from Korea or overseas.",
+     "quote": "One who has earned a bachelor’s degree or who is expected to earn a bachelor’s degree by August 2026 from Korea or overseas.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Eligible for overseas travel.",
+      "quote": "One who is eligible for overseas travel",
+      "check": "ok"
+     },
+     {
+      "text": "English proficiency certificate (TOEIC, TOEFL, IELTS, TEPS, OPIC, etc.); expired scores not accepted, with exemptions for degrees from or nationals of listed countries.",
+      "quote": "English Proficiency Certificate\nTOEIC, TOEFL, IELTS, TEPS, OPIC, etc.\nExpired test scores will not be accepted",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Round 1, Fall 2026",
+      "date": "2026-02-11",
+      "quote": "Wednesday, January 21, 2026 - Wednesday, February 11, 2026 at 5 PM",
+      "check": "ok"
+     },
+     {
+      "label": "Round 2, Fall 2026",
+      "date": "2026-03-20",
+      "quote": "Friday, February 27, 2026 - Friday, March 20, 2026 at 5 PM",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3, Fall 2026",
+      "date": "2026-04-17",
+      "quote": "Tuesday, March 31, 2026 - Friday, April 17, 2026 at 5 PM",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [
+    {
+     "field": "academic",
+     "value": {
+      "text": "Eligibility for the international admission track (non-quota) as a pure foreigner, i.e. both the applicant and his/her parents are foreign nationals.",
+      "quote": "1) Pure foreigner: when both the applicant and his/her parents are foreign nationals (one with dual nationality including the Republic of Korea, is ineligible for international admission track)"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    },
+    {
+     "field": "academic",
+     "value": {
+      "text": "Eligibility for the international admission track (non-quota) as a Korean citizen who completed the entire regular curriculum overseas (16 years including university).",
+      "quote": "2) One who completed the entire curriculum overseas: when the applicant is a citizen of the Republic of Korea but has completed a regular curriculum equivalent to elementary, middle, and higher education(16 years including university)"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    }
+   ],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 5,
+    "also_extracted": 5,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "korea-university",
+   "program": "CEMS Global MIM (Master in Management), Korea University Business School, international non-quota track",
+   "snapshot_sha256": "8d2077bc7726beda6644fd31df4cd5b7f6d79ac5b358fdbf98ac8c29553d9510",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 5925,
+    "output_tokens": 614,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 8,
+   "fields": {
+    "academic": {
+     "text": "Hold a bachelor's degree (or expect one by August 2026) from Korea or overseas, having majored in business, management, economy or related fields.",
+     "quote": "Among those who have earned a bachelor’s degree or who are expected to earn a bachelor’s degree by August 2026 from Korea or overseas, ①one who majored in business, management, economy or related fields",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "②IELTS 7.0",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100.0,
+     "text": "TOEFL iBT 100 prior to January 21, 2026; 5 (on the 1-6 scale) from January 21, 2026 onward.",
+     "quote": "①TOEFL iBT 100 (prior to January 21, 2026) / 5 (from January 21, 2026 onward)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Proficiency in English.",
+      "quote": "One who is proficient in English (see the required documents)",
+      "check": "ok"
+     },
+     {
+      "text": "No work experience, or less than 2 years of employment (recommended).",
+      "quote": "One who has no work experience or was employed for less than 2 years (recommended)",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Round 1, Fall 2026",
+      "date": "2026-02-11",
+      "quote": "Wednesday, January 21, 2026 - Wednesday, February 11, 2026 at 5 PM",
+      "check": "ok"
+     },
+     {
+      "label": "Round 2, Fall 2026",
+      "date": "2026-03-20",
+      "quote": "Friday, February 27, 2026 - Friday, March 20, 2026 at 5 PM",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3, Fall 2026",
+      "date": "2026-04-17",
+      "quote": "Tuesday, March 31, 2026 - Friday, April 17, 2026 at 5 PM",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [
+    {
+     "field": "academic",
+     "value": {
+      "text": "Hold a bachelor's degree (or expect one by August 2026) from Korea or overseas, having earned 40 credits or 60 ECTS or more in business, management, economy or related fields.",
+      "quote": "or ②one who earned 40 credits or 60 ECTS(European Credit Transfer and Accumulation System) or more in business, management, economy or related fields"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    }
+   ],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 7,
+    "also_extracted": 7,
+    "numbers_compared": 2,
+    "numbers_agree": 2
+   }
+  },
+  {
+   "school": "korea-university",
+   "program": "Master's, Department of Law, Graduate School (international track)",
+   "snapshot_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 3653,
+    "output_tokens": 373,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 4,
+   "fields": {
+    "academic": {
+     "text": "Applicant and parents must be non-Korean citizens (international student route).",
+     "quote": "Both the applicant and applicant’s parent(s) must be non-Korean citizens.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "Academic IELTS 5.5 or higher",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 71.0,
+     "quote": "TOEFL iBT 71(including Home Edition, a score of 3.5 for tests taken on or after Jan 21. 2026) or higher",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Korean proficiency: TOPIK (or TOPIK IBT regular test) level 3 or higher.",
+      "quote": "A score report of the Test of Proficiency in Korean (TOPIK / TOPIK IBT regular test) level 3 or higher",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [
+    {
+     "field": "academic",
+     "value": {
+      "text": "Overseas Korean applicants must have completed regular primary, secondary and higher education equivalent to Grades 1 to 12 and a Bachelor (or Master or Ph.D) in the Korean education system overseas.",
+      "quote": "The applicant must have completed regular primary, secondary and higher education, equivalent to Grades 1 to 12 and Bachelor (or Master or Ph.D) in the Korean education system in overseas."
+     },
+     "reason": "another academic route; the requirement file holds one"
+    }
+   ],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 0,
+    "also_extracted": 0,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "nanyang-technological-university-singapore",
+   "program": "Master of Science in Information Studies (IS)",
+   "snapshot_sha256": "87c240ad02a7c6c125f2ad54628354ccfdb3af1f4857aa21a1fe5a45b22b9a08",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 10677,
+    "output_tokens": 507,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 5,
+   "fields": {
+    "academic": {
+     "text": "A Bachelor's degree in an information-related discipline.",
+     "quote": "A Bachelor’s degree in an information-related discipline OR",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "International English Language Testing System (IELTS), Academic\n100 (internet-based)\n6.5\nNote: The IELTS sub-scores should not be less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100.0,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT\nInternational English Language Testing System (IELTS), Academic\n100 (internet-based)\n6.5",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Full-time work experience in an information-related field (internships do not count).",
+      "quote": "A Bachelor's degree in any discipline plus full-time work experience in an information-related field.",
+      "check": "ok"
+     },
+     {
+      "text": "Good communication skills in written and spoken English.",
+      "quote": "Good communication skills (written and spoken English)",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [
+    {
+     "field": "deadlines",
+     "value": {
+      "label": "August intake (M.Sc. Information Studies, Programme Code 108)",
+      "date": "2025-01-31",
+      "quote": "Application Period:\n4 November to 31 January"
+     },
+     "reason": "deadline year 2025 not in quote"
+    }
+   ],
+   "unused": [
+    {
+     "field": "academic",
+     "value": {
+      "text": "A Bachelor's degree in any discipline plus full-time work experience in an information-related field.",
+      "quote": "A Bachelor's degree in any discipline plus full-time work experience in an information-related field."
+     },
+     "reason": "another academic route; the requirement file holds one"
+    },
+    {
+     "field": "academic",
+     "value": {
+      "text": "Degree classification of second class lower/Honours (Merit) and above or equivalent.",
+      "quote": "Degree classification of second class lower/Honours (Merit) and above or equivalent"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    },
+    {
+     "field": "academic",
+     "value": {
+      "text": "Final-year undergraduates may apply with a provisional degree certificate and/or examination results to date.",
+      "quote": "Final-year undergraduates may apply with a provisional degree certificate and/or examination results to date."
+     },
+     "reason": "another academic route; the requirement file holds one"
+    }
+   ],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 3,
+    "also_extracted": 3,
+    "numbers_compared": 3,
+    "numbers_agree": 3
+   }
+  },
+  {
+   "school": "nanyang-technological-university-singapore",
+   "program": "Master of Science in Information Systems (MSIS)",
+   "snapshot_sha256": "d15bd7f14c6b669180bb22861c0cca7601365219b590a28da9e07aec85580d67",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 10731,
+    "output_tokens": 429,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 3,
+   "fields": {
+    "academic": {
+     "text": "A Bachelor's degree in areas such as Computer Science, Information Systems or Information Technology.",
+     "quote": "A Bachelor's degree in areas such as Computer Science, Information Systems, Information Technology, or",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100.0,
+     "quote": "100 (internet-based)",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Relevant full-time working experience is recommended (internships do not count).",
+      "quote": "*: Internships are not counted towards working experience, and it is recommended for applicants to have at least a minimum of one-year of full-time working experience in relevant fields.",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [
+    {
+     "field": "ielts",
+     "value": {
+      "overall": 6.5,
+      "min_band": 6.0,
+      "quote": "Note: The IELTS sub-scores should not be less than 6.0."
+     },
+     "reason": "overall=6.5 not in quote"
+    },
+    {
+     "field": "deadlines",
+     "value": {
+      "label": "August intake (M.Sc. Information Systems, Programme Code 294)",
+      "date": "2026-02-15",
+      "quote": "Application Period:\n1 November to 15 February"
+     },
+     "reason": "deadline year 2026 not in quote"
+    }
+   ],
+   "unused": [
+    {
+     "field": "academic",
+     "value": {
+      "text": "A Bachelor's degree with a strong information technology-related component, such as in Engineering or the Sciences.",
+      "quote": "A Bachelor's degree with a strong information technology-related component such as those in Engineering or the Sciences, or"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    },
+    {
+     "field": "academic",
+     "value": {
+      "text": "A Bachelor's degree plus relevant working experience.",
+      "quote": "A Bachelor’s degree plus relevant working experience"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    },
+    {
+     "field": "academic",
+     "value": {
+      "text": "Degree classification of second class lower/Honours (Merit) and above, or equivalent.",
+      "quote": "Degree classification second class lower/Honours (Merit) and above or equivalent"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    }
+   ],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 3,
+    "also_extracted": 2,
+    "numbers_compared": 1,
+    "numbers_agree": 1
+   }
+  },
+  {
+   "school": "nanyang-technological-university-singapore",
+   "program": "Master of Science in Integrated Circuits & Microelectronics",
+   "snapshot_sha256": "05845b70f22bf787ed67c6dad9cd0328f6c503a1608501b816549613d48fa9e2",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 10099,
+    "output_tokens": 310,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 4,
+   "fields": {
+    "academic": {
+     "text": "A good relevant bachelor's degree.",
+     "quote": "Have a good relevant bachelor's degree",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "IELTS Score (Test date must be within 2 years or less from the date of application):\n≥ 6.0",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 85.0,
+     "text": "Internet-based TOEFL: at least 85 for exams taken before January 21, 2026, or at least 4.5 for exams taken on or after January 21, 2026; paper-based 563 and computer-based 223 also accepted.",
+     "quote": "≥ 563 (paper-based)\n≥ 223 (computer-based)\n≥ 85 (internet-based, for exams taken before January 21, 2026)\n≥ 4.5 (internet-based, for exams taken on or after January 21, 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Relevant working experience is an advantage.",
+      "quote": "Relevant working experience is an advantage",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 3,
+    "also_extracted": 3,
+    "numbers_compared": 2,
+    "numbers_agree": 2
+   }
+  },
+  {
+   "school": "nanyang-technological-university-singapore",
+   "program": "Master of Science in International Construction Management",
+   "snapshot_sha256": "b1ed5207a67f020971c7c1bae7142670a47502de29bf3a2b62638f3237f8ea5e",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 6548,
+    "output_tokens": 394,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 5,
+   "fields": {
+    "academic": {
+     "text": "A good Bachelor degree in Engineering, Architecture, Quantity Surveying or other related disciplines, plus a period of relevant practical experience after the first degree.",
+     "quote": "Have a good Bachelor degree in Engineering, Architecture, Quantity Surveying or other related disciplines, and have a period of relevant practical experience after obtaining the first degree.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "IELTS (Academic): 6.0",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 85.0,
+     "text": "Internet-based 85 for tests taken before 21 January 2026; 4.5 (1-6 scale) for tests taken after 21 January 2026; paper-based 600 and computer-based 250 also accepted.",
+     "quote": "TOEFL (Internet-based - for tests taken before 21 January 2026): 85\nTOEFL (Internet-based - for tests taken after 21 January 2026): 4.5",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Relevant practical experience after obtaining the first degree.",
+      "quote": "and have a period of relevant practical experience after obtaining the first degree.",
+      "check": "ok"
+     },
+     {
+      "text": "TOEFL/IELTS required if the Bachelor programme was not conducted in English; test date within 2 years or less from the date of application.",
+      "quote": "TOEFL/IELTS is required for applicants whose Bachelor programme is not conducted in English. Test date must be within 2 years or less from the date of application.",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 3,
+    "also_extracted": 3,
+    "numbers_compared": 2,
+    "numbers_agree": 2
+   }
+  },
+  {
+   "school": "nanyang-technological-university-singapore",
+   "program": "Master of Science in Knowledge Management (KM)",
+   "snapshot_sha256": "b4db2a2eddb1badfa9ac3cf1176e0e55ee21923b923e4f96c6de885a5e02a295",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 10088,
+    "output_tokens": 410,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 5,
+   "fields": {
+    "academic": {
+     "text": "A good Bachelor's degree in any discipline.",
+     "quote": "A good Bachelor's degree in any discipline,",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "6.5\nNote: The IELTS sub-scores should not be less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100.0,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT\nInternational English Language Testing System (IELTS), Academic\n100 (internet-based)\n6.5",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Preference is given to applicants with management or corporate experience in a public or private organisation.",
+      "quote": "Preference is given to applicants with management or corporate experience in a public or private organisation.",
+      "check": "ok"
+     },
+     {
+      "text": "At least one year of full-time working experience is recommended (internships are not counted).",
+      "quote": "Internships are not counted towards working experience, and it is recommended for applicants to have at least a minimum of one-year of full-time working experience.",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [
+    {
+     "field": "deadlines",
+     "value": {
+      "label": "August intake (application period 1 November to 15 February)",
+      "date": "2026-02-15",
+      "quote": "Application Period:\n1 November to 15 February"
+     },
+     "reason": "deadline year 2026 not in quote"
+    }
+   ],
+   "unused": [
+    {
+     "field": "academic",
+     "value": {
+      "text": "Degree classification second class lower/Honours (Merit) and above or equivalent.",
+      "quote": "Degree classification second class lower/Honours (Merit) and above or equivalent"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    }
+   ],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 3,
+    "also_extracted": 3,
+    "numbers_compared": 3,
+    "numbers_agree": 3
+   }
+  },
+  {
+   "school": "nanyang-technological-university-singapore",
+   "program": "Master of Science in Managerial Economics (English)",
+   "snapshot_sha256": "1bdf59418e9614c298f18a7f4bf801d5b6e8657d090662fd7d9a75be3c049b94",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 10572,
+    "output_tokens": 271,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 4,
+   "fields": {
+    "academic": {
+     "text": "A bachelor's degree.",
+     "quote": "Applicants should possess:\nA bachelor’s degree",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS\nScore of 6.5\nMin 5.5 for each skill module",
+     "check": "ok"
+    },
+    "toefl": {
+     "min_band": 4.5,
+     "text": "TOEFL score of 5, with a minimum of 4.5 for each skill section (as stated on the page).",
+     "quote": "TOEFL\nScore of 5\nMin 4.5 for each skill section",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "August 2027 admission",
+      "date": "2027-03-31",
+      "quote": "Application for August 2027 admission is open from 1 Oct 2026 to 31 Mar 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 3,
+    "also_extracted": 3,
+    "numbers_compared": 2,
+    "numbers_agree": 2
+   }
+  },
+  {
+   "school": "nanyang-technological-university-singapore",
+   "program": "Master of Science in Marketing Science",
+   "snapshot_sha256": "cc6bbcea050e9b5b05832c64656822eca15a83e78602aa212da5a6c3f1999ce5",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 5122,
+    "output_tokens": 123,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 2,
+   "fields": {
+    "academic": {
+     "text": "A good Bachelor's degree in any discipline.",
+     "quote": "A good Bachelor's degree from any discipline",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "TOEFL or IELTS for applicants whose first degree was taught in a language other than English.",
+      "quote": "TOEFL/IELTS for applicants whose first degree was taught in a language other than English",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 1,
+    "also_extracted": 1,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "nanyang-technological-university-singapore",
+   "program": "Master of Science in Analytics",
+   "snapshot_sha256": "1b8d5ed51e3157067ec1876c0fb1ff4c15d26a61c84fd096125b4eb85d453af1",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 4815,
+    "output_tokens": 331,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 5,
+   "fields": {
+    "academic": {
+     "text": "A bachelor's degree in a quantitative discipline is preferred.",
+     "quote": "A Bachelor's Degree in a quantitative discipline (mathematics, statistics, engineering, computer science etc.) is preferred.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "A TOEFL iBT score of 4.5 or more, or IELTS score of 6.0 or more, for graduates of universities in which English is not the medium of instruction.",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT score of 4.5 or more (as stated on the page) for graduates of universities where English is not the medium of instruction.",
+     "quote": "A TOEFL iBT score of 4.5 or more, or IELTS score of 6.0 or more, for graduates of universities in which English is not the medium of instruction.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "A good GMAT score is preferred but not required.",
+      "quote": "A good GMAT score is preferred but not required.",
+      "check": "ok"
+     },
+     {
+      "text": "A minimum of two years of relevant working experience is preferred but not required.",
+      "quote": "A minimum of two years of relevant working experience is preferred but not required.",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 3,
+    "also_extracted": 3,
+    "numbers_compared": 1,
+    "numbers_agree": 1
+   }
+  },
+  {
+   "school": "nanyang-technological-university-singapore",
+   "program": "Master of Science in Applied Economics",
+   "snapshot_sha256": "b8d5807fd92e939fdec892cef15caaa9a4a7cdea0366b8f551fa45405e8f0a7d",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 5240,
+    "output_tokens": 398,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 4,
+   "fields": {
+    "academic": {
+     "text": "A degree in Economics with good honours (if applicable).",
+     "quote": "Applicants should possess a degree in Economics with good honours (if applicable).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS  - IELTS score of 6.5",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 85.0,
+     "text": "Minimum total score 85 for exams taken before 21 January 2026; minimum total score 4.5 for exams taken on or after 21 January 2026.",
+     "quote": "For exams taken before 21 January 2026: Minimum total score: 85\n- For exams taken on or after 21 January 2026: Minimum total score: 4.5",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "All students must read preparatory courses in Statistics and Mathematics.",
+      "quote": "ALL students will be required to read preparatory courses in Statistics and Mathematics, which will be conducted online via NTULearn during the trimester.",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [
+    {
+     "field": "deadlines",
+     "value": {
+      "label": "August Intake",
+      "date": "2026-01-31",
+      "quote": "Application Period: 1 September to 31 January"
+     },
+     "reason": "deadline year 2026 not in quote"
+    }
+   ],
+   "unused": [
+    {
+     "field": "academic",
+     "value": {
+      "text": "Applicants without an Economics degree may be considered if they hold an honours degree in another discipline and a strong quantitative background.",
+      "quote": "Applicants who do not have a degree in Economics will be considered, provided they have an honours degree in other disciplines and a strong quantitative background."
+     },
+     "reason": "another academic route; the requirement file holds one"
+    }
+   ],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 3,
+    "also_extracted": 3,
+    "numbers_compared": 2,
+    "numbers_agree": 2
+   }
+  },
+  {
+   "school": "nanyang-technological-university-singapore",
+   "program": "Master of Science in Applied Gerontology",
+   "snapshot_sha256": "ab2be7aa1990d9ac4b2e22c4bce0cf266d8bf7cb2843e0e8af56687bbc979319",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 7516,
+    "output_tokens": 254,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 4,
+   "fields": {
+    "academic": {
+     "text": "A good bachelor's degree.",
+     "quote": "a good bachelor’s degree; and",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "IELTS\nMinimum total score: 6",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 85.0,
+     "text": "Minimum total score 85 for exams taken before 21 January 2026; minimum total score 4.5 for exams taken on or after 21 January 2026.",
+     "quote": "For exams taken before 21 January 2026: Minimum total score: 85\nFor exams taken on or after 21 January 2026: Minimum total score: 4.5",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "A passion for working with older people or on ageing-related matters.",
+      "quote": "a passion for working with older people or on ageing-related matters",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 3,
+    "also_extracted": 3,
+    "numbers_compared": 2,
+    "numbers_agree": 2
+   }
+  },
+  {
+   "school": "technical-university-of-munich",
+   "program": "Aerospace (M.Sc.)",
+   "snapshot_sha256": "17a2be74b40c9bde619deac4f1a8a6b1f4bc5355fb805b34baba1101d9220609",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 8805,
+    "output_tokens": 174,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 2,
+   "fields": {
+    "academic": {
+     "text": "A recognized undergraduate degree (e.g. a Bachelor's) and successful completion of the aptitude assessment procedure.",
+     "quote": "Minimum requirements to apply for a Master’s program at TUM are a recognized undergraduate degree (e.g. a Bachelor’s) and the successful completion of the aptitude assessment procedure.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Sufficient German or English language skills, proven before the application deadline.",
+      "quote": "You need sufficient German or English language skills if you wish to apply for this program. Evidence of your language proficiency has to be submitted before the end of the application deadline.",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 4,
+    "also_extracted": 1,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "technical-university-of-munich",
+   "program": "Agricultural Biosciences (M.Sc.)",
+   "snapshot_sha256": "66c52d562de24549caa3d0e1eb9550073c314d5ca863c734648b64ecf52fd0df",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 9271,
+    "output_tokens": 223,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 2,
+   "fields": {
+    "academic": {
+     "text": "A recognized undergraduate degree (e.g. a bachelor's) and successful completion of the aptitude assessment procedure.",
+     "quote": "Minimum requirements to apply for a Master's program at TUM are a recognized undergraduate degree (e.g. a bachelor’s) and the successful completion of the aptitude assessment procedure.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Successful participation in the TUM Test Agricultural Biosciences with a minimum score of 41 points.",
+      "quote": "Notification of successful participation in an TUM Test Agricultural Biosciences with min. Score of 41 points",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [
+    {
+     "field": "deadlines",
+     "value": {
+      "label": "Winter semester",
+      "date": "2026-05-31",
+      "quote": "Application period for the winter semester: 01.01. – 31.05."
+     },
+     "reason": "deadline year 2026 not in quote; deadline month 5 not in quote"
+    }
+   ],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 4,
+    "also_extracted": 1,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "technical-university-of-munich",
+   "program": "Agrosystem Sciences (M.Sc.)",
+   "snapshot_sha256": "768e469d0916597c075ae908847676c2ddaddd1396511729c670a1abaf5c728d",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 8969,
+    "output_tokens": 187,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 2,
+   "fields": {
+    "academic": {
+     "text": "A recognized undergraduate degree (e.g. a Bachelor's) and successful completion of the aptitude assessment procedure.",
+     "quote": "Minimum requirements to apply for a Master’s program at TUM are a recognized undergraduate degree (e.g. a Bachelor’s) and the successful completion of the aptitude assessment procedure.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Sufficient German language skills, proven before the application deadline.",
+      "quote": "You need sufficient German language skills if you wish to apply for this program. Evidence of your language proficiency has to be submitted before the end of the application deadline.",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 4,
+    "also_extracted": 1,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "technical-university-of-munich",
+   "program": "AI in Biomedicine (M.Sc.)",
+   "snapshot_sha256": "7f609a4d407e46c89fb62c49670542adea54b2733b1d2687c07aaf56b1970f9e",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 8719,
+    "output_tokens": 229,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 2,
+   "fields": {
+    "academic": {
+     "text": "A recognized undergraduate degree (e.g. a Bachelor's) and successful completion of the aptitude assessment procedure.",
+     "quote": "Minimum requirements to apply for a Master’s program at TUM are a recognized undergraduate degree (e.g. a Bachelor’s) and the successful completion of the aptitude assessment procedure.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Sufficient English language skills, with evidence submitted before the application deadline.",
+      "quote": "You need sufficient English language skills if you wish to apply for this program. Evidence of your language proficiency has to be submitted before the end of the application deadline.",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [
+    {
+     "field": "deadlines",
+     "value": {
+      "label": "Winter semester",
+      "date": "2026-05-31",
+      "quote": "Application period for winter semester: 01.02. – 31.05."
+     },
+     "reason": "deadline year 2026 not in quote; deadline month 5 not in quote"
+    }
+   ],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 4,
+    "also_extracted": 1,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "technical-university-of-munich",
+   "program": "Architecture (M.A.)",
+   "snapshot_sha256": "d64ad58e9e7a122f10880743b932409e71b6155d96694eccf2d51af7b4736b9f",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 9074,
+    "output_tokens": 169,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 2,
+   "fields": {
+    "academic": {
+     "text": "A recognized undergraduate degree (e.g. a Bachelor's) and successful completion of the aptitude assessment procedure.",
+     "quote": "Minimum requirements to apply for a Master’s program at TUM are a recognized undergraduate degree (e.g. a Bachelor’s) and the successful completion of the aptitude assessment procedure.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Sufficient German language skills, proven by recognized certificates.",
+      "quote": "You need sufficient German language skills if you wish to apply for this program.",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 4,
+    "also_extracted": 1,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "technical-university-of-munich",
+   "program": "Automotive Engineering (M.Sc.)",
+   "snapshot_sha256": "09efd29a1cabbe1e77c69444d8c8800028528982b6edb6a6075007a5bd1eedb3",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 8659,
+    "output_tokens": 159,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 2,
+   "fields": {
+    "academic": {
+     "text": "A recognized undergraduate degree (e.g. a Bachelor's) and successful completion of the aptitude assessment procedure.",
+     "quote": "Minimum requirements to apply for a Master’s program at TUM are a recognized undergraduate degree (e.g. a Bachelor’s) and the successful completion of the aptitude assessment procedure.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Proof of German or English language proficiency.",
+      "quote": "Proof of German or English Language Proficiency",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 4,
+    "also_extracted": 1,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "technical-university-of-munich",
+   "program": "Biochemistry (M.Sc.)",
+   "snapshot_sha256": "19fb893019ab8b088fe5ea3b6675b23ece0bb54b0be3626d8dd1ff2b6b86d3ed",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 8804,
+    "output_tokens": 189,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 2,
+   "fields": {
+    "academic": {
+     "text": "A recognized undergraduate degree (e.g. a bachelor's) and successful completion of the aptitude assessment procedure.",
+     "quote": "Minimum requirements to apply for a Master's program at TUM are a recognized undergraduate degree (e.g. a bachelor’s) and the successful completion of the aptitude assessment procedure.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Sufficient German language skills, proven before the end of the application deadline.",
+      "quote": "You need sufficient German language skills if you wish to apply for this program. Evidence of your language proficiency has to be submitted before the end of the application deadline.",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 4,
+    "also_extracted": 1,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "technical-university-of-munich",
+   "program": "Bioeconomy (M.Sc.)",
+   "snapshot_sha256": "e0ca04995d85f5994b37948cb1ea22f316aa700b7b9bbcf8bc9e06ea6411a1ed",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 9140,
+    "output_tokens": 188,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 1,
+   "fields": {
+    "academic": {
+     "text": "A recognized undergraduate degree (e.g. a Bachelor's) and successful completion of the aptitude assessment procedure.",
+     "quote": "Minimum requirements to apply for a Master’s program at TUM are a recognized undergraduate degree (e.g. a Bachelor’s) and the successful completion of the aptitude assessment procedure.",
+     "check": "ok"
+    }
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 4,
+    "also_extracted": 0,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "technical-university-of-munich",
+   "program": "Biology (M.Sc.)",
+   "snapshot_sha256": "211c073e31dd9851e92f7ffe0e1f186b91bf154add49d710c71207eaee5f2ccc",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 9224,
+    "output_tokens": 283,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 3,
+   "fields": {
+    "academic": {
+     "text": "A recognized undergraduate degree (e.g. a Bachelor's) and successful completion of the aptitude assessment procedure.",
+     "quote": "Minimum requirements to apply for a Master’s program at TUM are a recognized undergraduate degree (e.g. a Bachelor’s) and the successful completion of the aptitude assessment procedure.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Applicants with a Bachelor's degree from outside the Lisbon Convention area must provide evidence of successful participation in a TUM Test Biology graded with a point system.",
+      "quote": "Applicants for the Master's program in Biology who have obtained their Bachelor's degree in a country outside the scope of the “Lisbon Convention” have to provide evidence of a successful participation in a TUM Test Biology, graded with a point system.",
+      "check": "ok"
+     },
+     {
+      "text": "Sufficient German or English language skills, with evidence submitted before the application deadline.",
+      "quote": "You need sufficient German or English language skills if you wish to apply for this program. Evidence of your language proficiency has to be submitted before the end of the application deadline.",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 4,
+    "also_extracted": 2,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "technical-university-of-munich",
+   "program": "Biomass Technology (M.Sc.)",
+   "snapshot_sha256": "aa99a476a4462203c5b2514c47ed7606515704872f11c78509b231c847148e39",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 8876,
+    "output_tokens": 187,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 2,
+   "fields": {
+    "academic": {
+     "text": "A recognized undergraduate degree (e.g. a Bachelor's) and successful completion of the aptitude assessment procedure.",
+     "quote": "Minimum requirements to apply for a Master’s program at TUM are a recognized undergraduate degree (e.g. a Bachelor’s) and the successful completion of the aptitude assessment procedure.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Sufficient English language skills, proven before the application deadline.",
+      "quote": "You need sufficient English language skills if you wish to apply for this program. Proof of your language proficiency has to be submitted before the end of the application deadline.",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 4,
+    "also_extracted": 1,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "university-of-toronto",
+   "program": "Master of Science in Applied Computing (MScAC)",
+   "snapshot_sha256": "49f86ab39cebf354dfd4b64741b9d7a572ddf1676f421171c5295eadefd48f75",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 12986,
+    "output_tokens": 381,
+    "cache_read_tokens": 1280
+   },
+   "truncated": true,
+   "error": null,
+   "kept": 4,
+   "fields": {
+    "academic": {
+     "text": "An appropriate undergraduate degree for the chosen concentration, completed or in progress.",
+     "quote": "Completed or be the process of completing an appropriate undergraduate degree for the concentration they are applying to.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Work experience, including co-op placements or internships, is preferred but not required.",
+      "quote": "Work experience (including co-op placements or internships) is preferred, but not required.",
+      "check": "ok"
+     },
+     {
+      "text": "Research experience, including summer research assistantships or internships, is preferred but not required.",
+      "quote": "Research experience (including summer research assistantships or internships) is preferred, but not required.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2026-12-01",
+      "quote": "The application deadline is December 1, 2026, at 11:59 p.m. ET.",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [
+    {
+     "field": "academic",
+     "value": {
+      "text": "A standing equivalent to at least B+ (U of T 77-79%) in the final year of the undergraduate degree.",
+      "quote": "A standing equivalent to at least B+ (U of T 77-79%) in their final year (i.e., two terms) of study in the undergraduate degree (the equivalent of 5 full credits, or 10 half credits)."
+     },
+     "reason": "another academic route; the requirement file holds one"
+    }
+   ],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 3,
+    "also_extracted": 3,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "university-of-toronto",
+   "program": "Master of Science in Computer Science (MSc)",
+   "snapshot_sha256": "aa3ab67903aadf83f00f0f245f98e8f2de31d69f851f668b5924e1b0c539f76e",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 9921,
+    "output_tokens": 329,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 2,
+   "fields": {
+    "academic": {
+     "text": "An appropriate bachelor's degree with a standing equivalent to at least a University of Toronto B+.",
+     "quote": "An appropriate bachelor's degree with a standing equivalent to at least a University of Toronto B+. Preference is given to applicants who have studied computer science or a closely related discipline.",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL minimum of 4.5/6.0 overall with 4.5/6.0 in writing and 4.0/6.0 in speaking (1-6 band scale).",
+     "quote": "Applicants whose primary language is not English and who graduated from a university where the language of instruction is not English must achieve Test of English as a Foreign Language (TOEFL) minimum scores of 4.5/6.0 overall with 4.5/6.0 in writing and 4.0/6.0 in speaking.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    }
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 2,
+    "also_extracted": 2,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "university-of-toronto",
+   "program": "Master of Financial Insurance (MFI)",
+   "snapshot_sha256": "227ea27e91791d530d9a30b76a5a3f9233a22ba2aa7d65e67c0f29d5b2ef3be3",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 8380,
+    "output_tokens": 372,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 2,
+   "fields": {
+    "academic": {
+     "text": "An appropriate bachelor's degree from a recognized university in a related field such as statistics, mathematics, finance, and actuarial science, or any discipline with a significant quantitative component.",
+     "quote": "An appropriate bachelor’s degree from a recognized university in a related field such as statistics, mathematics, finance, and actuarial science, or any discipline where there is a significant quantitative component.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Studies must include significant exposure to statistics, mathematics, finance, and actuarial science, including coursework in advanced calculus, computational methods, linear algebra, probability, and statistics.",
+      "quote": "Studies must include significant exposure to statistics, mathematics, finance, and actuarial science, including coursework in advanced calculus, computational methods, linear algebra, probability, and statistics.",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [
+    {
+     "field": "academic",
+     "value": {
+      "text": "An average grade equivalent to at least a University of Toronto B+ in the final year or over senior courses; applicants meeting the SGS mid-B minimum with exceptional workplace experience will be considered.",
+      "quote": "An average grade equivalent to at least a University of Toronto B+ in the final year or over senior courses; applicants who meet the SGS grade minimum of mid-B and demonstrate exceptional ability through appropriate workplace experience will be considered."
+     },
+     "reason": "another academic route; the requirement file holds one"
+    }
+   ],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 2,
+    "also_extracted": 2,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "university-of-toronto",
+   "program": "Master of Mathematical Finance (MMF)",
+   "snapshot_sha256": "4db02bf1e4fad972a3fedacb5a20e20d752ae81761d1c5d7606ef77ccddfb32b",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 3262,
+    "output_tokens": 415,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 4,
+   "fields": {
+    "academic": {
+     "text": "A four-year bachelor's degree in a quantitative or technical discipline from a recognized university with a minimum GPA equivalent to a University of Toronto mid-B (75%) average in the last two years of senior level courses.",
+     "quote": "You must have completed a four-year bachelor’s degree in a quantitative or technical discipline from a recognized university with a minimum GPA equivalent to a University of Toronto mid-B (75%) average in the last two years of senior level courses.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Proven ability in linear algebra, multivariate calculus, differential equations, real analysis and at least one undergraduate statistics course covering confidence testing, applied multivariate analysis, time series analysis and basic regression.",
+      "quote": "Applicants must demonstrate evidence of proven ability in areas such as linear algebra, multivariate calculus, differential equations, real analysis and at least one undergraduate course in statistics that covers topics such as confidence testing, applied multivariate analysis, time series analysis and basic regression.",
+      "check": "ok"
+     },
+     {
+      "text": "Knowledge of programming languages such as R, Python, C++ and MATLAB is required.",
+      "quote": "Knowledge of programming languages such as R, Python, C++ and MATLAB are required.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 application deadline",
+      "date": "2026-12-20",
+      "quote": "the deadline to submit your completed application and to pay the application fee is: December 20, 2026 at 11:59pm ET.",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 3,
+    "also_extracted": 3,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "university-of-toronto",
+   "program": "Master of Information (MI)",
+   "snapshot_sha256": "7bb440faeb70d660476964d344186a6ab9b9947a5b107c2544defdcf92f7e4f9",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 8634,
+    "output_tokens": 416,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 4,
+   "fields": {
+    "academic": {
+     "text": "A 4-year bachelor's degree or equivalent.",
+     "quote": "have a 4-year Bachelor’s degree or equivalent",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "min_band": 7.0,
+     "quote": "overall score: 7.5\nWriting: 7.5\nSpeaking: 7",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 107.0,
+     "min_band": 24.0,
+     "quote": "overall score: 107/120\nspeaking section: 24/30\nwriting section: 27/30\noverall score: 5.5\nspeaking section: 4.5\nwriting section: 5.5",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English proficiency test result for applicants whose first language is not English.",
+      "quote": "For applicants for whom English is not their first language, an English Proficiency Test result will need to be submitted.",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [
+    {
+     "field": "deadlines",
+     "value": {
+      "label": "Regular deadline, September 2027 entry",
+      "date": "2027-01-31",
+      "quote": "Regular deadline for applications is January 31."
+     },
+     "reason": "deadline year 2027 not in quote"
+    }
+   ],
+   "unused": [
+    {
+     "field": "academic",
+     "value": {
+      "text": "An appropriate 4-year bachelor's degree from a recognized university, with a mid-B equivalent (3.3/4.0 GPA cGPA or final year).",
+      "quote": "An appropriate 4–year bachelor’s degree from a recognized university is required. If your degree was earned outside of Canada, please use the International Degree Equivalency Tool to identify equivalent credentials."
+     },
+     "reason": "another academic route; the requirement file holds one"
+    }
+   ],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 3,
+    "also_extracted": 3,
+    "numbers_compared": 2,
+    "numbers_agree": 2
+   }
+  },
+  {
+   "school": "university-of-toronto",
+   "program": "Master of Public Policy (MPP)",
+   "snapshot_sha256": "59badfbd1d345c3287decea15dbc575e3e813eb1a5a206e864d5fed06e598c44",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 3892,
+    "output_tokens": 222,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 3,
+   "fields": {
+    "academic": {
+     "text": "A completed four-year bachelor's degree in any discipline, or equivalent.",
+     "quote": "You will have successfully completed a four-year (4 year) Bachelor’s degree (in any discipline) or equivalent",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Applicants whose admitting degree was completed outside Canada must write the GRE General Test.",
+      "quote": "If you have completed your admitting degree (undergraduate degree) outside of Canada, you are required to write the Graduate Record Examination (GRE) General Test (www.ets.org/gre).",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-01-28",
+      "quote": "Deadline for applications for Fall 2027 is January 28, 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 2,
+    "also_extracted": 2,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "university-of-toronto",
+   "program": "Master of Global Affairs (MGA)",
+   "snapshot_sha256": "57961cbab2315d88ca7ff9e085457b9b6e768bf240a6a050a6020d02539a36a2",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 4631,
+    "output_tokens": 351,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 3,
+   "fields": {
+    "academic": {
+     "text": "A completed four-year Bachelor's degree in any discipline, or equivalent.",
+     "quote": "You will have successfully completed a four-year Bachelor’s degree (in any discipline) or equivalent.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Demonstrated competency in both qualitative and quantitative skills.",
+      "quote": "You require both qualitative and quantitative skills to succeed in the MGA program. Therefore, you will need to demonstrate competency in these areas to strengthen your application for admission.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-01-28",
+      "quote": "The Application Deadline for Fall 2027 is January 28, 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [
+    {
+     "field": "academic",
+     "value": {
+      "text": "A minimum CGPA of mid-B (3.0) and a minimum GPA of B+ (3.3) in the final year of 300- and 400-level undergraduate courses.",
+      "quote": "You are required to have a minimum CGPA of mid-B (3.0), and a minimum GPA of B+ (3.3) in the final year of undergraduate studies of 300 and 400 level courses."
+     },
+     "reason": "another academic route; the requirement file holds one"
+    }
+   ],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 2,
+    "also_extracted": 2,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "university-of-toronto",
+   "program": "Master of Engineering, Electrical and Computer Engineering (MEng ECE)",
+   "snapshot_sha256": "2ab399eeca529a4c3cf01c423360bf62f85e4d41ed4b63f7ac3da1a11a690baf",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 5183,
+    "output_tokens": 270,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 0,
+   "fields": {},
+   "rejected": [
+    {
+     "field": "deadlines",
+     "value": {
+      "label": "MEng Co-op, Fall 2027 (September 2027) start, Domestic & International",
+      "date": "2027-02-08",
+      "quote": "Application deadline for MEng Co-op for Fall start (September 2027)"
+     },
+     "reason": "deadline day 8 not in quote; deadline month 2 not in quote"
+    },
+    {
+     "field": "deadlines",
+     "value": {
+      "label": "MEng, Fall 2027 (September 2027) start, International",
+      "date": "2027-04-15",
+      "quote": "Application deadline for Fall start (September 2027)"
+     },
+     "reason": "deadline day 15 not in quote; deadline month 4 not in quote"
+    },
+    {
+     "field": "deadlines",
+     "value": {
+      "label": "MEng, Fall 2027 (September 2027) start, Domestic",
+      "date": "2027-05-31",
+      "quote": "Application deadline for Fall start (September 2027)"
+     },
+     "reason": "deadline day 31 not in quote; deadline month 5 not in quote"
+    },
+    {
+     "field": "deadlines",
+     "value": {
+      "label": "MEng, Winter 2028 (January 2028) start, Domestic & International",
+      "date": "2027-05-31",
+      "quote": "Application deadline for Winter start (January 2028)"
+     },
+     "reason": "deadline day 31 not in quote; deadline year 2027 not in quote; deadline month 5 not in quote"
+    }
+   ],
+   "unused": [],
+   "attempts": 1,
+   "status": "待人工",
+   "coverage": {
+    "earlier_same_page": 1,
+    "also_extracted": 0,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "university-of-toronto",
+   "program": "Master of Engineering, Mechanical and Industrial Engineering (MEng MIE)",
+   "snapshot_sha256": "6a32bc3f4c1fe35a1e91ac3e39d8d42fd802efbd8d3411d2b10d8468ecc3f3f0",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 8047,
+    "output_tokens": 592,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 7,
+   "fields": {
+    "academic": {
+     "text": "A bachelor's degree with high academic standing from a recognized university.",
+     "quote": "A bachelor's degree with high academic standing from a recognized university",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Applicants from universities outside Canada where English is not the primary language of instruction must provide English Language Proficiency (ELP) exam results, unless exempt.",
+      "quote": "Applicants from universities outside Canada where English is not the primary language of instruction must provide English Language Proficiency (ELP) exam results unless: 1) The applicant’s admitting degree IS listed under Exemptions on the School of Graduate Studies website or 2) the applicant can provide official documentation from their admitting institution that instruction was in English.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "January 2027 start, MEng full-time, extended full-time (non-co-op) and part-time — International",
+      "date": "2026-09-15",
+      "quote": "International: September 15, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "January 2027 start, MEng full-time, extended full-time (non-co-op) and part-time — Domestic",
+      "date": "2026-11-15",
+      "quote": "Domestic: November 15, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "September 2027 start, MEng extended full-time co-op — International & domestic",
+      "date": "2027-02-08",
+      "quote": "International & domestic: February 8, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "September 2027 start, MEng full-time, extended full-time (non-co-op) and part-time — International",
+      "date": "2027-04-15",
+      "quote": "International: April 15, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "September 2027 start, MEng full-time, extended full-time (non-co-op) and part-time — Domestic",
+      "date": "2027-05-31",
+      "quote": "Domestic: May 31, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [
+    {
+     "field": "academic",
+     "value": {
+      "text": "Minimum GPA of 3.0 (mid-B; 73-76%) in the final two years of undergraduate study.",
+      "quote": "Minimum GPA requirement of 3.0 (mid-B; 73-76%) in the final two years of undergraduate study."
+     },
+     "reason": "another academic route; the requirement file holds one"
+    }
+   ],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 2,
+    "also_extracted": 2,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "university-of-toronto",
+   "program": "Master of Engineering, Civil and Mineral Engineering (MEng)",
+   "snapshot_sha256": "8bfde087736e0be3d88c7a8178e6de3a53244bf28e05cd65c41ac4162ff84e53",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 4069,
+    "output_tokens": 312,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 4,
+   "fields": {
+    "academic": {
+     "text": "Completion of an undergraduate degree equivalent to a four-year University of Toronto degree, with a minimum final year GPA of mid-B (3.0/4.0 or 75%).",
+     "quote": "Completion of an undergraduate degree equivalent to a four-year University of Toronto degree, with a minimum final year GPA of mid-B (3.0/4.0 or 75%).",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "January (Winter) 2027, MEng & MEngCEM, Domestic & International",
+      "date": "2026-11-15",
+      "quote": "MEng & MEngCEM Domestic & International July 9, 2026 November 15, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "September (Fall) 2027, MEng & MEngCEM, International",
+      "date": "2027-04-15",
+      "quote": "MEng & MEngCEM International August 4, 2026 April 15, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "September (Fall) 2027, MEng & MEngCEM, Domestic",
+      "date": "2027-05-31",
+      "quote": "Domestic August 4, 2026 May 31, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 2,
+    "also_extracted": 2,
+    "numbers_compared": 0,
+    "numbers_agree": 0
+   }
+  },
+  {
+   "school": "universiti-malaya",
+   "program": "Master of Accounting (Reporting and Management Accountability) (Mixed-Mode)",
+   "snapshot_sha256": "55e1491724bff99c804a127127d36259d41916cf43c08cb2a2b11be84ac0610b",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 3196,
+    "output_tokens": 447,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 5,
+   "fields": {
+    "academic": {
+     "text": "A Bachelor's Degree with a CGPA of not less than 3.00.",
+     "quote": "Possess a Bachelor's Degree with a CGPA of not less than 3.00; or",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "International English Language Testing System (IELTS) Academic: Band 6.0; or",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 60.0,
+     "quote": "Test of English as a Foreign Language (TOEFL) – Internet-Based Test (IBT) (Centre-Based): Score 60; or",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Related fields: Finance, Economics.",
+      "quote": "Related Fields: Finance, Economics",
+      "check": "ok"
+     },
+     {
+      "text": "Pass the interview conducted by the Faculty.",
+      "quote": "Special Requirements: Passed the interview by the Faculty.",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [
+    {
+     "field": "academic",
+     "value": {
+      "text": "A Bachelor's Degree with a CGPA of 2.50-2.99, plus at least one of the listed conditions (UM graduate, one year of related work experience, publications, scholarship, government agency staff, faculty interview, or special faculty evaluation).",
+      "quote": "For applicants with a CGPA of 2.50-2.99 (must fulfill at least one of the following):"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    },
+    {
+     "field": "academic",
+     "value": {
+      "text": "A Bachelor Degree in Accounting (Honours).",
+      "quote": "Bachelor’s Degree Qualification: Possessed a Bachelor Degree in Accounting (Honours)"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    },
+    {
+     "field": "academic",
+     "value": {
+      "text": "An equivalent professional certificate: ACCA Level 7 and above.",
+      "quote": "Equivalent Qualification:- Professional Certificate : ACCA Level 7 and above"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    }
+   ],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 5,
+    "also_extracted": 5,
+    "numbers_compared": 2,
+    "numbers_agree": 2
+   }
+  },
+  {
+   "school": "universiti-malaya",
+   "program": "Master of Applied Statistics (Coursework)",
+   "snapshot_sha256": "66ebe0a8e0e5b289b891eb5962f6c22f99543efec6a2bd1b16c990c94afe1124",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 3078,
+    "output_tokens": 419,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 7,
+   "fields": {
+    "academic": {
+     "text": "A Bachelor's Degree with a CGPA of not less than 3.00.",
+     "quote": "Possess a Bachelor's Degree with a CGPA of not less than 3.00; or",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "International English Language Testing System (IELTS) Academic: Band 6.0; or",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 60.0,
+     "quote": "Test of English as a Foreign Language (TOEFL) – Internet-Based Test (IBT) (Centre-Based): Score 60; or",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "A Bachelor's Degree (Honours).",
+      "quote": "Possessed a Bachelor Degree (Honours)",
+      "check": "ok"
+     },
+     {
+      "text": "Degree in Mathematics, Statistics or quantitative method-related fields.",
+      "quote": "Related Fields: Mathematics, Statistics or quantitative method-related fields",
+      "check": "ok"
+     },
+     {
+      "text": "Sufficient knowledge in mathematics, statistics, or quantitative methods.",
+      "quote": "Possess sufficient knowledge in mathematics, statistics, or quantitative methods.",
+      "check": "ok"
+     },
+     {
+      "text": "Pass the interview by the Faculty.",
+      "quote": "Passed the interview by the Faculty",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [
+    {
+     "field": "academic",
+     "value": {
+      "text": "A Bachelor's Degree with a CGPA of 2.50-2.99 plus at least one of: graduating from Universiti Malaya, one year of related work experience, publications in a related field, a scholarship, serving as a staff member of a government agency, passing a Faculty interview, or passing a Special evaluation by Faculty.",
+      "quote": "For applicants with a CGPA of 2.50-2.99 (must fulfill at least one of the following):"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    }
+   ],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 6,
+    "also_extracted": 6,
+    "numbers_compared": 2,
+    "numbers_agree": 2
+   }
+  },
+  {
+   "school": "universiti-malaya",
+   "program": "Master of Arabic Language Education (Coursework)",
+   "snapshot_sha256": "b65b454ec590702e47f136a2200ad6964a5825ea3e027b35ab218dd364fc8faa",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 3325,
+    "output_tokens": 919,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 8,
+   "fields": {
+    "academic": {
+     "text": "A Bachelor's Degree with a CGPA of not less than 3.00.",
+     "quote": "Possess a Bachelor’s Degree with a CGPA of not less than 3.00; or",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "International English Language Testing System (IELTS) Academic: Band 5.5; or",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 46.0,
+     "quote": "Test of English as a Foreign Language (TOEFL) – Internet-Based Test (IBT) (Centre-Based): Score 46; or",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "At least one year of work experience in related fields (for applicants with CGPA 2.50 – 2.99).",
+      "quote": "Accumulate at least one (1) year of work experience in related fields; or",
+      "check": "ok"
+     },
+     {
+      "text": "A Postgraduate Diploma in Education with a minimum CGPA of 3.00 (one option for related-field degree holders).",
+      "quote": "Possessed a Postgraduate Diploma in Education (minimum CGPA 3.00); or",
+      "check": "ok"
+     },
+     {
+      "text": "At least one year of teaching experience in a related field (one option for related-field degree holders).",
+      "quote": "At least one (1) year teaching experience in a related field; or",
+      "check": "ok"
+     },
+     {
+      "text": "At least two years of teaching experience in a related field (one option for CGPA 2.70 - 2.99 education degree holders).",
+      "quote": "At least two (2) years Teaching experience in a related field; or",
+      "check": "ok"
+     },
+     {
+      "text": "At least three years of teaching experience in a related field (one option for CGPA 2.50 - 2.69 education degree holders).",
+      "quote": "At least three (3) years teaching experience in a related field; or",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [
+    {
+     "field": "academic",
+     "value": {
+      "text": "A Bachelor's Degree with a CGPA of 2.50 – 2.99 plus at least one of the listed criteria (UM graduate, one year of related work experience, publications, scholarship, government agency staff, faculty interview, or special evaluation).",
+      "quote": "For applicants with a CGPA of 2.50 – 2.99 (must fulfill at least one of the following):"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    },
+    {
+     "field": "academic",
+     "value": {
+      "text": "A Bachelor's Degree in Education in Arabic Language, or a Bachelor's Degree in Islamic Education, or a Bachelor's Degree in Islamic Studies with Education.",
+      "quote": "Possess a Bachelor's Degree in Education in Arabic Language or Bachelor's Degree in Islamic Education or Bachelor's Degree in Islamic Studies with Education"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    },
+    {
+     "field": "academic",
+     "value": {
+      "text": "A Bachelor's Degree in a related field (Arabic Language, Islamic Studies) with CGPA ≥ 3.00 plus at least one of the listed criteria (Postgraduate Diploma in Education with minimum CGPA 3.00, recognised teaching qualification, one year teaching experience, professional qualification, or Senate-approved qualifications).",
+      "quote": "Applicants with a Bachelor's Degree in related field (Arabic Language, Islamic Studies)(CGPA: ≥ 3.00)"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    },
+    {
+     "field": "academic",
+     "value": {
+      "text": "A Bachelor of Education or Bachelor's Degree in Education in Arabic Language or Islamic Studies with CGPA 2.70 - 2.99 plus at least one of the listed criteria.",
+      "quote": "Applicants with a Bachelor of Education or Bachelor's Degree in Education in the field of Arabic Language, Islamic Studies(CGPA: 2.70 - 2.99)"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    },
+    {
+     "field": "academic",
+     "value": {
+      "text": "A Bachelor of Education or Bachelor's Degree in Education in Arabic Language or Islamic Studies with CGPA 2.50 - 2.69 plus at least two of the listed criteria.",
+      "quote": "Applicants with a Bachelor's of Education or Bachelor's degree in Education in the field of Arabic Language, Islamic Studies (CGPA: 2.50 - 2.69)"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    }
+   ],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 33,
+    "also_extracted": 8,
+    "numbers_compared": 2,
+    "numbers_agree": 2
+   }
+  },
+  {
+   "school": "universiti-malaya",
+   "program": "Master of Architecture (Coursework)",
+   "snapshot_sha256": "3b171d8ffbf3be10e0b4a9ec95039db600200f086ed6741ef10283fa274c24fb",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 3725,
+    "output_tokens": 1657,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 9,
+   "fields": {
+    "academic": {
+     "text": "A Bachelor's Degree with a CGPA of not less than 3.00.",
+     "quote": "Possess a Bachelor’s Degree with a CGPA of not less than 3.00; or",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "International English Language Testing System (IELTS) Academic: Band 6.0; or",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 60.0,
+     "quote": "Test of English as a Foreign Language (TOEFL) – Internet-Based Test (IBT) (Centre-Based): Score 60; or",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "A Bachelor's Degree of Science in Architecture.",
+      "quote": "Bachelor’s Degree Qualification: Possessed a Bachelor's Degree of Science in Architecture.",
+      "check": "ok"
+     },
+     {
+      "text": "Recognition by the Board of Architects Malaysia (LAM) Part I.",
+      "quote": "Recognised by the Board of Architects Malaysia (LAM) Part I;",
+      "check": "ok"
+     },
+     {
+      "text": "An overall grade of 'B' and above in the Architectural Design Studio course in the final semester of the Bachelor's degree programme.",
+      "quote": "Obtained an overall grade of ‘B’ and above in the Architectural Design Studio course in the final semester of the Bachelor's degree programme;",
+      "check": "ok"
+     },
+     {
+      "text": "At least six (6) months of relevant work experience after completion of the Bachelor's degree.",
+      "quote": "Accumulate at least six (6) months of relevant work experience after the completion of the Bachelor's degree;",
+      "check": "ok"
+     },
+     {
+      "text": "Passing the competency interview (interview, portfolio review, and technical drawing test).",
+      "quote": "Pass the competency interview (interview, portfolio review, and technical drawing test);",
+      "check": "ok"
+     },
+     {
+      "text": "At least one (1) year of work experience in related fields (for applicants with a CGPA of 2.50 – 2.99).",
+      "quote": "Accumulate at least one (1) year of work experience in related fields; or",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [
+    {
+     "field": "academic",
+     "value": {
+      "text": "A Bachelor's Degree with a CGPA of 2.50 – 2.99, plus at least one of: UM graduate, one year of related work experience, publications, scholarship, government agency staff, faculty interview, or special faculty evaluation.",
+      "quote": "For applicants with a CGPA of 2.50 – 2.99 (must fulfill at least one of the following):"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    },
+    {
+     "field": "academic",
+     "value": {
+      "text": "A Bachelor of Science in Architecture, recognised by LAM Part I, with a CGPA of 3.00 and above, grade 'B' and above in the final-semester Architectural Design Studio, at least six months of relevant work experience, and passing the competency interview.",
+      "quote": "Candidates with a CGPA of 3.00 and above; and Recognised by the Board of Architects Malaysia (LAM) Part I; Obtained an overall grade of ‘B’ and above in the Architectural Design Studio course in the final semester of the Bachelor's degree programme; Accumulate at least six (6) months of relevant work experience after the completion of the Bachelor's degree; Pass the competency interview (interview, portfolio review, and technical drawing test);"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    },
+    {
+     "field": "academic",
+     "value": {
+      "text": "A Bachelor of Science in Architecture, recognised by LAM Part I, with a CGPA of 3.00 and above, grade 'B-' and below in the final-semester Architectural Design Studio, at least twenty-four months of relevant work experience, and passing the competency interview.",
+      "quote": "Candidates with a CGPA of 3.00 and above; and Recognised by the Board of Architects Malaysia (LAM) Part I; Obtained an overall grade of ‘B-’ and below in the Architectural Design Studio course in the final semester of the Bachelor's degree programme; Accumulate at least twenty-four (24) months of relevant work experience after the completion of the Bachelor's degree; Pass the competency interview (interview, portfolio review, and technical drawing test);"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    },
+    {
+     "field": "academic",
+     "value": {
+      "text": "A Bachelor of Science in Architecture, recognised by LAM Part I, with a CGPA of 2.70 – 2.99, grade 'B' and above in the final-semester Architectural Design Studio, at least twenty-four months of relevant work experience, and passing the competency interview.",
+      "quote": "Candidates with a CGPA of 2.70 – 2.99; and Recognised by the Board of Architects Malaysia (LAM) Part I; Obtained an overall grade of ‘B’ and above in the Architectural Design Studio course in the final semester of the Bachelor's degree programme; Accumulate at least twenty-four (24) months of relevant work experience after the completion of the Bachelor's degree; Pass the competency interview (interview, portfolio review, and technical drawing test);"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    },
+    {
+     "field": "academic",
+     "value": {
+      "text": "A Bachelor of Science in Architecture, recognised by LAM Part I, with a CGPA of 2.70 – 2.99, grade 'B-' and above in the final-semester Architectural Design Studio, at least thirty-six months of relevant work experience, and passing the competency interview.",
+      "quote": "Candidates with a CGPA of 2.70 – 2.99; and Recognised by the Board of Architects Malaysia (LAM) Part I; Obtained an overall grade of ‘B-’ and above in the Architectural Design Studio course in the final semester of the Bachelor's degree programme; Accumulate at least thirty-six (36) months of relevant work experience after the completion of the Bachelor's degree; Pass the competency interview (interview, portfolio review, and technical drawing test);"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    },
+    {
+     "field": "academic",
+     "value": {
+      "text": "Graduates of other universities and international students with a Bachelor of Science in Architecture and a CGPA of 3.00 and above, recognised by LAM Part I, grade 'B' and above in the final-semester Architectural Design Studio, at least twelve months of relevant work experience, and passing the competency interview.",
+      "quote": "Graduates from other universities and international studentswith a Bachelor of Science in Architecture and a CGPA of 3.00 and above may be considered for admission if they meet the following criteria: Recognised by the Board of Architects Malaysia (LAM) Part I; Obtained an overall grade of ‘B’ and above in the Architectural Design Studio course in the final semester of the Bachelor's degree programme; Accumulate at least twelve (12) months of relevant work experience after the completion of the Bachelor's degree; Pass the competency interview (interview, portfolio review, and technical drawing test);"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    },
+    {
+     "field": "academic",
+     "value": {
+      "text": "Graduates of other universities and international students with a Bachelor of Science in Architecture and a CGPA of 3.00 and above, recognised by LAM Part I, grade 'B-' and above in the final-semester Architectural Design Studio, at least thirty-six months of relevant work experience, and passing the competency interview.",
+      "quote": "Recognised by the Board of Architects Malaysia (LAM) Part I; Obtained an overall grade of ‘B-’ and above in the Architectural Design Studio course in the final semester of the Bachelor's degree programme; Accumulate at least thirty-six (36) months of relevant work experience after the completion of the Bachelor's degree; Pass the competency interview (interview, portfolio review, and technical drawing test);"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    }
+   ],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 36,
+    "also_extracted": 9,
+    "numbers_compared": 2,
+    "numbers_agree": 2
+   }
+  },
+  {
+   "school": "universiti-malaya",
+   "program": "Master of Artificial Intelligence (Coursework)",
+   "snapshot_sha256": "14e4399d52dcd5cbf2ee2bbe252f1d40728ab54835f1a847792bf63e2f406c6c",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 3130,
+    "output_tokens": 382,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 4,
+   "fields": {
+    "academic": {
+     "text": "A Bachelor's Degree with a CGPA of not less than 3.00.",
+     "quote": "Possess a Bachelor's Degree with a CGPA of not less than 3.00; or",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "International English Language Testing System (IELTS) Academic: Band 6.0; or",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 60.0,
+     "quote": "Test of English as a Foreign Language (TOEFL) – Internet-Based Test (IBT) (Centre-Based): Score 60; or",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Degree in Computer Sciences or Information Technology.",
+      "quote": "Related Fields: Computer Sciences or Information Technology field.",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [
+    {
+     "field": "academic",
+     "value": {
+      "text": "A Bachelor's Degree with a CGPA of 2.50-2.99 plus at least one of the listed conditions (UM graduate, one year of related work experience, publications, scholarship, government agency staff, faculty interview, or special evaluation).",
+      "quote": "For applicants with a CGPA of 2.50-2.99 (must fulfill at least one of the following):"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    },
+    {
+     "field": "academic",
+     "value": {
+      "text": "A Bachelor's Degree (Honours).",
+      "quote": "Bachelor’s Degree Qualification: Possess a Bachelor's Degree (Honours)"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    }
+   ],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 4,
+    "also_extracted": 4,
+    "numbers_compared": 2,
+    "numbers_agree": 2
+   }
+  },
+  {
+   "school": "universiti-malaya",
+   "program": "Master of Arts (Linguistics)",
+   "snapshot_sha256": "413ae0bc923ac22e6f6b9f89b85004ad8f83b06b77d5dd8ef754ad400d56b7fb",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 3060,
+    "output_tokens": 475,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 5,
+   "fields": {
+    "academic": {
+     "text": "A Bachelor's Degree with a CGPA of not less than 3.00.",
+     "quote": "Possess a Bachelor’s Degree with a CGPA of not less than 3.00; or",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "International English Language Testing System (IELTS) Academic: Band 6.0; or",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 60.0,
+     "quote": "Test of English as a Foreign Language (TOEFL) – Internet-Based Test (IBT) (Centre-Based): Score 60; or",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "For fields other than English Language or Linguistics studies: a CGPA of at least 3.0 or equivalent and at least one year of working experience in a field related to the usage or study of English Language or Linguistics.",
+      "quote": "Fields other than English Language studies or Linguistics studies with a CGPA of at least 3.0 or equivalent; and at least one year of working experience in a field related to usage or study of English Language or Linguistics studies",
+      "check": "ok"
+     },
+     {
+      "text": "For a Bachelor's degree with CGPA below 3.0 or equivalent: at least two years of working experience in a field related to the usage or study of English language or Linguistics.",
+      "quote": "Bachelor's degree with CGPA of less than 3.0 or equivalent; and at least two years of working experience in a field related to the usage or study of English language or Linguistics",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [
+    {
+     "field": "academic",
+     "value": {
+      "text": "A Bachelor's Degree with a CGPA of 2.50 – 2.99 plus at least one of the listed conditions (UM graduate, one year of related work experience, publications, scholarship, government agency staff, faculty interview, or special faculty evaluation).",
+      "quote": "For applicants with a CGPA of 2.50 – 2.99 (must fulfill at least one of the following):"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    }
+   ],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 6,
+    "also_extracted": 5,
+    "numbers_compared": 2,
+    "numbers_agree": 2
+   }
+  },
+  {
+   "school": "universiti-malaya",
+   "program": "Master of ASEAN Studies (Coursework)",
+   "snapshot_sha256": "e9dfa33047416ded18fb58887b75057e7f2d7c44fa3a21dbdd09a4267bd9d647",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 3371,
+    "output_tokens": 372,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 3,
+   "fields": {
+    "academic": {
+     "text": "A Bachelor's Degree with a CGPA of not less than 3.00.",
+     "quote": "Possess a Bachelor’s Degree with a CGPA of not less than 3.00; or",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "International English Language Testing System (IELTS) Academic: Band 6.0; or",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 60.0,
+     "quote": "Test of English as a Foreign Language (TOEFL) – Internet-Based Test (IBT) (Centre-Based): Score 60; or",
+     "check": "ok"
+    }
+   },
+   "rejected": [],
+   "unused": [
+    {
+     "field": "academic",
+     "value": {
+      "text": "With a CGPA of 2.50 – 2.99, applicants must fulfil at least one of the listed conditions (UM graduate, one year of related work experience, publications, scholarship, government agency staff, faculty interview, or special faculty evaluation).",
+      "quote": "For applicants with a CGPA of 2.50 – 2.99 (must fulfill at least one of the following):"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    },
+    {
+     "field": "academic",
+     "value": {
+      "text": "A Bachelor's Degree in any field from a university listed in the UK Narik database.",
+      "quote": "Possess a Bachelor's Degree in any field from the university listed in UK Narik database"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    }
+   ],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 4,
+    "also_extracted": 3,
+    "numbers_compared": 2,
+    "numbers_agree": 2
+   }
+  },
+  {
+   "school": "universiti-malaya",
+   "program": "Master of Bioinformatics (Coursework)",
+   "snapshot_sha256": "a1da9b24239aed9c3b61a2c50750dc0a818ecd3425bda5cd9df42a525f5b80b9",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 3033,
+    "output_tokens": 346,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 5,
+   "fields": {
+    "academic": {
+     "text": "A Bachelor's Degree with a CGPA of not less than 3.00.",
+     "quote": "Possess a Bachelor’s Degree with a CGPA of not less than 3.00; or",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "International English Language Testing System (IELTS) Academic: Band 6.0; or",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 60.0,
+     "quote": "Test of English as a Foreign Language (TOEFL) – Internet-Based Test (IBT) (Centre-Based): Score 60; or",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "A Bachelor's Degree in Bioinformatics.",
+      "quote": "Possessed a Bachelor's Degree of Bioinformatics",
+      "check": "ok"
+     },
+     {
+      "text": "Biology related field.",
+      "quote": "Related Fields: Biology related field",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [
+    {
+     "field": "academic",
+     "value": {
+      "text": "With a CGPA of 2.50 – 2.99, at least one of: graduated from University Malaya; one year of related work experience; publications in a related field; a scholarship; service as a staff member of a government agency; passing a Faculty interview; or passing a Faculty special evaluation.",
+      "quote": "For applicants with a CGPA of 2.50 – 2.99 (must fulfill at least one of the following):"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    }
+   ],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 4,
+    "also_extracted": 4,
+    "numbers_compared": 2,
+    "numbers_agree": 2
+   }
+  },
+  {
+   "school": "universiti-malaya",
+   "program": "Master of Biomedical Engineering (Coursework)",
+   "snapshot_sha256": "7baec9e9343d023b3398c2d8a742be73f7ff659f4c14344e26c12430ccc34809",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 3018,
+    "output_tokens": 385,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 4,
+   "fields": {
+    "academic": {
+     "text": "A Bachelor's Degree with a CGPA of not less than 3.00.",
+     "quote": "Possess a Bachelor’s Degree with a CGPA of not less than 3.00; or",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "International English Language Testing System (IELTS) Academic: Band 6.0; or",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 60.0,
+     "quote": "Test of English as a Foreign Language (TOEFL) – Internet-Based Test (IBT) (Centre-Based): Score 60; or",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "At least one year of work experience in related fields (for applicants with a CGPA of 2.50 – 2.99).",
+      "quote": "Accumulate at least one (1) year of work experience in related fields; or",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [
+    {
+     "field": "academic",
+     "value": {
+      "text": "Applicants with a CGPA of 2.50 – 2.99 must fulfil at least one of the listed conditions (UM graduate, one year related work experience, publications, scholarship, government agency staff, faculty interview, or special evaluation).",
+      "quote": "For applicants with a CGPA of 2.50 – 2.99 (must fulfill at least one of the following):"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    },
+    {
+     "field": "academic",
+     "value": {
+      "text": "A Bachelor's Degree in Engineering, Science, Computing or a related field.",
+      "quote": "Possessed a Bachelor's Degree in Engineering, Science, Computing or related field."
+     },
+     "reason": "another academic route; the requirement file holds one"
+    }
+   ],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 4,
+    "also_extracted": 4,
+    "numbers_compared": 2,
+    "numbers_agree": 2
+   }
+  },
+  {
+   "school": "universiti-malaya",
+   "program": "Master of Business Administration (Coursework)",
+   "snapshot_sha256": "a40bbdaca26712b4521b64abd8190e209fd2491a74ee246ceb5394eda2869b4d",
+   "model": "deepseek-flash",
+   "usage": {
+    "input_tokens": 3556,
+    "output_tokens": 441,
+    "cache_read_tokens": 1280
+   },
+   "truncated": false,
+   "error": null,
+   "kept": 5,
+   "fields": {
+    "academic": {
+     "text": "A Bachelor's Degree with a CGPA of not less than 3.00.",
+     "quote": "Possess a Bachelor's Degree with a CGPA of not less than 3.00; or",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "International English Language Testing System (IELTS) Academic: Band 6.0; or",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 60.0,
+     "quote": "Test of English as a Foreign Language (TOEFL) – Internet-Based Test (IBT) (Centre-Based): Score 60; or",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "A minimum of three years of full-time working experience after completing the first degree.",
+      "quote": "A minimum of three (3) years full-time working experience after completing first degree",
+      "check": "ok"
+     },
+     {
+      "text": "Passing the interview by the Faculty.",
+      "quote": "Passed the interview by the Faculty",
+      "check": "ok"
+     }
+    ]
+   },
+   "rejected": [],
+   "unused": [
+    {
+     "field": "academic",
+     "value": {
+      "text": "For a CGPA of 2.50-2.99, at least one of: graduating from Universiti Malaya, one year of related work experience, publications in a related field, a scholarship, serving as a government agency staff member, passing a Faculty interview, or passing a Faculty special evaluation.",
+      "quote": "For applicants with a CGPA of 2.50-2.99 (must fulfill at least one of the following):"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    },
+    {
+     "field": "academic",
+     "value": {
+      "text": "A Bachelor Degree (Honours).",
+      "quote": "Bachelor’s Degree Qualification: Possessed a Bachelor Degree (Honours)"
+     },
+     "reason": "another academic route; the requirement file holds one"
+    },
+    {
+     "field": "academic",
+     "value": {
+      "text": "Professional Certificate: ACCA Level 7 and above, or a related accredited professional body.",
+      "quote": "Equivalent Qualification: Professional Certificate : ACCA Level 7 and above. Related accredited professional body."
+     },
+     "reason": "another academic route; the requirement file holds one"
+    }
+   ],
+   "attempts": 1,
+   "status": "机器核对",
+   "coverage": {
+    "earlier_same_page": 5,
+    "also_extracted": 5,
+    "numbers_compared": 2,
+    "numbers_agree": 2
+   }
+  }
+ ]
+}

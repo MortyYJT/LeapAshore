@@ -160,3 +160,15 @@
   - IP：只有连接对端在 `TRUSTED_PROXIES`（生产是 `caddy`）里才读 `X-Forwarded-For` 最右一项；Caddyfile 显式把它设成 `{remote_host}`。替换原来的 `TRUST_FORWARDED_FOR`。
 - **理由**：TASKS.md P0 第五条；MortyYJT 2026-10-30 授权 AI 自主决定。
 - **待 MortyYJT 复核**：各项默认数字（没量过一轮完整对话的 token 数）；fail-closed 是否可接受。
+
+## 2026-10-30 抽取写成代码：顾问同一模型 + function calling，模型的值先预检再过 verify（Claude 自主（待 MortyYJT 复核））
+
+- **决定**：`api/app/collect/extract.py` 输入一份快照，用顾问的 `CHAT_*` 配置（生产和本机都是 `api.deepseek.com` 的 `deepseek-chat`，API 回报 `deepseek-flash`）、温度 0、`with_structured_output(method="function_calling")` 取回采集文件格式的字段，然后：
+  - 预检：没引文、分数为 0 或越出量表（雅思 ≤ 9，托福总分 6–120、单项 6–30，均分 ≤ 100）、日期不是 ISO、雅思托福既无分数也无说明的，整条拒掉、记原因，不改值；托福 ≤ 6 视为 1–6 新分制，不当总分。
+  - 对同一快照跑 `verify`，不过的删掉，原因进 `rejected`；不写 `verified_at`，空字符串和 null 不输出。
+  - 学术要求让模型返回列表、文件只取第一条（要它只给一个对象时，它会把第二条路线接着写、写坏 JSON：95 页里 8 页）；其余进 `unused`。坏答案重试一次。
+  - 页面超过 6 万字符只发关键词前后 3 行；引文仍对照整页核对。
+  - 命令只打印结果、不写采集文件；接进队列和文件留给 P1「采集队列」。没写 OpenSpec（没改表，是现有流程里的一步）。
+- **理由**：TASKS.md P0 第六条；MortyYJT 2026-10-30 授权 AI 自主决定。和顾问共用配置，换供应商只改一处；function calling 是意图分类已在生产用的方式。
+- **测量**：10 所学校 95 页，拒收率 10.3%（39/377，38 个是截止日期年份不在引文里），费用上限 1.07 元，细节在 TASKS.md 该条。
+- **待 MortyYJT 复核**：`text`、`label`、`recommended` 的忠实度没有自动检查（P1「概括忠实度校验」做）；多条学术路线只留第一条是否可接受。

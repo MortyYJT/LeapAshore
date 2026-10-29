@@ -27,6 +27,8 @@ class Settings(BaseSettings):
     # request body, because DeepSeek ignores the `max_completion_tokens` field LangChain uses.
     chat_max_tokens: int = 1500
     intent_max_tokens: int = 200
+    # The requirement extractor (`app.collect.extract`) returns every field with its quote in one call.
+    extract_max_tokens: int = 4000
 
     # --- Advisor limits (openspec/changes/advisor-limits) ---
     # The window store; also the Celery broker once P1 adds the queue. Local compose maps it to 56379.
