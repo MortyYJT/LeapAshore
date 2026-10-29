@@ -5,7 +5,8 @@
 ## 现在（2026-10-30）
 
 - 规则已收成一份 `CLAUDE.md`；任务清单是根目录的 `TASKS.md`，按顺序做。
-- 下一步：`TASKS.md` P0 第一条「修复个人网站 mortyyjt.site」（线上故障）。
+- 个人网站 mortyyjt.site 已修复（PR #28，10-30 部署，只重建了 caddy 容器）。
+- 下一步：`TASKS.md` P0 第二条「按新范围收缩学校库」。
 - 线上运行的是 main（截至 PR #30），地址 https://leapashore.mortyyjt.site 。
 - 生产库（10-29）：programs 7586，`verified_at` 非空 0。上次部署前的备份在服务器 `~/db-backup-20261029-pre-frontend.sql.gz`。
 - `make verify` 自 PR #29 之后没有重跑；`TASKS.md` P0 里有这一项。
@@ -25,7 +26,9 @@
 - 同步代码：本机 `git archive origin/main` 导出，再 `rsync --delete` 到服务器 `~/offerpilot/`，保留 `deploy/.env`、`deploy/*.bak-*`、`api/var/`。然后在服务器上 `cd ~/offerpilot/deploy && sudo docker compose -f compose.prod.yaml up -d --build`。
 - 导入采集数据：把本机快照的元数据 json 临时拷进 api 容器，导完立即删除（里面的 `text_path` 含本机路径，导入器不读它）。
 - 上线后只做只读检查（状态码、页面无报错）。完整走查不要对线上跑：它的清理只删本机库的数据。
-- 密钥在服务器 `~/offerpilot/deploy/.env`，不进库。主域名 `mortyyjt.site` 和 `www` 归个人网站，本项目不要占用。
+- 密钥在服务器 `~/offerpilot/deploy/.env`，不进库。
+- 主域名 `mortyyjt.site` 和 `www` 是个人网站，由本服务器的 Caddy 托管，文件在 `/srv/mortyyjt.site`，由个人网站仓库的 GitHub Actions 上传（钥匙被 rrsync 限制在该目录）。`deploy/Caddyfile` 末尾两段站点配置和 compose 里的 `/srv/mortyyjt.site` 挂载属于个人网站，别删；部署前确认 main 的 Caddyfile 里还有它们，否则个人网站会挂。
+- 只改 Caddy 配置时，只重启 caddy：`sudo docker compose -f compose.prod.yaml up -d --force-recreate --no-deps caddy`（不加 `--force-recreate` 时，只改 Caddyfile 内容 compose 不会重建容器，rsync 换掉的新文件也不会进到旧容器的单文件挂载里）。
 
 ## 坑
 

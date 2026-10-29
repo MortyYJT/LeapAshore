@@ -17,3 +17,25 @@ leapashore.mortyyjt.site {
 http://43.161.224.82 {
 	redir https://leapashore.mortyyjt.site{uri} permanent
 }
+
+# The owner's personal website (MortyYJT/personal-website-guyuy) shares this Caddy because it holds
+# ports 80 and 443. Its GitHub Actions workflow rsyncs a Next.js static export into /srv/mortyyjt.site
+# through a key that rrsync confines to that directory; nothing here depends on LeapAshore.
+mortyyjt.site {
+	root * /srv/mortyyjt.site
+	encode zstd gzip
+	# Hashed build assets never change under the same name.
+	header /_next/static/* Cache-Control "public, max-age=31536000, immutable"
+	# The export writes /projects as projects.html next to a projects/ data directory, so try the
+	# .html file before the bare path.
+	try_files {path}.html {path} {path}/index.html
+	file_server
+	handle_errors 404 {
+		rewrite * /404.html
+		file_server
+	}
+}
+
+www.mortyyjt.site {
+	redir https://mortyyjt.site{uri} permanent
+}
