@@ -8,15 +8,15 @@
  "blocked": [
   {
    "url": "https://ips.usm.my/",
-   "reason": "robots.txt disallows (or no robots answer, treated as keep-out)"
+   "reason": "robots.txt unreadable: robots.txt itself: no answer (URLError), on two attempts 20 s apart in run 2; treated as keep-out"
   },
   {
    "url": "https://www.usm.my/",
-   "reason": "robots.txt disallows (or no robots answer, treated as keep-out)"
+   "reason": "robots.txt unreadable: robots.txt itself: no answer (URLError), on two attempts 20 s apart in run 2; treated as keep-out"
   },
   {
    "url": "https://admission.usm.my/",
-   "reason": "robots.txt disallows (or no robots answer, treated as keep-out)"
+   "reason": "robots.txt unreadable: robots.txt itself: no answer (URLError), on two attempts 20 s apart in run 2; treated as keep-out"
   },
   {
    "url": "https://admissions.usm.my/",
@@ -58,7 +58,7 @@
   "https://admission.usm.my/postgraduate/programmes?view=article&id=189&catid=51",
   "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=883&catid=51"
  ],
- "notes": "Every tried USM host (ips, www, admission, admissions, postgraduate, pps, cs, mgt, education, pharmacy) is closed by robots.txt as read by the snapshot tool; www.admissions.usm.my only redirects to admission.usm.my and its postgraduate pages reset the connection. No program was collected; retry after the robots cache expires.",
+ "notes": "Run 1: every tried USM host (ips, www, admission, admissions, postgraduate, pps, cs, mgt, education, pharmacy) was closed as read by the snapshot tool; www.admissions.usm.my redirected to admission.usm.my and reset the connection. Run 2 (retry): admission.usm.my, ips.usm.my and www.usm.my again returned the tool's 'robots.txt itself: no answer (URLError)', so no stated Disallow was seen but the robots.txt could not be read at all (network-level failure); treated as keep-out and stopped. No program collected; retry later from another network.",
  "programs": [],
  "verification": {
   "programs": 0,
