@@ -38,6 +38,11 @@ Caddy, with DeepSeek as the chat upstream.
   The advisor is the only paid endpoint and the rest of the site does not touch Redis, so an outage
   costs the advisor alone; failing open would make the caps void exactly when nobody is watching.
   Recording usage after a call is best effort (logged), since the money is already spent.
+  A timed-out admission is withdrawn: the reply can be lost after the script ran, which would leave
+  the reservation and the window entry on the counters with no ticket to settle them. Each admission
+  carries an id; the withdrawal undoes an admission that ran and marks the id so one that runs later
+  admits nothing (both scripts idempotent, retried in the background at 1, 5 and 30 s). Chosen over a
+  self-expiring reservation, which would need one key per turn summed on every check.
 - **D7 Confirm is not windowed, only capped.** `/confirm` resumes a turn the applicant already paid a
   window slot for; it is admitted only when a change is pending, against the token caps but not the
   windows, since refusing it on a window would strand the pending change.

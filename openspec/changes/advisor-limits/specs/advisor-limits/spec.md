@@ -39,6 +39,11 @@ reached its daily token cap. Usage SHALL be counted from the model's reported to
 
 The advisor SHALL return 503 and call no model when the limit store cannot be reached.
 
+#### Scenario: The admission ran but its reply was lost
+
+- **WHEN** the admission script runs in Redis but its reply times out
+- **THEN** the advisor returns 503, and the reservation and the window entry are given back
+
 ### Requirement: Every model call has an output limit
 
 Every chat model request SHALL carry `max_tokens` in its body.
