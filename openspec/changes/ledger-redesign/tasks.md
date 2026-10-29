@@ -1,18 +1,18 @@
 ## 1. Application status (backend)
 
-- [ ] 1.1 Red: tests that `PUT /api/applications` accepts `submitted`, `offered`, `rejected` and refuses `waitlisted` with 422 and no change
-- [ ] 1.2 Green: add the three values to `ApplicationStatus`; update the advisor portfolio tools and their tests
+- [x] 1.1 Red: tests that `PUT /api/applications` accepts `submitted`, `offered`, `rejected` and refuses `waitlisted` with 422 and no change
+- [ ] 1.2 Green: add the three values to `ApplicationStatus`; update the advisor portfolio tools and their tests (values and API done 10-29; advisor tools not yet updated)
 - [ ] 1.3 Add the six display names to `web/lib/taxonomy.ts` and the client types in `web/lib/types.ts`
 
 ## 2. Program catalog (backend)
 
-- [ ] 2.1 Write the placeholder-slug → CRICOS-code map after confirming each course's name and provider in the extract; record any slug with no match
-- [ ] 2.2 Red: tests for the catalog seed — one `cricos-` row per extract course, university per provider, CRICOS source row, empty requirements, `待核验`, no `verified_at`, idempotent second run
-- [ ] 2.3 Red: tests for the fold — requirements and source move onto the matched row, `applications` re-pointed with first choice and status kept, no placeholder row left, unmatched slug dropped
-- [ ] 2.4 Green: `api/app/seed_catalog.py` with the upsert and the fold; wire it into `make seed`
-- [ ] 2.5 Red then green: `GET /api/programs` filters `ids`, `field`, `provider`, `has_requirements`, `limit`, `offset`, with a 100-row cap
+- [x] 2.1 Write the placeholder-slug → CRICOS-code map after confirming each course's name and provider in the extract; record any slug with no match
+- [x] 2.2 Red: tests for the catalog seed — one `cricos-` row per extract course, university per provider, CRICOS source row, empty requirements, `待核验`, no `verified_at`, idempotent second run
+- [x] 2.3 Red: tests for the fold — requirements and source move onto the matched row, `applications` re-pointed with first choice and status kept, no placeholder row left, unmatched slug dropped
+- [x] 2.4 Green: `api/app/seed_catalog.py` with the upsert and the fold; wire it into `make seed`
+- [x] 2.5 Red then green: `GET /api/programs` filters `ids`, `field`, `provider`, `has_requirements`, `limit`, `offset`, with a 100-row cap
 - [ ] 2.6 Advisor: test that `search_programs` finds a CRICOS course by English name and still returns at most 10
-- [ ] 2.7 Run the backend suite on a fresh database (`make migrate`, `make seed`) and fix fallout from the larger catalog
+- [x] 2.7 Run the backend suite on a fresh database (`make migrate`, `make seed`) and fix fallout from the larger catalog
 
 ## 3. Tiering and data adapters (web/lib)
 
@@ -49,7 +49,7 @@
 
 - [ ] 6.1 Write `scripts/walkthrough.cjs` over the new routes at 1440 and 390, failing on console errors, sideways scroll, or a missing `h1`; point `make screenshots` at it
 - [ ] 6.2 Delete the old screens (`AppShell`, `FlowView`, `HomeView`, `MaterialsView`, `ProfileView`, `SettingsView`, `PortfolioPicker`, `Generating`, `Onboarding`, `AdvisorView` once replaced), `app/prototype/`, `components/prototype/`, `lib/store.ts`, `lib/prototype-handoff.ts`
-- [ ] 6.3 Delete the six-program mirror (`lib/programs.ts`, `verify-programs-mirror.cjs`, `check-no-programs-import.cjs`, `seed-programs.snapshot.json`) and its Makefile targets; delete the sample requirements and states from `prototype-fixtures/data.ts`
+- [ ] 6.3 (10-29: verify-programs-mirror.cjs and seed-programs.snapshot.json deleted; lib/programs.ts and check-no-programs-import.cjs remain) Delete the six-program mirror (`lib/programs.ts`, `verify-programs-mirror.cjs`, `check-no-programs-import.cjs`, `seed-programs.snapshot.json`) and its Makefile targets; delete the sample requirements and states from `prototype-fixtures/data.ts`
 - [ ] 6.4 Delete `scripts/e2e-walkthrough.cjs` and `docs/screenshots/01…29` and `docs/screenshots/prototype/`
 
 ## 7. Verification
