@@ -76,6 +76,16 @@ def get_subject(subject: Annotated[str | None, Depends(get_optional_subject)]) -
     return subject
 
 
+def subject_cookie_header(response: Response) -> dict[str, str] | None:
+    """The anonymous-subject `Set-Cookie` a dependency put on `response`, for an error to carry.
+
+    Only anonymous mode sets it; in login mode the subject comes from the session cookie and there is
+    nothing to forward, so this returns None instead of raising on the missing header.
+    """
+    value = response.headers.get("set-cookie")
+    return {"set-cookie": value} if value else None
+
+
 def set_client_cookie(response: Response, client_id: str) -> None:
     """Write the subject cookie. An endpoint that returns its own `Response` object (a stream, for
     one) must call this on that object: FastAPI merges the dependency's response headers only into

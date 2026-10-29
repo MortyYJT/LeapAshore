@@ -136,3 +136,13 @@ def test_advisor_tools_read_the_configured_subject(login_mode):
     out = get_my_profile.invoke({}, config={"configurable": {"client_id": _subject_of(email_a)}})
     assert "A 的专业" in out and "B 的专业" not in out
     assert "B 的专业" in get_my_profile.invoke({}, config={"configurable": {"client_id": _subject_of(email_b)}})
+
+
+def test_refusals_keep_their_status_in_login_mode(login_mode, programs):
+    """The refusal paths used to copy the anonymous cookie header, which login mode never sets."""
+    client = new_client()
+    login(client, login_mode)
+    twice = [{"programId": PROGRAM_IDS[0], "tier": "稳"}, {"programId": PROGRAM_IDS[0], "tier": "冲"}]
+    assert client.put("/api/applications", json={"rows": twice}).status_code == 422
+    bad = client.post("/api/documents", files=an_upload("notes.txt", b"plain text, not a document", "text/plain"))
+    assert 400 <= bad.status_code < 500, bad.status_code

@@ -5,7 +5,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session, selectinload
 
 from app.db import get_session
-from app.deps import get_subject, load_or_create_profile
+from app.deps import get_subject, load_or_create_profile, subject_cookie_header
 from app.models.application import Application, ApplicationTier
 from app.models.program import Program
 from app.schemas.application import (
@@ -150,5 +150,5 @@ def replace_the_applications(
         raise HTTPException(
             status_code=422,
             detail=str(exc),
-            headers={"set-cookie": response.headers["set-cookie"]},
+            headers=subject_cookie_header(response),
         ) from exc

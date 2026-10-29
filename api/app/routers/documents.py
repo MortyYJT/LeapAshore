@@ -24,7 +24,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.db import get_session
-from app.deps import get_subject, load_or_create_profile
+from app.deps import get_subject, load_or_create_profile, subject_cookie_header
 from app.models.document import Document, DocumentVersion
 from app.models.review import DocumentReview, DocumentReviewFinding, ReviewCriterion
 from app.models.source import Source
@@ -194,7 +194,7 @@ def _refusal(exc: Refused, response: Response) -> HTTPException:
     return HTTPException(
         status_code=exc.status_code,
         detail=exc.detail,
-        headers={"set-cookie": response.headers["set-cookie"]},
+        headers=subject_cookie_header(response),
     )
 
 

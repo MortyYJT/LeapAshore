@@ -106,7 +106,10 @@ export function LoginDialog({ onDone, onCancel }: { onDone: () => void; onCancel
       aria-labelledby="login-title"
       onCancel={(e) => {
         e.preventDefault();
-        onCancel();
+        // At the info step the visitor is already logged in: Escape skips the step, it does not undo the
+        // login, so the action that opened the dialog still goes ahead.
+        if (step.kind === "basics") onDone();
+        else onCancel();
       }}
     >
       <div className="dialog-head">
