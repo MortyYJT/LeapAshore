@@ -22,12 +22,13 @@
 
 ## 采集进度（每校一个 json，在 `api/data/requirements/`；表由脚本从文件生成）
 
-共 70 所、3379 个项目、3340 个机器核对。各校的特殊情况写在各自 json 的 `notes` 和提交说明里。
+共 82 所、3732 个项目、3688 个机器核对。各校的特殊情况写在各自 json 的 `notes` 和提交说明里。
 
 | school_key | 项目 | 机器核对 | 状态 |
 | --- | --- | --- | --- |
 | adelaide-university | 60 | 60 | partial |
 | australian-national-university | 53 | 53 | partial |
+| boston-university | 40 | 40 | partial |
 | brown-university | 38 | 37 | complete |
 | california-institute-of-technology | 3 | 3 | complete |
 | cardiff-university | 0 | 0 | blocked |
@@ -37,7 +38,9 @@
 | columbia-university | 65 | 65 | partial |
 | cornell-university | 24 | 24 | partial |
 | curtin-university | 50 | 50 | partial |
+| duke-university | 42 | 42 | partial |
 | durham-university | 0 | 0 | blocked |
+| georgia-institute-of-technology | 60 | 60 | partial |
 | harvard-university | 52 | 52 | complete |
 | hong-kong-polytechnic-university | 113 | 113 | complete |
 | hong-kong-university-of-science-and-technology | 54 | 54 | complete |
@@ -48,6 +51,7 @@
 | london-school-of-economics-and-political-science | 64 | 64 | partial |
 | macquarie-university | 0 | 0 | blocked |
 | massachusetts-institute-of-technology | 42 | 42 | complete |
+| mcgill-university | 0 | 0 | blocked |
 | monash-university | 1 | 0 | blocked |
 | nanyang-technological-university-singapore | 65 | 64 | partial |
 | national-university-of-singapore | 6 | 6 | blocked |
@@ -56,8 +60,10 @@
 | northwestern-university | 34 | 34 | partial |
 | pennsylvania-state-university | 39 | 38 | partial |
 | princeton-university | 9 | 9 | complete |
+| purdue-university | 26 | 26 | partial |
 | queen-mary-university-of-london | 139 | 137 | partial |
 | queen-s-university-belfast | 0 | 0 | blocked |
+| rice-university | 24 | 19 | complete |
 | rmit-university | 79 | 79 | complete |
 | stanford-university | 19 | 19 | partial |
 | ucl | 50 | 50 | partial |
@@ -65,6 +71,7 @@
 | university-of-birmingham | 60 | 60 | partial |
 | university-of-bristol | 1 | 1 | blocked |
 | university-of-california-berkeley | 55 | 55 | partial |
+| university-of-california-davis | 5 | 5 | blocked |
 | university-of-california-los-angeles | 46 | 46 | partial |
 | university-of-california-san-diego | 20 | 20 | complete |
 | university-of-cambridge | 59 | 59 | partial |
@@ -80,6 +87,7 @@
 | university-of-melbourne | 0 | 0 | blocked |
 | university-of-michigan-ann-arbor | 24 | 24 | partial |
 | university-of-new-south-wales | 54 | 54 | partial |
+| university-of-north-carolina-at-chapel-hill | 23 | 23 | partial |
 | university-of-nottingham | 64 | 64 | partial |
 | university-of-oxford | 9 | 6 | blocked |
 | university-of-pennsylvania | 65 | 65 | partial |
@@ -87,19 +95,31 @@
 | university-of-reading | 63 | 63 | partial |
 | university-of-sheffield | 67 | 67 | partial |
 | university-of-southampton | 77 | 77 | partial |
+| university-of-southern-california | 70 | 70 | partial |
 | university-of-st-andrews | 51 | 51 | partial |
 | university-of-sydney | 60 | 60 | partial |
 | university-of-technology-sydney | 55 | 55 | partial |
 | university-of-texas-at-austin | 18 | 18 | partial |
 | university-of-warwick | 64 | 64 | partial |
+| university-of-washington | 15 | 15 | partial |
 | university-of-western-australia | 64 | 64 | partial |
+| university-of-wisconsin-madison | 37 | 37 | partial |
 | university-of-wollongong | 57 | 56 | partial |
 | university-of-york | 15 | 15 | partial |
+| washington-university-in-st-louis | 11 | 11 | partial |
 | yale-university | 44 | 44 | complete |
 
 被拦截（按规则不绕过）：Monash、Melbourne、Macquarie、NUS 大部分、Oxford 主站、UCL（50 个后 403）、Bristol、Durham、Bath、Cardiff、York（16 个后 429）、QUB（robots.txt 403）、Stanford 计算机系（robots.txt 禁止）。
 需人工确认：UNSW 英语分数的学院对应、悉尼「Not available to student visa holders」、剑桥 "High II.i"↔"High 2:1"、帝国理工 46 个 MRes 是否算授课型、RMIT 7 条按名称匹配 CRICOS、St Andrews 英语分数取自页面 data 属性、Exeter 中国要求表标注的是 2026 入学、Stanford 等校 TOEFL 同时给 0-120 和新 1-6 分制（界面怎么显示要定）。
-进行中（10-30 白天续跑）：Duke、UW、BU、Purdue、Rice、UW-Madison；美国之后是加拿大 9、新西兰 2、日本 8、韩国 7、马来西亚 5、欧洲 52、其他 21，再给 partial 的学校补跑。收尾脚本在会话草稿区（`finish.py`：复核 → 由 json 生成提交说明 → 提交推送 → 刷新本表）。
+需人工确认（10-30 白天新增）：
+- JHU Carey：英语分数和学位要求取自 Carey 目录的学院政策页，项目页本身没链接过去（简报要求项目页指名）；“preferred minimum” 已标为建议分
+- Yale MMS Global Business and Society：页面说 2027 届申请 2025 年 9 月开放，表格却是 2026-27 日期；采用了表格
+- Yale MAM / GBS：截止日期按表格列位置标轮次，不是原文写的标签
+- Stanford MS&E：“minimum expected score” 按最低分处理
+- Harvard HSPH：45/65 学分两个版本同一网址（id 冲突已修）
+- CMU MHCI：官网写 IELTS 总分 8.5，按原文收录，疑似学校笔误
+- UIUC：英语分数取研究生院 limited-status（有条件录取）最低分，full-status 分数写在 prerequisites
+进行中（10-30 白天续跑）：Texas A&M、ASU、UCSB、Michigan State、Emory、Toronto；美国 35 所已全部派出。之后加拿大其余 7、新西兰 2、日本 8、韩国 7、马来西亚 5、欧洲 52、其他 21，再给 partial 补跑。收尾脚本 `finish.py` 在会话草稿区。
 
 ## 校徽
 
@@ -122,7 +142,7 @@
 
 ## 验证状态
 
-- 后端：269 条通过（含重定向 robots 检查的 2 条新测试）；前端 205 条通过
+- 后端：276 条通过（白天新增：项目变体 id、建议分、美国/加拿大日期顺序、www 别名封禁）；前端 205 条通过
 - 快照工具原先只对请求的 URL 查 robots.txt、不查重定向落点（Caltech 子代理发现），已修；4 个不该存的本地快照已删，没有数据引用它们
 - 种子测试原先依赖开发库只有种子数据，导入采集数据后 5 条失败；已改成不依赖。注意：跑 `test_seed.py` 会把 5 个占位项目重置成种子版本，要看导入效果就重跑 importer
 - `make verify`：构建和测试通过；走查在「为你筛出的申请组合」一步失败，这是 PR #26 已记录的旧问题（新入口流程后走查需重写），不是今晚的改动造成的
