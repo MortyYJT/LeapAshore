@@ -3,7 +3,14 @@
 // These live here rather than inside a component because onboarding and the profile editor both need
 // them, and two copies would drift apart.
 
-import type { DegreeLevel, EducationLevel, StudyArea } from "./types";
+import type {
+  ApplicationStatus,
+  DegreeLevel,
+  EducationLevel,
+  PortfolioTier,
+  SourceStatus,
+  StudyArea,
+} from "./types";
 
 export const EDUCATION_OPTIONS: { value: EducationLevel; hint: string }[] = [
   { value: "高中", hint: "申请本科" },
@@ -59,3 +66,45 @@ export function labelOf<T extends string | number>(
   if (value === null) return "";
   return options.find((o) => o.value === value)?.label ?? String(value);
 }
+
+// Stored values and interface words are kept apart (PRD §7.7 rule 5): the API and the database keep the
+// left-hand value, and every screen shows the right-hand words through the maps below.
+
+/** The six application statuses, in the order a row moves through them. */
+export const APPLICATION_STATUSES: { value: ApplicationStatus; label: string }[] = [
+  { value: "considering", label: "考虑中" },
+  { value: "applying", label: "申请中" },
+  { value: "submitted", label: "已提交" },
+  { value: "offered", label: "已获 offer" },
+  { value: "rejected", label: "被拒" },
+  { value: "excluded", label: "不考虑" },
+];
+
+/** A status this build does not know reads as the column's default, never as a later stage. */
+export function applicationStatusLabel(status: string | null | undefined): string {
+  return APPLICATION_STATUSES.find((s) => s.value === status)?.label ?? "考虑中";
+}
+
+export const DATA_STATUS_LABELS: Record<SourceStatus, string> = {
+  待核验: "未核对",
+  机器核对: "自动标注",
+  已核验: "已核对",
+};
+
+/** What each data status means, for a line of explanation beside the label. */
+export const DATA_STATUS_MEANINGS: Record<SourceStatus, string> = {
+  待核验: "摘自官网，还没人核对",
+  机器核对: "摘自官网，程序已对照官网原文核对，还没人核对",
+  已核验: "有人对照官网核对过",
+};
+
+/** Anything other than the three known values reads as unchecked, never as checked. */
+export function dataStatusLabel(status: string | null | undefined): string {
+  return DATA_STATUS_LABELS[status as SourceStatus] ?? DATA_STATUS_LABELS["待核验"];
+}
+
+/** The stored one-character band and the tier name the interface shows for it. */
+export const TIER_OF_BAND: Record<PortfolioTier, string> = { 保: "保底", 稳: "稳妥", 冲: "冲刺" };
+
+/** A missing value, wherever it would otherwise render as an empty string or a zero. */
+export const NOT_COLLECTED = "未收录";

@@ -25,6 +25,9 @@ import type {
   ServedApplication,
   ServedProgram,
 } from "./programs-source";
+import { toProgramView } from "./programs-source.ts";
+import type { UniversityRow } from "./catalog";
+import type { Program } from "./types";
 
 /** Whether the value the wire sent is a string with at least one character in it. */
 function isFilled(value: unknown): value is string {
@@ -614,4 +617,63 @@ export async function submitMaterial(documentId: string): Promise<ServedDocument
   });
   if (!response.ok) throw await refusalOf(response, "送审失败");
   return (await response.json()) as ServedDocument;
+}
+
+/** Filters `GET /api/programs` accepts (spec program-catalog; design D11). */
+export interface ProgramQuery {
+  ids?: string[];
+  field?: string;
+  /** One school can have several rows, so this is a list. */
+  provider?: string[];
+  hasRequirements?: boolean;
+  q?: string;
+  limit?: number;
+  offset?: number;
+}
+
+export function programQueryString(query: ProgramQuery): string {
+  const params = new URLSearchParams();
+  if (query.ids?.length) params.set("ids", query.ids.join(","));
+  if (query.field) params.set("field", query.field);
+  if (query.provider?.length) params.set("provider", query.provider.join(","));
+  if (query.hasRequirements !== undefined) params.set("has_requirements", String(query.hasRequirements));
+  if (query.q?.trim()) params.set("q", query.q.trim());
+  if (query.limit !== undefined) params.set("limit", String(query.limit));
+  if (query.offset !== undefined) params.set("offset", String(query.offset));
+  const text = params.toString();
+  return text ? `?${text}` : "";
+}
+
+/** One page of the catalogue and how many programs match in all. */
+export async function fetchProgramPage(
+  query: ProgramQuery,
+  origin = "",
+): Promise<{ programs: Program[]; total: number }> {
+  const response = await fetch(`${origin}/api/programs${programQueryString(query)}`, {
+    credentials: "same-origin",
+  });
+  if (!response.ok) throw new Error(`读取项目目录失败：${response.status}`);
+  const served = (await response.json()) as ServedProgram[];
+  if (!Array.isArray(served)) throw new Error("读取项目目录失败：响应不是项目列表");
+  const total = Number(response.headers.get("X-Total-Count"));
+  return { programs: served.map(toProgramView), total: Number.isFinite(total) ? total : served.length };
+}
+
+/** Every program matching the filters, read a page (the route's cap of 100) at a time. */
+export async function fetchAllPrograms(query: Omit<ProgramQuery, "limit" | "offset">): Promise<Program[]> {
+  const first = await fetchProgramPage({ ...query, limit: 100, offset: 0 });
+  const rest = [];
+  for (let offset = 100; offset < first.total; offset += 100) {
+    rest.push(fetchProgramPage({ ...query, limit: 100, offset }));
+  }
+  const pages = await Promise.all(rest);
+  return [...first.programs, ...pages.flatMap((page) => page.programs)];
+}
+
+export async function fetchUniversities(origin = ""): Promise<UniversityRow[]> {
+  const response = await fetch(`${origin}/api/universities`, { credentials: "same-origin" });
+  if (!response.ok) throw new Error(`读取学校列表失败：${response.status}`);
+  const rows = (await response.json()) as UniversityRow[];
+  if (!Array.isArray(rows)) throw new Error("读取学校列表失败：响应不是学校列表");
+  return rows;
 }

@@ -25,8 +25,25 @@ import {
   uploadMaterial,
 } from "./api.ts";
 import type { TaskReplacePayload } from "./roadmap-sync.ts";
-import { EMPTY_PROFILE } from "./store.ts";
 import type { Profile } from "./types.ts";
+
+// The local copy these merge tests start from: the values the old in-browser store started with. Kept
+// here, with the store gone, so the tests keep asserting the same merge.
+const EMPTY_PROFILE: Profile = {
+  educationLevel: null,
+  schoolOrigin: null,
+  schoolName: "",
+  domesticTier: null,
+  overseasBand: null,
+  major: "",
+  gpaScore: null,
+  gpaScale: 100,
+  targetDegree: "授课型硕士",
+  targetField: null,
+  englishScore: "",
+  annualBudgetCny: null,
+  intake: "2027 S1",
+};
 
 function withFetch<T>(handler: (url: string, init?: RequestInit) => Response, run: () => Promise<T>) {
   const original = globalThis.fetch;
@@ -681,8 +698,8 @@ test("replaceApplications sends the rows as a PUT and returns the server's count
   // skipped by the caller instead. `origin` and `status` are absent by design: the schema forbids
   // unknown keys and the server writes `origin` itself.
   const rows = [
-    { programId: "unsw-master-it", tier: "冲" as const, isPrimary: true, needsReview: false },
-    { programId: "usyd-master-cs", tier: "保" as const, isPrimary: false, needsReview: true },
+    { programId: "unsw-master-it", tier: "冲" as const, status: "applying" as const, isPrimary: true, needsReview: false },
+    { programId: "usyd-master-cs", tier: "保" as const, status: "considering" as const, isPrimary: false, needsReview: true },
   ];
   const counts = { created: 1, updated: 1, kept: 0, removed: 0 };
   const { value, calls } = await withFetch(
@@ -707,7 +724,7 @@ test("replaceApplications raises on a refused portfolio so the picker can show i
         () => new Response(JSON.stringify({ detail: "..." }), { status: 422 }),
         () =>
           replaceApplications([
-            { programId: "unsw-master-it", tier: "冲", isPrimary: true, needsReview: false },
+            { programId: "unsw-master-it", tier: "冲", status: "considering", isPrimary: true, needsReview: false },
           ]),
       ),
     /保存申请组合失败：422/,

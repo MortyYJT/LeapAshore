@@ -30,15 +30,28 @@ const build = (overrides: Partial<Profile> = {}, done: string[] = [], now = NOW)
   buildRoadmap({ ...BASE, ...overrides }, done, now);
 
 test("parses the two Australian intake terms", () => {
-  assert.equal(intakeAnchor("2027 S1").toISOString().slice(0, 10), "2027-02-15");
-  assert.equal(intakeAnchor("2027 S2").toISOString().slice(0, 10), "2027-07-15");
+  assert.equal(intakeAnchor("2027 S1")?.toISOString().slice(0, 10), "2027-02-15");
+  assert.equal(intakeAnchor("2027 S2")?.toISOString().slice(0, 10), "2027-07-15");
 });
 
-test("falls back to a future term when the intake cannot be parsed", () => {
-  const anchor = intakeAnchor("说不清");
-  assert.ok(anchor.getTime() > Date.now() - 1000);
-  assert.equal(anchor.getUTCMonth(), 1);
-  assert.equal(anchor.getUTCDate(), 15);
+// Spec application-roadmap: with no intake the page must not assume one. The old fallback dated every
+// phase from a term the applicant never chose.
+test("an intake that cannot be read has no anchor rather than an assumed term", () => {
+  assert.equal(intakeAnchor("说不清"), null);
+  assert.equal(intakeAnchor(""), null);
+});
+
+test("a profile without an intake yields undated phases that still carry their tasks", () => {
+  const roadmap = build({ intake: "" });
+  assert.equal(roadmap.anchorAt, null);
+  assert.ok(roadmap.phases.length > 0);
+  for (const phase of roadmap.phases) {
+    assert.equal(phase.suggestedAt, null, phase.id);
+    // An undated phase cannot be late, so nothing is marked overdue on a date that does not exist.
+    assert.notEqual(phase.status, "overdue", phase.id);
+    for (const task of phase.tasks) assert.equal(task.dueAt, null, task.materialId);
+  }
+  assert.ok(roadmap.phases.some((phase) => phase.tasks.length > 0));
 });
 
 test("produces the six defined phases in order", () => {

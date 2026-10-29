@@ -271,6 +271,8 @@ test("the adapter reads the field names of a captured response body", () => {
         label: material.title,
         detail: material.detail,
         appliesTo: material.appliesTo,
+        // The capture's own source, where the server sent one (the visa phase cites the GS page).
+        ...(material.source ? { source: material.source } : {}),
       },
       `material ${material.key}`,
     );
@@ -420,4 +422,19 @@ test("the mapping round-trips the constants through the served field names", () 
     .flat()
     .filter((m) => m.label === undefined || m.id === undefined);
   assert.equal(empty.length, 0, "no material may reach the builder without its id and label");
+});
+
+test("a requirement with an official page keeps its source, read as unchecked until a person checks it", () => {
+  const materials = toMaterialDefs({
+    phases: [],
+    materials: [
+      {
+        key: "visa-gs-responses", phase: "visa", title: "GS 问卷逐题作答", detail: "", appliesTo: "all", sortOrder: 0,
+        source: { url: "https://immi.homeaffairs.gov.au/gs", title: "Genuine Student requirement", status: "待核验" },
+      },
+    ],
+  });
+  assert.deepEqual(materials.visa[0].source, {
+    url: "https://immi.homeaffairs.gov.au/gs", title: "Genuine Student requirement", status: "待核验",
+  });
 });

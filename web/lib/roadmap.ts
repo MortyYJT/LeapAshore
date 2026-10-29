@@ -85,10 +85,15 @@ export const MATERIALS: Record<PhaseId, MaterialItem[]> = {
  */
 export const DEFAULT_DEFINITION: RoadmapDefinition = { phases: PHASE_DEFS, materials: MATERIALS };
 
-/** Parse an intake string such as "2027 S1" into an anchor date. */
-export function intakeAnchor(intake: string): Date {
-  const m = /(20\d{2})\s*S([12])/i.exec(intake);
-  if (!m) return new Date(Date.UTC(new Date().getUTCFullYear() + 1, 1, 15));
+/**
+ * Parse an intake string such as "2027 S1" into an anchor date, or `null` when there is none.
+ *
+ * No term is assumed for an intake that cannot be read: a roadmap dated from a term the applicant never
+ * chose would print system dates as if they were the applicant's (spec application-roadmap).
+ */
+export function intakeAnchor(intake: string | null | undefined): Date | null {
+  const m = /(20\d{2})\s*S([12])/i.exec(intake ?? "");
+  if (!m) return null;
   const year = Number(m[1]);
   return m[2] === "1" ? new Date(Date.UTC(year, 1, 15)) : new Date(Date.UTC(year, 6, 15));
 }
@@ -119,11 +124,12 @@ export function buildRoadmap(
   now: Date = new Date(),
   definition: RoadmapDefinition = DEFAULT_DEFINITION,
 ): Roadmap {
-  const anchor = intakeAnchor(profile.intake || "2027 S1");
+  const anchor = intakeAnchor(profile.intake);
   const done = new Set(completedMaterialIds);
 
   const phases: RoadmapPhase[] = definition.phases.map((def) => {
-    const suggestedAt = addDays(anchor, -def.offsetDays);
+    const suggestedAt = anchor ? addDays(anchor, -def.offsetDays) : null;
+    const suggestedDate = suggestedAt ? suggestedAt.toISOString().slice(0, 10) : null;
     // A phase whose key has no materials is an empty phase (`?? []`), not a crash: the keys index the
     // served definition, so a phase the server adds before its materials are written still renders.
     const items = (definition.materials[def.id] ?? []).filter((i) =>
@@ -135,8 +141,9 @@ export function buildRoadmap(
       detail: item.detail,
       done: done.has(item.id),
       scheduleOrigin: "suggested" as const,
-      dueAt: suggestedAt.toISOString().slice(0, 10),
+      dueAt: suggestedDate,
       deadlineSourceUrl: null,
+      source: item.source ?? null,
     }));
     const doneCount = tasks.filter((t) => t.done).length;
     const status =
@@ -144,14 +151,14 @@ export function buildRoadmap(
         ? "completed"
         : doneCount > 0
           ? "in_progress"
-          : suggestedAt.getTime() < now.getTime()
+          : suggestedAt !== null && suggestedAt.getTime() < now.getTime()
             ? "overdue"
             : "pending";
     return {
       id: def.id,
       title: def.title,
       detail: def.detail,
-      suggestedAt: suggestedAt.toISOString().slice(0, 10),
+      suggestedAt: suggestedDate,
       status,
       tasks,
     };
@@ -159,7 +166,7 @@ export function buildRoadmap(
 
   return {
     intake: profile.intake,
-    anchorAt: anchor.toISOString().slice(0, 10),
+    anchorAt: anchor ? anchor.toISOString().slice(0, 10) : null,
     generatedAt: now.toISOString(),
     phases,
   };

@@ -132,6 +132,8 @@ test("maps every served field onto the view field by field", () => {
         status: program.source.status,
       },
       dataStatus: program.dataStatus,
+      universityId: program.universityId,
+      country: program.country,
     })),
     "every served program, mapped field by field",
   );
@@ -216,6 +218,7 @@ test("a mapped program has every field the assessment code reads", () => {
     Object.keys(view).sort(),
     [
       "city",
+      "country",
       "dataStatus",
       "degreeLevel",
       "duration",
@@ -229,6 +232,7 @@ test("a mapped program has every field the assessment code reads", () => {
       "slug",
       "source",
       "university",
+      "universityId",
     ],
     "the view carries exactly the fields the picker and the assessment read",
   );
@@ -457,6 +461,9 @@ test("maps a served portfolio row onto the item the interface renders", () => {
     confirmed: true,
     needsReview: true,
     isPrimary: true,
+    status: "applying",
+    officialDeadline: null,
+    deadlineSourceUrl: null,
   });
 });
 
@@ -468,10 +475,13 @@ test("a row the server does not flag is not flagged here", () => {
   // read the same. This is the assertion that notices a dropped `needsReview`.
   assert.deepEqual(Object.keys(item).sort(), [
     "confirmed",
+    "deadlineSourceUrl",
     "isPrimary",
     "needsReview",
+    "officialDeadline",
     "program",
     "programSlug",
+    "status",
     "tier",
   ]);
   // The row's program projection travels with the item since M2d, because the two portfolio views
@@ -495,15 +505,15 @@ test("the rows sent back to the route speak the route's own field names", () => 
     { programSlug: "usyd-master-cs", tier: "保", confirmed: true },
   ]);
   assert.deepEqual(rows, [
-    { programId: "unsw-master-it", tier: "冲", isPrimary: true, needsReview: false },
-    { programId: "usyd-master-cs", tier: "保", isPrimary: false, needsReview: false },
+    { programId: "unsw-master-it", tier: "冲", status: "considering", isPrimary: true, needsReview: false },
+    { programId: "usyd-master-cs", tier: "保", status: "considering", isPrimary: false, needsReview: false },
   ]);
-  // `origin` and `status` are deliberately absent: the server writes `origin` itself, and a status is
-  // not something the confirmation flow has an opinion about. The route refuses unknown keys with a
-  // 422, so sending one would fail the whole write rather than being ignored.
+  // `status` is sent since the portfolio absorbed the applications board (spec application-portfolio):
+  // the portfolio page is where a status changes, and confirming it is what saves the change. `origin`
+  // stays absent: the server writes it itself, and the route refuses unknown keys with a 422.
   for (const row of rows) {
     const wire = row as unknown as Record<string, unknown>;
-    assert.equal("origin" in wire || "status" in wire || "programSlug" in wire, false);
+    assert.equal("origin" in wire || "programSlug" in wire, false);
   }
 });
 
@@ -536,4 +546,42 @@ test("the citation carries the served url and title", () => {
     assert.equal(view.source.title, program.source.title, `title of ${program.slug}`);
     assert.equal(wireField(program.source, "url") !== null, true);
   }
+});
+
+test("a program from a server that does not send the school's id or country has them unknown", () => {
+  const older = served();
+  delete (older as Partial<ServedProgram>).universityId;
+  delete (older as Partial<ServedProgram>).country;
+
+  const view = toProgramView(older);
+
+  assert.equal(view.universityId, null);
+  assert.equal(view.country, null);
+});
+
+test("an application's status survives the read and is sent back on the write", () => {
+  const [row] = toApplicationRows([
+    { programSlug: "cricos-111671D", tier: "稳", confirmed: true, isPrimary: true, status: "offered" },
+  ]);
+  assert.equal(row.status, "offered");
+
+  const [item] = toPortfolioItems([
+    {
+      id: "a", programId: "cricos-111671D", tier: "稳", status: "submitted", isPrimary: false,
+      officialDeadline: null, deadlineSourceUrl: null, needsReview: false, origin: "user", program: null,
+      createdAt: "", updatedAt: "",
+    },
+  ]);
+  assert.equal(item.status, "submitted");
+});
+
+test("a status this build does not know is read as considering, not passed through", () => {
+  const [item] = toPortfolioItems([
+    {
+      id: "a", programId: "x", tier: "冲", status: "waitlisted", isPrimary: false,
+      officialDeadline: null, deadlineSourceUrl: null, needsReview: false, origin: "user", program: null,
+      createdAt: "", updatedAt: "",
+    },
+  ]);
+  assert.equal(item.status, "considering");
 });

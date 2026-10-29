@@ -13,5 +13,8 @@
 import type { SourceStatus } from "./types";
 
 export function toSourceStatus(value: unknown): SourceStatus {
-  return value === "已核验" ? "已核验" : "待核验";
+  if (value === "已核验") return "已核验";
+  // A quote a program checked against its saved page: still not a person's check.
+  if (value === "机器核对") return "机器核对";
+  return "待核验";
 }

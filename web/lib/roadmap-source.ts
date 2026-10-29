@@ -27,6 +27,7 @@
 // spelling is `web/lib/roadmap-response.fixture.json` — a captured `GET /api/roadmap` body — which
 // `roadmap-source.test.ts` maps and compares field by field.
 
+import { toSourceStatus } from "./source-status.ts";
 import type { TaskRow } from "./roadmap-sync";
 import type { RoadmapDefinition, MaterialItem } from "./types";
 
@@ -62,6 +63,7 @@ export interface ServedMaterial {
   detail: string;
   appliesTo?: MaterialItem["appliesTo"];
   sortOrder: number;
+  source?: { url: string; title: string; status: string } | null;
 }
 
 /**
@@ -176,6 +178,10 @@ export function toMaterialDefs(definition: ServedRoadmapDefinition): Record<stri
       label: material.title,
       detail: material.detail,
       appliesTo: material.appliesTo,
+      // Only a requirement with an official page carries one; a system-suggested step has no key at all.
+      ...(material.source
+        ? { source: { url: material.source.url, title: material.source.title, status: toSourceStatus(material.source.status) } }
+        : {}),
     };
     (byPhase[material.phase] ??= []).push(item);
   }

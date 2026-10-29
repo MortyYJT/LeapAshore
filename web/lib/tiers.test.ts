@@ -18,6 +18,8 @@ function program(overrides: Partial<Program> = {}): Program {
     prerequisites: [], englishRequirement: 'IELTS 6.5，单项不低于 6.0',
     source: { id: 's', title: 't', url: 'https://example.edu/msc', excerpt: '', verifiedAt: null, status: '待核验' },
     dataStatus: '待核验',
+    universityId: null,
+    country: null,
     ...overrides,
   };
 }

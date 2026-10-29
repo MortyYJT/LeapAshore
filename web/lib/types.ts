@@ -55,7 +55,8 @@ export interface Profile {
   intake: string;
 }
 
-export type SourceStatus = "已核验" | "待核验";
+/** The stored verification states (PRD §7.7 rule 1). The interface says them through `DATA_STATUS_LABELS`. */
+export type SourceStatus = "已核验" | "机器核对" | "待核验";
 
 /** Official source citation. The excerpt is a manual summary, not captured page text. */
 export interface SourceCitation {
@@ -101,9 +102,21 @@ export interface Program {
   source: SourceCitation;
   /** Overall data confidence. Every record is pending verification during the MVP stage. */
   dataStatus: SourceStatus;
+  /** The school's id in the catalogue (`/schools/[id]`), and its country in Chinese. */
+  universityId: string | null;
+  country: string | null;
 }
 
 export type PortfolioTier = "冲" | "稳" | "保";
+
+/** Where an application has got to. Display names live in `taxonomy.ts`. */
+export type ApplicationStatus =
+  | "considering"
+  | "applying"
+  | "submitted"
+  | "offered"
+  | "rejected"
+  | "excluded";
 
 export interface PortfolioItem {
   programSlug: string;
@@ -144,6 +157,10 @@ export interface PortfolioItem {
    * today.
    */
   isPrimary?: boolean;
+  status?: ApplicationStatus;
+  /** The official deadline and its page, or null when nobody has recorded one. */
+  officialDeadline?: string | null;
+  deadlineSourceUrl?: string | null;
 }
 
 export type PhaseId =
@@ -163,6 +180,14 @@ export interface MaterialItem {
   detail: string;
   /** Applicability filter by degree level and study area. */
   appliesTo?: "research" | "portfolio" | "all";
+  /** The official page a requirement comes from; absent for a step the system suggests. */
+  source?: RequirementSource | null;
+}
+
+export interface RequirementSource {
+  url: string;
+  title: string;
+  status: SourceStatus;
 }
 
 export interface PhaseTask {
@@ -174,6 +199,7 @@ export interface PhaseTask {
   scheduleOrigin: "suggested" | "official" | "user";
   dueAt: string | null;
   deadlineSourceUrl: string | null;
+  source?: RequirementSource | null;
 }
 
 export interface RoadmapPhase {
@@ -185,15 +211,16 @@ export interface RoadmapPhase {
   id: string;
   title: string;
   detail: string;
-  /** Suggested start date, derived backwards from the intake term. */
-  suggestedAt: string;
+  /** Suggested start date, derived backwards from the intake term; null when there is no intake. */
+  suggestedAt: string | null;
   status: PhaseStatus;
   tasks: PhaseTask[];
 }
 
 export interface Roadmap {
   intake: string;
-  anchorAt: string;
+  /** Null when the profile has no intake: the roadmap is never dated from an assumed one. */
+  anchorAt: string | null;
   generatedAt: string;
   phases: RoadmapPhase[];
 }
