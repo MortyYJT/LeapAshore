@@ -31,8 +31,11 @@ Use `api/.venv/bin/python` for the tools.
    WebSearch / WebFetch may be used **only to find URLs**, never as the source of a quote, and never
    on a host of the school itself. Never run curl or wget against the school, robots.txt included:
    they do not carry our User-Agent.
-3. **If the tool prints `{"blocked": …}` (403, 429, or robots.txt), stop fetching that host.** Do not
+3. **If the tool prints `{"blocked": …}` for HTTP 401/403/429, stop fetching that host.** Do not
    retry with other URLs on the same host to get around it, and never change the User-Agent.
+   A **robots.txt** block covers the paths that robots.txt disallows: skip them, and fetch other
+   paths on that host only if the tool lets them through (it checks each URL; `Disallow: /` closes
+   the whole host).
    `www.x` and `x` are one host: a refusal from either holds for both (the tool enforces this).
    A *different official host* of the same school that publishes the same information as its own
    service (e.g. a handbook or a graduate-school site such as `handbook.monash.edu`) may be used —
