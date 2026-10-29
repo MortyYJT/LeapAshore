@@ -27,7 +27,7 @@ async function universities(): Promise<UniversityRow[] | null> {
   }
 }
 
-/** The school library: 346 schools, filterable by name, region and QS band, with collected program counts. */
+/** The school library: 287 schools, filterable by name, region and QS band, with collected program counts. */
 export default async function SchoolsPage({ searchParams }: { searchParams: Promise<Record<string, string | string[] | undefined>> }) {
   const query = schoolQuery(await searchParams);
   const rows = await universities();
@@ -48,7 +48,7 @@ export default async function SchoolsPage({ searchParams }: { searchParams: Prom
           <div>
             <h1>学校库</h1>
             <p className="lede">
-              QS 2027 前 300，加上澳洲、香港、澳门的其他大学，共 <strong className="num">{overseasInstitutions.length}</strong> 所，按 QS 名次排列。
+              29 个国家和地区里的 QS 2027 前 300，加上澳洲、香港、澳门的其他大学，共 <strong className="num">{overseasInstitutions.length}</strong> 所，按 QS 名次排列。
             </p>
           </div>
         </div>
@@ -143,7 +143,7 @@ export default async function SchoolsPage({ searchParams }: { searchParams: Prom
         </section>
       </main>
       <SourceNote>
-        入选依据：QS World University Rankings 2027 前 300（2026-06-18 发布，QS 条款限制转载），及澳洲 CRICOS、香港教资会等官方名单补全。中文名标「常用译名」的不是学校官方中文名。校徽归各校所有，仅用于识别，不代表合作关系。
+        入选依据：收录范围内 29 个国家和地区的 QS World University Rankings 2027 前 300（2026-06-18 发布，QS 条款限制转载），及澳洲 CRICOS、香港教资会等官方名单补全。中文名标「常用译名」的不是学校官方中文名。校徽归各校所有，仅用于识别，不代表合作关系。
       </SourceNote>
     </>
   );

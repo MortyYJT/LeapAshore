@@ -20,7 +20,7 @@ async function programCount(): Promise<number | null> {
 export default async function Home() {
   const programs = await programCount();
   const facts: [string, string][] = [
-    [overseasInstitutions.length.toLocaleString("en"), "所海外大学：QS 2027 前 300，加上澳洲、香港、澳门的其他大学"],
+    [overseasInstitutions.length.toLocaleString("en"), "所海外大学：29 个国家和地区里的 QS 2027 前 300，加上澳洲、香港、澳门的其他大学"],
     [programs === null ? "未知" : programs.toLocaleString("en"), "个授课型硕士项目，事实来自 CRICOS 登记或学校官网"],
     [chineseInstitutions.length.toLocaleString("en"), "所国内院校，来自教育部名单，用来判断适用哪条均分门槛"],
   ];

@@ -1,6 +1,6 @@
 """The schools the catalogue holds, with how many programs each has.
 
-The school library lists 346 schools from its own file and joins them to these rows by name, so a
+The school library lists 287 schools from its own file and joins them to these rows by name, so a
 school page can read that school's programs. One school can have several rows: CRICOS lists some
 universities under more than one provider code, and the requirement importer may have created a row for
 a school whose site refused collection. The library groups rows by name and reads their programs with

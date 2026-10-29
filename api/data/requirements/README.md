@@ -1,7 +1,7 @@
 # Admission requirements collected from official program pages
 
-One JSON file per school, `<school_key>.json`, for the taught master's programs of the QS 2027
-top-200 schools outside mainland China. `_schools.json` lists the schools in collection order
+One JSON file per school, `<school_key>.json`, for the taught master's programs of the schools in the
+library's scope (29 countries and regions, see `docs/product/PRD.md` D5). `_schools.json` lists the schools in collection order
 (`wave` 1 = Australia, 2 = Hong Kong, 3 = Singapore, 4 = UK, 5 = US, …).
 
 Every value here was copied from an official page **with a verbatim quote**, and `verify.py` checked

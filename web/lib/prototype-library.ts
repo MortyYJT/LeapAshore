@@ -16,7 +16,7 @@ export function institutionSlug(school: {name_en?: string | null; name_zh?: stri
 export function searchInstitutions<T extends {name: string}>(rows: T[], query: string) {
   return rows.filter(row => row.name.toLowerCase().includes(query.trim().toLowerCase()));
 }
-export const schoolRegions = ['中国香港', '新加坡', '英国', '美国', '澳大利亚', '中国澳门', '中国大陆', '马来西亚', '欧洲', '加拿大', '新西兰', '日本', '韩国', '其他'];
+export const schoolRegions = ['中国香港', '新加坡', '英国', '美国', '澳大利亚', '中国澳门', '马来西亚', '欧洲', '加拿大', '新西兰', '韩国', '中东'];
 export const schoolQsRanges = [
   ['1-50', 'Top 1–50'], ['51-100', '51–100'], ['101-150', '101–150'],
   ['151-200', '151–200'], ['201-250', '201–250'], ['251-300', '251–300'],

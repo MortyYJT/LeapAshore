@@ -1,7 +1,7 @@
 # LeapAshore 鱼跃彼岸
 
 **An application-planning agent for master's degrees at the world's top universities.**
-留学申请 agent：覆盖 QS 2027 前 300 的大学，把申请拆成一张能点开的路线图，每条要求都能追溯到官方页面。
+留学申请 agent：覆盖 29 个国家和地区的 287 所大学（以 QS 2027 前 300 为主），把申请拆成一张能点开的路线图，每条要求都能追溯到官方页面。
 
 **Live demo:** <https://leapashore.mortyyjt.site>
 
@@ -10,7 +10,7 @@
 | [`/assess`](https://leapashore.mortyyjt.site/assess) | One-page background assessment, saved to the server |
 | [`/assess/result`](https://leapashore.mortyyjt.site/assess/result) | Every program with a stated requirement in your field, tiered 保底 / 稳妥 / 冲刺 / 不满足, with what to check on the official page |
 | [`/roadmap`](https://leapashore.mortyyjt.site/roadmap) | The timeline from today to the intake: suggested dates dashed, unrecorded deadlines hollow |
-| [`/schools`](https://leapashore.mortyyjt.site/schools) | 346 schools by QS rank, with how many programs each has collected |
+| [`/schools`](https://leapashore.mortyyjt.site/schools) | 287 schools by QS rank, with how many programs each has collected |
 | [`/programs`](https://leapashore.mortyyjt.site/programs) | Search the collected programs; each cites its official page |
 | [`/advisor`](https://leapashore.mortyyjt.site/advisor) | Chat with the LangGraph advisor agent |
 
@@ -88,8 +88,8 @@ customer-service agent and re-pointed at application state.
 | --- | --- | --- |
 | Australian master's programs (2,920) | CRICOS, data.gov.au, CC BY 2.5 AU | Real, attributed, dated |
 | Chinese institutions (3,167) and tier tags | Public lists | Real; known gaps recorded in the fixture |
-| Overseas schools (346) | QS World University Rankings 2027 top 300 + 46 for regional coverage | Real |
-| Admission requirements (5,337 programs at 128 schools) | Official course pages, each quote checked against a saved snapshot | **Machine-checked (机器核对)** for 5,253; the rest 待核验. None human-verified yet |
+| Overseas schools (287) | QS World University Rankings 2027 top 300 in the 29 countries and regions in scope (241) + 46 for regional coverage | Real |
+| Admission requirements (5,223 programs at 120 schools) | Official course pages, each quote checked against a saved snapshot | **Machine-checked (机器核对)** for 5,163; the rest 待核验. None human-verified yet |
 | Deadlines | Official pages | **Not collected** |
 
 These rules exist because an earlier version of this product generated a plausible verification
@@ -145,7 +145,7 @@ Done:
 
 Not yet:
 
-- Requirements are collected for 141 of the 346 schools (13 of those blocked or unreachable); the rest
+- Requirements are collected for 133 of the 287 schools (13 of those blocked or unreachable); the rest
   show 待采集 (to be collected). Requirements published only in PDFs are not read yet
 - No requirement has been verified by a person (`verified_at` is empty everywhere)
 - Conversations live in an in-memory checkpointer and are lost on restart (a Postgres checkpointer is

@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { institutionTier, eligibilityNote, institutionSlug, searchInstitutions, filterSchools, filterPrograms, paginate, tuitionAmount, singleQuery, schoolQuery, sortSchools, paginateSchools, schoolListHref, type ChineseInstitution, type OverseasInstitution, type MasterProgram } from './prototype-library.ts';
+import { institutionTier, eligibilityNote, institutionSlug, searchInstitutions, filterSchools, filterPrograms, paginate, tuitionAmount, singleQuery, schoolQuery, sortSchools, paginateSchools, schoolListHref, schoolRegions, type ChineseInstitution, type OverseasInstitution, type MasterProgram } from './prototype-library.ts';
 const fixture = (name: string) => JSON.parse(readFileSync(new URL(`../prototype-fixtures/${name}.json`, import.meta.url), 'utf8'));
 const cn: ChineseInstitution[] = fixture('cn-institutions').institutions;
 const schools: OverseasInstitution[] = fixture('overseas-institutions').institutions;
@@ -21,7 +21,7 @@ test('non-bachelor institutions keep eligibility unknown', () => {
 test('slugs are stable, support Chinese fallback and unique across the complete library', () => {
   assert.equal(institutionSlug({name_en: 'The University of Melbourne'}), 'the-university-of-melbourne');
   assert.equal(institutionSlug({name_zh: '澳门大学'}), '澳门大学');
-  assert.equal(new Set(schools.map(institutionSlug)).size, 346);
+  assert.equal(new Set(schools.map(institutionSlug)).size, 287);
 });
 test('name search trims whitespace and finds every Chinese institution', () => {
   assert.equal(searchInstitutions(cn, '').length, 3167);
@@ -29,21 +29,33 @@ test('name search trims whitespace and finds every Chinese institution', () => {
   assert.equal(searchInstitutions(cn, 'no such school').length, 0);
 });
 test('school filters preserve region counts and search both names', () => {
-  assert.equal(filterSchools(schools, {}).length, 346);
+  assert.equal(filterSchools(schools, {}).length, 287);
   for (const [country, count] of [['Australia',40], ['Hong Kong SAR',22], ['Macau SAR',10]]) assert.equal(filterSchools(schools, {country: String(country)}).length, count);
   assert.equal(filterSchools(schools, {q: 'MELBOURNE', country: 'Australia'}).length, 1);
   assert.equal(filterSchools([{name_zh:'澳门大学', country:'Macau SAR'}], {q:'澳门'}).length, 1);
+});
+// The scope set on 2026-10-29 (TASKS.md): 29 countries and regions, 287 schools.
+const outOfScope = ['China (Mainland)', 'Japan', 'India', 'Taiwan', 'Indonesia', 'Thailand', 'Kazakhstan', 'South Africa',
+  'Chile', 'Brazil', 'Mexico', 'Colombia', 'Argentina', 'Israel', 'Lebanon', 'Türkiye', 'Russia'];
+test('the library holds only schools in scope, and every region chip has schools behind it', () => {
+  assert.equal(schools.length, 287);
+  assert.deepEqual(schools.filter(s => outOfScope.includes(s.country)).map(s => s.name_en), []);
+  assert.equal(new Set(schools.map(s => s.country)).size, 29);
+  assert.ok(!schoolRegions.includes('中国大陆') && !schoolRegions.includes('日本'));
+  for (const s of schools) assert.ok(schoolRegions.includes(s.region_zh!), `${s.name_en}: ${s.region_zh}`);
+  for (const region of schoolRegions) assert.ok(filterSchools(schools, {region}).length > 0, region);
+  assert.equal(filterSchools(schools, {region: '中东'}).length, 9);
 });
 test('school region and QS filters match the issue acceptance counts', () => {
   for (const [region, count] of [['英国', 33], ['澳大利亚', 40], ['中国香港', 22]] as const) {
     assert.equal(filterSchools(schools, {region}).length, count);
   }
-  assert.equal(filterSchools(schools, {qs: '1-50'}).length, 50);
+  assert.equal(filterSchools(schools, {qs: '1-50'}).length, 44);
   assert.equal(filterSchools(schools, {qs: 'unranked'}).length, 46);
   const ukTop = filterSchools(schools, {region: '英国', qs: '1-50'});
   assert.ok(ukTop.length > 0 && ukTop.length < 33);
   assert.ok(ukTop.every(s => s.country === 'United Kingdom' && s.qs_order! <= 50));
-  assert.equal(filterSchools(schools, {qs: '1-50,51-100'}).length, 102);
+  assert.equal(filterSchools(schools, {qs: '1-50,51-100'}).length, 90);
   assert.deepEqual(filterSchools(schools, {qs: '251-300,unranked'}), schools.filter(s => !s.qs_rank || Number(s.qs_rank.replace('=', '')) >= 251));
   assert.equal(filterSchools(schools, {q: '  ＩＭＰＥＲＩＡＬ  ', region: '英国'}).length, 1);
   assert.equal(filterSchools(schools, {q: '帝国理工'}).length, 1);
@@ -86,9 +98,9 @@ test('school query preserves multiple QS chips, normalizes invalid values and sh
 test('school pagination has 30 rows, clamps pages and reaches all schools exactly once', () => {
   const rows = sortSchools(schools);
   assert.equal(paginateSchools(rows).items.length, 30);
-  assert.equal(paginateSchools(rows).pages, 12);
-  assert.equal(paginateSchools(rows, '999').items.length, 16);
-  const collected = Array.from({length: 12}, (_, i) => paginateSchools(rows, String(i + 1)).items).flat();
+  assert.equal(paginateSchools(rows).pages, 10);
+  assert.equal(paginateSchools(rows, '999').items.length, 17);
+  const collected = Array.from({length: 10}, (_, i) => paginateSchools(rows, String(i + 1)).items).flat();
   assert.deepEqual(collected, rows);
   for (const page of ['0', '-3', 'NaN', 'Infinity']) assert.equal(paginateSchools(rows, page).page, 1);
   assert.deepEqual(paginateSchools([], '99'), {items: [], total: 0, pages: 1, page: 1});

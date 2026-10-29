@@ -1,4 +1,4 @@
-"""The school list the library joins its 346 schools against, and reading one school's programs."""
+"""The school list the library joins its 287 schools against, and reading one school's programs."""
 
 from fastapi.testclient import TestClient
 

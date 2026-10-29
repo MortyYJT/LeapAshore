@@ -3,7 +3,7 @@
 // Two joins, both by values both sides already hold rather than by an id one side invented:
 // - an Australian program (`cricos-<code>`) to its CRICOS facts (tuition, weeks, narrow field), which the
 //   `programs` table has no columns for;
-// - a school in the library's 346 to the catalogue rows that carry its name. One school can have several
+// - a school in the library's 287 to the catalogue rows that carry its name. One school can have several
 //   rows (two CRICOS provider codes, or an empty row the importer left for a school whose site refused
 //   collection), so a school maps to a list of ids.
 
