@@ -1,0 +1,1276 @@
+{
+ "school_key": "carnegie-mellon-university",
+ "school_name_en": "Carnegie Mellon University",
+ "country": "United States",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://www.cs.cmu.edu/education/masters/",
+  "https://www.cs.cmu.edu/education/graduate-admissions",
+  "https://www.ece.cmu.edu/admissions/",
+  "https://www.cmu.edu/ini/admissions/howtoapply.html",
+  "https://www.heinz.cmu.edu/programs",
+  "https://www.cmu.edu/tepper/programs"
+ ],
+ "blocked": [
+  {
+   "url": "https://mcds.cs.cmu.edu/apply-mcds-program",
+   "reason": "robots.txt disallows"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.meche.engineering.cmu.edu/education/graduate-programs/masters/index.html",
+  "https://cee.engineering.cmu.edu/education/graduate/ms-programs/index.html",
+  "https://epp.engineering.cmu.edu/education/graduate/masters-programs/index.html",
+  "https://www.cmu.edu/tepper/programs/mba/admissions/apply-online-hybrid-mba",
+  "https://cfa.cmu.edu/",
+  "https://www.cmu.edu/mcs/",
+  "https://metals.hcii.cmu.edu/admissions/",
+  "https://privacy.cs.cmu.edu/masters/index.html"
+ ],
+ "notes": "Collected SCS, ECE, INI, Heinz, Tepper, statistics (MADS), chemical engineering and selected MCS programmes from department pages. Not reached: mechanical, civil/environmental, EPP and biomedical engineering; College of Fine Arts; mathematical sciences; METALS, MPTAIG, MSAS. Several departments publish deadlines without a year or give only admitted-student ranges, so those fields are omitted. MHCI page states an IELTS minimum of 8.5 overall (copied verbatim, looks unusual). Shared English minimums come from the ECE admissions page, the Heinz English-exam page and (for MSCB) the programme page.",
+ "programs": [
+  {
+   "name": "Master of Science in Computer Science (MSCS)",
+   "url": "https://www.csd.cmu.edu/academics/masters/admissions",
+   "snapshot_sha256": "9c54acccc18da63fb6a1d10f74d6c477f00284a364df978db42d093e7196f8d5",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree; a computer science degree is not required but a technical background helps",
+     "quote": "You don’t need a bachelor’s degree in computer science specifically for the program, but a technical undergraduate background will set you up for success.",
+     "source_sha256": "65df71da0bd9e25711e94e9a528d20019d2fe7b302cbc340b40e888a1848c990",
+     "source_url": "https://www.csd.cmu.edu/academics/masters/ms-in-computer-science",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Final deadline, Fall 2027",
+      "date": "2026-12-09",
+      "quote": "Final Application Deadline: December 9, 2026 (3 p.m. EST)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Machine Learning (MSML)",
+   "url": "https://ml.cmu.edu/academics/primary-ms-machine-learning-masters",
+   "snapshot_sha256": "49e0e5b88bc795f0467bbdbb0f928efd891009f2f40121436993714727927715",
+   "fields": {
+    "academic": {
+     "text": "Undergraduate degree in computer science is not required",
+     "quote": "We welcome applicants from a variety of backgrounds and an undergraduate degree in computer science is not required.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Reasonable programming skills and a solid math background (probability/statistics, linear algebra, matrix and tensor calculus)",
+      "quote": "Generally, you need to have some reasonable programming skills, with experience in Matlab/R/scipy-numpy being especially helpful and Java and Python being more useful than C; and a solid math background, especially in probability/statistics, linear algebra, and matrix and tensor calculus.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Final deadline, Fall 2027",
+      "date": "2026-12-09",
+      "quote": "Final deadline: December 9, 2026 (3 p.m. EST)",
+      "source_sha256": "4cf15fc56220a55f12022625b19573483ba01bf43bf329c0e83be760cad58321",
+      "source_url": "https://www.cs.cmu.edu/education/graduate-admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Computational Data Science (MCDS)",
+   "url": "https://lti.cmu.edu/academics/masters-programs/mcds.html",
+   "snapshot_sha256": "5eda8f834ed89a03ccf010f3cb7868d0caaa17b3a816e5041fb45ded724286f8",
+   "fields": {
+    "academic": {
+     "text": "GPA of 3.0 or higher",
+     "quote": "A GPA of 3.0 or higher.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Final deadline, Fall 2027",
+      "date": "2026-12-09",
+      "quote": "Final Deadline: December 9, 2026 (3:00 PM EST)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Intelligent Information Systems (MIIS)",
+   "url": "https://lti.cmu.edu/academics/masters-programs/miis.html",
+   "snapshot_sha256": "5e90deb098896cf333a0674a0588146922b06b1328324d0928c9cb989cfdc7f3",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "Final deadline, Fall 2027",
+      "date": "2026-12-09",
+      "quote": "Final Deadline: Dec. 9, 2026 (3 p.m. EST)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Language Technologies (MLT)",
+   "url": "https://lti.cmu.edu/academics/masters-programs/mlt.html",
+   "snapshot_sha256": "af3a97dfecbbce92229d3eed9111d3826d8c1d27842fef41db98a085ffa6441f",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "Final deadline, Fall 2027",
+      "date": "2026-12-09",
+      "quote": "Final Deadline: December 9, 2026 (3:00 PM EST)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Artificial Intelligence and Innovation (MSAII)",
+   "url": "https://lti.cmu.edu/academics/masters-programs/msaii.html",
+   "snapshot_sha256": "3a3347a5a9f268d139d80e33fce7f1d40e287d94f3de3ab7447bedee98d079b1",
+   "fields": {
+    "academic": {
+     "text": "GPA of 3.0 or higher, raw university GPA reported without conversion",
+     "quote": "A GPA of 3.0 or higher. (Students should report raw university GPA scores and NOT converted scores. Please DO NOT convert your international score to a US GPA or weighted GPA or other system).",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Final deadline, Fall 2027",
+      "date": "2026-12-09",
+      "quote": "Final Deadline: Dec. 9, 2026 (3 p.m. EST)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Human-Computer Interaction (MHCI)",
+   "url": "https://www.hcii.cmu.edu/academics/mhci/admissions",
+   "snapshot_sha256": "fe8a61deced6ceca590813763975782e4573244dde61d8aacc51cb4ad3956f51",
+   "fields": {
+    "academic": {
+     "text": "4-year bachelor's degree from a regionally accredited US institution or its foreign equivalent; no specific degree required",
+     "quote": "Prospective students applying to the Master's in HCI program are expected to have a 4-year bachelor's degree from a regionally accredited college or university in the United States, or its equivalent from a foreign institution, by matriculation for fall term.",
+     "check": "ok"
+    },
+    "toefl": {
+     "min_band": 25,
+     "quote": "For the Internet Based scores (preferred), applicants must score a minimum of 25 on each subsection.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 8.5,
+     "min_band": 8.0,
+     "quote": "Note: we will also accept the IELTS scores in lieu of the TOEFL. The minimum band score is 8.5 overall with no sub scores less than 8.0.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Final and only deadline, 2027-28 cohort",
+      "date": "2027-01-15",
+      "quote": "by January 15, 2027 at 3p.m. EST. Visit MHCI Admissions for details.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's in Robotic Systems Development (MRSD)",
+   "url": "https://mrsd.ri.cmu.edu/apply/",
+   "snapshot_sha256": "1c09dc0661b02641b205792aadf691271f20e1cdd2ab5a908cd4f51d3facd25d",
+   "fields": {
+    "academic": {
+     "text": "Undergraduate degree (B.Sc. or equivalent) in engineering, computer science, physical science or applied mathematics",
+     "quote": "Undergraduate (B.Sc. or equivalent) in engineering, computer science, physical science or applied mathematics – REQUIRED",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Application portal closes, Fall 2027",
+      "date": "2026-12-09",
+      "quote": "The application portal will remain open through December 9, 2026 (3pm EST); however, those who submit by November 18 (3pm EST) receive a discounted application fee. All admitted students will begin the program in Fall 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Computer Vision (MSCV)",
+   "url": "https://www.ri.cmu.edu/education/academic-programs/master-of-science-computer-vision/how-to-apply/",
+   "snapshot_sha256": "541292b3876164049df1379d3c60e1dc62aa5ccea087fa2f7130a567ad585e21",
+   "fields": {
+    "academic": {
+     "text": "Undergraduate degree (B.S. or equivalent) in engineering, computer science or applied mathematics",
+     "quote": "Undergraduate (B.S. or equivalent) in engineering, computer science or applied mathematics REQUIRED",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Application portal closes, Fall 2027",
+      "date": "2026-12-09",
+      "quote": "The application portal will remain open through December 9, 2026 (3pm EST); however, those who submit by November 18 (3pm EST) receive a discounted application fee. All admitted students will begin the program in Fall 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Robotics (MSR)",
+   "url": "https://www.ri.cmu.edu/education/academic-programs/master-of-science-robotics/how-to-apply/",
+   "snapshot_sha256": "27b0e1c25c474358da00de062965727427acc79833893f1bba5ffdca00a253bb",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "Introductory-level mathematics: calculus, linear algebra, numerical analysis, probability and statistics",
+      "quote": "Mathematics: calculus, linear algebra, numerical analysis, probability and statistics",
+      "check": "ok"
+     },
+     {
+      "text": "Introductory-level computer science: programming, data structures, algorithms",
+      "quote": "Computer Science: programming, data structures, algorithms",
+      "check": "ok"
+     },
+     {
+      "text": "Introductory-level physics and engineering: mechanics, dynamics, electricity and magnetism, optics",
+      "quote": "Physics and Engineering: mechanics, dynamics, electricity and magnetism, optics",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application portal closes, Fall 2027",
+      "date": "2026-12-09",
+      "quote": "The application portal will be open from September 9 until December 9, 2026 at 3pm EST. Successful candidates will begin the program in Fall 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's in Privacy Engineering and AI Governance (MPEAIG)",
+   "url": "https://privacy.cs.cmu.edu/masters/admissions/index.html",
+   "snapshot_sha256": "e6aa3df425818b0bf250d0b8fd7bbe0ed8d847a3564b22e7a41432b798311edc",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "min_band": 25,
+     "quote": "TOEFL iBT: 100+ (minimum 25 per section)",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "IELTS: 6.0+",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Application deadline, 2027-28",
+      "date": "2026-12-09",
+      "quote": "Application deadline: December 9, 2026 (3pm EST)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Software Engineering (MSE), on campus",
+   "url": "https://mse.s3d.cmu.edu/applicants/mse-as/apply.html",
+   "snapshot_sha256": "ec7f46f567f39a2103de2786cacad0e0dee08359fe0e979c308f196aa82e8f3c",
+   "fields": {
+    "academic": {
+     "text": "Undergraduate degree, preferably in computer science or a related field; cumulative QPA higher than 2.5",
+     "quote": "An undergraduate degree, preferably in Computer Science or other scientific or other engineering-related discipline. Cumulative QPA higher than 2.5.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Application deadline, Fall 2027",
+      "date": "2026-12-09",
+      "quote": "Application Deadline\nDecember 9, 2026 (3pm EST)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Software Engineering (MSE Online)",
+   "url": "https://mse.s3d.cmu.edu/applicants/mse-as-online/apply.html",
+   "snapshot_sha256": "844bda39d448ced92a142f5aaf4aec3ae1d5085b2162572fa4b863f37d167dd6",
+   "fields": {
+    "academic": {
+     "text": "Undergraduate degree, preferably in computer science or a technical discipline; cumulative QPA higher than 2.5",
+     "quote": "An undergraduate degree, preferably in Computer Science or other engineering-related or technical discipline. Cumulative QPA higher than 2.5.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Industry experience in at least one software development role",
+      "quote": "Industry experience in at least one software development role, including the ability to describe specific tasks performed in those roles.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application deadline, Fall 2027 start",
+      "date": "2027-05-05",
+      "quote": "Application Deadline\nMay 5, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Computational Biology (MSCB)",
+   "url": "https://www.cmu.edu/bio/graduate/ms-cb/index.html",
+   "snapshot_sha256": "ee3cac6608f571747440b8f0f39fdbf60c7a8a9f49ac80d714334ad2768a97bc",
+   "fields": {
+    "toefl": {
+     "overall": 86,
+     "min_band": 20,
+     "quote": "TOEFL: Overall 4.5, Reading 4.5, Listening 5.0, Speaking 4.0, Writing 4.5\n(Scores before 2026: Overall 86, Reading 22, Listening 22, Speaking 20, Writing 22)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS: Overall 6.5, Reading 6.5, Listening 6.5, Speaking 6.0, Writing 6.0",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Data Analytics for Science (MSDAS)",
+   "url": "https://www.cmu.edu/mcs/academics/grad/ms-data-analytics/faq",
+   "snapshot_sha256": "df27aed27ed69d532bd2d8f2e704505bf8d4d9ed3d230a92b8d4a0b7786578c8",
+   "fields": {
+    "academic": {
+     "text": "Degree in the foundational sciences (biology, chemistry, math or physics) or a related degree",
+     "quote": "We are seeking students with a degree in the foundational sciences (biology, chemistry, math or physics) or a related degree interest, who want to strengthen their knowledge of data analytics  and apply those skills to science research or development.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Applied Data Science (MADS), Statistics & Data Science",
+   "url": "https://www.cmu.edu/dietrich/statistics-datascience/academics/mads/index.html",
+   "snapshot_sha256": "79eb35085aea8e09b4917937a0bceb83de9e30346c269643d57e8a92c7f0142c",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "Two semesters of calculus-based probability and mathematical statistics",
+      "quote": "Two semesters of calculus-based probability and mathematical statistics (CMU prerequisite classes are 36-225 and 36-226).",
+      "check": "ok"
+     },
+     {
+      "text": "One course in linear regression analysis",
+      "quote": "One course in linear regression analysis (a CMU prerequisite course is 36-401)",
+      "check": "ok"
+     },
+     {
+      "text": "Familiarity with matrix and linear algebra",
+      "quote": "Familiarity with/exposure to matrix algebra and/or linear algebra. Applicants should be familiar with vectors and matrices, matrix multiplication, and inverses.",
+      "check": "ok"
+     }
+    ],
+    "toefl": {
+     "text": "Minimum TOEFL on the new 1-6 scale: total 5, speaking 5.5",
+     "quote": "TOEFL total score - 5\nTOEFL Speaking Score - 5.5",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Application cycle closes, Fall 2027",
+      "date": "2027-01-15",
+      "quote": "Friday, January 15, 2027 at 11:59 pm EST. We will accept applications thereafter on a rolling basis after the regular deadline as long as space remains in the incoming class but recommend applications are submitted prior to the cycle deadline to ensure an application review. The online application will be open on October 5.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Electrical and Computer Engineering (MS ECE)",
+   "url": "https://www.ece.cmu.edu/academics/ms-ece/index.html",
+   "snapshot_sha256": "c857c61a4d152e432f4c4fd92481116250146fa4ac495245acdf9ef799ebbee2",
+   "fields": {
+    "toefl": {
+     "overall": 86,
+     "min_band": 20,
+     "quote": "TOEFL Exam: On the 0-120 scale, a minimum overall score of 86 is required, with minimum subscores of IBT-R 22, IBT-L 22, IBT-S 20, and IBT-W 22. On the 1-6 scale, a minimum overall score of 4.5 is required, with minimum subscores of IBT-R 4.5, IBT-L 5, IBT-S 4, and IBT-W 4.5. These requirements must be met from a single test date—we currently do not accept TOEFL MyBest scores.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "a6de87a047a299f6c7a3ba36f6b14b12eb177ac44ecf1d25b2c86e7513bd86f4",
+     "source_url": "https://www.ece.cmu.edu/admissions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "min_band": 6,
+     "quote": "IELTS Exam: A minimum overall score of 7 on the IELTS is required, with minimum subscores of Reading 6.5, Listening 6.5, Speaking 6, and Writing 6.",
+     "source_sha256": "a6de87a047a299f6c7a3ba36f6b14b12eb177ac44ecf1d25b2c86e7513bd86f4",
+     "source_url": "https://www.ece.cmu.edu/admissions/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Artificial Intelligence Engineering - ECE (MSAIE-ECE)",
+   "url": "https://www.ece.cmu.edu/academics/ms-ai/index.html",
+   "snapshot_sha256": "9ab7832fbacf06dcd76819fd1466a8b8e475ba3edf82603817c6869bd9610a79",
+   "fields": {
+    "toefl": {
+     "overall": 86,
+     "min_band": 20,
+     "quote": "TOEFL Exam: On the 0-120 scale, a minimum overall score of 86 is required, with minimum subscores of IBT-R 22, IBT-L 22, IBT-S 20, and IBT-W 22. On the 1-6 scale, a minimum overall score of 4.5 is required, with minimum subscores of IBT-R 4.5, IBT-L 5, IBT-S 4, and IBT-W 4.5. These requirements must be met from a single test date—we currently do not accept TOEFL MyBest scores.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "a6de87a047a299f6c7a3ba36f6b14b12eb177ac44ecf1d25b2c86e7513bd86f4",
+     "source_url": "https://www.ece.cmu.edu/admissions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "min_band": 6,
+     "quote": "IELTS Exam: A minimum overall score of 7 on the IELTS is required, with minimum subscores of Reading 6.5, Listening 6.5, Speaking 6, and Writing 6.",
+     "source_sha256": "a6de87a047a299f6c7a3ba36f6b14b12eb177ac44ecf1d25b2c86e7513bd86f4",
+     "source_url": "https://www.ece.cmu.edu/admissions/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Civil and Computer Engineering",
+   "url": "https://www.ece.cmu.edu/academics/ms-cce/index.html",
+   "snapshot_sha256": "8500c485a897ae755c0acf0d5f8dec6874af9c607281337b4cde8a1e93d852b0",
+   "fields": {
+    "toefl": {
+     "overall": 86,
+     "min_band": 20,
+     "quote": "TOEFL Exam: On the 0-120 scale, a minimum overall score of 86 is required, with minimum subscores of IBT-R 22, IBT-L 22, IBT-S 20, and IBT-W 22. On the 1-6 scale, a minimum overall score of 4.5 is required, with minimum subscores of IBT-R 4.5, IBT-L 5, IBT-S 4, and IBT-W 4.5. These requirements must be met from a single test date—we currently do not accept TOEFL MyBest scores.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "a6de87a047a299f6c7a3ba36f6b14b12eb177ac44ecf1d25b2c86e7513bd86f4",
+     "source_url": "https://www.ece.cmu.edu/admissions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "min_band": 6,
+     "quote": "IELTS Exam: A minimum overall score of 7 on the IELTS is required, with minimum subscores of Reading 6.5, Listening 6.5, Speaking 6, and Writing 6.",
+     "source_sha256": "a6de87a047a299f6c7a3ba36f6b14b12eb177ac44ecf1d25b2c86e7513bd86f4",
+     "source_url": "https://www.ece.cmu.edu/admissions/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Computational Systems Engineering",
+   "url": "https://www.ece.cmu.edu/academics/ms-cse/index.html",
+   "snapshot_sha256": "a9bbaf80b24dc185912acdc9e4e664088e50c401de4c49d3ac95a4241178a3a4",
+   "fields": {
+    "toefl": {
+     "overall": 86,
+     "min_band": 20,
+     "quote": "TOEFL Exam: On the 0-120 scale, a minimum overall score of 86 is required, with minimum subscores of IBT-R 22, IBT-L 22, IBT-S 20, and IBT-W 22. On the 1-6 scale, a minimum overall score of 4.5 is required, with minimum subscores of IBT-R 4.5, IBT-L 5, IBT-S 4, and IBT-W 4.5. These requirements must be met from a single test date—we currently do not accept TOEFL MyBest scores.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "a6de87a047a299f6c7a3ba36f6b14b12eb177ac44ecf1d25b2c86e7513bd86f4",
+     "source_url": "https://www.ece.cmu.edu/admissions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "min_band": 6,
+     "quote": "IELTS Exam: A minimum overall score of 7 on the IELTS is required, with minimum subscores of Reading 6.5, Listening 6.5, Speaking 6, and Writing 6.",
+     "source_sha256": "a6de87a047a299f6c7a3ba36f6b14b12eb177ac44ecf1d25b2c86e7513bd86f4",
+     "source_url": "https://www.ece.cmu.edu/admissions/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Software Engineering (MS SE), ECE",
+   "url": "https://www.ece.cmu.edu/academics/ms-se/index.html",
+   "snapshot_sha256": "a2e9ffd34434b3ec713df79a40278b3382f026559059ce404b019dd2d6645832",
+   "fields": {
+    "academic": {
+     "text": "Most applicants hold an undergraduate degree in computer science, computer engineering or a related computing field with foundational computer science courses",
+     "quote": "We expect most applicants to have an undergraduate degree in computer science, computer engineering, or a related computing field with a sufficient number of foundational courses in computer science and focusing on software.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 86,
+     "min_band": 20,
+     "quote": "TOEFL Exam: On the 0-120 scale, a minimum overall score of 86 is required, with minimum subscores of IBT-R 22, IBT-L 22, IBT-S 20, and IBT-W 22. On the 1-6 scale, a minimum overall score of 4.5 is required, with minimum subscores of IBT-R 4.5, IBT-L 5, IBT-S 4, and IBT-W 4.5. These requirements must be met from a single test date—we currently do not accept TOEFL MyBest scores.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "a6de87a047a299f6c7a3ba36f6b14b12eb177ac44ecf1d25b2c86e7513bd86f4",
+     "source_url": "https://www.ece.cmu.edu/admissions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "min_band": 6,
+     "quote": "IELTS Exam: A minimum overall score of 7 on the IELTS is required, with minimum subscores of Reading 6.5, Listening 6.5, Speaking 6, and Writing 6.",
+     "source_sha256": "a6de87a047a299f6c7a3ba36f6b14b12eb177ac44ecf1d25b2c86e7513bd86f4",
+     "source_url": "https://www.ece.cmu.edu/admissions/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Information Networking (MSIN)",
+   "url": "https://www.cmu.edu/ini/admissions/howtoapply.html",
+   "snapshot_sha256": "2078a844fe0d4118ce55e74107193b34867152dba29b4494bb00d14d5a5478ee",
+   "fields": {
+    "academic": {
+     "text": "Undergraduate degree; GPA of 3.0 or higher on a 4-point scale (minimum recommended qualifications)",
+     "quote": "An undergraduate degree. GPA of 3.0 or higher (on a 4-point scale).",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Priority deadline, Fall 2027",
+      "date": "2026-12-01",
+      "quote": "Priority Deadline - December 1, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Final deadline, Fall 2027",
+      "date": "2027-01-29",
+      "quote": "Final Deadline - January 29, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Information Security (MSIS)",
+   "url": "https://www.cmu.edu/ini/admissions/howtoapply.html",
+   "snapshot_sha256": "2078a844fe0d4118ce55e74107193b34867152dba29b4494bb00d14d5a5478ee",
+   "fields": {
+    "academic": {
+     "text": "Undergraduate degree; GPA of 3.0 or higher on a 4-point scale (minimum recommended qualifications)",
+     "quote": "An undergraduate degree. GPA of 3.0 or higher (on a 4-point scale).",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Priority deadline, Fall 2027",
+      "date": "2026-12-01",
+      "quote": "Priority Deadline - December 1, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Final deadline, Fall 2027",
+      "date": "2027-01-29",
+      "quote": "Final Deadline - January 29, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Artificial Intelligence Engineering - Information Security (MSAIE-IS)",
+   "url": "https://www.cmu.edu/ini/admissions/howtoapply.html",
+   "snapshot_sha256": "2078a844fe0d4118ce55e74107193b34867152dba29b4494bb00d14d5a5478ee",
+   "fields": {
+    "academic": {
+     "text": "Undergraduate degree; GPA of 3.0 or higher on a 4-point scale (minimum recommended qualifications)",
+     "quote": "An undergraduate degree. GPA of 3.0 or higher (on a 4-point scale).",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Priority deadline, Fall 2027",
+      "date": "2026-12-01",
+      "quote": "Priority Deadline - December 1, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Final deadline, Fall 2027",
+      "date": "2027-01-29",
+      "quote": "Final Deadline - January 29, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Artificial Intelligence Systems Management (AIM)",
+   "url": "https://www.heinz.cmu.edu/programs/artificial-intelligence-masters/admissions-how-to-apply",
+   "snapshot_sha256": "f9579218dd9a7fce7d0cf4c13b06869e69d04c95d91f85e22e1a8912c0d43f53",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from a regionally accredited institution or its equivalent, earned before the start of study",
+     "quote": "All applicants must earn a Bachelor's degree from a regionally-accredited institution (or its equivalent) prior to the date they would begin their studies at Heinz College.",
+     "check": "ok"
+    },
+    "toefl": {
+     "min_band": 20,
+     "quote": "The minimum TOEFL scores required to apply for admission to any of Heinz College's graduate degree programs are:\nReading: 22 (Essentials minimum is 9 and new iBT is 4.5)\nListening: 22 (Essentials minimum is 10 and new iBT is 5)\nSpeaking: 20 (Essentials minimum is 8 and new iBT is 4)\nWriting: 22 (Essentials minimum is 9 and new iBT is 4.5)",
+     "source_sha256": "c252c3717e9c3014ad56c5b41957ca15fb219bae4934bd1648d9dd994dbb7d1b",
+     "source_url": "https://www.heinz.cmu.edu/admissions/checklist/exam-results",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "The minimum IELTS scores required to apply for admission to any of Heinz College's graduate degree programs are:\nListening: 6.5\nReading: 6.5\nWriting: 6.5\nSpeaking: 6.0\nOverall Band: 6.5",
+     "source_sha256": "c252c3717e9c3014ad56c5b41957ca15fb219bae4934bd1648d9dd994dbb7d1b",
+     "source_url": "https://www.heinz.cmu.edu/admissions/checklist/exam-results",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Round 1, Fall 2027",
+      "date": "2026-12-01",
+      "quote": "Deadline for Admission Round 1: December 1, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Round 2, Fall 2027",
+      "date": "2027-01-10",
+      "quote": "Deadline for Admission Round 2: January 10, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3, Fall 2027",
+      "date": "2027-02-01",
+      "quote": "Deadline for Admission Round 3: February 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Health Care Analytics (MSHCA)",
+   "url": "https://www.heinz.cmu.edu/programs/health-care-analytics-master/admissions-how-to-apply",
+   "snapshot_sha256": "fe88278c9c9980a0c01e9c075e45b119ca8d34d6948e59ce2ec2702c7cebe4b8",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from a regionally accredited institution or its equivalent, earned before the start of study",
+     "quote": "All applicants must earn a Bachelor's degree from a regionally-accredited institution (or its equivalent) prior to the date they would begin their studies at Heinz College.",
+     "check": "ok"
+    },
+    "toefl": {
+     "min_band": 20,
+     "quote": "The minimum TOEFL scores required to apply for admission to any of Heinz College's graduate degree programs are:\nReading: 22 (Essentials minimum is 9 and new iBT is 4.5)\nListening: 22 (Essentials minimum is 10 and new iBT is 5)\nSpeaking: 20 (Essentials minimum is 8 and new iBT is 4)\nWriting: 22 (Essentials minimum is 9 and new iBT is 4.5)",
+     "source_sha256": "c252c3717e9c3014ad56c5b41957ca15fb219bae4934bd1648d9dd994dbb7d1b",
+     "source_url": "https://www.heinz.cmu.edu/admissions/checklist/exam-results",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "The minimum IELTS scores required to apply for admission to any of Heinz College's graduate degree programs are:\nListening: 6.5\nReading: 6.5\nWriting: 6.5\nSpeaking: 6.0\nOverall Band: 6.5",
+     "source_sha256": "c252c3717e9c3014ad56c5b41957ca15fb219bae4934bd1648d9dd994dbb7d1b",
+     "source_url": "https://www.heinz.cmu.edu/admissions/checklist/exam-results",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Round 1, Fall 2027",
+      "date": "2026-12-01",
+      "quote": "Application Deadline Round 1: December 1, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Round 2, Fall 2027",
+      "date": "2027-01-10",
+      "quote": "Application Deadline Round 2: January 10, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3, Fall 2027",
+      "date": "2027-02-01",
+      "quote": "Application Deadline Round 3: February 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Information Security Policy and Management (MSISPM)",
+   "url": "https://www.heinz.cmu.edu/programs/information-security-policy-management-master/admissions-how-to-apply",
+   "snapshot_sha256": "1c78f294e69f66240a7614db712e2a243a30dfa6a1316a3213c591929a7d0c29",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from a regionally accredited institution or its equivalent, earned before the start of study",
+     "quote": "All applicants must earn a Bachelor's degree from a regionally-accredited institution (or its equivalent) prior to the date they would begin their studies at Heinz College.",
+     "check": "ok"
+    },
+    "toefl": {
+     "min_band": 20,
+     "quote": "The minimum TOEFL scores required to apply for admission to any of Heinz College's graduate degree programs are:\nReading: 22 (Essentials minimum is 9 and new iBT is 4.5)\nListening: 22 (Essentials minimum is 10 and new iBT is 5)\nSpeaking: 20 (Essentials minimum is 8 and new iBT is 4)\nWriting: 22 (Essentials minimum is 9 and new iBT is 4.5)",
+     "source_sha256": "c252c3717e9c3014ad56c5b41957ca15fb219bae4934bd1648d9dd994dbb7d1b",
+     "source_url": "https://www.heinz.cmu.edu/admissions/checklist/exam-results",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "The minimum IELTS scores required to apply for admission to any of Heinz College's graduate degree programs are:\nListening: 6.5\nReading: 6.5\nWriting: 6.5\nSpeaking: 6.0\nOverall Band: 6.5",
+     "source_sha256": "c252c3717e9c3014ad56c5b41957ca15fb219bae4934bd1648d9dd994dbb7d1b",
+     "source_url": "https://www.heinz.cmu.edu/admissions/checklist/exam-results",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Round 1, Fall 2027",
+      "date": "2026-12-01",
+      "quote": "Application Deadline Round 1: December 1, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Round 2, Fall 2027",
+      "date": "2027-01-10",
+      "quote": "Application Deadline Round 2: January 10, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3, Fall 2027",
+      "date": "2027-02-01",
+      "quote": "Application Deadline Round 3: February 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Information Systems Management (MISM)",
+   "url": "https://www.heinz.cmu.edu/programs/information-systems-management-master/admissions-how-to-apply",
+   "snapshot_sha256": "82e73b1f1e62ec98e56bfec90762c24f1fcd78efa978b77816641f025a6bcad2",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from a regionally accredited institution or its equivalent, earned before the start of study",
+     "quote": "All applicants must earn a Bachelor's degree from a regionally-accredited institution (or its equivalent) prior to the date they would begin their studies at Heinz College.",
+     "check": "ok"
+    },
+    "toefl": {
+     "min_band": 20,
+     "quote": "The minimum TOEFL scores required to apply for admission to any of Heinz College's graduate degree programs are:\nReading: 22 (Essentials minimum is 9 and new iBT is 4.5)\nListening: 22 (Essentials minimum is 10 and new iBT is 5)\nSpeaking: 20 (Essentials minimum is 8 and new iBT is 4)\nWriting: 22 (Essentials minimum is 9 and new iBT is 4.5)",
+     "source_sha256": "c252c3717e9c3014ad56c5b41957ca15fb219bae4934bd1648d9dd994dbb7d1b",
+     "source_url": "https://www.heinz.cmu.edu/admissions/checklist/exam-results",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "The minimum IELTS scores required to apply for admission to any of Heinz College's graduate degree programs are:\nListening: 6.5\nReading: 6.5\nWriting: 6.5\nSpeaking: 6.0\nOverall Band: 6.5",
+     "source_sha256": "c252c3717e9c3014ad56c5b41957ca15fb219bae4934bd1648d9dd994dbb7d1b",
+     "source_url": "https://www.heinz.cmu.edu/admissions/checklist/exam-results",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Round 1, Fall 2027",
+      "date": "2026-12-01",
+      "quote": "Application Deadline Round 1: December 1, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Round 2, Fall 2027",
+      "date": "2027-01-10",
+      "quote": "Application Deadline Round 2: January 10, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3, Fall 2027",
+      "date": "2027-02-01",
+      "quote": "Application Deadline Round 3: February 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Public Policy and Management (MSPPM)",
+   "url": "https://www.heinz.cmu.edu/programs/public-policy-management-master/admissions-how-to-apply",
+   "snapshot_sha256": "8687bb9d83b93e5f9a21f62f3a2c37e33f1a4ac0087c610f74010b914ef3df66",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from a regionally accredited institution or its equivalent, earned before the start of study",
+     "quote": "All applicants must earn a Bachelor's degree from a regionally-accredited institution (or its equivalent) prior to the date they would begin their studies at Heinz College.",
+     "check": "ok"
+    },
+    "toefl": {
+     "min_band": 20,
+     "quote": "The minimum TOEFL scores required to apply for admission to any of Heinz College's graduate degree programs are:\nReading: 22 (Essentials minimum is 9 and new iBT is 4.5)\nListening: 22 (Essentials minimum is 10 and new iBT is 5)\nSpeaking: 20 (Essentials minimum is 8 and new iBT is 4)\nWriting: 22 (Essentials minimum is 9 and new iBT is 4.5)",
+     "source_sha256": "c252c3717e9c3014ad56c5b41957ca15fb219bae4934bd1648d9dd994dbb7d1b",
+     "source_url": "https://www.heinz.cmu.edu/admissions/checklist/exam-results",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "The minimum IELTS scores required to apply for admission to any of Heinz College's graduate degree programs are:\nListening: 6.5\nReading: 6.5\nWriting: 6.5\nSpeaking: 6.0\nOverall Band: 6.5",
+     "source_sha256": "c252c3717e9c3014ad56c5b41957ca15fb219bae4934bd1648d9dd994dbb7d1b",
+     "source_url": "https://www.heinz.cmu.edu/admissions/checklist/exam-results",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Round 1, Fall 2027",
+      "date": "2026-12-01",
+      "quote": "Deadline for Admission Round 1: December 1, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Round 2, Fall 2027",
+      "date": "2027-01-10",
+      "quote": "Deadline for Admission Round 2: January 10, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3, Fall 2027",
+      "date": "2027-02-01",
+      "quote": "Deadline for Admission Round 3: February 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts Management (MAM)",
+   "url": "https://www.heinz.cmu.edu/programs/arts-management-master/admissions-how-to-apply",
+   "snapshot_sha256": "8df6c6f2f348ec397ee33a30616a9ab7e04f1ea276b74bb01ff4d4cea39c677f",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from a regionally accredited institution or its equivalent, earned before the start of study",
+     "quote": "All applicants must earn a Bachelor's degree from a regionally-accredited institution (or its equivalent) prior to the date they would begin their studies at Heinz College.",
+     "check": "ok"
+    },
+    "toefl": {
+     "min_band": 20,
+     "quote": "The minimum TOEFL scores required to apply for admission to any of Heinz College's graduate degree programs are:\nReading: 22 (Essentials minimum is 9 and new iBT is 4.5)\nListening: 22 (Essentials minimum is 10 and new iBT is 5)\nSpeaking: 20 (Essentials minimum is 8 and new iBT is 4)\nWriting: 22 (Essentials minimum is 9 and new iBT is 4.5)",
+     "source_sha256": "c252c3717e9c3014ad56c5b41957ca15fb219bae4934bd1648d9dd994dbb7d1b",
+     "source_url": "https://www.heinz.cmu.edu/admissions/checklist/exam-results",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "The minimum IELTS scores required to apply for admission to any of Heinz College's graduate degree programs are:\nListening: 6.5\nReading: 6.5\nWriting: 6.5\nSpeaking: 6.0\nOverall Band: 6.5",
+     "source_sha256": "c252c3717e9c3014ad56c5b41957ca15fb219bae4934bd1648d9dd994dbb7d1b",
+     "source_url": "https://www.heinz.cmu.edu/admissions/checklist/exam-results",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Round 1, Fall 2027",
+      "date": "2026-12-01",
+      "quote": "Application Deadline Round 1: December 1, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Round 2, Fall 2027",
+      "date": "2027-01-10",
+      "quote": "Application Deadline Round 2: January 10, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3, Fall 2027",
+      "date": "2027-02-01",
+      "quote": "Application Deadline Round 3: February 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Entertainment Industry Management (MEIM)",
+   "url": "https://www.heinz.cmu.edu/programs/entertainment-industry-management-master/admissions-how-to-apply",
+   "snapshot_sha256": "cfc26f9ff2af11144386fda4f1721b9ed76b98aa5bee9c19e6749cba7e71e77b",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from a regionally accredited institution or its equivalent, earned before the start of study",
+     "quote": "All applicants must earn a Bachelor's degree from a regionally-accredited institution (or its equivalent) prior to the date they would begin their studies at Heinz College.",
+     "check": "ok"
+    },
+    "toefl": {
+     "min_band": 20,
+     "quote": "The minimum TOEFL scores required to apply for admission to any of Heinz College's graduate degree programs are:\nReading: 22 (Essentials minimum is 9 and new iBT is 4.5)\nListening: 22 (Essentials minimum is 10 and new iBT is 5)\nSpeaking: 20 (Essentials minimum is 8 and new iBT is 4)\nWriting: 22 (Essentials minimum is 9 and new iBT is 4.5)",
+     "source_sha256": "c252c3717e9c3014ad56c5b41957ca15fb219bae4934bd1648d9dd994dbb7d1b",
+     "source_url": "https://www.heinz.cmu.edu/admissions/checklist/exam-results",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "The minimum IELTS scores required to apply for admission to any of Heinz College's graduate degree programs are:\nListening: 6.5\nReading: 6.5\nWriting: 6.5\nSpeaking: 6.0\nOverall Band: 6.5",
+     "source_sha256": "c252c3717e9c3014ad56c5b41957ca15fb219bae4934bd1648d9dd994dbb7d1b",
+     "source_url": "https://www.heinz.cmu.edu/admissions/checklist/exam-results",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Round 1, Fall 2027",
+      "date": "2026-12-01",
+      "quote": "Application Deadline Round 1: December 1, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Round 2, Fall 2027",
+      "date": "2027-01-10",
+      "quote": "Application Deadline Round 2: January 10, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3, Fall 2027",
+      "date": "2027-02-01",
+      "quote": "Application Deadline Round 3: February 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Technology & AI Leadership (MSAIL), part-time online",
+   "url": "https://www.heinz.cmu.edu/programs/technology-and-ai-leadership-master/admissions-how-to-apply",
+   "snapshot_sha256": "54af2c3afb01d0b5ab6e371523bbe328c093e15fa8246fad34e486745354a824",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from a regionally accredited institution or its equivalent, earned before the start of study",
+     "quote": "All applicants must earn a Bachelor's degree from a regionally-accredited institution (or its equivalent) prior to the date they would begin their studies at Heinz College.",
+     "check": "ok"
+    },
+    "toefl": {
+     "min_band": 20,
+     "quote": "The minimum TOEFL scores required to apply for admission to any of Heinz College's graduate degree programs are:\nReading: 22 (Essentials minimum is 9 and new iBT is 4.5)\nListening: 22 (Essentials minimum is 10 and new iBT is 5)\nSpeaking: 20 (Essentials minimum is 8 and new iBT is 4)\nWriting: 22 (Essentials minimum is 9 and new iBT is 4.5)",
+     "source_sha256": "c252c3717e9c3014ad56c5b41957ca15fb219bae4934bd1648d9dd994dbb7d1b",
+     "source_url": "https://www.heinz.cmu.edu/admissions/checklist/exam-results",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "The minimum IELTS scores required to apply for admission to any of Heinz College's graduate degree programs are:\nListening: 6.5\nReading: 6.5\nWriting: 6.5\nSpeaking: 6.0\nOverall Band: 6.5",
+     "source_sha256": "c252c3717e9c3014ad56c5b41957ca15fb219bae4934bd1648d9dd994dbb7d1b",
+     "source_url": "https://www.heinz.cmu.edu/admissions/checklist/exam-results",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Management (MPM), part-time",
+   "url": "https://www.heinz.cmu.edu/programs/public-management-master/admissions-how-to-apply",
+   "snapshot_sha256": "c969d8054fbfe481727d6dd0cae78a39188f51f04aee02cec9e53ecc06cf1a98",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from a regionally accredited institution or its equivalent, earned before the start of study",
+     "quote": "All applicants must earn a Bachelor's degree from a regionally-accredited institution (or its equivalent) prior to the date they would begin their studies at Heinz College.",
+     "check": "ok"
+    },
+    "toefl": {
+     "min_band": 20,
+     "quote": "The minimum TOEFL scores required to apply for admission to any of Heinz College's graduate degree programs are:\nReading: 22 (Essentials minimum is 9 and new iBT is 4.5)\nListening: 22 (Essentials minimum is 10 and new iBT is 5)\nSpeaking: 20 (Essentials minimum is 8 and new iBT is 4)\nWriting: 22 (Essentials minimum is 9 and new iBT is 4.5)",
+     "source_sha256": "c252c3717e9c3014ad56c5b41957ca15fb219bae4934bd1648d9dd994dbb7d1b",
+     "source_url": "https://www.heinz.cmu.edu/admissions/checklist/exam-results",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "The minimum IELTS scores required to apply for admission to any of Heinz College's graduate degree programs are:\nListening: 6.5\nReading: 6.5\nWriting: 6.5\nSpeaking: 6.0\nOverall Band: 6.5",
+     "source_sha256": "c252c3717e9c3014ad56c5b41957ca15fb219bae4934bd1648d9dd994dbb7d1b",
+     "source_url": "https://www.heinz.cmu.edu/admissions/checklist/exam-results",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Computational Finance (MSCF)",
+   "url": "https://www.cmu.edu/mscf/admissions",
+   "snapshot_sha256": "36bd7624931198f43c5b754bcb1f096c98001afeac520ba1adba9fc8171519e8",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree from an accredited US institution or equivalent foreign degree before the program starts",
+     "quote": "To be considered for admission, you must hold a four-year bachelor’s degree from an accredited college or university in the U.S. or an equivalent degree from a foreign country prior to the start of the program.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Calculus I and II",
+      "quote": "Calculus I and II",
+      "check": "ok"
+     },
+     {
+      "text": "Linear algebra",
+      "quote": "Linear algebra",
+      "check": "ok"
+     },
+     {
+      "text": "Calculus-based probability",
+      "quote": "Calculus-based probability",
+      "check": "ok"
+     },
+     {
+      "text": "At least one semester of an object-oriented programming language course",
+      "quote": "A minimum of one semester of an object-oriented programming language course (C++, Java, Python, C#). More than one semester is preferred.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Round 1, Fall 2027",
+      "date": "2026-12-01",
+      "quote": "App Deadline: December 1, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Round 2, Fall 2027",
+      "date": "2027-03-01",
+      "quote": "App Deadline: March 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Business Analytics (MSBA)",
+   "url": "https://www.cmu.edu/tepper/programs/master-business-analytics/admissions/apply",
+   "snapshot_sha256": "6762aa8e621fba483e699c0d65f41c756e9ad3aa441ba66a2e95d77983402cfd",
+   "fields": {
+    "academic": {
+     "text": "Four-year undergraduate degree or equivalent from an accredited institution",
+     "quote": "Students are required to hold a four-year undergraduate degree or equivalent from an accredited institution and be competent in these areas:",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "General mathematics including calculus and linear algebra",
+      "quote": "General mathematics including calculus and linear algebra",
+      "check": "ok"
+     },
+     {
+      "text": "Basic statistical concepts and methods",
+      "quote": "Basic statistical concepts and methods",
+      "check": "ok"
+     },
+     {
+      "text": "Basic programming in any modern language",
+      "quote": "Basic programming in any modern language",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Round 2 (dates listed under Full-Time MSBA deadlines)",
+      "date": "2027-01-13",
+      "quote": "January 13, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3 (final round for international applicants)",
+      "date": "2027-03-03",
+      "quote": "March 3, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Management (MSM)",
+   "url": "https://www.cmu.edu/tepper/programs/master-science-management/apply-msm",
+   "snapshot_sha256": "9d24d78773e60f0fe21768cecf6d43992cae20bd34728313294c314bb98c8444",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree or equivalent; one semester of college-level math",
+     "quote": "Successful applicants will hold a four-year, bachelor’s degree from an accredited college or university in the U.S. or an equivalent degree from a foreign country. You will provide details of your education for each institution that you attended. Additionally, admission to the MSM program requires candidates to have taken one semester of college-level math. Those who do not meet this requirement will be required to successfully complete Tepper’s Calculus Fundamentals course prior to matriculation.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Round 2 (dates listed under MSM deadlines)",
+      "date": "2027-01-13",
+      "quote": "January 13, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3 (final round for international applicants)",
+      "date": "2027-03-03",
+      "quote": "March 3, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Administration (MBA), full-time",
+   "url": "https://www.cmu.edu/tepper/programs/mba/admissions/apply-full-time-mba",
+   "snapshot_sha256": "cf764d6eacf05983ba8780c6f66ed2cbed6c377a79871d2941ee3673df522332",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree or equivalent; one semester of college-level calculus with a grade of B or better",
+     "quote": "Successful applicants will hold a four-year, bachelor’s degree from an accredited college or university in the U.S. or an equivalent degree from a foreign country. You will provide details of your education for each institution that you attended. Additionally, admission to the MBA program requires candidates to have taken one semester of college-level calculus with the letter grade of B or better. Those who do not meet this requirement will be required to successfully complete the Tepper’ Schools Calculus Fundamentals course prior to matriculation.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Round 2 (Full-Time MBA deadlines)",
+      "date": "2027-01-08",
+      "quote": "January 8, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3 (final round for international applicants)",
+      "date": "2027-03-03",
+      "quote": "March 3, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science - Applied Study in Chemical Engineering (MS-ChE-A)",
+   "url": "https://www.cheme.engineering.cmu.edu/education/graduate-programs/graduate-application.html",
+   "snapshot_sha256": "d459d78321deafaedbd4e970830e7275efc7f6d291cc21b0429cfed2f45354d7",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in chemical engineering or a related science or engineering discipline",
+     "quote": "In order to apply to our graduate programs, you must have completed a bachelor's degree in chemical engineering or a related science or engineering discipline.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 84,
+     "min_band": 18,
+     "quote": "For exams taken before Jan. 21, 2026: A minimum overall score of 84 is required, with minimum subscores of IBT-R 22, IBT-L 22, IBT-S 18, and IBT-W 22. These requirements must be met from a single test date—we currently do not accept TOEFL MyBest scores. For exams taken on or after Jan. 21, 2026: A minimum overall score of 4.5 is required, with minimum subscores of IBT-R 4.5, IBT-L 4.5, IBT-S 3.5, and IBT-W 4.5. These requirements must be met from a single test date—we currently do not accept TOEFL MyBest scores.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS exam: A minimum overall score of 6.5 on the IELTS is required, with minimum subscores of Reading 6.5, Listening 6.5, Speaking 6, and Writing 6.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Chemical Engineering (MChE)",
+   "url": "https://www.cheme.engineering.cmu.edu/education/graduate-programs/graduate-application.html",
+   "snapshot_sha256": "d459d78321deafaedbd4e970830e7275efc7f6d291cc21b0429cfed2f45354d7",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in chemical engineering or a related science or engineering discipline",
+     "quote": "In order to apply to our graduate programs, you must have completed a bachelor's degree in chemical engineering or a related science or engineering discipline.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 84,
+     "min_band": 18,
+     "quote": "For exams taken before Jan. 21, 2026: A minimum overall score of 84 is required, with minimum subscores of IBT-R 22, IBT-L 22, IBT-S 18, and IBT-W 22. These requirements must be met from a single test date—we currently do not accept TOEFL MyBest scores. For exams taken on or after Jan. 21, 2026: A minimum overall score of 4.5 is required, with minimum subscores of IBT-R 4.5, IBT-L 4.5, IBT-S 3.5, and IBT-W 4.5. These requirements must be met from a single test date—we currently do not accept TOEFL MyBest scores.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS exam: A minimum overall score of 6.5 on the IELTS is required, with minimum subscores of Reading 6.5, Listening 6.5, Speaking 6, and Writing 6.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's in Artificial Intelligence Engineering - Chemical Engineering (MS AIE-ChE)",
+   "url": "https://www.cheme.engineering.cmu.edu/education/graduate-programs/graduate-application.html",
+   "snapshot_sha256": "d459d78321deafaedbd4e970830e7275efc7f6d291cc21b0429cfed2f45354d7",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in chemical engineering or a related science or engineering discipline",
+     "quote": "In order to apply to our graduate programs, you must have completed a bachelor's degree in chemical engineering or a related science or engineering discipline.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 84,
+     "min_band": 18,
+     "quote": "For exams taken before Jan. 21, 2026: A minimum overall score of 84 is required, with minimum subscores of IBT-R 22, IBT-L 22, IBT-S 18, and IBT-W 22. These requirements must be met from a single test date—we currently do not accept TOEFL MyBest scores. For exams taken on or after Jan. 21, 2026: A minimum overall score of 4.5 is required, with minimum subscores of IBT-R 4.5, IBT-L 4.5, IBT-S 3.5, and IBT-W 4.5. These requirements must be met from a single test date—we currently do not accept TOEFL MyBest scores.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS exam: A minimum overall score of 6.5 on the IELTS is required, with minimum subscores of Reading 6.5, Listening 6.5, Speaking 6, and Writing 6.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Biotechnology and Pharmaceutical Engineering (MS-BTPE)",
+   "url": "https://www.cheme.engineering.cmu.edu/education/graduate-programs/graduate-application.html",
+   "snapshot_sha256": "d459d78321deafaedbd4e970830e7275efc7f6d291cc21b0429cfed2f45354d7",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in chemical engineering or a related science or engineering discipline",
+     "quote": "In order to apply to our graduate programs, you must have completed a bachelor's degree in chemical engineering or a related science or engineering discipline.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 84,
+     "min_band": 18,
+     "quote": "For exams taken before Jan. 21, 2026: A minimum overall score of 84 is required, with minimum subscores of IBT-R 22, IBT-L 22, IBT-S 18, and IBT-W 22. These requirements must be met from a single test date—we currently do not accept TOEFL MyBest scores. For exams taken on or after Jan. 21, 2026: A minimum overall score of 4.5 is required, with minimum subscores of IBT-R 4.5, IBT-L 4.5, IBT-S 3.5, and IBT-W 4.5. These requirements must be met from a single test date—we currently do not accept TOEFL MyBest scores.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS exam: A minimum overall score of 6.5 on the IELTS is required, with minimum subscores of Reading 6.5, Listening 6.5, Speaking 6, and Writing 6.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 41,
+  "机器核对": 41,
+  "待人工": 0
+ }
+}
