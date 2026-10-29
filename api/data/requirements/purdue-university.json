@@ -1,0 +1,736 @@
+{
+ "school_key": "purdue-university",
+ "school_name_en": "Purdue University",
+ "country": "United States",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://www.purdue.edu/academics/ogsps/admissions/gradrequirements/westlafayette/"
+ ],
+ "blocked": [],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.purdue.edu/academics/ogsps/admissions/gradrequirements/westlafayette/mathematics/",
+  "https://www.purdue.edu/academics/ogsps/admissions/gradrequirements/westlafayette/microelectronics-and-semiconductors/",
+  "https://www.purdue.edu/academics/ogsps/admissions/gradrequirements/westlafayette/software-engineering/",
+  "https://www.purdue.edu/academics/ogsps/admissions/gradrequirements/westlafayette/chemistry/",
+  "https://www.purdue.edu/academics/ogsps/admissions/gradrequirements/westlafayette/earth-atmospheric-and-planetary-sciences/",
+  "https://www.purdue.edu/academics/ogsps/admissions/gradrequirements/westlafayette/computer-graphics-technology/",
+  "https://www.purdue.edu/academics/ogsps/admissions/gradrequirements/westlafayette/curriculum-and-instruction/",
+  "https://www.purdue.edu/academics/ogsps/admissions/gradrequirements/westlafayette/educational-studies/",
+  "https://www.purdue.edu/academics/ogsps/admissions/gradrequirements/westlafayette/agricultural-economics/",
+  "https://www.purdue.edu/academics/ogsps/admissions/gradrequirements/westlafayette/agronomy/",
+  "https://www.purdue.edu/academics/ogsps/admissions/gradrequirements/westlafayette/marketing/",
+  "https://www.purdue.edu/academics/ogsps/admissions/gradrequirements/westlafayette/aviation-technology/",
+  "https://www.purdue.edu/academics/ogsps/admissions/gradrequirements/westlafayette/communication/",
+  "https://www.purdue.edu/academics/ogsps/admissions/gradrequirements/westlafayette/public-health/"
+ ],
+ "notes": "Program rows come from the Graduate School (OGSPS) West Lafayette requirements pages. Application deadlines on those pages give no year, so no deadlines were recorded. Online-only programmes (Data Science, AI, Business Analytics MS, Systems Engineering, Interdisciplinary Engineering) were skipped. Programmes whose page defers to the OGSPS English page cite that page's university-wide minimums.",
+ "programs": [
+  {
+   "name": "MS in Computer Science",
+   "url": "https://www.purdue.edu/academics/ogsps/admissions/gradrequirements/westlafayette/computer-science/",
+   "snapshot_sha256": "f0453e7774b236ddbaaf3f19a83182d2ba0b92c965a6457ce31e1bf72eb63c89",
+   "fields": {
+    "academic": {
+     "text": "Cumulative GPA of 3.5 or equivalent (A=4.0) for master's applicants",
+     "quote": "Cumulative Grade Point Average from most recently conferred undergraduate, graduate, or professional degree: 3.5 or equivalent (A=4.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL: iBT: Minimum Overall Required Score: 100 (For exams taken before January 21, 2026) Minimum section requirements: Reading: 22 Listening: 22 Speaking: 22 Writing: 22 TOEFL: iBT: Minimum Overall Required Score: 4.5 (For exams taken on or after January 21, 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "recommended": true,
+     "quote": "Computer Science prefers a TOEFL score of at least 100 with sub scores no less than 22 and IELTS score of 7",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Electrical and Computer Engineering (MSECE)",
+   "url": "https://www.purdue.edu/academics/ogsps/admissions/gradrequirements/westlafayette/electrical-and-computer-engineering/",
+   "snapshot_sha256": "1425a45131e16514520d9b8d964241a4c73868a82edd901624a03e13627427a2",
+   "fields": {
+    "academic": {
+     "text": "Cumulative GPA of 3.25 or equivalent (A=4.0)",
+     "quote": "Cumulative Grade Point Average from most recently conferred undergraduate, graduate, or professional degree: 3.25 or equivalent (A=4.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "Minimum TOEFL Scores Required by OGSPS for Admission (For exams taken before January 21, 2026) TOEFL iBT (Internet-based, Home Edition, Paper Edition, Paper-Delivered*) TOEFL Essentials† Writing 18 8 Speaking 18 8 Listening 14 8 Reading 19 8 Minimum Overall Required for Admission 80‡ 8 Minimum TOEFL Scores Required by OGSPS for Admission (For exams taken on or after January 21, 2026) TOEFL iBT (Internet-based, Home Edition, Paper Edition, Paper-Delivered*) TOEFL Essentials† Writing 4.0 8 Speaking 3.5 8 Listening 3.5 8 Reading 4.0 8 Minimum Overall Required for Admission 4.0‡",
+     "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Minimum IELTS Scores Required by OGSPS for Admission IELTS Reading 6.5 Listening 6.0 Speaking 6.0 Writing 5.5 Minimum Overall Required for Admission 6.5",
+     "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
+     "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Mechanical Engineering (MSME)",
+   "url": "https://www.purdue.edu/academics/ogsps/admissions/gradrequirements/westlafayette/mechanical-engineering/",
+   "snapshot_sha256": "6e8694d34547c18ee1c5c0137c6cb749f479f95804e154d5dd0ace42964f1e16",
+   "fields": {
+    "academic": {
+     "text": "Recently admitted students have had an average GPA of 3.7; the minimum recommended GPA to apply is 3.2",
+     "quote": "The minimum recommended GPA to apply is 3.2",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "Minimum TOEFL Scores Required by OGSPS for Admission (For exams taken before January 21, 2026) TOEFL iBT (Internet-based, Home Edition, Paper Edition, Paper-Delivered*) TOEFL Essentials† Writing 18 8 Speaking 18 8 Listening 14 8 Reading 19 8 Minimum Overall Required for Admission 80‡ 8 Minimum TOEFL Scores Required by OGSPS for Admission (For exams taken on or after January 21, 2026) TOEFL iBT (Internet-based, Home Edition, Paper Edition, Paper-Delivered*) TOEFL Essentials† Writing 4.0 8 Speaking 3.5 8 Listening 3.5 8 Reading 4.0 8 Minimum Overall Required for Admission 4.0‡",
+     "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Minimum IELTS Scores Required by OGSPS for Admission IELTS Reading 6.5 Listening 6.0 Speaking 6.0 Writing 5.5 Minimum Overall Required for Admission 6.5",
+     "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
+     "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Industrial Engineering (MSIE)",
+   "url": "https://www.purdue.edu/academics/ogsps/admissions/gradrequirements/westlafayette/industrial-engineering/",
+   "snapshot_sha256": "eda27fb3aa73042863ae59c7376dc54ea9c42014b93b099ea67beaa83a12b2c4",
+   "fields": {
+    "academic": {
+     "text": "Undergraduate cumulative GPA of 3.2/4.0 or equivalent (recommended) for the residential master's",
+     "quote": "Undergraduate Cumulative Grade Point Average (recommended): 3.2/4.0 or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "TOEFL: Internet-Based Test (IBT): Minimum Overall Required Score: 90 (For exams taken before January 21, 2026)",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic Module): Minimum Overall Required Score: 6.5",
+     "source_sha256": "fb7dec09fe9a585fe2c6b68a9e0a522cb4142a6550c285c6fbabd0338d5dd754",
+     "source_url": "https://engineering.purdue.edu/IE/academics/graduate/future/english-reqs",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Aeronautics and Astronautics (MSAA)",
+   "url": "https://www.purdue.edu/academics/ogsps/admissions/gradrequirements/westlafayette/aeronautics-and-astronautics/",
+   "snapshot_sha256": "749b9de1052323d77eacc383a7f7c5f28f98227bcb2524831aa3506285d92d2c",
+   "fields": {
+    "academic": {
+     "text": "Cumulative GPA of 3.25 or equivalent (A=4.0) for master's applicants",
+     "quote": "Cumulative Grade Point Average from most recently conferred undergraduate, graduate, or professional degree: 3.25 or equivalent (A=4.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "Minimum TOEFL Scores Required by OGSPS for Admission (For exams taken before January 21, 2026) TOEFL iBT (Internet-based, Home Edition, Paper Edition, Paper-Delivered*) TOEFL Essentials† Writing 18 8 Speaking 18 8 Listening 14 8 Reading 19 8 Minimum Overall Required for Admission 80‡ 8 Minimum TOEFL Scores Required by OGSPS for Admission (For exams taken on or after January 21, 2026) TOEFL iBT (Internet-based, Home Edition, Paper Edition, Paper-Delivered*) TOEFL Essentials† Writing 4.0 8 Speaking 3.5 8 Listening 3.5 8 Reading 4.0 8 Minimum Overall Required for Admission 4.0‡",
+     "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Minimum IELTS Scores Required by OGSPS for Admission IELTS Reading 6.5 Listening 6.0 Speaking 6.0 Writing 5.5 Minimum Overall Required for Admission 6.5",
+     "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
+     "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Civil Engineering (MSCE)",
+   "url": "https://www.purdue.edu/academics/ogsps/admissions/gradrequirements/westlafayette/civil-engineering/",
+   "snapshot_sha256": "fc2d2dd28055a1cdd3ffbb8bfac497cc1f3e9e89fc539fa91258d90aaf387a6a",
+   "fields": {
+    "academic": {
+     "text": "Cumulative GPA of 3.0 or equivalent (A=4.0), doctoral and master's",
+     "quote": "Cumulative Grade Point Average from most recently conferred undergraduate, graduate, or professional degree: 3.0 or equivalent (A=4.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "TOEFL: Internet-Based Test (IBT): Minimum Overall Required Score: 90 (For exams taken before January 21, 2026) Minimum section requirements: Reading: 19 Listening: 14 Speaking: 18 Writing: 18 TOEFL: Internet-Based Test (IBT): Minimum Overall Required Score: 4.5 (For exams taken on or after January 21, 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "IELTS (Academic Module): Minimum Overall Required Score: 7",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Chemical Engineering (MSCHE), non-thesis professional master's",
+   "url": "https://www.purdue.edu/academics/ogsps/admissions/gradrequirements/westlafayette/chemical-engineering/",
+   "snapshot_sha256": "41dc093b7da8323804ef876e4f1ad25242d15c467fab83a1c15351837658f867",
+   "fields": {
+    "academic": {
+     "text": "Cumulative GPA of 3.0 or equivalent (A=4.0), doctoral and master's",
+     "quote": "Cumulative Grade Point Average from most recently conferred undergraduate, graduate, or professional degree: 3.0 or equivalent (A=4.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "Minimum TOEFL Scores Required by OGSPS for Admission (For exams taken before January 21, 2026) TOEFL iBT (Internet-based, Home Edition, Paper Edition, Paper-Delivered*) TOEFL Essentials† Writing 18 8 Speaking 18 8 Listening 14 8 Reading 19 8 Minimum Overall Required for Admission 80‡ 8 Minimum TOEFL Scores Required by OGSPS for Admission (For exams taken on or after January 21, 2026) TOEFL iBT (Internet-based, Home Edition, Paper Edition, Paper-Delivered*) TOEFL Essentials† Writing 4.0 8 Speaking 3.5 8 Listening 3.5 8 Reading 4.0 8 Minimum Overall Required for Admission 4.0‡",
+     "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Minimum IELTS Scores Required by OGSPS for Admission IELTS Reading 6.5 Listening 6.0 Speaking 6.0 Writing 5.5 Minimum Overall Required for Admission 6.5",
+     "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
+     "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Statistics (residential)",
+   "url": "https://www.purdue.edu/academics/ogsps/admissions/gradrequirements/westlafayette/statistics/",
+   "snapshot_sha256": "16dcbe9553f74cb88303c17756fb4f948584c758ae8d0a71fcbe2ddfe76fb5d5",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from an accredited institution; cumulative GPA of 3.0 or equivalent",
+     "quote": "Doctoral and Master’s Degree Program Requirements A bachelor’s degree from an accredited institution Cumulative GPA of 3.0 or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "TOEFL: Internet-Based Test (IBT): Minimum Overall Required Score: 80 (For exams taken before January 21, 2026) Minimum section requirements: Reading: 20 Listening: 20 Speaking: 20 Writing: 20 TOEFL: Internet-Based Test (IBT): Minimum Overall Required Score: 4 (For exams taken on or after January 21, 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic Module): Minimum Overall Required Score: 6.5",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "One semester of calculus",
+      "quote": "Doctoral and Master’s Degree Program Requirements A bachelor’s degree from an accredited institution Cumulative GPA of 3.0 or equivalent An applicant’s prior education must include the following prerequisites: One (1) semester of Calculus",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Business Analytics and Information Management (Daniels School of Business)",
+   "url": "https://www.purdue.edu/academics/ogsps/admissions/gradrequirements/westlafayette/business-analytics-and-information-management/",
+   "snapshot_sha256": "ac15209ce670360d738b28b10f39063cae53ab5bef7982226a32667d909eb616",
+   "fields": {
+    "academic": {
+     "text": "Cumulative GPA of 3.0 or equivalent (A=4.0)",
+     "quote": "Cumulative Grade Point Average from most recently conferred undergraduate, graduate, or professional degree: 3.0 or equivalent (A=4.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 91,
+     "quote": "TOEFL: Internet-Based Test (IBT): Minimum Overall Required Score: 4.5 (For exams taken on or after January 21, 2026) Minimum section requirements: Reading: 4.5 Listening: 4.5 Speaking: 4.5 Writing: 4.5 TOEFL: Internet-Based Test (IBT): Minimum Overall Required Score: 91 (For exams taken before January 21, 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "IELTS: Minimum Overall Required Score: 7.5",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GMAT or GRE score required",
+      "quote": "GMAT or Graduate Record Examination (GRE) Essays",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Management (Daniels School of Business)",
+   "url": "https://www.purdue.edu/academics/ogsps/admissions/gradrequirements/westlafayette/management-ms/",
+   "snapshot_sha256": "c1b06efa8902e404e135366bfa073c6503be3452dd5ad231d3773a2e949bbac8",
+   "fields": {
+    "academic": {
+     "text": "Cumulative GPA of 3.0 or equivalent (A=4.0)",
+     "quote": "Cumulative Grade Point Average from most recently conferred undergraduate, graduate, or professional degree: 3.0 or equivalent (A=4.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 93,
+     "quote": "TOEFL: Internet-Based Test (IBT): Minimum Overall Required Score: 93 (For exams taken before January 21, 2026) Minimum section requirements: Reading: 22 Listening: 18 Speaking: 22 Writing: 20 TOEFL: Internet-Based Test (IBT): Minimum Overall Required Score: 4.5 (For exams taken on or after January 21, 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "IELTS (Academic Module): Minimum Overall Required Score: 7.5",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MBA (residential, Daniels School of Business)",
+   "url": "https://www.purdue.edu/academics/ogsps/admissions/gradrequirements/westlafayette/management-mba/",
+   "snapshot_sha256": "bf7f37f766c385bdeabc22f1f6b8160cbfac7a230a1a9353082320c8069ede01",
+   "fields": {
+    "academic": {
+     "text": "Cumulative GPA of 3.0 or equivalent (A=4.0)",
+     "quote": "Cumulative Grade Point Average from most recently conferred undergraduate, graduate, or professional degree: 3.0 or equivalent (A=4.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 93,
+     "quote": "TOEFL: Internet-Based Test (IBT): Minimum Overall Required Score: 93 (For exams taken before January 21, 2026) Minimum section requirements: Reading: 22 Listening: 18 Speaking: 22 Writing: 20 TOEFL: Internet-Based Test (IBT): Minimum Overall Required Score: 4.5 (For exams taken on or after January 21, 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "IELTS (Academic Module): Minimum Overall Required Score: 7.5",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Finance (Daniels School of Business)",
+   "url": "https://www.purdue.edu/academics/ogsps/admissions/gradrequirements/westlafayette/finance/",
+   "snapshot_sha256": "df6e875f86d26954fc2d2d6d3f29df5d634bfd091167a5f71a401bed5c3307ba",
+   "fields": {
+    "academic": {
+     "text": "Cumulative GPA of 3.0 or equivalent (A=4.0)",
+     "quote": "Cumulative Grade Point Average from most recently conferred undergraduate, graduate, or professional degree: 3.0 or equivalent (A=4.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 91,
+     "quote": "TOEFL: Internet-Based Test (IBT): Minimum Overall Required Score: 91 (For exams taken before January 21, 2026) Minimum section requirements: Reading: 23 Listening: 21 Speaking: 24 Writing: 23 TOEFL: Internet-Based Test (IBT): Minimum Overall Required Score: 4.5 (For exams taken on or after January 21, 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "IELTS: Minimum Overall Required Score: 7.5",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Global Supply Chain Management (residential, Daniels School of Business)",
+   "url": "https://www.purdue.edu/academics/ogsps/admissions/gradrequirements/westlafayette/global-supply-chain-management/",
+   "snapshot_sha256": "5778651ba36611e0775be92c7c079c86fa29ab6d78863d7c36eeaecf4e8d7266",
+   "fields": {
+    "academic": {
+     "text": "Cumulative GPA of 3.0 or equivalent (A=4.0)",
+     "quote": "Cumulative Grade Point Average from most recently conferred undergraduate, graduate, or professional degree: 3.0 or equivalent (A=4.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 91,
+     "quote": "TOEFL: Minimum Overall Required Score: 91 (For exams taken before January 21, 2026) Minimum section requirements: Reading: 23 Listening: 21 Speaking: 24 Writing: 23 TOEFL: Minimum Overall Required Score: 4.5 (For exams taken on or after January 21, 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "IELTS: Minimum Overall Required Score: 7.5",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE or GMAT score report (residential only)",
+      "quote": "GRE/GMAT Score Report – (Residential Only)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Human Resource Management (residential, Daniels School of Business)",
+   "url": "https://www.purdue.edu/academics/ogsps/admissions/gradrequirements/westlafayette/human-resource-management/",
+   "snapshot_sha256": "0b335176538e57fc64c46f9429f4f570e1484ab06e98ab8b4538051eaa228128",
+   "fields": {
+    "academic": {
+     "text": "Cumulative GPA of 3.0 or equivalent (A=4.0)",
+     "quote": "Cumulative Grade Point Average from most recently conferred undergraduate, graduate, or professional degree: 3.0 or equivalent (A=4.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 91,
+     "quote": "TOEFL: Minimum Overall Required Score: 91 (For exams taken before January 21, 2026) Minimum section requirements: Reading: 23 Listening: 21 Speaking: 24 Writing: 23 TOEFL: Minimum Overall Required Score: 4.5 (For exams taken on or after January 21, 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "IELTS: Minimum Overall Required Score: 7.5",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Economics (residential)",
+   "url": "https://www.purdue.edu/academics/ogsps/admissions/gradrequirements/westlafayette/economics/",
+   "snapshot_sha256": "6546180990eaa9c8b5138af605c4e02e6f640b47c1e44ad1275a254d1ded8f51",
+   "fields": {
+    "toefl": {
+     "overall": 93,
+     "quote": "TOEFL: Internet-Based Test (IBT): Minimum Overall Required Score: 93 (For exams taken before January 21, 2026) Minimum section requirements: Reading: 19 Listening: 14 Speaking: 22 Writing: 18 TOEFL: Internet-Based Test (IBT): Minimum Overall Required Score: 4.5 (For exams taken on or after January 21, 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "IELTS (Academic Module): Minimum Overall Required Score: 7.5",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Computer and Information Technology (residential)",
+   "url": "https://www.purdue.edu/academics/ogsps/admissions/gradrequirements/westlafayette/computer-and-information-technology/",
+   "snapshot_sha256": "fa647ed27b38cdb7551889935bd4e0ee662dda6ddb04be390ec85bfd6fc8d914",
+   "fields": {
+    "academic": {
+     "text": "Cumulative GPA of 3.0 or equivalent (A=4.0)",
+     "quote": "Cumulative Grade Point Average from most recently conferred undergraduate, graduate, or professional degree: 3.0 or equivalent (A=4.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "Minimum TOEFL Scores Required by OGSPS for Admission (For exams taken before January 21, 2026) TOEFL iBT (Internet-based, Home Edition, Paper Edition, Paper-Delivered*) TOEFL Essentials† Writing 18 8 Speaking 18 8 Listening 14 8 Reading 19 8 Minimum Overall Required for Admission 80‡ 8 Minimum TOEFL Scores Required by OGSPS for Admission (For exams taken on or after January 21, 2026) TOEFL iBT (Internet-based, Home Edition, Paper Edition, Paper-Delivered*) TOEFL Essentials† Writing 4.0 8 Speaking 3.5 8 Listening 3.5 8 Reading 4.0 8 Minimum Overall Required for Admission 4.0‡",
+     "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Minimum IELTS Scores Required by OGSPS for Admission IELTS Reading 6.5 Listening 6.0 Speaking 6.0 Writing 5.5 Minimum Overall Required for Admission 6.5",
+     "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
+     "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE or GMAT scores at or above the 50th percentile for each subsection for unconditional admission (residential only)",
+      "quote": "GRE or GMAT (Residential only) Graduate Record Examination (GRE) scores at or above the 50th percentile for each test subsection are required for unconditional admission.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Materials Science Engineering (MSMSE)",
+   "url": "https://www.purdue.edu/academics/ogsps/admissions/gradrequirements/westlafayette/materials-engineering/",
+   "snapshot_sha256": "d1cd48c34acfc1336b91a6f713c249b6a49f20cf4996a84f69a6e48e766217cc",
+   "fields": {
+    "academic": {
+     "text": "Cumulative GPA of 3.0 or equivalent (A=4.0), doctoral and master's",
+     "quote": "Cumulative Grade Point Average from most recently conferred undergraduate, graduate, or professional degree: 3.0 or equivalent (A=4.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "Minimum TOEFL Scores Required by OGSPS for Admission (For exams taken before January 21, 2026) TOEFL iBT (Internet-based, Home Edition, Paper Edition, Paper-Delivered*) TOEFL Essentials† Writing 18 8 Speaking 18 8 Listening 14 8 Reading 19 8 Minimum Overall Required for Admission 80‡ 8 Minimum TOEFL Scores Required by OGSPS for Admission (For exams taken on or after January 21, 2026) TOEFL iBT (Internet-based, Home Edition, Paper Edition, Paper-Delivered*) TOEFL Essentials† Writing 4.0 8 Speaking 3.5 8 Listening 3.5 8 Reading 4.0 8 Minimum Overall Required for Admission 4.0‡",
+     "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Minimum IELTS Scores Required by OGSPS for Admission IELTS Reading 6.5 Listening 6.0 Speaking 6.0 Writing 5.5 Minimum Overall Required for Admission 6.5",
+     "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
+     "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Biomedical Engineering (MSBME)",
+   "url": "https://www.purdue.edu/academics/ogsps/admissions/gradrequirements/westlafayette/biomedical-engineering/",
+   "snapshot_sha256": "a16f910ae77245c133cd3761d355cd33ebfd172fb4228981d4962b4a3d022aee",
+   "fields": {
+    "academic": {
+     "text": "Cumulative GPA of 3.25 or equivalent (A=4.0), doctoral and master's",
+     "quote": "Cumulative Grade Point Average from most recently conferred undergraduate, graduate, or professional degree: 3.25 or equivalent (A=4.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "Minimum TOEFL Scores Required by OGSPS for Admission (For exams taken before January 21, 2026) TOEFL iBT (Internet-based, Home Edition, Paper Edition, Paper-Delivered*) TOEFL Essentials† Writing 18 8 Speaking 18 8 Listening 14 8 Reading 19 8 Minimum Overall Required for Admission 80‡ 8 Minimum TOEFL Scores Required by OGSPS for Admission (For exams taken on or after January 21, 2026) TOEFL iBT (Internet-based, Home Edition, Paper Edition, Paper-Delivered*) TOEFL Essentials† Writing 4.0 8 Speaking 3.5 8 Listening 3.5 8 Reading 4.0 8 Minimum Overall Required for Admission 4.0‡",
+     "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Minimum IELTS Scores Required by OGSPS for Admission IELTS Reading 6.5 Listening 6.0 Speaking 6.0 Writing 5.5 Minimum Overall Required for Admission 6.5",
+     "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
+     "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Nuclear Engineering (MSNE)",
+   "url": "https://www.purdue.edu/academics/ogsps/admissions/gradrequirements/westlafayette/nuclear-engineering/",
+   "snapshot_sha256": "a7fe00abd0480081f468676475cd88f5c991633d55dc4aadc800388cf9cea548",
+   "fields": {
+    "academic": {
+     "text": "Cumulative GPA of 3.0 or equivalent (A=4.0) for master's applicants",
+     "quote": "Cumulative Grade Point Average from most recently conferred undergraduate, graduate, or professional degree: 3.0 or equivalent (A=4.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "Minimum TOEFL Scores Required by OGSPS for Admission (For exams taken before January 21, 2026) TOEFL iBT (Internet-based, Home Edition, Paper Edition, Paper-Delivered*) TOEFL Essentials† Writing 18 8 Speaking 18 8 Listening 14 8 Reading 19 8 Minimum Overall Required for Admission 80‡ 8 Minimum TOEFL Scores Required by OGSPS for Admission (For exams taken on or after January 21, 2026) TOEFL iBT (Internet-based, Home Edition, Paper Edition, Paper-Delivered*) TOEFL Essentials† Writing 4.0 8 Speaking 3.5 8 Listening 3.5 8 Reading 4.0 8 Minimum Overall Required for Admission 4.0‡",
+     "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Minimum IELTS Scores Required by OGSPS for Admission IELTS Reading 6.5 Listening 6.0 Speaking 6.0 Writing 5.5 Minimum Overall Required for Admission 6.5",
+     "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
+     "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS / MS in Engineering in Engineering Management",
+   "url": "https://www.purdue.edu/academics/ogsps/admissions/gradrequirements/westlafayette/engineering-management/",
+   "snapshot_sha256": "5b73a4ad1d1d279fbfc51bacdff9cd3d1834e8f670b06bd77ff395c2259fee82",
+   "fields": {
+    "academic": {
+     "text": "Cumulative GPA of 3.0 or equivalent (A=4.0) for master's applicants",
+     "quote": "Cumulative Grade Point Average from most recently conferred undergraduate, graduate, or professional degree: 3.0 or equivalent (A=4.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "Minimum TOEFL Scores Required by OGSPS for Admission (For exams taken before January 21, 2026) TOEFL iBT (Internet-based, Home Edition, Paper Edition, Paper-Delivered*) TOEFL Essentials† Writing 18 8 Speaking 18 8 Listening 14 8 Reading 19 8 Minimum Overall Required for Admission 80‡ 8 Minimum TOEFL Scores Required by OGSPS for Admission (For exams taken on or after January 21, 2026) TOEFL iBT (Internet-based, Home Edition, Paper Edition, Paper-Delivered*) TOEFL Essentials† Writing 4.0 8 Speaking 3.5 8 Listening 3.5 8 Reading 4.0 8 Minimum Overall Required for Admission 4.0‡",
+     "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Minimum IELTS Scores Required by OGSPS for Admission IELTS Reading 6.5 Listening 6.0 Speaking 6.0 Writing 5.5 Minimum Overall Required for Admission 6.5",
+     "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
+     "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Agricultural and Biological Engineering (MSABE)",
+   "url": "https://www.purdue.edu/academics/ogsps/admissions/gradrequirements/westlafayette/agricultural-and-biological-engineering/",
+   "snapshot_sha256": "b19145808c9bc9b8b3790bd6c937e5dbe098bb7b71c934b88e7f39cc187ef036",
+   "fields": {
+    "academic": {
+     "text": "Cumulative GPA of 3.0 or equivalent (A=4.0) for master's applicants",
+     "quote": "Cumulative Grade Point Average from most recently conferred undergraduate, graduate, or professional degree: 3.0 or equivalent (A=4.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "Minimum TOEFL Scores Required by OGSPS for Admission (For exams taken before January 21, 2026) TOEFL iBT (Internet-based, Home Edition, Paper Edition, Paper-Delivered*) TOEFL Essentials† Writing 18 8 Speaking 18 8 Listening 14 8 Reading 19 8 Minimum Overall Required for Admission 80‡ 8 Minimum TOEFL Scores Required by OGSPS for Admission (For exams taken on or after January 21, 2026) TOEFL iBT (Internet-based, Home Edition, Paper Edition, Paper-Delivered*) TOEFL Essentials† Writing 4.0 8 Speaking 3.5 8 Listening 3.5 8 Reading 4.0 8 Minimum Overall Required for Admission 4.0‡",
+     "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Minimum IELTS Scores Required by OGSPS for Admission IELTS Reading 6.5 Listening 6.0 Speaking 6.0 Writing 5.5 Minimum Overall Required for Admission 6.5",
+     "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
+     "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Physics",
+   "url": "https://www.purdue.edu/academics/ogsps/admissions/gradrequirements/westlafayette/physics/",
+   "snapshot_sha256": "d224629687db8fe4e30b17d60a12b8377b8576289912781de564c47df7264eee",
+   "fields": {
+    "academic": {
+     "text": "Cumulative GPA of 3.0 or equivalent (A=4.0), doctoral and master's",
+     "quote": "Cumulative Grade Point Average from most recently conferred undergraduate, graduate, or professional degree: 3.0 or equivalent (A=4.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "Minimum TOEFL Scores Required by OGSPS for Admission (For exams taken before January 21, 2026) TOEFL iBT (Internet-based, Home Edition, Paper Edition, Paper-Delivered*) TOEFL Essentials† Writing 18 8 Speaking 18 8 Listening 14 8 Reading 19 8 Minimum Overall Required for Admission 80‡ 8 Minimum TOEFL Scores Required by OGSPS for Admission (For exams taken on or after January 21, 2026) TOEFL iBT (Internet-based, Home Edition, Paper Edition, Paper-Delivered*) TOEFL Essentials† Writing 4.0 8 Speaking 3.5 8 Listening 3.5 8 Reading 4.0 8 Minimum Overall Required for Admission 4.0‡",
+     "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Minimum IELTS Scores Required by OGSPS for Admission IELTS Reading 6.5 Listening 6.0 Speaking 6.0 Writing 5.5 Minimum Overall Required for Admission 6.5",
+     "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
+     "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Environmental and Ecological Engineering (MSEEE)",
+   "url": "https://www.purdue.edu/academics/ogsps/admissions/gradrequirements/westlafayette/environmental-and-ecological-engineering/",
+   "snapshot_sha256": "fe24f689e0b08c6c7b5779dc1bb4b9e2e80fd5b36d33bbb696c5a07904373303",
+   "fields": {
+    "academic": {
+     "text": "Baccalaureate degree at a college or university of recognized standing; cumulative GPA of 3.0 or equivalent (A=4.0)",
+     "quote": "Master’s Degree Program Requirements Completion of a baccalaureate degree at a college or university of recognized standing Cumulative Grade Point Average from most recently conferred undergraduate, graduate, or professional degree: 3.0 or equivalent (A=4.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "TOEFL: Internet-Based Test (IBT): Minimum Overall Required Score: 80 (For exams taken before January 21, 2026) Minimum section requirements: Reading: 19 Listening: 14 Speaking: 18 Writing: 18 TOEFL: Internet-Based Test (IBT): Minimum Overall Required Score: 4.5 (For exams taken on or after January 21, 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS / MS in Engineering in Logistics Systems Engineering",
+   "url": "https://www.purdue.edu/academics/ogsps/admissions/gradrequirements/westlafayette/logistics-systems-engineering/",
+   "snapshot_sha256": "7a4456ada5a4c01a33b0e6d08d196c61b9bc957645bdad85470dc319eeb84738",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree with a minimum cumulative GPA of 3.0 or equivalent (A=4.0)",
+     "quote": "Student must hold a bachelor’s degree with a minimum cumulative GPA of 3.0 or equivalent (A=4.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "Minimum TOEFL Scores Required by OGSPS for Admission (For exams taken before January 21, 2026) TOEFL iBT (Internet-based, Home Edition, Paper Edition, Paper-Delivered*) TOEFL Essentials† Writing 18 8 Speaking 18 8 Listening 14 8 Reading 19 8 Minimum Overall Required for Admission 80‡ 8 Minimum TOEFL Scores Required by OGSPS for Admission (For exams taken on or after January 21, 2026) TOEFL iBT (Internet-based, Home Edition, Paper Edition, Paper-Delivered*) TOEFL Essentials† Writing 4.0 8 Speaking 3.5 8 Listening 3.5 8 Reading 4.0 8 Minimum Overall Required for Admission 4.0‡",
+     "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Minimum IELTS Scores Required by OGSPS for Admission IELTS Reading 6.5 Listening 6.0 Speaking 6.0 Writing 5.5 Minimum Overall Required for Admission 6.5",
+     "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
+     "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS / MS in Engineering in Robotics (residential)",
+   "url": "https://www.purdue.edu/academics/ogsps/admissions/gradrequirements/westlafayette/robotics-interdisciplinary-engineering/",
+   "snapshot_sha256": "9ea3de1de967dcf8f6d151acdbf5778647d8f45e7fe5140f259d6a39e0b05016",
+   "fields": {
+    "academic": {
+     "text": "Cumulative GPA of 3.2 or equivalent (A=4.0) for the residential master's",
+     "quote": "Cumulative Grade Point Average from most recently conferred undergraduate, graduate, or professional degree: 3.2 or equivalent (A=4.0) (Residential)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "Minimum TOEFL Scores Required by OGSPS for Admission (For exams taken before January 21, 2026) TOEFL iBT (Internet-based, Home Edition, Paper Edition, Paper-Delivered*) TOEFL Essentials† Writing 18 8 Speaking 18 8 Listening 14 8 Reading 19 8 Minimum Overall Required for Admission 80‡ 8 Minimum TOEFL Scores Required by OGSPS for Admission (For exams taken on or after January 21, 2026) TOEFL iBT (Internet-based, Home Edition, Paper Edition, Paper-Delivered*) TOEFL Essentials† Writing 4.0 8 Speaking 3.5 8 Listening 3.5 8 Reading 4.0 8 Minimum Overall Required for Admission 4.0‡",
+     "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Minimum IELTS Scores Required by OGSPS for Admission IELTS Reading 6.5 Listening 6.0 Speaking 6.0 Writing 5.5 Minimum Overall Required for Admission 6.5",
+     "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
+     "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Engineering Technology (residential)",
+   "url": "https://www.purdue.edu/academics/ogsps/admissions/gradrequirements/westlafayette/school-of-engineering-technology/",
+   "snapshot_sha256": "106a7f02641637a80b0452f501fcfac02f260c50433117d948279acef5f2e2f1",
+   "fields": {
+    "academic": {
+     "text": "Cumulative GPA of 3.0 or equivalent (A=4.0) for master's applicants",
+     "quote": "Cumulative Grade Point Average from most recently conferred undergraduate, graduate, or professional degree: 3.0 or equivalent (A=4.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "Minimum TOEFL Scores Required by OGSPS for Admission (For exams taken before January 21, 2026) TOEFL iBT (Internet-based, Home Edition, Paper Edition, Paper-Delivered*) TOEFL Essentials† Writing 18 8 Speaking 18 8 Listening 14 8 Reading 19 8 Minimum Overall Required for Admission 80‡ 8 Minimum TOEFL Scores Required by OGSPS for Admission (For exams taken on or after January 21, 2026) TOEFL iBT (Internet-based, Home Edition, Paper Edition, Paper-Delivered*) TOEFL Essentials† Writing 4.0 8 Speaking 3.5 8 Listening 3.5 8 Reading 4.0 8 Minimum Overall Required for Admission 4.0‡",
+     "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Minimum IELTS Scores Required by OGSPS for Admission IELTS Reading 6.5 Listening 6.0 Speaking 6.0 Writing 5.5 Minimum Overall Required for Admission 6.5",
+     "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
+     "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 26,
+  "机器核对": 26,
+  "待人工": 0
+ }
+}
