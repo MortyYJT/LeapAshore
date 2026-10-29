@@ -133,9 +133,10 @@ def test_a_near_turn_is_waited_for(client):
 
 def test_the_snapshot_tool_waits_on_the_installed_limiter(tmp_path):
     seen = []
-    with snap.use_limiter(seen.append):
+    with snap.use_limiter(lambda host, interval: seen.append((host, interval))):
         snap.wait_for_turn("www.example.edu", tmp_path)
-    assert seen == ["www.example.edu"]
+        snap.wait_for_turn("www.example.edu", tmp_path, interval=120)
+    assert seen == [("www.example.edu", 2.0), ("www.example.edu", 120)]
     assert not (tmp_path / "_rate").exists()
 
 
@@ -588,3 +589,28 @@ def test_a_non_ascii_address_is_sent_percent_encoded():
     assert snap.as_uri("https://www.upf.edu/web/máster/ciència?x=á b") == \
         "https://www.upf.edu/web/m%C3%A1ster/ci%C3%A8ncia?x=%C3%A1%20b"
     assert snap.as_uri("https://x.edu/a%20b/c?q=1&r=2") == "https://x.edu/a%20b/c?q=1&r=2"
+
+
+def test_a_crawl_delay_spaces_the_next_request_that_far(client):
+    bucket = HostBucket(client, settings.limits_key_prefix, interval=0.2)
+    assert bucket.try_take("slowsite.example.edu", interval=120) == 0
+    assert bucket.try_take("slowsite.example.edu") > 100
+
+
+def test_the_snapshot_tool_reads_crawl_delay_from_robots_txt(tmp_path):
+    cache = tmp_path / "_robots" / "cat.example.edu"
+    cache.parent.mkdir(parents=True)
+    cache.write_text("User-agent: *\nDisallow: /ajax/\nCrawl-delay: 120\n")
+    assert snap.crawl_delay("https://cat.example.edu/content.php", tmp_path) == 120
+    cache.write_text("User-agent: *\nDisallow: /ajax/\n")
+    assert snap.crawl_delay("https://cat.example.edu/content.php", tmp_path) is None
+
+
+def test_a_page_fetch_waits_for_the_crawl_delay(tmp_path, monkeypatch):
+    seen = []
+    monkeypatch.setattr(snap, "refusal", lambda url, root=None: None)
+    monkeypatch.setattr(snap, "crawl_delay", lambda url, root=None: 30.0)
+    monkeypatch.setattr(snap, "fetch_html", lambda url, **_: (200, url, "text/html", PAGE))
+    with snap.use_limiter(lambda host, interval: seen.append(interval)):
+        snap.snapshot("https://cat.example.edu/p", "s", root=tmp_path)
+    assert seen == [30.0]

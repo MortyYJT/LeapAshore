@@ -82,15 +82,18 @@ def _rate_file(domain: str, root: Path) -> Path:
     return root / "_rate" / domain
 
 
-def wait_for_turn(domain: str, root: Path = SNAPSHOT_ROOT, now=time.time, sleep=time.sleep) -> None:
-    """Sleep until `MIN_INTERVAL` has passed since the last request to `domain`, then claim it.
+def wait_for_turn(domain: str, root: Path = SNAPSHOT_ROOT, now=time.time, sleep=time.sleep,
+                  interval: float | None = None) -> None:
+    """Sleep until `interval` (at least `MIN_INTERVAL`) has passed since the last request to `domain`,
+    then claim it. `interval` is the site's robots.txt Crawl-delay, when it states one.
 
     The marker is locked while it is read and rewritten, so collectors running at the same time
     take turns instead of both reading an old timestamp.
     """
+    interval = max(MIN_INTERVAL, interval or 0)
     limiter = _LIMITER.get()
     if limiter is not None:
-        limiter(domain)
+        limiter(domain, interval)
         return
     marker = _rate_file(domain, root)
     marker.parent.mkdir(parents=True, exist_ok=True)
@@ -101,7 +104,7 @@ def wait_for_turn(domain: str, root: Path = SNAPSHOT_ROOT, now=time.time, sleep=
             last = float(handle.read() or 0)
         except ValueError:
             last = 0.0
-        gap = last + MIN_INTERVAL - now()
+        gap = last + interval - now()
         if gap > 0:
             sleep(gap)
         handle.seek(0)
@@ -240,6 +243,24 @@ def robots_keep_out_reason(url: str, root: Path = SNAPSHOT_ROOT) -> str | None:
     return lines[0][len(KEEP_OUT_MARK):] if lines and lines[0].startswith(KEEP_OUT_MARK) else None
 
 
+def crawl_delay(url: str, root: Path = SNAPSHOT_ROOT) -> float | None:
+    """The seconds robots.txt asks between our requests to this host (`Crawl-delay`), if it says.
+
+    Not part of RFC 9309, but a site that writes it is asking for that pace, so it is honoured: the
+    host's turn comes round no sooner (`wait_for_turn`)."""
+    # Read from the cache `refusal` has just filled; this never asks the site itself.
+    cache = root / "_robots" / urlsplit(url).netloc
+    if not cache.exists():
+        return None
+    parser = urllib.robotparser.RobotFileParser()
+    parser.parse(cache.read_text(encoding="utf-8").splitlines())
+    try:
+        delay = parser.crawl_delay(USER_AGENT)
+        return float(delay) if delay is not None else None
+    except (TypeError, ValueError):
+        return None
+
+
 def allowed_by_robots(url: str, root: Path = SNAPSHOT_ROOT) -> bool:
     parts = urlsplit(url)
     parser = urllib.robotparser.RobotFileParser()
@@ -351,7 +372,7 @@ def snapshot(url: str, school: str, render: bool = False, root: Path = SNAPSHOT_
             record_block(school, url, reason, root)
             raise Blocked(f"{reason}: {url}")
         raise Blocked(reason)
-    wait_for_turn(host, root)
+    wait_for_turn(host, root, interval=crawl_delay(url, root))
     try:
         if render:
             status, final_url, content_type, html = render_html(url)

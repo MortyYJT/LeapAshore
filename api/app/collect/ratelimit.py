@@ -56,13 +56,15 @@ class HostBucket:
     def key(self, host: str) -> str:
         return f"{self.prefix}collect:host:{bucket_host(host)}"
 
-    def try_take(self, host: str) -> float:
-        """0 when the token was taken now; otherwise the seconds until the next one."""
-        return int(self._take(keys=[self.key(host)], args=[self.interval_ms])) / 1000
+    def try_take(self, host: str, interval: float | None = None) -> float:
+        """0 when the token was taken now; otherwise the seconds until the next one. `interval`, when
+        longer than the bucket's own (a robots.txt Crawl-delay), spaces the next request that far."""
+        ms = max(self.interval_ms, int((interval or 0) * 1000))
+        return int(self._take(keys=[self.key(host)], args=[ms])) / 1000
 
-    def __call__(self, host: str) -> None:
+    def __call__(self, host: str, interval: float | None = None) -> None:
         while True:
-            wait = self.try_take(host)
+            wait = self.try_take(host, interval)
             if wait <= 0:
                 return
             if wait > self.max_wait:
