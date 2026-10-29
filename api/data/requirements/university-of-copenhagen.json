@@ -1,0 +1,1803 @@
+{
+ "school_key": "university-of-copenhagen",
+ "school_name_en": "University of Copenhagen",
+ "country": "Denmark",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://www.ku.dk/studies/masters",
+  "https://www.ku.dk/studies/masters/all-programmes"
+ ],
+ "blocked": [
+  {
+   "url": "https://studies.ku.dk/",
+   "reason": "robots.txt could not be retrieved (URLError: timed out) on studies.ku.dk and science.ku.dk; the same programme pages are published on www.ku.dk/studies/masters and were fetched from there"
+  }
+ ],
+ "complete": true,
+ "remaining_urls": [],
+ "notes": "Programme pages come from www.ku.dk/studies/masters (studies.ku.dk timed out on robots.txt). English B scores come from the shared language-requirements page (www.ku.dk/studies/admission/masters/language-requirements), cited per programme via source_sha256 because each page names English B. No deadline recorded: the pages give day and month but no year (\"15 January at 23:59 (CET)\" for non-EU/EEA applicants, 15 October for February start). No China-specific requirement page exists. Skipped: Danish-only programmes, programmes still in development or closed (Applied Cultural Analysis, Cognition and Communication, Cross-Cultural Studies, Data Stewardship), and English-taught pages without an admission section (Biomedical Engineering, Business Administration x2, Global Environment and Development, Global Forestry, Sustainable Forest and Nature Management, European Environmental Economics and Policy, Combined MSc Computer Science, Medicine Koege). There is no MSc Data Science page (404); Social Data Science, Statistics and Computer Science cover it. Programme lists the page \"Other Danish or international degrees\" requirements verbatim; Economics and Global Development use an individual-assessment wording.",
+ "programs": [
+  {
+   "name": "Master of Science (MSc) in Computer Science",
+   "url": "https://www.ku.dk/studies/masters/computer-science",
+   "snapshot_sha256": "a0f1beedc8ef09b115ed4202824a9d3deb1a4053c39f481e2a5ff02e1c61d7c7",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if the programme includes the following: Courses in computer science corresponding to at least 45 ECTS, subject to the following distribution constraints: A minimum of 7.5 ECTS within the field of programming, covering at least two substantially different programming paradigms. A minimum of 10 ECTS within the field of computer systems architecture, including processor architecture, operating systems, data networks, databases, etc. A minimum of 10 ECTS within the field of theoretical computer science, including algorithms and data structures, computability and complexity, formal languages, programming language theory and compilation, etc. Courses in mathematics corresponding to a total of at least 7.5 ECTS within the fields of discrete mathematics, linear algebra, and mathematical modelling.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirement English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (MSc) in Statistics",
+   "url": "https://www.ku.dk/studies/masters/statistics",
+   "snapshot_sha256": "0b9503ef37edc434beff2e929ed7edec700b4bbc0bcf45129fa9f8e9eeeb1702",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if the programme includes the following: Subject elements in mathematical analysis, including measure theory (at least 22.5 ECTS). Subject elements in linear algebra (at least 7.5 ECTS). Subject elements in statistics on a measure theoretical basis (at least 15 ECTS).",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirements for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (MSc) in Mathematics-Economics",
+   "url": "https://www.ku.dk/studies/masters/mathematics-economics",
+   "snapshot_sha256": "c0d3deaabd9f0402fb89907e6c155f69f079b5bbc45701e1c3c2ab333ac5653e",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if the programme includes the following: Subject elements in mathematical analysis (at least 22.5 ECTS) Subject elements in linear algebra (at least 7.5 ECTS) Subject elements in microeconomics (at least 15 ECTS) Subject elements in macroeconomics (at least 15 ECTS) Subject elements in mathematical finance, equivalent in content to the course NMAA05076U Finansiering 1 (at least 7.5 ECTS) Subject elements in statistics on a measure theoretical basis (at least 15 ECTS) Subject elements in advanced probability (at least 7.5 ECTS)",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirement for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (MSc) in Economics",
+   "url": "https://www.ku.dk/studies/masters/economics",
+   "snapshot_sha256": "389066c43a0efc2fa0d62b81ffdc0ee70fe35e56420e70200a66753419a2138d",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "Other applicants may be admitted based on a specific, individual, academic assessment of whether they are able to document knowledge, expertise and skills corresponding to the Bachelor Programme in Economics at the University of Copenhagen. This assessment will be based on the following requirements: The programme must be on the same level as the Bachelor of Science (BSc) in Economics from the University of Copenhagen Microeconomics (a minimum of 15 ECTS corresponding to Microeconomics I+II from the Bachelor of Science (BSc) in Economics, UCPH) Macroeconomics (a minimum of 15 ECTS corresponding to Macroeconomics I+II from the Bachelor of Science (BSc) in Economics, UCPH) Econometrics/Statistics (a minimum of 15 ECTS corresponding to Probability Theory and Statistics + Econometrics I from the Bachelor of Science (BSc) in Economics, UCPH) Mathematics (a minimum of 10 ECTS on the same level as Mathematics A+B from the Bachelor of Science (BSc) in Economics, UCPH) Proficiency in English corresponding to at least English B-level (on par with the Danish upper secondary school English level B) Applicants who have completed other educational activities that can be equated with a completed bachelor's degree can be admitted after individual assessment. As of September 2024, there are no professional bachelor programs that serve as qualifying for admission to the Master's program in Economics. An annual assessment is made regarding whether new professional bachelor programs may provide eligibility.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirement for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (MSc) in Bioinformatics",
+   "url": "https://www.ku.dk/studies/masters/bioinformatics",
+   "snapshot_sha256": "ae7e086329c20535bcb32771954671a1e9f92842669b741289ea98f16d477062",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if the programme includes the following: Courses in basic mathematics of at least 10 ECTS Courses in biology, molecular biology, genetics and biochemistry corresponding to a minimum of 10 ECTS Programming courses of at least 5 ECTS Bioinformatics courses of at least 10 ECTS Machine Learning courses of at least 5 ECTS",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirement for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (MSc) in Physics",
+   "url": "https://www.ku.dk/studies/masters/physics",
+   "snapshot_sha256": "e14f00de7be0de0226d838f2e6a26f8cdbc790b0172d58b672e64ddd46c6a3df",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if your programme includes the following: Basic requirements Mathematics (linear algebra, differential equations) - min. 20 ECTS credits Classical mechanics - min. 10 ECTS credits Thermodynamics - min. 10 ECTS credits Electromagnetism - min. 10 ECTS credits Advanced requirements - min. 30 ECTS credits Advanced physics within one or more of the following subjects: Quantum Physics, Modern Physics, Geophysics, Biophysics, Medical Physics and/or Astrophysics. The combined total of basic and advanced requirements must be minimum 120 ECTS credits. We may also admit applicants who, after an individual academic assessment, are deemed to possess educational qualifications equivalent to those required above.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirement for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (MSc) in Global Health",
+   "url": "https://www.ku.dk/studies/masters/global-health",
+   "snapshot_sha256": "ae3115fc1ae7bbb63b83d8f7e8f0ce59acf9a59ff08083cddd55c680db97e508",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if the degree is within the following areas: Social sciences Health sciences Life sciences Furthermore, the applicant must have obtained at least 5 ECTS in qualitative research methods and 5 ECTS in quantitative research methods.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirements for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (MSc) in Social Data Science",
+   "url": "https://www.ku.dk/studies/masters/social-data-science",
+   "snapshot_sha256": "f1343b515c4a936ab97e515484a5a21e4d792d49a2c5233cd9b3c4c6ad2336d3",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if: You hold a bachelor’s degree from a Danish or international university with at least 30 ECTS credits from social sciences courses of which at least one should be a practical methods course. Social sciences courses include, among other things, social statistics courses, ethnography courses and other courses on qualitative or quantitative data collection and analysis; courses on culture, organisation, leadership, innovation, management or related topics which involve empirical data collection, processing or analysis; and Bachelor and other self-defined projects which include social data collection, processing or analysis.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirement for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (MSc) in Security Risk Management",
+   "url": "https://www.ku.dk/studies/masters/security-risk-management",
+   "snapshot_sha256": "175e7f54716d21dd30f94b0ffdd2b9ae4d06594cf47b997ecd16f7da611c4f01",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if you hold a qualifying bachelor degree. The qualifying bachelor’s degree must comprise a minimum of 90 ECTS credits in social science courses within one or more of the following subject areas: Political Science, consisting of introductory, general bachelor-level courses. Examples include: international or global politics, European politics, public administration, international relations, comparative politics, international security, geopolitics, defense and security studies, conflict studies, institutional theory, and international governance (EU and global organizations). Sociology, consisting of introductory, general bachelor-level courses. Examples include: organization and politics, political sociology, risk and social structures, globalization, political violence, criminology, social theory, defense and security studies, conflicts studies. Anthropology, consisting of introductory, general bachelor-level courses. Examples include: organizational analysis and politically or risk-related subjects, globalization and global flows, applied anthropology, human rights, violations and post-conflict situations, postcolonial struggles, global crises, security studies, conflicts studies, criminology. Organization and Governance, consisting of introductory, general bachelor-level courses. Examples include: organization theory, governance theory, public administration and management, globalization, and international relations.” The qualifying bachelor degree must contain a minimum of 15 ECTS in qualitative and/or quantitative research methods within the social sciences. The programme has a limited number of seats. If there are more qualified applicants than seats the selection of admitted applicants is based on the following: General assessments/marks/grades in the relevant qualifying bachelor’s degree. The proportion of relevant courses taken as part of the BA (measured as ECTS) Grades for particularly relevant courses Relevant courses are defined as courses that fall within the general field of security risk management, either theoretically, methodologically and/or empirically.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirements for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (MSc) in Mathematics",
+   "url": "https://www.ku.dk/studies/masters/mathematics",
+   "snapshot_sha256": "696bac275f645910992f90cbd11f427864478ec8529bf010479a4dc9cc763a3d",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if the programme includes the following: Subject elements in mathematical analysis (at least 30 ECTS) Subject elements in linear algebra and algebra (at least 22.5 ECTS) Subject elements in geometry and topology (at least 15 ECTS)",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirement for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (MSc) in Actuarial Mathematics",
+   "url": "https://www.ku.dk/studies/masters/actuarial-mathematics",
+   "snapshot_sha256": "8e94f4f2ac7b4868a3eb9dd6f52ade2d2109b3164d0efcf164316228b0908ab9",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if the programme includes the following: Subject elements in life insurance mathematics (equivalent in content to the course Grundlæggende livsforsikringsmatematik) (at least 7.5 ECTS) Subject elements in non-life insurance mathematics (equivalent in content to the course Basic Non-life Insurance Mathematics) (at least 7.5 ECTS) Subject elements in statistics on a measure-theoretical basis (equivalent in content to the course Statistiske metoder, Matematisk statistik (MStat), Regression/Regression for Actuaries) (at least 22.5 ECTS) Subject elements in advanced probability (equivalent in content to the course Sandsynlighedsteori 2) (at least 7.5 ECTS) Subject elements in accounting and law (equivalent in content to the course Regnskab og jura) at least 7.5 ECTS Subject elements in mathematical finance (equivalent in content to the course Finansiering 1) at least 7.5 ECTS Subject elements in mathematical analysis at least 22.5 ECTS Subject elements in linear algebra at least 7.5 ECTS",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirement for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts (MA) in Advanced Migration Studies",
+   "url": "https://www.ku.dk/studies/masters/advanced-migration-studies",
+   "snapshot_sha256": "c60b6c6faf89b6151cf0e5ee99ac87ffebb8c07060ed54530f11d3375c8cbf80",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if: it is assessed that the applicant has a Bachelor’s degree equivalent to a degree from a Faculty of Humanities or a Faculty of Social Sciences with minimum 30 ECTS within migration related topics.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirements for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts (MA) in African Studies",
+   "url": "https://www.ku.dk/studies/masters/african-studies",
+   "snapshot_sha256": "99f6638e75f62208da5db59296fc4c2c5ef8c067ffd6364f4867e6ac332e6403",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if: You have passed at least 30 ECTS within the fields of political science, anthropology, geography, history, religion, international studies, cultural studies or public health. The Assessment Committee deem you to possess educational qualifications equivalent to those required to qualify for admission.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirements for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (MSc) in Agricultural Economics",
+   "url": "https://www.ku.dk/studies/masters/agricultural-economics",
+   "snapshot_sha256": "7e1947a29d3ab1801280d6bb00b6f653f98e5b3425f56535ee495e29374e2b54",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if your programme includes the following: Courses in economics corresponding to at least 37.5 ECTS credits, subject to the following distribution constraints: A minimum of 22.5 ECTS credits within micro economics A minimum of 7.5 ECTS credits within macro economics Courses in statistics corresponding to at least 7.5 ECTS credits Courses in econometrics corresponding to at least 7.5 ECTS credits Courses in mathematics corresponding to at least 7.5 ECTS credits If you have a Bachelor's degree in Natural Resources with the specialisation in Environmental Economics from University of Copenhagen you are qualified for admission if your programme includes the following: 7.5 ECTS credits in Samfundsøkonomi or Makroøkonomi 1: Det korte sigt (MakØk1) or Økonomiske principper B or  Makroøkonomi og konjunkturer or equivalent 7.5 ECTS credits in International Economics or International Economics (P) or other additional courses in economics We may also admit applicants who, after an individual academic assessment, are deemed to possess educational qualifications equivalent to those required above.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirement for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (MSc) in Agriculture",
+   "url": "https://www.ku.dk/studies/masters/agriculture",
+   "snapshot_sha256": "45d52048e33a573c675fc781e299b5647ac9b81d713dcf1b5ca666c42011e838",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if your programme includes: 7.5 ECTS in the area of Plant Science and 2 of the following 3 areas: Biology or ecology - 7.5 ECTS Natural resources (soil, water, climate) - 7.5 ECTS Economics or regulation - 7.5 ECTS We may also admit applicants who, after an individual academic assessment, are deemed to possess educational qualifications equivalent to those required above.:",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirement English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (MSc) in Anthropology",
+   "url": "https://www.ku.dk/studies/masters/anthropology",
+   "snapshot_sha256": "e04ab0f5f120184d45961c6663e014822e689cec4ff5e9fe72c6d4577e8008c1",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if they are able to demonstrate knowledge, expertise and skills corresponding to the bachelor programme in Anthropology at the University of Copenhagen. The assessment includes the following requirements: The student must have a bachelor degree at the same level as the bachelor programme in Anthropology at the University of Copenhagen. The bachelor programme must include a minimum of 30 ECTS credits on courses relevant to anthropology, from a bachelor programme in anthropology or similar. Proficiency in English corresponding to at least English B-level. Applicants who have completed other educational activities that can be equated with a completed bachelor's degree can be admitted after individual assessment. Admission to the master’s programme in Anthropology is subject to restriction.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirements for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (MSc) in Biochemistry",
+   "url": "https://www.ku.dk/studies/masters/biochemistry",
+   "snapshot_sha256": "d7df0529b45902a5544580e12f1226caad9548b5aea5bcce476160eaa484f4a9",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if the programme includes the following: A minimum of 60 ECTS from formal classes within chemistry and biochemistry/molecular biology of which a minimum of 30 ECTS must be in chemistry and 22.5 ECTS in biochemistry/molecular biology. In total, the applicant must have a minimum of 30 ECTS that stem from courses with experimental laboratory exercises.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirement for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (MSc) in Biology",
+   "url": "https://www.ku.dk/studies/masters/biology",
+   "snapshot_sha256": "189ff8412e2d3cea7a9952bebb515fe6b08dc39ccc6f80c9a2e7d40a12841c58",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if your programme includes the following: A minimum of 5 ECTS within each of the following areas: organismal biology ecology evolution biology cell biology physiology molecular biology microbiology statistics data science and programming e.g., R and Python chemistry biochemistry Practical skills within laboratory and field work within the main areas of biology corresponding to a total of 30 ECTS. We may also admit applicants who, after an individual academic assessment, are assessed to possess educational qualifications equivalent to those required above.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirement English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (MSc) in Biosolutions",
+   "url": "https://www.ku.dk/studies/masters/biosolutions",
+   "snapshot_sha256": "dc6cbed7ccf90c1b187e282645561163e04ab1a463a87573be1de503706a166d",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if your programme includes the following: 7.5 ECTS credits within a biological system (microorganisms or plants) 15 ECTS credits within biochemistry/organic chemistry 15 ECTS credits within biotechnology methods 15 ECTS credits within statistics/mathematics In total you must have a minimum of 30 ECTS credits derived from courses with experimental laboratory exercises. We may also admit applicants who, after an individual academic assessment, are deemed to possess educational qualifications equivalent to those required above.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirement for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (MSc) in Biotechnology",
+   "url": "https://www.ku.dk/studies/masters/biotechnology",
+   "snapshot_sha256": "d65e1527054e5df073f48d3bc8e3757864fe3516f2954df307fc405ae302f1b5",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if the programme includes the following: 15 ECTS within a biological system (plants, animals or microbiology) 15 ECTS within biochemistry/organic chemistry 15 ECTS within biotechnology methods In total, the applicant must have a minimum of 30 ECTS derived from courses with experimental laboratory exercises.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirement English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (MSc) in Chemistry",
+   "url": "https://www.ku.dk/studies/masters/chemistry",
+   "snapshot_sha256": "a2a651149103ffaf9f69d324c6612127450ce9cafb70500086dee7b7869f3671",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if the programme includes the following: General and inorganic chemistry (min. 20 ECTS) Organic chemistry including synthesis (min. 22.5 ECTS) Analytical chemistry and spectroscopy (min. 7.5 ECTS) Physical chemistry and physics (including quantum chemistry) (min. 20 ECTS) Each of them must include experimental laboratory exercises including laboratory safety. Mathematics (min. 15 ECTS) The elements must account for a total of min. 85 ECTS.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirement for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (MSc) in Climate Change",
+   "url": "https://www.ku.dk/studies/masters/climate-change",
+   "snapshot_sha256": "39fb85523999605162e40e2fdfa1fe211c394c9720021003fd811f55dc1dded6",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if the programme includes the following: Curriculum strongly directed towards topics of climate change (minimum 60 ECTS credits climate change related study elements).",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirements for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (MSc) in Environment and Development",
+   "url": "https://www.ku.dk/studies/masters/environment-and-development",
+   "snapshot_sha256": "2a97f4a0765ead86677e8009a220f9752abea5551c90a4b6ab953acf2852d7f7",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if the degree includes the following: 30 ECTS within the field of social science or 30 ECTS within the field of natural science",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirements for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (MSc) in Environmental and Natural Resource Economics",
+   "url": "https://www.ku.dk/studies/masters/environmental-and-natural-resource-economics",
+   "snapshot_sha256": "9ab9ff50e0740c5a3e6dc1893e806abe22cea442736b13d35a02e94e58bba0a6",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if the programme includes the following: Microeconomics (at least 22.5 ECTS) Statistics (at least 7.5 ECTS) Econometrics (at least 7.5 ECTS) Mathematics (at least 7.5 ECTS)",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirement for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (MSc) in Environmental Science",
+   "url": "https://www.ku.dk/studies/masters/environmental-science",
+   "snapshot_sha256": "055e26f44e6e75bfc21a879e693780d4e0de5d8b88065fedf01d81d85ba5fb44",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if the programme includes three of the following five areas: Biology or ecology 7.5 ECTS Natural resources 7.5 ECTS Geochemistry 7.5 ECTS Environmental chemistry 7.5 ECTS Chemistry 7.5 ECTS",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirement for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (MSc) in Food Innovation and Health",
+   "url": "https://www.ku.dk/studies/masters/food-innovation-and-health",
+   "snapshot_sha256": "b1dc34c7a9aff59cd99996e8e128e30061b9154d6adc2f37b6b0655aae5ef43c",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if the programme includes the following: A minimum of 120 ECTS within the area of natural science including all the following: Biochemistry (including laboratory work) equivalent in content to the SCIENCE course LKEB10077U Biokemi 1 7.5 ECTS Statistics equivalent in content to the SCIENCE course LMAB10069U Statistisk dataanalyse 1 7.5 ECTS",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirements for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (Msc) in Food Science and Technology",
+   "url": "https://www.ku.dk/studies/masters/food-science-and-technology",
+   "snapshot_sha256": "fe36eb7a6e7b04fb5da0377582236783a826dd2dd77f59eff7603402d9dfa81d",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if the programme includes the following: Mathematics (7.5 ECTS credits) Statistics (7.5 ECTS credits) Chemistry (15 ECTS credits) Cell and/or molecular biology (7.5 ECTS credits) Food microbiology (7.5 ECTS credits) Biochemistry (7.5 ECTS credits)",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirement for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (MSc) in Forest and Nature Management",
+   "url": "https://www.ku.dk/studies/masters/forest-and-nature-management",
+   "snapshot_sha256": "6129cbb2e7bd58bb880ca01a16ff47513ff2697d7d84ccacfadd011f5566a03f",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if the programme includes the following: A minimum of 7.5 ECTS within at least two of the following three broadly defined dimensions of sustainability: Ecology/Biology: Competence/knowledge about the structure and function of forests and/or other ecosystems, e.g., within academic areas such as botany, zoology, population/community ecology, systems ecology, plant physiology, cytology, soil science and biogeochemistry Economics/statistics: Competence/knowledge about mathematics/statistics and/or the financial way of thinking, economic theory at macro and/or micro level or about business, organisation and management Social science/law/planning: Competence/knowledge about society, people, planning and regulation, e.g., within academic areas such as political science, law, physical planning, human geography, sociology, anthropology, development studies or social psychology.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirement for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (MSc) in Geography and Geoinformatics",
+   "url": "https://www.ku.dk/studies/masters/geography-and-geoinformatics",
+   "snapshot_sha256": "b153cc7320d0c2acac14302fd2c21ca7c379a32b8afafe767de3987f54a8d7ef",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if the programme includes the following: Minimum 60 ECTS corresponding to courses from the Bachelor’s Programme in Geography and Geoinformatics from University of Copenhagen.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirements for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (MSc) in Geology-Geoscience",
+   "url": "https://www.ku.dk/studies/masters/geology-geoscience",
+   "snapshot_sha256": "fae27aafe42a82d6a5ec97277323d52ba0a046eebb89191886bd74500815516a",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if the degree includes the following: Subject elements on bachelor’s level within the academic field of geology-geoscience, 60 ECTS.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirements for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (MSc) in Global Development",
+   "url": "https://www.ku.dk/studies/masters/global-development",
+   "snapshot_sha256": "cff1a43916b4341b2077b4fae780bf13649d867b04d3d770ca753e76aa253fe7",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "A bachelor degree from a recognized international university equivalent to these BSc degrees: Anthropology Economics Geography Geoinformatics Natural resources Political science Public health Sociology Urban, energy and environmental planning If the bachelor degree must contain a minimum of 15 ECTS of qualitative and/or quantitative methods.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirement for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (MSc) in Human Biology",
+   "url": "https://www.ku.dk/studies/masters/human-biology",
+   "snapshot_sha256": "8e86c92f1d0a72ae18fc04d3fa71bf4026fb3e299e1c9868d9d82149e383b35d",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if your programme is within the following areas: medicine odontology biochemistry biology pharmaceutics exercise and sport sciences Furthermore, you must have obtained at least 5 ECTS within biology, biochemistry or pharmacology.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirement for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (MSc) in Human Nutrition",
+   "url": "https://www.ku.dk/studies/masters/human-nutrition",
+   "snapshot_sha256": "9048bea1567a2b3713f712c53d5b64a9d531c413f1927bf0bec6bd7656b0dbb9",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if the programme includes the following: Minimum 120 ECTS within the field of natural science including minimum: 7.5 ECTS in biochemistry (incl. laboratory work) equivalent in content to the biochemistry course LKEB10077U Biokemi 1. 7.5 ECTS in physiology equivalent in content to the human physiology course NNEB19009U Basal human fysiologi. 7.5 ECTS in statistics equivalent in content to the statistics course LMAB10069U Statistisk dataanalyse 1.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirements for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (MSc) in Immunology and Inflammation",
+   "url": "https://www.ku.dk/studies/masters/immunology-and-inflammation",
+   "snapshot_sha256": "e9c263b5df06b5dd72727c6cdb9ba71ce1a8499fe281c1769993429a54722830",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if your programme is within the following areas: Biology Biochemistry Medicine Molecular Biomedicine/Molecular Medicine Veterinary Medicine Furthermore, you must have obtained at least 30 ECTS within cell biology, biochemistry, molecular biomedicine, and genetics.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirement for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (MSc) in Integrated Food Studies",
+   "url": "https://www.ku.dk/studies/masters/integrated-food-studies",
+   "snapshot_sha256": "6c0572b459f8aedf0d14e39f45743a3bc4f9d7ef3bcfdcb53687479afc990840",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if the programme includes the following: 30 ECTS within the field of food science or 30 ECTS within the field of natural science or 30 ECTS within the field of sociology and/or anthropology",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirements for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (MSc) in IT and Cognition",
+   "url": "https://www.ku.dk/studies/masters/it-and-cognition",
+   "snapshot_sha256": "bc202fb045562e7efd57171a09468e84e9b44f8f3165fe4d38b3059a0cfaaa65",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if: it is assessed that the applicant has a bachelor’s degree with at least 15 ECTS in subjects within one or more of the following disciplines: Language Technology, Computer Science, Cognitive Science, and Linguistics.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirements for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (MSc) in Landscape Architecture",
+   "url": "https://www.ku.dk/studies/masters/landscape-architecture",
+   "snapshot_sha256": "5c779a79866a3f5a885529a13e8bddaea432d072788755f7fb758360ade06a77",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if the programme includes the following: Design: A minimum of 60 ECTS within design courses such as SCIENCE courses: NIGB15018U Plan og Design 1 and NIGB15019U Plan og design 2 (Planning & Design 1+2), NIGB15038U Håndværk og æstetik i landskabsarkitektur - Studio (Practice & Aesthetics in Landscape Architecture - Studio), LNAB10060U Beplantningsdesign (Plantingdesign) and NIGB16000U Byplanstudio - Strategi og design 1 and NIGB16001U Byplanstudio - Strategi og design 2 (Urban Planning Studio 1+2) or NIGB23003U Planter og teknologi i landskabsarkitektur 1 and NIGB15029U Planter og teknologi i landskabsarkitektur 2 (Plants and Technology in Landscape Architecture 1+2). Ecology (Økologi): A minimum of 15 ECTS within ecology courses such as SCIENCE courses: NIGB13001U Naturgrundlaget 1 - Planter og landskab (Processes in Nature 1 - Plants and Landscape) NPLB17000U Naturgrundlaget 2a - Vegetationer og bioressourcer (Natural Resources 2A - Vegetation and Bioresources) NPLB17001U Naturgrundlaget 2b - Vegetation og økologi (Natural Resources 2B - Vegetation and Ecology) NPLB15011U By og landskabsplanters botanik (Botany of Urban and Landscape Plants) Philosphy of Science (Videnskabsteori): (Philosophy of Science such as the Science course Philosophy of Science - Landscape Architecture and Urban Design which covers a wealth of contributions to Landscape Architecture and Urban Design, spanning from natural science over social science to humanities. Design and its history decide what is relevant knowledge for the discipline and how new knowledge is conceived through natural- and social science, humanities and through applied artistic work.): A minimum of 7.5 ECTS of Science courses such as: LFKB10272U Fagets videnskabsteori - landskabsarkitektur og bydesign (Philosophy of Science - Landscape Architecture and Urban Design) NIGB19000U Skrive- og projektværksted – selvvalgt emne i landskabs- og bystudier (Project Writing Studio – Topics in Landscape and Urban Studies) NIGB19001U Landskabsarkitekturens historie, nutid og fremtid (Landscape Architecture History)",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirements for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (MSc) in Medicinal Chemistry",
+   "url": "https://www.ku.dk/studies/masters/medicinal-chemistry",
+   "snapshot_sha256": "d3f038133c27936e2462161c91b6e128feeb1bd50ffb8ecb489348d5ee43f61d",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if your bachelor’s degree have accumulated: At least 80 ECTS credits on chemistry courses in the fields of organic and physical chemistry with the emphasis on theoretical and experimental chemistry courses At least 30 ECTS credits from biology courses in the fields of biochemistry, molecular biology, physiology and pharmacology, of which at least 5 ECTS credits must come from within general pharmacology",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirement for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (MSc) in Molecular Biomedicine",
+   "url": "https://www.ku.dk/studies/masters/molecular-biomedicine",
+   "snapshot_sha256": "b8d0f7bafeaee7962a8178dbfd00d834b16133a3128a8660952b226ae56bb8e8",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if the programme includes the following: A minimum of 60 ECTS of formal classes in the fields of protein chemistry, cell biology, molecular biology and human physiology of which a minimum of 30 ECTS must be from courses in molecular biology. Relevant laboratory experience equivalent to a minimum of 30 ECTS from courses, projects etc. (must be documented).",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirement for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (MSc) in Nanoscience and Technology (the programme is offered in China)",
+   "url": "https://www.ku.dk/studies/masters/nanoscience-and-technology",
+   "snapshot_sha256": "28d4370b7e53e6998cf766823a539138228ecd758845208562f233666447a8fc",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if you have a degree in a natural science field such as: Nano-Science Chemistry Physics Biochemistry Materials Science",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirement for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (MSc) in Nanoscience",
+   "url": "https://www.ku.dk/studies/masters/nanoscience",
+   "snapshot_sha256": "5f8c54d818def57fc91642fe2c9f0a4fda77f7393581520ccf2f0833a3959368",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if the programme includes the following: A minimum of 30 ECTS within introductory physics (electromagnetism and quantum theory). A minimum of 30 ECTS within introductory chemistry (organic, inorganic and physical). The elements must account for a total of min. 90 ECTS.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirement for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (MSc) in Nature Management",
+   "url": "https://www.ku.dk/studies/masters/nature-management",
+   "snapshot_sha256": "22ba52424f3b2794a96b679b3f91447b074d47165757b7af65d127b57e0f0807",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if the programme includes the following: Ecology – at least 7.5 ECTS. Ecology: Scientific competences within and knowledge of the structure and function of ecosystems. Relevant academic areas including e.g. plant physiology, population and community ecology, systems ecology, soil science, and biogeochemistry. Species knowledge – at least 7.5 ECTS. Species knowledge: Fundamental knowledge and competences within botany or zoology.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirements for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (MSc) in Neuroscience",
+   "url": "https://www.ku.dk/studies/masters/neuroscience",
+   "snapshot_sha256": "1b14c894fbb46db997b7fe8371518b6bd6cd8e76698c0ab897df74b71a73cde3",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if your programme is within the following areas: Health sciences Life sciences Biological sciences Furthermore, you must have obtained at least 30 ECTS within cell biology, physiology, molecular biomedicine and/or neurobiology.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirement for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (MSc) in Pharmaceutical Sciences (GB)",
+   "url": "https://www.ku.dk/studies/masters/pharmaceutical-sciences",
+   "snapshot_sha256": "56c990dc959a92ffe9b599212654de92673965ed672a311db0666897fa496216",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if your bachelor’s degree have accumulated: At least 120 ECTS credits in chemical and/or biological disciplines At least 15 ECTS credits in biochemistry and/or molecular biology and/or microbiology At least 15 ECTS credits in chemistry subjects, of which at least 7.5 ECTS credits must be in organic chemistry",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirement for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (MSc) in Quantum Information Science",
+   "url": "https://www.ku.dk/studies/masters/quantum-information-science",
+   "snapshot_sha256": "253a77ef1ebe8fc78250acf8e95b56194a04e53bed040dd5bb2b28866be2eaab",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if the programme includes the following: A minimum of 120 ECTS within mathematics, physics and/or computer science",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirements for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts (MA) in the Religious Roots of Europe",
+   "url": "https://www.ku.dk/studies/masters/religious-roots-of-europe",
+   "snapshot_sha256": "927fad830a40cb0d82110b5174508c4c6a91fccf3b30a25e96f8352b8c377156",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "The Master programme is open to students with a bachelor’s degree with a major in theology the study of religion classical philology classical archaeology history or the equivalent. The Programme with its modules and courses progresses from the learning outcome, knowledge, skills and abilities obtained by the students through these bachelor programmes. Since the Study Plan presupposes an ability to read ancient religious texts in the original languages – and aims at training students further in this respect – but not all the mentioned bachelor degree programmes include compulsory ancient language training, it is specified as a prerequisite for admittance to the Programme that the applicant documents a proficiency in at least one of the following ancient languages: Greek, Latin, Hebrew or Arabic. This proficiency must equal the proficiency achieved by studying such a language in a module allotted 15 ECTS credits. Alternatively, a student can be admitted if she or he can document a proficiency in two of these ancient languages which equals the proficiency achieved by studying each of these languages in modules which are allotted 15 ECTS credits in total.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirements for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (MSc) in Water and Environment",
+   "url": "https://www.ku.dk/studies/masters/water-and-environment",
+   "snapshot_sha256": "df4e09db9e920a56d12d44bbbdcc75d56246a7053811f6e75b3170ad1acd08bd",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if you have: A successfully completed Bachelor’s degree (or equivalent) or higher in a natural science field such as Agricultural Science, Biology, Environmental Sciences, Engineering or Natural Resources. The Bachelor’s degree must as a minimum include basic courses in mathematics, chemistry, biology and statistics.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirements for English B.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Work-integrated Master of Science (MSc) in Computer Science",
+   "url": "https://www.ku.dk/studies/masters/work-integrated-master-computer-science",
+   "snapshot_sha256": "22d6f60adeb21779409524376d6d6397fc2cc08d6be059e382526148e5e855ff",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) that meets the programme-specific subject requirements stated in the quote (a list of ECTS-credit subject elements or relevant fields); some named UCPH/Danish bachelor degrees qualify automatically",
+     "quote": "If you hold a bachelor’s degree, a professional bachelor’s degree or an equivalent qualification from a Danish or international university not listed above, you are eligible for admission if your programme includes the following: Courses in computer science corresponding to at least 45 ECTS credits, subject to the following distribution constraints: A minimum of 7.5 ECTS credits within the field of programming, covering at least two substantially different programming paradigms. A minimum of 10 ECTS credits within the field of computer systems architecture, including processor architecture, operating systems, data networks, databases, etc. A minimum of 10 ECTS credits within the field of theoretical computer science, including algorithms and data structures, computability and complexity, formal languages, programming language theory and compilation, etc. Courses in mathematics corresponding to a total of at least 7.5 ECTS credits within the fields of discrete mathematics, linear algebra, and mathematical modelling. We may also admit applicants who, after an individual academic assessment, are deemed to possess educational qualifications equivalent to those required above.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language requirement English B (documented by an approved test, e.g. IELTS or TOEFL; not required of applicants with legal right of admission)",
+      "quote": "You must also meet the language requirement for English B.Read about how to meet the language requirements",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6,
+     "quote": "Minimum overall score of 6.5 with at least 6 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "min_band": 20,
+     "quote": "Minimum overall score of 83 with at least 20 in each subscore",
+     "source_sha256": "75d060b91c4803b13750361b80830bcbdc412b1f666aa37aebfa035bbbe7e7e9",
+     "scale_note": "old TOEFL scale (0-120); the language page also states 4.5 overall / 4.5 per section on the new scale",
+     "source_url": "https://www.ku.dk/studies/admission/masters/language-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 48,
+  "机器核对": 48,
+  "待人工": 0
+ }
+}
