@@ -10,4 +10,4 @@ Branch `claude/advisor-retrieval`.
 - [x] 2.4 Refusal text from counts; the graph shows the gate's text
 - [x] 2.5 `search_programs` uses the same recognition
 - [x] 3.1 Tests for each listed question; model-free eval in CI with thresholds
-- [x] 3.2 Held-out split run once on the final code
+- [x] 3.2 Held-out split run once on the final code (Recall@4 0.889, false-pass 0, false-block 0; see TASKS.md)
