@@ -4,8 +4,10 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 
 import { LoginPrompt, RequireAccount } from "@/components/auth/AuthProvider";
+import { DeadlineText } from "@/components/roadmap/DeadlineText";
 import { Button, Loading, Notice, Pill, SourceNote } from "@/components/ui";
 import { fetchProgramPage, replaceApplications } from "@/lib/api";
+import { beijingToday, deadlineOf } from "@/lib/deadlines";
 import { usePortfolio } from "@/lib/hooks/usePortfolio";
 import { clearDraft, draftChanged, readDraft, removeFromDraft, setPrimary, setStatus, writeDraft } from "@/lib/portfolio-draft";
 import { toApplicationRows } from "@/lib/programs-source";
@@ -38,6 +40,7 @@ export default function PortfolioPage() {
 function Portfolio() {
   const saved = usePortfolio();
   const [draft, setDraft] = useState<PortfolioItem[] | null>(null);
+  const today = useMemo(() => beijingToday(), []);
   const [programs, setPrograms] = useState<Map<string, Program>>(new Map());
   const [saving, setSaving] = useState(false);
   const [saveError, setSaveError] = useState<string | null>(null);
@@ -156,6 +159,7 @@ function Portfolio() {
                   )}
                   {rows.map((r, i) => {
                     const program = programs.get(r.programSlug);
+                    const deadline = deadlineOf({ ...r, deadlines: r.collectedDeadlines ?? program?.deadlines }, today);
                     return (
                       <tr key={r.programSlug}>
                         <td className="wide">
@@ -176,14 +180,11 @@ function Portfolio() {
                           </span>
                         </td>
                         <td className="wide">
-                          {r.officialDeadline && r.deadlineSourceUrl ? (
-                            <a href={r.deadlineSourceUrl} target="_blank" rel="noreferrer" className="num">
-                              {r.officialDeadline}
-                            </a>
+                          {deadline.state !== "unknown" ? (
+                            <DeadlineText view={deadline} />
                           ) : (
                             <>
-                              <span className="hollow" />
-                              未收录{" "}
+                              <DeadlineText view={deadline} />{" "}
                               {program && (
                                 <a className="muted small" href={program.source.url} target="_blank" rel="noreferrer">
                                   去官网查
@@ -246,7 +247,7 @@ function Portfolio() {
         {savedNote && !changed && <div className="section"><Notice>{savedNote}</Notice></div>}
       </main>
       <SourceNote>
-        确认后，组合写入服务器，路线图按新组合显示截止日期。官方截止日期只有收录了官网来源才显示日期，其余显示为未收录。档位标“未经系统分档”的，是你自己定的档位。
+        确认后，组合写入服务器，路线图按新组合显示截止日期。官方截止日期只有收录了官网来源才显示日期，已经过了的标「已截止」，其余显示为未收录。档位标“未经系统分档”的，是你自己定的档位。
       </SourceNote>
     </>
   );

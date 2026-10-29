@@ -5,9 +5,11 @@ import { useEffect, useMemo, useRef, useState } from "react";
 
 import { LoginPrompt, RequireAccount } from "@/components/auth/AuthProvider";
 import { SampleTimeline } from "@/components/home/SampleTimeline";
-import { Timeline, type DeadlineMark } from "@/components/roadmap/Timeline";
+import { DeadlineText } from "@/components/roadmap/DeadlineText";
+import { drawnDeadlines, Timeline, type DeadlineMark } from "@/components/roadmap/Timeline";
 import { Empty, Loading, Notice, SourceNote } from "@/components/ui";
 import { uploadMaterial } from "@/lib/api";
+import { beijingToday, deadlineOf } from "@/lib/deadlines";
 import { useProfile } from "@/lib/hooks/useProfile";
 import { usePortfolio } from "@/lib/hooks/usePortfolio";
 import { useRoadmap } from "@/lib/hooks/useRoadmap";
@@ -78,11 +80,13 @@ function Roadmap() {
     if (model) drawn.current = true;
   });
 
+  // The row's own date wins; otherwise the program's next collected deadline; a past one is 已截止
+  // (openspec requirement-dates D3, D4). Decided at render time, so nothing stored can go stale.
+  const todayIso = useMemo(() => beijingToday(today), [today]);
   const deadlines: DeadlineMark[] = (portfolio.data ?? []).map((r) => ({
     key: r.programSlug,
     label: `${r.program?.university ?? ""} ${r.program?.nameEn ?? r.programSlug}`.trim(),
-    date: r.officialDeadline ?? null,
-    url: r.deadlineSourceUrl ?? null,
+    view: deadlineOf({ ...r, deadlines: r.collectedDeadlines }, todayIso),
   }));
   const phase = model?.phases.find((p) => p.id === selected) ?? null;
   const anchor = profile.data ? intakeAnchor(profile.data.intake) : null;
@@ -120,7 +124,7 @@ function Roadmap() {
             <section className="panel section" aria-labelledby="tl-h">
               <div className="panel-head">
                 <h2 id="tl-h">从今天到入学</h2>
-                <Legend overdue={model.phases.some((p) => p.overdue)} recorded={deadlines.some((d) => d.date && d.url)} />
+                <Legend overdue={model.phases.some((p) => p.overdue)} recorded={drawnDeadlines(deadlines).length > 0} />
               </div>
               <div style={{ padding: "20px 24px 12px" }}>
                 <Timeline model={model} today={today} deadlines={deadlines} selected={selected} onSelect={setSelected} animate={!drawn.current} />
@@ -163,19 +167,14 @@ function Roadmap() {
                         </div>
                       )}
                       {deadlines.map((d) => (
-                        <div className="row" key={d.key} style={{ gridTemplateColumns: "minmax(0, 1fr) auto", gap: 12 }}>
+                        <div className="row deadline-row" data-state={d.view.state} key={d.key} style={{ gridTemplateColumns: "minmax(0, 1fr) auto", gap: 12 }}>
                           <div className="two-line">
                             <Link className="l1" href={`/programs/${encodeURIComponent(d.key)}`}>{d.label}</Link>
+                            {d.view.label && d.view.origin === "collected" && <div className="l2">{d.view.label}</div>}
+                            {d.view.origin === "entered" && <div className="l2">组合里记录的日期</div>}
                           </div>
                           <div style={{ textAlign: "right" }}>
-                            {d.date && d.url ? (
-                              <a className="num" href={d.url} target="_blank" rel="noreferrer">{d.date}</a>
-                            ) : (
-                              <>
-                                <span className="hollow" />
-                                未收录
-                              </>
-                            )}
+                            <DeadlineText view={d.view} showLabel={false} />
                           </div>
                         </div>
                       ))}
@@ -188,7 +187,7 @@ function Roadmap() {
         )}
       </main>
       <SourceNote>
-        阶段与任务来自服务器上的路线图定义；建议日期按入学时间倒推，不是任何学校的官方日期。官方截止只有收录了官网来源才显示日期。
+        阶段与任务来自服务器上的路线图定义；建议日期按入学时间倒推，不是任何学校的官方日期。官方截止只有收录了官网来源才显示日期：有多轮的显示下一轮，全部已过的标「已截止」、不画在时间轴上。截止日期摘自官网、尚未经人工核对，申请前请以官网为准。
       </SourceNote>
     </>
   );

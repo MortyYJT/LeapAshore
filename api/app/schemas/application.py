@@ -30,6 +30,7 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from app.models.application import ApplicationStatus, ApplicationTier
 from app.schemas.common import _camel
+from app.schemas.program import DeadlineOut
 
 
 class ApplicationIn(BaseModel):
@@ -135,6 +136,9 @@ class ProgramRef(BaseModel):
     city: str | None = None
     degree_level: str | None = None
     data_status: str
+    # The program's collected deadlines (openspec requirement-dates D2), served beside the row's own
+    # `official_deadline`, which the import never writes. Past ones included; the reader labels them.
+    deadlines: list[DeadlineOut] = Field(default_factory=list)
 
 
 class ApplicationOut(BaseModel):

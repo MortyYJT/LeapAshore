@@ -7,6 +7,7 @@
 //   rows (two CRICOS provider codes, or an empty row the importer left for a school whose site refused
 //   collection), so a school maps to a list of ids.
 
+import type { CollectedDeadline } from "./deadlines.ts";
 import { institutionSlug, type MasterProgram, type OverseasInstitution } from "./prototype-library.ts";
 
 /** One school row as `GET /api/universities` serves it. */
@@ -74,13 +75,23 @@ export interface StatedFields {
   non211MinimumMark: number | null;
   englishRequirement: string | null;
   prerequisites: readonly string[];
+  academicRequirement: string | null;
+  deadlines: readonly CollectedDeadline[];
 }
 
 /**
  * Whether a program states a requirement its page shows: an English line, a 985/211 mark, a mark for
- * other universities, or a prerequisite. The rule of `has_requirement_data` in
- * `api/app/models/program.py`, so a row's badge agrees with the catalogue filter and the school counts.
+ * other universities, a prerequisite, an academic requirement or an application deadline (past ones
+ * too, listed as 已截止). The rule of `has_requirement_data` in `api/app/models/program.py`, so a row's
+ * badge agrees with the catalogue filter and the school counts; change both together.
  */
 export function statesARequirement(p: StatedFields): boolean {
-  return p.minimumMark !== null || p.non211MinimumMark !== null || p.englishRequirement !== null || p.prerequisites.length > 0;
+  return (
+    p.minimumMark !== null ||
+    p.non211MinimumMark !== null ||
+    p.englishRequirement !== null ||
+    p.prerequisites.length > 0 ||
+    p.academicRequirement !== null ||
+    p.deadlines.length > 0
+  );
 }

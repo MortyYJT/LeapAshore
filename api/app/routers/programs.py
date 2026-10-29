@@ -8,7 +8,7 @@ from sqlalchemy.orm import Session, selectinload
 from app.db import get_session
 from app.models.program import Program, University, has_requirement_data
 from app.models.source import Source
-from app.schemas.program import ProgramOut, SourceOut
+from app.schemas.program import ProgramOut, SourceOut, deadlines_of
 
 router = APIRouter(prefix="/api/programs", tags=["programs"])
 
@@ -96,7 +96,8 @@ def list_programs(
     statement = (
         select(Program)
         .where(*conditions)
-        .options(selectinload(Program.university), selectinload(Program.prerequisites))
+        .options(selectinload(Program.university), selectinload(Program.prerequisites),
+                 selectinload(Program.deadlines))
         .order_by(stated.desc(), Program.id)
         .limit(limit)
         .offset(offset)
@@ -133,6 +134,9 @@ def list_programs(
                     for row in sorted(program.prerequisites, key=lambda row: row.sort_order)
                 ],
                 english_requirement=program.english_requirement,
+                academic_requirement=program.academic_requirement,
+                academic_source_url=program.academic_source_url,
+                deadlines=deadlines_of(program),
                 data_status=program.data_status,
                 source=SourceOut(url=source.url, title=source.title, status=source.status),
             )

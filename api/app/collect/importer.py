@@ -8,7 +8,9 @@ and rows a portfolio names are kept).
 Only fields whose quote passed `verify` (`check == "ok"`) are written. A program with no verified value
 is skipped, so an empty collection never blanks a row another source describes. When a program has
 verified values, its requirement columns (English, marks, prerequisites) are replaced as one set, so
-every value on the row comes from the same collection. A program is `机器核对` when every field it
+every value on the row comes from the same collection; the academic summary and the deadlines are part
+of that set. Deadlines are compared with what is stored and rewritten only when they differ, so a rerun
+over the same files writes nothing. A program is `机器核对` when every field it
 reports passed, otherwise `待核验`. Nothing here writes `verified_at`: the page source stays
 `待核验` until a person reviews it, and its snapshot version stays `pending_review`.
 
@@ -23,7 +25,7 @@ import re
 import sys
 import unicodedata
 import uuid
-from datetime import datetime
+from datetime import date, datetime
 from pathlib import Path
 from urllib.parse import urlsplit
 
@@ -33,7 +35,7 @@ from sqlalchemy.orm import Session
 from app.collect.fields import study_area_from_name
 from app.collect.snapshot import SNAPSHOT_ROOT
 from app.collect.verify import LIST_FIELDS, MACHINE_CHECKED
-from app.models.program import Program, ProgramPrerequisite, University
+from app.models.program import Program, ProgramDeadline, ProgramPrerequisite, University
 from app.models.source import Source, SourceStatus, SourceVersion
 
 DATA_DIR = Path(__file__).resolve().parents[2] / "data" / "requirements"
@@ -73,6 +75,9 @@ def passed(item: dict) -> bool:
 def english_text(fields: dict) -> str | None:
     """IELTS and TOEFL minimums in one line the interface can parse (`IELTS 6.5…`).
 
+    A TOEFL minimum on the 1-6 scale ETS introduced in January 2026 (`scale: "iBT 1-6"`) says so, or
+    `TOEFL iBT 4.5` would read as a score out of 120.
+
     A score the page only recommends ("we recommend at least 7.5", "preferred") is not a minimum, and
     the interface compares any `IELTS <n>` it finds against the applicant's score. So a recommended
     score is written in words outside that form (`建议雅思 7.5（非最低要求）`): it is shown, never
@@ -88,6 +93,8 @@ def english_text(fields: dict) -> str | None:
                 text = f"{label} {form.format(item['overall'])}"
             if item.get("min_band") is not None:
                 text += f"，单项不低于 {form.format(item['min_band'])}"
+            if test == "toefl" and item.get("scale") == "iBT 1-6":
+                text += "（新版 1–6 分制）"
             if item.get("recommended"):
                 text += "（非最低要求）"
             parts.append(text)
@@ -105,6 +112,57 @@ def verified_quotes(fields: dict) -> str:
                     line += f" (出处: {item.get('source_url') or 'sha256 ' + item['source_sha256']})"
                 lines.append(line)
     return "\n".join(lines)
+
+
+def academic_text(fields: dict) -> str | None:
+    """The collector's summary of the academic requirement, when its quote passed; otherwise unknown."""
+    item = fields.get("academic")
+    if item and passed(item):
+        return (item.get("text") or "").strip() or None
+    return None
+
+
+def academic_source(fields: dict, program_url: str) -> str | None:
+    """The page the academic requirement's quote is on, when there is a requirement to cite."""
+    if academic_text(fields) is None:
+        return None
+    return fields["academic"].get("source_url") or program_url
+
+
+def deadline_rows(pid: str, program_url: str, fields: dict) -> list[dict]:
+    """The verified deadlines, in the file's order, as `program_deadlines` rows.
+
+    The id is the program and the position, like a prerequisite's: one page can list the same round
+    and date twice, so the content alone does not name a row. `source_url` is the page the quote is on.
+    """
+    rows = []
+    for item in fields.get("deadlines", []):
+        if not passed(item):
+            continue
+        index = len(rows)
+        rows.append({
+            "id": str(uuid.uuid5(SOURCE_NAMESPACE, f"{pid}#deadline#{index}")),
+            "program_id": pid,
+            "label": (item.get("label") or "").strip() or None,
+            "deadline": date.fromisoformat(item["date"]),
+            "quote": item["quote"],
+            "source_url": item.get("source_url") or program_url,
+            "sort_order": index,
+        })
+    return rows
+
+
+def _sync_deadlines(session: Session, pid: str, wanted: list[dict]) -> None:
+    """Make the program's deadlines `wanted`, writing only when they differ (openspec requirement-dates D5)."""
+    columns = ("id", "label", "deadline", "quote", "source_url", "sort_order")
+    stored = session.scalars(select(ProgramDeadline).where(ProgramDeadline.program_id == pid)
+                             .order_by(ProgramDeadline.sort_order)).all()
+    if [tuple(getattr(row, c) for c in columns) for row in stored] == [tuple(row[c] for c in columns) for row in wanted]:
+        return
+    session.execute(delete(ProgramDeadline).where(ProgramDeadline.program_id == pid))
+    session.flush()
+    for row in wanted:
+        session.add(ProgramDeadline(**row))
 
 
 def has_verified_value(fields: dict) -> bool:
@@ -183,6 +241,8 @@ def import_school(session: Session, data: dict, schools: dict[str, dict], root: 
             "english_requirement": english_text(fields),
             "minimum_mark": china.get("min_mark_211") if china_ok else None,
             "non_211_minimum_mark": china.get("min_mark_other") if china_ok else None,
+            "academic_requirement": academic_text(fields),
+            "academic_source_url": academic_source(fields, program["url"]),
             "source_id": source.id,
             "data_status": MACHINE_CHECKED if program.get("status") == MACHINE_CHECKED else "待核验",
         }
@@ -205,12 +265,18 @@ def import_school(session: Session, data: dict, schools: dict[str, dict], root: 
 
         prerequisites = [item["text"] if item.get("text") else item["quote"]
                          for item in fields.get("prerequisites", []) if passed(item)]
-        session.execute(delete(ProgramPrerequisite).where(ProgramPrerequisite.program_id == pid))
-        for index, label in enumerate(prerequisites):
-            # A program id can be 64 characters, so a suffixed id would be cut back onto its neighbour.
-            prerequisite_id = str(uuid.uuid5(SOURCE_NAMESPACE, f"{pid}#prerequisite#{index}"))
-            session.add(ProgramPrerequisite(id=prerequisite_id, program_id=pid, label=label,
-                                            category="collected", sort_order=index))
+        stored = session.execute(select(ProgramPrerequisite.id, ProgramPrerequisite.label)
+                                 .where(ProgramPrerequisite.program_id == pid)
+                                 .order_by(ProgramPrerequisite.sort_order)).all()
+        # A program id can be 64 characters, so a suffixed id would be cut back onto its neighbour.
+        wanted = [(str(uuid.uuid5(SOURCE_NAMESPACE, f"{pid}#prerequisite#{index}")), label)
+                  for index, label in enumerate(prerequisites)]
+        if [tuple(row) for row in stored] != wanted:
+            session.execute(delete(ProgramPrerequisite).where(ProgramPrerequisite.program_id == pid))
+            for index, (prerequisite_id, label) in enumerate(wanted):
+                session.add(ProgramPrerequisite(id=prerequisite_id, program_id=pid, label=label,
+                                                category="collected", sort_order=index))
+        _sync_deadlines(session, pid, deadline_rows(pid, program["url"], fields))
     session.commit()
     return {"school": key, "programs_added": added, "programs_updated": updated}
 
@@ -241,6 +307,7 @@ def prune_school(session: Session, data: dict, schools: dict[str, dict]) -> dict
     removable = [pid for pid in stale if pid not in held]
     if removable:
         session.execute(delete(ProgramPrerequisite).where(ProgramPrerequisite.program_id.in_(removable)))
+        session.execute(delete(ProgramDeadline).where(ProgramDeadline.program_id.in_(removable)))
         session.execute(delete(Program).where(Program.id.in_(removable)))
     session.commit()
     return {"school": key, "pruned": len(removable), "kept_in_portfolios": sorted(held)}

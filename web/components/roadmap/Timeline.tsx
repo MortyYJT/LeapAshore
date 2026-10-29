@@ -2,14 +2,19 @@
 
 import { useEffect, useRef, useState, type KeyboardEvent } from "react";
 
+import type { DeadlineView } from "@/lib/deadlines";
 import type { Timeline as TimelineModel, TimelinePhase } from "@/lib/roadmap-timeline";
 
-/** One portfolio program's official deadline: dated with its source, or not recorded. */
+/** One portfolio program's deadline as `deadlineOf` chose it: open, closed (已截止) or not recorded. */
 export interface DeadlineMark {
   key: string;
   label: string;
-  date: string | null;
-  url: string | null;
+  view: DeadlineView;
+}
+
+/** The deadlines drawn on the axis: open ones only. A closed one is listed, never drawn (D3). */
+export function drawnDeadlines(deadlines: DeadlineMark[]): DeadlineMark[] {
+  return deadlines.filter((d) => d.view.state === "upcoming" && d.view.date && d.view.url);
 }
 
 interface Props {
@@ -91,12 +96,18 @@ function Horizontal({ model, today, deadlines, selected, onSelect, animate, widt
   const LABEL = compact ? 136 : 196, LANE = compact ? 84 : 104, TOP = 58, PITCH = 44, BAR = 22;
   const x0 = LABEL + 8, x1 = W - LANE - 16;
   const first = model.phases[0]?.start ? utc(model.phases[0].start) : today;
-  const start = new Date(Math.min(first.getTime(), today.getTime()));
+  // From the start of today's day, so a deadline dated today is still on the axis.
+  const start = new Date(Math.min(first.getTime(), utc(today.toISOString()).getTime()));
   const end = model.anchor ? utc(model.anchor) : today;
   const span = Math.max(DAY, end.getTime() - start.getTime());
   const xs = (d: Date) => x0 + ((d.getTime() - start.getTime()) / span) * (x1 - x0);
-  const recorded = deadlines.filter((d) => d.date && d.url);
-  const pending = deadlines.filter((d) => !(d.date && d.url));
+  // Open deadlines inside the axis are drawn; one past the intake is listed beside, not off the edge.
+  const recorded = drawnDeadlines(deadlines).filter((d) => {
+    const t = utc(d.view.date!).getTime();
+    return t >= start.getTime() && t <= end.getTime();
+  });
+  const pending = deadlines.filter((d) => d.view.state === "unknown");
+  const closed = deadlines.filter((d) => d.view.state === "closed");
   const rows = model.phases.length + 1;
   const H = TOP + rows * PITCH + 8;
 
@@ -150,12 +161,12 @@ function Horizontal({ model, today, deadlines, selected, onSelect, animate, widt
       <g>
         <text x={10} y={TOP + model.phases.length * PITCH + 15} fontSize={14} fontWeight={500} fill={C.ink}>各项目官方截止</text>
         <text x={10} y={TOP + model.phases.length * PITCH + 32} fontSize={12} fill={C.muted}>
-          {recorded.length} 个已收录 · {pending.length} 个未收录
+          {deadlines.length - pending.length - closed.length} 个待截止 · {closed.length} 个已截止 · {pending.length} 个未收录
         </text>
         {recorded.map((d) => {
-          const x = xs(utc(d.date!));
+          const x = xs(utc(d.view.date!));
           return (
-            <a key={d.key} href={d.url!} target="_blank" rel="noreferrer" aria-label={`${d.label} 官方截止 ${d.date}`}>
+            <a key={d.key} className="deadline-mark" href={d.view.url!} target="_blank" rel="noreferrer" aria-label={`${d.label} 官方截止 ${d.view.date}`}>
               <line x1={x} x2={x} y1={TOP + model.phases.length * PITCH} y2={TOP + model.phases.length * PITCH + PITCH - 6} stroke={C.ink} strokeWidth={2} />
               <circle cx={x} cy={TOP + model.phases.length * PITCH + (PITCH - 4) / 2} r={5} fill={C.ink} />
             </a>
@@ -184,8 +195,9 @@ function Vertical({ model, today, deadlines, selected, onSelect, animate, width:
   const todayIso = today.toISOString().slice(0, 10);
   const rows = model.phases.length;
   const H = TOP + rows * ROW + 64;
-  const pending = deadlines.filter((d) => !(d.date && d.url)).length;
-  const recorded = deadlines.length - pending;
+  const pending = deadlines.filter((d) => d.view.state === "unknown").length;
+  const closed = deadlines.filter((d) => d.view.state === "closed").length;
+  const open = deadlines.length - pending - closed;
   // Today sits inside the phase whose span holds it, at its share of that span.
   let todayY: number | null = null;
   model.phases.forEach((p, i) => {
@@ -226,7 +238,7 @@ function Vertical({ model, today, deadlines, selected, onSelect, animate, width:
       <g>
         <circle cx={TRACK_X} cy={TOP + rows * ROW + 26} r={6} fill={C.surface} stroke={C.muted} strokeWidth={1.5} />
         <text x={40} y={TOP + rows * ROW + 24} fontSize={14} fontWeight={500} fill={C.ink}>各项目官方截止</text>
-        <text x={40} y={TOP + rows * ROW + 44} fontSize={12} fill={C.muted}>{recorded} 个已收录 · {pending} 个未收录</text>
+        <text x={40} y={TOP + rows * ROW + 44} fontSize={12} fill={C.muted}>{open} 个待截止 · {closed} 个已截止 · {pending} 个未收录</text>
       </g>
     </svg>
   );

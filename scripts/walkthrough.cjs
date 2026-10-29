@@ -290,6 +290,67 @@ async function settle(page) {
     await layout(page, "路线图");
     await screenshot(page, "roadmap");
 
+    // ---------- roadmap: official deadlines (openspec requirement-dates) ----------
+    // Two programs from the imported catalogue: one with a deadline on or after today (Beijing date), and
+    // one whose every deadline has passed. They join the portfolio through the API, the roadmap is read,
+    // then the portfolio is put back as it was.
+    const BJ_TODAY = "(now() at time zone 'Asia/Shanghai')::date";
+    // The open program's next round falls before the intake, so it is drawn on the axis.
+    // The intake anchor by `intakeAnchor` in web/lib/roadmap.ts: S1 is 15 February, S2 15 July.
+    const intake = await page.evaluate(async () => (await (await fetch("/api/profile")).json()).intake);
+    const term = /(20\d{2})\s*S([12])/i.exec(intake || "");
+    const anchor = term ? `${term[1]}-${term[2] === "1" ? "02" : "07"}-15` : "";
+    check("截止日期：入学时间已排出锚点", anchor !== "", intake);
+    const openId = dbRun(`select program_id from program_deadlines group by program_id having min(deadline) < ${BJ_TODAY} and min(deadline) filter (where deadline >= ${BJ_TODAY}) <= date '${anchor}' order by program_id limit 1`);
+    const closedId = dbRun(`select program_id from program_deadlines group by program_id having max(deadline) < ${BJ_TODAY} order by program_id limit 1`);
+    check("截止日期：库里有待截止和已截止的项目可走查", /^[\w-]+$/.test(openId) && /^[\w-]+$/.test(closedId), { openId, closedId });
+    const originalRows = await page.evaluate(async () => (await (await fetch("/api/applications")).json()).map((r) => ({
+      programId: r.programId, tier: r.tier, status: r.status, isPrimary: r.isPrimary, needsReview: r.needsReview,
+    })));
+    const putRows = (rows) => page.evaluate(async (body) => (await fetch("/api/applications", {
+      method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ rows: body }),
+    })).status, rows);
+    const [openProgram, closedProgram] = await page.evaluate(async (ids) => {
+      const body = await (await fetch(`/api/programs?ids=${ids.join(",")}`)).json();
+      return ids.map((id) => body.find((p) => p.slug === id));
+    }, [openId, closedId]);
+    const todayIso = new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Shanghai", year: "numeric", month: "2-digit", day: "2-digit" }).format(new Date());
+    const nextRound = openProgram.deadlines.filter((d) => d.date >= todayIso).sort((a, b) => a.date.localeCompare(b.date))[0];
+    const lastRound = closedProgram.deadlines.slice().sort((a, b) => a.date.localeCompare(b.date)).pop();
+    check("截止日期：加入两个项目", (await putRows([...originalRows, { programId: openId, tier: "稳" }, { programId: closedId, tier: "保" }])) === 200);
+    await page.reload();
+    await page.locator("svg.timeline-svg").waitFor({ timeout: 20000 });
+    await page.locator(`.deadline-row[data-state="closed"]`).first().waitFor({ timeout: 15000 });
+    await settle(page);
+    const openRow = page.locator(".deadline-row", { has: page.locator(`a[href="/programs/${encodeURIComponent(openId)}"]`) });
+    const closedRow = page.locator(".deadline-row", { has: page.locator(`a[href="/programs/${encodeURIComponent(closedId)}"]`) });
+    check("截止日期：有下一轮的项目显示下一轮日期并链接到来源", (await openRow.getAttribute("data-state")) === "upcoming"
+      && (await openRow.locator(`a.num[href="${nextRound.sourceUrl}"]`, { hasText: nextRound.date }).count()) === 1, nextRound);
+    check("截止日期：全部已过的项目标「已截止」", (await closedRow.getAttribute("data-state")) === "closed"
+      && (await closedRow.getByText("已截止").count()) === 1 && (await closedRow.getByText(lastRound.date).count()) === 1, lastRound);
+    const closedLabel = `${closedProgram.university} ${closedProgram.nameEn}`;
+    check("截止日期：已截止的不画在时间轴上", (await page.locator(`a.deadline-mark[aria-label^="${closedLabel} "]`).count()) === 0);
+    const openLabel = `${openProgram.university} ${openProgram.nameEn}`;
+    check("截止日期：下一轮画在时间轴上（实心、带来源）", (await page.locator(`a.deadline-mark[aria-label="${openLabel} 官方截止 ${nextRound.date}"][href="${nextRound.sourceUrl}"]`).count()) === 1, { openLabel, nextRound });
+    await layout(page, "路线图：截止日期");
+    // A date entered on the portfolio row wins over the collected ones, and stays as entered.
+    const entered = { date: "2027-01-02", url: "https://example.edu/walkthrough-entered-deadline" };
+    check("截止日期：组合行写入自己的日期", (await putRows([...originalRows,
+      { programId: openId, tier: "稳", officialDeadline: entered.date, deadlineSourceUrl: entered.url },
+      { programId: closedId, tier: "保" }])) === 200);
+    await page.reload();
+    await page.locator(`.deadline-row[data-state]`).first().waitFor({ timeout: 20000 });
+    await settle(page);
+    check("截止日期：组合里记录的日期优先于采集的", (await openRow.locator(`a.num[href="${entered.url}"]`, { hasText: entered.date }).count()) === 1
+      && (await openRow.getByText("组合里记录的日期").count()) === 1);
+    const storedEntered = await page.evaluate(async (id) => (await (await fetch("/api/applications")).json()).find((r) => r.programId === id), openId);
+    check("截止日期：采集的截止日期仍在项目上，组合行的日期没被改", storedEntered.officialDeadline === entered.date
+      && JSON.stringify(storedEntered.program.deadlines) === JSON.stringify(openProgram.deadlines), storedEntered);
+    check("截止日期：组合恢复原样", (await putRows(originalRows)) === 200);
+    await page.goto(`${BASE}/programs/${encodeURIComponent(closedId)}`);
+    await settle(page);
+    check("截止日期：项目页列出截止日期，已过的标「已截止」", (await page.locator(`.deadline-list li[data-state="closed"]`).count()) === closedProgram.deadlines.length);
+
     await page.goto(`${BASE}/me`);
     await page.getByText("walkthrough-transcript.pdf").first().waitFor({ timeout: 15000 });
     await settle(page);

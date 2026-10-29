@@ -350,9 +350,9 @@ def test_programs_with_a_stated_requirement_come_first_and_can_be_filtered(requi
 
     def states(p: dict) -> bool:
         # The rule of `app.models.program.has_requirement_data`, read off the wire.
-        return any(p[k] is not None for k in ("minimumMark", "non211MinimumMark", "englishRequirement")) or bool(
-            p["prerequisites"]
-        )
+        return any(
+            p[k] is not None for k in ("minimumMark", "non211MinimumMark", "englishRequirement", "academicRequirement")
+        ) or bool(p["prerequisites"]) or bool(p["deadlines"])
 
     first = client.get("/api/programs", params={"limit": 3}).json()
     assert all(states(p) for p in first)

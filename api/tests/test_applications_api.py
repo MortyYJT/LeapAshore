@@ -833,3 +833,33 @@ def test_the_service_refuses_a_status_outside_the_model(require_db, db_session):
     db_session.commit()
     with pytest.raises(InvalidApplicationPayload, match="waitlisted"):
         replace_applications(db_session, client_id, [{"program_id": REACH, "tier": "冲", "status": "waitlisted"}])
+
+
+def test_the_portfolio_serves_the_programs_collected_deadlines_beside_the_rows_own(require_db, db_session):
+    """openspec requirement-dates D2: the catalogue's deadlines ride along, the entered one is untouched.
+
+    The import writes `program_deadlines` only, so a date the applicant (or the advisor) entered on
+    the row is served exactly as stored, next to the program's collected rounds; the reader picks.
+    """
+    from app.models.program import ProgramDeadline
+
+    seed_programs(db_session)
+    client = TestClient(app)
+    entered = _put(client, [_row(REACH, officialDeadline="2027-01-15",
+                                 deadlineSourceUrl="https://example.edu/admissions/deadlines")])
+    assert entered.status_code == 200, entered.text
+    db_session.add(ProgramDeadline(id=str(uuid.uuid4()), program_id=REACH, label="Round 2",
+                                   deadline=date(2027, 3, 1), quote="Round 2 closes 1 March 2027",
+                                   source_url="https://example.edu/round-2", sort_order=0))
+    db_session.commit()
+    try:
+        row = client.get("/api/applications").json()[0]
+        assert (row["officialDeadline"], row["deadlineSourceUrl"]) == (
+            "2027-01-15", "https://example.edu/admissions/deadlines")
+        assert row["program"]["deadlines"] == [
+            {"label": "Round 2", "date": "2027-03-01", "sourceUrl": "https://example.edu/round-2"}
+        ]
+    finally:
+        db_session.rollback()
+        db_session.query(ProgramDeadline).filter(ProgramDeadline.program_id == REACH).delete()
+        db_session.commit()

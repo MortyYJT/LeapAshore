@@ -4,7 +4,8 @@ Answers about admission requirements come only from rows in the catalogue, each 
 page. Before the model is allowed to answer, the gate checks:
 
 1. a school: the question names a school the catalogue holds (any spelling `catalog_match` knows);
-2. requirement data: the row states at least one requirement (English, a mark, a prerequisite);
+2. requirement data: the row states at least one requirement (English, a mark, a prerequisite, an
+   academic requirement, a deadline; `has_requirement_data`);
    a row that only names a course (the CRICOS extract) cannot answer a requirement question;
 3. a citable source: an https url and a title;
 4. a subject, when the question names one: the row's `Program.field` is that subject's area.
@@ -22,6 +23,7 @@ import logging
 import re
 import time
 from dataclasses import dataclass, field
+from datetime import date, datetime, timedelta, timezone
 
 from sqlalchemy import and_, case, func, literal, select
 from sqlalchemy.orm import Session, joinedload, selectinload
@@ -141,7 +143,8 @@ def search_requirements(session: Session, query: str, limit: int = TOP_K) -> Ret
     programs = session.scalars(
         select(Program)
         .where(Program.id.in_(chosen))
-        .options(joinedload(Program.university), selectinload(Program.prerequisites))
+        .options(joinedload(Program.university), selectinload(Program.prerequisites),
+                 selectinload(Program.deadlines))
     ).all()
     sources = {s.id: s for s in session.scalars(select(Source).where(Source.id.in_({p.source_id for p in programs})))}
     by_id = {p.id: p for p in programs}
@@ -160,7 +163,36 @@ def _fmt_mark(value) -> str:
     return "未知" if value is None else f"{float(value):g}"
 
 
-def evidence_line(n: int, hit: Hit) -> str:
+BEIJING = timezone(timedelta(hours=8))
+
+
+def beijing_today() -> date:
+    """Today's calendar date in Beijing, the day a deadline is judged against (requirement-dates D4)."""
+    return datetime.now(BEIJING).date()
+
+
+def _page(url: str | None, source: Source | None) -> str:
+    """Name the page a value was read from when it is not the program's own cited page."""
+    return f"（出处 {url}）" if url and (source is None or url != source.url) else ""
+
+
+def _deadlines(p: Program, source: Source | None, today: date) -> str:
+    """Every collected deadline, a past one marked 已截止 so the model cannot present it as open, and
+    one read from a shared page naming that page, so the citation points where the date is."""
+    parts = []
+    for row in sorted(p.deadlines, key=lambda x: x.sort_order):
+        text = f"{row.label} {row.deadline.isoformat()}" if row.label else row.deadline.isoformat()
+        parts.append(text + ("（已截止）" if row.deadline < today else "") + _page(row.source_url, source))
+    return "；".join(parts) or "未知"
+
+
+def _academic(p: Program, source: Source | None) -> str:
+    if not p.academic_requirement:
+        return "未知"
+    return p.academic_requirement + _page(getattr(p, "academic_source_url", None), source)
+
+
+def evidence_line(n: int, hit: Hit, today: date | None = None) -> str:
     p, s = hit.program, hit.source
     prereqs = "；".join(x.label for x in sorted(p.prerequisites, key=lambda x: x.sort_order)) or "无"
     status = "已核验" if (s and s.verified_at) else "待核验"
@@ -169,6 +201,8 @@ def evidence_line(n: int, hit: Hit) -> str:
         f"｜均分要求（211/985）：{_fmt_mark(p.minimum_mark)}"
         f"｜均分要求（非211）：{_fmt_mark(p.non_211_minimum_mark)}"
         f"｜语言：{p.english_requirement or '未知'}"
+        f"｜学术要求：{_academic(p, s)}"
+        f"｜申请截止：{_deadlines(p, s, today or beijing_today())}"
         f"｜先修要求：{prereqs}"
         f"｜数据状态：{status}"
         f"｜来源：{s.title if s else '无'} {s.url if s else ''}"

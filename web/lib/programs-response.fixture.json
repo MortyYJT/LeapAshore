@@ -1,5 +1,5 @@
 {
-  "$comment": "The `response` array below is the body of GET /api/programs, captured verbatim from the running server with `curl -s 'http://127.0.0.1:8000/api/programs?ids=cricos-061294J,cricos-111671D,cricos-103000K,cricos-092454G,cricos-083866G'` on 2026-10-29 (the five programs the six placeholders folded into; they keep their Chinese names, which the name-mapping tests need). It is here so a unit test can check the field names and the nullability the frontend adapter reads against the names the route actually serves, rather than against the adapter's own declarations. Recapture it, do not hand-edit it: an edit would turn the binding back into a transcript of this repository's own idea of the response. Three things in it are deliberate records of the contract and must not be normalised away: `name` is the Chinese program name while `nameEn` is the English one (so `ProgramView.name` has to come from `nameEn`), the five fields `city`, `degreeLevel`, `field`, `duration` and `englishRequirement` are nullable here (the captured programs happen to carry a value today, which is exactly why a fixture typed out by hand cannot notice the difference), and `source` carries only url, title and status, with no `id`, `excerpt` or `verifiedAt`.",
+  "$comment": "The `response` array below is the body of GET /api/programs, captured verbatim from the running server with `curl -s 'http://127.0.0.1:8000/api/programs?ids=cricos-061294J,cricos-111671D,cricos-103000K,cricos-092454G,cricos-083866G'` on 2026-10-30, after the requirement-dates import (the five programs the six placeholders folded into; they keep their Chinese names, which the name-mapping tests need). It is here so a unit test can check the field names and the nullability the frontend adapter reads against the names the route actually serves, rather than against the adapter's own declarations. Recapture it, do not hand-edit it: an edit would turn the binding back into a transcript of this repository's own idea of the response. Three things in it are deliberate records of the contract and must not be normalised away: `name` is the Chinese program name while `nameEn` is the English one (so `ProgramView.name` has to come from `nameEn`), the five fields `city`, `degreeLevel`, `field`, `duration` and `englishRequirement` are nullable here (the captured programs happen to carry a value today, which is exactly why a fixture typed out by hand cannot notice the difference), and `source` carries only url, title and status, with no `id`, `excerpt` or `verifiedAt`.",
   "response": [
     {
       "slug": "cricos-061294J",
@@ -17,6 +17,9 @@
       "requiresCognate": false,
       "prerequisites": [],
       "englishRequirement": "IELTS 6.5，单项不低于 6.0；TOEFL iBT 90，单项不低于 22",
+      "academicRequirement": "A bachelor degree (AQF Level 7 equivalent) in a cognate discipline with a minimum weighted average mark of 65%*.",
+      "academicSourceUrl": "https://www.unsw.edu.au/study/postgraduate/master-of-information-technology",
+      "deadlines": [],
       "dataStatus": "机器核对",
       "source": {
         "url": "https://www.unsw.edu.au/study/postgraduate/master-of-information-technology",
@@ -40,6 +43,9 @@
       "requiresCognate": false,
       "prerequisites": [],
       "englishRequirement": "IELTS 6.5，单项不低于 6.0；TOEFL iBT 82，单项不低于 17",
+      "academicRequirement": "To be considered for admission to this course an applicant must have— (a) a bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 65 per cent; and (c) completed Mathematics Methods ATAR, or equivalent, as recognised by UWA; or (d) completion of a UWA College Pre Masters Program with a WAM of at least 50.",
+      "academicSourceUrl": "https://www.uwa.edu.au/study/courses/master-of-information-technology",
+      "deadlines": [],
       "dataStatus": "机器核对",
       "source": {
         "url": "https://www.uwa.edu.au/study/courses/master-of-information-technology",
@@ -65,6 +71,9 @@
         "Relevant disciplines include computer science, information technology, information systems, mathematics, engineering, physics, actuarial studies, science (majors in statistics, applied statistics, physics or mathematics) and data science."
       ],
       "englishRequirement": "IELTS 6.5，单项不低于 6.0；TOEFL iBT 87，单项不低于 19",
+      "academicRequirement": "To be eligible to complete the degree in 2 years full-time (or part-time equivalent)full-time (only available as full-time study), you'll need: a bachelor's degree (or equivalent) in a relevant discipline (see below), or a bachelor's degree (or equivalent) which includes all of the relevant discipline content (see below), or to have successfully completed 3 years of study towards an approved qualification at an overseas partner institution, with a formal pathway to the Master of Data Science. You must have a grade point average (GPA) of 5.0 on a 7-point scale in your previous qualification 1.5-year degree (24 units of study) If you have relevant prior learning or experience, you can reduce the number of courses you need to complete and graduate in less time. To be eligible to complete the degree in 1.5 years full-time (or part-time equivalent)full-time (only available as full-time study), you'll need: a bachelor's degree (or equivalent) in a relevant discipline (see below) with studies in at least 3 courses in mathematics, 2 courses in statistics or probability and 4 courses in computer sciences. You must have a grade point average (GPA) of 5.0 on a 7-point scale in your previous qualification",
+      "academicSourceUrl": "https://study.uq.edu.au/study-options/programs/master-data-science-5660",
+      "deadlines": [],
       "dataStatus": "机器核对",
       "source": {
         "url": "https://study.uq.edu.au/study-options/programs/master-data-science-5660",
@@ -88,6 +97,9 @@
       "requiresCognate": false,
       "prerequisites": [],
       "englishRequirement": "需同时满足 Monash 英语要求",
+      "academicRequirement": null,
+      "academicSourceUrl": null,
+      "deadlines": [],
       "dataStatus": "待核验",
       "source": {
         "url": "https://www.monash.edu/study/courses/find-a-course/artificial-intelligence-c6007",
@@ -111,6 +123,9 @@
       "requiresCognate": false,
       "prerequisites": [],
       "englishRequirement": "按悉尼大学课程页英语要求核验",
+      "academicRequirement": null,
+      "academicSourceUrl": null,
+      "deadlines": [],
       "dataStatus": "待核验",
       "source": {
         "url": "https://www.sydney.edu.au/content/courses/courses/pc/master-of-computer-science.html",

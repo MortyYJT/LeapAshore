@@ -117,6 +117,9 @@ test("maps every served field onto the view field by field", () => {
       requiresCognate: program.requiresCognate,
       prerequisites: program.prerequisites,
       englishRequirement: program.englishRequirement,
+      academicRequirement: program.academicRequirement,
+      academicSourceUrl: program.academicSourceUrl,
+      deadlines: program.deadlines,
       source: {
         // The wire's `source` is `{url, title, status}`; these three keys are this side's own, and the
         // values below are the only ones available without inventing something.
@@ -217,9 +220,12 @@ test("a mapped program has every field the assessment code reads", () => {
   assert.deepEqual(
     Object.keys(view).sort(),
     [
+      "academicRequirement",
+      "academicSourceUrl",
       "city",
       "country",
       "dataStatus",
+      "deadlines",
       "degreeLevel",
       "duration",
       "englishRequirement",
@@ -437,6 +443,7 @@ const SERVED_ROW: ServedApplication = {
     city: "悉尼",
     degreeLevel: "授课型硕士",
     dataStatus: "待核验",
+    deadlines: [{ label: "Term 1 2027", date: "2026-11-30", sourceUrl: "https://example.edu/dates" }],
   },
   createdAt: "2026-10-07T12:41:51.352633Z",
   updatedAt: "2026-10-07T12:41:51.352633Z",
@@ -464,6 +471,8 @@ test("maps a served portfolio row onto the item the interface renders", () => {
     status: "applying",
     officialDeadline: null,
     deadlineSourceUrl: null,
+    // The program's collected deadlines ride beside the row's own (openspec requirement-dates D2).
+    collectedDeadlines: [{ label: "Term 1 2027", date: "2026-11-30", sourceUrl: "https://example.edu/dates" }],
   });
 });
 
@@ -474,6 +483,7 @@ test("a row the server does not flag is not flagged here", () => {
   // Every field of the item is written from the row rather than left to a default that happens to
   // read the same. This is the assertion that notices a dropped `needsReview`.
   assert.deepEqual(Object.keys(item).sort(), [
+    "collectedDeadlines",
     "confirmed",
     "deadlineSourceUrl",
     "isPrimary",
@@ -584,4 +594,12 @@ test("a status this build does not know is read as considering, not passed throu
     },
   ]);
   assert.equal(item.status, "considering");
+});
+
+test("an older server that sends no academic requirement or deadlines maps to unknown and none", () => {
+  const view = toProgramView(served({ academicRequirement: undefined, academicSourceUrl: undefined, deadlines: undefined }));
+  assert.equal(view.academicRequirement, null);
+  assert.equal(view.academicSourceUrl, null);
+  assert.deepEqual(view.deadlines, []);
+  assert.equal(toProgramView(served({ academicRequirement: "" })).academicRequirement, null);
 });

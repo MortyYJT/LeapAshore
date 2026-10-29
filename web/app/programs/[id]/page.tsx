@@ -4,6 +4,7 @@ import { notFound, redirect } from "next/navigation";
 
 import { SourceNote } from "@/components/ui";
 import { cricosFacts, schoolSlugForUniversity, statesARequirement } from "@/lib/catalog";
+import { beijingToday, isClosed } from "@/lib/deadlines";
 import { masterPrograms, overseasInstitutions } from "@/lib/catalog-server";
 import { serverProgramPage, serverUniversities } from "@/lib/server-api";
 import { dataStatusLabel, DATA_STATUS_MEANINGS, NOT_COLLECTED } from "@/lib/taxonomy";
@@ -58,6 +59,9 @@ export default async function ProgramPage({ params }: { params: Promise<{ id: st
         ["学制", program.duration ?? NOT_COLLECTED],
       ];
   const stated = statesARequirement(program);
+  // Rendered per request, so 已截止 is judged against today's Beijing date (requirement-dates D4).
+  const today = beijingToday();
+  const deadlines = [...program.deadlines].sort((a, b) => (a.date < b.date ? -1 : a.date > b.date ? 1 : 0));
 
   return (
     <>
@@ -97,6 +101,47 @@ export default async function ProgramPage({ params }: { params: Promise<{ id: st
                   <tr><td>先修课</td><td>{program.prerequisites.length ? program.prerequisites.join("；") : missing}</td></tr>
                   <tr><td>英语</td><td>{program.englishRequirement ?? missing}</td></tr>
                   <tr>
+                    <td>学术要求</td>
+                    <td>
+                      {program.academicRequirement ? (
+                        <>
+                          <span lang="en">{program.academicRequirement}</span>
+                          <div className="muted small">
+                            采集时整理的英文摘要，原文见
+                            {program.academicSourceUrl && program.academicSourceUrl !== program.source.url ? (
+                              <a href={program.academicSourceUrl} target="_blank" rel="noreferrer">出处页</a>
+                            ) : (
+                              "来源页"
+                            )}
+                          </div>
+                        </>
+                      ) : (
+                        missing
+                      )}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>申请截止</td>
+                    <td>
+                      {deadlines.length === 0 ? (
+                        missing
+                      ) : (
+                        <ul className="deadline-list">
+                          {deadlines.map((d, i) => {
+                            const closed = isClosed(d.date, today);
+                            return (
+                              <li key={`${d.date}-${i}`} data-state={closed ? "closed" : "upcoming"}>
+                                {closed && <span className="pill pill-outline">已截止</span>}{" "}
+                                <a className="num" href={d.sourceUrl} target="_blank" rel="noreferrer">{d.date}</a>
+                                {d.label && <span className="muted small" lang="en"> · {d.label}</span>}
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      )}
+                    </td>
+                  </tr>
+                  <tr>
                     <td>来源</td>
                     <td>
                       <a href={program.source.url} target="_blank" rel="noreferrer">{program.source.title}</a>
@@ -111,7 +156,7 @@ export default async function ProgramPage({ params }: { params: Promise<{ id: st
         </div>
       </main>
       <SourceNote>
-        {facts ? "课程事实来自 CRICOS（澳大利亚教育部，CC BY 2.5 AU）。" : ""}录取要求摘自该校官网页面，尚未经人工核对，申请前请以官网为准。没有收录的要求显示为未收录，系统不会代填。
+        {facts ? "课程事实来自 CRICOS（澳大利亚教育部，CC BY 2.5 AU）。" : ""}录取要求和截止日期摘自该校官网页面，尚未经人工核对，申请前请以官网为准；已过的截止日期标「已截止」。没有收录的要求显示为未收录，系统不会代填。
       </SourceNote>
     </>
   );

@@ -31,6 +31,7 @@
  * declarations were wrong about the wire, so `Program` is what carries the nullability and every
  * consumer of it now answers for the nulls it can see.
  */
+import type { CollectedDeadline } from "./deadlines.ts";
 import { toSourceStatus } from "./source-status.ts";
 import type { ApplicationStatus, PortfolioItem, PortfolioTier, Program } from "./types";
 
@@ -72,6 +73,10 @@ export interface ServedProgram {
   requiresCognate: boolean;
   prerequisites: string[];
   englishRequirement: string | null;
+  /** Added with the collected deadlines (openspec requirement-dates); an older server sends neither. */
+  academicRequirement?: string | null;
+  academicSourceUrl?: string | null;
+  deadlines?: CollectedDeadline[] | null;
   dataStatus: string;
   source: ServedSource;
   /** Added with the international catalogue; an older server sends neither. */
@@ -191,6 +196,8 @@ export interface ServedProgramRef {
   city: string | null;
   degreeLevel: string | null;
   dataStatus: string;
+  /** The program's collected deadlines; an older server does not send them. */
+  deadlines?: CollectedDeadline[] | null;
 }
 
 /** One portfolio row as `ApplicationOut` serves it: the columns, plus the program the row names. */
@@ -291,6 +298,9 @@ export function toProgramView(program: ServedProgram): Program {
     requiresCognate: program.requiresCognate ?? false,
     prerequisites: program.prerequisites ?? [],
     englishRequirement: isFilled(program.englishRequirement) ? program.englishRequirement : null,
+    academicRequirement: isFilled(program.academicRequirement) ? program.academicRequirement : null,
+    academicSourceUrl: isFilled(program.academicSourceUrl) ? program.academicSourceUrl : null,
+    deadlines: program.deadlines ?? [],
     source: {
       id: program.slug,
       title: requiredText(program.source?.title, "source.title"),
@@ -343,6 +353,7 @@ export function toPortfolioItems(rows: ServedApplication[]): PortfolioItem[] {
     status: toApplicationStatus(row.status),
     officialDeadline: row.officialDeadline ?? null,
     deadlineSourceUrl: row.deadlineSourceUrl ?? null,
+    collectedDeadlines: row.program?.deadlines ?? [],
   }));
 }
 

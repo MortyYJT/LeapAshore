@@ -62,10 +62,16 @@ test("a program row links back to its school's page in the library", () => {
 });
 
 test("a program states a requirement by the backend's has_requirement_data rule", () => {
-  const none = { minimumMark: null, non211MinimumMark: null, englishRequirement: null, prerequisites: [] as string[] };
+  const none = {
+    minimumMark: null, non211MinimumMark: null, englishRequirement: null, prerequisites: [] as string[],
+    academicRequirement: null, deadlines: [] as { label: string | null; date: string; sourceUrl: string }[],
+  };
   assert.equal(statesARequirement(none), false);
   assert.equal(statesARequirement({ ...none, englishRequirement: "IELTS 6.5" }), true);
   assert.equal(statesARequirement({ ...none, minimumMark: 80 }), true);
   assert.equal(statesARequirement({ ...none, non211MinimumMark: 85 }), true);
   assert.equal(statesARequirement({ ...none, prerequisites: ["Calculus"] }), true);
+  assert.equal(statesARequirement({ ...none, academicRequirement: "A 2:1 honours degree" }), true);
+  // A past deadline still counts: the page lists it, labelled 已截止.
+  assert.equal(statesARequirement({ ...none, deadlines: [{ label: "Round 1", date: "2026-01-15", sourceUrl: "https://example.edu" }] }), true);
 });

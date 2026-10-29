@@ -194,8 +194,9 @@ def test_the_gate_reads_a_bounded_number_of_rows_not_the_catalogue(catalogue):
         gate("帝国理工学院计算机")
     finally:
         event.remove(engine, "after_cursor_execute", count)
-    # universities + K candidates per school + K programs + their sources and prerequisites
-    assert sum(returned) <= universities + 4 * evidence.TOP_K
+    # universities + K candidates per school + K programs + their sources and prerequisites, plus each
+    # program's deadlines (at most 8 per program in the collected data, 2026-10-30)
+    assert sum(returned) <= universities + 4 * evidence.TOP_K + 8 * evidence.TOP_K
     assert max(returned) < programs or programs <= universities
 
 
@@ -214,3 +215,37 @@ def test_the_portfolio_search_tool_keeps_the_other_words(catalogue):
     assert "Human Rights" not in result
     # Words that match no name ("硕士") are filler and do not empty the result.
     assert "Master of Science in Computer Science" in search_programs.invoke({"keyword": "港大 计算机 硕士"})
+
+
+def test_an_evidence_line_carries_the_academic_requirement_and_the_deadlines():
+    """The gate admits a row that states only these, so the model must see them; a past one says so."""
+    from datetime import date
+    from types import SimpleNamespace
+
+    from app.agent.evidence import Hit, evidence_line
+
+    program = SimpleNamespace(
+        university=SimpleNamespace(name="测试大学"), name="数据科学硕士", name_en="MSc Data Science",
+        minimum_mark=None, non_211_minimum_mark=None, english_requirement=None, prerequisites=[],
+        academic_requirement="A 2:1 honours degree",
+        deadlines=[
+            SimpleNamespace(label="Round 1", deadline=date(2026, 10, 1), sort_order=0,
+                            source_url="https://example.edu/msc"),
+            SimpleNamespace(label="Round 2", deadline=date(2026, 10, 30), sort_order=1,
+                            source_url="https://example.edu/msc"),
+            SimpleNamespace(label=None, deadline=date(2027, 1, 31), sort_order=2,
+                            source_url="https://example.edu/dates"),
+        ],
+        academic_source_url="https://example.edu/entry",
+    )
+    source = SimpleNamespace(title="MSc Data Science", url="https://example.edu/msc", verified_at=None)
+    line = evidence_line(1, Hit(program, source), today=date(2026, 10, 30))
+    # A value read from a shared page names that page, so the model cites where the value actually is.
+    assert "｜学术要求：A 2:1 honours degree（出处 https://example.edu/entry）" in line
+    assert ("｜申请截止：Round 1 2026-10-01（已截止）；Round 2 2026-10-30；"
+            "2027-01-31（出处 https://example.edu/dates）") in line
+
+    bare = SimpleNamespace(**{**vars(program), "academic_requirement": None, "academic_source_url": None,
+                              "deadlines": []})
+    line = evidence_line(1, Hit(bare, source), today=date(2026, 10, 30))
+    assert "｜学术要求：未知" in line and "｜申请截止：未知" in line
