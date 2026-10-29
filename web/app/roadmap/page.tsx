@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
 
+import { LoginPrompt, RequireAccount } from "@/components/auth/AuthProvider";
+import { SampleTimeline } from "@/components/home/SampleTimeline";
 import { Timeline, type DeadlineMark } from "@/components/roadmap/Timeline";
 import { Empty, Loading, Notice, SourceNote } from "@/components/ui";
 import { uploadMaterial } from "@/lib/api";
@@ -32,8 +34,35 @@ function headline(model: TimelineModel): string {
   return `当前在「${current.title}」，还有 ${left} 项，建议 ${current.end ? md(current.end) : "入学"} 前完成。`;
 }
 
-/** The roadmap (spec application-roadmap): the main interface. */
+/**
+ * The roadmap (spec application-roadmap): the main interface. In login mode a logged-out visitor sees the
+ * sample roadmap and a login prompt; the applicant's own timeline needs an account (openspec account-login).
+ */
 export default function RoadmapPage() {
+  return (
+    <RequireAccount
+      what="路线图"
+      fallback={
+        <main className="page">
+          <div className="title-row">
+            <div>
+              <h1>申请路线图</h1>
+              <p className="lede">下面是一位示例申请人的路线图。登录后，这里会按你的入学时间和选校组合排出你自己的。</p>
+            </div>
+          </div>
+          <div className="section">
+            <SampleTimeline />
+          </div>
+          <LoginPrompt what="你自己的路线图" />
+        </main>
+      }
+    >
+      <Roadmap />
+    </RequireAccount>
+  );
+}
+
+function Roadmap() {
   const profile = useProfile();
   const portfolio = usePortfolio();
   const roadmap = useRoadmap(profile.data);
@@ -68,7 +97,7 @@ export default function RoadmapPage() {
           </div>
           <div className="toolbar">
             <span className="muted">{anchor ? `${anchor.getUTCFullYear()} 年 ${anchor.getUTCMonth() + 1} 月入学` : "入学时间未填"}</span>
-            <Link className="btn btn-secondary" href="/assess">
+            <Link className="btn btn-secondary" href="/me">
               改入学时间
             </Link>
           </div>
@@ -81,7 +110,7 @@ export default function RoadmapPage() {
         {model && !model.dated && (
           <div className="section">
             <Empty>
-              没有入学时间，系统不会替你假设一个。<Link href="/assess">去填入学时间</Link>，各阶段就会从入学时间往前倒推排出建议日期。
+              没有入学时间，系统不会替你假设一个。<Link href="/me">去「我的」填入学时间</Link>，各阶段就会从入学时间往前倒推排出建议日期。
             </Empty>
           </div>
         )}
@@ -129,7 +158,7 @@ export default function RoadmapPage() {
                       {deadlines.length === 0 && (
                         <div className="row">
                           <span className="muted">
-                            还没有选项目。<Link href="/assess/result">去选校</Link>
+                            还没有选项目。<Link href="/tiers">去选校</Link>
                           </span>
                         </div>
                       )}

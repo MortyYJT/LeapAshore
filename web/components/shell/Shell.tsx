@@ -4,12 +4,15 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, type ReactNode } from "react";
 
+import { useAuth } from "@/components/auth/AuthProvider";
+
 import { Mark } from "./Mark";
 
-// Spec app-navigation: five links and 我的背景, the current one marked, folding into a menu below 640px.
+// Spec app-navigation: five links and 我的, the current one marked, folding into a menu below 640px.
+// In login mode a logged-out visitor sees 登录 instead of 我的 (openspec account-login D11).
 const LINKS: { label: string; href: string; matches: string[] }[] = [
   { label: "路线图", href: "/roadmap", matches: ["/roadmap"] },
-  { label: "选校", href: "/portfolio", matches: ["/portfolio", "/assess"] },
+  { label: "选校", href: "/portfolio", matches: ["/portfolio", "/tiers"] },
   { label: "学校库", href: "/schools", matches: ["/schools"] },
   { label: "项目库", href: "/programs", matches: ["/programs"] },
   { label: "顾问", href: "/advisor", matches: ["/advisor"] },
@@ -33,6 +36,7 @@ export function Shell({ children }: { children: ReactNode }) {
   }, []);
 
   const meCurrent = isCurrent(pathname, ["/me"]);
+  const { gated, state, openLogin } = useAuth();
   return (
     <>
       <header className={`bar${scrolled ? " scrolled" : ""}${open ? " open" : ""}`}>
@@ -47,13 +51,21 @@ export function Shell({ children }: { children: ReactNode }) {
                 {link.label}
               </Link>
             ))}
-            <Link className="phone-only" href="/me" aria-current={meCurrent ? "page" : undefined}>
-              我的背景
-            </Link>
+            {!gated && (
+              <Link className="phone-only" href="/me" aria-current={meCurrent ? "page" : undefined}>
+                我的
+              </Link>
+            )}
           </nav>
-          <Link className="me-link" href="/me" aria-current={meCurrent ? "page" : undefined}>
-            我的背景
-          </Link>
+          {gated ? (
+            <button type="button" className="btn btn-primary btn-small login-btn" onClick={() => openLogin("/tiers")}>
+              登录
+            </button>
+          ) : (
+            <Link className="me-link" href="/me" aria-current={meCurrent ? "page" : undefined} title={state?.account?.email}>
+              我的
+            </Link>
+          )}
           <button
             type="button"
             className="btn btn-secondary btn-small menu-btn"
@@ -66,6 +78,9 @@ export function Shell({ children }: { children: ReactNode }) {
         </div>
       </header>
       {children}
+      <div className="site-foot">
+        <Link href="/privacy">隐私政策</Link>
+      </div>
     </>
   );
 }

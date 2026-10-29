@@ -9,12 +9,14 @@ const complete = {
   intake: "2027 S2",
 };
 
-test("an applicant whose assessment is complete lands on the roadmap", async () => {
+test("an applicant whose basics are held lands on the roadmap", async () => {
   assert.equal(await landingFor(async () => complete), "/roadmap");
+  // The intake is edited on 我的 and does not decide the landing.
+  assert.equal(await landingFor(async () => ({ ...complete, intake: null })), "/roadmap");
 });
 
-test("an incomplete assessment sees the introduction", async () => {
-  assert.equal(await landingFor(async () => ({ ...complete, intake: null })), null);
+test("missing basics see the introduction", async () => {
+  assert.equal(await landingFor(async () => ({ ...complete, englishScore: "" })), null);
   assert.equal(await landingFor(async () => ({})), null);
 });
 

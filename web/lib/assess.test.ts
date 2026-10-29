@@ -1,14 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
-import {
-  EMPTY_PROFILE,
-  englishScoreOf,
-  isAssessmentComplete,
-  missingRequired,
-  parseEnglishScore,
-  toApplicant,
-} from "./assess.ts";
+import { EMPTY_PROFILE, englishScoreOf, hasBasics, missingBasics, parseEnglishScore, toApplicant } from "./assess.ts";
 import type { Profile } from "./types.ts";
 
 const complete: Profile = {
@@ -26,22 +19,34 @@ const complete: Profile = {
   intake: "2027 S2",
 };
 
-test("an assessment is complete exactly when every required field is held", () => {
-  assert.equal(isAssessmentComplete(complete), true);
-  assert.deepEqual(missingRequired(complete), []);
-  // The school name and the budget may be left empty.
-  assert.equal(isAssessmentComplete({ ...complete, schoolName: "", domesticTier: null, annualBudgetCny: null }), true);
+test("the basics are the four facts the tiers compare, and nothing else", () => {
+  assert.equal(hasBasics(complete), true);
+  assert.deepEqual(missingBasics(complete), []);
+  // Education level, major, degree, intake and budget belong to 我的 and never block tiering.
+  const fourOnly: Profile = {
+    ...EMPTY_PROFILE,
+    schoolOrigin: "国内",
+    schoolName: "北京邮电大学",
+    gpaScore: 85,
+    gpaScale: 100,
+    targetField: "计算机与数据",
+    englishScore: "还没考",
+  };
+  assert.equal(hasBasics(fourOnly), true);
 });
 
-test("a missing intake blocks completion and names the field", () => {
-  const missing = missingRequired({ ...complete, intake: "" });
-  assert.deepEqual(missing.map((m) => m.field), ["intake"]);
-  assert.ok(missing[0].reason.length > 0);
-  assert.equal(isAssessmentComplete({ ...complete, intake: "" }), false);
+test("each missing basic is named once, in form order", () => {
+  assert.deepEqual(missingBasics(EMPTY_PROFILE).map((m) => m.field), ["school", "gpa", "targetField", "englishScore"]);
+  assert.ok(missingBasics(EMPTY_PROFILE).every((m) => m.label.length > 0));
 });
 
-test("a mark without its scale is not a complete answer", () => {
-  assert.deepEqual(missingRequired({ ...complete, gpaScale: null }).map((m) => m.field), ["gpaScore"]);
+test("a school needs both where it is and its name", () => {
+  assert.deepEqual(missingBasics({ ...complete, schoolName: "  " }).map((m) => m.field), ["school"]);
+  assert.deepEqual(missingBasics({ ...complete, schoolOrigin: null }).map((m) => m.field), ["school"]);
+});
+
+test("a mark without its scale is not a basic answered", () => {
+  assert.deepEqual(missingBasics({ ...complete, gpaScale: null }).map((m) => m.field), ["gpa"]);
 });
 
 test("a listed 211 school on a 100 scale is compared on both requirements", () => {

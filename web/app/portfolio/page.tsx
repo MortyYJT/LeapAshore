@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 
+import { LoginPrompt, RequireAccount } from "@/components/auth/AuthProvider";
 import { Button, Loading, Notice, Pill, SourceNote } from "@/components/ui";
 import { fetchProgramPage, replaceApplications } from "@/lib/api";
 import { usePortfolio } from "@/lib/hooks/usePortfolio";
@@ -17,6 +18,24 @@ import type { ApplicationStatus, PortfolioItem, Program } from "@/lib/types";
  * the applicant confirms; confirming replaces the stored portfolio whole.
  */
 export default function PortfolioPage() {
+  return (
+    <RequireAccount
+      what="选校组合"
+      fallback={
+        <main className="page">
+          <div className="title-row">
+            <h1>选校组合</h1>
+          </div>
+          <LoginPrompt what="你的选校组合" />
+        </main>
+      }
+    >
+      <Portfolio />
+    </RequireAccount>
+  );
+}
+
+function Portfolio() {
   const saved = usePortfolio();
   const [draft, setDraft] = useState<PortfolioItem[] | null>(null);
   const [programs, setPrograms] = useState<Map<string, Program>>(new Map());
@@ -87,8 +106,8 @@ export default function PortfolioPage() {
             </p>
           </div>
           <div className="toolbar">
-            <Link className="btn btn-secondary" href="/assess/result">
-              从测评结果添加
+            <Link className="btn btn-secondary" href="/tiers">
+              从分档结果添加
             </Link>
           </div>
         </div>
@@ -130,7 +149,7 @@ export default function PortfolioPage() {
                     <tr>
                       <td colSpan={6} className="wide">
                         <div className="empty">
-                          还没有选项目。<Link href="/assess/result">从测评结果添加</Link>
+                          还没有选项目。<Link href="/tiers">从分档结果添加</Link>
                         </div>
                       </td>
                     </tr>

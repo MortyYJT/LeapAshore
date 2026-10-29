@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 
+import { useAuth } from "@/components/auth/AuthProvider";
 import { Pill, SourceNote } from "@/components/ui";
 import { confirmAdvisorAction, sendAdvisorMessage, TOOL_LABELS, type AdvisorEvent, type Citation } from "@/lib/advisor";
 import { dataStatusLabel } from "@/lib/taxonomy";
@@ -44,6 +45,8 @@ export default function AdvisorPage() {
   const [draft, setDraft] = useState("");
   const [thinking, setThinking] = useState(false);
   const body = useRef<HTMLDivElement>(null);
+  const { requireLogin, refresh } = useAuth();
+  const asking = useRef(false);
   const active = conversations.find((c) => c.id === activeId) ?? conversations[0];
 
   useEffect(() => {
@@ -81,9 +84,18 @@ export default function AdvisorPage() {
     };
   }
 
-  function send(text: string) {
+  /**
+   * Send `text`. In login mode a logged-out visitor gets the login dialog first; the sentence stays in the
+   * composer while it is open and is sent as typed once the dialog finishes (openspec account-login D11).
+   */
+  async function send(text: string) {
     const content = text.trim();
-    if (!content || thinking) return;
+    if (!content || thinking || asking.current) return;
+    asking.current = true;
+    const allowed = await requireLogin().finally(() => {
+      asking.current = false;
+    });
+    if (!allowed) return;
     const convId = active.id;
     const reply: Message = { id: uid(), role: "assistant", content: "" };
     setConversations((prev) =>
@@ -95,20 +107,25 @@ export default function AdvisorPage() {
     );
     setDraft("");
     setThinking(true);
-    sendAdvisorMessage(convId, content, handlerFor(convId, reply.id)).catch(() => {
+    sendAdvisorMessage(convId, content, handlerFor(convId, reply.id))
+      .then((outcome) => outcome === "unauthorized" && void refresh())
+      .catch(() => {
       patch(convId, reply.id, (m) => ({ ...m, error: "网络错误，请稍后再试。" }));
       setThinking(false);
     });
   }
 
-  function answer(message: Message, approved: boolean) {
+  async function answer(message: Message, approved: boolean) {
     if (thinking) return;
+    if (!(await requireLogin())) return;
     const convId = active.id;
     patch(convId, message.id, (m) => ({ ...m, confirm: m.confirm && { ...m.confirm, state: approved ? "approved" : "rejected" } }));
     const reply: Message = { id: uid(), role: "assistant", content: "" };
     setConversations((prev) => prev.map((c) => (c.id === convId ? { ...c, messages: [...c.messages, reply] } : c)));
     setThinking(true);
-    confirmAdvisorAction(convId, approved, handlerFor(convId, reply.id)).catch(() => {
+    confirmAdvisorAction(convId, approved, handlerFor(convId, reply.id))
+      .then((outcome) => outcome === "unauthorized" && void refresh())
+      .catch(() => {
       patch(convId, reply.id, (m) => ({ ...m, error: "网络错误，请稍后再试。" }));
       setThinking(false);
     });
@@ -148,7 +165,7 @@ export default function AdvisorPage() {
                   <h2>可以这样问</h2>
                   <div className="grid" style={{ gap: 8 }}>
                     {SUGGESTIONS.map((s) => (
-                      <button key={s} type="button" className="prompt" onClick={() => send(s)}>
+                      <button key={s} type="button" className="prompt" onClick={() => void send(s)}>
                         {s}
                       </button>
                     ))}
@@ -164,7 +181,7 @@ export default function AdvisorPage() {
                   m.role === "user" ? (
                     <div key={m.id} className="msg-user">{m.content}</div>
                   ) : (
-                    <AssistantMessage key={m.id} message={m} busy={thinking} onAnswer={answer} />
+                    <AssistantMessage key={m.id} message={m} busy={thinking} onAnswer={(m, ok) => void answer(m, ok)} />
                   ),
                 )
               )}
@@ -176,7 +193,7 @@ export default function AdvisorPage() {
               className="composer"
               onSubmit={(e) => {
                 e.preventDefault();
-                send(draft);
+                void send(draft);
               }}
             >
               <label className="sr-only" htmlFor="msg">输入问题</label>
@@ -189,7 +206,7 @@ export default function AdvisorPage() {
                 onKeyDown={(e) => {
                   if (e.key === "Enter" && !e.shiftKey) {
                     e.preventDefault();
-                    send(draft);
+                    void send(draft);
                   }
                 }}
               />

@@ -3,9 +3,11 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 
-import { Button, Empty, Loading, Notice, SourceNote } from "@/components/ui";
+import { LoginPrompt, RequireAccount } from "@/components/auth/AuthProvider";
+import { ProfileForm } from "@/components/profile/ProfileForm";
+import { Button, Loading, Notice, SourceNote } from "@/components/ui";
 import { fetchAllPrograms, fetchProgramPage } from "@/lib/api";
-import { isAssessmentComplete, toApplicant } from "@/lib/assess";
+import { hasBasics, missingBasics, toApplicant } from "@/lib/assess";
 import { useProfile } from "@/lib/hooks/useProfile";
 import { usePortfolio } from "@/lib/hooks/usePortfolio";
 import { addToDraft, readDraft, removeFromDraft, writeDraft } from "@/lib/portfolio-draft";
@@ -33,10 +35,20 @@ const TIER_ORDER: Tier[] = ["保底", "稳妥", "冲刺", "不满足"];
 const sign = (n: number) => `${n > 0 ? "+" : n < 0 ? "−" : "±"}${Math.abs(Math.round(n * 10) / 10)}`;
 
 /**
- * The assessment result (spec program-tiering): every program in the target field that has a stated
- * requirement, tiered by how far the official requirements are met. Not an admission chance.
+ * The tiers (spec program-tiering): every program in the target field that has a stated requirement,
+ * tiered by how far the official requirements are met. Not an admission chance. Moved from
+ * `/assess/result` when the assessment page was removed (openspec account-login); a user who skipped the
+ * four basics is asked to 先补信息 here.
  */
-export default function ResultPage() {
+export default function TiersPage() {
+  return (
+    <RequireAccount what="分档结果" fallback={<Page><LoginPrompt what="你的分档结果" /></Page>}>
+      <Tiers />
+    </RequireAccount>
+  );
+}
+
+function Tiers() {
   const profile = useProfile();
   const portfolio = usePortfolio();
   const [programs, setPrograms] = useState<Program[] | null>(null);
@@ -47,7 +59,7 @@ export default function ResultPage() {
   const [expanded, setExpanded] = useState<Set<string>>(new Set());
 
   const field = profile.data?.targetField ?? null;
-  const complete = profile.data ? isAssessmentComplete(profile.data) : false;
+  const complete = profile.data ? hasBasics(profile.data) : false;
 
   useEffect(() => {
     if (!field || !complete) return;
@@ -91,11 +103,16 @@ export default function ResultPage() {
   if (profile.loading && !profile.data) return <Page><Loading what="你的背景" /></Page>;
   if (profile.error && !profile.data) return <Page><Notice error>没有读到你的背景（{profile.error}）。<button className="btn btn-text" onClick={profile.reload}>重试</button></Notice></Page>;
   if (!profile.data || !complete) {
+    const missing = profile.data ? missingBasics(profile.data).map((m) => m.label) : [];
     return (
       <Page>
-        <Empty>
-          背景还没填完，所以没法分档。<Link href="/assess">去完成背景测评</Link>
-        </Empty>
+        <section className="panel panel-pad section" aria-labelledby="basics-h">
+          <h2 id="basics-h" style={{ marginBottom: 6 }}>先补信息</h2>
+          <p className="muted" style={{ margin: "0 0 20px" }}>
+            分档要拿你的背景和官方要求比较{missing.length ? `，还差：${missing.join("、")}` : ""}。填好就能看到冲刺、稳妥、保底。
+          </p>
+          <ProfileForm initial={profile.data} mode="basics" idPrefix="tiers" onSaved={() => profile.reload()} submitLabel="保存并分档" />
+        </section>
       </Page>
     );
   }
@@ -231,13 +248,13 @@ function Page({ children, draftCount }: { children: React.ReactNode; draftCount?
       <main className="page">
         <div className="title-row">
           <div>
-            <h1>测评结果</h1>
+            <h1>分档结果</h1>
             <p className="lede">
               按已收录的官方要求比较你的背景。分档说明满足了几项要求，<strong>不是录取概率</strong>。
             </p>
           </div>
           <div className="toolbar">
-            <Link className="btn btn-secondary" href="/assess">
+            <Link className="btn btn-secondary" href="/me">
               修改背景
             </Link>
             <Link className="btn btn-primary" href="/portfolio">

@@ -1,5 +1,5 @@
-// The background assessment's rules (spec background-assessment), as pure functions the assessment page,
-// the result page and the return-visit redirect share.
+// The profile rules (spec profile-basics), as pure functions the info step, the tiers page and the
+// return-visit redirect share.
 //
 // Two rules decide what the system may compare, and both refuse to invent a value:
 // - only a mark on a 100 scale is compared with a percentage threshold; a 4.0 or 5.0 mark has no official
@@ -26,49 +26,41 @@ export const EMPTY_PROFILE: Profile = {
   intake: "",
 };
 
-export type RequiredField =
-  | "educationLevel"
-  | "schoolOrigin"
-  | "major"
-  | "gpaScore"
-  | "targetDegree"
-  | "targetField"
-  | "englishScore"
-  | "intake";
+/**
+ * The four facts the tiers compare (openspec account-login, spec profile-basics): the undergraduate
+ * school, the average mark with its scale, the target field and the English score. They are asked for
+ * once, after the first registration, and can be skipped; every other field is edited on 我的.
+ */
+export type BasicField = "school" | "gpa" | "targetField" | "englishScore";
 
-/** The required fields in form order, each with the reason the form shows beside it when it is missing. */
-export const REQUIRED_FIELDS: { field: RequiredField; label: string; reason: string }[] = [
-  { field: "educationLevel", label: "现在的学历", reason: "决定申请哪一级学位" },
-  { field: "schoolOrigin", label: "学校在哪里", reason: "决定按哪一类院校比较均分" },
-  { field: "major", label: "专业", reason: "用来对照专业背景要求" },
-  { field: "gpaScore", label: "加权均分和分制", reason: "分档要和均分门槛比较" },
-  { field: "targetDegree", label: "申请学位", reason: "决定看哪一类项目" },
-  { field: "targetField", label: "申请方向", reason: "测评结果按方向列出项目" },
-  { field: "englishScore", label: "英语成绩", reason: "分档要和语言要求比较；还没考也请选上" },
-  { field: "intake", label: "入学时间", reason: "路线图从入学时间往前倒推，不填就不排日期" },
+export const BASIC_FIELDS: { field: BasicField; label: string }[] = [
+  { field: "school", label: "本科院校" },
+  { field: "gpa", label: "均分和分制" },
+  { field: "targetField", label: "申请方向" },
+  { field: "englishScore", label: "英语成绩" },
 ];
 
-function answered(profile: Profile, field: RequiredField): boolean {
+function answeredBasic(profile: Profile, field: BasicField): boolean {
   switch (field) {
-    case "gpaScore":
+    case "school":
+      return profile.schoolOrigin !== null && profile.schoolName.trim() !== "";
+    case "gpa":
       // A mark means nothing without its scale.
       return profile.gpaScore !== null && profile.gpaScale !== null;
-    case "major":
+    case "targetField":
+      return profile.targetField !== null;
     case "englishScore":
-    case "intake":
-      return profile[field].trim() !== "";
-    default:
-      return profile[field] !== null;
+      return profile.englishScore.trim() !== "";
   }
 }
 
-export function missingRequired(profile: Profile): typeof REQUIRED_FIELDS {
-  return REQUIRED_FIELDS.filter(({ field }) => !answered(profile, field));
+export function missingBasics(profile: Profile): typeof BASIC_FIELDS {
+  return BASIC_FIELDS.filter(({ field }) => !answeredBasic(profile, field));
 }
 
-/** Complete exactly when the server profile holds every required field. */
-export function isAssessmentComplete(profile: Profile): boolean {
-  return missingRequired(profile).length === 0;
+/** True when the tiers have everything they compare; otherwise the tiers page asks to 先补信息. */
+export function hasBasics(profile: Profile): boolean {
+  return missingBasics(profile).length === 0;
 }
 
 function institutionOf(profile: Profile): Institution {

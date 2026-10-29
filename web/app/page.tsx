@@ -31,11 +31,11 @@ export default async function Home() {
           <div>
             <h1 className="intro-title">把硕士申请排成一条时间线</h1>
             <p className="lede intro-lede">
-              填一次背景，看看哪些项目的官方要求你已经满足；选好学校后，从今天到入学，每个阶段要准备什么、建议什么时候做、依据来自哪个官方页面，都在一张图上。
+              填四项背景，看看哪些项目的官方要求你已经满足；选好学校后，从今天到入学，每个阶段要准备什么、建议什么时候做、依据来自哪个官方页面，都在一张图上。
             </p>
             <div className="toolbar" style={{ marginTop: 28 }}>
-              <LinkButton href="/assess" variant="primary">
-                开始测评
+              <LinkButton href="/tiers" variant="primary">
+                看看能申哪些
               </LinkButton>
               <LinkButton href="/schools">先看学校</LinkButton>
             </div>

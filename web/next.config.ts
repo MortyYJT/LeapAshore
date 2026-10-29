@@ -5,6 +5,14 @@ const nextConfig: NextConfig = {
   // The browser reaches the API through this origin, so the httpOnly `leapashore_client` cookie is
   // same-origin and no CORS or credentials plumbing is needed. The cost is that the backend must be
   // running: `make dev` starts both, and `screenshots` refuses to drive the browser without it.
+  // The assessment page was removed (openspec account-login): its four facts are asked after the first
+  // registration, the rest live on 我的, and the result page moved to /tiers.
+  async redirects() {
+    return [
+      { source: "/assess", destination: "/tiers", permanent: false },
+      { source: "/assess/result", destination: "/tiers", permanent: false },
+    ];
+  },
   async rewrites() {
     return [{ source: "/api/:path*", destination: "http://127.0.0.1:8000/api/:path*" }];
   },
