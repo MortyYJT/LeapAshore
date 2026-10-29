@@ -6,10 +6,12 @@
 
 - 规则已收成一份 `CLAUDE.md`；任务清单是根目录的 `TASKS.md`，按顺序做。
 - 个人网站 mortyyjt.site 已修复（PR #28，10-30 部署，只重建了 caddy 容器）。
-- 下一步：`TASKS.md` P0 第二条「按新范围收缩学校库」。
+- 学校库已收缩到范围内 287 所（PR #34）：29 个国家和地区，日本 8 所采集文件已删。
+- **范围内采集统计（10-30 重算，「仓库清理」直接用）**：133 所有采集文件，其中 120 所有项目（13 所 0 项目：被拦或连不上），共 5,223 个项目，5,163 个 `机器核对`、60 个 `待核验`；学校库里还有 154 所未采。README 和 PRD 已改成这组数。重算命令见 `TASKS.md` 该条。
+- 下一步：`TASKS.md` P0 第三条「账号与登录」。
 - 线上运行的是 main（截至 PR #28 合并，10-30；应用代码与 PR #30 时相同，这次只重建了 caddy），地址 https://leapashore.mortyyjt.site 。个人网站 https://mortyyjt.site 也由这里的 Caddy 出。
 - 生产库（10-29）：programs 7586，`verified_at` 非空 0。最近一次部署前的备份在服务器 `~/db-backup-20261030-pre-site.sql.gz`。
-- `make verify` 自 PR #29 之后没有重跑；`TASKS.md` P0 里有这一项。
+- `make verify`（PR #34，10-30）：后端 325、前端 226 全过，走查对 `make build` 产物 73/73。
 
 ## 开放问题
 
@@ -32,7 +34,8 @@
 
 ## 坑
 
-- Turbopack dev 缓存会继续给旧 CSS：删掉 `web/.next` 再重启 dev。`make clean` 会删 `node_modules`。
+- Turbopack dev 缓存会继续给旧 CSS：删掉 `web/.next` 再重启 dev。`make clean` 会删 `node_modules`。症状之一：走查「390：导航收进菜单」失败。dev server 不是自己起的、不方便重启时，可对 `make build` 产物走查：`cd web && NEXT_DIST_DIR=.next-build npx next start -p 3100`，再 `BASE_URL=http://localhost:3100 node scripts/walkthrough.cjs`。
+- 从数据库删学校用 `python -m app.collect.remove_schools [--apply] <university_id>...`，不要手敲 SQL；被选校组合、材料或路线图任务引用的项目会保留并列在 `kept_programs`。
 - 本机 API 不带 `--reload`，加了新路由要重启 uvicorn。
 - 返回 `StreamingResponse` 时必须调用 `set_client_cookie`，否则流式响应不带 cookie。
 - Playwright 自带的 Chromium 截中文会截掉半个字，截图要用 `channel: 'chrome'`。

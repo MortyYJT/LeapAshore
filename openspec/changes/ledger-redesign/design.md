@@ -29,7 +29,7 @@ API stays the browser's only path to applicant data.
 
 - Collecting real admission requirements (the next item in the handoff).
 - Sign-in, the consultant back office, lead capture.
-- Countries other than Australia in the program catalog; the school library keeps its 346 schools.
+- Countries other than Australia in the program catalog; the school library keeps its schools (346 then, 287 since the 2026-10-30 scope change).
 - A Postgres checkpointer for the advisor.
 - Deployment. The new seed must run in production before this version ships; that is a separate step.
 
@@ -167,7 +167,7 @@ countries (PR #27). D3's premise that every non-hand-entered program is a CRICOS
   search and paging; Australian rows add the CRICOS facts (tuition, weeks) by course code as D3 says. The
   result page tiers every program in the target field that has a stated requirement, whatever its country.
 - **Programs link to their school.** `GET /api/programs` serves `universityId` and `country`. The school library
-  keeps its 346 schools from `overseas-institutions.json` and joins them to `GET /api/universities` by Chinese
+  keeps its schools (287 since 2026-10-30) from `overseas-institutions.json` and joins them to `GET /api/universities` by Chinese
   name, then English name. One school can have several rows (CRICOS lists some universities under two
   provider codes, and the importer leaves an empty row for a school whose site refused collection), so a
   school page reads its programs with `provider=<id>,<id>`. School pages are addressed by the library's own

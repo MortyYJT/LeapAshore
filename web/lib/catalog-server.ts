@@ -1,6 +1,6 @@
 import "server-only";
 
-// The library's own files, read on the Next server (design D3): the 346 schools, the CRICOS course facts
+// The library's own files, read on the Next server (design D3): the 287 schools, the CRICOS course facts
 // the `programs` table has no columns for, and the Ministry list of mainland institutions. Renamed from
 // `prototype-library-server.ts` with the prototype routes gone.
 
