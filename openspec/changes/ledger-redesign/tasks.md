@@ -11,7 +11,7 @@
 - [x] 2.3 Red: tests for the fold — requirements and source move onto the matched row, `applications` re-pointed with first choice and status kept, no placeholder row left, unmatched slug dropped
 - [x] 2.4 Green: `api/app/seed_catalog.py` with the upsert and the fold; wire it into `make seed`
 - [x] 2.5 Red then green: `GET /api/programs` filters `ids`, `field`, `provider`, `has_requirements`, `limit`, `offset`, with a 100-row cap
-- [ ] 2.6 Advisor: test that `search_programs` finds a CRICOS course by English name and still returns at most 10
+- [x] 2.6 Advisor: test that `search_programs` finds a CRICOS course by English name and still returns at most 10
 - [x] 2.7 Run the backend suite on a fresh database (`make migrate`, `make seed`) and fix fallout from the larger catalog
 
 - [x] 2.8 (D11) File collected programs under a study area read from their name; test agreement with CRICOS

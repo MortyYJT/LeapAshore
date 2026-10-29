@@ -6,6 +6,7 @@ stub that records the question and returns the applicant's answer. The writes ar
 the development database, and the subjects are swept by `conftest`'s autouse fixture.
 """
 
+import json
 import uuid
 
 import pytest
@@ -115,3 +116,18 @@ def test_a_declined_change_writes_nothing(monkeypatch, applicant):
 
     assert reply.startswith("用户取消了操作")
     assert _stored(client_id) == before
+
+
+def test_the_advisor_finds_a_cricos_course_by_its_english_name_and_caps_the_list():
+    from app.seed import seed_programs
+    from app.seed_catalog import seed_catalog
+
+    with SessionLocal() as s:
+        seed_programs(s)
+        seed_catalog(s)
+
+    found = tools.search_programs.func("悉尼大学 data science")
+    broad = tools.search_programs.func("Master")
+
+    assert "cricos-087981E" in found
+    assert len(json.loads(broad)) == 10
