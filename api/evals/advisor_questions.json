@@ -335,8 +335,9 @@
    "schools": [
     "mcgill-university"
    ],
-   "answerable": false,
-   "note": "在库里但 0 个项目",
+   "answerable": true,
+   "name": "comput",
+   "note": "原来在库里但 0 个项目；2026-10-30 采集队列补采了 McGill 课程目录（coursecatalogue.mcgill.ca）",
    "split": "tune"
   },
   {
@@ -388,9 +389,12 @@
    "id": "t33",
    "question": "香港浸会大学传媒硕士的要求",
    "intent": "官方要求核验",
-   "schools": [],
-   "answerable": false,
-   "note": "学校库有、采集库没有",
+   "schools": [
+    "hong-kong-baptist-university"
+   ],
+   "answerable": true,
+   "field": "传媒艺术与音乐",
+   "note": "原来学校库有、采集库没有；2026-10-30 采集队列补采后，传媒艺术与音乐类只有 Creative Writing 一个项目有要求",
    "split": "tune"
   },
   {

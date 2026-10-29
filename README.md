@@ -88,8 +88,8 @@ Code: [api/app/agent/](api/app/agent/).
 | Australian master's programs (2,920) | CRICOS, data.gov.au, CC BY 2.5 AU | Real, attributed, dated |
 | Chinese institutions (3,167) and tier tags | Public lists | Real; known gaps recorded in the fixture |
 | Overseas schools (287) | QS World University Rankings 2027 top 300 in the 29 countries and regions in scope (241) + 46 for regional coverage | Real |
-| Admission requirements (5,223 programs at 120 schools) | Official course pages, each quote checked against a saved snapshot | **Machine-checked (机器核对)** for 5,163; the other 60 have no value that passed the check and are not imported. None human-verified yet. In the site's catalogue, 5,159 of the 5,163 state a requirement the program page shows (English, a mark, a prerequisite, an academic requirement or a deadline; 4,831 carry an academic requirement); the other 4 have only English notes without a score, which are not stored. The catalogue's 「有要求」 count is 5,161: those 5,159 plus 2 hand-entered 待核验 placeholders (local import, 2026-10-30) |
-| Deadlines | Official pages, each quote checked against a saved snapshot | **Imported, machine-checked**: 3,986 dates for 2,335 programs at 79 schools (2026-10-30). Each is shown with its source page; one before today's Beijing date is labelled 已截止 (130 on 2026-10-30) and never drawn as a future date. A date entered on a portfolio row is never overwritten by the import |
+| Admission requirements (8,851 programs at 238 schools) | Official course pages, each quote checked against a saved snapshot | **Machine-checked (机器核对)** for 7,425; the other 1,426 have no value that passed the check and are not imported. 3,628 of the programs (118 schools) were collected by the collection queue on 2026-10-30 (one page each, extracted by the advisor's model and checked the same way); the rest by collecting agents. None human-verified yet. In the site's catalogue, 7,419 of the 7,425 state a requirement the program page shows (English, a mark, a prerequisite, an academic requirement or a deadline; 6,916 carry an academic requirement); the other 6 have only English notes without a score, which are not stored. The catalogue's 「有要求」 count is 7,421: those 7,419 plus 2 hand-entered 待核验 placeholders (local import, 2026-10-30) |
+| Deadlines | Official pages, each quote checked against a saved snapshot | **Imported, machine-checked**: 4,776 dates for 2,747 programs at 120 schools (2026-10-30). Each is shown with its source page; one before today's Beijing date is labelled 已截止 (340 on 2026-10-30) and never drawn as a future date. A date entered on a portfolio row is never overwritten by the import |
 
 These rules exist because an earlier version of this product generated a plausible verification
 date and an official-looking threshold with no source. Do not undo them.
@@ -144,8 +144,11 @@ Done:
 
 Not yet:
 
-- Requirements are collected for 133 of the 287 schools (13 of those blocked or unreachable); the rest
-  show 待采集 (to be collected). Requirements published only in PDFs are not read yet
+- Requirements are collected for 238 of the 287 schools; the other 49 refused our crawler (robots.txt
+  or HTTP 403), had no listing the queue could read, or have no taught master's list, and show 待采集
+  (to be collected). Many program pages state their requirements on a separate page the queue does not
+  follow yet, so 1,426 collected programs have no requirement. Requirements published only in PDFs are
+  not read yet
 - No requirement has been verified by a person (`verified_at` is empty everywhere)
 - Conversations live in an in-memory checkpointer and are lost on restart (a Postgres checkpointer is
   a schema change and needs its own migration)

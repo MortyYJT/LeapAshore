@@ -34,6 +34,7 @@ from sqlalchemy.orm import Session
 
 from app.collect.changes import diff_fields, has_verified_value
 from app.collect.extract import ExtractResult, extract_snapshot
+from app.collect.ratelimit import RetryLater
 from app.collect.snapshot import SNAPSHOT_ROOT, Blocked, HttpError, snapshot
 from app.collect.text import normalize
 from app.collect.verify import MACHINE_CHECKED, NEEDS_HUMAN
@@ -51,6 +52,9 @@ COLLECTOR = "leapashore-queue"
 # Visible text shorter than this usually means the page needs its scripts run (measured: a Sydney course
 # page is 685 characters plain, 6,269 rendered).
 THIN_PAGE_CHARS = 1500
+ITEM_KEYS = ("label", "date", "text", "overall", "min_band", "min_mark_211", "min_mark_other", "recommended",
+             "scale_note", "quote", "source_sha256", "source_url", "check")
+PROGRAM_KEYS = ("cricos_code", "snapshot_sha256", "fetched_at", "rendered", "collector", "fields", "status")
 # A page is not refetched while it is in one of these states unless asked to re-collect.
 SETTLED = {PageState.DONE, PageState.UNCHANGED, PageState.BLOCKED, PageState.FAILED, PageState.NEEDS_HUMAN}
 
@@ -252,6 +256,11 @@ def collect_page(session: Session, page_id: str, *, budget: Budget, fetch=snapsh
         session.commit()
         raise Transient(page.last_error) from error
 
+    if not page.render and not can_render and (meta.get("text_chars") or 0) < THIN_PAGE_CHARS:
+        # Too thin to be the page a reader sees, and this host cannot run its scripts: no model call
+        # on a shell page; a machine with Chrome collects it.
+        page.render = True
+        return _settle(session, page, PageState.DEFERRED, "the page needs rendering; this host cannot render")
     if not page.render and can_render and (meta.get("text_chars") or 0) < THIN_PAGE_CHARS:
         # A page built by JavaScript shows next to nothing without its scripts: render it once, and
         # from then on (the agents' brief did the same by hand).
@@ -260,7 +269,9 @@ def collect_page(session: Session, page_id: str, *, budget: Budget, fetch=snapsh
             page.render = True
         except Blocked as blocked:
             return _settle(session, page, PageState.BLOCKED, str(blocked)[:500])
-        except Exception:  # noqa: BLE001 - the plain fetch still stands
+        except RetryLater:
+            raise  # the host's turn (its Crawl-delay) is far away: try the whole page again then
+        except Exception:  # noqa: BLE001 - a failed render: the plain fetch still stands
             pass
     sha = meta["sha256"]
     if page.origin == "discovered" and page.result is None:
@@ -387,6 +398,12 @@ def due_pages(session: Session, now: datetime, limit: int) -> list[CollectPage]:
 # --- Export ------------------------------------------------------------------------------------------
 
 
+def _ordered(item: dict) -> dict:
+    out = {key: item[key] for key in ITEM_KEYS if key in item}
+    out.update({k: v for k, v in item.items() if k not in out})
+    return out
+
+
 def export_school(session: Session, school_key: str, data_dir: Path = DATA_DIR, out_dir: Path | None = None,
                   today: date | None = None) -> dict:
     """Merge the queue's results for one school into its requirement file (D8).
@@ -412,10 +429,16 @@ def export_school(session: Session, school_key: str, data_dir: Path = DATA_DIR, 
     programs = data.setdefault("programs", [])
     replaced = added = 0
     for page in pages:
-        program = dict(page.result)
-        program["name"] = page.program_name
-        program["url"] = page.url
-        program.setdefault("collector", f"{COLLECTOR} ({page.model or 'model'})")
+        result = dict(page.result)
+        result.setdefault("collector", f"{COLLECTOR} ({page.model or 'model'})")
+        # The database hands JSON back with its keys sorted; write them in the files' usual order.
+        program = {"name": page.program_name, "url": page.url}
+        for key in PROGRAM_KEYS:
+            if key in result:
+                program[key] = result[key]
+        program.update({k: v for k, v in result.items() if k not in program})
+        program["fields"] = {name: ([_ordered(i) for i in value] if isinstance(value, list) else _ordered(value))
+                             for name, value in (program.get("fields") or {}).items()}
         same = [i for i, p in enumerate(programs) if p.get("url") == page.url]
         named = [i for i in same if programs[i].get("name") == page.program_name]
         target = named[0] if named else (same[0] if len(same) == 1 else None)

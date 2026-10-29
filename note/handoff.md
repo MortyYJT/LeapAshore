@@ -20,7 +20,8 @@
 - 截止日期和学术要求入库（P1 第一条，PR #48）：Alembic `b7d4e2a91c60` 加 `programs.academic_requirement`、`programs.academic_source_url` 和表 `program_deadlines`；导入器写过了 `verify` 的学术要求摘要和截止日期，重跑不改任何行。截止日期**不写进** `applications.official_deadline`（那是组合行自己记的日期）；`GET /api/applications` 的 `program.deadlines` 带上项目的截止日期，前端 `web/lib/deadlines.ts` 的 `deadlineOf` 决定显示哪个（组合行自己的 > 下一轮 > 全部已过的标「已截止」> 未收录），「今天」按北京时间在渲染时算。「有要求」口径加了学术要求和截止日期（后端 `has_requirement_data`、前端 `statesARequirement`、顾问评估 `evals/run_advisor.py` 的相关集，三处一起改）。本机：3,986 条截止日期、4,831 个学术要求、「有要求」5,161。设计 `openspec/changes/requirement-dates/`（未归档）。
 - 截止日期入库已部署（10-30，只重建 api 和 web）：部署前备份服务器 `~/db-backup-20261030-pre-deadlines.sql.gz`，Alembic 现在是 `b7d4e2a91c60`；生产数和本机一致（3,986 / 4,831 / 「有要求」5,161 / 已截止 130）；用户的组合行和路线图行部署前后整表 md5 相同（记录在服务器 `~/pre-deadlines-user-dates.txt`）。
 - 采集队列（P1 第二条，第一阶段代码 PR #50）：Celery + Redis，每页一个任务，状态在新表 `collect_pages`，要求变化记 `requirement_changes`（Alembic `6afe86aaf7b6`）。设计 `openspec/changes/collect-queue/`（tasks.md 是进度清单，第二阶段补采的进度也记在那里）。本机跑法：`make worker`（或 `api/var/work/start-worker.sh`，带 DeepSeek 配置），`python -m app.collect.queue status|discover|enqueue|resume|export`（在 `api/` 下）。队列**不写目录库**：`export` 写回采集文件 → 审阅提交 → 原导入器入库。
-- 下一步：P1 第二条第二阶段（补采数据，见 `openspec/changes/collect-queue/tasks.md` 的 Run log），然后 P1 第三条「对话持久化」。
+- 补采（P1 第二条第二阶段，PR #51）：`_schools.json` 扩到 287 所（带 `listing_urls`）；队列补采 118 所 3,628 个项目（2,262 个机器核对），模型费 36.37 元（上限价）。采集文件现在 248 所、238 所有项目、8,851 个项目、7,425 个机器核对；本机导入后「有要求」7,421、截止日期 4,776 条。细节和 Run log 在 `openspec/changes/collect-queue/tasks.md`。
+- 下一步：P1 第三条「对话持久化」。
 - 线上（10-30）已跑 PR #40：compose 多了 `redis` 容器；部署前备份在服务器 `~/db-backup-20261030-pre-limits.sql.gz`（Alembic 仍是 `5c1e7f0a2b3d`，PR #40 没改表）。
 - 线上运行的是 main（截至 PR #38 合并，10-30 部署，登录模式关；生产库已用 `remove_schools --apply` 删掉日本 8 所），地址 https://leapashore.mortyyjt.site 。个人网站 https://mortyyjt.site 也由这里的 Caddy 出。
 - 生产库（10-30，PR #34 部署后）：programs 7496（删日本 8 所前 7586），范围外国家项目 0，`verified_at` 非空 0。最近一次部署前的备份在服务器 `~/db-backup-20261030-pre-retrieval.sql.gz`（PR #38 前；Alembic 现在是 `5c1e7f0a2b3d`）。
@@ -49,6 +50,10 @@
 - 采集数据里需要人工确认的点写在各校 json 的 `notes` 里（旧清单可在提交 `1a9fa30` 的 handoff 里查到）。
 - 截止日期会过期（10-30 按北京时间 130 条已过）：界面在渲染时按当天判断、标「已截止」，库里不存状态。最晚的一条是 2028-02-01，随着时间推移越来越多项目会变成「全部已截止」，要靠 P1「采集队列」定期重采。
 - Commons 上 CC BY / CC BY-SA 的校徽需要在界面上署名（`logo_license`、`logo_source` 已在 fixture 里），学校库页面还没有署名区。
+- **Crawl-delay**（10-30 起遵守）：82 个已缓存的 robots.txt 写了 5–120 秒，快照工具以前一律 2 秒；补采时 13 个站点被按 2 秒抓了（数据保留，见 decisions）。
+- 补采后还没采到项目的 49 所：10 所有文件但被拒（见下一条），39 所没有文件——10 所没找到列表页，其余是列表页被拒、渲染超时或页面上没有项目链接。第二轮找列表页没做（会话的网页搜索额度用完），下一个有搜索额度的 agent 可以接着做：把新 URL 写进 `_schools.json` 的 `listing_urls`，`python -m app.collect.queue discover <key>...`，worker 跑完 `export`。
+- 队列采的 1,366 个项目页没有要求通过核对（多数学校把入学要求写在另一页，队列只读项目页本身），在文件里是 `待人工`、不入库。
+- 顾问评估报数组 h08（悉大建筑）标签和库不一致（PR #48 学术要求进口径后就有），`--split heldout` 会拒绝打分；P1「混合检索」用报数组前要先照实改标签。
 - 被拦的学校（按规则不绕过）：Monash、Melbourne、Macquarie、NUS 大部分、Oxford 主站、UCL（50 个后 403）、Bristol、Durham、Bath、Cardiff、York（16 个后 429）、QUB、Stanford 计算机系。
 
 ## 部署

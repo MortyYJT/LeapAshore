@@ -223,3 +223,15 @@
   - worker 用 `--pool threads`：macOS 上 Python 3.12 的 prefork 是 spawn 模式，Celery 任务一跑就报 `not enough values to unpack`（本机实测）；任务都是等网络，线程池够用，生产也用同一种，免得两边行为不同。
 - **理由**：TASKS.md P1 第二条；MortyYJT 2026-10-30 授权 AI 自主决定。
 - **待 MortyYJT 复核**：拒绝 30 天过期是否可以接受；生产 beat 每天 1 元、200 页的默认额度；变更只记不自动入库（要人工 export 再导入）是否太慢；匿名模式下不跑 90 天清理。
+
+## 2026-10-30 补采：学校列表页由子代理搜 URL、模型只挑编号；遵守 Crawl-delay；保留已采数据（Claude 自主（待 MortyYJT 复核））
+
+- **决定**：
+  - `_schools.json` 扩到 287 所：原 165 行保持原顺序，新 122 行按 QS 顺序接在后面（`wave: 13`），名称、中文名、国家取自学校库 fixture（网站按中文名和英文名关联采集库，中文名必须一致）。澳门几所没有英文名的，用子代理从搜索结果里找到的官方英文名；澳洲新校按 CRICOS 机构名对上 `cricos_institution`，项目名和 CRICOS 课程名完全一致时记 `cricos_code`。
+  - 列表页 URL：8 个子代理只用 WebSearch 找（不访问学校网站），157/167 所找到；第二轮想给失败的学校再找，会话的网页搜索额度用完了，没做。
+  - 一所学校的 key 超过 `universities.id` 的 64 字符，缩短为 `technological-and-higher-education-institute-of-hong-kong`。
+  - **Crawl-delay**：跑的过程中发现 82 个 robots.txt 写了 5–120 秒的 Crawl-delay，快照工具（包括以前的采集代理）一直按 2 秒。改成遵守（读已缓存的 robots.txt，不另外请求）。本次有 13 个站点被我们按 2 秒抓了（Alberta 的 Acalog 目录和 Virginia 要求 120 秒，Surrey 目录、Lisbon 要 10 秒等）。**这些已抓到的数据保留**：Crawl-delay 是节奏要求不是禁止访问（RFC 9309 也不含它），删数据不会减少已造成的负载；Alberta 文件的 notes 里写明了。
+  - Alberta 的 60 个项目来自 `ualberta.catalog.acalog.com`（学校官方日历的 Acalog 平台）；`calendar.ualberta.ca` 用的是同一份 robots.txt，这些路径允许抓，所以不算绕过。
+  - 评估集调参组两条标签随数据改：t28（McGill 原来 0 个项目，现在有，加 `name: comput`）、t33（浸会原来没采，现在传媒艺术类只有 Creative Writing 一个项目有要求，标成可答）。报数组（heldout）没动：h08（悉大建筑）标签和库不一致是 PR #48 引入学术要求口径后就有的，留给 P1「混合检索」照实处理。
+- **理由**：TASKS.md P1 第二条；MortyYJT 2026-10-30 授权 AI 自主决定。
+- **待 MortyYJT 复核**：保留 13 个站点按 2 秒抓到的数据是否可以；Alberta 用 Acalog 平台域名；t33 把 Creative Writing 算作「传媒硕士」的答案。

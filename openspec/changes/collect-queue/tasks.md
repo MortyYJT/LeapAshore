@@ -5,26 +5,49 @@ A successor resumes from the first unticked line.
 
 ### Phase 1: the queue (code)
 
-- [ ] 1.1 Celery dependency; `app/worker.py`; broker settings; compose `worker` + `beat` (local, prod)
-- [ ] 1.2 Migration: `collect_pages`, `requirement_changes`
-- [ ] 1.3 Red/green: Redis token bucket spaces requests per host across processes
-- [ ] 1.4 Red/green: `snapshot()` takes a limiter; refusals record a time and expire after 30 days; legacy entries hold
-- [ ] 1.5 Red/green: page task — blocked not retried, transient retried with backoff, unchanged skips the model
-- [ ] 1.6 Red/green: change detection (numbers, quotes, deadline dates; no removals when everything was lost)
-- [ ] 1.7 Red/green: budget stops model calls (`deferred`)
-- [ ] 1.8 Red/green: export merges by URL, keeps other programs, writes no `verified_at`
-- [ ] 1.9 Red/green: discovery accepts only listed links, caps at 60, names from link text
-- [ ] 1.10 Beat schedule: `recollect_due` (due pages, daily cap) and `cleanup` (only in login mode)
-- [ ] 1.11 `make verify`; review; merge; deploy (backup, migrate, worker + beat up, read-only checks)
+- [x] 1.1 Celery dependency; `app/worker.py`; broker settings; compose `worker` + `beat` (local, prod)
+- [x] 1.2 Migration: `collect_pages`, `requirement_changes`
+- [x] 1.3 Red/green: Redis token bucket spaces requests per host across processes
+- [x] 1.4 Red/green: `snapshot()` takes a limiter; refusals record a time and expire after 30 days; legacy entries hold
+- [x] 1.5 Red/green: page task — blocked not retried, transient retried with backoff, unchanged skips the model
+- [x] 1.6 Red/green: change detection (numbers, quotes, deadline dates; no removals when everything was lost)
+- [x] 1.7 Red/green: budget stops model calls (`deferred`)
+- [x] 1.8 Red/green: export merges by URL, keeps other programs, writes no `verified_at`
+- [x] 1.9 Red/green: discovery accepts only listed links, caps at 60, names from link text
+- [x] 1.10 Beat schedule: `recollect_due` (due pages, daily cap) and `cleanup` (only in login mode)
+- [x] 1.11 `make verify`; review; merge; deploy (backup, migrate, worker + beat up, read-only checks) — PR #50, deployed 10-30
+- [x] 1.12 Review fixes (PR #50): export every result, robots no-answer retried, atomic snapshot writes, budget deferral not pushed a month
+- [x] 1.13 Found in the run: non-ASCII URLs percent-encoded; thin pages deferred where there is no Chrome
 
 ### Phase 2: the back-fill run (data)
 
-- [ ] 2.1 `_schools.json` → 287 schools, official listing URLs for the uncollected ones
-- [ ] 2.2 Discovery for the ~154 uncollected + 13 zero-program schools (budget key `backfill`, 100 CNY)
-- [ ] 2.3 Page run; spend and progress recorded here after each batch
-- [ ] 2.4 Export, verify, commit in batches
+- [x] 2.1 `_schools.json` → 287 schools, official listing URLs for the uncollected ones
+- [x] 2.2 Discovery for the ~154 uncollected + 13 zero-program schools (budget key `backfill`, 100 CNY)
+- [x] 2.3 Page run; spend and progress recorded here after each batch
+- [x] 2.4 Export, verify, commit in batches
 - [ ] 2.5 Import into production (handoff procedure); README / PRD numbers recomputed
 
 ### Run log (Phase 2)
 
-(spend, schools done, pages done — appended as the run goes)
+Spend is the upper bound at DeepSeek's peak price; `python -m app.collect.queue status` (in `api/`) shows it.
+
+- 10-30 discovery: 157 of the 167 uncollected / zero-program schools had a listing URL (subagents, web
+  search only, no school site touched); first pass 116 schools → 3,706 program pages. A second pass over
+  20 schools that had failed for transient reasons (render timeouts, cut-off responses) added McGill (59,
+  coursecatalogue.mcgill.ca), Alberta (60, its Acalog calendar) and 3 pages elsewhere. A second URL search
+  for the rest could not run: the session's web-search quota was used up.
+- 10-30 page run (8, then 16 threads, about 1.5 h): 3,833 pages at 122 schools → 3,628 done (118
+  schools), 94 blocked (UAB, ACU, Notre Dame Australia, UTP refused with 401/403 part-way), 111 failed
+  (60 Charles Darwin pages are session-bound Oracle APEX links that answer 302; 31 EdUHK pages: its
+  robots.txt never answered over TLS; 19 answer 404; 1 kept failing on a redirect). 289 pages were rendered in Chrome (thin plain HTML).
+- Spend: **36.37 CNY** upper bound at DeepSeek's peak price (pages 34.49 + discovery ≈ 1.88), under the
+  100 CNY cap, so the run was not cut short.
+- Exported 10-30: 3,628 programs (2,262 machine-checked, 1,366 with no value that passed: their page
+  states requirements elsewhere) into 115 new files and 3 existing ones (McGill, Alberta, UKM).
+- The 13 zero-program schools: McGill, Alberta and UKM now have programs; the other 10 still refuse us
+  (robots.txt answers 403: Macquarie, QUB, Durham, Cardiff, Delft, UCD, Melbourne; HTTP 403: Bath,
+  Otago; KU Leuven's robots.txt does not answer) and were not asked around.
+- Found in the run and fixed: non-ASCII URLs, thin pages without Chrome, and **Crawl-delay**: 82 cached
+  robots.txt files ask for 5–120 s; the snapshot tool (agents and queue alike) had used 2 s. 13 hosts in
+  this run were fetched faster than they ask (Alberta's Acalog and Virginia's records at 120 s requested,
+  Surrey's catalogue and Lisbon at 10 s, …). Honoured from commit "honour robots.txt Crawl-delay" on.
