@@ -1,0 +1,801 @@
+{
+ "description": "Advisor retrieval eval set. AI-labelled (Claude, 2026-10-30) against the local catalogue (7,496 programs). `schools` are university ids the question names; relevant programs are those at those schools that match `field` (Program.field) and `name` (case-insensitive regex on the program's English name) when given, have requirement data and a citable source. `answerable` must equal 'the relevant set is non-empty'; the runner refuses to score when it does not. `tune` is for tuning; `heldout` is scored once, at the end.",
+ "questions": [
+  {
+   "id": "t01",
+   "question": "帝国理工计算机硕士的语言要求是多少？",
+   "intent": "官方要求核验",
+   "schools": [
+    "imperial-college-london"
+   ],
+   "answerable": true,
+   "field": "计算机与数据",
+   "name": "comput",
+   "note": "简称：库里存「帝国理工学院」",
+   "split": "tune"
+  },
+  {
+   "id": "t02",
+   "question": "帝国理工学院计算机专业要什么均分",
+   "intent": "官方要求核验",
+   "schools": [
+    "imperial-college-london"
+   ],
+   "answerable": true,
+   "field": "计算机与数据",
+   "name": "comput",
+   "note": "原问题：曾返回 AI、分子医学",
+   "split": "tune"
+  },
+  {
+   "id": "t03",
+   "question": "香港大学计算机科学硕士申请要求",
+   "intent": "官方要求核验",
+   "schools": [
+    "university-of-hong-kong"
+   ],
+   "answerable": true,
+   "field": "计算机与数据",
+   "name": "computer science",
+   "note": "简体问，库里存「香港大學」",
+   "split": "tune"
+  },
+  {
+   "id": "t04",
+   "question": "港大的金融硕士要什么条件",
+   "intent": "官方要求核验",
+   "schools": [
+    "university-of-hong-kong"
+   ],
+   "answerable": true,
+   "field": "商科与金融",
+   "name": "financ",
+   "note": "简称",
+   "split": "tune"
+  },
+  {
+   "id": "t05",
+   "question": "香港中文大学商科硕士的雅思要求",
+   "intent": "官方要求核验",
+   "schools": [
+    "chinese-university-of-hong-kong"
+   ],
+   "answerable": true,
+   "field": "商科与金融",
+   "note": "简体问，库里存「香港中文大學」",
+   "split": "tune"
+  },
+  {
+   "id": "t06",
+   "question": "港中文 数据科学 硕士要求",
+   "intent": "官方要求核验",
+   "schools": [
+    "chinese-university-of-hong-kong"
+   ],
+   "answerable": true,
+   "field": "计算机与数据",
+   "name": "data",
+   "note": "简称",
+   "split": "tune"
+  },
+  {
+   "id": "t07",
+   "question": "港科大的工程类硕士要求",
+   "intent": "官方要求核验",
+   "schools": [
+    "hong-kong-university-of-science-and-technology"
+   ],
+   "answerable": true,
+   "field": "工程",
+   "note": "简称",
+   "split": "tune"
+  },
+  {
+   "id": "t08",
+   "question": "香港理工大学会计硕士要求",
+   "intent": "官方要求核验",
+   "schools": [
+    "hong-kong-polytechnic-university"
+   ],
+   "answerable": true,
+   "field": "商科与金融",
+   "name": "account",
+   "split": "tune"
+  },
+  {
+   "id": "t09",
+   "question": "香港城市大学电子工程硕士要什么背景",
+   "intent": "官方要求核验",
+   "schools": [
+    "city-university-of-hong-kong"
+   ],
+   "answerable": true,
+   "field": "工程",
+   "name": "electr",
+   "split": "tune"
+  },
+  {
+   "id": "t10",
+   "question": "Imperial College London MSc Computing entry requirements",
+   "intent": "官方要求核验",
+   "schools": [
+    "imperial-college-london"
+   ],
+   "answerable": true,
+   "field": "计算机与数据",
+   "name": "comput",
+   "note": "英文问",
+   "split": "tune"
+  },
+  {
+   "id": "t11",
+   "question": "UCL computer science master requirements",
+   "intent": "官方要求核验",
+   "schools": [
+    "ucl"
+   ],
+   "answerable": true,
+   "field": "计算机与数据",
+   "name": "computer science",
+   "note": "英文缩写",
+   "split": "tune"
+  },
+  {
+   "id": "t12",
+   "question": "LSE 经济学硕士要什么背景",
+   "intent": "官方要求核验",
+   "schools": [
+    "london-school-of-economics-and-political-science"
+   ],
+   "answerable": true,
+   "name": "econom",
+   "note": "经济学在 Program.field 里归「教育与社会科学」，按项目名判相关",
+   "split": "tune"
+  },
+  {
+   "id": "t13",
+   "question": "新国大计算机硕士的先修要求",
+   "intent": "官方要求核验",
+   "schools": [
+    "national-university-of-singapore"
+   ],
+   "answerable": true,
+   "field": "计算机与数据",
+   "note": "简称",
+   "split": "tune"
+  },
+  {
+   "id": "t14",
+   "question": "南洋理工 工程硕士 要求",
+   "intent": "官方要求核验",
+   "schools": [
+    "nanyang-technological-university-singapore"
+   ],
+   "answerable": true,
+   "field": "工程",
+   "note": "简称：库里存「南洋理工大学」",
+   "split": "tune"
+  },
+  {
+   "id": "t15",
+   "question": "悉尼大学计算机硕士要求",
+   "intent": "官方要求核验",
+   "schools": [
+    "usyd"
+   ],
+   "answerable": true,
+   "field": "计算机与数据",
+   "split": "tune"
+  },
+  {
+   "id": "t16",
+   "question": "新南威尔士大学的商科硕士语言要求",
+   "intent": "官方要求核验",
+   "schools": [
+    "unsw"
+   ],
+   "answerable": true,
+   "field": "商科与金融",
+   "split": "tune"
+  },
+  {
+   "id": "t17",
+   "question": "澳国立 计算机硕士 要求",
+   "intent": "官方要求核验",
+   "schools": [
+    "cricos-00120C"
+   ],
+   "answerable": true,
+   "field": "计算机与数据",
+   "note": "简称",
+   "split": "tune"
+  },
+  {
+   "id": "t18",
+   "question": "昆士兰大学工程硕士的均分要求",
+   "intent": "官方要求核验",
+   "schools": [
+    "uq"
+   ],
+   "answerable": true,
+   "field": "工程",
+   "split": "tune"
+  },
+  {
+   "id": "t19",
+   "question": "曼大的金融硕士要求",
+   "intent": "官方要求核验",
+   "schools": [
+    "university-of-manchester"
+   ],
+   "answerable": true,
+   "field": "商科与金融",
+   "name": "financ",
+   "note": "简称",
+   "split": "tune"
+  },
+  {
+   "id": "t20",
+   "question": "爱丁堡大学人工智能硕士要求",
+   "intent": "官方要求核验",
+   "schools": [
+    "university-of-edinburgh"
+   ],
+   "answerable": true,
+   "field": "计算机与数据",
+   "name": "artificial intelligence",
+   "split": "tune"
+  },
+  {
+   "id": "t21",
+   "question": "苏黎世联邦理工计算机科学硕士要求",
+   "intent": "官方要求核验",
+   "schools": [
+    "eth-zurich"
+   ],
+   "answerable": true,
+   "field": "计算机与数据",
+   "name": "computer science",
+   "note": "简称：库里存「苏黎世联邦理工学院」",
+   "split": "tune"
+  },
+  {
+   "id": "t22",
+   "question": "What are the English requirements for HKU's Master of Laws?",
+   "intent": "官方要求核验",
+   "schools": [
+    "university-of-hong-kong"
+   ],
+   "answerable": true,
+   "field": "法律与犯罪学",
+   "name": "law",
+   "note": "英文缩写",
+   "split": "tune"
+  },
+  {
+   "id": "t23",
+   "question": "港大和港中文的计算机硕士要求对比一下",
+   "intent": "官方要求核验",
+   "schools": [
+    "university-of-hong-kong",
+    "chinese-university-of-hong-kong"
+   ],
+   "answerable": true,
+   "field": "计算机与数据",
+   "note": "两校对比",
+   "split": "tune"
+  },
+  {
+   "id": "t24",
+   "question": "纽卡斯尔大学的商科硕士要求",
+   "intent": "官方要求核验",
+   "schools": [
+    "cricos-00109J",
+    "newcastle-university"
+   ],
+   "answerable": true,
+   "field": "商科与金融",
+   "note": "同名：澳洲和英国各一所",
+   "split": "tune"
+  },
+  {
+   "id": "t25",
+   "question": "香港大學的教育碩士要求",
+   "intent": "官方要求核验",
+   "schools": [
+    "university-of-hong-kong"
+   ],
+   "answerable": true,
+   "name": "education",
+   "note": "繁体问",
+   "split": "tune"
+  },
+  {
+   "id": "t26",
+   "question": "清华大学计算机硕士要求",
+   "intent": "官方要求核验",
+   "schools": [],
+   "answerable": false,
+   "note": "不在学校范围",
+   "split": "tune"
+  },
+  {
+   "id": "t27",
+   "question": "东京大学的信息理工硕士要什么条件",
+   "intent": "官方要求核验",
+   "schools": [],
+   "answerable": false,
+   "note": "日本已移出范围",
+   "split": "tune"
+  },
+  {
+   "id": "t28",
+   "question": "麦吉尔大学计算机硕士要求",
+   "intent": "官方要求核验",
+   "schools": [
+    "mcgill-university"
+   ],
+   "answerable": false,
+   "note": "在库里但 0 个项目",
+   "split": "tune"
+  },
+  {
+   "id": "t29",
+   "question": "墨尔本大学的雅思要求是多少",
+   "intent": "官方要求核验",
+   "schools": [
+    "cricos-00116K",
+    "university-of-melbourne"
+   ],
+   "answerable": false,
+   "note": "只有 CRICOS 项目名，没有采到录取要求",
+   "split": "tune"
+  },
+  {
+   "id": "t30",
+   "question": "MIT 计算机硕士要什么条件",
+   "intent": "官方要求核验",
+   "schools": [
+    "massachusetts-institute-of-technology"
+   ],
+   "answerable": false,
+   "field": "计算机与数据",
+   "note": "MIT 没有收录计算机方向项目",
+   "split": "tune"
+  },
+  {
+   "id": "t31",
+   "question": "帝国理工的法学硕士要求",
+   "intent": "官方要求核验",
+   "schools": [
+    "imperial-college-london"
+   ],
+   "answerable": false,
+   "field": "法律与犯罪学",
+   "note": "帝国理工没有法律方向项目",
+   "split": "tune"
+  },
+  {
+   "id": "t32",
+   "question": "计算机硕士一般要求什么均分",
+   "intent": "官方要求核验",
+   "schools": [],
+   "answerable": false,
+   "note": "没有点名学校",
+   "split": "tune"
+  },
+  {
+   "id": "t33",
+   "question": "香港浸会大学传媒硕士的要求",
+   "intent": "官方要求核验",
+   "schools": [],
+   "answerable": false,
+   "note": "学校库有、采集库没有",
+   "split": "tune"
+  },
+  {
+   "id": "t34",
+   "question": "代尔夫特理工大学的土木工程硕士要求",
+   "intent": "官方要求核验",
+   "schools": [
+    "delft-university-of-technology"
+   ],
+   "answerable": false,
+   "note": "在库里但 0 个项目",
+   "split": "tune"
+  },
+  {
+   "id": "t35",
+   "question": "我想申请帝国理工的计算机硕士，帮我加到选校里",
+   "intent": "规划",
+   "split": "tune"
+  },
+  {
+   "id": "t36",
+   "question": "我适合申请哪些英国学校？",
+   "intent": "规划",
+   "split": "tune"
+  },
+  {
+   "id": "t37",
+   "question": "把港大的数据科学设为首选",
+   "intent": "规划",
+   "split": "tune"
+  },
+  {
+   "id": "t38",
+   "question": "帮我把悉尼大学那个项目从选校里删掉",
+   "intent": "规划",
+   "split": "tune"
+  },
+  {
+   "id": "t39",
+   "question": "我本科是武汉大学计算机专业，均分85",
+   "intent": "资料补充",
+   "split": "tune"
+  },
+  {
+   "id": "t40",
+   "question": "我雅思考了7.0，小分6.5",
+   "intent": "资料补充",
+   "split": "tune"
+  },
+  {
+   "id": "t41",
+   "question": "我的预算一年大概30万人民币",
+   "intent": "资料补充",
+   "split": "tune"
+  },
+  {
+   "id": "t42",
+   "question": "我打算2027年秋季入学",
+   "intent": "资料补充",
+   "split": "tune"
+  },
+  {
+   "id": "t43",
+   "question": "把个人陈述这个任务标记为已完成",
+   "intent": "业务操作",
+   "split": "tune"
+  },
+  {
+   "id": "t44",
+   "question": "推荐信已经拿到了，帮我把这项材料改成已完成",
+   "intent": "业务操作",
+   "split": "tune"
+  },
+  {
+   "id": "t45",
+   "question": "你好，你能做什么？",
+   "intent": "通用问答",
+   "split": "tune"
+  },
+  {
+   "id": "t46",
+   "question": "英国一年制硕士和澳洲两年制硕士有什么区别？",
+   "intent": "通用问答",
+   "split": "tune"
+  },
+  {
+   "id": "t47",
+   "question": "雅思和托福哪个更容易考？",
+   "intent": "通用问答",
+   "split": "tune"
+  },
+  {
+   "id": "t48",
+   "question": "学生签证怎么办理？",
+   "intent": "通用问答",
+   "split": "tune"
+  },
+  {
+   "id": "t49",
+   "question": "谢谢，今天先到这",
+   "intent": "通用问答",
+   "split": "tune"
+  },
+  {
+   "id": "t50",
+   "question": "GPA 怎么换算成百分制？",
+   "intent": "通用问答",
+   "split": "tune"
+  },
+  {
+   "id": "h01",
+   "question": "帝国理工 机械工程硕士 要求",
+   "intent": "官方要求核验",
+   "schools": [
+    "imperial-college-london"
+   ],
+   "answerable": true,
+   "field": "工程",
+   "name": "mechanical",
+   "split": "heldout"
+  },
+  {
+   "id": "h02",
+   "question": "香港科技大學 數據科學 碩士要求",
+   "intent": "官方要求核验",
+   "schools": [
+    "hong-kong-university-of-science-and-technology"
+   ],
+   "answerable": true,
+   "field": "计算机与数据",
+   "name": "data",
+   "note": "繁体问",
+   "split": "heldout"
+  },
+  {
+   "id": "h03",
+   "question": "港理工 商科硕士要求",
+   "intent": "官方要求核验",
+   "schools": [
+    "hong-kong-polytechnic-university"
+   ],
+   "answerable": true,
+   "field": "商科与金融",
+   "note": "简称",
+   "split": "heldout"
+  },
+  {
+   "id": "h04",
+   "question": "城大 计算机硕士 要什么条件",
+   "intent": "官方要求核验",
+   "schools": [
+    "city-university-of-hong-kong"
+   ],
+   "answerable": true,
+   "field": "计算机与数据",
+   "note": "简称",
+   "split": "heldout"
+  },
+  {
+   "id": "h05",
+   "question": "KCL 的法律硕士要求",
+   "intent": "官方要求核验",
+   "schools": [
+    "king-s-college-london"
+   ],
+   "answerable": true,
+   "field": "法律与犯罪学",
+   "note": "英文缩写",
+   "split": "heldout"
+  },
+  {
+   "id": "h06",
+   "question": "伦敦政经的金融硕士要求",
+   "intent": "官方要求核验",
+   "schools": [
+    "london-school-of-economics-and-political-science"
+   ],
+   "answerable": true,
+   "field": "商科与金融",
+   "name": "financ",
+   "note": "简称",
+   "split": "heldout"
+  },
+  {
+   "id": "h07",
+   "question": "NTU 计算机硕士的语言要求",
+   "intent": "官方要求核验",
+   "schools": [
+    "nanyang-technological-university-singapore"
+   ],
+   "answerable": true,
+   "field": "计算机与数据",
+   "note": "英文缩写",
+   "split": "heldout"
+  },
+  {
+   "id": "h08",
+   "question": "悉大的建筑硕士要求",
+   "intent": "官方要求核验",
+   "schools": [
+    "usyd"
+   ],
+   "answerable": false,
+   "field": "建筑规划与设计",
+   "note": "简称；悉大建筑方向的项目都还没有采到录取要求",
+   "split": "heldout"
+  },
+  {
+   "id": "h09",
+   "question": "UNSW 工程硕士的均分要求",
+   "intent": "官方要求核验",
+   "schools": [
+    "unsw"
+   ],
+   "answerable": true,
+   "field": "工程",
+   "split": "heldout"
+  },
+  {
+   "id": "h10",
+   "question": "多伦多大学计算机硕士要求",
+   "intent": "官方要求核验",
+   "schools": [
+    "university-of-toronto"
+   ],
+   "answerable": true,
+   "field": "计算机与数据",
+   "split": "heldout"
+  },
+  {
+   "id": "h11",
+   "question": "UBC 的商科硕士要求",
+   "intent": "官方要求核验",
+   "schools": [
+    "university-of-british-columbia"
+   ],
+   "answerable": true,
+   "field": "商科与金融",
+   "note": "英文缩写",
+   "split": "heldout"
+  },
+  {
+   "id": "h12",
+   "question": "哥大 TESOL 硕士要求",
+   "intent": "官方要求核验",
+   "schools": [
+    "columbia-university"
+   ],
+   "answerable": true,
+   "name": "tesol",
+   "note": "简称",
+   "split": "heldout"
+  },
+  {
+   "id": "h13",
+   "question": "宾大的计算机硕士要求",
+   "intent": "官方要求核验",
+   "schools": [
+    "university-of-pennsylvania"
+   ],
+   "answerable": true,
+   "field": "计算机与数据",
+   "note": "简称",
+   "split": "heldout"
+  },
+  {
+   "id": "h14",
+   "question": "华威大学统计硕士要求",
+   "intent": "官方要求核验",
+   "schools": [
+    "university-of-warwick"
+   ],
+   "answerable": true,
+   "name": "statist",
+   "split": "heldout"
+  },
+  {
+   "id": "h15",
+   "question": "What's the IELTS requirement for the University of Hong Kong MSc in Computer Science?",
+   "intent": "官方要求核验",
+   "schools": [
+    "university-of-hong-kong"
+   ],
+   "answerable": true,
+   "field": "计算机与数据",
+   "name": "computer science",
+   "note": "英文全称",
+   "split": "heldout"
+  },
+  {
+   "id": "h16",
+   "question": "首尔大学的硕士录取要求",
+   "intent": "官方要求核验",
+   "schools": [
+    "seoul-national-university"
+   ],
+   "answerable": true,
+   "split": "heldout"
+  },
+  {
+   "id": "h17",
+   "question": "牛津大学法学硕士要求",
+   "intent": "官方要求核验",
+   "schools": [
+    "university-of-oxford"
+   ],
+   "answerable": false,
+   "field": "法律与犯罪学",
+   "note": "牛津没有收录法律方向项目",
+   "split": "heldout"
+  },
+  {
+   "id": "h18",
+   "question": "北京大学金融硕士要求",
+   "intent": "官方要求核验",
+   "schools": [],
+   "answerable": false,
+   "note": "不在学校范围",
+   "split": "heldout"
+  },
+  {
+   "id": "h19",
+   "question": "莫纳什大学的会计硕士要求",
+   "intent": "官方要求核验",
+   "schools": [
+    "monash"
+   ],
+   "answerable": false,
+   "name": "account",
+   "note": "只有 CRICOS 项目名，没有采到录取要求",
+   "split": "heldout"
+  },
+  {
+   "id": "h20",
+   "question": "卡迪夫大学商科硕士要求",
+   "intent": "官方要求核验",
+   "schools": [
+    "cardiff-university"
+   ],
+   "answerable": false,
+   "note": "在库里但 0 个项目",
+   "split": "heldout"
+  },
+  {
+   "id": "h21",
+   "question": "澳门大学的硕士要求",
+   "intent": "官方要求核验",
+   "schools": [],
+   "answerable": false,
+   "note": "学校库有、采集库没有",
+   "split": "heldout"
+  },
+  {
+   "id": "h22",
+   "question": "帮我把UCL的数据科学加进选校，算冲刺档",
+   "intent": "规划",
+   "split": "heldout"
+  },
+  {
+   "id": "h23",
+   "question": "我该冲哪些港校？",
+   "intent": "规划",
+   "split": "heldout"
+  },
+  {
+   "id": "h24",
+   "question": "我是双非一本，均分82，专业是金融",
+   "intent": "资料补充",
+   "split": "heldout"
+  },
+  {
+   "id": "h25",
+   "question": "我托福考了105",
+   "intent": "资料补充",
+   "split": "heldout"
+  },
+  {
+   "id": "h26",
+   "question": "把签证材料清单那个任务改成进行中",
+   "intent": "业务操作",
+   "split": "heldout"
+  },
+  {
+   "id": "h27",
+   "question": "留学中介靠谱吗？",
+   "intent": "通用问答",
+   "split": "heldout"
+  },
+  {
+   "id": "h28",
+   "question": "你是谁开发的？",
+   "intent": "通用问答",
+   "split": "heldout"
+  },
+  {
+   "id": "h29",
+   "question": "申请硕士一般需要准备哪些材料？",
+   "intent": "通用问答",
+   "split": "heldout"
+  },
+  {
+   "id": "h30",
+   "question": "英国的一年制硕士学位国内认可吗？",
+   "intent": "通用问答",
+   "split": "heldout"
+  }
+ ]
+}

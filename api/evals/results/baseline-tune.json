@@ -1,0 +1,861 @@
+{
+ "split": "tune",
+ "retrieval": {
+  "summary": {
+   "k": 4,
+   "questions": 34,
+   "answerable": 25,
+   "unanswerable": 9,
+   "recall_at_k": 0.0533,
+   "precision_at_k": 0.0714,
+   "false_pass_rate": 0.1111,
+   "false_block_rate": 0.72,
+   "false_passes": 1,
+   "false_blocks": 18,
+   "mean_rows_read": 11104.2059,
+   "max_rows_read": 11251,
+   "mean_statements": 36.2059,
+   "mean_ms": 143.8647
+  },
+  "questions": [
+   {
+    "id": "t01",
+    "answerable": true,
+    "passed": false,
+    "refusal": "no_hit",
+    "returned": [],
+    "relevant": 6,
+    "hit": 0,
+    "recall": 0.0,
+    "precision": null,
+    "statements": 18,
+    "rows_read": 11086,
+    "ms": 155.2
+   },
+   {
+    "id": "t02",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "imperial-college-london-msc-artificial-intelligence-9f81b7",
+     "imperial-college-london-mres-clinical-research-translati-c964ef",
+     "imperial-college-london-msc-molecular-medicine-a280aa",
+     "imperial-college-london-mres-alternative-protein-8f96da"
+    ],
+    "relevant": 6,
+    "hit": 0,
+    "recall": 0.0,
+    "precision": 0.0,
+    "statements": 183,
+    "rows_read": 11251,
+    "ms": 174.3
+   },
+   {
+    "id": "t03",
+    "answerable": true,
+    "passed": false,
+    "refusal": "no_hit",
+    "returned": [],
+    "relevant": 3,
+    "hit": 0,
+    "recall": 0.0,
+    "precision": null,
+    "statements": 18,
+    "rows_read": 11086,
+    "ms": 134.6
+   },
+   {
+    "id": "t04",
+    "answerable": true,
+    "passed": false,
+    "refusal": "no_hit",
+    "returned": [],
+    "relevant": 3,
+    "hit": 0,
+    "recall": 0.0,
+    "precision": null,
+    "statements": 17,
+    "rows_read": 11085,
+    "ms": 139.8
+   },
+   {
+    "id": "t05",
+    "answerable": true,
+    "passed": false,
+    "refusal": "no_hit",
+    "returned": [],
+    "relevant": 19,
+    "hit": 0,
+    "recall": 0.0,
+    "precision": null,
+    "statements": 17,
+    "rows_read": 11085,
+    "ms": 139.3
+   },
+   {
+    "id": "t06",
+    "answerable": true,
+    "passed": false,
+    "refusal": "no_hit",
+    "returned": [],
+    "relevant": 3,
+    "hit": 0,
+    "recall": 0.0,
+    "precision": null,
+    "statements": 18,
+    "rows_read": 11086,
+    "ms": 143.1
+   },
+   {
+    "id": "t07",
+    "answerable": true,
+    "passed": false,
+    "refusal": "no_hit",
+    "returned": [],
+    "relevant": 12,
+    "hit": 0,
+    "recall": 0.0,
+    "precision": null,
+    "statements": 17,
+    "rows_read": 11085,
+    "ms": 143.9
+   },
+   {
+    "id": "t08",
+    "answerable": true,
+    "passed": false,
+    "refusal": "no_hit",
+    "returned": [],
+    "relevant": 3,
+    "hit": 0,
+    "recall": 0.0,
+    "precision": null,
+    "statements": 17,
+    "rows_read": 11085,
+    "ms": 146.0
+   },
+   {
+    "id": "t09",
+    "answerable": true,
+    "passed": false,
+    "refusal": "no_hit",
+    "returned": [],
+    "relevant": 1,
+    "hit": 0,
+    "recall": 0.0,
+    "precision": null,
+    "statements": 17,
+    "rows_read": 11085,
+    "ms": 143.5
+   },
+   {
+    "id": "t10",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "imperial-college-london-msc-artificial-intelligence-9f81b7",
+     "imperial-college-london-mres-clinical-research-translati-c964ef",
+     "imperial-college-london-msc-molecular-medicine-a280aa",
+     "imperial-college-london-mres-alternative-protein-8f96da"
+    ],
+    "relevant": 6,
+    "hit": 0,
+    "recall": 0.0,
+    "precision": 0.0,
+    "statements": 182,
+    "rows_read": 11250,
+    "ms": 177.3
+   },
+   {
+    "id": "t11",
+    "answerable": true,
+    "passed": false,
+    "refusal": "no_hit",
+    "returned": [],
+    "relevant": 1,
+    "hit": 0,
+    "recall": 0.0,
+    "precision": null,
+    "statements": 18,
+    "rows_read": 11086,
+    "ms": 139.9
+   },
+   {
+    "id": "t12",
+    "answerable": true,
+    "passed": false,
+    "refusal": "no_hit",
+    "returned": [],
+    "relevant": 15,
+    "hit": 0,
+    "recall": 0.0,
+    "precision": null,
+    "statements": 17,
+    "rows_read": 11085,
+    "ms": 129.8
+   },
+   {
+    "id": "t13",
+    "answerable": true,
+    "passed": false,
+    "refusal": "no_hit",
+    "returned": [],
+    "relevant": 5,
+    "hit": 0,
+    "recall": 0.0,
+    "precision": null,
+    "statements": 18,
+    "rows_read": 11086,
+    "ms": 136.3
+   },
+   {
+    "id": "t14",
+    "answerable": true,
+    "passed": false,
+    "refusal": "no_hit",
+    "returned": [],
+    "relevant": 16,
+    "hit": 0,
+    "recall": 0.0,
+    "precision": null,
+    "statements": 17,
+    "rows_read": 11085,
+    "ms": 136.1
+   },
+   {
+    "id": "t15",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "cricos-111671D",
+     "cricos-006436A",
+     "cricos-008406B",
+     "cricos-0100132"
+    ],
+    "relevant": 1,
+    "hit": 1,
+    "recall": 1.0,
+    "precision": 0.25,
+    "statements": 79,
+    "rows_read": 11147,
+    "ms": 163.0
+   },
+   {
+    "id": "t16",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "cricos-000929F",
+     "cricos-000947D",
+     "cricos-000949B",
+     "cricos-006681K"
+    ],
+    "relevant": 8,
+    "hit": 0,
+    "recall": 0.0,
+    "precision": 0.0,
+    "statements": 72,
+    "rows_read": 11140,
+    "ms": 142.6
+   },
+   {
+    "id": "t17",
+    "answerable": true,
+    "passed": false,
+    "refusal": "no_hit",
+    "returned": [],
+    "relevant": 3,
+    "hit": 0,
+    "recall": 0.0,
+    "precision": null,
+    "statements": 18,
+    "rows_read": 11086,
+    "ms": 138.0
+   },
+   {
+    "id": "t18",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "cricos-002041G",
+     "cricos-002042G",
+     "cricos-002057M",
+     "cricos-026000G"
+    ],
+    "relevant": 14,
+    "hit": 0,
+    "recall": 0.0,
+    "precision": 0.0,
+    "statements": 78,
+    "rows_read": 11146,
+    "ms": 150.4
+   },
+   {
+    "id": "t19",
+    "answerable": true,
+    "passed": false,
+    "refusal": "no_hit",
+    "returned": [],
+    "relevant": 2,
+    "hit": 0,
+    "recall": 0.0,
+    "precision": null,
+    "statements": 17,
+    "rows_read": 11085,
+    "ms": 157.1
+   },
+   {
+    "id": "t20",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "university-of-edinburgh-data-science-msc-722777",
+     "university-of-edinburgh-computer-science-msc-b52f8b",
+     "university-of-edinburgh-artificial-intelligence-msc-775ffc",
+     "university-of-edinburgh-operational-research-msc-e2bc40"
+    ],
+    "relevant": 3,
+    "hit": 1,
+    "recall": 0.3333333333333333,
+    "precision": 0.25,
+    "statements": 80,
+    "rows_read": 11148,
+    "ms": 141.2
+   },
+   {
+    "id": "t21",
+    "answerable": true,
+    "passed": false,
+    "refusal": "no_hit",
+    "returned": [],
+    "relevant": 2,
+    "hit": 0,
+    "recall": 0.0,
+    "precision": null,
+    "statements": 18,
+    "rows_read": 11086,
+    "ms": 134.6
+   },
+   {
+    "id": "t22",
+    "answerable": true,
+    "passed": false,
+    "refusal": "no_hit",
+    "returned": [],
+    "relevant": 8,
+    "hit": 0,
+    "recall": 0.0,
+    "precision": null,
+    "statements": 17,
+    "rows_read": 11085,
+    "ms": 137.1
+   },
+   {
+    "id": "t23",
+    "answerable": true,
+    "passed": false,
+    "refusal": "no_hit",
+    "returned": [],
+    "relevant": 16,
+    "hit": 0,
+    "recall": 0.0,
+    "precision": null,
+    "statements": 18,
+    "rows_read": 11086,
+    "ms": 135.7
+   },
+   {
+    "id": "t24",
+    "answerable": true,
+    "passed": false,
+    "refusal": "no_hit",
+    "returned": [],
+    "relevant": 17,
+    "hit": 0,
+    "recall": 0.0,
+    "precision": null,
+    "statements": 17,
+    "rows_read": 11085,
+    "ms": 149.1
+   },
+   {
+    "id": "t25",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "university-of-hong-kong-master-of-accounting-analytics-971c83",
+     "university-of-hong-kong-master-of-accounting-1ed765",
+     "university-of-hong-kong-master-of-artificial-intelligenc-260a4c",
+     "university-of-hong-kong-master-of-business-administratio-f8d2ab"
+    ],
+    "relevant": 1,
+    "hit": 0,
+    "recall": 0.0,
+    "precision": 0.0,
+    "statements": 83,
+    "rows_read": 11151,
+    "ms": 143.5
+   },
+   {
+    "id": "t26",
+    "answerable": false,
+    "passed": false,
+    "refusal": "no_hit",
+    "returned": [],
+    "relevant": 0,
+    "hit": 0,
+    "recall": null,
+    "precision": null,
+    "statements": 18,
+    "rows_read": 11086,
+    "ms": 132.1
+   },
+   {
+    "id": "t27",
+    "answerable": false,
+    "passed": false,
+    "refusal": "no_hit",
+    "returned": [],
+    "relevant": 0,
+    "hit": 0,
+    "recall": null,
+    "precision": null,
+    "statements": 17,
+    "rows_read": 11085,
+    "ms": 135.1
+   },
+   {
+    "id": "t28",
+    "answerable": false,
+    "passed": false,
+    "refusal": "no_hit",
+    "returned": [],
+    "relevant": 0,
+    "hit": 0,
+    "recall": null,
+    "precision": null,
+    "statements": 18,
+    "rows_read": 11086,
+    "ms": 134.3
+   },
+   {
+    "id": "t29",
+    "answerable": false,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "cricos-073303C",
+     "cricos-002524M",
+     "cricos-009681G",
+     "cricos-009699J"
+    ],
+    "relevant": 0,
+    "hit": 0,
+    "recall": null,
+    "precision": null,
+    "statements": 18,
+    "rows_read": 11086,
+    "ms": 156.5
+   },
+   {
+    "id": "t30",
+    "answerable": false,
+    "passed": false,
+    "refusal": "no_hit",
+    "returned": [],
+    "relevant": 0,
+    "hit": 0,
+    "recall": null,
+    "precision": null,
+    "statements": 20,
+    "rows_read": 11088,
+    "ms": 135.0
+   },
+   {
+    "id": "t31",
+    "answerable": false,
+    "passed": false,
+    "refusal": "no_hit",
+    "returned": [],
+    "relevant": 0,
+    "hit": 0,
+    "recall": null,
+    "precision": null,
+    "statements": 17,
+    "rows_read": 11085,
+    "ms": 137.6
+   },
+   {
+    "id": "t32",
+    "answerable": false,
+    "passed": false,
+    "refusal": "no_hit",
+    "returned": [],
+    "relevant": 0,
+    "hit": 0,
+    "recall": null,
+    "precision": null,
+    "statements": 18,
+    "rows_read": 11086,
+    "ms": 138.3
+   },
+   {
+    "id": "t33",
+    "answerable": false,
+    "passed": false,
+    "refusal": "no_hit",
+    "returned": [],
+    "relevant": 0,
+    "hit": 0,
+    "recall": null,
+    "precision": null,
+    "statements": 17,
+    "rows_read": 11085,
+    "ms": 138.3
+   },
+   {
+    "id": "t34",
+    "answerable": false,
+    "passed": false,
+    "refusal": "no_hit",
+    "returned": [],
+    "relevant": 0,
+    "hit": 0,
+    "recall": null,
+    "precision": null,
+    "statements": 17,
+    "rows_read": 11085,
+    "ms": 152.8
+   }
+  ]
+ },
+ "intent": {
+  "summary": {
+   "model": "deepseek-chat",
+   "base_url": "https://api.deepseek.com",
+   "questions": 50,
+   "intent_accuracy": 1.0,
+   "fallbacks": 0,
+   "usage": {
+    "deepseek-flash": {
+     "input_token_details": {
+      "cache_read": 12800
+     },
+     "output_tokens": 2664,
+     "total_tokens": 26460,
+     "output_token_details": {},
+     "input_tokens": 23796
+    }
+   }
+  },
+  "questions": [
+   {
+    "id": "t01",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.97
+   },
+   {
+    "id": "t02",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "t03",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "t04",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "t05",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "t06",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "t07",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "t08",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "t09",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "t10",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "t11",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "t12",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "t13",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "t14",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "t15",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "t16",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "t17",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "t18",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "t19",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "t20",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "t21",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "t22",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.97
+   },
+   {
+    "id": "t23",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.9
+   },
+   {
+    "id": "t24",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "t25",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "t26",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "t27",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "t28",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "t29",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.97
+   },
+   {
+    "id": "t30",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "t31",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "t32",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.72
+   },
+   {
+    "id": "t33",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "t34",
+    "expected": "官方要求核验",
+    "got": "官方要求核验",
+    "confidence": 0.95
+   },
+   {
+    "id": "t35",
+    "expected": "规划",
+    "got": "规划",
+    "confidence": 0.95
+   },
+   {
+    "id": "t36",
+    "expected": "规划",
+    "got": "规划",
+    "confidence": 0.95
+   },
+   {
+    "id": "t37",
+    "expected": "规划",
+    "got": "规划",
+    "confidence": 0.95
+   },
+   {
+    "id": "t38",
+    "expected": "规划",
+    "got": "规划",
+    "confidence": 0.95
+   },
+   {
+    "id": "t39",
+    "expected": "资料补充",
+    "got": "资料补充",
+    "confidence": 0.97
+   },
+   {
+    "id": "t40",
+    "expected": "资料补充",
+    "got": "资料补充",
+    "confidence": 0.95
+   },
+   {
+    "id": "t41",
+    "expected": "资料补充",
+    "got": "资料补充",
+    "confidence": 0.95
+   },
+   {
+    "id": "t42",
+    "expected": "资料补充",
+    "got": "资料补充",
+    "confidence": 0.85
+   },
+   {
+    "id": "t43",
+    "expected": "业务操作",
+    "got": "业务操作",
+    "confidence": 0.97
+   },
+   {
+    "id": "t44",
+    "expected": "业务操作",
+    "got": "业务操作",
+    "confidence": 0.95
+   },
+   {
+    "id": "t45",
+    "expected": "通用问答",
+    "got": "通用问答",
+    "confidence": 0.95
+   },
+   {
+    "id": "t46",
+    "expected": "通用问答",
+    "got": "通用问答",
+    "confidence": 0.9
+   },
+   {
+    "id": "t47",
+    "expected": "通用问答",
+    "got": "通用问答",
+    "confidence": 0.9
+   },
+   {
+    "id": "t48",
+    "expected": "通用问答",
+    "got": "通用问答",
+    "confidence": 0.9
+   },
+   {
+    "id": "t49",
+    "expected": "通用问答",
+    "got": "通用问答",
+    "confidence": 0.95
+   },
+   {
+    "id": "t50",
+    "expected": "通用问答",
+    "got": "通用问答",
+    "confidence": 0.72
+   }
+  ]
+ }
+}
