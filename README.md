@@ -70,8 +70,7 @@ flowchart TD
     X --> D
 ```
 
-Code: [api/app/agent/](api/app/agent/). The design is ported from my earlier LangGraph
-customer-service agent and re-pointed at application state.
+Code: [api/app/agent/](api/app/agent/).
 
 | Decision | Why |
 | --- | --- |
@@ -90,7 +89,7 @@ customer-service agent and re-pointed at application state.
 | Chinese institutions (3,167) and tier tags | Public lists | Real; known gaps recorded in the fixture |
 | Overseas schools (287) | QS World University Rankings 2027 top 300 in the 29 countries and regions in scope (241) + 46 for regional coverage | Real |
 | Admission requirements (5,223 programs at 120 schools) | Official course pages, each quote checked against a saved snapshot | **Machine-checked (机器核对)** for 5,163; the rest 待核验. None human-verified yet |
-| Deadlines | Official pages | **Not collected** |
+| Deadlines | Official pages, each quote checked against a saved snapshot | **Collected, not imported yet**: 3,986 dates for 2,335 programs at 79 schools sit in `api/data/requirements/*.json` (all 机器核对); the importer does not load them, so the site still shows official deadlines as 待核验 |
 
 These rules exist because an earlier version of this product generated a plausible verification
 date and an official-looking threshold with no source. Do not undo them.
@@ -151,8 +150,10 @@ Not yet:
 - Conversations live in an in-memory checkpointer and are lost on restart (a Postgres checkpointer is
   a schema change and needs its own migration)
 - Knowledge gaps go to the log, not to a review queue
-- No evaluation set for the router or the gate yet
-- No accounts; the profile is tied to an anonymous cookie
+- The router and gate evaluation set (`api/evals/`, 80 questions: 50 tuning, 30 held out) is
+  labelled by AI, not by a person
+- Email-code accounts are built but switched off in production until outgoing mail is set up; the live
+  site still ties the profile to an anonymous cookie
 
 ## Project records
 
@@ -161,3 +162,8 @@ Not yet:
 - [Repository rules for the coding agent](CLAUDE.md)
 - [Cross-change decisions (Chinese)](note/decisions.md)
 - [Backend design (Chinese)](note/design/)
+
+## License
+
+The code is under the [MIT License](LICENSE). Collected data keeps its sources' terms: CRICOS data is
+CC BY 2.5 AU, QS rankings are QS's, and quotes belong to the schools that published them.

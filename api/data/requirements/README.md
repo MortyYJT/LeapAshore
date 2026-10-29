@@ -25,7 +25,7 @@ not the same as a faithful summary: `text`, `label` and `recommended` are not ch
 
 ## Brief for a collecting agent
 
-You collect one school. Work from the repository root `/Users/yu-junteng/Documents/leapashore`.
+You collect one school. Work from the repository root.
 Use `api/.venv/bin/python` for the tools.
 
 ### Rules (not negotiable)
