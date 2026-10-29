@@ -7,7 +7,7 @@ change rows but never commit, except `delete_subject`, which has to commit befor
 import logging
 from collections.abc import Iterable
 
-from sqlalchemy import delete, distinct, exists, select, update
+from sqlalchemy import delete, exists, select, update
 from sqlalchemy.orm import Session
 
 from app.models.account import Account, LoginCode
@@ -140,7 +140,7 @@ def _unlink_orphans(session: Session, paths: Iterable[str]) -> int:
         return 0
     still_used = set(
         session.scalars(
-            select(distinct(DocumentVersion.storage_path)).where(DocumentVersion.storage_path.in_(candidates))
+            select(DocumentVersion.storage_path).where(DocumentVersion.storage_path.in_(candidates)).distinct()
         )
     )
     root = storage_root()
