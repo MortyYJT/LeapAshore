@@ -22,21 +22,27 @@
 
 ## 采集进度（每校一个 json，在 `api/data/requirements/`；表由脚本从文件生成）
 
-共 51 所、2692 个项目、2683 个机器核对。各校的特殊情况写在各自 json 的 `notes` 和提交说明里。
+共 70 所、3379 个项目、3340 个机器核对。各校的特殊情况写在各自 json 的 `notes` 和提交说明里。
 
 | school_key | 项目 | 机器核对 | 状态 |
 | --- | --- | --- | --- |
 | adelaide-university | 60 | 60 | partial |
 | australian-national-university | 53 | 53 | partial |
+| brown-university | 38 | 37 | complete |
 | california-institute-of-technology | 3 | 3 | complete |
 | cardiff-university | 0 | 0 | blocked |
+| carnegie-mellon-university | 41 | 41 | partial |
 | chinese-university-of-hong-kong | 61 | 61 | partial |
 | city-university-of-hong-kong | 66 | 66 | complete |
+| columbia-university | 65 | 65 | partial |
+| cornell-university | 24 | 24 | partial |
 | curtin-university | 50 | 50 | partial |
 | durham-university | 0 | 0 | blocked |
+| harvard-university | 52 | 52 | complete |
 | hong-kong-polytechnic-university | 113 | 113 | complete |
 | hong-kong-university-of-science-and-technology | 54 | 54 | complete |
 | imperial-college-london | 165 | 165 | complete |
+| johns-hopkins-university | 52 | 24 | partial |
 | king-s-college-london | 61 | 61 | partial |
 | lancaster-university | 62 | 62 | complete |
 | london-school-of-economics-and-political-science | 64 | 64 | partial |
@@ -45,7 +51,11 @@
 | monash-university | 1 | 0 | blocked |
 | nanyang-technological-university-singapore | 65 | 64 | partial |
 | national-university-of-singapore | 6 | 6 | blocked |
+| new-york-university | 29 | 29 | partial |
 | newcastle-university | 62 | 62 | partial |
+| northwestern-university | 34 | 34 | partial |
+| pennsylvania-state-university | 39 | 38 | partial |
+| princeton-university | 9 | 9 | complete |
 | queen-mary-university-of-london | 139 | 137 | partial |
 | queen-s-university-belfast | 0 | 0 | blocked |
 | rmit-university | 79 | 79 | complete |
@@ -54,18 +64,25 @@
 | university-of-bath | 0 | 0 | blocked |
 | university-of-birmingham | 60 | 60 | partial |
 | university-of-bristol | 1 | 1 | blocked |
+| university-of-california-berkeley | 55 | 55 | partial |
+| university-of-california-los-angeles | 46 | 46 | partial |
+| university-of-california-san-diego | 20 | 20 | complete |
 | university-of-cambridge | 59 | 59 | partial |
+| university-of-chicago | 19 | 19 | complete |
 | university-of-edinburgh | 62 | 62 | partial |
 | university-of-exeter | 143 | 142 | complete |
 | university-of-glasgow | 60 | 60 | partial |
 | university-of-hong-kong | 66 | 66 | partial |
+| university-of-illinois-urbana-champaign | 13 | 13 | partial |
 | university-of-leeds | 78 | 78 | partial |
 | university-of-liverpool | 67 | 67 | partial |
 | university-of-manchester | 61 | 61 | partial |
 | university-of-melbourne | 0 | 0 | blocked |
+| university-of-michigan-ann-arbor | 24 | 24 | partial |
 | university-of-new-south-wales | 54 | 54 | partial |
 | university-of-nottingham | 64 | 64 | partial |
 | university-of-oxford | 9 | 6 | blocked |
+| university-of-pennsylvania | 65 | 65 | partial |
 | university-of-queensland | 60 | 60 | partial |
 | university-of-reading | 63 | 63 | partial |
 | university-of-sheffield | 67 | 67 | partial |
@@ -73,14 +90,16 @@
 | university-of-st-andrews | 51 | 51 | partial |
 | university-of-sydney | 60 | 60 | partial |
 | university-of-technology-sydney | 55 | 55 | partial |
+| university-of-texas-at-austin | 18 | 18 | partial |
 | university-of-warwick | 64 | 64 | partial |
 | university-of-western-australia | 64 | 64 | partial |
 | university-of-wollongong | 57 | 56 | partial |
 | university-of-york | 15 | 15 | partial |
+| yale-university | 44 | 44 | complete |
 
 被拦截（按规则不绕过）：Monash、Melbourne、Macquarie、NUS 大部分、Oxford 主站、UCL（50 个后 403）、Bristol、Durham、Bath、Cardiff、York（16 个后 429）、QUB（robots.txt 403）、Stanford 计算机系（robots.txt 禁止）。
 需人工确认：UNSW 英语分数的学院对应、悉尼「Not available to student visa holders」、剑桥 "High II.i"↔"High 2:1"、帝国理工 46 个 MRes 是否算授课型、RMIT 7 条按名称匹配 CRICOS、St Andrews 英语分数取自页面 data 属性、Exeter 中国要求表标注的是 2026 入学、Stanford 等校 TOEFL 同时给 0-120 和新 1-6 分制（界面怎么显示要定）。
-额度用完（子代理报 session limit，墨尔本时间 8 点重置）。被中断、没有产出文件的：Harvard、Penn、Cornell、Yale、Johns Hopkins、Berkeley——快照已在 `api/var/snapshots/<key>/`，重跑时直接派同样的子代理即可。之后是美国其余学校（Chicago、Princeton、Columbia……）、加拿大 9、新西兰 2、日本 8、韩国 7、马来西亚 5、欧洲 52、其他 21，再给 partial 的学校补跑。
+进行中（10-30 白天续跑）：Duke、UW、BU、Purdue、Rice、UW-Madison；美国之后是加拿大 9、新西兰 2、日本 8、韩国 7、马来西亚 5、欧洲 52、其他 21，再给 partial 的学校补跑。收尾脚本在会话草稿区（`finish.py`：复核 → 由 json 生成提交说明 → 提交推送 → 刷新本表）。
 
 ## 校徽
 
