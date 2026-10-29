@@ -96,7 +96,8 @@ function Horizontal({ model, today, deadlines, selected, onSelect, animate, widt
   const LABEL = compact ? 136 : 196, LANE = compact ? 84 : 104, TOP = 58, PITCH = 44, BAR = 22;
   const x0 = LABEL + 8, x1 = W - LANE - 16;
   const first = model.phases[0]?.start ? utc(model.phases[0].start) : today;
-  const start = new Date(Math.min(first.getTime(), today.getTime()));
+  // From the start of today's day, so a deadline dated today is still on the axis.
+  const start = new Date(Math.min(first.getTime(), utc(today.toISOString()).getTime()));
   const end = model.anchor ? utc(model.anchor) : today;
   const span = Math.max(DAY, end.getTime() - start.getTime());
   const xs = (d: Date) => x0 + ((d.getTime() - start.getTime()) / span) * (x1 - x0);

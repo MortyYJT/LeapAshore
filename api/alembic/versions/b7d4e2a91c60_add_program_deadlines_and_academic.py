@@ -21,6 +21,7 @@ def upgrade() -> None:
     """Add-only (openspec requirement-dates D1): a nullable column and a new table, nothing dropped or
     rewritten. Existing rows read NULL / no deadlines until the importer runs."""
     op.add_column('programs', sa.Column('academic_requirement', sa.Text(), nullable=True))
+    op.add_column('programs', sa.Column('academic_source_url', sa.Text(), nullable=True))
     op.create_table(
         'program_deadlines',
         sa.Column('id', sa.String(length=36), nullable=False),
@@ -39,4 +40,5 @@ def upgrade() -> None:
 def downgrade() -> None:
     op.drop_index(op.f('ix_program_deadlines_program_id'), table_name='program_deadlines')
     op.drop_table('program_deadlines')
+    op.drop_column('programs', 'academic_source_url')
     op.drop_column('programs', 'academic_requirement')

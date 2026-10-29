@@ -122,6 +122,13 @@ def academic_text(fields: dict) -> str | None:
     return None
 
 
+def academic_source(fields: dict, program_url: str) -> str | None:
+    """The page the academic requirement's quote is on, when there is a requirement to cite."""
+    if academic_text(fields) is None:
+        return None
+    return fields["academic"].get("source_url") or program_url
+
+
 def deadline_rows(pid: str, program_url: str, fields: dict) -> list[dict]:
     """The verified deadlines, in the file's order, as `program_deadlines` rows.
 
@@ -235,6 +242,7 @@ def import_school(session: Session, data: dict, schools: dict[str, dict], root: 
             "minimum_mark": china.get("min_mark_211") if china_ok else None,
             "non_211_minimum_mark": china.get("min_mark_other") if china_ok else None,
             "academic_requirement": academic_text(fields),
+            "academic_source_url": academic_source(fields, program["url"]),
             "source_id": source.id,
             "data_status": MACHINE_CHECKED if program.get("status") == MACHINE_CHECKED else "待核验",
         }

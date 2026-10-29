@@ -118,6 +118,7 @@ test("maps every served field onto the view field by field", () => {
       prerequisites: program.prerequisites,
       englishRequirement: program.englishRequirement,
       academicRequirement: program.academicRequirement,
+      academicSourceUrl: program.academicSourceUrl,
       deadlines: program.deadlines,
       source: {
         // The wire's `source` is `{url, title, status}`; these three keys are this side's own, and the
@@ -220,6 +221,7 @@ test("a mapped program has every field the assessment code reads", () => {
     Object.keys(view).sort(),
     [
       "academicRequirement",
+      "academicSourceUrl",
       "city",
       "country",
       "dataStatus",
@@ -595,8 +597,9 @@ test("a status this build does not know is read as considering, not passed throu
 });
 
 test("an older server that sends no academic requirement or deadlines maps to unknown and none", () => {
-  const view = toProgramView(served({ academicRequirement: undefined, deadlines: undefined }));
+  const view = toProgramView(served({ academicRequirement: undefined, academicSourceUrl: undefined, deadlines: undefined }));
   assert.equal(view.academicRequirement, null);
+  assert.equal(view.academicSourceUrl, null);
   assert.deepEqual(view.deadlines, []);
   assert.equal(toProgramView(served({ academicRequirement: "" })).academicRequirement, null);
 });

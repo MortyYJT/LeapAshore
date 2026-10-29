@@ -15,7 +15,7 @@ function program(overrides: Partial<Program> = {}): Program {
   return {
     slug: 'example-msc', university: '示例大学', name: 'MSc Example', city: null, degreeLevel: '授课型硕士',
     field: '计算机与数据', duration: null, minimumMark: 75, non211MinimumMark: null, requiresCognate: false,
-    prerequisites: [], englishRequirement: 'IELTS 6.5，单项不低于 6.0', academicRequirement: null, deadlines: [],
+    prerequisites: [], englishRequirement: 'IELTS 6.5，单项不低于 6.0', academicRequirement: null, academicSourceUrl: null, deadlines: [],
     source: { id: 's', title: 't', url: 'https://example.edu/msc', excerpt: '', verifiedAt: null, status: '待核验' },
     dataStatus: '待核验',
     universityId: null,

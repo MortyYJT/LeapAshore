@@ -171,13 +171,25 @@ def beijing_today() -> date:
     return datetime.now(BEIJING).date()
 
 
-def _deadlines(p: Program, today: date) -> str:
-    """Every collected deadline, a past one marked 已截止 so the model cannot present it as open."""
+def _page(url: str | None, source: Source | None) -> str:
+    """Name the page a value was read from when it is not the program's own cited page."""
+    return f"（出处 {url}）" if url and (source is None or url != source.url) else ""
+
+
+def _deadlines(p: Program, source: Source | None, today: date) -> str:
+    """Every collected deadline, a past one marked 已截止 so the model cannot present it as open, and
+    one read from a shared page naming that page, so the citation points where the date is."""
     parts = []
     for row in sorted(p.deadlines, key=lambda x: x.sort_order):
         text = f"{row.label} {row.deadline.isoformat()}" if row.label else row.deadline.isoformat()
-        parts.append(text + ("（已截止）" if row.deadline < today else ""))
+        parts.append(text + ("（已截止）" if row.deadline < today else "") + _page(row.source_url, source))
     return "；".join(parts) or "未知"
+
+
+def _academic(p: Program, source: Source | None) -> str:
+    if not p.academic_requirement:
+        return "未知"
+    return p.academic_requirement + _page(getattr(p, "academic_source_url", None), source)
 
 
 def evidence_line(n: int, hit: Hit, today: date | None = None) -> str:
@@ -189,8 +201,8 @@ def evidence_line(n: int, hit: Hit, today: date | None = None) -> str:
         f"｜均分要求（211/985）：{_fmt_mark(p.minimum_mark)}"
         f"｜均分要求（非211）：{_fmt_mark(p.non_211_minimum_mark)}"
         f"｜语言：{p.english_requirement or '未知'}"
-        f"｜学术要求：{p.academic_requirement or '未知'}"
-        f"｜申请截止：{_deadlines(p, today or beijing_today())}"
+        f"｜学术要求：{_academic(p, s)}"
+        f"｜申请截止：{_deadlines(p, s, today or beijing_today())}"
         f"｜先修要求：{prereqs}"
         f"｜数据状态：{status}"
         f"｜来源：{s.title if s else '无'} {s.url if s else ''}"

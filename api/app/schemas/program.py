@@ -105,6 +105,8 @@ class ProgramOut(BaseModel):
     english_requirement: str | None = None
     # The collector's summary of the academic requirement (English), NULL when not collected.
     academic_requirement: str | None = None
+    # The page the academic requirement was read from, which can be a shared admissions page.
+    academic_source_url: str | None = None
     deadlines: list[DeadlineOut] = Field(default_factory=list)
     data_status: str
     source: SourceOut

@@ -103,6 +103,8 @@ export interface Program {
   englishRequirement: string | null;
   /** The collector's summary of the academic requirement (English), or null when not collected. */
   academicRequirement: string | null;
+  /** The page the academic requirement was read from (a shared admissions page or the program page). */
+  academicSourceUrl: string | null;
   /** Every application deadline the program's page states, past ones included (see `deadlines.ts`). */
   deadlines: CollectedDeadline[];
   source: SourceCitation;

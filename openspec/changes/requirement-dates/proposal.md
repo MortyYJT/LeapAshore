@@ -9,7 +9,8 @@ checking it against today.
 
 ## What Changes
 
-- **Schema (Alembic, add only):** `programs.academic_requirement` (text, nullable) and a new table
+- **Schema (Alembic, add only):** `programs.academic_requirement` and `programs.academic_source_url`
+  (text, nullable) and a new table
   `program_deadlines` (program, label, date, quote, source page, order).
 - **Importer:** writes the verified academic summary and the verified deadlines as part of the
   program's requirement set; a rerun writes nothing. It still never writes `verified_at`, and a field

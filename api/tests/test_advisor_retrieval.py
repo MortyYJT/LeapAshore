@@ -229,16 +229,23 @@ def test_an_evidence_line_carries_the_academic_requirement_and_the_deadlines():
         minimum_mark=None, non_211_minimum_mark=None, english_requirement=None, prerequisites=[],
         academic_requirement="A 2:1 honours degree",
         deadlines=[
-            SimpleNamespace(label="Round 1", deadline=date(2026, 10, 1), sort_order=0),
-            SimpleNamespace(label="Round 2", deadline=date(2026, 10, 30), sort_order=1),
-            SimpleNamespace(label=None, deadline=date(2027, 1, 31), sort_order=2),
+            SimpleNamespace(label="Round 1", deadline=date(2026, 10, 1), sort_order=0,
+                            source_url="https://example.edu/msc"),
+            SimpleNamespace(label="Round 2", deadline=date(2026, 10, 30), sort_order=1,
+                            source_url="https://example.edu/msc"),
+            SimpleNamespace(label=None, deadline=date(2027, 1, 31), sort_order=2,
+                            source_url="https://example.edu/dates"),
         ],
+        academic_source_url="https://example.edu/entry",
     )
     source = SimpleNamespace(title="MSc Data Science", url="https://example.edu/msc", verified_at=None)
     line = evidence_line(1, Hit(program, source), today=date(2026, 10, 30))
-    assert "｜学术要求：A 2:1 honours degree" in line
-    assert "｜申请截止：Round 1 2026-10-01（已截止）；Round 2 2026-10-30；2027-01-31" in line
+    # A value read from a shared page names that page, so the model cites where the value actually is.
+    assert "｜学术要求：A 2:1 honours degree（出处 https://example.edu/entry）" in line
+    assert ("｜申请截止：Round 1 2026-10-01（已截止）；Round 2 2026-10-30；"
+            "2027-01-31（出处 https://example.edu/dates）") in line
 
-    bare = SimpleNamespace(**{**vars(program), "academic_requirement": None, "deadlines": []})
+    bare = SimpleNamespace(**{**vars(program), "academic_requirement": None, "academic_source_url": None,
+                              "deadlines": []})
     line = evidence_line(1, Hit(bare, source), today=date(2026, 10, 30))
     assert "｜学术要求：未知" in line and "｜申请截止：未知" in line

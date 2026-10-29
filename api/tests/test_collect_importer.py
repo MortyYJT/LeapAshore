@@ -294,6 +294,7 @@ def test_verified_deadlines_and_the_academic_requirement_are_imported(db_session
     pid = program_id_for(KEY, {"url": URL, "name": "MSc Data Science"})
     program = db_session.get(Program, pid)
     assert program.academic_requirement == "2:1 honours"
+    assert program.academic_source_url == URL
     # The failed third round is absent; a quote from a shared page cites that page, others the program page.
     assert _deadline_rows(db_session, pid) == [
         ("Round 1", "2026-11-15", URL, "Round 1 closes 15 November 2026", 0),
@@ -302,11 +303,20 @@ def test_verified_deadlines_and_the_academic_requirement_are_imported(db_session
     assert db_session.get(Source, source_id_for(URL)).verified_at is None
 
 
+def test_an_academic_requirement_from_a_shared_page_cites_that_page(db_session, require_db, cleanup, tmp_path):
+    data = school_file(academic={"text": "2:1 honours", "quote": "a 2:1 honours degree", "check": "ok",
+                                 "source_sha256": "d" * 64, "source_url": "https://example.test/entry"})
+    import_school(db_session, data, SCHOOLS, root=tmp_path)
+    program = db_session.get(Program, program_id_for(KEY, {"url": URL, "name": "MSc Data Science"}))
+    assert program.academic_source_url == "https://example.test/entry"
+
+
 def test_an_academic_requirement_that_failed_its_check_stays_unknown(db_session, require_db, cleanup, tmp_path):
     data = school_file(academic={"text": "2:1 honours", "quote": "a 2:1", "check": "quote not found in snapshot"})
     import_school(db_session, data, SCHOOLS, root=tmp_path)
     program = db_session.get(Program, program_id_for(KEY, {"url": URL, "name": "MSc Data Science"}))
     assert program.academic_requirement is None
+    assert program.academic_source_url is None
 
 
 def test_rerunning_the_import_writes_nothing(db_session, require_db, cleanup, tmp_path):
@@ -327,7 +337,24 @@ def test_rerunning_the_import_writes_nothing(db_session, require_db, cleanup, tm
         return program.updated_at, program.academic_requirement, deadlines, prerequisites, versions
 
     before = state()
-    import_school(db_session, school_file(deadlines=DEADLINES), SCHOOLS, root=tmp_path)
+    # Every write the second run issues, by statement: a delete-and-reinsert with the same ids would
+    # leave `state()` unchanged, so the statements themselves are what is checked.
+    from sqlalchemy import event
+
+    from app.db import engine
+
+    writes = []
+
+    def record(conn, cursor, statement, parameters, context, executemany):  # noqa: ARG001
+        if statement.lstrip().upper().startswith(("INSERT", "UPDATE", "DELETE")):
+            writes.append(statement.split("(")[0][:80])
+
+    event.listen(engine, "after_cursor_execute", record)
+    try:
+        import_school(db_session, school_file(deadlines=DEADLINES), SCHOOLS, root=tmp_path)
+    finally:
+        event.remove(engine, "after_cursor_execute", record)
+    assert writes == []
     assert state() == before
 
 

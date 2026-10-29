@@ -75,6 +75,7 @@ export interface ServedProgram {
   englishRequirement: string | null;
   /** Added with the collected deadlines (openspec requirement-dates); an older server sends neither. */
   academicRequirement?: string | null;
+  academicSourceUrl?: string | null;
   deadlines?: CollectedDeadline[] | null;
   dataStatus: string;
   source: ServedSource;
@@ -298,6 +299,7 @@ export function toProgramView(program: ServedProgram): Program {
     prerequisites: program.prerequisites ?? [],
     englishRequirement: isFilled(program.englishRequirement) ? program.englishRequirement : null,
     academicRequirement: isFilled(program.academicRequirement) ? program.academicRequirement : null,
+    academicSourceUrl: isFilled(program.academicSourceUrl) ? program.academicSourceUrl : null,
     deadlines: program.deadlines ?? [],
     source: {
       id: program.slug,

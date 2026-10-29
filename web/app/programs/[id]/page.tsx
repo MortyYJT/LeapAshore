@@ -106,7 +106,14 @@ export default async function ProgramPage({ params }: { params: Promise<{ id: st
                       {program.academicRequirement ? (
                         <>
                           <span lang="en">{program.academicRequirement}</span>
-                          <div className="muted small">采集时整理的英文摘要，原文见来源页</div>
+                          <div className="muted small">
+                            采集时整理的英文摘要，原文见
+                            {program.academicSourceUrl && program.academicSourceUrl !== program.source.url ? (
+                              <a href={program.academicSourceUrl} target="_blank" rel="noreferrer">出处页</a>
+                            ) : (
+                              "来源页"
+                            )}
+                          </div>
                         </>
                       ) : (
                         missing

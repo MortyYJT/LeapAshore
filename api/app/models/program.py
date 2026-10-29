@@ -52,6 +52,8 @@ class Program(Base):
     # The collector's summary of the academic entry requirement, written only when its quote passed
     # `verify`; NULL is "not collected", never "none required" (alembic b7d4e2a91c60).
     academic_requirement: Mapped[str | None] = mapped_column(Text)
+    # The page the academic requirement's quote is on: a shared admissions page or the program page.
+    academic_source_url: Mapped[str | None] = mapped_column(Text)
 
     # Mandatory, like `review_criteria.source_id` and `document_review_findings.criterion_id`: a
     # program is a claim about an official page, so a program with no page is not a program with an
