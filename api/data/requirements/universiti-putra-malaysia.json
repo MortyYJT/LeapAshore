@@ -1,0 +1,575 @@
+{
+ "school_key": "universiti-putra-malaysia",
+ "school_name_en": "Universiti Putra Malaysia",
+ "country": "Malaysia",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://sgs.upm.edu.my/programme_of_study/programme_by_coursework-4574",
+  "https://sgs.upm.edu.my/admissions-2964"
+ ],
+ "blocked": [
+  {
+   "url": "https://putrabusinessschool.edu.my/",
+   "reason": "robots.txt disallows (robots.txt itself: HTTP 403)"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://sgs.upm.edu.my/programme_of_study/programme_by_coursework/faculty_of_science-1425",
+  "https://sgs.upm.edu.my/programme_of_study/programme_by_coursework/faculty_of_food_science_and_technology-1414",
+  "https://sgs.upm.edu.my/programme_of_study/programme_by_coursework/faculty_of_forestry_and_environment-1413",
+  "https://sgs.upm.edu.my/programme_of_study/programme_by_coursework/faculty_of_modern_languages_and_communication-1424",
+  "https://sgs.upm.edu.my/programme_of_study/programme_by_coursework/faculty_of_biotechnology_biomolecular_sciences-64171",
+  "https://sgs.upm.edu.my/programme_of_study/programme_by_coursework/faculty_of_humanities_management_and_science-87669",
+  "https://sgs.upm.edu.my/programme_of_study/programme_by_coursework/faculty_of_design_and_architechture-1427",
+  "https://sgs.upm.edu.my/programme_of_study/programme_by_coursework/faculty_of_human_ecology-79359",
+  "https://sgs.upm.edu.my/programme_of_study/programme_by_coursework/faculty_of_veterinary_medicine-1426",
+  "https://sgs.upm.edu.my/programme_of_study/programme_by_coursework/faculty_of_medicine_and_health_sciences-1423"
+ ],
+ "notes": "Putra Business School (putrabusinessschool.edu.my) is blocked by robots.txt (HTTP 403), so only the UPM MBA under the School of Business and Economics is covered. Application deadlines on the SGS admissions page give day and month only (no year), so none are recorded; the full English-score table on the SGS English page mixes full and provisional offers and is not applied to programmes whose page does not name a level. Important PDF-only guidelines not read: https://sgs.upm.edu.my/upload/dokumen/2026072213571121.07.26_PG_Application_Guidelines.pdf and per-programme Engineering/Economics brochures. Data Science and Intelligent Systems (FSKTM) have no entry requirement text on the faculty page. Engineering programmes share one faculty-level admission quote; the M.Ed./MHRD requirements are from a 2023-dated faculty page. Faculty of Education TESL/Counselling and other education fields not listed individually.",
+ "programs": [
+  {
+   "name": "Master of Economics",
+   "url": "https://econ.upm.edu.my/programme/masters/master_by_coursework-64281",
+   "snapshot_sha256": "fd646aa69598dbcaaf548cd213e016477e2ca298a2ebfe9ca234523217eb8ae6",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or equivalent in a related field with a minimum CGPA of 3.000; lower CGPA bands are accepted with work experience (see page)",
+     "quote": "Candidates must have a Bachelor's degree or equivalent qualification in a related field with a minimum CGPA of 3.000; or",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "Band 6.0 for IELTS (Academic Version); or",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 72,
+     "quote": "Score 72 - 120 for TOEFL IBT (Including Home Edition); or",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Entrepreneurship",
+   "url": "https://econ.upm.edu.my/programme/masters/master_by_coursework-64281",
+   "snapshot_sha256": "fd646aa69598dbcaaf548cd213e016477e2ca298a2ebfe9ca234523217eb8ae6",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or equivalent in a related field with a minimum CGPA of 3.000; lower CGPA bands are accepted with work experience (see page)",
+     "quote": "Candidates must have a Bachelor's degree or equivalent qualification in a related field with a minimum CGPA of 3.000; or",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "Band 6.0 for IELTS (Academic Version); or",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 72,
+     "quote": "Score 72 - 120 for TOEFL IBT (Including Home Edition); or",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Finance",
+   "url": "https://econ.upm.edu.my/programme/masters/master_by_coursework-64281",
+   "snapshot_sha256": "fd646aa69598dbcaaf548cd213e016477e2ca298a2ebfe9ca234523217eb8ae6",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or equivalent in a related field with a minimum CGPA of 3.000; lower CGPA bands are accepted with work experience (see page)",
+     "quote": "Candidates must have a Bachelor's degree or equivalent qualification in a related field with a minimum CGPA of 3.000; or",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "Band 6.0 for IELTS (Academic Version); or",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 72,
+     "quote": "Score 72 - 120 for TOEFL IBT (Including Home Edition); or",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Administration (MBA UPM)",
+   "url": "https://econ.upm.edu.my/programme/masters/master_by_coursework-64281",
+   "snapshot_sha256": "fd646aa69598dbcaaf548cd213e016477e2ca298a2ebfe9ca234523217eb8ae6",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or equivalent in a relevant field with a minimum CGPA of 3.000 and at least three years of working experience; lower CGPA bands require more years of experience (see page)",
+     "quote": "Bachelor’s Degree or an equivalent qualification in a relevant field with a minimum CGPA of 3.000 and a minimum of three (3) years working experience; or",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "Band 6.0 for IELTS (Academic Version); or",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 72,
+     "quote": "Score 72 - 120 for TOEFL IBT (Including Home Edition); or",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Human Resource Management and Organization (MHRMO)",
+   "url": "https://econ.upm.edu.my/programme/masters/master_by_coursework-64281",
+   "snapshot_sha256": "fd646aa69598dbcaaf548cd213e016477e2ca298a2ebfe9ca234523217eb8ae6",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or equivalent in a related field with a minimum CGPA of 3.000; lower CGPA bands are accepted with work experience (see page)",
+     "quote": "A Bachelor’s degree or equivalent qualification in a related field with a minimum CGPA of 3.000; Or",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "Band 6.0 for IELTS (Academic Version); or",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 72,
+     "quote": "Score 72 - 120 for TOEFL IBT (Including Home Edition); or",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Candidates without a related qualification or related work experience must take prerequisite course MGM 4000: Introduction to Business Management",
+      "quote": "Candidates without qualifications in a related field, including fields recognized by the university or those with work experience in a related field, must undertake the prerequisite course MGM 4000: Introduction to Business Managementas determined by the faculty to meet the minimum CGPA requirements as outlined in (a), (b), and (c).",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Sustainable Accounting",
+   "url": "https://econ.upm.edu.my/programme/masters/master_by_coursework-64281",
+   "snapshot_sha256": "fd646aa69598dbcaaf548cd213e016477e2ca298a2ebfe9ca234523217eb8ae6",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or equivalent in a related field with a minimum CGPA of 3.000; Accounting degree routes with lower CGPA are listed on the page",
+     "quote": "A Bachelor’s degree or equivalent qualification in a related field with a minimum CGPA of 3.000; Or",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "Band 6.0 for IELTS (Academic Version); or",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 72,
+     "quote": "Score 72 - 120 for TOEFL IBT (Including Home Edition); or",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Computer Science",
+   "url": "https://fsktm.upm.edu.my/akademik/pasca_siswazah/master_secara_kerja_kursus-75863",
+   "snapshot_sha256": "a0f416f1587825a7585a7831d060f54a6fa4030d94c4c5cdfda6270965a1b296",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in computing or related fields with a minimum CGPA of 2.75; lower CGPA bands accepted with work experience; non-computing degrees need prerequisite courses",
+     "quote": "A Bachelor's degree in computing or related fields with a minimum CGPA of 2.75; OR",
+     "source_sha256": "3613e49624ded33b7dc0347c1318b7d0e8f8e7eac33c46dd8f59a6e362501215",
+     "source_url": "https://fsktm.upm.edu.my/academic/postgraduate/entry_requirement-89136",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Information Security",
+   "url": "https://fsktm.upm.edu.my/akademik/pasca_siswazah/master_secara_kerja_kursus-75863",
+   "snapshot_sha256": "a0f416f1587825a7585a7831d060f54a6fa4030d94c4c5cdfda6270965a1b296",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in computing or related fields with a minimum CGPA of 2.75; lower CGPA bands accepted with work experience; non-computing degrees need prerequisite courses",
+     "quote": "A Bachelor's degree in computing or related fields with a minimum CGPA of 2.75; OR",
+     "source_sha256": "3613e49624ded33b7dc0347c1318b7d0e8f8e7eac33c46dd8f59a6e362501215",
+     "source_url": "https://fsktm.upm.edu.my/academic/postgraduate/entry_requirement-89136",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Software Engineering",
+   "url": "https://fsktm.upm.edu.my/akademik/pasca_siswazah/master_secara_kerja_kursus-75863",
+   "snapshot_sha256": "a0f416f1587825a7585a7831d060f54a6fa4030d94c4c5cdfda6270965a1b296",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in computing or related fields with a minimum CGPA of 2.75; lower CGPA bands accepted with work experience; non-computing degrees need prerequisite courses",
+     "quote": "A Bachelor's degree in computing or related fields with a minimum CGPA of 2.75; OR",
+     "source_sha256": "3613e49624ded33b7dc0347c1318b7d0e8f8e7eac33c46dd8f59a6e362501215",
+     "source_url": "https://fsktm.upm.edu.my/academic/postgraduate/entry_requirement-89136",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Computer Network",
+   "url": "https://fsktm.upm.edu.my/akademik/pasca_siswazah/master_secara_kerja_kursus-75863",
+   "snapshot_sha256": "a0f416f1587825a7585a7831d060f54a6fa4030d94c4c5cdfda6270965a1b296",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in computing or related fields with a minimum CGPA of 2.75; lower CGPA bands accepted with work experience; non-computing degrees need prerequisite courses",
+     "quote": "A Bachelor's degree in computing or related fields with a minimum CGPA of 2.75; OR",
+     "source_sha256": "3613e49624ded33b7dc0347c1318b7d0e8f8e7eac33c46dd8f59a6e362501215",
+     "source_url": "https://fsktm.upm.edu.my/academic/postgraduate/entry_requirement-89136",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Data Science",
+   "url": "https://fsktm.upm.edu.my/akademik/pasca_siswazah/master_secara_kerja_kursus-75863",
+   "snapshot_sha256": "a0f416f1587825a7585a7831d060f54a6fa4030d94c4c5cdfda6270965a1b296",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Master in Intelligent Systems",
+   "url": "https://fsktm.upm.edu.my/akademik/pasca_siswazah/master_secara_kerja_kursus-75863",
+   "snapshot_sha256": "a0f416f1587825a7585a7831d060f54a6fa4030d94c4c5cdfda6270965a1b296",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Master in Emergency Response and Planning",
+   "url": "https://eng.upm.edu.my/academic/postgraduate/master_by_coursework-2294",
+   "snapshot_sha256": "bd6d76f86888a7054ea52e766a01e2afb5e987bff278b8bfde1077b61702e235",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in Engineering or Engineering Technology with a minimum CGPA of 2.750; lower CGPA bands accepted with work experience; Science/Technology degrees accepted with prerequisite courses",
+     "quote": "Bachelor’s Degree in Engineering or Engineering Technology with a minimum CGPA of 2.750; or",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Engineering Management",
+   "url": "https://eng.upm.edu.my/academic/postgraduate/master_by_coursework-2294",
+   "snapshot_sha256": "bd6d76f86888a7054ea52e766a01e2afb5e987bff278b8bfde1077b61702e235",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in Engineering or Engineering Technology with a minimum CGPA of 2.750; lower CGPA bands accepted with work experience; Science/Technology degrees accepted with prerequisite courses",
+     "quote": "Bachelor’s Degree in Engineering or Engineering Technology with a minimum CGPA of 2.750; or",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Environmental Engineering",
+   "url": "https://eng.upm.edu.my/academic/postgraduate/master_by_coursework-2294",
+   "snapshot_sha256": "bd6d76f86888a7054ea52e766a01e2afb5e987bff278b8bfde1077b61702e235",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in Engineering or Engineering Technology with a minimum CGPA of 2.750; lower CGPA bands accepted with work experience; Science/Technology degrees accepted with prerequisite courses",
+     "quote": "Bachelor’s Degree in Engineering or Engineering Technology with a minimum CGPA of 2.750; or",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Environmental Technology Management",
+   "url": "https://eng.upm.edu.my/academic/postgraduate/master_by_coursework-2294",
+   "snapshot_sha256": "bd6d76f86888a7054ea52e766a01e2afb5e987bff278b8bfde1077b61702e235",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in Engineering or Engineering Technology with a minimum CGPA of 2.750; lower CGPA bands accepted with work experience; Science/Technology degrees accepted with prerequisite courses",
+     "quote": "Bachelor’s Degree in Engineering or Engineering Technology with a minimum CGPA of 2.750; or",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Highway and Transportation Engineering",
+   "url": "https://eng.upm.edu.my/academic/postgraduate/master_by_coursework-2294",
+   "snapshot_sha256": "bd6d76f86888a7054ea52e766a01e2afb5e987bff278b8bfde1077b61702e235",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in Engineering or Engineering Technology with a minimum CGPA of 2.750; lower CGPA bands accepted with work experience; Science/Technology degrees accepted with prerequisite courses",
+     "quote": "Bachelor’s Degree in Engineering or Engineering Technology with a minimum CGPA of 2.750; or",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Innovation and Engineering Design",
+   "url": "https://eng.upm.edu.my/academic/postgraduate/master_by_coursework-2294",
+   "snapshot_sha256": "bd6d76f86888a7054ea52e766a01e2afb5e987bff278b8bfde1077b61702e235",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in Engineering or Engineering Technology with a minimum CGPA of 2.750; lower CGPA bands accepted with work experience; Science/Technology degrees accepted with prerequisite courses",
+     "quote": "Bachelor’s Degree in Engineering or Engineering Technology with a minimum CGPA of 2.750; or",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Manufacturing Systems Engineering",
+   "url": "https://eng.upm.edu.my/academic/postgraduate/master_by_coursework-2294",
+   "snapshot_sha256": "bd6d76f86888a7054ea52e766a01e2afb5e987bff278b8bfde1077b61702e235",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in Engineering or Engineering Technology with a minimum CGPA of 2.750; lower CGPA bands accepted with work experience; Science/Technology degrees accepted with prerequisite courses",
+     "quote": "Bachelor’s Degree in Engineering or Engineering Technology with a minimum CGPA of 2.750; or",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Process Safety and Loss Prevention",
+   "url": "https://eng.upm.edu.my/academic/postgraduate/master_by_coursework-2294",
+   "snapshot_sha256": "bd6d76f86888a7054ea52e766a01e2afb5e987bff278b8bfde1077b61702e235",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in Engineering or Engineering Technology with a minimum CGPA of 2.750; lower CGPA bands accepted with work experience; Science/Technology degrees accepted with prerequisite courses",
+     "quote": "Bachelor’s Degree in Engineering or Engineering Technology with a minimum CGPA of 2.750; or",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Remote Sensing and GIS",
+   "url": "https://eng.upm.edu.my/academic/postgraduate/master_by_coursework-2294",
+   "snapshot_sha256": "bd6d76f86888a7054ea52e766a01e2afb5e987bff278b8bfde1077b61702e235",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in Engineering or Engineering Technology with a minimum CGPA of 2.750; lower CGPA bands accepted with work experience; Science/Technology degrees accepted with prerequisite courses",
+     "quote": "Bachelor’s Degree in Engineering or Engineering Technology with a minimum CGPA of 2.750; or",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Structural Engineering and Construction",
+   "url": "https://eng.upm.edu.my/academic/postgraduate/master_by_coursework-2294",
+   "snapshot_sha256": "bd6d76f86888a7054ea52e766a01e2afb5e987bff278b8bfde1077b61702e235",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in Engineering or Engineering Technology with a minimum CGPA of 2.750; lower CGPA bands accepted with work experience; Science/Technology degrees accepted with prerequisite courses",
+     "quote": "Bachelor’s Degree in Engineering or Engineering Technology with a minimum CGPA of 2.750; or",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Water Engineering",
+   "url": "https://eng.upm.edu.my/academic/postgraduate/master_by_coursework-2294",
+   "snapshot_sha256": "bd6d76f86888a7054ea52e766a01e2afb5e987bff278b8bfde1077b61702e235",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in Engineering or Engineering Technology with a minimum CGPA of 2.750; lower CGPA bands accepted with work experience; Science/Technology degrees accepted with prerequisite courses",
+     "quote": "Bachelor’s Degree in Engineering or Engineering Technology with a minimum CGPA of 2.750; or",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Communication Engineering",
+   "url": "https://eng.upm.edu.my/academic/postgraduate/master_by_coursework-2294",
+   "snapshot_sha256": "bd6d76f86888a7054ea52e766a01e2afb5e987bff278b8bfde1077b61702e235",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in Engineering or Engineering Technology with a minimum CGPA of 2.750; lower CGPA bands accepted with work experience; Science/Technology degrees accepted with prerequisite courses",
+     "quote": "Bachelor’s Degree in Engineering or Engineering Technology with a minimum CGPA of 2.750; or",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Electrical Power Engineering",
+   "url": "https://eng.upm.edu.my/academic/postgraduate/master_by_coursework-2294",
+   "snapshot_sha256": "bd6d76f86888a7054ea52e766a01e2afb5e987bff278b8bfde1077b61702e235",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in Engineering or Engineering Technology with a minimum CGPA of 2.750; lower CGPA bands accepted with work experience; Science/Technology degrees accepted with prerequisite courses",
+     "quote": "Bachelor’s Degree in Engineering or Engineering Technology with a minimum CGPA of 2.750; or",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Aerospace System Design Engineering",
+   "url": "https://eng.upm.edu.my/academic/postgraduate/master_by_coursework-2294",
+   "snapshot_sha256": "bd6d76f86888a7054ea52e766a01e2afb5e987bff278b8bfde1077b61702e235",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in Engineering or Engineering Technology with a minimum CGPA of 2.750; lower CGPA bands accepted with work experience; Science/Technology degrees accepted with prerequisite courses",
+     "quote": "Bachelor’s Degree in Engineering or Engineering Technology with a minimum CGPA of 2.750; or",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Microelectronic System Engineering",
+   "url": "https://eng.upm.edu.my/academic/postgraduate/master_by_coursework-2294",
+   "snapshot_sha256": "bd6d76f86888a7054ea52e766a01e2afb5e987bff278b8bfde1077b61702e235",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in Engineering or Engineering Technology with a minimum CGPA of 2.750; lower CGPA bands accepted with work experience; Science/Technology degrees accepted with prerequisite courses",
+     "quote": "Bachelor’s Degree in Engineering or Engineering Technology with a minimum CGPA of 2.750; or",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Food Process and Packaging Engineering",
+   "url": "https://eng.upm.edu.my/academic/postgraduate/master_by_coursework-2294",
+   "snapshot_sha256": "bd6d76f86888a7054ea52e766a01e2afb5e987bff278b8bfde1077b61702e235",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in Engineering or Engineering Technology with a minimum CGPA of 2.750; lower CGPA bands accepted with work experience; Science/Technology degrees accepted with prerequisite courses",
+     "quote": "Bachelor’s Degree in Engineering or Engineering Technology with a minimum CGPA of 2.750; or",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Control System Engineering",
+   "url": "https://eng.upm.edu.my/academic/postgraduate/master_by_coursework-2294",
+   "snapshot_sha256": "bd6d76f86888a7054ea52e766a01e2afb5e987bff278b8bfde1077b61702e235",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in Engineering or Engineering Technology with a minimum CGPA of 2.750; lower CGPA bands accepted with work experience; Science/Technology degrees accepted with prerequisite courses",
+     "quote": "Bachelor’s Degree in Engineering or Engineering Technology with a minimum CGPA of 2.750; or",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Digital Agriculture",
+   "url": "https://eng.upm.edu.my/academic/postgraduate/master_by_coursework-2294",
+   "snapshot_sha256": "bd6d76f86888a7054ea52e766a01e2afb5e987bff278b8bfde1077b61702e235",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in Engineering or Engineering Technology with a minimum CGPA of 2.750; lower CGPA bands accepted with work experience; Science/Technology degrees accepted with prerequisite courses",
+     "quote": "Bachelor’s Degree in Engineering or Engineering Technology with a minimum CGPA of 2.750; or",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Computer Engineering with Technopreneurship",
+   "url": "https://eng.upm.edu.my/academic/postgraduate/master_by_coursework-2294",
+   "snapshot_sha256": "bd6d76f86888a7054ea52e766a01e2afb5e987bff278b8bfde1077b61702e235",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in Engineering or Engineering Technology with a minimum CGPA of 2.750; lower CGPA bands accepted with work experience; Science/Technology degrees accepted with prerequisite courses",
+     "quote": "Bachelor’s Degree in Engineering or Engineering Technology with a minimum CGPA of 2.750; or",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Education (M.Ed.)",
+   "url": "https://educ.upm.edu.my/academic/postgraduate/postgraduate_admission_requirements-136",
+   "snapshot_sha256": "67ff31e3e5d02080ac954481d17d6415a5589f7ce404bee3527d65de37f193c9",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or equivalent with a minimum CGPA of 2.75; lower CGPA bands accepted with work experience",
+     "quote": "A Bachelor’s Degree or its equivalent, with a minimum CGPA of 2.75, as accepted by the HEP’s Senate; OR",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Candidates without a Bachelor-level Education background must take the prerequisite course EGS5905 Education and Teaching Profession",
+      "quote": "* Candidates who do not have a background in Education at Bachelor level must take the prerequisite course, EGS5905 Education and Teaching Profession. The pre requisite course must be taken in the first semester of study along with the ERS5900 Research Method course and one (1) elective course only.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Human Resource Development (M.HRD.)",
+   "url": "https://educ.upm.edu.my/academic/postgraduate/postgraduate_admission_requirements-136",
+   "snapshot_sha256": "67ff31e3e5d02080ac954481d17d6415a5589f7ce404bee3527d65de37f193c9",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in the field or related fields with a minimum CGPA of 2.750 or equivalent; lower bands subject to internal assessment",
+     "quote": "A Bachelor’s degree in the field or related fields with a minimum CGPA of 2.750 orequivalent, as accepted by the UPM Senate or",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Plantation Management",
+   "url": "https://agri.upm.edu.my/siswazah/program_secara_kerja_kursus/master_pengurusan_perladangan-232?L=en",
+   "snapshot_sha256": "43d700cd01596b6abe03dc933fcff4f67b2332e47fd7000303ac9cd6a6f8637c",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in a relevant area with a minimum CGPA of 2.75 for fresh graduates; CGPA 2.25 with at least 3 years of working experience",
+     "quote": "Applicants with a bachelor’s degree in a relevant/related area amongst fresh graduates with a minimum CGPA of 2.75.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Foreign graduates from non-English-medium universities must pass a minimum English level set by the School of Graduate Studies (no score stated on this page)",
+      "quote": "Applicants from foreign students graduated from universities whereby the medium of instruction is not in English must pass a minimum English qualification level as specified by the School of Graduate Office, UPM.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Food Security",
+   "url": "https://agri.upm.edu.my/siswazah/program_secara_kerja_kursus/master_sekuriti_makanan-79582",
+   "snapshot_sha256": "702da0538b219235f60585d5a4012111441735f358b884a4d80e45e32aea4762",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in a related field of Science with a minimum CGPA of 2.750 / 60% / Lower Second Class (local candidates; international candidates need Senate-equivalent approval)",
+     "quote": "i) Bachelor's degree in any related field of Science with a minimum CGPA of 2.750 / 60% / Lower Second Class; or,",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "International candidates must have the equivalent approval as above and submit relevant documents for Senate consideration. All international students from countries where English is not the intermediate language must obtain a minimum score of 550 for the TOEFL or a level of 6.0 for the IELTS.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 35,
+  "机器核对": 33,
+  "待人工": 2
+ }
+}
