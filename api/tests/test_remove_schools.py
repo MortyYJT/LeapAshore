@@ -10,7 +10,9 @@ from app.models.application import Application
 from app.models.client import Client
 from app.models.document import Document
 from app.models.program import Program, ProgramPrerequisite, University
+from app.models.roadmap import MaterialTemplate, RoadmapPhase
 from app.models.source import Source, SourceVersion
+from app.models.task import RoadmapTask
 
 GONE = "test-remove-gone-university"
 OTHER = "test-remove-other-university"
@@ -144,3 +146,28 @@ def test_the_command_only_reports_unless_told_to_apply(db_session, catalogue, ca
     assert main(["--apply", GONE]) == 0
     db_session.expire_all()
     assert db_session.get(University, GONE) is None
+
+
+def test_a_program_a_roadmap_task_names_stays(db_session, catalogue):
+    """`roadmap_tasks.program_id` has no foreign key, so a deleted program would leave the task dangling."""
+    phase, material = f"test-phase-{uuid.uuid4().hex[:8]}", f"test-material-{uuid.uuid4().hex[:8]}"
+    client = _client(db_session)
+    db_session.add(RoadmapPhase(key=phase, title="测试阶段", offset_days=30, sort_order=0))
+    db_session.flush()
+    db_session.add(MaterialTemplate(key=material, phase=phase, title="测试材料", applies_to="all", sort_order=0))
+    db_session.flush()
+    task_id = str(uuid.uuid4())
+    db_session.add(RoadmapTask(id=task_id, client_id=client, material_key=material, program_id=f"{GONE}-c", phase=phase))
+    db_session.commit()
+    try:
+        report = remove_universities(db_session, [GONE])
+        db_session.commit()
+        assert report[0]["kept_programs"] == [f"{GONE}-c"]
+        assert db_session.get(Program, f"{GONE}-c") is not None
+    finally:
+        db_session.rollback()
+        db_session.execute(delete(RoadmapTask).where(RoadmapTask.id == task_id))
+        db_session.execute(delete(MaterialTemplate).where(MaterialTemplate.key == material))
+        db_session.execute(delete(RoadmapPhase).where(RoadmapPhase.key == phase))
+        db_session.execute(delete(Client).where(Client.id == client))
+        db_session.commit()

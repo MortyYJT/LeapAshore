@@ -9,10 +9,11 @@ For each university it removes the programs (with their prerequisites), then eve
 or earlier imports for that school cited (`sources.publisher` is the university id), unless something
 else still cites the page. The university row goes once it has no programs left.
 
-Nothing an applicant wrote is lost: a program that a portfolio row (`applications.program_id`) or a
-material (`documents.program_id`) names is kept as it is, with its university and the page it cites,
-and listed under `kept_programs`. Deleting it would either be refused (applications) or silently
-unlink the applicant's material (documents is SET NULL), so it is reported for a person to decide.
+Nothing an applicant wrote is lost: a program that a portfolio row (`applications.program_id`), a
+material (`documents.program_id`) or a roadmap task (`roadmap_tasks.program_id`) names is kept as it
+is, with its university and the page it cites, and listed under `kept_programs`. Deleting it would be
+refused (applications), silently unlink the material (documents is SET NULL), or leave the task naming
+a program that no longer exists (no foreign key), so it is reported for a person to decide.
 """
 
 import json
@@ -27,6 +28,7 @@ from app.models.program import Program, ProgramPrerequisite, University
 from app.models.review import ReviewCriterion
 from app.models.roadmap import MaterialTemplate
 from app.models.source import Source, SourceVersion
+from app.models.task import RoadmapTask
 
 
 def _cited_elsewhere(session: Session, source_ids: set[str]) -> set[str]:
@@ -40,11 +42,15 @@ def _cited_elsewhere(session: Session, source_ids: set[str]) -> set[str]:
 
 
 def remove_university(session: Session, university_id: str) -> dict:
-    programs = set(session.scalars(select(Program.id).where(Program.university_id == university_id)))
+    # FOR UPDATE: a portfolio row or a material that starts naming one of these programs while this
+    # runs needs a key-share lock on it, so it waits for this transaction instead of slipping in
+    # between the check below and the delete (where documents' SET NULL would unlink it silently).
+    programs = set(session.scalars(
+        select(Program.id).where(Program.university_id == university_id).with_for_update()))
     held: set[str] = set()
     if programs:
-        held |= set(session.scalars(select(Application.program_id).where(Application.program_id.in_(programs))))
-        held |= set(session.scalars(select(Document.program_id).where(Document.program_id.in_(programs))))
+        for column in (Application.program_id, Document.program_id, RoadmapTask.program_id):
+            held |= set(session.scalars(select(column).where(column.in_(programs))))
     removable = programs - held
 
     candidates: set[str] = set(session.scalars(select(Source.id).where(Source.publisher == university_id)))

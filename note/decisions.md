@@ -117,5 +117,5 @@
 ## 2026-10-30 学校库收缩到 287 所，被用户引用的项目保留（Claude 自主（待 MortyYJT 复核））
 
 - **决定**：学校库只留 2026-10-29 定的 29 个国家和地区，346 → 287（移除 59 所，校徽文件一起删）；`_schools.json` 采集名单也去掉范围外 25 所。地区筛选去掉已空的「中国大陆」「日本」，中东 3 国从「其他」改名「中东」。日本 8 所的采集文件删除，数据库里的学校、项目、来源用 `python -m app.collect.remove_schools [--apply] <university_id>...` 删除（默认只报告）。
-- **用户数据**：被选校组合（`applications`）或材料（`documents`）引用的项目不删，连同学校和来源原样保留，列在 `kept_programs` 里等人处理。理由：`applications.program_id` 是 RESTRICT，硬删会被拒；`documents.program_id` 是 SET NULL，硬删会悄悄断开用户材料和项目的关联。没选「快照到选校行」或「软删除字段」：两者都要改表，软删除还要所有读项目的查询都加过滤，为一次性的范围调整不值得。和 importer `--prune` 已有做法一致。生产库删前查过：0 个被引用。
+- **用户数据**：被选校组合（`applications`）、材料（`documents`）或路线图任务（`roadmap_tasks`，无外键）引用的项目不删，连同学校和来源原样保留，列在 `kept_programs` 里等人处理。理由：`applications.program_id` 是 RESTRICT，硬删会被拒；`documents.program_id` 是 SET NULL，硬删会悄悄断开用户材料和项目的关联。没选「快照到选校行」或「软删除字段」：两者都要改表，软删除还要所有读项目的查询都加过滤，为一次性的范围调整不值得。和 importer `--prune` 已有做法一致。生产库删前查过：0 个被引用。
 - **来源**：只删没有任何项目、材料模板、审核标准还在引用的来源，所以共用的页面不会被删。

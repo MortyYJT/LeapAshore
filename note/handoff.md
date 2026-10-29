@@ -35,7 +35,7 @@
 ## 坑
 
 - Turbopack dev 缓存会继续给旧 CSS：删掉 `web/.next` 再重启 dev。`make clean` 会删 `node_modules`。症状之一：走查「390：导航收进菜单」失败。dev server 不是自己起的、不方便重启时，可对 `make build` 产物走查：`cd web && NEXT_DIST_DIR=.next-build npx next start -p 3100`，再 `BASE_URL=http://localhost:3100 node scripts/walkthrough.cjs`。
-- 从数据库删学校用 `python -m app.collect.remove_schools [--apply] <university_id>...`，不要手敲 SQL；被选校组合或材料引用的项目会保留并列在 `kept_programs`。
+- 从数据库删学校用 `python -m app.collect.remove_schools [--apply] <university_id>...`，不要手敲 SQL；被选校组合、材料或路线图任务引用的项目会保留并列在 `kept_programs`。
 - 本机 API 不带 `--reload`，加了新路由要重启 uvicorn。
 - 返回 `StreamingResponse` 时必须调用 `set_client_cookie`，否则流式响应不带 cookie。
 - Playwright 自带的 Chromium 截中文会截掉半个字，截图要用 `channel: 'chrome'`。
