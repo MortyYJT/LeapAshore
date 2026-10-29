@@ -1,0 +1,46 @@
+{
+ "school_key": "university-of-alberta",
+ "school_name_en": "University of Alberta",
+ "country": "Canada",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [],
+ "blocked": [
+  {
+   "url": "https://www.ualberta.ca/en/graduate-studies/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://www.ualberta.ca/en/admissions-programs/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://calendar.ualberta.ca/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://sites.ualberta.ca/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://cs.ualberta.ca/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://business.ualberta.ca/",
+   "reason": "robots.txt disallows"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.ualberta.ca/en/graduate-studies/",
+  "https://www.ualberta.ca/en/graduate-programs/"
+ ],
+ "notes": "The snapshot tool reported robots.txt disallows for www.ualberta.ca (graduate studies and programme pages), calendar.ualberta.ca and the department sub-hosts, so no requirements could be fetched. The only reachable official host, apps.ualberta.ca, is a course catalogue and states no admission requirements.",
+ "programs": [],
+ "verification": {
+  "programs": 0,
+  "机器核对": 0,
+  "待人工": 0
+ }
+}
