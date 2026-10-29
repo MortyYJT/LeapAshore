@@ -78,13 +78,15 @@ def _config(client_id: str, conversation_id: str, ticket: limits.Ticket | None =
 _turns: set[asyncio.Task] = set()
 
 
-async def _detached(events: AsyncIterator[str], ticket: limits.Ticket) -> AsyncIterator[str]:
-    """Run the turn to the end in its own task and relay its events while the client listens.
+def _detached(events: AsyncIterator[str], ticket: limits.Ticket) -> AsyncIterator[str]:
+    """Start the turn now, in its own task, and return a generator that relays its events.
 
     The response generator is cancelled when the client disconnects; if the model calls ran inside it,
     a client that hung up before the last chunk (which carries the usage) would never be charged. In a
     task of its own the turn finishes, its usage is recorded, and the reservation is given back
-    whatever the client does. A dropped client's events are simply not read.
+    whatever the client does. The task starts here rather than on the first read, because a client
+    that disconnects before the response starts streaming means the generator is never read at all,
+    and its reservation would then stay on today's counters. A dropped client's events are not read.
     """
     queue: asyncio.Queue[str | None] = asyncio.Queue()
 
@@ -99,8 +101,12 @@ async def _detached(events: AsyncIterator[str], ticket: limits.Ticket) -> AsyncI
     task = asyncio.create_task(run())
     _turns.add(task)
     task.add_done_callback(_turns.discard)
-    while (event := await queue.get()) is not None:
-        yield event
+
+    async def relay() -> AsyncIterator[str]:
+        while (event := await queue.get()) is not None:
+            yield event
+
+    return relay()
 
 
 def _event(payload: dict) -> str:

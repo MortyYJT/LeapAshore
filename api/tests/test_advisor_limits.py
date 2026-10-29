@@ -318,6 +318,23 @@ def test_a_client_that_hangs_up_is_still_charged(generous, streaming_model, monk
     assert asyncio.run(limits.usage_today(subject, ip)) == {"subject": 42, "ip": 42, "site": 42}
 
 
+def test_a_response_that_never_streams_still_returns_its_reservation(generous, monkeypatch):
+    """A client gone before the first byte: the relay is never read, the reservation must still go back."""
+    monkeypatch.setattr(settings, "advisor_turn_token_reserve", 1000)
+    subject, ip = str(uuid.uuid4()), unique_ip()
+
+    async def empty_turn():
+        yield advisor._event({"type": "done"})
+
+    async def admitted_but_never_read() -> None:
+        ticket = await limits.check(subject, ip)
+        advisor._detached(empty_turn(), ticket)
+        await asyncio.gather(*advisor._turns)
+
+    asyncio.run(admitted_but_never_read())
+    assert asyncio.run(limits.usage_today(subject, ip)) == {"subject": 0, "ip": 0, "site": 0}
+
+
 def test_a_running_turn_holds_its_reservation(generous, monkeypatch):
     monkeypatch.setattr(settings, "advisor_turn_token_reserve", 1000)
     during = []
