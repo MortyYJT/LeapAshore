@@ -1,0 +1,36 @@
+{
+ "school_key": "ku-leuven",
+ "school_name_en": "KU Leuven",
+ "country": "Belgium",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://onderwijsaanbod.kuleuven.be/opleidingen/e"
+ ],
+ "blocked": [
+  {
+   "url": "https://www.kuleuven.be/programmes/",
+   "reason": "robots.txt disallows (robots.txt itself: HTTP 403)"
+  },
+  {
+   "url": "https://www.kuleuven.be/english/admissions",
+   "reason": "robots.txt disallows (robots.txt itself: HTTP 403)"
+  },
+  {
+   "url": "https://onderwijsaanbod.kuleuven.be/opleidingen/e/SC_51016880/toelatingsvoorwaarden",
+   "reason": "connection timed out on every attempt (plain and rendered, several retries over about 10 minutes)"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://onderwijsaanbod.kuleuven.be/opleidingen/e/SC_51016880/toelatingsvoorwaarden",
+  "https://onderwijsaanbod.kuleuven.be/opleidingen/e"
+ ],
+ "notes": "www.kuleuven.be returns HTTP 403 for robots.txt, so the snapshot tool refuses the whole host. The official programme guide onderwijsaanbod.kuleuven.be served the rendered listing once (885 programmes, filterable by language, JS-built, no programme links in the saved HTML) and then timed out on every later request, including admission-requirements pages, so no programme values were collected. Next run: retry the programme guide admission pages (pattern /opleidingen/e/SC_<id>/toelatingsvoorwaarden, e.g. SC_51016880 Master of Artificial Intelligence) when the host responds.",
+ "programs": [],
+ "verification": {
+  "programs": 0,
+  "机器核对": 0,
+  "待人工": 0
+ }
+}
