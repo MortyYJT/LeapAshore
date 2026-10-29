@@ -1,0 +1,712 @@
+{
+ "school_key": "institute-of-science-tokyo",
+ "school_name_en": "Institute of Science Tokyo",
+ "country": "Japan",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://admissions.isct.ac.jp/en/013/graduate/programs",
+  "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering",
+  "https://admissions.isct.ac.jp/en/013/graduate/programs/medicine-dentistry-healthcaresciences-and-oralhealthcaresciences/md-guidelines",
+  "https://www.titech.ac.jp/english/prospective-students/graduate-programs"
+ ],
+ "blocked": [],
+ "complete": false,
+ "remaining_urls": [
+  "https://admissions.isct.ac.jp/ja/013/graduate/guideline"
+ ],
+ "notes": "Eligibility, English-score and fee details of the Application Guides (IGP(A)/(C), regular science-and-engineering master's, medical/dental/MPH/nursing master's) are published only as PDF downloads, which the snapshot tool cannot read into text, so none of them could be quoted. Only HTML pages (IGP pages, IGP FAQ) are quoted; the regular Japanese-language master's entrance examination, the Nursing Innovation Science master's, and the PDF-only requirements remain uncollected. The two Medical and Dental master's programs are listed with no verified fields. IGP(B) is doctoral-only and excluded.",
+ "programs": [
+  {
+   "name": "International Graduate Program (A) Theme Focused: Postgraduate Program for Environmental Designers Contributing to Resilient Cities (Master's Program)",
+   "url": "https://admissions.isct.ac.jp/en/013/graduate/programs/igp/igp-a",
+   "snapshot_sha256": "cdeb6b8269370817167d44d580ee96942ce756f323057a36987e0a22003e8aca",
+   "fields": {
+    "academic": {
+     "text": "No eligibility screening is needed for applicants with 16 years of education outside Japan and a degree equivalent to a bachelor's degree (or expected by the day before enrollment); most IGP applicants fall in this group",
+     "quote": "The eligibility screening is not required for individuals who have successfully completed 16 years of education outside Japan and obtained a degree equivalent to a bachelor’s degree, or who are expected to do so by the day before the enrollment date. Most applicants fall under this category.",
+     "source_sha256": "72f797abece6afe347d780fa7b677e2ea64b3bddec3331559c03490ede4989b2",
+     "source_url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-faq",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "No Japanese language requirement; lectures and seminars are held in English",
+      "quote": "There is no Japanese language requirement for this program as lectures and seminars are held in English.",
+      "check": "ok"
+     },
+     {
+      "text": "Offered as an Integrated Doctoral Education Program (M+D) or a Master's Program (M), related to Civil and Environmental Engineering and Architecture and Building Engineering",
+      "quote": "Offered Degree Programs Integrated Doctoral Education Program (M+D) Master's Program (M) Related Departments Civil and Environmental Engineering Architecture and Building Engineering",
+      "check": "ok"
+     },
+     {
+      "text": "English test score report is not required for IGP applications (may be required for a scholarship application or if the intended supervisor asks for it)",
+      "quote": "Submission of an English test score report is no longer required for an application to the IGP starting with admission for spring 2025.",
+      "source_sha256": "72f797abece6afe347d780fa7b677e2ea64b3bddec3331559c03490ede4989b2",
+      "source_url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-faq",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 enrollment (IGP(A))",
+      "date": "2026-11-22",
+      "quote": "Application Period September 9, 2026 – November 22, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Graduate Program (C): Master's Program in Physics",
+   "url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-c",
+   "snapshot_sha256": "8a8dbce43b3a242f4add788aa0291e37007a1b3c00b1a49c5de95a7dbc0e95c8",
+   "fields": {
+    "academic": {
+     "text": "No eligibility screening is needed for applicants with 16 years of education outside Japan and a degree equivalent to a bachelor's degree (or expected by the day before enrollment); most IGP applicants fall in this group",
+     "quote": "The eligibility screening is not required for individuals who have successfully completed 16 years of education outside Japan and obtained a degree equivalent to a bachelor’s degree, or who are expected to do so by the day before the enrollment date. Most applicants fall under this category.",
+     "source_sha256": "72f797abece6afe347d780fa7b677e2ea64b3bddec3331559c03490ede4989b2",
+     "source_url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-faq",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "No Japanese language requirement; lectures and seminars are held in English",
+      "quote": "There is no Japanese language requirement for this program as lectures and seminars are held in English.",
+      "check": "ok"
+     },
+     {
+      "text": "Physics offers a Master's program (M) under IGP(C)",
+      "quote": "Physics M D -",
+      "check": "ok"
+     },
+     {
+      "text": "English test score report is not required for IGP applications (may be required for a scholarship application or if the intended supervisor asks for it)",
+      "quote": "Submission of an English test score report is no longer required for an application to the IGP starting with admission for spring 2025.",
+      "source_sha256": "72f797abece6afe347d780fa7b677e2ea64b3bddec3331559c03490ede4989b2",
+      "source_url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-faq",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 enrollment (IGP(C))",
+      "date": "2026-10-11",
+      "quote": "Application Period August 3, 2026 – October 11, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Graduate Program (C): Master's Program in Earth and Planetary Sciences",
+   "url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-c",
+   "snapshot_sha256": "8a8dbce43b3a242f4add788aa0291e37007a1b3c00b1a49c5de95a7dbc0e95c8",
+   "fields": {
+    "academic": {
+     "text": "No eligibility screening is needed for applicants with 16 years of education outside Japan and a degree equivalent to a bachelor's degree (or expected by the day before enrollment); most IGP applicants fall in this group",
+     "quote": "The eligibility screening is not required for individuals who have successfully completed 16 years of education outside Japan and obtained a degree equivalent to a bachelor’s degree, or who are expected to do so by the day before the enrollment date. Most applicants fall under this category.",
+     "source_sha256": "72f797abece6afe347d780fa7b677e2ea64b3bddec3331559c03490ede4989b2",
+     "source_url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-faq",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "No Japanese language requirement; lectures and seminars are held in English",
+      "quote": "There is no Japanese language requirement for this program as lectures and seminars are held in English.",
+      "check": "ok"
+     },
+     {
+      "text": "Earth and Planetary Sciences offers a Master's program (M) under IGP(C)",
+      "quote": "Earth and Planetary Sciences M D M+D",
+      "check": "ok"
+     },
+     {
+      "text": "English test score report is not required for IGP applications (may be required for a scholarship application or if the intended supervisor asks for it)",
+      "quote": "Submission of an English test score report is no longer required for an application to the IGP starting with admission for spring 2025.",
+      "source_sha256": "72f797abece6afe347d780fa7b677e2ea64b3bddec3331559c03490ede4989b2",
+      "source_url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-faq",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 enrollment (IGP(C))",
+      "date": "2026-10-11",
+      "quote": "Application Period August 3, 2026 – October 11, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Graduate Program (C): Master's Program in Mechanical Engineering",
+   "url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-c",
+   "snapshot_sha256": "8a8dbce43b3a242f4add788aa0291e37007a1b3c00b1a49c5de95a7dbc0e95c8",
+   "fields": {
+    "academic": {
+     "text": "No eligibility screening is needed for applicants with 16 years of education outside Japan and a degree equivalent to a bachelor's degree (or expected by the day before enrollment); most IGP applicants fall in this group",
+     "quote": "The eligibility screening is not required for individuals who have successfully completed 16 years of education outside Japan and obtained a degree equivalent to a bachelor’s degree, or who are expected to do so by the day before the enrollment date. Most applicants fall under this category.",
+     "source_sha256": "72f797abece6afe347d780fa7b677e2ea64b3bddec3331559c03490ede4989b2",
+     "source_url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-faq",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "No Japanese language requirement; lectures and seminars are held in English",
+      "quote": "There is no Japanese language requirement for this program as lectures and seminars are held in English.",
+      "check": "ok"
+     },
+     {
+      "text": "Mechanical Engineering offers a Master's program (M) under IGP(C)",
+      "quote": "Mechanical Engineering M D -",
+      "check": "ok"
+     },
+     {
+      "text": "English test score report is not required for IGP applications (may be required for a scholarship application or if the intended supervisor asks for it)",
+      "quote": "Submission of an English test score report is no longer required for an application to the IGP starting with admission for spring 2025.",
+      "source_sha256": "72f797abece6afe347d780fa7b677e2ea64b3bddec3331559c03490ede4989b2",
+      "source_url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-faq",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 enrollment (IGP(C))",
+      "date": "2026-10-11",
+      "quote": "Application Period August 3, 2026 – October 11, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Graduate Program (C): Master's Program in Systems and Control Engineering",
+   "url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-c",
+   "snapshot_sha256": "8a8dbce43b3a242f4add788aa0291e37007a1b3c00b1a49c5de95a7dbc0e95c8",
+   "fields": {
+    "academic": {
+     "text": "No eligibility screening is needed for applicants with 16 years of education outside Japan and a degree equivalent to a bachelor's degree (or expected by the day before enrollment); most IGP applicants fall in this group",
+     "quote": "The eligibility screening is not required for individuals who have successfully completed 16 years of education outside Japan and obtained a degree equivalent to a bachelor’s degree, or who are expected to do so by the day before the enrollment date. Most applicants fall under this category.",
+     "source_sha256": "72f797abece6afe347d780fa7b677e2ea64b3bddec3331559c03490ede4989b2",
+     "source_url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-faq",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "No Japanese language requirement; lectures and seminars are held in English",
+      "quote": "There is no Japanese language requirement for this program as lectures and seminars are held in English.",
+      "check": "ok"
+     },
+     {
+      "text": "Systems and Control Engineering offers a Master's program (M) under IGP(C)",
+      "quote": "Systems and Control Engineering M D -",
+      "check": "ok"
+     },
+     {
+      "text": "English test score report is not required for IGP applications (may be required for a scholarship application or if the intended supervisor asks for it)",
+      "quote": "Submission of an English test score report is no longer required for an application to the IGP starting with admission for spring 2025.",
+      "source_sha256": "72f797abece6afe347d780fa7b677e2ea64b3bddec3331559c03490ede4989b2",
+      "source_url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-faq",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 enrollment (IGP(C))",
+      "date": "2026-10-11",
+      "quote": "Application Period August 3, 2026 – October 11, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Graduate Program (C): Master's Program in Electrical and Electronic Engineering",
+   "url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-c",
+   "snapshot_sha256": "8a8dbce43b3a242f4add788aa0291e37007a1b3c00b1a49c5de95a7dbc0e95c8",
+   "fields": {
+    "academic": {
+     "text": "No eligibility screening is needed for applicants with 16 years of education outside Japan and a degree equivalent to a bachelor's degree (or expected by the day before enrollment); most IGP applicants fall in this group",
+     "quote": "The eligibility screening is not required for individuals who have successfully completed 16 years of education outside Japan and obtained a degree equivalent to a bachelor’s degree, or who are expected to do so by the day before the enrollment date. Most applicants fall under this category.",
+     "source_sha256": "72f797abece6afe347d780fa7b677e2ea64b3bddec3331559c03490ede4989b2",
+     "source_url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-faq",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "No Japanese language requirement; lectures and seminars are held in English",
+      "quote": "There is no Japanese language requirement for this program as lectures and seminars are held in English.",
+      "check": "ok"
+     },
+     {
+      "text": "Electrical and Electronic Engineering offers a Master's program (M) under IGP(C)",
+      "quote": "Electrical and Electronic Engineering M D -",
+      "check": "ok"
+     },
+     {
+      "text": "English test score report is not required for IGP applications (may be required for a scholarship application or if the intended supervisor asks for it)",
+      "quote": "Submission of an English test score report is no longer required for an application to the IGP starting with admission for spring 2025.",
+      "source_sha256": "72f797abece6afe347d780fa7b677e2ea64b3bddec3331559c03490ede4989b2",
+      "source_url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-faq",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 enrollment (IGP(C))",
+      "date": "2026-10-11",
+      "quote": "Application Period August 3, 2026 – October 11, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Graduate Program (C): Master's Program in Information and Communications Engineering",
+   "url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-c",
+   "snapshot_sha256": "8a8dbce43b3a242f4add788aa0291e37007a1b3c00b1a49c5de95a7dbc0e95c8",
+   "fields": {
+    "academic": {
+     "text": "No eligibility screening is needed for applicants with 16 years of education outside Japan and a degree equivalent to a bachelor's degree (or expected by the day before enrollment); most IGP applicants fall in this group",
+     "quote": "The eligibility screening is not required for individuals who have successfully completed 16 years of education outside Japan and obtained a degree equivalent to a bachelor’s degree, or who are expected to do so by the day before the enrollment date. Most applicants fall under this category.",
+     "source_sha256": "72f797abece6afe347d780fa7b677e2ea64b3bddec3331559c03490ede4989b2",
+     "source_url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-faq",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "No Japanese language requirement; lectures and seminars are held in English",
+      "quote": "There is no Japanese language requirement for this program as lectures and seminars are held in English.",
+      "check": "ok"
+     },
+     {
+      "text": "Information and Communications Engineering offers a Master's program (M) under IGP(C)",
+      "quote": "Information and Communications Engineering M D -",
+      "check": "ok"
+     },
+     {
+      "text": "English test score report is not required for IGP applications (may be required for a scholarship application or if the intended supervisor asks for it)",
+      "quote": "Submission of an English test score report is no longer required for an application to the IGP starting with admission for spring 2025.",
+      "source_sha256": "72f797abece6afe347d780fa7b677e2ea64b3bddec3331559c03490ede4989b2",
+      "source_url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-faq",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 enrollment (IGP(C))",
+      "date": "2026-10-11",
+      "quote": "Application Period August 3, 2026 – October 11, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Graduate Program (C): Master's Program in Industrial Engineering and Economics",
+   "url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-c",
+   "snapshot_sha256": "8a8dbce43b3a242f4add788aa0291e37007a1b3c00b1a49c5de95a7dbc0e95c8",
+   "fields": {
+    "academic": {
+     "text": "No eligibility screening is needed for applicants with 16 years of education outside Japan and a degree equivalent to a bachelor's degree (or expected by the day before enrollment); most IGP applicants fall in this group",
+     "quote": "The eligibility screening is not required for individuals who have successfully completed 16 years of education outside Japan and obtained a degree equivalent to a bachelor’s degree, or who are expected to do so by the day before the enrollment date. Most applicants fall under this category.",
+     "source_sha256": "72f797abece6afe347d780fa7b677e2ea64b3bddec3331559c03490ede4989b2",
+     "source_url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-faq",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "No Japanese language requirement; lectures and seminars are held in English",
+      "quote": "There is no Japanese language requirement for this program as lectures and seminars are held in English.",
+      "check": "ok"
+     },
+     {
+      "text": "Industrial Engineering and Economics offers a Master's program (M) under IGP(C)",
+      "quote": "Industrial Engineering and Economics M D -",
+      "check": "ok"
+     },
+     {
+      "text": "English test score report is not required for IGP applications (may be required for a scholarship application or if the intended supervisor asks for it)",
+      "quote": "Submission of an English test score report is no longer required for an application to the IGP starting with admission for spring 2025.",
+      "source_sha256": "72f797abece6afe347d780fa7b677e2ea64b3bddec3331559c03490ede4989b2",
+      "source_url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-faq",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 enrollment (IGP(C))",
+      "date": "2026-10-11",
+      "quote": "Application Period August 3, 2026 – October 11, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Graduate Program (C): Master's Program in Materials Science and Engineering",
+   "url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-c",
+   "snapshot_sha256": "8a8dbce43b3a242f4add788aa0291e37007a1b3c00b1a49c5de95a7dbc0e95c8",
+   "fields": {
+    "academic": {
+     "text": "No eligibility screening is needed for applicants with 16 years of education outside Japan and a degree equivalent to a bachelor's degree (or expected by the day before enrollment); most IGP applicants fall in this group",
+     "quote": "The eligibility screening is not required for individuals who have successfully completed 16 years of education outside Japan and obtained a degree equivalent to a bachelor’s degree, or who are expected to do so by the day before the enrollment date. Most applicants fall under this category.",
+     "source_sha256": "72f797abece6afe347d780fa7b677e2ea64b3bddec3331559c03490ede4989b2",
+     "source_url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-faq",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "No Japanese language requirement; lectures and seminars are held in English",
+      "quote": "There is no Japanese language requirement for this program as lectures and seminars are held in English.",
+      "check": "ok"
+     },
+     {
+      "text": "Materials Science and Engineering offers a Master's program (M) under IGP(C)",
+      "quote": "Materials Science and Engineering M D -",
+      "check": "ok"
+     },
+     {
+      "text": "English test score report is not required for IGP applications (may be required for a scholarship application or if the intended supervisor asks for it)",
+      "quote": "Submission of an English test score report is no longer required for an application to the IGP starting with admission for spring 2025.",
+      "source_sha256": "72f797abece6afe347d780fa7b677e2ea64b3bddec3331559c03490ede4989b2",
+      "source_url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-faq",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 enrollment (IGP(C))",
+      "date": "2026-10-11",
+      "quote": "Application Period August 3, 2026 – October 11, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Graduate Program (C): Master's Program in Chemical Science and Engineering",
+   "url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-c",
+   "snapshot_sha256": "8a8dbce43b3a242f4add788aa0291e37007a1b3c00b1a49c5de95a7dbc0e95c8",
+   "fields": {
+    "academic": {
+     "text": "No eligibility screening is needed for applicants with 16 years of education outside Japan and a degree equivalent to a bachelor's degree (or expected by the day before enrollment); most IGP applicants fall in this group",
+     "quote": "The eligibility screening is not required for individuals who have successfully completed 16 years of education outside Japan and obtained a degree equivalent to a bachelor’s degree, or who are expected to do so by the day before the enrollment date. Most applicants fall under this category.",
+     "source_sha256": "72f797abece6afe347d780fa7b677e2ea64b3bddec3331559c03490ede4989b2",
+     "source_url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-faq",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "No Japanese language requirement; lectures and seminars are held in English",
+      "quote": "There is no Japanese language requirement for this program as lectures and seminars are held in English.",
+      "check": "ok"
+     },
+     {
+      "text": "Chemical Science and Engineering offers a Master's program (M) under IGP(C)",
+      "quote": "Chemical Science and Engineering M D M+D",
+      "check": "ok"
+     },
+     {
+      "text": "English test score report is not required for IGP applications (may be required for a scholarship application or if the intended supervisor asks for it)",
+      "quote": "Submission of an English test score report is no longer required for an application to the IGP starting with admission for spring 2025.",
+      "source_sha256": "72f797abece6afe347d780fa7b677e2ea64b3bddec3331559c03490ede4989b2",
+      "source_url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-faq",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 enrollment (IGP(C))",
+      "date": "2026-10-11",
+      "quote": "Application Period August 3, 2026 – October 11, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Graduate Program (C): Master's Program in Mathematical and Computing Science",
+   "url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-c",
+   "snapshot_sha256": "8a8dbce43b3a242f4add788aa0291e37007a1b3c00b1a49c5de95a7dbc0e95c8",
+   "fields": {
+    "academic": {
+     "text": "No eligibility screening is needed for applicants with 16 years of education outside Japan and a degree equivalent to a bachelor's degree (or expected by the day before enrollment); most IGP applicants fall in this group",
+     "quote": "The eligibility screening is not required for individuals who have successfully completed 16 years of education outside Japan and obtained a degree equivalent to a bachelor’s degree, or who are expected to do so by the day before the enrollment date. Most applicants fall under this category.",
+     "source_sha256": "72f797abece6afe347d780fa7b677e2ea64b3bddec3331559c03490ede4989b2",
+     "source_url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-faq",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "No Japanese language requirement; lectures and seminars are held in English",
+      "quote": "There is no Japanese language requirement for this program as lectures and seminars are held in English.",
+      "check": "ok"
+     },
+     {
+      "text": "Mathematical and Computing Science offers a Master's program (M) under IGP(C)",
+      "quote": "Mathematical and Computing Science M D -",
+      "check": "ok"
+     },
+     {
+      "text": "English test score report is not required for IGP applications (may be required for a scholarship application or if the intended supervisor asks for it)",
+      "quote": "Submission of an English test score report is no longer required for an application to the IGP starting with admission for spring 2025.",
+      "source_sha256": "72f797abece6afe347d780fa7b677e2ea64b3bddec3331559c03490ede4989b2",
+      "source_url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-faq",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 enrollment (IGP(C))",
+      "date": "2026-10-11",
+      "quote": "Application Period August 3, 2026 – October 11, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Graduate Program (C): Master's Program in Computer Science",
+   "url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-c",
+   "snapshot_sha256": "8a8dbce43b3a242f4add788aa0291e37007a1b3c00b1a49c5de95a7dbc0e95c8",
+   "fields": {
+    "academic": {
+     "text": "No eligibility screening is needed for applicants with 16 years of education outside Japan and a degree equivalent to a bachelor's degree (or expected by the day before enrollment); most IGP applicants fall in this group",
+     "quote": "The eligibility screening is not required for individuals who have successfully completed 16 years of education outside Japan and obtained a degree equivalent to a bachelor’s degree, or who are expected to do so by the day before the enrollment date. Most applicants fall under this category.",
+     "source_sha256": "72f797abece6afe347d780fa7b677e2ea64b3bddec3331559c03490ede4989b2",
+     "source_url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-faq",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "No Japanese language requirement; lectures and seminars are held in English",
+      "quote": "There is no Japanese language requirement for this program as lectures and seminars are held in English.",
+      "check": "ok"
+     },
+     {
+      "text": "Computer Science offers a Master's program (M) under IGP(C)",
+      "quote": "Computer Science M D -",
+      "check": "ok"
+     },
+     {
+      "text": "English test score report is not required for IGP applications (may be required for a scholarship application or if the intended supervisor asks for it)",
+      "quote": "Submission of an English test score report is no longer required for an application to the IGP starting with admission for spring 2025.",
+      "source_sha256": "72f797abece6afe347d780fa7b677e2ea64b3bddec3331559c03490ede4989b2",
+      "source_url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-faq",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 enrollment (IGP(C))",
+      "date": "2026-10-11",
+      "quote": "Application Period August 3, 2026 – October 11, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Graduate Program (C): Master's Program in Life Science and Technology",
+   "url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-c",
+   "snapshot_sha256": "8a8dbce43b3a242f4add788aa0291e37007a1b3c00b1a49c5de95a7dbc0e95c8",
+   "fields": {
+    "academic": {
+     "text": "No eligibility screening is needed for applicants with 16 years of education outside Japan and a degree equivalent to a bachelor's degree (or expected by the day before enrollment); most IGP applicants fall in this group",
+     "quote": "The eligibility screening is not required for individuals who have successfully completed 16 years of education outside Japan and obtained a degree equivalent to a bachelor’s degree, or who are expected to do so by the day before the enrollment date. Most applicants fall under this category.",
+     "source_sha256": "72f797abece6afe347d780fa7b677e2ea64b3bddec3331559c03490ede4989b2",
+     "source_url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-faq",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "No Japanese language requirement; lectures and seminars are held in English",
+      "quote": "There is no Japanese language requirement for this program as lectures and seminars are held in English.",
+      "check": "ok"
+     },
+     {
+      "text": "Life Science and Technology offers a Master's program (M) under IGP(C)",
+      "quote": "Life Science and Technology M D M+D",
+      "check": "ok"
+     },
+     {
+      "text": "English test score report is not required for IGP applications (may be required for a scholarship application or if the intended supervisor asks for it)",
+      "quote": "Submission of an English test score report is no longer required for an application to the IGP starting with admission for spring 2025.",
+      "source_sha256": "72f797abece6afe347d780fa7b677e2ea64b3bddec3331559c03490ede4989b2",
+      "source_url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-faq",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 enrollment (IGP(C))",
+      "date": "2026-10-11",
+      "quote": "Application Period August 3, 2026 – October 11, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Graduate Program (C): Master's Program in Architecture and Building Engineering",
+   "url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-c",
+   "snapshot_sha256": "8a8dbce43b3a242f4add788aa0291e37007a1b3c00b1a49c5de95a7dbc0e95c8",
+   "fields": {
+    "academic": {
+     "text": "No eligibility screening is needed for applicants with 16 years of education outside Japan and a degree equivalent to a bachelor's degree (or expected by the day before enrollment); most IGP applicants fall in this group",
+     "quote": "The eligibility screening is not required for individuals who have successfully completed 16 years of education outside Japan and obtained a degree equivalent to a bachelor’s degree, or who are expected to do so by the day before the enrollment date. Most applicants fall under this category.",
+     "source_sha256": "72f797abece6afe347d780fa7b677e2ea64b3bddec3331559c03490ede4989b2",
+     "source_url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-faq",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "No Japanese language requirement; lectures and seminars are held in English",
+      "quote": "There is no Japanese language requirement for this program as lectures and seminars are held in English.",
+      "check": "ok"
+     },
+     {
+      "text": "Architecture and Building Engineering offers a Master's program (M) under IGP(C)",
+      "quote": "Architecture and Building Engineering M D -",
+      "check": "ok"
+     },
+     {
+      "text": "English test score report is not required for IGP applications (may be required for a scholarship application or if the intended supervisor asks for it)",
+      "quote": "Submission of an English test score report is no longer required for an application to the IGP starting with admission for spring 2025.",
+      "source_sha256": "72f797abece6afe347d780fa7b677e2ea64b3bddec3331559c03490ede4989b2",
+      "source_url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-faq",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 enrollment (IGP(C))",
+      "date": "2026-10-11",
+      "quote": "Application Period August 3, 2026 – October 11, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Graduate Program (C): Master's Program in Civil and Environmental Engineering",
+   "url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-c",
+   "snapshot_sha256": "8a8dbce43b3a242f4add788aa0291e37007a1b3c00b1a49c5de95a7dbc0e95c8",
+   "fields": {
+    "academic": {
+     "text": "No eligibility screening is needed for applicants with 16 years of education outside Japan and a degree equivalent to a bachelor's degree (or expected by the day before enrollment); most IGP applicants fall in this group",
+     "quote": "The eligibility screening is not required for individuals who have successfully completed 16 years of education outside Japan and obtained a degree equivalent to a bachelor’s degree, or who are expected to do so by the day before the enrollment date. Most applicants fall under this category.",
+     "source_sha256": "72f797abece6afe347d780fa7b677e2ea64b3bddec3331559c03490ede4989b2",
+     "source_url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-faq",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "No Japanese language requirement; lectures and seminars are held in English",
+      "quote": "There is no Japanese language requirement for this program as lectures and seminars are held in English.",
+      "check": "ok"
+     },
+     {
+      "text": "Civil and Environmental Engineering offers a Master's program (M) under IGP(C)",
+      "quote": "Civil and Environmental Engineering M D -",
+      "check": "ok"
+     },
+     {
+      "text": "English test score report is not required for IGP applications (may be required for a scholarship application or if the intended supervisor asks for it)",
+      "quote": "Submission of an English test score report is no longer required for an application to the IGP starting with admission for spring 2025.",
+      "source_sha256": "72f797abece6afe347d780fa7b677e2ea64b3bddec3331559c03490ede4989b2",
+      "source_url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-faq",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 enrollment (IGP(C))",
+      "date": "2026-10-11",
+      "quote": "Application Period August 3, 2026 – October 11, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Graduate Program (C): Master's Program in Transdisciplinary Science and Engineering",
+   "url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-c",
+   "snapshot_sha256": "8a8dbce43b3a242f4add788aa0291e37007a1b3c00b1a49c5de95a7dbc0e95c8",
+   "fields": {
+    "academic": {
+     "text": "No eligibility screening is needed for applicants with 16 years of education outside Japan and a degree equivalent to a bachelor's degree (or expected by the day before enrollment); most IGP applicants fall in this group",
+     "quote": "The eligibility screening is not required for individuals who have successfully completed 16 years of education outside Japan and obtained a degree equivalent to a bachelor’s degree, or who are expected to do so by the day before the enrollment date. Most applicants fall under this category.",
+     "source_sha256": "72f797abece6afe347d780fa7b677e2ea64b3bddec3331559c03490ede4989b2",
+     "source_url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-faq",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "No Japanese language requirement; lectures and seminars are held in English",
+      "quote": "There is no Japanese language requirement for this program as lectures and seminars are held in English.",
+      "check": "ok"
+     },
+     {
+      "text": "Transdisciplinary Science and Engineering offers a Master's program (M) under IGP(C)",
+      "quote": "Transdisciplinary Science and Engineering M D -",
+      "check": "ok"
+     },
+     {
+      "text": "English test score report is not required for IGP applications (may be required for a scholarship application or if the intended supervisor asks for it)",
+      "quote": "Submission of an English test score report is no longer required for an application to the IGP starting with admission for spring 2025.",
+      "source_sha256": "72f797abece6afe347d780fa7b677e2ea64b3bddec3331559c03490ede4989b2",
+      "source_url": "https://admissions.isct.ac.jp/en/013/graduate/programs/science-and-engineering/igp-faq",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 enrollment (IGP(C))",
+      "date": "2026-10-11",
+      "quote": "Application Period August 3, 2026 – October 11, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's Program, Health Sciences and Biomedical Engineering Track (Graduate School of Medical and Dental Sciences)",
+   "url": "https://admissions.isct.ac.jp/en/013/graduate/programs/medicine-dentistry-healthcaresciences-and-oralhealthcaresciences/md-guidelines",
+   "snapshot_sha256": "a54f360966141584a4ed06a0549eac77e6c80f610708e2f6718abb2e7910dfa6",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Master's Program, Master of Public Health in Global Health (MPH) Course (Graduate School of Medical and Dental Sciences)",
+   "url": "https://admissions.isct.ac.jp/en/013/graduate/programs/medicine-dentistry-healthcaresciences-and-oralhealthcaresciences/md-guidelines",
+   "snapshot_sha256": "a54f360966141584a4ed06a0549eac77e6c80f610708e2f6718abb2e7910dfa6",
+   "fields": {},
+   "status": "待人工"
+  }
+ ],
+ "verification": {
+  "programs": 18,
+  "机器核对": 16,
+  "待人工": 2
+ }
+}
