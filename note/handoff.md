@@ -2,16 +2,14 @@
 
 **唯一的当前状态文件。会话结束时覆盖，开始时读，并先对照 `git status` 和 `git log`。**
 
-## 最新（2026-10-29 深夜，新前端）
+## 最新（2026-10-29 深夜，新前端已上线）
 
-- 分支 `claude/ledger-frontend`，最新提交 `ec5aebb`，已推送，**未合并、未部署**。OpenSpec `ledger-redesign` 44 项完成 38 项。
-- 新前端已按原型做完：`/`、`/assess`、`/assess/result`、`/portfolio`、`/roadmap`、`/schools`、`/schools/[slug]`、`/programs`、`/programs/[id]`、`/advisor`、`/me`。旧绿色界面、`/prototype/*`、`lib/store.ts`、`eligibility.ts`、六项目镜像全部删除。
-- 后端补了：顾问 `set_status`；导入器按项目名归学科（`app/collect/fields.py`，与 CRICOS 一致率 78.5%）；`/api/programs` 加 `q`、`universityId`、`country`、多 id `provider`；新 `GET /api/universities`。决定写在 design.md D11。
-- `make verify` 全绿（exit 0）：后端 320、前端 225、新走查 `scripts/walkthrough.cjs` 73/73。
-- 剩 6 项：4.4 / 7.1 taste-skill inspector；5.12 每个区块的加载/空/错误态逐一在浏览器看；7.2 截图评审三轮（看过一轮，修了桌面端菜单按钮和首页时间线竖排）；7.3 新上下文评审；7.5 PRD §4 状态表和 README 截图。
-- 上线前要做：生产库重跑导入器（给国际项目补学科：`python -m app.collect.importer`，需要快照元数据，方法见下一节）；`compose.prod.yaml` 已给 web 加 `API_ORIGIN=http://api:8000`。
-- 坑：Turbopack dev 缓存会继续给旧 CSS，改了 `globals.css` 没生效时删 `web/.next` 重启 dev；`make clean` 会删 `node_modules`。
-- PRD §8 数据来源表还写着“非澳洲项目未采集”“录取要求是示例数据”，已过时，待 MortyYJT 决定改法。
+- **线上 = main `728fb0b`**（PR #29 合并），https://leapashore.mortyyjt.site 。上线前备份了生产库：服务器 `~/db-backup-20261029-pre-frontend.sql.gz`。同步方式同下（`git archive origin/main` + `rsync --delete`，保留 `deploy/.env`、`deploy/*.bak-*`、`api/var/`）。
+- 生产库已重跑导入器补学科：programs 7586、未分类 254、`verified_at` 非空 0；快照元数据临时拷进 api 容器，导完已删。
+- 线上只读检查：16 个地址状态码符合规格，4 个页面在 1440 / 390 下无报错、无横向滚动。完整走查**不要**对线上跑：它的清理只删本机库的数据。
+- PRD §8 数据来源表已按实际数据改写（MortyYJT 10-29 要求）。
+- OpenSpec `ledger-redesign` 还剩 6 项：4.4 / 7.1 inspector；5.12 各区块加载/空/错误态逐一在浏览器看；7.2 截图评审（做了一轮）；7.3 新上下文评审；7.5 PRD §4 状态表和 README 截图。
+- 坑：Turbopack dev 缓存会继续给旧 CSS，删 `web/.next` 重启 dev；`make clean` 会删 `node_modules`；API 不带 `--reload`，加了新路由要重启 uvicorn。
 
 ## 现在在哪（2026-10-30 凌晨，夜间采集因额度用完停止）
 
