@@ -17,6 +17,8 @@ from app.db import SessionLocal
 from app.deps import load_or_create_profile
 from app.models.application import Application
 from app.models.program import Program
+from app.seed import seed_programs
+from app.seed_catalog import seed_catalog
 from app.services.applications import replace_applications
 
 pytestmark = pytest.mark.usefixtures("require_db")
@@ -40,6 +42,9 @@ def applicant() -> dict:
     """A fresh subject whose portfolio holds two programs, the first of them its first choice."""
     client_id = str(uuid.uuid4())
     with SessionLocal() as s:
+        # A fresh database (CI) has no programs until the seeds run; they are idempotent.
+        seed_programs(s)
+        seed_catalog(s)
         first, second = s.scalars(select(Program.id).order_by(Program.id).limit(2)).all()
         load_or_create_profile(s, client_id)
         replace_applications(
@@ -119,9 +124,6 @@ def test_a_declined_change_writes_nothing(monkeypatch, applicant):
 
 
 def test_the_advisor_finds_a_cricos_course_by_its_english_name_and_caps_the_list():
-    from app.seed import seed_programs
-    from app.seed_catalog import seed_catalog
-
     with SessionLocal() as s:
         seed_programs(s)
         seed_catalog(s)
