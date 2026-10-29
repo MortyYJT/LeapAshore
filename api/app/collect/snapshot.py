@@ -30,6 +30,7 @@ import sys
 import threading
 import time
 import urllib.error
+import urllib.parse
 import urllib.request
 import urllib.robotparser
 from datetime import datetime, timedelta, timezone
@@ -260,9 +261,21 @@ class CheckedRedirects(urllib.request.HTTPRedirectHandler):
         return super().redirect_request(req, fp, code, msg, headers, newurl)
 
 
+def as_uri(url: str) -> str:
+    """The address with non-ASCII characters percent-encoded (`/máster` → `/m%C3%A1ster`), as a
+    browser sends it; http.client refuses a request line that is not ASCII. Escapes already present
+    are kept, and the host is written in IDNA."""
+    parts = urllib.parse.urlsplit(url)
+    host = parts.hostname.encode("idna").decode("ascii") if parts.hostname else ""
+    netloc = host + (f":{parts.port}" if parts.port else "")
+    safe = "/%:@!$&'()*+,;=-._~"
+    return urllib.parse.urlunsplit((parts.scheme, netloc, urllib.parse.quote(parts.path, safe=safe),
+                                    urllib.parse.quote(parts.query, safe=safe + "?"), ""))
+
+
 def fetch_html(url: str, refusal=lambda url: None) -> tuple[int, str, str, str]:
     """(status, final_url, content_type, html) over plain HTTP."""
-    request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept": "text/html,*/*"})
+    request = urllib.request.Request(as_uri(url), headers={"User-Agent": USER_AGENT, "Accept": "text/html,*/*"})
     opener = urllib.request.build_opener(CheckedRedirects(refusal), urllib.request.HTTPSHandler(context=tls_context()))
     try:
         with opener.open(request, timeout=TIMEOUT) as response:

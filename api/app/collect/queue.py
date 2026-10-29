@@ -252,6 +252,11 @@ def collect_page(session: Session, page_id: str, *, budget: Budget, fetch=snapsh
         session.commit()
         raise Transient(page.last_error) from error
 
+    if not page.render and not can_render and (meta.get("text_chars") or 0) < THIN_PAGE_CHARS:
+        # Too thin to be the page a reader sees, and this host cannot run its scripts: no model call
+        # on a shell page; a machine with Chrome collects it.
+        page.render = True
+        return _settle(session, page, PageState.DEFERRED, "the page needs rendering; this host cannot render")
     if not page.render and can_render and (meta.get("text_chars") or 0) < THIN_PAGE_CHARS:
         # A page built by JavaScript shows next to nothing without its scripts: render it once, and
         # from then on (the agents' brief did the same by hand).

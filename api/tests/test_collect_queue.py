@@ -342,6 +342,15 @@ def test_a_thin_page_is_rendered_once_and_from_then_on(db_session, school, clien
     assert db_session.get(CollectPage, page.id).render is True
 
 
+def test_a_thin_page_on_a_host_without_chrome_costs_no_model_call(db_session, school, client):
+    page = add_page(db_session, school)
+    extracted = []
+    state = run(db_session, school, page, budget=budget(client), can_render=False,
+                fetch=fake_fetch({page.url: "<html><body>Loading</body></html>"}), extract=fake_extract({}, extracted))
+    assert state == PageState.DEFERRED and not extracted
+    assert db_session.get(CollectPage, page.id).render is True
+
+
 def test_a_discovered_page_with_a_vague_link_is_named_by_its_heading(db_session, school, client):
     page = add_page(db_session, school, name="Learn more")
     run(db_session, school, page, budget=budget(client), fetch=fake_fetch({page.url: PAGE}),
@@ -573,3 +582,9 @@ def test_the_cleanup_beat_does_nothing_in_anonymous_mode(monkeypatch):
 def test_snapshot_text_is_what_dedupe_hashes(tmp_path):
     meta = snap.save_snapshot("s", "https://x.edu/a", "https://x.edu/a", 200, "text/html", PAGE, tmp_path)
     assert queue._snapshot_text_sha("s", meta["sha256"], tmp_path) == queue.text_sha(html_to_text(PAGE))
+
+
+def test_a_non_ascii_address_is_sent_percent_encoded():
+    assert snap.as_uri("https://www.upf.edu/web/máster/ciència?x=á b") == \
+        "https://www.upf.edu/web/m%C3%A1ster/ci%C3%A8ncia?x=%C3%A1%20b"
+    assert snap.as_uri("https://x.edu/a%20b/c?q=1&r=2") == "https://x.edu/a%20b/c?q=1&r=2"
