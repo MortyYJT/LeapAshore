@@ -12,6 +12,17 @@ nothing here is `已核验`, and no file carries `verified_at`.
 Snapshots (raw HTML + text) live in `api/var/snapshots/<school_key>/<sha256>.*`, which is not
 committed. Each program cites its snapshot by sha256, so the exact page version is identifiable.
 
+## Extracting with the model
+
+`python -m app.collect.extract <school_key> <sha256> [--name "…"]` (run from `api/`) does step 3 below
+with the advisor's chat model (`CHAT_*` settings) instead of an agent: it sends the snapshot's text,
+gets the fields back through a function call, runs `verify` on them, drops every value that fails and
+lists it in `rejected` with the reason. It prints one program in the format below plus `rejected`,
+`unused` (academic routes after the first), `model` (the name the API reports) and token `usage`; it
+does not write any file. `python -m evals.extract_rejection` measures it on ten collected schools
+(results in `api/evals/results/extract-<date>.json`). A value it keeps has a verbatim quote, which is
+not the same as a faithful summary: `text`, `label` and `recommended` are not checked.
+
 ## Brief for a collecting agent
 
 You collect one school. Work from the repository root `/Users/yu-junteng/Documents/leapashore`.

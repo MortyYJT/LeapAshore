@@ -415,5 +415,7 @@ def isolate_the_advisor_limits(monkeypatch):
         if keys:
             client.delete(*keys)
         client.close()
-    except redis.RedisError:
+    except (redis.RedisError, AttributeError):
+        # Best-effort cleanup. AttributeError: redis-py once failed inside its own HELLO handshake
+        # here ("'list' object has no attribute 'get'", 2026-10-30) and errored a passing test.
         pass
