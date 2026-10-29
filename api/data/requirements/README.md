@@ -144,6 +144,8 @@ and cite it with `source_sha256`. Typical cases:
   recommend at least", "preferred score", "Minimum Suggested Scores", "no minimum, but…"), still give
   `overall`, and add `"recommended": true`. A table that states both a preferred and a minimum score
   gives the minimum, without the flag. Averages of admitted students are neither: leave them out.
+  A score that only exempts an admitted student from an in-house English exam or course is not an
+  admission requirement either: give it as `text` + `quote`, without `overall`.
 - **TOEFL on two scales**: since January 2026 some schools state the TOEFL minimum both on the
   0-120 scale and on the new 1-6 band scale. Put the 0-120 value in `overall`, keep both in the
   quote, and add `"scale_note": "TOEFL stated on 0-120 and 1-6 scales"`. A 1-6 value alone is
