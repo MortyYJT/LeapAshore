@@ -111,5 +111,5 @@
 
 ## 2026-10-30 个人网站由本服务器的 Caddy 托管（Claude 自主（待 MortyYJT 复核））
 
-- **决定**：`mortyyjt.site` 由本服务器的 Caddy 直接出静态文件（`/srv/mortyyjt.site`，只读挂载），`www` 301 到主域名；文件由个人网站仓库的 GitHub Actions 用 rrsync 限定目录的钥匙上传。PR #28 变基到 main 后合并；部署只重建 caddy 容器（`up -d --no-deps caddy`）。
+- **决定**：`mortyyjt.site` 由本服务器的 Caddy 直接出静态文件（`/srv/mortyyjt.site`，只读挂载），`www` 301 到主域名；文件由个人网站仓库的 GitHub Actions 用 rrsync 限定目录的钥匙上传。PR #28 变基到 main 后合并；部署只重建 caddy 容器（`up -d --force-recreate --no-deps caddy`）。
 - **理由**：TASKS.md P0 第一条要求如此。Caddy 已占 80/443，个人网站只能共用它；只重建 caddy 能让 LeapAshore 只断几秒。变基而不是合并 main，是为了让 PR 只留一个提交，squash 后结果相同。

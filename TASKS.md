@@ -16,7 +16,7 @@
   - 要做：解决 PR #28 和 main 在 `note/handoff.md` 上的冲突，并把 handoff 里"主域名归个人网站，本项目不要占用"改成"由本服务器的 Caddy 托管，文件在 `/srv/mortyyjt.site`，由个人网站仓库的 GitHub Actions 上传"；然后合并 #28，部署时只重启 caddy 容器。
   - 完成标准：`https://mortyyjt.site` 返回 200；`www.mortyyjt.site` 跳转到主域名；`https://leapashore.mortyyjt.site` 仍返回 200。
   - 测量（修复前，10-30）：`curl -sSI https://mortyyjt.site` → TLS 握手失败（`tlsv1 alert internal error`），www 同样失败；`curl -sI https://leapashore.mortyyjt.site` → 200。修复后的测量见合并后的记录提交。
-  - 注：把 #28 变基到 main 上解决 `note/handoff.md` 冲突（handoff 以 main 为准，只改主域名那一条），Caddyfile 和 compose 改动原样保留。部署只同步代码并用 `up -d --no-deps caddy` 重建 caddy 一个容器，api/web/db 不动；照规矩先备份了生产库。只改部署配置，没有代码改动，未跑 `make verify`。
+  - 注：把 #28 变基到 main 上解决 `note/handoff.md` 冲突（handoff 以 main 为准，只改主域名那一条），Caddyfile 和 compose 改动原样保留。部署只同步代码并用 `up -d --force-recreate --no-deps caddy` 重建 caddy 一个容器，api/web/db 不动；照规矩先备份了生产库。只改部署配置，没有代码改动，未跑 `make verify`。
 - [ ] **按新范围收缩学校库**
   - 从 346 所里移除 59 所：中国大陆 16、日本 10、印度 6、台湾 4、印尼 4、泰国 1、哈萨克斯坦 1、南非 3、拉美 9、以色列 2、黎巴嫩 1、土耳其 1、俄罗斯 1。
   - 只动目标院校列表（`web/prototype-fixtures/overseas-institutions.json` 和相关数据）；申请人本科院校库（`cn-institutions.json`）不动。
