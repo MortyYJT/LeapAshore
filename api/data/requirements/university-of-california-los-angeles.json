@@ -1,0 +1,2045 @@
+{
+ "school_key": "university-of-california-los-angeles",
+ "school_name_en": "University of California, Los Angeles",
+ "country": "United States",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://grad.ucla.edu/programs/",
+  "https://grad.ucla.edu/admissions/english-requirements/",
+  "https://grad.ucla.edu/admissions/required-academic-records/"
+ ],
+ "china_page": {
+  "url": "https://grad.ucla.edu/admissions/required-academic-records/",
+  "sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e"
+ },
+ "blocked": [],
+ "complete": false,
+ "remaining_urls": [
+  "https://grad.ucla.edu/programs/anderson-school-of-management/management-executive-mba/",
+  "https://grad.ucla.edu/programs/anderson-school-of-management/management-global-executive-mba-for-asia-pacific/",
+  "https://grad.ucla.edu/programs/school-of-engineering-and-applied-science/engineering-ms-in-engineering-online/",
+  "https://grad.ucla.edu/programs/school-of-arts-and-architecture/design-media-arts/",
+  "https://grad.ucla.edu/programs/school-of-theater-film-and-television/film-television-digital-media-department/film-and-television/",
+  "https://grad.ucla.edu/programs/school-of-nursing/nursing/",
+  "https://grad.ucla.edu/programs/social-sciences/master-of-social-science/",
+  "https://grad.ucla.edu/programs/physical-sciences/mathematics/"
+ ],
+ "notes": "Program pages on grad.ucla.edu load their requirements by JavaScript, so all were fetched with --render. English minimums (TOEFL 87 / 4.5 on the new scale, IELTS 7.0) come from the UCLA-wide English Requirements page and China's 80/100 minimum from the Required Academic Records page; the program pages point to 'UCLA's minimum requirements'. Seven programs state their own higher English score and use it instead. Deadlines without a year (MBA, M.Q.E., M.S.S., M.A.S.D.S., Data Science in Biomedicine, MRED primary round) are left out; all pages are listed under 'Fall' intake as stated. PhD-only and doctoral-track-only pages, the online M.S. in Engineering series, arts, nursing and the arts-based M.F.A. were not collected; Mathematics M.A. says 'Not currently accepting applications'.",
+ "programs": [
+  {
+   "name": "Master of Science in Business Analytics (M.S.), Anderson School of Management",
+   "url": "https://grad.ucla.edu/programs/anderson-school-of-management/management-business-analytics-ms/",
+   "snapshot_sha256": "66cc779da770ce0c2f1a7d99f02042c65fcd1e303c3abc901fd2a0997415a727",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "Strong quantitative background expected: linear algebra, multivariate calculus, statistics",
+      "quote": "A strong quantitative background including, at minimum, linear algebra, multivariate calculus, and statistics, is expected.",
+      "check": "ok"
+     }
+    ],
+    "toefl": {
+     "overall": 87,
+     "quote": "Minimum overall score on TOEFL iBT: 87 (for exams taken before January 21, 2026) or 4.5 (for exams taken on or after January 21, 2026). TOEFL iBT scores should be sent to your major department. Be sure to list the TOEFL institution code for UCLA 4837. UCLA does not currently accept MyBest TOEFL.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Minimum overall band score on IELTS Academic: 7.0.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Round 1",
+      "date": "2027-01-08",
+      "quote": "January 08, 2027 (Round 1)",
+      "check": "ok"
+     },
+     {
+      "label": "Round 2",
+      "date": "2027-03-05",
+      "quote": "March 05, 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3",
+      "date": "2027-05-07",
+      "quote": "May 07, 2027 (Round 3)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Financial Engineering (M.F.E.), Anderson School of Management",
+   "url": "https://grad.ucla.edu/programs/anderson-school-of-management/management-master-of-financial-engineering/",
+   "snapshot_sha256": "05bdfc8163c335365438521824527510dcb54fc9c3dee14203d84443b2734423",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "Strong quantitative background expected: linear algebra, multivariate calculus, statistics",
+      "quote": "A strong quantitative background including, at minimum, linear algebra, multivariate calculus, and statistics, is expected.",
+      "check": "ok"
+     }
+    ],
+    "toefl": {
+     "overall": 87,
+     "quote": "Minimum overall score on TOEFL iBT: 87 (for exams taken before January 21, 2026) or 4.5 (for exams taken on or after January 21, 2026). TOEFL iBT scores should be sent to your major department. Be sure to list the TOEFL institution code for UCLA 4837. UCLA does not currently accept MyBest TOEFL.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Minimum overall band score on IELTS Academic: 7.0.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Round 1",
+      "date": "2026-11-30",
+      "quote": "November 30, 2026 (Round 1)",
+      "check": "ok"
+     },
+     {
+      "label": "Round 2",
+      "date": "2027-01-31",
+      "quote": "January 31, 2027 (Round 2)",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3",
+      "date": "2027-04-01",
+      "quote": "April 1, 2027 (Round 3)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Administration (M.B.A.), Anderson School of Management",
+   "url": "https://grad.ucla.edu/programs/anderson-school-of-management/management-mba/",
+   "snapshot_sha256": "0fcee2c26b68ae7b132beca15caa8d67b1c3c3e0e6ed5768fb9ffa7c7a996825",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "Elementary algebra and differential calculus to be completed before entering the program",
+      "quote": "applicants should complete elementary algebra and differential calculus before entering the M.B.A. program.",
+      "check": "ok"
+     }
+    ],
+    "toefl": {
+     "overall": 87,
+     "quote": "Minimum overall score on TOEFL iBT: 87 (for exams taken before January 21, 2026) or 4.5 (for exams taken on or after January 21, 2026). TOEFL iBT scores should be sent to your major department. Be sure to list the TOEFL institution code for UCLA 4837. UCLA does not currently accept MyBest TOEFL.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Minimum overall band score on IELTS Academic: 7.0.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Fully Employed M.B.A. (FEMBA), Anderson School of Management",
+   "url": "https://grad.ucla.edu/programs/anderson-school-of-management/management-fully-employed-mba-femba/",
+   "snapshot_sha256": "d2a8707c73c35c0684ccd2737b5a51726d92c5ea111c4b4cbc424d2317625ac8",
+   "fields": {
+    "toefl": {
+     "overall": 87,
+     "quote": "Minimum overall score on TOEFL iBT: 87 (for exams taken before January 21, 2026) or 4.5 (for exams taken on or after January 21, 2026). TOEFL iBT scores should be sent to your major department. Be sure to list the TOEFL institution code for UCLA 4837. UCLA does not currently accept MyBest TOEFL.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Minimum overall band score on IELTS Academic: 7.0.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall intake",
+      "date": "2027-04-06",
+      "quote": "April 6, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Computer Science (M.S.)",
+   "url": "https://grad.ucla.edu/programs/school-of-engineering-and-applied-science/computer-science/",
+   "snapshot_sha256": "29add4eedc60784cd8641ba02f16f11d4c3660c442bee8ef293a450c24abe8fc",
+   "fields": {
+    "toefl": {
+     "overall": 87,
+     "quote": "Minimum overall score on TOEFL iBT: 87 (for exams taken before January 21, 2026) or 4.5 (for exams taken on or after January 21, 2026). TOEFL iBT scores should be sent to your major department. Be sure to list the TOEFL institution code for UCLA 4837. UCLA does not currently accept MyBest TOEFL.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Minimum overall band score on IELTS Academic: 7.0.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall intake (program page, M.S. and Ph.D.)",
+      "date": "2026-12-15",
+      "quote": "December 15, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Electrical and Computer Engineering (M.S.)",
+   "url": "https://grad.ucla.edu/programs/school-of-engineering-and-applied-science/electrical-computer-engineering/",
+   "snapshot_sha256": "13dd0cde1afe8acf63c3c4a6b65d8e1f90996f04643c83a4cd5ca41577db1744",
+   "fields": {
+    "toefl": {
+     "overall": 87,
+     "quote": "Minimum overall score on TOEFL iBT: 87 (for exams taken before January 21, 2026) or 4.5 (for exams taken on or after January 21, 2026). TOEFL iBT scores should be sent to your major department. Be sure to list the TOEFL institution code for UCLA 4837. UCLA does not currently accept MyBest TOEFL.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Minimum overall band score on IELTS Academic: 7.0.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall intake (program page, M.S. and Ph.D.)",
+      "date": "2026-12-15",
+      "quote": "December 15, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering (M.Eng.)",
+   "url": "https://grad.ucla.edu/programs/school-of-engineering-and-applied-science/engineering-master-of-engineering/",
+   "snapshot_sha256": "7497cc623499222b3b44cc1200d9a80fa9a7c6f254887023fdbc5254a33bbfeb",
+   "fields": {
+    "toefl": {
+     "overall": 87,
+     "quote": "Minimum overall score on TOEFL iBT: 87 (for exams taken before January 21, 2026) or 4.5 (for exams taken on or after January 21, 2026). TOEFL iBT scores should be sent to your major department. Be sure to list the TOEFL institution code for UCLA 4837. UCLA does not currently accept MyBest TOEFL.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Minimum overall band score on IELTS Academic: 7.0.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall intake",
+      "date": "2026-12-01",
+      "quote": "December 1, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Bioengineering (M.S.)",
+   "url": "https://grad.ucla.edu/programs/school-of-engineering-and-applied-science/bioengineering/",
+   "snapshot_sha256": "858f2c78e3aa82ad5fb7ecaeb923d650e14e41350772dd0d43b3f963ea858c07",
+   "fields": {
+    "academic": {
+     "text": "M.S.: B.S. degree or equivalent in engineering, life science, or physical science",
+     "quote": "Applicants should have a B.S. degree or its equivalent in engineering, life science, or physical science.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 87,
+     "quote": "Minimum overall score on TOEFL iBT: 87 (for exams taken before January 21, 2026) or 4.5 (for exams taken on or after January 21, 2026). TOEFL iBT scores should be sent to your major department. Be sure to list the TOEFL institution code for UCLA 4837. UCLA does not currently accept MyBest TOEFL.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Minimum overall band score on IELTS Academic: 7.0.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall intake (program page, M.S. and Ph.D.)",
+      "date": "2026-12-01",
+      "quote": "December 1, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Materials Science and Engineering (M.S.)",
+   "url": "https://grad.ucla.edu/programs/school-of-engineering-and-applied-science/materials-science-engineering/",
+   "snapshot_sha256": "cfa42db5a4d57cff3be13011ddec017734bbd4af11aeb2dac556330c00476e72",
+   "fields": {
+    "academic": {
+     "text": "M.S.: bachelor's degree in materials science, metallurgy, or ceramics required; other disciplines may be admitted with an introductory materials course",
+     "quote": "M.S.: Applicants to the M.S. program in Materials Science and Engineering are required to hold a bachelor's degree in materials science, metallurgy, or ceramics.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 87,
+     "quote": "Minimum overall score on TOEFL iBT: 87 (for exams taken before January 21, 2026) or 4.5 (for exams taken on or after January 21, 2026). TOEFL iBT scores should be sent to your major department. Be sure to list the TOEFL institution code for UCLA 4837. UCLA does not currently accept MyBest TOEFL.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Minimum overall band score on IELTS Academic: 7.0.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall intake (program page, M.S. and Ph.D.)",
+      "date": "2026-12-09",
+      "quote": "December 9, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Chemical Engineering (M.S.)",
+   "url": "https://grad.ucla.edu/programs/school-of-engineering-and-applied-science/chemical-biomolecular-engineering-department/chemical-engineering/",
+   "snapshot_sha256": "e3383afe73773a9ce44dfd53487910bc25797038934e088d46e5185c409b5ff8",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree with at least two years of preparation in mathematics, physics, chemistry, and engineering",
+     "quote": "a bachelor's degree in a field that provides the student with at least two years of preparation in mathematics, physics, chemistry, and engineering.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 87,
+     "quote": "Minimum overall score on TOEFL iBT: 87 (for exams taken before January 21, 2026) or 4.5 (for exams taken on or after January 21, 2026). TOEFL iBT scores should be sent to your major department. Be sure to list the TOEFL institution code for UCLA 4837. UCLA does not currently accept MyBest TOEFL.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Minimum overall band score on IELTS Academic: 7.0.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall intake (program page, M.S. and Ph.D.)",
+      "date": "2026-12-31",
+      "quote": "December 31, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Civil Engineering (M.S.)",
+   "url": "https://grad.ucla.edu/programs/school-of-engineering-and-applied-science/civil-environmental-engineering-department/civil-engineering/",
+   "snapshot_sha256": "43aba285cf1b947c6bb8aa1773276cca5204d928dd53a3ec9858925f011858da",
+   "fields": {
+    "academic": {
+     "text": "M.S.: B.S. degree with a minimum grade point average of 3.0 or equivalent",
+     "quote": "M.S.: Applicants are expected to hold a B.S. degree with a minimum grade point average of 3.0 or equivalent.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 87,
+     "quote": "Minimum overall score on TOEFL iBT: 87 (for exams taken before January 21, 2026) or 4.5 (for exams taken on or after January 21, 2026). TOEFL iBT scores should be sent to your major department. Be sure to list the TOEFL institution code for UCLA 4837. UCLA does not currently accept MyBest TOEFL.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Minimum overall band score on IELTS Academic: 7.0.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall intake (program page, M.S. and Ph.D.)",
+      "date": "2026-12-15",
+      "quote": "December 15, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Mechanical Engineering (M.S.)",
+   "url": "https://grad.ucla.edu/programs/school-of-engineering-and-applied-science/mechanical-aerospace-engineering-department/mechanical-engineering/",
+   "snapshot_sha256": "9f3376c3a81904bede0c9f5363f4b1322b790b311bd625abe62226b591c2ac76",
+   "fields": {
+    "toefl": {
+     "overall": 87,
+     "quote": "Minimum overall score on TOEFL iBT: 87 (for exams taken before January 21, 2026) or 4.5 (for exams taken on or after January 21, 2026). TOEFL iBT scores should be sent to your major department. Be sure to list the TOEFL institution code for UCLA 4837. UCLA does not currently accept MyBest TOEFL.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Minimum overall band score on IELTS Academic: 7.0.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall intake (program page, M.S. and Ph.D.)",
+      "date": "2026-12-01",
+      "quote": "December 1, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Aerospace Engineering (M.S.)",
+   "url": "https://grad.ucla.edu/programs/school-of-engineering-and-applied-science/mechanical-aerospace-engineering-department/aerospace-engineering/",
+   "snapshot_sha256": "0076e20b440870f7594680519543f6da67fd80a62376a7c4fa1b5c27603f3bba",
+   "fields": {
+    "toefl": {
+     "overall": 87,
+     "quote": "Minimum overall score on TOEFL iBT: 87 (for exams taken before January 21, 2026) or 4.5 (for exams taken on or after January 21, 2026). TOEFL iBT scores should be sent to your major department. Be sure to list the TOEFL institution code for UCLA 4837. UCLA does not currently accept MyBest TOEFL.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Minimum overall band score on IELTS Academic: 7.0.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall intake (program page, M.S. and Ph.D.)",
+      "date": "2026-12-01",
+      "quote": "December 1, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Manufacturing Engineering (M.S.)",
+   "url": "https://grad.ucla.edu/programs/school-of-engineering-and-applied-science/mechanical-aerospace-engineering-department/manufacturing-engineering/",
+   "snapshot_sha256": "6ca624d1f986809b60e1bc422adf3d3e2d64a0613210f5bf4d51931fd1be9c67",
+   "fields": {
+    "toefl": {
+     "overall": 87,
+     "quote": "Minimum overall score on TOEFL iBT: 87 (for exams taken before January 21, 2026) or 4.5 (for exams taken on or after January 21, 2026). TOEFL iBT scores should be sent to your major department. Be sure to list the TOEFL institution code for UCLA 4837. UCLA does not currently accept MyBest TOEFL.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Minimum overall band score on IELTS Academic: 7.0.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall intake (program page, M.S. and Ph.D.)",
+      "date": "2026-12-01",
+      "quote": "December 1, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Applied Statistics and Data Science (M.A.S.D.S.)",
+   "url": "https://grad.ucla.edu/programs/physical-sciences/statistics-and-data-science-department/statistics-master-of-applied-statistics-and-data-science/",
+   "snapshot_sha256": "4b212e0b82912a02b02184c36047bcdc62e4651591061a12c34cdb0662b86403",
+   "fields": {
+    "toefl": {
+     "overall": 87,
+     "quote": "Minimum overall score on TOEFL iBT: 87 (for exams taken before January 21, 2026) or 4.5 (for exams taken on or after January 21, 2026). TOEFL iBT scores should be sent to your major department. Be sure to list the TOEFL institution code for UCLA 4837. UCLA does not currently accept MyBest TOEFL.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Minimum overall band score on IELTS Academic: 7.0.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Statistics (M.S.)",
+   "url": "https://grad.ucla.edu/programs/physical-sciences/statistics-and-data-science-department/statistics/",
+   "snapshot_sha256": "2500292ac5c525d9a8f927045bad3ba08caf98bb9163bf4ea2ce0e9f0b83ce52",
+   "fields": {
+    "academic": {
+     "text": "M.S.: cumulative GPA of at least 3.2 in upper division courses",
+     "quote": "M.S.: Applicants must have a cumulative grade-point average of at least 3.2 in upper division courses.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "At least 12 quarter courses (or eight semester courses) in substantial upper division quantitative work",
+      "quote": "applicants should have taken at least 12 quarter courses (or eight semester courses) in substantial upper division quantitative work, including, but not limited to, courses in statistics, mathematics, computer science, and electrical engineering.",
+      "check": "ok"
+     }
+    ],
+    "toefl": {
+     "overall": 87,
+     "quote": "Minimum overall score on TOEFL iBT: 87 (for exams taken before January 21, 2026) or 4.5 (for exams taken on or after January 21, 2026). TOEFL iBT scores should be sent to your major department. Be sure to list the TOEFL institution code for UCLA 4837. UCLA does not currently accept MyBest TOEFL.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Minimum overall band score on IELTS Academic: 7.0.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "M.S. Fall intake",
+      "date": "2027-01-15",
+      "quote": "M.S.: January 15, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Quantum Science and Technology (M.Q.S.T.)",
+   "url": "https://grad.ucla.edu/programs/physical-sciences/physics-and-astronomy-department/master-of-quantum-science-and-technology/",
+   "snapshot_sha256": "3d318bfcb4f71a0c91fcfdc28398267543eb77ac9c0df7ec19e81509a66f6179",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "Bachelor's degree with at least one semester or quarter of upper division quantum mechanics and of upper division electricity and magnetism",
+      "quote": "Applicants are expected to hold a bachelor's degree with at least one semester or quarter of college-level coursework in upper division quantum mechanics, and at least one semester or quarter of college-level coursework in upper division electricity and magnetism.",
+      "check": "ok"
+     }
+    ],
+    "toefl": {
+     "overall": 87,
+     "quote": "Minimum overall score on TOEFL iBT: 87 (for exams taken before January 21, 2026) or 4.5 (for exams taken on or after January 21, 2026). TOEFL iBT scores should be sent to your major department. Be sure to list the TOEFL institution code for UCLA 4837. UCLA does not currently accept MyBest TOEFL.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Minimum overall band score on IELTS Academic: 7.0.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall intake",
+      "date": "2027-03-01",
+      "quote": "March 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Applied Chemical Sciences (M.A.C.S.)",
+   "url": "https://grad.ucla.edu/programs/physical-sciences/chemistry-and-biochemistry-department/chemistry-master-of-applied-chemical-sciences/",
+   "snapshot_sha256": "35eda00a5803dcfdf8b82326d6577b866ad4584b1ce83ef8035d89cb99d3f88e",
+   "fields": {
+    "toefl": {
+     "overall": 87,
+     "quote": "Minimum overall score on TOEFL iBT: 87 (for exams taken before January 21, 2026) or 4.5 (for exams taken on or after January 21, 2026). TOEFL iBT scores should be sent to your major department. Be sure to list the TOEFL institution code for UCLA 4837. UCLA does not currently accept MyBest TOEFL.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Minimum overall band score on IELTS Academic: 7.0.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "First round",
+      "date": "2027-01-10",
+      "quote": "First round: January 10th, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Second round",
+      "date": "2027-06-01",
+      "quote": "Second Round: June 1st, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Policy (M.P.P.), Luskin School of Public Affairs",
+   "url": "https://grad.ucla.edu/programs/school-of-public-affairs/public-policy/",
+   "snapshot_sha256": "dba1dc20f56268968e9cf7b6365b2b7bedc17d4c0a7cdcf4fdaf1c4e6ee7275d",
+   "fields": {
+    "academic": {
+     "text": "Preference is given to applicants with a GPA of 3.5 or above",
+     "quote": "Preference is given to applicants with a grade point average of 3.5 or above.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "A score of at least 600 (paper-based test) or 100 (iBTt) on the Test of English as a Foreign Language (TOEFL) or an overall band score of 7.0 on the International English Testing System (IELTS) examination is required for applicants whose native language is not English.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "A score of at least 600 (paper-based test) or 100 (iBTt) on the Test of English as a Foreign Language (TOEFL) or an overall band score of 7.0 on the International English Testing System (IELTS) examination is required for applicants whose native language is not English.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall intake",
+      "date": "2026-12-01",
+      "quote": "December 1, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Social Welfare (M.S.W.), Luskin School of Public Affairs",
+   "url": "https://grad.ucla.edu/programs/school-of-public-affairs/social-welfare/",
+   "snapshot_sha256": "912a2bdd680ddf1fb372979ce086e03a199238da3458a07d1e96f02e86ab7980",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "Minimum of seven courses in the liberal arts, including three in the sociobehavioral sciences (or a combination with social welfare subjects)",
+      "quote": "Applicants are required to have taken a minimum of seven courses in the liberal arts, including three in the sociobehavioral sciences, or a combination of liberal arts and social welfare subjects as prerequisite undergraduate preparation for graduate study in the field of social work. An elementary statistics course with a grade of B or better and one course with human biology content are also required.",
+      "check": "ok"
+     }
+    ],
+    "toefl": {
+     "overall": 87,
+     "quote": "Minimum overall score on TOEFL iBT: 87 (for exams taken before January 21, 2026) or 4.5 (for exams taken on or after January 21, 2026). TOEFL iBT scores should be sent to your major department. Be sure to list the TOEFL institution code for UCLA 4837. UCLA does not currently accept MyBest TOEFL.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Minimum overall band score on IELTS Academic: 7.0.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "M.S.W. Fall intake",
+      "date": "2026-12-01",
+      "quote": "M.S.W.: December 01, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Real Estate Development (M.R.E.D.), Luskin School of Public Affairs",
+   "url": "https://grad.ucla.edu/programs/school-of-public-affairs/urban-planning-department/master-of-real-estate-development/",
+   "snapshot_sha256": "f0a094a542edf4bc69fd3d3cd1839ed43a0c693c64d4f4b3e2aa67464032de75",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "College algebra and microeconomics (recommended prior to enrolling)",
+      "quote": "Undergraduate preparation in college algebra and microeconomics is recommended prior to enrolling in the MRED program.",
+      "check": "ok"
+     }
+    ],
+    "toefl": {
+     "overall": 100,
+     "quote": "the department expects a score of at least 600 (paper-based test) or 100 (internet-based test) on the TOEFL, or an overall band score of at least 7.0 on the IELTS.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "the department expects a score of at least 600 (paper-based test) or 100 (internet-based test) on the TOEFL, or an overall band score of at least 7.0 on the IELTS.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Early round",
+      "date": "2026-11-15",
+      "quote": "Early Round - November 15, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Final round",
+      "date": "2027-03-15",
+      "quote": "Final Round - March 15, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Urban and Regional Planning (M.U.R.P.), Luskin School of Public Affairs",
+   "url": "https://grad.ucla.edu/programs/school-of-public-affairs/urban-planning-department/urban-and-regional-planning/",
+   "snapshot_sha256": "bae489d9761e0a62e663d12af258c8692bba5b6fa64ee14eafabe01779eb784f",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "College algebra and microeconomics (recommended prior to enrolling)",
+      "quote": "Undergraduate preparation in college algebra and microeconomics is recommended prior to enrolling in the MURP program.",
+      "check": "ok"
+     }
+    ],
+    "toefl": {
+     "overall": 100,
+     "quote": "the department expects a score of at least 600 (paper-based test) or 100 (internet-based test) on the TOEFL, or an overall band score of at least 7.0 on the IELTS.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "the department expects a score of at least 600 (paper-based test) or 100 (internet-based test) on the TOEFL, or an overall band score of at least 7.0 on the IELTS.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall intake",
+      "date": "2026-12-15",
+      "quote": "December 15, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Health (M.P.H.) in Biostatistics",
+   "url": "https://grad.ucla.edu/programs/school-of-public-health/biostatistics-department/biostatistics-mph/",
+   "snapshot_sha256": "0e8f8abc618783d3095dbb3b6788be6fe8409fd4ae13786b14faca186d711775",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "At least one year of college-level calculus (Biostatistics concentration)",
+      "quote": "The Biostatistics concentration requires satisfactory completion of at least one year of college-level calculus.",
+      "check": "ok"
+     }
+    ],
+    "toefl": {
+     "overall": 87,
+     "quote": "Minimum overall score on TOEFL iBT: 87 (for exams taken before January 21, 2026) or 4.5 (for exams taken on or after January 21, 2026). TOEFL iBT scores should be sent to your major department. Be sure to list the TOEFL institution code for UCLA 4837. UCLA does not currently accept MyBest TOEFL.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Minimum overall band score on IELTS Academic: 7.0.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall intake",
+      "date": "2026-12-01",
+      "quote": "December 1, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Biostatistics (M.S.)",
+   "url": "https://grad.ucla.edu/programs/school-of-public-health/biostatistics-department/biostatistics/",
+   "snapshot_sha256": "bf3bc02b69fc35ab921faf5757edc09f022a6c4475153dc1aef21da08c88a09b",
+   "fields": {
+    "toefl": {
+     "overall": 87,
+     "quote": "Minimum overall score on TOEFL iBT: 87 (for exams taken before January 21, 2026) or 4.5 (for exams taken on or after January 21, 2026). TOEFL iBT scores should be sent to your major department. Be sure to list the TOEFL institution code for UCLA 4837. UCLA does not currently accept MyBest TOEFL.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Minimum overall band score on IELTS Academic: 7.0.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall intake",
+      "date": "2026-12-01",
+      "quote": "December 1, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Data Science in Health (M.S.)",
+   "url": "https://grad.ucla.edu/programs/school-of-public-health/biostatistics-department/data-science-in-health/",
+   "snapshot_sha256": "12c3102e4408dcbc426725a751b9a066a875a783be6f71db0c8b5175952a8152",
+   "fields": {
+    "toefl": {
+     "overall": 87,
+     "quote": "Minimum overall score on TOEFL iBT: 87 (for exams taken before January 21, 2026) or 4.5 (for exams taken on or after January 21, 2026). TOEFL iBT scores should be sent to your major department. Be sure to list the TOEFL institution code for UCLA 4837. UCLA does not currently accept MyBest TOEFL.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Minimum overall band score on IELTS Academic: 7.0.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall intake",
+      "date": "2027-06-15",
+      "quote": "June 15, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Health (M.P.H.) in Community Health Sciences",
+   "url": "https://grad.ucla.edu/programs/school-of-public-health/community-health-sciences-department/community-health-sciences-mph/",
+   "snapshot_sha256": "b406483708aecdc0b9e9532b51114602cedb735cd10d07e4305635fbfef1fca0",
+   "fields": {
+    "toefl": {
+     "overall": 87,
+     "quote": "Minimum overall score on TOEFL iBT: 87 (for exams taken before January 21, 2026) or 4.5 (for exams taken on or after January 21, 2026). TOEFL iBT scores should be sent to your major department. Be sure to list the TOEFL institution code for UCLA 4837. UCLA does not currently accept MyBest TOEFL.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Minimum overall band score on IELTS Academic: 7.0.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall intake",
+      "date": "2026-12-01",
+      "quote": "December 1, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Health in Community Health, Health Promotion and Education (M.P.H.H.P., for health professionals)",
+   "url": "https://grad.ucla.edu/programs/school-of-public-health/community-health-sciences-department/master-of-public-health-in-community-health-health-promotion-and-education/",
+   "snapshot_sha256": "7dd8e503cd0120e24f5b646a3bddb6e7e7dc8d8f497adc2b8644bbd037e57059",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "At least three years of professional experience (or full-time equivalent) in health",
+      "quote": "they must have at least three years of professional experience or the full-time equivalent in health.",
+      "check": "ok"
+     }
+    ],
+    "toefl": {
+     "overall": 87,
+     "quote": "Minimum overall score on TOEFL iBT: 87 (for exams taken before January 21, 2026) or 4.5 (for exams taken on or after January 21, 2026). TOEFL iBT scores should be sent to your major department. Be sure to list the TOEFL institution code for UCLA 4837. UCLA does not currently accept MyBest TOEFL.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Minimum overall band score on IELTS Academic: 7.0.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Application deadline",
+      "date": "2027-04-01",
+      "quote": "April 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Health (M.P.H.) in Environmental Health Sciences",
+   "url": "https://grad.ucla.edu/programs/school-of-public-health/environmental-health-sciences-department/environmental-health-sciences-mph/",
+   "snapshot_sha256": "b9fb1f7346cbbc8dc38c6b33794733fd6ede8bf8ef939904d51165303d40ec8e",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in environmental health, life sciences, physical sciences, engineering, environmental science, or a related field",
+     "quote": "The Environmental Health Sciences M.P.H. requires a bachelor's degree in environmental health, life sciences, physical sciences, engineering, environmental science, or a related field.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 87,
+     "quote": "Minimum overall score on TOEFL iBT: 87 (for exams taken before January 21, 2026) or 4.5 (for exams taken on or after January 21, 2026). TOEFL iBT scores should be sent to your major department. Be sure to list the TOEFL institution code for UCLA 4837. UCLA does not currently accept MyBest TOEFL.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Minimum overall band score on IELTS Academic: 7.0.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall intake",
+      "date": "2026-12-01",
+      "quote": "December 1, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Environmental Health Sciences (M.S.)",
+   "url": "https://grad.ucla.edu/programs/school-of-public-health/environmental-health-sciences-department/environmental-health-sciences/",
+   "snapshot_sha256": "8af6b55110bc0b2e4e8931157c94ef3ba3258359a8f83189a8a8cb9508193424",
+   "fields": {
+    "academic": {
+     "text": "M.S.: Bachelor's (or advanced) degrees in life sciences, physical sciences, engineering, environmental science, or a related field",
+     "quote": "M.S.: Bachelor's (or advanced) degrees in life sciences, physical sciences, engineering, environmental science, or a related field.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 87,
+     "quote": "Applicants whose native language is not English must submit a score of at least 580 (paper and pencil test) or 87 (internet based test) on the Test of English as a Foreign Language (TOEFL) or an overall band score of 7.0 on the International English Language Testing System (IELTS).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Applicants whose native language is not English must submit a score of at least 580 (paper and pencil test) or 87 (internet based test) on the Test of English as a Foreign Language (TOEFL) or an overall band score of 7.0 on the International English Language Testing System (IELTS).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall intake",
+      "date": "2026-12-01",
+      "quote": "December 1, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Health (M.P.H.) in Epidemiology",
+   "url": "https://grad.ucla.edu/programs/school-of-public-health/epidemiology-department/epidemiology-mph/",
+   "snapshot_sha256": "eaec5194b9fc15723d476e20b133aaf0695a25281f531272a631b782b7519920",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "One college-level course in physical sciences and at least two in each of mathematics/statistics, biological sciences/public health/health sciences, and social sciences",
+      "quote": "The Epidemiology concentration requires one college-level course in physical sciences and at least two college-level courses in each of the following: (1) mathematics or statistics, (2) biological sciences, public health, or health sciences, (3) and social sciences.",
+      "check": "ok"
+     }
+    ],
+    "toefl": {
+     "overall": 87,
+     "quote": "Minimum overall score on TOEFL iBT: 87 (for exams taken before January 21, 2026) or 4.5 (for exams taken on or after January 21, 2026). TOEFL iBT scores should be sent to your major department. Be sure to list the TOEFL institution code for UCLA 4837. UCLA does not currently accept MyBest TOEFL.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Minimum overall band score on IELTS Academic: 7.0.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall intake",
+      "date": "2026-12-01",
+      "quote": "December 1, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Epidemiology (M.S.)",
+   "url": "https://grad.ucla.edu/programs/school-of-public-health/epidemiology-department/epidemiology/",
+   "snapshot_sha256": "4d4aabb80f6f5ed263b6d4737e9510093e6f4554fd8b660813165043bab4b75b",
+   "fields": {
+    "toefl": {
+     "overall": 87,
+     "quote": "Minimum overall score on TOEFL iBT: 87 (for exams taken before January 21, 2026) or 4.5 (for exams taken on or after January 21, 2026). TOEFL iBT scores should be sent to your major department. Be sure to list the TOEFL institution code for UCLA 4837. UCLA does not currently accept MyBest TOEFL.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Minimum overall band score on IELTS Academic: 7.0.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall intake",
+      "date": "2026-12-01",
+      "quote": "December 1, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Executive Master of Public Health (M.P.H., weekend program)",
+   "url": "https://grad.ucla.edu/programs/school-of-public-health/health-policy-and-management-department/executive-master-of-public-health/",
+   "snapshot_sha256": "883820c8899f18f67e2984ce0a34cb9dc56067dbf40871c2f0532b5d249b4467",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "At least three years of full-time professional experience",
+      "quote": "In addition, they must have at least three years of full-time professional experience.",
+      "check": "ok"
+     }
+    ],
+    "toefl": {
+     "overall": 87,
+     "quote": "Minimum overall score on TOEFL iBT: 87 (for exams taken before January 21, 2026) or 4.5 (for exams taken on or after January 21, 2026). TOEFL iBT scores should be sent to your major department. Be sure to list the TOEFL institution code for UCLA 4837. UCLA does not currently accept MyBest TOEFL.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Minimum overall band score on IELTS Academic: 7.0.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Priority deadline",
+      "date": "2027-02-01",
+      "quote": "February 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Health (M.P.H.) in Health Management",
+   "url": "https://grad.ucla.edu/programs/school-of-public-health/health-policy-and-management-department/health-management-mph/",
+   "snapshot_sha256": "4003b28c1a9753ef54fefc22a565d8023f78a3b40923cb13b38331def52579f1",
+   "fields": {
+    "toefl": {
+     "overall": 87,
+     "quote": "Minimum overall score on TOEFL iBT: 87 (for exams taken before January 21, 2026) or 4.5 (for exams taken on or after January 21, 2026). TOEFL iBT scores should be sent to your major department. Be sure to list the TOEFL institution code for UCLA 4837. UCLA does not currently accept MyBest TOEFL.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Minimum overall band score on IELTS Academic: 7.0.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall intake",
+      "date": "2026-12-01",
+      "quote": "December 1, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Health Policy and Management (M.S.)",
+   "url": "https://grad.ucla.edu/programs/school-of-public-health/health-policy-and-management-department/health-policy-and-management/",
+   "snapshot_sha256": "bacf8f8b3440c8c4bee9f24113a64c71985e5052d8ca9a3586fcc42e3c55e34b",
+   "fields": {
+    "academic": {
+     "text": "M.S.: bachelor's degree from a 4-year accredited university",
+     "quote": "MS:-A bachelors degree from a 4 year accredited university.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 87,
+     "quote": "Minimum overall score on TOEFL iBT: 87 (for exams taken before January 21, 2026) or 4.5 (for exams taken on or after January 21, 2026). TOEFL iBT scores should be sent to your major department. Be sure to list the TOEFL institution code for UCLA 4837. UCLA does not currently accept MyBest TOEFL.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Minimum overall band score on IELTS Academic: 7.0.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall intake",
+      "date": "2026-12-01",
+      "quote": "December 1, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Health (M.P.H.) in Health Policy and Management",
+   "url": "https://grad.ucla.edu/programs/school-of-public-health/health-policy-and-management-department/health-policy-management-mph/",
+   "snapshot_sha256": "25d157a8efb86e002ab11971e865ed704289e1ab38d9b0fa8b62cb7d21551e48",
+   "fields": {
+    "toefl": {
+     "overall": 87,
+     "quote": "Minimum overall score on TOEFL iBT: 87 (for exams taken before January 21, 2026) or 4.5 (for exams taken on or after January 21, 2026). TOEFL iBT scores should be sent to your major department. Be sure to list the TOEFL institution code for UCLA 4837. UCLA does not currently accept MyBest TOEFL.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Minimum overall band score on IELTS Academic: 7.0.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall intake",
+      "date": "2026-12-01",
+      "quote": "December 1, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Health (M.P.H.) in Health Policy",
+   "url": "https://grad.ucla.edu/programs/school-of-public-health/health-policy-and-management-department/health-policy-mph/",
+   "snapshot_sha256": "0ed2882973ffc3fc8c46499ac28c0093161f687ba0269a65861b23b90ab0a579",
+   "fields": {
+    "toefl": {
+     "overall": 87,
+     "quote": "Minimum overall score on TOEFL iBT: 87 (for exams taken before January 21, 2026) or 4.5 (for exams taken on or after January 21, 2026). TOEFL iBT scores should be sent to your major department. Be sure to list the TOEFL institution code for UCLA 4837. UCLA does not currently accept MyBest TOEFL.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Minimum overall band score on IELTS Academic: 7.0.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall intake",
+      "date": "2026-12-01",
+      "quote": "December 1, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Healthcare Administration (M.H.A.)",
+   "url": "https://grad.ucla.edu/programs/school-of-public-health/health-policy-and-management-department/healthcare-administration/",
+   "snapshot_sha256": "8c2295d6690eff8b7b7d88bcaea8f60ddd68daaa95995517d4f472d3889b7b14",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "At least three years of professional work experience in a healthcare setting or administrative experience",
+      "quote": "Applicants are expected to have at least three years of professional work experience in either a healthcare setting or administrative experience.",
+      "check": "ok"
+     }
+    ],
+    "toefl": {
+     "overall": 87,
+     "quote": "Minimum overall score on TOEFL iBT: 87 (for exams taken before January 21, 2026) or 4.5 (for exams taken on or after January 21, 2026). TOEFL iBT scores should be sent to your major department. Be sure to list the TOEFL institution code for UCLA 4837. UCLA does not currently accept MyBest TOEFL.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Minimum overall band score on IELTS Academic: 7.0.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Summer 2027",
+      "date": "2027-05-18",
+      "quote": "Summer 2027: May 18, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027",
+      "date": "2027-07-31",
+      "quote": "Fall 2027: July 31, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Winter 2027",
+      "date": "2026-11-16",
+      "quote": "Winter 2027: November 16, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027",
+      "date": "2027-02-16",
+      "quote": "Spring 2027: February 16, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Library and Information Science (M.L.I.S.)",
+   "url": "https://grad.ucla.edu/programs/school-of-education-and-information-studies/information-studies-department/library-and-information-science/",
+   "snapshot_sha256": "18eae35c82265b230e8513e66bff7b8f51dd736edfce599c6015f4335eaa89e6",
+   "fields": {
+    "academic": {
+     "text": "Applicants with a cumulative undergraduate GPA below 3.0 should submit GRE scores",
+     "quote": "Applicants with a cumulative undergraduate GPA below 3.0 should submit GRE scores",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 87,
+     "quote": "Minimum overall score on TOEFL iBT: 87 (for exams taken before January 21, 2026) or 4.5 (for exams taken on or after January 21, 2026). TOEFL iBT scores should be sent to your major department. Be sure to list the TOEFL institution code for UCLA 4837. UCLA does not currently accept MyBest TOEFL.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Minimum overall band score on IELTS Academic: 7.0.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall intake",
+      "date": "2026-12-01",
+      "quote": "December 1, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Education (M.Ed.) and Master of Arts (M.A.) in Education",
+   "url": "https://grad.ucla.edu/programs/school-of-education-and-information-studies/education/",
+   "snapshot_sha256": "7e893c837a06baa0f684bffae42eb49b8af6f3df659ea66133fe1c5d5c7826f4",
+   "fields": {
+    "toefl": {
+     "overall": 87,
+     "quote": "Minimum overall score on TOEFL iBT: 87 (for exams taken before January 21, 2026) or 4.5 (for exams taken on or after January 21, 2026). TOEFL iBT scores should be sent to your major department. Be sure to list the TOEFL institution code for UCLA 4837. UCLA does not currently accept MyBest TOEFL.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Minimum overall band score on IELTS Academic: 7.0.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Most programs",
+      "date": "2026-12-01",
+      "quote": "December 1, 2026 for all except:",
+      "check": "ok"
+     },
+     {
+      "label": "M.Ed./Credential Teacher Education Program (final)",
+      "date": "2027-01-05",
+      "quote": "January 5, 2027 Final Deadline for M.Ed/Credential - Teacher Education Program",
+      "check": "ok"
+     },
+     {
+      "label": "M.Ed./Credential Principal Leadership Institute",
+      "date": "2027-02-27",
+      "quote": "February 27, 2027 Deadline for M.Ed/Credential -- Principal Leadership Institute",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Applied Geospatial Information Systems & Technologies (M.A.G.I.S.T.)",
+   "url": "https://grad.ucla.edu/programs/social-sciences/geography-department/master-of-applied-geospatial-information-systems-technologies/",
+   "snapshot_sha256": "d2c0e30f6230f3be735980f1d6645344f07a669acd02903b4f72bf05694b4859",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in an appropriate field with a GPA of at least 3.2 in upper division courses",
+     "quote": "Applicants should hold a bachelors degree in an appropriate field with a grade point average of at least 3.2 (on a four point scale) in upper division courses.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Minimum TOEFL Score: 100",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "Minimum IELTS score: 7.5",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Application deadline",
+      "date": "2027-05-01",
+      "quote": "May 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Architecture (M.Arch.)",
+   "url": "https://grad.ucla.edu/programs/school-of-arts-and-architecture/architecture-and-urban-design-department/architecture-m-arch-i/",
+   "snapshot_sha256": "9afe8761078ee5809b8a546e42253ad72c0807bea17252ea599426eeb0814ce0",
+   "fields": {
+    "toefl": {
+     "overall": 92,
+     "quote": "a score of at least 92 (iBT), 580 (paper and pencil test) or 237 (computer-based test) on the Test of English as a Foreign Language (TOEFL) or an overall band score of 7.0 on the International English Testing System (IELTS) examination is required for admission.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "a score of at least 92 (iBT), 580 (paper and pencil test) or 237 (computer-based test) on the Test of English as a Foreign Language (TOEFL) or an overall band score of 7.0 on the International English Testing System (IELTS) examination is required for admission.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall intake",
+      "date": "2027-01-06",
+      "quote": "January 6, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Architecture and Urban Design (M.S.)",
+   "url": "https://grad.ucla.edu/programs/school-of-arts-and-architecture/architecture-and-urban-design-department/architecture-m-s/",
+   "snapshot_sha256": "684046773bac958167381721de00b2916910873fb6e9f472b521654856216377",
+   "fields": {
+    "academic": {
+     "text": "Second professional degree: five-year Bachelor of Architecture degree or equivalent required",
+     "quote": "requires that applicants hold a five-year Bachelor of Architecture degree or the equivalent.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 87,
+     "quote": "a score of at least 87 (iBT), 580 (paper and pencil test) or 237 (computer-based test) on the Test of English as a Foreign Language (TOEFL) or an overall band score of 7.0 on the International English Testing System (IELTS) examination is required for admission.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "a score of at least 87 (iBT), 580 (paper and pencil test) or 237 (computer-based test) on the Test of English as a Foreign Language (TOEFL) or an overall band score of 7.0 on the International English Testing System (IELTS) examination is required for admission.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall intake",
+      "date": "2027-01-06",
+      "quote": "January 6, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Legal Studies (M.L.S.)",
+   "url": "https://grad.ucla.edu/programs/school-of-law/master-of-legal-studies/",
+   "snapshot_sha256": "9403d40bd16ece0da6916eeb818c36b29bbe1d489b3cc05c3f6cbebfe29f4ecd",
+   "fields": {
+    "toefl": {
+     "overall": 87,
+     "quote": "Minimum overall score on TOEFL iBT: 87 (for exams taken before January 21, 2026) or 4.5 (for exams taken on or after January 21, 2026). TOEFL iBT scores should be sent to your major department. Be sure to list the TOEFL institution code for UCLA 4837. UCLA does not currently accept MyBest TOEFL.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Minimum overall band score on IELTS Academic: 7.0.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Priority round",
+      "date": "2026-11-11",
+      "quote": "Priority Round Deadline: November 11, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Early round",
+      "date": "2027-03-01",
+      "quote": "Early Round Deadline: March 1, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "General round",
+      "date": "2027-05-31",
+      "quote": "General Round Deadline: May 31, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Bioinformatics (M.S.)",
+   "url": "https://grad.ucla.edu/programs/life-sciences/bioinformatics-department/bioinformatics/",
+   "snapshot_sha256": "8eabe0b10cbd198235b638516521fd532064923bb6196fb2fbe8e4a9db9fd15e",
+   "fields": {
+    "toefl": {
+     "overall": 87,
+     "quote": "Minimum overall score on TOEFL iBT: 87 (for exams taken before January 21, 2026) or 4.5 (for exams taken on or after January 21, 2026). TOEFL iBT scores should be sent to your major department. Be sure to list the TOEFL institution code for UCLA 4837. UCLA does not currently accept MyBest TOEFL.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Minimum overall band score on IELTS Academic: 7.0.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "M.S. intake",
+      "date": "2027-04-16",
+      "quote": "M.S.: April 16, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Data Science in Biomedicine (M.S.)",
+   "url": "https://grad.ucla.edu/programs/david-geffen-school-of-medicine/computational-medicine-department/data-science-in-biomedicine/",
+   "snapshot_sha256": "da8b6cc552d61f8b9fffe8fcc8b7265eb5389c7cc4467a10bf762c1610094145",
+   "fields": {
+    "toefl": {
+     "overall": 87,
+     "quote": "Minimum overall score on TOEFL iBT: 87 (for exams taken before January 21, 2026) or 4.5 (for exams taken on or after January 21, 2026). TOEFL iBT scores should be sent to your major department. Be sure to list the TOEFL institution code for UCLA 4837. UCLA does not currently accept MyBest TOEFL.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Minimum overall band score on IELTS Academic: 7.0.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Quantitative Economics (M.Q.E.)",
+   "url": "https://grad.ucla.edu/programs/social-sciences/economics-department/economics-master-of-quantitative-economics/",
+   "snapshot_sha256": "4deef74bfc63ddfabe96c8926726e1438d72fc688751e278a0f2bc76dda7816e",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "Undergraduate coursework in economics, mathematics, and statistics (strongly recommended)",
+      "quote": "it is strongly recommended that applicants have undergraduate coursework in economics, mathematics, and statistics",
+      "check": "ok"
+     }
+    ],
+    "toefl": {
+     "overall": 87,
+     "quote": "Minimum overall score on TOEFL iBT: 87 (for exams taken before January 21, 2026) or 4.5 (for exams taken on or after January 21, 2026). TOEFL iBT scores should be sent to your major department. Be sure to list the TOEFL institution code for UCLA 4837. UCLA does not currently accept MyBest TOEFL.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Minimum overall band score on IELTS Academic: 7.0.",
+     "source_sha256": "a86dce2db19d87ff00f6b67ce29aa2ba8ce7e512619bfbc4697db0a8b023ddf0",
+     "source_url": "https://grad.ucla.edu/admissions/english-requirements/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "text": "Bachelor's degree with a minimum overall scholastic achievement of 80 on a 100 point scale (UCLA-wide, all Chinese universities)",
+     "quote": "Applicants should hold a bachelor’s degree with a minimum overall scholastic achievement of 80 on a 100 point scale.",
+     "source_sha256": "b49ee66b545c5700782f888a0e75e259ec932d5325e0a23ef8ff6fb0063f231e",
+     "source_url": "https://grad.ucla.edu/admissions/required-academic-records/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 46,
+  "机器核对": 46,
+  "待人工": 0
+ }
+}
