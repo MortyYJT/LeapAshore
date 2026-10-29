@@ -1,0 +1,320 @@
+{
+ "school_key": "michigan-state-university",
+ "school_name_en": "Michigan State University",
+ "country": "United States",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://engineering.msu.edu/academics/majors-degrees",
+  "https://grad.msu.edu/admissions/apply/international-applicants",
+  "https://admissions.msu.edu/academics/majors-degrees-programs"
+ ],
+ "blocked": [
+  {
+   "url": "https://reg.msu.edu/AcademicPrograms/",
+   "reason": "Incapsula challenge page (no content returned, also with --render)"
+  },
+  {
+   "url": "https://broad.msu.edu/masters/business-analytics/admissions/",
+   "reason": "Incapsula challenge page (also with --render); Broad College of Business not collected"
+  },
+  {
+   "url": "https://stt.natsci.msu.edu/graduate-programs/prospective-students/ms-in-regular-statistics-or-applied.aspx",
+   "reason": "Incapsula challenge page; Statistics MS not collected"
+  },
+  {
+   "url": "https://cmse.msu.edu/Academics/grad_program/master_degree.aspx",
+   "reason": "Incapsula challenge page"
+  },
+  {
+   "url": "https://www.cse.msu.edu/Students/Future_Grad/HowToApply.php",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://comartsci.msu.edu/journalism-graduate-application-process",
+   "reason": "HTTP 403; no further comartsci.msu.edu pages fetched after this"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://broad.msu.edu/masters/business-analytics/admissions/",
+  "https://broad.msu.edu/masters/mba/admissions/",
+  "https://stt.natsci.msu.edu/graduate-programs/prospective-students/ms-in-regular-statistics-or-applied.aspx",
+  "https://reg.msu.edu/academicprograms/ProgramDetail.aspx?Program=MEDIAIN_MA"
+ ],
+ "notes": "reg.msu.edu, broad.msu.edu and natsci/cmse hosts return an Incapsula challenge, so Broad College programmes, Statistics MS and the registrar catalogue were not collected. Journalism MA is not accepting applications; online-only programmes (MAET, HALE, MATC, online engineering) skipped; deadlines omitted because quotes carry no year. Graduate School English figures cited only for programmes whose page refers to it.",
+ "programs": [
+  {
+   "name": "Computer Science (M.S.)",
+   "url": "https://engineering.msu.edu/academics/majors-degrees/computer-science-ms",
+   "snapshot_sha256": "251fe165ae81f9ff57a1b38e43eab76e4aaf48f8e6d7772b85ad1e9561961597",
+   "fields": {
+    "academic": {
+     "text": "Cumulative GPA of at least 3.2 on a 4.0 scale (general guideline)",
+     "quote": "In general, applicants should have a cumulative grade point average of at least 3.2 on a 4.0 scale.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "min_band": 19,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "Regular Admission: Test taken prior to January 21, 2026: No sub score below 19 for reading, listening, and speaking No writing sub score below 22 A minimum average score of 80** Test taken after January 21, 2026: Score of 4.5 with a minimum score of 4 in reading and speaking, and a minimum score of 4.5 in listening and writing.",
+     "source_sha256": "d23486b417dddcd053697719bd9d484d203cae4f9faba1abf69145dcf1b8f7a8",
+     "source_url": "https://grad.msu.edu/admissions/apply/international-applicants/english-language-competency",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "International English Language Testing System (IELTS) Regular Admission: Minimum average score of 6.5. No subscore below 6.0.",
+     "source_sha256": "d23486b417dddcd053697719bd9d484d203cae4f9faba1abf69145dcf1b8f7a8",
+     "source_url": "https://grad.msu.edu/admissions/apply/international-applicants/english-language-competency",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Artificial Intelligence (M.S.)",
+   "url": "https://engineering.msu.edu/academics/majors-degrees/artificial-intelligence-ms",
+   "snapshot_sha256": "1f4d74bd2a09da0cee746dd6b702dd7ea8ba68e9e4f32b9f10fc913072aa8993",
+   "fields": {
+    "academic": {
+     "text": "Cumulative GPA of at least 3.2 on a 4.0 scale (general guideline); degree in STEM or related field",
+     "quote": "In general, applicants should have a cumulative grade point average of at least 3.2 on a 4.0 scale.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Degree in STEM or related field with programming, algorithms, linear algebra, probability and statistics, and multivariable calculus",
+      "quote": "Students are expected to have a degree in STEM or related field with experience in Computer programming (e.g., CSE 231 and CSE 232) and algorithms (e.g., CSE 331), Linear Algebra (e.g.,MTH 314), Probability and Statistics (STT 441) and Multivariable Calculus (e.g., MTH 234).",
+      "check": "ok"
+     }
+    ],
+    "toefl": {
+     "overall": 80,
+     "min_band": 19,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "Regular Admission: Test taken prior to January 21, 2026: No sub score below 19 for reading, listening, and speaking No writing sub score below 22 A minimum average score of 80** Test taken after January 21, 2026: Score of 4.5 with a minimum score of 4 in reading and speaking, and a minimum score of 4.5 in listening and writing.",
+     "source_sha256": "d23486b417dddcd053697719bd9d484d203cae4f9faba1abf69145dcf1b8f7a8",
+     "source_url": "https://grad.msu.edu/admissions/apply/international-applicants/english-language-competency",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "International English Language Testing System (IELTS) Regular Admission: Minimum average score of 6.5. No subscore below 6.0.",
+     "source_sha256": "d23486b417dddcd053697719bd9d484d203cae4f9faba1abf69145dcf1b8f7a8",
+     "source_url": "https://grad.msu.edu/admissions/apply/international-applicants/english-language-competency",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Electrical and Computer Engineering (M.S.)",
+   "url": "https://engineering.msu.edu/academics/majors-degrees/electrical-and-computer-engineering-ms",
+   "snapshot_sha256": "070bd33dc664c4a9498309d9b880520faea497d2d9f058a77dea8249d9d01791",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree in Electrical Engineering or a closely related field",
+     "quote": "Students should have a four-year bachelor's degree in Electrical Engineering or a closely related field.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "min_band": 19,
+     "quote": "TOEFL scores of a total of 80 (19 in each category except Writing which is 22), and IELTS is 6.5 or higher.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "TOEFL scores of a total of 80 (19 in each category except Writing which is 22), and IELTS is 6.5 or higher.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Mechanical Engineering (M.S.)",
+   "url": "https://engineering.msu.edu/academics/majors-degrees/mechanical-engineering-ms",
+   "snapshot_sha256": "982d52514b76ab3595e2d031b798218e51642bfba3318b27131590fff37fe722",
+   "fields": {
+    "academic": {
+     "text": "B.S. in Mechanical Engineering, Engineering Mechanics, or a closely related field",
+     "quote": "Applicants to M.S. programs should have earned a B.S. in Mechanical Engineering, Engineering Mechanics, or a closely related field prior to the term for which they are applying.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Engineering Mechanics (M.S.)",
+   "url": "https://engineering.msu.edu/academics/majors-degrees/engineering-mechanics-ms",
+   "snapshot_sha256": "8f2e9a6464977b771b9767eaec0f00c038595cb82a9294d549e9873d1c8f6631",
+   "fields": {
+    "academic": {
+     "text": "B.S. in Mechanical Engineering, Engineering Mechanics, or a closely related field",
+     "quote": "Applicants to M.S. programs should have earned a B.S. in Mechanical Engineering, Engineering Mechanics, or a closely related field prior to the term for which they are applying.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Civil Engineering (M.S.)",
+   "url": "https://engineering.msu.edu/academics/majors-degrees/civil-engineering-ms",
+   "snapshot_sha256": "f6b21362add0581a81f9378f6eb4674c601fe71bd7edff42c8f335c2e402a66a",
+   "fields": {
+    "academic": {
+     "text": "GPA of at least 3.0 (out of 4.0) or equivalent from a B.S. program in civil and/or environmental engineering or a related discipline",
+     "quote": "A grade point average (GPA) of at least 3.0 (out of 4.0) or equivalent from a B.S. program in civil and/or environmental engineering or a related discipline.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "min_band": 19,
+     "quote": "For international applicants, a minimum score of 80 on the TOEFL (19 in each category, except writing, which is 22) or 6.5 on the IELTS 6.5.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "For international applicants, a minimum score of 80 on the TOEFL (19 in each category, except writing, which is 22) or 6.5 on the IELTS 6.5.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Environmental Engineering (M.S.)",
+   "url": "https://engineering.msu.edu/academics/majors-degrees/environmental-engineering-ms",
+   "snapshot_sha256": "12d109de61f5a94524c94003d13522e1eb47b6a2440471344b4e84539a258c71",
+   "fields": {
+    "academic": {
+     "text": "GPA of at least 3.0 (out of 4.0) or equivalent from a B.S. program in civil and/or environmental engineering or a related discipline",
+     "quote": "A grade point average (GPA) of at least 3.0 (out of 4.0) or equivalent from a B.S. program in civil and/or environmental engineering or a related discipline.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "min_band": 19,
+     "quote": "For international applicants, a minimum score of 80 on the TOEFL (19 in each category, except writing, which is 22) or 6.5 on the IELTS 6.5.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "For international applicants, a minimum score of 80 on the TOEFL (19 in each category, except writing, which is 22) or 6.5 on the IELTS 6.5.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Biomedical Engineering (M.S.)",
+   "url": "https://engineering.msu.edu/academics/majors-degrees/biomedical-engineering-ms",
+   "snapshot_sha256": "baf956dbb82f9bf7f5c9cc3876e9483c2177cdebc5e6ff23e238ce149559ce66",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Chemical Engineering (M.S.)",
+   "url": "https://engineering.msu.edu/academics/majors-degrees/chemical-engineering-ms",
+   "snapshot_sha256": "0f482e93eb203d56d24ce0b23559d63f1bc3725191cf9b3c9b4e6098906bfc75",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "Students without a chemical engineering background take the 'Foundations in Chemical Engineering' collateral classes",
+      "quote": "For students who do not have a background in chemical engineering, collateral classes of “Foundations in Chemical Engineering”, a program of accelerated online courses, are provided as prerequisites to the graduate study in Chemical Engineering.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Materials Science and Engineering (M.S.)",
+   "url": "https://engineering.msu.edu/academics/majors-degrees/materials-science-and-engineering-ms",
+   "snapshot_sha256": "05e939c18e4cebe890d5223f103f1a1cde7a67131f933c2abd3fbc30cdaea213",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Data Science (M.S.)",
+   "url": "https://msds.msu.edu/how-to-apply.aspx",
+   "snapshot_sha256": "52efd73718ff7c4346f797f98814f6bf7fb61268fd38b2629f9d267c7bca320d",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "Some calculus and programming background (no specific language)",
+      "quote": "Some Calculus and programming background (no specific language) is required.",
+      "source_sha256": "d3ec8d9727fbb1c424be3bc92ba2251e8741a8b4d2fcb689e5432135c120fd5a",
+      "source_url": "https://msds.msu.edu/prospective-students/",
+      "check": "ok"
+     }
+    ],
+    "toefl": {
+     "overall": 80,
+     "min_band": 19,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "Regular Admission: Test taken prior to January 21, 2026: No sub score below 19 for reading, listening, and speaking No writing sub score below 22 A minimum average score of 80** Test taken after January 21, 2026: Score of 4.5 with a minimum score of 4 in reading and speaking, and a minimum score of 4.5 in listening and writing.",
+     "source_sha256": "d23486b417dddcd053697719bd9d484d203cae4f9faba1abf69145dcf1b8f7a8",
+     "source_url": "https://grad.msu.edu/admissions/apply/international-applicants/english-language-competency",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "International English Language Testing System (IELTS) Regular Admission: Minimum average score of 6.5. No subscore below 6.0.",
+     "source_sha256": "d23486b417dddcd053697719bd9d484d203cae4f9faba1abf69145dcf1b8f7a8",
+     "source_url": "https://grad.msu.edu/admissions/apply/international-applicants/english-language-competency",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Communication (M.A.)",
+   "url": "https://comartsci.msu.edu/degrees-programs/graduate/masters-programs/communication-ma/communication-masters-application",
+   "snapshot_sha256": "bf2e9741d80f206606f728addfa0e54c87ecde902f37a9add94c360d3afb76ae",
+   "fields": {
+    "toefl": {
+     "overall": 93,
+     "min_band": 21,
+     "quote": "For TOEFL, your scores should be an average of 93 minimum with no sub-scores below 21. For IELTS, you should have an average score of 7 minimum.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "For TOEFL, your scores should be an average of 93 minimum with no sub-scores below 21. For IELTS, you should have an average score of 7 minimum.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "English (M.A.)",
+   "url": "https://english.msu.edu/ma-application-instructions/",
+   "snapshot_sha256": "5b7b27126dde04e0dbbd60682b946600110763240cfc20380a8574df91d9b3cc",
+   "fields": {
+    "academic": {
+     "text": "Baccalaureate degree in English or a related field; 20 semester credits in English courses with a minimum GPA of 3.50",
+     "quote": "Completed a minimum of 20 semester credits in English courses, exclusive of freshman composition, with a minimum GPA of 3.50",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Two years of college-level study of a foreign language",
+      "quote": "Completed two years of study in a foreign language at the college level",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 13,
+  "机器核对": 11,
+  "待人工": 2
+ }
+}
