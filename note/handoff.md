@@ -11,6 +11,12 @@
   3. **稳定的后端**：已完成，见下。
 - 界面原型（个人网站配色 + 渐变 + 动画）在 `.taste-skill/prototype/`（被 git 忽略，只在本机），MortyYJT 已认可「总体没问题」。
 
+## MortyYJT 10-30 傍晚的决定
+
+- 部署：**先把现在线上的版本挂到新域名 + HTTPS**（只改 `deploy/Caddyfile`：`:80` → 域名，Caddy 自动签证书），新数据与新前端之后再上。服务器在**香港或海外**，不用 ICP 备案。域名本身还没告诉我；DNS 的 A 记录要指到 43.161.224.82。
+- 前端：**开工**，按已认可的原型（`.taste-skill/prototype/`）和 OpenSpec `ledger-redesign` 实现主路径，用真实数据，重写走查让 `make verify` 全绿。
+- 展示标准（我提的）：前端主路径真实数据跑通 + `make verify` 全绿 + 合并 #27 后生产库导入并上域名 + README / GitHub About 更新。剩余 49 所采集、PDF 解析不阻塞展示。
+
 ## 已完成并提交（按提交顺序）
 
 - `docs(openspec)`：OpenSpec change `ledger-redesign`（前端合并 + 视觉），PRD 档位改「稳妥」、§7.7 第 5 条界面用词对照表
