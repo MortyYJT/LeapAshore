@@ -288,3 +288,12 @@ def test_a_us_page_writes_numeric_dates_month_first(tmp_path):
     assert check("United States", "2026-01-12") == NEEDS_HUMAN
     assert check("United Kingdom", "2026-01-12") == MACHINE_CHECKED
     assert check("United Kingdom", "2026-12-01") == NEEDS_HUMAN
+
+
+def test_a_refusal_from_www_holds_for_the_bare_host_and_back(tmp_path, monkeypatch):
+    """www.cs.example.edu and cs.example.edu are one site: switching between them is not a new host."""
+    snap.block_host("www.cs.example.edu", "HTTP 403", tmp_path)
+    assert snap.blocked_host("cs.example.edu", tmp_path) == "HTTP 403"
+    snap.block_host("grad.example.edu", "HTTP 429", tmp_path)
+    assert snap.blocked_host("www.grad.example.edu", tmp_path) == "HTTP 429"
+    assert snap.blocked_host("other.example.edu", tmp_path) is None

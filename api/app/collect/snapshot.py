@@ -82,7 +82,12 @@ def _blocked_hosts_file(root: Path) -> Path:
 def blocked_host(host: str, root: Path = SNAPSHOT_ROOT) -> str | None:
     """Why `host` refused us before, or None. A refusal holds for every later request to it."""
     path = _blocked_hosts_file(root)
-    return json.loads(path.read_text()).get(host) if path.exists() else None
+    if not path.exists():
+        return None
+    hosts = json.loads(path.read_text())
+    # www.x and x are one site: a refusal from either holds for both.
+    bare = host.lower().removeprefix("www.")
+    return hosts.get(host) or hosts.get(bare) or hosts.get(f"www.{bare}")
 
 
 def block_host(host: str, reason: str, root: Path = SNAPSHOT_ROOT) -> None:
