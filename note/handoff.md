@@ -22,7 +22,7 @@
 
 ## 采集进度（每校一个 json，在 `api/data/requirements/`；表由脚本从文件生成）
 
-共 116 所、4421 个项目、4338 个机器核对。各校的特殊情况写在各自 json 的 `notes` 和提交说明里。
+共 141 所、5337 个项目、5253 个机器核对。各校的特殊情况写在各自 json 的 `notes` 和提交说明里。
 
 | school_key | 项目 | 机器核对 | 状态 |
 | --- | --- | --- | --- |
@@ -39,9 +39,13 @@
 | columbia-university | 65 | 65 | partial |
 | cornell-university | 24 | 24 | partial |
 | curtin-university | 50 | 50 | partial |
+| delft-university-of-technology | 0 | 0 | blocked |
 | duke-university | 42 | 42 | partial |
 | durham-university | 0 | 0 | blocked |
 | emory-university | 24 | 24 | partial |
+| epfl-ecole-polytechnique-federale-de-lausanne | 29 | 29 | complete |
+| eth-zurich | 45 | 45 | complete |
+| freie-universitaet-berlin | 30 | 30 | partial |
 | georgia-institute-of-technology | 60 | 60 | partial |
 | hanyang-university | 6 | 6 | blocked |
 | harvard-university | 52 | 52 | complete |
@@ -49,15 +53,21 @@
 | hong-kong-polytechnic-university | 113 | 113 | complete |
 | hong-kong-university-of-science-and-technology | 54 | 54 | complete |
 | imperial-college-london | 165 | 165 | complete |
+| institut-polytechnique-de-paris | 41 | 41 | partial |
 | institute-of-science-tokyo | 18 | 16 | partial |
 | johns-hopkins-university | 52 | 24 | partial |
 | kaist | 2 | 2 | blocked |
 | king-s-college-london | 61 | 61 | partial |
+| kit-karlsruhe-institute-of-technology | 13 | 13 | complete |
 | korea-university | 45 | 45 | partial |
+| kth-royal-institute-of-technology | 51 | 51 | complete |
+| ku-leuven | 0 | 0 | blocked |
 | kyoto-university | 15 | 8 | partial |
 | kyushu-university | 18 | 6 | partial |
 | lancaster-university | 62 | 62 | complete |
 | london-school-of-economics-and-political-science | 64 | 64 | partial |
+| ludwig-maximilians-universitat-munchen | 26 | 26 | partial |
+| lund-university | 57 | 57 | partial |
 | macquarie-university | 0 | 0 | blocked |
 | massachusetts-institute-of-technology | 42 | 42 | complete |
 | mcgill-university | 0 | 0 | blocked |
@@ -72,6 +82,7 @@
 | northwestern-university | 34 | 34 | partial |
 | pennsylvania-state-university | 39 | 38 | partial |
 | pohang-university-of-science-and-technology | 4 | 2 | blocked |
+| politecnico-di-milano | 44 | 44 | complete |
 | princeton-university | 9 | 9 | complete |
 | purdue-university | 26 | 26 | partial |
 | queen-mary-university-of-london | 139 | 137 | partial |
@@ -79,18 +90,29 @@
 | queen-s-university-belfast | 0 | 0 | blocked |
 | rice-university | 24 | 19 | complete |
 | rmit-university | 79 | 79 | complete |
+| sapienza-university-of-rome | 16 | 16 | partial |
 | seoul-national-university | 4 | 2 | blocked |
+| sorbonne-university | 19 | 19 | partial |
 | stanford-university | 19 | 19 | partial |
 | sungkyunkwan-university | 4 | 4 | blocked |
+| technical-university-of-denmark | 27 | 27 | partial |
+| technical-university-of-munich | 82 | 82 | complete |
 | texas-a-m-university | 26 | 19 | partial |
 | tohoku-university | 11 | 11 | partial |
+| trinity-college-dublin-the-university-of-dublin | 55 | 55 | partial |
 | ucl | 50 | 50 | partial |
+| universitat-heidelberg | 11 | 10 | partial |
 | universite-de-montreal | 37 | 37 | partial |
+| universite-paris-saclay | 1 | 1 | blocked |
+| universite-psl | 36 | 36 | partial |
 | universiti-kebangsaan-malaysia | 0 | 0 | blocked |
 | universiti-malaya | 61 | 61 | partial |
 | universiti-putra-malaysia | 35 | 33 | partial |
-| universiti-sains-malaysia | 0 | 0 | blocked |
+| universiti-sains-malaysia | 54 | 54 | partial |
+| universiti-teknologi-malaysia | 79 | 79 | complete |
+| university-college-dublin | 0 | 0 | blocked |
 | university-of-alberta | 0 | 0 | blocked |
+| university-of-amsterdam | 32 | 32 | partial |
 | university-of-auckland | 28 | 28 | partial |
 | university-of-bath | 0 | 0 | blocked |
 | university-of-birmingham | 60 | 60 | partial |
@@ -103,6 +125,7 @@
 | university-of-california-santa-barbara | 14 | 14 | complete |
 | university-of-cambridge | 59 | 59 | partial |
 | university-of-chicago | 19 | 19 | complete |
+| university-of-copenhagen | 48 | 48 | complete |
 | university-of-edinburgh | 62 | 62 | partial |
 | university-of-exeter | 143 | 142 | complete |
 | university-of-glasgow | 60 | 60 | partial |
@@ -138,6 +161,8 @@
 | university-of-wisconsin-madison | 37 | 37 | partial |
 | university-of-wollongong | 57 | 56 | partial |
 | university-of-york | 15 | 15 | partial |
+| university-of-zurich | 12 | 12 | partial |
+| uppsala-university | 108 | 108 | complete |
 | washington-university-in-st-louis | 11 | 11 | partial |
 | western-university | 47 | 47 | complete |
 | yale-university | 44 | 44 | complete |
@@ -153,7 +178,7 @@
 - Harvard HSPH：45/65 学分两个版本同一网址（id 冲突已修）
 - CMU MHCI：官网写 IELTS 总分 8.5，按原文收录，疑似学校笔误
 - UIUC：英语分数取研究生院 limited-status（有条件录取）最低分，full-status 分数写在 prerequisites
-进行中（10-30 白天续跑）：美国 35、加拿大 9、新西兰 2、日本 8、韩国 7、马来西亚 5 已全部派出并基本提交；在跑 UTM、ETH、EPFL、TUM、PSL、IP Paris；之后欧洲其余 46、其他 21，再给 partial 补跑。收尾脚本 `finish.py` 在会话草稿区。
+采集暂停（10-30 傍晚子代理额度用完，墨尔本 18:40 重置）：190 所里 141 所有文件（13 所 0 项目=被拦或连不上），49 所未开始（欧洲约 28、其他 21，含中断的 Utrecht/Helsinki/RWTH/Aalto/Bologna/Leiden，均无文件）。收尾脚本 `finish.py` 在会话草稿区（复核→生成提交说明→提交推送→刷新本表）。
 - Alberta 子代理用 curl（非诚实 UA）读过一次 www.ualberta.ca/robots.txt，返回 403，未引用
 - Emory Economics and AI：页面说待董事会批准，2027 秋首届
 - TAMU Statistics：截止日期标题写 Fall 2026，日期却是 2027-01-31，按原文收录
@@ -164,6 +189,10 @@
 - 【前端待办】截止日期会随时间过去：现有 139 个早于 2026-10-29（多为下一届的第一轮或刚关闭的窗口）。界面需按当天日期标“已截止”，不能当成未来日期排时间线
 - USM：所有主机 robots.txt 网络层读不到（URLError），不是明说禁止；换网络环境可重试
 - USM 根因：服务器证书链不完整，Python 校验失败（浏览器能补中间证书）；UKM：robots.txt 超时。都没绕过（不关证书校验）
+- UTM：28 个项目自己页面没写要求，套用了全校授课型/混合型的统一 CPA 和英语线（招生办列表把它们归入该类）——严格读法下应删
+- PSL：psl.eu 的 robots.txt 报 TLS 自签名证书链错误，主站未采；用了 Dauphine-PSL 和 ENS-PSL 子站
+- KU Leuven：主站 robots 403；课程指南 onderwijsaanbod 先能访问后全部超时，可稍后按 /opleidingen/e/SC_<id>/toelatingsvoorwaarden 重试
+- 【更正】前面记的 USM “服务器证书链不完整”和 PSL “自签名证书”判断有误：真正原因是本机 macOS 证书库缺 HARICA 2021 根证书，已修（用 certifi，未关校验）；USM 正在重跑，PSL 主站和索邦物理子站可补跑。【要 MortyYJT 知悉】快照工具会在已安装时使用 certifi（httpx/requests 间接带入，未加依赖声明）
 
 ## 校徽
 
@@ -189,7 +218,8 @@
 - 后端：287 条通过（白天新增：项目变体 id、建议分、美国/加拿大日期顺序、www 别名封禁、多语种月份、Nov.6 写法、robots.txt 无应答的原因与重试）；前端 205 条通过
 - 快照工具原先只对请求的 URL 查 robots.txt、不查重定向落点（Caltech 子代理发现），已修；4 个不该存的本地快照已删，没有数据引用它们
 - 种子测试原先依赖开发库只有种子数据，导入采集数据后 5 条失败；已改成不依赖。注意：跑 `test_seed.py` 会把 5 个占位项目重置成种子版本，要看导入效果就重跑 importer
-- `make verify`：构建和测试通过；走查在「为你筛出的申请组合」一步失败，这是 PR #26 已记录的旧问题（新入口流程后走查需重写），不是今晚的改动造成的
+- `make verify`（10-30 傍晚重跑）：后端 290、前端 205 通过；走查在 :3000 dev server 超时、在 :3100 生产构建卡在「为你筛出的申请组合」——仍是旧问题。导入器本机跑通且幂等，`--prune` 清掉 306 行旧 id 残留，0 个来源带 verified_at。CI：最新推送 8e7917f 通过。
+- 旧记录：构建和测试通过；走查在「为你筛出的申请组合」一步失败，这是 PR #26 已记录的旧问题（新入口流程后走查需重写），不是今晚的改动造成的
 - 本机 Turbopack dev server 报 "Next.js package not found" 后会无限刷新，走查改用生产构建（`BASE_URL=http://localhost:3100`）
 - 一个全新上下文的审查子代理审过后端改动，1 个阻断 + 6 个应修问题已全部修复
 - CI：没跑；部署：没动
