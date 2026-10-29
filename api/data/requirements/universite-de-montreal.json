@@ -1,0 +1,1994 @@
+{
+ "school_key": "universite-de-montreal",
+ "school_name_en": "Université de Montréal",
+ "country": "Canada",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://admission.umontreal.ca/programmes-de-cycles-superieurs/",
+  "https://admission.umontreal.ca/programmes/technologie-de-linformation-et-des-communications/",
+  "https://admission.umontreal.ca/programmes/sciences-de-ladministration-et-gestion/"
+ ],
+ "blocked": [],
+ "complete": false,
+ "remaining_urls": [],
+ "notes": "French-language university; quotes are verbatim French, text is English. The programme-page admission conditions load by script per country, so each programme cites its own official conditions-pays.html page for China (source_sha256). The listing is script-driven and only partly rendered, so programme URLs were found by programme slug and a web search; the 152 maîtrises are not all covered. Excluded: DESS and microprogrammes.",
+ "programs": [
+  {
+   "name": "Maîtrise en statistique (Statistics)",
+   "url": "https://admission.umontreal.ca/programmes/maitrise-en-statistique/",
+   "snapshot_sha256": "a63c685137e27bcedb01c74f023dece38a519e90d563eb5ce0c3da7ec8927992",
+   "fields": {
+    "academic": {
+     "text": "Average of at least 3.0 out of 4.3 (or equivalent) in the first-cycle degree",
+     "quote": "avoir obtenu aux études de 1er cycle une moyenne d'au moins 3,0 sur 4,3 ou la moyenne exigée par l'université d'origine pour l'admission à un programme de 2e cycle, si celle-ci est plus élevée, ou l'équivalent.",
+     "source_sha256": "84b0a0c23c982e945b68f6c595ffd6ed58f8372e901da7adb02310dbd2cca885",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-statistique/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "quote": "Pour satisfaire à la moyenne de 3,0 sur 4,3 de l’Université de Montréal, les candidats de ce pays doivent répondre aux exigences suivantes : Diplôme accepté : Bachelor, Xueshi; durée : 4 - 5 ans Moyenne minimale : 80% B",
+     "source_sha256": "84b0a0c23c982e945b68f6c595ffd6ed58f8372e901da7adb02310dbd2cca885",
+     "text": "Chinese bachelor's degree (Xueshi, 4-5 years) with a minimum average of 80% (grade B) meets the University's 3.0/4.3 average, which is also this programme's threshold",
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-statistique/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "General option: specialised B.Sc. in mathematics or statistics, a bidisciplinary B.Sc. (e.g. maths and economics, maths and computer science, demography and statistics), a bachelor's with a mathematics major, or equivalent",
+      "quote": "être titulaire d'un B. Sc. spécialisé (mathématiques), ou d'un B. Sc. spécialisé (statistique), ou d'un B. Sc. spécialisé bidisciplinaire en mathématiques et économie, en mathématiques et informatique ou en démographie et statistique, ou d'un baccalauréat avec majeure en mathématiques, ou d'un diplôme de 1er cycle préparant adéquatement aux études qu'il veut entreprendre, ou bien attester d'une formation jugée équivalente",
+      "source_sha256": "84b0a0c23c982e945b68f6c595ffd6ed58f8372e901da7adb02310dbd2cca885",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-statistique/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "Minimum mathematical preparation: linear algebra, calculus, analysis, probability, computer science and solid training in statistics; the Department may impose preparatory courses",
+      "quote": "La préparation mathématique minimale, pour être considérée admissible, devra inclure une formation de base en algèbre linéaire, en calcul, en analyse, en probabilité, en informatique et une bonne formation en statistique. En outre, le Département peut, à l'admission, imposer des cours préparatoires et des cours complémentaires.",
+      "source_sha256": "84b0a0c23c982e945b68f6c595ffd6ed58f8372e901da7adb02310dbd2cca885",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-statistique/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "Good knowledge of French and English; the department may require a French-as-a-foreign-language test",
+      "quote": "Le candidat doit avoir une bonne connaissance du français et de l'anglais. Sur demande, le département peut exiger une attestation de la connaissance du français sous la forme de la réussite d'un test de français langue étrangère.",
+      "source_sha256": "84b0a0c23c982e945b68f6c595ffd6ed58f8372e901da7adb02310dbd2cca885",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-statistique/23/conditions-pays.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application window 1 août 2026 to 1 février 2027 (closing date)",
+      "date": "2027-02-01",
+      "quote": "Du 1er août 2026 au 1er février 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Maîtrise en mathématiques (Mathematics)",
+   "url": "https://admission.umontreal.ca/programmes/maitrise-en-mathematiques/",
+   "snapshot_sha256": "8a9ef69378b71fa62a6e704eae31cbaf1b08441923a48ddddb76a672f4f70487",
+   "fields": {
+    "academic": {
+     "text": "Average of at least 3.0 out of 4.3 (or equivalent) in the first-cycle degree",
+     "quote": "avoir obtenu au 1er cycle une moyenne d'au moins 3,0 sur 4,3 ou l'équivalent à moins que le candidat ne soit admis en vertu d'une expérience subséquente à l'obtention du baccalauréat.",
+     "source_sha256": "95f6d23dd4278e1e83c46b04482649a49b0514a88842c4a0da2b2dbfcd906d28",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-mathematiques/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "quote": "Pour satisfaire à la moyenne de 3,0 sur 4,3 de l’Université de Montréal, les candidats de ce pays doivent répondre aux exigences suivantes : Diplôme accepté : Bachelor, Xueshi; durée : 4 - 5 ans Moyenne minimale : 80% B",
+     "source_sha256": "95f6d23dd4278e1e83c46b04482649a49b0514a88842c4a0da2b2dbfcd906d28",
+     "text": "Chinese bachelor's degree (Xueshi, 4-5 years) with a minimum average of 80% (grade B) meets the University's 3.0/4.3 average, which is also this programme's threshold",
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-mathematiques/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Specialised B.Sc. in mathematics, a bidisciplinary B.Sc. with mathematics, a bachelor's with a mathematics major, or equivalent",
+      "quote": "être titulaire d'un B. Sc. spécialisé (mathématiques), ou d'un B. Sc. spécialisé bidisciplinaire en Mathématiques et Économie, en Mathématiques et Informatique ou en Mathématiques et Physique, ou d'un baccalauréat avec majeure en mathématiques, ou d'un diplôme de 1er cycle préparant adéquatement aux études qu'il veut entreprendre, ou bien attester d'une formation jugée équivalente",
+      "source_sha256": "95f6d23dd4278e1e83c46b04482649a49b0514a88842c4a0da2b2dbfcd906d28",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-mathematiques/23/conditions-pays.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application window 1 août 2026 to 1 février 2027 (closing date)",
+      "date": "2027-02-01",
+      "quote": "Du 1er août 2026 au 1er février 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Maîtrise en sciences économiques (Economics)",
+   "url": "https://admission.umontreal.ca/programmes/maitrise-en-sciences-economiques/",
+   "snapshot_sha256": "853a3a685365f7d5a577cf93199e274cc24356ee381da6424d1e97d36535416b",
+   "fields": {
+    "academic": {
+     "text": "Average of at least 3.0 out of 4.3 (or equivalent) in the first-cycle degree",
+     "quote": "avoir obtenu au 1er cycle une moyenne d'au moins 3,0 sur 4,3 ou l'équivalent (12/20 dans le système français)",
+     "source_sha256": "af587f7c87c922ee9d6abe0255d09473fb29e52bcb12e8350548be86725b7ba8",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-sciences-economiques/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "quote": "Pour satisfaire à la moyenne de 3,0 sur 4,3 de l’Université de Montréal, les candidats de ce pays doivent répondre aux exigences suivantes : Diplôme accepté : Bachelor, Xueshi; durée : 4 - 5 ans Moyenne minimale : 80% B",
+     "source_sha256": "af587f7c87c922ee9d6abe0255d09473fb29e52bcb12e8350548be86725b7ba8",
+     "text": "Chinese bachelor's degree (Xueshi, 4-5 years) with a minimum average of 80% (grade B) meets the University's 3.0/4.3 average, which is also this programme's threshold",
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-sciences-economiques/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Specialised B.Sc. in economics, a bachelor's with a major or minor in economics, or equivalent",
+      "quote": "être titulaire d'un B. Sc. spécialisé (sciences économiques) ou d'un baccalauréat avec majeure ou mineure en sciences économiques ou d'un diplôme de 1er cycle préparant adéquatement aux études qu'il veut entreprendre, ou bien attester d'une formation jugée équivalente",
+      "source_sha256": "af587f7c87c922ee9d6abe0255d09473fb29e52bcb12e8350548be86725b7ba8",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-sciences-economiques/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "Good knowledge of French and English",
+      "quote": "faire preuve d'une bonne connaissance des langues française et anglaise.",
+      "source_sha256": "af587f7c87c922ee9d6abe0255d09473fb29e52bcb12e8350548be86725b7ba8",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-sciences-economiques/23/conditions-pays.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application window 1 août 2026 to 1 février 2027 (closing date)",
+      "date": "2027-02-01",
+      "quote": "Du 1er août 2026 au 1er février 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Maîtrise en sciences de l'information (Information Science)",
+   "url": "https://admission.umontreal.ca/programmes/maitrise-en-sciences-de-linformation/",
+   "snapshot_sha256": "961a284fcd6620f5299cc3014188220b7b0a489e87ba1ee3bd0c0783b6c5eaac",
+   "fields": {
+    "academic": {
+     "text": "Average of at least 3.0 out of 4.3 (or equivalent) in the first-cycle degree",
+     "quote": "avoir obtenu, au 1er cycle, une moyenne d'au moins 3,0 sur 4,3 (ou l'équivalent) ou la moyenne exigée par l'université d'origine pour l'admission à un programme de 2e cycle, si celle‐ci est plus élevée.",
+     "source_sha256": "a2d32f86097e41e45a20369e3914a1a32fe9b77fdcee366bb56890105433077d",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-sciences-de-linformation/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "quote": "Pour satisfaire à la moyenne de 3,0 sur 4,3 de l’Université de Montréal, les candidats de ce pays doivent répondre aux exigences suivantes : Diplôme accepté : Bachelor, Xueshi; durée : 4 - 5 ans Moyenne minimale : 80% B",
+     "source_sha256": "a2d32f86097e41e45a20369e3914a1a32fe9b77fdcee366bb56890105433077d",
+     "text": "Chinese bachelor's degree (Xueshi, 4-5 years) with a minimum average of 80% (grade B) meets the University's 3.0/4.3 average, which is also this programme's threshold",
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-sciences-de-linformation/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "First-cycle degree that adequately prepares for the studies, or equivalent training",
+      "quote": "être titulaire d'un grade de 1er cycle préparant adéquatement aux études qu'il veut entreprendre ou bien attester d’une formation jugée équivalente",
+      "source_sha256": "a2d32f86097e41e45a20369e3914a1a32fe9b77fdcee366bb56890105433077d",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-sciences-de-linformation/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "French proficiency at the level the University deems minimal; applicants who did not study mainly in French may, if the Faculty requires it, have to present results of a recognised French test",
+      "quote": "Le candidat doit avoir une connaissance de la langue française atteignant le niveau que l’Université estime minimal pour s’engager dans le programme. À cette fin, le candidat doit avoir réalisé une partie significative de ses études dans cette langue. Dans le cas contraire, il doit, si la Faculté l'exige, faire la preuve d’une connaissance suffisante du français en présentant les résultats d’un test de français reconnu par l’Université de Montréal",
+      "source_sha256": "a2d32f86097e41e45a20369e3914a1a32fe9b77fdcee366bb56890105433077d",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-sciences-de-linformation/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "French test results must attest CEFR level B2",
+      "quote": "Les résultats doivent attester de l’atteinte du niveau B2 du Cadre européen commun de référence pour les langues (CECRL).",
+      "source_sha256": "a2d32f86097e41e45a20369e3914a1a32fe9b77fdcee366bb56890105433077d",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-sciences-de-linformation/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "Good knowledge of English",
+      "quote": "Le candidat doit également avoir une bonne connaissance de l’anglais.",
+      "source_sha256": "a2d32f86097e41e45a20369e3914a1a32fe9b77fdcee366bb56890105433077d",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-sciences-de-linformation/23/conditions-pays.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application window 1 août 2026 to 1 février 2027 (closing date)",
+      "date": "2027-02-01",
+      "quote": "Du 1er août 2026 au 1er février 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Maîtrise en bio-informatique (Bioinformatics)",
+   "url": "https://admission.umontreal.ca/programmes/maitrise-en-bio-informatique/",
+   "snapshot_sha256": "363662a8714147fbcb69b487b6e2e4decbe646297736a7717c3d1f1e792bdbe1",
+   "fields": {
+    "academic": {
+     "text": "Average of at least 3.0 out of 4.3 (or equivalent) in the first-cycle degree",
+     "quote": "avoir obtenu au 1er cycle une moyenne d'au moins 3,0 sur 4,3 ou l'équivalent, à moins que le candidat ne soit admis en vertu d'une expérience ou d'une formation subséquente à l'obtention du baccalauréat",
+     "source_sha256": "197014150ca6c487cd3a2f1bfb621ea08725f34b0be4d752c6695bec4f5a771e",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-bio-informatique/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "quote": "Pour satisfaire à la moyenne de 3,0 sur 4,3 de l’Université de Montréal, les candidats de ce pays doivent répondre aux exigences suivantes : Diplôme accepté : Bachelor, Xueshi; durée : 4 - 5 ans Moyenne minimale : 80% B",
+     "source_sha256": "197014150ca6c487cd3a2f1bfb621ea08725f34b0be4d752c6695bec4f5a771e",
+     "text": "Chinese bachelor's degree (Xueshi, 4-5 years) with a minimum average of 80% (grade B) meets the University's 3.0/4.3 average, which is also this programme's threshold",
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-bio-informatique/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "B.Sc. in bioinformatics, or a B.Sc. with a computer science/mathematics/statistics major and life sciences minor (or the reverse), or equivalent",
+      "quote": "être titulaire d'un B. Sc. spécialisé en bio-informatique ou d'un B. Sc. avec majeure en informatique, mathématiques ou statistiques et mineure en sciences de la vie ou majeure en sciences de la vie et mineure en informatique, mathématiques ou statistiques, ou bien attester d'une formation jugée équivalente",
+      "source_sha256": "197014150ca6c487cd3a2f1bfb621ea08725f34b0be4d752c6695bec4f5a771e",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-bio-informatique/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "Good knowledge of French and English",
+      "quote": "faire preuve d'une bonne connaissance des langues française et anglaise.",
+      "source_sha256": "197014150ca6c487cd3a2f1bfb621ea08725f34b0be4d752c6695bec4f5a771e",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-bio-informatique/23/conditions-pays.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application window 1 août 2026 to 1 février 2027 (closing date)",
+      "date": "2027-02-01",
+      "quote": "Du 1er août 2026 au 1er février 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Maîtrise en finance mathématique et computationnelle (Mathematical and Computational Finance)",
+   "url": "https://admission.umontreal.ca/programmes/maitrise-en-finance-mathematique-et-computationnelle/",
+   "snapshot_sha256": "e9ea02ef61bc9502337dc03e33a81b5ef733c4d8d4a676b297ad1540e3d35789",
+   "fields": {
+    "academic": {
+     "text": "Average of at least 3.2 out of 4.3 (or equivalent) in the first-cycle degree",
+     "quote": "avoir obtenu, au 1er cycle, une moyenne d'au moins 3,2 sur 4,3 ou l'équivalent",
+     "source_sha256": "bcf921dc0c8d4e48e74e65f2e7cf27105e37a1045521353fff283334d283b048",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-finance-mathematique-et-computationnelle/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "quote": "Pour satisfaire à la moyenne de 3,0 sur 4,3 de l’Université de Montréal, les candidats de ce pays doivent répondre aux exigences suivantes : Diplôme accepté : Bachelor, Xueshi; durée : 4 - 5 ans Moyenne minimale : 80% B",
+     "source_sha256": "bcf921dc0c8d4e48e74e65f2e7cf27105e37a1045521353fff283334d283b048",
+     "text": "Chinese bachelor's degree (Xueshi, 4-5 years) with a minimum average of 80% (grade B) meets the University's general 3.0/4.3 average; this programme requires a higher average (3.2/4.3) for which no Chinese percentage is stated",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-finance-mathematique-et-computationnelle/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "B.Sc. in mathematics (specialised or bidisciplinary with computer science, physics or economics), a B.Sc. with a mathematics major, or equivalent",
+      "quote": "être titulaire d'un des diplômes suivants : B. Sc. spécialisé en mathématiques, B. Sc. spécialisé bidisciplinaire en Mathématiques et Informatique, en Mathématiques et Physique, en Mathématiques et Économie, B. Sc. avec majeure en mathématiques ou encore attester d'une formation jugée équivalente",
+      "source_sha256": "bcf921dc0c8d4e48e74e65f2e7cf27105e37a1045521353fff283334d283b048",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-finance-mathematique-et-computationnelle/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "Good knowledge of French and English",
+      "quote": "faire preuve d'une bonne connaissance du français et de l'anglais.",
+      "source_sha256": "bcf921dc0c8d4e48e74e65f2e7cf27105e37a1045521353fff283334d283b048",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-finance-mathematique-et-computationnelle/23/conditions-pays.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application window 1 août 2026 to 1 février 2027 (closing date)",
+      "date": "2027-02-01",
+      "quote": "Du 1er août 2026 au 1er février 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Maîtrise en épidémiologie (Epidemiology)",
+   "url": "https://admission.umontreal.ca/programmes/maitrise-en-epidemiologie/",
+   "snapshot_sha256": "f21313a754991d8a5a2d075d9dd89f839aa3cc3c802ec9e628353cf2b6f86543",
+   "fields": {
+    "academic": {
+     "text": "Average of at least 3.2 out of 4.3 (or equivalent) in the first-cycle degree",
+     "quote": "avoir obtenu au 1er cycle une moyenne cumulative d'au moins 3,2 sur 4,3 ou l'équivalent ;",
+     "source_sha256": "cf7af48c8c283e5e4a589e90d4b7db0c8a8bb9be881e1b3b0073460f66dc4488",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-epidemiologie/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "quote": "Pour satisfaire à la moyenne de 3,0 sur 4,3 de l’Université de Montréal, les candidats de ce pays doivent répondre aux exigences suivantes : Diplôme accepté : Bachelor, Xueshi; durée : 4 - 5 ans Moyenne minimale : 80% B",
+     "source_sha256": "cf7af48c8c283e5e4a589e90d4b7db0c8a8bb9be881e1b3b0073460f66dc4488",
+     "text": "Chinese bachelor's degree (Xueshi, 4-5 years) with a minimum average of 80% (grade B) meets the University's general 3.0/4.3 average; this programme requires a higher average (3.2/4.3) for which no Chinese percentage is stated",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-epidemiologie/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "First-cycle university degree in a field relevant to public health, or equivalent",
+      "quote": "être titulaire d'un diplôme universitaire de 1er cycle dans un domaine pertinent pour la santé publique ou d'un diplôme jugé équivalent ;",
+      "source_sha256": "cf7af48c8c283e5e4a589e90d4b7db0c8a8bb9be881e1b3b0073460f66dc4488",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-epidemiologie/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "Passed first-cycle STT 1700 (Introduction to Statistics) within the last 5 years or equivalent, or STT 2974 (Biostatistics and Epidemiology) or equivalent before admission",
+      "quote": "avoir réussi au cours des 5 dernières années le cours de 1er cycle « STT 1700 - Introduction à la statistique » ou son équivalent, ou avoir réussi le cours de 1er cycle «STT 2974 - Biostatistique et épidémiologie », ou son équivalent avant l'admission ;",
+      "source_sha256": "cf7af48c8c283e5e4a589e90d4b7db0c8a8bb9be881e1b3b0073460f66dc4488",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-epidemiologie/23/conditions-pays.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application window 1 août 2026 to 1 février 2027 (closing date)",
+      "date": "2027-02-01",
+      "quote": "Du 1er août 2026 au 1er février 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Maîtrise en santé publique (Public Health)",
+   "url": "https://admission.umontreal.ca/programmes/maitrise-en-sante-publique/",
+   "snapshot_sha256": "cedc942452adfd693aedbbccfe8936a60b80dcfa4a0b987f740291092609bdc5",
+   "fields": {
+    "academic": {
+     "text": "Average of at least 3.2 out of 4.3 (or equivalent) in the first-cycle degree",
+     "quote": "avoir obtenu, au 1er cycle, une moyenne cumulative d'au moins 3,2 sur 4,3 ou l'équivalent.",
+     "source_sha256": "ee22dd9f7cd5ae9d8a5bf847332996b802f9eeb070622dd078dd509b64f5702a",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-sante-publique/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "quote": "Pour satisfaire à la moyenne de 3,0 sur 4,3 de l’Université de Montréal, les candidats de ce pays doivent répondre aux exigences suivantes : Diplôme accepté : Bachelor, Xueshi; durée : 4 - 5 ans Moyenne minimale : 80% B",
+     "source_sha256": "ee22dd9f7cd5ae9d8a5bf847332996b802f9eeb070622dd078dd509b64f5702a",
+     "text": "Chinese bachelor's degree (Xueshi, 4-5 years) with a minimum average of 80% (grade B) meets the University's general 3.0/4.3 average; this programme requires a higher average (3.2/4.3) for which no Chinese percentage is stated",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-sante-publique/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "First-cycle university degree in a field relevant to public health, or equivalent",
+      "quote": "être titulaire d'un diplôme universitaire de 1er cycle dans un domaine pertinent pour la santé publique ou d'un diplôme jugé équivalent ;",
+      "source_sha256": "ee22dd9f7cd5ae9d8a5bf847332996b802f9eeb070622dd078dd509b64f5702a",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-sante-publique/23/conditions-pays.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application window 1 août 2026 to 1 février 2027 (closing date)",
+      "date": "2027-02-01",
+      "quote": "Du 1er août 2026 au 1er février 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Maîtrise en administration des services de santé (Health Services Administration)",
+   "url": "https://admission.umontreal.ca/programmes/maitrise-en-administration-des-services-de-sante/",
+   "snapshot_sha256": "412e1f8d90bdb4e26e70dcd767e92e5eec3a8953faf921f225276fbca5e0199e",
+   "fields": {
+    "academic": {
+     "text": "Average of at least 3.2 out of 4.3 (or equivalent) in the first-cycle degree",
+     "quote": "avoir obtenu, au 1er cycle, une moyenne d'au moins 3,2 sur 4,3 ou l'équivalent.",
+     "source_sha256": "c0fdbbbdb837cfe7ba2b6ca4654f181656b976cdddb41b3fe2910509b00392b5",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-administration-des-services-de-sante/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "quote": "Pour satisfaire à la moyenne de 3,0 sur 4,3 de l’Université de Montréal, les candidats de ce pays doivent répondre aux exigences suivantes : Diplôme accepté : Bachelor, Xueshi; durée : 4 - 5 ans Moyenne minimale : 80% B",
+     "source_sha256": "c0fdbbbdb837cfe7ba2b6ca4654f181656b976cdddb41b3fe2910509b00392b5",
+     "text": "Chinese bachelor's degree (Xueshi, 4-5 years) with a minimum average of 80% (grade B) meets the University's general 3.0/4.3 average; this programme requires a higher average (3.2/4.3) for which no Chinese percentage is stated",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-administration-des-services-de-sante/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "First-cycle degree from the Universite de Montreal or an equivalent degree",
+      "quote": "être titulaire d'un diplôme de 1er cycle de l'Université de Montréal ou d'un diplôme jugé équivalent ;",
+      "source_sha256": "c0fdbbbdb837cfe7ba2b6ca4654f181656b976cdddb41b3fe2910509b00392b5",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-administration-des-services-de-sante/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "For the system management, quality and patient safety, and general options: a biostatistics course in the last five years, otherwise 3 complementary credits (MSO 6060)",
+      "quote": "avoir suivi un cours de biostatistique dans les cinq dernières années. En l'absence de ce cours, l'étudiant devra s'inscrire à trois crédits complémentaires, soit suivre le cours : MSO 6060 Concepts de base en biostatistique ou équivalent, en début de sa scolarité.",
+      "source_sha256": "c0fdbbbdb837cfe7ba2b6ca4654f181656b976cdddb41b3fe2910509b00392b5",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-administration-des-services-de-sante/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "Good knowledge of English (written/reading comprehension)",
+      "quote": "Le candidat doit avoir une bonne connaissance de l’anglais écrit (capacité de lecture).",
+      "source_sha256": "c0fdbbbdb837cfe7ba2b6ca4654f181656b976cdddb41b3fe2910509b00392b5",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-administration-des-services-de-sante/23/conditions-pays.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application window 1 août 2026 to 1 février 2027 (closing date)",
+      "date": "2027-02-01",
+      "quote": "Du 1er août 2026 au 1er février 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Maîtrise en sciences de la communication (Communication Sciences)",
+   "url": "https://admission.umontreal.ca/programmes/maitrise-en-sciences-de-la-communication/",
+   "snapshot_sha256": "0eaa780d506e4d11909f70614fca8fee37c1f95ee6aeb2e6d59642092b250136",
+   "fields": {
+    "academic": {
+     "text": "Average of at least 3.0 out of 4.3 (or equivalent) in the first-cycle degree",
+     "quote": "avoir obtenu au 1er cycle une moyenne d'au moins 3,0 sur 4,3 ou l'équivalent.",
+     "source_sha256": "3557c91dbc5fdeb7782d2b966d77409ca7026c85676148652a8887c2133d1970",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-sciences-de-la-communication/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "quote": "Pour satisfaire à la moyenne de 3,0 sur 4,3 de l’Université de Montréal, les candidats de ce pays doivent répondre aux exigences suivantes : Diplôme accepté : Bachelor, Xueshi; durée : 4 - 5 ans Moyenne minimale : 80% B",
+     "source_sha256": "3557c91dbc5fdeb7782d2b966d77409ca7026c85676148652a8887c2133d1970",
+     "text": "Chinese bachelor's degree (Xueshi, 4-5 years) with a minimum average of 80% (grade B) meets the University's 3.0/4.3 average, which is also this programme's threshold",
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-sciences-de-la-communication/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Specialised B.Sc. in communication, a bachelor's with a communication major, or equivalent",
+      "quote": "être titulaire d'un B. Sc. spécialisé en communication ou d'un baccalauréat avec majeure en communication, ou d'un diplôme de 1er cycle préparant adéquatement aux études qu'il veut entreprendre, ou bien attester d'une formation jugée équivalente",
+      "source_sha256": "3557c91dbc5fdeb7782d2b966d77409ca7026c85676148652a8887c2133d1970",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-sciences-de-la-communication/23/conditions-pays.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application window 1 février 2026 to 1 novembre 2026 (closing date)",
+      "date": "2026-11-01",
+      "quote": "Du 1er février 2026 au 1er novembre 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Application window 1 août 2026 to 1 février 2027 (closing date)",
+      "date": "2027-02-01",
+      "quote": "Du 1er août 2026 au 1er février 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Maîtrise en droit des technologies de l'information (LL.M. in Information Technology Law)",
+   "url": "https://admission.umontreal.ca/programmes/maitrise-en-droit-des-technologies-de-linformation/",
+   "snapshot_sha256": "3db955cc9ed6d092420616aed9125c0349e2cf38c33e9c1dbaed3a00432e5d40",
+   "fields": {
+    "academic": {
+     "text": "Average of at least 3.0 out of 4.3 (or equivalent) in the first-cycle degree",
+     "quote": "avoir obtenu, au 1er cycle, au microprogramme ou au D.E.S.S., une moyenne d'au moins 3,0 sur 4,3 ou l'équivalent. Le candidat dont la moyenne se situe entre 3,0 et 3,3 ou l'équivalent doit fournir des pièces supplémentaires dont la liste se trouve dans la prochaine section.",
+     "source_sha256": "5dbdb2f471a91110d89acba86cb6eaad77e91e16a14354fd6060ef2a28a86baf",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-droit-des-technologies-de-linformation/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "quote": "Pour satisfaire à la moyenne de 3,0 sur 4,3 de l’Université de Montréal, les candidats de ce pays doivent répondre aux exigences suivantes : Diplôme accepté : Bachelor, Xueshi; durée : 4 - 5 ans Moyenne minimale : 80% B",
+     "source_sha256": "5dbdb2f471a91110d89acba86cb6eaad77e91e16a14354fd6060ef2a28a86baf",
+     "text": "Chinese bachelor's degree (Xueshi, 4-5 years) with a minimum average of 80% (grade B) meets the University's 3.0/4.3 average, which is also this programme's threshold",
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-droit-des-technologies-de-linformation/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Bachelor's in law from the Universite de Montreal or an equivalent degree",
+      "quote": "être titulaire du baccalauréat en droit de l'Université de Montréal ou d'un diplôme jugé équivalent",
+      "source_sha256": "5dbdb2f471a91110d89acba86cb6eaad77e91e16a14354fd6060ef2a28a86baf",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-droit-des-technologies-de-linformation/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "Good knowledge of French and English",
+      "quote": "faire preuve d'une bonne connaissance du français et de l'anglais.",
+      "source_sha256": "5dbdb2f471a91110d89acba86cb6eaad77e91e16a14354fd6060ef2a28a86baf",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-droit-des-technologies-de-linformation/23/conditions-pays.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application window 1 février 2026 to 1 novembre 2026 (closing date)",
+      "date": "2026-11-01",
+      "quote": "Du 1er février 2026 au 1er novembre 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Application window 1 août 2026 to 1 février 2027 (closing date)",
+      "date": "2027-02-01",
+      "quote": "Du 1er août 2026 au 1er février 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Maîtrise en physique (Physics)",
+   "url": "https://admission.umontreal.ca/programmes/maitrise-en-physique/",
+   "snapshot_sha256": "797db159a6299e0fe64980c0b712ec83826643139d35d82560c8060f9e722dd1",
+   "fields": {
+    "academic": {
+     "text": "Average of at least 3.0 out of 4.3 (or equivalent) in the first-cycle degree",
+     "quote": "avoir obtenu, au 1er cycle, une moyenne d’au moins 3,0 sur 4,3 (ou l’équivalent) ou la moyenne exigée par l’université d’origine pour l’admission à un programme de 2e cycle, si celle-ci est plus élevée",
+     "source_sha256": "59732b9acbc1044b37a6c84e932f433b5a44c74ac566d986d9ac0a3ddebf0582",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-physique/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "quote": "Pour satisfaire à la moyenne de 3,0 sur 4,3 de l’Université de Montréal, les candidats de ce pays doivent répondre aux exigences suivantes : Diplôme accepté : Bachelor, Xueshi; durée : 4 - 5 ans Moyenne minimale : 80% B",
+     "source_sha256": "59732b9acbc1044b37a6c84e932f433b5a44c74ac566d986d9ac0a3ddebf0582",
+     "text": "Chinese bachelor's degree (Xueshi, 4-5 years) with a minimum average of 80% (grade B) meets the University's 3.0/4.3 average, which is also this programme's threshold",
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-physique/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "First-cycle degree in physics or with a physics major, or equivalent",
+      "quote": "être titulaire d’un grade de 1er cycle en physique, ou d’un grade de 1er cycle avec majeure en physique, ou d’un diplôme de 1er cycle préparant adéquatement aux études qu’il veut entreprendre, ou bien attester d’une formation jugée équivalente",
+      "source_sha256": "59732b9acbc1044b37a6c84e932f433b5a44c74ac566d986d9ac0a3ddebf0582",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-physique/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "French proficiency at the level the University deems minimal; applicants who did not study mainly in French may, if the Faculty requires it, have to present results of a recognised French test",
+      "quote": "Le candidat doit avoir une connaissance de la langue française atteignant le niveau que l’Université estime minimal pour s’engager dans le programme. À cette fin, le candidat doit avoir réalisé une partie significative de ses études dans cette langue. Dans le cas contraire, il doit, si la Faculté l’exige, faire la preuve d’une connaissance suffisante du français en présentant les résultats d’un test de français reconnu par l’Université de Montréal",
+      "source_sha256": "59732b9acbc1044b37a6c84e932f433b5a44c74ac566d986d9ac0a3ddebf0582",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-physique/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "French test results must attest CEFR level B2",
+      "quote": "Les résultats doivent attester de l’atteinte du niveau B2 du Cadre européen commun de référence pour les langues (CECRL).",
+      "source_sha256": "59732b9acbc1044b37a6c84e932f433b5a44c74ac566d986d9ac0a3ddebf0582",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-physique/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "Good knowledge of English (written/reading comprehension)",
+      "quote": "Le candidat doit également avoir une bonne connaissance de l’anglais écrit (compréhension écrite).",
+      "source_sha256": "59732b9acbc1044b37a6c84e932f433b5a44c74ac566d986d9ac0a3ddebf0582",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-physique/23/conditions-pays.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application window 1 août 2026 to 1 février 2027 (closing date)",
+      "date": "2027-02-01",
+      "quote": "Du 1er août 2026 au 1er février 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Maîtrise en chimie (Chemistry)",
+   "url": "https://admission.umontreal.ca/programmes/maitrise-en-chimie/",
+   "snapshot_sha256": "c1eca68e436b954a0dd82bcb48014ee91c26d8d3d02fb7761d9d583020f49ef7",
+   "fields": {
+    "academic": {
+     "text": "Average of at least 3.0 out of 4.3 (or equivalent) in the first-cycle degree",
+     "quote": "avoir obtenu au 1er cycle, une moyenne d’au moins 3,0 sur 4,3 (ou l’équivalent) ou la moyenne exigée par l’université d’origine pour l’admission à un programme de 2e cycle, si celle-ci est plus élevée. Pour les études effectuées dans le système européen (LMD), avoir obtenu un résultat d’au moins 12/20 pour la licence et pour le M1.",
+     "source_sha256": "55eb069386dc1e65f67147b33d853271f2adec7446deaaa1ad3ac0887b2fcc32",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-chimie/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "quote": "Pour satisfaire à la moyenne de 3,0 sur 4,3 de l’Université de Montréal, les candidats de ce pays doivent répondre aux exigences suivantes : Diplôme accepté : Bachelor, Xueshi; durée : 4 - 5 ans Moyenne minimale : 80% B",
+     "source_sha256": "55eb069386dc1e65f67147b33d853271f2adec7446deaaa1ad3ac0887b2fcc32",
+     "text": "Chinese bachelor's degree (Xueshi, 4-5 years) with a minimum average of 80% (grade B) meets the University's 3.0/4.3 average, which is also this programme's threshold",
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-chimie/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "First-cycle degree in chemistry or with a chemistry major, or equivalent; for European (LMD) studies the M1 in chemistry as well",
+      "quote": "être titulaire d’un grade de 1er cycle en chimie ou d’un grade de 1er cycle avec majeure en chimie ou d’un diplôme de 1er cycle préparant adéquatement aux études qu’il veut entreprendre, ou bien attester d’une formation jugée équivalente. Pour les études de 1er cycle effectuées dans le système européen (LMD), avoir complété également le niveau M1 en chimie.",
+      "source_sha256": "55eb069386dc1e65f67147b33d853271f2adec7446deaaa1ad3ac0887b2fcc32",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-chimie/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "French proficiency at the level the University deems minimal; applicants who did not study mainly in French may, if the Faculty requires it, have to present results of a recognised French test",
+      "quote": "Le candidat doit avoir une connaissance de la langue française atteignant le niveau que l’Université estime minimal pour s’engager dans le programme. À cette fin, le candidat doit avoir réalisé une partie significative de ses études dans cette langue. Dans le cas contraire, il doit, si la Faculté l’exige, faire la preuve d’une connaissance suffisante du français en présentant les résultats d’un test de français reconnu par l’Université de Montréal.",
+      "source_sha256": "55eb069386dc1e65f67147b33d853271f2adec7446deaaa1ad3ac0887b2fcc32",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-chimie/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "French test results must attest CEFR level B2",
+      "quote": "Les résultats doivent attester de l’atteinte du niveau B2 du Cadre européen commun de référence pour les langues (CECRL).",
+      "source_sha256": "55eb069386dc1e65f67147b33d853271f2adec7446deaaa1ad3ac0887b2fcc32",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-chimie/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "Good knowledge of English (written/reading comprehension)",
+      "quote": "Le candidat doit également avoir une bonne connaissance de l’anglais écrit (compréhension écrite).",
+      "source_sha256": "55eb069386dc1e65f67147b33d853271f2adec7446deaaa1ad3ac0887b2fcc32",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-chimie/23/conditions-pays.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application window 1 août 2026 to 1 février 2027 (closing date)",
+      "date": "2027-02-01",
+      "quote": "Du 1er août 2026 au 1er février 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Maîtrise en démographie (Demography)",
+   "url": "https://admission.umontreal.ca/programmes/maitrise-en-demographie/",
+   "snapshot_sha256": "9aefba435bf51527043da793ef16a6c340e666a84fb75de38a7700bb5ecbfb77",
+   "fields": {
+    "academic": {
+     "text": "Average of at least 3.0 out of 4.3 (or equivalent) in the first-cycle degree",
+     "quote": "avoir obtenu au 1er cycle une moyenne d'au moins 3,0 sur 4,3 (ou l'équivalent) ou la moyenne exigée par l'université d'origine pour l'admission à un programme de 2e cycle, si celle-ci est plus élevée",
+     "source_sha256": "05b646ce53844f8a68f84bad3d6bfba2b5f6ddf3a1324b229759fc8cb76f1ca9",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-demographie/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "quote": "Pour satisfaire à la moyenne de 3,0 sur 4,3 de l’Université de Montréal, les candidats de ce pays doivent répondre aux exigences suivantes : Diplôme accepté : Bachelor, Xueshi; durée : 4 - 5 ans Moyenne minimale : 80% B",
+     "source_sha256": "05b646ce53844f8a68f84bad3d6bfba2b5f6ddf3a1324b229759fc8cb76f1ca9",
+     "text": "Chinese bachelor's degree (Xueshi, 4-5 years) with a minimum average of 80% (grade B) meets the University's 3.0/4.3 average, which is also this programme's threshold",
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-demographie/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Bidisciplinary first-cycle degree including demography, or a first-cycle degree with demography major or minor, or equivalent",
+      "quote": "être titulaire d'un diplôme de grade de 1er cycle bidisciplinaire où la démographie est l'une des deux disciplines, d'un diplôme de grade de 1er cycle avec mineure ou majeure en démographie, d’un baccalauréat par cumul avec appellation (BACCAP) en science de la population, ou encore d'un diplôme préparant adéquatement aux études de démographie",
+      "source_sha256": "05b646ce53844f8a68f84bad3d6bfba2b5f6ddf3a1324b229759fc8cb76f1ca9",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-demographie/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "French proficiency at the level the University deems minimal; applicants who did not study mainly in French may, if the Faculty requires it, have to present results of a recognised French test",
+      "quote": "Le candidat doit avoir une connaissance de la langue française atteignant le niveau que l’Université estime minimal pour s’engager dans le programme. À cette fin, le candidat doit avoir réalisé une partie significative de ses études dans cette langue. Dans le cas contraire, il doit, si la Faculté l'exige, faire la preuve d’une connaissance suffisante du français en présentant les résultats d’un test de français reconnu par l’Université de Montréal",
+      "source_sha256": "05b646ce53844f8a68f84bad3d6bfba2b5f6ddf3a1324b229759fc8cb76f1ca9",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-demographie/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "French test results must attest the CEFR level(s) listed in the quote",
+      "quote": "Les résultats doivent attester de l’atteinte du niveau B2 du Cadre européen commun de référence pour les langues (CECRL) pour les deux compétences suivantes :",
+      "source_sha256": "05b646ce53844f8a68f84bad3d6bfba2b5f6ddf3a1324b229759fc8cb76f1ca9",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-demographie/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "Good knowledge of written and spoken English",
+      "quote": "Le candidat doit également avoir une bonne connaissance de l’anglais écrit et oral.",
+      "source_sha256": "05b646ce53844f8a68f84bad3d6bfba2b5f6ddf3a1324b229759fc8cb76f1ca9",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-demographie/23/conditions-pays.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application window 1 août 2026 to 1 février 2027 (closing date)",
+      "date": "2027-02-01",
+      "quote": "Du 1er août 2026 au 1er février 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Maîtrise en sociologie (Sociology)",
+   "url": "https://admission.umontreal.ca/programmes/maitrise-en-sociologie/",
+   "snapshot_sha256": "06a26fef290776863f416189c189258285b3c6fab822a64323ada5f27231fe4c",
+   "fields": {
+    "academic": {
+     "text": "Average of at least 3.0 out of 4.3 (or equivalent) in the first-cycle degree",
+     "quote": "avoir obtenu au 1er cycle une moyenne d'au moins 3,0 sur 4,3 (ou l'équivalent) ou la moyenne exigée par l'université d'origine pour l'admission à un programme de 2e cycle, si celle-ci est plus élevée.",
+     "source_sha256": "e09dfbb74b367437b6942ef377984778ae5c5601cbeb813c5bbbef58ed43a4ac",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-sociologie/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "quote": "Pour satisfaire à la moyenne de 3,0 sur 4,3 de l’Université de Montréal, les candidats de ce pays doivent répondre aux exigences suivantes : Diplôme accepté : Bachelor, Xueshi; durée : 4 - 5 ans Moyenne minimale : 80% B",
+     "source_sha256": "e09dfbb74b367437b6942ef377984778ae5c5601cbeb813c5bbbef58ed43a4ac",
+     "text": "Chinese bachelor's degree (Xueshi, 4-5 years) with a minimum average of 80% (grade B) meets the University's 3.0/4.3 average, which is also this programme's threshold",
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-sociologie/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Specialised first-cycle degree in sociology or with a sociology major, or equivalent; others may be admitted conditionally on a preparatory course load",
+      "quote": "être titulaire d'un grade de 1er cycle spécialisé en sociologie, ou d'un grade de 1er cycle avec majeure en sociologie, ou d'un grade de 1er cycle bidisciplinaire comprenant la sociologie ou attester d'une formation jugée équivalente. Le titulaire d'un grade de 1er cycle avec mineure en sociologie ou d'un grade de 1er cycle sans formation en sociologie peut être admis conditionnellement à la réussite d'une propédeutique définie par le Comité des études supérieures sur examen de son dossier et de son profil",
+      "source_sha256": "e09dfbb74b367437b6942ef377984778ae5c5601cbeb813c5bbbef58ed43a4ac",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-sociologie/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "French proficiency at the level the University deems minimal; applicants who did not study mainly in French may, if the Faculty requires it, have to present results of a recognised French test",
+      "quote": "Le candidat doit avoir une connaissance de la langue française atteignant le niveau que l’Université estime minimal pour s’engager dans le programme. À cette fin, le candidat doit avoir réalisé une partie significative de ses études dans cette langue. Dans le cas contraire, il doit, si la Faculté l'exige, faire la preuve d’une connaissance suffisante du français en présentant les résultats d’un test de français reconnu par l’Université de Montréal.",
+      "source_sha256": "e09dfbb74b367437b6942ef377984778ae5c5601cbeb813c5bbbef58ed43a4ac",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-sociologie/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "French test results must attest CEFR level B2",
+      "quote": "Les résultats doivent attester de l’atteinte du niveau B2 du Cadre européen commun de référence pour les langues (CECRL).",
+      "source_sha256": "e09dfbb74b367437b6942ef377984778ae5c5601cbeb813c5bbbef58ed43a4ac",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-sociologie/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "Good knowledge of English (written/reading comprehension)",
+      "quote": "Le candidat doit également avoir une bonne connaissance de l’anglais écrit (compréhension écrite).",
+      "source_sha256": "e09dfbb74b367437b6942ef377984778ae5c5601cbeb813c5bbbef58ed43a4ac",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-sociologie/23/conditions-pays.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application window 1 février 2026 to 1 novembre 2026 (closing date)",
+      "date": "2026-11-01",
+      "quote": "Du 1er février 2026 au 1er novembre 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Application window 1 août 2026 to 1 février 2027 (closing date)",
+      "date": "2027-02-01",
+      "quote": "Du 1er août 2026 au 1er février 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Maîtrise en science politique (Political Science)",
+   "url": "https://admission.umontreal.ca/programmes/maitrise-en-science-politique/",
+   "snapshot_sha256": "a5b54db8cd062e3f93dbcb96d093e1a75b7fc704182d64e4c5be0b8b260e8b78",
+   "fields": {
+    "academic": {
+     "text": "Average of at least 3.3 out of 4.3 (or equivalent) in the first-cycle degree",
+     "quote": "avoir obtenu au 1er cycle une moyenne d'au moins 3,3 sur 4,3 (ou l'équivalent) ou la moyenne exigée par l'université d'origine pour l'admission à un programme de 2e cycle, si celle-ci est plus élevée",
+     "source_sha256": "acf1a42c7468a4994dad2e8affbf35d8b8c8ffd2fd2bb30174b46d57ed054ae8",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-science-politique/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "quote": "Pour satisfaire à la moyenne de 3,0 sur 4,3 de l’Université de Montréal, les candidats de ce pays doivent répondre aux exigences suivantes : Diplôme accepté : Bachelor, Xueshi; durée : 4 - 5 ans Moyenne minimale : 80% B",
+     "source_sha256": "acf1a42c7468a4994dad2e8affbf35d8b8c8ffd2fd2bb30174b46d57ed054ae8",
+     "text": "Chinese bachelor's degree (Xueshi, 4-5 years) with a minimum average of 80% (grade B) meets the University's general 3.0/4.3 average; this programme requires a higher average (3.3/4.3) for which no Chinese percentage is stated",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-science-politique/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Specialised first-cycle degree in political science or with a political science major, or equivalent",
+      "quote": "être titulaire d'un grade de 1er cycle spécialisé en science politique ou d'un grade de 1er cycle avec majeure en science politique, ou d'un diplôme préparant adéquatement aux études qu'il ou elle veut entreprendre, ou bien attester d'une formation jugée équivalente",
+      "source_sha256": "acf1a42c7468a4994dad2e8affbf35d8b8c8ffd2fd2bb30174b46d57ed054ae8",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-science-politique/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "French proficiency at the level the University deems minimal; applicants who did not study mainly in French may, if the Faculty requires it, have to present results of a recognised French test",
+      "quote": "Le candidat doit avoir une connaissance de la langue française atteignant le niveau que l’Université estime minimal pour s’engager dans le programme. À cette fin, le candidat doit avoir réalisé une partie significative de ses études dans cette langue. Dans le cas contraire, il doit, si la Faculté l'exige, faire la preuve d’une connaissance suffisante du français en présentant les résultats d’un test de français reconnu par l’Université de Montréal.",
+      "source_sha256": "acf1a42c7468a4994dad2e8affbf35d8b8c8ffd2fd2bb30174b46d57ed054ae8",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-science-politique/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "French test results must attest CEFR level B2",
+      "quote": "Les résultats doivent attester de l’atteinte du niveau B2 du Cadre européen commun de référence pour les langues (CECRL).",
+      "source_sha256": "acf1a42c7468a4994dad2e8affbf35d8b8c8ffd2fd2bb30174b46d57ed054ae8",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-science-politique/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "Good knowledge of English",
+      "quote": "Le candidat doit également avoir une bonne connaissance de l’anglais.",
+      "source_sha256": "acf1a42c7468a4994dad2e8affbf35d8b8c8ffd2fd2bb30174b46d57ed054ae8",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-science-politique/23/conditions-pays.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application window 1 août 2026 to 1 février 2027 (closing date)",
+      "date": "2027-02-01",
+      "quote": "Du 1er août 2026 au 1er février 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Maîtrise en relations industrielles (Industrial Relations)",
+   "url": "https://admission.umontreal.ca/programmes/maitrise-en-relations-industrielles/",
+   "snapshot_sha256": "328b3345b95d013b18b2428685c2358de400df175bf6cce0a201f9325feb6964",
+   "fields": {
+    "academic": {
+     "text": "Average of at least 3.0 out of 4.3 (or equivalent) in the first-cycle degree",
+     "quote": "avoir obtenu au 1er cycle une moyenne d'au moins 3,0 sur 4,3 ou l'équivalent",
+     "source_sha256": "b9aa745f6ebac1b0d93b8659422f02b8e288ed8050c9f70fb0068f210c26176f",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-relations-industrielles/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "quote": "Pour satisfaire à la moyenne de 3,0 sur 4,3 de l’Université de Montréal, les candidats de ce pays doivent répondre aux exigences suivantes : Diplôme accepté : Bachelor, Xueshi; durée : 4 - 5 ans Moyenne minimale : 80% B",
+     "source_sha256": "b9aa745f6ebac1b0d93b8659422f02b8e288ed8050c9f70fb0068f210c26176f",
+     "text": "Chinese bachelor's degree (Xueshi, 4-5 years) with a minimum average of 80% (grade B) meets the University's 3.0/4.3 average, which is also this programme's threshold",
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-relations-industrielles/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Specialised B.Sc. in industrial relations or equivalent; graduates of other disciplines complete up to 16 preparatory credits",
+      "quote": "être titulaire d'un B. Sc. spécialisé (relations industrielles), ou d'un diplôme préparant adéquatement aux études en relations industrielles, ou bien attester d'une formation jugée équivalente. L'étudiant titulaire d'un grade de 1er cycle dans une autre discipline que les relations industrielles doit compléter une scolarité préparatoire pouvant comprendre jusqu'à 16 crédits de cours",
+      "source_sha256": "b9aa745f6ebac1b0d93b8659422f02b8e288ed8050c9f70fb0068f210c26176f",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-relations-industrielles/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "Good knowledge of English",
+      "quote": "L'étudiant doit avoir une bonne connaissance de l'anglais.",
+      "source_sha256": "b9aa745f6ebac1b0d93b8659422f02b8e288ed8050c9f70fb0068f210c26176f",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-relations-industrielles/23/conditions-pays.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application window 1 février 2026 to 1 novembre 2026 (closing date)",
+      "date": "2026-11-01",
+      "quote": "Du 1er février 2026 au 1er novembre 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Application window 1 août 2026 to 1 février 2027 (closing date)",
+      "date": "2027-02-01",
+      "quote": "Du 1er août 2026 au 1er février 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Maîtrise en criminologie (Criminology)",
+   "url": "https://admission.umontreal.ca/programmes/maitrise-en-criminologie/",
+   "snapshot_sha256": "6f5de081ccf682d0bc8b336adb23b7bcacf88cd79bf298da10752bac799a5583",
+   "fields": {
+    "academic": {
+     "text": "Average of at least 3.2 out of 4.3 (or equivalent) in the first-cycle degree",
+     "quote": "avoir obtenu au 1er cycle, une moyenne d'au moins 3,2 sur 4,3 (ou l'équivalent) ou la moyenne exigée par l'université d'origine pour l'admission à un programme de 2e cycle, si celle-ci est plus élevée",
+     "source_sha256": "da8aa3091e12b9082bf9c274914c3d2b9e5369c30643aef55537633ad55ce313",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-criminologie/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "quote": "Pour satisfaire à la moyenne de 3,0 sur 4,3 de l’Université de Montréal, les candidats de ce pays doivent répondre aux exigences suivantes : Diplôme accepté : Bachelor, Xueshi; durée : 4 - 5 ans Moyenne minimale : 80% B",
+     "source_sha256": "da8aa3091e12b9082bf9c274914c3d2b9e5369c30643aef55537633ad55ce313",
+     "text": "Chinese bachelor's degree (Xueshi, 4-5 years) with a minimum average of 80% (grade B) meets the University's general 3.0/4.3 average; this programme requires a higher average (3.2/4.3) for which no Chinese percentage is stated",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-criminologie/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Specialised first-cycle degree in security and police studies or criminology, or equivalent; others complete a preparatory year of up to 30 credits",
+      "quote": "être titulaire d'un grade de 1er cycle spécialisé en sécurité et études policières ou en criminologie ou d'un baccalauréat par cumul de certificats jugé équivalent ou attester d'une formation jugée équivalente",
+      "source_sha256": "da8aa3091e12b9082bf9c274914c3d2b9e5369c30643aef55537633ad55ce313",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-criminologie/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "French proficiency at the level the University deems minimal; applicants who did not study mainly in French may, if the Faculty requires it, have to present results of a recognised French test",
+      "quote": "Le candidat doit avoir une connaissance de la langue française atteignant le niveau que l’Université estime minimal pour s’engager dans le programme. À cette fin, le candidat doit avoir réalisé une partie significative de ses études dans cette langue. Dans le cas contraire, il doit, si la Faculté l'exige, faire la preuve d’un test de français reconnu par l’Université de Montréal.",
+      "source_sha256": "da8aa3091e12b9082bf9c274914c3d2b9e5369c30643aef55537633ad55ce313",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-criminologie/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "French test results must attest CEFR level B2",
+      "quote": "Les résultats doivent attester de l’atteinte du niveau B2 du Cadre européen commun de référence pour les langues (CECRL).",
+      "source_sha256": "da8aa3091e12b9082bf9c274914c3d2b9e5369c30643aef55537633ad55ce313",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-criminologie/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "Good knowledge of English (written/reading comprehension)",
+      "quote": "Le candidat doit également avoir une bonne connaissance de l’anglais écrit (compréhension écrite).",
+      "source_sha256": "da8aa3091e12b9082bf9c274914c3d2b9e5369c30643aef55537633ad55ce313",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-criminologie/23/conditions-pays.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application window 1 août 2026 to 1 février 2027 (closing date)",
+      "date": "2027-02-01",
+      "quote": "Du 1er août 2026 au 1er février 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Maîtrise en géographie (Geography)",
+   "url": "https://admission.umontreal.ca/programmes/maitrise-en-geographie/",
+   "snapshot_sha256": "1518bb847f62929aca5adb163b32e6122c911a52312b0098d6f498fe3f69bf72",
+   "fields": {
+    "academic": {
+     "text": "Average of at least 3.0 out of 4.3 (or equivalent) in the first-cycle degree",
+     "quote": "avoir obtenu, au 1er cycle, une moyenne d'au moins 3,0 sur 4,3 ou l'équivalent",
+     "source_sha256": "bbba6a18491c6cdb1ff8561a54b7c9a5bee264af28605213e63ec302f9c34103",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-geographie/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "quote": "Pour satisfaire à la moyenne de 3,0 sur 4,3 de l’Université de Montréal, les candidats de ce pays doivent répondre aux exigences suivantes : Diplôme accepté : Bachelor, Xueshi; durée : 4 - 5 ans Moyenne minimale : 80% B",
+     "source_sha256": "bbba6a18491c6cdb1ff8561a54b7c9a5bee264af28605213e63ec302f9c34103",
+     "text": "Chinese bachelor's degree (Xueshi, 4-5 years) with a minimum average of 80% (grade B) meets the University's 3.0/4.3 average, which is also this programme's threshold",
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-geographie/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Specialised B.Sc. in geography or a B.Sc. with a geography major or minor, or equivalent",
+      "quote": "être titulaire d'un B. Sc. spécialisé (géographie) ou d'un B. Sc. avec majeure ou mineure en géographie, ou d'un diplôme préparant adéquatement aux études qu'il veut entreprendre, ou bien attester d'une formation jugée équivalente",
+      "source_sha256": "bbba6a18491c6cdb1ff8561a54b7c9a5bee264af28605213e63ec302f9c34103",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-geographie/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "Good knowledge of French and of English or another language of international reach",
+      "quote": "Le candidat doit avoir une bonne connaissance du français et une bonne connaissance de l'anglais ou d'une autre langue de portée internationale.",
+      "source_sha256": "bbba6a18491c6cdb1ff8561a54b7c9a5bee264af28605213e63ec302f9c34103",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-geographie/23/conditions-pays.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application window 1 août 2026 to 1 février 2027 (closing date)",
+      "date": "2027-02-01",
+      "quote": "Du 1er août 2026 au 1er février 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Maîtrise en linguistique (Linguistics)",
+   "url": "https://admission.umontreal.ca/programmes/maitrise-en-linguistique/",
+   "snapshot_sha256": "69b4ed13268c218bcea87f305c4ddb12b136851c6fcf5618e4f7b62f12a0f1fe",
+   "fields": {
+    "academic": {
+     "text": "Average of at least 3.2 out of 4.3 (or equivalent) in the first-cycle degree",
+     "quote": "avoir obtenu au 1er cycle une moyenne d'au moins 3,2 sur 4,3 (ou l'équivalent) ou la moyenne exigée par l'université d'origine pour l'admission à un programme de 2e cycle, si celle-ci est plus élevée",
+     "source_sha256": "058bb6e7a2bd6d5f8bc2af25140a0d85a7b8cd91e855645bd69848fbb88d3b69",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-linguistique/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "quote": "Pour satisfaire à la moyenne de 3,0 sur 4,3 de l’Université de Montréal, les candidats de ce pays doivent répondre aux exigences suivantes : Diplôme accepté : Bachelor, Xueshi; durée : 4 - 5 ans Moyenne minimale : 80% B",
+     "source_sha256": "058bb6e7a2bd6d5f8bc2af25140a0d85a7b8cd91e855645bd69848fbb88d3b69",
+     "text": "Chinese bachelor's degree (Xueshi, 4-5 years) with a minimum average of 80% (grade B) meets the University's general 3.0/4.3 average; this programme requires a higher average (3.2/4.3) for which no Chinese percentage is stated",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-linguistique/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Specialised first-cycle degree in linguistics or with a linguistics major or minor, or equivalent",
+      "quote": "être titulaire d'un diplôme de grade de 1er cycle spécialisé en linguistique ou d'un diplôme de grade de 1er cycle avec majeure ou mineure en linguistique, ou d'un diplôme préparant adéquatement aux études qu'il veut entreprendre, ou bien attester d'une formation jugée équivalente",
+      "source_sha256": "058bb6e7a2bd6d5f8bc2af25140a0d85a7b8cd91e855645bd69848fbb88d3b69",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-linguistique/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "Very good knowledge of English (reading)",
+      "quote": "Le candidat doit avoir une très bonne connaissance de l'anglais écrit (capacité de lecture) et de toute autre langue jugée nécessaire à la poursuite de ses recherches.",
+      "source_sha256": "058bb6e7a2bd6d5f8bc2af25140a0d85a7b8cd91e855645bd69848fbb88d3b69",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-linguistique/23/conditions-pays.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application window 1 août 2026 to 1 février 2027 (closing date)",
+      "date": "2027-02-01",
+      "quote": "Du 1er août 2026 au 1er février 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Maîtrise en études internationales (International Studies)",
+   "url": "https://admission.umontreal.ca/programmes/maitrise-en-etudes-internationales/",
+   "snapshot_sha256": "7b6b41508ae083711e7544835dc8214bc666440ba11bd34aaaa67616b9e29fdb",
+   "fields": {
+    "academic": {
+     "text": "Average of at least 3.2 out of 4.3 (or equivalent) in the first-cycle degree",
+     "quote": "avoir obtenu, au 1er cycle une moyenne d’au moins 3,2 sur 4,3 (ou l’équivalent) ou la moyenne exigée par l’université d’origine pour l’admission à un programme de 2e cycle, si celle-ci est plus élevée",
+     "source_sha256": "672fdc4bf89712879051b0a8f50b9a53b8bf8b01ef1c37cee5d524e950626b06",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-etudes-internationales/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "quote": "Pour satisfaire à la moyenne de 3,0 sur 4,3 de l’Université de Montréal, les candidats de ce pays doivent répondre aux exigences suivantes : Diplôme accepté : Bachelor, Xueshi; durée : 4 - 5 ans Moyenne minimale : 80% B",
+     "source_sha256": "672fdc4bf89712879051b0a8f50b9a53b8bf8b01ef1c37cee5d524e950626b06",
+     "text": "Chinese bachelor's degree (Xueshi, 4-5 years) with a minimum average of 80% (grade B) meets the University's general 3.0/4.3 average; this programme requires a higher average (3.2/4.3) for which no Chinese percentage is stated",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-etudes-internationales/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "First-cycle degree in international studies, or in letters, humanities or social sciences that adequately prepares for the studies, or equivalent",
+      "quote": "être titulaire d’un diplôme de grade de 1er cycle en études internationales ou d’un diplôme de grade de 1er cycle en lettres, en sciences humaines ou en sciences sociales, préparant adéquatement aux études qu’il veut entreprendre, ou bien attester d’une formation jugée équivalente.",
+      "source_sha256": "672fdc4bf89712879051b0a8f50b9a53b8bf8b01ef1c37cee5d524e950626b06",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-etudes-internationales/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "French proficiency at the level the University deems minimal; applicants who did not study mainly in French may, if the Faculty requires it, have to present results of a recognised French test",
+      "quote": "Le candidat doit avoir une connaissance de la langue française atteignant le niveau que l’Université estime minimal pour s’engager dans le programme. À cette fin, le candidat doit avoir réalisé une partie significative de ses études dans cette langue. Dans le cas contraire, il doit, si la Faculté l’exige, faire la preuve d’une connaissance suffisante du français en présentant les résultats d’un test de français reconnu par l'Université de Montréal.",
+      "source_sha256": "672fdc4bf89712879051b0a8f50b9a53b8bf8b01ef1c37cee5d524e950626b06",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-etudes-internationales/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "French test results must attest CEFR level B2",
+      "quote": "Les résultats doivent attester de l’atteinte du niveau B2 du Cadre européen commun de référence pour les langues (CECRL).",
+      "source_sha256": "672fdc4bf89712879051b0a8f50b9a53b8bf8b01ef1c37cee5d524e950626b06",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-etudes-internationales/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "Good knowledge of English",
+      "quote": "Le candidat doit également avoir une bonne connaissance de l’anglais.",
+      "source_sha256": "672fdc4bf89712879051b0a8f50b9a53b8bf8b01ef1c37cee5d524e950626b06",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-etudes-internationales/23/conditions-pays.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application window 1 août 2026 to 1 février 2027 (closing date)",
+      "date": "2027-02-01",
+      "quote": "Du 1er août 2026 au 1er février 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Maîtrise en psychologie (Psychology)",
+   "url": "https://admission.umontreal.ca/programmes/maitrise-en-psychologie/",
+   "snapshot_sha256": "06d8f0ecae4d972aae0f671d49a17e11218b9de516fbeb3e47f201c9d8588bc5",
+   "fields": {
+    "academic": {
+     "text": "Average of at least 3.5 out of 4.3 (or equivalent) in the first-cycle degree",
+     "quote": "avoir obtenu, au 1er cycle, une moyenne d'au moins 3,5 sur 4,3 ou l'équivalent",
+     "source_sha256": "181b21e15e8eb788bbcd9e4747be86ee53316919f4f9c47cc53f4f1da0ec0cd2",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-psychologie/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "quote": "Pour satisfaire à la moyenne de 3,0 sur 4,3 de l’Université de Montréal, les candidats de ce pays doivent répondre aux exigences suivantes : Diplôme accepté : Bachelor, Xueshi; durée : 4 - 5 ans Moyenne minimale : 80% B",
+     "source_sha256": "181b21e15e8eb788bbcd9e4747be86ee53316919f4f9c47cc53f4f1da0ec0cd2",
+     "text": "Chinese bachelor's degree (Xueshi, 4-5 years) with a minimum average of 80% (grade B) meets the University's general 3.0/4.3 average; this programme requires a higher average (3.5/4.3) for which no Chinese percentage is stated",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-psychologie/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "First-cycle degree (specialised or major) in psychology or specialised in cognitive neuroscience, or equivalent (see the quote for the other accepted degrees)",
+      "quote": "être titulaire d'un grade de 1er cycle (spécialisé ou avec majeure) en psychologie, d’un grade de 1er cycle spécialisé en neuroscience cognitive, d'un grade de 1er cycle en psychologie et sociologie comportant au moins 51 crédits en psychologie ou d’un diplôme préparant adéquatement aux études qu’il veut entreprendre, ou bien attester d’une formation jugée équivalente. Un grade de 1er cycle dans un autre domaine, accompagné d’une majeure complétée en psychologie, pourrait aussi être considéré.",
+      "source_sha256": "181b21e15e8eb788bbcd9e4747be86ee53316919f4f9c47cc53f4f1da0ec0cd2",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-psychologie/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "French proficiency at the level the University deems minimal; applicants who did not study mainly in French may, if the Faculty requires it, have to present results of a recognised French test",
+      "quote": "Le candidat doit avoir une connaissance de la langue française atteignant le niveau que l'Université estime minimal pour s'engager dans le programme. À cette fin, le candidat doit avoir réalisé une partie significative de ses études dans cette langue. Dans le cas contraire, il doit, si la Faculté l'exige, faire la preuve d'une connaissance suffisante du français en présentant les résultats d'un test de français reconnu par l'Université de Montréal. Les résultats doivent attester de l'atteinte du niveau B2 du Cadre européen commun de référence pour les langues (CECRL).",
+      "source_sha256": "181b21e15e8eb788bbcd9e4747be86ee53316919f4f9c47cc53f4f1da0ec0cd2",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-psychologie/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "Good knowledge of English (written/reading comprehension)",
+      "quote": "Le candidat doit également avoir une bonne connaissance de l'anglais écrit (compréhension écrite).",
+      "source_sha256": "181b21e15e8eb788bbcd9e4747be86ee53316919f4f9c47cc53f4f1da0ec0cd2",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-psychologie/23/conditions-pays.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application window 1 août 2026 to 1 février 2027 (closing date)",
+      "date": "2027-02-01",
+      "quote": "Du 1er août 2026 au 1er février 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Maîtrise en sciences biologiques (Biological Sciences)",
+   "url": "https://admission.umontreal.ca/programmes/maitrise-en-sciences-biologiques/",
+   "snapshot_sha256": "478fafdfdc9709a014028a845bec8707d6ad094d7781cdd715580e1079d14e3a",
+   "fields": {
+    "academic": {
+     "text": "Average of at least 3.0 out of 4.3 (or equivalent) in the first-cycle degree",
+     "quote": "avoir obtenu au 1er cycle une moyenne d'au moins 3,0 sur 4,3 ou l'équivalent",
+     "source_sha256": "b4c1d64e187a4f059f4b4da1750bccce8c3cd81859957138b2205297d2cb8e75",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-sciences-biologiques/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "quote": "Pour satisfaire à la moyenne de 3,0 sur 4,3 de l’Université de Montréal, les candidats de ce pays doivent répondre aux exigences suivantes : Diplôme accepté : Bachelor, Xueshi; durée : 4 - 5 ans Moyenne minimale : 80% B",
+     "source_sha256": "b4c1d64e187a4f059f4b4da1750bccce8c3cd81859957138b2205297d2cb8e75",
+     "text": "Chinese bachelor's degree (Xueshi, 4-5 years) with a minimum average of 80% (grade B) meets the University's 3.0/4.3 average, which is also this programme's threshold",
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-sciences-biologiques/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Specialised B.Sc. in biological sciences or a bachelor's with a biology major or minor, or equivalent",
+      "quote": "être titulaire d'un B. Sc. spécialisé (sciences biologiques) ou d'un baccalauréat avec majeure ou mineure en biologie ou d'un diplôme de 1er cycle préparant adéquatement aux études qu'il veut entreprendre, ou bien attester d'une formation jugée équivalente",
+      "source_sha256": "b4c1d64e187a4f059f4b4da1750bccce8c3cd81859957138b2205297d2cb8e75",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-sciences-biologiques/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "Good knowledge of French and English",
+      "quote": "L'étudiant doit avoir une bonne connaissance du français et de l'anglais",
+      "source_sha256": "b4c1d64e187a4f059f4b4da1750bccce8c3cd81859957138b2205297d2cb8e75",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-sciences-biologiques/23/conditions-pays.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application window 1 février 2026 to 1 novembre 2026 (closing date)",
+      "date": "2026-11-01",
+      "quote": "Du 1er février 2026 au 1er novembre 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Application window 1 août 2026 to 1 février 2027 (closing date)",
+      "date": "2027-02-01",
+      "quote": "Du 1er août 2026 au 1er février 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Application window 1 août 2026 to 1 juin 2027 (closing date)",
+      "date": "2027-06-01",
+      "quote": "Du 1er août 2026 au 1er juin 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Maîtrise en santé environnementale et santé au travail (Environmental and Occupational Health)",
+   "url": "https://admission.umontreal.ca/programmes/maitrise-en-sante-environnementale-et-sante-au-travail/",
+   "snapshot_sha256": "c299bc5d194676b1ec0f6dfc4e98f0171d6ecb8d8e2193db10847d0205eeb04a",
+   "fields": {
+    "academic": {
+     "text": "Average of at least 3.2 out of 4.3 (or equivalent) in the first-cycle degree",
+     "quote": "avoir obtenu, au 1er cycle, une moyenne d'au moins 3,2 sur 4,3 (ou l'équivalent) ou la moyenne exigée par l'université d'origine pour l'admission à un programme de 2e cycle, si celle-ci est plus élevée.",
+     "source_sha256": "b67c6a801f2c02c217d53d44e1b020b896fa917934d9d184009ac7bd22fa9167",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-sante-environnementale-et-sante-au-travail/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "quote": "Pour satisfaire à la moyenne de 3,0 sur 4,3 de l’Université de Montréal, les candidats de ce pays doivent répondre aux exigences suivantes : Diplôme accepté : Bachelor, Xueshi; durée : 4 - 5 ans Moyenne minimale : 80% B",
+     "source_sha256": "b67c6a801f2c02c217d53d44e1b020b896fa917934d9d184009ac7bd22fa9167",
+     "text": "Chinese bachelor's degree (Xueshi, 4-5 years) with a minimum average of 80% (grade B) meets the University's general 3.0/4.3 average; this programme requires a higher average (3.2/4.3) for which no Chinese percentage is stated",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-sante-environnementale-et-sante-au-travail/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "First-cycle degree in health sciences, biological sciences, chemistry or a related field, or equivalent (see the quote for option-specific fields)",
+      "quote": "être titulaire d'un diplôme de 1er cycle dans un domaine des sciences de la santé, des sciences biologiques, de chimie ou dans un domaine connexe ou être titulaire d'un diplôme jugé équivalent pour les options Toxicologie, Analyse du risque et Hygiène du travail, dans un domaine des sciences de la santé ou dans une discipline appropriée tels la biologie, l'aménagement, la géographie ou le droit ou être titulaire d'un diplôme jugé équivalent pour les options Environnement, santé et gestion des catastrophes et Santé environnementale mondiale ;",
+      "source_sha256": "b67c6a801f2c02c217d53d44e1b020b896fa917934d9d184009ac7bd22fa9167",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-sante-environnementale-et-sante-au-travail/23/conditions-pays.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application window 1 août 2026 to 1 février 2027 (closing date)",
+      "date": "2027-02-01",
+      "quote": "Du 1er août 2026 au 1er février 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Maîtrise en sciences biomédicales (Biomedical Sciences)",
+   "url": "https://admission.umontreal.ca/programmes/maitrise-en-sciences-biomedicales/",
+   "snapshot_sha256": "b6cd1c8cb570724672080caa1ea0ca34b92ed3e00adcfafde5a0e81ea9ea8b9f",
+   "fields": {
+    "academic": {
+     "text": "Average of at least 3.0 out of 4.3 (or equivalent) in the first-cycle degree",
+     "quote": "avoir obtenu, au 1er cycle, une moyenne d'au moins 3,0 sur 4,3 ou la moyenne exigée par l'université d'origine pour l'admission à un programme de 2e cycle, si celle-ci est plus élevée ou l'équivalent.",
+     "source_sha256": "564ec70e2bd6fda90fb96c48b4d3c956502b842bcfd4315c8735ce91bc970aa1",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-sciences-biomedicales/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "quote": "Pour satisfaire à la moyenne de 3,0 sur 4,3 de l’Université de Montréal, les candidats de ce pays doivent répondre aux exigences suivantes : Diplôme accepté : Bachelor, Xueshi; durée : 4 - 5 ans Moyenne minimale : 80% B",
+     "source_sha256": "564ec70e2bd6fda90fb96c48b4d3c956502b842bcfd4315c8735ce91bc970aa1",
+     "text": "Chinese bachelor's degree (Xueshi, 4-5 years) with a minimum average of 80% (grade B) meets the University's 3.0/4.3 average, which is also this programme's threshold",
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-sciences-biomedicales/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Good knowledge of French and English; the department may require a French-as-a-foreign-language test",
+      "quote": "Remarque :  L'étudiant doit avoir une bonne connaissance des langues françaises et anglaises. Le département peut exiger une attestation de la connaissance du français sous la forme de la réussite d'un test de français langue étrangère.",
+      "source_sha256": "564ec70e2bd6fda90fb96c48b4d3c956502b842bcfd4315c8735ce91bc970aa1",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-sciences-biomedicales/23/conditions-pays.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application window 1 février 2026 to 1 novembre 2026 (closing date)",
+      "date": "2026-11-01",
+      "quote": "Du 1er février 2026 au 1er novembre 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Application window 1 août 2026 to 1 février 2027 (closing date)",
+      "date": "2027-02-01",
+      "quote": "Du 1er août 2026 au 1er février 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Maîtrise en pharmacologie (Pharmacology)",
+   "url": "https://admission.umontreal.ca/programmes/maitrise-en-pharmacologie/",
+   "snapshot_sha256": "7319ae59d0638c90b63372d5c5a47791578a8f2f4534e2d5028e8f3766885120",
+   "fields": {
+    "academic": {
+     "text": "Average of at least 3.0 out of 4.3 (or equivalent) in the first-cycle degree",
+     "quote": "avoir obtenu, au 1er cycle, une moyenne d'au moins 3,0 sur 4,3 ou l'équivalent",
+     "source_sha256": "59eb851551e14127c643fb5a47c97acb3eea6e35a0649b2828061496ff85b229",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-pharmacologie/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "quote": "Pour satisfaire à la moyenne de 3,0 sur 4,3 de l’Université de Montréal, les candidats de ce pays doivent répondre aux exigences suivantes : Diplôme accepté : Bachelor, Xueshi; durée : 4 - 5 ans Moyenne minimale : 80% B",
+     "source_sha256": "59eb851551e14127c643fb5a47c97acb3eea6e35a0649b2828061496ff85b229",
+     "text": "Chinese bachelor's degree (Xueshi, 4-5 years) with a minimum average of 80% (grade B) meets the University's 3.0/4.3 average, which is also this programme's threshold",
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-pharmacologie/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "M.D., D.M.D., D.M.V. or a B.Sc. in an appropriate discipline, or equivalent",
+      "quote": "être titulaire d'un diplôme de doctorat en médecine (M.D.) ou en médecine dentaire (D.M.D.) ou en médecine vétérinaire (D.M.V.) ou d'un baccalauréat ès sciences (B. Sc.) dans une discipline appropriée, ou d'un diplôme jugé équivalent",
+      "source_sha256": "59eb851551e14127c643fb5a47c97acb3eea6e35a0649b2828061496ff85b229",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-pharmacologie/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "Good knowledge of French and English",
+      "quote": "Une connaissance des langues française et anglaise est requise pour la réussite des cours.",
+      "source_sha256": "59eb851551e14127c643fb5a47c97acb3eea6e35a0649b2828061496ff85b229",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-pharmacologie/23/conditions-pays.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application window 1 février 2026 to 1 novembre 2026 (closing date)",
+      "date": "2026-11-01",
+      "quote": "Du 1er février 2026 au 1er novembre 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Application window 1 août 2026 to 1 février 2027 (closing date)",
+      "date": "2027-02-01",
+      "quote": "Du 1er août 2026 au 1er février 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Maîtrise en neurosciences (Neuroscience)",
+   "url": "https://admission.umontreal.ca/programmes/maitrise-en-neurosciences/",
+   "snapshot_sha256": "f2cd7c3e274a27bb0e5a3f01e1b9f1497cfc83d8f2aeb9719383806e9744dde7",
+   "fields": {
+    "academic": {
+     "text": "Average of at least 3.0 out of 4.3 (or equivalent) in the first-cycle degree",
+     "quote": "avoir obtenu, au 1er cycle, une moyenne d'au moins 3,0 sur 4,3 ou l'équivalent",
+     "source_sha256": "4b650acbf75bd59e06d62006465f1c544a219a4c1c47b263516945cc85df7089",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-neurosciences/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "quote": "Pour satisfaire à la moyenne de 3,0 sur 4,3 de l’Université de Montréal, les candidats de ce pays doivent répondre aux exigences suivantes : Diplôme accepté : Bachelor, Xueshi; durée : 4 - 5 ans Moyenne minimale : 80% B",
+     "source_sha256": "4b650acbf75bd59e06d62006465f1c544a219a4c1c47b263516945cc85df7089",
+     "text": "Chinese bachelor's degree (Xueshi, 4-5 years) with a minimum average of 80% (grade B) meets the University's 3.0/4.3 average, which is also this programme's threshold",
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-neurosciences/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "M.D., D.M.D., D.M.V. or a B.Sc. in an appropriate discipline, or equivalent",
+      "quote": "être titulaire d'un diplôme de doctorat en médecine (M.D.) ou en médecine dentaire (D.M.D.) ou en médecine vétérinaire (D.M.V.) ou d'un baccalauréat ès sciences (B. Sc.) dans une discipline appropriée, ou d'un diplôme jugé équivalent",
+      "source_sha256": "4b650acbf75bd59e06d62006465f1c544a219a4c1c47b263516945cc85df7089",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-neurosciences/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "Good knowledge of French and English",
+      "quote": "faire preuve d'une bonne connaissance des langues française et anglaise.",
+      "source_sha256": "4b650acbf75bd59e06d62006465f1c544a219a4c1c47b263516945cc85df7089",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-neurosciences/23/conditions-pays.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application window 1 février 2026 to 1 novembre 2026 (closing date)",
+      "date": "2026-11-01",
+      "quote": "Du 1er février 2026 au 1er novembre 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Application window 1 août 2026 to 1 février 2027 (closing date)",
+      "date": "2027-02-01",
+      "quote": "Du 1er août 2026 au 1er février 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Maîtrise en biochimie (Biochemistry)",
+   "url": "https://admission.umontreal.ca/programmes/maitrise-en-biochimie/",
+   "snapshot_sha256": "59e64d721ff462e8c5b5af6af4785c53b89fd2aca80f92f36cca249ded58d3b2",
+   "fields": {
+    "academic": {
+     "text": "Average of at least 3.0 out of 4.3 (or equivalent) in the first-cycle degree",
+     "quote": "avoir obtenu, au 1er cycle, une moyenne d'au moins 3,0 sur 4,3 (ou l'équivalent) ou la moyenne exigée par l'université d'origine pour l'admission à un programme de 2e cycle, si celle-ci est plus élevée.",
+     "source_sha256": "dd20c45c71ceb52ce4614b794ca5ed2ac4f5ef74bc1ec860725d6c56ec36d4e5",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-biochimie/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "quote": "Pour satisfaire à la moyenne de 3,0 sur 4,3 de l’Université de Montréal, les candidats de ce pays doivent répondre aux exigences suivantes : Diplôme accepté : Bachelor, Xueshi; durée : 4 - 5 ans Moyenne minimale : 80% B",
+     "source_sha256": "dd20c45c71ceb52ce4614b794ca5ed2ac4f5ef74bc1ec860725d6c56ec36d4e5",
+     "text": "Chinese bachelor's degree (Xueshi, 4-5 years) with a minimum average of 80% (grade B) meets the University's 3.0/4.3 average, which is also this programme's threshold",
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-biochimie/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Bachelor's in biochemistry and molecular medicine (or an appropriate option), or an M.D., or equivalent",
+      "quote": "être titulaire du diplôme de baccalauréat en biochimie et médecine moléculaire ou dans une option appropriée, ou de doctorat de premier cycle en médecine (M.D.), ou bien d'un diplôme jugé équivalent",
+      "source_sha256": "dd20c45c71ceb52ce4614b794ca5ed2ac4f5ef74bc1ec860725d6c56ec36d4e5",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-biochimie/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "French proficiency at the level the University deems minimal; applicants who did not study mainly in French may, if the Faculty requires it, have to present results of a recognised French test",
+      "quote": "Le candidat doit avoir une connaissance de la langue française atteignant le niveau que l’Université estime minimal pour s’engager dans le programme. À cette fin, le candidat doit avoir réalisé une partie significative de ses études dans cette langue. Dans le cas contraire, il doit, si la Faculté l’exige, faire la preuve d’une connaissance suffisante du français en présentant les résultats d’un test de français reconnu par l'Université de Montréal.",
+      "source_sha256": "dd20c45c71ceb52ce4614b794ca5ed2ac4f5ef74bc1ec860725d6c56ec36d4e5",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-biochimie/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "French test results must attest CEFR level B2",
+      "quote": "Les résultats doivent attester de l’atteinte du niveau B2 du Cadre européen commun de référence pour les langues (CECRL).",
+      "source_sha256": "dd20c45c71ceb52ce4614b794ca5ed2ac4f5ef74bc1ec860725d6c56ec36d4e5",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-biochimie/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "Good knowledge of English",
+      "quote": "Le candidat doit également avoir une bonne connaissance de l’anglais.",
+      "source_sha256": "dd20c45c71ceb52ce4614b794ca5ed2ac4f5ef74bc1ec860725d6c56ec36d4e5",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-biochimie/23/conditions-pays.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application window 1 août 2026 to 1 février 2027 (closing date)",
+      "date": "2027-02-01",
+      "quote": "Du 1er août 2026 au 1er février 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Maîtrise en sciences infirmières (Nursing)",
+   "url": "https://admission.umontreal.ca/programmes/maitrise-en-sciences-infirmieres/",
+   "snapshot_sha256": "0f5aff97c2344acf0e00998adf772676388982855fb1a01e6f9e125398f8ae0b",
+   "fields": {
+    "academic": {
+     "text": "Average of at least 3.0 out of 4.3 (or equivalent) in the first-cycle degree",
+     "quote": "avoir obtenu au 1er cycle une moyenne d'au moins 3,0 sur 4,3 ou l'équivalent, à moins que l'expérience professionnelle acquise ou le dossier du candidat ne démontre des aptitudes particulières à poursuivre ses études en sciences infirmières",
+     "source_sha256": "c89882fb0ff31058ce8ba6548aab041239c22dc0e17086df3b39076422c25216",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-sciences-infirmieres/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "quote": "Pour satisfaire à la moyenne de 3,0 sur 4,3 de l’Université de Montréal, les candidats de ce pays doivent répondre aux exigences suivantes : Diplôme accepté : Bachelor, Xueshi; durée : 4 - 5 ans Moyenne minimale : 80% B",
+     "source_sha256": "c89882fb0ff31058ce8ba6548aab041239c22dc0e17086df3b39076422c25216",
+     "text": "Chinese bachelor's degree (Xueshi, 4-5 years) with a minimum average of 80% (grade B) meets the University's 3.0/4.3 average, which is also this programme's threshold",
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-sciences-infirmieres/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Bachelor's in nursing or equivalent",
+      "quote": "être titulaire d'un baccalauréat en sciences infirmières ou l'équivalent",
+      "source_sha256": "c89882fb0ff31058ce8ba6548aab041239c22dc0e17086df3b39076422c25216",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-sciences-infirmieres/23/conditions-pays.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application window 1 août 2026 to 1 février 2027 (closing date)",
+      "date": "2027-02-01",
+      "quote": "Du 1er août 2026 au 1er février 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Maîtrise en kinésiologie (Kinesiology)",
+   "url": "https://admission.umontreal.ca/programmes/maitrise-en-kinesiologie/",
+   "snapshot_sha256": "472b2cf5a4b1091f26f0839d589c6f71fb1244b4d08755a0171791e5e32ab9c6",
+   "fields": {
+    "academic": {
+     "text": "Average of at least 3.0 out of 4.3 (or equivalent) in the first-cycle degree",
+     "quote": "avoir obtenu au 1er cycle une moyenne d'au moins 3,0 sur 4,3 (ou l'équivalent) ou la moyenne exigée par l'université d'origine pour l'admission à un programme de 2e cycle, si celle-ci est plus élevée.",
+     "source_sha256": "05dcd2b9eaf5510cac2b0c4d357732a28eb3ffefeb2cfeec8528a4ba1a8a1d93",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-kinesiologie/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "quote": "Pour satisfaire à la moyenne de 3,0 sur 4,3 de l’Université de Montréal, les candidats de ce pays doivent répondre aux exigences suivantes : Diplôme accepté : Bachelor, Xueshi; durée : 4 - 5 ans Moyenne minimale : 80% B",
+     "source_sha256": "05dcd2b9eaf5510cac2b0c4d357732a28eb3ffefeb2cfeec8528a4ba1a8a1d93",
+     "text": "Chinese bachelor's degree (Xueshi, 4-5 years) with a minimum average of 80% (grade B) meets the University's 3.0/4.3 average, which is also this programme's threshold",
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-kinesiologie/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Bachelor's in kinesiology or equivalent; graduates of related health fields complete a preparatory programme of up to 30 credits",
+      "quote": "être titulaire d'un baccalauréat en kinésiologie ou d'un diplôme jugé équivalent. Le candidat diplômé en éducation physique, physiothérapie, nutrition, santé publique ou autre discipline des sciences de la santé, devra réussir une propédeutique pouvant aller jusqu’à 30 crédits de cours de base. Le cas échéant, la propédeutique est déterminée par le comité des études supérieures de l'École de kinésiologie et des sciences de l'activité physique lors de l'évaluation du dossier",
+      "source_sha256": "05dcd2b9eaf5510cac2b0c4d357732a28eb3ffefeb2cfeec8528a4ba1a8a1d93",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-kinesiologie/23/conditions-pays.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application window 1 août 2026 to 1 février 2027 (closing date)",
+      "date": "2027-02-01",
+      "quote": "Du 1er août 2026 au 1er février 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Maîtrise en histoire (History)",
+   "url": "https://admission.umontreal.ca/programmes/maitrise-en-histoire/",
+   "snapshot_sha256": "81a20e9ac9a4007041e7364600081f8972eda443d9eb5b538bb7875fab8e562a",
+   "fields": {
+    "academic": {
+     "text": "Average of at least 3.0 out of 4.3 (or equivalent) in the first-cycle degree",
+     "quote": "avoir obtenu, au 1er cycle, une moyenne d'au moins 3,0 sur 4,3 (ou l'équivalent) ou la moyenne exigée par l'université d'origine pour l'admission à un programme de 2e cycle, si celle-ci est plus élevée.",
+     "source_sha256": "c1926579e03bc348285d54089a3e7b9a403cf9f61598a2554ee1b71e76324aeb",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-histoire/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "quote": "Pour satisfaire à la moyenne de 3,0 sur 4,3 de l’Université de Montréal, les candidats de ce pays doivent répondre aux exigences suivantes : Diplôme accepté : Bachelor, Xueshi; durée : 4 - 5 ans Moyenne minimale : 80% B",
+     "source_sha256": "c1926579e03bc348285d54089a3e7b9a403cf9f61598a2554ee1b71e76324aeb",
+     "text": "Chinese bachelor's degree (Xueshi, 4-5 years) with a minimum average of 80% (grade B) meets the University's 3.0/4.3 average, which is also this programme's threshold",
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-histoire/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Specialised first-cycle degree in history or with a history major or minor, or equivalent",
+      "quote": "être titulaire d'un grade de 1er cycle spécialisé en histoire ou d'un grade de 1er cycle avec majeure ou mineure en histoire,  ou d'un diplôme préparant adéquatement aux études qu'il veut entreprendre, ou bien attester d'une formation jugée équivalente",
+      "source_sha256": "c1926579e03bc348285d54089a3e7b9a403cf9f61598a2554ee1b71e76324aeb",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-histoire/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "French proficiency at the level the University deems minimal; applicants who did not study mainly in French may, if the Faculty requires it, have to present results of a recognised French test",
+      "quote": "Le candidat doit avoir une connaissance de la langue française atteignant le niveau que l’Université estime minimal pour s’engager dans le programme. À cette fin, le candidat doit avoir réalisé une partie significative de ses études dans cette langue. Dans le cas contraire, il doit, si la Faculté l'exige, faire la preuve d’une connaissance suffisante du français en présentant les résultats d’un test de français reconnu par l’Université de Montréal (https://vieetudiante.umontreal.ca/soutien etudes/connaissancefrancais/ exigence-admission/tests diplomes-acceptes#title-list).",
+      "source_sha256": "c1926579e03bc348285d54089a3e7b9a403cf9f61598a2554ee1b71e76324aeb",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-histoire/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "French test results must attest CEFR level B2",
+      "quote": "Les résultats doivent attester de l’atteinte du niveau B2 du Cadre européen commun de référence pour les langues (CECRL).",
+      "source_sha256": "c1926579e03bc348285d54089a3e7b9a403cf9f61598a2554ee1b71e76324aeb",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-histoire/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "Good knowledge of English (written/reading comprehension)",
+      "quote": "Le candidat doit également avoir une bonne connaissance de l’anglais, particulièrement au niveau de la lecture. La connaissance d'une autre langue est exigée selon les particularités du programme de recherche du candidat.",
+      "source_sha256": "c1926579e03bc348285d54089a3e7b9a403cf9f61598a2554ee1b71e76324aeb",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-histoire/23/conditions-pays.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application window 1 février 2026 to 1 novembre 2026 (closing date)",
+      "date": "2026-11-01",
+      "quote": "Du 1er février 2026 au 1er novembre 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Application window 1 août 2026 to 1 février 2027 (closing date)",
+      "date": "2027-02-01",
+      "quote": "Du 1er août 2026 au 1er février 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Maîtrise en philosophie (Philosophy)",
+   "url": "https://admission.umontreal.ca/programmes/maitrise-en-philosophie/",
+   "snapshot_sha256": "8705bd16b13bee26d6a66ae5d4f0b420bd22ef994b15bd7f879445ebbda4c5b6",
+   "fields": {
+    "academic": {
+     "text": "Average of at least 3.0 out of 4.3 (or equivalent) in the first-cycle degree",
+     "quote": "avoir obtenu au 1er cycle, une moyenne d'au moins 3,0 sur 4,3 (ou l'équivalent) ou la moyenne exigée par l'université d'origine pour l'admission à un programme de 2e cycle, si celle-ci est plus élevée",
+     "source_sha256": "7b9e88ec744e57c8e86ba1c8d964291bca68a3f13dee7f83915a33766c91b19d",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-philosophie/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "quote": "Pour satisfaire à la moyenne de 3,0 sur 4,3 de l’Université de Montréal, les candidats de ce pays doivent répondre aux exigences suivantes : Diplôme accepté : Bachelor, Xueshi; durée : 4 - 5 ans Moyenne minimale : 80% B",
+     "source_sha256": "7b9e88ec744e57c8e86ba1c8d964291bca68a3f13dee7f83915a33766c91b19d",
+     "text": "Chinese bachelor's degree (Xueshi, 4-5 years) with a minimum average of 80% (grade B) meets the University's 3.0/4.3 average, which is also this programme's threshold",
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-philosophie/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Specialised B.A. in philosophy or a bachelor's with a philosophy major or minor, or equivalent",
+      "quote": "être titulaire d'un baccalauréat (B.A.) spécialisé en philosophie ou d'un baccalauréat avec majeure ou mineure en philosophie ou d'un diplôme de grade de 1er cycle préparant adéquatement aux études qu'il veut entreprendre, ou d'un diplôme équivalent;",
+      "source_sha256": "7b9e88ec744e57c8e86ba1c8d964291bca68a3f13dee7f83915a33766c91b19d",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-philosophie/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "Good knowledge of French; the Faculty may require a French-as-a-foreign-language test on request",
+      "quote": "Le candidat doit avoir une bonne connaissance du français. Sur demande, la Faculté peut exiger une attestation de la connaissance du français sous la forme de la réussite d'un test de français langue étrangère.",
+      "source_sha256": "7b9e88ec744e57c8e86ba1c8d964291bca68a3f13dee7f83915a33766c91b19d",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-philosophie/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "Good knowledge of English",
+      "quote": "Le candidat doit avoir une bonne connaissance de la langue anglaise et une connaissance suffisante de toute autre langue jugée nécessaire à la poursuite de ses recherches.",
+      "source_sha256": "7b9e88ec744e57c8e86ba1c8d964291bca68a3f13dee7f83915a33766c91b19d",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-philosophie/23/conditions-pays.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application window 1 février 2026 to 1 novembre 2026 (closing date)",
+      "date": "2026-11-01",
+      "quote": "Du 1er février 2026 au 1er novembre 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Application window 1 août 2026 to 1 février 2027 (closing date)",
+      "date": "2027-02-01",
+      "quote": "Du 1er août 2026 au 1er février 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Maîtrise en anthropologie (Anthropology)",
+   "url": "https://admission.umontreal.ca/programmes/maitrise-en-anthropologie/",
+   "snapshot_sha256": "5f032dc9e7242f98925c42e1eea4255566a0e3fbc2e01a3517dac679d4a99492",
+   "fields": {
+    "academic": {
+     "text": "Average of at least 3.2 out of 4.3 (or equivalent) in the first-cycle degree",
+     "quote": "avoir obtenu au 1er cycle une moyenne d'au moins 3,2 sur 4,3 ou l'équivalent",
+     "source_sha256": "77a13131bc6b238717ea1dfeb27e9c3b3224b7404d67d42fcb81a043251e29ba",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-anthropologie/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "quote": "Pour satisfaire à la moyenne de 3,0 sur 4,3 de l’Université de Montréal, les candidats de ce pays doivent répondre aux exigences suivantes : Diplôme accepté : Bachelor, Xueshi; durée : 4 - 5 ans Moyenne minimale : 80% B",
+     "source_sha256": "77a13131bc6b238717ea1dfeb27e9c3b3224b7404d67d42fcb81a043251e29ba",
+     "text": "Chinese bachelor's degree (Xueshi, 4-5 years) with a minimum average of 80% (grade B) meets the University's general 3.0/4.3 average; this programme requires a higher average (3.2/4.3) for which no Chinese percentage is stated",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-anthropologie/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Specialised B.Sc. in anthropology or a bachelor's with an anthropology major or minor, or equivalent",
+      "quote": "être titulaire d'un B. Sc. spécialisé (anthropologie) ou d'un baccalauréat avec majeure ou mineure en anthropologie, ou d'un diplôme préparant adéquatement aux études qu'il veut entreprendre, ou bien attester d'une formation jugée équivalente",
+      "source_sha256": "77a13131bc6b238717ea1dfeb27e9c3b3224b7404d67d42fcb81a043251e29ba",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-anthropologie/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "Good knowledge of French and English",
+      "quote": "L'étudiant doit avoir une bonne connaissance du français et de l'anglais.",
+      "source_sha256": "77a13131bc6b238717ea1dfeb27e9c3b3224b7404d67d42fcb81a043251e29ba",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-anthropologie/23/conditions-pays.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application window 1 février 2026 to 1 novembre 2026 (closing date)",
+      "date": "2026-11-01",
+      "quote": "Du 1er février 2026 au 1er novembre 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Application window 1 août 2026 to 1 février 2027 (closing date)",
+      "date": "2027-02-01",
+      "quote": "Du 1er août 2026 au 1er février 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Maîtrise en traduction (Translation)",
+   "url": "https://admission.umontreal.ca/programmes/maitrise-en-traduction/",
+   "snapshot_sha256": "8770c3df7e66b822682b6044cd77855ab191a02065369d53d9ece81fe9349636",
+   "fields": {
+    "academic": {
+     "text": "Average of at least 3.0 out of 4.3 (or equivalent) in the first-cycle degree",
+     "quote": "avoir obtenu au 1er cycle une moyenne d'au moins 3,0 sur 4,3 (ou l'équivalent) ou la moyenne exigée",
+     "source_sha256": "2a4802128d71871ca702b29f2552733cc0a6812c1fd719a724b0740960ae4876",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-traduction/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "quote": "Pour satisfaire à la moyenne de 3,0 sur 4,3 de l’Université de Montréal, les candidats de ce pays doivent répondre aux exigences suivantes : Diplôme accepté : Bachelor, Xueshi; durée : 4 - 5 ans Moyenne minimale : 80% B",
+     "source_sha256": "2a4802128d71871ca702b29f2552733cc0a6812c1fd719a724b0740960ae4876",
+     "text": "Chinese bachelor's degree (Xueshi, 4-5 years) with a minimum average of 80% (grade B) meets the University's 3.0/4.3 average, which is also this programme's threshold",
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-traduction/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "First-cycle degree that adequately prepares for the studies",
+      "quote": "être titulaire d'un grade de 1er cycle préparant adéquatement aux études qu'il veut entreprendre",
+      "source_sha256": "2a4802128d71871ca702b29f2552733cc0a6812c1fd719a724b0740960ae4876",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-traduction/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "Good knowledge of written and spoken English",
+      "quote": "Le candidat doit avoir une bonne connaissance de l'anglais écrit et parlé et de toute autre langue jugée nécessaire à la poursuite de ses études.",
+      "source_sha256": "2a4802128d71871ca702b29f2552733cc0a6812c1fd719a724b0740960ae4876",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-traduction/23/conditions-pays.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application window 1 août 2026 to 1 février 2027 (closing date)",
+      "date": "2027-02-01",
+      "quote": "Du 1er août 2026 au 1er février 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Maîtrise en urbanisme (Urban Planning)",
+   "url": "https://admission.umontreal.ca/programmes/maitrise-en-urbanisme/",
+   "snapshot_sha256": "8f702c074328ca4c9d0101ea67dbe891c4aca0772a9d9365df2d3a4cbe2ed7a8",
+   "fields": {
+    "academic": {
+     "text": "Average of at least 3.0 out of 4.3 (or equivalent) in the first-cycle degree",
+     "quote": "avoir obtenu au 1er cycle, une moyenne d'au moins 3,0 sur 4,3 ou l'équivalent ou la moyenne exigée par l'université d'origine pour l'admission à un programme de 2e cycle, si celle-ci est plus élevée",
+     "source_sha256": "eef8e4f109803cfe0458a80c6ddcc00e8e3e6f1dc3747e7e2dea275a419041cc",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-urbanisme/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "quote": "Pour satisfaire à la moyenne de 3,0 sur 4,3 de l’Université de Montréal, les candidats de ce pays doivent répondre aux exigences suivantes : Diplôme accepté : Bachelor, Xueshi; durée : 4 - 5 ans Moyenne minimale : 80% B",
+     "source_sha256": "eef8e4f109803cfe0458a80c6ddcc00e8e3e6f1dc3747e7e2dea275a419041cc",
+     "text": "Chinese bachelor's degree (Xueshi, 4-5 years) with a minimum average of 80% (grade B) meets the University's 3.0/4.3 average, which is also this programme's threshold",
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-urbanisme/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "First-cycle degree that adequately prepares for urban planning studies, or equivalent",
+      "quote": "être titulaire d'un diplôme de grade de 1er cycle préparant adéquatement aux études en urbanisme, ou d'un diplôme jugé équivalent",
+      "source_sha256": "eef8e4f109803cfe0458a80c6ddcc00e8e3e6f1dc3747e7e2dea275a419041cc",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-urbanisme/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "Good knowledge of English (written/reading comprehension)",
+      "quote": "Le candidat doit avoir une bonne connaissance de l'anglais écrit (capacité de lecture).",
+      "source_sha256": "eef8e4f109803cfe0458a80c6ddcc00e8e3e6f1dc3747e7e2dea275a419041cc",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-urbanisme/23/conditions-pays.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application window 1 février 2026 to 1 novembre 2026 (closing date)",
+      "date": "2026-11-01",
+      "quote": "Du 1er février 2026 au 1er novembre 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Application window 1 août 2026 to 1 février 2027 (closing date)",
+      "date": "2027-02-01",
+      "quote": "Du 1er août 2026 au 1er février 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Maîtrise en architecture (Architecture)",
+   "url": "https://admission.umontreal.ca/programmes/maitrise-en-architecture/",
+   "snapshot_sha256": "4a96db16a3e15df5232d5c39f32187c01832893c307e68708ded98cdf1589144",
+   "fields": {
+    "academic": {
+     "text": "Average of at least 3.0 out of 4.3 (or equivalent) in the first-cycle degree",
+     "quote": "avoir obtenu au 1er cycle, une moyenne d'au moins 3,0 sur 4,3 (ou l'équivalent) ou la moyenne exigée par l'université d'origine pour l'admission à un programme de 2e cycle, si celle-ci est plus élevée",
+     "source_sha256": "54af25656e26ffafbfd312bf95c0f93b947c1ffd6670c25dcaf80865a2aba853",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-architecture/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "quote": "Pour satisfaire à la moyenne de 3,0 sur 4,3 de l’Université de Montréal, les candidats de ce pays doivent répondre aux exigences suivantes : Diplôme accepté : Bachelor, Xueshi; durée : 4 - 5 ans Moyenne minimale : 80% B",
+     "source_sha256": "54af25656e26ffafbfd312bf95c0f93b947c1ffd6670c25dcaf80865a2aba853",
+     "text": "Chinese bachelor's degree (Xueshi, 4-5 years) with a minimum average of 80% (grade B) meets the University's 3.0/4.3 average, which is also this programme's threshold",
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-architecture/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "First-cycle degree in architecture that adequately prepares for the studies, or equivalent",
+      "quote": "être titulaire d'un diplôme de grade de 1er cycle en architecture préparant adéquatement aux études qu'il veut entreprendre, ou d'un diplôme équivalent",
+      "source_sha256": "54af25656e26ffafbfd312bf95c0f93b947c1ffd6670c25dcaf80865a2aba853",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-architecture/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "French proficiency at the level the University deems minimal; applicants who did not study mainly in French may, if the Faculty requires it, have to present results of a recognised French test",
+      "quote": "Le candidat doit avoir une connaissance de la langue française atteignant le niveau que l'Université estime minimal pour s'engager dans le programme. À cette fin, le candidat doit avoir réalisé une partie significative de ses études dans cette langue. Dans le cas contraire, il doit, si la Faculté l'exige, faire la preuve d'une connaissance suffisante du français en présentant les résultats d'un test de français reconnu par l'Université de Montréal.",
+      "source_sha256": "54af25656e26ffafbfd312bf95c0f93b947c1ffd6670c25dcaf80865a2aba853",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-architecture/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "French test results must attest the CEFR level(s) listed in the quote",
+      "quote": "Les résultats doivent attester de l'atteinte du niveau suivant, selon le Cadre européen commun de référence pour les langues (CECRL) : Moyenne de B2 en compréhension orale et compréhension écrite B1 (tranche supérieure) en expression écrite",
+      "source_sha256": "54af25656e26ffafbfd312bf95c0f93b947c1ffd6670c25dcaf80865a2aba853",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-architecture/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "Good knowledge of English (written/reading comprehension)",
+      "quote": "Le candidat doit avoir une bonne connaissance de l'anglais écrit (capacité de lecture).",
+      "source_sha256": "54af25656e26ffafbfd312bf95c0f93b947c1ffd6670c25dcaf80865a2aba853",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-architecture/23/conditions-pays.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application window 1 août 2026 to 1 février 2027 (closing date)",
+      "date": "2027-02-01",
+      "quote": "Du 1er août 2026 au 1er février 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Maîtrise en microbiologie et immunologie (Microbiology and Immunology)",
+   "url": "https://admission.umontreal.ca/programmes/maitrise-en-microbiologie-et-immunologie/",
+   "snapshot_sha256": "88fd80dcc2e33e3156b885618b06744036ad0ca65cdad6d34d675a60615557ad",
+   "fields": {
+    "academic": {
+     "text": "Average of at least 3.0 out of 4.3 (or equivalent) in the first-cycle degree",
+     "quote": "avoir obtenu au 1er cycle une moyenne d'au moins 3,0 sur 4,3 (ou l'équivalent) ou la moyenne exigée par l'université d'origine pour l'admission à un programme de 2e cycle, si celle-ci est plus élevée.",
+     "source_sha256": "39cafb1571d48fea7e97a82c83ce902e62ddc5bf1c623ffb7af3635ae9bff69f",
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-microbiologie-et-immunologie/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "quote": "Pour satisfaire à la moyenne de 3,0 sur 4,3 de l’Université de Montréal, les candidats de ce pays doivent répondre aux exigences suivantes : Diplôme accepté : Bachelor, Xueshi; durée : 4 - 5 ans Moyenne minimale : 80% B",
+     "source_sha256": "39cafb1571d48fea7e97a82c83ce902e62ddc5bf1c623ffb7af3635ae9bff69f",
+     "text": "Chinese bachelor's degree (Xueshi, 4-5 years) with a minimum average of 80% (grade B) meets the University's 3.0/4.3 average, which is also this programme's threshold",
+     "min_mark_211": 80,
+     "min_mark_other": 80,
+     "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-microbiologie-et-immunologie/23/conditions-pays.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "M.D., D.M.D., D.M.V. or a B.Sc. in an appropriate discipline, or equivalent",
+      "quote": "être titulaire du diplôme de docteur en médecine (M.D.) ou en médecine dentaire (D.M.D.) ou en médecine vétérinaire (D.M.V.) ou du baccalauréat ès sciences (B. Sc.) dans une discipline appropriée, ou bien d'un diplôme jugé équivalent.",
+      "source_sha256": "39cafb1571d48fea7e97a82c83ce902e62ddc5bf1c623ffb7af3635ae9bff69f",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-microbiologie-et-immunologie/23/conditions-pays.html",
+      "check": "ok"
+     },
+     {
+      "text": "Good knowledge of French and English; the department may require a French-as-a-foreign-language test",
+      "quote": "Le candidat doit avoir une bonne connaissance du français et de l'anglais. Sur demande, le département peut exiger une attestation de la connaissance du français sous la forme de la réussite d'un test de français langue étrangère.",
+      "source_sha256": "39cafb1571d48fea7e97a82c83ce902e62ddc5bf1c623ffb7af3635ae9bff69f",
+      "source_url": "https://admission.umontreal.ca/programmes/maitrise-en-microbiologie-et-immunologie/23/conditions-pays.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application window 1 février 2026 to 1 novembre 2026 (closing date)",
+      "date": "2026-11-01",
+      "quote": "Du 1er février 2026 au 1er novembre 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Application window 1 août 2026 to 1 février 2027 (closing date)",
+      "date": "2027-02-01",
+      "quote": "Du 1er août 2026 au 1er février 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 37,
+  "机器核对": 37,
+  "待人工": 0
+ }
+}
