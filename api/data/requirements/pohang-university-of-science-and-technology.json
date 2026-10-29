@@ -1,0 +1,89 @@
+{
+ "school_key": "pohang-university-of-science-and-technology",
+ "school_name_en": "Pohang University of Science and Technology (POSTECH)",
+ "country": "South Korea",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://adm-g.postech.ac.kr/ENG/",
+  "https://adm-g.postech.ac.kr/ENG/application01/",
+  "https://www.postech.ac.kr/eng/academics/department_info.do"
+ ],
+ "blocked": [
+  {
+   "url": "https://adm-intl.postech.ac.kr/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://gsai.postech.ac.kr",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://ce.postech.ac.kr",
+   "reason": "page shows 'Please prove that you are human' challenge; rendered fetch timed out; not pursued"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://ce.postech.ac.kr",
+  "https://gsai.postech.ac.kr",
+  "https://me.postech.ac.kr/ko/page/enter021"
+ ],
+ "notes": "The international admission guide (eligibility, English score minimums, documents) is published only as a PDF embedded in https://adm-g.postech.ac.kr/ENG/admission/gist/ (file '[Graduate School]26-27 Admissions Guide for International Students_2nd round.pdf'), so IELTS/TOEFL minimums and degree eligibility could not be quoted; they remain unrecorded. The English-score table found in HTML (Mechanical Engineering Korean page, exemption table TOEFL iBT 79 / IELTS 6.0) lists a table without a verbatim-quotable row and the page heads only integrated MS-PhD and PhD admissions, so it was not used. Application windows on the official schedule (2026-27 round 1: 2026-02-24 to 2026-04-03; round 2: 2026-07-06 to 2026-09-11) are already closed and the 2026-10-01 to 2026-11-30 'International Application - 3rd' entry is labelled 'sysyem test (DO NOT APPLY)', so no deadline is recorded. The English page of the EEE department is titled 2025-26, so the Korean ee.postech.ac.kr page (2026-2027) was cited instead. CSE, IME pages only point to the central PDF prospectus. Many programmes are integrated MS-PhD; no master's-only list is published in HTML.",
+ "programs": [
+  {
+   "name": "Graduate School (all departments) - Master's / MS-PhD international admissions, general English and language rules",
+   "url": "https://adm-g.postech.ac.kr/ENG/category/board/faq/",
+   "snapshot_sha256": "1a75c96f5f48df2d440cb218834813eda92b5fe4c0c6b189ee79ab4c80490200",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "Applicants must prove English proficiency through an official test, or a document proving that the applicant's institution teaches in English",
+      "quote": "Therefore, all applicants are required to prove their English proficiency through an official test or either a document that proves the instruction language of applicants’ institution.",
+      "check": "ok"
+     },
+     {
+      "text": "Korean language proficiency is not required for application",
+      "quote": "Korean Language Proficiency is not an essential requirement for application.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Electrical Engineering (EEE) - General Master's",
+   "url": "https://ee.postech.ac.kr/admission/graduate-school/",
+   "snapshot_sha256": "b2fad4b6535c132a999b41b9b3535001812113289b68fc9ea2177659a85b6607",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "Selection by a 1:1 in-depth interview with the desired advisor, focused on core electrical engineering subjects",
+      "quote": "희망지도교수와의 1:1 심층면접 (아래 전자전기공학과 전공과목을 중심으로 평가)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Computer Science and Engineering - graduate admissions",
+   "url": "https://cse.postech.ac.kr/csepostech/admissions/grad-info.do",
+   "snapshot_sha256": "3b6ce232f82aeeccac5aaeba953d4281e4526d00fd02b4b5400fef96cad0eff5",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Industrial and Management Engineering - graduate admissions",
+   "url": "https://ime.postech.ac.kr/ime/admission/graduate.do",
+   "snapshot_sha256": "cffa014dca14497749ddc842569929195cdb28b7593000c58d436aa1a29b73c1",
+   "fields": {},
+   "status": "待人工"
+  }
+ ],
+ "verification": {
+  "programs": 4,
+  "机器核对": 2,
+  "待人工": 2
+ }
+}
