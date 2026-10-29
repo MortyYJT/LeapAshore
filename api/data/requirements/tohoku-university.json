@@ -1,0 +1,292 @@
+{
+ "school_key": "tohoku-university",
+ "school_name_en": "Tohoku University",
+ "country": "Japan",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://www.tohoku.ac.jp/en/academics/courses_in_english.html",
+  "https://www.eng.tohoku.ac.jp/english/admission/procedure/grad.html"
+ ],
+ "blocked": [],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.law.tohoku.ac.jp/eng/admissions-graduate/cndc/",
+  "https://www.imac.mech.tohoku.ac.jp/admission/index.html#:~:text=IMAC%2DG%5BRictA%5D",
+  "https://www.is.tohoku.ac.jp/_eng/aiqds/nifs/index.html",
+  "https://sites.google.com/tohoku.ac.jp/iphs/home",
+  "https://www.med.tohoku.ac.jp/english/",
+  "https://www.dent.tohoku.ac.jp/english/admission/",
+  "https://www.eng.tohoku.ac.jp/english/admission/procedure/grad.html"
+ ],
+ "notes": "Most graduate application guidelines (eligibility, English scores) are PDFs, which the snapshot tool does not turn into text, so they could not be quoted; only values on HTML pages are recorded. Dates on several pages are for past 2026 intakes and were not recorded. Japanese-taught master's courses were not reached.",
+ "programs": [
+  {
+   "name": "International Graduate Program for Advanced Science (IGPAS), Master's Program",
+   "url": "https://www.sci.tohoku.ac.jp/english/igpas/",
+   "snapshot_sha256": "09b3d3c0f066938e6ae302bb0eb50eada92f5270a198471d9d548cdae5fc93e3",
+   "fields": {
+    "academic": {
+     "text": "Master's: completed (or will complete) 16 years of education by 30 September 2027",
+     "quote": "Those who have completed (or will complete) 16 years of education by September 30, 2027.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Written consent of a prospective supervisor in the Graduate School of Science is required before applying",
+      "quote": "Applications will not be accepted without the consent of a faculty member as a prospective supervisor.",
+      "source_sha256": "5d3e95bbab509bc2a8c2ac36cb738bdee12477cd31b0824d5a74e3df0c949e5b",
+      "source_url": "https://www.sci.tohoku.ac.jp/english/igpas/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "Astronomy applicants must submit a GRE Subject Test score in Physics",
+      "quote": "For Astronomy Applicants The GRE® subject test score in Physics is mandatory to submit upon application.",
+      "source_sha256": "5d3e95bbab509bc2a8c2ac36cb738bdee12477cd31b0824d5a74e3df0c949e5b",
+      "source_url": "https://www.sci.tohoku.ac.jp/english/igpas/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "Applicants whose native language is not English must submit an English proficiency test score (any suitable test, not only TOEFL or IELTS)",
+      "quote": "Applicants whose native language is not English must submit the score of an English proficiency test. However, it does not have to be a TOEFL® or IELTS score.",
+      "source_sha256": "5838996c5d5a6aa14e40ab0bfeaf2c57144afae2cc3edb6939bf1a6b3928ef2b",
+      "source_url": "https://www.sci.tohoku.ac.jp/english/igpas/faq.html",
+      "check": "ok"
+     },
+     {
+      "text": "No minimum English score is set; English is judged from all documents and the interview",
+      "quote": "We do not have particular score requirements.",
+      "source_sha256": "5838996c5d5a6aa14e40ab0bfeaf2c57144afae2cc3edb6939bf1a6b3928ef2b",
+      "source_url": "https://www.sci.tohoku.ac.jp/english/igpas/faq.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "IGPAS 2027 (October 2027 start) application period",
+      "date": "2026-11-30",
+      "quote": "November 1-November 30, 2026",
+      "source_sha256": "5d3e95bbab509bc2a8c2ac36cb738bdee12477cd31b0824d5a74e3df0c949e5b",
+      "source_url": "https://www.sci.tohoku.ac.jp/english/igpas/application.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Course of Life Sciences (ICLS), Master's Program",
+   "url": "https://www.lifesci.tohoku.ac.jp/en/admission/application/",
+   "snapshot_sha256": "f237d514d73c8510998bec83c5a7dfdab0a29634cefc9df2cef7241e24b8eb55",
+   "fields": {
+    "academic": {
+     "text": "Generally a bachelor's degree with 16 years of formal education is required; equivalent foreign degrees need an equivalent number of years",
+     "quote": "Generally, a Japanese bachelor's degree (16 years of formal education (university degree) before entering graduate school) is required.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Submission of an English score (TOEIC L&R, TOEFL iBT, IELTS or Duolingo English Test) is mandatory",
+      "quote": "English Proficiency Score Requirements: Submission of a score from TOEIC® L&R, TOEFL iBT®, IELTS, or Duolingo English Test is mandatory.",
+      "source_sha256": "62b52faf5bbdc6dce3d465aac76b41e2142beb3ab9b5dd984fdc6016c53783ec",
+      "source_url": "https://www.lifesci.tohoku.ac.jp/en/admission/schedule/",
+      "check": "ok"
+     },
+     {
+      "text": "A copy of the prospective supervisor's agreement to accept the applicant is required",
+      "quote": "Faculty Consent: You are required to submit a copy of an email or document confirming that your prospective supervisor has agreed to let you join their lab.",
+      "source_sha256": "62b52faf5bbdc6dce3d465aac76b41e2142beb3ab9b5dd984fdc6016c53783ec",
+      "source_url": "https://www.lifesci.tohoku.ac.jp/en/admission/schedule/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Environmental Security Leadership Program (IESLP), Master's Program",
+   "url": "https://www.kankyo.tohoku.ac.jp/ielp/eligibility/",
+   "snapshot_sha256": "feb822b8cf5f22ad395385c1381bcb06fd0967cd9be04b595b5ce7b277503467",
+   "fields": {
+    "academic": {
+     "text": "Master's: graduated (or will graduate) from a university by 30 September 2027",
+     "quote": "Those who have graduated, or will graduate, from a university (see note [1]) by September 30, 2027.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Consent of at least one prospective supervisor in the Graduate School of Environmental Studies is required",
+      "quote": "Applications will not be accepted without the consent of at least one faculty member as a prospective supervisor.",
+      "source_sha256": "c48711b441de012115b3914af2b7bbc74b4b7ae2b75916d86c3359781b32ccc5",
+      "source_url": "https://www.kankyo.tohoku.ac.jp/ielp/application/",
+      "check": "ok"
+     },
+     {
+      "text": "A valid official English test score report (TOEFL iBT, TOEIC or IELTS, four skills) is required; MEXT scholarship candidates need CEFR B2 equivalent",
+      "quote": "For MEXT scholarship applicant, your English test score should be equivalent to B2-level of CEFR.",
+      "source_sha256": "c48711b441de012115b3914af2b7bbc74b4b7ae2b75916d86c3359781b32ccc5",
+      "source_url": "https://www.kankyo.tohoku.ac.jp/ielp/application/",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "IESLP 2027 online application",
+      "date": "2026-11-13",
+      "quote": "Application (online): October 19 - November 13, 2026",
+      "source_sha256": "c48711b441de012115b3914af2b7bbc74b4b7ae2b75916d86c3359781b32ccc5",
+      "source_url": "https://www.kankyo.tohoku.ac.jp/ielp/application/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Global Program in Economics and Management (GPEM), Master's Program",
+   "url": "https://www.econ.tohoku.ac.jp/en/gpem/gpem-admission",
+   "snapshot_sha256": "336b103f083a9943c1e80a7b43e4e312dc1e5d05081c3704b6a9a912dc8cc366",
+   "fields": {
+    "academic": {
+     "text": "Open to anyone who has completed any undergraduate degree",
+     "quote": "Yes, the GPEM programme is open to anyone who has completed any undergraduate degree.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "TOEFL or IELTS score required unless graduated from a university in a country where English is the native language",
+      "quote": "Yes –unless you have graduated from a university located in a country where English is the native language.",
+      "check": "ok"
+     },
+     {
+      "text": "Programme starts in October every year; no entrance exam, applications are reviewed by the university",
+      "quote": "No, the GPEM program begins in October every year.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Mechanical and Aerospace Engineering Course (IMAC-G), Master's Program",
+   "url": "https://www.imac.mech.tohoku.ac.jp/admission/index.html",
+   "snapshot_sha256": "4b79becddd200f4ef33e92fd2f54741203c2f5182bf911e7a07198030c01bc2a",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "October 2027 enrollment (Feb. and March admission)",
+      "date": "2027-01-14",
+      "quote": "Application Submission Period: 9:00 on January 6 to 16:00 on January 14, 2027 (Japan Time)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Materials Science and Engineering Course (IMSE), Master's Program",
+   "url": "https://www.material.tohoku.ac.jp/imse/admission/admission.html",
+   "snapshot_sha256": "a346cf15c636124118207ae680bb74da11fa0f2dd750193b1248db7dd773b078",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "October 2027 enrollment",
+      "date": "2027-01-14",
+      "quote": "Submission of Applications, from January 6 to January 14, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Civil and Environmental Engineering Course (I-CEEC), Master's Program",
+   "url": "https://iceec.civil.tohoku.ac.jp/admission/admission.html",
+   "snapshot_sha256": "dd525398b3f3ca35c865c02b4c51620d59a03cc2164f5ef1c07456cd5d5870cb",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "October 2027 enrollment",
+      "date": "2026-11-26",
+      "quote": "Submission of Applications, from November 18 to 26, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Social Digital Twin Management Course (SDTM), Master's Program",
+   "url": "https://iceec.civil.tohoku.ac.jp/admission/admission.html",
+   "snapshot_sha256": "dd525398b3f3ca35c865c02b4c51620d59a03cc2164f5ef1c07456cd5d5870cb",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "October 2027 enrollment",
+      "date": "2026-11-26",
+      "quote": "Submission of Applications, from November 18 to 26, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Graduate School of Biomedical Engineering, Two-Year Master's Program (international students)",
+   "url": "https://www.bme.tohoku.ac.jp/english/admission/",
+   "snapshot_sha256": "038f8e21585bede66f7cb659b44edb73b2228719cfaf125f47ec3b8784d7a92b",
+   "fields": {
+    "academic": {
+     "text": "International student with sixteen years of formal education, or recognised as equal or superior to a Japanese university graduate",
+     "quote": "An international student who has completed sixteen years of formal education, or who is recognized to be equal or superior in scholastic achievements to a graduate from a Japanese university may apply for admission to this course.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English is not tested at the exam; it is evaluated from TOEFL iBT or TOEIC scores (ITP/IP not accepted)",
+      "quote": "English language testing is not part of the entrance exam for our graduate school, instead English language ability will be evaluated on the results of TOEFL®, TOEIC® English language exams.",
+      "source_sha256": "018e7212f7fad7cf176b05e1f8e9228f06d0868edead847702be4b590f84b0bd",
+      "source_url": "https://www.bme.tohoku.ac.jp/english/admission/toeic.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Graduate Program in Language Sciences (IGPLS), Master's Program",
+   "url": "https://www.intcul.tohoku.ac.jp/en/contents/admission_info",
+   "snapshot_sha256": "a9db788cb587657ac75f53f3e9edc63d2c87ca741f6a814d641816927bf0e4c6",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "Only an official TOEIC L&R Public Test digital certificate (with QR code, taken in Japan) is accepted as TOEIC evidence",
+      "quote": "In response to reports of fraudulent TOEIC test-taking, for graduate school admissions at the Graduate School of International Cultural Studies, Tohoku University, only the official digital certificate for the TOEIC® Listening & Reading Public Test conducted in Japan will be accepted.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Graduate Program in Global Governance and Sustainable Development (G2SD), Master's Program",
+   "url": "https://www.intcul.tohoku.ac.jp/en/contents/admission_info",
+   "snapshot_sha256": "a9db788cb587657ac75f53f3e9edc63d2c87ca741f6a814d641816927bf0e4c6",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "Only an official TOEIC L&R Public Test digital certificate (with QR code, taken in Japan) is accepted as TOEIC evidence",
+      "quote": "In response to reports of fraudulent TOEIC test-taking, for graduate school admissions at the Graduate School of International Cultural Studies, Tohoku University, only the official digital certificate for the TOEIC® Listening & Reading Public Test conducted in Japan will be accepted.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 11,
+  "机器核对": 11,
+  "待人工": 0
+ }
+}
