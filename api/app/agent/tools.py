@@ -17,9 +17,10 @@ from langchain_core.runnables import RunnableConfig
 from langchain_core.tools import tool
 from langgraph.types import interrupt
 from pydantic import ValidationError
-from sqlalchemy import or_, select
+from sqlalchemy import case, or_, select
 from sqlalchemy.orm import selectinload
 
+from app.agent import catalog_match
 from app.db import SessionLocal
 from app.deps import load_or_create_profile
 from app.models.application import Application, ApplicationStatus, ApplicationTier
@@ -42,8 +43,48 @@ def _json(value) -> str:
 @tool
 def search_programs(keyword: str) -> str:
     """按学校名或项目名搜索已收录的硕士项目，返回项目 id、学校、项目名和数据状态。关键词可以是中文或英文，
-    多个词用空格分开，例如"悉尼大学 计算机"。"""
-    # Each word must match some column, so "悉尼大学 计算机" finds the program whose school matches
+    学校可以用简称（港大、帝国理工、UCL），多个词用空格分开，例如"悉尼大学 计算机"。"""
+    with SessionLocal() as s:
+        rows = _search_by_school(s, keyword)
+        if rows is None:
+            rows = _search_by_words(s, keyword)
+        if not rows:
+            return "没有找到。该学校或项目暂未收录，录取要求待采集。"
+        return _json(
+            [
+                {"id": p.id, "school": p.university.name, "program": p.name, "status": p.data_status}
+                for p in rows
+            ]
+        )
+
+
+SEARCH_LIMIT = 10
+
+
+def _search_by_school(session, keyword: str) -> list[Program] | None:
+    """When the keyword names a school (any spelling the advisor knows), that school's programs in the
+    named subject area, best name fit first. None when no school is named."""
+    index = catalog_match.school_index(
+        [tuple(r) for r in session.execute(select(University.id, University.name, University.name_en))]
+    )
+    parsed = catalog_match.parse(index, keyword)
+    if not parsed.schools:
+        return None
+    query = (
+        select(Program)
+        .options(selectinload(Program.university))
+        .where(Program.university_id.in_(parsed.schools))
+    )
+    if parsed.fields:
+        query = query.where(Program.field.in_(parsed.fields))
+    if parsed.name_pattern:
+        # CASE rather than the bare match: a row with no English name would sort first under DESC.
+        query = query.order_by(case((Program.name_en.regexp_match(parsed.name_pattern, "i"), 1), else_=0).desc())
+    return list(session.scalars(query.order_by(Program.name, Program.id).limit(SEARCH_LIMIT)))
+
+
+def _search_by_words(session, keyword: str) -> list[Program]:
+    # Each word must match some column, so "Sydney Computer" finds the program whose school matches
     # the first word and whose name matches the second.
     words = keyword.split() or [""]
     conditions = [
@@ -56,22 +97,14 @@ def search_programs(keyword: str) -> str:
         )
         for w in words
     ]
-    with SessionLocal() as s:
-        rows = s.scalars(
-            select(Program)
-            .join(University)
-            .options(selectinload(Program.university))
-            .where(*conditions)
-            .limit(10)
-        ).all()
-        if not rows:
-            return "没有找到。该学校或项目暂未收录，录取要求待采集。"
-        return _json(
-            [
-                {"id": p.id, "school": p.university.name, "program": p.name, "status": p.data_status}
-                for p in rows
-            ]
-        )
+    return list(session.scalars(
+        select(Program)
+        .join(University)
+        .options(selectinload(Program.university))
+        .where(*conditions)
+        .order_by(Program.name, Program.id)
+        .limit(SEARCH_LIMIT)
+    ))
 
 
 @tool

@@ -87,9 +87,15 @@ def relevant_ids(session, q: dict) -> set[str]:
 
 
 def validate_labels(session, questions: list[dict]) -> dict[str, set[str]]:
-    """Every school id must exist and every answerable flag must match the database."""
+    """Every school id must exist and every answerable flag must match the database. The curated
+    short forms are checked here too, because only a full catalogue has every id they name."""
     known = set(session.scalars(select(University.id)))
     relevant, problems = {}, []
+    from app.agent import catalog_match
+
+    stale = sorted(set(catalog_match.curated_aliases()) - known)
+    if stale:
+        problems.append(f"university_aliases.json names ids the catalogue does not hold: {stale}")
     for q in questions:
         if q["intent"] != REQUIREMENT_INTENT:
             continue

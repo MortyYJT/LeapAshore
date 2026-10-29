@@ -3,78 +3,163 @@
 Answers about admission requirements come only from rows in the catalogue, each tied to an official
 page. Before the model is allowed to answer, the gate checks:
 
-1. a hit: the question names a school the catalogue holds;
-2. a citable source: an https url, a title and a source id;
-3. relevance: the hit's score clears ``MIN_SCORE``.
+1. a school: the question names a school the catalogue holds (any spelling `catalog_match` knows);
+2. requirement data: the row states at least one requirement (English, a mark, a prerequisite);
+   a row that only names a course (the CRICOS extract) cannot answer a requirement question;
+3. a citable source: an https url and a title;
+4. a subject, when the question names one: the row's `Program.field` is that subject's area.
 
 Verification status is not a gate condition but a label: a requirement whose source no human has
 verified is still shown, marked 待核验 with its link, because the alternative — refusing every
 question until the whole catalogue is verified — hides the official page the applicant needs.
-Anything that fails the gate is refused and logged as a knowledge gap.
+
+The filtering runs in SQL, so a question reads the universities table (about 165 rows) and at most
+``TOP_K`` program rows per named school, never the whole catalogue. Anything that fails the gate is
+refused with a reason and a text built from the catalogue's own counts, and logged as a knowledge gap.
 """
 
 import logging
-from dataclasses import dataclass
+import re
+import time
+from dataclasses import dataclass, field
 
-from sqlalchemy import select
-from sqlalchemy.orm import Session, selectinload
+from sqlalchemy import and_, case, exists, func, literal, or_, select
+from sqlalchemy.orm import Session, joinedload, selectinload
 
-from app.models.program import Program
+from app.agent import catalog_match
+from app.models.program import Program, ProgramPrerequisite, University
 from app.models.source import Source
 
 logger = logging.getLogger("leapashore.knowledge_gap")
 
-# Spellings applicants actually use that the catalogue's own names do not cover.
-UNIVERSITY_ALIASES: dict[str, tuple[str, ...]] = {
-    "unsw": ("新南", "新南威尔士", "unsw"),
-    "usyd": ("悉大", "悉尼大学", "usyd", "sydney uni", "university of sydney"),
-    "monash": ("莫纳什", "蒙纳士", "monash"),
-    "uq": ("昆大", "昆士兰", "uq", "queensland"),
-    "uwa": ("西澳", "uwa", "western australia"),
-}
+# The number of program rows the gate hands the model. The eval reads it from here, so "K" in
+# Recall@K is what the code returns.
+TOP_K = 4
 
-FIELD_ALIASES: dict[str, tuple[str, ...]] = {
-    "信息技术": ("信息技术", "it", "information technology"),
-    "计算机科学": ("计算机", "cs", "computer science", "计科"),
-    "人工智能": ("人工智能", "ai", "artificial intelligence"),
-    "数据科学": ("数据科学", "data science", "数据"),
-}
+MACHINE_CHECKED = "机器核对"
 
-SCHOOL_SCORE = 2
-FIELD_SCORE = 1
-MIN_SCORE = SCHOOL_SCORE  # a hit must at least name the school
+
+def has_requirement_data():
+    """SQL: the row states at least one requirement the evidence line can show."""
+    return or_(
+        Program.english_requirement.is_not(None),
+        Program.minimum_mark.is_not(None),
+        Program.non_211_minimum_mark.is_not(None),
+        exists().where(ProgramPrerequisite.program_id == Program.id),
+    )
+
+
+def citable_source():
+    """SQL twin of `_citable`, for rows joined to their source."""
+    return and_(Source.url.like("https://%"), Source.title.is_not(None), Source.title != "")
 
 
 @dataclass
 class Hit:
     program: Program
     source: Source | None
-    score: int
 
 
-def _mentions(text: str, words: tuple[str, ...]) -> bool:
-    return any(w.lower() in text for w in words if w)
+@dataclass
+class Retrieval:
+    schools: list[str]  # university ids the question names, in order of mention
+    fields: list[str]  # Program.field areas the question names
+    hits: list[Hit]
+    school_names: dict[str, str] = field(default_factory=dict)
+    missing_schools: list[str] = field(default_factory=list)  # named, but nothing matched there
+    subject_words: list[str] = field(default_factory=list)
+    narrowing_pattern: str | None = None  # set when a specific subject was named ("金融", not "商科")
+    subject_fallback: bool = False  # ... but no returned row's name fits it; these are its broader area
 
 
-def search_requirements(session: Session, query: str, limit: int = 4) -> list[Hit]:
-    """Score every catalogue program against the question and return the best hits."""
-    q = query.lower()
-    programs = session.scalars(
-        select(Program).options(selectinload(Program.university), selectinload(Program.prerequisites))
+def _school_rows(session: Session) -> list[tuple[str, str | None, str | None]]:
+    return [tuple(r) for r in session.execute(select(University.id, University.name, University.name_en))]
+
+
+def search_requirements(session: Session, query: str, limit: int = TOP_K) -> Retrieval:
+    """The rows that can answer a requirement question about the schools and subject it names.
+
+    Rows are taken in turn from each named school (row 1 of every school, then row 2, ...), so a
+    question comparing two schools gets evidence for both. Inside a school, rows whose English name
+    fits the subject come first (and alone, when there are any), then machine-checked rows, then by
+    name.
+    """
+    index = catalog_match.school_index(_school_rows(session))
+    parsed = catalog_match.parse(index, query)
+    result = Retrieval(schools=parsed.schools, fields=parsed.fields, hits=[],
+                       school_names={u: index.names[u] for u in parsed.schools},
+                       subject_words=parsed.subject_words, narrowing_pattern=parsed.narrowing_pattern)
+    if not parsed.schools:
+        return result
+
+    name_fit = (
+        case((Program.name_en.regexp_match(parsed.name_pattern, "i"), 1), else_=0)
+        if parsed.name_pattern else literal(0)
+    )
+    narrow_fit = (
+        case((Program.name_en.regexp_match(parsed.narrowing_pattern, "i"), 1), else_=0)
+        if parsed.narrowing_pattern else literal(0)
+    )
+    checked = case((Program.data_status == MACHINE_CHECKED, 1), else_=0)
+    usable = case((and_(has_requirement_data(), citable_source()), 1), else_=0)
+    scope = [Program.university_id.in_(parsed.schools)]
+    if parsed.fields:
+        scope.append(Program.field.in_(parsed.fields))
+    # 1. Every row of the named schools in the named areas, with what the next steps need. The best
+    #    name fit is taken over all of them, with or without requirement data: when a specific
+    #    subject ("数据科学") fits a school's rows only where nothing has been collected yet, the
+    #    school answers nothing rather than a neighbouring programme's requirements.
+    in_scope = (
+        select(
+            Program.id, Program.university_id, Program.name,
+            name_fit.label("rank_fit"), narrow_fit.label("fit"), checked.label("checked"), usable.label("usable"),
+            func.max(narrow_fit).over(partition_by=Program.university_id).label("best_fit"),
+        )
+        .join(Source, Source.id == Program.source_id)
+        .where(*scope)
+        .subquery()
+    )
+    # 2. The usable rows that fit as well as the school's best, numbered per school.
+    ranked = (
+        select(
+            in_scope.c.id, in_scope.c.university_id,
+            func.row_number().over(
+                partition_by=in_scope.c.university_id,
+                order_by=(in_scope.c.rank_fit.desc(), in_scope.c.checked.desc(), in_scope.c.name, in_scope.c.id),
+            ).label("rn"),
+        )
+        .where(in_scope.c.usable == 1, in_scope.c.fit == in_scope.c.best_fit)
+        .subquery()
+    )
+    # 3. Each school's first `limit` rows, so the rows returned stay bounded by schools x K.
+    candidates = session.execute(
+        select(ranked.c.id, ranked.c.university_id, ranked.c.rn).where(ranked.c.rn <= limit)
     ).all()
-    hits: list[Hit] = []
-    for p in programs:
-        uni = p.university
-        school_words = (uni.name, uni.name_en or "", *UNIVERSITY_ALIASES.get(uni.id, ()))
-        score = SCHOOL_SCORE if _mentions(q, school_words) else 0
-        for canonical, words in FIELD_ALIASES.items():
-            if canonical in (p.name or "") and _mentions(q, words):
-                score += FIELD_SCORE
-                break
-        if score:
-            hits.append(Hit(p, session.get(Source, p.source_id), score))
-    hits.sort(key=lambda h: h.score, reverse=True)
-    return hits[:limit]
+    order = {uid: i for i, uid in enumerate(parsed.schools)}
+    candidates.sort(key=lambda r: (r.rn, order[r.university_id]))
+    chosen = [r.id for r in candidates[:limit]]
+    # A name two rows share (a CRICOS row and an empty one, "墨尔本大学") is only missing when
+    # neither row matched.
+    matched_names = {index.names[r.university_id] for r in candidates}
+    result.missing_schools = [
+        u for u in parsed.schools
+        if u not in {r.university_id for r in candidates} and index.names[u] not in matched_names
+    ]
+    if not chosen:
+        return result
+
+    programs = session.scalars(
+        select(Program)
+        .where(Program.id.in_(chosen))
+        .options(joinedload(Program.university), selectinload(Program.prerequisites))
+    ).all()
+    sources = {s.id: s for s in session.scalars(select(Source).where(Source.id.in_({p.source_id for p in programs})))}
+    by_id = {p.id: p for p in programs}
+    result.hits = [Hit(by_id[pid], sources.get(by_id[pid].source_id)) for pid in chosen]
+    if parsed.narrowing_pattern:
+        fits = re.compile(parsed.narrowing_pattern, re.IGNORECASE)
+        result.subject_fallback = not any(fits.search(h.program.name_en or "") for h in result.hits)
+    return result
 
 
 def _citable(source: Source | None) -> bool:
@@ -100,28 +185,134 @@ def evidence_line(n: int, hit: Hit) -> str:
     )
 
 
+# ---- refusals, worded from the catalogue's own counts -------------------------------------------
+
+
+def _join_names(names: list[str]) -> str:
+    return "、".join(names)
+
+
+_COUNTS_TTL = 600.0
+_counts_cache: dict[str, tuple[float, tuple[int, int, list[str]]]] = {}
+
+
+def _catalogue_counts(session: Session) -> tuple[int, int, list[str]]:
+    """Schools and programs that can answer a requirement question, and the three largest schools.
+
+    This aggregates the whole catalogue, so it is kept for ten minutes: it only words a refusal, and
+    an import moves it by a few rows at most.
+    """
+    cached = _counts_cache.get("counts")
+    if cached and time.monotonic() - cached[0] < _COUNTS_TTL:
+        return cached[1]
+    counts = _count_catalogue(session)
+    _counts_cache["counts"] = (time.monotonic(), counts)
+    return counts
+
+
+def _count_catalogue(session: Session) -> tuple[int, int, list[str]]:
+    answerable = (
+        select(Program.university_id, func.count().label("n"))
+        .join(Source, Source.id == Program.source_id)
+        .where(has_requirement_data(), citable_source())
+        .group_by(Program.university_id)
+        .subquery()
+    )
+    schools, programs = session.execute(
+        select(func.count(), func.coalesce(func.sum(answerable.c.n), 0)).select_from(answerable)
+    ).one()
+    examples = session.scalars(
+        select(University.name).join(answerable, answerable.c.university_id == University.id)
+        .order_by(answerable.c.n.desc(), University.id).limit(3)
+    ).all()
+    return int(schools), int(programs), list(examples)
+
+
+def _scope_counts(session: Session, found: "Retrieval") -> dict:
+    """What the named schools hold: all rows and rows with requirement data, overall, inside the
+    named areas, and among the rows whose name fits a specific subject."""
+    in_field = Program.field.in_(found.fields) if found.fields else literal(True)
+    fits = (
+        Program.name_en.regexp_match(found.narrowing_pattern, "i") if found.narrowing_pattern else literal(False)
+    )
+    data = has_requirement_data()
+    row = session.execute(
+        select(
+            func.count(),
+            func.count().filter(data),
+            func.count().filter(in_field),
+            func.count().filter(and_(in_field, data)),
+            func.count().filter(and_(in_field, fits)),
+        )
+        .select_from(Program)
+        .join(Source, Source.id == Program.source_id)
+        .where(Program.university_id.in_(found.schools))
+    ).one()
+    return dict(zip(("programs", "with_data", "in_field", "in_field_with_data", "fitting"), row))
+
+
+def _subject_label(found: "Retrieval") -> str:
+    words = "、".join(found.subject_words)
+    areas = "、".join(found.fields)
+    return f"「{words}」（{areas}）" if words else f"「{areas}」"
+
+
+def refusal(session: Session, found: Retrieval) -> tuple[str, str]:
+    """Why the gate refused, and the sentence the applicant sees."""
+    tail = "我不能凭印象回答，以免你照着错误的要求去申请。已记录为待采集。"
+    if not found.schools:
+        schools, programs, examples = _catalogue_counts(session)
+        example = f"（例如{_join_names(examples)}）" if examples else ""
+        return "no_school", (
+            f"这个问题里没有认出已收录官方要求的学校。目前收录了 {schools} 所学校、{programs:,} 个项目的官方录取要求，"
+            f"请写出学校全称或常用简称{example}再问一次。没有收录的学校，{tail}"
+        )
+    names = _join_names(list(dict.fromkeys(found.school_names[u] for u in found.schools)))
+    counts = _scope_counts(session, found)
+    if counts["with_data"] == 0:
+        held = f"目前只收录了 {counts['programs']} 个项目的名称，" if counts["programs"] else ""
+        return "school_not_collected", f"{names}{held}还没有采到官方录取要求，{tail}"
+    subject = _subject_label(found)
+    if found.narrowing_pattern and counts["fitting"]:
+        return "no_program_in_field", (
+            f"{names}有 {counts['fitting']} 个与{subject}相符的项目，但还没有采到它们的官方录取要求。{tail}"
+        )
+    if found.fields and counts["in_field_with_data"] == 0:
+        pending = (
+            f"该方向有 {counts['in_field']} 个项目还没采到要求。" if counts["in_field"]
+            else "库里没有这个方向的项目。"
+        )
+        return "no_program_in_field", (
+            f"{names}已收录 {counts['with_data']} 个项目的官方录取要求，但其中没有{subject}方向的，{pending}"
+            f"可以换个方向问，或在项目库里查看该校已收录的项目。{tail}"
+        )
+    return "no_citable_source", "找到了相关项目，但它没有可引用的官方来源链接，所以我不能回答它的要求。已记录为待补来源。"
+
+
 def gate(session: Session, query: str) -> dict:
     """Run retrieval and the gate. Returns the state update for the graph."""
-    hits = search_requirements(session, query)
-    # A field match alone ("计算机") is not a hit: it would answer a question about an uncollected
-    # school with another school's requirements.
-    relevant = [h for h in hits if h.score >= MIN_SCORE]
-    strong = [h for h in relevant if _citable(h.source)]
+    found = search_requirements(session, query)
+    strong = [h for h in found.hits if _citable(h.source)]
     signals = {
-        "hits": len(hits),
-        "relevant": len(relevant),
-        "top_score": hits[0].score if hits else 0,
+        "schools": found.schools,
+        "fields": found.fields,
+        "hits": len(found.hits),
         "citable": len(strong),
+        "missing_schools": found.missing_schools,
+        "subject_fallback": found.subject_fallback,
     }
     if not strong:
-        reason = "no_hit" if not relevant else "no_citable_source"
+        reason, text = refusal(session, found)
         logger.warning("knowledge gap reason=%s query=%r signals=%s", reason, query, signals)
         return {
             "evidence_strong": False,
             "refusal": reason,
+            "refusal_text": text,
             "citations": [],
             "trace": {"evidence_gate": "weak", "gate_signals": signals},
         }
+    if found.missing_schools:
+        logger.warning("knowledge gap reason=partial query=%r signals=%s", query, signals)
     citations = [
         {
             "n": i + 1,
@@ -133,9 +324,18 @@ def gate(session: Session, query: str) -> dict:
         }
         for i, h in enumerate(strong)
     ]
+    lines = [evidence_line(i + 1, h) for i, h in enumerate(strong)]
+    if found.subject_fallback:
+        lines.append(
+            f"（没有找到名称与{_subject_label(found)}相符的项目，以上是同一学科大类的项目；"
+            "回答时先说明这一点，不要把它们当成用户问的那个项目）"
+        )
+    if found.missing_schools:
+        missing = _join_names(list(dict.fromkeys(found.school_names[u] for u in found.missing_schools)))
+        lines.append(f"（未检索到以下学校的相关官方要求，不要回答它们的要求：{missing}）")
     return {
         "evidence_strong": True,
-        "evidence": "\n".join(evidence_line(i + 1, h) for i, h in enumerate(strong)),
+        "evidence": "\n".join(lines),
         "citations": citations,
         "trace": {"evidence_gate": "strong", "gate_signals": signals},
     }

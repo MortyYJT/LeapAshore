@@ -1,0 +1,534 @@
+{
+ "_note": "Short forms applicants use for a school, keyed by universities.id. The catalogue's own names (Chinese, English, and an abbreviation in the English name's parentheses) are matched without being listed here. Add only forms that name one school; leave out ones that are common words (多大) or name several schools (中大, 南大, 国大).",
+ "aliases": {
+  "unsw": [
+   "新南",
+   "新南威尔士",
+   "新南威尔士大学",
+   "UNSW"
+  ],
+  "usyd": [
+   "悉大",
+   "USYD",
+   "Sydney Uni",
+   "University of Sydney"
+  ],
+  "monash": [
+   "莫纳什",
+   "莫纳什大学",
+   "蒙纳士",
+   "Monash"
+  ],
+  "uq": [
+   "昆大",
+   "UQ"
+  ],
+  "uwa": [
+   "西澳大",
+   "UWA"
+  ],
+  "cricos-00120C": [
+   "澳国立",
+   "澳洲国立大学",
+   "澳大利亚国立"
+  ],
+  "cricos-00116K": [
+   "墨大",
+   "UniMelb",
+   "Melbourne Uni"
+  ],
+  "cricos-00099F": [
+   "悉尼科技",
+   "悉尼科大"
+  ],
+  "cricos-00002J": [
+   "麦考瑞",
+   "麦觉理",
+   "麦觉理大学"
+  ],
+  "cricos-04249J": [
+   "阿大",
+   "阿德莱德"
+  ],
+  "cricos-00122A": [
+   "皇家墨尔本理工",
+   "RMIT"
+  ],
+  "cricos-00213J": [
+   "昆士兰科技"
+  ],
+  "cricos-00301J": [
+   "科廷"
+  ],
+  "cricos-00113B": [
+   "迪肯"
+  ],
+  "cricos-00233E": [
+   "格里菲斯"
+  ],
+  "cricos-00102E": [
+   "卧龙岗"
+  ],
+  "imperial-college-london": [
+   "帝国理工",
+   "帝国理工大学",
+   "ICL",
+   "Imperial"
+  ],
+  "ucl": [
+   "伦敦大学学院"
+  ],
+  "london-school-of-economics-and-political-science": [
+   "伦敦政经",
+   "伦敦政经学院",
+   "London School of Economics"
+  ],
+  "king-s-college-london": [
+   "KCL",
+   "国王学院",
+   "伦敦国王",
+   "King's College",
+   "Kings College London"
+  ],
+  "university-of-manchester": [
+   "曼大",
+   "曼彻斯特"
+  ],
+  "university-of-edinburgh": [
+   "爱大",
+   "爱丁堡"
+  ],
+  "university-of-oxford": [
+   "牛津",
+   "Oxford"
+  ],
+  "university-of-cambridge": [
+   "剑桥",
+   "Cambridge"
+  ],
+  "university-of-warwick": [
+   "华威",
+   "Warwick"
+  ],
+  "university-of-bristol": [
+   "布大",
+   "布里斯托",
+   "Bristol"
+  ],
+  "university-of-glasgow": [
+   "格大",
+   "格拉斯哥大"
+  ],
+  "university-of-leeds": [
+   "利兹大"
+  ],
+  "university-of-birmingham": [
+   "伯明翰大"
+  ],
+  "university-of-southampton": [
+   "南安",
+   "南安普顿"
+  ],
+  "university-of-sheffield": [
+   "谢菲",
+   "谢菲尔德"
+  ],
+  "university-of-nottingham": [
+   "诺丁汉大"
+  ],
+  "queen-mary-university-of-london": [
+   "玛丽女王",
+   "伦敦玛丽女王",
+   "QMUL"
+  ],
+  "university-of-liverpool": [
+   "利物浦大"
+  ],
+  "university-of-exeter": [
+   "埃克塞特",
+   "埃克塞特大"
+  ],
+  "university-of-st-andrews": [
+   "圣安",
+   "圣安德鲁斯"
+  ],
+  "durham-university": [
+   "杜伦"
+  ],
+  "lancaster-university": [
+   "兰卡斯特"
+  ],
+  "cardiff-university": [
+   "卡迪夫"
+  ],
+  "university-of-bath": [
+   "巴斯大"
+  ],
+  "university-of-reading": [
+   "雷丁"
+  ],
+  "queen-s-university-belfast": [
+   "QUB"
+  ],
+  "massachusetts-institute-of-technology": [
+   "麻省理工"
+  ],
+  "stanford-university": [
+   "斯坦福",
+   "Stanford"
+  ],
+  "harvard-university": [
+   "哈佛",
+   "Harvard"
+  ],
+  "yale-university": [
+   "耶鲁",
+   "Yale"
+  ],
+  "princeton-university": [
+   "普林斯顿",
+   "Princeton"
+  ],
+  "columbia-university": [
+   "哥大",
+   "哥伦比亚大学",
+   "Columbia"
+  ],
+  "university-of-pennsylvania": [
+   "宾大",
+   "UPenn",
+   "Penn"
+  ],
+  "pennsylvania-state-university": [
+   "宾州州立",
+   "Penn State"
+  ],
+  "cornell-university": [
+   "康奈尔",
+   "Cornell"
+  ],
+  "duke-university": [
+   "杜克",
+   "Duke"
+  ],
+  "johns-hopkins-university": [
+   "约翰霍普金斯",
+   "霍普金斯",
+   "JHU"
+  ],
+  "northwestern-university": [
+   "Northwestern"
+  ],
+  "university-of-chicago": [
+   "芝大",
+   "UChicago"
+  ],
+  "carnegie-mellon-university": [
+   "卡梅",
+   "卡内基梅隆",
+   "CMU"
+  ],
+  "new-york-university": [
+   "纽大",
+   "NYU"
+  ],
+  "university-of-southern-california": [
+   "南加大",
+   "USC"
+  ],
+  "university-of-california-los-angeles": [
+   "UCLA",
+   "加州大学洛杉矶"
+  ],
+  "university-of-california-berkeley": [
+   "伯克利",
+   "加州伯克利",
+   "UC Berkeley",
+   "UCB",
+   "Berkeley"
+  ],
+  "university-of-california-san-diego": [
+   "UCSD",
+   "加州大学圣地亚哥"
+  ],
+  "university-of-california-santa-barbara": [
+   "加州大学圣塔芭芭拉"
+  ],
+  "university-of-california-davis": [
+   "UC Davis",
+   "加州大学戴维斯"
+  ],
+  "university-of-illinois-urbana-champaign": [
+   "UIUC",
+   "伊利诺伊香槟",
+   "伊利诺伊大学香槟分校"
+  ],
+  "university-of-michigan-ann-arbor": [
+   "密大",
+   "密歇根大学",
+   "UMich"
+  ],
+  "michigan-state-university": [
+   "密歇根州立",
+   "MSU"
+  ],
+  "university-of-washington": [
+   "UW"
+  ],
+  "washington-university-in-st-louis": [
+   "WashU",
+   "圣路易斯华盛顿"
+  ],
+  "university-of-texas-at-austin": [
+   "UT Austin",
+   "德州奥斯汀",
+   "得州奥斯汀"
+  ],
+  "texas-a-m-university": [
+   "TAMU",
+   "德州农工",
+   "得州农工"
+  ],
+  "georgia-institute-of-technology": [
+   "佐治亚理工",
+   "Georgia Tech"
+  ],
+  "california-institute-of-technology": [
+   "加州理工"
+  ],
+  "purdue-university": [
+   "普渡",
+   "Purdue"
+  ],
+  "rice-university": [
+   "莱斯大"
+  ],
+  "emory-university": [
+   "埃默里",
+   "Emory"
+  ],
+  "brown-university": [
+   "布朗大"
+  ],
+  "boston-university": [
+   "波大",
+   "BU"
+  ],
+  "arizona-state-university": [
+   "亚利桑那州立",
+   "ASU"
+  ],
+  "university-of-wisconsin-madison": [
+   "威斯康星麦迪逊",
+   "UW-Madison",
+   "UW Madison"
+  ],
+  "university-of-north-carolina-at-chapel-hill": [
+   "北卡教堂山",
+   "UNC"
+  ],
+  "university-of-toronto": [
+   "多伦多大",
+   "UofT",
+   "U of T"
+  ],
+  "university-of-british-columbia": [
+   "UBC",
+   "英属哥伦比亚大学",
+   "不列颠哥伦比亚",
+   "British Columbia"
+  ],
+  "mcgill-university": [
+   "麦吉尔",
+   "McGill"
+  ],
+  "mcmaster-university": [
+   "麦马",
+   "麦克马斯特",
+   "McMaster"
+  ],
+  "university-of-waterloo": [
+   "滑铁卢",
+   "Waterloo"
+  ],
+  "western-university": [
+   "西安大略"
+  ],
+  "university-of-alberta": [
+   "阿尔伯塔"
+  ],
+  "university-of-hong-kong": [
+   "港大",
+   "HKU"
+  ],
+  "chinese-university-of-hong-kong": [
+   "港中文",
+   "港中大"
+  ],
+  "hong-kong-university-of-science-and-technology": [
+   "港科大",
+   "港科技",
+   "HKUST"
+  ],
+  "hong-kong-polytechnic-university": [
+   "港理工",
+   "理大",
+   "PolyU"
+  ],
+  "city-university-of-hong-kong": [
+   "港城大",
+   "城大",
+   "港城市",
+   "CityU"
+  ],
+  "national-university-of-singapore": [
+   "新国大",
+   "新加坡国大"
+  ],
+  "nanyang-technological-university-singapore": [
+   "南洋理工",
+   "NTU"
+  ],
+  "university-of-auckland": [
+   "奥克兰大"
+  ],
+  "university-of-otago": [
+   "奥塔哥"
+  ],
+  "eth-zurich": [
+   "苏黎世联邦理工",
+   "苏黎世理工",
+   "ETH"
+  ],
+  "epfl-ecole-polytechnique-federale-de-lausanne": [
+   "洛桑联邦理工",
+   "洛桑理工",
+   "EPFL"
+  ],
+  "technical-university-of-munich": [
+   "慕尼黑工大",
+   "慕工大",
+   "TUM"
+  ],
+  "ludwig-maximilians-universitat-munchen": [
+   "LMU",
+   "LMU Munich"
+  ],
+  "universitat-heidelberg": [
+   "海德堡",
+   "Heidelberg"
+  ],
+  "kit-karlsruhe-institute-of-technology": [
+   "卡尔斯鲁厄理工",
+   "卡尔斯鲁厄"
+  ],
+  "delft-university-of-technology": [
+   "代尔夫特理工",
+   "代尔夫特",
+   "TU Delft"
+  ],
+  "university-of-amsterdam": [
+   "UvA",
+   "阿姆大"
+  ],
+  "ku-leuven": [
+   "鲁汶"
+  ],
+  "university-of-copenhagen": [
+   "哥本哈根大"
+  ],
+  "technical-university-of-denmark": [
+   "丹麦理工",
+   "DTU"
+  ],
+  "kth-royal-institute-of-technology": [
+   "瑞典皇家理工",
+   "KTH"
+  ],
+  "lund-university": [
+   "隆德"
+  ],
+  "uppsala-university": [
+   "乌普萨拉"
+  ],
+  "trinity-college-dublin-the-university-of-dublin": [
+   "圣三一",
+   "都柏林圣三一",
+   "TCD",
+   "Trinity College Dublin"
+  ],
+  "university-college-dublin": [
+   "UCD"
+  ],
+  "politecnico-di-milano": [
+   "米兰理工",
+   "PoliMi"
+  ],
+  "sapienza-university-of-rome": [
+   "罗马一大",
+   "Sapienza"
+  ],
+  "sorbonne-university": [
+   "索邦"
+  ],
+  "institut-polytechnique-de-paris": [
+   "巴黎理工",
+   "IP Paris"
+  ],
+  "universite-paris-saclay": [
+   "巴黎萨克雷",
+   "萨克雷"
+  ],
+  "universite-psl": [
+   "巴黎文理",
+   "PSL"
+  ],
+  "freie-universitaet-berlin": [
+   "柏林自由大",
+   "FU Berlin"
+  ],
+  "seoul-national-university": [
+   "首尔大",
+   "首尔国立大学",
+   "SNU"
+  ],
+  "kaist": [
+   "韩国科学技术院",
+   "KAIST"
+  ],
+  "korea-university": [
+   "高丽大"
+  ],
+  "yonsei-university": [
+   "延世",
+   "Yonsei"
+  ],
+  "sungkyunkwan-university": [
+   "成均馆"
+  ],
+  "pohang-university-of-science-and-technology": [
+   "浦项工大",
+   "浦项科技"
+  ],
+  "hanyang-university": [
+   "汉阳大"
+  ],
+  "universiti-malaya": [
+   "马来亚大学",
+   "University of Malaya"
+  ],
+  "universiti-sains-malaysia": [
+   "马来西亚理科大学"
+  ],
+  "universiti-putra-malaysia": [
+   "博特拉",
+   "UPM"
+  ],
+  "universiti-teknologi-malaysia": [
+   "马来西亚理工"
+  ],
+  "universiti-kebangsaan-malaysia": [
+   "马来西亚国民大学"
+  ]
+ }
+}

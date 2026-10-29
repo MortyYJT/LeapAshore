@@ -34,11 +34,9 @@ SYSTEM_PROMPT = """你是鱼跃彼岸的留学申请顾问，帮中国学生规�
 
 EVIDENCE_HINT = "\n\n## 已检索证据（只能据此回答官方要求，逐条标注编号）\n"
 
-REFUSAL_TEXT = {
-    "no_hit": "这个问题涉及的学校或项目还没有收录官方数据，我不能凭印象回答，以免你照着错误的要求去申请。"
-    "已记录为待采集。目前已收录的学校：新南威尔士大学、悉尼大学、蒙纳士大学、昆士兰大学、西澳大学。",
-    "no_citable_source": "找到了相关项目，但它没有可引用的官方来源链接，所以我不能回答它的要求。已记录为待补来源。",
-}
+# Used only when a refusal arrives without its own text; the gate words every refusal from the
+# catalogue's counts (`evidence.refusal`), so no school list is written here.
+FALLBACK_REFUSAL = "这个问题涉及的学校或项目还没有收录官方数据，我不能凭印象回答，以免你照着错误的要求去申请。已记录为待采集。"
 
 
 def _last_user_text(state: AdvisorState) -> str:
@@ -84,8 +82,7 @@ def evidence_gate(state: AdvisorState) -> str:
 
 
 def refuse(state: AdvisorState) -> dict:
-    text = REFUSAL_TEXT.get(state.get("refusal", ""), REFUSAL_TEXT["no_hit"])
-    return {"messages": [AIMessage(content=text)]}
+    return {"messages": [AIMessage(content=state.get("refusal_text") or FALLBACK_REFUSAL)]}
 
 
 async def main_agent(state: AdvisorState) -> dict:

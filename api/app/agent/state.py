@@ -20,6 +20,7 @@ class AdvisorState(TypedDict, total=False):
     evidence: str  # numbered evidence lines handed to the model
     citations: list  # the same evidence, structured, for the interface
     evidence_strong: bool  # the gate's verdict
-    refusal: str  # why the gate refused, shown to the applicant
+    refusal: str  # why the gate refused: no_school, school_not_collected, no_program_in_field, ...
+    refusal_text: str  # what the applicant is told, worded from the catalogue's counts
     steps: int  # model calls in this turn's ReAct loop
     trace: Annotated[dict, merge_dict]

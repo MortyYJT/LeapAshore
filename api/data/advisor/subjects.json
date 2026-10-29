@@ -1,0 +1,624 @@
+{
+ "_note": "Applicant words for a subject. `field` is the Program.field study area the words select (app.collect.fields assigns it from the program name); `name` is a regex (POSIX-compatible: it runs in PostgreSQL, so no \\b) on the program's English name that only ranks rows inside that area; `gloss` are English names that app.collect.fields must file under `field`, which tests/test_catalog_match.py checks. Leave out words that also mean something else in a requirement question (语言, 材料, 规划, 数据). `narrows`: a specific subject (金融, 机械) keeps only the rows whose name fits when a school has any; a broad one (商科, 工程) only ranks them.",
+ "subjects": [
+  {
+   "field": "计算机与数据",
+   "terms": [
+    "计算机",
+    "计科",
+    "computing",
+    "computer"
+   ],
+   "name": "comput|software",
+   "narrows": false,
+   "gloss": [
+    "computing"
+   ]
+  },
+  {
+   "field": "计算机与数据",
+   "terms": [
+    "计算机科学",
+    "CS",
+    "computer science"
+   ],
+   "name": "computer science",
+   "narrows": true,
+   "gloss": [
+    "computer science"
+   ]
+  },
+  {
+   "field": "计算机与数据",
+   "terms": [
+    "软件",
+    "软件工程",
+    "software",
+    "software engineering"
+   ],
+   "name": "software",
+   "narrows": true,
+   "gloss": [
+    "software engineering"
+   ]
+  },
+  {
+   "field": "计算机与数据",
+   "terms": [
+    "数据科学",
+    "数据分析",
+    "大数据",
+    "data science",
+    "data analytics",
+    "big data"
+   ],
+   "name": "data|analytics",
+   "narrows": true,
+   "gloss": [
+    "data science"
+   ]
+  },
+  {
+   "field": "计算机与数据",
+   "terms": [
+    "人工智能",
+    "AI",
+    "artificial intelligence",
+    "机器学习",
+    "machine learning"
+   ],
+   "name": "artificial intelligence|machine learning|(^|[^a-z])ai([^a-z]|$)",
+   "narrows": true,
+   "gloss": [
+    "artificial intelligence",
+    "machine learning"
+   ]
+  },
+  {
+   "field": "计算机与数据",
+   "terms": [
+    "信息技术",
+    "information technology",
+    "网络安全",
+    "信息安全",
+    "cybersecurity",
+    "cyber security",
+    "信息系统",
+    "information systems"
+   ],
+   "name": "information|cyber|security",
+   "narrows": true,
+   "gloss": [
+    "information technology",
+    "cybersecurity",
+    "information systems"
+   ]
+  },
+  {
+   "field": "计算机与数据",
+   "terms": [
+    "生物信息",
+    "bioinformatics"
+   ],
+   "name": "bioinformatic",
+   "narrows": true,
+   "gloss": [
+    "bioinformatics"
+   ]
+  },
+  {
+   "field": "商科与金融",
+   "terms": [
+    "商科",
+    "商学",
+    "business",
+    "管理",
+    "管理学",
+    "management",
+    "MBA",
+    "工商管理"
+   ],
+   "name": "business|management|mba",
+   "narrows": false,
+   "gloss": [
+    "business",
+    "management"
+   ]
+  },
+  {
+   "field": "商科与金融",
+   "terms": [
+    "金融",
+    "finance",
+    "financial",
+    "金融工程",
+    "金融科技",
+    "fintech",
+    "金融数学",
+    "financial mathematics"
+   ],
+   "name": "financ",
+   "narrows": true,
+   "gloss": [
+    "finance",
+    "financial mathematics"
+   ]
+  },
+  {
+   "field": "商科与金融",
+   "terms": [
+    "会计",
+    "accounting",
+    "accountancy"
+   ],
+   "name": "account",
+   "narrows": true,
+   "gloss": [
+    "accounting"
+   ]
+  },
+  {
+   "field": "商科与金融",
+   "terms": [
+    "市场营销",
+    "营销",
+    "marketing"
+   ],
+   "name": "marketing",
+   "narrows": true,
+   "gloss": [
+    "marketing"
+   ]
+  },
+  {
+   "field": "商科与金融",
+   "terms": [
+    "商业分析",
+    "business analytics"
+   ],
+   "name": "analytics",
+   "narrows": true,
+   "gloss": [
+    "business analytics"
+   ]
+  },
+  {
+   "field": "商科与金融",
+   "terms": [
+    "精算",
+    "actuarial"
+   ],
+   "name": "actuar",
+   "narrows": true,
+   "gloss": [
+    "actuarial science"
+   ]
+  },
+  {
+   "field": "工程",
+   "terms": [
+    "工程",
+    "engineering"
+   ],
+   "name": "engineering",
+   "narrows": false,
+   "gloss": [
+    "engineering"
+   ]
+  },
+  {
+   "field": "工程",
+   "terms": [
+    "电子工程",
+    "电气工程",
+    "electrical",
+    "electronic",
+    "electrical engineering",
+    "电子信息",
+    "电子与电气工程"
+   ],
+   "name": "electr",
+   "narrows": true,
+   "gloss": [
+    "electrical engineering"
+   ]
+  },
+  {
+   "field": "工程",
+   "terms": [
+    "机械",
+    "机械工程",
+    "mechanical",
+    "mechanical engineering"
+   ],
+   "name": "mechanical",
+   "narrows": true,
+   "gloss": [
+    "mechanical engineering"
+   ]
+  },
+  {
+   "field": "工程",
+   "terms": [
+    "土木",
+    "土木工程",
+    "civil engineering"
+   ],
+   "name": "civil",
+   "narrows": true,
+   "gloss": [
+    "civil engineering"
+   ]
+  },
+  {
+   "field": "工程",
+   "terms": [
+    "化工",
+    "化学工程",
+    "chemical engineering"
+   ],
+   "name": "chemical",
+   "narrows": true,
+   "gloss": [
+    "chemical engineering"
+   ]
+  },
+  {
+   "field": "工程",
+   "terms": [
+    "生物医学工程",
+    "biomedical engineering"
+   ],
+   "name": "biomedical",
+   "narrows": true,
+   "gloss": [
+    "biomedical engineering"
+   ]
+  },
+  {
+   "field": "工程",
+   "terms": [
+    "环境工程",
+    "environmental engineering"
+   ],
+   "name": "environment",
+   "narrows": true,
+   "gloss": [
+    "environmental engineering"
+   ]
+  },
+  {
+   "field": "工程",
+   "terms": [
+    "航空航天",
+    "aerospace"
+   ],
+   "name": "aero",
+   "narrows": true,
+   "gloss": [
+    "aerospace engineering"
+   ]
+  },
+  {
+   "field": "工程",
+   "terms": [
+    "机器人",
+    "robotics"
+   ],
+   "name": "robot",
+   "narrows": true,
+   "gloss": [
+    "robotics"
+   ]
+  },
+  {
+   "field": "工程",
+   "terms": [
+    "材料科学",
+    "材料工程",
+    "materials engineering"
+   ],
+   "name": "material",
+   "narrows": true,
+   "gloss": [
+    "materials engineering"
+   ]
+  },
+  {
+   "field": "法律与犯罪学",
+   "terms": [
+    "法学",
+    "法律",
+    "law",
+    "laws",
+    "LLM",
+    "LL.M",
+    "犯罪学",
+    "criminology"
+   ],
+   "name": "(^|[^a-z])laws?([^a-z]|$)|ll\\.?m([^a-z]|$)|legal|criminolog",
+   "narrows": false,
+   "gloss": [
+    "law",
+    "criminology"
+   ]
+  },
+  {
+   "field": "医学与健康",
+   "terms": [
+    "医学",
+    "medicine",
+    "公共卫生",
+    "public health",
+    "护理",
+    "nursing",
+    "药学",
+    "pharmacy",
+    "临床",
+    "clinical",
+    "健康",
+    "health"
+   ],
+   "name": "medic|health|nurs|pharm|clinic",
+   "narrows": false,
+   "gloss": [
+    "medicine",
+    "public health",
+    "nursing",
+    "pharmacy"
+   ]
+  },
+  {
+   "field": "教育与社会科学",
+   "terms": [
+    "教育",
+    "教育学",
+    "education",
+    "TESOL"
+   ],
+   "name": "educat|tesol|teach",
+   "narrows": true,
+   "gloss": [
+    "education",
+    "tesol"
+   ]
+  },
+  {
+   "field": "教育与社会科学",
+   "terms": [
+    "经济",
+    "经济学",
+    "economics"
+   ],
+   "name": "econom",
+   "narrows": true,
+   "gloss": [
+    "economics"
+   ]
+  },
+  {
+   "field": "教育与社会科学",
+   "terms": [
+    "心理",
+    "心理学",
+    "psychology"
+   ],
+   "name": "psycholog",
+   "narrows": true,
+   "gloss": [
+    "psychology"
+   ]
+  },
+  {
+   "field": "教育与社会科学",
+   "terms": [
+    "社会学",
+    "sociology",
+    "社会工作",
+    "社工",
+    "social work"
+   ],
+   "name": "socio|social",
+   "narrows": true,
+   "gloss": [
+    "sociology",
+    "social work"
+   ]
+  },
+  {
+   "field": "教育与社会科学",
+   "terms": [
+    "政治",
+    "政治学",
+    "politics",
+    "国际关系",
+    "international relations",
+    "公共政策",
+    "public policy",
+    "公共管理",
+    "public administration"
+   ],
+   "name": "politic|international relations|policy|public administration",
+   "narrows": true,
+   "gloss": [
+    "politics",
+    "international relations",
+    "public policy",
+    "public administration"
+   ]
+  },
+  {
+   "field": "建筑规划与设计",
+   "terms": [
+    "建筑",
+    "建筑学",
+    "architecture",
+    "城市规划",
+    "urban planning",
+    "景观",
+    "landscape architecture"
+   ],
+   "name": "architect|urban|planning|landscape",
+   "narrows": false,
+   "gloss": [
+    "architecture",
+    "urban planning"
+   ]
+  },
+  {
+   "field": "传媒艺术与音乐",
+   "terms": [
+    "传媒",
+    "媒体",
+    "新闻",
+    "journalism",
+    "media",
+    "传播",
+    "communication",
+    "艺术",
+    "arts",
+    "音乐",
+    "music",
+    "设计",
+    "design",
+    "电影",
+    "film"
+   ],
+   "name": "media|journal|communicat|(^|[^a-z])arts?([^a-z]|$)|music|design|film",
+   "narrows": false,
+   "gloss": [
+    "journalism",
+    "media",
+    "music",
+    "design",
+    "film"
+   ]
+  },
+  {
+   "field": "自然科学与数学",
+   "terms": [
+    "数学",
+    "应用数学",
+    "mathematics",
+    "math",
+    "maths"
+   ],
+   "name": "mathemat",
+   "narrows": true,
+   "gloss": [
+    "mathematics"
+   ]
+  },
+  {
+   "field": "自然科学与数学",
+   "terms": [
+    "统计",
+    "统计学",
+    "statistics"
+   ],
+   "name": "statist",
+   "narrows": true,
+   "gloss": [
+    "statistics"
+   ]
+  },
+  {
+   "field": "自然科学与数学",
+   "terms": [
+    "物理",
+    "physics"
+   ],
+   "name": "physic",
+   "narrows": true,
+   "gloss": [
+    "physics"
+   ]
+  },
+  {
+   "field": "自然科学与数学",
+   "terms": [
+    "化学",
+    "chemistry"
+   ],
+   "name": "chemi",
+   "narrows": true,
+   "gloss": [
+    "chemistry"
+   ]
+  },
+  {
+   "field": "环境与农业",
+   "terms": [
+    "环境",
+    "环境科学",
+    "environment",
+    "environmental science",
+    "农业",
+    "agriculture",
+    "可持续",
+    "sustainability",
+    "能源",
+    "energy",
+    "气候",
+    "climate"
+   ],
+   "name": "environment|agricult|sustainab|energy|climate",
+   "narrows": false,
+   "gloss": [
+    "environmental science",
+    "agriculture",
+    "sustainability",
+    "energy",
+    "climate"
+   ]
+  },
+  {
+   "field": "生命科学",
+   "terms": [
+    "生物",
+    "生物学",
+    "biology",
+    "生物科技",
+    "生物技术",
+    "biotechnology",
+    "生命科学",
+    "life science",
+    "神经科学",
+    "neuroscience"
+   ],
+   "name": "bio|life science|neuro",
+   "narrows": false,
+   "gloss": [
+    "biology",
+    "biotechnology",
+    "neuroscience"
+   ]
+  },
+  {
+   "field": "人文与语言",
+   "terms": [
+    "语言学",
+    "linguistics",
+    "翻译",
+    "口译",
+    "translation",
+    "interpreting",
+    "历史",
+    "history",
+    "哲学",
+    "philosophy",
+    "文学",
+    "literature"
+   ],
+   "name": "linguist|translat|interpret|history|philosoph|literat",
+   "narrows": false,
+   "gloss": [
+    "linguistics",
+    "translation",
+    "history",
+    "philosophy",
+    "literature"
+   ]
+  }
+ ]
+}
