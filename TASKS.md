@@ -39,7 +39,7 @@
   - 输入快照，调 DeepSeek-V4-Flash（和顾问同一个模型）结构化输出，然后自动跑 `verify`，不通过的值删掉并记录原因。
   - 完成标准：单元测试用录好的模型响应，不调真实 API；在已采集的 10 所学校上测出拒收率，并写明样本、模型和日期。
 - [ ] **仓库清理**
-  - 删掉 4 处"ported from MEWHELP"：README:73、`api/app/agent/__init__.py:3`、`api/app/agent/graph.py:7`、`api/pyproject.toml:18`。
+  - 删掉 4 处「移植自旧项目」的说法：README:73（"ported from my earlier LangGraph customer-service agent"）、`api/app/agent/__init__.py:3`、`api/app/agent/graph.py:7`、`api/pyproject.toml:18`（后三处写的是 MEWHELP）。
   - README 的"Deadlines: Not collected"改成如实状态；README 和 PRD 的采集统计统一成收缩学校库时重算出的数字。
   - 加 MIT LICENSE，版权人写 `MortyYJT`。
 - [ ] **跑 `make verify` + 查生产库**

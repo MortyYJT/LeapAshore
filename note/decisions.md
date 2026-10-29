@@ -2,11 +2,11 @@
 
 只记当前仍然有效、跨 change 的决定。被推翻或已经做完的条目直接删掉，历史在 git 里。属于某个 OpenSpec change 的决定写进那个 change。产品需求以 `docs/product/PRD.md` 为准，两边冲突时以 PRD 为准。
 
-## 2026-10-10 只装 guard hook，不装 verify hook
+## 2026-10-30 规则收成一份 `CLAUDE.md`，任务清单为 `TASKS.md`
 
-- **决定**：安装 `.claude/hooks/guard.sh`（PreToolUse），不装 `verify.sh`（Stop）。推翻了之前「两个 hook 都不装」的做法。
-- **理由**：MortyYJT 选了推荐项，没有另写理由。推荐时给的理由：v2 由 Claude 自动推送、开 PR，需要真的拦住远端危险操作；`make verify` 要起数据库、跑截图，挂在每个回合结束时跑太慢。
-- **影响**：完成前的检查仍靠手动跑 `make verify` 和 CI。
+- **决定**：删掉 `AGENTS.md`、`CONTRIBUTING.md`、`docs/engineering/agent-guidelines.md`、Codex 技能和 PR 模板，只留 `CLAUDE.md`。开发、合并 PR 和部署都由 Claude 做；只有大改动先写 OpenSpec；逻辑改动 TDD；合并前跑 `make verify`，再由新上下文子代理审查。guard hook 只拦两项：写密钥文件、推送到 main；不再拦强推、`reset --hard`、`rm -rf`。仍不装 `verify.sh`，因为 `make verify` 要起数据库、跑截图，挂在每个回合结束时跑太慢。
+- **理由**：MortyYJT 要求照搬另一个个人项目定下的精简规则；那边给的理由是流程对个人项目过重，拖慢开发进度。
+- **影响**：完成前的检查靠手动跑 `make verify` 和 CI。
 
 ## 2026-10-10 重新规划的成功标准：对标指南者铺广度
 
@@ -24,7 +24,7 @@
 
 - **决定**：新增「机器核对」一档。agent 抓取官方页面并存快照，抓到的值必须能在快照原文里逐字找到才算机器核对。`verified_at` 仍然只由人来写。界面和分档结论如实标明依据属于哪一档。
 - **理由**：MortyYJT 选了推荐项。推荐理由：只认人工核验，库的规模就被你每周能核的条数卡死，铺不开。
-- **影响**：动到红线「Never mark unverified data as verified」的口径。机器核对 ≠ 已核验，`AGENTS.md` 的红线要在规格里同步改写措辞。
+- **影响**：动到红线「Never mark unverified data as verified」的口径。机器核对 ≠ 已核验，`CLAUDE.md` 的红线要在规格里同步改写措辞。
 
 ## 2026-10-10 数据进库：CRICOS 骨架 + 官方页采集（A+C）
 
