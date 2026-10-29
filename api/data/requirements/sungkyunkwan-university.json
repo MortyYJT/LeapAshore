@@ -1,0 +1,168 @@
+{
+ "school_key": "sungkyunkwan-university",
+ "school_name_en": "Sungkyunkwan University (SKKU)",
+ "country": "South Korea",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://www.skku.edu/eng/edu/graduateSchool/graduate_school03.do",
+  "https://gsb.skku.edu/Admissions/Find_Program"
+ ],
+ "blocked": [
+  {
+   "url": "https://admission-global.skku.edu/eng/index.html",
+   "reason": "robots.txt disallows (robots.txt itself: no answer)"
+  },
+  {
+   "url": "https://liberalarts.skku.edu/eng_liberal/admnissions/graduate.do",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://coe.skku.edu/eng_coe/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://sw.skku.edu/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://gsg.skku.edu/eng_gsg/",
+   "reason": "robots.txt disallows (robots.txt itself: no answer)"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [],
+ "notes": "The central graduate admission site (admission-global.skku.edu) and almost all department/college sub-sites (engineering, software, economics, interaction science, data science, liberal arts, etc.) answer the snapshot tool's robots.txt request with no response, which the tool treats as a block, so their English-track eligibility, TOEFL/IELTS and TOPIK requirements could not be collected. Only the SKK Graduate School of Business site (gsb.skku.edu) was fetchable; its programmes are collected below. SKK GSB timelines list deadlines without a year (e.g. Full-Time MBA Round 1 'Nov 6' and Round 2 'Feb 26' for the 2027 incoming class; Professional MBA Round 1 'Sep 1-Oct 16', Round 2 'Oct 17-Nov 13'; AI MBA same windows; Executive MBA 'Oct 12', 'Nov 27', 'April 9'), so no deadline is recorded. MMS page states 'Application Deadline June 26, 2026', already past on the collection date, so it is not recorded as a field. SKK GSB Full-Time MBA, MMS and the others accept an English test score from TOEFL, TOEIC, TEPS, IELTS, TOEIC Speaking, OPIc, Duolingo or PTE, but the pages give no minimum score except MMS. The Graduate School of Governance 'Spring 2027 Graduate School of Governance Admissions Guide' notice (https://www.skku.edu/eng/CampusLife/skku/Notice1.do?mode=view&articleNo=140089) gives 'Application Period: November 24, 2026 (Tue), 10:00 - December 2, 2026 (Wed), 17:00' for the second round, but does not state the degree level or the English requirement; the guideline itself is a PDF-only document and was not collected. SKKU also publishes general graduate application guides as PDFs (not readable by the tool). Coordinator: the Executive MBA was removed, as executive programmes are elsewhere.",
+ "programs": [
+  {
+   "name": "Full-Time MBA (SKK GSB)",
+   "url": "https://gsb.skku.edu/Full-time_MBA/Admissions",
+   "snapshot_sha256": "3a463cc7443302805e249d5e57b69b93e45c941c999496507967b7eab82dd76e",
+   "fields": {
+    "academic": {
+     "text": "Undergraduate degree or equivalent",
+     "quote": "Undergraduate degree or equivalent",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Good English proficiency and global mindset",
+      "quote": "Good English proficiency and global mindset",
+      "check": "ok"
+     },
+     {
+      "text": "English proficiency test score required; accepted tests: TOEFL, TOEIC, TEPS, IELTS, TOEIC Speaking, OPIc, Duolingo, PTE; native English speakers or graduates of English-taught programs are exempt (no minimum score stated)",
+      "quote": "Accepted tests: TOEFL, TOEIC, TEPS, IELTS, TOEIC Speaking, OPIc, Duolingo, PTE, etc.",
+      "check": "ok"
+     },
+     {
+      "text": "Exemption from the English test: native English speakers or graduates of English-taught programs",
+      "quote": "Exemption: Native English speakers or graduates of English-taught programs",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Professional MBA (SKK GSB)",
+   "url": "https://gsb.skku.edu/Professional_MBA/admissions",
+   "snapshot_sha256": "ee4606e1c0a7d7cef8665ee02aa3c0bc74398f086196fc03df9eebf5f0986e89",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or equivalent from an accredited institution",
+     "quote": "Bachelor's degree or equivalent from an accredited institution",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Minimum of two years of full-time professional work experience",
+      "quote": "Minimum of two years of full-time professional work experience",
+      "check": "ok"
+     },
+     {
+      "text": "Student visas are not issued for part-time programmes; international applicants need another valid visa",
+      "quote": "Student visas are not issued for part-time programs.",
+      "check": "ok"
+     },
+     {
+      "text": "English proficiency test score; accepted tests listed, no minimum score stated",
+      "quote": "Accepted tests: TOEFL, TOEIC, TEPS, IELTS, TOEIC Speaking, OPIc, Duolingo, PTE, etc.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "AI MBA (SKK GSB)",
+   "url": "https://gsb.skku.edu/AI_MBA/Admission",
+   "snapshot_sha256": "9eefe807f12f9e1d60e44d62f1502c9973079c7e9f6d3d34bbb99ee1fe15275e",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or equivalent from an accredited institution",
+     "quote": "Bachelor’s degree or equivalent from an accredited institution",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Minimum of two years of full-time professional work experience",
+      "quote": "Minimum of two years of full-time professional work experience",
+      "check": "ok"
+     },
+     {
+      "text": "Student visas are not available for part-time programmes; an alternative visa is required",
+      "quote": "Student visas are not available for part-time programs like this one.",
+      "check": "ok"
+     },
+     {
+      "text": "English proficiency test score; accepted tests listed, no minimum score stated",
+      "quote": "Accepted tests include: TOEFL, TOEIC, TEPS, IELTS, TOEIC Speaking, OPIc, Duolingo, PTE, etc.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Management Studies (MMS, SKK GSB / EDHEC / UC Berkeley Haas)",
+   "url": "https://gsb.skku.edu/Management_Studies/Admission",
+   "snapshot_sha256": "49dadc70bdd98332cf6ba874a6d90d818a9adfa8d2355b6f3795489ea838eb4b",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or higher)",
+     "quote": "Bachelor’s degree (or higher)",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "TOEFL Internet based ≥ 92 or TOEIC ≥ 850 or IELTS ≥ 6.5",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 92,
+     "quote": "TOEFL Internet based ≥ 92 or TOEIC ≥ 850 or IELTS ≥ 6.5",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English test waiver for native English speakers or holders of a degree from an English-medium institution (minimum 3 years)",
+      "quote": "Native English speakers or those holding a degree from English medium institutions (minimum 3 years) are eligible for an English test waiver.",
+      "check": "ok"
+     },
+     {
+      "text": "GMAT, GRE or CAT required for Indian students only",
+      "quote": "GMAT, GRE or CAT (for Indian students only)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 4,
+  "机器核对": 4,
+  "待人工": 0
+ }
+}
