@@ -49,9 +49,15 @@ def run(session: Session, apply: bool, now: datetime | None = None) -> dict:
         return report
     files = 0
     for client_id in subjects:
-        # Re-checked under a lock: a login may have claimed it since the list was read.
+        # Re-checked under a lock: a login may have claimed it, or a request touched it, since the list
+        # was read.
         row = session.scalar(select(Client).where(Client.id == client_id).with_for_update())
-        if row is None or session.scalar(select(exists().where(Account.client_id == client_id))):
+        cutoff = now - timedelta(days=settings.anonymous_retention_days)
+        if (
+            row is None
+            or row.last_seen_at >= cutoff
+            or session.scalar(select(exists().where(Account.client_id == client_id)))
+        ):
             session.rollback()
             continue
         files += delete_subject(session, client_id)["files_removed"]
