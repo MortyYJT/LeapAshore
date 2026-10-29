@@ -1,0 +1,1957 @@
+{
+ "school_key": "harvard-university",
+ "school_name_en": "Harvard University",
+ "country": "United States",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://gsas.harvard.edu/programs",
+  "https://www.gse.harvard.edu/degrees/masters",
+  "https://www.hks.harvard.edu/educational-programs/masters-programs",
+  "https://www.gsd.harvard.edu/compare-degree-programs/",
+  "https://hsph.harvard.edu/program-finder/?pf_degree_type=masters-degrees",
+  "https://www.hbs.edu/mba/admissions",
+  "https://hls.harvard.edu/graduate-program/graduate-program-admissions-and-financial-aid/ll-m-admissions/"
+ ],
+ "blocked": [],
+ "complete": true,
+ "remaining_urls": [],
+ "notes": "Master's programmes are run by each school, so every school's own pages and its own English and deadline pages are cited (GSAS general requirements, GSE, HKS, GSD international page, HSPH requirements, HBS, HLS); no China-specific page exists. Several HSPH, GSE and GSAS pages state a deadline without a year (e.g. HSPH 'December 1') and those deadlines are left out. HSPH programmes with a 45- and a 65-credit variant appear as two entries sharing one URL. Skipped: GSAS AM in Medical Anthropology (admissions paused for fall 2027), Ed.L.D. (applications paused), the Extension School, MS/MBA and other joint or concurrent degrees, HSPH SM-42.5 variants (for doctoral-level research professionals), PhD and doctoral programmes. GSD TOEFL minimums are stated in a flattened table on the international page; GSD, GSE and HBS publish preferred or discouraging scores in addition to minimums.",
+ "programs": [
+  {
+   "name": "Master of Arts (AM) in the History of Science",
+   "url": "https://gsas.harvard.edu/program/history-science",
+   "snapshot_sha256": "9a2bee57ef4633ebc250a64d5a1b6f9146a113a02ec704e2bcfc5d0c23974408",
+   "fields": {
+    "academic": {
+     "text": "A bachelor's-level degree (BA, BS or equivalent; a three- or four-year degree from an institution of recognized standing for international students)",
+     "quote": "have or will have by the time of matriculation a BA, BS, or equivalent undergraduate degree (for prospective international students, a three- or four-year undergraduate degree from an institution of recognized standing)",
+     "source_sha256": "a63c5763c13ae2f50e140710141653485f937bee7df33c52d724a9f83a44616d",
+     "source_url": "https://gsas.harvard.edu/apply/applying-degree-programs",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2026-12-01",
+      "quote": "Master of Arts (AM) Deadline Dec 01, 2026 | 05:00 pm",
+      "check": "ok"
+     }
+    ],
+    "toefl": {
+     "text": "TOEFL iBT minimum 5 on the 1-6 scale (95 for tests taken before 21 January 2026); minimum Speaking 4.5 (23 before that date); some programs require higher scores",
+     "quote": "Earning a minimum score of 5 (95 for tests taken prior to January 21, 2026) on the TOEFL iBT and a minimum Speaking score of 4.5 (23 for tests taken prior to January 21, 2026).*",
+     "overall": 95,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "b88a811969a2f718fb47185555abccc821b2e61885b7c8886c172285d8197542",
+     "source_url": "https://gsas.harvard.edu/apply/applying-degree-programs/english-proficiency",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "IELTS Academic minimum 7, with a minimum Speaking score of 6.5; some programs require higher scores",
+     "quote": "Earning a minimum score of 7 on the IELTS Academic test and a minimum Speaking score of 6.5.*",
+     "overall": 7,
+     "source_sha256": "b88a811969a2f718fb47185555abccc821b2e61885b7c8886c172285d8197542",
+     "source_url": "https://gsas.harvard.edu/apply/applying-degree-programs/english-proficiency",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts (AM) in Middle Eastern Studies",
+   "url": "https://gsas.harvard.edu/program/middle-eastern-studies",
+   "snapshot_sha256": "37ad5ef6ba691c67a3b6136ca630146d87c613d6234a19fbaed55a7d8a240a19",
+   "fields": {
+    "academic": {
+     "text": "A bachelor's-level degree (BA, BS or equivalent; a three- or four-year degree from an institution of recognized standing for international students)",
+     "quote": "have or will have by the time of matriculation a BA, BS, or equivalent undergraduate degree (for prospective international students, a three- or four-year undergraduate degree from an institution of recognized standing)",
+     "source_sha256": "a63c5763c13ae2f50e140710141653485f937bee7df33c52d724a9f83a44616d",
+     "source_url": "https://gsas.harvard.edu/apply/applying-degree-programs",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-01-05",
+      "quote": "Master of Arts (AM) Deadline Jan 05, 2027 | 05:00 pm",
+      "check": "ok"
+     }
+    ],
+    "toefl": {
+     "text": "TOEFL iBT minimum 5 on the 1-6 scale (95 for tests taken before 21 January 2026); minimum Speaking 4.5 (23 before that date); some programs require higher scores",
+     "quote": "Earning a minimum score of 5 (95 for tests taken prior to January 21, 2026) on the TOEFL iBT and a minimum Speaking score of 4.5 (23 for tests taken prior to January 21, 2026).*",
+     "overall": 95,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "b88a811969a2f718fb47185555abccc821b2e61885b7c8886c172285d8197542",
+     "source_url": "https://gsas.harvard.edu/apply/applying-degree-programs/english-proficiency",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "IELTS Academic minimum 7, with a minimum Speaking score of 6.5; some programs require higher scores",
+     "quote": "Earning a minimum score of 7 on the IELTS Academic test and a minimum Speaking score of 6.5.*",
+     "overall": 7,
+     "source_sha256": "b88a811969a2f718fb47185555abccc821b2e61885b7c8886c172285d8197542",
+     "source_url": "https://gsas.harvard.edu/apply/applying-degree-programs/english-proficiency",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Prior language training in a Middle Eastern language is advantageous but is not a prerequisite",
+      "quote": "Prior language training in a Middle Eastern language is advantageous but is not a prerequisite.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts (AM) in Near Eastern Languages and Civilizations",
+   "url": "https://gsas.harvard.edu/program/near-eastern-languages-and-civilizations",
+   "snapshot_sha256": "b751f91021c6c3597406e1c468d03c784ed321558dfdd6cf388e16eeb3a371bd",
+   "fields": {
+    "academic": {
+     "text": "A bachelor's-level degree (BA, BS or equivalent; a three- or four-year degree from an institution of recognized standing for international students)",
+     "quote": "have or will have by the time of matriculation a BA, BS, or equivalent undergraduate degree (for prospective international students, a three- or four-year undergraduate degree from an institution of recognized standing)",
+     "source_sha256": "a63c5763c13ae2f50e140710141653485f937bee7df33c52d724a9f83a44616d",
+     "source_url": "https://gsas.harvard.edu/apply/applying-degree-programs",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2026-12-15",
+      "quote": "Master of Arts (AM) Deadline Dec 15, 2026 | 05:00 pm",
+      "check": "ok"
+     }
+    ],
+    "toefl": {
+     "text": "TOEFL iBT minimum 5 on the 1-6 scale (95 for tests taken before 21 January 2026); minimum Speaking 4.5 (23 before that date); some programs require higher scores",
+     "quote": "Earning a minimum score of 5 (95 for tests taken prior to January 21, 2026) on the TOEFL iBT and a minimum Speaking score of 4.5 (23 for tests taken prior to January 21, 2026).*",
+     "overall": 95,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "b88a811969a2f718fb47185555abccc821b2e61885b7c8886c172285d8197542",
+     "source_url": "https://gsas.harvard.edu/apply/applying-degree-programs/english-proficiency",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "IELTS Academic minimum 7, with a minimum Speaking score of 6.5; some programs require higher scores",
+     "quote": "Earning a minimum score of 7 on the IELTS Academic test and a minimum Speaking score of 6.5.*",
+     "overall": 7,
+     "source_sha256": "b88a811969a2f718fb47185555abccc821b2e61885b7c8886c172285d8197542",
+     "source_url": "https://gsas.harvard.edu/apply/applying-degree-programs/english-proficiency",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "AM applicants normally have basic knowledge of a Near Eastern language central to their field, and advanced reading knowledge of French or German",
+      "quote": "For the Master of Arts (AM) program: Applicants will normally have attained a basic knowledge of a Near Eastern language central to their field of concentration. In addition, advanced reading knowledge of either French or German is required.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts (AM) in Regional Studies - East Asia",
+   "url": "https://gsas.harvard.edu/program/regional-studies-east-asia",
+   "snapshot_sha256": "9d3e5bf4ddc72e05be6bf8949cd7fad82624ab4d040b451218b6007f63284f6f",
+   "fields": {
+    "academic": {
+     "text": "A bachelor's-level degree (BA, BS or equivalent; a three- or four-year degree from an institution of recognized standing for international students)",
+     "quote": "have or will have by the time of matriculation a BA, BS, or equivalent undergraduate degree (for prospective international students, a three- or four-year undergraduate degree from an institution of recognized standing)",
+     "source_sha256": "a63c5763c13ae2f50e140710141653485f937bee7df33c52d724a9f83a44616d",
+     "source_url": "https://gsas.harvard.edu/apply/applying-degree-programs",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2026-12-01",
+      "quote": "Master of Arts (AM) Deadline Dec 01, 2026 | 05:00 pm",
+      "check": "ok"
+     }
+    ],
+    "toefl": {
+     "text": "TOEFL iBT minimum 5.5 on the 1-6 scale (100 for tests taken before 21 January 2026); minimum Speaking 4.5 (23 before that date)",
+     "quote": "TOEFL iBT minimum score: 5.5 (100 for tests taken prior to January 21, 2026) TOEFL iBT minimum Speaking score: 4.5 (23 for tests taken prior to January 21, 2026)",
+     "overall": 100,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "IELTS minimum 7.5, minimum Speaking 6.5",
+     "quote": "IELTS minimum score: 7.5 IELTS minimum Speaking score: 6.5",
+     "overall": 7.5,
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts (AM) in Regional Studies - Russia, Eastern Europe and Central Asia",
+   "url": "https://gsas.harvard.edu/program/regional-studies-russia-eastern-europe-and-central-asia",
+   "snapshot_sha256": "cbdd65e349a8e7fc396f6c37ec0c832abe6813447729baf47401c88b785d5995",
+   "fields": {
+    "academic": {
+     "text": "A bachelor's-level degree (BA, BS or equivalent; a three- or four-year degree from an institution of recognized standing for international students)",
+     "quote": "have or will have by the time of matriculation a BA, BS, or equivalent undergraduate degree (for prospective international students, a three- or four-year undergraduate degree from an institution of recognized standing)",
+     "source_sha256": "a63c5763c13ae2f50e140710141653485f937bee7df33c52d724a9f83a44616d",
+     "source_url": "https://gsas.harvard.edu/apply/applying-degree-programs",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-01-05",
+      "quote": "Master of Arts (AM) Deadline Jan 05, 2027 | 05:00 pm",
+      "check": "ok"
+     }
+    ],
+    "toefl": {
+     "text": "TOEFL iBT minimum 5 on the 1-6 scale (95 for tests taken before 21 January 2026); minimum Speaking 4.5 (23 before that date); some programs require higher scores",
+     "quote": "Earning a minimum score of 5 (95 for tests taken prior to January 21, 2026) on the TOEFL iBT and a minimum Speaking score of 4.5 (23 for tests taken prior to January 21, 2026).*",
+     "overall": 95,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "b88a811969a2f718fb47185555abccc821b2e61885b7c8886c172285d8197542",
+     "source_url": "https://gsas.harvard.edu/apply/applying-degree-programs/english-proficiency",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "IELTS Academic minimum 7, with a minimum Speaking score of 6.5; some programs require higher scores",
+     "quote": "Earning a minimum score of 7 on the IELTS Academic test and a minimum Speaking score of 6.5.*",
+     "overall": 7,
+     "source_sha256": "b88a811969a2f718fb47185555abccc821b2e61885b7c8886c172285d8197542",
+     "source_url": "https://gsas.harvard.edu/apply/applying-degree-programs/english-proficiency",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts (AM) in South Asian Studies",
+   "url": "https://gsas.harvard.edu/program/south-asian-studies",
+   "snapshot_sha256": "f3ed52acd172a6f3896d33a39d2c59f2d50e28b73e6222342f5a1977f31d0577",
+   "fields": {
+    "academic": {
+     "text": "A bachelor's-level degree (BA, BS or equivalent; a three- or four-year degree from an institution of recognized standing for international students)",
+     "quote": "have or will have by the time of matriculation a BA, BS, or equivalent undergraduate degree (for prospective international students, a three- or four-year undergraduate degree from an institution of recognized standing)",
+     "source_sha256": "a63c5763c13ae2f50e140710141653485f937bee7df33c52d724a9f83a44616d",
+     "source_url": "https://gsas.harvard.edu/apply/applying-degree-programs",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2026-12-15",
+      "quote": "Master of Arts (AM) Deadline Dec 15, 2026 | 05:00 pm",
+      "check": "ok"
+     }
+    ],
+    "toefl": {
+     "text": "TOEFL iBT minimum 5 on the 1-6 scale (95 for tests taken before 21 January 2026); minimum Speaking 4.5 (23 before that date); some programs require higher scores",
+     "quote": "Earning a minimum score of 5 (95 for tests taken prior to January 21, 2026) on the TOEFL iBT and a minimum Speaking score of 4.5 (23 for tests taken prior to January 21, 2026).*",
+     "overall": 95,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "b88a811969a2f718fb47185555abccc821b2e61885b7c8886c172285d8197542",
+     "source_url": "https://gsas.harvard.edu/apply/applying-degree-programs/english-proficiency",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "IELTS Academic minimum 7, with a minimum Speaking score of 6.5; some programs require higher scores",
+     "quote": "Earning a minimum score of 7 on the IELTS Academic test and a minimum Speaking score of 6.5.*",
+     "overall": 7,
+     "source_sha256": "b88a811969a2f718fb47185555abccc821b2e61885b7c8886c172285d8197542",
+     "source_url": "https://gsas.harvard.edu/apply/applying-degree-programs/english-proficiency",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "SM / ME in Computational Science and Engineering (SEAS)",
+   "url": "https://gsas.harvard.edu/program/computational-science-and-engineering",
+   "snapshot_sha256": "e40b8d2fd39bc3a579dd1ce20ecd083e0cc547c23d007e6600e572521363106c",
+   "fields": {
+    "academic": {
+     "text": "A bachelor's-level degree (BA, BS or equivalent; a three- or four-year degree from an institution of recognized standing for international students)",
+     "quote": "have or will have by the time of matriculation a BA, BS, or equivalent undergraduate degree (for prospective international students, a three- or four-year undergraduate degree from an institution of recognized standing)",
+     "source_sha256": "a63c5763c13ae2f50e140710141653485f937bee7df33c52d724a9f83a44616d",
+     "source_url": "https://gsas.harvard.edu/apply/applying-degree-programs",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2026-12-01",
+      "quote": "Master of Science (SM) Deadline Dec 01, 2026 | 05:00 pm",
+      "check": "ok"
+     }
+    ],
+    "toefl": {
+     "text": "TOEFL iBT minimum 5 on the 1-6 scale (95 for tests taken before 21 January 2026); minimum Speaking 4.5 (23 before that date); some programs require higher scores",
+     "quote": "Earning a minimum score of 5 (95 for tests taken prior to January 21, 2026) on the TOEFL iBT and a minimum Speaking score of 4.5 (23 for tests taken prior to January 21, 2026).*",
+     "overall": 95,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "b88a811969a2f718fb47185555abccc821b2e61885b7c8886c172285d8197542",
+     "source_url": "https://gsas.harvard.edu/apply/applying-degree-programs/english-proficiency",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "IELTS Academic minimum 7, with a minimum Speaking score of 6.5; some programs require higher scores",
+     "quote": "Earning a minimum score of 7 on the IELTS Academic test and a minimum Speaking score of 6.5.*",
+     "overall": 7,
+     "source_sha256": "b88a811969a2f718fb47185555abccc821b2e61885b7c8886c172285d8197542",
+     "source_url": "https://gsas.harvard.edu/apply/applying-degree-programs/english-proficiency",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "SM in Data Science (SEAS)",
+   "url": "https://gsas.harvard.edu/program/data-science",
+   "snapshot_sha256": "2cfabb4ccb60687a9eab7f9fd76feee7e786371aca9596d6ecef885be365d835",
+   "fields": {
+    "academic": {
+     "text": "A bachelor's-level degree (BA, BS or equivalent; a three- or four-year degree from an institution of recognized standing for international students)",
+     "quote": "have or will have by the time of matriculation a BA, BS, or equivalent undergraduate degree (for prospective international students, a three- or four-year undergraduate degree from an institution of recognized standing)",
+     "source_sha256": "a63c5763c13ae2f50e140710141653485f937bee7df33c52d724a9f83a44616d",
+     "source_url": "https://gsas.harvard.edu/apply/applying-degree-programs",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2026-12-01",
+      "quote": "Master of Science (SM) Deadline Dec 01, 2026 | 05:00 pm",
+      "check": "ok"
+     }
+    ],
+    "toefl": {
+     "text": "TOEFL iBT minimum 5 on the 1-6 scale (95 for tests taken before 21 January 2026); minimum Speaking 4.5 (23 before that date); some programs require higher scores",
+     "quote": "Earning a minimum score of 5 (95 for tests taken prior to January 21, 2026) on the TOEFL iBT and a minimum Speaking score of 4.5 (23 for tests taken prior to January 21, 2026).*",
+     "overall": 95,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "b88a811969a2f718fb47185555abccc821b2e61885b7c8886c172285d8197542",
+     "source_url": "https://gsas.harvard.edu/apply/applying-degree-programs/english-proficiency",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "IELTS Academic minimum 7, with a minimum Speaking score of 6.5; some programs require higher scores",
+     "quote": "Earning a minimum score of 7 on the IELTS Academic test and a minimum Speaking score of 6.5.*",
+     "overall": 7,
+     "source_sha256": "b88a811969a2f718fb47185555abccc821b2e61885b7c8886c172285d8197542",
+     "source_url": "https://gsas.harvard.edu/apply/applying-degree-programs/english-proficiency",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "SM / ME in Engineering and Applied Sciences (SEAS)",
+   "url": "https://gsas.harvard.edu/program/engineering-and-applied-sciences",
+   "snapshot_sha256": "8cd8f3bce69cb4f72c58e0cf4fb6ebf6594a2783a51edf9b01a1d3051b261573",
+   "fields": {
+    "academic": {
+     "text": "A bachelor's-level degree (BA, BS or equivalent; a three- or four-year degree from an institution of recognized standing for international students)",
+     "quote": "have or will have by the time of matriculation a BA, BS, or equivalent undergraduate degree (for prospective international students, a three- or four-year undergraduate degree from an institution of recognized standing)",
+     "source_sha256": "a63c5763c13ae2f50e140710141653485f937bee7df33c52d724a9f83a44616d",
+     "source_url": "https://gsas.harvard.edu/apply/applying-degree-programs",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2026-12-01",
+      "quote": "Master of Science (SM) Deadline Dec 01, 2026 | 05:00 pm",
+      "check": "ok"
+     }
+    ],
+    "toefl": {
+     "text": "TOEFL iBT minimum 5 on the 1-6 scale (95 for tests taken before 21 January 2026); minimum Speaking 4.5 (23 before that date); some programs require higher scores",
+     "quote": "Earning a minimum score of 5 (95 for tests taken prior to January 21, 2026) on the TOEFL iBT and a minimum Speaking score of 4.5 (23 for tests taken prior to January 21, 2026).*",
+     "overall": 95,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "b88a811969a2f718fb47185555abccc821b2e61885b7c8886c172285d8197542",
+     "source_url": "https://gsas.harvard.edu/apply/applying-degree-programs/english-proficiency",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "IELTS Academic minimum 7, with a minimum Speaking score of 6.5; some programs require higher scores",
+     "quote": "Earning a minimum score of 7 on the IELTS Academic test and a minimum Speaking score of 6.5.*",
+     "overall": 7,
+     "source_sha256": "b88a811969a2f718fb47185555abccc821b2e61885b7c8886c172285d8197542",
+     "source_url": "https://gsas.harvard.edu/apply/applying-degree-programs/english-proficiency",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Applicants typically have bachelor's degrees in the natural sciences, mathematics, computer science, or engineering",
+      "quote": "Applicants typically have bachelor’s degrees in the natural sciences, mathematics, computer science, or engineering.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Education (Ed.M.) in Human Development and Education",
+   "url": "https://www.gse.harvard.edu/degrees/masters/program/hde",
+   "snapshot_sha256": "0d64a9b4cbe6abf9e15c7ac66660c5f56531f7b5a67cf68dd7c29c77ce0221b6",
+   "fields": {
+    "toefl": {
+     "text": "HGSE prefers a TOEFL iBT of at least 5.0 overall and per section for tests taken after 21 January 2026 (104 overall and 26 per section before that date)",
+     "quote": "For TOEFL: Tests taken before January 21, 2026 – HGSE prefers applicants who have a minimum score of 104 or higher on the iBT, with individual section scores (e.g., reading, writing, listening, and speaking) of at least 26. For TOEFL: Tests taken after January 21, 2026 – HGSE prefers applicants who have a minimum score of 5.0 or higher on the iBT, with individual section scores (e.g., reading, writing, listening, and speaking) of at least 5.0.",
+     "overall": 104,
+     "min_band": 26,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "c360c0045e642471401d48a5f68510e3c9adfc001a79a7afbb4ce3873dbda8ca",
+     "source_url": "https://www.gse.harvard.edu/admissions-and-aid/international-applicants",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "HGSE prefers IELTS Academic 7.5 or higher overall and in each section",
+     "quote": "For IELTS: HGSE prefers applicants with scores of 7.5 or higher on the IELTS for Academic Purpose exam, with individual scores (e.g. reading, writing, listening, and speaking) of at least 7.5.",
+     "overall": 7.5,
+     "min_band": 7.5,
+     "source_sha256": "c360c0045e642471401d48a5f68510e3c9adfc001a79a7afbb4ce3873dbda8ca",
+     "source_url": "https://www.gse.harvard.edu/admissions-and-aid/international-applicants",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Ed.M. 2027-2028",
+      "date": "2027-01-05",
+      "quote": "Ed.M. (including TTL Teaching and Leading Strand & Internship Fieldwork Model) | January 5, 2027",
+      "source_sha256": "fade5a442a1cb66357bb9e52949a9953b556c953732c69cda416550c2e84cc62",
+      "source_url": "https://www.gse.harvard.edu/admissions-and-aid/apply",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Education (Ed.M.) in Education Policy and Analysis",
+   "url": "https://www.gse.harvard.edu/degrees/masters/program/epa",
+   "snapshot_sha256": "c913c6f3ef4959b14db0c0948d5e3b1c370bed4109c1e9718bfbf89c471f8ef4",
+   "fields": {
+    "toefl": {
+     "text": "HGSE prefers a TOEFL iBT of at least 5.0 overall and per section for tests taken after 21 January 2026 (104 overall and 26 per section before that date)",
+     "quote": "For TOEFL: Tests taken before January 21, 2026 – HGSE prefers applicants who have a minimum score of 104 or higher on the iBT, with individual section scores (e.g., reading, writing, listening, and speaking) of at least 26. For TOEFL: Tests taken after January 21, 2026 – HGSE prefers applicants who have a minimum score of 5.0 or higher on the iBT, with individual section scores (e.g., reading, writing, listening, and speaking) of at least 5.0.",
+     "overall": 104,
+     "min_band": 26,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "c360c0045e642471401d48a5f68510e3c9adfc001a79a7afbb4ce3873dbda8ca",
+     "source_url": "https://www.gse.harvard.edu/admissions-and-aid/international-applicants",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "HGSE prefers IELTS Academic 7.5 or higher overall and in each section",
+     "quote": "For IELTS: HGSE prefers applicants with scores of 7.5 or higher on the IELTS for Academic Purpose exam, with individual scores (e.g. reading, writing, listening, and speaking) of at least 7.5.",
+     "overall": 7.5,
+     "min_band": 7.5,
+     "source_sha256": "c360c0045e642471401d48a5f68510e3c9adfc001a79a7afbb4ce3873dbda8ca",
+     "source_url": "https://www.gse.harvard.edu/admissions-and-aid/international-applicants",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Ed.M. 2027-2028",
+      "date": "2027-01-05",
+      "quote": "Ed.M. (including TTL Teaching and Leading Strand & Internship Fieldwork Model) | January 5, 2027",
+      "source_sha256": "fade5a442a1cb66357bb9e52949a9953b556c953732c69cda416550c2e84cc62",
+      "source_url": "https://www.gse.harvard.edu/admissions-and-aid/apply",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Education (Ed.M.) in Learning Design, Innovation, and Technology",
+   "url": "https://www.gse.harvard.edu/degrees/masters/program/ldit",
+   "snapshot_sha256": "dfad57df8954d256ad73b1f4557492e7acfea7983afe0ff0f20ababd27821ba1",
+   "fields": {
+    "toefl": {
+     "text": "HGSE prefers a TOEFL iBT of at least 5.0 overall and per section for tests taken after 21 January 2026 (104 overall and 26 per section before that date)",
+     "quote": "For TOEFL: Tests taken before January 21, 2026 – HGSE prefers applicants who have a minimum score of 104 or higher on the iBT, with individual section scores (e.g., reading, writing, listening, and speaking) of at least 26. For TOEFL: Tests taken after January 21, 2026 – HGSE prefers applicants who have a minimum score of 5.0 or higher on the iBT, with individual section scores (e.g., reading, writing, listening, and speaking) of at least 5.0.",
+     "overall": 104,
+     "min_band": 26,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "c360c0045e642471401d48a5f68510e3c9adfc001a79a7afbb4ce3873dbda8ca",
+     "source_url": "https://www.gse.harvard.edu/admissions-and-aid/international-applicants",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "HGSE prefers IELTS Academic 7.5 or higher overall and in each section",
+     "quote": "For IELTS: HGSE prefers applicants with scores of 7.5 or higher on the IELTS for Academic Purpose exam, with individual scores (e.g. reading, writing, listening, and speaking) of at least 7.5.",
+     "overall": 7.5,
+     "min_band": 7.5,
+     "source_sha256": "c360c0045e642471401d48a5f68510e3c9adfc001a79a7afbb4ce3873dbda8ca",
+     "source_url": "https://www.gse.harvard.edu/admissions-and-aid/international-applicants",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Ed.M. 2027-2028",
+      "date": "2027-01-05",
+      "quote": "Ed.M. (including TTL Teaching and Leading Strand & Internship Fieldwork Model) | January 5, 2027",
+      "source_sha256": "fade5a442a1cb66357bb9e52949a9953b556c953732c69cda416550c2e84cc62",
+      "source_url": "https://www.gse.harvard.edu/admissions-and-aid/apply",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Education (Ed.M.) in Education Leadership, Organizations, and Entrepreneurship",
+   "url": "https://www.gse.harvard.edu/degrees/masters/program/eloe",
+   "snapshot_sha256": "e8a0a5d1b627e2744342eafbbfbd665ab53e2a61cea4699f806c62ee7e9b848e",
+   "fields": {
+    "toefl": {
+     "text": "HGSE prefers a TOEFL iBT of at least 5.0 overall and per section for tests taken after 21 January 2026 (104 overall and 26 per section before that date)",
+     "quote": "For TOEFL: Tests taken before January 21, 2026 – HGSE prefers applicants who have a minimum score of 104 or higher on the iBT, with individual section scores (e.g., reading, writing, listening, and speaking) of at least 26. For TOEFL: Tests taken after January 21, 2026 – HGSE prefers applicants who have a minimum score of 5.0 or higher on the iBT, with individual section scores (e.g., reading, writing, listening, and speaking) of at least 5.0.",
+     "overall": 104,
+     "min_band": 26,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "c360c0045e642471401d48a5f68510e3c9adfc001a79a7afbb4ce3873dbda8ca",
+     "source_url": "https://www.gse.harvard.edu/admissions-and-aid/international-applicants",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "HGSE prefers IELTS Academic 7.5 or higher overall and in each section",
+     "quote": "For IELTS: HGSE prefers applicants with scores of 7.5 or higher on the IELTS for Academic Purpose exam, with individual scores (e.g. reading, writing, listening, and speaking) of at least 7.5.",
+     "overall": 7.5,
+     "min_band": 7.5,
+     "source_sha256": "c360c0045e642471401d48a5f68510e3c9adfc001a79a7afbb4ce3873dbda8ca",
+     "source_url": "https://www.gse.harvard.edu/admissions-and-aid/international-applicants",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Ed.M. 2027-2028",
+      "date": "2027-01-05",
+      "quote": "Ed.M. (including TTL Teaching and Leading Strand & Internship Fieldwork Model) | January 5, 2027",
+      "source_sha256": "fade5a442a1cb66357bb9e52949a9953b556c953732c69cda416550c2e84cc62",
+      "source_url": "https://www.gse.harvard.edu/admissions-and-aid/apply",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Education (Ed.M.) in Teaching and Teacher Leadership",
+   "url": "https://www.gse.harvard.edu/degrees/masters/program/ttl",
+   "snapshot_sha256": "ec6e4268e09e92d53dbec82345aa67751fb61d271dae08d4ad01310c000d9802",
+   "fields": {
+    "toefl": {
+     "text": "HGSE prefers a TOEFL iBT of at least 5.0 overall and per section for tests taken after 21 January 2026 (104 overall and 26 per section before that date)",
+     "quote": "For TOEFL: Tests taken before January 21, 2026 – HGSE prefers applicants who have a minimum score of 104 or higher on the iBT, with individual section scores (e.g., reading, writing, listening, and speaking) of at least 26. For TOEFL: Tests taken after January 21, 2026 – HGSE prefers applicants who have a minimum score of 5.0 or higher on the iBT, with individual section scores (e.g., reading, writing, listening, and speaking) of at least 5.0.",
+     "overall": 104,
+     "min_band": 26,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "c360c0045e642471401d48a5f68510e3c9adfc001a79a7afbb4ce3873dbda8ca",
+     "source_url": "https://www.gse.harvard.edu/admissions-and-aid/international-applicants",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "HGSE prefers IELTS Academic 7.5 or higher overall and in each section",
+     "quote": "For IELTS: HGSE prefers applicants with scores of 7.5 or higher on the IELTS for Academic Purpose exam, with individual scores (e.g. reading, writing, listening, and speaking) of at least 7.5.",
+     "overall": 7.5,
+     "min_band": 7.5,
+     "source_sha256": "c360c0045e642471401d48a5f68510e3c9adfc001a79a7afbb4ce3873dbda8ca",
+     "source_url": "https://www.gse.harvard.edu/admissions-and-aid/international-applicants",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Ed.M. 2027-2028",
+      "date": "2027-01-05",
+      "quote": "Ed.M. (including TTL Teaching and Leading Strand & Internship Fieldwork Model) | January 5, 2027",
+      "source_sha256": "fade5a442a1cb66357bb9e52949a9953b556c953732c69cda416550c2e84cc62",
+      "source_url": "https://www.gse.harvard.edu/admissions-and-aid/apply",
+      "check": "ok"
+     },
+     {
+      "label": "TTL Teaching Licensure Strand 2027-2028",
+      "date": "2026-11-01",
+      "quote": "TTL Teaching Licensure Strand (All Residency Fieldwork Applicants and Priority Internship Fieldwork Model Applicants) | November 1, 2026",
+      "source_sha256": "fade5a442a1cb66357bb9e52949a9953b556c953732c69cda416550c2e84cc62",
+      "source_url": "https://www.gse.harvard.edu/admissions-and-aid/apply",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Online Master of Education (Ed.M.) in Education Leadership",
+   "url": "https://www.gse.harvard.edu/degrees/masters/online",
+   "snapshot_sha256": "e6448f7c8ac8e3acf3af97d09cf86ce79de03e31714225a39c74a56e9815293f",
+   "fields": {
+    "toefl": {
+     "text": "HGSE prefers a TOEFL iBT of at least 5.0 overall and per section for tests taken after 21 January 2026 (104 overall and 26 per section before that date)",
+     "quote": "For TOEFL: Tests taken before January 21, 2026 – HGSE prefers applicants who have a minimum score of 104 or higher on the iBT, with individual section scores (e.g., reading, writing, listening, and speaking) of at least 26. For TOEFL: Tests taken after January 21, 2026 – HGSE prefers applicants who have a minimum score of 5.0 or higher on the iBT, with individual section scores (e.g., reading, writing, listening, and speaking) of at least 5.0.",
+     "overall": 104,
+     "min_band": 26,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "c360c0045e642471401d48a5f68510e3c9adfc001a79a7afbb4ce3873dbda8ca",
+     "source_url": "https://www.gse.harvard.edu/admissions-and-aid/international-applicants",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "HGSE prefers IELTS Academic 7.5 or higher overall and in each section",
+     "quote": "For IELTS: HGSE prefers applicants with scores of 7.5 or higher on the IELTS for Academic Purpose exam, with individual scores (e.g. reading, writing, listening, and speaking) of at least 7.5.",
+     "overall": 7.5,
+     "min_band": 7.5,
+     "source_sha256": "c360c0045e642471401d48a5f68510e3c9adfc001a79a7afbb4ce3873dbda8ca",
+     "source_url": "https://www.gse.harvard.edu/admissions-and-aid/international-applicants",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Ed.M. 2027-2028",
+      "date": "2027-01-05",
+      "quote": "Ed.M. (including TTL Teaching and Leading Strand & Internship Fieldwork Model) | January 5, 2027",
+      "source_sha256": "fade5a442a1cb66357bb9e52949a9953b556c953732c69cda416550c2e84cc62",
+      "source_url": "https://www.gse.harvard.edu/admissions-and-aid/apply",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Public Policy (MPP)",
+   "url": "https://www.hks.harvard.edu/educational-programs/masters-programs/master-public-policy",
+   "snapshot_sha256": "f8f723891cecd3b09e864882cd3fe0a962209e53620a41590cb9493547ebe0ba",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree with a strong academic record; evidence of quantitative proficiency",
+     "quote": "Master in Public Policy Bachelor’s degree with a strong academic record Evidence of quantitative proficiency, regardless of your undergraduate major. This includes success in undergraduate-level economics, statistics, or calculus courses.",
+     "source_sha256": "8062eec1accea08df48838da61bb58440b330022f53b0a1f0c821307c5ae920b",
+     "source_url": "https://www.hks.harvard.edu/admissions-aid/masters-program-admissions/how-apply",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT 5 on the 1-6 scale for tests from January 2026; 100 for earlier tests (sub-sections: 25 for the most competitive applicants)",
+     "quote": "5 on the internet-based TOEFL (iBT) either in-person or on the Home Edition. The most competitive applicants will also have a minimum of 5 on each sub-section. As of January 2026, the TOEFL iBT score reports feature a new 1–6 scale. If you took the TOEFL prior to January 2026, you must have a 100 on the internet-based TOEFL (iBT) either in-person or on the Home Edition. The most competitive applicants will also have a minimum of 25 on each sub-section.",
+     "overall": 100,
+     "min_band": 25,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "8062eec1accea08df48838da61bb58440b330022f53b0a1f0c821307c5ae920b",
+     "source_url": "https://www.hks.harvard.edu/admissions-aid/masters-program-admissions/how-apply",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "IELTS academic overall band 7; the most competitive applicants also have 7 in each section",
+     "quote": "7 overall band score on the IELTS. The most competitive applicants will also have a minimum of 7 on each section.",
+     "overall": 7,
+     "min_band": 7,
+     "source_sha256": "8062eec1accea08df48838da61bb58440b330022f53b0a1f0c821307c5ae920b",
+     "source_url": "https://www.hks.harvard.edu/admissions-aid/masters-program-admissions/how-apply",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "2027-2028 admission",
+      "date": "2026-12-01",
+      "quote": "Application Deadline December 1, 2026 at 12 p.m. (noon) ET",
+      "source_sha256": "8062eec1accea08df48838da61bb58440b330022f53b0a1f0c821307c5ae920b",
+      "source_url": "https://www.hks.harvard.edu/admissions-aid/masters-program-admissions/how-apply",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Public Administration in International Development (MPA/ID)",
+   "url": "https://www.hks.harvard.edu/educational-programs/masters-programs/master-public-administration-international-development",
+   "snapshot_sha256": "7921cec9abe1ad8806cfaa4a649a06459632eff8c42ca8877350b0e586044cfd",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree with a strong academic record, including strong grades in economics and mathematics courses",
+     "quote": "Master in Public Administration in International Development Bachelor’s degree with a strong academic record. This includes strong grades in economics and mathematics courses.",
+     "source_sha256": "8062eec1accea08df48838da61bb58440b330022f53b0a1f0c821307c5ae920b",
+     "source_url": "https://www.hks.harvard.edu/admissions-aid/masters-program-admissions/how-apply",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT 5 on the 1-6 scale for tests from January 2026; 100 for earlier tests (sub-sections: 25 for the most competitive applicants)",
+     "quote": "5 on the internet-based TOEFL (iBT) either in-person or on the Home Edition. The most competitive applicants will also have a minimum of 5 on each sub-section. As of January 2026, the TOEFL iBT score reports feature a new 1–6 scale. If you took the TOEFL prior to January 2026, you must have a 100 on the internet-based TOEFL (iBT) either in-person or on the Home Edition. The most competitive applicants will also have a minimum of 25 on each sub-section.",
+     "overall": 100,
+     "min_band": 25,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "8062eec1accea08df48838da61bb58440b330022f53b0a1f0c821307c5ae920b",
+     "source_url": "https://www.hks.harvard.edu/admissions-aid/masters-program-admissions/how-apply",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "IELTS academic overall band 7; the most competitive applicants also have 7 in each section",
+     "quote": "7 overall band score on the IELTS. The most competitive applicants will also have a minimum of 7 on each section.",
+     "overall": 7,
+     "min_band": 7,
+     "source_sha256": "8062eec1accea08df48838da61bb58440b330022f53b0a1f0c821307c5ae920b",
+     "source_url": "https://www.hks.harvard.edu/admissions-aid/masters-program-admissions/how-apply",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "At least one university-level course each in microeconomics, macroeconomics and calculus through multivariable calculus",
+      "quote": "At least one university-level course in each of the following*: Microeconomics Macroeconomics Calculus through multivariable calculus (usually part of a three-course college sequence)",
+      "source_sha256": "8062eec1accea08df48838da61bb58440b330022f53b0a1f0c821307c5ae920b",
+      "source_url": "https://www.hks.harvard.edu/admissions-aid/masters-program-admissions/how-apply",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "2027-2028 admission",
+      "date": "2026-12-01",
+      "quote": "Application Deadline December 1, 2026 at 12 p.m. (noon) ET",
+      "source_sha256": "8062eec1accea08df48838da61bb58440b330022f53b0a1f0c821307c5ae920b",
+      "source_url": "https://www.hks.harvard.edu/admissions-aid/masters-program-admissions/how-apply",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Public Administration (MPA)",
+   "url": "https://www.hks.harvard.edu/educational-programs/masters-programs/master-public-administration",
+   "snapshot_sha256": "b7ae21c2f2e9d49804fb926b89e6295a6756759bf0b4a28489e83b9e5926f56c",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree with a strong academic record",
+     "quote": "Master in Public Administration A bachelor’s degree with a strong academic record",
+     "source_sha256": "8062eec1accea08df48838da61bb58440b330022f53b0a1f0c821307c5ae920b",
+     "source_url": "https://www.hks.harvard.edu/admissions-aid/masters-program-admissions/how-apply",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT 5 on the 1-6 scale for tests from January 2026; 100 for earlier tests (sub-sections: 25 for the most competitive applicants)",
+     "quote": "5 on the internet-based TOEFL (iBT) either in-person or on the Home Edition. The most competitive applicants will also have a minimum of 5 on each sub-section. As of January 2026, the TOEFL iBT score reports feature a new 1–6 scale. If you took the TOEFL prior to January 2026, you must have a 100 on the internet-based TOEFL (iBT) either in-person or on the Home Edition. The most competitive applicants will also have a minimum of 25 on each sub-section.",
+     "overall": 100,
+     "min_band": 25,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "8062eec1accea08df48838da61bb58440b330022f53b0a1f0c821307c5ae920b",
+     "source_url": "https://www.hks.harvard.edu/admissions-aid/masters-program-admissions/how-apply",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "IELTS academic overall band 7; the most competitive applicants also have 7 in each section",
+     "quote": "7 overall band score on the IELTS. The most competitive applicants will also have a minimum of 7 on each section.",
+     "overall": 7,
+     "min_band": 7,
+     "source_sha256": "8062eec1accea08df48838da61bb58440b330022f53b0a1f0c821307c5ae920b",
+     "source_url": "https://www.hks.harvard.edu/admissions-aid/masters-program-admissions/how-apply",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Three years of professional work experience by 1 September of the year of enrolment",
+      "quote": "Three years of professional work experience by September 1 of the year you would enroll in the program",
+      "source_sha256": "8062eec1accea08df48838da61bb58440b330022f53b0a1f0c821307c5ae920b",
+      "source_url": "https://www.hks.harvard.edu/admissions-aid/masters-program-admissions/how-apply",
+      "check": "ok"
+     },
+     {
+      "text": "At least four graduate-level courses similar to the MPP core curriculum, two of them quantitative",
+      "quote": "At least four graduate-level courses similar to those in the MPP core curriculum, including two courses that are quantitative in nature",
+      "source_sha256": "8062eec1accea08df48838da61bb58440b330022f53b0a1f0c821307c5ae920b",
+      "source_url": "https://www.hks.harvard.edu/admissions-aid/masters-program-admissions/how-apply",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "2027-2028 admission",
+      "date": "2026-12-01",
+      "quote": "Application Deadline December 1, 2026 at 12 p.m. (noon) ET",
+      "source_sha256": "8062eec1accea08df48838da61bb58440b330022f53b0a1f0c821307c5ae920b",
+      "source_url": "https://www.hks.harvard.edu/admissions-aid/masters-program-admissions/how-apply",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Mid-Career Master in Public Administration (MC/MPA)",
+   "url": "https://www.hks.harvard.edu/educational-programs/masters-programs/mid-career-master-public-administration",
+   "snapshot_sha256": "db8f3505c8be4b5f99dcc188d70f4ce80f7307f62f3ac258ccb91aa4ed696698",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree with a strong academic record",
+     "quote": "A bachelor’s degree with a strong academic record",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT 5 on the 1-6 scale for tests from January 2026; 100 for earlier tests (sub-sections: 25 for the most competitive applicants)",
+     "quote": "5 on the internet-based TOEFL (iBT) either in-person or on the Home Edition. The most competitive applicants will also have a minimum of 5 on each sub-section. As of January 2026, the TOEFL iBT score reports feature a new 1–6 scale. If you took the TOEFL prior to January 2026, you must have a 100 on the internet-based TOEFL (iBT) either in-person or on the Home Edition. The most competitive applicants will also have a minimum of 25 on each sub-section.",
+     "overall": 100,
+     "min_band": 25,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "8062eec1accea08df48838da61bb58440b330022f53b0a1f0c821307c5ae920b",
+     "source_url": "https://www.hks.harvard.edu/admissions-aid/masters-program-admissions/how-apply",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "IELTS academic overall band 7; the most competitive applicants also have 7 in each section",
+     "quote": "7 overall band score on the IELTS. The most competitive applicants will also have a minimum of 7 on each section.",
+     "overall": 7,
+     "min_band": 7,
+     "source_sha256": "8062eec1accea08df48838da61bb58440b330022f53b0a1f0c821307c5ae920b",
+     "source_url": "https://www.hks.harvard.edu/admissions-aid/masters-program-admissions/how-apply",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "At least seven years of professional work experience by 30 June of the year of enrolment",
+      "quote": "At least seven years of professional work experience by June 30 of the year you plan to enroll in the program",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "2027-2028 admission",
+      "date": "2026-12-01",
+      "quote": "Application Deadline December 1, 2026 at 12 p.m. (noon) ET",
+      "source_sha256": "8062eec1accea08df48838da61bb58440b330022f53b0a1f0c821307c5ae920b",
+      "source_url": "https://www.hks.harvard.edu/admissions-aid/masters-program-admissions/how-apply",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Administration (MBA)",
+   "url": "https://www.hbs.edu/mba/admissions/application-process",
+   "snapshot_sha256": "705475837ecd702fe2489606dd004209824ac7ff6149ccaa56b9f389fdbdaada",
+   "fields": {
+    "academic": {
+     "text": "International applicants need a degree equivalent to a four-year American bachelor's degree (three-year bachelor degrees count)",
+     "quote": "An international applicant is required to hold a college or university degree equivalent to a four-year American baccalaureate degree. Equivalent degrees include international three-year bachelor degree programs.",
+     "source_sha256": "38c83708b51125dc78dd88148a7b56662d46243ae713b2ca2ab05830172e493c",
+     "source_url": "https://www.hbs.edu/mba/admissions/application-process/international-applicants",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "No minimum TOEFL score; the Admissions Board discourages applicants with TOEFL below 5 (1-6 scale) or 109 (0-120 scale)",
+     "quote": "HBS does not have a minimum test score requirement to apply. However, the MBA Admissions Board discourages candidates with a TOEFL score below 5 (new 1 – 6 scale) or 109 (traditional 0 – 120 scale), an IELTS score below 7.5, a PTE score below 75, or a Duolingo score below 145 from applying.",
+     "source_sha256": "38c83708b51125dc78dd88148a7b56662d46243ae713b2ca2ab05830172e493c",
+     "source_url": "https://www.hbs.edu/mba/admissions/application-process/international-applicants",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "No minimum IELTS score; the Admissions Board discourages applicants with IELTS below 7.5",
+     "quote": "an IELTS score below 7.5",
+     "source_sha256": "38c83708b51125dc78dd88148a7b56662d46243ae713b2ca2ab05830172e493c",
+     "source_url": "https://www.hbs.edu/mba/admissions/application-process/international-applicants",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Round Two, MBA Class of 2029 (matriculating fall 2027)",
+      "date": "2027-01-05",
+      "quote": "Round Two January 5, 2027",
+      "source_sha256": "af96edaa5da100648d1499bf3e1463d88411eacda365c62d27f083586e057985",
+      "source_url": "https://www.hbs.edu/mba/admissions/application-dates",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Laws (LL.M.)",
+   "url": "https://hls.harvard.edu/graduate-program/graduate-program-admissions-and-financial-aid/ll-m-admissions/",
+   "snapshot_sha256": "9cc6e1fa987a2650ef2581d3b5341b195784feecefccb20cc08789c64def19b8",
+   "fields": {
+    "academic": {
+     "text": "A J.D. from an ABA-approved US law school or a first law degree (J.D., LL.B. or equivalent) from a foreign law school",
+     "quote": "To be considered for the LL.M. program, an applicant must have a J.D. (Juris Doctor) from an ABA-approved U.S. law school or a first law degree (J.D., LL.B. or the equivalent) from a foreign law school.",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT minimum 100 with 25 in each subsection (tests before 21 January 2026); minimum 5.5 overall (5.5 reading and listening, 5.0 writing and speaking) after that date. IELTS is not accepted in place of TOEFL",
+     "quote": "The Graduate Program requires a minimum score of 100 on the internet-based test (with a minimum score of 25 on each subsection) for tests taken before January 21, 2026. For tests taken after January 21, 2026, we require a minimum overall score of 5.5 with at least 5.5 in the reading and listening subsections, and at least 5.0 in the writing and speaking subsections.",
+     "overall": 100,
+     "min_band": 25,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "ffea9799b55a1d44a69397d69ce13fefc5fb17c0f539fc4ef81839cd827dac7d",
+     "source_url": "https://hls.harvard.edu/graduate-program/graduate-program-admissions-and-financial-aid/ll-m-admissions/ll-m-application-deadlines-and-materials/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "LL.M. class beginning August 2027",
+      "date": "2026-12-01",
+      "quote": "The application deadline for the LL.M. class beginning in August 2027 is December 1, 2026, at 11:59 p.m., U.S. Eastern time.",
+      "source_sha256": "ffea9799b55a1d44a69397d69ce13fefc5fb17c0f539fc4ef81839cd827dac7d",
+      "source_url": "https://hls.harvard.edu/graduate-program/graduate-program-admissions-and-financial-aid/ll-m-admissions/ll-m-application-deadlines-and-materials/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Urban Planning (MUP)",
+   "url": "https://www.gsd.harvard.edu/urban-planning-design/programs/master-in-urban-planning/mup-application-requirements/",
+   "snapshot_sha256": "dff82adda20e7aa79ed2efd5c765067f0d6c65979abb04a9958090eb2e64f979",
+   "fields": {
+    "toefl": {
+     "text": "GSD TOEFL minimum overall 92 and 23 per section for tests before 21 January 2026 (preferred 104 and 26); for tests from that date the minimum is 5.0 overall and per section (preferred 5.5 overall)",
+     "overall": 92,
+     "min_band": 23,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "TOEFL Score Requirements prior to 1.21.2026 SECTION PREFERRED SCORE MINIMUM SCORE OVERALL 104 92 Reading 26 23 Listening 26 23 Speaking 26 23 Writing 26 23 toefl score requirements STARTING 1.21.2026 SECTION PREFERRED SCORE MINIMUM SCORE OVERALL 5.5 5.0 Reading 5.0 5.0 Listening 5.5 5.0 Speaking 5.5 5.0 Writing 5.0 5.0",
+     "source_sha256": "7d55b4ef5db8823a43ece37e6d7c363f769183e686e6a43b2b7b0ed8647a7eca",
+     "source_url": "https://www.gsd.harvard.edu/offices-and-facilities/admissions-office/apply/international-applicants/",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "An undergraduate degree in any major",
+     "quote": "An undergraduate degree is required to apply for the MUP program, but no specific major is required.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "2027-2028 admission",
+      "date": "2027-01-05",
+      "quote": "Application Deadlines January 5, 2027 5:00 p.m ET MArch, MLA, MUP, MAUD, MLAUD, MRE, DDes, MDes, MDE",
+      "source_sha256": "d1023394f5e0baa9e0d95eb23377a718d892b8940ed7be5dc8b96ec454734666",
+      "source_url": "https://www.gsd.harvard.edu/offices-and-facilities/admissions-office/apply/deadlines/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Real Estate (MRE)",
+   "url": "https://www.gsd.harvard.edu/urban-planning-design/programs/master-in-real-estate/mre-application-requirements/",
+   "snapshot_sha256": "60d11543df2dc04a7fcdc639a3c632540a1128e04f0a21e98f71bf3fdc50e7f9",
+   "fields": {
+    "toefl": {
+     "text": "GSD TOEFL minimum overall 92 and 23 per section for tests before 21 January 2026 (preferred 104 and 26); for tests from that date the minimum is 5.0 overall and per section (preferred 5.5 overall)",
+     "overall": 92,
+     "min_band": 23,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "TOEFL Score Requirements prior to 1.21.2026 SECTION PREFERRED SCORE MINIMUM SCORE OVERALL 104 92 Reading 26 23 Listening 26 23 Speaking 26 23 Writing 26 23 toefl score requirements STARTING 1.21.2026 SECTION PREFERRED SCORE MINIMUM SCORE OVERALL 5.5 5.0 Reading 5.0 5.0 Listening 5.5 5.0 Speaking 5.5 5.0 Writing 5.0 5.0",
+     "source_sha256": "7d55b4ef5db8823a43ece37e6d7c363f769183e686e6a43b2b7b0ed8647a7eca",
+     "source_url": "https://www.gsd.harvard.edu/offices-and-facilities/admissions-office/apply/international-applicants/",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "Bachelor's degree; two or more years of professional experience preferred",
+     "quote": "Applicants must possess a bachelor’s degree. Two or more years of professional experience in real estate or related fields (urban planning, urban design, architecture, landscape architecture, etc.) is preferred.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "2027-2028 admission",
+      "date": "2027-01-05",
+      "quote": "Application Deadlines January 5, 2027 5:00 p.m ET MArch, MLA, MUP, MAUD, MLAUD, MRE, DDes, MDes, MDE",
+      "source_sha256": "d1023394f5e0baa9e0d95eb23377a718d892b8940ed7be5dc8b96ec454734666",
+      "source_url": "https://www.gsd.harvard.edu/offices-and-facilities/admissions-office/apply/deadlines/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Design Engineering (MDE)",
+   "url": "https://www.gsd.harvard.edu/offices-and-facilities/advanced-studies-programs/programs/design-engineering/mde-application-requirements/",
+   "snapshot_sha256": "828921390c128a5b5215c7e362f2630908031963f8ead84a5d8b8daffc11035a",
+   "fields": {
+    "toefl": {
+     "text": "GSD TOEFL minimum overall 92 and 23 per section for tests before 21 January 2026 (preferred 104 and 26); for tests from that date the minimum is 5.0 overall and per section (preferred 5.5 overall)",
+     "overall": 92,
+     "min_band": 23,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "TOEFL Score Requirements prior to 1.21.2026 SECTION PREFERRED SCORE MINIMUM SCORE OVERALL 104 92 Reading 26 23 Listening 26 23 Speaking 26 23 Writing 26 23 toefl score requirements STARTING 1.21.2026 SECTION PREFERRED SCORE MINIMUM SCORE OVERALL 5.5 5.0 Reading 5.0 5.0 Listening 5.5 5.0 Speaking 5.5 5.0 Writing 5.0 5.0",
+     "source_sha256": "7d55b4ef5db8823a43ece37e6d7c363f769183e686e6a43b2b7b0ed8647a7eca",
+     "source_url": "https://www.gsd.harvard.edu/offices-and-facilities/admissions-office/apply/international-applicants/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Two years of full-time work experience after college",
+      "quote": "The MDE program requires 2-years of full-time work experience after college.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "2027-2028 admission",
+      "date": "2027-01-05",
+      "quote": "Application Deadlines January 5, 2027 5:00 p.m ET MArch, MLA, MUP, MAUD, MLAUD, MRE, DDes, MDes, MDE",
+      "source_sha256": "d1023394f5e0baa9e0d95eb23377a718d892b8940ed7be5dc8b96ec454734666",
+      "source_url": "https://www.gsd.harvard.edu/offices-and-facilities/admissions-office/apply/deadlines/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Design Studies (MDes)",
+   "url": "https://www.gsd.harvard.edu/offices-and-facilities/advanced-studies-programs/programs/design-studies/mdes-application-requirements/",
+   "snapshot_sha256": "629088ed74eae026e3eb5194eb7b2aad1184137b516a1f677e2c76e930149e74",
+   "fields": {
+    "toefl": {
+     "text": "GSD TOEFL minimum overall 92 and 23 per section for tests before 21 January 2026 (preferred 104 and 26); for tests from that date the minimum is 5.0 overall and per section (preferred 5.5 overall)",
+     "overall": 92,
+     "min_band": 23,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "TOEFL Score Requirements prior to 1.21.2026 SECTION PREFERRED SCORE MINIMUM SCORE OVERALL 104 92 Reading 26 23 Listening 26 23 Speaking 26 23 Writing 26 23 toefl score requirements STARTING 1.21.2026 SECTION PREFERRED SCORE MINIMUM SCORE OVERALL 5.5 5.0 Reading 5.0 5.0 Listening 5.5 5.0 Speaking 5.5 5.0 Writing 5.0 5.0",
+     "source_sha256": "7d55b4ef5db8823a43ece37e6d7c363f769183e686e6a43b2b7b0ed8647a7eca",
+     "source_url": "https://www.gsd.harvard.edu/offices-and-facilities/admissions-office/apply/international-applicants/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "2027-2028 admission",
+      "date": "2027-01-05",
+      "quote": "Application Deadlines January 5, 2027 5:00 p.m ET MArch, MLA, MUP, MAUD, MLAUD, MRE, DDes, MDes, MDE",
+      "source_sha256": "d1023394f5e0baa9e0d95eb23377a718d892b8940ed7be5dc8b96ec454734666",
+      "source_url": "https://www.gsd.harvard.edu/offices-and-facilities/admissions-office/apply/deadlines/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Architecture in Urban Design / Master of Landscape Architecture in Urban Design (MAUD/MLAUD)",
+   "url": "https://www.gsd.harvard.edu/urban-planning-design/programs/master-of-architecture-in-urban-design-master-of-landscape-architecture-in-urban-design/maud-mlaud-application-requirements/",
+   "snapshot_sha256": "64f4e6cc19b0e225f03d882ec797b22f25aa598c28b7e9b747e83c313574ede8",
+   "fields": {
+    "toefl": {
+     "text": "GSD TOEFL minimum overall 92 and 23 per section for tests before 21 January 2026 (preferred 104 and 26); for tests from that date the minimum is 5.0 overall and per section (preferred 5.5 overall)",
+     "overall": 92,
+     "min_band": 23,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "TOEFL Score Requirements prior to 1.21.2026 SECTION PREFERRED SCORE MINIMUM SCORE OVERALL 104 92 Reading 26 23 Listening 26 23 Speaking 26 23 Writing 26 23 toefl score requirements STARTING 1.21.2026 SECTION PREFERRED SCORE MINIMUM SCORE OVERALL 5.5 5.0 Reading 5.0 5.0 Listening 5.5 5.0 Speaking 5.5 5.0 Writing 5.0 5.0",
+     "source_sha256": "7d55b4ef5db8823a43ece37e6d7c363f769183e686e6a43b2b7b0ed8647a7eca",
+     "source_url": "https://www.gsd.harvard.edu/offices-and-facilities/admissions-office/apply/international-applicants/",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "Five-year undergraduate professional degree in architecture (MAUD) or landscape architecture (MLAUD), or equivalent",
+     "quote": "Applicants who have completed a five-year undergraduate professional degree in architecture such as a Bachelor of Architecture or its equivalent are eligible to apply for the MAUD program. Applicants with a five-year undergraduate professional degree in landscape architecture such as a Bachelor of Landscape Architecture or a Bachelor of Science in Landscape Architecture or its equivalent are eligible to apply for the MLAUD program.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "2027-2028 admission",
+      "date": "2027-01-05",
+      "quote": "Application Deadlines January 5, 2027 5:00 p.m ET MArch, MLA, MUP, MAUD, MLAUD, MRE, DDes, MDes, MDE",
+      "source_sha256": "d1023394f5e0baa9e0d95eb23377a718d892b8940ed7be5dc8b96ec454734666",
+      "source_url": "https://www.gsd.harvard.edu/offices-and-facilities/admissions-office/apply/deadlines/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Architecture I (MArch I)",
+   "url": "https://www.gsd.harvard.edu/architecture/programs/master-of-architecture-i/application-requirements-master-of-architecture-i/",
+   "snapshot_sha256": "9c8969c597b9f0bb9950945645568385d83563c1f2195ec64a65c8425250ea41",
+   "fields": {
+    "toefl": {
+     "text": "GSD TOEFL minimum overall 92 and 23 per section for tests before 21 January 2026 (preferred 104 and 26); for tests from that date the minimum is 5.0 overall and per section (preferred 5.5 overall)",
+     "overall": 92,
+     "min_band": 23,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "TOEFL Score Requirements prior to 1.21.2026 SECTION PREFERRED SCORE MINIMUM SCORE OVERALL 104 92 Reading 26 23 Listening 26 23 Speaking 26 23 Writing 26 23 toefl score requirements STARTING 1.21.2026 SECTION PREFERRED SCORE MINIMUM SCORE OVERALL 5.5 5.0 Reading 5.0 5.0 Listening 5.5 5.0 Speaking 5.5 5.0 Writing 5.0 5.0",
+     "source_sha256": "7d55b4ef5db8823a43ece37e6d7c363f769183e686e6a43b2b7b0ed8647a7eca",
+     "source_url": "https://www.gsd.harvard.edu/offices-and-facilities/admissions-office/apply/international-applicants/",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "Four-year bachelor's degree (BA or BS) in any field",
+     "quote": "MArch I applicants must hold or be in the process of completing a four-year Bachelor’s degree (BA or BS) in any field (architecture or other).",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Four semester-long college courses: calculus, algebra-based physics, and two semesters of history of architecture, each with a minimum grade of B-",
+      "quote": "A total of four required college-level, semester-long prerequisite courses in calculus, algebra-based physics (mechanics & thermodynamics), and the history of architecture (two semesters; Renaissance through Modern periods for at least one of the courses). A minimum grade of B- must be achieved in each.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "2027-2028 admission",
+      "date": "2027-01-05",
+      "quote": "Application Deadlines January 5, 2027 5:00 p.m ET MArch, MLA, MUP, MAUD, MLAUD, MRE, DDes, MDes, MDE",
+      "source_sha256": "d1023394f5e0baa9e0d95eb23377a718d892b8940ed7be5dc8b96ec454734666",
+      "source_url": "https://www.gsd.harvard.edu/offices-and-facilities/admissions-office/apply/deadlines/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Architecture II (MArch II)",
+   "url": "https://www.gsd.harvard.edu/architecture/programs/master-of-architecture-ii/march-ii-application-requirements/",
+   "snapshot_sha256": "a0e4c80f90e0b00dfabf14bf20a0f034d92d1a3cdbb65731cdac584d3f95795b",
+   "fields": {
+    "toefl": {
+     "text": "GSD TOEFL minimum overall 92 and 23 per section for tests before 21 January 2026 (preferred 104 and 26); for tests from that date the minimum is 5.0 overall and per section (preferred 5.5 overall)",
+     "overall": 92,
+     "min_band": 23,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "TOEFL Score Requirements prior to 1.21.2026 SECTION PREFERRED SCORE MINIMUM SCORE OVERALL 104 92 Reading 26 23 Listening 26 23 Speaking 26 23 Writing 26 23 toefl score requirements STARTING 1.21.2026 SECTION PREFERRED SCORE MINIMUM SCORE OVERALL 5.5 5.0 Reading 5.0 5.0 Listening 5.5 5.0 Speaking 5.5 5.0 Writing 5.0 5.0",
+     "source_sha256": "7d55b4ef5db8823a43ece37e6d7c363f769183e686e6a43b2b7b0ed8647a7eca",
+     "source_url": "https://www.gsd.harvard.edu/offices-and-facilities/admissions-office/apply/international-applicants/",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "Professional 5-year architecture degree (B.Arch) or equivalent; 4-year pre-professional degrees are not eligible",
+     "quote": "Applicants to the MArch II program must have completed or be in the process of completing a professional 5-year architecture degree such as a Bachelor of Architecture of its equivalent, demonstrating high achievement in design.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "2027-2028 admission",
+      "date": "2027-01-05",
+      "quote": "Application Deadlines January 5, 2027 5:00 p.m ET MArch, MLA, MUP, MAUD, MLAUD, MRE, DDes, MDes, MDE",
+      "source_sha256": "d1023394f5e0baa9e0d95eb23377a718d892b8940ed7be5dc8b96ec454734666",
+      "source_url": "https://www.gsd.harvard.edu/offices-and-facilities/admissions-office/apply/deadlines/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Landscape Architecture I (MLA I)",
+   "url": "https://www.gsd.harvard.edu/landscape-architecture/programs/master-in-landscape-architecture-i/mla-i-application-requirements/",
+   "snapshot_sha256": "14b6a46f37bcfd79ec040ae37fc5e942a5cc2eec1860b58b4e9dc3cd837920f3",
+   "fields": {
+    "toefl": {
+     "text": "GSD TOEFL minimum overall 92 and 23 per section for tests before 21 January 2026 (preferred 104 and 26); for tests from that date the minimum is 5.0 overall and per section (preferred 5.5 overall)",
+     "overall": 92,
+     "min_band": 23,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "TOEFL Score Requirements prior to 1.21.2026 SECTION PREFERRED SCORE MINIMUM SCORE OVERALL 104 92 Reading 26 23 Listening 26 23 Speaking 26 23 Writing 26 23 toefl score requirements STARTING 1.21.2026 SECTION PREFERRED SCORE MINIMUM SCORE OVERALL 5.5 5.0 Reading 5.0 5.0 Listening 5.5 5.0 Speaking 5.5 5.0 Writing 5.0 5.0",
+     "source_sha256": "7d55b4ef5db8823a43ece37e6d7c363f769183e686e6a43b2b7b0ed8647a7eca",
+     "source_url": "https://www.gsd.harvard.edu/offices-and-facilities/admissions-office/apply/international-applicants/",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "Undergraduate degree without a studio-based architecture or landscape architecture major, or an undergraduate or graduate degree with some design studio experience in environmental studies or urban planning, or a pre-professional studio-based degree",
+     "quote": "The MLA I welcomes applicants with the following backgrounds: An undergraduate degree without a studio-based major in architecture or landscape architecture An undergraduate or graduate degree with some design studio experience in environmental studies or urban planning A pre-professional studio-based undergraduate degree in architecture or landscape architecture who wish to undertake the 3-year program to gain more studio experience and electives than are possible in the two-year AP stream.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "2027-2028 admission",
+      "date": "2027-01-05",
+      "quote": "Application Deadlines January 5, 2027 5:00 p.m ET MArch, MLA, MUP, MAUD, MLAUD, MRE, DDes, MDes, MDE",
+      "source_sha256": "d1023394f5e0baa9e0d95eb23377a718d892b8940ed7be5dc8b96ec454734666",
+      "source_url": "https://www.gsd.harvard.edu/offices-and-facilities/admissions-office/apply/deadlines/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Landscape Architecture I AP (MLA I AP)",
+   "url": "https://www.gsd.harvard.edu/landscape-architecture/programs/master-in-landscape-architecture-i-ap/mla-i-ap-application-requirements/",
+   "snapshot_sha256": "600dc3f58b3c0effd49f52ad3c7ab545cd5c5f6e3ea1792488548fe1c8337deb",
+   "fields": {
+    "toefl": {
+     "text": "GSD TOEFL minimum overall 92 and 23 per section for tests before 21 January 2026 (preferred 104 and 26); for tests from that date the minimum is 5.0 overall and per section (preferred 5.5 overall)",
+     "overall": 92,
+     "min_band": 23,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "TOEFL Score Requirements prior to 1.21.2026 SECTION PREFERRED SCORE MINIMUM SCORE OVERALL 104 92 Reading 26 23 Listening 26 23 Speaking 26 23 Writing 26 23 toefl score requirements STARTING 1.21.2026 SECTION PREFERRED SCORE MINIMUM SCORE OVERALL 5.5 5.0 Reading 5.0 5.0 Listening 5.5 5.0 Speaking 5.5 5.0 Writing 5.0 5.0",
+     "source_sha256": "7d55b4ef5db8823a43ece37e6d7c363f769183e686e6a43b2b7b0ed8647a7eca",
+     "source_url": "https://www.gsd.harvard.edu/offices-and-facilities/admissions-office/apply/international-applicants/",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "An accredited professional degree in architecture, or a design-intensive studio-focused pre-professional undergraduate degree in landscape architecture or architecture",
+     "quote": "An accredited professional degree in architecture A design-intensive, studio-focused, pre-professional undergraduate degree in landscape architecture or architecture",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "2027-2028 admission",
+      "date": "2027-01-05",
+      "quote": "Application Deadlines January 5, 2027 5:00 p.m ET MArch, MLA, MUP, MAUD, MLAUD, MRE, DDes, MDes, MDE",
+      "source_sha256": "d1023394f5e0baa9e0d95eb23377a718d892b8940ed7be5dc8b96ec454734666",
+      "source_url": "https://www.gsd.harvard.edu/offices-and-facilities/admissions-office/apply/deadlines/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Landscape Architecture II (MLA II)",
+   "url": "https://www.gsd.harvard.edu/landscape-architecture/programs/master-in-landscape-architecture-ii/mla-ii-application-requirements/",
+   "snapshot_sha256": "533b7d9e685321b6c908573de6191a854e89497d0779b98da42d37c4ddca7276",
+   "fields": {
+    "toefl": {
+     "text": "GSD TOEFL minimum overall 92 and 23 per section for tests before 21 January 2026 (preferred 104 and 26); for tests from that date the minimum is 5.0 overall and per section (preferred 5.5 overall)",
+     "overall": 92,
+     "min_band": 23,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "TOEFL Score Requirements prior to 1.21.2026 SECTION PREFERRED SCORE MINIMUM SCORE OVERALL 104 92 Reading 26 23 Listening 26 23 Speaking 26 23 Writing 26 23 toefl score requirements STARTING 1.21.2026 SECTION PREFERRED SCORE MINIMUM SCORE OVERALL 5.5 5.0 Reading 5.0 5.0 Listening 5.5 5.0 Speaking 5.5 5.0 Writing 5.0 5.0",
+     "source_sha256": "7d55b4ef5db8823a43ece37e6d7c363f769183e686e6a43b2b7b0ed8647a7eca",
+     "source_url": "https://www.gsd.harvard.edu/offices-and-facilities/admissions-office/apply/international-applicants/",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "Accredited professional landscape architecture undergraduate degree (BSLA or BLA)",
+     "quote": "Applicants to the MLA II program must have completed or be in the process of completing an accredited professional landscape architecture undergraduate degree such as a Bachelor of Science in Landscape Architecture (BSLA) or a Bachelor of Landscape Architecture (BLA).",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "2027-2028 admission",
+      "date": "2027-01-05",
+      "quote": "Application Deadlines January 5, 2027 5:00 p.m ET MArch, MLA, MUP, MAUD, MLAUD, MRE, DDes, MDes, MDE",
+      "source_sha256": "d1023394f5e0baa9e0d95eb23377a718d892b8940ed7be5dc8b96ec454734666",
+      "source_url": "https://www.gsd.harvard.edu/offices-and-facilities/admissions-office/apply/deadlines/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Health (MPH) - Clinical Effectiveness",
+   "url": "https://hsph.harvard.edu/program/mph-clinical-effectiveness/",
+   "snapshot_sha256": "2ce6c7cea0b9c91ef75da9371fa8946716da1d89fc99da6d509b5a02ec77f53f",
+   "fields": {
+    "toefl": {
+     "text": "TOEFL iBT: 5.5 on each section for tests from 21 January 2026; for earlier tests a minimum of 100 (preferred 104+) with 25 on each section",
+     "quote": "Minimum accepted score: 5.5 sub-score or higher on each section. Harvard Chan School does not accept the “My Best” score. Report official scores to the School using code 3456. If you have already started your SOPHAS application, please report your scores to 5688. For valid scores taken before January 21, 2026: Minimum accepted score: 100 (Preferred 104+). Required 25 sub-score or higher on each section.",
+     "overall": 100,
+     "min_band": 25,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "16c7f80a24bca9db0f6343cee73c686687b8b4eeaa4628ef7a5a5e6bb47eed73",
+     "source_url": "https://hsph.harvard.edu/admissions/applying-to-a-degree-program/application-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "IELTS Academic minimum 7.5",
+     "quote": "International English Language Testing System (IELTS) Academic Test: Minimum accepted score: 7.5",
+     "overall": 7.5,
+     "source_sha256": "16c7f80a24bca9db0f6343cee73c686687b8b4eeaa4628ef7a5a5e6bb47eed73",
+     "source_url": "https://hsph.harvard.edu/admissions/applying-to-a-degree-program/application-requirements/",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "A prior master's, doctoral or equivalent advanced degree in a relevant field",
+     "quote": "Applicants must hold a prior master’s, doctoral, or equivalent advanced degree in a relevant field.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Health (MPH) - Health Management (45-credit)",
+   "url": "https://hsph.harvard.edu/program/mph-health-management/",
+   "snapshot_sha256": "5d07a4b0bb26be981a8853f31bf1ff75e80fc4650d4b92ffabd2d60767d68ad0",
+   "fields": {
+    "toefl": {
+     "text": "TOEFL iBT: 5.5 on each section for tests from 21 January 2026; for earlier tests a minimum of 100 (preferred 104+) with 25 on each section",
+     "quote": "Minimum accepted score: 5.5 sub-score or higher on each section. Harvard Chan School does not accept the “My Best” score. Report official scores to the School using code 3456. If you have already started your SOPHAS application, please report your scores to 5688. For valid scores taken before January 21, 2026: Minimum accepted score: 100 (Preferred 104+). Required 25 sub-score or higher on each section.",
+     "overall": 100,
+     "min_band": 25,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "16c7f80a24bca9db0f6343cee73c686687b8b4eeaa4628ef7a5a5e6bb47eed73",
+     "source_url": "https://hsph.harvard.edu/admissions/applying-to-a-degree-program/application-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "IELTS Academic minimum 7.5",
+     "quote": "International English Language Testing System (IELTS) Academic Test: Minimum accepted score: 7.5",
+     "overall": 7.5,
+     "source_sha256": "16c7f80a24bca9db0f6343cee73c686687b8b4eeaa4628ef7a5a5e6bb47eed73",
+     "source_url": "https://hsph.harvard.edu/admissions/applying-to-a-degree-program/application-requirements/",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "A bachelor's degree plus five or more years of relevant health experience (or a master's degree in a health field plus two years, a doctoral degree, or the primary clinical year of medical or dental school)",
+     "quote": "Applicants for the MPH 45-credit degree program in Health Management must have one of the following: A bachelor’s degree, plus five or more years of relevant health experience. A master’s degree in a health-related field—for example, MSN, MSW, MBA—plus at least two years of relevant health experience. A prior doctoral degree—for example, MD, DO, DMD, DDS, PhD, SD, JD—or equivalent. Completed the primary clinical year of medical or dental school",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Health (MPH) - Health Management (65-credit)",
+   "url": "https://hsph.harvard.edu/program/mph-health-management/",
+   "snapshot_sha256": "5d07a4b0bb26be981a8853f31bf1ff75e80fc4650d4b92ffabd2d60767d68ad0",
+   "fields": {
+    "toefl": {
+     "text": "TOEFL iBT: 5.5 on each section for tests from 21 January 2026; for earlier tests a minimum of 100 (preferred 104+) with 25 on each section",
+     "quote": "Minimum accepted score: 5.5 sub-score or higher on each section. Harvard Chan School does not accept the “My Best” score. Report official scores to the School using code 3456. If you have already started your SOPHAS application, please report your scores to 5688. For valid scores taken before January 21, 2026: Minimum accepted score: 100 (Preferred 104+). Required 25 sub-score or higher on each section.",
+     "overall": 100,
+     "min_band": 25,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "16c7f80a24bca9db0f6343cee73c686687b8b4eeaa4628ef7a5a5e6bb47eed73",
+     "source_url": "https://hsph.harvard.edu/admissions/applying-to-a-degree-program/application-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "IELTS Academic minimum 7.5",
+     "quote": "International English Language Testing System (IELTS) Academic Test: Minimum accepted score: 7.5",
+     "overall": 7.5,
+     "source_sha256": "16c7f80a24bca9db0f6343cee73c686687b8b4eeaa4628ef7a5a5e6bb47eed73",
+     "source_url": "https://hsph.harvard.edu/admissions/applying-to-a-degree-program/application-requirements/",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "A bachelor's degree plus two or more years of contiguous full-time work experience relevant to public health",
+     "quote": "Applicants for the MPH 65-credit degree program must have the following: A bachelor’s degree, plus two or more years of contiguous full-time work experience in an area relevant to public health.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Health (MPH) - Quantitative Methods",
+   "url": "https://hsph.harvard.edu/program/mph-quantitative-methods/",
+   "snapshot_sha256": "69ceff36815dbbf337b8be2409fc1b54e345c34effb57bb07b111d3ea620c305",
+   "fields": {
+    "toefl": {
+     "text": "TOEFL iBT: 5.5 on each section for tests from 21 January 2026; for earlier tests a minimum of 100 (preferred 104+) with 25 on each section",
+     "quote": "Minimum accepted score: 5.5 sub-score or higher on each section. Harvard Chan School does not accept the “My Best” score. Report official scores to the School using code 3456. If you have already started your SOPHAS application, please report your scores to 5688. For valid scores taken before January 21, 2026: Minimum accepted score: 100 (Preferred 104+). Required 25 sub-score or higher on each section.",
+     "overall": 100,
+     "min_band": 25,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "16c7f80a24bca9db0f6343cee73c686687b8b4eeaa4628ef7a5a5e6bb47eed73",
+     "source_url": "https://hsph.harvard.edu/admissions/applying-to-a-degree-program/application-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "IELTS Academic minimum 7.5",
+     "quote": "International English Language Testing System (IELTS) Academic Test: Minimum accepted score: 7.5",
+     "overall": 7.5,
+     "source_sha256": "16c7f80a24bca9db0f6343cee73c686687b8b4eeaa4628ef7a5a5e6bb47eed73",
+     "source_url": "https://hsph.harvard.edu/admissions/applying-to-a-degree-program/application-requirements/",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "A master's degree in a health-related field plus two years of relevant health experience, a prior doctoral degree, or the primary clinical year of medical or dental school",
+     "quote": "Applicants for the MPH 45-credit degree program in Quantitative Methods must have one of the following: A master’s degree in a health-related field—for example, MSN, MSW, MBA—plus at least two years of relevant health experience. A prior doctoral degree—for example, MD, DO, DMD, DDS, PhD, SD, JD—or equivalent. Completed the primary clinical year of medical or dental school",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Health (MPH) - Health and Social Behavior (45-credit)",
+   "url": "https://hsph.harvard.edu/program/mph-health-social-behavior/",
+   "snapshot_sha256": "8711c1d503da158b132506019fa15194923532c2b3935a71c8f3eaf6b73855f4",
+   "fields": {
+    "toefl": {
+     "text": "TOEFL iBT: 5.5 on each section for tests from 21 January 2026; for earlier tests a minimum of 100 (preferred 104+) with 25 on each section",
+     "quote": "Minimum accepted score: 5.5 sub-score or higher on each section. Harvard Chan School does not accept the “My Best” score. Report official scores to the School using code 3456. If you have already started your SOPHAS application, please report your scores to 5688. For valid scores taken before January 21, 2026: Minimum accepted score: 100 (Preferred 104+). Required 25 sub-score or higher on each section.",
+     "overall": 100,
+     "min_band": 25,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "16c7f80a24bca9db0f6343cee73c686687b8b4eeaa4628ef7a5a5e6bb47eed73",
+     "source_url": "https://hsph.harvard.edu/admissions/applying-to-a-degree-program/application-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "IELTS Academic minimum 7.5",
+     "quote": "International English Language Testing System (IELTS) Academic Test: Minimum accepted score: 7.5",
+     "overall": 7.5,
+     "source_sha256": "16c7f80a24bca9db0f6343cee73c686687b8b4eeaa4628ef7a5a5e6bb47eed73",
+     "source_url": "https://hsph.harvard.edu/admissions/applying-to-a-degree-program/application-requirements/",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "A bachelor's degree plus five or more years of relevant health experience (or a master's degree in a health field plus two years, a doctoral degree, or the primary clinical year of medical or dental school)",
+     "quote": "Applicants for the MPH 45-credit degree program in Health and Social Behavior must have one of the following: A bachelor’s degree, plus five or more years of relevant health experience. A master’s degree in a health-related field—for example, MSN, MSW, MBA—plus at least two years of relevant health experience. A prior doctoral degree—for example, MD, DO, DMD, DDS, PhD, SD, JD—or equivalent. Completed the primary clinical year of medical or dental school",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Health (MPH) - Health and Social Behavior (65-credit)",
+   "url": "https://hsph.harvard.edu/program/mph-health-social-behavior/",
+   "snapshot_sha256": "8711c1d503da158b132506019fa15194923532c2b3935a71c8f3eaf6b73855f4",
+   "fields": {
+    "toefl": {
+     "text": "TOEFL iBT: 5.5 on each section for tests from 21 January 2026; for earlier tests a minimum of 100 (preferred 104+) with 25 on each section",
+     "quote": "Minimum accepted score: 5.5 sub-score or higher on each section. Harvard Chan School does not accept the “My Best” score. Report official scores to the School using code 3456. If you have already started your SOPHAS application, please report your scores to 5688. For valid scores taken before January 21, 2026: Minimum accepted score: 100 (Preferred 104+). Required 25 sub-score or higher on each section.",
+     "overall": 100,
+     "min_band": 25,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "16c7f80a24bca9db0f6343cee73c686687b8b4eeaa4628ef7a5a5e6bb47eed73",
+     "source_url": "https://hsph.harvard.edu/admissions/applying-to-a-degree-program/application-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "IELTS Academic minimum 7.5",
+     "quote": "International English Language Testing System (IELTS) Academic Test: Minimum accepted score: 7.5",
+     "overall": 7.5,
+     "source_sha256": "16c7f80a24bca9db0f6343cee73c686687b8b4eeaa4628ef7a5a5e6bb47eed73",
+     "source_url": "https://hsph.harvard.edu/admissions/applying-to-a-degree-program/application-requirements/",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "A bachelor's degree plus two or more years of contiguous full-time work experience relevant to public health",
+     "quote": "Applicants for the MPH 65-credit degree program must have the following: A bachelor’s degree, plus two or more years of contiguous full-time work experience in an area relevant to public health.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Health (MPH) - Epidemiology (hybrid)",
+   "url": "https://hsph.harvard.edu/program/hybrid-mph-epidemiology/",
+   "snapshot_sha256": "8ad99c987f8fd3ddb2c414e811b108885f50984c51ffedd9309307a606ad03de",
+   "fields": {
+    "toefl": {
+     "text": "TOEFL iBT: 5.5 on each section for tests from 21 January 2026; for earlier tests a minimum of 100 (preferred 104+) with 25 on each section",
+     "quote": "Minimum accepted score: 5.5 sub-score or higher on each section. Harvard Chan School does not accept the “My Best” score. Report official scores to the School using code 3456. If you have already started your SOPHAS application, please report your scores to 5688. For valid scores taken before January 21, 2026: Minimum accepted score: 100 (Preferred 104+). Required 25 sub-score or higher on each section.",
+     "overall": 100,
+     "min_band": 25,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "16c7f80a24bca9db0f6343cee73c686687b8b4eeaa4628ef7a5a5e6bb47eed73",
+     "source_url": "https://hsph.harvard.edu/admissions/applying-to-a-degree-program/application-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "IELTS Academic minimum 7.5",
+     "quote": "International English Language Testing System (IELTS) Academic Test: Minimum accepted score: 7.5",
+     "overall": 7.5,
+     "source_sha256": "16c7f80a24bca9db0f6343cee73c686687b8b4eeaa4628ef7a5a5e6bb47eed73",
+     "source_url": "https://hsph.harvard.edu/admissions/applying-to-a-degree-program/application-requirements/",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "A bachelor's degree plus five or more years of relevant health experience, or a master's degree in a health-related field, or a prior doctoral degree",
+     "quote": "Eligible applicants for the hybrid MPH in Epidemiology must meet one of the following criteria: Hold a bachelor’s degree plus five or more years of relevant health experience. Hold a master’s degree in a health-related field—for example, MSN, MSW, MBA (the strongest applicants will have at least two years of relevant work experience following completion of the degree). A prior doctoral degree—for example, MD, DO, DMD, DDS, PhD, SD, JD—or equivalent.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Health (MPH) - Occupational and Environmental Health",
+   "url": "https://hsph.harvard.edu/program/mph-occupational-environmental-health/",
+   "snapshot_sha256": "b412912ebd6184cda47bce0956f063f213421ba3477a73e796839a2f42000fbc",
+   "fields": {
+    "toefl": {
+     "text": "TOEFL iBT: 5.5 on each section for tests from 21 January 2026; for earlier tests a minimum of 100 (preferred 104+) with 25 on each section",
+     "quote": "Minimum accepted score: 5.5 sub-score or higher on each section. Harvard Chan School does not accept the “My Best” score. Report official scores to the School using code 3456. If you have already started your SOPHAS application, please report your scores to 5688. For valid scores taken before January 21, 2026: Minimum accepted score: 100 (Preferred 104+). Required 25 sub-score or higher on each section.",
+     "overall": 100,
+     "min_band": 25,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "16c7f80a24bca9db0f6343cee73c686687b8b4eeaa4628ef7a5a5e6bb47eed73",
+     "source_url": "https://hsph.harvard.edu/admissions/applying-to-a-degree-program/application-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "IELTS Academic minimum 7.5",
+     "quote": "International English Language Testing System (IELTS) Academic Test: Minimum accepted score: 7.5",
+     "overall": 7.5,
+     "source_sha256": "16c7f80a24bca9db0f6343cee73c686687b8b4eeaa4628ef7a5a5e6bb47eed73",
+     "source_url": "https://hsph.harvard.edu/admissions/applying-to-a-degree-program/application-requirements/",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "A master's degree in a health-related field plus two years of relevant health experience, a prior doctoral degree, or the primary clinical year of medical or dental school",
+     "quote": "Applicants for the MPH 45-credit degree program in Occupational and Environmental Health must have one of the following: A master’s degree in a health-related field—for example, MSN, MSW, MBA—plus at least two years of relevant health experience. A prior doctoral degree—for example, MD, DO, DMD, DDS, PhD, SD, JD—or equivalent. Completed the primary clinical year of medical or dental school",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Health (MPH) - Global Health",
+   "url": "https://hsph.harvard.edu/program/mph-global-health/",
+   "snapshot_sha256": "cb49b7660199ff7463d83e0ccf892a290cd8530b4349ceac5c6fee234a8f3096",
+   "fields": {
+    "toefl": {
+     "text": "TOEFL iBT: 5.5 on each section for tests from 21 January 2026; for earlier tests a minimum of 100 (preferred 104+) with 25 on each section",
+     "quote": "Minimum accepted score: 5.5 sub-score or higher on each section. Harvard Chan School does not accept the “My Best” score. Report official scores to the School using code 3456. If you have already started your SOPHAS application, please report your scores to 5688. For valid scores taken before January 21, 2026: Minimum accepted score: 100 (Preferred 104+). Required 25 sub-score or higher on each section.",
+     "overall": 100,
+     "min_band": 25,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "16c7f80a24bca9db0f6343cee73c686687b8b4eeaa4628ef7a5a5e6bb47eed73",
+     "source_url": "https://hsph.harvard.edu/admissions/applying-to-a-degree-program/application-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "IELTS Academic minimum 7.5",
+     "quote": "International English Language Testing System (IELTS) Academic Test: Minimum accepted score: 7.5",
+     "overall": 7.5,
+     "source_sha256": "16c7f80a24bca9db0f6343cee73c686687b8b4eeaa4628ef7a5a5e6bb47eed73",
+     "source_url": "https://hsph.harvard.edu/admissions/applying-to-a-degree-program/application-requirements/",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "A bachelor's degree plus five or more years of relevant health experience (or a master's degree in a health field plus two years, a doctoral degree, or the primary clinical year of medical or dental school)",
+     "quote": "Applicants for the MPH 45-credit degree program in Global Health must have one of the following: A bachelor’s degree, plus five or more years of relevant health experience. A master’s degree in a health-related field—for example, MSN, MSW, MBA—plus at least two years of relevant health experience. A prior doctoral degree—for example, MD, DO, DMD, DDS, PhD, SD, JD—or equivalent. Completed the primary clinical year of medical or dental school",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Health (MPH) - Nutrition",
+   "url": "https://hsph.harvard.edu/program/mph-nutrition/",
+   "snapshot_sha256": "d9e314153458fc1d6e24839257ab99eafba673549225ff8d3ccf28b22916b3bd",
+   "fields": {
+    "toefl": {
+     "text": "TOEFL iBT: 5.5 on each section for tests from 21 January 2026; for earlier tests a minimum of 100 (preferred 104+) with 25 on each section",
+     "quote": "Minimum accepted score: 5.5 sub-score or higher on each section. Harvard Chan School does not accept the “My Best” score. Report official scores to the School using code 3456. If you have already started your SOPHAS application, please report your scores to 5688. For valid scores taken before January 21, 2026: Minimum accepted score: 100 (Preferred 104+). Required 25 sub-score or higher on each section.",
+     "overall": 100,
+     "min_band": 25,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "16c7f80a24bca9db0f6343cee73c686687b8b4eeaa4628ef7a5a5e6bb47eed73",
+     "source_url": "https://hsph.harvard.edu/admissions/applying-to-a-degree-program/application-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "IELTS Academic minimum 7.5",
+     "quote": "International English Language Testing System (IELTS) Academic Test: Minimum accepted score: 7.5",
+     "overall": 7.5,
+     "source_sha256": "16c7f80a24bca9db0f6343cee73c686687b8b4eeaa4628ef7a5a5e6bb47eed73",
+     "source_url": "https://hsph.harvard.edu/admissions/applying-to-a-degree-program/application-requirements/",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "A bachelor's degree plus five or more years of relevant health experience (or a master's degree in a health field plus two years, a doctoral degree, or the primary clinical year of medical or dental school)",
+     "quote": "Applicants for the MPH 45-credit degree program in Nutrition must have one of the following: A bachelor’s degree, plus five or more years of relevant health experience. A master’s degree in a health-related field—for example, MSN, MSW, MBA—plus at least two years of relevant health experience. A prior doctoral degree—for example, MD, DO, DMD, DDS, PhD, SD, JD—or equivalent. Completed the primary clinical year of medical or dental school",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Health (MPH) - Health Policy (45-credit)",
+   "url": "https://hsph.harvard.edu/program/mph-health-policy/",
+   "snapshot_sha256": "debdc7c023ad59314f6ba78b024c61808dfcfbe6e5e5f5a7ef4b8b6827f167bc",
+   "fields": {
+    "toefl": {
+     "text": "TOEFL iBT: 5.5 on each section for tests from 21 January 2026; for earlier tests a minimum of 100 (preferred 104+) with 25 on each section",
+     "quote": "Minimum accepted score: 5.5 sub-score or higher on each section. Harvard Chan School does not accept the “My Best” score. Report official scores to the School using code 3456. If you have already started your SOPHAS application, please report your scores to 5688. For valid scores taken before January 21, 2026: Minimum accepted score: 100 (Preferred 104+). Required 25 sub-score or higher on each section.",
+     "overall": 100,
+     "min_band": 25,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "16c7f80a24bca9db0f6343cee73c686687b8b4eeaa4628ef7a5a5e6bb47eed73",
+     "source_url": "https://hsph.harvard.edu/admissions/applying-to-a-degree-program/application-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "IELTS Academic minimum 7.5",
+     "quote": "International English Language Testing System (IELTS) Academic Test: Minimum accepted score: 7.5",
+     "overall": 7.5,
+     "source_sha256": "16c7f80a24bca9db0f6343cee73c686687b8b4eeaa4628ef7a5a5e6bb47eed73",
+     "source_url": "https://hsph.harvard.edu/admissions/applying-to-a-degree-program/application-requirements/",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "A bachelor's degree plus five or more years of relevant health experience (or a master's degree in a health field plus two years, a doctoral degree, or the primary clinical year of medical or dental school)",
+     "quote": "Applicants for the MPH 45-credit degree program in Health Policy must have one of the following: A bachelor’s degree, plus five or more years of relevant health experience. A master’s degree in a health-related field—for example, MSN, MSW, MBA—plus at least two years of relevant health experience. A prior doctoral degree—for example, MD, DO, DMD, DDS, PhD, SD, JD—or equivalent. Completed the primary clinical year of medical or dental school",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Health (MPH) - Health Policy (65-credit)",
+   "url": "https://hsph.harvard.edu/program/mph-health-policy/",
+   "snapshot_sha256": "debdc7c023ad59314f6ba78b024c61808dfcfbe6e5e5f5a7ef4b8b6827f167bc",
+   "fields": {
+    "toefl": {
+     "text": "TOEFL iBT: 5.5 on each section for tests from 21 January 2026; for earlier tests a minimum of 100 (preferred 104+) with 25 on each section",
+     "quote": "Minimum accepted score: 5.5 sub-score or higher on each section. Harvard Chan School does not accept the “My Best” score. Report official scores to the School using code 3456. If you have already started your SOPHAS application, please report your scores to 5688. For valid scores taken before January 21, 2026: Minimum accepted score: 100 (Preferred 104+). Required 25 sub-score or higher on each section.",
+     "overall": 100,
+     "min_band": 25,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "16c7f80a24bca9db0f6343cee73c686687b8b4eeaa4628ef7a5a5e6bb47eed73",
+     "source_url": "https://hsph.harvard.edu/admissions/applying-to-a-degree-program/application-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "IELTS Academic minimum 7.5",
+     "quote": "International English Language Testing System (IELTS) Academic Test: Minimum accepted score: 7.5",
+     "overall": 7.5,
+     "source_sha256": "16c7f80a24bca9db0f6343cee73c686687b8b4eeaa4628ef7a5a5e6bb47eed73",
+     "source_url": "https://hsph.harvard.edu/admissions/applying-to-a-degree-program/application-requirements/",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "A bachelor's degree plus two or more years of contiguous full-time work experience relevant to public health",
+     "quote": "Applicants for the MPH 65-credit degree program must have the following: A bachelor’s degree, plus two or more years of contiguous full-time work experience in an area relevant to public health.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Online Master of Public Health (MPH) - Generalist",
+   "url": "https://hsph.harvard.edu/program/online-mph-generalist/",
+   "snapshot_sha256": "255c9731b55425b8ffb3111adc0bda4b7049a34ed2645129ae9e5f90f2739b16",
+   "fields": {
+    "toefl": {
+     "text": "TOEFL iBT: 5.5 on each section for tests from 21 January 2026; for earlier tests a minimum of 100 (preferred 104+) with 25 on each section",
+     "quote": "Minimum accepted score: 5.5 sub-score or higher on each section. Harvard Chan School does not accept the “My Best” score. Report official scores to the School using code 3456. If you have already started your SOPHAS application, please report your scores to 5688. For valid scores taken before January 21, 2026: Minimum accepted score: 100 (Preferred 104+). Required 25 sub-score or higher on each section.",
+     "overall": 100,
+     "min_band": 25,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "16c7f80a24bca9db0f6343cee73c686687b8b4eeaa4628ef7a5a5e6bb47eed73",
+     "source_url": "https://hsph.harvard.edu/admissions/applying-to-a-degree-program/application-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "IELTS Academic minimum 7.5",
+     "quote": "International English Language Testing System (IELTS) Academic Test: Minimum accepted score: 7.5",
+     "overall": 7.5,
+     "source_sha256": "16c7f80a24bca9db0f6343cee73c686687b8b4eeaa4628ef7a5a5e6bb47eed73",
+     "source_url": "https://hsph.harvard.edu/admissions/applying-to-a-degree-program/application-requirements/",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "A bachelor's degree plus five or more years of relevant health experience, or a master's degree in a health-related field, or a prior doctoral degree",
+     "quote": "In general, applicants for the MPH Generalist must have one of the following: A bachelor’s degree plus five or more years of relevant health experience. A master’s degree in a health-related field—for example, MSN, MSW, MBA. (The strongest applicants will have at least two years of relevant work experience following completion of the degree.) A prior doctoral degree—for example, MD, DO, DMD, DDS, PhD, SD, JD—or equivalent.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (SM) in Epidemiology (80-credit)",
+   "url": "https://hsph.harvard.edu/program/sm-epidemiology/",
+   "snapshot_sha256": "889d53123e2778aac5ec0adad9ac34be477f0250133960f67457728af5d3d682",
+   "fields": {
+    "toefl": {
+     "text": "TOEFL iBT: 5.5 on each section for tests from 21 January 2026; for earlier tests a minimum of 100 (preferred 104+) with 25 on each section",
+     "quote": "Minimum accepted score: 5.5 sub-score or higher on each section. Harvard Chan School does not accept the “My Best” score. Report official scores to the School using code 3456. If you have already started your SOPHAS application, please report your scores to 5688. For valid scores taken before January 21, 2026: Minimum accepted score: 100 (Preferred 104+). Required 25 sub-score or higher on each section.",
+     "overall": 100,
+     "min_band": 25,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "16c7f80a24bca9db0f6343cee73c686687b8b4eeaa4628ef7a5a5e6bb47eed73",
+     "source_url": "https://hsph.harvard.edu/admissions/applying-to-a-degree-program/application-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "IELTS Academic minimum 7.5",
+     "quote": "International English Language Testing System (IELTS) Academic Test: Minimum accepted score: 7.5",
+     "overall": 7.5,
+     "source_sha256": "16c7f80a24bca9db0f6343cee73c686687b8b4eeaa4628ef7a5a5e6bb47eed73",
+     "source_url": "https://hsph.harvard.edu/admissions/applying-to-a-degree-program/application-requirements/",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "Bachelor's degree",
+     "quote": "The 80-credit Master of Science (SM) program is designed for individuals who hold a bachelor’s degree.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (SM) in Biostatistics (60-credit)",
+   "url": "https://hsph.harvard.edu/program/sm-biostatistics/",
+   "snapshot_sha256": "bb44e8c96f0847296baf3ab6c17c3976ee722e56c14b26fbdcedefa19ad2463b",
+   "fields": {
+    "toefl": {
+     "text": "TOEFL iBT: 5.5 on each section for tests from 21 January 2026; for earlier tests a minimum of 100 (preferred 104+) with 25 on each section",
+     "quote": "Minimum accepted score: 5.5 sub-score or higher on each section. Harvard Chan School does not accept the “My Best” score. Report official scores to the School using code 3456. If you have already started your SOPHAS application, please report your scores to 5688. For valid scores taken before January 21, 2026: Minimum accepted score: 100 (Preferred 104+). Required 25 sub-score or higher on each section.",
+     "overall": 100,
+     "min_band": 25,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "16c7f80a24bca9db0f6343cee73c686687b8b4eeaa4628ef7a5a5e6bb47eed73",
+     "source_url": "https://hsph.harvard.edu/admissions/applying-to-a-degree-program/application-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "IELTS Academic minimum 7.5",
+     "quote": "International English Language Testing System (IELTS) Academic Test: Minimum accepted score: 7.5",
+     "overall": 7.5,
+     "source_sha256": "16c7f80a24bca9db0f6343cee73c686687b8b4eeaa4628ef7a5a5e6bb47eed73",
+     "source_url": "https://hsph.harvard.edu/admissions/applying-to-a-degree-program/application-requirements/",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "Bachelor's degree or non-U.S. equivalent",
+     "quote": "The Master of Science 60-credit program (SM-60) requires: Minimum prerequisite for entrance: Bachelor’s degree or non-U.S. equivalent;",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Calculus through multivariable integration",
+      "quote": "Successful completion of calculus through multivariable integration;",
+      "check": "ok"
+     },
+     {
+      "text": "One semester of linear algebra or matrix methods",
+      "quote": "Successful completion of one semester of linear algebra or matrix methods;",
+      "check": "ok"
+     },
+     {
+      "text": "Practical knowledge of computer scripting and programming with a statistical computing language such as R, Python, or SAS",
+      "quote": "Practical knowledge of computer scripting and programming, and experience with a statistical computing language such as R, Python, or SAS.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (SM) in Health Data Science (80-credit)",
+   "url": "https://hsph.harvard.edu/program/sm-health-data-science/",
+   "snapshot_sha256": "a81cbc3d4e22fed46406b1e6fda316bd4455f103a7e4604900dd8f32c61c13f2",
+   "fields": {
+    "toefl": {
+     "text": "TOEFL iBT: 5.5 on each section for tests from 21 January 2026; for earlier tests a minimum of 100 (preferred 104+) with 25 on each section",
+     "quote": "Minimum accepted score: 5.5 sub-score or higher on each section. Harvard Chan School does not accept the “My Best” score. Report official scores to the School using code 3456. If you have already started your SOPHAS application, please report your scores to 5688. For valid scores taken before January 21, 2026: Minimum accepted score: 100 (Preferred 104+). Required 25 sub-score or higher on each section.",
+     "overall": 100,
+     "min_band": 25,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "16c7f80a24bca9db0f6343cee73c686687b8b4eeaa4628ef7a5a5e6bb47eed73",
+     "source_url": "https://hsph.harvard.edu/admissions/applying-to-a-degree-program/application-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "IELTS Academic minimum 7.5",
+     "quote": "International English Language Testing System (IELTS) Academic Test: Minimum accepted score: 7.5",
+     "overall": 7.5,
+     "source_sha256": "16c7f80a24bca9db0f6343cee73c686687b8b4eeaa4628ef7a5a5e6bb47eed73",
+     "source_url": "https://hsph.harvard.edu/admissions/applying-to-a-degree-program/application-requirements/",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "Undergraduate degree in mathematical sciences or allied fields, or computer science",
+     "quote": "The Master of Science 80-credit program (SM-80) requires: An undergraduate degree in mathematical sciences or allied fields (statistics, economics, etc.) or computer science, with a strong interest in health science",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Calculus through multivariable integration",
+      "quote": "Calculus through multivariable integration",
+      "check": "ok"
+     },
+     {
+      "text": "One semester of linear algebra or matrix methods",
+      "quote": "One semester of linear algebra or matrix methods",
+      "check": "ok"
+     },
+     {
+      "text": "Practical knowledge of computer scripting and programming with a statistical language such as R or Python",
+      "quote": "Practical knowledge of computer scripting and programming, as well as experience with a statistical computing language such as R or Python",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (SM) in Computational Biology and Quantitative Genetics",
+   "url": "https://hsph.harvard.edu/program/sm-computational-biology-quantitative-genetics/",
+   "snapshot_sha256": "c852e87822cc74bb344066937141a017dd127a676bbb0ea5487c1eb5c11a9abe",
+   "fields": {
+    "toefl": {
+     "text": "TOEFL iBT: 5.5 on each section for tests from 21 January 2026; for earlier tests a minimum of 100 (preferred 104+) with 25 on each section",
+     "quote": "Minimum accepted score: 5.5 sub-score or higher on each section. Harvard Chan School does not accept the “My Best” score. Report official scores to the School using code 3456. If you have already started your SOPHAS application, please report your scores to 5688. For valid scores taken before January 21, 2026: Minimum accepted score: 100 (Preferred 104+). Required 25 sub-score or higher on each section.",
+     "overall": 100,
+     "min_band": 25,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "16c7f80a24bca9db0f6343cee73c686687b8b4eeaa4628ef7a5a5e6bb47eed73",
+     "source_url": "https://hsph.harvard.edu/admissions/applying-to-a-degree-program/application-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "IELTS Academic minimum 7.5",
+     "quote": "International English Language Testing System (IELTS) Academic Test: Minimum accepted score: 7.5",
+     "overall": 7.5,
+     "source_sha256": "16c7f80a24bca9db0f6343cee73c686687b8b4eeaa4628ef7a5a5e6bb47eed73",
+     "source_url": "https://hsph.harvard.edu/admissions/applying-to-a-degree-program/application-requirements/",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "Bachelor's degree or non-U.S. equivalent, in mathematical sciences or allied fields",
+     "quote": "Minimum prerequisite for entrance: Bachelor’s degree or non-U.S. equivalent An undergraduate degree (major or minor concentration) in mathematical sciences or allied fields (statistics, pure or applied mathematics, data science, computer science, bioinformatics, economics, etc.) with a strong interest in the biological sciences.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Calculus through multivariable integration",
+      "quote": "Successful completion of calculus through multivariable integration",
+      "check": "ok"
+     },
+     {
+      "text": "One semester of linear algebra or matrix methods",
+      "quote": "Successful completion of one semester of linear algebra or matrix methods",
+      "check": "ok"
+     },
+     {
+      "text": "At least one semester of biology, with some familiarity with molecular biology and genetics",
+      "quote": "Successful completion of at least one semester of biology, with some familiarity with molecular biology and genetics",
+      "check": "ok"
+     },
+     {
+      "text": "Practical knowledge of computer programming (e.g. Python, R, C++)",
+      "quote": "Practical knowledge of computer programming (e.g. Python, R, C++)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (SM) in Global Health and Population",
+   "url": "https://hsph.harvard.edu/program/sm-global-health-population/",
+   "snapshot_sha256": "cb3ce5356aaf86041142229594408c58a1de39cfe79db5b5764145cbf4b4cd0d",
+   "fields": {
+    "toefl": {
+     "text": "TOEFL iBT minimum 104, with at least 27 in writing and 25 in each other section",
+     "quote": "TOEFL test with a minimum IBT score of 104, with a minimum of 27 in the writing section and no less than 25 in the remaining 3 sections (listening, reading, and speaking)",
+     "overall": 104,
+     "min_band": 25,
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "IELTS Academic minimum 7.5",
+     "quote": "International English Language Testing System (IELTS) Academic Test: Minimum accepted score: 7.5",
+     "overall": 7.5,
+     "source_sha256": "16c7f80a24bca9db0f6343cee73c686687b8b4eeaa4628ef7a5a5e6bb47eed73",
+     "source_url": "https://hsph.harvard.edu/admissions/applying-to-a-degree-program/application-requirements/",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "Bachelor's (or equivalent) degree in a relevant discipline",
+     "quote": "Bachelor’s (or equivalent) degree in a relevant discipline",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "A statistics and a calculus course on the transcript, each with a minimum grade of B+",
+      "quote": "College transcript must show both a statistics AND a calculus course with a minimum grade of B+.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (SM) in Environmental Health (80-credit)",
+   "url": "https://hsph.harvard.edu/program/sm-environmental-health/",
+   "snapshot_sha256": "fe8420d4319ba8f37e9b830fd4016edd67a4efdd47857c1b1d0919b0e11e85e2",
+   "fields": {
+    "toefl": {
+     "text": "TOEFL iBT: 5.5 on each section for tests from 21 January 2026; for earlier tests a minimum of 100 (preferred 104+) with 25 on each section",
+     "quote": "Minimum accepted score: 5.5 sub-score or higher on each section. Harvard Chan School does not accept the “My Best” score. Report official scores to the School using code 3456. If you have already started your SOPHAS application, please report your scores to 5688. For valid scores taken before January 21, 2026: Minimum accepted score: 100 (Preferred 104+). Required 25 sub-score or higher on each section.",
+     "overall": 100,
+     "min_band": 25,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "16c7f80a24bca9db0f6343cee73c686687b8b4eeaa4628ef7a5a5e6bb47eed73",
+     "source_url": "https://hsph.harvard.edu/admissions/applying-to-a-degree-program/application-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "IELTS Academic minimum 7.5",
+     "quote": "International English Language Testing System (IELTS) Academic Test: Minimum accepted score: 7.5",
+     "overall": 7.5,
+     "source_sha256": "16c7f80a24bca9db0f6343cee73c686687b8b4eeaa4628ef7a5a5e6bb47eed73",
+     "source_url": "https://hsph.harvard.edu/admissions/applying-to-a-degree-program/application-requirements/",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "Bachelor's degree or non-US equivalent",
+     "quote": "The Master of Science 80-credit (SM-80) degree program requires a prior bachelor’s degree or non-US equivalent.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Online Master of Science (SM)",
+   "url": "https://hsph.harvard.edu/program/online-master-of-science/",
+   "snapshot_sha256": "92eaa5d5d6b531cc9f14a8617f22c878c71a7c500480d5b487b362fc89013644",
+   "fields": {
+    "toefl": {
+     "text": "TOEFL iBT: 5.5 on each section for tests from 21 January 2026; for earlier tests a minimum of 100 (preferred 104+) with 25 on each section",
+     "quote": "Minimum accepted score: 5.5 sub-score or higher on each section. Harvard Chan School does not accept the “My Best” score. Report official scores to the School using code 3456. If you have already started your SOPHAS application, please report your scores to 5688. For valid scores taken before January 21, 2026: Minimum accepted score: 100 (Preferred 104+). Required 25 sub-score or higher on each section.",
+     "overall": 100,
+     "min_band": 25,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "16c7f80a24bca9db0f6343cee73c686687b8b4eeaa4628ef7a5a5e6bb47eed73",
+     "source_url": "https://hsph.harvard.edu/admissions/applying-to-a-degree-program/application-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "IELTS Academic minimum 7.5",
+     "quote": "International English Language Testing System (IELTS) Academic Test: Minimum accepted score: 7.5",
+     "overall": 7.5,
+     "source_sha256": "16c7f80a24bca9db0f6343cee73c686687b8b4eeaa4628ef7a5a5e6bb47eed73",
+     "source_url": "https://hsph.harvard.edu/admissions/applying-to-a-degree-program/application-requirements/",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "Bachelor's degree or non-U.S. equivalent",
+     "quote": "Eligible applicants for the Online Master of Science must hold a bachelor’s degree or non-U.S. equivalent.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Health Care Management (MHCM)",
+   "url": "https://hsph.harvard.edu/program/master-health-care-management/",
+   "snapshot_sha256": "f35d195cf798ebfb701e9ff21f96a855593a5eb550aa5cca14a7da2b1e09b681",
+   "fields": {
+    "toefl": {
+     "text": "TOEFL iBT: 5.5 on each section for tests from 21 January 2026; for earlier tests a minimum of 100 (preferred 104+) with 25 on each section",
+     "quote": "Minimum accepted score: 5.5 sub-score or higher on each section. Harvard Chan School does not accept the “My Best” score. Report official scores to the School using code 3456. If you have already started your SOPHAS application, please report your scores to 5688. For valid scores taken before January 21, 2026: Minimum accepted score: 100 (Preferred 104+). Required 25 sub-score or higher on each section.",
+     "overall": 100,
+     "min_band": 25,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "16c7f80a24bca9db0f6343cee73c686687b8b4eeaa4628ef7a5a5e6bb47eed73",
+     "source_url": "https://hsph.harvard.edu/admissions/applying-to-a-degree-program/application-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "text": "IELTS Academic minimum 7.5",
+     "quote": "International English Language Testing System (IELTS) Academic Test: Minimum accepted score: 7.5",
+     "overall": 7.5,
+     "source_sha256": "16c7f80a24bca9db0f6343cee73c686687b8b4eeaa4628ef7a5a5e6bb47eed73",
+     "source_url": "https://hsph.harvard.edu/admissions/applying-to-a-degree-program/application-requirements/",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "An MD, DO, DMD or DDS degree, or an international equivalent",
+     "quote": "It is a program requirement that candidates possess an MD, DO, DMD, DDS degree or international equivalent",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 52,
+  "机器核对": 52,
+  "待人工": 0
+ }
+}
