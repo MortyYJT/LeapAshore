@@ -119,7 +119,8 @@ Use `api/.venv/bin/python` for the tools.
   only `text` + `quote`.
 - `deadlines` are application closing dates for the next intake, as ISO dates. The quote must state
   the day, the month **and the year**; a year read off another part of the page ("31 May of the
-  previous year") is an inference and fails the check. Numeric dates are read in the school's own
+  previous year", or the start year in a heading such as "for studies starting August 2027") is
+  an inference: leave that deadline out. Numeric dates are read in the school's own
   order: month first for the US (`12/01/2026` = 1 December 2026), day first everywhere else, and in
   Canada, which uses both, only a date that reads one way (`15/01/2027`) counts. Month names are
   recognised in English, French, German, Spanish, Italian, Dutch, Portuguese, Swedish, Danish,
