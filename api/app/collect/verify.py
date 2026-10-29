@@ -114,6 +114,8 @@ def validate(data: dict) -> None:
                         date.fromisoformat(item["date"])
                     except (KeyError, TypeError, ValueError) as error:
                         raise SchemaError(f"{where}.deadlines needs an ISO date") from error
+                if "recommended" in item and not isinstance(item["recommended"], bool):
+                    raise SchemaError(f"{where}.{name}.recommended must be true or false")
                 for key in NUMERIC_KEYS.get(name, ()):
                     if item.get(key) is not None and not isinstance(item[key], (int, float)):
                         raise SchemaError(f"{where}.{name}.{key} must be a number")

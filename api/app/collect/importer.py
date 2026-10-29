@@ -67,14 +67,25 @@ def passed(item: dict) -> bool:
 
 
 def english_text(fields: dict) -> str | None:
-    """IELTS and TOEFL minimums in one line the interface can parse (`IELTS 6.5…`)."""
+    """IELTS and TOEFL minimums in one line the interface can parse (`IELTS 6.5…`).
+
+    A score the page only recommends ("we recommend at least 7.5", "preferred") is not a minimum, and
+    the interface compares any `IELTS <n>` it finds against the applicant's score. So a recommended
+    score is written in words outside that form (`建议雅思 7.5（非最低要求）`): it is shown, never
+    compared.
+    """
     parts = []
-    for test, label, form in (("ielts", "IELTS", "{:.1f}"), ("toefl", "TOEFL iBT", "{:g}")):
+    for test, label, word, form in (("ielts", "IELTS", "雅思", "{:.1f}"), ("toefl", "TOEFL iBT", "托福", "{:g}")):
         item = fields.get(test)
         if item and passed(item) and item.get("overall") is not None:
-            text = f"{label} {form.format(item['overall'])}"
+            if item.get("recommended"):
+                text = f"建议{word} {form.format(item['overall'])}"
+            else:
+                text = f"{label} {form.format(item['overall'])}"
             if item.get("min_band") is not None:
                 text += f"，单项不低于 {form.format(item['min_band'])}"
+            if item.get("recommended"):
+                text += "（非最低要求）"
             parts.append(text)
     return "；".join(parts) or None
 

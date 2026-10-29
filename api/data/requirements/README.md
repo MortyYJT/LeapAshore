@@ -137,6 +137,10 @@ and cite it with `source_sha256`. Typical cases:
   US 4.0 scale is not a Chinese percentage: quote it in `academic`, never in `min_mark_*`. Skip
   research-only master's (MS thesis track if listed separately as research), certificates, and
   programmes not open to international students.
+- **Recommended is not minimum**: when the page only recommends, prefers or suggests a score ("we
+  recommend at least", "preferred score", "Minimum Suggested Scores", "no minimum, but…"), still give
+  `overall`, and add `"recommended": true`. A table that states both a preferred and a minimum score
+  gives the minimum, without the flag. Averages of admitted students are neither: leave them out.
 - **TOEFL on two scales**: since January 2026 some schools state the TOEFL minimum both on the
   0-120 scale and on the new 1-6 band scale. Put the 0-120 value in `overall`, keep both in the
   quote, and add `"scale_note": "TOEFL stated on 0-120 and 1-6 scales"`. A 1-6 value alone is

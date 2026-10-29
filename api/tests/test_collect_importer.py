@@ -4,6 +4,7 @@ import pytest
 from sqlalchemy import delete, func, select
 
 from app.collect.importer import import_school, program_id_for, source_id_for
+from app.collect.verify import SchemaError
 from app.models.program import Program, ProgramPrerequisite, University
 from app.models.source import Source, SourceVersion
 from app.seed import seed_programs
@@ -196,3 +197,27 @@ def test_no_two_collected_programs_share_an_id():
             where = f"{path.name}: {program['name']}"
             assert key not in seen or program.get("cricos_code"), f"{where} and {seen.get(key)} share {key}"
             seen[key] = where
+
+
+def test_a_recommended_score_is_not_written_as_a_minimum():
+    """"We recommend at least 7.5" is not a threshold; the interface compares any `IELTS <n>` it finds."""
+    import re
+
+    from app.collect.importer import english_text
+
+    fields = {
+        "ielts": {"overall": 7.5, "recommended": True, "quote": "we recommend that you aim for at least IELTS 7.5", "check": "ok"},
+        "toefl": {"overall": 90, "quote": "minimum TOEFL 90", "check": "ok"},
+    }
+    text = english_text(fields)
+    assert text == "建议雅思 7.5（非最低要求）；TOEFL iBT 90"
+    assert not re.search(r"IELTS\s*\d", text)
+
+
+def test_recommended_must_be_a_flag():
+    from app.collect.verify import validate
+
+    with pytest.raises(SchemaError):
+        validate({"school_key": "x", "school_name_en": "X", "programs": [{
+            "name": "M", "url": "https://x.edu", "snapshot_sha256": "a" * 64,
+            "fields": {"ielts": {"overall": 7, "recommended": "yes", "quote": "q"}}}]})
