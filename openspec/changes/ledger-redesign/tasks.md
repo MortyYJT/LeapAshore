@@ -1,7 +1,7 @@
 ## 1. Application status (backend)
 
 - [x] 1.1 Red: tests that `PUT /api/applications` accepts `submitted`, `offered`, `rejected` and refuses `waitlisted` with 422 and no change
-- [ ] 1.2 Green: add the three values to `ApplicationStatus`; update the advisor portfolio tools and their tests (values and API done 10-29; advisor tools not yet updated)
+- [x] 1.2 Green: add the three values to `ApplicationStatus`; update the advisor portfolio tools and their tests
 - [ ] 1.3 Add the six display names to `web/lib/taxonomy.ts` and the client types in `web/lib/types.ts`
 
 ## 2. Program catalog (backend)
