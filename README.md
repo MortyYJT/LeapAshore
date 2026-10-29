@@ -157,7 +157,7 @@ Not yet:
 ## Project records
 
 - [Product requirements (Chinese)](docs/product/PRD.md)
-- [Contribution and commit rules](CONTRIBUTING.md)
-- [Repository instructions for agents](AGENTS.md)
+- [Task list (Chinese)](TASKS.md)
+- [Repository rules for the coding agent](CLAUDE.md)
 - [Cross-change decisions (Chinese)](note/decisions.md)
 - [Backend design (Chinese)](note/design/)
