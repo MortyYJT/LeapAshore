@@ -16,6 +16,7 @@
 
 - [x] 2.8 (D11) File collected programs under a study area read from their name; test agreement with CRICOS
 - [x] 2.9 (D11) `GET /api/programs` gains `q` and serves `universityId` and `country`
+- [x] 2.10 (D11) `GET /api/universities` lists each school row with its program counts; `provider` takes several ids
 
 ## 3. Tiering and data adapters (web/lib)
 

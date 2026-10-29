@@ -166,8 +166,12 @@ countries (PR #27). D3's premise that every non-hand-entered program is a CRICOS
 - **The library and the result page read the API.** `/programs` lists `GET /api/programs` with a new `q`
   search and paging; Australian rows add the CRICOS facts (tuition, weeks) by course code as D3 says. The
   result page tiers every program in the target field that has a stated requirement, whatever its country.
-- **Programs link to their school.** `GET /api/programs` serves `universityId` and `country`, so a program row
-  links to `/schools/[id]` and a school page lists its programs with `provider=<id>`.
+- **Programs link to their school.** `GET /api/programs` serves `universityId` and `country`. The school library
+  keeps its 346 schools from `overseas-institutions.json` and joins them to `GET /api/universities` by Chinese
+  name, then English name. One school can have several rows (CRICOS lists some universities under two
+  provider codes, and the importer leaves an empty row for a school whose site refused collection), so a
+  school page reads its programs with `provider=<id>,<id>`. School pages are addressed by the library's own
+  slug (`/schools/[slug]`), which every school has, rather than by a backend id only some have.
 
 ## Risks / Trade-offs
 
