@@ -100,10 +100,10 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     await logout().catch(() => undefined);
     // An unsaved portfolio draft belongs to the account that made it, not to whoever logs in next.
     clearDraft(sessionStorage);
-    await refresh();
-    announce();
-    router.push("/");
-  }, [refresh, router]);
+    // A full load, not `router.push`: the client router may hold a prefetched `/` that the proxy answered
+    // with a redirect to /roadmap while the session was alive.
+    window.location.assign("/");
+  }, []);
 
   const value = useMemo<AuthContext>(
     () => ({

@@ -379,6 +379,7 @@ export function ProfileForm({
 }
 
 function SchoolHint({ origin, name, listed }: { origin: Profile["schoolOrigin"]; name: string; listed: InstitutionHit | null }) {
+  if (origin === null) return <>先选学校在哪里。中国大陆的学校可以从教育部名单里选。</>;
   if (origin !== "国内") return <>海外或港澳台院校没有统一的均分门槛，分档会请你对照官网。</>;
   if (!name.trim()) return <>输入校名，从教育部名单里选。</>;
   if (!listed) return <>名单里没有这所学校：会按你填的名字保存，院校层次记为未知。</>;
