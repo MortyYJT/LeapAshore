@@ -297,3 +297,17 @@ def test_a_refusal_from_www_holds_for_the_bare_host_and_back(tmp_path, monkeypat
     snap.block_host("grad.example.edu", "HTTP 429", tmp_path)
     assert snap.blocked_host("www.grad.example.edu", tmp_path) == "HTTP 429"
     assert snap.blocked_host("other.example.edu", tmp_path) is None
+
+
+def test_a_numeric_date_in_a_mixed_order_country_must_be_unambiguous(tmp_path):
+    """Canadian pages write dates both ways: 03/04/2027 could be 3 April or 4 March, so it proves
+    neither; 15/01/2027 can only be 15 January."""
+    write_snapshot(tmp_path, "example", SHA, "<p>Deadline A: 03/04/2027</p><p>Deadline B: 15/01/2027</p>")
+
+    def check(when, quote):
+        result = verify({**data(program({"deadlines": [{"label": "x", "date": when, "quote": quote}]})), "country": "Canada"}, root=tmp_path)
+        return result["programs"][0]["status"]
+
+    assert check("2027-04-03", "Deadline A: 03/04/2027") == NEEDS_HUMAN
+    assert check("2027-03-04", "Deadline A: 03/04/2027") == NEEDS_HUMAN
+    assert check("2027-01-15", "Deadline B: 15/01/2027") == MACHINE_CHECKED

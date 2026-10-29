@@ -68,6 +68,8 @@ NUMERIC_DATES = re.compile(r"(\d{4})[-/.](\d{1,2})[-/.](\d{1,2})|(\d{1,2})[-/.](
 
 # Countries whose official pages write a numeric date month first (12/01/2026 = 1 December).
 MONTH_FIRST = {"United States", "US", "USA", "United States of America", "Philippines"}
+# Countries whose pages use both orders: a numeric date counts only when both readings agree.
+EITHER_ORDER = {"Canada"}
 
 
 def _numeric_dates(quote: str, month_first: bool = False) -> list[date]:
@@ -127,7 +129,7 @@ def validate(data: dict) -> None:
                         raise SchemaError(f"{where}.{name}.{key} must be a number")
 
 
-def check_item(name: str, item: dict, text: str, month_first: bool = False) -> list[str]:
+def check_item(name: str, item: dict, text: str, month_first: bool = False, either_order: bool = False) -> list[str]:
     """The reasons this item fails; empty when it passes."""
     problems = []
     quote = item["quote"]
@@ -140,6 +142,16 @@ def check_item(name: str, item: dict, text: str, month_first: bool = False) -> l
     if name == "deadlines":
         when = date.fromisoformat(item["date"])
         numeric = _numeric_dates(quote, month_first)
+        if either_order:
+            # Keep only the dates that read one way: the other order is invalid, or gives the same day.
+            numeric = []
+            for match in NUMERIC_DATES.finditer(quote):
+                readings = set(_numeric_dates(match.group(0), True)) | set(_numeric_dates(match.group(0), False))
+                if len(readings) == 1:
+                    numeric += readings
+            if NUMERIC_DATES.search(quote) and when not in numeric:
+                problems.append(f"deadline {when.isoformat()}: the numeric date in the quote reads two ways")
+                return problems
         if numeric:
             # A quote that writes the date in digits has to write this date.
             if when not in numeric:
@@ -169,6 +181,7 @@ def verify(data: dict, root: Path = SNAPSHOT_ROOT) -> dict:
         return cache[sha]
 
     month_first = data.get("country") in MONTH_FIRST
+    either_order = data.get("country") in EITHER_ORDER
     summary = {"programs": 0, MACHINE_CHECKED: 0, NEEDS_HUMAN: 0}
     for program in data["programs"]:
         all_ok, reported = True, 0
@@ -182,7 +195,7 @@ def verify(data: dict, root: Path = SNAPSHOT_ROOT) -> dict:
                     meta = root / school / f"{item['source_sha256']}.json"
                     if meta.exists():
                         item["source_url"] = json.loads(meta.read_text(encoding="utf-8")).get("final_url") or item.get("source_url")
-                problems = ["snapshot missing"] if text is None else check_item(name, item, text, month_first)
+                problems = ["snapshot missing"] if text is None else check_item(name, item, text, month_first, either_order)
                 item["check"] = "ok" if not problems else "; ".join(problems)
                 all_ok = all_ok and not problems
         program["status"] = MACHINE_CHECKED if reported and all_ok else NEEDS_HUMAN
