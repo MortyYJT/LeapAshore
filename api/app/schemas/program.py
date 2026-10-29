@@ -70,6 +70,9 @@ class ProgramOut(BaseModel):
     name: str
     name_en: str | None = None
     university: str
+    # The school's id and country, so a program row can link to its school and be grouped by country.
+    university_id: str
+    country: str
     city: str | None = None
     degree_level: str | None = None
     field: str | None = None

@@ -110,7 +110,7 @@ def _portfolio(session, client_id: str) -> list[Application]:
 
 @tool
 def get_my_portfolio(config: RunnableConfig) -> str:
-    """读取当前申请人的选校组合：每个项目的档位（冲/稳/保）、状态和是否首选。"""
+    """读取当前申请人的选校组合：每个项目的档位（冲/稳/保）、申请状态和是否首选。"""
     with SessionLocal() as s:
         rows = _portfolio(s, _client_id(config))
         if not rows:
@@ -123,16 +123,31 @@ def get_my_portfolio(config: RunnableConfig) -> str:
         )
 
 
+# The applicant's words for each stored status, so a confirm question never shows a raw value.
+STATUS_LABELS = {
+    ApplicationStatus.CONSIDERING: "考虑中",
+    ApplicationStatus.APPLYING: "申请中",
+    ApplicationStatus.SUBMITTED: "已提交",
+    ApplicationStatus.OFFERED: "已获 offer",
+    ApplicationStatus.REJECTED: "被拒",
+    ApplicationStatus.EXCLUDED: "不考虑",
+}
+
+
 @tool
 def propose_portfolio_change(
-    program_id: str, action: str, config: RunnableConfig, tier: str = "稳"
+    program_id: str, action: str, config: RunnableConfig, tier: str = "稳", status: str = ""
 ) -> str:
     """修改选校组合（高风险，必须经用户确认后才执行）。action 取值：add（加入，需给 tier：冲/稳/保）、
-    remove（移出）、set_primary（设为首选）。program_id 先用 search_programs 查到。"""
-    if action not in ("add", "remove", "set_primary"):
-        return "未执行：action 只能是 add、remove 或 set_primary。"
+    remove（移出）、set_primary（设为首选）、set_status（改申请状态，需给 status：considering 考虑中 /
+    applying 申请中 / submitted 已提交 / offered 已获 offer / rejected 被拒 / excluded 不考虑）。
+    program_id 先用 search_programs 查到。"""
+    if action not in ("add", "remove", "set_primary", "set_status"):
+        return "未执行：action 只能是 add、remove、set_primary 或 set_status。"
     if action == "add" and tier not in {t.value for t in ApplicationTier}:
         return "未执行：tier 只能是 冲、稳 或 保。"
+    if action == "set_status" and status not in {s.value for s in ApplicationStatus}:
+        return "未执行：status 只能是 " + "、".join(s.value for s in ApplicationStatus) + "。"
     client_id = _client_id(config)
     with SessionLocal() as s:
         program = s.get(Program, program_id)
@@ -163,6 +178,11 @@ def propose_portfolio_change(
             return f"未执行：「{label}」不在选校组合里。"
         rows.pop(program_id)
         summary = f"把「{label}」移出选校组合"
+    elif action == "set_status":
+        if program_id not in rows:
+            return f"未执行：「{label}」不在选校组合里，先加入再改状态。"
+        rows[program_id]["status"] = status
+        summary = f"把「{label}」的申请状态改为：{STATUS_LABELS[ApplicationStatus(status)]}"
     else:
         if program_id not in rows:
             return f"未执行：「{label}」不在选校组合里，先加入再设为首选。"

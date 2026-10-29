@@ -1,15 +1,20 @@
 import type { Metadata } from "next";
+
+import { Shell } from "@/components/shell/Shell";
+
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "鱼跃彼岸 · 谷鱼出品 · 留学申请规划平台",
-  description: "把留学申请流程画成一张可推进的图：每个阶段要准备什么、什么时候该做、依据来自哪里。",
+  title: "鱼跃彼岸 · 硕士申请规划",
+  description: "填一次背景，看哪些项目的官方要求你已经满足；选好学校后，从今天到入学，每个阶段要准备什么、依据来自哪个官方页面，都在一张图上。",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="zh-CN">
-      <body>{children}</body>
+      <body>
+        <Shell>{children}</Shell>
+      </body>
     </html>
   );
 }

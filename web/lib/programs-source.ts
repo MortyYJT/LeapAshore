@@ -32,7 +32,7 @@
  * consumer of it now answers for the nulls it can see.
  */
 import { toSourceStatus } from "./source-status.ts";
-import type { PortfolioItem, PortfolioTier, Program } from "./types";
+import type { ApplicationStatus, PortfolioItem, PortfolioTier, Program } from "./types";
 
 /**
  * What the interface shows where the catalogue does not know yet.
@@ -74,6 +74,9 @@ export interface ServedProgram {
   englishRequirement: string | null;
   dataStatus: string;
   source: ServedSource;
+  /** Added with the international catalogue; an older server sends neither. */
+  universityId?: string | null;
+  country?: string | null;
 }
 
 /**
@@ -219,6 +222,7 @@ export interface ServedApplication {
 export interface ApplicationRow {
   programId: string;
   tier: PortfolioTier;
+  status: ApplicationStatus;
   isPrimary: boolean;
   needsReview: boolean;
 }
@@ -296,6 +300,8 @@ export function toProgramView(program: ServedProgram): Program {
       status: toSourceStatus(program.source?.status),
     },
     dataStatus: toSourceStatus(program.dataStatus),
+    universityId: isFilled(program.universityId) ? program.universityId : null,
+    country: isFilled(program.country) ? program.country : null,
   };
 }
 
@@ -334,6 +340,9 @@ export function toPortfolioItems(rows: ServedApplication[]): PortfolioItem[] {
     confirmed: true,
     needsReview: row.needsReview,
     isPrimary: row.isPrimary,
+    status: toApplicationStatus(row.status),
+    officialDeadline: row.officialDeadline ?? null,
+    deadlineSourceUrl: row.deadlineSourceUrl ?? null,
   }));
 }
 
@@ -351,7 +360,19 @@ export function toApplicationRows(items: PortfolioItem[]): ApplicationRow[] {
   return (items ?? []).map((item) => ({
     programId: item.programSlug,
     tier: item.tier,
+    status: item.status ?? "considering",
     isPrimary: item.isPrimary ?? false,
     needsReview: item.needsReview ?? false,
   }));
+}
+
+const APPLICATION_STATUS_VALUES: readonly ApplicationStatus[] = [
+  "considering", "applying", "submitted", "offered", "rejected", "excluded",
+];
+
+/** A status this build does not know is read as the column's default, never passed through raw. */
+export function toApplicationStatus(value: unknown): ApplicationStatus {
+  return APPLICATION_STATUS_VALUES.includes(value as ApplicationStatus)
+    ? (value as ApplicationStatus)
+    : "considering";
 }

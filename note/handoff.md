@@ -2,9 +2,23 @@
 
 **唯一的当前状态文件。会话结束时覆盖，开始时读，并先对照 `git status` 和 `git log`。**
 
+## 最新（2026-10-29 深夜，新前端）
+
+- 分支 `claude/ledger-frontend`，最新提交 `ec5aebb`，已推送，**未合并、未部署**。OpenSpec `ledger-redesign` 44 项完成 38 项。
+- 新前端已按原型做完：`/`、`/assess`、`/assess/result`、`/portfolio`、`/roadmap`、`/schools`、`/schools/[slug]`、`/programs`、`/programs/[id]`、`/advisor`、`/me`。旧绿色界面、`/prototype/*`、`lib/store.ts`、`eligibility.ts`、六项目镜像全部删除。
+- 后端补了：顾问 `set_status`；导入器按项目名归学科（`app/collect/fields.py`，与 CRICOS 一致率 78.5%）；`/api/programs` 加 `q`、`universityId`、`country`、多 id `provider`；新 `GET /api/universities`。决定写在 design.md D11。
+- `make verify` 全绿（exit 0）：后端 320、前端 225、新走查 `scripts/walkthrough.cjs` 73/73。
+- 剩 6 项：4.4 / 7.1 taste-skill inspector；5.12 每个区块的加载/空/错误态逐一在浏览器看；7.2 截图评审三轮（看过一轮，修了桌面端菜单按钮和首页时间线竖排）；7.3 新上下文评审；7.5 PRD §4 状态表和 README 截图。
+- 上线前要做：生产库重跑导入器（给国际项目补学科：`python -m app.collect.importer`，需要快照元数据，方法见下一节）；`compose.prod.yaml` 已给 web 加 `API_ORIGIN=http://api:8000`。
+- 坑：Turbopack dev 缓存会继续给旧 CSS，改了 `globals.css` 没生效时删 `web/.next` 重启 dev；`make clean` 会删 `node_modules`。
+- PRD §8 数据来源表还写着“非澳洲项目未采集”“录取要求是示例数据”，已过时，待 MortyYJT 决定改法。
+
 ## 现在在哪（2026-10-30 凌晨，夜间采集因额度用完停止）
 
-- 分支 `claude/ledger-redesign`（从 main 拉出，未合并）。线上 http://43.161.224.82 仍是改名前的版本。
+- **10-29 晚更新**：PR #27 已按 MortyYJT 要求合并进 main（`e538a09`）。前端接着在新分支 `claude/ledger-frontend`（从 main 拉出）上做。
+- **线上 = main `e538a09`**，地址 https://leapashore.mortyyjt.site 。服务器代码用 `git archive origin/main` 导出后 `rsync --delete` 同步（保留 `deploy/.env`、`deploy/*.bak-*`、`api/var/`），再 `up -d --build`。生产库已导入 141 所学校的要求：programs 7586、universities 172、sources 5070 全部 `待核验`、`verified_at` 非空 0。导入时把本机快照的元数据 json 临时拷进 api 容器，导完已删除（其中 `text_path` 含本机绝对路径，导入器不读它）。
+- 线上页面仍是旧前端：项目库读的是前端写死的 CRICOS 数据，看不到新采集的要求，要等新前端。
+- README 和 GitHub About 已改成新域名和真实数据数字。
 - 今晚做三件事（MortyYJT 原话：「补数据，爬取 qs 前 200 的……还有补一下缺失校徽，然后去写代码，就那些不太可能会变动的后端部分」）：
   1. **录取要求采集**：QS 2027 前 200 中除中国大陆外的 190 所，按 `api/data/requirements/_schools.json` 的 wave 顺序（澳 → 港 → 新 → 英 → 美 → 其余），由子代理逐校采集，额度用完为止。
   2. **补校徽**：`scripts/fill-logos.py`（官网图标 → Wikidata P154/P8972/P158 → Commons 自由许可文件）。

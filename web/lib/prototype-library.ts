@@ -37,7 +37,7 @@ export function schoolListHref(query: Query, changes: Query = {}) {
   const params = new URLSearchParams();
   for (const key of ['q', 'region', 'page']) if (next[key]) params.set(key, next[key]!);
   for (const qs of qsSelections(next.qs)) params.append('qs', qs);
-  return `/prototype/schools${params.size ? `?${params}` : ''}`;
+  return `/schools${params.size ? `?${params}` : ''}`;
 }
 export function filterSchools<T extends {name_en?: string | null; name_zh?: string | null; country: string; region_zh?: string; qs_rank?: string | null}>(rows: T[], query: Query) {
   const q = normalizeName(query.q || '');

@@ -30,6 +30,7 @@ from urllib.parse import urlsplit
 from sqlalchemy import delete, func, select
 from sqlalchemy.orm import Session
 
+from app.collect.fields import study_area_from_name
 from app.collect.snapshot import SNAPSHOT_ROOT
 from app.collect.verify import LIST_FIELDS, MACHINE_CHECKED
 from app.models.program import Program, ProgramPrerequisite, University
@@ -190,12 +191,15 @@ def import_school(session: Session, data: dict, schools: dict[str, dict], root: 
             if program.get("cricos_code"):
                 continue  # an Australian course the catalogue does not carry: nothing to attach it to
             row = Program(id=pid, university_id=university_id, name=program["name"], name_en=program["name"],
-                          degree_level="授课型硕士", **values)
+                          degree_level="授课型硕士", field=study_area_from_name(program["name"]), **values)
             session.add(row)
             added += 1
         else:
             for column, value in values.items():
                 setattr(row, column, value)
+            # A row that already has a study area keeps it: a CRICOS row's comes from the official field.
+            if row.field is None:
+                row.field = study_area_from_name(row.name_en or row.name)
             updated += 1
         session.flush()
 

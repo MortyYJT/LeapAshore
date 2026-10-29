@@ -163,7 +163,7 @@ def test_a_program_without_a_source_does_not_take_the_healthy_rows_down():
         data_status="待核验",
         source_id="src-that-does-not-exist",
     )
-    orphan.university = University(id="unsw", name="新南威尔士大学")
+    orphan.university = University(id="unsw", name="新南威尔士大学", country="澳大利亚")
     # The booleans are set rather than left to the column defaults: a `Program` built in Python has
     # none of them yet, and the healthy row is serialised below, so a default that only the INSERT
     # would apply is `None` here and the response model rejects it.
@@ -177,7 +177,7 @@ def test_a_program_without_a_source_does_not_take_the_healthy_rows_down():
         data_status="待核验",
         source_id="src-that-exists",
     )
-    healthy.university = University(id="unsw", name="新南威尔士大学")
+    healthy.university = University(id="unsw", name="新南威尔士大学", country="澳大利亚")
     found = Source(
         id="src-that-exists",
         url="https://example.edu/healthy",
@@ -355,3 +355,34 @@ def test_programs_with_a_stated_requirement_come_first_and_can_be_filtered(requi
     assert all(p["minimumMark"] is not None or p["englishRequirement"] is not None for p in stated)
     unstated = client.get("/api/programs", params={"has_requirements": "false", "provider": "usyd", "limit": 5}).json()
     assert unstated and all(p["minimumMark"] is None and p["englishRequirement"] is None for p in unstated)
+
+
+def test_the_catalogue_can_be_searched_by_program_or_school_name(require_db, db_session):
+    """The program library's search box: one term against the English name, the Chinese name and the school."""
+    from app.seed_catalog import seed_catalog
+
+    seed_programs(db_session)
+    seed_catalog(db_session)
+    client = TestClient(app)
+
+    by_program = client.get("/api/programs", params={"q": "DATA science"}).json()
+    assert by_program
+    assert all("data science" in ((p["nameEn"] or "") + " " + p["name"]).lower() for p in by_program)
+
+    by_school = client.get("/api/programs", params={"q": "悉尼大学", "limit": 100})
+    assert by_school.json()
+    assert all("悉尼大学" in p["university"] for p in by_school.json())
+    assert int(by_school.headers["X-Total-Count"]) >= len(by_school.json())
+
+
+def test_each_program_names_its_school_id_and_country(require_db, db_session):
+    """A program row links to its school page, so it carries the school's id, not only its name."""
+    from app.seed_catalog import seed_catalog
+
+    seed_programs(db_session)
+    seed_catalog(db_session)
+
+    body = TestClient(app).get("/api/programs", params={"ids": "cricos-111671D"}).json()
+
+    assert body[0]["universityId"] == "usyd"
+    assert body[0]["country"] == "澳大利亚"

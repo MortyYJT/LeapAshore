@@ -9,6 +9,7 @@ from app.routers import (
     programs,
     review_criteria,
     roadmap,
+    universities,
 )
 from app.services.documents import MAX_UPLOAD_BYTES, TOO_LARGE
 
@@ -30,6 +31,7 @@ app.include_router(profile.router)
 app.include_router(programs.router)
 app.include_router(review_criteria.router)
 app.include_router(roadmap.router)
+app.include_router(universities.router)
 
 
 @app.get("/api/health")

@@ -32,6 +32,10 @@ services:
   web:
     build: ../web
     restart: unless-stopped
+    environment:
+      # The Next server's own reads (the return-visit redirect, the library pages) go straight to the
+      # API container; the browser's go through Caddy.
+      API_ORIGIN: http://api:8000
     depends_on:
       - api
 

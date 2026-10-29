@@ -6,7 +6,7 @@ from sqlalchemy import func, or_, select
 from sqlalchemy.orm import Session, selectinload
 
 from app.db import get_session
-from app.models.program import Program
+from app.models.program import Program, University
 from app.models.source import Source
 from app.schemas.program import ProgramOut, SourceOut
 
@@ -30,8 +30,9 @@ def list_programs(
     session: Annotated[Session, Depends(get_session)],
     field: Annotated[str | None, Query()] = None,
     ids: Annotated[str | None, Query(description="comma-separated program ids")] = None,
-    provider: Annotated[str | None, Query(description="university id")] = None,
+    provider: Annotated[str | None, Query(description="university id, or several separated by commas")] = None,
     has_requirements: Annotated[bool | None, Query(alias="has_requirements")] = None,
+    q: Annotated[str | None, Query(description="matches the program's names or its school's", max_length=100)] = None,
     limit: Annotated[int, Query(ge=1, le=MAX_PAGE)] = MAX_PAGE,
     offset: Annotated[int, Query(ge=0)] = 0,
 ) -> list[ProgramOut]:
@@ -78,9 +79,16 @@ def list_programs(
     if ids:
         conditions.append(Program.id.in_([i.strip() for i in ids.split(",") if i.strip()]))
     if provider:
-        conditions.append(Program.university_id == provider)
+        # Several ids at once: one school can have more than one row (see routers/universities.py).
+        conditions.append(Program.university_id.in_([p.strip() for p in provider.split(",") if p.strip()]))
     if has_requirements is not None:
         conditions.append(stated if has_requirements else ~stated)
+    if q and q.strip():
+        term = f"%{q.strip()}%"
+        school = select(University.id).where(or_(University.name.ilike(term), University.name_en.ilike(term)))
+        conditions.append(
+            or_(Program.name.ilike(term), Program.name_en.ilike(term), Program.university_id.in_(school))
+        )
 
     total = session.scalar(select(func.count()).select_from(Program).where(*conditions))
     response.headers[TOTAL_HEADER] = str(total or 0)
@@ -111,6 +119,8 @@ def list_programs(
                 name=program.name,
                 name_en=program.name_en,
                 university=program.university.name,
+                university_id=program.university_id,
+                country=program.university.country,
                 city=program.city,
                 degree_level=program.degree_level,
                 field=program.field,

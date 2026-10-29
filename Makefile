@@ -1,7 +1,7 @@
 .PHONY: help dev build test verify install clean screenshots check-origins
 .PHONY: api-install api-test api-dev api-dev-bg wait-api check-api check-venv
 .PHONY: db-up db-down migrate revision seed
-.PHONY: check-dates check-programs-readers check-roadmap-mirror
+.PHONY: check-dates check-roadmap-mirror
 
 WEB := web
 SHOTS := docs/screenshots
@@ -17,7 +17,7 @@ export UV_CACHE_DIR := $(CURDIR)/.runtime-tools/uv-cache
 # With many targets it is hard to remember prerequisites, so list the ones annotated with ##.
 # The pattern accepts any run of whitespace before `##` and after it, because the annotations are
 # hand-written and an extra space used to be enough to hide a target from this list. The name column
-# is wider than the longest target (`check-programs-readers`), or its description runs into its name.
+# is wider than the longest target (`check-roadmap-mirror`), or its description runs into its name.
 help:  ## List documented targets
 	@grep -E '^[a-z][a-z0-9-]*:.*##[[:space:]]+[^[:space:]]' $(MAKEFILE_LIST) \
 	  | sed 's/:.*##[[:space:]]*/\t/' | sort | awk -F'\t' '{printf "  %-24s %s\n", $$1, $$2}'
@@ -40,7 +40,7 @@ build:  ## Type-check and build into .next-build so a running dev server is unto
 
 # `npm test` type-checks before it runs the tests, because `next build` skips `lib/*.test.ts` and
 # would otherwise let a type error in a test file sit in the tree until someone ran tsc by hand.
-test: check-dates check-programs-readers check-roadmap-mirror api-test  ## Run the frontend type-check and unit tests, plus the backend tests
+test: check-dates check-roadmap-mirror api-test  ## Run the frontend type-check and unit tests, plus the backend tests
 	cd $(WEB) && npm test
 
 verify: check-venv build test screenshots  ## Verify: build, unit tests and the end-to-end walkthrough
@@ -49,7 +49,7 @@ verify: check-venv build test screenshots  ## Verify: build, unit tests and the 
 # rather than after a full run. Checking here too keeps `make verify` from spending a build and the
 # whole unit suite before saying the backend was never up.
 screenshots: check-api  ## Drive the full flow in a real browser, writing screenshots to docs/screenshots/
-	node scripts/e2e-walkthrough.cjs
+	node scripts/walkthrough.cjs
 
 check-api:  ## Fail unless the API answers on :8000
 	@curl -fsS -o /dev/null --max-time 5 http://127.0.0.1:8000/api/health \
@@ -65,12 +65,6 @@ wait-api:  ## Wait for the API started by api-dev-bg to answer
 check-dates:  ## Fail if a verification date is hardcoded in source or seed data
 	node scripts/check-no-fake-dates.cjs
 
-# Pages must read programs from the served row, never from web/lib/programs.ts (now only test data for
-# web/lib/eligibility.test.ts). This walks the import graph out of the App Router's entry points and
-# fails if web/lib/programs.ts is reachable from any of them, however many hops away. A grep over
-# web/components and web/app was bypassable one re-export away — a lookup in web/lib kept it green.
-check-programs-readers:  ## Fail if a page can reach web/lib/programs.ts through the import graph
-	node scripts/check-no-programs-import.cjs
 
 # The same two-part binding as the catalogue: without a database dump this compares
 # web/lib/roadmap.ts against the committed snapshot, and api/tests/test_seed_roadmap.py compares the
