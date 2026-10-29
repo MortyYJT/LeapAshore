@@ -1,0 +1,1690 @@
+{
+ "school_key": "boston-university",
+ "school_name_en": "Boston University",
+ "country": "United States",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://www.bu.edu/academics/eng/programs/",
+  "https://www.bu.edu/academics/grs/programs/",
+  "https://www.bu.edu/cas/admissions/ma-ms/apply/",
+  "https://www.bu.edu/cds-faculty/programs-admissions/graduate-admissions-requirements/",
+  "https://www.bu.edu/questrom/graduate-programs/specialty-masters-programs/",
+  "https://www.bu.edu/pardeeschool/admissions/graduate-admissions/application-instructions/",
+  "https://www.bu.edu/met/admissions/international-admissions/international-application-requirements/"
+ ],
+ "blocked": [],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.bu.edu/wheelock/admissions/graduate/",
+  "https://www.bu.edu/cds-faculty/programs-admissions/bioinformatics/masters-in-bioinformatics/",
+  "https://www.bu.edu/academics/grs/programs/mathematics-statistics/ma-mathematics/",
+  "https://www.bu.edu/met/degrees-certificates/",
+  "https://www.bu.edu/law/academics/find-degrees-and-programs/masters-llm-programs/"
+ ],
+ "notes": "ENG, GRS and Pardee figures come from each school's shared admissions page that the programme pages link to; Questrom and MET TOEFL/IELTS figures are recommendations. GRS deadline tables give no year per row, so GRS deadlines were left out. Questrom deadlines are the 2026-2027 rounds (intake term not stated; Round 1 already passed). Wheelock, remaining MET on-campus programmes, other Law LLMs and MS Bioinformatics were not reached.",
+ "programs": [
+  {
+   "name": "Biomedical Engineering (MS), College of Engineering",
+   "url": "https://www.bu.edu/academics/eng/programs/biomedical-engineering/ms/",
+   "snapshot_sha256": "db19100a8cc751f7505eb507f5b7c3aefe2c45fdcb0bef1f66c16327b149aa5e",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree from an accredited US institution or equivalent international education; a bachelor's degree in a relevant field of study is required for MS/MEng",
+     "quote": "Any well-qualified person with a four-year bachelor’s degree from an accredited U.S. institution (or with the equivalent international education) is encouraged to apply.",
+     "source_sha256": "27cc18d2e3aafbca26aa1bdcea7284182e266e2e344d73242cafc475f704d77d",
+     "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "We require a minimum of 90 overall on the TOEFL or 4.5 for the new TOEFL iBT score report starting in January 2026.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "2ccd6aa669d6604db959f45947704580c45fa9a3ac620a6925233bcd60372373",
+     "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/application-deadlines-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "We are looking for at least a 7.0 on the IELTS.",
+     "source_sha256": "2ccd6aa669d6604db959f45947704580c45fa9a3ac620a6925233bcd60372373",
+     "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/application-deadlines-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-03-15",
+      "quote": "MS, MEng, & LEAP – March 15, 2027 | All Master’s Programs Deadline.",
+      "source_sha256": "2ccd6aa669d6604db959f45947704580c45fa9a3ac620a6925233bcd60372373",
+      "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/application-deadlines-requirements/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Biomedical Engineering (MEng), College of Engineering",
+   "url": "https://www.bu.edu/academics/eng/programs/biomedical-engineering/meng/",
+   "snapshot_sha256": "82a2c196704102d85f86dbf362d655da7739d43cf4c3d13a4abf1d170d4f5148",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree from an accredited US institution or equivalent international education; a bachelor's degree in a relevant field of study is required for MS/MEng",
+     "quote": "Any well-qualified person with a four-year bachelor’s degree from an accredited U.S. institution (or with the equivalent international education) is encouraged to apply.",
+     "source_sha256": "27cc18d2e3aafbca26aa1bdcea7284182e266e2e344d73242cafc475f704d77d",
+     "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "We require a minimum of 90 overall on the TOEFL or 4.5 for the new TOEFL iBT score report starting in January 2026.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "2ccd6aa669d6604db959f45947704580c45fa9a3ac620a6925233bcd60372373",
+     "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/application-deadlines-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "We are looking for at least a 7.0 on the IELTS.",
+     "source_sha256": "2ccd6aa669d6604db959f45947704580c45fa9a3ac620a6925233bcd60372373",
+     "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/application-deadlines-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-03-15",
+      "quote": "MS, MEng, & LEAP – March 15, 2027 | All Master’s Programs Deadline.",
+      "source_sha256": "2ccd6aa669d6604db959f45947704580c45fa9a3ac620a6925233bcd60372373",
+      "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/application-deadlines-requirements/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Materials Science & Engineering (MS), College of Engineering",
+   "url": "https://www.bu.edu/academics/eng/programs/materials-science-engineering/ms/",
+   "snapshot_sha256": "747ffb0451a9e2f61161e9776eaef8d425880b689ed985ab8efcbf1517a11196",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree from an accredited US institution or equivalent international education; a bachelor's degree in a relevant field of study is required for MS/MEng",
+     "quote": "Any well-qualified person with a four-year bachelor’s degree from an accredited U.S. institution (or with the equivalent international education) is encouraged to apply.",
+     "source_sha256": "27cc18d2e3aafbca26aa1bdcea7284182e266e2e344d73242cafc475f704d77d",
+     "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "We require a minimum of 90 overall on the TOEFL or 4.5 for the new TOEFL iBT score report starting in January 2026.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "2ccd6aa669d6604db959f45947704580c45fa9a3ac620a6925233bcd60372373",
+     "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/application-deadlines-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "We are looking for at least a 7.0 on the IELTS.",
+     "source_sha256": "2ccd6aa669d6604db959f45947704580c45fa9a3ac620a6925233bcd60372373",
+     "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/application-deadlines-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Spring 2027",
+      "date": "2026-11-01",
+      "quote": "MS, MEng & LEAP – November 1, 2026 | Deadline to submit all required credentials for the following programs only: LEAP (all program tracks), MS in Mechanical Engineering, MS in Electrical & Computer Engineering, MS and MEng in Materials Science & Engineering, MS in Robotics & Autonomous Systems, MS and MEng in Systems Engineering.",
+      "source_sha256": "2ccd6aa669d6604db959f45947704580c45fa9a3ac620a6925233bcd60372373",
+      "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/application-deadlines-requirements/",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027",
+      "date": "2027-03-15",
+      "quote": "MS, MEng, & LEAP – March 15, 2027 | All Master’s Programs Deadline.",
+      "source_sha256": "2ccd6aa669d6604db959f45947704580c45fa9a3ac620a6925233bcd60372373",
+      "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/application-deadlines-requirements/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Materials Science & Engineering (MEng), College of Engineering",
+   "url": "https://www.bu.edu/academics/eng/programs/materials-science-engineering/meng/",
+   "snapshot_sha256": "50639cacf9be9e7fc98059591122a6d10b7dc805c406018c22a2b8ae90bf6cf3",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree from an accredited US institution or equivalent international education; a bachelor's degree in a relevant field of study is required for MS/MEng",
+     "quote": "Any well-qualified person with a four-year bachelor’s degree from an accredited U.S. institution (or with the equivalent international education) is encouraged to apply.",
+     "source_sha256": "27cc18d2e3aafbca26aa1bdcea7284182e266e2e344d73242cafc475f704d77d",
+     "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "We require a minimum of 90 overall on the TOEFL or 4.5 for the new TOEFL iBT score report starting in January 2026.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "2ccd6aa669d6604db959f45947704580c45fa9a3ac620a6925233bcd60372373",
+     "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/application-deadlines-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "We are looking for at least a 7.0 on the IELTS.",
+     "source_sha256": "2ccd6aa669d6604db959f45947704580c45fa9a3ac620a6925233bcd60372373",
+     "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/application-deadlines-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Spring 2027",
+      "date": "2026-11-01",
+      "quote": "MS, MEng & LEAP – November 1, 2026 | Deadline to submit all required credentials for the following programs only: LEAP (all program tracks), MS in Mechanical Engineering, MS in Electrical & Computer Engineering, MS and MEng in Materials Science & Engineering, MS in Robotics & Autonomous Systems, MS and MEng in Systems Engineering.",
+      "source_sha256": "2ccd6aa669d6604db959f45947704580c45fa9a3ac620a6925233bcd60372373",
+      "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/application-deadlines-requirements/",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027",
+      "date": "2027-03-15",
+      "quote": "MS, MEng, & LEAP – March 15, 2027 | All Master’s Programs Deadline.",
+      "source_sha256": "2ccd6aa669d6604db959f45947704580c45fa9a3ac620a6925233bcd60372373",
+      "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/application-deadlines-requirements/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Mechanical Engineering (MS), College of Engineering",
+   "url": "https://www.bu.edu/academics/eng/programs/mechanical-engineering/ms/",
+   "snapshot_sha256": "54d2cb3966498cee382b301595d87c2a0e08af547242e10b8b1c872a0732e30c",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree from an accredited US institution or equivalent international education; a bachelor's degree in a relevant field of study is required for MS/MEng",
+     "quote": "Any well-qualified person with a four-year bachelor’s degree from an accredited U.S. institution (or with the equivalent international education) is encouraged to apply.",
+     "source_sha256": "27cc18d2e3aafbca26aa1bdcea7284182e266e2e344d73242cafc475f704d77d",
+     "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "We require a minimum of 90 overall on the TOEFL or 4.5 for the new TOEFL iBT score report starting in January 2026.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "2ccd6aa669d6604db959f45947704580c45fa9a3ac620a6925233bcd60372373",
+     "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/application-deadlines-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "We are looking for at least a 7.0 on the IELTS.",
+     "source_sha256": "2ccd6aa669d6604db959f45947704580c45fa9a3ac620a6925233bcd60372373",
+     "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/application-deadlines-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Spring 2027",
+      "date": "2026-11-01",
+      "quote": "MS, MEng & LEAP – November 1, 2026 | Deadline to submit all required credentials for the following programs only: LEAP (all program tracks), MS in Mechanical Engineering, MS in Electrical & Computer Engineering, MS and MEng in Materials Science & Engineering, MS in Robotics & Autonomous Systems, MS and MEng in Systems Engineering.",
+      "source_sha256": "2ccd6aa669d6604db959f45947704580c45fa9a3ac620a6925233bcd60372373",
+      "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/application-deadlines-requirements/",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027",
+      "date": "2027-03-15",
+      "quote": "MS, MEng, & LEAP – March 15, 2027 | All Master’s Programs Deadline.",
+      "source_sha256": "2ccd6aa669d6604db959f45947704580c45fa9a3ac620a6925233bcd60372373",
+      "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/application-deadlines-requirements/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Robotics & Autonomous Systems (MS), College of Engineering",
+   "url": "https://www.bu.edu/academics/eng/programs/mechanical-engineering/ms-in-robotics-autonomous-systems/",
+   "snapshot_sha256": "9669f0de46bb64fdda71690d5a4caadd5b2596dbcba45a795db946f17c468844",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree from an accredited US institution or equivalent international education; a bachelor's degree in a relevant field of study is required for MS/MEng",
+     "quote": "Any well-qualified person with a four-year bachelor’s degree from an accredited U.S. institution (or with the equivalent international education) is encouraged to apply.",
+     "source_sha256": "27cc18d2e3aafbca26aa1bdcea7284182e266e2e344d73242cafc475f704d77d",
+     "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "We require a minimum of 90 overall on the TOEFL or 4.5 for the new TOEFL iBT score report starting in January 2026.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "2ccd6aa669d6604db959f45947704580c45fa9a3ac620a6925233bcd60372373",
+     "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/application-deadlines-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "We are looking for at least a 7.0 on the IELTS.",
+     "source_sha256": "2ccd6aa669d6604db959f45947704580c45fa9a3ac620a6925233bcd60372373",
+     "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/application-deadlines-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Spring 2027",
+      "date": "2026-11-01",
+      "quote": "MS, MEng & LEAP – November 1, 2026 | Deadline to submit all required credentials for the following programs only: LEAP (all program tracks), MS in Mechanical Engineering, MS in Electrical & Computer Engineering, MS and MEng in Materials Science & Engineering, MS in Robotics & Autonomous Systems, MS and MEng in Systems Engineering.",
+      "source_sha256": "2ccd6aa669d6604db959f45947704580c45fa9a3ac620a6925233bcd60372373",
+      "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/application-deadlines-requirements/",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027",
+      "date": "2027-03-15",
+      "quote": "MS, MEng, & LEAP – March 15, 2027 | All Master’s Programs Deadline.",
+      "source_sha256": "2ccd6aa669d6604db959f45947704580c45fa9a3ac620a6925233bcd60372373",
+      "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/application-deadlines-requirements/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Systems Engineering (MS), College of Engineering",
+   "url": "https://www.bu.edu/academics/eng/programs/systems-engineering/ms/",
+   "snapshot_sha256": "696a283751bce62c8ed04aeecde687507ba9d905f8942c1dd611761df584a668",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree from an accredited US institution or equivalent international education; a bachelor's degree in a relevant field of study is required for MS/MEng",
+     "quote": "Any well-qualified person with a four-year bachelor’s degree from an accredited U.S. institution (or with the equivalent international education) is encouraged to apply.",
+     "source_sha256": "27cc18d2e3aafbca26aa1bdcea7284182e266e2e344d73242cafc475f704d77d",
+     "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "We require a minimum of 90 overall on the TOEFL or 4.5 for the new TOEFL iBT score report starting in January 2026.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "2ccd6aa669d6604db959f45947704580c45fa9a3ac620a6925233bcd60372373",
+     "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/application-deadlines-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "We are looking for at least a 7.0 on the IELTS.",
+     "source_sha256": "2ccd6aa669d6604db959f45947704580c45fa9a3ac620a6925233bcd60372373",
+     "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/application-deadlines-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Spring 2027",
+      "date": "2026-11-01",
+      "quote": "MS, MEng & LEAP – November 1, 2026 | Deadline to submit all required credentials for the following programs only: LEAP (all program tracks), MS in Mechanical Engineering, MS in Electrical & Computer Engineering, MS and MEng in Materials Science & Engineering, MS in Robotics & Autonomous Systems, MS and MEng in Systems Engineering.",
+      "source_sha256": "2ccd6aa669d6604db959f45947704580c45fa9a3ac620a6925233bcd60372373",
+      "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/application-deadlines-requirements/",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027",
+      "date": "2027-03-15",
+      "quote": "MS, MEng, & LEAP – March 15, 2027 | All Master’s Programs Deadline.",
+      "source_sha256": "2ccd6aa669d6604db959f45947704580c45fa9a3ac620a6925233bcd60372373",
+      "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/application-deadlines-requirements/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Systems Engineering (MEng), College of Engineering",
+   "url": "https://www.bu.edu/academics/eng/programs/systems-engineering/meng/",
+   "snapshot_sha256": "019bb6c41409964e914d95bd735aba56d7cc927ca3ff1cf0ac5ad7a3d25ef23c",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree from an accredited US institution or equivalent international education; a bachelor's degree in a relevant field of study is required for MS/MEng",
+     "quote": "Any well-qualified person with a four-year bachelor’s degree from an accredited U.S. institution (or with the equivalent international education) is encouraged to apply.",
+     "source_sha256": "27cc18d2e3aafbca26aa1bdcea7284182e266e2e344d73242cafc475f704d77d",
+     "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "We require a minimum of 90 overall on the TOEFL or 4.5 for the new TOEFL iBT score report starting in January 2026.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "2ccd6aa669d6604db959f45947704580c45fa9a3ac620a6925233bcd60372373",
+     "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/application-deadlines-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "We are looking for at least a 7.0 on the IELTS.",
+     "source_sha256": "2ccd6aa669d6604db959f45947704580c45fa9a3ac620a6925233bcd60372373",
+     "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/application-deadlines-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Spring 2027",
+      "date": "2026-11-01",
+      "quote": "MS, MEng & LEAP – November 1, 2026 | Deadline to submit all required credentials for the following programs only: LEAP (all program tracks), MS in Mechanical Engineering, MS in Electrical & Computer Engineering, MS and MEng in Materials Science & Engineering, MS in Robotics & Autonomous Systems, MS and MEng in Systems Engineering.",
+      "source_sha256": "2ccd6aa669d6604db959f45947704580c45fa9a3ac620a6925233bcd60372373",
+      "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/application-deadlines-requirements/",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027",
+      "date": "2027-03-15",
+      "quote": "MS, MEng, & LEAP – March 15, 2027 | All Master’s Programs Deadline.",
+      "source_sha256": "2ccd6aa669d6604db959f45947704580c45fa9a3ac620a6925233bcd60372373",
+      "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/application-deadlines-requirements/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Electrical & Computer Engineering (MS), College of Engineering",
+   "url": "https://www.bu.edu/academics/eng/programs/electrical-engineering/ms-in-electrical-computer-engineering/",
+   "snapshot_sha256": "94ae8033771ad94b5785a4feec818bf7f85761ce93e6095877af1a8f8ee2bdbe",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree from an accredited US institution or equivalent international education; a bachelor's degree in a relevant field of study is required for MS/MEng",
+     "quote": "Any well-qualified person with a four-year bachelor’s degree from an accredited U.S. institution (or with the equivalent international education) is encouraged to apply.",
+     "source_sha256": "27cc18d2e3aafbca26aa1bdcea7284182e266e2e344d73242cafc475f704d77d",
+     "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "We require a minimum of 90 overall on the TOEFL or 4.5 for the new TOEFL iBT score report starting in January 2026.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "2ccd6aa669d6604db959f45947704580c45fa9a3ac620a6925233bcd60372373",
+     "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/application-deadlines-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "We are looking for at least a 7.0 on the IELTS.",
+     "source_sha256": "2ccd6aa669d6604db959f45947704580c45fa9a3ac620a6925233bcd60372373",
+     "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/application-deadlines-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Spring 2027",
+      "date": "2026-11-01",
+      "quote": "MS, MEng & LEAP – November 1, 2026 | Deadline to submit all required credentials for the following programs only: LEAP (all program tracks), MS in Mechanical Engineering, MS in Electrical & Computer Engineering, MS and MEng in Materials Science & Engineering, MS in Robotics & Autonomous Systems, MS and MEng in Systems Engineering.",
+      "source_sha256": "2ccd6aa669d6604db959f45947704580c45fa9a3ac620a6925233bcd60372373",
+      "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/application-deadlines-requirements/",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027",
+      "date": "2027-03-15",
+      "quote": "MS, MEng, & LEAP – March 15, 2027 | All Master’s Programs Deadline.",
+      "source_sha256": "2ccd6aa669d6604db959f45947704580c45fa9a3ac620a6925233bcd60372373",
+      "source_url": "https://www.bu.edu/eng/admissions/graduate/graduate-admissions/application-deadlines-requirements/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Computer Science (MS), Graduate School of Arts & Sciences",
+   "url": "https://www.bu.edu/academics/grs/programs/computer-science/ms/",
+   "snapshot_sha256": "5ef3b819271e5ce200eb25ca9dd25b2f29c50a06ef1e7a04131d374197c5bd0b",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "recommended": true,
+     "quote": "TOEFL: 5.0 or higher for the new TOEFL iBT score reports starting in January 2026. 100 Overall Score on the internet-based Test (iBT).",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "f3be294d5cd0d1ed9a8d37961c0aae32e12c0e986a7d487983b0d5e3454efc44",
+     "source_url": "https://www.bu.edu/cas/admissions/ma-ms/international-students/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "recommended": true,
+     "quote": "IELTS: 7.0 Overall Band Score",
+     "source_sha256": "f3be294d5cd0d1ed9a8d37961c0aae32e12c0e986a7d487983b0d5e3454efc44",
+     "source_url": "https://www.bu.edu/cas/admissions/ma-ms/international-students/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test not required",
+      "quote": "Official GRE General Test score report (Not required)",
+      "source_sha256": "8da6ff29968d31fb5d0a8fd6df585e337ca2ff78c8de8e8051b6c29813a64085",
+      "source_url": "https://www.bu.edu/cas/admissions/ma-ms/apply/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Computer Science with Specialization in Cyber Security (MS), Graduate School of Arts & Sciences",
+   "url": "https://www.bu.edu/academics/grs/programs/computer-science/ms-cyber-security/",
+   "snapshot_sha256": "5ae30c8e77a985f0b2d86cdbb4e5c5f667ebf88d5a3f0a10ae08aa4f469f9a48",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "recommended": true,
+     "quote": "TOEFL: 5.0 or higher for the new TOEFL iBT score reports starting in January 2026. 100 Overall Score on the internet-based Test (iBT).",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "f3be294d5cd0d1ed9a8d37961c0aae32e12c0e986a7d487983b0d5e3454efc44",
+     "source_url": "https://www.bu.edu/cas/admissions/ma-ms/international-students/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "recommended": true,
+     "quote": "IELTS: 7.0 Overall Band Score",
+     "source_sha256": "f3be294d5cd0d1ed9a8d37961c0aae32e12c0e986a7d487983b0d5e3454efc44",
+     "source_url": "https://www.bu.edu/cas/admissions/ma-ms/international-students/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test not required",
+      "quote": "Official GRE General Test score report (Not required)",
+      "source_sha256": "8da6ff29968d31fb5d0a8fd6df585e337ca2ff78c8de8e8051b6c29813a64085",
+      "source_url": "https://www.bu.edu/cas/admissions/ma-ms/apply/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Computer Science with Specialization in Data-Centric Computing (MS), Graduate School of Arts & Sciences",
+   "url": "https://www.bu.edu/academics/grs/programs/computer-science/ms-in-computer-science-with-specialization-in-data-centric-computing/",
+   "snapshot_sha256": "bb1b0071135e2ba2e8ddc8a6624581a61173481d6d6a7400c8c7b6340d8dea75",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "recommended": true,
+     "quote": "TOEFL: 5.0 or higher for the new TOEFL iBT score reports starting in January 2026. 100 Overall Score on the internet-based Test (iBT).",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "f3be294d5cd0d1ed9a8d37961c0aae32e12c0e986a7d487983b0d5e3454efc44",
+     "source_url": "https://www.bu.edu/cas/admissions/ma-ms/international-students/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "recommended": true,
+     "quote": "IELTS: 7.0 Overall Band Score",
+     "source_sha256": "f3be294d5cd0d1ed9a8d37961c0aae32e12c0e986a7d487983b0d5e3454efc44",
+     "source_url": "https://www.bu.edu/cas/admissions/ma-ms/international-students/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test not required",
+      "quote": "Official GRE General Test score report (Not required)",
+      "source_sha256": "8da6ff29968d31fb5d0a8fd6df585e337ca2ff78c8de8e8051b6c29813a64085",
+      "source_url": "https://www.bu.edu/cas/admissions/ma-ms/apply/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Artificial Intelligence (MS), Graduate School of Arts & Sciences",
+   "url": "https://www.bu.edu/academics/grs/programs/computer-science/ms-in-artificial-intelligence/",
+   "snapshot_sha256": "803df00d48a31e5688d7e3a035bc8e0d35d3e22ceb36e307659bd1990c75e82c",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "recommended": true,
+     "quote": "TOEFL: 5.0 or higher for the new TOEFL iBT score reports starting in January 2026. 100 Overall Score on the internet-based Test (iBT).",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "f3be294d5cd0d1ed9a8d37961c0aae32e12c0e986a7d487983b0d5e3454efc44",
+     "source_url": "https://www.bu.edu/cas/admissions/ma-ms/international-students/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "recommended": true,
+     "quote": "IELTS: 7.0 Overall Band Score",
+     "source_sha256": "f3be294d5cd0d1ed9a8d37961c0aae32e12c0e986a7d487983b0d5e3454efc44",
+     "source_url": "https://www.bu.edu/cas/admissions/ma-ms/international-students/",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "Geared toward students with a computer science undergraduate degree; also welcomes equivalent training and experience, and students with gaps in computing background but strong academic records",
+     "quote": "The 8-course (32-unit) MS in AI program is geared toward students with a computer science undergraduate degree, but it also welcomes those with equivalent training and experience, as well as students with gaps in their computing background but strong academic records overall.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test not required",
+      "quote": "Official GRE General Test score report (Not required)",
+      "source_sha256": "8da6ff29968d31fb5d0a8fd6df585e337ca2ff78c8de8e8051b6c29813a64085",
+      "source_url": "https://www.bu.edu/cas/admissions/ma-ms/apply/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Applied Economics & Data Science (MS), Graduate School of Arts & Sciences",
+   "url": "https://www.bu.edu/academics/grs/programs/economics/ms-in-applied-economics-and-data-science/",
+   "snapshot_sha256": "06fe6d32395cf0ff24dd9fb84d28cd4e5059ed20dc5095658367d4f2901e4159",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "recommended": true,
+     "quote": "TOEFL: 5.0 or higher for the new TOEFL iBT score reports starting in January 2026. 100 Overall Score on the internet-based Test (iBT).",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "f3be294d5cd0d1ed9a8d37961c0aae32e12c0e986a7d487983b0d5e3454efc44",
+     "source_url": "https://www.bu.edu/cas/admissions/ma-ms/international-students/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "recommended": true,
+     "quote": "IELTS: 7.0 Overall Band Score",
+     "source_sha256": "f3be294d5cd0d1ed9a8d37961c0aae32e12c0e986a7d487983b0d5e3454efc44",
+     "source_url": "https://www.bu.edu/cas/admissions/ma-ms/international-students/",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "Bachelor's degree (or expected) in economics, economics and mathematics, or a closely related discipline, from an institution recognised by GRS",
+     "quote": "Applicants to this program should have, or be expecting, a bachelor’s degree in economics, economics and mathematics, or a closely related discipline (from an institution recognized by the Graduate School of Arts & Sciences).",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test required",
+      "quote": "Economics—Applied Economics & Data Science (MS)",
+      "source_sha256": "8da6ff29968d31fb5d0a8fd6df585e337ca2ff78c8de8e8051b6c29813a64085",
+      "source_url": "https://www.bu.edu/cas/admissions/ma-ms/apply/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Economic Policy & Practice (MS), Graduate School of Arts & Sciences",
+   "url": "https://www.bu.edu/academics/grs/programs/economics/ma-economic-policy/",
+   "snapshot_sha256": "f7f845051dfa97008717f99d85aa55b3757f11c832602a11609d9582931de25e",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "recommended": true,
+     "quote": "TOEFL: 5.0 or higher for the new TOEFL iBT score reports starting in January 2026. 100 Overall Score on the internet-based Test (iBT).",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "f3be294d5cd0d1ed9a8d37961c0aae32e12c0e986a7d487983b0d5e3454efc44",
+     "source_url": "https://www.bu.edu/cas/admissions/ma-ms/international-students/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "recommended": true,
+     "quote": "IELTS: 7.0 Overall Band Score",
+     "source_sha256": "f3be294d5cd0d1ed9a8d37961c0aae32e12c0e986a7d487983b0d5e3454efc44",
+     "source_url": "https://www.bu.edu/cas/admissions/ma-ms/international-students/",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "Bachelor's degree (or expected) in economics, economics and mathematics, or a closely related discipline, from an institution recognised by GRS",
+     "quote": "Applicants to this program should have, or be expecting, a bachelor’s degree in economics, economics and mathematics, or a closely related discipline (from an institution recognized by the Graduate School of Arts & Sciences).",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test required",
+      "quote": "Economics—Economic Policy & Practice (MS)",
+      "source_sha256": "8da6ff29968d31fb5d0a8fd6df585e337ca2ff78c8de8e8051b6c29813a64085",
+      "source_url": "https://www.bu.edu/cas/admissions/ma-ms/apply/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Global Development Economics (MA), Graduate School of Arts & Sciences",
+   "url": "https://www.bu.edu/academics/grs/programs/economics/ma-global-development-economics/",
+   "snapshot_sha256": "44fd486217504b818c7bb1d77c3867acf6f063c618b95ca1926e006e5a71b6e5",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "recommended": true,
+     "quote": "TOEFL: 5.0 or higher for the new TOEFL iBT score reports starting in January 2026. 100 Overall Score on the internet-based Test (iBT).",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "f3be294d5cd0d1ed9a8d37961c0aae32e12c0e986a7d487983b0d5e3454efc44",
+     "source_url": "https://www.bu.edu/cas/admissions/ma-ms/international-students/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "recommended": true,
+     "quote": "IELTS: 7.0 Overall Band Score",
+     "source_sha256": "f3be294d5cd0d1ed9a8d37961c0aae32e12c0e986a7d487983b0d5e3454efc44",
+     "source_url": "https://www.bu.edu/cas/admissions/ma-ms/international-students/",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "Bachelor's degree (or expected) in economics, economics and mathematics, or a closely related discipline, from an institution recognised by GRS",
+     "quote": "Applicants to this program should have, or be expecting, a bachelor’s degree in economics, economics and mathematics, or a closely related discipline (from an institution recognized by the Graduate School of Arts & Sciences).",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test required",
+      "quote": "Economics—Global Development Economics (MA)",
+      "source_sha256": "8da6ff29968d31fb5d0a8fd6df585e337ca2ff78c8de8e8051b6c29813a64085",
+      "source_url": "https://www.bu.edu/cas/admissions/ma-ms/apply/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Quantitative Economics (MS), Graduate School of Arts & Sciences",
+   "url": "https://www.bu.edu/academics/grs/programs/economics/ma/",
+   "snapshot_sha256": "43561e321b9404f7a02d801b29fc7030236e930b66ccdaa15df858202c013c02",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "recommended": true,
+     "quote": "TOEFL: 5.0 or higher for the new TOEFL iBT score reports starting in January 2026. 100 Overall Score on the internet-based Test (iBT).",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "f3be294d5cd0d1ed9a8d37961c0aae32e12c0e986a7d487983b0d5e3454efc44",
+     "source_url": "https://www.bu.edu/cas/admissions/ma-ms/international-students/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "recommended": true,
+     "quote": "IELTS: 7.0 Overall Band Score",
+     "source_sha256": "f3be294d5cd0d1ed9a8d37961c0aae32e12c0e986a7d487983b0d5e3454efc44",
+     "source_url": "https://www.bu.edu/cas/admissions/ma-ms/international-students/",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "Bachelor's degree (or expected) in economics, economics and mathematics, or a closely related discipline, from an institution recognised by GRS",
+     "quote": "Applicants to this program should have, or be expecting, a bachelor’s degree in economics, economics and mathematics, or a closely related discipline (from an institution recognized by the Graduate School of Arts & Sciences).",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test required",
+      "quote": "Economics—Qualitative Economics (MS)",
+      "source_sha256": "8da6ff29968d31fb5d0a8fd6df585e337ca2ff78c8de8e8051b6c29813a64085",
+      "source_url": "https://www.bu.edu/cas/admissions/ma-ms/apply/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Statistics (MS), Graduate School of Arts & Sciences",
+   "url": "https://www.bu.edu/academics/grs/programs/mathematics-statistics/ma-statistics/",
+   "snapshot_sha256": "dc5faa1c6eed841e17da2ea0593774adf0d50a5fda587af45806624e00093cd8",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "recommended": true,
+     "quote": "TOEFL: 5.0 or higher for the new TOEFL iBT score reports starting in January 2026. 100 Overall Score on the internet-based Test (iBT).",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "f3be294d5cd0d1ed9a8d37961c0aae32e12c0e986a7d487983b0d5e3454efc44",
+     "source_url": "https://www.bu.edu/cas/admissions/ma-ms/international-students/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "recommended": true,
+     "quote": "IELTS: 7.0 Overall Band Score",
+     "source_sha256": "f3be294d5cd0d1ed9a8d37961c0aae32e12c0e986a7d487983b0d5e3454efc44",
+     "source_url": "https://www.bu.edu/cas/admissions/ma-ms/international-students/",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "Bachelor's degree in mathematics, statistics, or a closely related discipline",
+     "quote": "To enter, students need a bachelor’s degree in mathematics, statistics, or a closely related discipline.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test not required (not among the programmes listed as requiring it)",
+      "quote": "The GRE is not required for any program not listed above.",
+      "source_sha256": "8da6ff29968d31fb5d0a8fd6df585e337ca2ff78c8de8e8051b6c29813a64085",
+      "source_url": "https://www.bu.edu/cas/admissions/ma-ms/apply/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Statistical Practice (MS), Graduate School of Arts & Sciences",
+   "url": "https://www.bu.edu/academics/grs/programs/mathematics-statistics/ms-in-statistical-practice/",
+   "snapshot_sha256": "52b211049057ad4f7cdc1bea7158eb6c2afb0b83d9ff8dca380b9b10e916e2e1",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "recommended": true,
+     "quote": "TOEFL: 5.0 or higher for the new TOEFL iBT score reports starting in January 2026. 100 Overall Score on the internet-based Test (iBT).",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "f3be294d5cd0d1ed9a8d37961c0aae32e12c0e986a7d487983b0d5e3454efc44",
+     "source_url": "https://www.bu.edu/cas/admissions/ma-ms/international-students/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "recommended": true,
+     "quote": "IELTS: 7.0 Overall Band Score",
+     "source_sha256": "f3be294d5cd0d1ed9a8d37961c0aae32e12c0e986a7d487983b0d5e3454efc44",
+     "source_url": "https://www.bu.edu/cas/admissions/ma-ms/international-students/",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "Suitable for students with backgrounds in fields like biology, bioinformatics, economics, management, neuroscience, psychology, and various areas of engineering",
+     "quote": "It is suitable for students with backgrounds in fields like biology, bioinformatics, economics, management, neuroscience, psychology, and various areas of engineering.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test not required (not among the programmes listed as requiring it)",
+      "quote": "The GRE is not required for any program not listed above.",
+      "source_sha256": "8da6ff29968d31fb5d0a8fd6df585e337ca2ff78c8de8e8051b6c29813a64085",
+      "source_url": "https://www.bu.edu/cas/admissions/ma-ms/apply/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Biostatistics (MS), Graduate School of Arts & Sciences",
+   "url": "https://www.bu.edu/academics/grs/programs/biostatistics/ms/",
+   "snapshot_sha256": "644eabf057158d156b770af94f42e226958c801889d85c0cf700a110e18b3c23",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "recommended": true,
+     "quote": "TOEFL: 5.0 or higher for the new TOEFL iBT score reports starting in January 2026. 100 Overall Score on the internet-based Test (iBT).",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "f3be294d5cd0d1ed9a8d37961c0aae32e12c0e986a7d487983b0d5e3454efc44",
+     "source_url": "https://www.bu.edu/cas/admissions/ma-ms/international-students/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "recommended": true,
+     "quote": "IELTS: 7.0 Overall Band Score",
+     "source_sha256": "f3be294d5cd0d1ed9a8d37961c0aae32e12c0e986a7d487983b0d5e3454efc44",
+     "source_url": "https://www.bu.edu/cas/admissions/ma-ms/international-students/",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "Aimed primarily at students with the equivalent of a bachelor's degree",
+     "quote": "The Master of Science in Biostatistics program is aimed primarily at students with the equivalent of a bachelor’s degree who wish to pursue advanced study in the theory and methods of biostatistics.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test not required (not among the programmes listed as requiring it)",
+      "quote": "The GRE is not required for any program not listed above.",
+      "source_sha256": "8da6ff29968d31fb5d0a8fd6df585e337ca2ff78c8de8e8051b6c29813a64085",
+      "source_url": "https://www.bu.edu/cas/admissions/ma-ms/apply/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Affairs (MA, MAIA), Pardee School of Global Studies",
+   "url": "https://www.bu.edu/pardeeschool/academics/graduate/ma-in-international-affairs-maia/",
+   "snapshot_sha256": "ee4ae8b9a4f01e495607e5c1e8abc5957aeca016d478b3646c50ee980fa571fe",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree from a recognised college or university, or equivalent international education (three-year NAAC-accredited Indian bachelor's also accepted); programme page asks for a bachelor's degree relevant to the intended focus",
+     "quote": "You may apply for admission if you have earned a four-year bachelor’s degree from a recognized college or university or an equivalent international education.",
+     "source_sha256": "bd0d26f544232a2743cb233499107954ef0349fadb2cced7ccbffd88eceeefff",
+     "source_url": "https://www.bu.edu/pardeeschool/admissions/graduate-admissions/application-instructions/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "min_band": 22,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT: 90 minimum total score, with a score of at least 22 in each section (reading, writing, speaking, listening), MyBest score included. *For the new TOEFL iBT score reports starting in January 2026: 5 minimum average score with each component score being at least a 4.5",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "bd0d26f544232a2743cb233499107954ef0349fadb2cced7ccbffd88eceeefff",
+     "source_url": "https://www.bu.edu/pardeeschool/admissions/graduate-admissions/application-instructions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.5,
+     "quote": "International English Language Testing System (IELTS Academic test only): 7.0 overall band score with a minimum of 6.5 in each section.",
+     "source_sha256": "bd0d26f544232a2743cb233499107954ef0349fadb2cced7ccbffd88eceeefff",
+     "source_url": "https://www.bu.edu/pardeeschool/admissions/graduate-admissions/application-instructions/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE not required",
+      "quote": "As of the 2022 application cycle, we no longer require GRE scores for admission.",
+      "source_sha256": "bd0d26f544232a2743cb233499107954ef0349fadb2cced7ccbffd88eceeefff",
+      "source_url": "https://www.bu.edu/pardeeschool/admissions/graduate-admissions/application-instructions/",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 (international applicants)",
+      "date": "2026-12-01",
+      "quote": "December 1, 2026: Deadline for all spring applications for international candidates to be submitted, including ALL required supporting documentation",
+      "source_sha256": "bd0d26f544232a2743cb233499107954ef0349fadb2cced7ccbffd88eceeefff",
+      "source_url": "https://www.bu.edu/pardeeschool/admissions/graduate-admissions/application-instructions/",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 (international applicants)",
+      "date": "2027-07-15",
+      "quote": "July 15, 2027: Deadline for all fall applications for international candidates to be submitted, including ALL required supporting documentation",
+      "source_sha256": "bd0d26f544232a2743cb233499107954ef0349fadb2cced7ccbffd88eceeefff",
+      "source_url": "https://www.bu.edu/pardeeschool/admissions/graduate-admissions/application-instructions/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Global Policy (MA, MGP), Pardee School of Global Studies",
+   "url": "https://www.bu.edu/pardeeschool/academics/graduate/ma-in-global-policy-mgp/",
+   "snapshot_sha256": "b1aaf03ff7ca2d757d415abccbd781e9edda8e845b7256f7a260cf9841b35a86",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree from a recognised college or university, or equivalent international education (three-year NAAC-accredited Indian bachelor's also accepted)",
+     "quote": "You may apply for admission if you have earned a four-year bachelor’s degree from a recognized college or university or an equivalent international education.",
+     "source_sha256": "bd0d26f544232a2743cb233499107954ef0349fadb2cced7ccbffd88eceeefff",
+     "source_url": "https://www.bu.edu/pardeeschool/admissions/graduate-admissions/application-instructions/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "min_band": 22,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT: 90 minimum total score, with a score of at least 22 in each section (reading, writing, speaking, listening), MyBest score included. *For the new TOEFL iBT score reports starting in January 2026: 5 minimum average score with each component score being at least a 4.5",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "bd0d26f544232a2743cb233499107954ef0349fadb2cced7ccbffd88eceeefff",
+     "source_url": "https://www.bu.edu/pardeeschool/admissions/graduate-admissions/application-instructions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.5,
+     "quote": "International English Language Testing System (IELTS Academic test only): 7.0 overall band score with a minimum of 6.5 in each section.",
+     "source_sha256": "bd0d26f544232a2743cb233499107954ef0349fadb2cced7ccbffd88eceeefff",
+     "source_url": "https://www.bu.edu/pardeeschool/admissions/graduate-admissions/application-instructions/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE not required",
+      "quote": "As of the 2022 application cycle, we no longer require GRE scores for admission.",
+      "source_sha256": "bd0d26f544232a2743cb233499107954ef0349fadb2cced7ccbffd88eceeefff",
+      "source_url": "https://www.bu.edu/pardeeschool/admissions/graduate-admissions/application-instructions/",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 (international applicants)",
+      "date": "2026-12-01",
+      "quote": "December 1, 2026: Deadline for all spring applications for international candidates to be submitted, including ALL required supporting documentation",
+      "source_sha256": "bd0d26f544232a2743cb233499107954ef0349fadb2cced7ccbffd88eceeefff",
+      "source_url": "https://www.bu.edu/pardeeschool/admissions/graduate-admissions/application-instructions/",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 (international applicants)",
+      "date": "2027-07-15",
+      "quote": "July 15, 2027: Deadline for all fall applications for international candidates to be submitted, including ALL required supporting documentation",
+      "source_sha256": "bd0d26f544232a2743cb233499107954ef0349fadb2cced7ccbffd88eceeefff",
+      "source_url": "https://www.bu.edu/pardeeschool/admissions/graduate-admissions/application-instructions/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Business Analytics (MS, MSBA), Questrom School of Business",
+   "url": "https://www.bu.edu/questrom/graduate-programs/specialty-masters-programs/ms-in-business-analytics/admissions/",
+   "snapshot_sha256": "a26d85b859347555bc6c6b718a0d13e1c699827fe86dc5faab72e3cdcd5805bf",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree from an accredited US institution or international equivalent (three-year degree equivalent to a US four-year degree accepted)",
+     "quote": "We require that applicants hold a four-year bachelor’s degree from an accredited US institution or its international equivalent. However, a three-year degree equivalent to a four-year degree in the US will be accepted in the admissions process.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "recommended": true,
+     "quote": "TOEFL: BU’s TOEFL code is 3087. A minimum score of 90 on the iBT is recommended. For tests scored on the new “1-6” scale introduced on January 21, 2026, a minimum total score of 4.5 is recommended.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 6.5,
+     "recommended": true,
+     "quote": "IELTS: Competitive applicants typically score a minimum of 6.5 on each band.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GMAT or GRE optional",
+      "quote": "We will consider your application to MS in Business Analytics program without a GMAT or GRE score if you have a strong overall academic record.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "2026-2027 Round 2",
+      "date": "2026-11-17",
+      "quote": "Round 2: November 17, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "2026-2027 Round 5 (final)",
+      "date": "2027-03-16",
+      "quote": "Round 5: March 16, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Finance (MS, MSF), Questrom School of Business",
+   "url": "https://www.bu.edu/questrom/graduate-programs/specialty-masters-programs/ms-in-finance/admissions/",
+   "snapshot_sha256": "90f8e50f7a6cf879680596950f82df96d22b48ad89a217c43531490d2e2acae8",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree from an accredited US institution or international equivalent (three-year degree equivalent to a US four-year degree accepted)",
+     "quote": "We require that applicants hold a four-year bachelor’s degree from an accredited US institution or its international equivalent. However, a three-year degree equivalent to a four-year degree in the US will be accepted in the admissions process.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "recommended": true,
+     "quote": "TOEFL: BU’s TOEFL code is 3087. A minimum score of 90 on the iBT is recommended. For tests scored on the new “1-6” scale introduced on January 21, 2026, a minimum total score of 4.5 is recommended.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 6.5,
+     "recommended": true,
+     "quote": "IELTS: Competitive applicants typically score a minimum of 6.5 on each band.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GMAT or GRE waiver possible (optional)",
+      "quote": "We will consider your application to MS in Finance program without a GMAT or GRE score if you have a strong overall academic record.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "2026-2027 Round 2",
+      "date": "2026-11-24",
+      "quote": "Round 2: November 24, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "2026-2027 Round 5 (final)",
+      "date": "2027-03-19",
+      "quote": "Round 5: March 19, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Mathematical Finance & Financial Technology (MS, MSMFT), Questrom School of Business",
+   "url": "https://www.bu.edu/questrom/graduate-programs/specialty-masters-programs/ms-in-mathematical-finance-and-financial-technology/admissions/",
+   "snapshot_sha256": "48ae18527d83e6d1a7bd875cbea420d4439b5eed6db7b84456c82f9147dac860",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree from an accredited US institution or international equivalent (three-year degree equivalent to a US four-year degree accepted)",
+     "quote": "We require that applicants hold a four-year bachelor’s degree from an accredited US institution or its international equivalent. However, a three-year degree equivalent to a four-year degree in the US will be accepted in the admissions process.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "recommended": true,
+     "quote": "TOEFL: BU’s TOEFL code is 3087. A minimum score of 90 on the iBT is recommended. For tests scored on the new “1-6” scale introduced on January 21, 2026, a minimum total score of 4.5 is recommended.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 6.5,
+     "recommended": true,
+     "quote": "IELTS: Competitive applicants typically score a minimum of 6.5 on each band.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GMAT or GRE optional",
+      "quote": "We will consider your application to MS in Mathematical Finance & Financial Technology program without a GMAT or GRE score if you have a strong overall academic record.",
+      "check": "ok"
+     },
+     {
+      "text": "Expected familiarity: computer programming, multivariate calculus, linear algebra, probability theory, statistics, differential equations",
+      "quote": "You are expected to have deep exposure to undergraduate mathematics, probability theory, statistics, and programming.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "2026-2027 Round 2",
+      "date": "2026-11-17",
+      "quote": "Round 2: November 17, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "2026-2027 Round 5 (final)",
+      "date": "2027-03-16",
+      "quote": "Round 5: March 16, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Management (Master in Management, MiM), Questrom School of Business",
+   "url": "https://www.bu.edu/questrom/graduate-programs/specialty-masters-programs/ms-in-management/admissions/",
+   "snapshot_sha256": "cb90de1e494c69651412212cf1643ead3b7addd7e079ecff985ee70c1c502ca7",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree from an accredited US institution or international equivalent (three-year degree equivalent to a US four-year degree accepted)",
+     "quote": "We require that applicants hold a four-year bachelor’s degree from an accredited US institution or its international equivalent. If you have earned a three-year degree that is the equivalent of a four-year degree in the US, it will be accepted in the admissions process.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "recommended": true,
+     "quote": "TOEFL: BU’s TOEFL code is 3087. A minimum score of 90 on the iBT is recommended. For tests scored on the new “1-6” scale introduced on January 21, 2026, a minimum total score of 4.5 is recommended.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 6.5,
+     "recommended": true,
+     "quote": "IELTS: Competitive applicants typically score a minimum of 6.5 on each band",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GMAT or GRE optional",
+      "quote": "The GMAT/GRE tests are optional for applications to the MiM program.",
+      "check": "ok"
+     },
+     {
+      "text": "Current undergraduate senior or graduate of a non-business management bachelor's programme within the past two years",
+      "quote": "Current undergraduate senior or graduate of a non-business management bachelor’s program within the past two years",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "2026-2027 Round 2",
+      "date": "2026-11-24",
+      "quote": "Round 2: November 24, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "2026-2027 Round 5 (final)",
+      "date": "2027-03-19",
+      "quote": "Round 5: March 19, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Data Science (MS), Faculty of Computing & Data Sciences",
+   "url": "https://www.bu.edu/cds-faculty/programs-admissions/ms-data-science/",
+   "snapshot_sha256": "fa016be1b9fefb93e9312e9091384104932178331d47073834769a15723582b2",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's or master's degree in a field connected to data-driven work (e.g. Computer Science, Electrical & Computer Engineering, Mathematics & Statistics); applied fields welcome if prerequisites are met",
+     "quote": "You’ll need a bachelor’s or master’s in a field connected to data-driven work.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Recommended: 4 or more of the listed courses (introductory programming, second programming course, discrete mathematics, linear algebra, statistics and probability, calculus to AP Calculus BC level, introduction to algorithms)",
+      "quote": "We recommend that prospective applicants have completed 4 or more of the courses equivalent to the list below prior to applying to the program.",
+      "source_sha256": "0c56d8b5df54ff61579e2546457eb5598c6419c05636d9017991707834235ff9",
+      "source_url": "https://www.bu.edu/cds-faculty/programs-admissions/graduate-admissions-requirements/",
+      "check": "ok"
+     },
+     {
+      "text": "GRE/GMAT optional",
+      "quote": "While you may submit these scores if you feel they strengthen your application, they are entirely optional for Boston University graduate data science admissions.",
+      "source_sha256": "0c56d8b5df54ff61579e2546457eb5598c6419c05636d9017991707834235ff9",
+      "source_url": "https://www.bu.edu/cds-faculty/programs-admissions/graduate-admissions-requirements/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Applied Business Analytics (MS, on campus), Metropolitan College",
+   "url": "https://www.bu.edu/met/degrees-certificates/ms-applied-business-analytics/",
+   "snapshot_sha256": "132c6f32fb20e31118665b27782aeb368652fe10649c0f1e591fb0e715bebd95",
+   "fields": {
+    "toefl": {
+     "overall": 84,
+     "recommended": true,
+     "quote": "Our recommended overall internet-based TOEFL score is 84, or 4.5 within the new scoring system taking effect January 2026.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "118b8a117b26d0f25b2cf66ca62f69e9f352df5ee73dfceda9813766a1c72f90",
+     "source_url": "https://www.bu.edu/met/admissions/international-admissions/international-application-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "recommended": true,
+     "quote": "Our recommended overall IELTS band score is 6.5.",
+     "source_sha256": "118b8a117b26d0f25b2cf66ca62f69e9f352df5ee73dfceda9813766a1c72f90",
+     "source_url": "https://www.bu.edu/met/admissions/international-admissions/international-application-requirements/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Computer Science (MS, on campus), Metropolitan College",
+   "url": "https://www.bu.edu/met/degrees-certificates/ms-computer-science/",
+   "snapshot_sha256": "eb7d456fc35dff49f692c8cafb4629fcec1c0d079f230a0f45ad99f32daaa585",
+   "fields": {
+    "toefl": {
+     "overall": 84,
+     "recommended": true,
+     "quote": "Our recommended overall internet-based TOEFL score is 84, or 4.5 within the new scoring system taking effect January 2026.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "118b8a117b26d0f25b2cf66ca62f69e9f352df5ee73dfceda9813766a1c72f90",
+     "source_url": "https://www.bu.edu/met/admissions/international-admissions/international-application-requirements/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "recommended": true,
+     "quote": "Our recommended overall IELTS band score is 6.5.",
+     "source_sha256": "118b8a117b26d0f25b2cf66ca62f69e9f352df5ee73dfceda9813766a1c72f90",
+     "source_url": "https://www.bu.edu/met/admissions/international-admissions/international-application-requirements/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Full-Time MBA, Questrom School of Business",
+   "url": "https://www.bu.edu/questrom/graduate-programs/mba-programs/full-time-mba/admissions/",
+   "snapshot_sha256": "aeaae8ef8f7ad1012b2a6a37d39ca15457fe591b0206a9a89276a2f2edd46df1",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree from an accredited US institution or international equivalent (three-year degree equivalent to a US four-year degree accepted)",
+     "quote": "We require that applicants hold a four-year bachelor’s degree from an accredited US institution or its international equivalent. If you have earned a three-year degree that is the equivalent of a four-year degree in the US, it will be accepted in the admissions process.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "recommended": true,
+     "quote": "TOEFL: BU’s TOEFL code is 3087. A minimum score of 90 on the iBT is recommended. For tests scored on the new “1-6” scale introduced on January 21, 2026, a minimum total score of 4.5 is recommended.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "min_band": 6.5,
+     "recommended": true,
+     "quote": "IELTS: Competitive applicants typically score a minimum of 6.5 on each band.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GMAT/GRE waiver may be requested if at least one minimum qualification is met",
+      "quote": "Applicants to the Full-Time MBA program may request a GMAT/GRE waiver provided you meet at least one of the minimum qualifications listed below.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Media Science (MS), College of Communication",
+   "url": "https://www.bu.edu/com/programs/media-science/ms-in-media-science/",
+   "snapshot_sha256": "0f2f8b1c7874ce238d33c7539ee05f1e57e3a4ea90407a533fd2390d59bf0072",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "quote": "For tests taken before January 2026: minimum required score of 100 For tests taken in January 2026 or later: minimum required score of 5.0 on the updated TOEFL scale",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "88137b23184e646f3683c94c71e82377d08fd689418b4f7bda9681177a03e05f",
+     "source_url": "https://www.bu.edu/com/admissions/graduate/for-international-applicants/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): minimum required overall band score of 7.0",
+     "source_sha256": "88137b23184e646f3683c94c71e82377d08fd689418b4f7bda9681177a03e05f",
+     "source_url": "https://www.bu.edu/com/admissions/graduate/for-international-applicants/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE not required",
+      "quote": "No, the GRE is not required for admission to any of COM’s master’s degree or graduate certificate programs.",
+      "source_sha256": "458d3d77c0642105f9309be3fe29a4c1f154763c8bfba3332821e461d8cf4d03",
+      "source_url": "https://www.bu.edu/com/admissions/graduate/faq/",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Priority deadline (next intake)",
+      "date": "2027-02-01",
+      "quote": "02/01/2027 Priority Deadline",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Advertising (MS), College of Communication",
+   "url": "https://www.bu.edu/com/programs/advertising/ms-in-advertising/",
+   "snapshot_sha256": "0985a6ce0f9acbf062e3cf63ccbc4e359cb3c9523902e74686b80746629dc9d0",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "quote": "For tests taken before January 2026: minimum required score of 100 For tests taken in January 2026 or later: minimum required score of 5.0 on the updated TOEFL scale",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "88137b23184e646f3683c94c71e82377d08fd689418b4f7bda9681177a03e05f",
+     "source_url": "https://www.bu.edu/com/admissions/graduate/for-international-applicants/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): minimum required overall band score of 7.0",
+     "source_sha256": "88137b23184e646f3683c94c71e82377d08fd689418b4f7bda9681177a03e05f",
+     "source_url": "https://www.bu.edu/com/admissions/graduate/for-international-applicants/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE not required",
+      "quote": "No, the GRE is not required for admission to any of COM’s master’s degree or graduate certificate programs.",
+      "source_sha256": "458d3d77c0642105f9309be3fe29a4c1f154763c8bfba3332821e461d8cf4d03",
+      "source_url": "https://www.bu.edu/com/admissions/graduate/faq/",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Priority deadline (next intake)",
+      "date": "2027-02-01",
+      "quote": "02/01/2027 Priority Deadline",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Emerging Media Studies (MA), College of Communication",
+   "url": "https://www.bu.edu/com/programs/emerging-media-studies/ma-in-emerging-media-studies/",
+   "snapshot_sha256": "a76ef7c9afb6e36af040da4b173827a23210afb496a976b9dd781092d440e57b",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "quote": "For tests taken before January 2026: minimum required score of 100 For tests taken in January 2026 or later: minimum required score of 5.0 on the updated TOEFL scale",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "88137b23184e646f3683c94c71e82377d08fd689418b4f7bda9681177a03e05f",
+     "source_url": "https://www.bu.edu/com/admissions/graduate/for-international-applicants/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): minimum required overall band score of 7.0",
+     "source_sha256": "88137b23184e646f3683c94c71e82377d08fd689418b4f7bda9681177a03e05f",
+     "source_url": "https://www.bu.edu/com/admissions/graduate/for-international-applicants/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE not required",
+      "quote": "No, the GRE is not required for admission to any of COM’s master’s degree or graduate certificate programs.",
+      "source_sha256": "458d3d77c0642105f9309be3fe29a4c1f154763c8bfba3332821e461d8cf4d03",
+      "source_url": "https://www.bu.edu/com/admissions/graduate/faq/",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Priority deadline (next intake)",
+      "date": "2027-02-01",
+      "quote": "02/01/2027 Priority Deadline",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Media Ventures (MS), College of Communication",
+   "url": "https://www.bu.edu/com/programs/film-television/ms-in-media-ventures/",
+   "snapshot_sha256": "98a48c67f17dc17a036b19831f110ed409c708c6391977c1a51e62938b50b68b",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "quote": "For tests taken before January 2026: minimum required score of 100 For tests taken in January 2026 or later: minimum required score of 5.0 on the updated TOEFL scale",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "88137b23184e646f3683c94c71e82377d08fd689418b4f7bda9681177a03e05f",
+     "source_url": "https://www.bu.edu/com/admissions/graduate/for-international-applicants/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): minimum required overall band score of 7.0",
+     "source_sha256": "88137b23184e646f3683c94c71e82377d08fd689418b4f7bda9681177a03e05f",
+     "source_url": "https://www.bu.edu/com/admissions/graduate/for-international-applicants/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE not required",
+      "quote": "No, the GRE is not required for admission to any of COM’s master’s degree or graduate certificate programs.",
+      "source_sha256": "458d3d77c0642105f9309be3fe29a4c1f154763c8bfba3332821e461d8cf4d03",
+      "source_url": "https://www.bu.edu/com/admissions/graduate/faq/",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Priority deadline (next intake)",
+      "date": "2027-02-01",
+      "quote": "02/01/2027 Priority Deadline",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Television (MS), College of Communication",
+   "url": "https://www.bu.edu/com/programs/film-television/ms-in-television/",
+   "snapshot_sha256": "cdc77ca40fd57dcfd5d2d1fdd0c75963070efa556f207e25aae666c67b11bc70",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "quote": "For tests taken before January 2026: minimum required score of 100 For tests taken in January 2026 or later: minimum required score of 5.0 on the updated TOEFL scale",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "88137b23184e646f3683c94c71e82377d08fd689418b4f7bda9681177a03e05f",
+     "source_url": "https://www.bu.edu/com/admissions/graduate/for-international-applicants/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): minimum required overall band score of 7.0",
+     "source_sha256": "88137b23184e646f3683c94c71e82377d08fd689418b4f7bda9681177a03e05f",
+     "source_url": "https://www.bu.edu/com/admissions/graduate/for-international-applicants/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE not required",
+      "quote": "No, the GRE is not required for admission to any of COM’s master’s degree or graduate certificate programs.",
+      "source_sha256": "458d3d77c0642105f9309be3fe29a4c1f154763c8bfba3332821e461d8cf4d03",
+      "source_url": "https://www.bu.edu/com/admissions/graduate/faq/",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Priority deadline (next intake)",
+      "date": "2027-02-01",
+      "quote": "02/01/2027 Priority Deadline",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Journalism (MS), College of Communication",
+   "url": "https://www.bu.edu/com/programs/journalism/ms-in-journalism/",
+   "snapshot_sha256": "4e09189a8650e83000d7fb6ca412bc23ecf53a50c43acf40db7eefb30d1c13df",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "quote": "For tests taken before January 2026: minimum required score of 100 For tests taken in January 2026 or later: minimum required score of 5.0 on the updated TOEFL scale",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "88137b23184e646f3683c94c71e82377d08fd689418b4f7bda9681177a03e05f",
+     "source_url": "https://www.bu.edu/com/admissions/graduate/for-international-applicants/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): minimum required overall band score of 7.0",
+     "source_sha256": "88137b23184e646f3683c94c71e82377d08fd689418b4f7bda9681177a03e05f",
+     "source_url": "https://www.bu.edu/com/admissions/graduate/for-international-applicants/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE not required",
+      "quote": "No, the GRE is not required for admission to any of COM’s master’s degree or graduate certificate programs.",
+      "source_sha256": "458d3d77c0642105f9309be3fe29a4c1f154763c8bfba3332821e461d8cf4d03",
+      "source_url": "https://www.bu.edu/com/admissions/graduate/faq/",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Priority deadline (next intake)",
+      "date": "2027-02-01",
+      "quote": "02/01/2027 Priority Deadline",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Human-Centered Design (MS), College of Communication",
+   "url": "https://www.bu.edu/com/programs/media-science/master-of-science-in-human-centered-design/",
+   "snapshot_sha256": "c0df5b96b891c670fd8d58bf235945c2d18f12b1948c33eb7ed2814c78cfdab0",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from an accredited institution; applicants from all academic backgrounds welcome",
+     "quote": "Applicants must have a bachelor’s degree from an accredited institution. No GRE is required, and applicants from all academic backgrounds are welcome.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "For tests taken before January 2026: minimum required score of 100 For tests taken in January 2026 or later: minimum required score of 5.0 on the updated TOEFL scale",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "88137b23184e646f3683c94c71e82377d08fd689418b4f7bda9681177a03e05f",
+     "source_url": "https://www.bu.edu/com/admissions/graduate/for-international-applicants/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): minimum required overall band score of 7.0",
+     "source_sha256": "88137b23184e646f3683c94c71e82377d08fd689418b4f7bda9681177a03e05f",
+     "source_url": "https://www.bu.edu/com/admissions/graduate/for-international-applicants/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE not required",
+      "quote": "No, the GRE is not required for admission to any of COM’s master’s degree or graduate certificate programs.",
+      "source_sha256": "458d3d77c0642105f9309be3fe29a4c1f154763c8bfba3332821e461d8cf4d03",
+      "source_url": "https://www.bu.edu/com/admissions/graduate/faq/",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Priority deadline (next intake)",
+      "date": "2027-02-01",
+      "quote": "02/01/2027 Priority Deadline",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Public Relations (MS), College of Communication",
+   "url": "https://www.bu.edu/com/programs/public-relations/ms-in-public-relations/",
+   "snapshot_sha256": "474d6299764aed39da9ed6ab15168e1621713b150d975389aa7a10330683709b",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "quote": "For tests taken before January 2026: minimum required score of 100 For tests taken in January 2026 or later: minimum required score of 5.0 on the updated TOEFL scale",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "88137b23184e646f3683c94c71e82377d08fd689418b4f7bda9681177a03e05f",
+     "source_url": "https://www.bu.edu/com/admissions/graduate/for-international-applicants/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "International English Language Testing System (IELTS): minimum required overall band score of 7.0",
+     "source_sha256": "88137b23184e646f3683c94c71e82377d08fd689418b4f7bda9681177a03e05f",
+     "source_url": "https://www.bu.edu/com/admissions/graduate/for-international-applicants/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE not required",
+      "quote": "No, the GRE is not required for admission to any of COM’s master’s degree or graduate certificate programs.",
+      "source_sha256": "458d3d77c0642105f9309be3fe29a4c1f154763c8bfba3332821e461d8cf4d03",
+      "source_url": "https://www.bu.edu/com/admissions/graduate/faq/",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Priority deadline (next intake)",
+      "date": "2027-02-01",
+      "quote": "02/01/2027 Priority Deadline",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Health (MPH, on campus), School of Public Health",
+   "url": "https://www.bu.edu/sph/admissions/applying/master-of-public-health/",
+   "snapshot_sha256": "d0f4dc735b7c9dd85acad305b49654a9b96fac35a1d096ec3de0efcd218b81c5",
+   "fields": {
+    "academic": {
+     "text": "Applicants from all undergraduate majors and backgrounds are acceptable",
+     "quote": "Applicants from all undergraduate majors and backgrounds are acceptable and encouraged to apply.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL ibt: 100 or higher (if exam was administered prior to January 2026) or 5.0 or higher (if exam was administered January 2026 or later)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS – Academic Exam Only: 7.0 (total band score)",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE not required nor considered",
+      "quote": "the GRE is not required nor considered as part of your application",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 (international final)",
+      "date": "2026-10-15",
+      "quote": "Spring 2027: Priority Deadline*: October 15, 2026 International Final Deadline: October 15, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 (international final)",
+      "date": "2027-04-01",
+      "quote": "Fall 2027: Priority Deadline*: January 15, 2027 International Final Deadline: April 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Laws (LLM) in American Law, School of Law",
+   "url": "https://www.bu.edu/law/academics/find-degrees-and-programs/masters-llm-programs/llm-in-american-law/",
+   "snapshot_sha256": "6f97f33cd8cfaeccc1e8064018e3daf3c41327be6a907074b31e296d4336ae20",
+   "fields": {
+    "academic": {
+     "text": "Official transcripts showing bachelor's degree completion with strong academic performance",
+     "quote": "Official transcripts showing bachelor’s degree completion with strong academic performance.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "min_band": 25,
+     "quote": "Applicants to our graduate programs must achieve a minimum overall TOEFL score of 5.0, with a minimum of 4.5 on each of the individual sections (Reading, Listening, Speaking, Writing). (See exception for Two-Year LLM Program.) For tests taken before January 21, 2026, the existing requirement of 100 (0–120 scale), with a minimum of 25 on each of the individual sections, will continue to apply.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "9b86266d0406ef9aa576938023ff46551784fe558e851f08d549ab1662331b6a",
+     "source_url": "https://www.bu.edu/law/admissions-aid/graduate-admissions/how-to-apply/english-language-proficiency/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "If taking the IELTS exam, you must achieve a minimum score of 7.0.",
+     "source_sha256": "9b86266d0406ef9aa576938023ff46551784fe558e851f08d549ab1662331b6a",
+     "source_url": "https://www.bu.edu/law/admissions-aid/graduate-admissions/how-to-apply/english-language-proficiency/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 40,
+  "机器核对": 40,
+  "待人工": 0
+ }
+}
