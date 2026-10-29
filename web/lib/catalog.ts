@@ -67,3 +67,20 @@ export function schoolSlugForUniversity(
   const school = schools.find((s) => sameSchool(s, row));
   return school ? institutionSlug(school) : null;
 }
+
+/** The fields a program states its requirements in, as `GET /api/programs` serves them. */
+export interface StatedFields {
+  minimumMark: number | null;
+  non211MinimumMark: number | null;
+  englishRequirement: string | null;
+  prerequisites: readonly string[];
+}
+
+/**
+ * Whether a program states a requirement its page shows: an English line, a 985/211 mark, a mark for
+ * other universities, or a prerequisite. The rule of `has_requirement_data` in
+ * `api/app/models/program.py`, so a row's badge agrees with the catalogue filter and the school counts.
+ */
+export function statesARequirement(p: StatedFields): boolean {
+  return p.minimumMark !== null || p.non211MinimumMark !== null || p.englishRequirement !== null || p.prerequisites.length > 0;
+}

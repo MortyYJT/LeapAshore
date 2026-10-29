@@ -6,6 +6,7 @@ import {
   cricosCode,
   cricosFacts,
   schoolSlugForUniversity,
+  statesARequirement,
   universityIdsFor,
   type UniversityRow,
 } from "./catalog.ts";
@@ -58,4 +59,13 @@ test("a program row links back to its school's page in the library", () => {
   const rows = [row({ id: "usyd", name: "悉尼大学", nameEn: "The University of Sydney" })];
   assert.equal(schoolSlugForUniversity("usyd", rows, schools), "the-university-of-sydney");
   assert.equal(schoolSlugForUniversity("no-such-row", rows, schools), null);
+});
+
+test("a program states a requirement by the backend's has_requirement_data rule", () => {
+  const none = { minimumMark: null, non211MinimumMark: null, englishRequirement: null, prerequisites: [] as string[] };
+  assert.equal(statesARequirement(none), false);
+  assert.equal(statesARequirement({ ...none, englishRequirement: "IELTS 6.5" }), true);
+  assert.equal(statesARequirement({ ...none, minimumMark: 80 }), true);
+  assert.equal(statesARequirement({ ...none, non211MinimumMark: 85 }), true);
+  assert.equal(statesARequirement({ ...none, prerequisites: ["Calculus"] }), true);
 });

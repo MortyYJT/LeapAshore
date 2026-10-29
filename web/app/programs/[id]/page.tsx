@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound, redirect } from "next/navigation";
 
 import { SourceNote } from "@/components/ui";
-import { cricosFacts, schoolSlugForUniversity } from "@/lib/catalog";
+import { cricosFacts, schoolSlugForUniversity, statesARequirement } from "@/lib/catalog";
 import { masterPrograms, overseasInstitutions } from "@/lib/catalog-server";
 import { serverProgramPage, serverUniversities } from "@/lib/server-api";
 import { dataStatusLabel, DATA_STATUS_MEANINGS, NOT_COLLECTED } from "@/lib/taxonomy";
@@ -57,8 +57,7 @@ export default async function ProgramPage({ params }: { params: Promise<{ id: st
         ["学位", program.degreeLevel ?? "未知"],
         ["学制", program.duration ?? NOT_COLLECTED],
       ];
-  // The rule of `has_requirement_data` in api/app/models/program.py, so this page and the catalogue counts agree.
-  const stated = program.minimumMark !== null || program.non211MinimumMark !== null || program.englishRequirement !== null || program.prerequisites.length > 0;
+  const stated = statesARequirement(program);
 
   return (
     <>

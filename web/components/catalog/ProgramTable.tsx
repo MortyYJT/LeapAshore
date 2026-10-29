@@ -1,11 +1,9 @@
 import Link from "next/link";
 
-import { cricosFacts } from "@/lib/catalog";
+import { cricosFacts, statesARequirement } from "@/lib/catalog";
 import { masterPrograms } from "@/lib/catalog-server";
 import { dataStatusLabel } from "@/lib/taxonomy";
 import type { Program } from "@/lib/types";
-
-const hasRequirements = (p: Program) => p.minimumMark !== null || p.englishRequirement !== null;
 
 /** One page of catalogue programs as rows. Australian rows add their CRICOS weeks and tuition (design D3). */
 export function ProgramTable({ programs, showSchool = true, empty }: { programs: Program[]; showSchool?: boolean; empty: React.ReactNode }) {
@@ -57,7 +55,7 @@ export function ProgramTable({ programs, showSchool = true, empty }: { programs:
               </td>
               <td className="num hide-phone">{facts?.tuition ? `A${facts.tuition.replace(".00", "")}` : <span className="muted">未收录</span>}</td>
               <td>
-                {hasRequirements(p) ? <span className="pill pill-neutral">已收录 · {dataStatusLabel(p.dataStatus)}</span> : <span className="muted">未收录</span>}
+                {statesARequirement(p) ? <span className="pill pill-neutral">已收录 · {dataStatusLabel(p.dataStatus)}</span> : <span className="muted">未收录</span>}
               </td>
             </tr>
           );
