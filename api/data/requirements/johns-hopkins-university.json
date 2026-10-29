@@ -1,0 +1,938 @@
+{
+ "school_key": "johns-hopkins-university",
+ "school_name_en": "Johns Hopkins University",
+ "country": "United States",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://e-catalogue.jhu.edu/programs/"
+ ],
+ "blocked": [
+  {
+   "url": "https://engineering.jhu.edu/admissions/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://engineering.jhu.edu/academics/graduate-programs/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://publichealth.jhu.edu/academics",
+   "reason": "HTTP 403"
+  },
+  {
+   "url": "https://carey.jhu.edu/programs",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://sais.jhu.edu/academics",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://education.jhu.edu/admissions/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://krieger.jhu.edu/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://ece.jhu.edu/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://engineering.jhu.edu/ams/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://ams.jhu.edu/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://dsai.jhu.edu/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://me.jhu.edu/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://bme.jhu.edu/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://grad.jhu.edu/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://pages.jh.edu/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://bioethics.jhu.edu/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://hub.jhu.edu/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://sais.jhu.edu/admissions-aid/how-to-apply/english-language-proficiency",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://cheme.jhu.edu/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://civileng.jhu.edu/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://mse.jhu.edu/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://lcsr.jhu.edu/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://sais.jhu.edu/academics/degree-programs/master-arts-international-relations",
+   "reason": "robots.txt disallows"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://engineering.jhu.edu/admissions/",
+  "https://carey.jhu.edu/programs",
+  "https://sais.jhu.edu/academics",
+  "https://publichealth.jhu.edu/academics",
+  "https://education.jhu.edu/admissions/",
+  "https://krieger.jhu.edu/"
+ ],
+ "notes": "Most JHU programme and admissions sites (engineering, carey, sais, education, krieger, department sites) disallow our crawler in robots.txt or sit behind a Cloudflare challenge, and publichealth.jhu.edu returned HTTP 403, so none were fetched. Requirements come from the official academic catalogue (e-catalogue.jhu.edu), cs.jhu.edu and peabody.jhu.edu. Catalogue programme pages rarely state admission requirements, so many programmes carry empty fields and are queued for a human. Carey scores and the School of Education GPA/English minimums come from each school's own catalogue admission policy, which the programme pages do not link to explicitly; Carey scores are labelled preferred minimums. Deadlines are omitted because no source quote states a year. Part-time, online and Engineering for Professionals programmes, Peabody MM specialisations and all other Krieger/SAIS/Bloomberg programmes were not collected one by one.",
+ "programs": [
+  {
+   "name": "Master of Science in Engineering, Computer Science",
+   "url": "https://www.cs.jhu.edu/academic-programs/graduate-studies/masters-computer-science/admissions/",
+   "snapshot_sha256": "ed71346d1d6d3547efaaae5b93959a345b016d056b1c5275309e19d28e8c9e07",
+   "fields": {
+    "academic": {
+     "text": "Completed a program of study equivalent to the BS in computer science",
+     "quote": "The MSE CS program is open to exceptional candidates who have completed a program of study equivalent to that required by the BS in computer science.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Applicants from other disciplines: coursework or equivalent experience in intermediate programming (C++ and Java), data structures, computer system fundamentals, mathematical foundations for computer science",
+      "quote": "Applicants from other disciplines are expected to have coursework (or equivalent experience) in intermediate programming (C++ and Java), data structures, computer system fundamentals, and mathematical foundations for computer science.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 7.0,
+     "quote": "English language proficiency for international applicants only TOEFL: ≥ 100 IELTS Test: ≥ 7.0",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "English language proficiency for international applicants only TOEFL: ≥ 100 IELTS Test: ≥ 7.0",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Security Informatics",
+   "url": "https://www.cs.jhu.edu/academic-programs/graduate-studies/ms-in-security-informatics/mse-admissions/",
+   "snapshot_sha256": "3d7501087db6aa8a4bfc57131a1b67fcc03fb165364d4c9818acc37cb61f22ab",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree with sufficient technical exposure to information technology",
+     "quote": "The MSSI program is open to outstanding candidates who hold a bachelor’s degree with sufficient technical exposure to information technology as preparation for the program’s core technology courses.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Good knowledge of computer architecture/networking, programming, data structures, and discrete math",
+      "quote": "MSSI students are expected to have good knowledge of computer architecture/networking, programming, data structures, and discrete math.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 7.0,
+     "quote": "TOEFL: 100 OR IELTS Test: 7.0 (for international applicants only)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL: 100 OR IELTS Test: 7.0 (for international applicants only)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Biomedical Engineering, Master of Science in Engineering",
+   "url": "https://e-catalogue.jhu.edu/engineering/full-time-residential-programs/degree-programs/biomedical-engineering/biomedical-engineering-master-science-engineering/",
+   "snapshot_sha256": "fdfbc44c20f7d1dcc835ae68362291640c62458fec6a62c0844128550b901269",
+   "fields": {
+    "academic": {
+     "text": "Undergraduate degree in engineering; exceptional students with basic-science degrees may also apply but would normally need extra courses",
+     "quote": "Students with undergraduate degrees in engineering are eligible to apply. Exceptional students with degrees in basic sciences may also apply, but would normally have to take a number of courses to overcome deficiencies in their curriculum.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Bioengineering Innovation and Design, Master of Science in Engineering",
+   "url": "https://e-catalogue.jhu.edu/engineering/full-time-residential-programs/degree-programs/biomedical-engineering/innovation-design-master-science-engineering/",
+   "snapshot_sha256": "badd61533d20e0106f622402b389b3105407ea7d573cfd73ca1fa83664479948",
+   "fields": {
+    "academic": {
+     "text": "Undergraduate degree in an engineering discipline; industry or research experience possible",
+     "quote": "The Center for Bioengineering Innovation and Design MSE program is intended for a student with an undergraduate degree in an engineering discipline and who also may have industry or research experience.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Environmental Health and Engineering, Master of Science",
+   "url": "https://e-catalogue.jhu.edu/engineering/full-time-residential-programs/degree-programs/environmental-health-engineering/environmental-health-engineering-master-science/",
+   "snapshot_sha256": "49c6b5dcd1d220ea780f398b158624f6c3e5252daa6eb626ee95c7112dec845b",
+   "fields": {
+    "academic": {
+     "text": "Undergraduate degree in engineering, mathematics, biology, chemistry, physics, geology or another scientific discipline",
+     "quote": "The Geography and Environmental Engineering Master of Science is open to students with undergraduate degrees in engineering, mathematics, biology, chemistry, physics, geology, and other scientific disciplines.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Mathematics (differential equations) and computing skills strongly recommended",
+      "recommended": true,
+      "quote": "MS students are strongly recommended to take mathematics- specifically differential equations and computing skills- as prerequisites for the MS program.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Environmental Health and Engineering, Master of Science in Engineering",
+   "url": "https://e-catalogue.jhu.edu/engineering/full-time-residential-programs/degree-programs/environmental-health-engineering/environmental-health-engineering-master-science-engineering/",
+   "snapshot_sha256": "0d37540979bd06687ea59934f60146e4d7a2671b1cdad3d91cdd5c962659f5fe",
+   "fields": {
+    "academic": {
+     "text": "ABET-accredited undergraduate engineering degree, or equivalent",
+     "quote": "The Environmental Health and Engineering, Master of Science in Engineering* (MSE) is designed to prepare students with an ABET-accredited undergraduate engineering degree, or equivalent, to enter the workforce as leaders in the field.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "At least one semester each of college-level calculus, general chemistry and physics",
+      "quote": "Minimum prerequisites (required) for the MSE program include at least one semester of college-level calculus, one semester of general chemistry, and one semester of physics.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Robotics, Master of Science in Engineering",
+   "url": "https://e-catalogue.jhu.edu/engineering/full-time-residential-programs/degree-programs/robotics-computational-sensing/robotics-master-science-engineering/",
+   "snapshot_sha256": "7ff63cdd42765dbab8644dfd3ad12baf063d5f7f97a5ca6a1b852f8dcbf4703f",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in engineering, science, or math (or demonstrated knowledge or accomplishment in these fields)",
+     "quote": "Bachelor’s degree in engineering, science, or math. (Or demonstrated knowledge or accomplishment in these fields)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Financial Mathematics, Master of Science in Engineering",
+   "url": "https://e-catalogue.jhu.edu/engineering/full-time-residential-programs/degree-programs/applied-mathematics-statistics/financial-mathematics-master-science-engineering/",
+   "snapshot_sha256": "6f94278f87bc8cf107fab6762586d2946222e0c16a0532c3e3a86bf07ad674b4",
+   "fields": {
+    "academic": {
+     "text": "Strong quantitative undergraduate background encouraged",
+     "quote": "Students with a strong quantitative undergraduate background are encouraged to apply for admission to the program.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Applied Mathematics and Statistics, Master of Science in Engineering",
+   "url": "https://e-catalogue.jhu.edu/engineering/full-time-residential-programs/degree-programs/applied-mathematics-statistics/applied-mathematics-statistics-master-science-engineering/",
+   "snapshot_sha256": "d70d652a6596e3698ecb76fd926f2876a83fae9c00c62807a03d7a3732565334",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Chemical and Biomolecular Engineering, Master of Science in Engineering",
+   "url": "https://e-catalogue.jhu.edu/engineering/full-time-residential-programs/degree-programs/chemical-biomolecular-engineering/chemical-biomolecular-engineering-master-science-engineering/",
+   "snapshot_sha256": "5d3743da8cff5b907a6ccb3908acdc9278908df809e26c2db475959669fc265d",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Civil Engineering, Master of Science in Engineering (MSE)",
+   "url": "https://e-catalogue.jhu.edu/engineering/full-time-residential-programs/degree-programs/civil-engineering/civil-engineering-mse/",
+   "snapshot_sha256": "f47870c35c0676fc9e2de9ec81f2ea83f5650dd4e4f7cbd6bb199a34dabff2d7",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Data Science, Master of Science in Engineering",
+   "url": "https://e-catalogue.jhu.edu/engineering/full-time-residential-programs/degree-programs/applied-mathematics-statistics/data-science-masters-degree/",
+   "snapshot_sha256": "89c05ad8023591a2bb870bdd1fe66688f09f431ba96f104791dba9dbdbfb4a5d",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Electrical and Computer Engineering, Master of Science in Engineering",
+   "url": "https://e-catalogue.jhu.edu/engineering/full-time-residential-programs/degree-programs/electrical-computer-engineering/electrical-computer-master-science-engineering/",
+   "snapshot_sha256": "d988b79d003f184ca55d40608498e8fcee7898a610f52098a1e2be81170b735b",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Engineering Management, Master of Science",
+   "url": "https://e-catalogue.jhu.edu/engineering/full-time-residential-programs/degree-programs/leadership-education/engineering-management-master-science/",
+   "snapshot_sha256": "f584a5801fe6358383d40fe3d0461379334adcc4025f65723556476a801b9fc1",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Environmental Health and Engineering, Master of Arts",
+   "url": "https://e-catalogue.jhu.edu/engineering/full-time-residential-programs/degree-programs/environmental-health-engineering/environmental-health-engineering-master-arts/",
+   "snapshot_sha256": "0febb431fec17e4fb7e30e91d7fe40e59c10fc737ecefb344a1d723655237fc2",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Global Innovation and Leadership Through Engineering, Master of Science",
+   "url": "https://e-catalogue.jhu.edu/engineering/full-time-residential-programs/degree-programs/leadership-education/global-innovation-leadership-engineering-master-science/",
+   "snapshot_sha256": "d4f838693aaa9032b8e29fd971bcd46273641784063db27925a1faab7edfa7dc",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Materials Science and Engineering, Master of Science in Engineering",
+   "url": "https://e-catalogue.jhu.edu/engineering/full-time-residential-programs/degree-programs/materials-science-engineering/materials-science-engineering-master/",
+   "snapshot_sha256": "9c004bfc47770209e2400bcb2435aadcfd01530306d73eb4cb7a324529cddabe",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Mechanical Engineering, Master of Science in Engineering",
+   "url": "https://e-catalogue.jhu.edu/engineering/full-time-residential-programs/degree-programs/mechanical-engineering/mechanical-engineering-master-science/",
+   "snapshot_sha256": "9563a61335319b3f4963ff4a44bcea1b881eab2c101087a2e754fc1a77627aed",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Security Informatics, Master of Science",
+   "url": "https://e-catalogue.jhu.edu/engineering/full-time-residential-programs/degree-programs/information-security-institute/security-informatics-master-science/",
+   "snapshot_sha256": "474a9f4ebfe142071559f753283a80190928054a0b47b73f526e30324f2e0c58",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Systems Engineering, Master of Science",
+   "url": "https://e-catalogue.jhu.edu/engineering/full-time-residential-programs/degree-programs/civil-engineering/systems-engineering-ms/",
+   "snapshot_sha256": "3182a72423ec4f2fb2ce21ab839448c49ccfb3b917f54c686ed14863abb3603b",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Economics, Master of Arts",
+   "url": "https://e-catalogue.jhu.edu/arts-sciences/full-time-residential-programs/degree-programs/economics/economics-master-arts/",
+   "snapshot_sha256": "a8cb7f723d97b4fe3cabbf5eacfc3b4e815bfe28dca06d19d0b819c379915055",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "Knowledge of economic theory and statistics and a strong background in mathematics including differential and integral calculus and linear algebra",
+      "quote": "Students should have a knowledge of economic theory and statistics and a strong background in mathematics including differential and integral calculus and linear algebra.",
+      "check": "ok"
+     }
+    ],
+    "toefl": {
+     "overall": 100,
+     "quote": "Foreign applicants must take the TOEFL with a minimum score of 100 (internet based), 600 (paper based) or 250 (computer based), or IELTS with a band score of 7.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "Foreign applicants must take the TOEFL with a minimum score of 100 (internet based), 600 (paper based) or 250 (computer based), or IELTS with a band score of 7.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Earth and Planetary Sciences, Master of Science",
+   "url": "https://e-catalogue.jhu.edu/arts-sciences/full-time-residential-programs/degree-programs/earth-planetary-science/earth-planetary-sciences-master-science/",
+   "snapshot_sha256": "7f3d166f1e71ec09b06ea9e058de1523f66407b56355691a747f1261146cab0f",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Cognitive Science, Master of Arts",
+   "url": "https://e-catalogue.jhu.edu/arts-sciences/full-time-residential-programs/degree-programs/cognitive-science/cognitive-science-master-art/",
+   "snapshot_sha256": "a1fdf10f8994462c98162227c20136070b763cf68f542fc4f11f937802730e6a",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Neuroscience, Master of Science",
+   "url": "https://e-catalogue.jhu.edu/arts-sciences/full-time-residential-programs/degree-programs/neuroscience/neuroscience-master-science/",
+   "snapshot_sha256": "5b35efd35c99506d014fe6bbd90374ced79a5b470529052d52a26d17ece5ad3d",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Psychology, Master of Science",
+   "url": "https://e-catalogue.jhu.edu/arts-sciences/full-time-residential-programs/degree-programs/psychological-brain-science/psychology-master-science/",
+   "snapshot_sha256": "a9855933c8f819aa0cf1edd693c14206cac7a7541c6b4602b9397b7ac8d7ceab",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Biophysical Chemistry and Design for Biotechnology, Master of Science",
+   "url": "https://e-catalogue.jhu.edu/arts-sciences/full-time-residential-programs/degree-programs/biophysics/biophysical-chemistry-design-biotechnology-master-science/",
+   "snapshot_sha256": "47f9b18244582d4dd0d281354294ca161441d950654c7224ffb5a4bf3d9eb9cc",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Business Administration (Full Time), MBA",
+   "url": "https://e-catalogue.jhu.edu/business/degrees-certificates/business-administration-fulltime-mba/",
+   "snapshot_sha256": "c549d7825a8f4d51a779fbcdab4ad36b3036287a7d7d5fd968279cab67e36b6b",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from an accredited college or university (Carey Business School master's admission policy)",
+     "quote": "Applicants to graduate degree programs must hold a bachelor’s degree from an accredited college or university, and final transcripts must show the undergraduate degree(s) applicants have earned.",
+     "source_sha256": "ef1b82e8ac8ddfac40dfd66c698865bd3b70420ccc1b057d17c7b5d7a995e04a",
+     "source_url": "https://e-catalogue.jhu.edu/business/admission/masters-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "text": "Preferred minimum, Carey Business School international admission policy",
+     "quote": "The preferred minimum scores for each test are as follows: TOEFL: 100 IELTS: 7.0 PTE: 70 DET: 130",
+     "source_sha256": "a8b77583ddaa366961d3199364754309c6a4d1eec9ea41507bf7948895aace4b",
+     "source_url": "https://e-catalogue.jhu.edu/business/admission/international-student/",
+     "check": "ok",
+     "recommended": true
+    },
+    "ielts": {
+     "overall": 7.0,
+     "text": "Preferred minimum, Carey Business School international admission policy",
+     "quote": "The preferred minimum scores for each test are as follows: TOEFL: 100 IELTS: 7.0 PTE: 70 DET: 130",
+     "source_sha256": "a8b77583ddaa366961d3199364754309c6a4d1eec9ea41507bf7948895aace4b",
+     "source_url": "https://e-catalogue.jhu.edu/business/admission/international-student/",
+     "check": "ok",
+     "recommended": true
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Business Analytics and Artificial Intelligence, Master of Science",
+   "url": "https://e-catalogue.jhu.edu/business/degrees-certificates/business-analytics-artificial-intelligence-master-science/",
+   "snapshot_sha256": "a949da2fc2a859bcc39623b5aa05bef19b1fc7df7ef52b42c1dc8ba34dd35132",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from an accredited college or university (Carey Business School master's admission policy)",
+     "quote": "Applicants to graduate degree programs must hold a bachelor’s degree from an accredited college or university, and final transcripts must show the undergraduate degree(s) applicants have earned.",
+     "source_sha256": "ef1b82e8ac8ddfac40dfd66c698865bd3b70420ccc1b057d17c7b5d7a995e04a",
+     "source_url": "https://e-catalogue.jhu.edu/business/admission/masters-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "text": "Preferred minimum, Carey Business School international admission policy",
+     "quote": "The preferred minimum scores for each test are as follows: TOEFL: 100 IELTS: 7.0 PTE: 70 DET: 130",
+     "source_sha256": "a8b77583ddaa366961d3199364754309c6a4d1eec9ea41507bf7948895aace4b",
+     "source_url": "https://e-catalogue.jhu.edu/business/admission/international-student/",
+     "check": "ok",
+     "recommended": true
+    },
+    "ielts": {
+     "overall": 7.0,
+     "text": "Preferred minimum, Carey Business School international admission policy",
+     "quote": "The preferred minimum scores for each test are as follows: TOEFL: 100 IELTS: 7.0 PTE: 70 DET: 130",
+     "source_sha256": "a8b77583ddaa366961d3199364754309c6a4d1eec9ea41507bf7948895aace4b",
+     "source_url": "https://e-catalogue.jhu.edu/business/admission/international-student/",
+     "check": "ok",
+     "recommended": true
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Finance, Master of Science",
+   "url": "https://e-catalogue.jhu.edu/business/degrees-certificates/finance-master-science/",
+   "snapshot_sha256": "9ae1a4b41259dcc48446eccbb61b07bb654098b2b6bb836bb357a460da71512e",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from an accredited college or university (Carey Business School master's admission policy)",
+     "quote": "Applicants to graduate degree programs must hold a bachelor’s degree from an accredited college or university, and final transcripts must show the undergraduate degree(s) applicants have earned.",
+     "source_sha256": "ef1b82e8ac8ddfac40dfd66c698865bd3b70420ccc1b057d17c7b5d7a995e04a",
+     "source_url": "https://e-catalogue.jhu.edu/business/admission/masters-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "text": "Preferred minimum, Carey Business School international admission policy",
+     "quote": "The preferred minimum scores for each test are as follows: TOEFL: 100 IELTS: 7.0 PTE: 70 DET: 130",
+     "source_sha256": "a8b77583ddaa366961d3199364754309c6a4d1eec9ea41507bf7948895aace4b",
+     "source_url": "https://e-catalogue.jhu.edu/business/admission/international-student/",
+     "check": "ok",
+     "recommended": true
+    },
+    "ielts": {
+     "overall": 7.0,
+     "text": "Preferred minimum, Carey Business School international admission policy",
+     "quote": "The preferred minimum scores for each test are as follows: TOEFL: 100 IELTS: 7.0 PTE: 70 DET: 130",
+     "source_sha256": "a8b77583ddaa366961d3199364754309c6a4d1eec9ea41507bf7948895aace4b",
+     "source_url": "https://e-catalogue.jhu.edu/business/admission/international-student/",
+     "check": "ok",
+     "recommended": true
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Finance, Master of Science, Financial Econometrics Concentration",
+   "url": "https://e-catalogue.jhu.edu/business/degrees-certificates/finance-master-science-financial-econometrics/",
+   "snapshot_sha256": "df38e4299369ee0ab2ff3f0f0802d187109a7f8caeda68e266d978d2bd01b58f",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from an accredited college or university (Carey Business School master's admission policy)",
+     "quote": "Applicants to graduate degree programs must hold a bachelor’s degree from an accredited college or university, and final transcripts must show the undergraduate degree(s) applicants have earned.",
+     "source_sha256": "ef1b82e8ac8ddfac40dfd66c698865bd3b70420ccc1b057d17c7b5d7a995e04a",
+     "source_url": "https://e-catalogue.jhu.edu/business/admission/masters-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "text": "Preferred minimum, Carey Business School international admission policy",
+     "quote": "The preferred minimum scores for each test are as follows: TOEFL: 100 IELTS: 7.0 PTE: 70 DET: 130",
+     "source_sha256": "a8b77583ddaa366961d3199364754309c6a4d1eec9ea41507bf7948895aace4b",
+     "source_url": "https://e-catalogue.jhu.edu/business/admission/international-student/",
+     "check": "ok",
+     "recommended": true
+    },
+    "ielts": {
+     "overall": 7.0,
+     "text": "Preferred minimum, Carey Business School international admission policy",
+     "quote": "The preferred minimum scores for each test are as follows: TOEFL: 100 IELTS: 7.0 PTE: 70 DET: 130",
+     "source_sha256": "a8b77583ddaa366961d3199364754309c6a4d1eec9ea41507bf7948895aace4b",
+     "source_url": "https://e-catalogue.jhu.edu/business/admission/international-student/",
+     "check": "ok",
+     "recommended": true
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Health Care Management, Master of Science",
+   "url": "https://e-catalogue.jhu.edu/business/degrees-certificates/health-care-management-master-science/",
+   "snapshot_sha256": "3f349470db58b67f31be41755a01d7d6c6b905a267ddabbbf109ed64e88b8ec1",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from an accredited college or university (Carey Business School master's admission policy)",
+     "quote": "Applicants to graduate degree programs must hold a bachelor’s degree from an accredited college or university, and final transcripts must show the undergraduate degree(s) applicants have earned.",
+     "source_sha256": "ef1b82e8ac8ddfac40dfd66c698865bd3b70420ccc1b057d17c7b5d7a995e04a",
+     "source_url": "https://e-catalogue.jhu.edu/business/admission/masters-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "text": "Preferred minimum, Carey Business School international admission policy",
+     "quote": "The preferred minimum scores for each test are as follows: TOEFL: 100 IELTS: 7.0 PTE: 70 DET: 130",
+     "source_sha256": "a8b77583ddaa366961d3199364754309c6a4d1eec9ea41507bf7948895aace4b",
+     "source_url": "https://e-catalogue.jhu.edu/business/admission/international-student/",
+     "check": "ok",
+     "recommended": true
+    },
+    "ielts": {
+     "overall": 7.0,
+     "text": "Preferred minimum, Carey Business School international admission policy",
+     "quote": "The preferred minimum scores for each test are as follows: TOEFL: 100 IELTS: 7.0 PTE: 70 DET: 130",
+     "source_sha256": "a8b77583ddaa366961d3199364754309c6a4d1eec9ea41507bf7948895aace4b",
+     "source_url": "https://e-catalogue.jhu.edu/business/admission/international-student/",
+     "check": "ok",
+     "recommended": true
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Information Systems and Artificial Intelligence for Business, Master of Science",
+   "url": "https://e-catalogue.jhu.edu/business/degrees-certificates/information-systems-master-science/",
+   "snapshot_sha256": "8d9e36693e14487da35ce9817eafc37e6bdecd0ae8971ba4419d4b364573b231",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from an accredited college or university (Carey Business School master's admission policy)",
+     "quote": "Applicants to graduate degree programs must hold a bachelor’s degree from an accredited college or university, and final transcripts must show the undergraduate degree(s) applicants have earned.",
+     "source_sha256": "ef1b82e8ac8ddfac40dfd66c698865bd3b70420ccc1b057d17c7b5d7a995e04a",
+     "source_url": "https://e-catalogue.jhu.edu/business/admission/masters-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "text": "Preferred minimum, Carey Business School international admission policy",
+     "quote": "The preferred minimum scores for each test are as follows: TOEFL: 100 IELTS: 7.0 PTE: 70 DET: 130",
+     "source_sha256": "a8b77583ddaa366961d3199364754309c6a4d1eec9ea41507bf7948895aace4b",
+     "source_url": "https://e-catalogue.jhu.edu/business/admission/international-student/",
+     "check": "ok",
+     "recommended": true
+    },
+    "ielts": {
+     "overall": 7.0,
+     "text": "Preferred minimum, Carey Business School international admission policy",
+     "quote": "The preferred minimum scores for each test are as follows: TOEFL: 100 IELTS: 7.0 PTE: 70 DET: 130",
+     "source_sha256": "a8b77583ddaa366961d3199364754309c6a4d1eec9ea41507bf7948895aace4b",
+     "source_url": "https://e-catalogue.jhu.edu/business/admission/international-student/",
+     "check": "ok",
+     "recommended": true
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Management, Master of Science",
+   "url": "https://e-catalogue.jhu.edu/business/degrees-certificates/management-master-science/",
+   "snapshot_sha256": "42ecea11546be82ba2218eb28aa1791c6eb40eee353d47bebb6fd118a3367f5a",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from an accredited college or university (Carey Business School master's admission policy)",
+     "quote": "Applicants to graduate degree programs must hold a bachelor’s degree from an accredited college or university, and final transcripts must show the undergraduate degree(s) applicants have earned.",
+     "source_sha256": "ef1b82e8ac8ddfac40dfd66c698865bd3b70420ccc1b057d17c7b5d7a995e04a",
+     "source_url": "https://e-catalogue.jhu.edu/business/admission/masters-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "text": "Preferred minimum, Carey Business School international admission policy",
+     "quote": "The preferred minimum scores for each test are as follows: TOEFL: 100 IELTS: 7.0 PTE: 70 DET: 130",
+     "source_sha256": "a8b77583ddaa366961d3199364754309c6a4d1eec9ea41507bf7948895aace4b",
+     "source_url": "https://e-catalogue.jhu.edu/business/admission/international-student/",
+     "check": "ok",
+     "recommended": true
+    },
+    "ielts": {
+     "overall": 7.0,
+     "text": "Preferred minimum, Carey Business School international admission policy",
+     "quote": "The preferred minimum scores for each test are as follows: TOEFL: 100 IELTS: 7.0 PTE: 70 DET: 130",
+     "source_sha256": "a8b77583ddaa366961d3199364754309c6a4d1eec9ea41507bf7948895aace4b",
+     "source_url": "https://e-catalogue.jhu.edu/business/admission/international-student/",
+     "check": "ok",
+     "recommended": true
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Marketing, Master of Science",
+   "url": "https://e-catalogue.jhu.edu/business/degrees-certificates/marketing-master-science/",
+   "snapshot_sha256": "64845458009a8bed9061cde55487d54d64d7b18a5ebaf1a4f7eae67cf07246eb",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from an accredited college or university (Carey Business School master's admission policy)",
+     "quote": "Applicants to graduate degree programs must hold a bachelor’s degree from an accredited college or university, and final transcripts must show the undergraduate degree(s) applicants have earned.",
+     "source_sha256": "ef1b82e8ac8ddfac40dfd66c698865bd3b70420ccc1b057d17c7b5d7a995e04a",
+     "source_url": "https://e-catalogue.jhu.edu/business/admission/masters-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "text": "Preferred minimum, Carey Business School international admission policy",
+     "quote": "The preferred minimum scores for each test are as follows: TOEFL: 100 IELTS: 7.0 PTE: 70 DET: 130",
+     "source_sha256": "a8b77583ddaa366961d3199364754309c6a4d1eec9ea41507bf7948895aace4b",
+     "source_url": "https://e-catalogue.jhu.edu/business/admission/international-student/",
+     "check": "ok",
+     "recommended": true
+    },
+    "ielts": {
+     "overall": 7.0,
+     "text": "Preferred minimum, Carey Business School international admission policy",
+     "quote": "The preferred minimum scores for each test are as follows: TOEFL: 100 IELTS: 7.0 PTE: 70 DET: 130",
+     "source_sha256": "a8b77583ddaa366961d3199364754309c6a4d1eec9ea41507bf7948895aace4b",
+     "source_url": "https://e-catalogue.jhu.edu/business/admission/international-student/",
+     "check": "ok",
+     "recommended": true
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Marketing, Master of Science, Marketing Analytics Concentration",
+   "url": "https://e-catalogue.jhu.edu/business/degrees-certificates/marketing-master-science-marketing-analytics/",
+   "snapshot_sha256": "a65f713b43a944818f8c1c20ea90a60dfd4327bf45bdf85ed270b8fe7d04472c",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from an accredited college or university (Carey Business School master's admission policy)",
+     "quote": "Applicants to graduate degree programs must hold a bachelor’s degree from an accredited college or university, and final transcripts must show the undergraduate degree(s) applicants have earned.",
+     "source_sha256": "ef1b82e8ac8ddfac40dfd66c698865bd3b70420ccc1b057d17c7b5d7a995e04a",
+     "source_url": "https://e-catalogue.jhu.edu/business/admission/masters-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "text": "Preferred minimum, Carey Business School international admission policy",
+     "quote": "The preferred minimum scores for each test are as follows: TOEFL: 100 IELTS: 7.0 PTE: 70 DET: 130",
+     "source_sha256": "a8b77583ddaa366961d3199364754309c6a4d1eec9ea41507bf7948895aace4b",
+     "source_url": "https://e-catalogue.jhu.edu/business/admission/international-student/",
+     "check": "ok",
+     "recommended": true
+    },
+    "ielts": {
+     "overall": 7.0,
+     "text": "Preferred minimum, Carey Business School international admission policy",
+     "quote": "The preferred minimum scores for each test are as follows: TOEFL: 100 IELTS: 7.0 PTE: 70 DET: 130",
+     "source_sha256": "a8b77583ddaa366961d3199364754309c6a4d1eec9ea41507bf7948895aace4b",
+     "source_url": "https://e-catalogue.jhu.edu/business/admission/international-student/",
+     "check": "ok",
+     "recommended": true
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Real Estate and Infrastructure, Master of Science",
+   "url": "https://e-catalogue.jhu.edu/business/degrees-certificates/real-estate-infrastructure-master-science/",
+   "snapshot_sha256": "cbfba5fa6e7a0439f7cb4be7b35a5254ded693e47b1ca44c2c422cc8db3bfc61",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from an accredited college or university (Carey Business School master's admission policy)",
+     "quote": "Applicants to graduate degree programs must hold a bachelor’s degree from an accredited college or university, and final transcripts must show the undergraduate degree(s) applicants have earned.",
+     "source_sha256": "ef1b82e8ac8ddfac40dfd66c698865bd3b70420ccc1b057d17c7b5d7a995e04a",
+     "source_url": "https://e-catalogue.jhu.edu/business/admission/masters-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "text": "Preferred minimum, Carey Business School international admission policy",
+     "quote": "The preferred minimum scores for each test are as follows: TOEFL: 100 IELTS: 7.0 PTE: 70 DET: 130",
+     "source_sha256": "a8b77583ddaa366961d3199364754309c6a4d1eec9ea41507bf7948895aace4b",
+     "source_url": "https://e-catalogue.jhu.edu/business/admission/international-student/",
+     "check": "ok",
+     "recommended": true
+    },
+    "ielts": {
+     "overall": 7.0,
+     "text": "Preferred minimum, Carey Business School international admission policy",
+     "quote": "The preferred minimum scores for each test are as follows: TOEFL: 100 IELTS: 7.0 PTE: 70 DET: 130",
+     "source_sha256": "a8b77583ddaa366961d3199364754309c6a4d1eec9ea41507bf7948895aace4b",
+     "source_url": "https://e-catalogue.jhu.edu/business/admission/international-student/",
+     "check": "ok",
+     "recommended": true
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Counseling, Master of Science",
+   "url": "https://e-catalogue.jhu.edu/education/programs/masters/counseling-master-science/",
+   "snapshot_sha256": "3a565579b81f0756f1dd88996f30fea58131b52a8c837eafd5f14cbdfe2c313c",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from an accredited college or university and a minimum cumulative GPA of 3.0 on a 4.0 scale",
+     "quote": "Applicants to the program must hold a bachelor’s degree from an accredited college or university and have earned a minimum cumulative grade point average of 3.0 (on a 4.0 scale) in all previous undergraduate and graduate studies",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "text": "School of Education policy: 100 for exams before 21 January 2026, 5.5 (1-6 scale) for exams on or after that date",
+     "quote": "For exams taken before January 21, 2026: Minimum total score: 100 For exams taken on or after January 21, 2026: Minimum total score: 5.5",
+     "source_sha256": "673051abdb63fccc454a00b9fc705ee06522533637740cf2ec6b0b6204872264",
+     "source_url": "https://e-catalogue.jhu.edu/education/admission/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "text": "School of Education policy",
+     "quote": "Minimum Overall Band Score: 7",
+     "source_sha256": "673051abdb63fccc454a00b9fc705ee06522533637740cf2ec6b0b6204872264",
+     "source_url": "https://e-catalogue.jhu.edu/education/admission/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Music (Peabody Institute)",
+   "url": "https://peabody.jhu.edu/admissions-and-financial-aid/audition-apply/instructions/graduate-applicants/",
+   "snapshot_sha256": "4b2217a05bbb938040a411de791205d4d49a654465a51c6c80e858253eec1e63",
+   "fields": {
+    "academic": {
+     "text": "Qualifying undergraduate degree: 3 years of study after secondary school and 25 post-secondary credit hours of non-musical study (international applicants)",
+     "quote": "A qualifying undergraduate degree should include 3 years of study following completion of secondary school (or high school) and 25 post-secondary credit hours of non-musical study, the equivalent of 50 European transfer credits (ETCS).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Minimum score requirements: TOEFL: 4.5 IELTS: 6.5 overall band score",
+     "source_sha256": "c54cbae980545b2d036a67e9e568681f21914b5d47b4a02255cb86b27c802219",
+     "source_url": "https://peabody.jhu.edu/admissions-and-financial-aid/audition-apply/instructions/international-applicants/",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "Peabody states the TOEFL minimum as 4.5 (new 1-6 scale)",
+     "quote": "Minimum score requirements: TOEFL: 4.5 IELTS: 6.5 overall band score",
+     "source_sha256": "c54cbae980545b2d036a67e9e568681f21914b5d47b4a02255cb86b27c802219",
+     "source_url": "https://peabody.jhu.edu/admissions-and-financial-aid/audition-apply/instructions/international-applicants/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts, Audio Sciences (Peabody Institute)",
+   "url": "https://peabody.jhu.edu/admissions-and-financial-aid/audition-apply/instructions/graduate-applicants/",
+   "snapshot_sha256": "4b2217a05bbb938040a411de791205d4d49a654465a51c6c80e858253eec1e63",
+   "fields": {
+    "academic": {
+     "text": "Qualifying undergraduate degree: 3 years of study after secondary school and 25 post-secondary credit hours of non-musical study (international applicants)",
+     "quote": "A qualifying undergraduate degree should include 3 years of study following completion of secondary school (or high school) and 25 post-secondary credit hours of non-musical study, the equivalent of 50 European transfer credits (ETCS).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Minimum score requirements: TOEFL: 4.5 IELTS: 6.5 overall band score",
+     "source_sha256": "c54cbae980545b2d036a67e9e568681f21914b5d47b4a02255cb86b27c802219",
+     "source_url": "https://peabody.jhu.edu/admissions-and-financial-aid/audition-apply/instructions/international-applicants/",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "Peabody states the TOEFL minimum as 4.5 (new 1-6 scale)",
+     "quote": "Minimum score requirements: TOEFL: 4.5 IELTS: 6.5 overall band score",
+     "source_sha256": "c54cbae980545b2d036a67e9e568681f21914b5d47b4a02255cb86b27c802219",
+     "source_url": "https://peabody.jhu.edu/admissions-and-financial-aid/audition-apply/instructions/international-applicants/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "European Public Policy, Master of Arts",
+   "url": "https://e-catalogue.jhu.edu/advanced-international-studies/programs/european-public-policy-master-arts/",
+   "snapshot_sha256": "dc404540e1a85e1b9aae8228625fc2eef3c7fad3239ba47bad7db9e2b0049bb4",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Global Risk, Master of Arts",
+   "url": "https://e-catalogue.jhu.edu/advanced-international-studies/programs/global-risk-master-arts/",
+   "snapshot_sha256": "67bf35c814df7aecc0465ca9e05a244d2d910423c0d8ab8813cc8e1f3cf4a620",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "International Affairs, Master of Arts",
+   "url": "https://e-catalogue.jhu.edu/advanced-international-studies/programs/international-affairs-master-arts/",
+   "snapshot_sha256": "4ebb573b4e5793b95fc2064ec2b182fe4a4b0b0d5faae2803090277bdb27faae",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "International Economics and Finance, Master of Arts",
+   "url": "https://e-catalogue.jhu.edu/advanced-international-studies/programs/international-economics-finance-master-arts/",
+   "snapshot_sha256": "821eba3b6728a7f3961dfcb2e3f8a7cfbd053425aba623e66ae7a65d4754f893",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "International Relations, Master of Arts",
+   "url": "https://e-catalogue.jhu.edu/advanced-international-studies/programs/master-arts/",
+   "snapshot_sha256": "4d710a0771ae99c20064a42216c61d1fd453c881da752ea4530443b9d68e1136",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "International Studies, Master of Arts",
+   "url": "https://e-catalogue.jhu.edu/advanced-international-studies/programs/international-studies-master-arts/",
+   "snapshot_sha256": "93ae0e6a7379ae9db60d3dbda9d8439b2a3633bb00ae0e2e15c82f0b9b4ead1c",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Strategy, Cybersecurity, and Intelligence, Master of Arts",
+   "url": "https://e-catalogue.jhu.edu/advanced-international-studies/strategy-cybersecurity-intelligence/",
+   "snapshot_sha256": "7f0f2cf3fb4dc83d612f33187f6c8c222b584b7f8f55b6a152b79091b702ab1c",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Global Health Economics, MHS",
+   "url": "https://e-catalogue.jhu.edu/public-health/departments/international-health/global-health-economics-mhs/",
+   "snapshot_sha256": "303e59b77eea09b469279fca87b52c57deb0f6877a298608d78ac429843d2975",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "Strong quantitative background with undergraduate coursework in microeconomics and calculus highly recommended",
+      "recommended": true,
+      "quote": "Students must have a strong quantitative background with undergraduate coursework in microeconomics and calculus highly recommended.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Environmental Health, MHS",
+   "url": "https://e-catalogue.jhu.edu/public-health/departments/environmental-health-engineering/environmental-health-mhs/",
+   "snapshot_sha256": "8c8f4ae4bcba82d7f254076878d0b2d609e5317f60415da2337ace307f27b0f9",
+   "fields": {
+    "academic": {
+     "text": "Program primarily targets individuals holding a bachelor's degree",
+     "quote": "The program primarily targets individuals holding a bachelor’s degree who see a place for environmental health in their future academic or career goals.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Health Program (MPH)",
+   "url": "https://e-catalogue.jhu.edu/public-health/departments/master-public-health/",
+   "snapshot_sha256": "04a822a2d0f065ba90ecb9cd1becae4bd8d016b58d0ee256cf56ba0cd39fc869",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Master of Bioethics (MBE)",
+   "url": "https://e-catalogue.jhu.edu/public-health/departments/master-bioethics/",
+   "snapshot_sha256": "9a4bdedb2512ba139d90129ce3c0e1983f559521e1df1e6fe4b76636c926dee7",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Epidemiology, MHS",
+   "url": "https://e-catalogue.jhu.edu/public-health/departments/epidemiology/epidemiology-mhs/",
+   "snapshot_sha256": "e8c47cd1325733bdbeb3e627575bdc9cb3ab4d62fb6bbb3eafba66bec11ba68d",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Health Policy, MSPH",
+   "url": "https://e-catalogue.jhu.edu/public-health/departments/health-policy-management/health-policy-msph/",
+   "snapshot_sha256": "66fe5b45d384494d0d37233a516d1818e04bd5ec76c51a211b8460779922bbf3",
+   "fields": {},
+   "status": "待人工"
+  }
+ ],
+ "verification": {
+  "programs": 52,
+  "机器核对": 24,
+  "待人工": 28
+ }
+}
