@@ -7,58 +7,24 @@
  "listing_urls": [],
  "blocked": [
   {
+   "url": "https://admission.usm.my/",
+   "reason": "robots.txt itself: no answer (URLError) in run 3, after the TLS root-store fix; treated as keep-out"
+  },
+  {
    "url": "https://ips.usm.my/",
-   "reason": "robots.txt unreadable: robots.txt itself: no answer (URLError), on two attempts 20 s apart in run 2; treated as keep-out"
+   "reason": "robots.txt itself: no answer (URLError) in run 3, after the TLS root-store fix; treated as keep-out"
   },
   {
    "url": "https://www.usm.my/",
-   "reason": "robots.txt unreadable: robots.txt itself: no answer (URLError), on two attempts 20 s apart in run 2; treated as keep-out"
-  },
-  {
-   "url": "https://admission.usm.my/",
-   "reason": "robots.txt unreadable: robots.txt itself: no answer (URLError), on two attempts 20 s apart in run 2; treated as keep-out"
-  },
-  {
-   "url": "https://admissions.usm.my/",
-   "reason": "robots.txt disallows (or no robots answer, treated as keep-out)"
-  },
-  {
-   "url": "https://postgraduate.usm.my/",
-   "reason": "robots.txt disallows (or no robots answer, treated as keep-out)"
-  },
-  {
-   "url": "https://pps.usm.my/",
-   "reason": "robots.txt disallows (or no robots answer, treated as keep-out)"
-  },
-  {
-   "url": "https://cs.usm.my/",
-   "reason": "robots.txt disallows (or no robots answer, treated as keep-out)"
-  },
-  {
-   "url": "https://mgt.usm.my/",
-   "reason": "robots.txt disallows (or no robots answer, treated as keep-out)"
-  },
-  {
-   "url": "https://education.usm.my/",
-   "reason": "robots.txt disallows (or no robots answer, treated as keep-out)"
-  },
-  {
-   "url": "https://pharmacy.usm.my/",
-   "reason": "robots.txt disallows (or no robots answer, treated as keep-out)"
-  },
-  {
-   "url": "http://www.admissions.usm.my/index.php/postgraduate/postgraduate-programme",
-   "reason": "connection reset by peer"
+   "reason": "robots.txt itself: no answer (URLError) in run 3, after the TLS root-store fix; treated as keep-out"
   }
  ],
  "complete": false,
  "remaining_urls": [
-  "https://admission.usm.my/postgraduate/programmes?view=article&id=785%3Ageneral-entry-requirement&catid=48",
-  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=334&catid=53",
-  "https://admission.usm.my/postgraduate/programmes?view=article&id=189&catid=51",
-  "https://admission.usm.my/index.php/postgraduate/programmes?view=article&id=883&catid=51"
+  "https://admission.usm.my/",
+  "https://ips.usm.my/"
  ],
- "notes": "Run 1: every tried USM host (ips, www, admission, admissions, postgraduate, pps, cs, mgt, education, pharmacy) was closed as read by the snapshot tool; www.admissions.usm.my redirected to admission.usm.my and reset the connection. Run 2 (retry): admission.usm.my, ips.usm.my and www.usm.my again returned the tool's 'robots.txt itself: no answer (URLError)', so no stated Disallow was seen but the robots.txt could not be read at all (network-level failure); treated as keep-out and stopped. No program collected; retry later from another network.",
+ "notes": "Earlier runs failed on a TLS certificate error caused by our stale root store. In run 3 (store fixed) the snapshot tool still got no answer for robots.txt on admission.usm.my, ips.usm.my and www.usm.my, so nothing was fetched and no program was collected.",
  "programs": [],
  "verification": {
   "programs": 0,
