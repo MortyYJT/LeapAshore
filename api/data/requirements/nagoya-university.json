@@ -1,0 +1,761 @@
+{
+ "school_key": "nagoya-university",
+ "school_name_en": "Nagoya University",
+ "country": "Japan",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://admissions.g30.nagoya-u.ac.jp/graduate-programs/",
+  "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+  "https://en.nagoya-u.ac.jp/admissions/graduate/masters-programs/",
+  "https://www4.gsid.nagoya-u.ac.jp/en/admission/application",
+  "https://gsl.law.nagoya-u.ac.jp/admissions/master.php"
+ ],
+ "blocked": [
+  {
+   "url": "https://www2.soec.nagoya-u.ac.jp/admissions-en/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://www.agr.nagoya-u.ac.jp/index-e.html",
+   "reason": "robots.txt disallows"
+  }
+ ],
+ "complete": true,
+ "remaining_urls": [],
+ "notes": "Eligibility, minimum English scores and per-programme requirements of the G30 programmes are published only as AY2027 'Admission Requirement' PDFs (e.g. .../wp-content/uploads/2026/10/01_AY2027_G30_MAutoE_AdmissionRequirement.pdf), and Law/Engineering/Science/Environmental Studies application guidelines are PDFs or JavaScript pages, so only HTML-stated dates, document and English-evidence rules were quoted. Graduate Schools of Economics and Bioagricultural Sciences own sites are blocked by robots.txt; Informatics site could not be fetched. Engineering (Japanese-language master's) page states no dates in HTML.",
+ "programs": [
+  {
+   "name": "Automotive Engineering Graduate Program (Master's), Graduate School of Engineering",
+   "url": "https://admissions.g30.nagoya-u.ac.jp/graduate-programs/automotive_program/",
+   "snapshot_sha256": "9d4a5d69e264e762aca30b5756c0f1aa02c34c96dad5eb396d72f37e73d2a49e",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "G30 graduate programs 2027 admissions, 1st round",
+      "date": "2027-01-13",
+      "quote": "Application deadline January 13, 2027, at 12:00 noon",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "English proficiency test result or English-medium-of-instruction (EMI) certificate from the applicant's university must be uploaded; no minimum score is stated on the HTML page",
+      "quote": "Please upload a PDF copy of your English proficiency test results or your English as a Medium of Instruction (EMI) Certificate from your university to the online application portal.",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     },
+     {
+      "text": "Award verification letter of the bachelor's/master's degree (or a prospective graduation letter if currently enrolled) is required",
+      "quote": "Award verification letter (e.g., Certificate of Graduation) of your bachelor’s / master’s degree. Or Prospective Graduation Letter if you are currently enrolled in a degree program.",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     },
+     {
+      "text": "Applicants are advised to contact their prospective research supervisor before applying",
+      "quote": "Applicants are advised to contact their prospective research supervisor in advance to confirm whether the research group can accommodate",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Civil and Environmental Engineering Graduate Program (Master's), Graduate School of Engineering",
+   "url": "https://admissions.g30.nagoya-u.ac.jp/graduate-programs/civil_environmental/",
+   "snapshot_sha256": "722fbb9a5c0346cbe5e537f1409c231a1f164b8f3f15703a1f0758dc1e2dab22",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "G30 graduate programs 2027 admissions, 1st round",
+      "date": "2027-01-13",
+      "quote": "Application deadline January 13, 2027, at 12:00 noon",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     },
+     {
+      "label": "G30 graduate programs 2027 admissions, 2nd/rolling round (offered only if seats remain)",
+      "date": "2027-05-19",
+      "quote": "Application deadline May 19, 2027 at 12:00 noon",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "English proficiency test result or English-medium-of-instruction (EMI) certificate from the applicant's university must be uploaded; no minimum score is stated on the HTML page",
+      "quote": "Please upload a PDF copy of your English proficiency test results or your English as a Medium of Instruction (EMI) Certificate from your university to the online application portal.",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     },
+     {
+      "text": "Award verification letter of the bachelor's/master's degree (or a prospective graduation letter if currently enrolled) is required",
+      "quote": "Award verification letter (e.g., Certificate of Graduation) of your bachelor’s / master’s degree. Or Prospective Graduation Letter if you are currently enrolled in a degree program.",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     },
+     {
+      "text": "Applicants are advised to contact their prospective research supervisor before applying",
+      "quote": "Applicants are advised to contact their prospective research supervisor in advance to confirm whether the research group can accommodate",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Civil and Environmental Engineering Graduate Program (Master's), Graduate School of Environmental Studies",
+   "url": "https://admissions.g30.nagoya-u.ac.jp/graduate-programs/civil_environmental_es/",
+   "snapshot_sha256": "f7c6b6bb847be46ea95ab6cde77aea6b97b76f60064ae36c3e5004093790ee3b",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "G30 graduate programs 2027 admissions, 1st round",
+      "date": "2027-01-13",
+      "quote": "Application deadline January 13, 2027, at 12:00 noon",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     },
+     {
+      "label": "G30 graduate programs 2027 admissions, 2nd/rolling round (offered only if seats remain)",
+      "date": "2027-05-19",
+      "quote": "Application deadline May 19, 2027 at 12:00 noon",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "English proficiency test result or English-medium-of-instruction (EMI) certificate from the applicant's university must be uploaded; no minimum score is stated on the HTML page",
+      "quote": "Please upload a PDF copy of your English proficiency test results or your English as a Medium of Instruction (EMI) Certificate from your university to the online application portal.",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     },
+     {
+      "text": "Award verification letter of the bachelor's/master's degree (or a prospective graduation letter if currently enrolled) is required",
+      "quote": "Award verification letter (e.g., Certificate of Graduation) of your bachelor’s / master’s degree. Or Prospective Graduation Letter if you are currently enrolled in a degree program.",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     },
+     {
+      "text": "Applicants are advised to contact their prospective research supervisor before applying",
+      "quote": "Applicants are advised to contact their prospective research supervisor in advance to confirm whether the research group can accommodate",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Earth and Environmental Sciences Graduate Program (Master's), Graduate School of Environmental Studies",
+   "url": "https://admissions.g30.nagoya-u.ac.jp/graduate-programs/earth_environmental/",
+   "snapshot_sha256": "8b52d609abdfc0eb501d11ae04b2d31d7a87eec61c7ea6ec937af0dda95c0234",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "G30 graduate programs 2027 admissions, 1st round",
+      "date": "2027-01-13",
+      "quote": "Application deadline January 13, 2027, at 12:00 noon",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     },
+     {
+      "label": "G30 graduate programs 2027 admissions, 2nd/rolling round (offered only if seats remain)",
+      "date": "2027-05-19",
+      "quote": "Application deadline May 19, 2027 at 12:00 noon",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "English proficiency test result or English-medium-of-instruction (EMI) certificate from the applicant's university must be uploaded; no minimum score is stated on the HTML page",
+      "quote": "Please upload a PDF copy of your English proficiency test results or your English as a Medium of Instruction (EMI) Certificate from your university to the online application portal.",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     },
+     {
+      "text": "Award verification letter of the bachelor's/master's degree (or a prospective graduation letter if currently enrolled) is required",
+      "quote": "Award verification letter (e.g., Certificate of Graduation) of your bachelor’s / master’s degree. Or Prospective Graduation Letter if you are currently enrolled in a degree program.",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     },
+     {
+      "text": "Applicants are advised to contact their prospective research supervisor before applying",
+      "quote": "Applicants are advised to contact their prospective research supervisor in advance to confirm whether the research group can accommodate",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Engineering Physics Graduate Program (Master's), Graduate School of Engineering",
+   "url": "https://admissions.g30.nagoya-u.ac.jp/graduate-programs/engineering_physics/",
+   "snapshot_sha256": "dfea5895ad4468d7027dbba5b6a6741185675a24e386948411a5b818cc92d600",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "G30 graduate programs 2027 admissions, 1st round",
+      "date": "2027-01-13",
+      "quote": "Application deadline January 13, 2027, at 12:00 noon",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     },
+     {
+      "label": "G30 graduate programs 2027 admissions, 2nd/rolling round (offered only if seats remain)",
+      "date": "2027-05-19",
+      "quote": "Application deadline May 19, 2027 at 12:00 noon",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "English proficiency test result or English-medium-of-instruction (EMI) certificate from the applicant's university must be uploaded; no minimum score is stated on the HTML page",
+      "quote": "Please upload a PDF copy of your English proficiency test results or your English as a Medium of Instruction (EMI) Certificate from your university to the online application portal.",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     },
+     {
+      "text": "Award verification letter of the bachelor's/master's degree (or a prospective graduation letter if currently enrolled) is required",
+      "quote": "Award verification letter (e.g., Certificate of Graduation) of your bachelor’s / master’s degree. Or Prospective Graduation Letter if you are currently enrolled in a degree program.",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     },
+     {
+      "text": "Applicants are advised to contact their prospective research supervisor before applying",
+      "quote": "Applicants are advised to contact their prospective research supervisor in advance to confirm whether the research group can accommodate",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Physics and Mathematics Graduate Program (Master's), Graduate School of Mathematics",
+   "url": "https://admissions.g30.nagoya-u.ac.jp/graduate-programs/mathematics/",
+   "snapshot_sha256": "8dc5130c311b657966aed0035b0142c6cb4d0b538d9240d9aa73975bf0870c7c",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "G30 graduate programs 2027 admissions, 1st round",
+      "date": "2027-01-13",
+      "quote": "Application deadline January 13, 2027, at 12:00 noon",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     },
+     {
+      "label": "G30 graduate programs 2027 admissions, 2nd/rolling round (offered only if seats remain)",
+      "date": "2027-05-19",
+      "quote": "Application deadline May 19, 2027 at 12:00 noon",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "English proficiency test result or English-medium-of-instruction (EMI) certificate from the applicant's university must be uploaded; no minimum score is stated on the HTML page",
+      "quote": "Please upload a PDF copy of your English proficiency test results or your English as a Medium of Instruction (EMI) Certificate from your university to the online application portal.",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     },
+     {
+      "text": "Award verification letter of the bachelor's/master's degree (or a prospective graduation letter if currently enrolled) is required",
+      "quote": "Award verification letter (e.g., Certificate of Graduation) of your bachelor’s / master’s degree. Or Prospective Graduation Letter if you are currently enrolled in a degree program.",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     },
+     {
+      "text": "Applicants are advised to contact their prospective research supervisor before applying",
+      "quote": "Applicants are advised to contact their prospective research supervisor in advance to confirm whether the research group can accommodate",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Physics and Mathematics Graduate Program (Master's), Graduate School of Science",
+   "url": "https://admissions.g30.nagoya-u.ac.jp/graduate-programs/mathematics_s/",
+   "snapshot_sha256": "4ccb5e2aca6783af8317d4db4adf11e53f7ae95044fb4db74d9ca7bc11f9980a",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "G30 graduate programs 2027 admissions, 1st round",
+      "date": "2027-01-13",
+      "quote": "Application deadline January 13, 2027, at 12:00 noon",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     },
+     {
+      "label": "G30 graduate programs 2027 admissions, 2nd/rolling round (offered only if seats remain)",
+      "date": "2027-05-19",
+      "quote": "Application deadline May 19, 2027 at 12:00 noon",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "English proficiency test result or English-medium-of-instruction (EMI) certificate from the applicant's university must be uploaded; no minimum score is stated on the HTML page",
+      "quote": "Please upload a PDF copy of your English proficiency test results or your English as a Medium of Instruction (EMI) Certificate from your university to the online application portal.",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     },
+     {
+      "text": "Award verification letter of the bachelor's/master's degree (or a prospective graduation letter if currently enrolled) is required",
+      "quote": "Award verification letter (e.g., Certificate of Graduation) of your bachelor’s / master’s degree. Or Prospective Graduation Letter if you are currently enrolled in a degree program.",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     },
+     {
+      "text": "Applicants are advised to contact their prospective research supervisor before applying",
+      "quote": "Applicants are advised to contact their prospective research supervisor in advance to confirm whether the research group can accommodate",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Chemistry Graduate Program (Master's), Graduate School of Science",
+   "url": "https://admissions.g30.nagoya-u.ac.jp/graduate-programs/chemistry_graduate/",
+   "snapshot_sha256": "6b3fde6d672eb4f1c747764062064333f1daac751bd031f1d6d26cdf4245e2a0",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "G30 graduate programs 2027 admissions, 1st round",
+      "date": "2027-01-13",
+      "quote": "Application deadline January 13, 2027, at 12:00 noon",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     },
+     {
+      "label": "G30 graduate programs 2027 admissions, 2nd/rolling round (offered only if seats remain)",
+      "date": "2027-05-19",
+      "quote": "Application deadline May 19, 2027 at 12:00 noon",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "English proficiency test result or English-medium-of-instruction (EMI) certificate from the applicant's university must be uploaded; no minimum score is stated on the HTML page",
+      "quote": "Please upload a PDF copy of your English proficiency test results or your English as a Medium of Instruction (EMI) Certificate from your university to the online application portal.",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     },
+     {
+      "text": "Award verification letter of the bachelor's/master's degree (or a prospective graduation letter if currently enrolled) is required",
+      "quote": "Award verification letter (e.g., Certificate of Graduation) of your bachelor’s / master’s degree. Or Prospective Graduation Letter if you are currently enrolled in a degree program.",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     },
+     {
+      "text": "Applicants are advised to contact their prospective research supervisor before applying",
+      "quote": "Applicants are advised to contact their prospective research supervisor in advance to confirm whether the research group can accommodate",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Biological and Bioagricultural Sciences Graduate Program (Master's), Graduate School of Science",
+   "url": "https://admissions.g30.nagoya-u.ac.jp/graduate-programs/biological/",
+   "snapshot_sha256": "281abac1928ce94c8d4de3b18604a55747ea845e384e61539142617994db70f4",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "G30 graduate programs 2027 admissions, 1st round",
+      "date": "2027-01-13",
+      "quote": "Application deadline January 13, 2027, at 12:00 noon",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     },
+     {
+      "label": "G30 graduate programs 2027 admissions, 2nd/rolling round (offered only if seats remain)",
+      "date": "2027-05-19",
+      "quote": "Application deadline May 19, 2027 at 12:00 noon",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "English proficiency test result or English-medium-of-instruction (EMI) certificate from the applicant's university must be uploaded; no minimum score is stated on the HTML page",
+      "quote": "Please upload a PDF copy of your English proficiency test results or your English as a Medium of Instruction (EMI) Certificate from your university to the online application portal.",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     },
+     {
+      "text": "Award verification letter of the bachelor's/master's degree (or a prospective graduation letter if currently enrolled) is required",
+      "quote": "Award verification letter (e.g., Certificate of Graduation) of your bachelor’s / master’s degree. Or Prospective Graduation Letter if you are currently enrolled in a degree program.",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     },
+     {
+      "text": "Applicants are advised to contact their prospective research supervisor before applying",
+      "quote": "Applicants are advised to contact their prospective research supervisor in advance to confirm whether the research group can accommodate",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Biological and Bioagricultural Sciences Graduate Program (Master's), Graduate School of Bioagricultural Sciences",
+   "url": "https://admissions.g30.nagoya-u.ac.jp/graduate-programs/biological_bs/",
+   "snapshot_sha256": "2fec334f3c4646476927022643b5fa62ed1ebfa7cf322479a2689116700723d8",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "G30 graduate programs 2027 admissions, 1st round",
+      "date": "2027-01-13",
+      "quote": "Application deadline January 13, 2027, at 12:00 noon",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     },
+     {
+      "label": "G30 graduate programs 2027 admissions, 2nd/rolling round (offered only if seats remain)",
+      "date": "2027-05-19",
+      "quote": "Application deadline May 19, 2027 at 12:00 noon",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "English proficiency test result or English-medium-of-instruction (EMI) certificate from the applicant's university must be uploaded; no minimum score is stated on the HTML page",
+      "quote": "Please upload a PDF copy of your English proficiency test results or your English as a Medium of Instruction (EMI) Certificate from your university to the online application portal.",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     },
+     {
+      "text": "Award verification letter of the bachelor's/master's degree (or a prospective graduation letter if currently enrolled) is required",
+      "quote": "Award verification letter (e.g., Certificate of Graduation) of your bachelor’s / master’s degree. Or Prospective Graduation Letter if you are currently enrolled in a degree program.",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     },
+     {
+      "text": "Applicants are advised to contact their prospective research supervisor before applying",
+      "quote": "Applicants are advised to contact their prospective research supervisor in advance to confirm whether the research group can accommodate",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Biological and Bioagricultural Sciences Graduate Program (Master's), Graduate School of Medicine",
+   "url": "https://admissions.g30.nagoya-u.ac.jp/graduate-programs/biological_m/",
+   "snapshot_sha256": "6dd567582500521c5a12072827f1f813303c1c378ab151760239b37af9799645",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "G30 graduate programs 2027 admissions, 1st round",
+      "date": "2027-01-13",
+      "quote": "Application deadline January 13, 2027, at 12:00 noon",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "English proficiency test result or English-medium-of-instruction (EMI) certificate from the applicant's university must be uploaded; no minimum score is stated on the HTML page",
+      "quote": "Please upload a PDF copy of your English proficiency test results or your English as a Medium of Instruction (EMI) Certificate from your university to the online application portal.",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     },
+     {
+      "text": "Award verification letter of the bachelor's/master's degree (or a prospective graduation letter if currently enrolled) is required",
+      "quote": "Award verification letter (e.g., Certificate of Graduation) of your bachelor’s / master’s degree. Or Prospective Graduation Letter if you are currently enrolled in a degree program.",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     },
+     {
+      "text": "Applicants are advised to contact their prospective research supervisor before applying",
+      "quote": "Applicants are advised to contact their prospective research supervisor in advance to confirm whether the research group can accommodate",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Health Graduate Program, Graduate School of Medicine",
+   "url": "https://admissions.g30.nagoya-u.ac.jp/graduate-programs/public_health/",
+   "snapshot_sha256": "d1894725ee51696d42c3d8c1037fe7a297ad141ba172da3a29090c12b70669da",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "G30 graduate programs 2027 admissions, 1st round",
+      "date": "2027-01-13",
+      "quote": "Application deadline January 13, 2027, at 12:00 noon",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "English proficiency test result or English-medium-of-instruction (EMI) certificate from the applicant's university must be uploaded; no minimum score is stated on the HTML page",
+      "quote": "Please upload a PDF copy of your English proficiency test results or your English as a Medium of Instruction (EMI) Certificate from your university to the online application portal.",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     },
+     {
+      "text": "Award verification letter of the bachelor's/master's degree (or a prospective graduation letter if currently enrolled) is required",
+      "quote": "Award verification letter (e.g., Certificate of Graduation) of your bachelor’s / master’s degree. Or Prospective Graduation Letter if you are currently enrolled in a degree program.",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     },
+     {
+      "text": "Applicants are advised to contact their prospective research supervisor before applying",
+      "quote": "Applicants are advised to contact their prospective research supervisor in advance to confirm whether the research group can accommodate",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Graduate Program in Economics and Business Administration (Master's), Graduate School of Economics",
+   "url": "https://admissions.g30.nagoya-u.ac.jp/graduate-programs/business/",
+   "snapshot_sha256": "3e9b95d56807cec91b218430482d870f4e1d82ebc174e553910e08a6eb505ba3",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "G30 graduate programs 2027 admissions, 1st round",
+      "date": "2027-01-13",
+      "quote": "Application deadline January 13, 2027, at 12:00 noon",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "English proficiency test result or English-medium-of-instruction (EMI) certificate from the applicant's university must be uploaded; no minimum score is stated on the HTML page",
+      "quote": "Please upload a PDF copy of your English proficiency test results or your English as a Medium of Instruction (EMI) Certificate from your university to the online application portal.",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     },
+     {
+      "text": "Award verification letter of the bachelor's/master's degree (or a prospective graduation letter if currently enrolled) is required",
+      "quote": "Award verification letter (e.g., Certificate of Graduation) of your bachelor’s / master’s degree. Or Prospective Graduation Letter if you are currently enrolled in a degree program.",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     },
+     {
+      "text": "Applicants are not expected to contact program professors in advance; they select a research group in the online form",
+      "quote": "Applicants are not expected to contact program professors in advance.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Linguistics and Cultural Studies Graduate Program (Master's), Graduate School of Humanities",
+   "url": "https://admissions.g30.nagoya-u.ac.jp/graduate-programs/language/",
+   "snapshot_sha256": "e72778409d189725a6a550af572a21fe33c4b62ca4b6bb085f714e8b425c70b5",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "G30 graduate programs 2027 admissions, 1st round",
+      "date": "2027-01-13",
+      "quote": "Application deadline January 13, 2027, at 12:00 noon",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "English proficiency test result or English-medium-of-instruction (EMI) certificate from the applicant's university must be uploaded; no minimum score is stated on the HTML page",
+      "quote": "Please upload a PDF copy of your English proficiency test results or your English as a Medium of Instruction (EMI) Certificate from your university to the online application portal.",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     },
+     {
+      "text": "Award verification letter of the bachelor's/master's degree (or a prospective graduation letter if currently enrolled) is required",
+      "quote": "Award verification letter (e.g., Certificate of Graduation) of your bachelor’s / master’s degree. Or Prospective Graduation Letter if you are currently enrolled in a degree program.",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     },
+     {
+      "text": "Applicants are advised to contact their prospective research supervisor before applying",
+      "quote": "Applicants are advised to contact their prospective research supervisor in advance to confirm whether the research group can accommodate",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Japan-in-Asia Cultural Studies Graduate Program (Master's), Graduate School of Humanities",
+   "url": "https://admissions.g30.nagoya-u.ac.jp/graduate-programs/asia_cultural_/",
+   "snapshot_sha256": "eb9c44f0761a531840c5be520d1c280555cf48a92f74d267124cf7a3767feee6",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "G30 graduate programs 2027 admissions, 1st round",
+      "date": "2027-01-13",
+      "quote": "Application deadline January 13, 2027, at 12:00 noon",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     },
+     {
+      "label": "G30 graduate programs 2027 admissions, 2nd/rolling round (offered only if seats remain)",
+      "date": "2027-05-19",
+      "quote": "Application deadline May 19, 2027 at 12:00 noon",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "English proficiency test result or English-medium-of-instruction (EMI) certificate from the applicant's university must be uploaded; no minimum score is stated on the HTML page",
+      "quote": "Please upload a PDF copy of your English proficiency test results or your English as a Medium of Instruction (EMI) Certificate from your university to the online application portal.",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     },
+     {
+      "text": "Award verification letter of the bachelor's/master's degree (or a prospective graduation letter if currently enrolled) is required",
+      "quote": "Award verification letter (e.g., Certificate of Graduation) of your bachelor’s / master’s degree. Or Prospective Graduation Letter if you are currently enrolled in a degree program.",
+      "source_sha256": "1ef851c3e45da4a9a00e452184206f177b6c99bb5afe0c5019e4b60975ea81cf",
+      "source_url": "https://admissions.g30.nagoya-u.ac.jp/admissions/graduateprograms/",
+      "check": "ok"
+     },
+     {
+      "text": "Applicants are advised to contact their prospective research supervisor before applying",
+      "quote": "Applicants are advised to contact their prospective research supervisor in advance to confirm whether the research group can accommodate",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's Program, Graduate School of International Development (GSID)",
+   "url": "https://www4.gsid.nagoya-u.ac.jp/en/admission/application",
+   "snapshot_sha256": "9a3912cf484a13e77e25701af5e950a7ed69f5b42316b9930ca27e7f1b27a032",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "Master's Program AY2027, 2nd round (January exam), application period closes",
+      "date": "2026-12-11",
+      "quote": "Dec. 7 (Mon) － Dec. 11 (Fri), 2026",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "Minimum scores are set for each accepted English proficiency test; applicants below the minimum cannot apply (the scores themselves are not on this HTML page)",
+      "quote": "We have also set the minimum scores for each English proficiency test. If the score is less than minimum required one, you cannot apply.",
+      "check": "ok"
+     },
+     {
+      "text": "TOEIC scores are not accepted",
+      "quote": "TOEIC scores will not be accepted from the entrance examination of 2022.",
+      "check": "ok"
+     },
+     {
+      "text": "English test scores must come from a test taken within two years of the first day of the application period",
+      "quote": "New Requirement: Scores will only be accepted from tests taken within two years of the first day of the application period.",
+      "source_sha256": "9a3912cf484a13e77e25701af5e950a7ed69f5b42316b9930ca27e7f1b27a032",
+      "source_url": "https://www4.gsid.nagoya-u.ac.jp/en/admission/application",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires a high level of English proficiency, a basic understanding of the chosen field and logical thinking, assessed by document screening and an oral examination",
+      "quote": "Document screenings and oral examinations shall be conducted in order to determine whether applicants meet the following requirements: possess a high level of English language proficiency, have a basic understanding of their chosen field of specialization, and are able to think logically.",
+      "source_sha256": "d431a2642aff4bf772e0582a1981c5cbd7e3695b8d4bcc4aab77f7f97906f953",
+      "source_url": "https://www4.gsid.nagoya-u.ac.jp/en/admission/adm_policy",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Comparative Law LL.M. Course (Master's), Graduate School of Law",
+   "url": "https://gsl.law.nagoya-u.ac.jp/admissions/master.php",
+   "snapshot_sha256": "e9c5b414a5710e5951296fbacb82dc25128786b7e5b6f79783d1060b08094f01",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "The course offers English-taught and Japanese-taught streams",
+      "quote": "The course offers both English-taught and Japanese-taught streams.",
+      "check": "ok"
+     },
+     {
+      "text": "Selection by document screening and interview (oral examination)",
+      "quote": "The selection process for this program involves document screening and interview (oral examination).",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 17,
+  "机器核对": 17,
+  "待人工": 0
+ }
+}

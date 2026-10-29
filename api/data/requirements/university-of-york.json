@@ -1,0 +1,590 @@
+{
+ "school_key": "university-of-york",
+ "school_name_en": "University of York",
+ "country": "United Kingdom",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://www.york.ac.uk/study/postgraduate/courses/all?mode=taught"
+ ],
+ "china_page": {
+  "url": "https://www.york.ac.uk/study/international/your-country/china/",
+  "sha256": "5ab5355c1c7cfb129faf6b358b2dcebf94b065aab1cf085a328c8f92a168ea25"
+ },
+ "blocked": [
+  {
+   "url": "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-mathematical-finance",
+   "reason": "HTTP 429"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/llm-international-human-rights-law-practice",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/llm-law",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/llm-law-juris-doctor",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/llm-legal-political-theory",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/llm-legal-practice",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-ai-technology-enhanced-learning",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-applied-ethics-governance-data-privacy",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-applied-human-rights",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-applied-linguistics",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-applied-linguistics-language-teaching",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-cinematography-film-television",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-community-music",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-conservation-studies",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-conservation-studies-historic-buildings",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-contemporary-history-international-politics",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-creative-writing",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-cultural-heritage-management",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-digital-media-and-culture",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-directing-film-television-production",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-early-modern-history",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-early-prehistory-human-origins",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-editing-film-television-production",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-education",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-education-leadership-management",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-education-mental-health-wellbeing",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-eighteenth-century-studies",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-english-literary-studies",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-film-literature",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-global-culture-society",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-global-public-policy-international-business",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-historic-buildings",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-historical-archaeology",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-historical-studies",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-history-of-art",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-history-of-art-curating",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-history-of-art-fashion-history",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-international-political-economy",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-international-relations-comparative-politics",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-international-relations-global-ethics",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-international-relations-human-rights",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-interpreting-translation-applied-tech",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-iron-age-celtic-archaeology",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-leadership-criminal-justice",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-literature-creative-cultural-industries",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-management-creative-cultural-industries",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-material-culture-experimental-archaeology",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-medieval-archaeology",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-medieval-history",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-medieval-literatures-languages",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-medieval-studies",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-mesolithic-archaeology",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-modern-history",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-museum-studies",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-music-composition",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-music-composition-film-television",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-music-education",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-music-education-group-teaching",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-music-education-performance",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-music-management-marketing",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-music-musicology",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-music-performance-instrumental-studies",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-music-performance-management",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-music-performance-practice",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-music-piano-studies",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-music-production",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-music-solo-voice-ensemble-singing",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-music-vocal-studies",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-peace-and-conflict-studies",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-philosophy-artificial-intelligence",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-political-legal-philosophy",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-political-theory",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-producing-film-television",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-psycholinguistics",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-public-history",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-queer-studies",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-renaissance-and-early-modern-studies",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-renaissance-literature",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-roman-archaeology",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-social-media-social-research",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-social-public-policy",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-social-research",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-social-work",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-sound-film-television-production",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-stained-glass-conservation-heritage-management",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-sustainability-studies",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-sustainable-built-heritage",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-tesol",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-theatre-making",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-translation-applied-tech",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-victorian-literature-culture",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-visual-effects-film-television",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-women-violence-and-conflict",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/ma-womens-gender-studies",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/mpa-applied-social-public-policy-evaluation",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/mpa-international-development",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/mpa-public-administration-placement",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/mph-public-health",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/mpp-education-policy",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/mpp-global-public-health-policy",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-advanced-clinical-practice",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-advanced-computer-science",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-ai-for-the-creative-industries",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-artificial-intelligence",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-audio-music-technology",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-bio-sciences-bioenterprise",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-bioarchaeology",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-bioinformatics",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-bioinformatics-with-bioenterprise",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-biomedical-engineering",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-biomedical-sciences",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-biotechnology",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-biotechnology-bioenterprise",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-corporate-sustainability-environment",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-cyber-security",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-data-science-ai-statistics",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-data-science-human-behaviour",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-developmental-cognitive-neuroscience",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-digital-archaeology",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-digital-design",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-digital-design-social-media",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-digital-heritage",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-early-prehistory-human-origins",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-econometrics-economics",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-economics",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-economics-finance",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-economics-public-policy",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-engineering-management",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-engineering-project-management",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-environmental-economics-management",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-environmental-science-management",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-forensic-speech-science",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-funerary-archaeology",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-fusion-energy-science-technologies",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-global-climate-challenges",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-global-markets-and-economic-development",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-green-chemistry-sustainable-industrial-tech",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-health-economics",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-health-economics-professionals-policymakers",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-health-research",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-health-sciences",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-human-centred-interactive-technologies",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-intelligent-robotics",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-international-humanitarian-affairs-online",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-linguistics",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-material-culture-experimental-archaeology",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-mathematical-finance",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-mathematical-sciences",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-mental-health-research",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-neuroscience-mental-health",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-psychology-education-conversion-programme",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-psychology-mental-health",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-public-policy-management",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-renewable-energy-technologies",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-safety-critical-systems-engineering",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-social-media-and-management",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-social-media-interactive-technology",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-sound-film-television-production",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-statistics-and-computational-finance",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-sustainability-science",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-sustainable-business",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-sustainable-finance",
+  "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-zooarchaeology"
+ ],
+ "notes": "www.york.ac.uk returned HTTP 429 after 16 course pages, so fetching stopped as the rules require; the remaining course pages (listed) were not collected. China page gives only ranges (70-75% ~ 2:2), so no min_mark values; its 2:2 line is cited only where the programme's own text states 2:2. The programme pages' TOEFL row (e.g. '4.5, with 5 in Listening') is on an unstated scale and was left out; no programme page states a closing date (the general apply page gives 25 August 2027 for international applications but does not tie it to these programmes, so it is not used). MSc Leadership and Management in the Age of AI page says it may not recruit for September 2027.",
+ "programs": [
+  {
+   "name": "MSc Accounting and Finance",
+   "url": "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-accounting-finance/",
+   "snapshot_sha256": "ccc35b3d28b933d4a3ada7d57e293f7dfad462c2390100be67e7bb5eba8cc4ae",
+   "fields": {
+    "academic": {
+     "text": "2.2 in a related subject, such as Management, Economics, Finance, Accounting or Maths. You would also need to have studied at least one Accounting module. We may also accept degrees from different subjects if there is some content in statistics in your degree.",
+     "quote": "2.2 in a related subject, such as Management, Economics, Finance, Accounting or Maths. You would also need to have studied at least one Accounting module. We may also accept degrees from different subjects if there is some content in statistics in your degree.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic and Indicator)\n6.5, minimum 6.0 in each component",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "A score of 70 to 75% is considered comparable to a UK 2:2",
+     "quote": "A score of 70 to 75% is considered comparable to a UK 2:2",
+     "source_sha256": "5ab5355c1c7cfb129faf6b358b2dcebf94b065aab1cf085a328c8f92a168ea25",
+     "source_url": "https://www.york.ac.uk/study/international/your-country/china/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Business Analytics",
+   "url": "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-business-analytics/",
+   "snapshot_sha256": "c1de916815666694119e21c8c1afca02e9ccf60f35aa091df010f21cb0e9aeb4",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 or equivalent in an undergraduate degree in any subject, provided that previous studies have included computer programming and quantitative methods such as calculus, linear algebra, probability, and statistics.",
+     "quote": "A 2:2 or equivalent in an undergraduate degree in any subject, provided that previous studies have included computer programming and quantitative methods such as calculus, linear algebra, probability, and statistics.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic and Indicator)\n6.5, minimum 6.0 in each component",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "A score of 70 to 75% is considered comparable to a UK 2:2",
+     "quote": "A score of 70 to 75% is considered comparable to a UK 2:2",
+     "source_sha256": "5ab5355c1c7cfb129faf6b358b2dcebf94b065aab1cf085a328c8f92a168ea25",
+     "source_url": "https://www.york.ac.uk/study/international/your-country/china/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Entrepreneurship and Innovation",
+   "url": "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-entrepreneurship-and-innovation/",
+   "snapshot_sha256": "bf71f9cbbb49c1f7d9bad0cf2000809f6fbed825277748efdff606f4d72cde76",
+   "fields": {
+    "academic": {
+     "text": "2:2 or equivalent.",
+     "quote": "2:2 or equivalent.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic and Indicator)\n6.5, minimum 6.0 in each component",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "A score of 70 to 75% is considered comparable to a UK 2:2",
+     "quote": "A score of 70 to 75% is considered comparable to a UK 2:2",
+     "source_sha256": "5ab5355c1c7cfb129faf6b358b2dcebf94b065aab1cf085a328c8f92a168ea25",
+     "source_url": "https://www.york.ac.uk/study/international/your-country/china/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Finance",
+   "url": "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-finance/",
+   "snapshot_sha256": "f1077c2b0f2c295ef0cd1eb99d937eedd70718d9379593ec1f64bf0e60253b71",
+   "fields": {
+    "academic": {
+     "text": "2:2 or equivalent in an undergraduate degree in any subject.",
+     "quote": "2:2 or equivalent in an undergraduate degree in any subject.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic and Indicator)\n6.5, minimum 6.0 in each component",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "A score of 70 to 75% is considered comparable to a UK 2:2",
+     "quote": "A score of 70 to 75% is considered comparable to a UK 2:2",
+     "source_sha256": "5ab5355c1c7cfb129faf6b358b2dcebf94b065aab1cf085a328c8f92a168ea25",
+     "source_url": "https://www.york.ac.uk/study/international/your-country/china/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "one or more modules containing some statistics, maths, economics, finance, physics or engineering content (expected)",
+      "quote": "We would expect applicants to have experience of one or more modules containing some statistics/maths/economics/finance/physics/engineering content.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Finance and Investments",
+   "url": "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-finance-investments/",
+   "snapshot_sha256": "2d61b9110d02efccd30e988cad9a7c9b4e791098e0748ae65eea072aee37e50c",
+   "fields": {
+    "academic": {
+     "text": "2.2 in a related subject, such as Management, Economics, Finance, Accounting or Maths. We may also accept degrees from different subjects if there is some content in statistics in your degree.",
+     "quote": "2.2 in a related subject, such as Management, Economics, Finance, Accounting or Maths. We may also accept degrees from different subjects if there is some content in statistics in your degree.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic and Indicator)\n6.5, minimum 6.0 in each component",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "A score of 70 to 75% is considered comparable to a UK 2:2",
+     "quote": "A score of 70 to 75% is considered comparable to a UK 2:2",
+     "source_sha256": "5ab5355c1c7cfb129faf6b358b2dcebf94b065aab1cf085a328c8f92a168ea25",
+     "source_url": "https://www.york.ac.uk/study/international/your-country/china/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Finance and Management",
+   "url": "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-finance-management/",
+   "snapshot_sha256": "7f55acd8905b0028c5fed981da16358e7e823df13394ac362d0a3156801e9f99",
+   "fields": {
+    "academic": {
+     "text": "2.2 in a related subject, such as Management, Economics, Finance, Accounting or Maths. We may also accept degrees from different subjects if there is some content in statistics in your degree.",
+     "quote": "2.2 in a related subject, such as Management, Economics, Finance, Accounting or Maths. We may also accept degrees from different subjects if there is some content in statistics in your degree.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic and Indicator)\n6.5, minimum 6.0 in each component",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "A score of 70 to 75% is considered comparable to a UK 2:2",
+     "quote": "A score of 70 to 75% is considered comparable to a UK 2:2",
+     "source_sha256": "5ab5355c1c7cfb129faf6b358b2dcebf94b065aab1cf085a328c8f92a168ea25",
+     "source_url": "https://www.york.ac.uk/study/international/your-country/china/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Financial Engineering",
+   "url": "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-financial-engineering/",
+   "snapshot_sha256": "2d3e389c656f507e6654da3fbd468e78f454658fe08b4bae3d4f828114f08cf7",
+   "fields": {
+    "academic": {
+     "text": "2:2 or equivalent in a discipline with sufficient background in mathematical sciences, economics and finance. In certain cases, you may be required to complete the online pre-sessional course in Mathematical Foundations of Quantitative Finance with a final grade of at least 60%.",
+     "quote": "2:2 or equivalent in a discipline with sufficient background in mathematical sciences, economics and finance. In certain cases, you may be required to complete the online pre-sessional course in Mathematical Foundations of Quantitative Finance with a final grade of at least 60%.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic and Indicator)\n6.0, minimum 5.5 in each component",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "A score of 70 to 75% is considered comparable to a UK 2:2",
+     "quote": "A score of 70 to 75% is considered comparable to a UK 2:2",
+     "source_sha256": "5ab5355c1c7cfb129faf6b358b2dcebf94b065aab1cf085a328c8f92a168ea25",
+     "source_url": "https://www.york.ac.uk/study/international/your-country/china/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Global Marketing",
+   "url": "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-global-marketing/",
+   "snapshot_sha256": "618f90d8c9a7cb735039f60a432df240c8ebfe37b5e097f7e5599a23c403411b",
+   "fields": {
+    "academic": {
+     "text": "2:2 or equivalent in any subject. We may give preference to applicants with knowledge of marketing and/or business management.",
+     "quote": "2:2 or equivalent in any subject. We may give preference to applicants with knowledge of marketing and/or business management.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic and Indicator)\n6.5, minimum 6.0 in each component",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "A score of 70 to 75% is considered comparable to a UK 2:2",
+     "quote": "A score of 70 to 75% is considered comparable to a UK 2:2",
+     "source_sha256": "5ab5355c1c7cfb129faf6b358b2dcebf94b065aab1cf085a328c8f92a168ea25",
+     "source_url": "https://www.york.ac.uk/study/international/your-country/china/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Human Resource Management",
+   "url": "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-human-resource-management/",
+   "snapshot_sha256": "9586c3116fda8e4be7269b6a50aaa65df2c965fc000e2c08f64716f17338d35a",
+   "fields": {
+    "academic": {
+     "text": "2:2 or equivalent in a social science subject. Previous study in management is desirable but not essential.",
+     "quote": "2:2 or equivalent in a social science subject. Previous study in management is desirable but not essential.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic and Indicator)\n6.5, minimum 6.0 in each component",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "A score of 70 to 75% is considered comparable to a UK 2:2",
+     "quote": "A score of 70 to 75% is considered comparable to a UK 2:2",
+     "source_sha256": "5ab5355c1c7cfb129faf6b358b2dcebf94b065aab1cf085a328c8f92a168ea25",
+     "source_url": "https://www.york.ac.uk/study/international/your-country/china/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc International Business",
+   "url": "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-international-business/",
+   "snapshot_sha256": "428e8cffa29017844f2957af5b568ae7657493599c898a0ac724b7058942645c",
+   "fields": {
+    "academic": {
+     "text": "2:2 or equivalent in any subject. We may give preference to students with knowledge of relevant areas, including Management or Business Studies, Economics, Finance, Accounting, or any social science.",
+     "quote": "2:2 or equivalent in any subject. We may give preference to students with knowledge of relevant areas, including Management or Business Studies, Economics, Finance, Accounting, or any social science.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic and Indicator)\n6.5, minimum 6.0 in each component",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "A score of 70 to 75% is considered comparable to a UK 2:2",
+     "quote": "A score of 70 to 75% is considered comparable to a UK 2:2",
+     "source_sha256": "5ab5355c1c7cfb129faf6b358b2dcebf94b065aab1cf085a328c8f92a168ea25",
+     "source_url": "https://www.york.ac.uk/study/international/your-country/china/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc International Business and Strategic Management",
+   "url": "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-international-business-strategic-management/",
+   "snapshot_sha256": "e750d7121bddc038a8fb3deecf9bab9a37adced1c3d1d2bb21ae860eb7911cf2",
+   "fields": {
+    "academic": {
+     "text": "2:2 or equivalent in any subject. We may give preference to students with knowledge of relevant areas including Management or Business Studies, Economics, Finance, Accounting, or any social science.",
+     "quote": "2:2 or equivalent in any subject. We may give preference to students with knowledge of relevant areas including Management or Business Studies, Economics, Finance, Accounting, or any social science.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic and Indicator)\n6.5, minimum 6.0 in each component",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "A score of 70 to 75% is considered comparable to a UK 2:2",
+     "quote": "A score of 70 to 75% is considered comparable to a UK 2:2",
+     "source_sha256": "5ab5355c1c7cfb129faf6b358b2dcebf94b065aab1cf085a328c8f92a168ea25",
+     "source_url": "https://www.york.ac.uk/study/international/your-country/china/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc International Strategic Management",
+   "url": "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-international-strategic-management/",
+   "snapshot_sha256": "d2b1589207625d5f34b9de6247a33bad5050a59fbdb1e1620063ae306aea4ce4",
+   "fields": {
+    "academic": {
+     "text": "2:2 or equivalent in any subject. We may give preference to students with knowledge of relevant areas, including Management or Business Studies, Economics, Finance, Accounting, or any social science.",
+     "quote": "2:2 or equivalent in any subject. We may give preference to students with knowledge of relevant areas, including Management or Business Studies, Economics, Finance, Accounting, or any social science.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic and Indicator)\n6.5, minimum 6.0 in each component",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "A score of 70 to 75% is considered comparable to a UK 2:2",
+     "quote": "A score of 70 to 75% is considered comparable to a UK 2:2",
+     "source_sha256": "5ab5355c1c7cfb129faf6b358b2dcebf94b065aab1cf085a328c8f92a168ea25",
+     "source_url": "https://www.york.ac.uk/study/international/your-country/china/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Leadership and Management in the Age of AI",
+   "url": "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-leadership-management-ai/",
+   "snapshot_sha256": "78be43dd5f3723e74be5227fbad35eb9876f3e62b42d3526f649587137bec581",
+   "fields": {
+    "academic": {
+     "text": "2:2 or equivalent",
+     "quote": "2:2 or equivalent",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic and Indicator)\n6.5, minimum 6.0 in each component",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "A score of 70 to 75% is considered comparable to a UK 2:2",
+     "quote": "A score of 70 to 75% is considered comparable to a UK 2:2",
+     "source_sha256": "5ab5355c1c7cfb129faf6b358b2dcebf94b065aab1cf085a328c8f92a168ea25",
+     "source_url": "https://www.york.ac.uk/study/international/your-country/china/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Logistics and Supply Chain Management",
+   "url": "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-logistics-supply-chain-management/",
+   "snapshot_sha256": "5885ddfd751f7c938d3a0870f8c506c852dd907e60c19b12f119c494027b8ece",
+   "fields": {
+    "academic": {
+     "text": "2:2 or equivalent.",
+     "quote": "2:2 or equivalent.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic and Indicator)\n6.5, minimum 6.0 in each component",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "A score of 70 to 75% is considered comparable to a UK 2:2",
+     "quote": "A score of 70 to 75% is considered comparable to a UK 2:2",
+     "source_sha256": "5ab5355c1c7cfb129faf6b358b2dcebf94b065aab1cf085a328c8f92a168ea25",
+     "source_url": "https://www.york.ac.uk/study/international/your-country/china/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Management",
+   "url": "https://www.york.ac.uk/study/postgraduate-taught/courses/msc-management/",
+   "snapshot_sha256": "f94d17b387ec2486a4e3211aa80c412b6954a2bb1d93b147cef2ac093b7d3ddf",
+   "fields": {
+    "academic": {
+     "text": "2:2 or equivalent.",
+     "quote": "2:2 or equivalent.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic and Indicator)\n6.5, minimum 6.0 in each component",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "A score of 70 to 75% is considered comparable to a UK 2:2",
+     "quote": "A score of 70 to 75% is considered comparable to a UK 2:2",
+     "source_sha256": "5ab5355c1c7cfb129faf6b358b2dcebf94b065aab1cf085a328c8f92a168ea25",
+     "source_url": "https://www.york.ac.uk/study/international/your-country/china/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 15,
+  "机器核对": 15,
+  "待人工": 0
+ }
+}

@@ -1,0 +1,2179 @@
+{
+ "school_key": "university-of-warwick",
+ "school_name_en": "University of Warwick",
+ "country": "United Kingdom",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://warwick.ac.uk/study/postgraduate/courses/",
+  "https://warwick.ac.uk/sitebuilder2/api/sitemap/pages.xml?page=%2Fstudy%2Fpostgraduate"
+ ],
+ "china_page": {
+  "url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+  "sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2"
+ },
+ "blocked": [
+  {
+   "url": "https://sitebuilder.warwick.ac.uk/sitebuilder2/api/dataentry/entries.json",
+   "reason": "robots.txt disallows; the course list endpoint was not fetched, the official sitemap was used to enumerate course pages"
+  },
+  {
+   "url": "https://warwick.ac.uk/study/postgraduate/apply/english/departmentrequirements/",
+   "reason": "requires sign-in; not used"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://warwick.ac.uk/study/postgraduate/courses/llm-international-commercial-law/",
+  "https://warwick.ac.uk/study/postgraduate/courses/llm-international-corporate-governance-financial-regulation/",
+  "https://warwick.ac.uk/study/postgraduate/courses/llm-international-development-law-human-rights/",
+  "https://warwick.ac.uk/study/postgraduate/courses/llm-international-economic-law/",
+  "https://warwick.ac.uk/study/postgraduate/courses/ma-ancient-literature-thought/",
+  "https://warwick.ac.uk/study/postgraduate/courses/ma-ancient-visual-material-culture/",
+  "https://warwick.ac.uk/study/postgraduate/courses/ma-career-development/",
+  "https://warwick.ac.uk/study/postgraduate/courses/ma-career-education/",
+  "https://warwick.ac.uk/study/postgraduate/courses/ma-caribbean-studies/",
+  "https://warwick.ac.uk/study/postgraduate/courses/ma-childhood-in-society/",
+  "https://warwick.ac.uk/study/postgraduate/courses/ma-coaching/",
+  "https://warwick.ac.uk/study/postgraduate/courses/ma-continental-philosophy/",
+  "https://warwick.ac.uk/study/postgraduate/courses/ma-creative-media-enterprises/",
+  "https://warwick.ac.uk/study/postgraduate/courses/ma-cultural-management-creative-leadership/",
+  "https://warwick.ac.uk/study/postgraduate/courses/ma-digital-media-culture/",
+  "https://warwick.ac.uk/study/postgraduate/courses/ma-drama-education-english-language-teaching/",
+  "https://warwick.ac.uk/study/postgraduate/courses/ma-drama-theatre-education/",
+  "https://warwick.ac.uk/study/postgraduate/courses/ma-educational-innovation/",
+  "https://warwick.ac.uk/study/postgraduate/courses/ma-english-literature/",
+  "https://warwick.ac.uk/study/postgraduate/courses/ma-ethics-law-public-affairs/",
+  "https://warwick.ac.uk/study/postgraduate/courses/ma-european-renaissance/",
+  "https://warwick.ac.uk/study/postgraduate/courses/ma-film-tv/",
+  "https://warwick.ac.uk/study/postgraduate/courses/ma-gender-development/",
+  "https://warwick.ac.uk/study/postgraduate/courses/ma-gender-sexuality/",
+  "https://warwick.ac.uk/study/postgraduate/courses/ma-global-media-communication/",
+  "https://warwick.ac.uk/study/postgraduate/courses/ma-history/",
+  "https://warwick.ac.uk/study/postgraduate/courses/ma-islamic-education/",
+  "https://warwick.ac.uk/study/postgraduate/courses/ma-philosophy/",
+  "https://warwick.ac.uk/study/postgraduate/courses/ma-philosophy-arts/",
+  "https://warwick.ac.uk/study/postgraduate/courses/ma-politics-climate-change/",
+  "https://warwick.ac.uk/study/postgraduate/courses/ma-professional-education/",
+  "https://warwick.ac.uk/study/postgraduate/courses/ma-social-political-thought/",
+  "https://warwick.ac.uk/study/postgraduate/courses/ma-translation-cultures/",
+  "https://warwick.ac.uk/study/postgraduate/courses/ma-writing/",
+  "https://warwick.ac.uk/study/postgraduate/courses/masc-design-sustainability/",
+  "https://warwick.ac.uk/study/postgraduate/courses/masc-global-sustainable-development/",
+  "https://warwick.ac.uk/study/postgraduate/courses/masc-pgdip-ai-and-society/",
+  "https://warwick.ac.uk/study/postgraduate/courses/mph-public-health-iheed/",
+  "https://warwick.ac.uk/study/postgraduate/courses/msc-analytical-polymer-science/",
+  "https://warwick.ac.uk/study/postgraduate/courses/msc-analytical-sciences-instrumentation/",
+  "https://warwick.ac.uk/study/postgraduate/courses/msc-biotechnology-bioprocessing-business-management/",
+  "https://warwick.ac.uk/study/postgraduate/courses/msc-business-art/",
+  "https://warwick.ac.uk/study/postgraduate/courses/msc-clinical-applications-psychology/",
+  "https://warwick.ac.uk/study/postgraduate/courses/msc-e-business-management/",
+  "https://warwick.ac.uk/study/postgraduate/courses/msc-engineering-business-leadership/",
+  "https://warwick.ac.uk/study/postgraduate/courses/msc-engineering-design-management/",
+  "https://warwick.ac.uk/study/postgraduate/courses/msc-environmental-bioscience/",
+  "https://warwick.ac.uk/study/postgraduate/courses/msc-finance-management/",
+  "https://warwick.ac.uk/study/postgraduate/courses/msc-food-systems-production-security/",
+  "https://warwick.ac.uk/study/postgraduate/courses/msc-healthcare-management/",
+  "https://warwick.ac.uk/study/postgraduate/courses/msc-humanitarian-engineering-management/",
+  "https://warwick.ac.uk/study/postgraduate/courses/msc-humanitarian-engineering-sustainability/",
+  "https://warwick.ac.uk/study/postgraduate/courses/msc-intercultural-communication-business/",
+  "https://warwick.ac.uk/study/postgraduate/courses/msc-interdisciplinary-biomedical-research/",
+  "https://warwick.ac.uk/study/postgraduate/courses/msc-management-business-excellence/",
+  "https://warwick.ac.uk/study/postgraduate/courses/msc-medical-biotechnology-business-management/",
+  "https://warwick.ac.uk/study/postgraduate/courses/msc-mental-health-wellbeing/",
+  "https://warwick.ac.uk/study/postgraduate/courses/msc-polymer-chemistry/",
+  "https://warwick.ac.uk/study/postgraduate/courses/msc-polymer-science/",
+  "https://warwick.ac.uk/study/postgraduate/courses/msc-psychological-research/",
+  "https://warwick.ac.uk/study/postgraduate/courses/msc-renewable-energy/",
+  "https://warwick.ac.uk/study/postgraduate/courses/msc-reproductive-science/",
+  "https://warwick.ac.uk/study/postgraduate/courses/msc-social-inequalities-and-research-methods/",
+  "https://warwick.ac.uk/study/postgraduate/courses/msc-statistics-probability/"
+ ],
+ "notes": "Course pages state the UK class, the English band with its IELTS scores, and one university-wide on-time deadline. Economics-department courses use admissions rounds with two-digit years, so no deadline was recorded for them. The China page groups universities in named lists (70/75/80% for a UK 2.1) so only text and quote are given, not min_mark values. Entries for pages showing 2:2 or First Class/high 2:1 get no china_requirement.",
+ "programs": [
+  {
+   "name": "Accounting & Financial Management MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-accounting-financial-management/",
+   "snapshot_sha256": "9b85997d8b425d75340f0c54baec894796bc3be52348bdc119eff949942357ce",
+   "fields": {
+    "academic": {
+     "text": "2.1 degree at undergraduate level from a UK university, or overseas equivalent.",
+     "quote": "2.1 degree at undergraduate level from a UK university, or overseas equivalent.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS overall score of 7.0, minimum component scores of two at 6.0/6.5 and the rest at 7.0 or above.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Accounting & Sustainability MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-accounting-sustainability/",
+   "snapshot_sha256": "d7596fb104ce95892e4bc5ad85771c7f4fec0c74de32b29c7ef7990ec4773031",
+   "fields": {
+    "academic": {
+     "text": "2.1 degree at undergraduate level from a UK university, or overseas equivalent.",
+     "quote": "2.1 degree at undergraduate level from a UK university, or overseas equivalent.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS overall score of 7.0, minimum component scores of two at 6.0/6.5 and the rest at 7.0 or above.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Business Analytics & Artificial Intelligence MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-business-analytics-artificial-intelligence/",
+   "snapshot_sha256": "8fbbbd1ea95c1b7cc6d47ac207c3f1302a67ca1844b5d7ebfae653533350d63b",
+   "fields": {
+    "academic": {
+     "text": "2.1 degree at undergraduate level from a UK university, or overseas equivalent. We consider applications from a wide range of degrees including economics, business, engineering, psychology, geography, sociology, and politics.",
+     "quote": "2.1 degree at undergraduate level from a UK university, or overseas equivalent. We consider applications from a wide range of degrees including economics, business, engineering, psychology, geography, sociology, and politics.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS overall score of 7.0, minimum component scores of two at 6.0/6.5 and the rest at 7.0 or above.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Business with Artificial Intelligence MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-business-artificial-intelligence/",
+   "snapshot_sha256": "79754bc750de0586a2eb90d635a3bfbe34c62080d4fa96d13e355a913d1b3f9a",
+   "fields": {
+    "academic": {
+     "text": "2.1 degree at undergraduate level from a UK university, or overseas equivalent.",
+     "quote": "2.1 degree at undergraduate level from a UK university, or overseas equivalent.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS overall score of 7.0, minimum component scores of two at 6.0/6.5 and the rest at 7.0 or above.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Business with Consulting MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-business-consulting/",
+   "snapshot_sha256": "a87636ff80ab0b8d0221b55699d293118c787f5afa82c19eb4e6f5307fe41d5e",
+   "fields": {
+    "academic": {
+     "text": "2.1 degree at undergraduate level from a UK university, or overseas equivalent.",
+     "quote": "2.1 degree at undergraduate level from a UK university, or overseas equivalent.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS overall score of 7.0, minimum component scores of two at 6.0/6.5 and the rest at 7.0 or above.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Business with Marketing MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-business-marketing/",
+   "snapshot_sha256": "cdcf6834ddf9863ab347f9ed13c2b4ccf03be27f27493610b0157d7e18493475",
+   "fields": {
+    "academic": {
+     "text": "2.1 degree at undergraduate level from a UK university, or overseas equivalent.",
+     "quote": "2.1 degree at undergraduate level from a UK university, or overseas equivalent.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS overall score of 7.0, minimum component scores of two at 6.0/6.5 and the rest at 7.0 or above.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Business with Operations Management MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-business-operations-management/",
+   "snapshot_sha256": "83a37ae4b13da86d0250e159becb02c88c1510d8e670252f28cd8961e1438b2d",
+   "fields": {
+    "academic": {
+     "text": "2.1 degree at undergraduate level from a UK university, or overseas equivalent.",
+     "quote": "2.1 degree at undergraduate level from a UK university, or overseas equivalent.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS overall score of 7.0, minimum component scores of two at 6.0/6.5 and the rest at 7.0 or above.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Business with Sustainability MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-business-sustainability/",
+   "snapshot_sha256": "48adb13db06b04164dd552cc090c38aad45ebe6214b3a3ff1036359bb433115f",
+   "fields": {
+    "academic": {
+     "text": "2.1 degree at undergraduate level from a UK university, or overseas equivalent.",
+     "quote": "2.1 degree at undergraduate level from a UK university, or overseas equivalent.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS overall score of 7.0, minimum component scores of two at 6.0/6.5 and the rest at 7.0 or above.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Business with Finance MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-business-with-finance/",
+   "snapshot_sha256": "e7f44f4772332e262b7aca570e38802c2ba24b2b68620c02156fba82da81ab58",
+   "fields": {
+    "academic": {
+     "text": "You must have, or be expecting to obtain, a 2:1 degree at Undergraduate level from a UK university, or overseas equivalent. We welcome applicants from all disciplines.",
+     "quote": "You must have, or be expecting to obtain, a 2:1 degree at Undergraduate level from a UK university, or overseas equivalent. We welcome applicants from all disciplines.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS overall score of 7.0, minimum component scores of two at 6.0/6.5 and the rest at 7.0 or above.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Digital & AI Leadership MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-digital-ai-leadership/",
+   "snapshot_sha256": "1e5b04b9c6e155c15027d919d5bc8517317a4cf6bd0e7d1133af002bb1b76924",
+   "fields": {
+    "academic": {
+     "text": "2.1 degree at undergraduate level from a UK university, or overseas equivalent. Applications are welcomed from all academic backgrounds – prior information technology experience isn’t required because this course is not designed as a ‘tools and techniques’ course.",
+     "quote": "2.1 degree at undergraduate level from a UK university, or overseas equivalent. Applications are welcomed from all academic backgrounds – prior information technology experience isn’t required because this course is not designed as a ‘tools and techniques’ course.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS overall score of 7.0, minimum component scores of two at 6.0/6.5 and the rest at 7.0 or above.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Finance MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-finance/",
+   "snapshot_sha256": "85be661215b7ae8e97e58e6f8970aa0634b021c3f2e9f3ed6675310dc13aba8f",
+   "fields": {
+    "academic": {
+     "text": "2.1 degree at undergraduate level from a UK university, or overseas equivalent.",
+     "quote": "2.1 degree at undergraduate level from a UK university, or overseas equivalent.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS overall score of 7.0, minimum component scores of two at 6.0/6.5 and the rest at 7.0 or above.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Finance & Economics MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-finance-economics/",
+   "snapshot_sha256": "75b3e881fe56ffbaed3f196a6174ad3316b30c43186828698b73b6cd497261dc",
+   "fields": {
+    "academic": {
+     "text": "2.1 degree at undergraduate level from a UK university, or overseas equivalent.",
+     "quote": "2.1 degree at undergraduate level from a UK university, or overseas equivalent.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS overall score of 7.0, minimum component scores of two at 6.0/6.5 and the rest at 7.0 or above.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Financial Technology MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-financial-technology/",
+   "snapshot_sha256": "c6f5ee5fc551e8a8407456f1457a70617bb1367c6a70d9ab0ceb4e1c03c48648",
+   "fields": {
+    "academic": {
+     "text": "2.1 degree at undergraduate level from a UK university, or overseas equivalent.",
+     "quote": "2.1 degree at undergraduate level from a UK university, or overseas equivalent.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS overall score of 7.0, minimum component scores of two at 6.0/6.5 and the rest at 7.0 or above.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Innovation and Entrepreneurship MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-innovation-entrepreneurship/",
+   "snapshot_sha256": "cfeb55f473231d62c4fbcbf4c961e9dc28a2765bc498a43b96fc483aa6e7d09e",
+   "fields": {
+    "academic": {
+     "text": "2:1 undergraduate degree (or equivalent).",
+     "quote": "2:1 undergraduate degree (or equivalent).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS overall score of 7.0, minimum component scores of two at 6.0/6.5 and the rest at 7.0 or above.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Business MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-international-business/",
+   "snapshot_sha256": "5eb816f8afd7b6698dd8e1739ebe196357d69978ff90b9b76caaba57913dbe1d",
+   "fields": {
+    "academic": {
+     "text": "2.1 degree at undergraduate level from a UK university, or overseas equivalent.",
+     "quote": "2.1 degree at undergraduate level from a UK university, or overseas equivalent.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS overall score of 7.0, minimum component scores of two at 6.0/6.5 and the rest at 7.0 or above.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Trade, Strategy and Operations MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-international-trade/",
+   "snapshot_sha256": "25b5fedb554997116472118c67696e7e6796a4d473cfe7e364dc7e8d7d271ac3",
+   "fields": {
+    "academic": {
+     "text": "2:1 undergraduate degree (or equivalent) in a relevant subject.",
+     "quote": "2:1 undergraduate degree (or equivalent) in a relevant subject.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS overall score of 6.5, minimum component scores not below 6.0",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Management MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-management/",
+   "snapshot_sha256": "8e810428b62e33f749f126154dcddd567a60db5e51de0fe4006cfbc4cf4cb46d",
+   "fields": {
+    "academic": {
+     "text": "2.1 degree at undergraduate level from a UK university, or overseas equivalent. We welcome students from diverse backgrounds including arts, social sciences, humanities, engineering and mathematics.",
+     "quote": "2.1 degree at undergraduate level from a UK university, or overseas equivalent. We welcome students from diverse backgrounds including arts, social sciences, humanities, engineering and mathematics.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS overall score of 7.0, minimum component scores of two at 6.0/6.5 and the rest at 7.0 or above.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Marketing & Consumer Behaviour MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-marketing-consumer-behaviour/",
+   "snapshot_sha256": "9311e84715c6210a4af6fd1e3d57964a4536056eee2d2965d7fbff619971d35f",
+   "fields": {
+    "academic": {
+     "text": "2:1 degree at Undergraduate level.",
+     "quote": "2:1 degree at Undergraduate level.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS overall score of 7.0, minimum component scores of two at 6.0/6.5 and the rest at 7.0 or above.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Marketing & Strategy MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-marketing-strategy/",
+   "snapshot_sha256": "3e9f24f20eeec0f2d4c0a694020dd0e01c67b49c037abce68e45c160b451ce83",
+   "fields": {
+    "academic": {
+     "text": "You must have, or be expecting to obtain, a 2:1 degree at undergraduate level from a UK university, or overseas equivalent. We welcome applicants from all disciplines.",
+     "quote": "You must have, or be expecting to obtain, a 2:1 degree at undergraduate level from a UK university, or overseas equivalent. We welcome applicants from all disciplines.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS overall score of 7.0, minimum component scores of two at 6.0/6.5 and the rest at 7.0 or above.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Programme and Project Management MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-project-management/",
+   "snapshot_sha256": "10f9a7f09ff746ad1cb8d73a68944a476c28359bb39d2bd532ca5ef7dd9969fc",
+   "fields": {
+    "academic": {
+     "text": "2:1 undergraduate degree (or equivalent).",
+     "quote": "2:1 undergraduate degree (or equivalent).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS overall score of 6.5, minimum component scores not below 6.0",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Supply Chain and Logistics Management MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-supply-chain-logistics-management/",
+   "snapshot_sha256": "8fe95a203a4244178a7d297758a07e86789d30144661e558cf88f15f23259b45",
+   "fields": {
+    "academic": {
+     "text": "2:1 undergraduate degree (or equivalent) in a relevant subject.",
+     "quote": "2:1 undergraduate degree (or equivalent) in a relevant subject.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS overall score of 6.5, minimum component scores not below 6.0",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MBA - Full-time",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/mba-full-time-mba/",
+   "snapshot_sha256": "55392bf96c71e97785d5395ba37cc832c52c3fad0a5d33b1ce919182f52f9d35",
+   "fields": {
+    "academic": {
+     "text": "A 2:2 at undergraduate level from a UK university or the equivalent from an overseas university is preferred but not essential. We also welcome applications from candidates who do not have the academic qualifications but are exceptional, with a proven ability to achieve.",
+     "quote": "A 2:2 at undergraduate level from a UK university or the equivalent from an overseas university is preferred but not essential. We also welcome applications from candidates who do not have the academic qualifications but are exceptional, with a proven ability to achieve.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "You must have at least three years' post-graduate professional business experience.",
+      "quote": "You must have at least three years' post-graduate professional business experience.",
+      "check": "ok"
+     },
+     {
+      "text": "You must complete either the GMAT, GRE or Warwick Test as part of your admission to WBS.",
+      "quote": "You must complete either the GMAT, GRE or Warwick Test as part of your admission to WBS.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS overall score of 7.0. All four languages elements have to be scored 6.0+, with maximum of two language components at lowest level 6.0 or 6.5.",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Mathematical Finance MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-mathematical-finance/",
+   "snapshot_sha256": "35585446ef0731693432141ad206f9e7a20bebfb4fc2a49a8dc593caf6425039",
+   "fields": {
+    "academic": {
+     "text": "2.1 degree at undergraduate level from a UK university, or overseas equivalent. You will need strong ability in mathematics and finance, and some experience in statistics or econometrics.",
+     "quote": "2.1 degree at undergraduate level from a UK university, or overseas equivalent. You will need strong ability in mathematics and finance, and some experience in statistics or econometrics.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS overall score of 7.0, minimum component scores of two at 6.0/6.5 and the rest at 7.0 or above.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Economics MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-economics/",
+   "snapshot_sha256": "9144cb03e0a19011f63fb564c0306251c626bee30208ccc2a19a9b52a0c0554e",
+   "fields": {
+    "academic": {
+     "text": "Our MSc Economics is open to applicants holding a degree in Economics or a related field, or in a STEM degree. All applicants are expected to demonstrate a high level of of academic achievement, equivalent to a UK First Class (1st) or Upper Second Class Honours (2:1) degree.",
+     "quote": "Our MSc Economics is open to applicants holding a degree in Economics or a related field, or in a STEM degree. All applicants are expected to demonstrate a high level of of academic achievement, equivalent to a UK First Class (1st) or Upper Second Class Honours (2:1) degree.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Applicants with a degree focusing mainly in economics should have achieved a good standard in microeconomics, macroeconomics, and econometrics/statistics at intermediate level, and a strong performance in the mathematics taken as part of their undergraduate studies",
+      "quote": "Applicants with a degree focusing mainly in economics should have achieved a good standard in microeconomics, macroeconomics, and econometrics/statistics at intermediate level, and a strong performance in the mathematics taken as part of their undergraduate studies",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS overall score of 6.5, minimum component scores not below 6.0",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Economics and Data Science MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-economics-data-science/",
+   "snapshot_sha256": "bb3bd7d3466225ba7b2b58e61d2b07b699eed2b9def5a450b6cbb9e2086b9cbe",
+   "fields": {
+    "academic": {
+     "text": "Our MSc Economics and Data Science is open to applicants holding a degree in Economics or a related field, or in a STEM degree. All applicants are expected to demonstrate a high level of of academic achievement, equivalent to a UK First Class (1st) or Upper Second Class Honours (2:1) degree.",
+     "quote": "Our MSc Economics and Data Science is open to applicants holding a degree in Economics or a related field, or in a STEM degree. All applicants are expected to demonstrate a high level of of academic achievement, equivalent to a UK First Class (1st) or Upper Second Class Honours (2:1) degree.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Applicants with a degree focusing mainly in economics should have achieved a good standard in microeconomics, macroeconomics, and econometrics/statistics at intermediate level, and a strong performance in the mathematics taken as part of their undergraduate studies",
+      "quote": "Applicants with a degree focusing mainly in economics should have achieved a good standard in microeconomics, macroeconomics, and econometrics/statistics at intermediate level, and a strong performance in the mathematics taken as part of their undergraduate studies",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS overall score of 6.5, minimum component scores not below 6.0",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Economics and Environmental Policy MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-economics-environmental-policy/",
+   "snapshot_sha256": "13a8cd31d70a015a51baf71387b596c5c0155ac43f3141b9dc527ecc8c18c651",
+   "fields": {
+    "academic": {
+     "text": "An undergraduate degree (or equivalent) specialising mainly in economics or another social science. This means achieving a good standard in at least some undergraduate modules in microeconomics, macroeconomics or econometrics/economic statistics at an intermediate level and/or modules in all of these areas at introductory level. Some background in Mathematics at a sufficient level is also expected, evidenced by undergraduate level modules or strong A-level results.",
+     "quote": "An undergraduate degree (or equivalent) specialising mainly in economics or another social science. This means achieving a good standard in at least some undergraduate modules in microeconomics, macroeconomics or econometrics/economic statistics at an intermediate level and/or modules in all of these areas at introductory level. Some background in Mathematics at a sufficient level is also expected, evidenced by undergraduate level modules or strong A-level results.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS overall score of 6.5, minimum component scores not below 6.0",
+     "min_band": 6.0,
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Economics and International Financial Economics MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-international-economics/",
+   "snapshot_sha256": "6d0e0434a229fb9a2281908ed419c138156c2c8c73a8363920717bba027b2fdf",
+   "fields": {
+    "academic": {
+     "text": "Our MSc Economics and International Financial Economics is open to applicants holding a degree in Economics or a related field, or in a STEM degree. All applicants are expected to demonstrate a high level of of academic achievement, equivalent to a UK First Class (1st) or Upper Second Class Honours (2:1) degree.",
+     "quote": "Our MSc Economics and International Financial Economics is open to applicants holding a degree in Economics or a related field, or in a STEM degree. All applicants are expected to demonstrate a high level of of academic achievement, equivalent to a UK First Class (1st) or Upper Second Class Honours (2:1) degree.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Applicants with a degree focusing mainly in economics should have achieved a good standard in microeconomics, macroeconomics, and econometrics/statistics at intermediate level, and a strong performance in the mathematics taken as part of their undergraduate studies",
+      "quote": "Applicants with a degree focusing mainly in economics should have achieved a good standard in microeconomics, macroeconomics, and econometrics/statistics at intermediate level, and a strong performance in the mathematics taken as part of their undergraduate studies",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS overall score of 6.5, minimum component scores not below 6.0",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Behavioural and Economic Science (Economics Track) MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-behavioural-economics/",
+   "snapshot_sha256": "de9e15d37528814e34edee1b330910dd1aeb4a5e2689dac407e33fb072c281b8",
+   "fields": {
+    "academic": {
+     "text": "2:1 undergraduate degree (or equivalent) specialising mainly in economics. This means you should have achieved a good standard in undergraduate courses in macroeconomics, microeconomics and econometrics/economic statistics at an intermediate level, and a strong performance in the mathematics taken as part of their undergraduate studies.",
+     "quote": "2:1 undergraduate degree (or equivalent) specialising mainly in economics. This means you should have achieved a good standard in undergraduate courses in macroeconomics, microeconomics and econometrics/economic statistics at an intermediate level, and a strong performance in the mathematics taken as part of their undergraduate studies.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS overall score of 6.5, minimum component scores not below 6.0",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Behavioural and Economic Science (Science Track) MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-behavioural-economics-science/",
+   "snapshot_sha256": "d8cc27570ef7866d3b5b54f993e9ec63c7cd73e44dc275a9814079ecb535ea5b",
+   "fields": {
+    "academic": {
+     "text": "2:1 undergraduate degree (or equivalent) in a related subject.",
+     "quote": "2:1 undergraduate degree (or equivalent) in a related subject.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS overall score of 7.0, minimum component scores of two at 6.0/6.5 and the rest at 7.0 or above.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Behavioural and Data Science MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-behavioural-data-science/",
+   "snapshot_sha256": "2ca715078e633d140ec7a1abe32a44fef79921f091f2a186ea0e1c5da218a8a4",
+   "fields": {
+    "academic": {
+     "text": "Applicants are required, at a minimum, to have a degree in a relevant subject, e.g. Psychology, Computer Science, Mathematics, Economics, etc., equivalent to a UK 2:1 or greater in order to be considered. As we anticipate receiving a large number of applications, preference will be given to those with the strongest quantitative or social sciences backgrounds.",
+     "quote": "Applicants are required, at a minimum, to have a degree in a relevant subject, e.g. Psychology, Computer Science, Mathematics, Economics, etc., equivalent to a UK 2:1 or greater in order to be considered. As we anticipate receiving a large number of applications, preference will be given to those with the strongest quantitative or social sciences backgrounds.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Evidence of experience with programming in Python or R is also preferred—at a minimum, students should have online or university instruction in programming in at least one programming language. The MSc in Behavioural and Data Science is a quantitative degree and students should feel comfortable taking a mathematical approach to their thinking before they join the course. The course requires students to undertake programming assignments and long-form essay assignments and so requires students to be comfortable in programming and to have very good written communication skills in English.",
+      "quote": "Evidence of experience with programming in Python or R is also preferred—at a minimum, students should have online or university instruction in programming in at least one programming language. The MSc in Behavioural and Data Science is a quantitative degree and students should feel comfortable taking a mathematical approach to their thinking before they join the course. The course requires students to undertake programming assignments and long-form essay assignments and so requires students to be comfortable in programming and to have very good written communication skills in English.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS overall score of 7.0, minimum component scores of two at 6.0/6.5 and the rest at 7.0 or above.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Computer Science MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-computer-science/",
+   "snapshot_sha256": "63a29a4d0b7af4058a0e74f39ac48fb7be6b36761b0be4c3ffff30326e599a70",
+   "fields": {
+    "academic": {
+     "text": "First Class Honours degree or a high 2:1 undergraduate degree. The degree must be in Computer Science, Mathematics, Statistics, Physics, or another relevant quantitatively focused degree.",
+     "quote": "First Class Honours degree or a high 2:1 undergraduate degree. The degree must be in Computer Science, Mathematics, Statistics, Physics, or another relevant quantitatively focused degree.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS overall score of 6.5, minimum component scores not below 6.0",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Computer Science with specialism in Artificial Intelligence and Machine Learning MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-computer-science-artificial-intelligence-machine-learning/",
+   "snapshot_sha256": "78bcf2eb115034c1d64d110a78ea6ebe28a917a4c28230a73458e8c5c47dab88",
+   "fields": {
+    "academic": {
+     "text": "First Class Honours degree or a high 2:1 undergraduate degree. The degree must be in Computer Science, Mathematics, Statistics, Physics, or another relevant quantitatively focused degree.",
+     "quote": "First Class Honours degree or a high 2:1 undergraduate degree. The degree must be in Computer Science, Mathematics, Statistics, Physics, or another relevant quantitatively focused degree.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS overall score of 6.5, minimum component scores not below 6.0",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Computer Science with specialism in Cyber Security MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-computer-science-cyber-security/",
+   "snapshot_sha256": "dc953fa22b73098abe07b9728f7723df174699af1d6f0e5338b9144b886fab87",
+   "fields": {
+    "academic": {
+     "text": "First Class Honours degree or a high 2:1 undergraduate degree. The degree must be in Computer Science, Mathematics, Statistics, Physics, or another relevant quantitatively focused degree.",
+     "quote": "First Class Honours degree or a high 2:1 undergraduate degree. The degree must be in Computer Science, Mathematics, Statistics, Physics, or another relevant quantitatively focused degree.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS overall score of 6.5, minimum component scores not below 6.0",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Computer Science with specialism in Data Analytics MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-computer-science-data-analytics/",
+   "snapshot_sha256": "3ae00e64d908a555e4c1b37af0b61b4177248792742045e50788c35d9407d0e4",
+   "fields": {
+    "academic": {
+     "text": "First Class Honours degree or a high 2:1 undergraduate degree. The degree must be in Computer Science, Mathematics, Statistics, Physics, or another relevant quantitatively focused degree.",
+     "quote": "First Class Honours degree or a high 2:1 undergraduate degree. The degree must be in Computer Science, Mathematics, Statistics, Physics, or another relevant quantitatively focused degree.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS overall score of 6.5, minimum component scores not below 6.0",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Applied Artificial Intelligence MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-applied-artificial-intelligence/",
+   "snapshot_sha256": "1230143b6fd5fbf47edcd3693435748e3314407085547ff09db0fc3709e523ea",
+   "fields": {
+    "academic": {
+     "text": "2:1 undergraduate degree (or equivalent) in a STEM subject. Suitable subjects include but are not limited to: IT, Mathematics, Chemistry, Physics, Engineering, Statistics, Data Science, Biology/Life Sciences.",
+     "quote": "2:1 undergraduate degree (or equivalent) in a STEM subject. Suitable subjects include but are not limited to: IT, Mathematics, Chemistry, Physics, Engineering, Statistics, Data Science, Biology/Life Sciences.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS overall score of 6.5, minimum component scores not below 6.0",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Cyber Security Engineering MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-cyber-security-engineering/",
+   "snapshot_sha256": "09b91712a398be381e01dd6b6a6ac3adcb323b5f3119fb04706af22a0f184bf9",
+   "fields": {
+    "academic": {
+     "text": "2:1 undergraduate degree (or equivalent) in IT, Computer Science, or a related subject.",
+     "quote": "2:1 undergraduate degree (or equivalent) in IT, Computer Science, or a related subject.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS overall score of 6.5, minimum component scores not below 6.0",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Cyber Security Management MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-cyber-security-management/",
+   "snapshot_sha256": "5ebb6b4f0762a68c9f59fb8edd612e4fd4f42aa0b9876b836b88231c4ba7e887",
+   "fields": {
+    "academic": {
+     "text": "2:1 undergraduate degree (or equivalent) in IT, Computer Science, or a related subject.",
+     "quote": "2:1 undergraduate degree (or equivalent) in IT, Computer Science, or a related subject.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS overall score of 6.5, minimum component scores not below 6.0",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Games Engineering MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-games-engineering/",
+   "snapshot_sha256": "6d7b8686c088fce2722591048d2fd4e73b6dfca8bdd93a4a68ab56f6dbe210ff",
+   "fields": {
+    "academic": {
+     "text": "2:1 undergraduate degree (or equivalent) in a related STEM subject (Computer Science, Engineering, Technology, Maths).",
+     "quote": "2:1 undergraduate degree (or equivalent) in a related STEM subject (Computer Science, Engineering, Technology, Maths).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS overall score of 6.5, minimum component scores not below 6.0",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Mathematics MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-mathematics/",
+   "snapshot_sha256": "09318f8c21e6acda0f0c229a22036e7c78a49227b12cb2c5123c4f9c06835d0d",
+   "fields": {
+    "academic": {
+     "text": "First Class Honours degree (or equivalent) in Mathematics or a science with high mathematical content.",
+     "quote": "First Class Honours degree (or equivalent) in Mathematics or a science with high mathematical content.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS overall score of 6.5, minimum component scores not below 6.0",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Statistics MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-statistics/",
+   "snapshot_sha256": "e4e7dbd97302dc5100dfadd565b1973cf22935f9aff6baef457c01f53660f027",
+   "fields": {
+    "academic": {
+     "text": "2:1 undergraduate degree (or equivalent) in Statistics, Mathematics or a science with sufficiently high mathematical content.",
+     "quote": "2:1 undergraduate degree (or equivalent) in Statistics, Mathematics or a science with sufficiently high mathematical content.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS overall score of 6.5, minimum component scores not below 6.0",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Statistics with Data Science MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-statistics-data-science/",
+   "snapshot_sha256": "f7015045e174a188cc0048b41b546c7669edbd2440826d1a0018617afb46857a",
+   "fields": {
+    "academic": {
+     "text": "2:1 undergraduate degree (or equivalent) in Statistics, Mathematics or a science with sufficiently high mathematical content.",
+     "quote": "2:1 undergraduate degree (or equivalent) in Statistics, Mathematics or a science with sufficiently high mathematical content.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS overall score of 6.5, minimum component scores not below 6.0",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Statistics with Finance MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-statistics-finance/",
+   "snapshot_sha256": "d28921b14644a6d8f5fce35c4f1d93f02a5c5cae27494c60be00c352d962c63b",
+   "fields": {
+    "academic": {
+     "text": "2:1 undergraduate degree (or equivalent) in Statistics, Mathematics or a science with sufficiently high mathematical content.",
+     "quote": "2:1 undergraduate degree (or equivalent) in Statistics, Mathematics or a science with sufficiently high mathematical content.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS overall score of 6.5, minimum component scores not below 6.0",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Social Data Science MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-social-data-science/",
+   "snapshot_sha256": "481bb8dc0a711cede4d619a211c63a8968b930a12437a139be65a96ab1d25263",
+   "fields": {
+    "academic": {
+     "text": "2:2 undergraduate degree (or equivalent) in a related subject.",
+     "quote": "2:2 undergraduate degree (or equivalent) in a related subject.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS overall score of 7.0, minimum component scores of two at 6.0/6.5 and the rest at 7.0 or above.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Advanced Mechanical Engineering MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/advanced-mechanical-engineering/",
+   "snapshot_sha256": "7ad93fe731dc7b6d85da34ef810f1241f429d07eb1a52551b4844b0423396d2a",
+   "fields": {
+    "academic": {
+     "text": "A minimum 2:1 undergraduate UK Honours degree or equivalent international qualification, in an engineering, physical sciences or mathematical subject.",
+     "quote": "A minimum 2:1 undergraduate UK Honours degree or equivalent international qualification, in an engineering, physical sciences or mathematical subject.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Please note that applicants will need post A2 Level (or equivalent) knowledge in Mathematics, covering topics such as linear algebra, calculus and analysis, and including differential equations. This could be gained through a mathematics module taken as part of an undergraduate course. It is expected that candidates have a good understanding of these topics at the start of their MSc studies.",
+      "quote": "Please note that applicants will need post A2 Level (or equivalent) knowledge in Mathematics, covering topics such as linear algebra, calculus and analysis, and including differential equations. This could be gained through a mathematics module taken as part of an undergraduate course. It is expected that candidates have a good understanding of these topics at the start of their MSc studies.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS overall score of 6.5, minimum component scores not below 6.0",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "AI-driven Manufacturing Systems MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-ai-driven-manufacturing-systems/",
+   "snapshot_sha256": "24de79b7222d29a9e054052874641eaf65351c99e8b32ba73f41c7ec57dd306b",
+   "fields": {
+    "academic": {
+     "text": "2:1 undergraduate degree (or equivalent) in a STEM subject. Candidates with a UK 2:2 (or equivalent) may be accepted upon demonstration of relevant professional experience.",
+     "quote": "2:1 undergraduate degree (or equivalent) in a STEM subject. Candidates with a UK 2:2 (or equivalent) may be accepted upon demonstration of relevant professional experience.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS overall score of 6.5, minimum component scores not below 6.0",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Autonomous and Electrified Vehicle Technology",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-autonomous-electrified-vehicle-technology/",
+   "snapshot_sha256": "be3ba52aee3957a3aa84dda5b8cbadd462d9bf78c230339c8158d125de985402",
+   "fields": {
+    "academic": {
+     "text": "2:1 undergraduate degree (or equivalent) in engineering or STEM subject.",
+     "quote": "2:1 undergraduate degree (or equivalent) in engineering or STEM subject.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS overall score of 6.5, minimum component scores not below 6.0",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Biomedical Engineering MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-biomedical-engineering/",
+   "snapshot_sha256": "e59c7de3a6ed61c12a4b5e46113d924af2594d3a5775a4ee617eed29e990fd80",
+   "fields": {
+    "academic": {
+     "text": "A minimum 2:1 undergraduate UK honours degree or equivalent international qualification, in an engineering, physical sciences or mathematical subject.",
+     "quote": "A minimum 2:1 undergraduate UK honours degree or equivalent international qualification, in an engineering, physical sciences or mathematical subject.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Please note that applicants will need post A2 Level (or equivalent) knowledge in Mathematics, covering topics such as linear algebra, calculus and analysis, and including differential equations. This could be gained through a mathematics module taken as part of an undergraduate course. It is expected that candidates have a good understanding of these topics at the start of their MSc studies.",
+      "quote": "Please note that applicants will need post A2 Level (or equivalent) knowledge in Mathematics, covering topics such as linear algebra, calculus and analysis, and including differential equations. This could be gained through a mathematics module taken as part of an undergraduate course. It is expected that candidates have a good understanding of these topics at the start of their MSc studies.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS overall score of 6.5, minimum component scores not below 6.0",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Communications and Information Engineering MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-communications-information-engineering/",
+   "snapshot_sha256": "5dce03b2d4d0cebab702334fe59492b46429dd8e32fc0e5c4031a3152a14e23a",
+   "fields": {
+    "academic": {
+     "text": "A minimum 2:1 undergraduate UK Honours degree or equivalent international qualification, in an engineering, physical sciences or mathematical subject.",
+     "quote": "A minimum 2:1 undergraduate UK Honours degree or equivalent international qualification, in an engineering, physical sciences or mathematical subject.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Please note that applicants will need post A2 Level (or equivalent) knowledge in Mathematics, covering topics such as linear algebra, calculus and analysis, and including differential equations. This could be gained through a mathematics module taken as part of an undergraduate course. It is expected that candidates have a good understanding of these topics at the start of their MSc studies.",
+      "quote": "Please note that applicants will need post A2 Level (or equivalent) knowledge in Mathematics, covering topics such as linear algebra, calculus and analysis, and including differential equations. This could be gained through a mathematics module taken as part of an undergraduate course. It is expected that candidates have a good understanding of these topics at the start of their MSc studies.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS overall score of 6.5, minimum component scores not below 6.0",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Electrical and Electronic Engineering MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-electrical-electronic-engineering/",
+   "snapshot_sha256": "72d3904870f76ed44dd0c53849000fa4d58ce89583dfa5d678b85305f0a571ae",
+   "fields": {
+    "academic": {
+     "text": "A minimum 2:1 undergraduate UK Honours degree or equivalent international qualification, in electronic, electrical or telecommunications engineering, or in an engineering science programme (with electronic, electrical, telecommunications or systems pathway).",
+     "quote": "A minimum 2:1 undergraduate UK Honours degree or equivalent international qualification, in electronic, electrical or telecommunications engineering, or in an engineering science programme (with electronic, electrical, telecommunications or systems pathway).",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Please note that applicants will need post A2 Level (or equivalent) knowledge in Mathematics, covering topics such as linear algebra, calculus and analysis, and including differential equations. This could be gained through a mathematics module taken as part of an undergraduate course. It is expected that candidates have a good understanding of these topics at the start of their MSc studies.",
+      "quote": "Please note that applicants will need post A2 Level (or equivalent) knowledge in Mathematics, covering topics such as linear algebra, calculus and analysis, and including differential equations. This could be gained through a mathematics module taken as part of an undergraduate course. It is expected that candidates have a good understanding of these topics at the start of their MSc studies.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS overall score of 6.5, minimum component scores not below 6.0",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Electrical Power Engineering MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-electrical-power-engineering/",
+   "snapshot_sha256": "17830a73bc26bb757f5f2004269d85382ffa3222f69f40392e18d63d113df204",
+   "fields": {
+    "academic": {
+     "text": "A minimum 2:i undergraduate UK Honours degree or equivalent international qualification, in an engineering, physical sciences or mathematical subject.",
+     "quote": "A minimum 2:i undergraduate UK Honours degree or equivalent international qualification, in an engineering, physical sciences or mathematical subject.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Please note that applicants will need post A2 Level (or equivalent) knowledge in Mathematics, covering topics such as linear algebra, calculus and analysis, and including differential equations. This could be gained through a mathematics module taken as part of an undergraduate course. It is expected that candidates have a good understanding of these topics at the start of their MSc studies.",
+      "quote": "Please note that applicants will need post A2 Level (or equivalent) knowledge in Mathematics, covering topics such as linear algebra, calculus and analysis, and including differential equations. This could be gained through a mathematics module taken as part of an undergraduate course. It is expected that candidates have a good understanding of these topics at the start of their MSc studies.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS overall score of 6.5, minimum component scores not below 6.0",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Engineering Business Management MSc",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/msc-engineering-business-management/",
+   "snapshot_sha256": "0a2856294bb6f774ef2ba81aa4c360f6f16a2dae83c1829c5ea9e01e1f64adf0",
+   "fields": {
+    "academic": {
+     "text": "2:1 undergraduate degree (or equivalent) in IT, engineering, science or business.",
+     "quote": "2:1 undergraduate degree (or equivalent) in IT, engineering, science or business.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS overall score of 6.5, minimum component scores not below 6.0",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Education MA",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/ma-education/",
+   "snapshot_sha256": "0dc0f50961512c923197eb17aec3eac00e5cece0d8fa8e7038fa642883ede89b",
+   "fields": {
+    "academic": {
+     "text": "2:2 undergraduate degree (or equivalent) in a related subject.",
+     "quote": "2:2 undergraduate degree (or equivalent) in a related subject.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS overall score of 7.0, minimum component scores of two at 6.0/6.5 and the rest at 7.0 or above.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Educational Leadership and Management MA",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/ma-educational-leadership/",
+   "snapshot_sha256": "75b94b1828baa0fbc1974b24eb7c642f01601b447319abb9aad173def764f184",
+   "fields": {
+    "academic": {
+     "text": "2:2 undergraduate degree (or equivalent) in a related subject.",
+     "quote": "2:2 undergraduate degree (or equivalent) in a related subject.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS overall score of 7.0, minimum component scores of two at 6.0/6.5 and the rest at 7.0 or above.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Global Education and International Development MA",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/ma-global-education/",
+   "snapshot_sha256": "7edec6b5aeca9723fc0a6980035e03126701a1d16e28be5ae96d5494f1fff4fd",
+   "fields": {
+    "academic": {
+     "text": "2:2 undergraduate degree (or equivalent) in a related subject.",
+     "quote": "2:2 undergraduate degree (or equivalent) in a related subject.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS overall score of 7.0, minimum component scores of two at 6.0/6.5 and the rest at 7.0 or above.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Teaching English to Speakers of Other Languages (TESOL) MA",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/ma-tesol/",
+   "snapshot_sha256": "2d7da596b800876f5c87808425d2cd544552c46f7a1df61dc9c011ceb7642b97",
+   "fields": {
+    "academic": {
+     "text": "2:2 undergraduate degree (or equivalent).",
+     "quote": "2:2 undergraduate degree (or equivalent).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS overall score of 6.5, minimum component scores not below 6.0",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Psychology and Education MA",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/ma-psychology-education/",
+   "snapshot_sha256": "4df3369c9a5ea63b168fb10f73894f6d8ec63cc354eb49c4978789e7fa515731",
+   "fields": {
+    "academic": {
+     "text": "2:2 undergraduate degree (or equivalent) in a related subject.",
+     "quote": "2:2 undergraduate degree (or equivalent) in a related subject.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS overall score of 7.0, minimum component scores of two at 6.0/6.5 and the rest at 7.0 or above.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Public Policy MA",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/ma-public-policy/",
+   "snapshot_sha256": "56f81567b065da2a9a5b9cbef8e582bfb8bfb3bf12e26502e7fb8beb045558e4",
+   "fields": {
+    "academic": {
+     "text": "2:1 undergraduate degree (or equivalent) in a related subject.",
+     "quote": "2:1 undergraduate degree (or equivalent) in a related subject.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS overall score of 7.0, minimum component scores of two at 6.0/6.5 and the rest at 7.0 or above.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Relations MA",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/ma-international-relations/",
+   "snapshot_sha256": "f203153761cb41dac23d9263756a27f81b62e2d360230d1069b01f5331758dc7",
+   "fields": {
+    "academic": {
+     "text": "2:1 undergraduate degree (or equivalent) in a related subject.",
+     "quote": "2:1 undergraduate degree (or equivalent) in a related subject.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS overall score of 7.0, minimum component scores of two at 6.0/6.5 and the rest at 7.0 or above.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Security MA",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/ma-international-security/",
+   "snapshot_sha256": "699d68dcb0c2521484397f6c4852bbde2a885608799d2021373a7d53cd12e328",
+   "fields": {
+    "academic": {
+     "text": "2:1 undergraduate degree (or equivalent) in a related subject.",
+     "quote": "2:1 undergraduate degree (or equivalent) in a related subject.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS overall score of 7.0, minimum component scores of two at 6.0/6.5 and the rest at 7.0 or above.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Political Economy MA",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/ma-international-political-economy/",
+   "snapshot_sha256": "dfa93bd3aa4c6550588677be161ff872c5a441b3e595e0c52e24c618c52b0870",
+   "fields": {
+    "academic": {
+     "text": "2:1 undergraduate degree (or equivalent) in a related subject.",
+     "quote": "2:1 undergraduate degree (or equivalent) in a related subject.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS overall score of 7.0, minimum component scores of two at 6.0/6.5 and the rest at 7.0 or above.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Development MA",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/ma-international-development/",
+   "snapshot_sha256": "8e18a8bc5fe26a201803565ffdf85d7d720e5b9522bbf1a18da946b6f7400f06",
+   "fields": {
+    "academic": {
+     "text": "2:1 undergraduate degree (or equivalent) in a related subject.",
+     "quote": "2:1 undergraduate degree (or equivalent) in a related subject.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS overall score of 7.0, minimum component scores of two at 6.0/6.5 and the rest at 7.0 or above.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Sociology MA",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/ma-sociology/",
+   "snapshot_sha256": "7d9d2898407f949fe605820817b488ae6ebb7fed01c24f592c43ca9bb8813645",
+   "fields": {
+    "academic": {
+     "text": "2:1 undergraduate degree (or equivalent) in a related subject.",
+     "quote": "2:1 undergraduate degree (or equivalent) in a related subject.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS overall score of 7.0, minimum component scores of two at 6.0/6.5 and the rest at 7.0 or above.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Conflict, Peace and Negotiation MA",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/ma-conflict-peace-negotiation/",
+   "snapshot_sha256": "e48135e7baa08cd60fc4ce98769081f691d190498a7391cb3ff7270e2f03c7af",
+   "fields": {
+    "academic": {
+     "text": "2:1 undergraduate degree (or equivalent) in a related subject.",
+     "quote": "2:1 undergraduate degree (or equivalent) in a related subject.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS overall score of 7.0, minimum component scores of two at 6.0/6.5 and the rest at 7.0 or above.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Advanced Legal Studies LLM",
+   "url": "https://warwick.ac.uk/study/postgraduate/courses/llm-advanced-legal-studies/",
+   "snapshot_sha256": "c1c7087333ca00f39ca1b61ae2b642982adaf849f26debe43df73a188e5e69f1",
+   "fields": {
+    "academic": {
+     "text": "2:1 undergraduate degree (or equivalent) in law or a related subject with a law component.",
+     "quote": "2:1 undergraduate degree (or equivalent) in law or a related subject with a law component.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS overall score of 7.0 or equivalent, minimum component scores of two at 6.0/6.5 and the rest at 7.0 or above.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Warwick's China (Mainland) postgraduate page lists recognised Chinese universities in groups; for courses requiring a UK 2.1 the minimum average is 70%, 75% or 80% depending on the group (this quote: the first group). Look up the institution on the page.",
+     "quote": "For courses requiring a UK 2.1: Minimum 70%",
+     "source_sha256": "62f3dd189097adcba10e850f581389372567dd622ff7d5637eaaf4f0bcb5cbb2",
+     "source_url": "https://warwick.ac.uk/study/international/countryinformation/eastasia/china/china-entry-requirements/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "On-time deadline, September/October 2027 entry",
+      "date": "2027-08-02",
+      "quote": "The on-time deadline for taught postgraduate courses starting in September/October 2027 is 2 August 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 64,
+  "机器核对": 64,
+  "待人工": 0
+ }
+}

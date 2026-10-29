@@ -1,0 +1,33 @@
+{
+ "school_key": "mcgill-university",
+ "school_name_en": "McGill University",
+ "country": "Canada",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://www.mcgill.ca/gradapplicants/programs",
+  "https://www.mcgill.ca/gradapplicants/how-apply"
+ ],
+ "blocked": [
+  {
+   "url": "https://www.mcgill.ca/gradapplicants/programs?f%5B0%5D=field_faculty_interest%3A22",
+   "reason": "HTTP 403"
+  },
+  {
+   "url": "https://www.mcgill.ca/study/",
+   "reason": "not fetched: www.mcgill.ca refused an earlier request (HTTP 403)"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.mcgill.ca/study/",
+  "https://www.mcgill.ca/gradapplicants/programs"
+ ],
+ "notes": "www.mcgill.ca returned HTTP 403 on the faculty-filtered programme listing after /gradapplicants/, /gradapplicants/programs and /gradapplicants/how-apply loaded (200), so fetching stopped for this host. The programme finder is dynamic and the saved listing page holds only faculty links, so no individual programme pages were reached. University-wide minimums (cGPA 3.0/4.0, English proficiency) are on snapshot 741749d923a6b9a63b3834f8cf3e1347f7cc8a96665f5e5438d1af0cc426da22 but are not attached to any programme.",
+ "programs": [],
+ "verification": {
+  "programs": 0,
+  "机器核对": 0,
+  "待人工": 0
+ }
+}

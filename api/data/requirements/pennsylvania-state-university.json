@@ -1,0 +1,1112 @@
+{
+ "school_key": "pennsylvania-state-university",
+ "school_name_en": "Pennsylvania State University",
+ "country": "United States",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://bulletins.psu.edu/graduate/programs/",
+  "https://gradschool.psu.edu/admissions/prepare-to-apply"
+ ],
+ "blocked": [],
+ "complete": false,
+ "remaining_urls": [
+  "https://bulletins.psu.edu/graduate/programs/majors/learning-design-technology/",
+  "https://bulletins.psu.edu/graduate/programs/majors/higher-education/",
+  "https://bulletins.psu.edu/graduate/programs/majors/geosciences/",
+  "https://bulletins.psu.edu/graduate/programs/majors/economics/",
+  "https://bulletins.psu.edu/graduate/programs/majors/mathematics/",
+  "https://bulletins.psu.edu/graduate/programs/majors/real-estate-analysis-development/",
+  "https://bulletins.psu.edu/graduate/programs/majors/psychology/",
+  "https://bulletins.psu.edu/graduate/programs/majors/political-science/",
+  "https://bulletins.psu.edu/graduate/programs/majors/sociology/",
+  "https://bulletins.psu.edu/graduate/programs/majors/landscape-architecture/",
+  "https://bulletins.psu.edu/graduate/programs/majors/architecture/",
+  "https://bulletins.psu.edu/graduate/programs/majors/nutritional-sciences/",
+  "https://bulletins.psu.edu/graduate/programs/majors/kinesiology/",
+  "https://bulletins.psu.edu/graduate/programs/majors/geography/",
+  "https://bulletins.psu.edu/graduate/programs/majors/organization-development/",
+  "https://bulletins.psu.edu/graduate/programs/majors/strategic-management-executive-leadership/"
+ ],
+ "notes": "University Park resident master's from the Graduate Bulletin; Great Valley, Harrisburg, Erie, Capital, Hershey and World Campus-only programmes skipped. University-wide TOEFL/IELTS and degree minimums from the Graduate School page are cited only for programmes whose bulletin page refers to GCAC-305 or TOEFL/IELTS. TOEFL is stated on 1-6 and 0-120 scales; the 80 applies to tests before 2026-01-21. Deadlines omitted: the bulletin gives month and day without a year. Penn State M.S. degrees often have a thesis option; not separated on the bulletin pages. China page is a dropdown not present in the page text, so not captured. Electrical Engineering page states no usable requirement beyond application materials (human queue).",
+ "programs": [
+  {
+   "name": "Master of Science / Master of Engineering in Computer Science and Engineering",
+   "url": "https://bulletins.psu.edu/graduate/programs/majors/computer-science-engineering/",
+   "snapshot_sha256": "95141c41ae48e9311bf926d5b384e461364761830413a7f85ab9a0a5a25c39cf",
+   "fields": {
+    "academic": {
+     "text": "Degree comparable to a four-year U.S. bachelor's degree (Graduate School minimum)",
+     "quote": "Tertiary (postsecondary) degree that is deemed comparable to a four-year bachelor's degree from a U.S. institution accredited by an accepted agency",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "min_band": 19,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT: overall score of at least 4.5 with a 3.5 or greater on the speaking section. (For tests taken prior to January 21, 2026: overall score of at least 80 with a minimum speaking score of 19)",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "International English Language Testing System (IELTS) Academic Test: minimum overall band score of 6.5",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test required for all M.S. and M.Eng. applications",
+      "quote": "The Graduate Record Examinations (GRE) Aptitude Test (verbal, quantitative, and analytical) is required for all M.S. and M.Eng. applications.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science / Master of Applied Statistics in Statistics",
+   "url": "https://bulletins.psu.edu/graduate/programs/majors/statistics/",
+   "snapshot_sha256": "51985860f7211e7670f28d0000787900b14333b62005aa550860ece869ae0e6b",
+   "fields": {
+    "academic": {
+     "text": "3.00 or better junior/senior average (4.00 scale) with appropriate course background",
+     "quote": "Students with a 3.00 or better junior/senior average (on a 4.00 scale) and with appropriate course backgrounds will be considered for admission.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Standard calculus sequence regarded as a prerequisite",
+      "quote": "completion of a standard calculus sequence is regarded as a prerequisite",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Informatics",
+   "url": "https://bulletins.psu.edu/graduate/programs/majors/informatics/",
+   "snapshot_sha256": "82942913e8d8e2fa963d2708e12cb157ac35d53bae148e80f401b5269534f2ea",
+   "fields": {
+    "academic": {
+     "text": "Overall GPA of 3.00 (4.00 scale) or higher expected for undergraduate and/or graduate study",
+     "quote": "It is expected that the successful applicant will have an overall grade point average of 3.00 (on a 4.00 scale) or higher for his or her undergraduate study and/or graduate-level study.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "min_band": 19,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT: overall score of at least 4.5 with a 3.5 or greater on the speaking section. (For tests taken prior to January 21, 2026: overall score of at least 80 with a minimum speaking score of 19)",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "International English Language Testing System (IELTS) Academic Test: minimum overall band score of 6.5",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Basic competency in statistics, computers and information technology expected",
+      "quote": "It is expected that students will have a basic level of competency in statistics, as well as computer and information technology.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Cybersecurity Analytics and Operations",
+   "url": "https://bulletins.psu.edu/graduate/programs/majors/cybersecurity-analytics-operations/",
+   "snapshot_sha256": "a9c2fbbeb4a63e071826e8e223e379d04ff029151d05e1063e75376eb47132c1",
+   "fields": {
+    "academic": {
+     "text": "Overall GPA of 3.50 (4.00 scale) or higher expected for undergraduate and/or graduate study",
+     "quote": "It is expected that the successful applicant will have an overall grade point average of 3.50 (on a 4.00 scale) or higher for his or her undergraduate study and/or graduate-level study.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Two introductory programming courses in the same language",
+      "quote": "Applicants must complete two introductory-level programming courses where both courses used the same language.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Analytics (Smeal)",
+   "url": "https://bulletins.psu.edu/graduate/programs/majors/business-analytics/",
+   "snapshot_sha256": "75247ffb2ad79bbaf1a7aa99b03a699d44e4234c03d45e93d21f956f3df27242",
+   "fields": {
+    "academic": {
+     "text": "Degree comparable to a four-year U.S. bachelor's degree (Graduate School minimum)",
+     "quote": "Tertiary (postsecondary) degree that is deemed comparable to a four-year bachelor's degree from a U.S. institution accredited by an accepted agency",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "min_band": 19,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT: overall score of at least 4.5 with a 3.5 or greater on the speaking section. (For tests taken prior to January 21, 2026: overall score of at least 80 with a minimum speaking score of 19)",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "International English Language Testing System (IELTS) Academic Test: minimum overall band score of 6.5",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Supply Chain Management (Smeal)",
+   "url": "https://bulletins.psu.edu/graduate/programs/majors/supply-chain-management/",
+   "snapshot_sha256": "7ad32e927b1bd1bf136970aadb36ea0144b835dd707902f6622c3f74ca84c13e",
+   "fields": {
+    "academic": {
+     "text": "Degree comparable to a four-year U.S. bachelor's degree (Graduate School minimum)",
+     "quote": "Tertiary (postsecondary) degree that is deemed comparable to a four-year bachelor's degree from a U.S. institution accredited by an accepted agency",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "min_band": 19,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT: overall score of at least 4.5 with a 3.5 or greater on the speaking section. (For tests taken prior to January 21, 2026: overall score of at least 80 with a minimum speaking score of 19)",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "International English Language Testing System (IELTS) Academic Test: minimum overall band score of 6.5",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Administration (Smeal, University Park)",
+   "url": "https://bulletins.psu.edu/graduate/programs/majors/business-administration-smeal-professional/",
+   "snapshot_sha256": "2b6c4c6c9b58766b8a9c9acbe3b9de312b5822f86f01c9b04dc1682ed7259c07",
+   "fields": {
+    "academic": {
+     "text": "Degree comparable to a four-year U.S. bachelor's degree (Graduate School minimum)",
+     "quote": "Tertiary (postsecondary) degree that is deemed comparable to a four-year bachelor's degree from a U.S. institution accredited by an accepted agency",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "min_band": 19,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT: overall score of at least 4.5 with a 3.5 or greater on the speaking section. (For tests taken prior to January 21, 2026: overall score of at least 80 with a minimum speaking score of 19)",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "International English Language Testing System (IELTS) Academic Test: minimum overall band score of 6.5",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Foundational quantitative background; MBADM 811 and/or MBADM 813 may be required before entering",
+      "quote": "Students who do not have foundational quantitative backgrounds may be required to take MBADM 811 and/or MBADM 813 (or equivalent course work) prior to entering the program.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Finance (Smeal)",
+   "url": "https://bulletins.psu.edu/graduate/programs/majors/finance-smeal/",
+   "snapshot_sha256": "6cdf0c5a50dd6df6a93af82d6b833a6f543e2ca955a480980a7d6b1cf2d499be",
+   "fields": {
+    "academic": {
+     "text": "Degree comparable to a four-year U.S. bachelor's degree (Graduate School minimum)",
+     "quote": "Tertiary (postsecondary) degree that is deemed comparable to a four-year bachelor's degree from a U.S. institution accredited by an accepted agency",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "min_band": 19,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT: overall score of at least 4.5 with a 3.5 or greater on the speaking section. (For tests taken prior to January 21, 2026: overall score of at least 80 with a minimum speaking score of 19)",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "International English Language Testing System (IELTS) Academic Test: minimum overall band score of 6.5",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Foundational accounting or statistics background; MBADM 811 and/or MBADM 813 may be required",
+      "quote": "Students who do not have foundational backgrounds in accounting or statistics may be required to take MBADM 811 and/or MBADM 813 (or equivalent course work) prior to entering the program.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Accounting (Smeal)",
+   "url": "https://bulletins.psu.edu/graduate/programs/majors/accounting-smeal/",
+   "snapshot_sha256": "e45c98ec15c9ee04ba6daccce775ac1e7d86873a68ce6e33c96576dcbb140891",
+   "fields": {
+    "academic": {
+     "text": "Degree comparable to a four-year U.S. bachelor's degree (Graduate School minimum)",
+     "quote": "Tertiary (postsecondary) degree that is deemed comparable to a four-year bachelor's degree from a U.S. institution accredited by an accepted agency",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "min_band": 19,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT: overall score of at least 4.5 with a 3.5 or greater on the speaking section. (For tests taken prior to January 21, 2026: overall score of at least 80 with a minimum speaking score of 19)",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "International English Language Testing System (IELTS) Academic Test: minimum overall band score of 6.5",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Industrial Engineering",
+   "url": "https://bulletins.psu.edu/graduate/programs/majors/industrial-engineering/",
+   "snapshot_sha256": "1b5a3234dab49d152ee2614256ef46267826efb98b62b8e05fdafc989e38cb05",
+   "fields": {
+    "academic": {
+     "text": "Graduates in engineering, physical sciences and mathematics with a 3.00 GPA considered",
+     "quote": "Graduates in engineering, physical sciences, and mathematics with a 3.00 grade-point average will be considered for admission.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "min_band": 19,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT: overall score of at least 4.5 with a 3.5 or greater on the speaking section. (For tests taken prior to January 21, 2026: overall score of at least 80 with a minimum speaking score of 19)",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "International English Language Testing System (IELTS) Academic Test: minimum overall band score of 6.5",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Electrical Engineering (University Park)",
+   "url": "https://bulletins.psu.edu/graduate/programs/majors/electrical-engineering/",
+   "snapshot_sha256": "dfbff91139702aff3d7f5a88e371a6cd0f74b644129da41737ba3f24ec5d22b4",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Master of Science in Mechanical Engineering (University Park)",
+   "url": "https://bulletins.psu.edu/graduate/programs/majors/mechanical-engineering/",
+   "snapshot_sha256": "d833891623b1407fe048935bd2f764ebab5bb55c6cb20b98d49427ba0f3ba114",
+   "fields": {
+    "academic": {
+     "text": "Bachelor of Science degree in a suitable engineering field expected",
+     "quote": "It is expected that students have a Bachelor of Science degree in a suitable engineering field from a U.S. regionally accredited institution or from an officially recognized degree-granting international institution.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "min_band": 19,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT: overall score of at least 4.5 with a 3.5 or greater on the speaking section. (For tests taken prior to January 21, 2026: overall score of at least 80 with a minimum speaking score of 19)",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "International English Language Testing System (IELTS) Academic Test: minimum overall band score of 6.5",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science / Master of Engineering in Civil Engineering (University Park)",
+   "url": "https://bulletins.psu.edu/graduate/programs/majors/civil-engineering/",
+   "snapshot_sha256": "6fb67b0dee416c6c53ccf394ee0f820092c7614e991307ccdb7bf326003268f6",
+   "fields": {
+    "academic": {
+     "text": "Engineering, physical sciences or mathematics with a 3.00 GPA (4.00 scale) may be considered",
+     "quote": "Students in engineering, physical sciences, or mathematics with a 3.00 grade-point average (on a 4.00 scale) may be considered for admission.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "min_band": 19,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT: overall score of at least 4.5 with a 3.5 or greater on the speaking section. (For tests taken prior to January 21, 2026: overall score of at least 80 with a minimum speaking score of 19)",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "International English Language Testing System (IELTS) Academic Test: minimum overall band score of 6.5",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Chemical Engineering",
+   "url": "https://bulletins.psu.edu/graduate/programs/majors/chemical-engineering/",
+   "snapshot_sha256": "327e05400bba3d67a807c04ceb36df52f00d52bfd206fa3f001a5ea9346a9fce",
+   "fields": {
+    "academic": {
+     "text": "3.00 GPA or above (4.00 scale) with appropriate course background",
+     "quote": "Students with a 3.00 grade-point average or above (on a 4.00 scale) and with appropriate course backgrounds will be considered for admission.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science / Master of Engineering in Aerospace Engineering",
+   "url": "https://bulletins.psu.edu/graduate/programs/majors/aerospace-engineering/",
+   "snapshot_sha256": "e1970432d006c7154863746bf0a339b7230fd27475a5a3f35e666a1ff1092d0f",
+   "fields": {
+    "academic": {
+     "text": "3.0 junior/senior GPA (4.0 scale) considered; bachelor's in engineering, physical science or mathematics",
+     "quote": "The department will consider students with a 3.0 junior/senior grade-point average (GPA) on a 4.0 scale",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Materials Science and Engineering",
+   "url": "https://bulletins.psu.edu/graduate/programs/majors/materials-science-engineering/",
+   "snapshot_sha256": "3634241e654556cca825633d38d9d38e4d19f23ce0d72f635e956f30809fa009",
+   "fields": {
+    "academic": {
+     "text": "Physical sciences/engineering bachelor's with Junior/Senior GPA of 3.2/4.0 or higher considered",
+     "quote": "Applicants with baccalaureate degrees in the physical sciences and engineering with a Junior/Senior grade point average of 3.2/4.0 or higher will be considered for admission.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "min_band": 19,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT: overall score of at least 4.5 with a 3.5 or greater on the speaking section. (For tests taken prior to January 21, 2026: overall score of at least 80 with a minimum speaking score of 19)",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "International English Language Testing System (IELTS) Academic Test: minimum overall band score of 6.5",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Biomedical Engineering",
+   "url": "https://bulletins.psu.edu/graduate/programs/majors/biomedical-engineering/",
+   "snapshot_sha256": "5c715d1742ee06bba5e845a84b4409194ca4473bb022ee54f76a37fe77e9d85a",
+   "fields": {
+    "academic": {
+     "text": "3.0 or higher junior/senior GPA with appropriate course background",
+     "quote": "Students with a 3.0 (or higher) junior/senior GPA and with appropriate course backgrounds will be considered for admission.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "min_band": 19,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT: overall score of at least 4.5 with a 3.5 or greater on the speaking section. (For tests taken prior to January 21, 2026: overall score of at least 80 with a minimum speaking score of 19)",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "International English Language Testing System (IELTS) Academic Test: minimum overall band score of 6.5",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Strong background in physics and mathematics",
+      "quote": "All students must have a strong background in physics and mathematics.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science / Master of Engineering in Environmental Engineering",
+   "url": "https://bulletins.psu.edu/graduate/programs/majors/environmental-engineering/",
+   "snapshot_sha256": "6d9f306ed04c317bb281eb4ce26742b672eb78dc79ec2c8f5c2df31b06ac5554",
+   "fields": {
+    "academic": {
+     "text": "Engineering, physical sciences or mathematics with a 3.00 GPA (4.00 scale) may be considered",
+     "quote": "Students in engineering, physical sciences, or mathematics with a 3.00 grade-point average (on a 4.00 scale) may be considered for admission.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "min_band": 19,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT: overall score of at least 4.5 with a 3.5 or greater on the speaking section. (For tests taken prior to January 21, 2026: overall score of at least 80 with a minimum speaking score of 19)",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "International English Language Testing System (IELTS) Academic Test: minimum overall band score of 6.5",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science / Master of Engineering in Engineering Science and Mechanics",
+   "url": "https://bulletins.psu.edu/graduate/programs/majors/engineering-science-mechanics/",
+   "snapshot_sha256": "493e52be176449ff553997b193a150950493fc2cd42e6ba6703deff6a291cf31",
+   "fields": {
+    "academic": {
+     "text": "Baccalaureate in engineering or sciences with at least 3.00 GPA considered",
+     "quote": "Applicants who hold a baccalaureate degree in engineering, the sciences, mathematics, engineering science, and materials who present at least a 3.00 grade-point average will be considered for admission.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "min_band": 19,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT: overall score of at least 4.5 with a 3.5 or greater on the speaking section. (For tests taken prior to January 21, 2026: overall score of at least 80 with a minimum speaking score of 19)",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "International English Language Testing System (IELTS) Academic Test: minimum overall band score of 6.5",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science / Master of Engineering in Nuclear Engineering",
+   "url": "https://bulletins.psu.edu/graduate/programs/majors/nuclear-engineering/",
+   "snapshot_sha256": "6f5c485bed41268c1e9e2283dea2f0c2d3d3683ef4c23f785bfa200dda68851d",
+   "fields": {
+    "academic": {
+     "text": "3.00 junior/senior GPA with appropriate course background",
+     "quote": "Students with a 3.00 junior/senior grade-point average and with appropriate course backgrounds will be considered for admission.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "min_band": 19,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT: overall score of at least 4.5 with a 3.5 or greater on the speaking section. (For tests taken prior to January 21, 2026: overall score of at least 80 with a minimum speaking score of 19)",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "International English Language Testing System (IELTS) Academic Test: minimum overall band score of 6.5",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering / Master of Science in Engineering Design and Innovation",
+   "url": "https://bulletins.psu.edu/graduate/programs/majors/engineering-design-innovation/",
+   "snapshot_sha256": "0214e7e7dae07363c1124018a4b95dd1930d4c2286c4cb4edcb79759f202d0a9",
+   "fields": {
+    "academic": {
+     "text": "At least 3.00 junior/senior GPA (4.00 scale) and appropriate course background",
+     "quote": "Applicants with at least a 3.00 junior/senior grade-point average (on a 4.00 scale) and appropriate course backgrounds may be considered for admission.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "min_band": 19,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT: overall score of at least 4.5 with a 3.5 or greater on the speaking section. (For tests taken prior to January 21, 2026: overall score of at least 80 with a minimum speaking score of 19)",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "International English Language Testing System (IELTS) Academic Test: minimum overall band score of 6.5",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Energy and Mineral Engineering",
+   "url": "https://bulletins.psu.edu/graduate/programs/majors/energy-mineral-engineering/",
+   "snapshot_sha256": "85505faa767bb7368ca66ceb4e60b8f161ab39a0e01e249420d8e1ffb698f33e",
+   "fields": {
+    "academic": {
+     "text": "3.00 or better junior/senior cumulative GPA (out of 4.00); bachelor's in science or engineering",
+     "quote": "Students with 3.00 or better (out of 4.00) junior/senior cumulative grade-point averages and appropriate course backgrounds will be considered for admission.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "min_band": 19,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT: overall score of at least 4.5 with a 3.5 or greater on the speaking section. (For tests taken prior to January 21, 2026: overall score of at least 80 with a minimum speaking score of 19)",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "International English Language Testing System (IELTS) Academic Test: minimum overall band score of 6.5",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE required",
+      "quote": "Scores for the Graduate Record Examinations (GRE) are required for admission.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science / Master of Engineering / Master of Architectural Engineering",
+   "url": "https://bulletins.psu.edu/graduate/programs/majors/architectural-engineering/",
+   "snapshot_sha256": "bcfd89d235ee3e9556dbfa866a519c599699d7b1ba193230f87a9f0fe7814765",
+   "fields": {
+    "academic": {
+     "text": "3.00 junior/senior GPA (4.00 scale) with appropriate course background",
+     "quote": "Students with a 3.00 junior/senior grade-point average (on a 4.00 scale) and with appropriate course backgrounds will be considered for admission to the AE graduate programs.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Agricultural and Biological Engineering",
+   "url": "https://bulletins.psu.edu/graduate/programs/majors/agricultural-biological-engineering/",
+   "snapshot_sha256": "fa6c81fd695353559b583452b4dd4b899eaff1b6de95aab1b381651490023a56",
+   "fields": {
+    "academic": {
+     "text": "At least 3.0 (4.0 base) junior/senior GPA; engineering undergraduate degree required for direct admission",
+     "quote": "Students need at least a 3.0 (4.0 base) junior/senior grade-point average to be considered for admission.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "min_band": 19,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT: overall score of at least 4.5 with a 3.5 or greater on the speaking section. (For tests taken prior to January 21, 2026: overall score of at least 80 with a minimum speaking score of 19)",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "International English Language Testing System (IELTS) Academic Test: minimum overall band score of 6.5",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering in Engineering, Law and Policy",
+   "url": "https://bulletins.psu.edu/graduate/programs/majors/engineering-law-policy/",
+   "snapshot_sha256": "a9223eac2ac1091ce82042df8be9a44849f368ed29bb271f58a9fdcc109636bc",
+   "fields": {
+    "academic": {
+     "text": "Engineering degree with a 3.0 minimum undergraduate GPA (or equivalent)",
+     "quote": "with a 3.0 minimum undergraduate GPA (or equivalent)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Food Science",
+   "url": "https://bulletins.psu.edu/graduate/programs/majors/food-science/",
+   "snapshot_sha256": "e9410793e9b968e003443d6e09dc054724f2b06d81ec7b7ce24e112be0ce6cf4",
+   "fields": {
+    "academic": {
+     "text": "3.00 junior/senior average (4.00 scale)",
+     "quote": "Students with a 3.00 junior/senior average (on a 4.00 scale) will be considered for admission to the program.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Meteorology and Atmospheric Science",
+   "url": "https://bulletins.psu.edu/graduate/programs/majors/meteorology-atmospheric-science/",
+   "snapshot_sha256": "d42743791e7176b6bfe830a7220e104f215e514778c68797e45079cd8837b274",
+   "fields": {
+    "academic": {
+     "text": "Degree comparable to a four-year U.S. bachelor's degree (Graduate School minimum)",
+     "quote": "Tertiary (postsecondary) degree that is deemed comparable to a four-year bachelor's degree from a U.S. institution accredited by an accepted agency",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "min_band": 19,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT: overall score of at least 4.5 with a 3.5 or greater on the speaking section. (For tests taken prior to January 21, 2026: overall score of at least 80 with a minimum speaking score of 19)",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "International English Language Testing System (IELTS) Academic Test: minimum overall band score of 6.5",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Mathematics through differential equations and one year of calculus-based physics",
+      "quote": "The minimum course requirements for admission are mathematics at least through differential equations and at least one year of calculus-based physics.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Physics",
+   "url": "https://bulletins.psu.edu/graduate/programs/majors/physics/",
+   "snapshot_sha256": "fc026298a3c4da7823af42dd79b3b3bbefb7fb8acead48f531a57f13946c4ece",
+   "fields": {
+    "academic": {
+     "text": "Physics or allied bachelor's; 2.50 junior/senior GPA (4.00 scale) in physics and mathematics",
+     "quote": "Students with a 2.50 or higher junior/senior grade-point average (on a 4.00 scale) in physics and mathematics will be considered",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "min_band": 19,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT: overall score of at least 4.5 with a 3.5 or greater on the speaking section. (For tests taken prior to January 21, 2026: overall score of at least 80 with a minimum speaking score of 19)",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "International English Language Testing System (IELTS) Academic Test: minimum overall band score of 6.5",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Chemistry",
+   "url": "https://bulletins.psu.edu/graduate/programs/majors/chemistry/",
+   "snapshot_sha256": "4898ac17a9735cf176f4607eb3691fff5485517c6a4367e156a2bd7fec28678d",
+   "fields": {
+    "academic": {
+     "text": "2.50 average (4.00 scale) in undergraduate chemistry, physics and mathematics",
+     "quote": "Students who have appropriate course backgrounds and who present a 2.50 average (on a 4.00 scale) in all undergraduate courses in chemistry, physics, and mathematics will be considered for admission.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Educational Psychology",
+   "url": "https://bulletins.psu.edu/graduate/programs/majors/educational-psychology/",
+   "snapshot_sha256": "a9ce657a298697df56645916da1ffa943ed7161fcdc2a942dc8b57c870920679",
+   "fields": {
+    "academic": {
+     "text": "Typically at least a 3.0 junior/senior GPA (4.0 scale)",
+     "quote": "Typically applicants have at least a 3.0 junior/senior grade-point average (on a 4.0 point scale)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "min_band": 19,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT: overall score of at least 4.5 with a 3.5 or greater on the speaking section. (For tests taken prior to January 21, 2026: overall score of at least 80 with a minimum speaking score of 19)",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "International English Language Testing System (IELTS) Academic Test: minimum overall band score of 6.5",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science / Master of Education in Curriculum and Instruction",
+   "url": "https://bulletins.psu.edu/graduate/programs/majors/curriculum-instruction/",
+   "snapshot_sha256": "f29c57f962cf8b8848bd089f2dc2a5e6b369080ed156291da0b4ba7a40572cba",
+   "fields": {
+    "academic": {
+     "text": "Appropriate course and professional backgrounds considered",
+     "quote": "Students with appropriate course and professional backgrounds will be considered for admission.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "min_band": 19,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT: overall score of at least 4.5 with a 3.5 or greater on the speaking section. (For tests taken prior to January 21, 2026: overall score of at least 80 with a minimum speaking score of 19)",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "International English Language Testing System (IELTS) Academic Test: minimum overall band score of 6.5",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "M.Ed.: teaching or equivalent experience and at least 18 credits in education recommended",
+      "quote": "For admission to the professional degree programs leading to the M.Ed., teaching or equivalent experience and at least 18 credits in education are recommended.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Education in Counselor Education",
+   "url": "https://bulletins.psu.edu/graduate/programs/majors/counselor-education/",
+   "snapshot_sha256": "e492c9f4355734bf12761034e2f303d95bf31b2fb2414d34e9d741d5c59682a7",
+   "fields": {
+    "academic": {
+     "text": "3.0 junior/senior average (4.00 scale) with appropriate course background",
+     "quote": "M.Ed. applications with a 3.0 junior/senior average (on a scale of 4.00) and with appropriate course backgrounds will be considered for admission.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "min_band": 19,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT: overall score of at least 4.5 with a 3.5 or greater on the speaking section. (For tests taken prior to January 21, 2026: overall score of at least 80 with a minimum speaking score of 19)",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "International English Language Testing System (IELTS) Academic Test: minimum overall band score of 6.5",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science / Master of Education in Special Education",
+   "url": "https://bulletins.psu.edu/graduate/programs/majors/special-education/",
+   "snapshot_sha256": "b6152b06100b37770c06941ebda7e7a2ee5144fb3e9d25626783d11502be3074",
+   "fields": {
+    "academic": {
+     "text": "Minimum GPA 3.00 for M.Ed. and M.S.",
+     "quote": "Minimum GPA for master's and doctoral applicants are, respectively, 3.00 for M.Ed. and M.S., and 3.50 for Ph.D.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "min_band": 19,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT: overall score of at least 4.5 with a 3.5 or greater on the speaking section. (For tests taken prior to January 21, 2026: overall score of at least 80 with a minimum speaking score of 19)",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "International English Language Testing System (IELTS) Academic Test: minimum overall band score of 6.5",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE verbal and quantitative combined minimum 290 for M.S.",
+      "quote": "Minimum GRE test scores are (verbal and quantitative combined): 290 for M.S., and 300 for Ph.D.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts in Teaching English as a Second Language",
+   "url": "https://bulletins.psu.edu/graduate/programs/majors/teaching-english-second-language/",
+   "snapshot_sha256": "bcea8d1105eeba40de53215ffd9c7721f60bf2e7feb0698babe5b2a093b78901",
+   "fields": {
+    "academic": {
+     "text": "Degree comparable to a four-year U.S. bachelor's degree (Graduate School minimum)",
+     "quote": "Tertiary (postsecondary) degree that is deemed comparable to a four-year bachelor's degree from a U.S. institution accredited by an accepted agency",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "min_band": 23,
+     "quote": "Applicants to the Teaching English as a Second Language graduate program must have a minimum TOEFL score of 100 with a 23 on the speaking section for the Internet-based test (iBT), or 600 for the paper-based test.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "The minimum acceptable composite score for the IELTS for applicants is 7.0.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE required",
+      "quote": "Scores from the Graduate Record Examinations (GRE) are required for admission.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts in Media Studies",
+   "url": "https://bulletins.psu.edu/graduate/programs/majors/media-studies/",
+   "snapshot_sha256": "57563aa594c2a776f74b89e3a6c2f32fca0378e46da2301bdc3ea1f8f411cfd8",
+   "fields": {
+    "academic": {
+     "text": "3.00 junior/senior GPA eligible",
+     "quote": "Students with a 3.00 junior/senior grade-point average are eligible for admission.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "min_band": 19,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT: overall score of at least 4.5 with a 3.5 or greater on the speaking section. (For tests taken prior to January 21, 2026: overall score of at least 80 with a minimum speaking score of 19)",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "International English Language Testing System (IELTS) Academic Test: minimum overall band score of 6.5",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE required",
+      "quote": "Scores from the Graduate Record Examinations (GRE) are required for admission.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of International Affairs",
+   "url": "https://bulletins.psu.edu/graduate/programs/majors/international-affairs/",
+   "snapshot_sha256": "b9b3a8a0f4182b6aab1d2d4c50d55e9fbd8472c9498499fd63c92ecad73409da",
+   "fields": {
+    "academic": {
+     "text": "Degree comparable to a four-year U.S. bachelor's degree (Graduate School minimum)",
+     "quote": "Tertiary (postsecondary) degree that is deemed comparable to a four-year bachelor's degree from a U.S. institution accredited by an accepted agency",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "min_band": 19,
+     "quote": "Applicants with a minimum TOEFL total score of 80 with a score of 19 or higher on the speaking section of the TOEFL Internet-based test will be considered for admission, though a score of 23 or higher is desirable.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "International English Language Testing System (IELTS) Academic Test: minimum overall band score of 6.5",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Global Economic and Business Relations",
+   "url": "https://bulletins.psu.edu/graduate/programs/majors/global-economic-business-relations/",
+   "snapshot_sha256": "f59acc844aaf3ef7f328306c2495d474e3ada2ae1c6bdd0c3b6207f107e66089",
+   "fields": {
+    "academic": {
+     "text": "Degree comparable to a four-year U.S. bachelor's degree (Graduate School minimum)",
+     "quote": "Tertiary (postsecondary) degree that is deemed comparable to a four-year bachelor's degree from a U.S. institution accredited by an accepted agency",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "min_band": 19,
+     "quote": "Applicants with a minimum TOEFL total score of 80 with a score of 19 or higher on the speaking section of the TOEFL Internet-based test will be considered for admission, though a score of 23 or higher is desirable.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "International English Language Testing System (IELTS) Academic Test: minimum overall band score of 6.5",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Policy",
+   "url": "https://bulletins.psu.edu/graduate/programs/majors/public-policy/",
+   "snapshot_sha256": "779a6ab1a1dca379b7095972f2f94e5c81aa0a9f5bf023126dd9173a204a6b13",
+   "fields": {
+    "academic": {
+     "text": "Degree comparable to a four-year U.S. bachelor's degree (Graduate School minimum)",
+     "quote": "Tertiary (postsecondary) degree that is deemed comparable to a four-year bachelor's degree from a U.S. institution accredited by an accepted agency",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "min_band": 19,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT: overall score of at least 4.5 with a 3.5 or greater on the speaking section. (For tests taken prior to January 21, 2026: overall score of at least 80 with a minimum speaking score of 19)",
+     "source_sha256": "5da0440c7e8fe70b3c2c2b8560783b48a8b536ee47d73c4644982929a7793418",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://gradschool.psu.edu/admissions/prepare-to-apply",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 7.0,
+     "quote": "The minimum IELTS score required for admission is 7.0 (overall, and in each of the subsections).",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science / Master of Human Resources and Employment Relations",
+   "url": "https://bulletins.psu.edu/graduate/programs/majors/human-resources-employment-relations/",
+   "snapshot_sha256": "db161f3f1c3042b8b8313c38758cbf087cfd400e150890297db189414f2b4f96",
+   "fields": {
+    "academic": {
+     "text": "3.00 junior/senior GPA (4.00 scale) considered",
+     "quote": "Applicants with a 3.00 junior/senior grade-point average (on a 4.00 scale) will be considered for admission.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "M.S.: GRE or GMAT scores required",
+      "quote": "Must submit scores from the Graduate Record Examinations (GRE) or the Graduate Management Admission Test (GMAT)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 39,
+  "机器核对": 38,
+  "待人工": 1
+ }
+}

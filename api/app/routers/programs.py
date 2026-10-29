@@ -2,7 +2,7 @@ import logging
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, Query, Response
-from sqlalchemy import select
+from sqlalchemy import func, or_, select
 from sqlalchemy.orm import Session, selectinload
 
 from app.db import get_session
@@ -19,6 +19,9 @@ logger = logging.getLogger(__name__)
 # it: a caller that reads only the body still gets the healthy rows, and one that watches the header
 # learns that the catalogue is short and which ids are missing.
 WITHOUT_SOURCE_HEADER = "X-LeapAshore-Programs-Without-Source"
+# How many programs match the filters before paging, so a caller can page through the catalogue.
+TOTAL_HEADER = "X-Total-Count"
+MAX_PAGE = 100
 
 
 @router.get("", response_model=list[ProgramOut])
@@ -26,6 +29,11 @@ def list_programs(
     response: Response,
     session: Annotated[Session, Depends(get_session)],
     field: Annotated[str | None, Query()] = None,
+    ids: Annotated[str | None, Query(description="comma-separated program ids")] = None,
+    provider: Annotated[str | None, Query(description="university id")] = None,
+    has_requirements: Annotated[bool | None, Query(alias="has_requirements")] = None,
+    limit: Annotated[int, Query(ge=1, le=MAX_PAGE)] = MAX_PAGE,
+    offset: Annotated[int, Query(ge=0)] = 0,
 ) -> list[ProgramOut]:
     """Serve the catalogue. Public data, so no client cookie is issued or required.
 
@@ -63,18 +71,37 @@ def list_programs(
       here and non-nullable `string` in the frontend's type, so the adapter has to narrow them
       instead of assuming they are always present.
     """
+    stated = or_(Program.minimum_mark.is_not(None), Program.english_requirement.is_not(None))
+    conditions = []
+    if field:
+        conditions.append(Program.field == field)
+    if ids:
+        conditions.append(Program.id.in_([i.strip() for i in ids.split(",") if i.strip()]))
+    if provider:
+        conditions.append(Program.university_id == provider)
+    if has_requirements is not None:
+        conditions.append(stated if has_requirements else ~stated)
+
+    total = session.scalar(select(func.count()).select_from(Program).where(*conditions))
+    response.headers[TOTAL_HEADER] = str(total or 0)
+    # Programs with a stated requirement first, so an unfiltered first page is the useful one.
     statement = (
         select(Program)
+        .where(*conditions)
         .options(selectinload(Program.university), selectinload(Program.prerequisites))
-        .order_by(Program.id)
+        .order_by(stated.desc(), Program.id)
+        .limit(limit)
+        .offset(offset)
     )
-    if field:
-        statement = statement.where(Program.field == field)
+    programs = list(session.execute(statement).scalars())
+    # One query for every source on the page, instead of one per program.
+    source_ids = {program.source_id for program in programs if program.source_id}
+    sources = {row.id: row for row in session.scalars(select(Source).where(Source.id.in_(source_ids)))} if source_ids else {}
 
     out: list[ProgramOut] = []
     without_source: list[str] = []
-    for program in session.execute(statement).scalars():
-        source = session.get(Source, program.source_id) if program.source_id else None
+    for program in programs:
+        source = sources.get(program.source_id)
         if source is None:
             without_source.append(program.id)
             continue

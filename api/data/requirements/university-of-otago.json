@@ -1,0 +1,27 @@
+{
+ "school_key": "university-of-otago",
+ "school_name_en": "University of Otago",
+ "country": "New Zealand",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://www.otago.ac.nz/courses/qualifications/"
+ ],
+ "blocked": [
+  {
+   "url": "https://www.otago.ac.nz/courses/qualifications/",
+   "reason": "robots.txt disallows"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.otago.ac.nz/courses/qualifications/"
+ ],
+ "notes": "The snapshot tool reported robots.txt disallows the qualifications listing on www.otago.ac.nz at the first request; per the README the host was not fetched further and no other source exists (all Otago pages are on that host). No programmes collected.",
+ "programs": [],
+ "verification": {
+  "programs": 0,
+  "机器核对": 0,
+  "待人工": 0
+ }
+}

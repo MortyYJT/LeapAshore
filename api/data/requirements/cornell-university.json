@@ -1,0 +1,656 @@
+{
+ "school_key": "cornell-university",
+ "school_name_en": "Cornell University",
+ "country": "United States",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://business.cornell.edu/programs/",
+  "https://tech.cornell.edu/programs/masters-programs/",
+  "https://www.duffield.cornell.edu/meng/meng-directory/"
+ ],
+ "blocked": [
+  {
+   "url": "https://gradschool.cornell.edu/academics/fields-of-study",
+   "reason": "HTTP 403; the Graduate School host was not fetched again"
+  },
+  {
+   "url": "https://www.ilr.cornell.edu/programs/graduate-degree-programs/master-industrial-and-labor-relations-milr/apply",
+   "reason": "HTTP 403; ilr.cornell.edu was not fetched again"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.duffield.cornell.edu/cee/meng/",
+  "https://www.duffield.cornell.edu/mae/meng/",
+  "https://www.duffield.cornell.edu/sys/meng/",
+  "https://www.duffield.cornell.edu/mem/meng/",
+  "https://www.duffield.cornell.edu/ece/meng/",
+  "https://business.cornell.edu/programs/mps-re/",
+  "https://business.cornell.edu/programs/masters-in-accounting/"
+ ],
+ "notes": "The Graduate School's Fields of Study and ILR (MILR) pages returned HTTP 403, so Graduate School university-wide minimums and MILR, MPA, MPS (non-business) and other field-level master's were not collected. Duffield M.Eng. and Johnson per-programme deadline tables state dates without a year, so no deadlines were recorded for them; research-type M.S. (MS AEM, MS Hotel Administration) and the two-year MS in Design Technology were skipped.",
+ "programs": [
+  {
+   "name": "Master of Engineering (Duffield College of Engineering, college-wide requirements)",
+   "url": "https://www.duffield.cornell.edu/meng/admissions-meng-students/application-guide/",
+   "snapshot_sha256": "601333bd5be3773aeacd80ce8cf865b50aa98c5e27faef7f403e190b12ba1128",
+   "fields": {
+    "academic": {
+     "text": "Cumulative GPA of at least 2.70 (4.0 scale) and at least 2.50 in each of the three most recent terms; individual programs may set higher limits",
+     "quote": "To be eligible to apply to the M.Eng. program, applicants must have a cumulative grade-point average of at least 2.70 and at least a 2.50 for each of the three most recent terms.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS Minimum Requirements* Overall band score of at least 7.0",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "Section minimums only, no overall score stated: Speaking 4.5, Reading 4.5, Listening 5.0, Writing 5.0 (new 1-6 scale; former scale 23/22/22/24)",
+     "quote": "TOEFL iBT Minimum Requirements* Speaking: 4.5 or above (former scale: 23 or above) Reading: 4.5 or above (former scale: 22 or above) Listening: 5.0 or above (former scale: 22 or above) Writing: 5.0 or above (former scale: 24 or above)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "M.Eng. in Applied Engineering Physics",
+   "url": "https://www.duffield.cornell.edu/aep/meng/meng-admission-requirements/",
+   "snapshot_sha256": "1f01e1eee3cf091dbaa2cbaddd44868eb164dfbcef70cc2e9610371829fa7941",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "No particular classes required; strong undergraduate background in math and physics preferred",
+      "quote": "No particular classes are required, but a strong undergraduate background in Math and physics is preferred.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "M.Eng. in Biomedical Engineering",
+   "url": "https://www.duffield.cornell.edu/bme/meng/meng-admission-requirements/",
+   "snapshot_sha256": "a731a256433b3635eca4046c186db63c8b609ea9a936c1b9147149928547f09d",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "One college-level biology course",
+      "quote": "One college-level biology course.",
+      "check": "ok"
+     },
+     {
+      "text": "Knowledge of anatomy, physiology, biology, biochemistry, calculus I-III, linear algebra, differential equations and statistics must be demonstrated during admission; unmet items can be made up after conditional admission",
+      "quote": "Independent of the incoming student’s background, each student must demonstrate knowledge in anatomy, physiology, biology, biochemistry, calculus I, calculus II, calculus III, linear algebra, differential equations and statistics. Their qualification is done during the admission process and if there are any unmet requirements the student can be conditionally admitted and advised to fulfill the requirements by taking a series of suggested courses.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "M.Eng. in Chemical Engineering",
+   "url": "https://www.duffield.cornell.edu/cbe/meng/meng-admission-requirements/",
+   "snapshot_sha256": "6db8b1ad386f8a2746448a53cb764e4e3dde607404e074dd7f6f9e65434ef8d2",
+   "fields": {
+    "academic": {
+     "text": "Minimum GPA of 2.7/4.0; a STEM degree is required",
+     "quote": "Our M.Eng. program sets a minimum grade point average of 2.7/4.0 for admission. The admissions committee takes a holistic view of applications.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "A STEM degree is required; strong mathematics background highly recommended",
+      "quote": "A STEM degree is required, and a strong mathematics background is highly recommended.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "M.Eng. in Earth and Atmospheric Sciences",
+   "url": "https://www.duffield.cornell.edu/eas/meng/meng-admission-requirements/",
+   "snapshot_sha256": "f1880372b36081a8a28e02e94a4543fd7d5cd0380cbcd919603abc3d308b26eb",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "No particular courses required; some calculus, physics, programming and statistics courses recommended",
+      "quote": "No particular courses are required. The following courses are recommended: Calculus I–III, Linear Algebra, Differential Equations",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "M.Eng. in Materials Science and Engineering",
+   "url": "https://www.duffield.cornell.edu/mse/meng/meng-admission-requirements/",
+   "snapshot_sha256": "a15227195001736e6db6037fe41aaae96b151ea4faf97a5067bba45e7858fc2d",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "No particular classes required; strong undergraduate background in math and chemistry preferred",
+      "quote": "No particular classes are required, but a strong undergraduate background in Math and Chemistry is preferred.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "M.Eng. in Operations Research and Engineering (Ithaca)",
+   "url": "https://www.duffield.cornell.edu/orie/meng/meng-admissions-requirements-ithaca/",
+   "snapshot_sha256": "eec345b817fd639e90c35b0eaa96a3c0ddb7713812a1d8b5c7be97ddf605de62",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "Engineering calculus sequence including linear algebra and vector calculus",
+      "quote": "A standard engineering calculus sequence, including linear algebra (with eigenvalues and eigenvectors), and vector calculus, similar in content and rigor to Cornell courses MATH 1910, MATH 1920, and MATH 2940.",
+      "check": "ok"
+     },
+     {
+      "text": "Introductory engineering probability and statistics course",
+      "quote": "An introductory engineering probability and statistics course similar in content and rigor to Cornell course ENGRD 2700.",
+      "check": "ok"
+     },
+     {
+      "text": "Introductory and intermediate-level programming courses",
+      "quote": "An introductory computer programming course similar to CS 1110, as well as an intermediate-level computer programming course in a general programming language such as C, C++, Java, or Python, similar in content and rigor to Cornell course ENGRD 2110. Courses that entail programming applications, but where programming is not the primary focus are not acceptable substitutes. Courses in statistical modeling languages, such as SAS, are not acceptable substitutes.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "M.Eng. in Electrical and Computer Engineering (Ithaca)",
+   "url": "https://www.duffield.cornell.edu/ece/meng-electrical-computer-engineering-ithaca/admission-requirements-ithaca-campus/",
+   "snapshot_sha256": "a980a361dce502c55be3a0c2ac43dde5a35c875f1ae87bd3f77ea3ebbbbc955c",
+   "fields": {
+    "academic": {
+     "text": "Recommended minimum GPA 3.5/4.0",
+     "quote": "Recommended Minimum GPA 3.5/4.0",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Introduction to Circuits (similar to ECE 2100)",
+      "quote": "Introduction to Circuits similar to Cornell course ECE 2100.",
+      "check": "ok"
+     },
+     {
+      "text": "Digital Logic and Computer Organization (similar to ECE 2300)",
+      "quote": "Digital Logic and Computer Organization similar to Cornell course ECE 2300.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "M.Eng. in Engineering Management (on campus, Ithaca)",
+   "url": "https://www.duffield.cornell.edu/mem/engineering-management-on-campus-ithaca/admissions-on-campus/",
+   "snapshot_sha256": "278e55dcbd3dcf88f31096d1db0c59afea7b71e7b4af54d6ca9845a7bdd936fe",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "Calculus 1-3, differential equations, a probability and statistics course",
+      "quote": "Calculus 1 Calculus 2 Calculus 3 Differential Equations A probability and statistics course",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering in Computer Science (Bowers CIS)",
+   "url": "https://www.cs.cornell.edu/master-engineering-computer-science/apply",
+   "snapshot_sha256": "58913a9dad3f34158eceee8cc589ff8dd663faf4a5f536c0f992914c52d49e06",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in computer science or a related technical field typically suffices, with demonstrated knowledge of the listed prerequisite subjects",
+     "quote": "A bachelor's degree (BA / BS / BE) in computer science or a related technical field (e.g., electrical and computer engineering, information science, operations research) typically suffices. Applicants who have majored in these and other fields are absolutely encouraged to apply provided they have demonstrated knowledge of the following subjects:",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS: is also accepted as a test of English Language Proficiency. An overall band score of 7.0 or higher is required.",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "Section minimums only: Writing 4, Listening 3.5, Reading 4, Speaking 5.5 (as stated by the Graduate School)",
+     "quote": "TOEFL: The Graduate School mandates that applicants meet the following minimum scores in order to be considered for admission: Writing (>=4), Listening (>=3.5), Reading (>=4), and Speaking (>=5.5).",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Cornell Tech Master of Engineering, full-time (Computer Science, Electrical and Computer Engineering, ORIE, Data Science and Decision Analytics)",
+   "url": "https://tech.cornell.edu/admissions/meng-application/",
+   "snapshot_sha256": "a9f9d09d2b94ecbd1f68d31de1e3b25de2991445b3a4f0495babce55d7052102",
+   "fields": {
+    "academic": {
+     "text": "Proof of graduation from a bachelor's programme is required with the application",
+     "quote": "you must provide all academic records or transcripts from each previously attended university and proof of graduation from a Bachelor’s program",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "If your first language is not English, you must submit a valid TOEFL score of minimum 100 or IELTS score of minimum 7.0 overall band",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "If your first language is not English, you must submit a valid TOEFL score of minimum 100 or IELTS score of minimum 7.0 overall band",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 full-time, priority",
+      "date": "2026-12-01",
+      "quote": "Masters of Engineering Full-Time: Priority Deadline: Tuesday, December 1, 2026 at 5:00 PM EST",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 full-time, round 2",
+      "date": "2027-01-26",
+      "quote": "Round 2 Deadline: Tuesday, January 26, 2027 at 5:00 PM EST",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 full-time, rolling",
+      "date": "2027-04-01",
+      "quote": "Rolling Deadline: Thursday, April 1, 2027 at 5:00 PM EST",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Cornell Tech Master of Engineering in Computer Science, part-time",
+   "url": "https://tech.cornell.edu/admissions/meng-application/",
+   "snapshot_sha256": "a9f9d09d2b94ecbd1f68d31de1e3b25de2991445b3a4f0495babce55d7052102",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "quote": "If your first language is not English, you must submit a valid TOEFL score of minimum 100 or IELTS score of minimum 7.0 overall band",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "If your first language is not English, you must submit a valid TOEFL score of minimum 100 or IELTS score of minimum 7.0 overall band",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 part-time, priority",
+      "date": "2027-01-26",
+      "quote": "Masters of Engineering in Computer Science Part-Time: Priority Deadline: Tuesday, January 26, 2027 at 5:00 PM EST",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 part-time, rolling",
+      "date": "2027-04-01",
+      "quote": "Masters of Engineering in Computer Science Part-Time: Priority Deadline: Tuesday, January 26, 2027 at 5:00 PM EST Rolling Deadline: Thursday, April 1, 2027 at 5:00PM EST",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Cornell Tech Master of Engineering in Operations Research and Information Engineering",
+   "url": "https://tech.cornell.edu/programs/masters-programs/master-in-operations-research-and-information-engineering/",
+   "snapshot_sha256": "41f156a4a6cd694d21b79cd52c87e5e0af888ad9dc59daf681e77200204c3b89",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "One course each in linear algebra, intermediate probability and statistics, calculus and programming before applying",
+      "quote": "The technical requirements are that you have completed one course on linear algebra, one course on intermediate-level probability and statistics, one course on calculus, and one course on programming before applying.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Cornell Tech Master of Engineering in Data Science and Decision Analytics",
+   "url": "https://tech.cornell.edu/programs/masters-programs/data-science-decision-analytics/",
+   "snapshot_sha256": "de813d68993a95d002f51dcfead33045d0b9ae37695481c0ca269cfbbb1bf6d7",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "One course each in linear algebra, intermediate probability and statistics, calculus and programming before applying",
+      "quote": "The technical requirements are that you have completed one course on linear algebra, one course on intermediate-level probability and statistics, one course on calculus, and one course on programming before applying.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Jacobs Technion-Cornell Dual Master of Science Degrees (Connective Media, Health Tech, Urban Tech)",
+   "url": "https://tech.cornell.edu/admissions/ms-in-is-application/",
+   "snapshot_sha256": "2a1d311b1ddce769a2037283a380b4d0281452a853ccea2763c004da557cfc9f",
+   "fields": {
+    "academic": {
+     "text": "Proof of graduation from a bachelor's programme is required with the application",
+     "quote": "you must provide all academic records or transcripts from each previously attended university and proof of graduation from a Bachelor’s program",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "If your first language is not English, you must submit a valid TOEFL score of minimum 100 or IELTS score of minimum 7.0 overall band",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "If your first language is not English, you must submit a valid TOEFL score of minimum 100 or IELTS score of minimum 7.0 overall band",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority",
+      "date": "2027-01-05",
+      "quote": "Jacobs Technion-Cornell Dual M.S. Deadlines: Priority Deadline: Tuesday, January 5, 2027 at 5:00 PM EST",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 round 2",
+      "date": "2027-02-02",
+      "quote": "Round Deadline: Tuesday, February 2, 2027 at 5:00 PM EST",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 rolling",
+      "date": "2027-04-01",
+      "quote": "Rolling Deadline Thursday, April 1, 2027 at 5:00 PM EST",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Cornell Tech Master of Laws (LL.M.) in Law, Technology, and Entrepreneurship",
+   "url": "https://tech.cornell.edu/admissions/master-of-laws-llm-application/",
+   "snapshot_sha256": "1f9105bdf4f2848cb287242b149c4bc5719faa0702429883df30795d457e6a69",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "quote": "you must submit a valid TOEFL score of minimum 100 or IELTS score of minimum 7.0 overall band",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "you must submit a valid TOEFL score of minimum 100 or IELTS score of minimum 7.0 overall band",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 full-time, priority",
+      "date": "2026-12-07",
+      "quote": "Master of Laws Full-Time: Priority: Monday, December 7, 2026 at 5:00 PM EST",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 full-time, round 2",
+      "date": "2027-02-01",
+      "quote": "Round 2: Monday, February 1, 2027 at 5:00 PM EST (Deadline to submit for 3-semester applicants)",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 full-time, round 3",
+      "date": "2027-03-15",
+      "quote": "Round 3: Monday, March 15, 2027 at 5:00 PM EST",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 full-time, rolling",
+      "date": "2027-05-03",
+      "quote": "Round 3: Monday, March 15, 2027 at 5:00 PM EST Rolling: Monday, May 3, 2027 at 5:00 PM EST",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Johnson Cornell Tech MBA",
+   "url": "https://tech.cornell.edu/admissions/mba-application/",
+   "snapshot_sha256": "27d66ad226674eb25b2b221fb418ae5cb40e88cdd1df0fb8af2ae5449ba8ce21",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "quote": "If your first language is not English, you must submit a valid TOEFL score of minimum 100, IELTS score of minimum 7.0 overall band",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "If your first language is not English, you must submit a valid TOEFL score of minimum 100, IELTS score of minimum 7.0 overall band",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Summer 2027 priority round",
+      "date": "2026-10-08",
+      "quote": "Priority Round: Thursday, October 8, 2026, at 11:59 AM EST",
+      "check": "ok"
+     },
+     {
+      "label": "Summer 2027 round 2",
+      "date": "2027-01-07",
+      "quote": "Round 2: Thursday, January 7, 2027, at 11:59 AM EST",
+      "check": "ok"
+     },
+     {
+      "label": "Summer 2027 rolling admissions",
+      "date": "2027-03-04",
+      "quote": "Rolling Admissions: Thursday, March 4, 2027, at 11:59 AM EST",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Management in Hospitality (MMH)",
+   "url": "https://business.cornell.edu/admissions/graduate/mmh/",
+   "snapshot_sha256": "e77ce189c48a63f84423a38547f48b0b99d0cd2d75ca37e01b88a7e8d7ace207",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from an accredited institution (non-US degrees need a recognised equivalent); no minimum GPA stated",
+     "quote": "Applicants must hold a bachelor’s degree from an accredited institution. Submit unofficial transcripts from all colleges or universities attended. If admitted, you will be required to provide official transcripts for verification.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS Academic: An overall band score of at least 7.0",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "Section minimums only, no overall score stated. Exams before January 2026: Speaking 22, Reading 20, Listening 15, Writing 20. Interim for exams from January 2026: Speaking 4, Reading 4, Listening 3.5, Writing 4",
+     "quote": "TOEFL iBT* Score requirements for exams taken before January 2026 Speaking: 22 or higher Reading: 20 or higher Listening: 15 or higher Writing: 20 or higher Interim score requirements for exams taken beginning January 2026 Speaking: 4 or higher Reading: 4 or higher Listening: 3.5 or higher Writing: 4 or higher",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Professional Studies in Applied Economics and Management (MPS-AEM)",
+   "url": "https://business.cornell.edu/admissions/graduate/mps-aem/",
+   "snapshot_sha256": "8d86f062eb13be93500558c9f0fa7d9b8d0e6d4914a5f98afc1e92c5802122c9",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from an accredited institution (non-US degrees need a recognised equivalent); no minimum GPA stated",
+     "quote": "Applicants must hold a bachelor’s degree from an accredited institution. Submit unofficial transcripts from all colleges or universities attended. If admitted, you will be required to provide official transcripts for verification.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS Academic: An overall band score of at least 7.0",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "Section minimums only, no overall score stated. Exams before January 2026: Speaking 22, Reading 20, Listening 15, Writing 20. Interim for exams from January 2026: Speaking 4, Reading 4, Listening 3.5, Writing 4",
+     "quote": "TOEFL iBT* Score requirements for exams taken before January 2026 Speaking: 22 or higher Reading: 20 or higher Listening: 15 or higher Writing: 20 or higher Interim score requirements for exams taken beginning January 2026 Speaking: 4 or higher Reading: 4 or higher Listening: 3.5 or higher Writing: 4 or higher",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Professional Studies in Management",
+   "url": "https://business.cornell.edu/admissions/graduate/mps-management/",
+   "snapshot_sha256": "c94c0bec9fb139042ec1a67011df3c894aad3de1c3c49d8ba8de27e0352742ae",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from an accredited institution (non-US degrees need a recognised equivalent); no minimum GPA stated",
+     "quote": "Applicants must hold a bachelor’s degree from an accredited institution. Submit unofficial transcripts from all colleges or universities attended. If admitted, you will be required to provide official transcripts for verification.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS Academic: An overall band score of at least 7.0",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "Section minimums only, no overall score stated. Exams before January 2026: Speaking 22, Reading 20, Listening 15, Writing 20. Interim for exams from January 2026: Speaking 4, Reading 4, Listening 3.5, Writing 4",
+     "quote": "TOEFL iBT* Score requirements for exams taken before January 2026 Speaking: 22 or higher Reading: 20 or higher Listening: 15 or higher Writing: 20 or higher Interim score requirements for exams taken beginning January 2026 Speaking: 4 or higher Reading: 4 or higher Listening: 3.5 or higher Writing: 4 or higher",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Professional Studies in Management - Accounting Specialization",
+   "url": "https://business.cornell.edu/admissions/graduate/msa/",
+   "snapshot_sha256": "801371b42129ebdbd46fb94a7466106a58f848d97a2c37bcb4c8d1b150019561",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from an accredited institution (non-US degrees need a recognised equivalent); no minimum GPA stated",
+     "quote": "Applicants must hold a bachelor’s degree from an accredited institution. Submit unofficial transcripts from all colleges or universities attended. If admitted, you will be required to provide official transcripts for verification.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS Academic: An overall band score of at least 7.0",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "Section minimums only, no overall score stated. Exams before January 2026: Speaking 22, Reading 20, Listening 15, Writing 20. Interim for exams from January 2026: Speaking 4, Reading 4, Listening 3.5, Writing 4",
+     "quote": "TOEFL iBT* Score requirements for exams taken before January 2026 Speaking: 22 or higher Reading: 20 or higher Listening: 15 or higher Writing: 20 or higher Interim score requirements for exams taken beginning January 2026 Speaking: 4 or higher Reading: 4 or higher Listening: 3.5 or higher Writing: 4 or higher",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Business minor or equivalent (six business-related courses, 18 credits, including Financial Accounting, Finance, Economics, Marketing, Management and Statistics); Business Law and Intermediate Accounting I before matriculation",
+      "quote": "Students interested in this specialization must possess, at a minimum, a business minor or its equivalent including six business-related courses (18 credits) that must include Financial Accounting, Finance, Economics, Marketing, Management and Statistics and complete an undergraduate degree involving 120 credits or more. Students must also take Business Law (3 credits) and Intermediate Accounting I (3 credits) before matriculation.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MPS-AEM + CEMS Master in International Management (dual degree)",
+   "url": "https://business.cornell.edu/admissions/graduate/cems-mim/",
+   "snapshot_sha256": "c4ff37bbf4fb9afa46d9cf70249d4afb99770add7d8e1c73911707809149051e",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from an accredited institution (non-US degrees need a recognised equivalent); no minimum GPA stated",
+     "quote": "Applicants must hold a bachelor’s degree from an accredited institution. Submit unofficial transcripts from all colleges or universities attended. If admitted, you will be required to provide official transcripts for verification.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS Academic: An overall band score of at least 7.0",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "Section minimums only, no overall score stated. Exams before January 2026: Speaking 22, Reading 20, Listening 15, Writing 20. Interim for exams from January 2026: Speaking 4, Reading 4, Listening 3.5, Writing 4",
+     "quote": "TOEFL iBT* Score requirements for exams taken before January 2026 Speaking: 22 or higher Reading: 20 or higher Listening: 15 or higher Writing: 20 or higher Interim score requirements for exams taken beginning January 2026 Speaking: 4 or higher Reading: 4 or higher Listening: 3.5 or higher Writing: 4 or higher",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Business Analytics (MSBA)",
+   "url": "https://business.cornell.edu/admissions/graduate/msba/application-guide/",
+   "snapshot_sha256": "8ab9b003bb527b2234dabd1e46d03c2f8b82124be1611f31b0e50f095199cf85",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from an accredited college or university (or equivalent international degree)",
+     "quote": "Successful applicants will have received a bachelor’s degree from an accredited college or university.",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL, IELTS Academic or Duolingo accepted; applicants must meet the minimum sub-scores set by the Cornell Graduate School (not stated on this page); Duolingo minimum 130",
+     "quote": "The MSBA program does not accept My Best Score reports for the TOEFL examination and requires applicants to meet the minimum sub-scores in speaking, reading, listening and writing set by the Cornell Graduate School.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Cornell SC Johnson Two-Year MBA",
+   "url": "https://business.cornell.edu/admissions/graduate/mba/application-guide/mba-application-requirements-faqs/",
+   "snapshot_sha256": "ba30f715a1950aea707c0e7948fca53887339cc3ce41eadfb54ffa266b8fdd73",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree required for those accepted and enrolled",
+     "quote": "Candidates who are accepted to and enrolled in the Cornell MBA program must hold a bachelor’s degree.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7.0 band score IELTS with a minimum score of 7.0 in the speaking and writing modules",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "min_band": 25,
+     "quote": "100 overall Internet-based TOEFL score with a minimum score of 25 in each section",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Round 1",
+      "date": "2026-09-17",
+      "quote": "Round 1 September 17, 2026",
+      "source_sha256": "bf63ba00f04e2f257e3724353bd0ca4ca7c7116542195c05a018cb68c35493bd",
+      "source_url": "https://business.cornell.edu/admissions/graduate/mba/application-guide/important-dates/",
+      "check": "ok"
+     },
+     {
+      "label": "Round 2",
+      "date": "2027-01-05",
+      "quote": "Round 2 January 5, 2027",
+      "source_sha256": "bf63ba00f04e2f257e3724353bd0ca4ca7c7116542195c05a018cb68c35493bd",
+      "source_url": "https://business.cornell.edu/admissions/graduate/mba/application-guide/important-dates/",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3",
+      "date": "2027-04-06",
+      "quote": "Round 3 April 6, 2027",
+      "source_sha256": "bf63ba00f04e2f257e3724353bd0ca4ca7c7116542195c05a018cb68c35493bd",
+      "source_url": "https://business.cornell.edu/admissions/graduate/mba/application-guide/important-dates/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 24,
+  "机器核对": 24,
+  "待人工": 0
+ }
+}

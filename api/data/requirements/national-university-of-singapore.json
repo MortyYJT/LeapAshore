@@ -1,0 +1,259 @@
+{
+ "school_key": "national-university-of-singapore",
+ "school_name_en": "National University of Singapore (NUS)",
+ "country": "Singapore",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://www.comp.nus.edu.sg/programmes/#graduate"
+ ],
+ "blocked": [
+  {
+   "url": "https://www.nus.edu.sg/oam/graduate-programmes",
+   "reason": "Imperva/Incapsula bot challenge: empty page returned (also nusgs.nus.edu.sg, msba.nus.edu.sg, bschool.nus.edu.sg, fass.nus.edu.sg, www.science.nus.edu.sg, www.aidf.nus.edu.sg); not circumvented"
+  },
+  {
+   "url": "https://cde.nus.edu.sg/graduate/",
+   "reason": "SSL certificate verification failed in snapshot tool; not retried"
+  },
+  {
+   "url": "https://law.nus.edu.sg/",
+   "reason": "SSL certificate verification failed in snapshot tool; not retried"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://msba.nus.edu.sg/",
+  "https://bschool.nus.edu.sg/",
+  "https://cde.nus.edu.sg/graduate/",
+  "https://fass.nus.edu.sg/",
+  "https://www.science.nus.edu.sg/graduate/",
+  "https://www.aidf.nus.edu.sg/executive-master-in-ai-and-digital-transformation/",
+  "https://www.comp.nus.edu.sg/programmes/pg/mai/"
+ ],
+ "notes": "Only NUS Computing (comp.nus.edu.sg) served real content; all other NUS faculty hosts returned an empty Incapsula challenge page and were abandoned per the brief. No official China-specific requirement was found on the reachable pages. The 'or 4.5' next to the TOEFL score is unlabelled on the page and is not reported separately. Programme /mai/ (AI specialisation) has no admissions page (404) and is not listed.",
+ "programs": [
+  {
+   "name": "Master of Computing (Computer Science Specialisation)",
+   "url": "https://www.comp.nus.edu.sg/programmes/pg/mcs/admissions/",
+   "snapshot_sha256": "0f2d1c9db16e47f50b0f151c98443631130e236a4a19bb271c405c43786a77c4",
+   "fields": {
+    "academic": {
+     "text": "Good honours degree in computing, or related/business degree with 2 years IT industry experience",
+     "quote": "The candidates should possess: A good honours degree in computing; or A good honours degree in a related discipline with 2 years IT industry experience; or A good bachelor’s degree in computing with 2 years IT industry experience; or A good bachelor’s or honours degree in business related discipline with 2 years IT industry experience.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "The minimum TOEFL score for Internet Based Test (IBT) is 90 or 4.5; the minimum IELTS score is 6.0.",
+     "text": "Minimum IELTS 6.0 for applicants whose degree was not taught mainly in English",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "The minimum TOEFL score for Internet Based Test (IBT) is 90 or 4.5; the minimum IELTS score is 6.0.",
+     "text": "Minimum TOEFL iBT 90 for applicants whose degree was not taught mainly in English (page also states '4.5', unlabelled)",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "August 2027 intake (closing date)",
+      "date": "2027-01-31",
+      "quote": "Intake Opening Date Closing Date August 2027 1 October 2026 31 January 2027",
+      "source_sha256": "db494282889a28a64d6f1c98d87491349f92154a53687a37b6ccb47e3e58d866",
+      "check": "ok",
+      "source_url": "https://www.comp.nus.edu.sg/programmes/pg/mcs/application/"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Computing (Information Systems Specialisation)",
+   "url": "https://www.comp.nus.edu.sg/programmes/pg/mis/admissions/",
+   "snapshot_sha256": "b13770e1425b3d66272ba04f0e049603499e8fe241241fc72f2b25302298025a",
+   "fields": {
+    "academic": {
+     "text": "Good honours degree in computing, or related/business degree with 2 years IT industry experience",
+     "quote": "The candidates should possess: A good honours degree in computing; or A good honours degree in a related discipline with 2 years IT industry experience; or A good bachelor’s degree in computing with 2 years IT industry experience; or A good bachelor’s or honours degree in business related discipline with 2 years IT industry experience.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "The minimum TOEFL score for Internet Based Test (IBT) is 90 or 4.5; the minimum IELTS score is 6.0.",
+     "text": "Minimum IELTS 6.0 for applicants whose degree was not taught mainly in English",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "The minimum TOEFL score for Internet Based Test (IBT) is 90 or 4.5; the minimum IELTS score is 6.0.",
+     "text": "Minimum TOEFL iBT 90 for applicants whose degree was not taught mainly in English (page also states '4.5', unlabelled)",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "August 2027 intake (closing date)",
+      "date": "2027-01-31",
+      "quote": "Intake Opening Date Closing Date August 2027 1 October 2026 31 January 2027",
+      "source_sha256": "c9d2f6929397604c5cf9829e6430b89de7afffd556704fe230b09a4a6721230c",
+      "check": "ok",
+      "source_url": "https://www.comp.nus.edu.sg/programmes/pg/mis/application/"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Computing (Infocomm Security Specialisation)",
+   "url": "https://www.comp.nus.edu.sg/programmes/pg/misc/admissions/",
+   "snapshot_sha256": "2fa357ef4a4c4408d7421e13d01cfe72d785c5282bad5d79740e1b6c6127ea44",
+   "fields": {
+    "academic": {
+     "text": "Good honours degree in computing, or related/business degree with 2 years IT industry experience",
+     "quote": "The candidates should possess: A good honours degree in computing; or A good honours degree in a related discipline with 2 years IT industry experience; or A good bachelor’s degree in computing with 2 years IT industry experience; or A good bachelor’s or honours degree in business related discipline with 2 years IT industry experience.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "The minimum TOEFL score for Internet Based Test (IBT) is 90 or 4.5; the minimum IELTS score is 6.0.",
+     "text": "Minimum IELTS 6.0 for applicants whose degree was not taught mainly in English",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "The minimum TOEFL score for Internet Based Test (IBT) is 90 or 4.5; the minimum IELTS score is 6.0.",
+     "text": "Minimum TOEFL iBT 90 for applicants whose degree was not taught mainly in English (page also states '4.5', unlabelled)",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "August 2027 intake (closing date)",
+      "date": "2027-01-31",
+      "quote": "Intake Opening Date Closing Date August 2027 1 October 2026 31 January 2027",
+      "source_sha256": "c02fe9db537e0c59be6b6822baac68e05dd51c06567f767f3674d2ae43b857d3",
+      "check": "ok",
+      "source_url": "https://www.comp.nus.edu.sg/programmes/pg/misc/application/"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Computing (General Track)",
+   "url": "https://www.comp.nus.edu.sg/programmes/pg/mcomp-gen/admissions/",
+   "snapshot_sha256": "1789183ab0250bbab17af8b05461575754da540d1135c386ccd1a1ab9fb031c9",
+   "fields": {
+    "academic": {
+     "text": "Good honours degree or equivalent in any discipline",
+     "quote": "To be admitted into the programme, applicants should possess a good honours degree or equivalent in any discipline.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "The minimum TOEFL scores for Internet Based Test (IBT) is 90 or 4.5; the minimum IELTS score is 6.0.",
+     "text": "Minimum IELTS 6.0 for applicants whose degree was not taught mainly in English",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "The minimum TOEFL scores for Internet Based Test (IBT) is 90 or 4.5; the minimum IELTS score is 6.0.",
+     "text": "Minimum TOEFL iBT 90 for applicants whose degree was not taught mainly in English (page also states '4.5', unlabelled)",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "August 2027 intake (closing date)",
+      "date": "2027-01-31",
+      "quote": "Intake Opening Date Closing Date August 2027 1 October 2026 31 January 2027",
+      "source_sha256": "7a022dc043f54a8999f3b77cc113a8532f3a93432c91d4afe44edb6fe838ffe9",
+      "check": "ok",
+      "source_url": "https://www.comp.nus.edu.sg/programmes/pg/mcomp-gen/application/"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Computing in Artificial Intelligence",
+   "url": "https://www.comp.nus.edu.sg/programmes/pg/mcomp-ai/admissions/",
+   "snapshot_sha256": "ae80c289b8f1452ea46fd649adf583cb89e7dc999ce18de7f19a89508d9674e4",
+   "fields": {
+    "academic": {
+     "text": "Good honours degree in computing, or related/business degree with 2 years IT industry experience",
+     "quote": "Applicants should possess: A good honours degree in computing; or A good honours degree in a related discipline with 2 years IT industry experience; or A good bachelor’s degree in computing with 2 years IT industry experience; or A good bachelor’s or honours degree in business related discipline with 2 years IT industry experience.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "The minimum TOEFL score for Internet Based Test (IBT) is 90 or 4.5; the minimum IELTS score is 6.0.",
+     "text": "Minimum IELTS 6.0 for applicants whose degree was not taught mainly in English",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "The minimum TOEFL score for Internet Based Test (IBT) is 90 or 4.5; the minimum IELTS score is 6.0.",
+     "text": "Minimum TOEFL iBT 90 for applicants whose degree was not taught mainly in English (page also states '4.5', unlabelled)",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "August 2027 intake (closing date)",
+      "date": "2027-01-31",
+      "quote": "Intake Opening Date Closing Date August 2027 1 October 2026 31 January 2027",
+      "source_sha256": "8d145b70a153d67debbed51ccf948f90d506aadd90867b1c52f685599b70496d",
+      "check": "ok",
+      "source_url": "https://www.comp.nus.edu.sg/programmes/pg/mcomp-ai/application/"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Digital Financial Technology",
+   "url": "https://www.comp.nus.edu.sg/programmes/pg/mdft/admissions/",
+   "snapshot_sha256": "c74163ead10331646bec77ce51120374f30e71613b1442cb6d310b7742c1d08d",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in computing or a related discipline (STEM, Finance, Economics, Statistics, Business)",
+     "quote": "Applicants should possess the following minimum requirements: A bachelor’s degree in computing; or A bachelor’s degree in a related discipline (such as Science, Technology, Engineering and Mathematics (STEM), Finance, Economics, Statistics or Business).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "The minimum TOEFL scores for Internet Based Test (IBT) is 90 or 4.5; the minimum IELTS score is 6.0.",
+     "text": "Minimum IELTS 6.0 for applicants whose degree was not taught mainly in English",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "The minimum TOEFL scores for Internet Based Test (IBT) is 90 or 4.5; the minimum IELTS score is 6.0.",
+     "text": "Minimum TOEFL iBT 90 for applicants whose degree was not taught mainly in English (page also states '4.5', unlabelled)",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "August 2027 intake (closing date)",
+      "date": "2027-01-31",
+      "quote": "Intake Opening Date Closing Date August 2027 1 October 2026 31 January 2027",
+      "source_sha256": "4db7555f6ae3aa09f79b8a08eb0ba70ead61e4c743a745a4d38c214817ce2fce",
+      "check": "ok",
+      "source_url": "https://www.comp.nus.edu.sg/programmes/pg/mdft/application/"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "Non-computing students must provide evidence of Python programming knowledge and/or advanced quantitative subjects",
+      "quote": "Since a large proportion of our curriculum involves programming, non-computing students must provide sufficient evidence of python programming knowledge and/or evidence of learning advanced quantitative subjects.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 6,
+  "机器核对": 6,
+  "待人工": 0
+ }
+}

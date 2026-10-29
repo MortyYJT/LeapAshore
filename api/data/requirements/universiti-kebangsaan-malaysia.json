@@ -1,0 +1,36 @@
+{
+ "school_key": "universiti-kebangsaan-malaysia",
+ "school_name_en": "Universiti Kebangsaan Malaysia (UKM)",
+ "country": "Malaysia",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [],
+ "blocked": [
+  {
+   "url": "https://www.ukm.my/",
+   "reason": "robots.txt unreachable (URLError), snapshot tool refuses every path on the host; repeated over several minutes, also with --render"
+  },
+  {
+   "url": "https://www.ukm.my/pps/",
+   "reason": "robots.txt unreachable (URLError)"
+  },
+  {
+   "url": "https://pkp.ukm.my/studyukm/",
+   "reason": "robots.txt unreachable (URLError) on this separate official host too"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.ukm.my/pps/",
+  "https://pkp.ukm.my/studyukm/master-entry-requirement/",
+  "https://www.ukm.my/spsfper/master/",
+  "https://www.ukm.my/fpi/en/master-entry-requirements/"
+ ],
+ "notes": "The snapshot tool could not obtain robots.txt for www.ukm.my or pkp.ukm.my (URLError, not an HTTP 403), so it treats every path as disallowed and no page was fetched. Nothing was collected; retry later when the hosts answer. Other ukm.my pages found via search but not fetched: www.ukm.my/fpi/en/master-entry-requirements/, www.ukm.my/spsfper/master/, www.ukm.my/citra/eng/master-2/.",
+ "programs": [],
+ "verification": {
+  "programs": 0,
+  "机器核对": 0,
+  "待人工": 0
+ }
+}

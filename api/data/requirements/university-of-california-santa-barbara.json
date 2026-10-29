@@ -1,0 +1,531 @@
+{
+ "school_key": "university-of-california-santa-barbara",
+ "school_name_en": "University of California, Santa Barbara (UCSB)",
+ "country": "United States",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://engage.graddiv.ucsb.edu/portal/programs"
+ ],
+ "blocked": [
+  {
+   "url": "https://www.graddiv.ucsb.edu/admissions",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://www.mat.ucsb.edu/",
+   "reason": "robots.txt disallows"
+  }
+ ],
+ "complete": true,
+ "remaining_urls": [],
+ "notes": "www.graddiv.ucsb.edu blocks the tool via robots.txt, so program requirements come from the Graduate Division's own application portal (engage.graddiv.ucsb.edu), a separate host that allows fetching, plus department pages. Skipped: PhD, five-year BS/MS (current UCSB undergraduates), online METL, Chemical Engineering (PhD only), Economics (PhD/MA only), research-oriented MS in Marine Science, EEMB, Earth Science and Geography MA.",
+ "programs": [
+  {
+   "name": "MS - Computer Science",
+   "url": "https://engage.graddiv.ucsb.edu/portal/programs?cmd=prog&code=CMPSC-MS-0",
+   "snapshot_sha256": "3aa2475d33140cf987226cdc1f1e1837ff5ed34a9f8e3f5c49a6417685cf9729",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL Minimum Total iBT Score: 5 (post-January 2026) or 100 (pre-January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "IELTS Minimum Overall Band Score: 7",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "Minimum 3.0 cumulative GPA in undergraduate study (4.0 scale); GPAs of institutions not on a 4.0 scale are re-calculated by the department",
+     "quote": "A minimum of a 3.0 cumulative GPA in undergraduate study.",
+     "source_sha256": "5d7d302a8e40dbf380f444492f96656de8b088d8227424b015d6f15cfd4f12ba",
+     "source_url": "https://cs.ucsb.edu/education/graduate/how-to-apply",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Bachelor's degree in a discipline of science, engineering, or mathematics",
+      "quote": "the Department of Computer Science requires a bachelor's degree in some discipline of science, engineering, or mathematics",
+      "source_sha256": "5d7d302a8e40dbf380f444492f96656de8b088d8227424b015d6f15cfd4f12ba",
+      "source_url": "https://cs.ucsb.edu/education/graduate/how-to-apply",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 final deadline",
+      "date": "2026-12-16",
+      "quote": "Wednesday, December 16, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS (Communications, Control & Signal Processing Emphasis) - Electrical & Computer Engineering",
+   "url": "https://engage.graddiv.ucsb.edu/portal/programs?cmd=prog&code=ECE-MS-CCSP-0",
+   "snapshot_sha256": "08fc6141355bcde6a4241cdfd2d3fa1c274689c7633e565ad4e2d95bf41d58e1",
+   "fields": {
+    "toefl": {
+     "overall": 80,
+     "quote": "TOEFL Minimum Total iBT Score: 4.0 (post-January 2026) or 80 (pre-January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "IELTS Minimum Overall Band Score: 7",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 final deadline",
+      "date": "2026-12-16",
+      "quote": "Wednesday, December 16, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS (Computer Engineering Emphasis) - Electrical & Computer Engineering",
+   "url": "https://engage.graddiv.ucsb.edu/portal/programs?cmd=prog&code=ECE-MS-COMPENGR-0",
+   "snapshot_sha256": "71ba2fbde192017b88d250ed2e49512b54600373a476092856f33d8966fca61b",
+   "fields": {
+    "toefl": {
+     "overall": 80,
+     "quote": "TOEFL Minimum Total iBT Score: 4.0 (post-January 2026) or 80 (pre-January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "IELTS Minimum Overall Band Score: 7",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 final deadline",
+      "date": "2026-12-16",
+      "quote": "Wednesday, December 16, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS (Electronics & Photonics Emphasis) - Electrical & Computer Engineering",
+   "url": "https://engage.graddiv.ucsb.edu/portal/programs?cmd=prog&code=ECE-MS-ELECPHOT-0",
+   "snapshot_sha256": "05351ce163b07579cac0bd5f9efa6ea061d3ba06ff7e29767481f9b63885a2e5",
+   "fields": {
+    "toefl": {
+     "overall": 80,
+     "quote": "TOEFL Minimum Total iBT Score: 4.0 (post-January 2026) or 80 (pre-January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "IELTS Minimum Overall Band Score: 7",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 final deadline",
+      "date": "2026-12-16",
+      "quote": "Wednesday, December 16, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA - Statistics",
+   "url": "https://engage.graddiv.ucsb.edu/portal/programs?cmd=prog&code=STATS-MA-0",
+   "snapshot_sha256": "3923d596b4223a23b65031f75599ea1778c7e8b0cb541bd69b03d978f9b918ee",
+   "fields": {
+    "toefl": {
+     "overall": 80,
+     "quote": "TOEFL Minimum Total iBT Score: 4.0 (post-January 2026) or 80 (pre-January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "IELTS Minimum Overall Band Score: 7",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Bachelor's degree in Statistics, Mathematics, or a related quantitative field",
+      "quote": "Applicants must hold a bachelor's degree in Statistics, Mathematics, or a related quantitative field.",
+      "source_sha256": "ea40a60059331761f01f2953c9ee71931c4d170a052b7230e80ea3784084ebd7",
+      "source_url": "https://www.pstat.ucsb.edu/graduate/masters",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 final deadline",
+      "date": "2027-02-18",
+      "quote": "Thursday, February 18, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS - Mechanical Engineering",
+   "url": "https://engage.graddiv.ucsb.edu/portal/programs?cmd=prog&code=ME-MS-0",
+   "snapshot_sha256": "5306ae7644f3a83dbe8eb86b9f4f1c3b97ee956a56a09a3ecb53eb3d9ef65af5",
+   "fields": {
+    "toefl": {
+     "overall": 80,
+     "quote": "TOEFL Minimum Total iBT Score: 4.0 (post-January 2026) or 80 (pre-January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "IELTS Minimum Overall Band Score: 7",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 final deadline",
+      "date": "2026-12-16",
+      "quote": "Wednesday, December 16, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS - Materials",
+   "url": "https://engage.graddiv.ucsb.edu/portal/programs?cmd=prog&code=MATRL-MS-0",
+   "snapshot_sha256": "06a0d11224f503591ae19711cf13a50da8ce4ebf2674eeea9967d4633e32f552",
+   "fields": {
+    "toefl": {
+     "overall": 80,
+     "quote": "TOEFL Minimum Total iBT Score: 4.0 (post-January 2026) or 80 (pre-January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "IELTS Minimum Overall Band Score: 7",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 final deadline",
+      "date": "2026-12-16",
+      "quote": "Wednesday, December 16, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MEDS - Environmental Data Science",
+   "url": "https://engage.graddiv.ucsb.edu/portal/programs?cmd=prog&code=EDS-MDS-0",
+   "snapshot_sha256": "45c5ef2918cf0011bf424fd1f8211555fdf850e28fd97c1035c1f1e9343616f7",
+   "fields": {
+    "toefl": {
+     "overall": 80,
+     "quote": "TOEFL Minimum Total iBT Score: 4.0 (post-January 2026) or 80 (pre-January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "IELTS Minimum Overall Band Score: 7",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) from an accredited four-year institution; minimum cumulative undergraduate GPA 3.0 on a 4.0 scale",
+     "quote": "The undergraduate minimum cumulative grade point average (GPA) is 3.0 or higher on a 4.0 scale.",
+     "source_sha256": "8b44a1955f2582e13231e0c260af3a5c4fc607bb5698af4e831031f64c0a7a20",
+     "source_url": "https://bren.ucsb.edu/masters-programs/master-environmental-data-science/admissions-meds-program",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "At least 4 environmentally-related courses, or a degree in an environmentally related discipline",
+      "quote": "who have completed environmentally-related coursework (at least 4 courses) or a degree in an environmentally related discipline",
+      "source_sha256": "8b44a1955f2582e13231e0c260af3a5c4fc607bb5698af4e831031f64c0a7a20",
+      "source_url": "https://bren.ucsb.edu/masters-programs/master-environmental-data-science/admissions-meds-program",
+      "check": "ok"
+     },
+     {
+      "text": "Math: one course (quarter or semester)",
+      "quote": "Math – one course (quarter or semester)",
+      "source_sha256": "8b44a1955f2582e13231e0c260af3a5c4fc607bb5698af4e831031f64c0a7a20",
+      "source_url": "https://bren.ucsb.edu/masters-programs/master-environmental-data-science/admissions-meds-program",
+      "check": "ok"
+     },
+     {
+      "text": "Statistics: one course (quarter or semester)",
+      "quote": "Statistics – one course (quarter or semester)",
+      "source_sha256": "8b44a1955f2582e13231e0c260af3a5c4fc607bb5698af4e831031f64c0a7a20",
+      "source_url": "https://bren.ucsb.edu/masters-programs/master-environmental-data-science/admissions-meds-program",
+      "check": "ok"
+     },
+     {
+      "text": "Prerequisite courses must be passed with a grade of C or higher",
+      "quote": "Only courses earned with a grade of C or higher will be counted toward meeting MEDS prerequisite requirements.",
+      "source_sha256": "8b44a1955f2582e13231e0c260af3a5c4fc607bb5698af4e831031f64c0a7a20",
+      "source_url": "https://bren.ucsb.edu/masters-programs/master-environmental-data-science/admissions-meds-program",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Summer 2027 priority financial deadline",
+      "date": "2026-12-16",
+      "quote": "Wednesday, December 16, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Summer 2027 final deadline",
+      "date": "2027-03-03",
+      "quote": "Wednesday, March 3, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MESM - Environmental Science & Management",
+   "url": "https://engage.graddiv.ucsb.edu/portal/programs?cmd=prog&code=ESM-MES-0",
+   "snapshot_sha256": "30dafda81fc51c1589c91d5a8fe03a5a2ab01394af3fdafb0c72cea7cff70cc3",
+   "fields": {
+    "toefl": {
+     "overall": 80,
+     "quote": "TOEFL Minimum Total iBT Score: 4.0 (post-January 2026) or 80 (pre-January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "IELTS Minimum Overall Band Score: 7",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "Bachelor's degree (or equivalent) from an accredited four-year institution; minimum cumulative undergraduate GPA 3.0 on a 4.0 scale",
+     "quote": "The undergraduate minimum cumulative grade point average (GPA) is 3.0 or higher on a 4.0 scale.",
+     "source_sha256": "01e7f785b451a68f85d52065fa7d5bd72713c0bd0589b23e3bee5bddd1d5ac93",
+     "source_url": "https://bren.ucsb.edu/masters-programs/master-environmental-science-and-management/admissions-mesm",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Science: two courses (quarter or semester)",
+      "quote": "Science – two courses (quarter or semester)",
+      "source_sha256": "01e7f785b451a68f85d52065fa7d5bd72713c0bd0589b23e3bee5bddd1d5ac93",
+      "source_url": "https://bren.ucsb.edu/masters-programs/master-environmental-science-and-management/admissions-mesm",
+      "check": "ok"
+     },
+     {
+      "text": "Math: two courses (quarter or semester)",
+      "quote": "Math – two courses (quarter or semester)",
+      "source_sha256": "01e7f785b451a68f85d52065fa7d5bd72713c0bd0589b23e3bee5bddd1d5ac93",
+      "source_url": "https://bren.ucsb.edu/masters-programs/master-environmental-science-and-management/admissions-mesm",
+      "check": "ok"
+     },
+     {
+      "text": "Social science: one course (quarter or semester)",
+      "quote": "Social Science – one course (quarter or semester)",
+      "source_sha256": "01e7f785b451a68f85d52065fa7d5bd72713c0bd0589b23e3bee5bddd1d5ac93",
+      "source_url": "https://bren.ucsb.edu/masters-programs/master-environmental-science-and-management/admissions-mesm",
+      "check": "ok"
+     },
+     {
+      "text": "Prerequisite courses must be passed with a grade of C or higher",
+      "quote": "Only courses earned with a grade of C or higher will be counted toward meeting MESM prerequisite requirements.",
+      "source_sha256": "01e7f785b451a68f85d52065fa7d5bd72713c0bd0589b23e3bee5bddd1d5ac93",
+      "source_url": "https://bren.ucsb.edu/masters-programs/master-environmental-science-and-management/admissions-mesm",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 final deadline",
+      "date": "2026-12-16",
+      "quote": "Wednesday, December 16, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MTM - Technology Management",
+   "url": "https://engage.graddiv.ucsb.edu/portal/programs?cmd=prog&code=TM-MTM-0",
+   "snapshot_sha256": "23aa1fd9991aa9e225090e52746da10c2ce0afd339d3bf2b46b07696ff651344",
+   "fields": {
+    "toefl": {
+     "overall": 80,
+     "quote": "TOEFL Minimum Total iBT Score: 4.0 (post-January 2026) or 80 (pre-January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "IELTS Minimum Overall Band Score: 7",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority financial deadline",
+      "date": "2026-12-02",
+      "quote": "Wednesday, December 2, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 priority deadline",
+      "date": "2027-02-18",
+      "quote": "Thursday, February 18, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final deadline",
+      "date": "2027-04-30",
+      "quote": "Friday, April 30, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA - Education",
+   "url": "https://engage.graddiv.ucsb.edu/portal/programs?cmd=prog&code=EDUC-MA-0",
+   "snapshot_sha256": "d8e64f6438c12eaa851c047787ac543faabfe8635d7c94b871f6db390676cd5e",
+   "fields": {
+    "toefl": {
+     "overall": 80,
+     "quote": "TOEFL Minimum Total iBT Score: 4.0 (post-January 2026) or 80 (pre-January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "IELTS Minimum Overall Band Score: 7",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority deadline",
+      "date": "2026-12-02",
+      "quote": "Wednesday, December 2, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final deadline",
+      "date": "2027-05-14",
+      "quote": "Friday, May 14, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS - Media Arts and Technology",
+   "url": "https://engage.graddiv.ucsb.edu/portal/programs?cmd=prog&code=MAT-MS-0",
+   "snapshot_sha256": "fd6a377c920f43339c7ee9ee12702a425e8960daf75f95bc98a356fd6f2bf762",
+   "fields": {
+    "toefl": {
+     "overall": 80,
+     "quote": "TOEFL Minimum Total iBT Score: 4.0 (post-January 2026) or 80 (pre-January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "IELTS Minimum Overall Band Score: 7",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 final deadline",
+      "date": "2026-12-16",
+      "quote": "Wednesday, December 16, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA - Applied Mathematics",
+   "url": "https://engage.graddiv.ucsb.edu/portal/programs?cmd=prog&code=AMATH-MA-0",
+   "snapshot_sha256": "326cc6d588c5ab44f23a48b94d09ad6d165d5c52b298589281e43d295023f7c5",
+   "fields": {
+    "toefl": {
+     "overall": 80,
+     "quote": "TOEFL Minimum Total iBT Score: 4.0 (post-January 2026) or 80 (pre-January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "IELTS Minimum Overall Band Score: 7",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 final deadline",
+      "date": "2026-12-16",
+      "quote": "Wednesday, December 16, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA - Mathematics",
+   "url": "https://engage.graddiv.ucsb.edu/portal/programs?cmd=prog&code=MATH-MA-0",
+   "snapshot_sha256": "542e24b9efe5abdeee893d47b178f60196513b1c010d06c69cac6fec5114b19a",
+   "fields": {
+    "toefl": {
+     "overall": 80,
+     "quote": "TOEFL Minimum Total iBT Score: 4.0 (post-January 2026) or 80 (pre-January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "IELTS Minimum Overall Band Score: 7",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 final deadline",
+      "date": "2026-12-16",
+      "quote": "Wednesday, December 16, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 14,
+  "机器核对": 14,
+  "待人工": 0
+ }
+}

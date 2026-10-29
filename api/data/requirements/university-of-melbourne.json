@@ -1,0 +1,29 @@
+{
+ "school_key": "university-of-melbourne",
+ "school_name_en": "The University of Melbourne",
+ "country": "Australia",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [],
+ "blocked": [
+  {
+   "url": "https://study.unimelb.edu.au/find/courses/graduate/master-of-computer-science/",
+   "reason": "snapshot tool: robots.txt disallows (the host serves a Cloudflare bot challenge instead of robots.txt)"
+  },
+  {
+   "url": "https://handbook.unimelb.edu.au/2026/courses/mc-cs",
+   "reason": "returned an Incapsula bot-protection challenge page with no content; rendered fetch timed out"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://study.unimelb.edu.au/find/courses/graduate/"
+ ],
+ "notes": "Both official hosts that carry course entry requirements (study.unimelb.edu.au and handbook.unimelb.edu.au) refuse automated access, so fetching stopped after one attempt per host and no program data was collected. All 215 UniMelb CRICOS courses in cricos-au-masters.json remain to be done, and the China entry-requirements page was not reached.",
+ "programs": [],
+ "verification": {
+  "programs": 0,
+  "机器核对": 0,
+  "待人工": 0
+ }
+}

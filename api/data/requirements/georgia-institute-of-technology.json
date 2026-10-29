@@ -1,0 +1,2746 @@
+{
+ "school_key": "georgia-institute-of-technology",
+ "school_name_en": "Georgia Institute of Technology",
+ "country": "United States",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://gradapp.gatech.edu/portal/program-info",
+  "https://grad.gatech.edu/prospective-students"
+ ],
+ "blocked": [],
+ "complete": false,
+ "remaining_urls": [
+  "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=230a633d-1230-d19d-9836-cdc8c28a15a9",
+  "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=fdc0885f-2e56-6d12-7c1a-398fb9b605d7",
+  "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=6a11234c-ff36-2f75-51a9-bad524169b59",
+  "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=b3471421-bdde-595c-522e-ed82f5d788df",
+  "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=41b68e77-bddb-d856-7542-27e38571ae0b",
+  "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=bfef7a24-d9e5-03a7-d210-09a0397085ea",
+  "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=91974a30-a6f2-608b-0c9e-53625d1e993a",
+  "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=97be2d47-9f12-efd0-6159-7c364e09cc8b",
+  "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=f58938c4-4f72-ad4c-f0b8-5703d4614d14",
+  "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=2f355d5a-bdef-1b9a-572d-41d14effded3",
+  "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=9c26ca34-e343-5494-af9b-e240ce6fbea0",
+  "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=112a9bf6-356d-2308-a49d-90f5a3dc5499",
+  "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=a414be63-a423-d0d9-7159-4a8cac35c14c",
+  "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=2fdd8d58-3297-86fc-1f71-79ea36305b32",
+  "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=ef27ddbd-5a66-2667-6aff-7a6a57000dda",
+  "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=2a0eaf0e-8b48-4108-e35e-23aac54aeed8",
+  "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=1300e90a-91ee-7c01-e8b9-9d67aa69ad9a",
+  "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=3067bc7a-1d88-1f4e-1c88-efc5078b75ba",
+  "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=b6414d65-232a-5f12-c86d-de872de9eb60",
+  "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=b3a44ecd-fecb-4375-4201-99afd4e6ae07",
+  "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=de684e53-a371-91e3-aa74-6cd3e069eb03",
+  "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=0195d2a0-6c84-8685-10fb-b627d3af0be0",
+  "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=44ed280e-c67d-5a3e-a1dd-35c67edb84f8",
+  "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=364b1224-bcb9-0141-b818-5124527dd3a1",
+  "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=411e8001-5e58-c75c-f037-58f5c1489952",
+  "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=06cbdd0c-b34c-c809-b646-7ca043d4ccc2",
+  "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=8b5ed823-a4c0-743c-321a-e659b217d1a7",
+  "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=ddc49299-9436-d581-f18b-7030f7f6df3d",
+  "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=62ce878b-1158-57ad-96f5-9388df4afcd6",
+  "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=33981476-ff53-5ca8-d6c2-efaeee3e2ed1",
+  "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=9995e50f-955e-30c5-f2e3-1854f0471bea",
+  "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=035ac2ab-2820-d0df-41b6-7ad1430af9ef",
+  "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=b3e3d13b-5666-fcc6-a8f8-75fe2acc301d"
+ ],
+ "notes": "Programme data from the Graduate Admissions program information portal (JavaScript-rendered, fetched with --render). On-campus Atlanta and Evening MBA master's only; online/distance, Georgia Tech-Europe, certificate, doctoral and non-degree entries skipped. Many Georgia Tech pages state TOEFL on 0-120 and 1-6 scales. Some pages state no GPA minimum, so academic quotes the bachelor's degree line.",
+ "programs": [
+  {
+   "name": "Analytics (Analytical Tools) - On Campus (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=3b82a53b-187b-a751-fb65-0d461cf412f9",
+   "snapshot_sha256": "f0dc782a2e76b7451d47c021fe37ca1241c0728456c5703249de5a360ef0d8af",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Prior to January 2026 100 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: Any MyBest score is not accepted TOEFL iBT After January 2026 5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "7.5 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test: Required",
+      "quote": "GRE General Test Required",
+      "check": "ok"
+     },
+     {
+      "text": "At least one college-level course or equivalent knowledge in calculus, probability/statistics, and some linear algebra",
+      "quote": "At least one college-level course or equivalent knowledge in calculus, probability/statistics, and some linear algebra",
+      "check": "ok"
+     },
+     {
+      "text": "At least one college-level course or equivalent knowledge in computer programming using a high-level language like C, C++, Java, Python, FORTRAN, etc.",
+      "quote": "At least one college-level course or equivalent knowledge in computer programming using a high-level language like C, C++, Java, Python, FORTRAN, etc.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-03-01",
+      "quote": "Fall 2027 March 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Analytics (Business Analytics) - On Campus (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=077b5fef-1957-69fa-07c4-7975fbde359c",
+   "snapshot_sha256": "68f2a9a4680832d7b7490ff03113423e0bd65c6f308fa163a3fe56491138404e",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Prior to January 2026 100 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: Any MyBest score is not accepted TOEFL iBT After January 2026 5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "7.5 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test: Required",
+      "quote": "GRE General Test Required",
+      "check": "ok"
+     },
+     {
+      "text": "At least one college-level course or equivalent knowledge in calculus, probability/statistics, and some linear algebra",
+      "quote": "At least one college-level course or equivalent knowledge in calculus, probability/statistics, and some linear algebra",
+      "check": "ok"
+     },
+     {
+      "text": "At least one college-level course or equivalent knowledge in computer programming using a high-level language like C, C++, Java, Python, FORTRAN, etc.",
+      "quote": "At least one college-level course or equivalent knowledge in computer programming using a high-level language like C, C++, Java, Python, FORTRAN, etc.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-03-01",
+      "quote": "Fall 2027 March 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Analytics (Computational Data Analytics) - On Campus (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=132c10f6-a7cf-d259-3d5a-5542eb979814",
+   "snapshot_sha256": "fe5d0be9e7c9626b3e8db4855347a2d766646c46a00b992de341dd1fb9aa4451",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Prior to January 2026 100 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: Any MyBest score is not accepted TOEFL iBT After January 2026 5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "7.5 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test: Required",
+      "quote": "GRE General Test Required",
+      "check": "ok"
+     },
+     {
+      "text": "At least one college-level course or equivalent knowledge in calculus, probability/statistics, and some linear algebra",
+      "quote": "At least one college-level course or equivalent knowledge in calculus, probability/statistics, and some linear algebra",
+      "check": "ok"
+     },
+     {
+      "text": "At least one college-level course or equivalent knowledge in computer programming using a high-level language like C, C++, Java, Python, FORTRAN, etc.",
+      "quote": "At least one college-level course or equivalent knowledge in computer programming using a high-level language like C, C++, Java, Python, FORTRAN, etc.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-03-01",
+      "quote": "Fall 2027 March 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Computer Science - On Campus (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=86097380-be9a-4631-6407-50f3d959f466",
+   "snapshot_sha256": "14340341ee0af0320e6e80bab74a55ce5715c34d21a801ae52354f6ff1ff4d31",
+   "fields": {
+    "academic": {
+     "text": "Minimum GPA 3.0, though most candidates score higher",
+     "quote": "Minimum GPA 3.0, though most candidates score higher",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Prior to January 2026 100 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: 78 MyBest score is not accepted TOEFL iBT After January 2026 5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "7.5 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test: Optional",
+      "quote": "GRE General Test Optional",
+      "check": "ok"
+     },
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-02-01",
+      "quote": "Fall 2027 February 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Cybersecurity - (Cyber Physical Systems) (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=3c2ccba1-a6f9-b3e4-a07c-709e83db1a60",
+   "snapshot_sha256": "97d4884d8c4fe2521eda781a42dbb6856a3f86077d00a067d75f262ec52543f6",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Prior to January 2026 100 or higher Total score 20 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: Any MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "7.5 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test: Optional",
+      "quote": "GRE General Test Optional",
+      "check": "ok"
+     },
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2026-12-16",
+      "quote": "Fall 2027 December 16, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Cybersecurity - (Information Security) (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=27094a7f-0c5f-58d5-c94b-b8d6a023da39",
+   "snapshot_sha256": "26ff89bb92653d036ea43d7dd5fb2d5db1fe38aa84fcb9618352096532d7db4b",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Prior to January 2026 100 or higher Total score 20 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: Any MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "7.5 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test: Optional",
+      "quote": "GRE General Test Optional",
+      "check": "ok"
+     },
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-02-17",
+      "quote": "Fall 2027 February 17, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Cybersecurity - (Policy) (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=3cd74638-c1d5-307c-d3be-faafb172fc11",
+   "snapshot_sha256": "1352480905e69bd2eaf764e11bef6b8610261d5525fe7ef21fd3be776a8b8f0c",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Prior to January 2026 100 or higher Total score 20 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: Any MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "7.5 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test: Required",
+      "quote": "GRE General Test Required",
+      "check": "ok"
+     },
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-03-15",
+      "quote": "Fall 2027 March 15, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Human-Computer Interaction (College of Computing) (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=8a34f0d8-3ff0-80e2-bff7-b839c0cc9fb7",
+   "snapshot_sha256": "27c7b9fb4f90cbdf6926c098d1bba14d5e82c3cea72283edc7f8e6800c8e318f",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 101,
+     "quote": "Prior to January 2026 101 or higher Total score 20 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: Any MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "7.5 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-02-02",
+      "quote": "Fall 2027 February 2, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Human-Computer Interaction (Industrial Design) (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=fbdaf107-f6bb-881c-6380-0975757546c6",
+   "snapshot_sha256": "2b39eacfdb485b767032a9e59c6d9a041d967969e090306ab22227b778e93b62",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 101,
+     "quote": "Prior to January 2026 101 or higher Total score 20 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: Any MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "7.5 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-02-02",
+      "quote": "Fall 2027 February 2, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Human-Computer Interaction (Literature, Media and Communication) (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=2ea0f980-1951-b8e5-7ea0-97fc354bbc57",
+   "snapshot_sha256": "7c13edaf3286c69ec879fc4c3f3528b03a081ab44e1aac7e7a47aa76ceb963ef",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 101,
+     "quote": "Prior to January 2026 101 or higher Total score 20 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: Any MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "7.5 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-02-02",
+      "quote": "Fall 2027 February 2, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Human-Computer Interaction (Psychological and Brain Sciences) (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=ce556e09-557b-dc0a-fd9f-08e6958ded9e",
+   "snapshot_sha256": "61e25924ec634b65974b09a88d808f89f8bb1075f3148f547581acbfd928122e",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 101,
+     "quote": "Prior to January 2026 101 or higher Total score 20 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: Any MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "7.5 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-02-02",
+      "quote": "Fall 2027 February 2, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Quantitative & Computational Finance (Industrial & Systems Engineering) (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=d8a6378d-ae8c-9ac9-796a-f8ff34795689",
+   "snapshot_sha256": "66c8a44b84f6ed7ea84f8a5d332100f6aed84e6b30723f52903cee17d1e919ed",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 95,
+     "quote": "Prior to January 2026 95 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: Any MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test: Required",
+      "quote": "GRE General Test Required",
+      "check": "ok"
+     },
+     {
+      "text": "GMAT: Required",
+      "quote": "GMAT Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-06-01",
+      "quote": "Fall 2027 June 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Quantitative & Computational Finance (Management) (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=a3e37f2a-aec4-e532-96cc-066dee10a151",
+   "snapshot_sha256": "a14b687dc0455a43564249201a2ec3934ad1469a2411153c419f8a69e2169c63",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 95,
+     "quote": "Prior to January 2026 95 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: Any MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test: Required",
+      "quote": "GRE General Test Required",
+      "check": "ok"
+     },
+     {
+      "text": "GMAT: Required",
+      "quote": "GMAT Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-06-01",
+      "quote": "Fall 2027 June 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Quantitative & Computational Finance (Mathematics) (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=eb876d22-e7b1-b54a-186a-dea53a41e227",
+   "snapshot_sha256": "0e67cc1424916332e5798cb9fdbdb9cd6ba31af854afb31e3234926d93faa26a",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "Prior to January 2026 90 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: Any MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test: Required",
+      "quote": "GRE General Test Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-06-01",
+      "quote": "Fall 2027 June 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Urban Analytics (City Planning) (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=28fe6820-2fa5-6889-00e9-ccfdf065b12c",
+   "snapshot_sha256": "421da6e0752327fc6219898a7bbb2422a2a36432db2773525d2cb8e2767217c3",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Prior to January 2026 100 or higher Total score 20 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: Any MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "7.5 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test: Optional",
+      "quote": "GRE General Test Optional",
+      "check": "ok"
+     },
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-02-15",
+      "quote": "Fall 2027 February 15, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Urban Analytics (Computational Science & Engineering) (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=26d6affc-352c-871b-2d27-ce90c4a88719",
+   "snapshot_sha256": "4a9141c25171d86d4a947448b2909ca7d18a85391e3a448744979ec61998f540",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Prior to January 2026 100 or higher Total score 20 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: Any MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "7.5 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test: Optional",
+      "quote": "GRE General Test Optional",
+      "check": "ok"
+     },
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-02-15",
+      "quote": "Fall 2027 February 15, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Urban Analytics (Industrial & Systems Engineering) (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=a67f338e-3e12-5c5c-e66c-94e8d35a66d8",
+   "snapshot_sha256": "83f2dfd0fcafab26c7ff2aca0312ed13ee2880edc174d1ae28114b5e4b9d12ba",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Prior to January 2026 100 or higher Total score 20 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: Any MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "7.5 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test: Optional",
+      "quote": "GRE General Test Optional",
+      "check": "ok"
+     },
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-02-15",
+      "quote": "Fall 2027 February 15, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Urban Analytics (Interactive Computing) (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=c995e1fc-c202-24e1-b042-56d83d9d4552",
+   "snapshot_sha256": "550f60aa7b0b0cf9aec00ed671821ea8b41b6734e2089ae6bba45f855d9fcf83",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Prior to January 2026 100 or higher Total score 20 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: Any MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "7.5 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test: Optional",
+      "quote": "GRE General Test Optional",
+      "check": "ok"
+     },
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-02-15",
+      "quote": "Fall 2027 February 15, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Bioengineering (College of Computing) (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=7d7639e0-473d-c234-73f2-197f456eb43e",
+   "snapshot_sha256": "4af10be782b23141876195dbfe0abb17f582e9365fd3ee2651fe6c7e046ea58f",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Prior to January 2026 100 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: Any MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test: Required",
+      "quote": "GRE General Test Required",
+      "check": "ok"
+     },
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-02-01",
+      "quote": "Fall 2027 February 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Computational Science & Engineering (College of Computing) (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=91447fa2-ef89-be14-32fe-3d26a683b0c9",
+   "snapshot_sha256": "f77cebd9cef69b47cfb8c1cdd9f4a33622ecefdd103dcaa9db4f7d722bdd5f9e",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "Prior to January 2026 90 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: Any MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test: Required",
+      "quote": "GRE General Test Required",
+      "check": "ok"
+     },
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-02-01",
+      "quote": "Fall 2027 February 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Robotics (College of Computing) (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=6cbd39f7-9e21-ae01-80ce-b0a6833f78f6",
+   "snapshot_sha256": "ea29b00c51d885d654d2291ed599df3021c802c4f96b987c97a844bf5c3b40c0",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Prior to January 2026 100 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: 78 MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "7.5 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test: Optional",
+      "quote": "GRE General Test Optional",
+      "check": "ok"
+     },
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2026-12-15",
+      "quote": "Fall 2027 December 15, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Aerospace Engineering (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=71a69e64-cf68-3ae2-7d84-6cba591e0958",
+   "snapshot_sha256": "69055bc6babb0de923fc2462dc31016f6a34c919a8ebd719a8137f37b736d2ee",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "Prior to January 2026 90 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: 63 MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test: Optional",
+      "quote": "GRE General Test Optional",
+      "check": "ok"
+     },
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Summer 2027",
+      "date": "2027-02-01",
+      "quote": "Summer 2027 February 1, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027",
+      "date": "2027-03-01",
+      "quote": "Fall 2027 March 1, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2028",
+      "date": "2027-09-01",
+      "quote": "Spring 2028 September 1, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Summer 2028",
+      "date": "2028-02-01",
+      "quote": "Summer 2028 February 1, 2028",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Bioengineering (Aerospace Engineering) (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=658019a2-e6af-4e1b-3ca9-d4726beff1fc",
+   "snapshot_sha256": "91065ca6014665c266ce843213655c0ee0102afafc5957d93302b08d833743e0",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Prior to January 2026 100 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: Any MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test: Optional",
+      "quote": "GRE General Test Optional",
+      "check": "ok"
+     },
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-03-01",
+      "quote": "Fall 2027 March 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Bioengineering (Chemical and Biomolecular Engineering) (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=d16828bc-90b6-474e-cccc-114c8a8d6b69",
+   "snapshot_sha256": "d06d84df80f24675a2d6addae213fac0475c1f220023ef92f6c9c4154009d73e",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "Prior to January 2026 90 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: 64 MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2026-12-11",
+      "quote": "Fall 2027 December 11, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Bioengineering (Civil & Environmental Engineering) (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=6a0cd1a3-76ac-8d06-01ce-9fd570371f3d",
+   "snapshot_sha256": "feec8a490989158383136e0c52b8edd830d45e60e1d7f0797a4ca2bbd066d8f9",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Prior to January 2026 100 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: 1502 MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-04-01",
+      "quote": "Fall 2027 April 1, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2028",
+      "date": "2027-10-01",
+      "quote": "Spring 2028 October 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Bioengineering (Electrical & Computer Engineering) (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=63551eb3-f283-23fd-c667-6b61b87ca966",
+   "snapshot_sha256": "3686844185f8e2016ede7247eaac2c14988b565d37605ab27c85dceec6710049",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Prior to January 2026 100 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: 66 MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test: Optional",
+      "quote": "GRE General Test Optional",
+      "check": "ok"
+     },
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2026-12-16",
+      "quote": "Fall 2027 December 16, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Bioengineering (Materials Science & Engineering) (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=48a9c705-a684-88a7-d6f5-a1dd4da98797",
+   "snapshot_sha256": "75263901cb88a725b1d09e36a15aa74071b967d87c334335ce8995cf6c2dac35",
+   "fields": {
+    "academic": {
+     "text": "A minimum GPA of 3.0 is required to pursue an M.S.",
+     "quote": "A minimum GPA of 3.0 is required to pursue an M.S.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Prior to January 2026 100 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: 69 MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test: Optional",
+      "quote": "GRE General Test Optional",
+      "check": "ok"
+     },
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Summer 2027",
+      "date": "2026-12-15",
+      "quote": "Summer 2027 December 15, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027",
+      "date": "2027-02-01",
+      "quote": "Fall 2027 February 1, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2028",
+      "date": "2027-09-01",
+      "quote": "Spring 2028 September 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Bioengineering (Mechanical Engineering) (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=956d1aaa-a76f-5a8c-4690-a9b72153b254",
+   "snapshot_sha256": "cfa6dcb05d7c63e77585c1326bc59e7b77a60b4e428f97909012997bc9f684dc",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 94,
+     "quote": "Prior to January 2026 94 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: 88 MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-03-02",
+      "quote": "Fall 2027 March 2, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2028",
+      "date": "2027-10-01",
+      "quote": "Spring 2028 October 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Biomedical Engineering-GT (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=86d2a70a-f77a-c29d-1045-435351594e77",
+   "snapshot_sha256": "afd27e1aabb4c56c6ef3323f95a929d5fa24cf9662a4f431cbe540a887823741",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Prior to January 2026 100 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: 69 MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test: Optional",
+      "quote": "GRE General Test Optional",
+      "check": "ok"
+     },
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-02-05",
+      "quote": "Fall 2027 February 5, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2028",
+      "date": "2027-10-15",
+      "quote": "Spring 2028 October 15, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Biomedical Innovation & Development (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=d2414933-4b12-7646-fc11-bb1b1f72269e",
+   "snapshot_sha256": "7ec7245d71e9867b708ff9038104caf89d31ad8aea3db79588641350236db121",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Prior to January 2026 100 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: 69 MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test: Optional",
+      "quote": "GRE General Test Optional",
+      "check": "ok"
+     },
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-01-15",
+      "quote": "Fall 2027 January 15, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Chemical Engineering (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=7355a3d5-fa8c-fb7a-0adb-83789b09fe85",
+   "snapshot_sha256": "511a344e84948855dbc9a4d5efc8c9b65f167dca793033854ef5cd67efdd74ee",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "Prior to January 2026 90 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: 64 MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2026-12-11",
+      "quote": "Fall 2027 December 11, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Civil Engineering (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=9e936d35-1aad-7e6b-752f-4efab2c2073d",
+   "snapshot_sha256": "9a55799282f8f144dc19302e98c1f5235d34268121e436df2a00c0d21e2fb451",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "Prior to January 2026 90 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: 65 MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-04-01",
+      "quote": "Fall 2027 April 1, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2028",
+      "date": "2027-10-01",
+      "quote": "Spring 2028 October 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Computational Science & Engineering (Aerospace Engineering) (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=11a03ac9-142f-3209-fd08-8aace21250f4",
+   "snapshot_sha256": "404aa470da0b8ccc51e5aeaafff4e61b28eae2bd18268fc96c8569b39befe8c1",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "Prior to January 2026 90 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: 63 MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test: Optional",
+      "quote": "GRE General Test Optional",
+      "check": "ok"
+     },
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-03-01",
+      "quote": "Fall 2027 March 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Computational Science & Engineering (Civil & Environmental Engineering) (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=b6a7adca-7a56-8f54-3b96-c995b6cd3d22",
+   "snapshot_sha256": "727933c32242701a9fa891a1edf90a6e72794a745a2d43a6a04a544c5035c30b",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "Prior to January 2026 90 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: 65 MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-04-01",
+      "quote": "Fall 2027 April 1, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2028",
+      "date": "2027-10-01",
+      "quote": "Spring 2028 October 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Computational Science & Engineering (Electrical & Computer Engineering) (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=1965b2ab-8ddc-6c5a-2239-fa6eb81a0c4e",
+   "snapshot_sha256": "dd9e3ab224b32602016ba4f24162480215b33e153833f54716ec55c790e0dd40",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "Prior to January 2026 90 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: Any MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test: Optional",
+      "quote": "GRE General Test Optional",
+      "check": "ok"
+     },
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2026-12-16",
+      "quote": "Fall 2027 December 16, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Computational Science & Engineering (Industrial & Systems Engineering) (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=0ba8240e-2481-99d5-f95a-42541ca06020",
+   "snapshot_sha256": "23fbee0dd584a0a91c8f533dcb0bdc26b1def5ae651ba894f89413185ebcc439",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "Prior to January 2026 90 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: Any MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test: Required",
+      "quote": "GRE General Test Required",
+      "check": "ok"
+     },
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-01-15",
+      "quote": "Fall 2027 January 15, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Computational Science & Engineering (Materials Science & Engineering) (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=913d512b-6b1f-39c3-64b2-dd7979a849fe",
+   "snapshot_sha256": "34b6f4224e11607b232bfa342ef5b78dc26871d45a1c847bba1c32eb986ceebe",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "Prior to January 2026 90 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: Any MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test: Optional",
+      "quote": "GRE General Test Optional",
+      "check": "ok"
+     },
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Summer 2027",
+      "date": "2026-12-15",
+      "quote": "Summer 2027 December 15, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027",
+      "date": "2027-02-01",
+      "quote": "Fall 2027 February 1, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2028",
+      "date": "2027-09-01",
+      "quote": "Spring 2028 September 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Computational Science & Engineering (Mechanical Engineering) (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=49b6bf1f-7fa0-ba73-d521-015071c5ede7",
+   "snapshot_sha256": "b20ac5308bda5e72628e36e623ff559cb1f976c34464ef79b256a549ee87a756",
+   "fields": {
+    "academic": {
+     "text": "At least 3.3 GPA for the Master's in Mechanical Engineering programs",
+     "quote": "At least 3.3 GPA for the Master's in Mechanical Engineering programs",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 94,
+     "quote": "Prior to January 2026 94 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: 88 MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-03-02",
+      "quote": "Fall 2027 March 2, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Electrical & Computer Engineering (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=b9c471fc-5084-0e9d-491a-07ba52522650",
+   "snapshot_sha256": "d6cf52deffafc0b46435ea1a282120d3e9ef240401785c093b018fafd0cb0668",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "Prior to January 2026 90 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: 66 MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test: Optional",
+      "quote": "GRE General Test Optional",
+      "check": "ok"
+     },
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2026-12-16",
+      "quote": "Fall 2027 December 16, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Engineering Science & Mechanics (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=69d8292f-d0a3-72e9-c5d1-47154896de09",
+   "snapshot_sha256": "592eed0c9f379f1ad69bd8c52a2f69ecff62211f58d79220309bbc80cd799d88",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "Prior to January 2026 90 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: 65 MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-04-01",
+      "quote": "Fall 2027 April 1, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2028",
+      "date": "2027-10-01",
+      "quote": "Spring 2028 October 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Environmental Engineering (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=824a27aa-baf8-d4be-9eb9-16e5fc7d48ad",
+   "snapshot_sha256": "7d3bb1b85f80203645db05adacd628290624303dcbd460f1c7ecb635873d0644",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "Prior to January 2026 90 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: 65 MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-04-01",
+      "quote": "Fall 2027 April 1, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2028",
+      "date": "2027-10-01",
+      "quote": "Spring 2028 October 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Health Systems (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=3b4e9d3e-e316-d467-5dfb-16a876538e4b",
+   "snapshot_sha256": "2bce03324adc477ad181fde3f49f673cc6f4c6fd18f421910a843d0dcc2f4d6a",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "Prior to January 2026 90 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: Any MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test: Required",
+      "quote": "GRE General Test Required",
+      "check": "ok"
+     },
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     },
+     {
+      "text": "Personal Statement describing any relevant work experience",
+      "quote": "Personal Statement describing any relevant work experience",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-01-15",
+      "quote": "Fall 2027 January 15, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Industrial Engineering (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=3c7e5fd6-c66a-87a1-ba52-6920e262d957",
+   "snapshot_sha256": "bd97e554e5be96d2d04a2edfc9da469ea8a726ed42fba20e5b6ca0be8739758e",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "Prior to January 2026 90 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: Any MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test: Required",
+      "quote": "GRE General Test Required",
+      "check": "ok"
+     },
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-01-15",
+      "quote": "Fall 2027 January 15, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Materials Science & Engineering (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=cabaac80-59fd-589b-3e44-d42a3de0b9e4",
+   "snapshot_sha256": "d40cba52ab1fd36620b5e2650556197cf65b61b8638a10ffc70eb6e5803bf395",
+   "fields": {
+    "academic": {
+     "text": "A minimum GPA of 3.0 is required to pursue an M.S.",
+     "quote": "A minimum GPA of 3.0 is required to pursue an M.S.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Prior to January 2026 100 or higher Total score 19 or higher Listening, Reading, Writing subsections 26 or higher Speaking subsection Institute Code: 5248 Department Code: 69 MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test: Optional",
+      "quote": "GRE General Test Optional",
+      "check": "ok"
+     },
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Summer 2027",
+      "date": "2026-12-15",
+      "quote": "Summer 2027 December 15, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027",
+      "date": "2027-02-01",
+      "quote": "Fall 2027 February 1, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2028",
+      "date": "2027-09-01",
+      "quote": "Spring 2028 September 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Mechanical Engineering (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=64c99cec-2ebe-cff1-852c-034a67e276a2",
+   "snapshot_sha256": "5d47eda6b64a3eac3a1bded691401c19dcfcb57abe295becaa128116b194d4d3",
+   "fields": {
+    "academic": {
+     "text": "At least 3.3 GPA for the Master's in Mechanical Engineering programs",
+     "quote": "At least 3.3 GPA for the Master's in Mechanical Engineering programs",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 94,
+     "quote": "Prior to January 2026 94 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: 88 MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-03-02",
+      "quote": "Fall 2027 March 2, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2028",
+      "date": "2027-10-01",
+      "quote": "Spring 2028 October 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Mechanical Engineering (Joint program with Stuttgart) (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=61a9798c-5477-a2c0-c084-ec9bde7191dd",
+   "snapshot_sha256": "027aa253171e54e18f8cb3daa511b2dcd334c3edf2d046503c7d9212bf4b3108",
+   "fields": {
+    "academic": {
+     "text": "At least 3.3 GPA for the Master's in Mechanical Engineering programs",
+     "quote": "At least 3.3 GPA for the Master's in Mechanical Engineering programs",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 94,
+     "quote": "Prior to January 2026 94 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: 88 MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-03-02",
+      "quote": "Fall 2027 March 2, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2028",
+      "date": "2027-10-01",
+      "quote": "Spring 2028 October 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Medical Physics (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=f59b8301-488d-6b0c-b38a-8a74ff30c1df",
+   "snapshot_sha256": "c2a1f5a195dc9c0a35bad9dec0ab18285d44f96728ac82567173f26f748c9b5c",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 94,
+     "quote": "Prior to January 2026 94 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: 88 MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     },
+     {
+      "text": "Students entering a medical physics graduate educational program should have a strong foundation in basic physics demonstrated either by an undergraduate or graduate degree in physics, or by a degree in an engineering discipline or another of the physical sciences and with coursework that is the equivalent of a minor in physics. If students have not taken an Anatomy and Physiology course, they must take this course their first semester as a graduate Medical Physics student.",
+      "quote": "Students entering a medical physics graduate educational program should have a strong foundation in basic physics demonstrated either by an undergraduate or graduate degree in physics, or by a degree in an engineering discipline or another of the physical sciences and with coursework that is the equivalent of a minor in physics. If students have not taken an Anatomy and Physiology course, they must take this course their first semester as a graduate Medical Physics student.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-03-02",
+      "quote": "Fall 2027 March 2, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Nuclear Engineering (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=3768b155-40ee-288b-1ebf-435de9449260",
+   "snapshot_sha256": "50f30443f23bf445424c4fb74428e5cc9a92936e20d45fca96c4d5be0c54547b",
+   "fields": {
+    "academic": {
+     "text": "At least a 3.0 GPA",
+     "quote": "At least a 3.0 GPA",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 94,
+     "quote": "Prior to January 2026 94 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: 88 MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-03-02",
+      "quote": "Fall 2027 March 2, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2028",
+      "date": "2027-10-01",
+      "quote": "Spring 2028 October 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Operations Research (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=7871ef91-ca32-840d-e634-04e910aba6f6",
+   "snapshot_sha256": "f52d66caeaa37162c5329fa236b258911f311515a420efceb6e41a065c24e98d",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "Prior to January 2026 90 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: Any MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test: Required",
+      "quote": "GRE General Test Required",
+      "check": "ok"
+     },
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-01-15",
+      "quote": "Fall 2027 January 15, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Robotics (Aerospace Engineering) (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=70565aeb-3664-fd01-ecbf-bc0c44c79fff",
+   "snapshot_sha256": "39e4d8813a70c7f06604c3f8cef8969e4be82c75d66c6050ff7f0c6e8923fa32",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "Prior to January 2026 90 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: 63 MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test: Optional",
+      "quote": "GRE General Test Optional",
+      "check": "ok"
+     },
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-03-01",
+      "quote": "Fall 2027 March 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Robotics (Biomedical Engineering) (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=9ca6b884-215e-8261-fe3a-63ac1f3be7af",
+   "snapshot_sha256": "8cd30c9fa4e17eb6217d294a3d6bb914cbe189e77f36f190f019b7d2cc5d9f96",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "Prior to January 2026 90 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: Any MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-02-01",
+      "quote": "Fall 2027 February 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Robotics (Electrical & Computer Engineering) (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=5171155d-9683-f390-46cc-79b84dfcf333",
+   "snapshot_sha256": "f4c6f2c6e482e17d0878445e7a5c5947b21df619d71026f9c8365d5a9d208d0a",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "Prior to January 2026 90 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: 66 MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test: Optional",
+      "quote": "GRE General Test Optional",
+      "check": "ok"
+     },
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-02-01",
+      "quote": "Fall 2027 February 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Robotics (Mechanical Engineering) (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=8a59861f-31b3-6ad2-a83f-ab60bfab9db3",
+   "snapshot_sha256": "fe096221664f2755381eb0df937d6522bd91cb4b54b40126e3f72b9251cc6b39",
+   "fields": {
+    "academic": {
+     "text": "At least 3.3 GPA for the Master's in Mechanical Engineering programs",
+     "quote": "At least 3.3 GPA for the Master's in Mechanical Engineering programs",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "Prior to January 2026 90 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: Any MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-03-02",
+      "quote": "Fall 2027 March 2, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Statistics (Industrial & Systems Engineering) (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=866fc268-df52-36a3-72d9-00ee27edba73",
+   "snapshot_sha256": "6a42decf6e6bf1691fb67d0e9692aea53039eddc89fbc0ded89646072cee55b7",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "Prior to January 2026 90 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: Any MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test: Required",
+      "quote": "GRE General Test Required",
+      "check": "ok"
+     },
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-01-15",
+      "quote": "Fall 2027 January 15, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Supply Chain Engineering (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=1caa4cbe-7aa1-871b-ef2c-ff8025b2ef3f",
+   "snapshot_sha256": "25f1bb19fa20ec04daa3defd5ed38995094e605faeeffc34bd29b1428770eee3",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "Prior to January 2026 90 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: Any MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test: Required",
+      "quote": "GRE General Test Required",
+      "check": "ok"
+     },
+     {
+      "text": "GMAT: Not Required",
+      "quote": "GMAT Not Required",
+      "check": "ok"
+     },
+     {
+      "text": "Personal Statement describing any relevant work experience",
+      "quote": "Personal Statement describing any relevant work experience",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-01-15",
+      "quote": "Fall 2027 January 15, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Business Administration (Evening MBA) (Georgia Tech, MBA Evening)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=d94ae68a-82a8-cdfd-890f-b7c92e45cb6d",
+   "snapshot_sha256": "2b74dca7e4e11c65cbf08ad937aabc3924641be2d4217d538fcfe3c8c133b5b9",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 95,
+     "quote": "Prior to January 2026 95 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: 69 MyBest score is not accepted TOEFL iBT After January 2026 5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test: Optional",
+      "quote": "GRE General Test Optional",
+      "check": "ok"
+     },
+     {
+      "text": "GMAT: Optional",
+      "quote": "GMAT Optional",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-06-16",
+      "quote": "Fall 2027 June 16, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2028",
+      "date": "2027-10-15",
+      "quote": "Spring 2028 October 15, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Business Administration (Executive MBA - Global Business) (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=7cee2760-2615-c3a2-3e30-4edf003f6670",
+   "snapshot_sha256": "cfa021e92c57c2513c0fd7c44bcd3f958392d901e71d6dd67ce8fa6c8d765914",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 95,
+     "quote": "Prior to January 2026 95 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: 02 MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test: Optional",
+      "quote": "GRE General Test Optional",
+      "check": "ok"
+     },
+     {
+      "text": "GMAT: Optional",
+      "quote": "GMAT Optional",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-06-30",
+      "quote": "Fall 2027 June 30, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Business Administration (Executive MBA - Management of Technology) (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=c323e405-93c5-4742-77e5-37168e53ce7c",
+   "snapshot_sha256": "83006ade125a1a1ac07df6fa11b49e33b8edf3233ff49a1514aff2a4c5dd1699",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 95,
+     "quote": "Prior to January 2026 95 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: 02 MyBest score is not accepted TOEFL iBT After January 2026 4.5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test: Optional",
+      "quote": "GRE General Test Optional",
+      "check": "ok"
+     },
+     {
+      "text": "GMAT: Optional",
+      "quote": "GMAT Optional",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-06-30",
+      "quote": "Fall 2027 June 30, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Business Administration (Full-time MBA) (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=f99a3393-dbea-cfac-dfbe-735c8226fca4",
+   "snapshot_sha256": "4f1af13840e697aac8a8ef5aafd6663cf84a8a5105f54c5df6421a130e2cb80a",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 95,
+     "quote": "Prior to January 2026 95 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: 69 MyBest score is not accepted TOEFL iBT After January 2026 5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test: Optional",
+      "quote": "GRE General Test Optional",
+      "check": "ok"
+     },
+     {
+      "text": "GMAT: Optional",
+      "quote": "GMAT Optional",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-05-05",
+      "quote": "Fall 2027 May 5, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Major in Management (Georgia Tech, Atlanta)",
+   "url": "https://gradapp.gatech.edu/portal/program-info?cmd=view-program&program=176f261a-c9b1-c5bf-0b10-50839cf65a7d",
+   "snapshot_sha256": "e3b9f5c2abacef81b6bd7ac42ea74dc60cfa153dfc3264ad45382aa68ca09411",
+   "fields": {
+    "academic": {
+     "text": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "quote": "Award of a 4-year U.S. Bachelor's degree or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 95,
+     "quote": "Prior to January 2026 95 or higher Total score 19 or higher Listening, Reading, Writing, Speaking subsections Institute Code: 5248 Department Code: 02 MyBest score is not accepted TOEFL iBT After January 2026 5 or higher Total score",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "7 or higher Overall band score",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General Test: Optional",
+      "quote": "GRE General Test Optional",
+      "check": "ok"
+     },
+     {
+      "text": "GMAT: Optional",
+      "quote": "GMAT Optional",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-06-15",
+      "quote": "Fall 2027 June 15, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 60,
+  "机器核对": 60,
+  "待人工": 0
+ }
+}

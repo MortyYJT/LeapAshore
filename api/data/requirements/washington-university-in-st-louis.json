@@ -1,0 +1,477 @@
+{
+ "school_key": "washington-university-in-st-louis",
+ "school_name_en": "Washington University in St. Louis",
+ "country": "United States",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://gradadmissions.washu.edu/academics-admissions/",
+  "https://washu.edu/academics/academic-degrees-and-programs/",
+  "https://brownschool.washu.edu/",
+  "https://samfoxschool.washu.edu/",
+  "https://law.washu.edu/academics/graduate-international-programs/",
+  "https://publichealth.washu.edu/education/mph/",
+  "https://caps.washu.edu/programs/graduate-programs/"
+ ],
+ "blocked": [
+  {
+   "url": "https://engineering.washu.edu/academics/graduate/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://olin.washu.edu/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://olin.wustl.edu/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://gradstudies.wustl.edu/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://cse.washu.edu/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://ese.washu.edu/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://mems.washu.edu/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://bme.washu.edu/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://eece.wustl.edu/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://statistics.wustl.edu",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://math.wustl.edu",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://dataanalytics.wustl.edu",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://graduateadmissions.washu.edu/",
+   "reason": "robots.txt disallows"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://engineering.washu.edu/academics/graduate/",
+  "https://olin.washu.edu/programs/",
+  "https://gradstudies.washu.edu/apply"
+ ],
+ "notes": "McKelvey Engineering, Olin Business and Arts & Sciences department hosts all disallow our crawler in robots.txt, so no MS CS/DS/EE/ME/BME, Olin masters or A&S Statistics were collected. CAPS MACS and MDAA skipped: not available to F-1/J-1 students. Brown School, Public Health, Sam Fox and Law deadlines give day and month without a year (except Sam Fox) and are omitted. The university English minimums are cited only where the programme's own school page states them.",
+ "programs": [
+  {
+   "name": "Master of Architecture (M.Arch)",
+   "url": "https://samfoxschool.washu.edu/admissions/graduate/march-mla-mud",
+   "snapshot_sha256": "04b07f30a33b498296f6e8338b2a1e9ac1630f49e82dcfce2c0d9eaf9429d652",
+   "fields": {
+    "academic": {
+     "text": "M.Arch 2: bachelor's degree in or background in architecture; M.Arch 3: bachelor's degree in any field",
+     "quote": "M.Arch 3: Bachelor’s degree in any field",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "International English Language Testing System (IELTS) Academic – 6.5 minimum composite score",
+     "source_sha256": "04b07f30a33b498296f6e8338b2a1e9ac1630f49e82dcfce2c0d9eaf9429d652",
+     "source_url": "https://samfoxschool.washu.edu/admissions/graduate/march-mla-mud",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT – 5.0 overall (new scale) OR 4.5 ≥ 90 overall (old scale)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "04b07f30a33b498296f6e8338b2a1e9ac1630f49e82dcfce2c0d9eaf9429d652",
+     "source_url": "https://samfoxschool.washu.edu/admissions/graduate/march-mla-mud",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 applications due",
+      "date": "2027-01-03",
+      "quote": "Jan 3, 2027 Applications due",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "Competitive applicants have a 3.0 GPA or above on a 4.0 scale (GPA expectation, not a hard minimum)",
+      "quote": "Competitive applicants for admission will have a 3.0 grade point average (GPA) or above on a 4.0 scale.",
+      "check": "ok"
+     },
+     {
+      "text": "Before enrollment: one college Calculus course and one college Physics course, each C or better",
+      "quote": "Prior to enrollment, applicants must show satisfactory completion (a C grade or better) in one course in college Calculus and one course in college Physics",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Landscape Architecture (MLA)",
+   "url": "https://samfoxschool.washu.edu/admissions/graduate/march-mla-mud",
+   "snapshot_sha256": "04b07f30a33b498296f6e8338b2a1e9ac1630f49e82dcfce2c0d9eaf9429d652",
+   "fields": {
+    "academic": {
+     "text": "MLA 2: bachelor's degree in or background in landscape architecture or architecture; MLA 3: bachelor's degree in any field",
+     "quote": "MLA 3: Bachelor’s degree in any field",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "International English Language Testing System (IELTS) Academic – 6.5 minimum composite score",
+     "source_sha256": "04b07f30a33b498296f6e8338b2a1e9ac1630f49e82dcfce2c0d9eaf9429d652",
+     "source_url": "https://samfoxschool.washu.edu/admissions/graduate/march-mla-mud",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT – 5.0 overall (new scale) OR 4.5 ≥ 90 overall (old scale)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "04b07f30a33b498296f6e8338b2a1e9ac1630f49e82dcfce2c0d9eaf9429d652",
+     "source_url": "https://samfoxschool.washu.edu/admissions/graduate/march-mla-mud",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 applications due",
+      "date": "2027-01-03",
+      "quote": "Jan 3, 2027 Applications due",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "Competitive applicants have a 3.0 GPA or above on a 4.0 scale (GPA expectation, not a hard minimum)",
+      "quote": "Competitive applicants for admission will have a 3.0 grade point average (GPA) or above on a 4.0 scale.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Urban Design (MUD)",
+   "url": "https://samfoxschool.washu.edu/admissions/graduate/march-mla-mud",
+   "snapshot_sha256": "04b07f30a33b498296f6e8338b2a1e9ac1630f49e82dcfce2c0d9eaf9429d652",
+   "fields": {
+    "academic": {
+     "text": "Professional or pre-professional degree in architecture, landscape architecture, or planning",
+     "quote": "Professional or pre-professional degree in architecture, landscape architecture, or planning",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "International English Language Testing System (IELTS) Academic – 6.5 minimum composite score",
+     "source_sha256": "04b07f30a33b498296f6e8338b2a1e9ac1630f49e82dcfce2c0d9eaf9429d652",
+     "source_url": "https://samfoxschool.washu.edu/admissions/graduate/march-mla-mud",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT – 5.0 overall (new scale) OR 4.5 ≥ 90 overall (old scale)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "04b07f30a33b498296f6e8338b2a1e9ac1630f49e82dcfce2c0d9eaf9429d652",
+     "source_url": "https://samfoxschool.washu.edu/admissions/graduate/march-mla-mud",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 applications due",
+      "date": "2027-01-03",
+      "quote": "Jan 3, 2027 Applications due",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "Competitive applicants have a 3.0 GPA or above on a 4.0 scale (GPA expectation, not a hard minimum)",
+      "quote": "Competitive applicants for admission will have a 3.0 grade point average (GPA) or above on a 4.0 scale.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Advanced Architectural Design (MSAAD)",
+   "url": "https://samfoxschool.washu.edu/admissions/graduate/march-mla-mud",
+   "snapshot_sha256": "04b07f30a33b498296f6e8338b2a1e9ac1630f49e82dcfce2c0d9eaf9429d652",
+   "fields": {
+    "academic": {
+     "text": "Bachelor of Architecture or Master of Architecture from a NAAB-accredited US programme or international equivalent",
+     "quote": "Bachelor of Architecture (B. Arch) degree or Master of Architecture (M.Arch) degree from a NAAB-accredited degree program in the United States or its international equivalent.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "International English Language Testing System (IELTS) Academic – 6.5 minimum composite score",
+     "source_sha256": "04b07f30a33b498296f6e8338b2a1e9ac1630f49e82dcfce2c0d9eaf9429d652",
+     "source_url": "https://samfoxschool.washu.edu/admissions/graduate/march-mla-mud",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT – 5.0 overall (new scale) OR 4.5 ≥ 90 overall (old scale)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "04b07f30a33b498296f6e8338b2a1e9ac1630f49e82dcfce2c0d9eaf9429d652",
+     "source_url": "https://samfoxschool.washu.edu/admissions/graduate/march-mla-mud",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 applications due",
+      "date": "2027-01-03",
+      "quote": "Jan 3, 2027 Applications due",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "Competitive applicants have a 3.0 GPA or above on a 4.0 scale (GPA expectation, not a hard minimum)",
+      "quote": "Competitive applicants for admission will have a 3.0 grade point average (GPA) or above on a 4.0 scale.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Architectural Studies (MSAS)",
+   "url": "https://samfoxschool.washu.edu/admissions/graduate/march-mla-mud",
+   "snapshot_sha256": "04b07f30a33b498296f6e8338b2a1e9ac1630f49e82dcfce2c0d9eaf9429d652",
+   "fields": {
+    "academic": {
+     "text": "Undergraduate or graduate degree in architecture, or currently enrolled in another graduate-level architecture programme at the school",
+     "quote": "Undergraduate or graduate degree in architecture OR",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "International English Language Testing System (IELTS) Academic – 6.5 minimum composite score",
+     "source_sha256": "04b07f30a33b498296f6e8338b2a1e9ac1630f49e82dcfce2c0d9eaf9429d652",
+     "source_url": "https://samfoxschool.washu.edu/admissions/graduate/march-mla-mud",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT – 5.0 overall (new scale) OR 4.5 ≥ 90 overall (old scale)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "04b07f30a33b498296f6e8338b2a1e9ac1630f49e82dcfce2c0d9eaf9429d652",
+     "source_url": "https://samfoxschool.washu.edu/admissions/graduate/march-mla-mud",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 applications due",
+      "date": "2027-01-03",
+      "quote": "Jan 3, 2027 Applications due",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "Competitive applicants have a 3.0 GPA or above on a 4.0 scale (GPA expectation, not a hard minimum)",
+      "quote": "Competitive applicants for admission will have a 3.0 grade point average (GPA) or above on a 4.0 scale.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Social Work (MSW)",
+   "url": "https://brownschool.washu.edu/admissions-aid/apply-to-msw/",
+   "snapshot_sha256": "898968c842bdfa0db81bb522aa1947053c63c3c153e1ec5d4a2996f79ee5d582",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or equivalent from an accredited college or university; international degrees need a certified foreign credential evaluation",
+     "quote": "Students entering the MSW program must hold a bachelor’s degree or equivalent from an accredited college or university.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Minimum cumulative GPA of 3.0 on a 4.0 scale is preferred (last 60-75 semester credit hours)",
+      "quote": "A minimum cumulative GPA of 3.0 on a 4.0 scale is preferred.",
+      "check": "ok"
+     },
+     {
+      "text": "Applicants with a degree from outside the U.S. or English-speaking Canada must provide a certified foreign credential evaluation",
+      "quote": "Applicants who have earned (or will earn) their prerequisite degree outside the U.S. or English-speaking Canada must provide a certified foreign credential evaluation.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "quote": "International English Language Testing System (IELTS) Academic – 6.5 minimum composite score",
+     "source_sha256": "cd77c2d02fc451e580fd39217282fc16578f4ea3031a9147e30d082f4d0efc63",
+     "source_url": "https://brownschool.washu.edu/admissions-aid/international-applicants/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT – 5.0 overall (new scale) OR 4.5 >= 90 overall (old scale)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "cd77c2d02fc451e580fd39217282fc16578f4ea3031a9147e30d082f4d0efc63",
+     "source_url": "https://brownschool.washu.edu/admissions-aid/international-applicants/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Social Policy (MSP)",
+   "url": "https://brownschool.washu.edu/admissions-aid/apply-to-msp/",
+   "snapshot_sha256": "092140c0a920c12768f6b3d0347250fdff60922e2e8a62518772c2aeaa8dc18a",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or equivalent from an accredited college or university; international degrees need a certified foreign credential evaluation",
+     "quote": "Students entering the MSP program must hold a bachelor’s degree or equivalent from an accredited college or university.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Minimum cumulative GPA of 3.0 on a 4.0 scale is preferred (last 60-75 semester credit hours)",
+      "quote": "A minimum cumulative GPA of 3.0 on a 4.0 scale is preferred.",
+      "check": "ok"
+     },
+     {
+      "text": "Applicants with a degree from outside the U.S. or English-speaking Canada must provide a certified foreign credential evaluation",
+      "quote": "Applicants who have earned (or will earn) their prerequisite degree outside the U.S. or English-speaking Canada must provide a certified foreign credential evaluation.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "quote": "International English Language Testing System (IELTS) Academic – 6.5 minimum composite score",
+     "source_sha256": "cd77c2d02fc451e580fd39217282fc16578f4ea3031a9147e30d082f4d0efc63",
+     "source_url": "https://brownschool.washu.edu/admissions-aid/international-applicants/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "Test of English as a Foreign Language (TOEFL) iBT – 5.0 overall (new scale) OR 4.5 >= 90 overall (old scale)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "cd77c2d02fc451e580fd39217282fc16578f4ea3031a9147e30d082f4d0efc63",
+     "source_url": "https://brownschool.washu.edu/admissions-aid/international-applicants/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Health (MPH)",
+   "url": "https://publichealth.washu.edu/admissions/apply-mph/",
+   "snapshot_sha256": "7eac9d7a86cde8e2d57c3c8b197b621682e45079557ea54c8efcbe6516d695bd",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or equivalent from an accredited college or university",
+     "quote": "Students entering the MPH program must hold a bachelor’s degree or equivalent from an accredited college or university.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Minimum cumulative GPA of 3.0 on a 4.0 scale is preferred (last 60-75 semester credit hours)",
+      "quote": "A minimum cumulative GPA of 3.0 on a 4.0 scale is preferred.",
+      "check": "ok"
+     },
+     {
+      "text": "Human biology prerequisite: grade of B or higher in a college-level human biology course; admitted students without it can complete it before the end of the first academic year",
+      "quote": "To meet this requirement, applicants must receive a grade of “B” or higher in a college-level human biology course.",
+      "check": "ok"
+     },
+     {
+      "text": "No GRE required",
+      "quote": "The School of Public Health does not require a graduate entrance exam, such as the Graduate Record Exam (GRE), for admission to the MPH program.",
+      "check": "ok"
+     },
+     {
+      "text": "Degrees from outside the US or English-speaking Canada need a certified foreign credential evaluation",
+      "quote": "Applicants earning a degree outside of the United States or English-speaking Canada must provide a certified foreign credential evaluation.",
+      "check": "ok"
+     },
+     {
+      "text": "International students must provide official English language proficiency test scores (scores not stated on this page)",
+      "quote": "International students are required to provide official English language proficiency test scores.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "LLM for International Lawyers",
+   "url": "https://law.washu.edu/academics/graduate-international-programs/llm-for-international-lawyers/",
+   "snapshot_sha256": "e30ca46b98615aa36af39cc33f27828a5ec6746618ef804576ccc0eb756c9958",
+   "fields": {
+    "academic": {
+     "text": "First law degree from the applicant's home jurisdiction",
+     "quote": "To apply for the LLM for International Lawyers, candidates must have earned a first law degree from their home jurisdiction.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Non-native English speakers must show proof of sufficient language proficiency (TOEFL, IELTS or other standardized test; score not stated; TOEFL less than two years old when classes begin)",
+      "quote": "Non-native English-speaking applicants have to show proof of sufficient language proficiency.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Two-Year LLM for International Lawyers",
+   "url": "https://law.washu.edu/academics/graduate-international-programs/two-year-llm-for-internatinal-lawyers/",
+   "snapshot_sha256": "e3a2a0912a65e68bbe94bca94877b22a5ffb2814e7ccd7fab70dcb6a57cf5d7a",
+   "fields": {
+    "academic": {
+     "text": "First law degree from the applicant's home jurisdiction",
+     "quote": "Two-Year LLM candidates must have earned a first law degree from their home jurisdiction.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Applicants with a TOEFL score over 100 are assessed under the guidelines for the regular 1-year LLM",
+      "quote": "Applicants with a proficiency score of over 100 on the TOEFL will be assessed along the admission guidelines for regular 1-Year LLM applicants.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "LLM in Negotiation & Dispute Resolution",
+   "url": "https://law.washu.edu/academics/graduate-international-programs/llm-in-negotiation-dispute-resolution/",
+   "snapshot_sha256": "da7cc0be260357c31a0f235e1b1e31eabe4f2da068788adb5a40d22574627d3f",
+   "fields": {
+    "academic": {
+     "text": "Graduated from an accredited US law school or earned a law degree from a foreign country",
+     "quote": "Candidates for the LLM degree must have graduated from an accredited US law school or have earned a law degree from a foreign country.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 11,
+  "机器核对": 11,
+  "待人工": 0
+ }
+}

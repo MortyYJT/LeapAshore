@@ -1,0 +1,101 @@
+{
+ "school_key": "universite-paris-saclay",
+ "school_name_en": "Université Paris-Saclay",
+ "country": "France",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://www.universite-paris-saclay.fr/en/education/master"
+ ],
+ "blocked": [
+  {
+   "url": "https://www.universite-paris-saclay.fr/en/education/master",
+   "reason": "HTTP 403 (www.universite-paris-saclay.fr; all programme pages on this host left unfetched)"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [],
+ "notes": "The main host www.universite-paris-saclay.fr answered HTTP 403 to the snapshot tool, so no programme page there was fetched and the Economics, Mathematics, Physics, Electrical Engineering, Management and Biology tracks were not collected. Only the AI Master track site (ai-master.lisn.upsaclay.fr, footer 'Université Paris-Saclay') was reachable and is recorded. Its 2026 windows (M1 Inception 15 Jan-16 Mar 2026, M2 Inception 1 Mar-1 Apr 2026) are already past, so no deadline is recorded. Admission is competitive: the page says about 500-1,500 applications for about 25 M1 places, so these are minimums, not guarantees. ceps-paris-saclay.fr (Economics, an ENS Paris-Saclay lab) was not treated as an official host of the university and its snapshot was deleted.",
+ "programs": [
+  {
+   "name": "Computer Science, Artificial Intelligence track (AI Master), M1 and M2",
+   "url": "https://ai-master.lisn.upsaclay.fr/admissions/details-about-the-application/",
+   "snapshot_sha256": "5aa48260980aa3dec635e89f75a69a80a36ddbb1a38fb2f0956f8c86fb4b4bf4",
+   "fields": {
+    "academic": {
+     "text": "M1: Bachelor in Computer Science, Statistics or Math (3 or 4 years) or completed French L3; M2 needs the equivalent of a one-year M1 in AI",
+     "source_sha256": "28eaf9f5886eb4019ba170ca9264fd1170ec295fbbab6f0d44f90538e6c50fc8",
+     "quote": "Bachelor in Computer Science, Statistics or Math (3 or 4 years) or French L3 completed (Licence en informatique ou mathématique+informatique).",
+     "source_url": "https://ai-master.lisn.upsaclay.fr/admissions/should-i-apply/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "M1 prerequisites: B2 English or more, probability and statistics, linear algebra, calculus, scientific programming, data visualization",
+      "source_sha256": "28eaf9f5886eb4019ba170ca9264fd1170ec295fbbab6f0d44f90538e6c50fc8",
+      "quote": "Good basics in mathematics and computer science:\nB2 level in English (or more)\nProbability and statistics\nLinear algebra\nDifferential and integral calculus\nScientific programming\nData visualization",
+      "source_url": "https://ai-master.lisn.upsaclay.fr/admissions/should-i-apply/",
+      "check": "ok"
+     },
+     {
+      "text": "M2 prerequisites: same as M1 plus the equivalent of a one-year M1 in AI (studies or strong professional experience)",
+      "source_sha256": "28eaf9f5886eb4019ba170ca9264fd1170ec295fbbab6f0d44f90538e6c50fc8",
+      "quote": "Same as M1, plus:\nEquivalent of a one-year M1 in AI (be it studies or strong professional experience).",
+      "source_url": "https://ai-master.lisn.upsaclay.fr/admissions/should-i-apply/",
+      "check": "ok"
+     },
+     {
+      "text": "English certificate of at least B2 required; official certificates such as TOEFL, IELTS, Cambridge, PTE, TOEIC or CLES accepted; unproctored free tests (EF SET, Duolingo) refused",
+      "quote": "Yes. Proof of English level B2 or equivalent. If your diploma has been taught in English, or if you are from an English-speaking country, then attach a PDF with justifications or explanations.",
+      "check": "ok"
+     },
+     {
+      "text": "Accepted English tests: any official certificate such as TOEFL, IELTS, Cambridge, PTE, TOEIC, CLES; EF SET and Duolingo refused",
+      "quote": "We accept any official certificate, such as TOEFL, IELTS, Cambridge English Qualifications, PTE, TOEIC, or CLES. (Typically those you have to pay for.)\nWe refuse all tests where one cannot prove that it was passed alone, in real exam conditions (such as EF SET, Duolingo, etc. — typically those that are free).",
+      "check": "ok"
+     },
+     {
+      "text": "If TOEIC is submitted: Listening & Reading 850 or above expected, plus Speaking at least 160 and Writing at least 150",
+      "quote": "TOEIC Listening & Reading: We expect a highly competitive score of 850 or above.",
+      "check": "ok"
+     },
+     {
+      "text": "TOEIC Speaking minimum 160 and Writing minimum 150",
+      "quote": "a minimum of 160 for Speaking and 150 for Writing",
+      "check": "ok"
+     },
+     {
+      "text": "No French level required",
+      "quote": "No. There are some OPTIONAL classes that can be taken in French, but it is possible to get the degree by taking only classes taught in English.",
+      "check": "ok"
+     },
+     {
+      "text": "Required documents include CV, motivation letter, certified transcripts since high school diploma, recommendation letters or internship evaluations, auto-evaluation form, English certificate (at least B2)",
+      "quote": "English level certificate (at least B2).",
+      "check": "ok"
+     },
+     {
+      "text": "M2 direct entry not recommended unless a 4-year CS bachelor with strong ML/AI emphasis; must have equivalent of M1 level",
+      "source_sha256": "28eaf9f5886eb4019ba170ca9264fd1170ec295fbbab6f0d44f90538e6c50fc8",
+      "quote": "In any case, you must have the equivalent of an M1 level to register in M2.",
+      "source_url": "https://ai-master.lisn.upsaclay.fr/admissions/should-i-apply/",
+      "check": "ok"
+     },
+     {
+      "text": "Equivalent of a bachelor (L3) level is a legal requirement for M1",
+      "source_sha256": "28eaf9f5886eb4019ba170ca9264fd1170ec295fbbab6f0d44f90538e6c50fc8",
+      "quote": "In any case, you must have the equivalent of a Bachelor level (L3) to register in M1, this is a legal constraint.",
+      "source_url": "https://ai-master.lisn.upsaclay.fr/admissions/should-i-apply/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 1,
+  "机器核对": 1,
+  "待人工": 0
+ }
+}

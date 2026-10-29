@@ -1,6 +1,6 @@
-# Plain HTTP on :80 until the site has a domain; Caddy switches to automatic HTTPS once this block is
-# addressed by a hostname instead.
-:80 {
+# Addressing the site by hostname turns on Caddy's automatic HTTPS: it obtains and renews the
+# certificate itself and redirects plain HTTP to HTTPS. Certificates persist in the caddy-data volume.
+leapashore.mortyyjt.site {
 	encode gzip
 	handle /api/* {
 		reverse_proxy api:8000 {
@@ -11,4 +11,9 @@
 	handle {
 		reverse_proxy web:3000
 	}
+}
+
+# Links that still point at the bare IP land on the domain, so the client cookie stays on one origin.
+http://43.161.224.82 {
+	redir https://leapashore.mortyyjt.site{uri} permanent
 }

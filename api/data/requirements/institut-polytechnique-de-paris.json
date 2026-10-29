@@ -1,0 +1,1885 @@
+{
+ "school_key": "institut-polytechnique-de-paris",
+ "school_name_en": "Institut Polytechnique de Paris",
+ "country": "France",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://www.ip-paris.fr/en/education/graduate-programs/masters-science",
+  "https://www.ip-paris.fr/en/education/useful-information/admissions"
+ ],
+ "blocked": [],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.ip-paris.fr/en/education/masters/energy-program/master-year-1-energy",
+  "https://www.ip-paris.fr/en/education/masters/energy-program/master-year-2-energy",
+  "https://www.ip-paris.fr/en/education/masters/energy-program/master-year-2-territories-and-energy-transition-tet",
+  "https://www.ip-paris.fr/en/education/masters/mathematics-and-applications-program/master-1-mathematiques-appliquees",
+  "https://www.ip-paris.fr/en/education/masters/mathematics-and-applications-program/master-2-analyse-arithmetique-geometrie"
+ ],
+ "notes": "Deadlines are the IP Paris application-portal sessions for 2027 entry (shared admissions page); EU/EEA applicants and some profiles apply via MonMaster with different dates. No English test score is stated on the programme pages except IELTS >= 6 for Electrical Engineering; other levels are CEFR (B2/C1) and kept in prerequisites. Year-level and major sub-pages of Physics, Mechanics, Nuclear, Energy, Mathematics and Applications (mostly French-language) were not individually snapshotted; their programme pages are covered. Academic Regulations for Master programs are PDF-only and were not used. Ecole polytechnique MScT programmes are not listed on the IP Paris masters page and were not collected.",
+ "programs": [
+  {
+   "name": "Master in Computer Science (IP Paris, 2 years, English)",
+   "url": "https://www.ip-paris.fr/en/education/graduate-programs/masters-science/computer-science-program",
+   "snapshot_sha256": "7c3fdce5a9eace3ba1405dd7e5a0db7173cddfb108b880b50d4cfbe25aee5c85",
+   "fields": {
+    "academic": {
+     "text": "Bachelor of Science in Computer Science",
+     "quote": "Bachelor of Science in Computer Science",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English level B2",
+      "quote": "English (B2)",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "1st session, IP Paris portal (2027 entry)",
+      "date": "2027-01-14",
+      "quote": "1st session: from October 28, 2026 to January 14, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "2nd session, IP Paris portal (2027 entry)",
+      "date": "2027-03-31",
+      "quote": "2nd session: from January 15, 2027 to March 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "3rd session, IP Paris portal (2027 entry)",
+      "date": "2027-05-31",
+      "quote": "3rd session*: from April 1, 2027 to May 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Computer Science - Major Cybersecurity (M2)",
+   "url": "https://www.ip-paris.fr/en/education/graduate-programs/masters-science/computer-science-program/major-cybersecurity",
+   "snapshot_sha256": "61306c55252168ba7e803b4f809ca22b3a09b1990dd90ada49b00bcf15bc4d3f",
+   "fields": {
+    "academic": {
+     "text": "Bachelor of Science in Computer Science",
+     "quote": "Bachelor of Science in Computer Science",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English level B1/B2",
+      "quote": "English (B1/B2)",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "1st session, IP Paris portal (2027 entry)",
+      "date": "2027-01-14",
+      "quote": "1st session: from October 28, 2026 to January 14, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "2nd session, IP Paris portal (2027 entry)",
+      "date": "2027-03-31",
+      "quote": "2nd session: from January 15, 2027 to March 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "3rd session, IP Paris portal (2027 entry)",
+      "date": "2027-05-31",
+      "quote": "3rd session*: from April 1, 2027 to May 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Computer Science - Major Computer Science for Networks (CSN, M2)",
+   "url": "https://www.ip-paris.fr/en/education/masters/computer-science-program/major-computer-science-networks-csn",
+   "snapshot_sha256": "775ddec47acaf46bd241ee99ee343bee363417568b3c91d9504f8c547de9ddcb",
+   "fields": {
+    "academic": {
+     "text": "Bachelor of Science in Computer Science; good foundations in mathematics and networks, basic knowledge of algorithms, software engineering and general network architectures",
+     "quote": "Bachelor of Science in Computer Science\nApplicants are required to have good foundations in mathematics and networks, and basic knowledge of algorithms, software engineering and general network architectures",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English level B2",
+      "quote": "English (B2)",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "1st session, IP Paris portal (2027 entry)",
+      "date": "2027-01-14",
+      "quote": "1st session: from October 28, 2026 to January 14, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "2nd session, IP Paris portal (2027 entry)",
+      "date": "2027-03-31",
+      "quote": "2nd session: from January 15, 2027 to March 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "3rd session, IP Paris portal (2027 entry)",
+      "date": "2027-05-31",
+      "quote": "3rd session*: from April 1, 2027 to May 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Computer Science - Major Cyber-Physical Systems (CPS, M2)",
+   "url": "https://www.ip-paris.fr/en/education/graduate-programs/masters-science/computer-science-program/major-formal-methods-and-foundations-cyber-physical-systems-cps",
+   "snapshot_sha256": "f32f6ad34421e10e22756f6438d8f4596cecbc725de6c386c914b61c47b691a7",
+   "fields": {
+    "academic": {
+     "text": "Bachelor of Science in Computer Science, Mathematics, or Engineering",
+     "quote": "Bachelor of Science in Computer Science, Mathematics, or Engineering",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English level B2",
+      "quote": "English (B2)",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "1st session, IP Paris portal (2027 entry)",
+      "date": "2027-01-14",
+      "quote": "1st session: from October 28, 2026 to January 14, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "2nd session, IP Paris portal (2027 entry)",
+      "date": "2027-03-31",
+      "quote": "2nd session: from January 15, 2027 to March 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "3rd session, IP Paris portal (2027 entry)",
+      "date": "2027-05-31",
+      "quote": "3rd session*: from April 1, 2027 to May 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Computer Science - Major Parallel and Distributed Systems (PDS, M2)",
+   "url": "https://www.ip-paris.fr/en/education/masters/computer-science-program/major-parallel-and-distributed-systems-pds",
+   "snapshot_sha256": "f282bf959821fd222258524b03b1c050a20157a23e64555bd6c608796ba172de",
+   "fields": {
+    "academic": {
+     "text": "Bachelor of Science in Computer Science or Electrical Engineering",
+     "quote": "Bachelor of Science in Computer Science or Electrical Engineering",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English level B2",
+      "quote": "English (B2)",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "1st session, IP Paris portal (2027 entry)",
+      "date": "2027-01-14",
+      "quote": "1st session: from October 28, 2026 to January 14, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "2nd session, IP Paris portal (2027 entry)",
+      "date": "2027-03-31",
+      "quote": "2nd session: from January 15, 2027 to March 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "3rd session, IP Paris portal (2027 entry)",
+      "date": "2027-05-31",
+      "quote": "3rd session*: from April 1, 2027 to May 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Computer Science - Major Quantum, Mathematics, Computer Science (QMI, M2)",
+   "url": "https://www.ip-paris.fr/en/education/graduate-programs/masters-science/computer-science-program/major-quantum-mathematics-computer-science-qmi",
+   "snapshot_sha256": "315a177b0586518683c8139e6bab48c7a5aa80a99128f43e53319d5397ae443e",
+   "fields": {
+    "academic": {
+     "text": "Bachelor in Mathematics, Computer Science, Physics, or a related field; direct entry to the second year requires a first year of master's or an equivalent degree",
+     "quote": "Bachelor in Mathematics, Computer Science, Physics, or a related field, in France or abroad. To apply directly to the  Master's second year, it is necessary to have followed a first year of master's or an equivalent degree.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English level B2",
+      "quote": "English (B2 level)",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "1st session, IP Paris portal (2027 entry)",
+      "date": "2027-01-14",
+      "quote": "1st session: from October 28, 2026 to January 14, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "2nd session, IP Paris portal (2027 entry)",
+      "date": "2027-03-31",
+      "quote": "2nd session: from January 15, 2027 to March 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "3rd session, IP Paris portal (2027 entry)",
+      "date": "2027-05-31",
+      "quote": "3rd session*: from April 1, 2027 to May 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Computer Science - Major Foundations of Computer Science (MPRI, M2)",
+   "url": "https://www.ip-paris.fr/en/education/masters/computer-science-program/major-foundations-computer-science-mpri",
+   "snapshot_sha256": "a4378a827c2e80bbb604d861bd0185c4c32bf90a9e950788289a9aade3c34b18",
+   "fields": {
+    "academic": {
+     "text": "Bachelor of Science in computer science",
+     "quote": "Bachelor of Science in computer science",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "1st session, IP Paris portal (2027 entry)",
+      "date": "2027-01-14",
+      "quote": "1st session: from October 28, 2026 to January 14, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "2nd session, IP Paris portal (2027 entry)",
+      "date": "2027-03-31",
+      "quote": "2nd session: from January 15, 2027 to March 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "3rd session, IP Paris portal (2027 entry)",
+      "date": "2027-05-31",
+      "quote": "3rd session*: from April 1, 2027 to May 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Computer Science - Major Data and Artificial Intelligence (DataAI, M2)",
+   "url": "https://www.ip-paris.fr/en/education/masters/computer-science-program/major-data-and-artificial-intelligence-dataai",
+   "snapshot_sha256": "c9bb133f89cb8573643196dc98ecb7cfdba0fcc37552a99e63bd87ccf211aa47",
+   "fields": {
+    "academic": {
+     "text": "Bachelor of Science in Computer Science",
+     "quote": "Bachelor of Science in Computer Science",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "1st session, IP Paris portal (2027 entry)",
+      "date": "2027-01-14",
+      "quote": "1st session: from October 28, 2026 to January 14, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "2nd session, IP Paris portal (2027 entry)",
+      "date": "2027-03-31",
+      "quote": "2nd session: from January 15, 2027 to March 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "3rd session, IP Paris portal (2027 entry)",
+      "date": "2027-05-31",
+      "quote": "3rd session*: from April 1, 2027 to May 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Computer Science - Major Interaction, Graphics and Design (IGD, M2)",
+   "url": "https://www.ip-paris.fr/en/education/masters/computer-science-program/major-interaction-graphics-design",
+   "snapshot_sha256": "c3d6fbd1f6ae0a7609ff67d0b93cf4cf9941d796e96497f868861fa1c7d9bb0a",
+   "fields": {
+    "academic": {
+     "text": "Proven experience in computer programming and applied mathematics",
+     "quote": "Students must have proven experience in computer programming and applied mathematics.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English level B2/C1",
+      "quote": "English: B2/C1",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "1st session, IP Paris portal (2027 entry)",
+      "date": "2027-01-14",
+      "quote": "1st session: from October 28, 2026 to January 14, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "2nd session, IP Paris portal (2027 entry)",
+      "date": "2027-03-31",
+      "quote": "2nd session: from January 15, 2027 to March 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "3rd session, IP Paris portal (2027 entry)",
+      "date": "2027-05-31",
+      "quote": "3rd session*: from April 1, 2027 to May 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Computer Science - Major Operational Research (MPRO, M2)",
+   "url": "https://www.ip-paris.fr/en/education/masters/computer-science-program/major-operational-research-mpro",
+   "snapshot_sha256": "aca20d811bbbcf47c65d2f6e15e14b6092b6113ff78cb8a45ca2edc0d2b91eb9",
+   "fields": {
+    "academic": {
+     "text": "Master 1 in Computer Science or Applied Mathematics with an introduction to operations research and graph theory",
+     "quote": "Master 1 in Computer Science or Applied Mathematics. Candidates must have completed a course of study that introduces the fundamentals of operations research and graph theory.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "French level B2 (language of instruction)",
+      "quote": "French (B2)",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "1st session, IP Paris portal (2027 entry)",
+      "date": "2027-01-14",
+      "quote": "1st session: from October 28, 2026 to January 14, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "2nd session, IP Paris portal (2027 entry)",
+      "date": "2027-03-31",
+      "quote": "2nd session: from January 15, 2027 to March 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "3rd session, IP Paris portal (2027 entry)",
+      "date": "2027-05-31",
+      "quote": "3rd session*: from April 1, 2027 to May 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Year 1 Digital Skills for Health Transformation (DS4Health, 60 ECTS)",
+   "url": "https://www.ip-paris.fr/en/education/masters/health-engineering-program/master-year-1-digital-skills-health-transformation-ds4health",
+   "snapshot_sha256": "82642a21efdaf53ce753eaeb489ec27b25ed5b7fe62b2f19048c2d974b4014bc",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (180 ECTS) required; excellent academic records in fundamental computer science and healthcare",
+     "quote": "A bachelor’s degree (180 ECTS) is required to apply to the program.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English minimum B2, C1 recommended",
+      "quote": "In order for a student to be eligible to be recruited, a minimum of a B2 level in English is required, while a C1 level is recommended.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "1st session, IP Paris portal (2027 entry)",
+      "date": "2027-01-14",
+      "quote": "1st session: from October 28, 2026 to January 14, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "2nd session, IP Paris portal (2027 entry)",
+      "date": "2027-03-31",
+      "quote": "2nd session: from January 15, 2027 to March 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "3rd session, IP Paris portal (2027 entry)",
+      "date": "2027-05-31",
+      "quote": "3rd session*: from April 1, 2027 to May 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Applied Mathematics and Statistics (IP Paris, 2 years)",
+   "url": "https://www.ip-paris.fr/en/education/graduate-programs/masters-science/applied-mathematics-and-statistics-program",
+   "snapshot_sha256": "d660b90699fc44e051fdb28766ed96ea3200afd47bc0a441fd81b7b914db024e",
+   "fields": {
+    "academic": {
+     "text": "Year 1: Bachelor of Science in Mathematics, Mathematical Sciences, or a similar field; Year 2: completion of the first year of a Master's in mathematics or a related field",
+     "quote": "Bachelor of Science in Mathematics, Mathematical Sciences, or a similar field.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English level B2 and French",
+      "quote": "English (B2), French",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "1st session, IP Paris portal (2027 entry)",
+      "date": "2027-01-14",
+      "quote": "1st session: from October 28, 2026 to January 14, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "2nd session, IP Paris portal (2027 entry)",
+      "date": "2027-03-31",
+      "quote": "2nd session: from January 15, 2027 to March 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "3rd session, IP Paris portal (2027 entry)",
+      "date": "2027-05-31",
+      "quote": "3rd session*: from April 1, 2027 to May 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Applied Mathematics and Statistics - Master's in Data Science (M1-M2)",
+   "url": "https://www.ip-paris.fr/en/education/graduate-programs/masters-science/applied-mathematics-and-statistics-program/masters-data-science",
+   "snapshot_sha256": "f8bdc4be3b242df6bfde8690648a495538f7b0ac98f65493537a09aec4184d48",
+   "fields": {
+    "academic": {
+     "text": "Year 1: bachelor's degree in mathematics, mathematical sciences or a related field; Year 2: first year of a Master's in mathematics at IP Paris or equivalent",
+     "quote": "Completion of a bachelor’s degree in mathematics, mathematical sciences or a related field in France or abroad.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English and French listed as language prerequisites (no level stated)",
+      "quote": "English\nFrench",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "1st session, IP Paris portal (2027 entry)",
+      "date": "2027-01-14",
+      "quote": "1st session: from October 28, 2026 to January 14, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "2nd session, IP Paris portal (2027 entry)",
+      "date": "2027-03-31",
+      "quote": "2nd session: from January 15, 2027 to March 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "3rd session, IP Paris portal (2027 entry)",
+      "date": "2027-05-31",
+      "quote": "3rd session*: from April 1, 2027 to May 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Applied Mathematics and Statistics - Master's in Statistics, Finance and Actuarial Science (M1-M2)",
+   "url": "https://www.ip-paris.fr/en/education/graduate-programs/masters-science/applied-mathematics-and-statistics-program/masters-statistics-finance-and-actuarial-science",
+   "snapshot_sha256": "bd1d6cdba29198b32be60de1e2879081ca1f8092f20014985582f0fe92388d9e",
+   "fields": {
+    "academic": {
+     "text": "Year 1: bachelor's degree in mathematics, mathematical sciences or a related field",
+     "quote": "Completion of a bachelor’s degree in mathematics, mathematical sciences or a related field in France or abroad.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English listed as language prerequisite (no level stated)",
+      "quote": "Language prerequisites\nEnglish",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "1st session, IP Paris portal (2027 entry)",
+      "date": "2027-01-14",
+      "quote": "1st session: from October 28, 2026 to January 14, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "2nd session, IP Paris portal (2027 entry)",
+      "date": "2027-03-31",
+      "quote": "2nd session: from January 15, 2027 to March 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "3rd session, IP Paris portal (2027 entry)",
+      "date": "2027-05-31",
+      "quote": "3rd session*: from April 1, 2027 to May 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Applied Mathematics and Statistics - Master's in Mathematical Modelling: PDEs, Simulation, Control (M1-M2)",
+   "url": "https://www.ip-paris.fr/en/education/graduate-programs/masters-science/applied-mathematics-and-statistics-program/masters-mathematical-modelling-pdes-simulation-control",
+   "snapshot_sha256": "ff2c20ddb897aaad7d266dc834999bc842285b3a232454478799cea7b293e5a7",
+   "fields": {
+    "academic": {
+     "text": "Year 1: bachelor's degree in mathematics, mathematical sciences or a related field",
+     "quote": "Completion of a bachelor’s degree in mathematics, mathematical sciences or a related field in France or abroad.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English and French listed as language prerequisites (no level stated)",
+      "quote": "English\nFrench",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "1st session, IP Paris portal (2027 entry)",
+      "date": "2027-01-14",
+      "quote": "1st session: from October 28, 2026 to January 14, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "2nd session, IP Paris portal (2027 entry)",
+      "date": "2027-03-31",
+      "quote": "2nd session: from January 15, 2027 to March 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "3rd session, IP Paris portal (2027 entry)",
+      "date": "2027-05-31",
+      "quote": "3rd session*: from April 1, 2027 to May 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Applied Mathematics and Statistics - Master Probabilites et Finance (M1-M2, French page)",
+   "url": "https://www.ip-paris.fr/en/education/graduate-programs/masters-science/applied-mathematics-and-statistics-program/master-probabilite-et-finance",
+   "snapshot_sha256": "15ab81283c2ae6e4de3e1c4bb93d6d37d47a23a9b4af451ef0f0f110723ee7fb",
+   "fields": {
+    "academic": {
+     "text": "Year 1: bachelor's degree in mathematics, mathematical sciences or a related field in France or abroad",
+     "quote": "Validation d’une licence en mathématiques, sciences mathématiques ou dans un domaine connexe, en France ou à l’étranger.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English and French listed as language prerequisites (no level stated)",
+      "quote": "Prérequis linguistiques\nAnglais\nFrançais",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "1st session, IP Paris portal (2027 entry)",
+      "date": "2027-01-14",
+      "quote": "1st session: from October 28, 2026 to January 14, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "2nd session, IP Paris portal (2027 entry)",
+      "date": "2027-03-31",
+      "quote": "2nd session: from January 15, 2027 to March 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "3rd session, IP Paris portal (2027 entry)",
+      "date": "2027-05-31",
+      "quote": "3rd session*: from April 1, 2027 to May 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Economics (IP Paris, 2 years, English)",
+   "url": "https://www.ip-paris.fr/en/education/graduate-programs/masters-science/economics-program",
+   "snapshot_sha256": "e33f7098a30f35db9f258be25bc803e899ad445b38e0b10a100ce2c376198298",
+   "fields": {
+    "academic": {
+     "text": "Bachelor of Science in Economics, Mathematics, Social Sciences or a similar field; GRE strongly recommended",
+     "quote": "Bachelor of Science in Economics, Mathematics, Social Sciences or a similar field. A GRE certificate is strongly recommended to demonstrate the level of quantitative skills.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English level B2",
+      "quote": "English (B2)",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "1st session, IP Paris portal (2027 entry)",
+      "date": "2027-01-14",
+      "quote": "1st session: from October 28, 2026 to January 14, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "2nd session, IP Paris portal (2027 entry)",
+      "date": "2027-03-31",
+      "quote": "2nd session: from January 15, 2027 to March 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "3rd session, IP Paris portal (2027 entry)",
+      "date": "2027-05-31",
+      "quote": "3rd session*: from April 1, 2027 to May 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Economics - Master Year 1 (with HEC Paris)",
+   "url": "https://www.ip-paris.fr/en/education/graduate-programs/masters-science/economics-program/master-year-1-economics",
+   "snapshot_sha256": "d6b263cdc80273bb764e3381ebba185e539d8ffa9f2310ce9688c06d0176a5c3",
+   "fields": {
+    "academic": {
+     "text": "Bachelor in economics, mathematics or social sciences (or the equivalent); GRE strongly recommended",
+     "quote": "Bachelor in economics, mathematics or social sciences (or the equivalent). A GRE certificate is strongly recommended.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English certificate level B2 (TOEFL, IELTS, TOEIC, Cambridge ESOL); exempt if studied in English-speaking colleges",
+      "quote": "A certificate of competence in English (TOEFL, IELTS, TOEIC, Cambridge ESOL) Level B2. (Students who studied in English speaking Colleges are exempted).",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "1st session, IP Paris portal (2027 entry)",
+      "date": "2027-01-14",
+      "quote": "1st session: from October 28, 2026 to January 14, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "2nd session, IP Paris portal (2027 entry)",
+      "date": "2027-03-31",
+      "quote": "2nd session: from January 15, 2027 to March 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "3rd session, IP Paris portal (2027 entry)",
+      "date": "2027-05-31",
+      "quote": "3rd session*: from April 1, 2027 to May 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Economics - Master Year 2",
+   "url": "https://www.ip-paris.fr/en/education/masters/economics-program/master-year-2-economics",
+   "snapshot_sha256": "d6ab2560752d0e1e122dad89c7c864eec3cb0f225f3fb03af5de4c3ee1cabf44",
+   "fields": {
+    "academic": {
+     "text": "Completion of the first year of the Master in Economics at IP Paris; exceptionally, first year of an equivalent program elsewhere",
+     "quote": "Completion of the first year of the Master in Economics at Institut Polytechnique de Paris.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English level B2",
+      "quote": "B2 level in English is required.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "1st session, IP Paris portal (2027 entry)",
+      "date": "2027-01-14",
+      "quote": "1st session: from October 28, 2026 to January 14, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "2nd session, IP Paris portal (2027 entry)",
+      "date": "2027-03-31",
+      "quote": "2nd session: from January 15, 2027 to March 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "3rd session, IP Paris portal (2027 entry)",
+      "date": "2027-05-31",
+      "quote": "3rd session*: from April 1, 2027 to May 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Mathematics and Applications (IP Paris, 2 years)",
+   "url": "https://www.ip-paris.fr/en/education/graduate-programs/masters-science/mathematics-and-applications-program",
+   "snapshot_sha256": "bd2baa8c0dc14107d9cc5a0a71e7c4fc5b5f188fb6f16cf52a468b0d024ce43a",
+   "fields": {
+    "academic": {
+     "text": "Bachelor of Science in Mathematics, Mathematical Sciences, or a similar field",
+     "quote": "Bachelor of Science in Mathematics, Mathematical Sciences, or a similar field.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English level B2, French",
+      "quote": "English (B2), French",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "1st session, IP Paris portal (2027 entry)",
+      "date": "2027-01-14",
+      "quote": "1st session: from October 28, 2026 to January 14, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "2nd session, IP Paris portal (2027 entry)",
+      "date": "2027-03-31",
+      "quote": "2nd session: from January 15, 2027 to March 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "3rd session, IP Paris portal (2027 entry)",
+      "date": "2027-05-31",
+      "quote": "3rd session*: from April 1, 2027 to May 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Mathematics and Applications - Master Year 2 Mathematics of Randomness",
+   "url": "https://www.ip-paris.fr/en/education/masters/mathematics-and-applications-program/master-year-2-mathematics-randomness",
+   "snapshot_sha256": "097c9121489646459d6c8b2f856fe9a8633077504ad74415b757803f5806e37b",
+   "fields": {
+    "academic": {
+     "text": "Completion of a first year of Master in mathematics at IP Paris or equivalent",
+     "quote": "Completion of a first year of Master in mathematics at Institut Polytechnique de Paris or equivalent in France or abroad.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "1st session, IP Paris portal (2027 entry)",
+      "date": "2027-01-14",
+      "quote": "1st session: from October 28, 2026 to January 14, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "2nd session, IP Paris portal (2027 entry)",
+      "date": "2027-03-31",
+      "quote": "2nd session: from January 15, 2027 to March 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "3rd session, IP Paris portal (2027 entry)",
+      "date": "2027-05-31",
+      "quote": "3rd session*: from April 1, 2027 to May 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Mathematics and Applications - Master Year 2 Mathematics, Vision and Learning",
+   "url": "https://www.ip-paris.fr/en/education/masters/mathematics-and-applications-program/master-year-2-mathematics-vision-learning",
+   "snapshot_sha256": "306a3db7855988186637936a801859f7c8d8c6adcc6fd56e4a1da98b06604383",
+   "fields": {
+    "academic": {
+     "text": "Completion of the first year of Master in mathematics at IP Paris or equivalent; motivated computer scientists with a very good level in mathematics also considered",
+     "quote": "Completion of the first year of Master in mathematics at Institut Polytechnique de Paris or equivalent in France or abroad\nMotivated computer scientists with a very good level in mathematics will also be considered",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "1st session, IP Paris portal (2027 entry)",
+      "date": "2027-01-14",
+      "quote": "1st session: from October 28, 2026 to January 14, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "2nd session, IP Paris portal (2027 entry)",
+      "date": "2027-03-31",
+      "quote": "2nd session: from January 15, 2027 to March 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "3rd session, IP Paris portal (2027 entry)",
+      "date": "2027-05-31",
+      "quote": "3rd session*: from April 1, 2027 to May 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Mathematics and Applications - Master Year 2 Optimization, Games and Control",
+   "url": "https://www.ip-paris.fr/en/education/graduate-programs/masters-science/mathematics-and-applications-program/master-year-2-optimization-games-and-control",
+   "snapshot_sha256": "06f094817ad905b8f0239116f662b476767abc94d8d2cb6446c908f672acbb98",
+   "fields": {
+    "academic": {
+     "text": "Completion of the first year of Master in mathematics at IP Paris or equivalent in France (engineering school) or abroad",
+     "quote": "Completion of the first year of Master in mathematics at Institut Polytechnique de Paris or equivalent in France (engineering school) or abroad.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "1st session, IP Paris portal (2027 entry)",
+      "date": "2027-01-14",
+      "quote": "1st session: from October 28, 2026 to January 14, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "2nd session, IP Paris portal (2027 entry)",
+      "date": "2027-03-31",
+      "quote": "2nd session: from January 15, 2027 to March 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "3rd session, IP Paris portal (2027 entry)",
+      "date": "2027-05-31",
+      "quote": "3rd session*: from April 1, 2027 to May 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Electrical Engineering (E3A, IP Paris, 2 years)",
+   "url": "https://www.ip-paris.fr/en/education/graduate-programs/masters-science/electrical-engineering-program-e3a",
+   "snapshot_sha256": "a979450b62a6c54f4594e460bdb8b9d88dd72ad53a575ea1ffa650b9e2d5b6ac",
+   "fields": {
+    "academic": {
+     "text": "Bachelor of Science in Electrical Engineering or strongly related field",
+     "quote": "Bachelor of Science in Electrical Engineering or strongly related field.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English (CEFR B2 or higher) or French (CEFR B2 or higher)",
+      "quote": "English (CECRL ≥ B2) or French (CECRL ≥ B2)",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "1st session, IP Paris portal (2027 entry)",
+      "date": "2027-01-14",
+      "quote": "1st session: from October 28, 2026 to January 14, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "2nd session, IP Paris portal (2027 entry)",
+      "date": "2027-03-31",
+      "quote": "2nd session: from January 15, 2027 to March 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "3rd session, IP Paris portal (2027 entry)",
+      "date": "2027-05-31",
+      "quote": "3rd session*: from April 1, 2027 to May 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Electrical Engineering - Master Year 1 Communications and Information Processing",
+   "url": "https://www.ip-paris.fr/en/education/graduate-programs/masters-science/electrical-engineering-program/master-year-1-electrical-engineering-communications-information-processing",
+   "snapshot_sha256": "d03ffa1a0795dd09ce5d5720d725a1271fc9b2631a547f7d351df15de714475b",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or equivalent; TNM and Datapac majors: good background in applied mathematics and computer science",
+     "quote": "Bachelor’s degree or equivalent\nEOE and MIE: Good background in applied mathematics and knowledge of electronics and optics\nTNM and Datapac: Good background in applied mathematics and computer science",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "Certificate of English level (IELTS ≥ 6, TOEIC ≥ 785, CECRL ≥ B2)",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English certificate: IELTS 6 or higher, TOEIC 785 or higher, or CEFR B2",
+      "quote": "Certificate of English level (IELTS ≥ 6, TOEIC ≥ 785, CECRL ≥ B2)",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "1st session, IP Paris portal (2027 entry)",
+      "date": "2027-01-14",
+      "quote": "1st session: from October 28, 2026 to January 14, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "2nd session, IP Paris portal (2027 entry)",
+      "date": "2027-03-31",
+      "quote": "2nd session: from January 15, 2027 to March 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "3rd session, IP Paris portal (2027 entry)",
+      "date": "2027-05-31",
+      "quote": "3rd session*: from April 1, 2027 to May 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Electrical Engineering - Master Year 2 (eight majors, incl. Machine Learning, Communications and Security)",
+   "url": "https://www.ip-paris.fr/en/education/graduate-programs/masters-science/electrical-engineering-program/master-year-2-electrical-engineering-communications-information-processing",
+   "snapshot_sha256": "12b3f12eb3e417ff323782235f1bd4158fe76a4700901290f681f7d2450e29f3",
+   "fields": {
+    "academic": {
+     "text": "Completion of the first year of a Master in Electrical Engineering at IP Paris or equivalent in France or abroad",
+     "quote": "Prerequisite for all majors: completion of the first year of a Master in Electrical Engineering at Institut Polytechnique de Paris or equivalent in France or abroad.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "Certificate of English level (IELTS ≥ 6, TOEIC ≥ 785, CECRL ≥ B2)",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "French CEFR B2 for programs taught in French",
+      "quote": "Certificate of Frenc level (CECRL ≥ B2) for programs taught in French",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "1st session, IP Paris portal (2027 entry)",
+      "date": "2027-01-14",
+      "quote": "1st session: from October 28, 2026 to January 14, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "2nd session, IP Paris portal (2027 entry)",
+      "date": "2027-03-31",
+      "quote": "2nd session: from January 15, 2027 to March 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "3rd session, IP Paris portal (2027 entry)",
+      "date": "2027-05-31",
+      "quote": "3rd session*: from April 1, 2027 to May 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Energy (IP Paris, 2 years)",
+   "url": "https://www.ip-paris.fr/en/education/graduate-programs/masters-science/energy-program",
+   "snapshot_sha256": "839d89307d37f883d77b6bf203e3e64be5ffcb75069000eb79550d96284b5918",
+   "fields": {
+    "academic": {
+     "text": "Bachelor of Science (or equivalent) in Energy, Mathematics, Physics, Mechanics, Chemistry",
+     "quote": "Bachelor of Science (or equivalent) in Energy, Mathematics, Physics, Mechanics, Chemistry.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English level B2",
+      "quote": "English (B2)",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "1st session, IP Paris portal (2027 entry)",
+      "date": "2027-01-14",
+      "quote": "1st session: from October 28, 2026 to January 14, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "2nd session, IP Paris portal (2027 entry)",
+      "date": "2027-03-31",
+      "quote": "2nd session: from January 15, 2027 to March 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "3rd session, IP Paris portal (2027 entry)",
+      "date": "2027-05-31",
+      "quote": "3rd session*: from April 1, 2027 to May 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Energy - Master Year 2 OFFWIND Offshore Wind Energy",
+   "url": "https://www.ip-paris.fr/en/education/graduate-programs/masters-science/energy-program/master-year-2-offwind-offshore-wind-energy",
+   "snapshot_sha256": "e04fff9a22016a95dd0ffef137a1e16b3323e950e070ddb65d2fb21f1627be56",
+   "fields": {
+    "academic": {
+     "text": "Completion of the first year of a Master in Energy at IP Paris or equivalent; or a first-year Master/MSc in energy engineering, mechanical engineering, mechanics of materials, electrical engineering or material sciences",
+     "quote": "Completion of the first year of a Master in Energy at Institut Polytechnique de Paris or equivalent in France or abroad.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English level B1",
+      "quote": "This program requires a B1 level in English.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "1st session, IP Paris portal (2027 entry)",
+      "date": "2027-01-14",
+      "quote": "1st session: from October 28, 2026 to January 14, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "2nd session, IP Paris portal (2027 entry)",
+      "date": "2027-03-31",
+      "quote": "2nd session: from January 15, 2027 to March 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "3rd session, IP Paris portal (2027 entry)",
+      "date": "2027-05-31",
+      "quote": "3rd session*: from April 1, 2027 to May 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Mechanics (IP Paris, 2 years)",
+   "url": "https://www.ip-paris.fr/en/education/graduate-programs/masters-science/mechanics-program",
+   "snapshot_sha256": "cd34464023248c5025e7f15a9932a2b0132a2172699dcf0165de410f4f1dd048",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's of Sciences in Mechanics, Physics or Mathematics",
+     "quote": "Bachelor's of Sciences in Mechanics, Physics or Mathematics",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English level B2",
+      "quote": "English (B2)",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "1st session, IP Paris portal (2027 entry)",
+      "date": "2027-01-14",
+      "quote": "1st session: from October 28, 2026 to January 14, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "2nd session, IP Paris portal (2027 entry)",
+      "date": "2027-03-31",
+      "quote": "2nd session: from January 15, 2027 to March 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "3rd session, IP Paris portal (2027 entry)",
+      "date": "2027-05-31",
+      "quote": "3rd session*: from April 1, 2027 to May 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Physics (IP Paris, 2 years)",
+   "url": "https://www.ip-paris.fr/en/education/graduate-programs/masters-science/physics-program",
+   "snapshot_sha256": "d56cb6f8ce807d9ea34a788c06b5d3d20f53f049255a83a1593c56b25aac9f7f",
+   "fields": {
+    "academic": {
+     "text": "Bachelor of Science in Physics",
+     "quote": "Bachelor of Science in Physics.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English level B2",
+      "quote": "English (B2)",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "1st session, IP Paris portal (2027 entry)",
+      "date": "2027-01-14",
+      "quote": "1st session: from October 28, 2026 to January 14, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "2nd session, IP Paris portal (2027 entry)",
+      "date": "2027-03-31",
+      "quote": "2nd session: from January 15, 2027 to March 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "3rd session, IP Paris portal (2027 entry)",
+      "date": "2027-05-31",
+      "quote": "3rd session*: from April 1, 2027 to May 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Nuclear Engineering (IP Paris, 2 years, English)",
+   "url": "https://www.ip-paris.fr/en/education/masters/nuclear-engineering-program",
+   "snapshot_sha256": "52862b228afdec5134da497d65267de039954c5df09468270313185aff9d8702",
+   "fields": {
+    "academic": {
+     "text": "Bachelor of Science in Nuclear Engineering, Physics, Mechanics or Chemistry",
+     "quote": "Bachelor of Science in Nuclear Engineering, Physics, Mechanics or Chemistry.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English level B2",
+      "quote": "English (B2)",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "1st session, IP Paris portal (2027 entry)",
+      "date": "2027-01-14",
+      "quote": "1st session: from October 28, 2026 to January 14, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "2nd session, IP Paris portal (2027 entry)",
+      "date": "2027-03-31",
+      "quote": "2nd session: from January 15, 2027 to March 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "3rd session, IP Paris portal (2027 entry)",
+      "date": "2027-05-31",
+      "quote": "3rd session*: from April 1, 2027 to May 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Health Engineering / Biomedical Engineering (IP Paris, 2 years, English)",
+   "url": "https://www.ip-paris.fr/en/education/masters/health-engineering-program",
+   "snapshot_sha256": "bae548b5af925b21f8fd63e9f0e327d7b5791cd5d62a47b916eedc5946975a5b",
+   "fields": {
+    "academic": {
+     "text": "Bachelor of Science or equivalent in engineering, physics, computer science, or applied mathematics",
+     "quote": "Bachelor of Science or equivalent in engineering, physics, computer science, or applied mathematics",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English level B2 or equivalent",
+      "quote": "English (B2 level or equivalent)",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "1st session, IP Paris portal (2027 entry)",
+      "date": "2027-01-14",
+      "quote": "1st session: from October 28, 2026 to January 14, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "2nd session, IP Paris portal (2027 entry)",
+      "date": "2027-03-31",
+      "quote": "2nd session: from January 15, 2027 to March 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "3rd session, IP Paris portal (2027 entry)",
+      "date": "2027-05-31",
+      "quote": "3rd session*: from April 1, 2027 to May 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Chemistry and Interfaces (IP Paris, 2 years)",
+   "url": "https://www.ip-paris.fr/en/education/graduate-programs/masters-science/chemistry-program",
+   "snapshot_sha256": "ede935427ed73c48a564eee692805acb01575fd39612b42e9b9d1fc754f008d9",
+   "fields": {
+    "academic": {
+     "text": "Year 1: Bachelor of Science in chemistry covering the prerequisites of the year-one courses",
+     "quote": "Bachelor of Science in chemistry that covers the prerequisites specified in the Master’s year one courses.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English level C1",
+      "quote": "English (C1)",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "1st session, IP Paris portal (2027 entry)",
+      "date": "2027-01-14",
+      "quote": "1st session: from October 28, 2026 to January 14, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "2nd session, IP Paris portal (2027 entry)",
+      "date": "2027-03-31",
+      "quote": "2nd session: from January 15, 2027 to March 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "3rd session, IP Paris portal (2027 entry)",
+      "date": "2027-05-31",
+      "quote": "3rd session*: from April 1, 2027 to May 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Civil Engineering (IP Paris, 2 years)",
+   "url": "https://www.ip-paris.fr/en/education/graduate-programs/masters-science/civil-engineering-program",
+   "snapshot_sha256": "eff1a0ee5c1f2ce232b6a6edab53d3aef8e2bd6ac989cd6ffd89657dae3f232f",
+   "fields": {
+    "academic": {
+     "text": "Year 1: bachelor's degree in science (physics, mechanics, mathematics, engineering sciences, etc.), civil engineering, or CPES",
+     "quote": "Bachelor's degree in science (physics, mechanics, mathematics, engineering sciences, etc.), civil engineering, or CPES.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "French B1 (Latin-language students) or B2 for M1 and M2 GCC and MSROE; English B2 for M2 MSSC",
+      "quote": "French (required level: B1 for students of Latin languages, B2 for students from other countries) for M1 and M2 GCC and MSROE\nEnglish (required level B2) for M2 MSSC",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "1st session, IP Paris portal (2027 entry)",
+      "date": "2027-01-14",
+      "quote": "1st session: from October 28, 2026 to January 14, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "2nd session, IP Paris portal (2027 entry)",
+      "date": "2027-03-31",
+      "quote": "2nd session: from January 15, 2027 to March 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "3rd session, IP Paris portal (2027 entry)",
+      "date": "2027-05-31",
+      "quote": "3rd session*: from April 1, 2027 to May 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Biology and Health (IP Paris, 2 years)",
+   "url": "https://www.ip-paris.fr/en/education/graduate-programs/masters-science/biology-and-health-program",
+   "snapshot_sha256": "2258f5590bfeb1b936a26bac8896ef3afb8039cab4640f9c39bae359f510fd31",
+   "fields": {
+    "academic": {
+     "text": "Year 1: bachelor in molecular and/or cellular biology (or equivalent), or in physics, chemistry, mathematics or informatics with strong interest in biosciences and basic knowledge of biology",
+     "quote": "Bachelor in molecular and/or cellular biology (or equivalent), or in physics, chemistry, mathematics or informatics with a strong interest in biosciences and, as a minimum, a basic knowledge of biology.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "1st session, IP Paris portal (2027 entry)",
+      "date": "2027-01-14",
+      "quote": "1st session: from October 28, 2026 to January 14, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "2nd session, IP Paris portal (2027 entry)",
+      "date": "2027-03-31",
+      "quote": "2nd session: from January 15, 2027 to March 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "3rd session, IP Paris portal (2027 entry)",
+      "date": "2027-05-31",
+      "quote": "3rd session*: from April 1, 2027 to May 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Transport, Mobility, Networks (IP Paris, 2 years)",
+   "url": "https://www.ip-paris.fr/en/education/graduate-programs/masters-science/transport-mobility-networks-program",
+   "snapshot_sha256": "289c5607f7096b8f17627f3240369a646d407d9971fd6a026e217453fe6d7793",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in sciences or human sciences with formalized language and a solid foundation in data analysis (statistics, programming)",
+     "quote": "Bachelor's/Bachelor's degree in sciences (mathematics, physics, chemistry, computer science, etc.) or human sciences (CPES, economics, geography) who have mastered formalized language and have a solid foundation in data analysis (statistics, programming, etc.)",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English B1, French B2",
+      "quote": "English (B1), French (B2)",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "1st session, IP Paris portal (2027 entry)",
+      "date": "2027-01-14",
+      "quote": "1st session: from October 28, 2026 to January 14, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "2nd session, IP Paris portal (2027 entry)",
+      "date": "2027-03-31",
+      "quote": "2nd session: from January 15, 2027 to March 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "3rd session, IP Paris portal (2027 entry)",
+      "date": "2027-05-31",
+      "quote": "3rd session*: from April 1, 2027 to May 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Innovation, Industry and Society (IP Paris, 2 years)",
+   "url": "https://www.ip-paris.fr/en/education/masters/innovation-industry-and-society-program",
+   "snapshot_sha256": "df579c05d06c01c55400c26bc004a086b2b1679d9025297db669b92ee149d196",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in Engineering or in Social Sciences",
+     "quote": "Bachelor’s degree in Engineering (Civil, Mechanical, Computer Science, etc.) or in Social Sciences (Economics, Management, Sociology, or related fields).",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English: TOEFL or TOEIC, or IELTS, or Cambridge certificate (no score stated)",
+      "quote": "TOEFL or TOEIC (Bridge, Listening and Reading, or Speaking and Writing), or IELTS, or Cambridge certificate.",
+      "check": "ok"
+     },
+     {
+      "text": "French B2 on the DELF for non-French-speaking students",
+      "quote": "For non-French-speaking students, a B2 level is required on the DELF (Diplôme d’Études en Langue Française).",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "1st session, IP Paris portal (2027 entry)",
+      "date": "2027-01-14",
+      "quote": "1st session: from October 28, 2026 to January 14, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "2nd session, IP Paris portal (2027 entry)",
+      "date": "2027-03-31",
+      "quote": "2nd session: from January 15, 2027 to March 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "3rd session, IP Paris portal (2027 entry)",
+      "date": "2027-05-31",
+      "quote": "3rd session*: from April 1, 2027 to May 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Sociology (Quantitative Sociology, IP Paris, 2 years)",
+   "url": "https://www.ip-paris.fr/en/education/masters/sociology-program",
+   "snapshot_sha256": "a09715c317c5e1e7137a02e74f8cf821a74b6432734f97ad2a02fcb40f4920f9",
+   "fields": {
+    "academic": {
+     "text": "Year 1: bachelor in sociology, political science, demography, economics, applied mathematics or statistics",
+     "quote": "Year 1: Bachelor of Science in Sociology, Political Science, Demography, Economics, Applied Mathematics or Statistics.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English B1-B2 for Year 1, C1-C2 for Year 2",
+      "quote": "English (B1-B2 for Year 1; C1-C2 required for Year 2).",
+      "check": "ok"
+     },
+     {
+      "text": "French C1-C2 for Year 1 and the QSD major in Year 2",
+      "quote": "French (C1-C2 required for Year 1 and QSD major in Year 2).",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "1st session, IP Paris portal (2027 entry)",
+      "date": "2027-01-14",
+      "quote": "1st session: from October 28, 2026 to January 14, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "2nd session, IP Paris portal (2027 entry)",
+      "date": "2027-03-31",
+      "quote": "2nd session: from January 15, 2027 to March 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "3rd session, IP Paris portal (2027 entry)",
+      "date": "2027-05-31",
+      "quote": "3rd session*: from April 1, 2027 to May 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Environmental, Energy and Transportation Economics (EEET, IP Paris, 2 years)",
+   "url": "https://www.ip-paris.fr/en/education/masters/environmental-energy-and-transportation-economics-eeet-program",
+   "snapshot_sha256": "f7427fa2d6c541ec036c619ea47267261f1bfe5c8f277fa8de965b3aa2017f50",
+   "fields": {
+    "academic": {
+     "text": "Bachelor of Science in Economics, Mathematics, Physics, Computer Science, Geography, Energy, Engineering Sciences, Earth and Life Sciences",
+     "quote": "Bachelor of Science in Economics, Mathematics, Physics, Computer Science, Geography, Energy, Engineering Sciences, Earth and Life Sciences",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English B1, French B2",
+      "quote": "English (B1), French (B2)",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "1st session, IP Paris portal (2027 entry)",
+      "date": "2027-01-14",
+      "quote": "1st session: from October 28, 2026 to January 14, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "2nd session, IP Paris portal (2027 entry)",
+      "date": "2027-03-31",
+      "quote": "2nd session: from January 15, 2027 to March 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "3rd session, IP Paris portal (2027 entry)",
+      "date": "2027-05-31",
+      "quote": "3rd session*: from April 1, 2027 to May 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Urban Planning (IP Paris, 2 years, French)",
+   "url": "https://www.ip-paris.fr/en/education/graduate-programs/masters-science/urban-planning-program",
+   "snapshot_sha256": "e1268e32d533ba7c55d8a5b9e6e96fc66fa6ec5a383dbf4eccdd07cad2710afe",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in urban planning, development, engineering, architecture, landscape architecture, law, political science, geography, environmental engineering, administration, economics, sociology, etc.",
+     "quote": "Bachelor's degree in urban planning, development, engineering, architecture, landscape architecture, law, political science, geography, environmental engineering, administration, economics, sociology, etc.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "French fluent, DALF C2",
+      "quote": "French (fluent / DALF C2)",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "1st session, IP Paris portal (2027 entry)",
+      "date": "2027-01-14",
+      "quote": "1st session: from October 28, 2026 to January 14, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "2nd session, IP Paris portal (2027 entry)",
+      "date": "2027-03-31",
+      "quote": "2nd session: from January 15, 2027 to March 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "3rd session, IP Paris portal (2027 entry)",
+      "date": "2027-05-31",
+      "quote": "3rd session*: from April 1, 2027 to May 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Design (IP Paris, 2 years, French)",
+   "url": "https://www.ip-paris.fr/en/education/masters/design-program",
+   "snapshot_sha256": "ae544ed0f220a06b4ee184560c1d2f4a752a4336b3aebd5a705b83211ff154ef",
+   "fields": {
+    "academic": {
+     "text": "Bachelor of Science in Design (all domains), Architecture, Engineering or any related domain",
+     "quote": "Bachelor of Science in Design (all domains), Architecture, Engineering or any related domain.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "1st session, IP Paris portal (2027 entry)",
+      "date": "2027-01-14",
+      "quote": "1st session: from October 28, 2026 to January 14, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "2nd session, IP Paris portal (2027 entry)",
+      "date": "2027-03-31",
+      "quote": "2nd session: from January 15, 2027 to March 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     },
+     {
+      "label": "3rd session, IP Paris portal (2027 entry)",
+      "date": "2027-05-31",
+      "quote": "3rd session*: from April 1, 2027 to May 31, 2027",
+      "source_sha256": "ee2ee100f8126522098563388ec931be16fa5be2286cbb75b98022ebf4dff48a",
+      "source_url": "https://www.ip-paris.fr/en/education/useful-information/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 41,
+  "机器核对": 41,
+  "待人工": 0
+ }
+}

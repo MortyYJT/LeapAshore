@@ -1,0 +1,29 @@
+{
+ "school_key": "university-of-bath",
+ "school_name_en": "University of Bath",
+ "country": "United Kingdom",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://www.bath.ac.uk/courses/postgraduate-2027/"
+ ],
+ "blocked": [
+  {
+   "url": "https://www.bath.ac.uk/courses/postgraduate-2027/",
+   "reason": "HTTP 403 from the snapshot tool (also recorded in api/var/snapshots/university-of-bath/_blocked.json)"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.bath.ac.uk/courses/postgraduate-2027/",
+  "https://www.bath.ac.uk/corporate-information/entry-requirements-for-international-students/",
+  "https://www.bath.ac.uk/corporate-information/postgraduate-taught-courses-english-language-requirements-for-international-students/"
+ ],
+ "notes": "The first snapshot request to www.bath.ac.uk returned HTTP 403, and that is the only official host for Bath course pages, so fetching stopped after one attempt (no retries, no identity change). No programmes were collected. Retry later or collect by hand.",
+ "programs": [],
+ "verification": {
+  "programs": 0,
+  "机器核对": 0,
+  "待人工": 0
+ }
+}

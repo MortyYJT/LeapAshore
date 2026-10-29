@@ -1,0 +1,627 @@
+{
+ "school_key": "university-of-illinois-urbana-champaign",
+ "school_name_en": "University of Illinois Urbana-Champaign",
+ "country": "United States",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://grad.illinois.edu/admissions/programs",
+  "https://grad.illinois.edu/admissions/international-applicants",
+  "https://grad.illinois.edu/admissions/graduate-admissions-minimum-requirements"
+ ],
+ "blocked": [
+  {
+   "url": "https://cs.illinois.edu/ (MCS, MS CS, MS Bioinformatics-CS)",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://ece.illinois.edu/, https://mechse.illinois.edu/, https://cee.illinois.edu/, https://ise.illinois.edu/, https://grainger.illinois.edu/, https://aerospace.illinois.edu/, https://bioengineering.illinois.edu/, https://matse.illinois.edu/, https://npre.illinois.edu/, https://chbe.illinois.edu/, https://autonomy.illinois.edu/, https://energysystemsmeng.grainger.illinois.edu/, https://mcs-ds.illinois.edu/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://msfe.illinois.edu/, https://catalog.illinois.edu/graduate/, https://stat.illinois.edu/academics/graduate-programs/ms-statistics, https://publichealth.illinois.edu/",
+   "reason": "robots.txt disallows"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://publish.illinois.edu/msadvertising/",
+  "https://asrm.illinois.edu/admissions/graduate-degrees",
+  "https://economics.illinois.edu/admissions/ms-economic-modeling-ai-data-science-emaids-admissions",
+  "https://economics.illinois.edu/academics/master-science-policy-economics/admission/application-materials-deadlines",
+  "https://education.illinois.edu/ci",
+  "https://ggis.illinois.edu/",
+  "https://psm.illinois.edu/gis/overview",
+  "https://gamestudies.illinois.edu/",
+  "https://abe.illinois.edu/",
+  "https://ischool.illinois.edu/academics/graduate/ms-library-and-information-science (LEEP online excluded)"
+ ],
+ "notes": "Grainger Engineering and Computer Science department sites (CS, ECE, MechSE, CEE, ISE, MSFE, etc.) disallow our fetcher via robots.txt, so none of their programmes were collected. English minimums are the Graduate College limited-status minimum (lowest admissible; EPT required below the full-status score); the full-status score is recorded under prerequisites. Programmes with deadlines stated without a year (Statistics MS, MUP, MSPE) have no deadline field.",
+ "programs": [
+  {
+   "name": "Master of Science in Business Analytics (Gies, on-campus)",
+   "url": "https://giesbusiness.illinois.edu/graduate-hub/business-analytics/admissions",
+   "snapshot_sha256": "9cb130b22acd1442be038a38254c608069e8c1f3d065c0ee501f773fe4f5bd1b",
+   "fields": {
+    "academic": {
+     "text": "Graduate College university-wide minimum: GPA 3.0 (A=4.0) for the last two years of undergraduate study, or comparable for international applicants; programmes may require higher",
+     "quote": "A grade point average (GPA) of 3.0 (A=4.0), or comparable GPA for an international applicant, for last two years of undergraduate study is a minimum requirement for admission.",
+     "source_sha256": "e05defda70cbadc8fe8cd1b8539e6e25b3f09df500397305bafcde8af44019ab",
+     "source_url": "https://grad.illinois.edu/admissions/graduate-admissions-minimum-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "Limited-Status Admission: TOEFL (iBT/iBT Home/iBT Paper) – 4.0 (for scores dated after 1/20/2026) or TOEFL (iBT/iBT Home/iBT Paper) – 79 (for scores dated prior to 1/21/2026); IELTS Academic – 6.5; Duolingo – 115",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Limited-Status Admission: TOEFL (iBT/iBT Home/iBT Paper) – 4.0 (for scores dated after 1/20/2026) or TOEFL (iBT/iBT Home/iBT Paper) – 79 (for scores dated prior to 1/21/2026); IELTS Academic – 6.5; Duolingo – 115",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Full-status English minimums: IELTS Academic 7.5, TOEFL iBT 103 (scores before 2026-01-21) or 5.0 (scores after 2026-01-20); scores meeting only the limited-status minimum require an English Placement Test on arrival",
+      "quote": "Full-Status Admission: TOEFL (iBT/iBT Home/iBT Paper) – 103 for scores prior to 1/21/26 or 5.0 for scores dated after 1/20/26; IELTS Academic – 7.5; Duolingo – 135",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 Round 1",
+      "date": "2026-10-28",
+      "quote": "Round 1: October 28, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 Round 2",
+      "date": "2027-01-13",
+      "quote": "Round 2: January 13, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 Round 3",
+      "date": "2027-03-31",
+      "quote": "Round 3: March 31, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 Round 4 (final deadline for international applicants)",
+      "date": "2027-05-05",
+      "quote": "Round 4: May 5, 2027*",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Accountancy (Gies, on-campus)",
+   "url": "https://giesbusiness.illinois.edu/msa/admissions",
+   "snapshot_sha256": "91adab08a12c3786a84391f34b4bdfce4d07bda1f547906a48d0019bddbe7852",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in any academic discipline, subject to business background prerequisites",
+     "quote": "welcomes students with a bachelor’s degree in any academic discipline, subject to certain business background prerequisites specified under application materials",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "Limited-Status Admission: TOEFL (iBT/iBT Home/iBT Paper) – 4.0 (for scores dated after 1/20/2026) or TOEFL (iBT/iBT Home/iBT Paper) – 79 (for scores dated prior to 1/21/2026); IELTS Academic – 6.5; Duolingo – 115",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Limited-Status Admission: TOEFL (iBT/iBT Home/iBT Paper) – 4.0 (for scores dated after 1/20/2026) or TOEFL (iBT/iBT Home/iBT Paper) – 79 (for scores dated prior to 1/21/2026); IELTS Academic – 6.5; Duolingo – 115",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Introductory course in both financial accounting and finance",
+      "quote": "Applicants must have completed an introductory course in both financial accounting and finance.",
+      "check": "ok"
+     },
+     {
+      "text": "Full-status English minimums: IELTS Academic 7.5, TOEFL iBT 103 (scores before 2026-01-21) or 5.0 (scores after 2026-01-20); scores meeting only the limited-status minimum require an English Placement Test on arrival",
+      "quote": "Full-Status Admission: TOEFL (iBT/iBT Home/iBT Paper) – 103 for scores prior to 1/21/26 or 5.0 for scores dated after 1/20/26; IELTS Academic – 7.5; Duolingo – 135",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Summer 2027 Round 1",
+      "date": "2026-10-28",
+      "quote": "Round 1: October 28, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Summer 2027 Round 2",
+      "date": "2027-01-13",
+      "quote": "Round 2: January 13, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Summer 2027 Round 3 (final deadline for international applicants)",
+      "date": "2027-03-03",
+      "quote": "Round 3: March 3, 2027 *",
+      "check": "ok"
+     },
+     {
+      "label": "Summer 2027 Round 4",
+      "date": "2027-03-31",
+      "quote": "Round 4: March 31, 2027**",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Finance (Gies, on-campus)",
+   "url": "https://giesbusiness.illinois.edu/msf/admissions",
+   "snapshot_sha256": "2355fbf4354f7e22f9f06393e7c58bef939a74fcf52aa97ca25d4e98c4d018a6",
+   "fields": {
+    "academic": {
+     "text": "Graduate College university-wide minimum: GPA 3.0 (A=4.0) for the last two years of undergraduate study, or comparable for international applicants; programmes may require higher",
+     "quote": "A grade point average (GPA) of 3.0 (A=4.0), or comparable GPA for an international applicant, for last two years of undergraduate study is a minimum requirement for admission.",
+     "source_sha256": "e05defda70cbadc8fe8cd1b8539e6e25b3f09df500397305bafcde8af44019ab",
+     "source_url": "https://grad.illinois.edu/admissions/graduate-admissions-minimum-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "Limited-Status Admission: TOEFL (iBT/iBT Home/iBT Paper) – 4.0 (for scores dated after 1/20/2026) or TOEFL (iBT/iBT Home/iBT Paper) – 79 (for scores dated prior to 1/21/2026); IELTS Academic – 6.5; Duolingo – 115",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Limited-Status Admission: TOEFL (iBT/iBT Home/iBT Paper) – 4.0 (for scores dated after 1/20/2026) or TOEFL (iBT/iBT Home/iBT Paper) – 79 (for scores dated prior to 1/21/2026); IELTS Academic – 6.5; Duolingo – 115",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Full-status English minimums: IELTS Academic 7.5, TOEFL iBT 103 (scores before 2026-01-21) or 5.0 (scores after 2026-01-20); scores meeting only the limited-status minimum require an English Placement Test on arrival",
+      "quote": "Full-Status Admission: TOEFL (iBT/iBT Home/iBT Paper) – 103 for scores prior to 1/21/26 or 5.0 for scores dated after 1/20/26; IELTS Academic – 7.5; Duolingo – 135",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 Round 1",
+      "date": "2026-10-28",
+      "quote": "Round 1: October 28, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 Round 2",
+      "date": "2027-01-13",
+      "quote": "Round 2: January 13, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 Round 3",
+      "date": "2027-03-31",
+      "quote": "Round 3: March 31, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 Round 4 (final deadline for international applicants)",
+      "date": "2027-05-05",
+      "quote": "Round 4: May 5, 2027*",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Management (Gies, on-campus)",
+   "url": "https://giesbusiness.illinois.edu/msm/admissions",
+   "snapshot_sha256": "04fd9134bb2f043941a2305a7b46ceee7b0420e7fd5171d2484ce0e8edda76bd",
+   "fields": {
+    "academic": {
+     "text": "Graduate College university-wide minimum: GPA 3.0 (A=4.0) for the last two years of undergraduate study, or comparable for international applicants; programmes may require higher",
+     "quote": "A grade point average (GPA) of 3.0 (A=4.0), or comparable GPA for an international applicant, for last two years of undergraduate study is a minimum requirement for admission.",
+     "source_sha256": "e05defda70cbadc8fe8cd1b8539e6e25b3f09df500397305bafcde8af44019ab",
+     "source_url": "https://grad.illinois.edu/admissions/graduate-admissions-minimum-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "Limited-Status Admission: TOEFL (iBT/iBT Home/iBT Paper) – 4.0 (for scores dated after 1/20/2026) or TOEFL (iBT/iBT Home/iBT Paper) – 79 (for scores dated prior to 1/21/2026); IELTS Academic – 6.5; Duolingo – 115",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Limited-Status Admission: TOEFL (iBT/iBT Home/iBT Paper) – 4.0 (for scores dated after 1/20/2026) or TOEFL (iBT/iBT Home/iBT Paper) – 79 (for scores dated prior to 1/21/2026); IELTS Academic – 6.5; Duolingo – 115",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Full-status English minimums: IELTS Academic 7.5, TOEFL iBT 103 (scores before 2026-01-21) or 5.0 (scores after 2026-01-20); scores meeting only the limited-status minimum require an English Placement Test on arrival",
+      "quote": "Full-Status Admission: TOEFL (iBT/iBT Home/iBT Paper) – 103 for scores prior to 1/21/26 or 5.0 for scores dated after 1/20/26; IELTS Academic – 7.5; Duolingo – 135",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 Round 1",
+      "date": "2026-10-28",
+      "quote": "Round 1: October 28, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 Round 2",
+      "date": "2027-01-13",
+      "quote": "Round 2: January 13, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 Round 3",
+      "date": "2027-03-31",
+      "quote": "Round 3: March 31, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 Round 4 (final deadline for international applicants)",
+      "date": "2027-05-05",
+      "quote": "Round 4: May 5, 2027*",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Technology Management (Gies, on-campus)",
+   "url": "https://giesbusiness.illinois.edu/mstm/admissions",
+   "snapshot_sha256": "d2f59b3b79df4999dfe7bc5f35f76a67e8c98585ea721eff7a53d7a516fdb324",
+   "fields": {
+    "academic": {
+     "text": "Graduate College university-wide minimum: GPA 3.0 (A=4.0) for the last two years of undergraduate study, or comparable for international applicants; programmes may require higher",
+     "quote": "A grade point average (GPA) of 3.0 (A=4.0), or comparable GPA for an international applicant, for last two years of undergraduate study is a minimum requirement for admission.",
+     "source_sha256": "e05defda70cbadc8fe8cd1b8539e6e25b3f09df500397305bafcde8af44019ab",
+     "source_url": "https://grad.illinois.edu/admissions/graduate-admissions-minimum-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "Limited-Status Admission: TOEFL (iBT/iBT Home/iBT Paper) – 4.0 (for scores dated after 1/20/2026) or TOEFL (iBT/iBT Home/iBT Paper) – 79 (for scores dated prior to 1/21/2026); IELTS Academic – 6.5; Duolingo – 115",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Limited-Status Admission: TOEFL (iBT/iBT Home/iBT Paper) – 4.0 (for scores dated after 1/20/2026) or TOEFL (iBT/iBT Home/iBT Paper) – 79 (for scores dated prior to 1/21/2026); IELTS Academic – 6.5; Duolingo – 115",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Full-status English minimums: IELTS Academic 7.5, TOEFL iBT 103 (scores before 2026-01-21) or 5.0 (scores after 2026-01-20); scores meeting only the limited-status minimum require an English Placement Test on arrival",
+      "quote": "Full-Status Admission: TOEFL (iBT/iBT Home/iBT Paper) – 103 for scores prior to 1/21/26 or 5.0 for scores dated after 1/20/26; IELTS Academic – 7.5; Duolingo – 135",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 Round 1",
+      "date": "2026-10-28",
+      "quote": "Round 1: October 28, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 Round 2",
+      "date": "2027-01-13",
+      "quote": "Round 2: January 13, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 Round 3",
+      "date": "2027-03-31",
+      "quote": "Round 3: March 31, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 Round 4 (final deadline for international applicants)",
+      "date": "2027-05-05",
+      "quote": "Round 4: May 5, 2027*",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Information Management (iSchool, on-campus)",
+   "url": "https://ischool.illinois.edu/academics/graduate/ms-information-management/apply",
+   "snapshot_sha256": "8004199c477067a6644424baad150d67cb9df3340e6257661b5cd6739028dd90",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree required, in any discipline",
+     "quote": "While a bachelor's degree is required for admission, your degree can be in any discipline.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "Grad. College Min. for Limited Status Grad. College Min. for Full Status TOEFL 79 103 IELTS 6.5 7.5",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Grad. College Min. for Limited Status Grad. College Min. for Full Status TOEFL 79 103 IELTS 6.5 7.5",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Full-status English minimums (Graduate College): TOEFL 103, IELTS 7.5; limited-status minimums are TOEFL 79, IELTS 6.5",
+      "quote": "Grad. College Min. for Limited Status Grad. College Min. for Full Status TOEFL 79 103 IELTS 6.5 7.5",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Early action deadline (Fall 2027)",
+      "date": "2026-11-17",
+      "quote": "Early action deadline: November 17, 2026, 10:59 pm CST",
+      "check": "ok"
+     },
+     {
+      "label": "Regular decision deadline (Fall 2027)",
+      "date": "2027-01-29",
+      "quote": "Regular decision deadline: January 29, 2027, 10:59 pm CST",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Library and Information Science (iSchool, on-campus)",
+   "url": "https://ischool.illinois.edu/academics/graduate/ms-library-and-information-science/apply",
+   "snapshot_sha256": "91372d2db46ca046d68c505c82b18a53174be3c5774c492a51eb4aaa86008913",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree required, in any discipline",
+     "quote": "While a bachelor's degree is required for admission, your degree can be in any discipline.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "Grad. College Min. for Limited Status Grad. College Min. for Full Status TOEFL 79 103 IELTS 6.5 7.5",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Grad. College Min. for Limited Status Grad. College Min. for Full Status TOEFL 79 103 IELTS 6.5 7.5",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Full-status English minimums (Graduate College): TOEFL 103, IELTS 7.5; limited-status minimums are TOEFL 79, IELTS 6.5",
+      "quote": "Grad. College Min. for Limited Status Grad. College Min. for Full Status TOEFL 79 103 IELTS 6.5 7.5",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 application deadline",
+      "date": "2026-12-01",
+      "quote": "Application Deadline: December 1, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Bioinformatics (iSchool)",
+   "url": "https://ischool.illinois.edu/academics/graduate/ms-bioinformatics/apply",
+   "snapshot_sha256": "b4617c2602e882bfb2ce1f5b7bc23570df158e1563afb94fe9a6114fce1d890d",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree; GPA of at least 3.0 on a 4.0 scale in the last two years of undergraduate coursework, otherwise GRE scores are required",
+     "quote": "A grade-point average of at least 3.0 on a 4.0 scale in the last two years of undergraduate coursework, in which case GRE scores are not required.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "Grad. College Min. for Limited Status Grad. College Min. for Full Status TOEFL 79 103 IELTS 6.5 7.5",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Grad. College Min. for Limited Status Grad. College Min. for Full Status TOEFL 79 103 IELTS 6.5 7.5",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Undergraduate computing and mathematics background (data structures, introductory programming), remediated without credit if lacking",
+      "quote": "CS 225 (Data Structures) and introductory programming (IS 452)",
+      "check": "ok"
+     },
+     {
+      "text": "Full-status English minimums (Graduate College): TOEFL 103, IELTS 7.5; limited-status minimums are TOEFL 79, IELTS 6.5",
+      "quote": "Grad. College Min. for Limited Status Grad. College Min. for Full Status TOEFL 79 103 IELTS 6.5 7.5",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 application deadline",
+      "date": "2026-12-01",
+      "quote": "Application Deadline: December 1, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Statistics (Department of Statistics)",
+   "url": "https://stat.illinois.edu/academics/graduate-programs/masters-programs",
+   "snapshot_sha256": "b8a2e9a64cc9b51787fc7cf5e56588e4d7f4710809aed3e833f4c748498a67ce",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "Calculus through multivariable calculus, linear algebra (MATH 257 equivalent), introductory mathematical statistics and probability (STAT 400 equivalent)",
+      "quote": "The prerequisites for the program include calculus through multivariable calculus, linear algebra equivalent to MATH 257, and an introduction to mathematical statistics and probability equivalent to STAT 400.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Predictive Analytics and Risk Management",
+   "url": "https://predictive-analytics.illinois.edu/admission-requirement/",
+   "snapshot_sha256": "42a053cd79af4a6e47d8d3a9aeab16e22e730b19397a64da2370c5bf9a0fdfc3",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or comparable; minimum GPA 2.75 (A=4.0) for the last two years of undergraduate study",
+     "quote": "A grade point average (GPA) of 2.75 (A=4.0), or comparable GPA for an international applicant, for last two years of undergraduate study is a minimum requirement for admission.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "Limited Status Admission Minimum Full Status Admission Minimum TOEFL iBT TOEFL iBT Home Edition 4.0 (for scores dated after 1/20/2026) 79 (for scores dated prior to 1/21/2026) 5.0 (for scores dated after 1/20/2026) 103 (for scores dated prior to 1/21/2026) IELTS Academic Exam 6.5 7.5",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "abd70b882ccaebae2688d551cf6d7752999be7d721e1ba930fc2678f91f6effb",
+     "source_url": "https://grad.illinois.edu/admissions/international-applicants",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Limited Status Admission Minimum Full Status Admission Minimum TOEFL iBT TOEFL iBT Home Edition 4.0 (for scores dated after 1/20/2026) 79 (for scores dated prior to 1/21/2026) 5.0 (for scores dated after 1/20/2026) 103 (for scores dated prior to 1/21/2026) IELTS Academic Exam 6.5 7.5",
+     "source_sha256": "abd70b882ccaebae2688d551cf6d7752999be7d721e1ba930fc2678f91f6effb",
+     "source_url": "https://grad.illinois.edu/admissions/international-applicants",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Calculus through multivariable calculus, linear algebra, and an introduction to probability and statistics",
+      "quote": "Calculus through multivariable calculus, linear algebra, and an introduction to probability and statistics.",
+      "check": "ok"
+     },
+     {
+      "text": "International applicants must satisfy the Graduate College English proficiency requirement (limited-status minimums given; full status is TOEFL 5.0/103, IELTS 7.5)",
+      "quote": "All international applicants must satisfy the Graduate College English Proficiency Requirement for Admission.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Urban Planning",
+   "url": "https://urban.illinois.edu/programs-applying/master-urban-planning/how-to-apply-mup/",
+   "snapshot_sha256": "23741772f6aa21fe94fe6841290e8ecb5ce37259e7fdda06ef383c4a7ea2656d",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "TOEFL or IELTS scores required for non-native English speakers (exemption possible for admission)",
+      "quote": "Proof of Language Proficiency for Non-Native English Speakers: Submit TOEFL or IELTS scores with your online application.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Health Technology",
+   "url": "https://healthtech.ahs.illinois.edu/ms-in-health-technology/admissions/",
+   "snapshot_sha256": "b4a9f98bcddca5e444a8a4bf6faf597b76e969b5e8926514ba0b27d1a8a98843",
+   "fields": {
+    "academic": {
+     "text": "Minimum GPA 3.00/4.00 (below 3.00 may be admitted on limited status)",
+     "quote": "Minimum GPA: 3.00/4.00",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 103 or higher for full status admission; 79-102 for limited status admission with English Placement Test (EPT) requirement",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS: 7.5 or higher for full status admission; 6.5-7.0 for limited status admission with English Placement Test (EPT) requirement",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Full-status English minimums: TOEFL 103, IELTS 7.5; limited status (TOEFL 79-102, IELTS 6.5-7.0) requires an English Placement Test",
+      "quote": "TOEFL: 103 or higher for full status admission; 79-102 for limited status admission with English Placement Test (EPT) requirement",
+      "check": "ok"
+     },
+     {
+      "text": "Application prerequisite course areas: Introduction to Computer Science, Psychology, Public Health, Statistics or Health Statistics, Linear Algebra, Research Methods (may be completed by July 15)",
+      "quote": "Introduction to Computer Science",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority deadline",
+      "date": "2026-12-01",
+      "quote": "a priority deadline of December 1, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 regular deadline",
+      "date": "2027-03-01",
+      "quote": "a regular deadline of March 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Social Work (campus, School of Social Work)",
+   "url": "https://socialwork.illinois.edu/admissions-academics/graduate-programs/master-of-social-work/msw-admissions/",
+   "snapshot_sha256": "6c1db277fd2d48a3b7c24666e857c5a911e972348b5149f37c916c7ad8a2b0b3",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree; minimum GPA 3.0/4.0 over the last 60 semester hours",
+     "quote": "A minimum grade point average of 3.0 (on a 4.0 scale) or better for the last sixty (60) semester hours or ninety (90) quarter hours of coursework",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 103,
+     "quote": "TOEFL total score of at least 103 and a speaking score of at least 24; or a 7.0 in all areas of IELTS.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 7.0,
+     "quote": "TOEFL total score of at least 103 and a speaking score of at least 24; or a 7.0 in all areas of IELTS.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Summer/Fall 2027 priority deadline",
+      "date": "2026-12-01",
+      "quote": "Priority Deadline is December 1, 2026.",
+      "check": "ok"
+     },
+     {
+      "label": "Summer/Fall 2027 final deadline",
+      "date": "2027-01-15",
+      "quote": "Final January 15, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 13,
+  "机器核对": 13,
+  "待人工": 0
+ }
+}

@@ -1,7 +1,8 @@
-"""Seed the placeholder program catalogue.
+"""Seed the hand-entered program requirements.
 
-The values mirror web/lib/programs.ts, which is the current source of truth until the annotation stage
-replaces both with reviewed data. Every record is written as 待核验.
+Five CRICOS courses whose requirements were entered by hand before collection existed. They used to
+mirror web/lib/programs.ts; that mirror is gone and these rows are now the source. Every record is
+written as 待核验.
 
 The frontend carries two program fields that have no column here. ``excerpt`` is a manual summary
 rather than captured page text, so it is dropped on purpose. ``university`` is the frontend's display
@@ -60,12 +61,14 @@ UNIVERSITIES = [
 
 # Each entry keeps the same official url and title the frontend already cites. The frontend mixes the
 # local name and the English name between 大学 / 项目; ``name`` and ``name_en`` follow that split.
-# ``id`` is the frontend's ``slug`` verbatim: it is the join key the interface uses to resolve a
-# portfolio entry back to a program, so a different spelling here breaks that lookup. The source and
-# prerequisite ids below are derived from it, which keeps one identifier per row in every table.
+# ``id`` is the program's catalogue id, ``cricos-<CRICOS course code>``: these rows are the CRICOS
+# courses the placeholder catalogue described, carrying the requirements that were entered for them by
+# hand (all 待核验). ``seed_catalog`` writes the other CRICOS courses and folds the old slugs
+# (``LEGACY_SLUGS`` there) into these ids. The Monash Master of Computer Science placeholder is gone: no
+# course of that name is in the CRICOS extract. Prerequisite ids are derived from the program id.
 PROGRAMS = [
     {
-        "id": "unsw-master-it",
+        "id": "cricos-061294J",
         "university_id": "unsw",
         "name": "信息技术硕士",
         "name_en": "Master of Information Technology",
@@ -85,7 +88,7 @@ PROGRAMS = [
         "prerequisites": [],
     },
     {
-        "id": "usyd-master-cs",
+        "id": "cricos-111671D",
         "university_id": "usyd",
         "name": "计算机科学硕士",
         "name_en": "Master of Computer Science",
@@ -105,7 +108,7 @@ PROGRAMS = [
         "prerequisites": [],
     },
     {
-        "id": "monash-master-ai",
+        "id": "cricos-103000K",
         "university_id": "monash",
         "name": "人工智能硕士",
         "name_en": "Master of Artificial Intelligence",
@@ -125,27 +128,7 @@ PROGRAMS = [
         "prerequisites": [],
     },
     {
-        "id": "monash-master-cs",
-        "university_id": "monash",
-        "name": "计算机科学硕士",
-        "name_en": "Master of Computer Science",
-        "city": "墨尔本",
-        "degree_level": "授课型硕士",
-        "field": "计算机与数据",
-        "duration": "1.5–2 年",
-        "minimum_mark": 60,
-        "non_211_minimum_mark": None,
-        "requires_cognate": True,
-        "english_requirement": "需同时满足 Monash 英语要求",
-        "source_url": (
-            "https://www.monash.edu/study/courses/find-a-course/"
-            "computer-science-c6008"
-        ),
-        "source_title": "Monash Master of Computer Science",
-        "prerequisites": ["编程", "算法或数据结构"],
-    },
-    {
-        "id": "uq-master-data-science",
+        "id": "cricos-092454G",
         "university_id": "uq",
         "name": "数据科学硕士",
         "name_en": "Master of Data Science",
@@ -164,7 +147,7 @@ PROGRAMS = [
         "prerequisites": ["微积分或高等数学", "线性代数与统计，或编程与数据库"],
     },
     {
-        "id": "uwa-master-it",
+        "id": "cricos-083866G",
         "university_id": "uwa",
         "name": "信息技术硕士",
         "name_en": "Master of Information Technology",

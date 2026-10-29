@@ -1,0 +1,2595 @@
+{
+ "school_key": "chinese-university-of-hong-kong",
+ "school_name_en": "The Chinese University of Hong Kong",
+ "country": "Hong Kong SAR",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://www.gs.cuhk.edu.hk/programmes",
+  "https://www.gs.cuhk.edu.hk/programmes/arts",
+  "https://www.gs.cuhk.edu.hk/programmes/business-administration",
+  "https://www.gs.cuhk.edu.hk/programmes/education",
+  "https://www.gs.cuhk.edu.hk/programmes/engineering",
+  "https://www.gs.cuhk.edu.hk/programmes/inter-faculty",
+  "https://www.gs.cuhk.edu.hk/programmes/law",
+  "https://www.gs.cuhk.edu.hk/programmes/medicine",
+  "https://www.gs.cuhk.edu.hk/programmes/science",
+  "https://www.gs.cuhk.edu.hk/programmes/social-science",
+  "https://www.gs.cuhk.edu.hk/admissions/requirements"
+ ],
+ "blocked": [],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.gs.cuhk.edu.hk/programmes/arts/ma-anthropology",
+  "https://www.gs.cuhk.edu.hk/programmes/arts/ma-buddhist-studies",
+  "https://www.gs.cuhk.edu.hk/programmes/arts/ma-china-studies",
+  "https://www.gs.cuhk.edu.hk/programmes/arts/ma-chinese-art-history",
+  "https://www.gs.cuhk.edu.hk/programmes/arts/ma-chinese-language-and-literature",
+  "https://www.gs.cuhk.edu.hk/programmes/arts/ma-chinese-linguistics-and-language-acquisition",
+  "https://www.gs.cuhk.edu.hk/programmes/arts/ma-christian-studies",
+  "https://www.gs.cuhk.edu.hk/programmes/arts/ma-comparative-and-public-history",
+  "https://www.gs.cuhk.edu.hk/programmes/arts/ma-english-applied-english-linguistics",
+  "https://www.gs.cuhk.edu.hk/programmes/arts/ma-english-literary-studies",
+  "https://www.gs.cuhk.edu.hk/programmes/arts/ma-fine-arts",
+  "https://www.gs.cuhk.edu.hk/programmes/arts/ma-intercultural-studies",
+  "https://www.gs.cuhk.edu.hk/programmes/arts/ma-japanese-studies",
+  "https://www.gs.cuhk.edu.hk/programmes/arts/ma-music",
+  "https://www.gs.cuhk.edu.hk/programmes/arts/ma-philosophy",
+  "https://www.gs.cuhk.edu.hk/programmes/arts/ma-religious-studies",
+  "https://www.gs.cuhk.edu.hk/programmes/arts/master-divinity",
+  "https://www.gs.cuhk.edu.hk/programmes/arts/master-fine-arts",
+  "https://www.gs.cuhk.edu.hk/programmes/arts/master-music",
+  "https://www.gs.cuhk.edu.hk/programmes/business-administration/executive-master-professional-accountancy-offered-shanghai",
+  "https://www.gs.cuhk.edu.hk/programmes/business-administration/executive-mba",
+  "https://www.gs.cuhk.edu.hk/programmes/business-administration/executive-mba-chinese",
+  "https://www.gs.cuhk.edu.hk/programmes/business-administration/mba-technology-and-innovation-offered-shenzhen",
+  "https://www.gs.cuhk.edu.hk/programmes/business-administration/msc-information-and-technology-management-part-time-mode-only",
+  "https://www.gs.cuhk.edu.hk/programmes/education/ma-teaching-english-speakers-other-languages",
+  "https://www.gs.cuhk.edu.hk/programmes/education/master-education-teaching-key-subject-areas-national-excellent-teacher",
+  "https://www.gs.cuhk.edu.hk/programmes/education/msc-sports-science-and-physical-activity",
+  "https://www.gs.cuhk.edu.hk/programmes/engineering/msc-information-science-and-technology-management-full-time-mode-only",
+  "https://www.gs.cuhk.edu.hk/programmes/inter-faculty/ma-gender-studies",
+  "https://www.gs.cuhk.edu.hk/programmes/law/master-laws-ai-law",
+  "https://www.gs.cuhk.edu.hk/programmes/law/master-laws-energy-and-environmental-law",
+  "https://www.gs.cuhk.edu.hk/programmes/law/master-laws-international-economic-law",
+  "https://www.gs.cuhk.edu.hk/programmes/law/master-laws-legal-history",
+  "https://www.gs.cuhk.edu.hk/programmes/medicine/master-chinese-medicine",
+  "https://www.gs.cuhk.edu.hk/programmes/medicine/master-clinical-pharmacy",
+  "https://www.gs.cuhk.edu.hk/programmes/medicine/master-nursing",
+  "https://www.gs.cuhk.edu.hk/programmes/medicine/master-nursing-science-pre-registration",
+  "https://www.gs.cuhk.edu.hk/programmes/medicine/master-public-health",
+  "https://www.gs.cuhk.edu.hk/programmes/medicine/master-science-pharmaceutical-sciences-and-drug-development",
+  "https://www.gs.cuhk.edu.hk/programmes/medicine/msc-cardiology",
+  "https://www.gs.cuhk.edu.hk/programmes/medicine/msc-chinese-medicine",
+  "https://www.gs.cuhk.edu.hk/programmes/medicine/msc-chinese-medicine-pharmacology-and-drug-development",
+  "https://www.gs.cuhk.edu.hk/programmes/medicine/msc-clinical-gerontology-and-end-life-care",
+  "https://www.gs.cuhk.edu.hk/programmes/medicine/msc-endocrinology-diabetes-and-metabolism",
+  "https://www.gs.cuhk.edu.hk/programmes/medicine/msc-epidemiology-and-biostatistics",
+  "https://www.gs.cuhk.edu.hk/programmes/medicine/msc-gastroenterology",
+  "https://www.gs.cuhk.edu.hk/programmes/medicine/msc-genomics-and-bioinformatics",
+  "https://www.gs.cuhk.edu.hk/programmes/medicine/msc-health-services-management",
+  "https://www.gs.cuhk.edu.hk/programmes/medicine/msc-maternal-fetal-medicine",
+  "https://www.gs.cuhk.edu.hk/programmes/medicine/msc-medical-laboratory-sciences",
+  "https://www.gs.cuhk.edu.hk/programmes/medicine/msc-musculoskeletal-medicine-rehabilitation-and-geriatric-orthopaedics",
+  "https://www.gs.cuhk.edu.hk/programmes/medicine/msc-obstetric-and-midwifery-care",
+  "https://www.gs.cuhk.edu.hk/programmes/medicine/msc-prehospital-and-emergency-care",
+  "https://www.gs.cuhk.edu.hk/programmes/medicine/msc-sports-medicine-and-health-science",
+  "https://www.gs.cuhk.edu.hk/programmes/medicine/msc-stroke-and-clinical-neurosciences",
+  "https://www.gs.cuhk.edu.hk/programmes/science/msc-accreditation-chemistry",
+  "https://www.gs.cuhk.edu.hk/programmes/science/msc-advanced-materials-science",
+  "https://www.gs.cuhk.edu.hk/programmes/science/msc-biochemical-and-biomedical-sciences",
+  "https://www.gs.cuhk.edu.hk/programmes/science/msc-biodiversity-environmental-management-sustainability-and-technology",
+  "https://www.gs.cuhk.edu.hk/programmes/science/msc-earth-and-environmental-analytics-sustainability",
+  "https://www.gs.cuhk.edu.hk/programmes/science/msc-nutrition-food-science-and-technology",
+  "https://www.gs.cuhk.edu.hk/programmes/social-science/dual-degree-msc-applied-economics-cuhk-and-ms-social-and-economic-policy",
+  "https://www.gs.cuhk.edu.hk/programmes/social-science/ma-family-counselling-and-family-education",
+  "https://www.gs.cuhk.edu.hk/programmes/social-science/ma-gender-studies-inter-faculty",
+  "https://www.gs.cuhk.edu.hk/programmes/social-science/ma-social-service-management",
+  "https://www.gs.cuhk.edu.hk/programmes/social-science/master-architecture",
+  "https://www.gs.cuhk.edu.hk/programmes/social-science/master-social-work",
+  "https://www.gs.cuhk.edu.hk/programmes/social-science/msc-environmental-information-health-and-public-management",
+  "https://www.gs.cuhk.edu.hk/programmes/social-science/msc-geoinformation-science-and-smart-cities",
+  "https://www.gs.cuhk.edu.hk/programmes/social-science/msc-landscape-architecture",
+  "https://www.gs.cuhk.edu.hk/programmes/social-science/msc-smart-governance-and-city-operation",
+  "https://www.gs.cuhk.edu.hk/programmes/social-science/msc-urban-design",
+  "https://www.gs.cuhk.edu.hk/programmes/social-science/mssc-clinical-psychology",
+  "https://www.gs.cuhk.edu.hk/programmes/social-science/mssc-government-and-politics-greater-china",
+  "https://www.gs.cuhk.edu.hk/programmes/social-science/mssc-industrial-organizational-psychology",
+  "https://www.gs.cuhk.edu.hk/programmes/social-science/mssc-social-work",
+  "https://www.gs.cuhk.edu.hk/programmes/social-science/mssc-sustainable-tourism"
+ ],
+ "notes": "All pages are on the Graduate School site www.gs.cuhk.edu.hk; no blocks. Academic, IELTS and TOEFL come from the Graduate School general requirements page (cited by source_sha256) only where the programme page names those general requirements; programme-specific text overrides them. No Mainland-China mark thresholds are published, so china_requirement is omitted. Deadlines are only those still in the future on 2026-10-29; the study mode of two undated-label deadlines is not stated in the page text. Medicine programmes and the remaining listed URLs were not reached.",
+ "programs": [
+  {
+   "name": "Master of Accountancy",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/business-administration/master-accountancy",
+   "snapshot_sha256": "d43b36bdfebed29975913863206d7f3bc737595beb2f3bcec5a2394bfdc1a63b",
+   "fields": {
+    "academic": {
+     "text": "Taught master's: bachelor's degree from a recognised university, normally with honours not lower than Second Class or an average grade of not lower than B (Graduate School general requirement, which this programme page refers to)",
+     "quote": "For a Taught Master’s Programme other than the Executive Master of Business Administration (Executive M.B.A.) Programme, the applicant shall have: graduated from a recognised university and obtained a bachelor’s degree, normally with honours not lower than Second Class or achieving an average grade of not lower than “B”; or",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "deadlines": [
+     {
+      "label": "Application deadline (study mode not labelled on page)",
+      "date": "2027-03-31",
+      "quote": "31 March 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Global Wealth Management",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/business-administration/master-science-global-wealth-management",
+   "snapshot_sha256": "c1b458751a39c90c038917d6ea303d52782f8a632774d9f0463e11172c09cbe8",
+   "fields": {
+    "academic": {
+     "text": "Taught master's: bachelor's degree from a recognised university, normally with honours not lower than Second Class or an average grade of not lower than B (Graduate School general requirement, which this programme page refers to)",
+     "quote": "For a Taught Master’s Programme other than the Executive Master of Business Administration (Executive M.B.A.) Programme, the applicant shall have: graduated from a recognised university and obtained a bachelor’s degree, normally with honours not lower than Second Class or achieving an average grade of not lower than “B”; or",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "deadlines": [
+     {
+      "label": "Application deadline (study mode not labelled on page)",
+      "date": "2027-03-31",
+      "quote": "March 31 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MBA",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/business-administration/mba",
+   "snapshot_sha256": "f05bb6d6372cf85a05b0a617c6803c76b32375fb1c9d1d7a391b367bb162c6a0",
+   "fields": {
+    "academic": {
+     "text": "Taught master's: bachelor's degree from a recognised university, normally with honours not lower than Second Class or an average grade of not lower than B (Graduate School general requirement, which this programme page refers to)",
+     "quote": "For a Taught Master’s Programme other than the Executive Master of Business Administration (Executive M.B.A.) Programme, the applicant shall have: graduated from a recognised university and obtained a bachelor’s degree, normally with honours not lower than Second Class or achieving an average grade of not lower than “B”; or",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "prerequisites": [
+     {
+      "text": "At least 2 years of full-time post-qualification work experience",
+      "quote": "applicants should\nhave at least 2 years of full-time post-qualification work experience",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "1st round",
+      "date": "2026-10-31",
+      "quote": "1st round: 31 October 2026",
+      "check": "ok"
+     },
+     {
+      "label": "2nd round",
+      "date": "2026-12-15",
+      "quote": "2nd round: 15 December 2026",
+      "check": "ok"
+     },
+     {
+      "label": "3rd round",
+      "date": "2027-01-31",
+      "quote": "3rd round: 31 January 2027",
+      "check": "ok"
+     },
+     {
+      "label": "4th round",
+      "date": "2027-03-15",
+      "quote": "4th round: 15 March 2027",
+      "check": "ok"
+     },
+     {
+      "label": "5th round",
+      "date": "2027-04-30",
+      "quote": "5th round: 30 April 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MBA in Finance",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/business-administration/mba-finance",
+   "snapshot_sha256": "e957fff5fbaac2a39883a0011778d8dd5f26a43b2ae65a98d19a1f372b76bf3f",
+   "fields": {
+    "academic": {
+     "text": "Taught master's: bachelor's degree from a recognised university, normally with honours not lower than Second Class or an average grade of not lower than B (Graduate School general requirement, which this programme page refers to)",
+     "quote": "For a Taught Master’s Programme other than the Executive Master of Business Administration (Executive M.B.A.) Programme, the applicant shall have: graduated from a recognised university and obtained a bachelor’s degree, normally with honours not lower than Second Class or achieving an average grade of not lower than “B”; or",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "prerequisites": [
+     {
+      "text": "Preferably 3 years of post-qualification work experience; entrance examination and interview",
+      "quote": "preferably have 3 years of post-qualification work experience",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application deadline (study mode not labelled on page)",
+      "date": "2027-06-18",
+      "quote": "18 June 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Actuarial Science and Insurance Analytics",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/business-administration/msc-actuarial-science-and-insurance-analytics",
+   "snapshot_sha256": "69bc2eab41a92bde0516c993ae58e95ec0845271ecafa38da9722a3f46b0107e",
+   "fields": {
+    "academic": {
+     "text": "Taught master's: bachelor's degree from a recognised university, normally with honours not lower than Second Class or an average grade of not lower than B (Graduate School general requirement, which this programme page refers to)",
+     "quote": "For a Taught Master’s Programme other than the Executive Master of Business Administration (Executive M.B.A.) Programme, the applicant shall have: graduated from a recognised university and obtained a bachelor’s degree, normally with honours not lower than Second Class or achieving an average grade of not lower than “B”; or",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "prerequisites": [
+     {
+      "text": "At least one university-level course in calculus, probability, statistics, or an approved equivalent",
+      "quote": "applicants should have taken and passed at least one university-level course in either calculus, probability, statistics, or an approved equivalent course",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application deadline (study mode not labelled on page)",
+      "date": "2027-03-31",
+      "quote": "31 March 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Aviation Management",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/business-administration/msc-aviation-management",
+   "snapshot_sha256": "e6490a22191aa7e3519c47cf5857fdf8fb49b8595f487e18525f4cf834bf5c70",
+   "fields": {
+    "academic": {
+     "text": "Taught master's: bachelor's degree from a recognised university, normally with honours not lower than Second Class or an average grade of not lower than B (Graduate School general requirement, which this programme page refers to)",
+     "quote": "For a Taught Master’s Programme other than the Executive Master of Business Administration (Executive M.B.A.) Programme, the applicant shall have: graduated from a recognised university and obtained a bachelor’s degree, normally with honours not lower than Second Class or achieving an average grade of not lower than “B”; or",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "deadlines": [
+     {
+      "label": "Main Round",
+      "date": "2027-03-31",
+      "quote": "Main Round: 31 March 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Business Analytics",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/business-administration/msc-business-analytics",
+   "snapshot_sha256": "6044595ecd6ffefa0af35bd2e89da19d1c4300c9de137d5bb6ba4c4bfe074d7f",
+   "fields": {
+    "academic": {
+     "text": "Taught master's: bachelor's degree from a recognised university, normally with honours not lower than Second Class or an average grade of not lower than B (Graduate School general requirement, which this programme page refers to)",
+     "quote": "For a Taught Master’s Programme other than the Executive Master of Business Administration (Executive M.B.A.) Programme, the applicant shall have: graduated from a recognised university and obtained a bachelor’s degree, normally with honours not lower than Second Class or achieving an average grade of not lower than “B”; or",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "deadlines": [
+     {
+      "label": "Application deadline (study mode not labelled on page)",
+      "date": "2027-03-31",
+      "quote": "31 March 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Family Business Management",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/business-administration/msc-family-business-management",
+   "snapshot_sha256": "4253fe475024a6421a4ed831d80334379aec62fb9c37aa032bb320018b9c1872",
+   "fields": {
+    "academic": {
+     "text": "Taught master's: bachelor's degree from a recognised university, normally with honours not lower than Second Class or an average grade of not lower than B (Graduate School general requirement, which this programme page refers to)",
+     "quote": "For a Taught Master’s Programme other than the Executive Master of Business Administration (Executive M.B.A.) Programme, the applicant shall have: graduated from a recognised university and obtained a bachelor’s degree, normally with honours not lower than Second Class or achieving an average grade of not lower than “B”; or",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "deadlines": [
+     {
+      "label": "Application deadline (study mode not labelled on page)",
+      "date": "2027-03-31",
+      "quote": "31 March 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Information Science and Technology Management (Full-time Mode Only)",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/business-administration/msc-information-science-and-technology-management-full-time-mode",
+   "snapshot_sha256": "682f6d5fc2cdbcabfa0b137cdf8c6c4d6d459ac6f774d11971058109e5c50b04",
+   "fields": {
+    "academic": {
+     "text": "Taught master's: bachelor's degree from a recognised university, normally with honours not lower than Second Class or an average grade of not lower than B (Graduate School general requirement, which this programme page refers to)",
+     "quote": "For a Taught Master’s Programme other than the Executive Master of Business Administration (Executive M.B.A.) Programme, the applicant shall have: graduated from a recognised university and obtained a bachelor’s degree, normally with honours not lower than Second Class or achieving an average grade of not lower than “B”; or",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "deadlines": [
+     {
+      "label": "Application deadline (study mode not labelled on page)",
+      "date": "2027-03-31",
+      "quote": "31 March 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Leadership for Experience Economy",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/business-administration/msc-leadership-experience-economy",
+   "snapshot_sha256": "6bb4edc18224f9e28735bb733caf1f5a9c4f1df96cb35546b21dcf237e61c665",
+   "fields": {
+    "academic": {
+     "text": "Taught master's: bachelor's degree from a recognised university, normally with honours not lower than Second Class or an average grade of not lower than B (Graduate School general requirement, which this programme page refers to)",
+     "quote": "For a Taught Master’s Programme other than the Executive Master of Business Administration (Executive M.B.A.) Programme, the applicant shall have: graduated from a recognised university and obtained a bachelor’s degree, normally with honours not lower than Second Class or achieving an average grade of not lower than “B”; or",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "deadlines": [
+     {
+      "label": "Application deadline (study mode not labelled on page)",
+      "date": "2027-03-31",
+      "quote": "31 March 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Management",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/business-administration/msc-management",
+   "snapshot_sha256": "14840161f26afcb7d828552dc695713eef7eac26ed87dac6417ed3c777a558e0",
+   "fields": {
+    "academic": {
+     "text": "Taught master's: bachelor's degree from a recognised university, normally with honours not lower than Second Class or an average grade of not lower than B (Graduate School general requirement, which this programme page refers to)",
+     "quote": "For a Taught Master’s Programme other than the Executive Master of Business Administration (Executive M.B.A.) Programme, the applicant shall have: graduated from a recognised university and obtained a bachelor’s degree, normally with honours not lower than Second Class or achieving an average grade of not lower than “B”; or",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "deadlines": [
+     {
+      "label": "Application deadline (study mode not labelled on page)",
+      "date": "2027-03-31",
+      "quote": "31 March 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Marketing",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/business-administration/msc-marketing",
+   "snapshot_sha256": "c959762e2202e1598bb9f867d18863e5150689c9a0492ce3b4d55fa85b3a1046",
+   "fields": {
+    "academic": {
+     "text": "Taught master's: bachelor's degree from a recognised university, normally with honours not lower than Second Class or an average grade of not lower than B (Graduate School general requirement, which this programme page refers to)",
+     "quote": "For a Taught Master’s Programme other than the Executive Master of Business Administration (Executive M.B.A.) Programme, the applicant shall have: graduated from a recognised university and obtained a bachelor’s degree, normally with honours not lower than Second Class or achieving an average grade of not lower than “B”; or",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "deadlines": [
+     {
+      "label": "Application deadline (study mode not labelled on page)",
+      "date": "2027-03-31",
+      "quote": "31 March 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Real Estate",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/business-administration/msc-real-estate",
+   "snapshot_sha256": "8e6f7cd623a78c0197757edbf2382927dea0a27e65506905c0b3b0032899b25d",
+   "fields": {
+    "academic": {
+     "text": "Taught master's: bachelor's degree from a recognised university, normally with honours not lower than Second Class or an average grade of not lower than B (Graduate School general requirement, which this programme page refers to)",
+     "quote": "For a Taught Master’s Programme other than the Executive Master of Business Administration (Executive M.B.A.) Programme, the applicant shall have: graduated from a recognised university and obtained a bachelor’s degree, normally with honours not lower than Second Class or achieving an average grade of not lower than “B”; or",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "deadlines": [
+     {
+      "label": "Application deadline (study mode not labelled on page)",
+      "date": "2027-03-31",
+      "quote": "31 March 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Sports Business Management",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/business-administration/msc-sports-business-management",
+   "snapshot_sha256": "d9896af4c2777ad1b643593a99f1758bd59a7537aea54adad06ce15a307326e6",
+   "fields": {
+    "academic": {
+     "text": "Taught master's: bachelor's degree from a recognised university, normally with honours not lower than Second Class or an average grade of not lower than B (Graduate School general requirement, which this programme page refers to)",
+     "quote": "For a Taught Master’s Programme other than the Executive Master of Business Administration (Executive M.B.A.) Programme, the applicant shall have: graduated from a recognised university and obtained a bachelor’s degree, normally with honours not lower than Second Class or achieving an average grade of not lower than “B”; or",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "deadlines": [
+     {
+      "label": "Main Round",
+      "date": "2026-12-01",
+      "quote": "Main Round: 1 December 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Clearing Round",
+      "date": "2027-03-31",
+      "quote": "Clearing Round: 31 March 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Sustainable Global Business",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/business-administration/msc-sustainable-global-business",
+   "snapshot_sha256": "0cd071254aad511bff068794311354bbf2682b4e4268368196f5f2b7f0b1da4e",
+   "fields": {
+    "academic": {
+     "text": "Taught master's: bachelor's degree from a recognised university, normally with honours not lower than Second Class or an average grade of not lower than B (Graduate School general requirement, which this programme page refers to)",
+     "quote": "For a Taught Master’s Programme other than the Executive Master of Business Administration (Executive M.B.A.) Programme, the applicant shall have: graduated from a recognised university and obtained a bachelor’s degree, normally with honours not lower than Second Class or achieving an average grade of not lower than “B”; or",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "prerequisites": [
+     {
+      "text": "Preference for three years of post-qualification full-time work experience",
+      "quote": "preference will be given to applicants with three years of post-qualification full-time work experience",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application deadline (study mode not labelled on page)",
+      "date": "2027-03-31",
+      "quote": "31 March 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Artificial Intelligence",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/engineering/msc-artificial-intelligence",
+   "snapshot_sha256": "27f619ea067742c97589789d30803f74277f8e03d60fda492076a10d9b538d52",
+   "fields": {
+    "academic": {
+     "text": "Preferably a bachelor's degree in Engineering or Science (or two years' post-qualification work experience for other disciplines)",
+     "quote": "Preferably have obtained a bachelor's degree in Engineering or Science discipline from a reputable university or equivalent professional qualifications.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "deadlines": [
+     {
+      "label": "2nd round",
+      "date": "2026-11-06",
+      "quote": "2nd round: 6 November 2026",
+      "check": "ok"
+     },
+     {
+      "label": "3rd round",
+      "date": "2026-12-31",
+      "quote": "3rd round: 31 December 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Final round",
+      "date": "2027-02-28",
+      "quote": "Final round: 28 February 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Biomedical Engineering",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/engineering/msc-biomedical-engineering",
+   "snapshot_sha256": "6c9afa736e89bd2e3c037c4298871f03c1159c288f2c46a7e70da1f7b3a8ada1",
+   "fields": {
+    "academic": {
+     "text": "Normally a bachelor's degree in a relevant Engineering, Science or Medical discipline",
+     "quote": "normally possess a Bachelor's degree in a relevant Engineering, Science, or Medical discipline from a recognized university or an approved institution",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "deadlines": [
+     {
+      "label": "For non-local applicants",
+      "date": "2027-04-30",
+      "quote": "For non-local applicants: 30 April 2027",
+      "check": "ok"
+     },
+     {
+      "label": "For local applicants",
+      "date": "2027-06-15",
+      "quote": "For local applicants: 15 June 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Computer Science",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/engineering/msc-computer-science",
+   "snapshot_sha256": "79106b587052910a66bde585506bac52ab8d3efb32194357fb05eac40844a091",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in Computer Science, Computer Engineering or related fields",
+     "quote": "graduated from a recognized university and obtained a Bachelor’s degree in Computer Science, Computer Engineering or related fields.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "deadlines": [
+     {
+      "label": "Application deadline (study mode not labelled on page)",
+      "date": "2027-01-31",
+      "quote": "31 January 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in E-Commerce and Logistics Technologies",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/engineering/msc-e-commerce-and-logistics-technologies",
+   "snapshot_sha256": "d76587b250eedf560fcc7dee601df10d40d2a49b7fe78413eab80e7893d2ec38",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in engineering, science, business administration or related fields, normally Second Class Honours or higher or an average grade of B or better",
+     "quote": "graduated from a recognized university and obtained a Bachelor’s degree in engineering, science, business administration or related fields, normally with Second Class Honours or higher, or an average grade of “B” or better in his/her undergraduate courses",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "deadlines": [
+     {
+      "label": "Application deadline (study mode not labelled on page)",
+      "date": "2027-03-16",
+      "quote": "16 March 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Electronic Engineering",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/engineering/msc-electronic-engineering",
+   "snapshot_sha256": "d91c63c2365819848ec00c1e891de153dce1931775e749e70b52c823ca03b691",
+   "fields": {
+    "academic": {
+     "text": "Preferably a bachelor's degree in Electrical, Electronic, Information or Computer Engineering",
+     "quote": "obtained a Bachelor's degree from a recognized university, or equivalent professional qualifications in Electrical Engineering, Electronic Engineering, Information Engineering or Computer Engineering.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "deadlines": [
+     {
+      "label": "3rd round",
+      "date": "2026-11-20",
+      "quote": "3rd round: 20 November 2026 (Fri)",
+      "check": "ok"
+     },
+     {
+      "label": "4th round",
+      "date": "2027-01-18",
+      "quote": "4th round: 18 January 2027 (Mon)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Financial Technology",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/engineering/msc-financial-technology",
+   "snapshot_sha256": "26cf8def3a883f203d1219728e587ebdf4f81758b394a40aab7e43a4814958f2",
+   "fields": {
+    "academic": {
+     "text": "Preferably a bachelor's degree in Engineering, Science, Mathematics or a Finance/Business-related discipline",
+     "quote": "obtained a Bachelor's degree in Engineering, Science, Mathematics or Finance/Business-related discipline from a recognized university or equivalent professional qualifications.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "prerequisites": [
+     {
+      "text": "Good knowledge of mathematics (calculus, linear algebra, probability) and proficiency in a modern programming language, as shown in the transcript",
+      "quote": "good knowledge of mathematics (such as calculus, linear algebra and probability) and proficiency in at least one modern programming language (such as C, C++, Java or Python) as shown in academic transcript(s)",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "2nd round",
+      "date": "2026-11-06",
+      "quote": "2nd round: 6 November 2026",
+      "check": "ok"
+     },
+     {
+      "label": "3rd round",
+      "date": "2026-12-31",
+      "quote": "3rd round: 31 December 2026",
+      "check": "ok"
+     },
+     {
+      "label": "4th round",
+      "date": "2027-02-28",
+      "quote": "4th round: 28 February 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Information Engineering",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/engineering/msc-information-engineering",
+   "snapshot_sha256": "a98992e7f2d6610f23fc5e8a277cb3c2a4557bc77ab615472be8f67feb80a6c7",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in engineering, science or related fields, normally Second Class Honours or higher or an average grade of B or better",
+     "quote": "graduated from a recognized university and obtained a Bachelor's degree in engineering, science, or related fields, normally with Second Class Honours or higher, or an average grade of \"B\" or better in his/her undergraduate course of study",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "deadlines": [
+     {
+      "label": "2nd round",
+      "date": "2026-11-30",
+      "quote": "2nd round: 30 November 2026",
+      "check": "ok"
+     },
+     {
+      "label": "3rd round",
+      "date": "2027-03-31",
+      "quote": "3rd round: 31 March 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Mechanical and Automation Engineering",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/engineering/msc-mechanical-and-automation-engineering",
+   "snapshot_sha256": "ecdca25c1c2fd40a01aef24b3f4d473d9b87f73c2dfe57349841b78ae4e3d1dd",
+   "fields": {
+    "academic": {
+     "text": "Preferably a bachelor's degree in engineering or a science discipline, normally Second Class Honours or higher or an average grade of B or better",
+     "quote": "graduated from a recognized university and obtained a Bachelor's degree in engineering or a science discipline, normally with Second Class Honours or higher, or an average grade of \"B\" or better in their undergraduate course of study",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "deadlines": [
+     {
+      "label": "Application deadline (study mode not labelled on page)",
+      "date": "2027-03-31",
+      "quote": "31 March 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Microelectronics and Integrated Circuits",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/engineering/msc-microelectronics-and-integrated-circuits",
+   "snapshot_sha256": "a2cd9d36bcfca07fa9699980dd34859e2ffca1448f2663caf09b495ec427e17a",
+   "fields": {
+    "academic": {
+     "text": "Preferably a bachelor's degree in Microelectronics, Electrical, Electronic, Information, Telecommunications Engineering or related fields",
+     "quote": "obtained a Bachelor's degree from a recognized university, or equivalent professional qualifications in Microelectronics, Electrical Engineering, Electronic Engineering, Information Engineering, Telecommunications Engineering or other related fields.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "deadlines": [
+     {
+      "label": "3rd round",
+      "date": "2026-11-20",
+      "quote": "3rd round: 20 November 2026 (Fri)",
+      "check": "ok"
+     },
+     {
+      "label": "4th round",
+      "date": "2027-01-18",
+      "quote": "4th round: 18 January 2027 (Mon)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Robotics",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/engineering/msc-robotics",
+   "snapshot_sha256": "9e444e7b031ca3c59a4d3343767e201c118ab72b06434b0d7e4eb8a57c93b58a",
+   "fields": {
+    "academic": {
+     "text": "Preferably a bachelor's degree in engineering or a science discipline, normally Second Class Honours or higher or an average grade of B or better",
+     "quote": "graduated from a recognized university and obtained a Bachelor's degree in engineering or a science discipline, normally with Second Class Honours or higher, or an average grade of \"B\" or better in their undergraduate course of study",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "deadlines": [
+     {
+      "label": "Application deadline (study mode not labelled on page)",
+      "date": "2027-03-31",
+      "quote": "31 March 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Systems Engineering and Engineering Management",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/engineering/msc-systems-engineering-and-engineering-management",
+   "snapshot_sha256": "173d1ba5ccac8a9a3b92a127c9447e1c4a48a60c962c64bd970bf61735f6bcc0",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in engineering, science, business administration or related fields, normally Second Class Honours or higher or an average grade of B or better",
+     "quote": "graduated from a recognized university and obtained a Bachelor’s degree in engineering, science, business administration or related fields, normally with Second Class Honours or higher, or an average grade of “B” or better in his/her undergraduate courses",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "deadlines": [
+     {
+      "label": "Application deadline (study mode not labelled on page)",
+      "date": "2027-03-16",
+      "quote": "16 March 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Advanced Studies in Statistics and Data Science",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/science/msc-advanced-studies-statistics-and-data-science",
+   "snapshot_sha256": "a3d6bb61d269eb11cb131c4abd7bfde6ed7c88794c21fc4f22d395c14d871da3",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree with second class honours or above in Statistics or related subjects",
+     "quote": "applicants should have a Bachelor degree with second class honours or above in Statistics or related subjects",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "deadlines": [
+     {
+      "label": "Priority round",
+      "date": "2026-12-31",
+      "quote": "Priority round: 31 December 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Final round",
+      "date": "2027-02-28",
+      "quote": "Final round: 28 February 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Artificial Intelligence for Science",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/science/msc-artificial-intelligence-science",
+   "snapshot_sha256": "e8652f853412563290c930bf3aa1237b88574101ab9bf5a2915d68060e30da9c",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in Engineering or Science (or two years of relevant professional work experience for other disciplines)",
+     "quote": "obtained a bachelor’s degree in Engineering or Science discipline from a recognised university",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "deadlines": [
+     {
+      "label": "Application deadline (study mode not labelled on page)",
+      "date": "2027-04-30",
+      "quote": "30 April 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Data Science and Business Statistics",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/science/msc-data-science-and-business-statistics",
+   "snapshot_sha256": "e84e2cc6bfdedfa51dc7286e89c3c94ec00b7b63d6224b95446145cbd1d378c7",
+   "fields": {
+    "academic": {
+     "text": "Taught master's: bachelor's degree from a recognised university, normally with honours not lower than Second Class or an average grade of not lower than B (Graduate School general requirement, which this programme page refers to)",
+     "quote": "For a Taught Master’s Programme other than the Executive Master of Business Administration (Executive M.B.A.) Programme, the applicant shall have: graduated from a recognised university and obtained a bachelor’s degree, normally with honours not lower than Second Class or achieving an average grade of not lower than “B”; or",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "deadlines": [
+     {
+      "label": "Priority round",
+      "date": "2026-12-31",
+      "quote": "Priority round: 31 December 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Final round",
+      "date": "2027-02-28",
+      "quote": "Final round: 28 February 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Risk Management Science and Data Analytics",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/science/msc-risk-management-science-and-data-analytics",
+   "snapshot_sha256": "7da8d3d8c0d05df1cf6b6ed36cf89eb73ea5b5c7eaedd006bf0728c16db68539",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree with second class honours or above in Business, Science, Finance, Economics, Engineering or related disciplines",
+     "quote": "hold a Bachelor degree with second class honours or above in Business, Science, Finance, Economics, Engineering or related disciplines",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "deadlines": [
+     {
+      "label": "Priority round",
+      "date": "2026-12-31",
+      "quote": "Priority round: 31 December 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Final round",
+      "date": "2027-02-28",
+      "quote": "Final round: 28 February 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Mathematics",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/science/msc-mathematics",
+   "snapshot_sha256": "c8aaad9f1efeee3fe803f83fc527c378df6499c79c877e1935b2f63f38883821",
+   "fields": {
+    "academic": {
+     "text": "Taught master's: bachelor's degree from a recognised university, normally with honours not lower than Second Class or an average grade of not lower than B (Graduate School general requirement, which this programme page refers to)",
+     "quote": "For a Taught Master’s Programme other than the Executive Master of Business Administration (Executive M.B.A.) Programme, the applicant shall have: graduated from a recognised university and obtained a bachelor’s degree, normally with honours not lower than Second Class or achieving an average grade of not lower than “B”; or",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "deadlines": [
+     {
+      "label": "Priority round",
+      "date": "2027-01-31",
+      "quote": "Priority round: 31 January 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Final round",
+      "date": "2027-03-31",
+      "quote": "Final round: 31 March 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Physics",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/science/msc-physics",
+   "snapshot_sha256": "3340f42a88133c73c1ebd2d44802958de3e54b9fa02bf845ec4c0f7c8a8dfb9c",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in Science or Engineering, or sufficient preparation in Physics",
+     "quote": "applicants should hold a Bachelor’s degree in Science or Engineering, or have sufficient preparation in Physics if the first degree is in other disciplines",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "deadlines": [
+     {
+      "label": "Application deadline (study mode not labelled on page)",
+      "date": "2027-05-15",
+      "quote": "15 May 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA in Chinese Language Education",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/education/ma-chinese-language-education",
+   "snapshot_sha256": "ca763c35888d7a931422471534b2f762bf53c750369ebc98ab5913ad5fa79825",
+   "fields": {
+    "academic": {
+     "text": "Taught master's: bachelor's degree from a recognised university, normally with honours not lower than Second Class or an average grade of not lower than B (Graduate School general requirement, which this programme page refers to)",
+     "quote": "For a Taught Master’s Programme other than the Executive Master of Business Administration (Executive M.B.A.) Programme, the applicant shall have: graduated from a recognised university and obtained a bachelor’s degree, normally with honours not lower than Second Class or achieving an average grade of not lower than “B”; or",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "prerequisites": [
+     {
+      "text": "Postgraduate Diploma in Education or equivalent and/or relevant professional experience (preferred)",
+      "quote": "hold a Postgraduate Diploma in Education or an equivalent educational qualification and/or have relevant professional experience",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application deadline (study mode not labelled on page)",
+      "date": "2027-02-28",
+      "quote": "28 February 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA in Early Childhood Education",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/education/ma-early-childhood-education",
+   "snapshot_sha256": "c69e8a3ee1756ab625d36b5caa7063ef03d640931df361732424c958f7e0426f",
+   "fields": {
+    "academic": {
+     "text": "Taught master's: bachelor's degree from a recognised university, normally with honours not lower than Second Class or an average grade of not lower than B (Graduate School general requirement, which this programme page refers to)",
+     "quote": "For a Taught Master’s Programme other than the Executive Master of Business Administration (Executive M.B.A.) Programme, the applicant shall have: graduated from a recognised university and obtained a bachelor’s degree, normally with honours not lower than Second Class or achieving an average grade of not lower than “B”; or",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "deadlines": [
+     {
+      "label": "Application deadline (study mode not labelled on page)",
+      "date": "2027-02-28",
+      "quote": "28 February 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA in English Language Teaching",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/education/ma-english-language-teaching",
+   "snapshot_sha256": "f4eb98ac3d92e6cf6b89e5bf931cb1c4158bdd1d8c03ec57a5f08d0c17c7fb5b",
+   "fields": {
+    "academic": {
+     "text": "Taught master's: bachelor's degree from a recognised university, normally with honours not lower than Second Class or an average grade of not lower than B (Graduate School general requirement, which this programme page refers to)",
+     "quote": "For a Taught Master’s Programme other than the Executive Master of Business Administration (Executive M.B.A.) Programme, the applicant shall have: graduated from a recognised university and obtained a bachelor’s degree, normally with honours not lower than Second Class or achieving an average grade of not lower than “B”; or",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "prerequisites": [
+     {
+      "text": "Postgraduate Diploma in Education or equivalent, specialised in English language teaching (preferred)",
+      "quote": "hold a Postgraduate Diploma in Education or equivalent, having specialized in English language teaching",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application deadline (study mode not labelled on page)",
+      "date": "2027-02-28",
+      "quote": "28 February 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA in Professional Educational Psychology",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/education/ma-professional-educational-psychology",
+   "snapshot_sha256": "8f89155f061514299f077b2580448a8647d874637a7ee570fc815805e4931dc0",
+   "fields": {
+    "academic": {
+     "text": "Taught master's: bachelor's degree from a recognised university, normally with honours not lower than Second Class or an average grade of not lower than B (Graduate School general requirement, which this programme page refers to)",
+     "quote": "For a Taught Master’s Programme other than the Executive Master of Business Administration (Executive M.B.A.) Programme, the applicant shall have: graduated from a recognised university and obtained a bachelor’s degree, normally with honours not lower than Second Class or achieving an average grade of not lower than “B”; or",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "deadlines": [
+     {
+      "label": "Application deadline (study mode not labelled on page)",
+      "date": "2027-02-28",
+      "quote": "28 February 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA in School Guidance and Counselling",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/education/ma-school-guidance-and-counselling",
+   "snapshot_sha256": "8d51a9619f98b21781038c26e32948b1cc097f615f970abd0edc4ef4181628b8",
+   "fields": {
+    "academic": {
+     "text": "Taught master's: bachelor's degree from a recognised university, normally with honours not lower than Second Class or an average grade of not lower than B (Graduate School general requirement, which this programme page refers to)",
+     "quote": "For a Taught Master’s Programme other than the Executive Master of Business Administration (Executive M.B.A.) Programme, the applicant shall have: graduated from a recognised university and obtained a bachelor’s degree, normally with honours not lower than Second Class or achieving an average grade of not lower than “B”; or",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "prerequisites": [
+     {
+      "text": "Postgraduate Diploma in Education or equivalent and/or relevant professional experience (preferred)",
+      "quote": "hold a Postgraduate Diploma in Education or an equivalent educational qualification and/or have relevant professional experience as deemed acceptable",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application deadline (study mode not labelled on page)",
+      "date": "2027-02-28",
+      "quote": "28 February 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA in School Improvement and Leadership",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/education/ma-school-improvement-and-leadership",
+   "snapshot_sha256": "01eb4d48cf6dbf2dc7146288d7429ecdb292f99f1d2116e9f1c1c393f9a5ec28",
+   "fields": {
+    "academic": {
+     "text": "Taught master's: bachelor's degree from a recognised university, normally with honours not lower than Second Class or an average grade of not lower than B (Graduate School general requirement, which this programme page refers to)",
+     "quote": "For a Taught Master’s Programme other than the Executive Master of Business Administration (Executive M.B.A.) Programme, the applicant shall have: graduated from a recognised university and obtained a bachelor’s degree, normally with honours not lower than Second Class or achieving an average grade of not lower than “B”; or",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "prerequisites": [
+     {
+      "text": "Postgraduate Diploma in Education or equivalent and/or relevant professional experience (preferred)",
+      "quote": "hold a Postgraduate Diploma in Education, or an equivalent educational qualification, and/or have relevant professional experience as deemed acceptable",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Priority round",
+      "date": "2027-02-28",
+      "quote": "Priority round: 28 February 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Final round",
+      "date": "2027-04-30",
+      "quote": "Final round: 30 April 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Education",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/education/master-education",
+   "snapshot_sha256": "368e1e53a9ebf58823e9332316c4bb569185a5e0ed44185c545ba53cc183d72a",
+   "fields": {
+    "academic": {
+     "text": "Taught master's: bachelor's degree from a recognised university, normally with honours not lower than Second Class or an average grade of not lower than B (Graduate School general requirement, which this programme page refers to)",
+     "quote": "For a Taught Master’s Programme other than the Executive Master of Business Administration (Executive M.B.A.) Programme, the applicant shall have: graduated from a recognised university and obtained a bachelor’s degree, normally with honours not lower than Second Class or achieving an average grade of not lower than “B”; or",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "prerequisites": [
+     {
+      "text": "Postgraduate Diploma in Education or equivalent and/or relevant professional experience (preferred)",
+      "quote": "hold a Postgraduate Diploma in Education or an equivalent educational qualification and/or have relevant professional experience deemed acceptable",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application deadline (study mode not labelled on page)",
+      "date": "2027-02-28",
+      "quote": "28 February 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Mathematics Education",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/education/msc-mathematics-education",
+   "snapshot_sha256": "d4cb1e23305c6904a142d2441c5b19f294208bc784e48451b777786dd42e0f17",
+   "fields": {
+    "academic": {
+     "text": "Preferably a bachelor's degree in Mathematics or related areas at second class honours level or above",
+     "quote": "hold a Bachelor's degree in Mathematics or related areas at second class honours level or above from a recognized university",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "prerequisites": [
+     {
+      "text": "Teaching experience and/or Postgraduate Diploma in Education or equivalent (preferred)",
+      "quote": "have teaching experience and/or hold a Postgraduate Diploma in Education, or equivalent",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application deadline (study mode not labelled on page)",
+      "date": "2027-02-28",
+      "quote": "28 February 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Economics",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/social-science/msc-economics",
+   "snapshot_sha256": "2545b244cd5faed1eb4fabccce865831cc05d4dbedf57d15d610441513bc7708",
+   "fields": {
+    "academic": {
+     "text": "Taught master's: bachelor's degree from a recognised university, normally with honours not lower than Second Class or an average grade of not lower than B (Graduate School general requirement, which this programme page refers to)",
+     "quote": "For a Taught Master’s Programme other than the Executive Master of Business Administration (Executive M.B.A.) Programme, the applicant shall have: graduated from a recognised university and obtained a bachelor’s degree, normally with honours not lower than Second Class or achieving an average grade of not lower than “B”; or",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "deadlines": [
+     {
+      "label": "2nd round",
+      "date": "2026-12-14",
+      "quote": "2nd round: 14 December 2026",
+      "check": "ok"
+     },
+     {
+      "label": "3rd round",
+      "date": "2027-02-22",
+      "quote": "3rd round:  22 February 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Digital Economy and Artificial Intelligence*",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/social-science/master-science-digital-economy-and-artificial-intelligence",
+   "snapshot_sha256": "d317ded4acc3a7b92464e0a011928af46f690132cdec404bde9910258f3eb7e3",
+   "fields": {
+    "academic": {
+     "text": "Taught master's: bachelor's degree from a recognised university, normally with honours not lower than Second Class or an average grade of not lower than B (Graduate School general requirement, which this programme page refers to)",
+     "quote": "For a Taught Master’s Programme other than the Executive Master of Business Administration (Executive M.B.A.) Programme, the applicant shall have: graduated from a recognised university and obtained a bachelor’s degree, normally with honours not lower than Second Class or achieving an average grade of not lower than “B”; or",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "deadlines": [
+     {
+      "label": "1st round",
+      "date": "2026-12-14",
+      "quote": "1st round: 14 December 2026",
+      "check": "ok"
+     },
+     {
+      "label": "2nd round",
+      "date": "2027-02-22",
+      "quote": "2nd round:22 February 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA in Global Communication",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/social-science/ma-global-communication",
+   "snapshot_sha256": "1326afc83ffe55657d3e2078bcb6b86f44fdb9ae0455572f75b713c6de8f16fa",
+   "fields": {
+    "academic": {
+     "text": "Taught master's: bachelor's degree from a recognised university, normally with honours not lower than Second Class or an average grade of not lower than B (Graduate School general requirement, which this programme page refers to)",
+     "quote": "For a Taught Master’s Programme other than the Executive Master of Business Administration (Executive M.B.A.) Programme, the applicant shall have: graduated from a recognised university and obtained a bachelor’s degree, normally with honours not lower than Second Class or achieving an average grade of not lower than “B”; or",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "deadlines": [
+     {
+      "label": "Priority round",
+      "date": "2026-12-07",
+      "quote": "Priority round: 7 December 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Final round",
+      "date": "2027-01-18",
+      "quote": "Final round: 18 January 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA in Journalism",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/social-science/ma-journalism",
+   "snapshot_sha256": "2ee942aaa061ff55efb73ccacef2df6acfd476cb5fd6ea1a0bbe1cfc9938ec17",
+   "fields": {
+    "academic": {
+     "text": "Taught master's: bachelor's degree from a recognised university, normally with honours not lower than Second Class or an average grade of not lower than B (Graduate School general requirement, which this programme page refers to)",
+     "quote": "For a Taught Master’s Programme other than the Executive Master of Business Administration (Executive M.B.A.) Programme, the applicant shall have: graduated from a recognised university and obtained a bachelor’s degree, normally with honours not lower than Second Class or achieving an average grade of not lower than “B”; or",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "submit a minimum TOEFL score of 79 of 120 / 4.5 of 6 (internet-based/Home Edition); or a minimum IELTS (Academic) score of 6.5 (Test Centre based/Online)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "submit a minimum TOEFL score of 79 of 120 / 4.5 of 6 (internet-based/Home Edition); or a minimum IELTS (Academic) score of 6.5 (Test Centre based/Online)",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Priority round",
+      "date": "2026-12-07",
+      "quote": "Priority round: 7 December 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Final round",
+      "date": "2027-01-18",
+      "quote": "Final round: 18 January 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Artificial Intelligence and Communication",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/social-science/msc-artificial-intelligence-and-communication",
+   "snapshot_sha256": "5b9c5d09e57aa914eaba833080600cd90fb6bde33e70f0f5262465d6aa2f45b5",
+   "fields": {
+    "academic": {
+     "text": "Taught master's: bachelor's degree from a recognised university, normally with honours not lower than Second Class or an average grade of not lower than B (Graduate School general requirement, which this programme page refers to)",
+     "quote": "For a Taught Master’s Programme other than the Executive Master of Business Administration (Executive M.B.A.) Programme, the applicant shall have: graduated from a recognised university and obtained a bachelor’s degree, normally with honours not lower than Second Class or achieving an average grade of not lower than “B”; or",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "deadlines": [
+     {
+      "label": "Application deadline (study mode not labelled on page)",
+      "date": "2027-03-31",
+      "quote": "31 March 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in New Media",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/social-science/msc-new-media",
+   "snapshot_sha256": "f25ad41121f655032f39eeb2c982f89b16a877408d7b30f371581ec1fd632406",
+   "fields": {
+    "academic": {
+     "text": "Taught master's: bachelor's degree from a recognised university, normally with honours not lower than Second Class or an average grade of not lower than B (Graduate School general requirement, which this programme page refers to)",
+     "quote": "For a Taught Master’s Programme other than the Executive Master of Business Administration (Executive M.B.A.) Programme, the applicant shall have: graduated from a recognised university and obtained a bachelor’s degree, normally with honours not lower than Second Class or achieving an average grade of not lower than “B”; or",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "submit a minimum TOEFL score of 79 of 120 / 4.5 of 6 (internet-based/Home Edition); or a minimum IELTS (Academic) score of 6.5 (Test Centre based/Online)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "submit a minimum TOEFL score of 79 of 120 / 4.5 of 6 (internet-based/Home Edition); or a minimum IELTS (Academic) score of 6.5 (Test Centre based/Online)",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Priority round",
+      "date": "2026-12-07",
+      "quote": "Priority round: 7 December 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Final round",
+      "date": "2027-01-18",
+      "quote": "Final round: 18 January 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSSc in Advertising",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/social-science/mssc-advertising",
+   "snapshot_sha256": "a4a87998d81d8f62518913506b76c95dc411d5da546f7fb1405fd361a04b9876",
+   "fields": {
+    "academic": {
+     "text": "Taught master's: bachelor's degree from a recognised university, normally with honours not lower than Second Class or an average grade of not lower than B (Graduate School general requirement, which this programme page refers to)",
+     "quote": "For a Taught Master’s Programme other than the Executive Master of Business Administration (Executive M.B.A.) Programme, the applicant shall have: graduated from a recognised university and obtained a bachelor’s degree, normally with honours not lower than Second Class or achieving an average grade of not lower than “B”; or",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "submit a minimum TOEFL score of 79 of 120 / 4.5 of 6 (internet-based/Home Edition); or a minimum IELTS (Academic) score of 6.5 (Test Centre based/Online)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "submit a minimum TOEFL score of 79 of 120 / 4.5 of 6 (internet-based/Home Edition); or a minimum IELTS (Academic) score of 6.5 (Test Centre based/Online)",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Priority round",
+      "date": "2026-12-07",
+      "quote": "Priority round: 7 December 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Final round",
+      "date": "2027-01-18",
+      "quote": "Final round: 18 January 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSSc in Corporate Communication",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/social-science/mssc-corporate-communication",
+   "snapshot_sha256": "6c653d83c90d1be08631ec2f6cd811e4358d1eea0b5ad182770c3aef0fff6265",
+   "fields": {
+    "academic": {
+     "text": "Taught master's: bachelor's degree from a recognised university, normally with honours not lower than Second Class or an average grade of not lower than B (Graduate School general requirement, which this programme page refers to)",
+     "quote": "For a Taught Master’s Programme other than the Executive Master of Business Administration (Executive M.B.A.) Programme, the applicant shall have: graduated from a recognised university and obtained a bachelor’s degree, normally with honours not lower than Second Class or achieving an average grade of not lower than “B”; or",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "submit a minimum TOEFL score of 79 of 120 / 4.5 of 6 (internet-based/Home Edition); or a minimum IELTS (Academic) score of 6.5 (Test Centre based/Online)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "submit a minimum TOEFL score of 79 of 120 / 4.5 of 6 (internet-based/Home Edition); or a minimum IELTS (Academic) score of 6.5 (Test Centre based/Online)",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Priority round",
+      "date": "2026-12-07",
+      "quote": "Priority round: 7 December 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Final round",
+      "date": "2027-01-18",
+      "quote": "Final round: 18 January 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSSc in Public Policy",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/social-science/mssc-public-policy",
+   "snapshot_sha256": "fddcad3ef81ef233a16bd2f4ba7630f84e08163771b2299bd0323fadf0977396",
+   "fields": {
+    "academic": {
+     "text": "Taught master's: bachelor's degree from a recognised university, normally with honours not lower than Second Class or an average grade of not lower than B (Graduate School general requirement, which this programme page refers to)",
+     "quote": "For a Taught Master’s Programme other than the Executive Master of Business Administration (Executive M.B.A.) Programme, the applicant shall have: graduated from a recognised university and obtained a bachelor’s degree, normally with honours not lower than Second Class or achieving an average grade of not lower than “B”; or",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "deadlines": [
+     {
+      "label": "1st round",
+      "date": "2026-11-28",
+      "quote": "1st round: 28 November 2026",
+      "check": "ok"
+     },
+     {
+      "label": "2nd round",
+      "date": "2027-02-28",
+      "quote": "2nd round: 28 February 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA in Psychology",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/social-science/ma-psychology",
+   "snapshot_sha256": "2957178e5ce6acf99d991096410982aff4026866150f0d2e0235b1bcaec2e216",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree not majoring in Psychology",
+     "quote": "Possess a Bachelor's degree (Not majoring in Psychology) from a recognized university",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "deadlines": [
+     {
+      "label": "Application deadline (study mode not labelled on page)",
+      "date": "2026-12-01",
+      "quote": "1 December 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA in Sociology",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/social-science/ma-sociology",
+   "snapshot_sha256": "33dff1813c46b823c07709dd474d061ea89ba7f99f295c1522d2c6deff65d525",
+   "fields": {
+    "academic": {
+     "text": "Taught master's: bachelor's degree from a recognised university, normally with honours not lower than Second Class or an average grade of not lower than B (Graduate School general requirement, which this programme page refers to)",
+     "quote": "For a Taught Master’s Programme other than the Executive Master of Business Administration (Executive M.B.A.) Programme, the applicant shall have: graduated from a recognised university and obtained a bachelor’s degree, normally with honours not lower than Second Class or achieving an average grade of not lower than “B”; or",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "deadlines": [
+     {
+      "label": "Priority Round",
+      "date": "2026-11-07",
+      "quote": "Priority Round: 7 November 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Final Round",
+      "date": "2027-02-28",
+      "quote": "Final Round: 28 February 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA in Social Policy",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/social-science/ma-social-policy",
+   "snapshot_sha256": "c00cfbcdbfd8d0339e17c4311876854fb994d0dce135843835aac7ee6e6792d9",
+   "fields": {
+    "academic": {
+     "text": "Taught master's: bachelor's degree from a recognised university, normally with honours not lower than Second Class or an average grade of not lower than B (Graduate School general requirement, which this programme page refers to)",
+     "quote": "For a Taught Master’s Programme other than the Executive Master of Business Administration (Executive M.B.A.) Programme, the applicant shall have: graduated from a recognised university and obtained a bachelor’s degree, normally with honours not lower than Second Class or achieving an average grade of not lower than “B”; or",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "deadlines": [
+     {
+      "label": "2nd round",
+      "date": "2026-12-07",
+      "quote": "2nd round: 7 December 2026",
+      "check": "ok"
+     },
+     {
+      "label": "3rd round",
+      "date": "2027-03-22",
+      "quote": "3rd round: 22 March 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSSc in Global Political Economy",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/social-science/mssc-global-political-economy",
+   "snapshot_sha256": "51869845135c441cb704cbfdf2624af10a78cee2ca3b6e06dc1f210989737fea",
+   "fields": {
+    "academic": {
+     "text": "Taught master's: bachelor's degree from a recognised university, normally with honours not lower than Second Class or an average grade of not lower than B (Graduate School general requirement, which this programme page refers to)",
+     "quote": "For a Taught Master’s Programme other than the Executive Master of Business Administration (Executive M.B.A.) Programme, the applicant shall have: graduated from a recognised university and obtained a bachelor’s degree, normally with honours not lower than Second Class or achieving an average grade of not lower than “B”; or",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): Band 6.5 or above (a minimum of 6.0 in each component)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 550 (Paper-based) / 79 of 120 or 4.5 of 6 (Internet-based)",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Application deadline (study mode not labelled on page)",
+      "date": "2027-01-31",
+      "quote": "31 January 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Sustainable Urban Planning",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/social-science/msc-sustainable-urban-planning",
+   "snapshot_sha256": "9f68273cd5f0a615cc3415cf413f56e4e3b5cc95ee8565887eb1b490d6343d8f",
+   "fields": {
+    "academic": {
+     "text": "Taught master's: bachelor's degree from a recognised university, normally with honours not lower than Second Class or an average grade of not lower than B (Graduate School general requirement, which this programme page refers to)",
+     "quote": "For a Taught Master’s Programme other than the Executive Master of Business Administration (Executive M.B.A.) Programme, the applicant shall have: graduated from a recognised university and obtained a bachelor’s degree, normally with honours not lower than Second Class or achieving an average grade of not lower than “B”; or",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "deadlines": [
+     {
+      "label": "Application deadline (study mode not labelled on page)",
+      "date": "2027-04-30",
+      "quote": "30 April 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA in Translation",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/arts/ma-translation",
+   "snapshot_sha256": "bb37fdc9d4ce98a5f0fe79d32d7ccf60d20df5550401ebb3c803541e68fef7af",
+   "fields": {
+    "academic": {
+     "text": "Taught master's: bachelor's degree from a recognised university, normally with honours not lower than Second Class or an average grade of not lower than B (Graduate School general requirement, which this programme page refers to)",
+     "quote": "For a Taught Master’s Programme other than the Executive Master of Business Administration (Executive M.B.A.) Programme, the applicant shall have: graduated from a recognised university and obtained a bachelor’s degree, normally with honours not lower than Second Class or achieving an average grade of not lower than “B”; or",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "deadlines": [
+     {
+      "label": "Priority round",
+      "date": "2026-11-30",
+      "quote": "Priority round: 30 November 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Final round",
+      "date": "2027-02-28",
+      "quote": "Final round: 28 February 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA in Linguistics",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/arts/ma-linguistics",
+   "snapshot_sha256": "4448080b00a946ea6138c641c6f558c3990e0fa68d1609729bb37844a2517a7d",
+   "fields": {
+    "academic": {
+     "text": "Taught master's: bachelor's degree from a recognised university, normally with honours not lower than Second Class or an average grade of not lower than B (Graduate School general requirement, which this programme page refers to)",
+     "quote": "For a Taught Master’s Programme other than the Executive Master of Business Administration (Executive M.B.A.) Programme, the applicant shall have: graduated from a recognised university and obtained a bachelor’s degree, normally with honours not lower than Second Class or achieving an average grade of not lower than “B”; or",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "deadlines": [
+     {
+      "label": "Application deadline (study mode not labelled on page)",
+      "date": "2027-02-28",
+      "quote": "28 February 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA in AI Humanities",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/arts/ma-ai-humanities",
+   "snapshot_sha256": "72793a0c69fdf445129bb6fc28f8df28778ec9a602fa4e653c282c32433cbb68",
+   "fields": {
+    "academic": {
+     "text": "Taught master's: bachelor's degree from a recognised university, normally with honours not lower than Second Class or an average grade of not lower than B (Graduate School general requirement, which this programme page refers to)",
+     "quote": "For a Taught Master’s Programme other than the Executive Master of Business Administration (Executive M.B.A.) Programme, the applicant shall have: graduated from a recognised university and obtained a bachelor’s degree, normally with honours not lower than Second Class or achieving an average grade of not lower than “B”; or",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "deadlines": [
+     {
+      "label": "1st round",
+      "date": "2026-12-04",
+      "quote": "1st round: 4 December 2026",
+      "check": "ok"
+     },
+     {
+      "label": "2nd round",
+      "date": "2027-02-26",
+      "quote": "2nd round: 26 February 2027",
+      "check": "ok"
+     },
+     {
+      "label": "3rd round",
+      "date": "2027-04-16",
+      "quote": "3rd round: 16 April 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA in Cultural Management",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/arts/ma-cultural-management",
+   "snapshot_sha256": "3fdeba73c3d56344e0fe2dd1f6119d5958d5f4bc272c1b5268d015ff2a2c305b",
+   "fields": {
+    "academic": {
+     "text": "Taught master's: bachelor's degree from a recognised university, normally with honours not lower than Second Class or an average grade of not lower than B (Graduate School general requirement, which this programme page refers to)",
+     "quote": "For a Taught Master’s Programme other than the Executive Master of Business Administration (Executive M.B.A.) Programme, the applicant shall have: graduated from a recognised university and obtained a bachelor’s degree, normally with honours not lower than Second Class or achieving an average grade of not lower than “B”; or",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "deadlines": [
+     {
+      "label": "Application deadline (study mode not labelled on page)",
+      "date": "2027-02-28",
+      "quote": "28 February 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Laws in Common Law",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/law/master-laws-common-law",
+   "snapshot_sha256": "a3f3de1fc7fd415190e4e6c460dcbdf9cb07f05b8b9727a24e63895f0661a274",
+   "fields": {
+    "academic": {
+     "text": "LLB or equivalent degree; or a qualification to practise law; or a non-law bachelor's degree with substantial law-related work experience",
+     "quote": "a Bachelor of Laws (LLB) degree or a degree of equivalent standing (normally obtained in a non-common law jurisdiction)",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "a score of 88/120 or 4.5/6 or above in TOEFL (Internet-based/Home Edition); Band 6.5 or better in IELTS; or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 88,
+     "quote": "a score of 88/120 or 4.5/6 or above in TOEFL (Internet-based/Home Edition); Band 6.5 or better in IELTS; or equivalent",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "1st round",
+      "date": "2027-01-31",
+      "quote": "1st round: 31 January 2027",
+      "check": "ok"
+     },
+     {
+      "label": "2nd round",
+      "date": "2027-02-28",
+      "quote": "2nd round: 28 February 2027",
+      "check": "ok"
+     },
+     {
+      "label": "3rd round",
+      "date": "2027-04-09",
+      "quote": "3rd round: 9 April 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Laws in Chinese Business Law",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/law/master-laws-chinese-business-law",
+   "snapshot_sha256": "b92fdc198a13ae51036b05634e5908226c807f4f655cffef111118bc18327588",
+   "fields": {
+    "academic": {
+     "text": "LLB or equivalent degree; or a qualification to practise law; or a non-law bachelor's degree with substantial law-related work experience",
+     "quote": "a Bachelor of Laws (LLB) degree or a degree of equivalent standing",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "a score of 88/120 or 4.5/6 or above in TOEFL (Internet-based/Home Edition); Band 6.5 or better in IELTS; or equivalent",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 88,
+     "quote": "a score of 88/120 or 4.5/6 or above in TOEFL (Internet-based/Home Edition); Band 6.5 or better in IELTS; or equivalent",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "1st round",
+      "date": "2027-01-31",
+      "quote": "1st round: 31 January 2027",
+      "check": "ok"
+     },
+     {
+      "label": "2nd round",
+      "date": "2027-02-28",
+      "quote": "2nd round: 28 February 2027",
+      "check": "ok"
+     },
+     {
+      "label": "3rd round",
+      "date": "2027-04-09",
+      "quote": "3rd round: 9 April 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Finance",
+   "url": "https://www.gs.cuhk.edu.hk/programmes/business-administration/msc-finance",
+   "snapshot_sha256": "38708cc47d2dcda9a673ad16f197aa2e0d02e7c6f43f20ecd6a3785ae6d0ab5a",
+   "fields": {
+    "academic": {
+     "text": "Taught master's: bachelor's degree from a recognised university, normally with honours not lower than Second Class or an average grade of not lower than B (Graduate School general requirement, which this programme page refers to)",
+     "quote": "For a Taught Master’s Programme other than the Executive Master of Business Administration (Executive M.B.A.) Programme, the applicant shall have: graduated from a recognised university and obtained a bachelor’s degree, normally with honours not lower than Second Class or achieving an average grade of not lower than “B”; or",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS (Academic): 6.5 (Test Centre based/Online);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL: 79 of 120 / 4.5 of 6 (Internet-based/Home Edition);",
+     "source_sha256": "d7b17291ecff7f99968d3e6d621b8213637a8ee0bcf0beb81254484bb0eccb3c",
+     "check": "ok",
+     "source_url": "https://www.gs.cuhk.edu.hk/admissions/requirements"
+    },
+    "prerequisites": [
+     {
+      "text": "Preferably 2 years of post-qualification full-time work experience",
+      "quote": "applicants should preferably have 2 years of post-qualification full-time work experience",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Application deadline (study mode not labelled on page)",
+      "date": "2027-03-31",
+      "quote": "31 March 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 61,
+  "机器核对": 61,
+  "待人工": 0
+ }
+}

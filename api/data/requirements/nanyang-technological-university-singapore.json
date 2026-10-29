@@ -1,0 +1,1709 @@
+{
+ "school_key": "nanyang-technological-university-singapore",
+ "school_name_en": "Nanyang Technological University, Singapore (NTU Singapore)",
+ "country": "Singapore",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://www.ntu.edu.sg/admissions/graduate/programme-listing/GetProgrammes/?listingKeyword=&disciplines=all&programmelevels=master&programmetypes=all&page=1",
+  "https://www.ntu.edu.sg/admissions/graduate/cwadmissionguide"
+ ],
+ "blocked": [],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.ntu.edu.sg/education/graduate-programme/executive-master-of-science-in-sustainability-management",
+  "https://www.ntu.edu.sg/education/graduate-programme/master-in-museums-studies-and-curatorial-practices",
+  "https://www.ntu.edu.sg/education/graduate-programme/master-of-arts-(applied-linguistics)",
+  "https://www.ntu.edu.sg/education/graduate-programme/master-of-arts-(counselling-and-guidance)",
+  "https://www.ntu.edu.sg/education/graduate-programme/master-of-arts-(educational-leadership)",
+  "https://www.ntu.edu.sg/education/graduate-programme/master-of-arts-(instructional-design-and-technology)",
+  "https://www.ntu.edu.sg/education/graduate-programme/master-of-arts-(teaching-chinese-as-an-international-language)",
+  "https://www.ntu.edu.sg/education/graduate-programme/master-of-arts-in-creative-writing-and-publishing",
+  "https://www.ntu.edu.sg/education/graduate-programme/master-of-arts-in-digital-humanities",
+  "https://www.ntu.edu.sg/education/graduate-programme/master-of-arts-in-global-cultural-and-creative-leadership",
+  "https://www.ntu.edu.sg/education/graduate-programme/master-of-arts-in-health-and-human-experience",
+  "https://www.ntu.edu.sg/education/graduate-programme/master-of-arts-in-humanities-education",
+  "https://www.ntu.edu.sg/education/graduate-programme/master-of-arts-in-linguistics",
+  "https://www.ntu.edu.sg/education/graduate-programme/master-of-arts-in-professional-education-(training-and-development)",
+  "https://www.ntu.edu.sg/education/graduate-programme/master-of-arts-in-translation-and-interpretation",
+  "https://www.ntu.edu.sg/education/graduate-programme/master-of-education-(art)",
+  "https://www.ntu.edu.sg/education/graduate-programme/master-of-education-(chinese-language)",
+  "https://www.ntu.edu.sg/education/graduate-programme/master-of-education-(curriculum-and-teaching)",
+  "https://www.ntu.edu.sg/education/graduate-programme/master-of-education-(developmental-psychology)",
+  "https://www.ntu.edu.sg/education/graduate-programme/master-of-education-(drama)",
+  "https://www.ntu.edu.sg/education/graduate-programme/master-of-education-(early-childhood)",
+  "https://www.ntu.edu.sg/education/graduate-programme/master-of-education-(educational-assessment)",
+  "https://www.ntu.edu.sg/education/graduate-programme/master-of-education-(english)",
+  "https://www.ntu.edu.sg/education/graduate-programme/master-of-education-(high-ability-studies)",
+  "https://www.ntu.edu.sg/education/graduate-programme/master-of-education-(learning-sciences-and-ai)",
+  "https://www.ntu.edu.sg/education/graduate-programme/master-of-education-(malay-language)",
+  "https://www.ntu.edu.sg/education/graduate-programme/master-of-education-(mathematics)",
+  "https://www.ntu.edu.sg/education/graduate-programme/master-of-education-(music)",
+  "https://www.ntu.edu.sg/education/graduate-programme/master-of-education-(science)",
+  "https://www.ntu.edu.sg/education/graduate-programme/master-of-education-(special-education)",
+  "https://www.ntu.edu.sg/education/graduate-programme/master-of-education-(tamil-language)",
+  "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-(exercise-and-sport-studies)",
+  "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-(life-sciences)",
+  "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-(mathematics-for-educators)",
+  "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-(science-of-learning)",
+  "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-chinese-medicine-(mscmed)",
+  "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-game-design--art-and-technology",
+  "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-holistic-palliative-care-(hope)",
+  "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-technopreneurship-and-innovation-programme-cn",
+  "https://www.ntu.edu.sg/education/graduate-programme/master-of-teaching",
+  "https://www.ntu.edu.sg/education/graduate-programme/nanyang-chinese-executive-mba",
+  "https://www.ntu.edu.sg/education/graduate-programme/nanyang-executive-mba",
+  "https://www.ntu.edu.sg/education/graduate-programme/nanyang-executive-mba-(chinese)",
+  "https://www.ntu.edu.sg/education/graduate-programme/nanyang-fellows-mba",
+  "https://www.ntu.edu.sg/education/graduate-programme/nanyang-professional-mba",
+  "https://www.ntu.edu.sg/education/graduate-programme/ncpa-master-of-public-administration-in-chinese-(executive-mpa-programme)--1",
+  "https://www.ntu.edu.sg/education/graduate-programme/ncpa-master-of-science-(managerial-economics)-(executive-mme-programme)(march-intake)--1",
+  "https://www.ntu.edu.sg/education/graduate-programme/ncpa-master-of-science-(managerial-economics)-(july-and-november-intake)---1"
+ ],
+ "notes": "Programme list from the official listing endpoint (113 taught-master entries). Collected 65 priority programmes (computing/data/AI, engineering, business/finance, science, social science). Not reached: NIE education master programmes, executive/Chinese-language MBA and MPA/MME variants, and humanities/arts programmes. No NTU page for coursework applicants from China was found (the Interdisciplinary Graduate Programme page with an 85% China threshold is a research programme and was not used); the two joint NTU-TUM programmes state an APS certificate for Chinese qualifications. TOEFL iBT is stated on two scales: scale 0-120 where given, else the new 1-6 scale (field scale). Round deadlines without a year were not recorded.",
+ "programs": [
+  {
+   "name": "Master of Science in Information Studies (IS)",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-information-studies",
+   "snapshot_sha256": "87c240ad02a7c6c125f2ad54628354ccfdb3af1f4857aa21a1fe5a45b22b9a08",
+   "fields": {
+    "academic": {
+     "text": "A Bachelor’s degree in an information-related discipline OR A Bachelor's degree in any discipline plus full-time work experience in an information-related field. Degree classification of second class lower/Honours (Merit) and above or equivalent",
+     "quote": "A Bachelor’s degree in an information-related discipline OR A Bachelor's degree in any discipline plus full-time work experience in an information-related field. Degree classification of second class lower/Honours (Merit) and above or equivalent",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "Minimum Score Required Test of English as a Foreign Language (TOEFL) iBT International English Language Testing System (IELTS), Academic 100 (internet-based) 6.5 Note: The IELTS sub-scores should not be less than 6.0. The validity period for IELTS/TOEFL scores is two (2) years at the point of application. Please note that only TOEFL or IELTS test scores will be accepted. Also, we do not require the submission of GRE or GMAT test scores.",
+     "overall": 6.5,
+     "min_band": 6.0,
+     "text": "IELTS 6.5, sub-score 6",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "Minimum Score Required Test of English as a Foreign Language (TOEFL) iBT International English Language Testing System (IELTS), Academic 100 (internet-based) 6.5 Note: The IELTS sub-scores should not be less than 6.0. The validity period for IELTS/TOEFL scores is two (2) years at the point of application. Please note that only TOEFL or IELTS test scores will be accepted. Also, we do not require the submission of GRE or GMAT test scores.",
+     "overall": 100,
+     "scale": "iBT 0-120",
+     "text": "TOEFL 100 (iBT 0-120)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Information Systems (MSIS)",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-in-science-in-information-systems",
+   "snapshot_sha256": "d15bd7f14c6b669180bb22861c0cca7601365219b590a28da9e07aec85580d67",
+   "fields": {
+    "academic": {
+     "text": "A Bachelor's degree in areas such as Computer Science, Information Systems, Information Technology, or A Bachelor's degree with a strong information technology-related component such as those in Engineering or the Sciences, or A Bachelor’s degree plus relevant working experience Degree classification second class lower/Honours (Merit) and above or equivalent",
+     "quote": "A Bachelor's degree in areas such as Computer Science, Information Systems, Information Technology, or A Bachelor's degree with a strong information technology-related component such as those in Engineering or the Sciences, or A Bachelor’s degree plus relevant working experience Degree classification second class lower/Honours (Merit) and above or equivalent",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "Minimum Score Required Test of English as a Foreign Language (TOEFL) iBT International English Language Testing System (IELTS), Academic 100 (internet-based) 6.5 Note: The IELTS sub-scores should not be less than 6.0. The validity period for IELTS/TOEFL scores is two (2) years at the point of application. Please note that only TOEFL or IELTS test scores will be accepted. Also, we do not require the submission of GRE or GMAT test scores.",
+     "overall": 6.5,
+     "min_band": 6.0,
+     "text": "IELTS 6.5, sub-score 6",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "Minimum Score Required Test of English as a Foreign Language (TOEFL) iBT International English Language Testing System (IELTS), Academic 100 (internet-based) 6.5 Note: The IELTS sub-scores should not be less than 6.0. The validity period for IELTS/TOEFL scores is two (2) years at the point of application. Please note that only TOEFL or IELTS test scores will be accepted. Also, we do not require the submission of GRE or GMAT test scores.",
+     "overall": 100,
+     "scale": "iBT 0-120",
+     "text": "TOEFL 100 (iBT 0-120)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Integrated Circuits & Microelectronics",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-integrated-circuits-and-microelectronics",
+   "snapshot_sha256": "05845b70f22bf787ed67c6dad9cd0328f6c503a1608501b816549613d48fa9e2",
+   "fields": {
+    "academic": {
+     "text": "Have a good relevant bachelor's degree Relevant working experience is an advantage",
+     "quote": "Have a good relevant bachelor's degree Relevant working experience is an advantage",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "IELTS Score (Test date must be within 2 years or less from the date of application): ≥ 6.0",
+     "overall": 6.0,
+     "text": "IELTS 6",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "TOEFL Score (Test dates must be within 2 years or less from the date of application): ≥ 563 (paper-based) ≥ 223 (computer-based) ≥ 85 (internet-based, for exams taken before January 21, 2026) ≥ 4.5 (internet-based, for exams taken on or after January 21, 2026)",
+     "overall": 85,
+     "scale": "iBT 0-120",
+     "text": "TOEFL 85 (iBT 0-120)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in International Construction Management",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-international-construction-management",
+   "snapshot_sha256": "b1ed5207a67f020971c7c1bae7142670a47502de29bf3a2b62638f3237f8ea5e",
+   "fields": {
+    "academic": {
+     "text": "Have a good Bachelor degree in Engineering, Architecture, Quantity Surveying or other related disciplines, and have a period of relevant practical experience after obtaining the first degree.",
+     "quote": "Have a good Bachelor degree in Engineering, Architecture, Quantity Surveying or other related disciplines, and have a period of relevant practical experience after obtaining the first degree.",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "TOEFL/IELTS is required for applicants whose Bachelor programme is not conducted in English. Test date must be within 2 years or less from the date of application. The minimum score required is as follows: TOEFL (Paper-based): 600 TOEFL (Computer-based): 250 TOEFL (Internet-based - for tests taken before 21 January 2026): 85 TOEFL (Internet-based - for tests taken after 21 January 2026): 4.5 IELTS (Academic): 6.0",
+     "overall": 6.0,
+     "text": "IELTS 6",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "TOEFL/IELTS is required for applicants whose Bachelor programme is not conducted in English. Test date must be within 2 years or less from the date of application. The minimum score required is as follows: TOEFL (Paper-based): 600 TOEFL (Computer-based): 250 TOEFL (Internet-based - for tests taken before 21 January 2026): 85 TOEFL (Internet-based - for tests taken after 21 January 2026): 4.5 IELTS (Academic): 6.0",
+     "overall": 85,
+     "scale": "iBT 0-120",
+     "text": "TOEFL 85 (iBT 0-120)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Knowledge Management (KM)",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-knowledge-mangement",
+   "snapshot_sha256": "b4db2a2eddb1badfa9ac3cf1176e0e55ee21923b923e4f96c6de885a5e02a295",
+   "fields": {
+    "academic": {
+     "text": "A good Bachelor's degree in any discipline, Preference is given to applicants with management or corporate experience in a public or private organisation. Degree classification second class lower/Honours (Merit) and above or equivalent",
+     "quote": "A good Bachelor's degree in any discipline, Preference is given to applicants with management or corporate experience in a public or private organisation. Degree classification second class lower/Honours (Merit) and above or equivalent",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "Minimum Score Required Test of English as a Foreign Language (TOEFL) iBT International English Language Testing System (IELTS), Academic 100 (internet-based) 6.5 Note: The IELTS sub-scores should not be less than 6.0. The validity period for IELTS/TOEFL scores is two (2) years at the point of application. Please note that only TOEFL or IELTS test scores will be accepted. Also, we do not require the submission of GRE or GMAT test scores.",
+     "overall": 6.5,
+     "min_band": 6.0,
+     "text": "IELTS 6.5, sub-score 6",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "Minimum Score Required Test of English as a Foreign Language (TOEFL) iBT International English Language Testing System (IELTS), Academic 100 (internet-based) 6.5 Note: The IELTS sub-scores should not be less than 6.0. The validity period for IELTS/TOEFL scores is two (2) years at the point of application. Please note that only TOEFL or IELTS test scores will be accepted. Also, we do not require the submission of GRE or GMAT test scores.",
+     "overall": 100,
+     "scale": "iBT 0-120",
+     "text": "TOEFL 100 (iBT 0-120)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Managerial Economics (English)",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-managerial-economics-(english)",
+   "snapshot_sha256": "1bdf59418e9614c298f18a7f4bf801d5b6e8657d090662fd7d9a75be3c049b94",
+   "fields": {
+    "academic": {
+     "text": "A bachelor’s degree",
+     "quote": "A bachelor’s degree",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "IELTS Score of 6.5 Min 5.5 for each skill module",
+     "overall": 6.5,
+     "min_band": 5.5,
+     "text": "IELTS 6.5, sub-score 5.5",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "TOEFL Score of 5 Min 4.5 for each skill section",
+     "text": "TOEFL stated without a usable number (see quote)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Marketing Science",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-marketing-science",
+   "snapshot_sha256": "cc6bbcea050e9b5b05832c64656822eca15a83e78602aa212da5a6c3f1999ce5",
+   "fields": {
+    "academic": {
+     "text": "A good Bachelor's degree from any discipline",
+     "quote": "A good Bachelor's degree from any discipline",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Analytics",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-analytics",
+   "snapshot_sha256": "1b8d5ed51e3157067ec1876c0fb1ff4c15d26a61c84fd096125b4eb85d453af1",
+   "fields": {
+    "academic": {
+     "text": "A Bachelor's Degree in a quantitative discipline (mathematics, statistics, engineering, computer science etc.) is preferred.",
+     "quote": "A Bachelor's Degree in a quantitative discipline (mathematics, statistics, engineering, computer science etc.) is preferred.",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "A TOEFL iBT score of 4.5 or more, or IELTS score of 6.0 or more, for graduates of universities in which English is not the medium of instruction.",
+     "overall": 6.0,
+     "text": "IELTS 6",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "A TOEFL iBT score of 4.5 or more, or IELTS score of 6.0 or more, for graduates of universities in which English is not the medium of instruction.",
+     "overall": 4.5,
+     "scale": "iBT 1-6",
+     "text": "TOEFL 4.5 (iBT 1-6)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Applied Economics",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-applied-economics",
+   "snapshot_sha256": "b8d5807fd92e939fdec892cef15caaa9a4a7cdea0366b8f551fa45405e8f0a7d",
+   "fields": {
+    "academic": {
+     "text": "Applicants should possess a degree in Economics with good honours (if applicable). Applicants who do not have a degree in Economics will be considered, provided they have an honours degree in other disciplines and a strong quantitative background.",
+     "quote": "Applicants should possess a degree in Economics with good honours (if applicable). Applicants who do not have a degree in Economics will be considered, provided they have an honours degree in other disciplines and a strong quantitative background.",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "Minimum Test Score TOEFL - Internet-based - For exams taken before 21 January 2026: Minimum total score: 85 - For exams taken on or after 21 January 2026: Minimum total score: 4.5 IELTS  - IELTS score of 6.5",
+     "overall": 6.5,
+     "text": "IELTS 6.5",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "Minimum Test Score TOEFL - Internet-based - For exams taken before 21 January 2026: Minimum total score: 85 - For exams taken on or after 21 January 2026: Minimum total score: 4.5",
+     "overall": 85,
+     "scale": "iBT 0-120",
+     "text": "TOEFL 85 (iBT 0-120)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Applied Gerontology",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-applied-gerontology",
+   "snapshot_sha256": "ab2be7aa1990d9ac4b2e22c4bce0cf266d8bf7cb2843e0e8af56687bbc979319",
+   "fields": {
+    "academic": {
+     "text": "• a good bachelor’s degree; and • a passion for working with older people or on ageing-related matters",
+     "quote": "• a good bachelor’s degree; and • a passion for working with older people or on ageing-related matters",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "IELTS Minimum total score: 6",
+     "overall": 6,
+     "text": "IELTS 6",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "TOEFL iBT For exams taken before 21 January 2026: Minimum total score: 85 For exams taken on or after 21 January 2026: Minimum total score: 4.5",
+     "overall": 85,
+     "scale": "iBT 0-120",
+     "text": "TOEFL 85 (iBT 0-120)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Applied Materials Analytics",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-applied-materials-analytics",
+   "snapshot_sha256": "39b9143984ba56596daca54f6820428973e2150cfdab32112e4276239f763970",
+   "fields": {
+    "academic": {
+     "text": "Have a good Bachelor’s degree in Engineering or equivalent in a related discipline. Good polytechnic qualifications in applied materials analytics  or closely related major with a substantial number of years of relevant work experience.",
+     "quote": "Have a good Bachelor’s degree in Engineering or equivalent in a related discipline. Good polytechnic qualifications in applied materials analytics  or closely related major with a substantial number of years of relevant work experience.",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "Minimum Score Required (Test dates must be within 2 years or less from the date of application) TOEFL iBT ≥ 85 (internet-based) OR IELTS ≥ 6.0",
+     "overall": 6.0,
+     "text": "IELTS 6",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "Minimum Score Required (Test dates must be within 2 years or less from the date of application) TOEFL iBT ≥ 85 (internet-based)",
+     "overall": 85,
+     "scale": "iBT 0-120",
+     "text": "TOEFL 85 (iBT 0-120)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Artificial Intelligence (MSAI)",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-artificial-intelligence",
+   "snapshot_sha256": "ba95167891b8f7b67b1a9e4ea56b546b379d3d92f6e46441b2ec8ade101ef4db",
+   "fields": {
+    "academic": {
+     "text": "A) A good honours degree in computer science, computer engineering or a related discipline with solid mathematical training or B) A good bachelor's degree in computer science, computer engineering or a related discipline with solid mathematical training and 2 years relevant industry experience.",
+     "quote": "A) A good honours degree in computer science, computer engineering or a related discipline with solid mathematical training or B) A good bachelor's degree in computer science, computer engineering or a related discipline with solid mathematical training and 2 years relevant industry experience.",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "English language proficiency – TOEFL (iBT ≥ 100/ ≥5.0) / IELTS (≥ 6.5) OR certification of English as medium of instruction (MOI).",
+     "overall": 6.5,
+     "text": "IELTS 6.5",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "English language proficiency – TOEFL (iBT ≥ 100/ ≥5.0) / IELTS (≥ 6.5) OR certification of English as medium of instruction (MOI).",
+     "overall": 100,
+     "scale": "iBT 0-120",
+     "text": "TOEFL 100 (iBT 0-120)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Asset & Wealth Management",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-asset-wealth-management",
+   "snapshot_sha256": "9790bff69e8efd36bee1b94d18be3c299107a7a264f94f403ea2665c1881ade1",
+   "fields": {
+    "academic": {
+     "text": "At least 2 years of working experience A good Bachelor’s degree in a relevant programme",
+     "quote": "At least 2 years of working experience A good Bachelor’s degree in a relevant programme",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "TOEFL score: > 100 or IELTS score: > 6.5, if English was not the medium of instruction used at the undergraduate level",
+     "text": "IELTS stated without a usable number (see quote)",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "TOEFL score: > 100 or IELTS score: > 6.5, if English was not the medium of instruction used at the undergraduate level",
+     "text": "TOEFL stated without a usable number (see quote)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Aviation",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-aviation",
+   "snapshot_sha256": "70cee1a601c456c6a2238b3e3d2283aeb57639ff409a14701d42709e80ee152b",
+   "fields": {
+    "academic": {
+     "text": "Candidates must possess (A) A good bachelor’s degree in Mechanical or Industrial engineering or a related discipline with mathematical and production training, or (B)  A bachelor's degree in engineering or a related discipline with mathematical training and 2 years relevant industry experience, and",
+     "quote": "Candidates must possess (A) A good bachelor’s degree in Mechanical or Industrial engineering or a related discipline with mathematical and production training, or (B)  A bachelor's degree in engineering or a related discipline with mathematical training and 2 years relevant industry experience, and",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "A good TOEFL score (iBT = 85 or more, PBT = 563 or more, CBT = 223 or more) or IELTS score (6.0 or more) for graduates of universities in which English is not the medium of instruction. Please ensure that you upload a scanned copy of TOEFL/IELTS along with your application (hardcopy is not required).",
+     "overall": 6.0,
+     "text": "IELTS 6",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "A good TOEFL score (iBT = 85 or more, PBT = 563 or more, CBT = 223 or more) or IELTS score (6.0 or more) for graduates of universities in which English is not the medium of instruction. Please ensure that you upload a scanned copy of TOEFL/IELTS along with your application (hardcopy is not required).",
+     "overall": 85,
+     "scale": "iBT 0-120",
+     "text": "TOEFL 85 (iBT 0-120)",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "August 2027 intake",
+      "date": "2027-03-31",
+      "quote": "Application period for the August 2027 intake will be from 1 October 2026 to 31 March 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in BioBusiness and BioEntrepreneurship (MSBBB)",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-biobusiness-and-bioentrepreneurship-msbbb",
+   "snapshot_sha256": "ebde294a5fccb15bf0b06d934f2a3f31b9152e879dad1e8ba12bba83c1246bd7",
+   "fields": {
+    "academic": {
+     "text": "B.Sc. (Hons), M.Sc. or Ph.D. in the field of life science/biological/biomedical sciences/bioengineering and other relevant fields. Relevant working experience will also be taken into consideration. Other relevant B.Sc/M.Sc and Ph.D. degrees will be evaluated on a case-by-case basis.",
+     "quote": "B.Sc. (Hons), M.Sc. or Ph.D. in the field of life science/biological/biomedical sciences/bioengineering and other relevant fields. Relevant working experience will also be taken into consideration. Other relevant B.Sc/M.Sc and Ph.D. degrees will be evaluated on a case-by-case basis.",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "Good TOEFL (iBT≥4.5) /IELTS (≥6.0) scores for graduates of universities where English is not the medium of instruction. Graduate Management Admission Test (GMAT) is advantageous but not compulsory.",
+     "overall": 6.0,
+     "text": "IELTS 6",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "Good TOEFL (iBT≥4.5) /IELTS (≥6.0) scores for graduates of universities where English is not the medium of instruction. Graduate Management Admission Test (GMAT) is advantageous but not compulsory.",
+     "overall": 4.5,
+     "scale": "iBT 1-6",
+     "text": "TOEFL 4.5 (iBT 1-6)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Biomedical Data Science",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-biomedical-data-science",
+   "snapshot_sha256": "1574e05a8e8a434dd0f0c862b22e76ff5da9f7a27910e444a1012af8d34fe68d",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Master of Science in Biomedical Engineering",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-biomedical-engineering",
+   "snapshot_sha256": "9f0f8be2b6987f4020fc28409e27b252c8598ff465cb5d4fa92263ebff1df7eb",
+   "fields": {
+    "academic": {
+     "text": "Bachelor’s degree with minimum honour (distinction) or equivalent from a reputable University.",
+     "quote": "Bachelor’s degree with minimum honour (distinction) or equivalent from a reputable University.",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "New TOEFL ≥ 4.5, Old TOEFL ≥ 85, or IELTS ≥ 6.0, if your first degree was not taught in English.",
+     "overall": 6.0,
+     "text": "IELTS 6",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "New TOEFL ≥ 4.5, Old TOEFL ≥ 85, or IELTS ≥ 6.0, if your first degree was not taught in English.",
+     "overall": 85,
+     "scale": "iBT 0-120",
+     "text": "TOEFL 85 (iBT 0-120)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Media and Communication (MMC)",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-media-and-communication",
+   "snapshot_sha256": "cb285f70b15eb49695cd5a8a30e705f3b1c10c1f426fb106d4bfab99ce1f4cab",
+   "fields": {
+    "academic": {
+     "text": "A good Bachelor's degree in any discipline (Honours merit and above). At least one year of working experience, supported by a copy of a work certificate or employment letter.",
+     "quote": "A good Bachelor's degree in any discipline (Honours merit and above). At least one year of working experience, supported by a copy of a work certificate or employment letter.",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "IELTS Academic 6.5 Minimum overall score, with individual sub-scores of at least 6.0",
+     "overall": 6.5,
+     "min_band": 6.0,
+     "text": "IELTS 6.5, sub-score 6",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "TOEFL iBT 100 Minimum score (internet-based)",
+     "overall": 100,
+     "scale": "iBT 0-120",
+     "text": "TOEFL 100 (iBT 0-120)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Administration (English)",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-public-administration-(english)",
+   "snapshot_sha256": "7c93f38d35cb0331dbed04764a307318b7111a69e6e50b265c0cbddf0493b7b5",
+   "fields": {
+    "academic": {
+     "text": "A bachelor’s degree Minimum of two years' or more of full-time work experience",
+     "quote": "A bachelor’s degree Minimum of two years' or more of full-time work experience",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "IELTS Score of 6.5 Min 5.5 for each skill module",
+     "overall": 6.5,
+     "min_band": 5.5,
+     "text": "IELTS 6.5, sub-score 5.5",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "TOEFL Score of 5 Min 4.5 for each skill section",
+     "text": "TOEFL stated without a usable number (see quote)",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "August 2027 admission",
+      "date": "2027-03-31",
+      "quote": "Application for August 2027 admission is open from 1 Oct 2026 to 31 Mar 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (AI in Medicine)",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-(ai-in-medicine)",
+   "snapshot_sha256": "a270d43835fb44398f9becc1dbb6df343cf8a2c3098e460866f658c49b959d91",
+   "fields": {
+    "academic": {
+     "text": "Applicants should hold a bachelor’s degree in a relevant discipline, including but not limited to Medicine, Biomedical Sciences, Computer Science, Engineering, or related fields. Entry may also be granted through successful completion of the AI in Medicine Graduate Certificate and/or FlexiMasters pathway. International applicants whose undergraduate education was not conducted in English are requi",
+     "quote": "Applicants should hold a bachelor’s degree in a relevant discipline, including but not limited to Medicine, Biomedical Sciences, Computer Science, Engineering, or related fields. Entry may also be granted through successful completion of the AI in Medicine Graduate Certificate and/or FlexiMasters pathway. International applicants whose undergraduate education was not conducted in English are required to provide evidence of English language proficiency. Acceptable qualifications include the Test of English as a Foreign Language (TOEFL) with a minimum score of 100, or the International English Language Testing System (IELTS) with a minimum overall band score of 6.5. All test results must be valid within two years of the date of application.",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "Applicants should hold a bachelor’s degree in a relevant discipline, including but not limited to Medicine, Biomedical Sciences, Computer Science, Engineering, or related fields. Entry may also be granted through successful completion of the AI in Medicine Graduate Certificate and/or FlexiMasters pathway. International applicants whose undergraduate education was not conducted in English are required to provide evidence of English language proficiency. Acceptable qualifications include the Test of English as a Foreign Language (TOEFL) with a minimum score of 100, or the International English Language Testing System (IELTS) with a minimum overall band score of 6.5. All test results must be valid within two years of the date of application.",
+     "overall": 6.5,
+     "text": "IELTS 6.5",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "Applicants should hold a bachelor’s degree in a relevant discipline, including but not limited to Medicine, Biomedical Sciences, Computer Science, Engineering, or related fields. Entry may also be granted through successful completion of the AI in Medicine Graduate Certificate and/or FlexiMasters pathway. International applicants whose undergraduate education was not conducted in English are required to provide evidence of English language proficiency. Acceptable qualifications include the Test of English as a Foreign Language (TOEFL) with a minimum score of 100, or the International English Language Testing System (IELTS) with a minimum overall band score of 6.5. All test results must be valid within two years of the date of application.",
+     "overall": 100,
+     "scale": "iBT 0-120",
+     "text": "TOEFL 100 (iBT 0-120)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (Robotics and Intelligent Systems)",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-(robotics-and-intelligent-systems)",
+   "snapshot_sha256": "7bb61603b757719149fe0b40fc0881ffff7fb279bb88ea1f95ccaf2bf7f6662a",
+   "fields": {
+    "academic": {
+     "text": "Candidates must possess (A) A good bachelor’s degree in engineering, such as Aerospace, Mechanical or Electrical Engineering.",
+     "quote": "Candidates must possess (A) A good bachelor’s degree in engineering, such as Aerospace, Mechanical or Electrical Engineering.",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "(B) A good TOEFL score (iBT = 85 or more, PBT = 563 or more, CBT = 223 or more) or IELTS score (6.0 or more) for graduates of universities in which English is not the medium of instruction. Please ensure that you upload a scanned copy of TOEFL/IELTS along with your application (hardcopy is not required).",
+     "overall": 6.0,
+     "text": "IELTS 6",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "(B) A good TOEFL score (iBT = 85 or more, PBT = 563 or more, CBT = 223 or more) or IELTS score (6.0 or more) for graduates of universities in which English is not the medium of instruction. Please ensure that you upload a scanned copy of TOEFL/IELTS along with your application (hardcopy is not required).",
+     "overall": 85,
+     "scale": "iBT 0-120",
+     "text": "TOEFL 85 (iBT 0-120)",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "August 2027 intake",
+      "date": "2027-03-31",
+      "quote": "Admissions Application period for August 2027 intake will be from 1 October 2026 to 31 March 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Accountancy",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-accountancy",
+   "snapshot_sha256": "fa684324d92ae9bfa6e01d00690b12094d8c7ba66c4e81e01ef3c1fd8b70db42",
+   "fields": {
+    "academic": {
+     "text": "A good Bachelor's degree from any discipline",
+     "quote": "A good Bachelor's degree from any discipline",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Actuarial and Risk Analytics",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-actuarial-and-risk-analytics",
+   "snapshot_sha256": "f79830e6721d5a67295f9e70c315535a50230b7a64f050308fefe4382b30ab2d",
+   "fields": {
+    "academic": {
+     "text": "A good undergraduate degree in any discipline",
+     "quote": "A good undergraduate degree in any discipline",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Nanyang MBA",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/nanyang-mba",
+   "snapshot_sha256": "92a7c3f7e115bb3d4d121f0e32360c1740789168f7d0129f672138697c861dce",
+   "fields": {
+    "academic": {
+     "text": "Bachelor’s Degree Minimum of 2 years of work experience",
+     "quote": "Bachelor’s Degree Minimum of 2 years of work experience",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "TOEFL score > 100 IBT or IELTS score > 6.5, if English was not the medium of instruction used at the undergraduate level",
+     "text": "IELTS stated without a usable number (see quote)",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "TOEFL score > 100 IBT or IELTS score > 6.5, if English was not the medium of instruction used at the undergraduate level",
+     "text": "TOEFL stated without a usable number (see quote)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Data Science (MSDS)",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-data-science-(msds)",
+   "snapshot_sha256": "61ed8bb20f3029bc518bde0962600046d3c5589bb6313b24822b4b6ddda17d36",
+   "fields": {
+    "academic": {
+     "text": "A) A good honours degree in computer science, computer engineering or a related discipline with solid mathematical training or B) A good bachelor's degree in computer science, computer engineering or a related discipline with solid mathematical training and 2 years relevant industry experience.",
+     "quote": "A) A good honours degree in computer science, computer engineering or a related discipline with solid mathematical training or B) A good bachelor's degree in computer science, computer engineering or a related discipline with solid mathematical training and 2 years relevant industry experience.",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "English language proficiency – TOEFL (iBT ≥ 100/ ≥5.0) / IELTS (≥ 6.5) OR certification of English as medium of instruction (MOI).",
+     "overall": 6.5,
+     "text": "IELTS 6.5",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "English language proficiency – TOEFL (iBT ≥ 100/ ≥5.0) / IELTS (≥ 6.5) OR certification of English as medium of instruction (MOI).",
+     "overall": 100,
+     "scale": "iBT 0-120",
+     "text": "TOEFL 100 (iBT 0-120)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Engineering Management",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-engineering-management",
+   "snapshot_sha256": "a8f5402ae38b1f3fe0fadd7d2650b2a804e5de4ccf06e96eae3c61f9fc047628",
+   "fields": {
+    "academic": {
+     "text": "Eligibility: A Bachelor’s degree with honours or its equivalent in Engineering, Science, Management, Economics or related discipline from an institution of recognised standing. This is a minimum requirement which does not guarantee admission; selection is on a competitive basis.",
+     "quote": "Eligibility: A Bachelor’s degree with honours or its equivalent in Engineering, Science, Management, Economics or related discipline from an institution of recognised standing. This is a minimum requirement which does not guarantee admission; selection is on a competitive basis.",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "- TOEFL iBT: 90 or 4.5 -  IELTS: 6",
+     "overall": 6,
+     "text": "IELTS 6",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "- TOEFL iBT: 90 or 4.5 -  IELTS: 6",
+     "overall": 90,
+     "scale": "iBT 0-120",
+     "text": "TOEFL 90 (iBT 0-120)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Enterprise Artificial Intelligence",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-enterprise-artificial-intelligence",
+   "snapshot_sha256": "69ae953442e68d202780a40994137de825880f25035bdcee392f1a73ee493479",
+   "fields": {
+    "academic": {
+     "text": "• Eligibility: A Bachelor’s degree with honours or its equivalent in any discipline from an institution of recognised standing.",
+     "quote": "• Eligibility: A Bachelor’s degree with honours or its equivalent in any discipline from an institution of recognised standing.",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "- TOEFL iBT: 90 or 4.5 -  IELTS: 6",
+     "overall": 6,
+     "text": "IELTS 6",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "- TOEFL iBT: 90 or 4.5 -  IELTS: 6",
+     "overall": 90,
+     "scale": "iBT 0-120",
+     "text": "TOEFL 90 (iBT 0-120)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Environmental Sustainability Science",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-environmental-sustainability-science",
+   "snapshot_sha256": "9e40fb682c4acbc6b8bc0b8f69af20f23a8220fe3b2dd0c8befbc144960b0b03",
+   "fields": {
+    "academic": {
+     "text": "A good bachelor’s degree in a related science, engineering, or social science programme. Relevant working experience (in a related industry or environmental science related applications) and leadership potential will also be taken into consideration.",
+     "quote": "A good bachelor’s degree in a related science, engineering, or social science programme. Relevant working experience (in a related industry or environmental science related applications) and leadership potential will also be taken into consideration.",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "A TOEFL (internet-based) score of 5.0 or more, or IELTS score of 6.0 or more, is required for international applicants for whom English is not their first language and/or graduates of universities in which English is not the medium of instruction. Test dates must be within 2 years or less from the date of your application. Special arrangements can be made for selected applicants to sit for NTU’s English Proficiency Test (EPT) in place of TOEFL/IELTS.",
+     "overall": 6.0,
+     "text": "IELTS 6",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "A TOEFL (internet-based) score of 5.0 or more, or IELTS score of 6.0 or more, is required for international applicants for whom English is not their first language and/or graduates of universities in which English is not the medium of instruction. Test dates must be within 2 years or less from the date of your application. Special arrangements can be made for selected applicants to sit for NTU’s English Proficiency Test (EPT) in place of TOEFL/IELTS.",
+     "overall": 5.0,
+     "scale": "iBT 1-6",
+     "text": "TOEFL 5 (iBT 1-6)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Finance",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-finance",
+   "snapshot_sha256": "b24eb1ce7a97600dd5e04b53003a2e53f6bf8301c27bc09d026283faee65edfc",
+   "fields": {
+    "academic": {
+     "text": "A good bachelor’s degree from any discipline",
+     "quote": "A good bachelor’s degree from any discipline",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Financial Engineering",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-financial-engineering2",
+   "snapshot_sha256": "b8bcc8afd9b5bebd7d014e97c5a4235148b2026fcf53b391342cdadcdf56275d",
+   "fields": {
+    "academic": {
+     "text": "A good bachelor’s degree with a strong background in mathematics, statistics, or computer programming. We will also consider applicants from other disciplines",
+     "quote": "A good bachelor’s degree with a strong background in mathematics, statistics, or computer programming. We will also consider applicants from other disciplines",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Financial Technology",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-financial-technology",
+   "snapshot_sha256": "21c65a5fb1a03a45d4529a710e47d855a789f7cb458b9449fa1f51c57d786da7",
+   "fields": {
+    "academic": {
+     "text": "A good Bachelor's Degree in a relevant programme (e.g. quantitative majors, business, etc.)",
+     "quote": "A good Bachelor's Degree in a relevant programme (e.g. quantitative majors, business, etc.)",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "A TOEFL iBT score of 4.5 or more, or IELTS score of 6.0 or more, for graduates of universities in which English is not the medium of instruction",
+     "overall": 6.0,
+     "text": "IELTS 6",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "A TOEFL iBT score of 4.5 or more, or IELTS score of 6.0 or more, for graduates of universities in which English is not the medium of instruction",
+     "overall": 4.5,
+     "scale": "iBT 1-6",
+     "text": "TOEFL 4.5 (iBT 1-6)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Green Energy Technologies",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-green-energy-technologies",
+   "snapshot_sha256": "2e0adda0367a3317cfb94192afec69e2f8f63564bdabed983c654a8f479912f7",
+   "fields": {
+    "academic": {
+     "text": "(A) A good bachelor’s degree in engineering, such as Aerospace, Mechanical or Electrical Engineering",
+     "quote": "(A) A good bachelor’s degree in engineering, such as Aerospace, Mechanical or Electrical Engineering",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "(B) A good TOEFL score (iBT = 85 or more, PBT = 563 or more, CBT = 223 or more) or IELTS score (6.0 or more) for graduates of universities in which English is not the medium of instruction. Please ensure that you upload a scanned copy of TOEFL/IELTS along with your application (hardcopy is not required).",
+     "overall": 6.0,
+     "text": "IELTS 6",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "(B) A good TOEFL score (iBT = 85 or more, PBT = 563 or more, CBT = 223 or more) or IELTS score (6.0 or more) for graduates of universities in which English is not the medium of instruction. Please ensure that you upload a scanned copy of TOEFL/IELTS along with your application (hardcopy is not required).",
+     "overall": 85,
+     "scale": "iBT 0-120",
+     "text": "TOEFL 85 (iBT 0-120)",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "August 2027 intake",
+      "date": "2027-03-31",
+      "quote": "Application period for the August 2027 intake will be from 1 October 2026 to 31 March 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Blockchain",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-blockchain",
+   "snapshot_sha256": "6316f586ba62568b844e21087d99140dca0ddd0ad5af2772b7be33eea2485078",
+   "fields": {
+    "academic": {
+     "text": "a) A good honour degree in computer related majors from reputable universities and institutes, or a good bachelor‘s degree in any discipline with 2 years of computer programming job experience.",
+     "quote": "a) A good honour degree in computer related majors from reputable universities and institutes, or a good bachelor‘s degree in any discipline with 2 years of computer programming job experience.",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "TOEFL Score (Test dates must be within 2 years or less from the date of application): ≥ 600 (paper-based) ≥ 250 (computer-based) ≥ 100 (internet-based) IELTS Score (Test date must be within 2 years or less from the date of application):≥ 6.5",
+     "overall": 6.5,
+     "text": "IELTS 6.5",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "TOEFL Score (Test dates must be within 2 years or less from the date of application): ≥ 600 (paper-based) ≥ 250 (computer-based) ≥ 100 (internet-based)",
+     "overall": 100,
+     "scale": "iBT 0-120",
+     "text": "TOEFL 100 (iBT 0-120)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Business Analytics",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-business-analytics",
+   "snapshot_sha256": "24f9ac3352f1632d8a4a4aced83e026d9838675a9c087ed0e8ebc6575cca27ad",
+   "fields": {
+    "academic": {
+     "text": "A good Bachelor's degree from any discipline",
+     "quote": "A good Bachelor's degree from any discipline",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Chemical Engineering",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-chemical-engineering",
+   "snapshot_sha256": "0d46365c48ea39dbcf1d421992cdc3bdf71b367cdf20b751a99c441221c6f6ee",
+   "fields": {
+    "academic": {
+     "text": "Bachelor’s degree with minimum honours (distinction) or equivalent from a reputable University.",
+     "quote": "Bachelor’s degree with minimum honours (distinction) or equivalent from a reputable University.",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "New TOEFL ≥ 4.5, Old TOEFL ≥ 85, or IELTS ≥ 6.0, if your first degree was not taught in English.",
+     "overall": 6.0,
+     "text": "IELTS 6",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "New TOEFL ≥ 4.5, Old TOEFL ≥ 85, or IELTS ≥ 6.0, if your first degree was not taught in English.",
+     "overall": 85,
+     "scale": "iBT 0-120",
+     "text": "TOEFL 85 (iBT 0-120)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Chemical Sciences and Instrumentation",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-chemical-sciences-and-instrumentation",
+   "snapshot_sha256": "aaf958f193014f9ad1ca3dd35eac0bbb74939518345966fa9b111eaab099255c",
+   "fields": {
+    "academic": {
+     "text": "Bachelor’s degree with a minimum of honours (distinction) or equivalent from a reputable university.",
+     "quote": "Bachelor’s degree with a minimum of honours (distinction) or equivalent from a reputable university.",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "Minimum TOEFL score of 85 or IELTS score of 6.0 (only if your first degree was not taught in English).",
+     "overall": 6.0,
+     "text": "IELTS 6",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "Minimum TOEFL score of 85 or IELTS score of 6.0 (only if your first degree was not taught in English).",
+     "overall": 85,
+     "scale": "iBT 0-120",
+     "text": "TOEFL 85 (iBT 0-120)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Chemical and Biomedical Modelling",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-chemical-modelling",
+   "snapshot_sha256": "51fc2a8fe1128f742ae01635400e1f75c79f9446274d74e6400aec8bc98fb568",
+   "fields": {
+    "academic": {
+     "text": "Bachelor’s degree with a minimum of honours (distinction) or equivalent from a reputable university.",
+     "quote": "Bachelor’s degree with a minimum of honours (distinction) or equivalent from a reputable university.",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "New TOEFL ≥ 4.5, Old TOEFL ≥ 85, or IELTS ≥ 6.0, if your first degree was not taught in English.",
+     "overall": 6.0,
+     "text": "IELTS 6",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "New TOEFL ≥ 4.5, Old TOEFL ≥ 85, or IELTS ≥ 6.0, if your first degree was not taught in English.",
+     "overall": 85,
+     "scale": "iBT 0-120",
+     "text": "TOEFL 85 (iBT 0-120)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Civil Engineering",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-civil-engineering",
+   "snapshot_sha256": "667d0efdec68ef7f146e749b9f7bc738c29a49b507d6f3cffd3d24985a8251fd",
+   "fields": {
+    "academic": {
+     "text": "Have a good Bachelor degree in Engineering or equivalent in a related discipline.",
+     "quote": "Have a good Bachelor degree in Engineering or equivalent in a related discipline.",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "TOEFL/IELTS is required for applicants whose Bachelor programme is not conducted in English. Test date must be within 2 years or less from the date of application. The minimum score required is as follows: TOEFL (Paper-based): 600 TOEFL (Computer-based): 250 TOEFL (Internet-based - for tests taken before 21 January 2026): 85 TOEFL (Internet-based - for tests taken after 21 January 2026): 4.5 IELTS (Academic): 6.0",
+     "overall": 6.0,
+     "text": "IELTS 6",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "TOEFL/IELTS is required for applicants whose Bachelor programme is not conducted in English. Test date must be within 2 years or less from the date of application. The minimum score required is as follows: TOEFL (Paper-based): 600 TOEFL (Computer-based): 250 TOEFL (Internet-based - for tests taken before 21 January 2026): 85 TOEFL (Internet-based - for tests taken after 21 January 2026): 4.5 IELTS (Academic): 6.0",
+     "overall": 85,
+     "scale": "iBT 0-120",
+     "text": "TOEFL 85 (iBT 0-120)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Communications Engineering",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-communications-engineering",
+   "snapshot_sha256": "80342cbe753e949f61cb1ea3d754f376a6c18e7e74e698782d01660caef69391",
+   "fields": {
+    "academic": {
+     "text": "Have a good relevant bachelor's degree",
+     "quote": "Have a good relevant bachelor's degree",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "IELTS Score (Test date must be within 2 years or less from the date of application): ≥ 6.0",
+     "overall": 6.0,
+     "text": "IELTS 6",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "TOEFL Score (Test dates must be within 2 years or less from the date of application): ≥ 563 (paper-based) ≥ 223 (computer-based) ≥ 85 (internet-based, for exams taken before January 21, 2026) ≥ 4.5 (internet-based, for exams taken on or after January 21, 2026)",
+     "overall": 85,
+     "scale": "iBT 0-120",
+     "text": "TOEFL 85 (iBT 0-120)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Cybersecurity (Applied Cryptography)",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-master-of-science-in-cybersecurity-applied-cryptography",
+   "snapshot_sha256": "34ba9a3ab59430863b60c484c626965bf1e2a5fb5021ff512ca05a53894c522e",
+   "fields": {
+    "academic": {
+     "text": "A good Bachelor's Degree in a quantitative programme (e.g. mathematics, physics, engineering, computer sciences, finance, or related fields etc).",
+     "quote": "A good Bachelor's Degree in a quantitative programme (e.g. mathematics, physics, engineering, computer sciences, finance, or related fields etc).",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "A TOEFL iBT score of 4.5 or more, or IELTS score of 6.0 or more, for graduates of universities in which English is not the medium of instruction",
+     "overall": 6.0,
+     "text": "IELTS 6",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "A TOEFL iBT score of 4.5 or more, or IELTS score of 6.0 or more, for graduates of universities in which English is not the medium of instruction",
+     "overall": 4.5,
+     "scale": "iBT 1-6",
+     "text": "TOEFL 4.5 (iBT 1-6)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Cybersecurity (Applied Cybersecurity)",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-cybersecurity-(applied-cybersecurity",
+   "snapshot_sha256": "daa041b77b3d9282615c28611c4a6b79838678de0435909c69d8c6adb35384b2",
+   "fields": {
+    "academic": {
+     "text": "A) A good honours degree in computer science, computer engineering or a related discipline with solid mathematical training or B) A good bachelor's degree in computer science, computer engineering or a related discipline with solid mathematical training and 2 years relevant industry experience.",
+     "quote": "A) A good honours degree in computer science, computer engineering or a related discipline with solid mathematical training or B) A good bachelor's degree in computer science, computer engineering or a related discipline with solid mathematical training and 2 years relevant industry experience.",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "English language proficiency – TOEFL (iBT ≥ 100/ ≥5.0) / IELTS (≥ 6.5) OR certification of English as medium of instruction (MOI).",
+     "overall": 6.5,
+     "text": "IELTS 6.5",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "English language proficiency – TOEFL (iBT ≥ 100/ ≥5.0) / IELTS (≥ 6.5) OR certification of English as medium of instruction (MOI).",
+     "overall": 100,
+     "scale": "iBT 0-120",
+     "text": "TOEFL 100 (iBT 0-120)",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "August 2027 intake",
+      "date": "2027-03-31",
+      "quote": "Applications for the August 2027 intake are open from 1 October 2026 to 31 March 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts in AI Ethics and Society",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-arts-in-ai-ethics-and-society",
+   "snapshot_sha256": "22f6606df615ef600d19e2d42f6e5f77797309c7a423bcbeeed6b205f63c2eb5",
+   "fields": {
+    "academic": {
+     "text": "A good bachelor’s degree (Honours with Second Class Upper or equivalent GPA) from a recognised university in any discipline.",
+     "quote": "A good bachelor’s degree (Honours with Second Class Upper or equivalent GPA) from a recognised university in any discipline.",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "Applicants whose native language is not English are required to have an IELTS* overall score of at least 7; or a TOEFL iBT* Score of 5 and above.",
+     "overall": 7,
+     "text": "IELTS 7",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "Applicants whose native language is not English are required to have an IELTS* overall score of at least 7; or a TOEFL iBT* Score of 5 and above.",
+     "overall": 5,
+     "scale": "iBT 1-6",
+     "text": "TOEFL 5 (iBT 1-6)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Materials Science and Engineering",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-materials-science-and-engineering",
+   "snapshot_sha256": "fc88fed14a2d945d5400f5c403217c05fff046ef9f6dc8b21dbf66ad25fa5cd5",
+   "fields": {
+    "academic": {
+     "text": "Have a good Bachelor’s degree in Engineering or equivalent in a related discipline.",
+     "quote": "Have a good Bachelor’s degree in Engineering or equivalent in a related discipline.",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "TOEFL iBT ≥ 85 (internet-based) OR IELTS ≥ 6.0",
+     "overall": 6.0,
+     "text": "IELTS 6",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "TOEFL iBT ≥ 85 (internet-based)",
+     "overall": 85,
+     "scale": "iBT 0-120",
+     "text": "TOEFL 85 (iBT 0-120)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Mechanical Engineering",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-mechanical-engineering-2",
+   "snapshot_sha256": "b48fde061ff95056a24559c665f13ab75cc28cd78b70890526fccafdee4d65ca",
+   "fields": {
+    "academic": {
+     "text": "Candidates must possess (A) A good bachelor’s degree in Mechanical or Industrial engineering or a related discipline with mathematical and production training, or (B)  A bachelor's degree in engineering or a related discipline with mathematical training and 2 years relevant industry experience, and",
+     "quote": "Candidates must possess (A) A good bachelor’s degree in Mechanical or Industrial engineering or a related discipline with mathematical and production training, or (B)  A bachelor's degree in engineering or a related discipline with mathematical training and 2 years relevant industry experience, and",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "(C) A good TOEFL score (iBT = 85 or more, PBT = 563 or more, CBT = 223 or more) or IELTS score (6.0 or more) for graduates of universities in which English is not the medium of instruction. Please ensure that you upload a scanned copy of TOEFL/IELTS along with your application (hardcopy is not required).",
+     "overall": 6.0,
+     "text": "IELTS 6",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "(C) A good TOEFL score (iBT = 85 or more, PBT = 563 or more, CBT = 223 or more) or IELTS score (6.0 or more) for graduates of universities in which English is not the medium of instruction. Please ensure that you upload a scanned copy of TOEFL/IELTS along with your application (hardcopy is not required).",
+     "overall": 85,
+     "scale": "iBT 0-120",
+     "text": "TOEFL 85 (iBT 0-120)",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "August 2027 intake",
+      "date": "2027-03-31",
+      "quote": "Application period for the August 2027 intake will from1 October 2026 to 31 March 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Modelling and Simulation",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-modelling-and-simulation",
+   "snapshot_sha256": "fdf4a94660b79ce18f890b403f5d00d6c2df70c9913b5a22bd934fadc27c4d7e",
+   "fields": {
+    "academic": {
+     "text": "A good Bachelor's Degree in a quantitative programme (e.g. mathematics, physics, engineering, computer sciences, finance, or related fields etc).",
+     "quote": "A good Bachelor's Degree in a quantitative programme (e.g. mathematics, physics, engineering, computer sciences, finance, or related fields etc).",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "A TOEFL iBT score of 4.5 or more, or IELTS score of 6.0 or more, for graduates of universities in which English is not the medium of instruction",
+     "overall": 6.0,
+     "text": "IELTS 6",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "A TOEFL iBT score of 4.5 or more, or IELTS score of 6.0 or more, for graduates of universities in which English is not the medium of instruction",
+     "overall": 4.5,
+     "scale": "iBT 1-6",
+     "text": "TOEFL 4.5 (iBT 1-6)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Nanotechnology and Nanoscience",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-nanotechnology-and-nanoscience-programme",
+   "snapshot_sha256": "8f21dec2a8d7eef7f0e64b3ce427859d81e9cb21de975d1af46925ee2a7c4b45",
+   "fields": {
+    "academic": {
+     "text": "Applicants must possess a relevant Bachelor’s degree with honors or its equivalent in Engineering, Science, or related disciplines from an institution of recognised standing. Relevant work experience is advantageous, and candidates opting to study part-time should preferably be employed in related industries. For applicants whose native language is not English, TOEFL/IELTS score must be submitted ",
+     "quote": "Applicants must possess a relevant Bachelor’s degree with honors or its equivalent in Engineering, Science, or related disciplines from an institution of recognised standing. Relevant work experience is advantageous, and candidates opting to study part-time should preferably be employed in related industries. For applicants whose native language is not English, TOEFL/IELTS score must be submitted with the application for admission. Applicants may be waived from this requirement if the applicant has completed the first degree taught entirely in English, situated in an English-speaking country, for example (non-exhaustive list) Australia, Canada, Hong Kong, India, New Zealand, Philippines, Singapore, United Kingdom, USA. The TOEFL/IELTS result is only valid for 2 years after the test and should be valid at the beginning of the application period",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "- TOEFL iBT: 90 or 4.5 -  IELTS: 6",
+     "overall": 6,
+     "text": "IELTS 6",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "- TOEFL iBT: 90 or 4.5",
+     "overall": 90,
+     "scale": "iBT 0-120",
+     "text": "TOEFL 90 (iBT 0-120)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Power Engineering",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-power-engineering",
+   "snapshot_sha256": "1dda2b5d8764a7a877ba4e6ae4303a1982f6bec87a17826b9adfb3114e489f98",
+   "fields": {
+    "academic": {
+     "text": "Have a good relevant bachelor's degree",
+     "quote": "Have a good relevant bachelor's degree",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "IELTS Score (Test date must be within 2 years or less from the date of application): ≥ 6.0",
+     "overall": 6.0,
+     "text": "IELTS 6",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "TOEFL Score (Test dates must be within 2 years or less from the date of application): ≥ 563 (paper-based) ≥ 223 (computer-based) ≥ 85 (internet-based, for exams taken before January 21, 2026) ≥ 4.5 (internet-based, for exams taken on or after January 21, 2026)",
+     "overall": 85,
+     "scale": "iBT 0-120",
+     "text": "TOEFL 85 (iBT 0-120)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Precision Scientific Instrumentation",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-precision-scientific-instrumentation",
+   "snapshot_sha256": "b1eb7414225972af35f369d4a827c86541d3ee7cabdd9a0230a7e31aa5079d38",
+   "fields": {
+    "academic": {
+     "text": "Bachelor’s degree in a quantitative programme such as Physics, Engineering, Optics, Applied Physics, etc.",
+     "quote": "Bachelor’s degree in a quantitative programme such as Physics, Engineering, Optics, Applied Physics, etc.",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "For graduates of universities with non-English medium of instruction, a TOEFL iBT score of 4.5 or more, or IELTS score of 6.0 or more.",
+     "overall": 6.0,
+     "text": "IELTS 6",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "For graduates of universities with non-English medium of instruction, a TOEFL iBT score of 4.5 or more, or IELTS score of 6.0 or more.",
+     "overall": 4.5,
+     "scale": "iBT 1-6",
+     "text": "TOEFL 4.5 (iBT 1-6)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Project Management",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-project-management",
+   "snapshot_sha256": "b7afc2e3745375a97b554cffa519ad956de415861ef1b5c8cd5c6ef4a6566fa5",
+   "fields": {
+    "academic": {
+     "text": "Candidates must possess at least a Bachelor Degree or international equivalent, in relevant subjects from a recognized university.",
+     "quote": "Candidates must possess at least a Bachelor Degree or international equivalent, in relevant subjects from a recognized university.",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "A good TOEFL score (iBT = 85 or more, PBT = 563 or more, CBT = 223 or more) or IELTS score (6.0 or more) for graduates of universities in which English is not the medium of instruction. Please ensure that you upload a scanned copy of TOEFL/IELTS along with your application (hardcopy is not required).",
+     "overall": 6.0,
+     "text": "IELTS 6",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "A good TOEFL score (iBT = 85 or more, PBT = 563 or more, CBT = 223 or more) or IELTS score (6.0 or more) for graduates of universities in which English is not the medium of instruction. Please ensure that you upload a scanned copy of TOEFL/IELTS along with your application (hardcopy is not required).",
+     "overall": 85,
+     "scale": "iBT 0-120",
+     "text": "TOEFL 85 (iBT 0-120)",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "August 2027 intake",
+      "date": "2027-03-31",
+      "quote": "Application period for the August 2027 intake will be from 1 October 2026 to 31 March 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Psychology",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-psychology",
+   "snapshot_sha256": "7559b548d8a6694c6472ee56a3f6011e259a5c018aaf0b01e696e7ef107b8487",
+   "fields": {
+    "academic": {
+     "text": "Undergraduate degrees (2nd class lower and above) from reputable institutions in psychology or social science-related fields.",
+     "quote": "Undergraduate degrees (2nd class lower and above) from reputable institutions in psychology or social science-related fields.",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "For international applicants whose medium of instruction at the tertiary level was not in English: an IELTs score of 6.5 and TOEFL internet-based score of 93 (580 for paper-based)",
+     "overall": 6.5,
+     "text": "IELTS 6.5",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "For international applicants whose medium of instruction at the tertiary level was not in English: an IELTs score of 6.5 and TOEFL internet-based score of 93 (580 for paper-based)",
+     "overall": 93,
+     "scale": "iBT 0-120",
+     "text": "TOEFL 93 (iBT 0-120)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Signal Processing & Machine Learning",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-signal-processing",
+   "snapshot_sha256": "0f3bc1f5e80c8cbe0c6df5a612e8b4f10cf30fc5b6380117ddf15a70e50478b8",
+   "fields": {
+    "academic": {
+     "text": "Have a good relevant bachelor's degree",
+     "quote": "Have a good relevant bachelor's degree",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "IELTS Score (Test date must be within 2 years or less from the date of application): ≥ 6.0",
+     "overall": 6.0,
+     "text": "IELTS 6",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "TOEFL Score (Test dates must be within 2 years or less from the date of application): ≥ 563 (paper-based) ≥ 223 (computer-based) ≥ 85 (internet-based, for exams taken before January 21, 2026) ≥ 4.5 (internet-based, for exams taken on or after January 21, 2026)",
+     "overall": 85,
+     "scale": "iBT 0-120",
+     "text": "TOEFL 85 (iBT 0-120)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Smart Manufacturing",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-smart-manufacturing",
+   "snapshot_sha256": "b509ec2ef31c64e6fa7a3bf0b03928caeeb877ba5e784f07987532b77db0025b",
+   "fields": {
+    "academic": {
+     "text": "Candidates must possess (A) A good bachelor’s degree in Mechanical or Industrial engineering or a related discipline with mathematical and production training, or (B)  A bachelor's degree in engineering or a related discipline with mathematical training and 2 years relevant industry experience, and",
+     "quote": "Candidates must possess (A) A good bachelor’s degree in Mechanical or Industrial engineering or a related discipline with mathematical and production training, or (B)  A bachelor's degree in engineering or a related discipline with mathematical training and 2 years relevant industry experience, and",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "(C) A good TOEFL score (iBT = 85 or more, PBT = 563 or more, CBT = 223 or more) or IELTS score (6.0 or more) for graduates of universities in which English is not the medium of instruction. Please ensure that you upload a scanned copy of TOEFL/IELTS along with your application (hardcopy is not required).",
+     "overall": 6.0,
+     "text": "IELTS 6",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "(C) A good TOEFL score (iBT = 85 or more, PBT = 563 or more, CBT = 223 or more) or IELTS score (6.0 or more) for graduates of universities in which English is not the medium of instruction. Please ensure that you upload a scanned copy of TOEFL/IELTS along with your application (hardcopy is not required).",
+     "overall": 85,
+     "scale": "iBT 0-120",
+     "text": "TOEFL 85 (iBT 0-120)",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "August 2027 intake",
+      "date": "2027-03-31",
+      "quote": "Application period for the August 2027 intake will be from 1 October 2026 to 31 March 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Joint NTU-TUM Master of Science in Green Electronics",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/joint-master-of-science-in-green-electronics",
+   "snapshot_sha256": "bbd7ca39a27b1a6d111e9bbb2333fe3c5bf066dcc90aad0e21dfee7bb15245bd",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have a bachelor’s degree in Electronics, Electrical Engineering or Physics. A good understanding of semiconductor physics, electromagnetic and organic chemistry (or electrochemistry).",
+     "quote": "Applicants must have a bachelor’s degree in Electronics, Electrical Engineering or Physics. A good understanding of semiconductor physics, electromagnetic and organic chemistry (or electrochemistry).",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "IELTS (www.ielts.org): With academic IELTS result of at least 6.5",
+     "overall": 6.5,
+     "text": "IELTS 6.5",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "TOEFL (www.toefl.org): Recent score with a Minimum 88* for the Internet-Based Test (TOEFL code: 7368)",
+     "overall": 88,
+     "scale": "iBT 0-120",
+     "text": "TOEFL 88 (iBT 0-120)",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Akademische Prüfstelle (APS) certificate is required for applicant with education qualification from China, Vietnam and India.",
+     "quote": "Akademische Prüfstelle (APS) certificate is required for applicant with education qualification from China, Vietnam and India.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Joint NTU-TUM Master of Science in Integrated Circuit Design",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/joint-master-of-science-in-ic-design",
+   "snapshot_sha256": "c8c6e2c3bfc7ab844528189b1ffc5c04eaa0390826fe2a5d3fc498432a5e4a83",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have a bachelor’s degree in Electrical/ Electronics Engineering or in a closely related discipline with remarkable results",
+     "quote": "Applicants must have a bachelor’s degree in Electrical/ Electronics Engineering or in a closely related discipline with remarkable results",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "IELTS (www.ielts.org): With academic IELTS result of at least 6.5",
+     "overall": 6.5,
+     "text": "IELTS 6.5",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "TOEFL (www.toefl.org): Recent score with a Minimum 88* for the Internet-Based Test (TOEFL code: 7368)",
+     "overall": 88,
+     "scale": "iBT 0-120",
+     "text": "TOEFL 88 (iBT 0-120)",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Akademische Prüfstelle (APS) certificate is required for applicant with education qualification from China, Vietnam and India.",
+     "quote": "Akademische Prüfstelle (APS) certificate is required for applicant with education qualification from China, Vietnam and India.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Management",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-in-management",
+   "snapshot_sha256": "1716534feaef3cae3a157607a6ce813b335fbb91eac9b88b8083fe392249b217",
+   "fields": {
+    "academic": {
+     "text": "A good Bachelor's degree from any discipline",
+     "quote": "A good Bachelor's degree from any discipline",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "TOEFL score >100 iBT ; IELTS score >6.5 if English was not the medium of instruction at the undergraduate level",
+     "text": "IELTS stated without a usable number (see quote)",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "TOEFL score >100 iBT ; IELTS score >6.5 if English was not the medium of instruction at the undergraduate level",
+     "text": "TOEFL stated without a usable number (see quote)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts (Applied Psychology)",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-arts-(applied-psychology)",
+   "snapshot_sha256": "5dd6f0910f3b4e6433d623f88d24d288000c03817205551cf872d0c059bbd6b7",
+   "fields": {
+    "academic": {
+     "text": "You must have a good undergraduate degree majoring in psychology with Honours (preferably 2nd Upper and above).",
+     "quote": "You must have a good undergraduate degree majoring in psychology with Honours (preferably 2nd Upper and above).",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Computing In Applied AI (MCAAI)",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-computing-in-applied-ai-mcaai",
+   "snapshot_sha256": "69eefd44270f4aa85519e2ff90dbd53dd1ee3b3b4f8ec963295605681d60f3dd",
+   "fields": {
+    "academic": {
+     "text": "An NTU recognised undergraduate degree.",
+     "quote": "An NTU recognised undergraduate degree.",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "TOEFL (iBT ≥ 85/ ≥5.0)or IELTS ≥ 6.0 is required for graduates from non-English medium universities.",
+     "overall": 6.0,
+     "text": "IELTS 6",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "TOEFL (iBT ≥ 85/ ≥5.0)or IELTS ≥ 6.0 is required for graduates from non-English medium universities.",
+     "overall": 85,
+     "scale": "iBT 0-120",
+     "text": "TOEFL 85 (iBT 0-120)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Supply Chain Engineering",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-supply-chain-logistics",
+   "snapshot_sha256": "57090a2d0d7afd52a81a5317531a217ffb0aeae698a4eaca720b88fad5de7ac6",
+   "fields": {
+    "academic": {
+     "text": "(A) A good bachelor’s degree in Mechanical or Industrial engineering or a related discipline with mathematical and production training, or (B)  A bachelor's degree in engineering or a related discipline with mathematical training and at least 2 years relevant industry experience, and (C) A good TOEFL score (iBT = 85 or more, PBT = 563 or more, CBT = 223 or more) or IELTS score (6.0 or more) for gr",
+     "quote": "(A) A good bachelor’s degree in Mechanical or Industrial engineering or a related discipline with mathematical and production training, or (B)  A bachelor's degree in engineering or a related discipline with mathematical training and at least 2 years relevant industry experience, and (C) A good TOEFL score (iBT = 85 or more, PBT = 563 or more, CBT = 223 or more) or IELTS score (6.0 or more) for graduates of universities in which English is not the medium of instruction.",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "(C) A good TOEFL score (iBT = 85 or more, PBT = 563 or more, CBT = 223 or more) or IELTS score (6.0 or more) for graduates of universities in which English is not the medium of instruction.",
+     "overall": 6.0,
+     "text": "IELTS 6",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "(C) A good TOEFL score (iBT = 85 or more, PBT = 563 or more, CBT = 223 or more) or IELTS score (6.0 or more) for graduates of universities in which English is not the medium of instruction.",
+     "overall": 85,
+     "scale": "iBT 0-120",
+     "text": "TOEFL 85 (iBT 0-120)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Sustainability and Environmental Engineering",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-sustainability-and-environmental-engineering",
+   "snapshot_sha256": "5a5e21f3e43e5fafbe1e5e9c2bdd5a486b09109b55a2d5ffa771b08cc5330c2f",
+   "fields": {
+    "academic": {
+     "text": "Have a good Bachelor degree in Engineering or equivalent in a related discipline.",
+     "quote": "Have a good Bachelor degree in Engineering or equivalent in a related discipline.",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "TOEFL/IELTS is required for applicants whose Bachelor programme is not conducted in English. Test date must be within 2 years or less from the date of application. The minimum score required is as follows: TOEFL (Paper-based): 600 TOEFL (Computer-based): 250 TOEFL (Internet-based - for tests taken before 21 January 2026): 85 TOEFL (Internet-based - for tests taken after 21 January 2026): 4.5 IELTS (Academic): 6.0",
+     "overall": 6.0,
+     "text": "IELTS 6",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "TOEFL/IELTS is required for applicants whose Bachelor programme is not conducted in English. Test date must be within 2 years or less from the date of application. The minimum score required is as follows: TOEFL (Paper-based): 600 TOEFL (Computer-based): 250 TOEFL (Internet-based - for tests taken before 21 January 2026): 85 TOEFL (Internet-based - for tests taken after 21 January 2026): 4.5 IELTS (Academic): 6.0",
+     "overall": 85,
+     "scale": "iBT 0-120",
+     "text": "TOEFL 85 (iBT 0-120)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in  Computer Control & Automation",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-computer-control-automation",
+   "snapshot_sha256": "3be0ccd3b76edf81cf72949912edc8a3b6a4b0a6361e6b3124b2fa1cc5c8b332",
+   "fields": {
+    "academic": {
+     "text": "Have a good relevant bachelor's degree",
+     "quote": "Have a good relevant bachelor's degree",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "IELTS Score (Test date must be within 2 years or less from the date of application): ≥ 6.0",
+     "overall": 6.0,
+     "text": "IELTS 6",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "TOEFL Score (Test dates must be within 2 years or less from the date of application): ≥ 563 (paper-based) ≥ 223 (computer-based) ≥ 85 (internet-based, for exams taken before January 21, 2026) ≥ 4.5 (internet-based, for exams taken on or after January 21, 2026)",
+     "overall": 85,
+     "scale": "iBT 0-120",
+     "text": "TOEFL 85 (iBT 0-120)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Social Sciences in China and Global Governance",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-social-sciences-(china-and-global-governance)",
+   "snapshot_sha256": "48bdfb04f2ae86e6c02a978cfcb131f9d3c6810711dc391c0de1b3b1698d92ee",
+   "fields": {
+    "academic": {
+     "text": "A bachelor’s degree.",
+     "quote": "A bachelor’s degree.",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "IELTS Score of 6.5 Min 5.5 for each skill module",
+     "overall": 6.5,
+     "min_band": 5.5,
+     "text": "IELTS 6.5, sub-score 5.5",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "TOEFL Score of 5",
+     "text": "TOEFL stated without a usable number (see quote)",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "August 2027 admission",
+      "date": "2027-03-31",
+      "quote": "Application for August 2027 admission is open from 1 Oct 2026 to 31 Mar 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "NTU International MBA (IMBA)",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/ntu-imba",
+   "snapshot_sha256": "097553717ac567ce429a67cdf63ac875fca70e67f88a45c43a2d6458cfb90ed3",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's Degree from a recognised university",
+     "quote": "Bachelor's Degree from a recognised university",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "TOEFL score > 100 IBT or IELTS score > 6.5, if English was not the medium of instruction used at the undergraduate level",
+     "text": "IELTS stated without a usable number (see quote)",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "TOEFL score > 100 IBT or IELTS score > 6.5, if English was not the medium of instruction used at the undergraduate level",
+     "text": "TOEFL stated without a usable number (see quote)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "NTU-PKU Double Master's",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/nanyang-peking-master-of-science-in-finance",
+   "snapshot_sha256": "d6c070c61c121fa83de10862019d01a67463968587d85ef0a1c30f8072044f1d",
+   "fields": {
+    "academic": {
+     "text": "Good undergraduate degree in any discipline.",
+     "quote": "Good undergraduate degree in any discipline.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Maritime Studies",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-in-maritime-studies",
+   "snapshot_sha256": "7ada362686898b36a7b09a26dd8588e5aa014c1dbd37e6401396d914de01bcaf",
+   "fields": {
+    "academic": {
+     "text": "Have a good Bachelor degree in Shipping, Business or other related disciplines",
+     "quote": "Have a good Bachelor degree in Shipping, Business or other related disciplines",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "TOEFL/IELTS is required for applicants whose Bachelor programme is not conducted in English. Test date must be within 2 years or less from the date of application. The minimum score required is as follows: TOEFL (Paper-based): 600 TOEFL (Computer-based): 250 TOEFL (Internet-based - for tests taken before 21 January 2026): 85 TOEFL (Internet-based - for tests taken after 21 January 2026): 4.5 IELTS (Academic): 6.0",
+     "overall": 6.0,
+     "text": "IELTS 6",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "TOEFL/IELTS is required for applicants whose Bachelor programme is not conducted in English. Test date must be within 2 years or less from the date of application. The minimum score required is as follows: TOEFL (Paper-based): 600 TOEFL (Computer-based): 250 TOEFL (Internet-based - for tests taken before 21 January 2026): 85 TOEFL (Internet-based - for tests taken after 21 January 2026): 4.5",
+     "overall": 85,
+     "scale": "iBT 0-120",
+     "text": "TOEFL 85 (iBT 0-120)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science Technopreneurship and Innovation Programme",
+   "url": "https://www.ntu.edu.sg/education/graduate-programme/master-of-science-technopreneurship-and-innovation-programme",
+   "snapshot_sha256": "82b5d7c98c9f8f26f9b12de6803256f6af63de8b73632d57b127a1dd80e553dd",
+   "fields": {
+    "academic": {
+     "text": "A good bachelor’s degree (or equivalent) in any discipline of study from a recognised university or tertiary institution.",
+     "quote": "A good bachelor’s degree (or equivalent) in any discipline of study from a recognised university or tertiary institution.",
+     "check": "ok"
+    },
+    "ielts": {
+     "quote": "A  TOEFL Test Score of minimum 92 (internet-based) or a IELTS score of minimum 6.5 are required. Test dates must be within two years or less from the date of your application.",
+     "overall": 6.5,
+     "text": "IELTS 6.5",
+     "check": "ok"
+    },
+    "toefl": {
+     "quote": "A  TOEFL Test Score of minimum 92 (internet-based) or a IELTS score of minimum 6.5 are required. Test dates must be within two years or less from the date of your application.",
+     "overall": 92,
+     "scale": "iBT 0-120",
+     "text": "TOEFL 92 (iBT 0-120)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 65,
+  "机器核对": 64,
+  "待人工": 1
+ }
+}

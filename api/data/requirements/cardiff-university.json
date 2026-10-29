@@ -1,0 +1,27 @@
+{
+ "school_key": "cardiff-university",
+ "school_name_en": "Cardiff University",
+ "country": "United Kingdom",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://www.cardiff.ac.uk/study/postgraduate/taught/courses"
+ ],
+ "blocked": [
+  {
+   "url": "https://www.cardiff.ac.uk/study/postgraduate/taught/courses",
+   "reason": "robots.txt disallows https://www.cardiff.ac.uk/study/postgraduate/taught/courses"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.cardiff.ac.uk/study/postgraduate/taught/courses"
+ ],
+ "notes": "The snapshot tool reported that robots.txt disallows the postgraduate taught course listing on www.cardiff.ac.uk, so fetching on that host was stopped after one request and no programme was collected. No other official Cardiff host publishes course requirements. Needs a human decision (for example asking Cardiff for permission) before a retry.",
+ "programs": [],
+ "verification": {
+  "programs": 0,
+  "机器核对": 0,
+  "待人工": 0
+ }
+}

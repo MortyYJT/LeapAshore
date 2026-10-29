@@ -1,0 +1,1087 @@
+{
+ "school_key": "university-of-north-carolina-at-chapel-hill",
+ "school_name_en": "University of North Carolina at Chapel Hill",
+ "country": "United States",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://gradschool.unc.edu/degree-programs/",
+  "https://gradschool.unc.edu/admissions/deadlines/"
+ ],
+ "blocked": [],
+ "complete": false,
+ "remaining_urls": [
+  "https://gradschool.sites.unc.edu/economics/",
+  "https://gradschool.sites.unc.edu/linguistics/",
+  "https://gradschool.sites.unc.edu/global-studies/",
+  "https://gradschool.sites.unc.edu/geography/",
+  "https://gradschool.sites.unc.edu/clinical-research/",
+  "https://gradschool.sites.unc.edu/chemistry/"
+ ],
+ "notes": "Program pages are on gradschool.sites.unc.edu; English minimums are the Graduate School's 'recommended minimum' (flagged recommended). Online-only (MADS, online MPH/MPA/MSW/MHA), paused (MSPH, DCM) and PhD-only programmes skipped. Kenan-Flagler TOEFL minimum is stated only on the 1-6 scale.",
+ "programs": [
+  {
+   "name": "Master of Science in Computer Science (MS)",
+   "url": "https://gradschool.sites.unc.edu/computer-science/",
+   "snapshot_sha256": "d306055b0b6a2ed56616953d171e25a56c37f0d30217bcbf93cac5ee11682b0c",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree or international equivalent from an accredited institution; cumulative GPA 3.0 (B) or better (Graduate School minimum)",
+     "quote": "The minimum requirements are: a bachelor’s degree (based on a four-year curriculum) completed before graduate study begins or its international equivalent with an accredited institution an average grade of B (cumulative GPA 3.0) or better",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Graduate School guideline for Asian countries (incl. China): university degree requiring a minimum of four years of study",
+     "quote": "Other Asian countries: university degree requiring a minimum of four years of study",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "recommended": true,
+     "quote": "The recommended minimum total score on the exams are: The internet-based TOEFL exam: TOEFL tests taken prior to January 26, 2026 = 90 TOEFL tests taken on or after January 26, 2026 = 5 The IELTS exam = 7 Duolingo English Test = 110 Some programs may have their own minimal score recommendations which are higher than those stated above, in which case these higher standards will be required.",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "recommended": true,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "The recommended minimum total score on the exams are: The internet-based TOEFL exam: TOEFL tests taken prior to January 26, 2026 = 90 TOEFL tests taken on or after January 26, 2026 = 5 The IELTS exam = 7 Duolingo English Test = 110 Some programs may have their own minimal score recommendations which are higher than those stated above, in which case these higher standards will be required.",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-03-09",
+      "quote": "Master’s MS COMP Fall* March 9, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Statistics, Analytics and Data Science (STOR MS)",
+   "url": "https://gradschool.sites.unc.edu/statistics-and-operations-research/",
+   "snapshot_sha256": "09b220c365c9ff2aa8faafbfd8ac3e3da03aebdd135649c2736b17c9b7746ad1",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree or international equivalent from an accredited institution; cumulative GPA 3.0 (B) or better (Graduate School minimum)",
+     "quote": "The minimum requirements are: a bachelor’s degree (based on a four-year curriculum) completed before graduate study begins or its international equivalent with an accredited institution an average grade of B (cumulative GPA 3.0) or better",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Graduate School guideline for Asian countries (incl. China): university degree requiring a minimum of four years of study",
+     "quote": "Other Asian countries: university degree requiring a minimum of four years of study",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "recommended": true,
+     "quote": "The recommended minimum total score on the exams are: The internet-based TOEFL exam: TOEFL tests taken prior to January 26, 2026 = 90 TOEFL tests taken on or after January 26, 2026 = 5 The IELTS exam = 7 Duolingo English Test = 110 Some programs may have their own minimal score recommendations which are higher than those stated above, in which case these higher standards will be required.",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "recommended": true,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "The recommended minimum total score on the exams are: The internet-based TOEFL exam: TOEFL tests taken prior to January 26, 2026 = 90 TOEFL tests taken on or after January 26, 2026 = 5 The IELTS exam = 7 Duolingo English Test = 110 Some programs may have their own minimal score recommendations which are higher than those stated above, in which case these higher standards will be required.",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2026-12-15",
+      "quote": "Master’s – Statistics, Analytics and Data Science MS STOR Fall* December 15, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Data Science (residential MS)",
+   "url": "https://gradschool.sites.unc.edu/master-of-applied-data-science/",
+   "snapshot_sha256": "955f0bd0a5c08229f38c81d6135d80cda15642a838f6ecfb6473bcd99acc28f6",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree or international equivalent from an accredited institution; cumulative GPA 3.0 (B) or better (Graduate School minimum)",
+     "quote": "The minimum requirements are: a bachelor’s degree (based on a four-year curriculum) completed before graduate study begins or its international equivalent with an accredited institution an average grade of B (cumulative GPA 3.0) or better",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Graduate School guideline for Asian countries (incl. China): university degree requiring a minimum of four years of study",
+     "quote": "Other Asian countries: university degree requiring a minimum of four years of study",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "recommended": true,
+     "quote": "The recommended minimum total score on the exams are: The internet-based TOEFL exam: TOEFL tests taken prior to January 26, 2026 = 90 TOEFL tests taken on or after January 26, 2026 = 5 The IELTS exam = 7 Duolingo English Test = 110 Some programs may have their own minimal score recommendations which are higher than those stated above, in which case these higher standards will be required.",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "recommended": true,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "The recommended minimum total score on the exams are: The internet-based TOEFL exam: TOEFL tests taken prior to January 26, 2026 = 90 TOEFL tests taken on or after January 26, 2026 = 5 The IELTS exam = 7 Duolingo English Test = 110 Some programs may have their own minimal score recommendations which are higher than those stated above, in which case these higher standards will be required.",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 final deadline",
+      "date": "2027-03-09",
+      "quote": "Data Science MS Fall Priority Deadline: December 1, 2026Final Deadline: March 9, 2027",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "Introduction to Statistics, Introduction to Programming, Calculus 1, Calculus 2, Linear Algebra (course details required; outstanding ones need a completion plan)",
+      "quote": "Prerequisite courses: Introduction to Statistics, Introduction to Programming, Calculus 1, Calculus 2, Linear Algebra. For each prerequisite course, applicants must include: the institution where the course was taken, the course number, the course title, and the final grade in the course.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Information Science (MSIS)",
+   "url": "https://gradschool.sites.unc.edu/information-and-library-science/",
+   "snapshot_sha256": "eab39f68ddac30e0dcdb524280c75b4673c4caad26bcf84e9b26b7a91d472c21",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree or international equivalent from an accredited institution; cumulative GPA 3.0 (B) or better (Graduate School minimum)",
+     "quote": "The minimum requirements are: a bachelor’s degree (based on a four-year curriculum) completed before graduate study begins or its international equivalent with an accredited institution an average grade of B (cumulative GPA 3.0) or better",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Graduate School guideline for Asian countries (incl. China): university degree requiring a minimum of four years of study",
+     "quote": "Other Asian countries: university degree requiring a minimum of four years of study",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "recommended": true,
+     "quote": "TOEFL score recommended greater than 100, IELTS score recommended greater than 7.5, or Duolingo English Test Score recommended greater than 140 (no more than two years old)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "recommended": true,
+     "quote": "TOEFL score recommended greater than 100, IELTS score recommended greater than 7.5, or Duolingo English Test Score recommended greater than 140 (no more than two years old)",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-02-09",
+      "quote": "Master’s MSLS, MSIS LIBS, INFS Fall February 9, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Library Science (MSLS)",
+   "url": "https://gradschool.sites.unc.edu/information-and-library-science/",
+   "snapshot_sha256": "eab39f68ddac30e0dcdb524280c75b4673c4caad26bcf84e9b26b7a91d472c21",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree or international equivalent from an accredited institution; cumulative GPA 3.0 (B) or better (Graduate School minimum)",
+     "quote": "The minimum requirements are: a bachelor’s degree (based on a four-year curriculum) completed before graduate study begins or its international equivalent with an accredited institution an average grade of B (cumulative GPA 3.0) or better",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Graduate School guideline for Asian countries (incl. China): university degree requiring a minimum of four years of study",
+     "quote": "Other Asian countries: university degree requiring a minimum of four years of study",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "recommended": true,
+     "quote": "TOEFL score recommended greater than 100, IELTS score recommended greater than 7.5, or Duolingo English Test Score recommended greater than 140 (no more than two years old)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "recommended": true,
+     "quote": "TOEFL score recommended greater than 100, IELTS score recommended greater than 7.5, or Duolingo English Test Score recommended greater than 140 (no more than two years old)",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-02-09",
+      "quote": "Master’s MSLS, MSIS LIBS, INFS Fall February 9, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of City and Regional Planning (MCRP)",
+   "url": "https://gradschool.sites.unc.edu/city-and-regional-planning/",
+   "snapshot_sha256": "534d70c82369c702ccae887d1bd3be7fb60e9ff5461e0dcb8782a316d00430e5",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree or international equivalent from an accredited institution; cumulative GPA 3.0 (B) or better (Graduate School minimum)",
+     "quote": "The minimum requirements are: a bachelor’s degree (based on a four-year curriculum) completed before graduate study begins or its international equivalent with an accredited institution an average grade of B (cumulative GPA 3.0) or better",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Graduate School guideline for Asian countries (incl. China): university degree requiring a minimum of four years of study",
+     "quote": "Other Asian countries: university degree requiring a minimum of four years of study",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "recommended": true,
+     "quote": "The recommended minimum total score on the exams are: The internet-based TOEFL exam: TOEFL tests taken prior to January 26, 2026 = 90 TOEFL tests taken on or after January 26, 2026 = 5 The IELTS exam = 7 Duolingo English Test = 110 Some programs may have their own minimal score recommendations which are higher than those stated above, in which case these higher standards will be required.",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "recommended": true,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "The recommended minimum total score on the exams are: The internet-based TOEFL exam: TOEFL tests taken prior to January 26, 2026 = 90 TOEFL tests taken on or after January 26, 2026 = 5 The IELTS exam = 7 Duolingo English Test = 110 Some programs may have their own minimal score recommendations which are higher than those stated above, in which case these higher standards will be required.",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-01-12",
+      "quote": "Master’s MCRP PLAN Fall* January 12, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Policy (MPP)",
+   "url": "https://gradschool.sites.unc.edu/public-policy/",
+   "snapshot_sha256": "e86b35c2377724bc10f99e9a7b6b5e1cd03e1f64cb6e66efecff94db148dc920",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree or international equivalent from an accredited institution; cumulative GPA 3.0 (B) or better (Graduate School minimum)",
+     "quote": "The minimum requirements are: a bachelor’s degree (based on a four-year curriculum) completed before graduate study begins or its international equivalent with an accredited institution an average grade of B (cumulative GPA 3.0) or better",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Graduate School guideline for Asian countries (incl. China): university degree requiring a minimum of four years of study",
+     "quote": "Other Asian countries: university degree requiring a minimum of four years of study",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "recommended": true,
+     "quote": "The recommended minimum total score on the exams are: The internet-based TOEFL exam: TOEFL tests taken prior to January 26, 2026 = 90 TOEFL tests taken on or after January 26, 2026 = 5 The IELTS exam = 7 Duolingo English Test = 110 Some programs may have their own minimal score recommendations which are higher than those stated above, in which case these higher standards will be required.",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "recommended": true,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "The recommended minimum total score on the exams are: The internet-based TOEFL exam: TOEFL tests taken prior to January 26, 2026 = 90 TOEFL tests taken on or after January 26, 2026 = 5 The IELTS exam = 7 Duolingo English Test = 110 Some programs may have their own minimal score recommendations which are higher than those stated above, in which case these higher standards will be required.",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2026-12-01",
+      "quote": "Master* MPP* Fall December 1, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Health (MPH, residential)",
+   "url": "https://gradschool.sites.unc.edu/master-of-public-health/",
+   "snapshot_sha256": "4cbf1b62f41ad1dc6533d3beb5490054fc2945d0a307b439a5d26f234667cfb0",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree or international equivalent from an accredited institution; cumulative GPA 3.0 (B) or better (Graduate School minimum)",
+     "quote": "The minimum requirements are: a bachelor’s degree (based on a four-year curriculum) completed before graduate study begins or its international equivalent with an accredited institution an average grade of B (cumulative GPA 3.0) or better",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Graduate School guideline for Asian countries (incl. China): university degree requiring a minimum of four years of study",
+     "quote": "Other Asian countries: university degree requiring a minimum of four years of study",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "recommended": true,
+     "quote": "The recommended minimum total score on the exams are: The internet-based TOEFL exam: TOEFL tests taken prior to January 26, 2026 = 90 TOEFL tests taken on or after January 26, 2026 = 5 The IELTS exam = 7 Duolingo English Test = 110 Some programs may have their own minimal score recommendations which are higher than those stated above, in which case these higher standards will be required.",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "recommended": true,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "The recommended minimum total score on the exams are: The internet-based TOEFL exam: TOEFL tests taken prior to January 26, 2026 = 90 TOEFL tests taken on or after January 26, 2026 = 5 The IELTS exam = 7 Duolingo English Test = 110 Some programs may have their own minimal score recommendations which are higher than those stated above, in which case these higher standards will be required.",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 UNC supplemental application",
+      "date": "2027-02-09",
+      "quote": "**For Fall 2027 MPH applicants, SOPHAS must be submitted by February 1, 2027, and UNC supplemental application must be submitted by February 9, 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Biostatistics (MS)",
+   "url": "https://gradschool.sites.unc.edu/biostatistics/",
+   "snapshot_sha256": "cb1b5d53e9b2084ae6babbef493f3a8b924fec7688d635d575078022154d6f13",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree or international equivalent from an accredited institution; cumulative GPA 3.0 (B) or better (Graduate School minimum)",
+     "quote": "The minimum requirements are: a bachelor’s degree (based on a four-year curriculum) completed before graduate study begins or its international equivalent with an accredited institution an average grade of B (cumulative GPA 3.0) or better",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Graduate School guideline for Asian countries (incl. China): university degree requiring a minimum of four years of study",
+     "quote": "Other Asian countries: university degree requiring a minimum of four years of study",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "recommended": true,
+     "quote": "The recommended minimum total score on the exams are: The internet-based TOEFL exam: TOEFL tests taken prior to January 26, 2026 = 90 TOEFL tests taken on or after January 26, 2026 = 5 The IELTS exam = 7 Duolingo English Test = 110 Some programs may have their own minimal score recommendations which are higher than those stated above, in which case these higher standards will be required.",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "recommended": true,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "The recommended minimum total score on the exams are: The internet-based TOEFL exam: TOEFL tests taken prior to January 26, 2026 = 90 TOEFL tests taken on or after January 26, 2026 = 5 The IELTS exam = 7 Duolingo English Test = 110 Some programs may have their own minimal score recommendations which are higher than those stated above, in which case these higher standards will be required.",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2026-12-15",
+      "quote": "Master’s MS BIOS Fall* December 15, 2026",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "Mathematics training including multivariable calculus and linear algebra",
+      "quote": "MS An acceptable bachelor’s degree with mathematics training at least including multivariable calculus and linear algebra.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science / Master of Science in Environmental Engineering (ENVR MS, MSEE)",
+   "url": "https://gradschool.sites.unc.edu/environmental-sciences-and-engineering/",
+   "snapshot_sha256": "ff94da60d33e2d985d2441041eaf6bcd175e9a54f534e2b6a812ce97aef860d2",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree or international equivalent from an accredited institution; cumulative GPA 3.0 (B) or better (Graduate School minimum)",
+     "quote": "The minimum requirements are: a bachelor’s degree (based on a four-year curriculum) completed before graduate study begins or its international equivalent with an accredited institution an average grade of B (cumulative GPA 3.0) or better",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Graduate School guideline for Asian countries (incl. China): university degree requiring a minimum of four years of study",
+     "quote": "Other Asian countries: university degree requiring a minimum of four years of study",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "recommended": true,
+     "quote": "The recommended minimum total score on the exams are: The internet-based TOEFL exam: TOEFL tests taken prior to January 26, 2026 = 90 TOEFL tests taken on or after January 26, 2026 = 5 The IELTS exam = 7 Duolingo English Test = 110 Some programs may have their own minimal score recommendations which are higher than those stated above, in which case these higher standards will be required.",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "recommended": true,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "The recommended minimum total score on the exams are: The internet-based TOEFL exam: TOEFL tests taken prior to January 26, 2026 = 90 TOEFL tests taken on or after January 26, 2026 = 5 The IELTS exam = 7 Duolingo English Test = 110 Some programs may have their own minimal score recommendations which are higher than those stated above, in which case these higher standards will be required.",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-02-09",
+      "quote": "Master’s MS, MSEE ENVR Fall* February 9, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Nutrition (MS)",
+   "url": "https://gradschool.sites.unc.edu/nutrition/",
+   "snapshot_sha256": "2ff2f5a597f0fb5b6fdad0dc4deefd4b3405a5f4fc7a35c61d633923188e57eb",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree or international equivalent from an accredited institution; cumulative GPA 3.0 (B) or better (Graduate School minimum)",
+     "quote": "The minimum requirements are: a bachelor’s degree (based on a four-year curriculum) completed before graduate study begins or its international equivalent with an accredited institution an average grade of B (cumulative GPA 3.0) or better",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Graduate School guideline for Asian countries (incl. China): university degree requiring a minimum of four years of study",
+     "quote": "Other Asian countries: university degree requiring a minimum of four years of study",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "recommended": true,
+     "quote": "The recommended minimum total score on the exams are: The internet-based TOEFL exam: TOEFL tests taken prior to January 26, 2026 = 90 TOEFL tests taken on or after January 26, 2026 = 5 The IELTS exam = 7 Duolingo English Test = 110 Some programs may have their own minimal score recommendations which are higher than those stated above, in which case these higher standards will be required.",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "recommended": true,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "The recommended minimum total score on the exams are: The internet-based TOEFL exam: TOEFL tests taken prior to January 26, 2026 = 90 TOEFL tests taken on or after January 26, 2026 = 5 The IELTS exam = 7 Duolingo English Test = 110 Some programs may have their own minimal score recommendations which are higher than those stated above, in which case these higher standards will be required.",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-01-12",
+      "quote": "Master’s MS NUTR Fall* January 12, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Healthcare Administration (MHA, on campus)",
+   "url": "https://gradschool.sites.unc.edu/health-policy-and-management/",
+   "snapshot_sha256": "822685076c4fd2365c6589364571429fcaf2879a01c9276805e7e8cfdf08195e",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree or international equivalent from an accredited institution; cumulative GPA 3.0 (B) or better (Graduate School minimum)",
+     "quote": "The minimum requirements are: a bachelor’s degree (based on a four-year curriculum) completed before graduate study begins or its international equivalent with an accredited institution an average grade of B (cumulative GPA 3.0) or better",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Graduate School guideline for Asian countries (incl. China): university degree requiring a minimum of four years of study",
+     "quote": "Other Asian countries: university degree requiring a minimum of four years of study",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "recommended": true,
+     "quote": "The recommended minimum total score on the exams are: The internet-based TOEFL exam: TOEFL tests taken prior to January 26, 2026 = 90 TOEFL tests taken on or after January 26, 2026 = 5 The IELTS exam = 7 Duolingo English Test = 110 Some programs may have their own minimal score recommendations which are higher than those stated above, in which case these higher standards will be required.",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "recommended": true,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "The recommended minimum total score on the exams are: The internet-based TOEFL exam: TOEFL tests taken prior to January 26, 2026 = 90 TOEFL tests taken on or after January 26, 2026 = 5 The IELTS exam = 7 Duolingo English Test = 110 Some programs may have their own minimal score recommendations which are higher than those stated above, in which case these higher standards will be required.",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-01-12",
+      "quote": "Master’s (on campus) MHA HPM Fall* January 12, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts in Media and Communication (Journalism)",
+   "url": "https://gradschool.sites.unc.edu/media-and-communication/",
+   "snapshot_sha256": "697b7803416ac9ad1f16bea92d789a50cea26698eaa4b067dc8ab04f0fa277f7",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree or international equivalent from an accredited institution; cumulative GPA 3.0 (B) or better (Graduate School minimum)",
+     "quote": "The minimum requirements are: a bachelor’s degree (based on a four-year curriculum) completed before graduate study begins or its international equivalent with an accredited institution an average grade of B (cumulative GPA 3.0) or better",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Graduate School guideline for Asian countries (incl. China): university degree requiring a minimum of four years of study",
+     "quote": "Other Asian countries: university degree requiring a minimum of four years of study",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "recommended": true,
+     "quote": "The recommended minimum total score on the exams are: The internet-based TOEFL exam: TOEFL tests taken prior to January 26, 2026 = 90 TOEFL tests taken on or after January 26, 2026 = 5 The IELTS exam = 7 Duolingo English Test = 110 Some programs may have their own minimal score recommendations which are higher than those stated above, in which case these higher standards will be required.",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "recommended": true,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "The recommended minimum total score on the exams are: The internet-based TOEFL exam: TOEFL tests taken prior to January 26, 2026 = 90 TOEFL tests taken on or after January 26, 2026 = 5 The IELTS exam = 7 Duolingo English Test = 110 Some programs may have their own minimal score recommendations which are higher than those stated above, in which case these higher standards will be required.",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Summer II 2027",
+      "date": "2027-01-12",
+      "quote": "Master’s (Journalism) MA MECO Summer II January 12, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts in Media and Communication (Strategic Communication / Theory & Research)",
+   "url": "https://gradschool.sites.unc.edu/media-and-communication/",
+   "snapshot_sha256": "697b7803416ac9ad1f16bea92d789a50cea26698eaa4b067dc8ab04f0fa277f7",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree or international equivalent from an accredited institution; cumulative GPA 3.0 (B) or better (Graduate School minimum)",
+     "quote": "The minimum requirements are: a bachelor’s degree (based on a four-year curriculum) completed before graduate study begins or its international equivalent with an accredited institution an average grade of B (cumulative GPA 3.0) or better",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Graduate School guideline for Asian countries (incl. China): university degree requiring a minimum of four years of study",
+     "quote": "Other Asian countries: university degree requiring a minimum of four years of study",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "recommended": true,
+     "quote": "The recommended minimum total score on the exams are: The internet-based TOEFL exam: TOEFL tests taken prior to January 26, 2026 = 90 TOEFL tests taken on or after January 26, 2026 = 5 The IELTS exam = 7 Duolingo English Test = 110 Some programs may have their own minimal score recommendations which are higher than those stated above, in which case these higher standards will be required.",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "recommended": true,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "The recommended minimum total score on the exams are: The internet-based TOEFL exam: TOEFL tests taken prior to January 26, 2026 = 90 TOEFL tests taken on or after January 26, 2026 = 5 The IELTS exam = 7 Duolingo English Test = 110 Some programs may have their own minimal score recommendations which are higher than those stated above, in which case these higher standards will be required.",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-01-12",
+      "quote": "Master’s (Strategic Communication, Theory & Research, M.A./J.D. dual degree) MA MECO Fall January 12, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts in Mathematics (MA)",
+   "url": "https://gradschool.sites.unc.edu/mathematics/",
+   "snapshot_sha256": "982e9c75cd8a0559e49de8e2d22916a37bfebf469308317905451a13541cf424",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree or international equivalent from an accredited institution; cumulative GPA 3.0 (B) or better (Graduate School minimum)",
+     "quote": "The minimum requirements are: a bachelor’s degree (based on a four-year curriculum) completed before graduate study begins or its international equivalent with an accredited institution an average grade of B (cumulative GPA 3.0) or better",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Graduate School guideline for Asian countries (incl. China): university degree requiring a minimum of four years of study",
+     "quote": "Other Asian countries: university degree requiring a minimum of four years of study",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "recommended": true,
+     "quote": "The recommended minimum total score on the exams are: The internet-based TOEFL exam: TOEFL tests taken prior to January 26, 2026 = 90 TOEFL tests taken on or after January 26, 2026 = 5 The IELTS exam = 7 Duolingo English Test = 110 Some programs may have their own minimal score recommendations which are higher than those stated above, in which case these higher standards will be required.",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "recommended": true,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "The recommended minimum total score on the exams are: The internet-based TOEFL exam: TOEFL tests taken prior to January 26, 2026 = 90 TOEFL tests taken on or after January 26, 2026 = 5 The IELTS exam = 7 Duolingo English Test = 110 Some programs may have their own minimal score recommendations which are higher than those stated above, in which case these higher standards will be required.",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2026-12-01",
+      "quote": "Master’s MA MATH Fall* December 1, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Mathematics (MS)",
+   "url": "https://gradschool.sites.unc.edu/mathematics/",
+   "snapshot_sha256": "982e9c75cd8a0559e49de8e2d22916a37bfebf469308317905451a13541cf424",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree or international equivalent from an accredited institution; cumulative GPA 3.0 (B) or better (Graduate School minimum)",
+     "quote": "The minimum requirements are: a bachelor’s degree (based on a four-year curriculum) completed before graduate study begins or its international equivalent with an accredited institution an average grade of B (cumulative GPA 3.0) or better",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Graduate School guideline for Asian countries (incl. China): university degree requiring a minimum of four years of study",
+     "quote": "Other Asian countries: university degree requiring a minimum of four years of study",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "recommended": true,
+     "quote": "The recommended minimum total score on the exams are: The internet-based TOEFL exam: TOEFL tests taken prior to January 26, 2026 = 90 TOEFL tests taken on or after January 26, 2026 = 5 The IELTS exam = 7 Duolingo English Test = 110 Some programs may have their own minimal score recommendations which are higher than those stated above, in which case these higher standards will be required.",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "recommended": true,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "The recommended minimum total score on the exams are: The internet-based TOEFL exam: TOEFL tests taken prior to January 26, 2026 = 90 TOEFL tests taken on or after January 26, 2026 = 5 The IELTS exam = 7 Duolingo English Test = 110 Some programs may have their own minimal score recommendations which are higher than those stated above, in which case these higher standards will be required.",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2026-12-01",
+      "quote": "Master’s MS MATH Fall* December 1, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in MedTech Innovation and Entrepreneurship (Biomedical Engineering)",
+   "url": "https://gradschool.sites.unc.edu/biomedical-engineering/",
+   "snapshot_sha256": "a37d5a601ebe5a4c608dd7a14bad91d0c72475869b781b5647cca1da8d200371",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree or international equivalent from an accredited institution; cumulative GPA 3.0 (B) or better (Graduate School minimum)",
+     "quote": "The minimum requirements are: a bachelor’s degree (based on a four-year curriculum) completed before graduate study begins or its international equivalent with an accredited institution an average grade of B (cumulative GPA 3.0) or better",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Graduate School guideline for Asian countries (incl. China): university degree requiring a minimum of four years of study",
+     "quote": "Other Asian countries: university degree requiring a minimum of four years of study",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "recommended": true,
+     "quote": "The recommended minimum total score on the exams are: The internet-based TOEFL exam: TOEFL tests taken prior to January 26, 2026 = 90 TOEFL tests taken on or after January 26, 2026 = 5 The IELTS exam = 7 Duolingo English Test = 110 Some programs may have their own minimal score recommendations which are higher than those stated above, in which case these higher standards will be required.",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "recommended": true,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "The recommended minimum total score on the exams are: The internet-based TOEFL exam: TOEFL tests taken prior to January 26, 2026 = 90 TOEFL tests taken on or after January 26, 2026 = 5 The IELTS exam = 7 Duolingo English Test = 110 Some programs may have their own minimal score recommendations which are higher than those stated above, in which case these higher standards will be required.",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Summer I 2027",
+      "date": "2027-01-12",
+      "quote": "Master’s program in MedTech Innovation and Entrepreneurship MS Summer I January 12, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Professional Science Master's in Biomedical and Health Informatics (MPS, residential)",
+   "url": "https://gradschool.sites.unc.edu/biomedical-and-health-informatics/",
+   "snapshot_sha256": "18afdcc5e8b2e2d8566025ee30869c85a430c967cdd9ed4edebe076ac42d4e83",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree or international equivalent from an accredited institution; cumulative GPA 3.0 (B) or better (Graduate School minimum)",
+     "quote": "The minimum requirements are: a bachelor’s degree (based on a four-year curriculum) completed before graduate study begins or its international equivalent with an accredited institution an average grade of B (cumulative GPA 3.0) or better",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Graduate School guideline for Asian countries (incl. China): university degree requiring a minimum of four years of study",
+     "quote": "Other Asian countries: university degree requiring a minimum of four years of study",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "recommended": true,
+     "quote": "The recommended minimum total score on the exams are: The internet-based TOEFL exam: TOEFL tests taken prior to January 26, 2026 = 90 TOEFL tests taken on or after January 26, 2026 = 5 The IELTS exam = 7 Duolingo English Test = 110 Some programs may have their own minimal score recommendations which are higher than those stated above, in which case these higher standards will be required.",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "recommended": true,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "The recommended minimum total score on the exams are: The internet-based TOEFL exam: TOEFL tests taken prior to January 26, 2026 = 90 TOEFL tests taken on or after January 26, 2026 = 5 The IELTS exam = 7 Duolingo English Test = 110 Some programs may have their own minimal score recommendations which are higher than those stated above, in which case these higher standards will be required.",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-04-13",
+      "quote": "Professional Science Master’s MPS BMHI Fall* April 13, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Administration (MPA, on campus)",
+   "url": "https://gradschool.sites.unc.edu/public-administration/",
+   "snapshot_sha256": "c3c3d53ac6af88b0553a869a302c8f3e748fdbe27e51520f99bb040fad85db1a",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree or international equivalent from an accredited institution; cumulative GPA 3.0 (B) or better (Graduate School minimum)",
+     "quote": "The minimum requirements are: a bachelor’s degree (based on a four-year curriculum) completed before graduate study begins or its international equivalent with an accredited institution an average grade of B (cumulative GPA 3.0) or better",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Graduate School guideline for Asian countries (incl. China): university degree requiring a minimum of four years of study",
+     "quote": "Other Asian countries: university degree requiring a minimum of four years of study",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "recommended": true,
+     "quote": "The recommended minimum total score on the exams are: The internet-based TOEFL exam: TOEFL tests taken prior to January 26, 2026 = 90 TOEFL tests taken on or after January 26, 2026 = 5 The IELTS exam = 7 Duolingo English Test = 110 Some programs may have their own minimal score recommendations which are higher than those stated above, in which case these higher standards will be required.",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "recommended": true,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "The recommended minimum total score on the exams are: The internet-based TOEFL exam: TOEFL tests taken prior to January 26, 2026 = 90 TOEFL tests taken on or after January 26, 2026 = 5 The IELTS exam = 7 Duolingo English Test = 110 Some programs may have their own minimal score recommendations which are higher than those stated above, in which case these higher standards will be required.",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-01-12",
+      "quote": "Master’s (On-Campus) MPA PADM Fall 2027* January 12, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Social Work (MSW, full-time)",
+   "url": "https://gradschool.sites.unc.edu/social-work/",
+   "snapshot_sha256": "a3628059b08db45131873d7b672cfd0797fc8cf773dbf8c16638390acaa2b052",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree or international equivalent from an accredited institution; cumulative GPA 3.0 (B) or better (Graduate School minimum)",
+     "quote": "The minimum requirements are: a bachelor’s degree (based on a four-year curriculum) completed before graduate study begins or its international equivalent with an accredited institution an average grade of B (cumulative GPA 3.0) or better",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Graduate School guideline for Asian countries (incl. China): university degree requiring a minimum of four years of study",
+     "quote": "Other Asian countries: university degree requiring a minimum of four years of study",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "recommended": true,
+     "quote": "The recommended minimum total score on the exams are: The internet-based TOEFL exam: TOEFL tests taken prior to January 26, 2026 = 90 TOEFL tests taken on or after January 26, 2026 = 5 The IELTS exam = 7 Duolingo English Test = 110 Some programs may have their own minimal score recommendations which are higher than those stated above, in which case these higher standards will be required.",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "recommended": true,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "The recommended minimum total score on the exams are: The internet-based TOEFL exam: TOEFL tests taken prior to January 26, 2026 = 90 TOEFL tests taken on or after January 26, 2026 = 5 The IELTS exam = 7 Duolingo English Test = 110 Some programs may have their own minimal score recommendations which are higher than those stated above, in which case these higher standards will be required.",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-02-09",
+      "quote": "Master’s Full-Time MSW SOWO Fall February 9, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts in Teaching (MAT)",
+   "url": "https://gradschool.sites.unc.edu/master-of-arts-in-teaching/",
+   "snapshot_sha256": "0539269caa64f71a3e319ecb8d37ac9a0378d843facd9c627bb33bc8461368db",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree or international equivalent from an accredited institution; cumulative GPA 3.0 (B) or better (Graduate School minimum)",
+     "quote": "The minimum requirements are: a bachelor’s degree (based on a four-year curriculum) completed before graduate study begins or its international equivalent with an accredited institution an average grade of B (cumulative GPA 3.0) or better",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Graduate School guideline for Asian countries (incl. China): university degree requiring a minimum of four years of study",
+     "quote": "Other Asian countries: university degree requiring a minimum of four years of study",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "recommended": true,
+     "quote": "The recommended minimum total score on the exams are: The internet-based TOEFL exam: TOEFL tests taken prior to January 26, 2026 = 90 TOEFL tests taken on or after January 26, 2026 = 5 The IELTS exam = 7 Duolingo English Test = 110 Some programs may have their own minimal score recommendations which are higher than those stated above, in which case these higher standards will be required.",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "recommended": true,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "The recommended minimum total score on the exams are: The internet-based TOEFL exam: TOEFL tests taken prior to January 26, 2026 = 90 TOEFL tests taken on or after January 26, 2026 = 5 The IELTS exam = 7 Duolingo English Test = 110 Some programs may have their own minimal score recommendations which are higher than those stated above, in which case these higher standards will be required.",
+     "source_sha256": "e23eeaef887964de5bd716e2f1eedd36cab0aef71b16a36b64def0befe93bdcd",
+     "source_url": "https://gradschool.unc.edu/admissions/instructions/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Summer I 2027",
+      "date": "2027-03-09",
+      "quote": "Master’s MAT SESP Summer I* March 9, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Full-Time MBA (Kenan-Flagler)",
+   "url": "https://www.kenan-flagler.unc.edu/programs/mba/full-time-mba/admissions/requirements-deadlines/",
+   "snapshot_sha256": "8fb0b2790a592512a9c48332e938a7f09996bdaaa072159faaa7867f95a7b25a",
+   "fields": {
+    "academic": {
+     "text": "College-level education equivalent to a US bachelor's degree; three-year bachelor's degrees are eligible",
+     "quote": "If you studied outside of the U.S., you must have a college-level education equivalent to an American undergraduate or baccalaureate degree – the same as a first-university degree and, typically, is a four-year degree.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Minimum academic score requirements TOEFL IELTS PTE Duolingo Total Score 5 7.0 68 120",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "Minimum total TOEFL score stated as 5 (1-6 scale)",
+     "quote": "Minimum academic score requirements TOEFL IELTS PTE Duolingo Total Score 5 7.0 68 120",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Round 2 submission",
+      "date": "2027-01-06",
+      "quote": "Round 2 January 6, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3 submission (final round for international applicants)",
+      "date": "2027-03-03",
+      "quote": "Round 3 March 3, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Accounting (MAC, on campus)",
+   "url": "https://www.kenan-flagler.unc.edu/programs/master-of-accounting/admissions/application-requirements/",
+   "snapshot_sha256": "73aca77995857d714aeabffa2613f737dc1a918805a4b0a01493526b9b9e373e",
+   "fields": {
+    "academic": {
+     "text": "College-level education equivalent to a US bachelor's degree if studied outside the US; any undergraduate major",
+     "quote": "If you studied outside of the United States, you must have a college-level education equivalent to an American undergraduate or baccalaureate degree.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "TOEFL, IELTS or PTE Academic required if English is not native language and undergraduate degree was not in a native English-speaking country (no minimum stated)",
+      "quote": "If English is not your native language and you did not complete your undergraduate degree in a native English-speaking country, you’ll also need to take the TOEFL, IELTS or PTE Academic.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Campus format, June 2027: final deadline",
+      "date": "2027-04-26",
+      "quote": "Campus Format, starting in June 2027 November 9, 2026: Priority Deadline February 8, 2027: Priority 2 Deadline March 22, 2027: Priority 3 Deadline April 26, 2027: Final Deadline",
+      "source_sha256": "54107a1ee4341dde97c0eeeb69f2b75dfcba283fccade47dc8f696800296527d",
+      "source_url": "https://www.kenan-flagler.unc.edu/programs/master-of-accounting/admissions/application-deadlines/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 23,
+  "机器核对": 23,
+  "待人工": 0
+ }
+}

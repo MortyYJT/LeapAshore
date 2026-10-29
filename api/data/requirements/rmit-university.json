@@ -1,0 +1,2228 @@
+{
+ "school_key": "rmit-university",
+ "school_name_en": "RMIT University",
+ "country": "Australia",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework",
+  "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/architecture",
+  "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/art",
+  "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/aviation",
+  "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/biomedical-sciences",
+  "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/building",
+  "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/business",
+  "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/communication",
+  "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/design",
+  "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/education",
+  "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/engineering",
+  "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/environment",
+  "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/fashion",
+  "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/game-design",
+  "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/health-science",
+  "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/information-technology",
+  "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/law",
+  "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/media",
+  "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/property",
+  "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/psychology",
+  "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/science",
+  "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/social-science"
+ ],
+ "china_page": {
+  "url": "https://www.rmit.edu.au/study-with-us/international-students/apply-to-rmit-international-students/entry-requirements/country-equivalency/china-peoples-republic-of",
+  "sha256": "92a5477b772d6d25152f91cdfc1a0a71b7fd0a3ffd2b44cb2e08cafc3096024e"
+ },
+ "blocked": [],
+ "complete": true,
+ "remaining_urls": [],
+ "notes": "70 program pages from RMIT's 21 postgraduate area pages were snapshotted; entry text is taken from each page's plan-level (international) 'Entry requirements and admissions' block. RMIT's China equivalency page covers only senior-secondary, foundation, diploma and bachelor-level conversions, with no master's entry average, so no china_requirement was recorded. Application dates were recorded only where the program page or the international application-dates table names the program; the general postgraduate-coursework deadline was not applied because program pages do not name that group. Where one page lists several CRICOS codes each gets an entry (cricos_match 'page'); fixture courses with an identical name but a code absent from the page are entered with cricos_match 'name'. Not found on RMIT's current lists (no entry): 077511G Information Management, 077662C Environmental Science and Technology, 079797E Eng (Manufacturing), 079804M Eng (Electronic), 088092G Prof Accounting (CPA Extension), 092028D Science (Aviation), 103206G Blockchain Enabled Business, 103235B Arts (Art in Public Space), 110531B Science (Health Science). Skipped as having no CRICOS registration: Master of Design Futures, Master of Mental Health Nursing. Academic quotes are capped near 800 characters at a line boundary; TOEFL section minimums and per-skill IELTS bands that differ are left in the quote only. Master of Clinical Osteopathy TOEFL uses the line for tests taken on or after 23 April 2026.",
+ "programs": [
+  {
+   "name": "Master of Data Science and Artificial Intelligence",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-data-science-and-artificial-intelligence-mc292",
+   "snapshot_sha256": "047a1fc4b73099233d3e9d0acc7dc086fb685d6537926e4bfbeca7e2af6f5b62",
+   "cricos_code": "121299C",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have successfully completed an Australian bachelor's degree (or equivalent overseas qualification) in any discipline with a minimum GPA of 2.0 (out of 4.0). You may also be considered if you have a minimum of 5 years of relevant work experience in information security, programming (web, application, database); software engineering; system, functional or business analysis; information, system or enterprise architecture; ICT management; administration (network, systems); support (desktop, helpdesk, system); web design/media; business information systems or information systems.",
+     "quote": "You must have successfully completed an Australian bachelor's degree (or equivalent overseas qualification) in any discipline with a minimum GPA of 2.0 (out of 4.0). You may also be considered if you have a minimum of 5 years of relevant work experience in information security, programming (web, application, database); software engineering; system, functional or business analysis; information, system or enterprise architecture; ICT management; administration (network, systems); support (desktop, helpdesk, system); web design/media; business information systems or information systems.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Executive Master of Business Administration",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/executive-master-of-business-administration-mc162",
+   "snapshot_sha256": "0924587c6484a361f6ee27135c2edeb2101a3bc12b3dcd634e5267e2e23de643",
+   "cricos_code": "058615A",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "An Australian bachelor degree or equivalent, or higher-level qualification, in any discipline from a recognised tertiary institution with a minimum grade point average (GPA) of 2.0 (out of 4.0); OR An Australian bachelor degree or equivalent, or higher-level qualification, in any discipline from a recognised tertiary institution and a GMAT overall minimum score of 600; OR RMIT's Graduate Certificate in Business Administration (Executive).",
+     "quote": "An Australian bachelor degree or equivalent, or higher-level qualification, in any discipline from a recognised tertiary institution with a minimum grade point average (GPA) of 2.0 (out of 4.0); OR An Australian bachelor degree or equivalent, or higher-level qualification, in any discipline from a recognised tertiary institution and a GMAT overall minimum score of 600; OR RMIT's Graduate Certificate in Business Administration (Executive).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Energy Efficient and Sustainable Building",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-energy-efficient-and-sustainable-building-mc209",
+   "snapshot_sha256": "0bb2ee0f38db0d60aadd9a4f5299837e44f655a69e68230930ca931e7d927f92",
+   "cricos_code": "084668E",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have: successfully completed an Australian bachelor degree (or equivalent overseas qualification) OR a minimum of 3 years significant work experience or professional practice related to energy efficiency, sustainability or building and construction.",
+     "quote": "You must have: successfully completed an Australian bachelor degree (or equivalent overseas qualification) OR a minimum of 3 years significant work experience or professional practice related to energy efficiency, sustainability or building and construction.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering (Sustainable Energy)",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-engineering-sustainable-energy-mc229",
+   "snapshot_sha256": "0f8b631eda4703d10d4b7988723989c0c9b0290c144e5edee5e60366d9f8fb32",
+   "cricos_code": "079934A",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "Successful completion of an Australian bachelor degree in Engineering (or international equivalent) in one of the following fields: Electrical, Electronics, Aerospace, Mechanical, Manufacturing, Mechatronics, Sustainable Systems, Computer or Automotive Engineering with a GPA of at least 2.0 out of 4.0. Applicants who have a successfully completed a relevant degree (as above) with a GPA of at least 1.5 out of 4, will be considered if they have at least 3 years of relevant industry experience. OR Successful completion of an Australian postgraduate qualification (or international equivalent) in a related discipline (as above).",
+     "quote": "Successful completion of an Australian bachelor degree in Engineering (or international equivalent) in one of the following fields: Electrical, Electronics, Aerospace, Mechanical, Manufacturing, Mechatronics, Sustainable Systems, Computer or Automotive Engineering with a GPA of at least 2.0 out of 4.0. Applicants who have a successfully completed a relevant degree (as above) with a GPA of at least 1.5 out of 4, will be considered if they have at least 3 years of relevant industry experience. OR Successful completion of an Australian postgraduate qualification (or international equivalent) in a related discipline (as above).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Project Management",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-project-management-mc210",
+   "snapshot_sha256": "13bfba182779b191eb7c77eb7975a8f57f5ada5a847a3eade085920494e5a2a4",
+   "cricos_code": "079796F",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification) in any discipline. You may also be considered if you do not have an undergraduate degree but have a minimum of 8 years professional work experience in a related industry or professional experience at a senior level that is less than 8 years. Please note: October intake is not available to advanced entry students.",
+     "quote": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification) in any discipline. You may also be considered if you do not have an undergraduate degree but have a minimum of 8 years professional work experience in a related industry or professional experience at a senior level that is less than 8 years. Please note: October intake is not available to advanced entry students.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering (Telecommunication and Network Engineering)",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-engineering-telecommunication-and-network-engineering-mc234",
+   "snapshot_sha256": "14dd484e897f7059199a883ad4e25dd22fd7c30bbcef4f0ce5f4043b6f6f3f92",
+   "cricos_code": "116508H",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "Successful completion of an Australian bachelor degree (or international equivalent) in one of the following fields: Computer Engineering, Electronics Engineering, Telecommunications Engineering, Electrical Engineering, Communication Engineering or Network Engineering. Applicants who have a successfully completed an Australian bachelor degree (or international equivalent) will be considered if they have at least 3 years of relevant industry experience. OR Successful completion of an Australian postgraduate qualification (or international equivalent) in a related discipline (as above).",
+     "quote": "Successful completion of an Australian bachelor degree (or international equivalent) in one of the following fields: Computer Engineering, Electronics Engineering, Telecommunications Engineering, Electrical Engineering, Communication Engineering or Network Engineering. Applicants who have a successfully completed an Australian bachelor degree (or international equivalent) will be considered if they have at least 3 years of relevant industry experience. OR Successful completion of an Australian postgraduate qualification (or international equivalent) in a related discipline (as above).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering (Telecommunication and Network Engineering)",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-engineering-telecommunication-and-network-engineering-mc234",
+   "snapshot_sha256": "14dd484e897f7059199a883ad4e25dd22fd7c30bbcef4f0ce5f4043b6f6f3f92",
+   "cricos_code": "079936K",
+   "cricos_match": "name",
+   "fields": {
+    "academic": {
+     "text": "Successful completion of an Australian bachelor degree (or international equivalent) in one of the following fields: Computer Engineering, Electronics Engineering, Telecommunications Engineering, Electrical Engineering, Communication Engineering or Network Engineering. Applicants who have a successfully completed an Australian bachelor degree (or international equivalent) will be considered if they have at least 3 years of relevant industry experience. OR Successful completion of an Australian postgraduate qualification (or international equivalent) in a related discipline (as above).",
+     "quote": "Successful completion of an Australian bachelor degree (or international equivalent) in one of the following fields: Computer Engineering, Electronics Engineering, Telecommunications Engineering, Electrical Engineering, Communication Engineering or Network Engineering. Applicants who have a successfully completed an Australian bachelor degree (or international equivalent) will be considered if they have at least 3 years of relevant industry experience. OR Successful completion of an Australian postgraduate qualification (or international equivalent) in a related discipline (as above).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Architecture",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-architecture-mc163",
+   "snapshot_sha256": "185038fd5063eebd050be5acf29a7f800ed809c1f025f894f7268eeecd19d429",
+   "cricos_code": "060829B",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have successfully completed an Australian architecture specific bachelor degree (or equivalent overseas qualification). You will be selected competitively based on your grades and selection task. Important information You must also complete and submit a selection task. Please refer to the 'Selection tasks' tab for more details.",
+     "quote": "You must have successfully completed an Australian architecture specific bachelor degree (or equivalent overseas qualification). You will be selected competitively based on your grades and selection task. Important information You must also complete and submit a selection task. Please refer to the 'Selection tasks' tab for more details.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Applications accepted until, unless places are filled earlier",
+      "date": "2027-02-26",
+      "quote": "Applications will be accepted until Friday 26 February 2027 unless places are filled earlier.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Justice and Criminology",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-justice-and-criminology-mc223",
+   "snapshot_sha256": "1fa11e4121f1eaaca6e02108e2afa6e488b00802693b76a09e5b4b38409070dc",
+   "cricos_code": "079595D",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification). You may also be considered if you have at least 5 years of work experience or professional practise in a related field.",
+     "quote": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification). You may also be considered if you have at least 5 years of work experience or professional practise in a related field.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Photography",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-photography-mc270",
+   "snapshot_sha256": "202310f87d00e51249783359fad6d0d1bd69549a68fdcf2b146a6f0e06195488",
+   "cricos_code": "096091J",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification) in any discipline. You may also be considered if you have a minimum of 5 years' professional experience in photography. To have your professional experience considered in your application, you must include a CV and a statement that details your experience.",
+     "quote": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification) in any discipline. You may also be considered if you have a minimum of 5 years' professional experience in photography. To have your professional experience considered in your application, you must include a CV and a statement that details your experience.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Selection task submission, timely applications",
+      "date": "2026-11-30",
+      "quote": "Timely applications 30 November 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Selection task submission, late applications",
+      "date": "2027-02-26",
+      "quote": "Late applications 26 February 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering (Electrical Engineering)",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-engineering-electrical-engineering-mc235",
+   "snapshot_sha256": "2d4f4f672ec3658c03e8c15ec98c9a525f6842cb4023a2bd7a1a5a8dcd68e60b",
+   "cricos_code": "116510C",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "Successful completion of an Australian bachelor degree (or international equivalent) in one of the following fields: Computer Engineering, Electronics Engineering, Telecommunications Engineering, Electrical Engineering, Communication Engineering or Network Engineering with a GPA of at least 2.0 out of 4.0. Applicants who have a successfully completed a relevant degree (as above) with a GPA of at least 1.5 out of 4, will be considered if they have at least 3 years of relevant industry experience. OR Successful completion of an Australian postgraduate qualification (or international equivalent) in a related discipline (as above).",
+     "quote": "Successful completion of an Australian bachelor degree (or international equivalent) in one of the following fields: Computer Engineering, Electronics Engineering, Telecommunications Engineering, Electrical Engineering, Communication Engineering or Network Engineering with a GPA of at least 2.0 out of 4.0. Applicants who have a successfully completed a relevant degree (as above) with a GPA of at least 1.5 out of 4, will be considered if they have at least 3 years of relevant industry experience. OR Successful completion of an Australian postgraduate qualification (or international equivalent) in a related discipline (as above).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering (Electrical Engineering)",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-engineering-electrical-engineering-mc235",
+   "snapshot_sha256": "2d4f4f672ec3658c03e8c15ec98c9a525f6842cb4023a2bd7a1a5a8dcd68e60b",
+   "cricos_code": "079937J",
+   "cricos_match": "name",
+   "fields": {
+    "academic": {
+     "text": "Successful completion of an Australian bachelor degree (or international equivalent) in one of the following fields: Computer Engineering, Electronics Engineering, Telecommunications Engineering, Electrical Engineering, Communication Engineering or Network Engineering with a GPA of at least 2.0 out of 4.0. Applicants who have a successfully completed a relevant degree (as above) with a GPA of at least 1.5 out of 4, will be considered if they have at least 3 years of relevant industry experience. OR Successful completion of an Australian postgraduate qualification (or international equivalent) in a related discipline (as above).",
+     "quote": "Successful completion of an Australian bachelor degree (or international equivalent) in one of the following fields: Computer Engineering, Electronics Engineering, Telecommunications Engineering, Electrical Engineering, Communication Engineering or Network Engineering with a GPA of at least 2.0 out of 4.0. Applicants who have a successfully completed a relevant degree (as above) with a GPA of at least 1.5 out of 4, will be considered if they have at least 3 years of relevant industry experience. OR Successful completion of an Australian postgraduate qualification (or international equivalent) in a related discipline (as above).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Communication Design",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-communication-design-mc250",
+   "snapshot_sha256": "2f85cb5f325d649b4603861d7eb79043b878ec728d352085f01b0e5a96cbe6a0",
+   "cricos_code": "084351D",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have: successfully completed an Australian bachelor degree (or equivalent overseas qualification); or at least 3 years professional experience in graphic design, communication design and/or visual communication. To have your professional experience considered you must submit with your application a CV and a personal statement detailing your experience.",
+     "quote": "You must have: successfully completed an Australian bachelor degree (or equivalent overseas qualification); or at least 3 years professional experience in graphic design, communication design and/or visual communication. To have your professional experience considered you must submit with your application a CV and a personal statement detailing your experience.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Selection task submission (all applicants)",
+      "date": "2027-02-26",
+      "quote": "Register and submit the selection task by All applicants 26 February 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Analytics and AI Strategy",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-business-analytics-and-ai-strategy-mc274",
+   "snapshot_sha256": "3399a82e1296d9a912e31a21ab4d51840bf3d00e78c69ba5c1f3c6030d55618f",
+   "cricos_code": "119116M",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "2-year duration You must have successfully completed an Australian bachelor's degree (or equivalent overseas qualification) or higher-level qualification in any discipline from a recognised tertiary institution. 1.5-year duration (with advanced standing) You must have successfully completed an Australian bachelor's degree (or equivalent overseas qualification) or higher-level qualification in a business (or related) discipline from a recognised tertiary institution. Notes: If you wish to be considered for the 1.5-year version of the course (advanced standing), you must indicate this when you apply, by ticking the box \"applying for credit\".",
+     "quote": "2-year duration You must have successfully completed an Australian bachelor's degree (or equivalent overseas qualification) or higher-level qualification in any discipline from a recognised tertiary institution. 1.5-year duration (with advanced standing) You must have successfully completed an Australian bachelor's degree (or equivalent overseas qualification) or higher-level qualification in a business (or related) discipline from a recognised tertiary institution. Notes: If you wish to be considered for the 1.5-year version of the course (advanced standing), you must indicate this when you apply, by ticking the box \"applying for credit\".",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Design Innovation and Technology",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-design-innovation-and-technology-mc231",
+   "snapshot_sha256": "394b074c553726f0cf706c61e7679ca19798ecb7f5479a74435f7e63c8fec289",
+   "cricos_code": "080000D",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have: successfully completed an Australian bachelor degree (or equivalent overseas qualification) OR undertaken at least 3 years of work experience or professional practice in a related field.",
+     "quote": "You must have: successfully completed an Australian bachelor degree (or equivalent overseas qualification) OR undertaken at least 3 years of work experience or professional practice in a related field.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering (Environmental Engineering)",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-engineering-environmental-engineering-mc254",
+   "snapshot_sha256": "3da8acd2b18869eb7ceee5b06a412e31b08555f7a41fe09e9279bc08c45ad6ca",
+   "cricos_code": "087983C",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "Successful completion of an Australian bachelor degree (or international equivalent) in Engineering, Science or Technology with a major in Chemical Engineering, Civil Engineering, Environmental Engineering or Engineering Systems with a GPA of at least 2.0 out of 4.0. Applicants who have a successfully completed a relevant degree (as above) with a GPA of at least 1.5 out of 4, will be considered if they have at least 3 years of relevant industry experience. OR Successful completion of an Australian postgraduate qualification (or international equivalent) in a related discipline (as above).",
+     "quote": "Successful completion of an Australian bachelor degree (or international equivalent) in Engineering, Science or Technology with a major in Chemical Engineering, Civil Engineering, Environmental Engineering or Engineering Systems with a GPA of at least 2.0 out of 4.0. Applicants who have a successfully completed a relevant degree (as above) with a GPA of at least 1.5 out of 4, will be considered if they have at least 3 years of relevant industry experience. OR Successful completion of an Australian postgraduate qualification (or international equivalent) in a related discipline (as above).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Writing and Publishing",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-writing-and-publishing-mc262",
+   "snapshot_sha256": "3ef8c667b9918f132abba6d036451e27db8b06c05d7252a6c7b863fb9993b6cb",
+   "cricos_code": "088089C",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification). You may also be considered if you have at least three years of professional work experience in a related industry.",
+     "quote": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification). You may also be considered if you have at least three years of professional work experience in a related industry.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.5,
+     "quote": "IELTS (Academic): minimum overall band of 7.0 (with no individual band below 6.5)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 94,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 94 (with minimum of 19 in Reading, 20 in Listening, 20 in Speaking and 24 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Information Technology",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-business-information-technology-mc200",
+   "snapshot_sha256": "3ff0db72f544f1683ae47a253a1664b4b0e3917c48f2f376e852a0145e451a79",
+   "cricos_code": "077515C",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "2-year duration You must have successfully completed an Australian bachelor's degree (or equivalent overseas qualification) or higher-level qualification in any discipline from a recognised tertiary institution. 1.5-year duration (with advanced standing) You must have successfully completed: An Australian bachelor's degree (or equivalent overseas qualification) or higher-level qualification in a business (or related) discipline from a recognised tertiary institution; OR RMIT's Graduate Certificate in Business Information Technology.",
+     "quote": "2-year duration You must have successfully completed an Australian bachelor's degree (or equivalent overseas qualification) or higher-level qualification in any discipline from a recognised tertiary institution. 1.5-year duration (with advanced standing) You must have successfully completed: An Australian bachelor's degree (or equivalent overseas qualification) or higher-level qualification in a business (or related) discipline from a recognised tertiary institution; OR RMIT's Graduate Certificate in Business Information Technology.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Analytics",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-analytics-mc242",
+   "snapshot_sha256": "4793438b7307a3c1404cd340b8ec5903bca5d8caad65b84ede0e342d41f8f9d9",
+   "cricos_code": "081540A",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have successfully completed: An Australian bachelor degree (or equivalent overseas qualification) in any discipline. You may also be considered if you have at least 10 years of work experience in analytics, statistics, operations research, economics, finance, logistics, marketing, supply chain management, engineering (management), information technologies, information security, computer science or a relevant discipline.",
+     "quote": "You must have successfully completed: An Australian bachelor degree (or equivalent overseas qualification) in any discipline. You may also be considered if you have at least 10 years of work experience in analytics, statistics, operations research, economics, finance, logistics, marketing, supply chain management, engineering (management), information technologies, information security, computer science or a relevant discipline.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Teaching Practice (Primary Education)",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-teaching-practice-primary-education-mc219",
+   "snapshot_sha256": "4b50dfde905212bb6b05a6d50be17c13b3fa1d0955b47acb5183e1e24826ae11",
+   "cricos_code": "113707C",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have successfully completed an Australian bachelor's degree or 2-year master's degree (or equivalent overseas qualification).",
+     "quote": "You must have successfully completed an Australian bachelor's degree or 2-year master's degree (or equivalent overseas qualification).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "IELTS (Academic): minimum overall band of 7.5 (with 7.0-reading, 7.0-writing, 8.0-listening, 8.0-speaking)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 102,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 102 (with minimum of 24 in Reading, 28 in Listening, 26 in Speaking and 27 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Teaching Practice (Primary Education)",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-teaching-practice-primary-education-mc219",
+   "snapshot_sha256": "4b50dfde905212bb6b05a6d50be17c13b3fa1d0955b47acb5183e1e24826ae11",
+   "cricos_code": "098981C",
+   "cricos_match": "name",
+   "fields": {
+    "academic": {
+     "text": "You must have successfully completed an Australian bachelor's degree or 2-year master's degree (or equivalent overseas qualification).",
+     "quote": "You must have successfully completed an Australian bachelor's degree or 2-year master's degree (or equivalent overseas qualification).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "IELTS (Academic): minimum overall band of 7.5 (with 7.0-reading, 7.0-writing, 8.0-listening, 8.0-speaking)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 102,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 102 (with minimum of 24 in Reading, 28 in Listening, 26 in Speaking and 27 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering (Robotics and Mechatronics Engineering)",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-engineering-robotics-and-mechatronics-engineering-mc256",
+   "snapshot_sha256": "53a16e16aaa657926726ba17c91f4a6426be7982efc14a751cd073553b5e76db",
+   "cricos_code": "087985A",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "Successful completion of an Australian bachelor degree (or international equivalent) in one of the following fields: Electrical, Electronic, Aerospace, Mechanical, Manufacturing, Mechatronics, Sustainable Systems or Automotive Engineering with a GPA of at least 2.0 out of 4.0. Applicants who have a successfully completed a relevant degree (as above) with a GPA of at least 1.5 out of 4, will be considered if they have at least 3 years of relevant industry experience. OR Successful completion of an Australian postgraduate qualification (or international equivalent) in a related discipline (as above).",
+     "quote": "Successful completion of an Australian bachelor degree (or international equivalent) in one of the following fields: Electrical, Electronic, Aerospace, Mechanical, Manufacturing, Mechatronics, Sustainable Systems or Automotive Engineering with a GPA of at least 2.0 out of 4.0. Applicants who have a successfully completed a relevant degree (as above) with a GPA of at least 1.5 out of 4, will be considered if they have at least 3 years of relevant industry experience. OR Successful completion of an Australian postgraduate qualification (or international equivalent) in a related discipline (as above).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Global Studies",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-global-studies-mc283",
+   "snapshot_sha256": "550be36c7cfece3826bb6a0860fdb703b9aede93ab69598fb966fa77cd5ac791",
+   "cricos_code": "107042A",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have: successfully completed an Australian bachelor degree (or equivalent overseas qualification), OR at least 5 years of relevant professional experience in international development, urban or disaster management, or related policy fields.",
+     "quote": "You must have: successfully completed an Australian bachelor degree (or equivalent overseas qualification), OR at least 5 years of relevant professional experience in international development, urban or disaster management, or related policy fields.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Urban Planning and Environment",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-urban-planning-and-environment-mc221",
+   "snapshot_sha256": "556e1fe8e1e027009fa4d4679a50f3d600909993669f7f20f1f3ef3a49fba837",
+   "cricos_code": "079932C",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification) in any discipline with a minimum overall grade point average of 2.5 (out of 4.0). You may also be considered if you have significant work experience or professional practice.",
+     "quote": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification) in any discipline with a minimum overall grade point average of 2.5 (out of 4.0). You may also be considered if you have significant work experience or professional practice.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Geospatial Science",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-geospatial-science-mc265",
+   "snapshot_sha256": "5669700133f10a68e863fbbdd5ecf24ff212d5a7a9d055b60984f71839298895",
+   "cricos_code": "092796G",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have: An Australian bachelor degree in any discipline, or equivalent. OR You may also be considered if you have at least ten years’ of work experience in geospatial science, geometrics, land information, surveying, geography, environmental science, geology, earth science, or environmental engineering. International qualifications are assessed for comparability to Australian qualifications according to the Australian Qualifications Framework (AQF). Exemptions Some applicants might be eligible for exemptions that might change the duration of their program. Please refer to the Articulation and Pathways section for more detail.",
+     "quote": "You must have: An Australian bachelor degree in any discipline, or equivalent. OR You may also be considered if you have at least ten years’ of work experience in geospatial science, geometrics, land information, surveying, geography, environmental science, geology, earth science, or environmental engineering. International qualifications are assessed for comparability to Australian qualifications according to the Australian Qualifications Framework (AQF). Exemptions Some applicants might be eligible for exemptions that might change the duration of their program. Please refer to the Articulation and Pathways section for more detail.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Administration",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-business-administration-mc199",
+   "snapshot_sha256": "5fc3801b71003cee1f27ed443ffcceba5607fd65df3c08bc0948cec6fe1b1964",
+   "cricos_code": "077514D",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "2-year duration You must have successfully completed: An Australian bachelor's degree (or equivalent), or higher-level qualification, in any discipline from a recognised tertiary institution with a minimum grade point average (GPA) of 1.0 (out of 4.0); OR An Australian bachelor's degree (or equivalent), or higher-level qualification, in any discipline from a recognised tertiary institution and a GMAT overall minimum score of 550.",
+     "quote": "2-year duration You must have successfully completed: An Australian bachelor's degree (or equivalent), or higher-level qualification, in any discipline from a recognised tertiary institution with a minimum grade point average (GPA) of 1.0 (out of 4.0); OR An Australian bachelor's degree (or equivalent), or higher-level qualification, in any discipline from a recognised tertiary institution and a GMAT overall minimum score of 550.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Property",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-property-mc212",
+   "snapshot_sha256": "606f385d874fb68772f7051d99054ab15f61b6fde23507d9f360c332c9121213",
+   "cricos_code": "085116G",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification) in any discipline. You may also be considered if you do not have an undergraduate degree but have a minimum of 8 years professional work experience in a related industry or professional experience at a senior level that is less than 8 years.",
+     "quote": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification) in any discipline. You may also be considered if you do not have an undergraduate degree but have a minimum of 8 years professional work experience in a related industry or professional experience at a senior level that is less than 8 years.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts (Arts Management)",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-arts-arts-management-mc280",
+   "snapshot_sha256": "69103c6423f449996e68241e982096422fce5cb43a8ee05c9f0e8643237bf2f8",
+   "cricos_code": "103234C",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have successfully completed an Australian bachelor degree or equivalent overseas qualification. You may also be considered if you have at least 5 years work experience or professional practice in a field directly related to arts management. To have your professional experience considered you must include in your application a CV and a personal statement that details your experience.",
+     "quote": "You must have successfully completed an Australian bachelor degree or equivalent overseas qualification. You may also be considered if you have at least 5 years work experience or professional practice in a field directly related to arts management. To have your professional experience considered you must include in your application a CV and a personal statement that details your experience.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Communication",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-communication-mc248",
+   "snapshot_sha256": "71cc6127709ec5ad96175ebfdda910fbabd9796cddaab760c8412b4629085e49",
+   "cricos_code": "083948E",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification). You may also be considered if you have at least three years of professional work experience in a related industry.",
+     "quote": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification). You may also be considered if you have at least three years of professional work experience in a related industry.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering (Electrical and Electronic Engineering)",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-engineering-electrical-and-electronic-engineering-mc180",
+   "snapshot_sha256": "72314b9fe49cdab43965da05105141a0fd3c4568096bfb2fc8dbecf07536a5d5",
+   "cricos_code": "116507J",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "Successful completion of an Australian bachelor degree (or international equivalent) in one of the following fields: Computer Engineering, Electronics Engineering, Telecommunications Engineering, Electrical Engineering, Communication Engineering or Network Engineering with a GPA of at least 2.0 out of 4.0. Applicants who have a successfully completed a relevant degree (as above) with a GPA of at least 1.5 out of 4, will be considered if they have at least 3 years of relevant industry experience. OR Successful completion of an Australian postgraduate qualification (or international equivalent) in a related discipline (as above).",
+     "quote": "Successful completion of an Australian bachelor degree (or international equivalent) in one of the following fields: Computer Engineering, Electronics Engineering, Telecommunications Engineering, Electrical Engineering, Communication Engineering or Network Engineering with a GPA of at least 2.0 out of 4.0. Applicants who have a successfully completed a relevant degree (as above) with a GPA of at least 1.5 out of 4, will be considered if they have at least 3 years of relevant industry experience. OR Successful completion of an Australian postgraduate qualification (or international equivalent) in a related discipline (as above).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering (Electrical and Electronic Engineering)",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-engineering-electrical-and-electronic-engineering-mc180",
+   "snapshot_sha256": "72314b9fe49cdab43965da05105141a0fd3c4568096bfb2fc8dbecf07536a5d5",
+   "cricos_code": "072752G",
+   "cricos_match": "name",
+   "fields": {
+    "academic": {
+     "text": "Successful completion of an Australian bachelor degree (or international equivalent) in one of the following fields: Computer Engineering, Electronics Engineering, Telecommunications Engineering, Electrical Engineering, Communication Engineering or Network Engineering with a GPA of at least 2.0 out of 4.0. Applicants who have a successfully completed a relevant degree (as above) with a GPA of at least 1.5 out of 4, will be considered if they have at least 3 years of relevant industry experience. OR Successful completion of an Australian postgraduate qualification (or international equivalent) in a related discipline (as above).",
+     "quote": "Successful completion of an Australian bachelor degree (or international equivalent) in one of the following fields: Computer Engineering, Electronics Engineering, Telecommunications Engineering, Electrical Engineering, Communication Engineering or Network Engineering with a GPA of at least 2.0 out of 4.0. Applicants who have a successfully completed a relevant degree (as above) with a GPA of at least 1.5 out of 4, will be considered if they have at least 3 years of relevant industry experience. OR Successful completion of an Australian postgraduate qualification (or international equivalent) in a related discipline (as above).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Juris Doctor",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/juris-doctor-mc161",
+   "snapshot_sha256": "7826504b09cbea050b8e334033c55b1eb5b1074eb7fe0ea814cca01accb015a4",
+   "cricos_code": "103207F",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification) or higher-level qualification in any discipline (except a Bachelor of Laws (LLB - Common Law) or Juris Doctor) with a minimum grade point average (GPA) of 2.0 (out of 4.0).",
+     "quote": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification) or higher-level qualification in any discipline (except a Bachelor of Laws (LLB - Common Law) or Juris Doctor) with a minimum grade point average (GPA) of 2.0 (out of 4.0).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Applied Science (Acupuncture)",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-applied-science-acupuncture-mc024",
+   "snapshot_sha256": "785fe13f3bf9587c9fd4c75d8e9d50542e555c9de2b9224a75951fb6a9820fb2",
+   "cricos_code": "118175H",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have successfully completed an Australian bachelor's degree (or equivalent overseas qualification) in nursing, medicine, physiotherapy, chiropractic, osteopathy, naturopathy, paramedicine, podiatry, occupational therapy, exercise physiology, neuroscience, pharmacy, clinical science or health sciences that satisfies the following prerequisites or equivalent: human physiology human anatomy (full body) pathology clinical practice physical examination in Western medicine International qualifications are assessed for comparability to Australian qualifications according to the Australian Qualifications Framework (AQF).",
+     "quote": "You must have successfully completed an Australian bachelor's degree (or equivalent overseas qualification) in nursing, medicine, physiotherapy, chiropractic, osteopathy, naturopathy, paramedicine, podiatry, occupational therapy, exercise physiology, neuroscience, pharmacy, clinical science or health sciences that satisfies the following prerequisites or equivalent: human physiology human anatomy (full body) pathology clinical practice physical examination in Western medicine International qualifications are assessed for comparability to Australian qualifications according to the Australian Qualifications Framework (AQF).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Urban Design",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-urban-design-mc193",
+   "snapshot_sha256": "7e105f3d479756022be930b74dc4fb3889289d23f9be43709ec9da00954d65b2",
+   "cricos_code": "078873F",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification) in architectural design, landscape architecture or an equivalent design related discipline.",
+     "quote": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification) in architectural design, landscape architecture or an equivalent design related discipline.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Selection task submission (all applicants)",
+      "date": "2027-02-26",
+      "quote": "Register and submit the selection task by All applicants 26 February 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Media",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-media-mc188",
+   "snapshot_sha256": "83114b00ca0fc96df5f7d6b106059c187628d51e2efdcf3fa1da0d337ccf7b88",
+   "cricos_code": "079084E",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification). You may also be considered if you have at least three years of professional work experience in a related industry.",
+     "quote": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification). You may also be considered if you have at least three years of professional work experience in a related industry.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Data Science",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-data-science-mc267",
+   "snapshot_sha256": "a82f3a2997375b69152a2153be207c884ac01e98b34de5102ed26c33c5e55b1b",
+   "cricos_code": "093313B",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have successfully completed an Australian bachelor's degree (or equivalent overseas qualification) in computer science, data science, artificial intelligence, software engineering, information technology, or statistics with a GPA of at least 2.0 out of 4.0.",
+     "quote": "You must have successfully completed an Australian bachelor's degree (or equivalent overseas qualification) in computer science, data science, artificial intelligence, software engineering, information technology, or statistics with a GPA of at least 2.0 out of 4.0.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Data Science",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-data-science-mc267",
+   "snapshot_sha256": "a82f3a2997375b69152a2153be207c884ac01e98b34de5102ed26c33c5e55b1b",
+   "cricos_code": "121297E",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have successfully completed an Australian bachelor's degree (or equivalent overseas qualification) in computer science, data science, artificial intelligence, software engineering, information technology, or statistics with a GPA of at least 2.0 out of 4.0.",
+     "quote": "You must have successfully completed an Australian bachelor's degree (or equivalent overseas qualification) in computer science, data science, artificial intelligence, software engineering, information technology, or statistics with a GPA of at least 2.0 out of 4.0.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Statistics and Operations Research",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-statistics-and-operations-research-mc004",
+   "snapshot_sha256": "89f59b95d1bfc97b86f8268f9577e3da966f8c57704557a2e8689761756038f6",
+   "cricos_code": "074919G",
+   "cricos_match": "name",
+   "fields": {
+    "academic": {
+     "text": "Entry requirements: An Australian bachelor degree in any discipline, or equivalent. OR You may also be considered if you have at least 10 years of work experience in statistics and operations research. International qualifications are assessed for comparability to Australian qualifications according to the Australian Qualifications Framework (AQF). Some applicants might be eligible for exemptions that might change the duration of their program. Please refer to the Articulation and Pathways section for more detail.",
+     "quote": "Entry requirements: An Australian bachelor degree in any discipline, or equivalent. OR You may also be considered if you have at least 10 years of work experience in statistics and operations research. International qualifications are assessed for comparability to Australian qualifications according to the Australian Qualifications Framework (AQF). Some applicants might be eligible for exemptions that might change the duration of their program. Please refer to the Articulation and Pathways section for more detail.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Cyber Security",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-cyber-security-mc159",
+   "snapshot_sha256": "8a00f42a7f0738fbda6060def65e9db0399f32d8b70038c17cfefefb17ce2ebe",
+   "cricos_code": "116688K",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification) in any discipline with a minimum GPA of 2.0 (out of 4.0). OR You may also be considered if you have a minimum five years' relevant work experience in information security, programming (web, application, database); software engineering; system, functional or business analysis; information, system or enterprise architecture; ICT management; administration (network, systems); support (desktop, helpdesk, system); web design/media; business information systems or information systems.",
+     "quote": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification) in any discipline with a minimum GPA of 2.0 (out of 4.0). OR You may also be considered if you have a minimum five years' relevant work experience in information security, programming (web, application, database); software engineering; system, functional or business analysis; information, system or enterprise architecture; ICT management; administration (network, systems); support (desktop, helpdesk, system); web design/media; business information systems or information systems.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Cyber Security",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-cyber-security-mc159",
+   "snapshot_sha256": "8a00f42a7f0738fbda6060def65e9db0399f32d8b70038c17cfefefb17ce2ebe",
+   "cricos_code": "055526D",
+   "cricos_match": "name",
+   "fields": {
+    "academic": {
+     "text": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification) in any discipline with a minimum GPA of 2.0 (out of 4.0). OR You may also be considered if you have a minimum five years' relevant work experience in information security, programming (web, application, database); software engineering; system, functional or business analysis; information, system or enterprise architecture; ICT management; administration (network, systems); support (desktop, helpdesk, system); web design/media; business information systems or information systems.",
+     "quote": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification) in any discipline with a minimum GPA of 2.0 (out of 4.0). OR You may also be considered if you have a minimum five years' relevant work experience in information security, programming (web, application, database); software engineering; system, functional or business analysis; information, system or enterprise architecture; ICT management; administration (network, systems); support (desktop, helpdesk, system); web design/media; business information systems or information systems.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering (International Automotive Engineering)",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-engineering-international-automotive-engineering-mc230",
+   "snapshot_sha256": "94ebf29fc1934159deb59c0f23e895109275f4244a82d0fb583bd5df734d6abd",
+   "cricos_code": "079935M",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "Successful completion of an Australian bachelor degree (or international equivalent) in one of the following fields: Aerospace, Mechanical, Manufacturing, Mechatronics, Sustainable Systems or Automotive Engineering with a GPA of at least 2.0 out of 4.0. Applicants who have a successfully completed a relevant degree (as above) with a GPA of at least 1.5 out of 4, will be considered if they have at least 3 years of relevant industry experience. OR Successful completion of an Australian postgraduate qualification (or international equivalent) in a related discipline (as above).",
+     "quote": "Successful completion of an Australian bachelor degree (or international equivalent) in one of the following fields: Aerospace, Mechanical, Manufacturing, Mechatronics, Sustainable Systems or Automotive Engineering with a GPA of at least 2.0 out of 4.0. Applicants who have a successfully completed a relevant degree (as above) with a GPA of at least 1.5 out of 4, will be considered if they have at least 3 years of relevant industry experience. OR Successful completion of an Australian postgraduate qualification (or international equivalent) in a related discipline (as above).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Biotechnology",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-biotechnology-mc111",
+   "snapshot_sha256": "956b8abbe5a2510c1c841086ed289cfaea2a3c3eb51ac594298a95f66eda7612",
+   "cricos_code": "045512D",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification) in biological sciences, food science/technology, biotechnology, medicine, veterinary science, dentistry, agricultural science or chemical engineering with a minimum GPA of 2.0 (out of 4.0).",
+     "quote": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification) in biological sciences, food science/technology, biotechnology, medicine, veterinary science, dentistry, agricultural science or chemical engineering with a minimum GPA of 2.0 (out of 4.0).",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Successful completion of a chemistry or biochemistry course in a bachelor degree.",
+      "quote": "Successful completion of a chemistry or biochemistry course in a bachelor degree.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Marketing",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-marketing-mc197",
+   "snapshot_sha256": "981c1b478db9b617c457373f36a5c1cca93d3ae45f9c206c2b3433b2a2445c4f",
+   "cricos_code": "077512F",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "2-year duration You must have successfully completed an Australian bachelor's degree (or equivalent overseas qualification) or higher-level qualification in any discipline from a recognised tertiary institution. 1.5-year duration (with advanced standing) You must have successfully completed: An Australian bachelor's degree (or equivalent overseas qualification) or higher-level qualification in a business (or related) discipline from a recognised tertiary institution; OR RMIT's Graduate Certificate in Marketing. Notes: If you wish to be considered for the 1.5-year version of the course (advanced standing), you must indicate this when you apply, by ticking the box \"applying for credit\".",
+     "quote": "2-year duration You must have successfully completed an Australian bachelor's degree (or equivalent overseas qualification) or higher-level qualification in any discipline from a recognised tertiary institution. 1.5-year duration (with advanced standing) You must have successfully completed: An Australian bachelor's degree (or equivalent overseas qualification) or higher-level qualification in a business (or related) discipline from a recognised tertiary institution; OR RMIT's Graduate Certificate in Marketing. Notes: If you wish to be considered for the 1.5-year version of the course (advanced standing), you must indicate this when you apply, by ticking the box \"applying for credit\".",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Interior Design",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-interior-design-mc275",
+   "snapshot_sha256": "a26963fbeb51927522686553cb5174ceb1211c02a5f6052aea1dbeb800d90c6c",
+   "cricos_code": "0100719",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification) in a related discipline including Interior Design, Spatial Design, Interior Architecture, Landscape Architecture, Architecture, Spatial Arts, Theatre Design, Exhibition Design, Service Design, Industrial Design, Experience Design.",
+     "quote": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification) in a related discipline including Interior Design, Spatial Design, Interior Architecture, Landscape Architecture, Architecture, Spatial Arts, Theatre Design, Exhibition Design, Service Design, Industrial Design, Experience Design.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Selection task submission (all applicants)",
+      "date": "2027-02-26",
+      "quote": "Register and submit the selection task by All applicants 26 February 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering (Aerospace)",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-engineering-aerospace-mc225",
+   "snapshot_sha256": "a2e27deb0cda2dd8e140c4632b90c5dfe00d1c3e3794e0ab291ff3e459fe5235",
+   "cricos_code": "088786M",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "Successful completion of an Australian bachelor degree (or international equivalent) in one of the following fields: Aerospace, Mechanical, Manufacturing, Mechatronics, Sustainable Systems or Automotive Engineering with a GPA of at least 2.0 out of 4.0. Applicants who have a successfully completed a relevant degree (as above) with a GPA of at least 1.5 out of 4, will be considered if they have at least 3 years of relevant industry experience. OR Successful completion of an Australian postgraduate qualification (or international equivalent) in a related discipline (as above).",
+     "quote": "Successful completion of an Australian bachelor degree (or international equivalent) in one of the following fields: Aerospace, Mechanical, Manufacturing, Mechatronics, Sustainable Systems or Automotive Engineering with a GPA of at least 2.0 out of 4.0. Applicants who have a successfully completed a relevant degree (as above) with a GPA of at least 1.5 out of 4, will be considered if they have at least 3 years of relevant industry experience. OR Successful completion of an Australian postgraduate qualification (or international equivalent) in a related discipline (as above).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Animation, Games and Interactivity",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-animation-games-and-interactivity-mc232",
+   "snapshot_sha256": "a576adee6c1862b33899a8533fbb416fa8b2dcc491ec33b3de9da2311c0346af",
+   "cricos_code": "084348K",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have: Successfully completed an Australian bachelor's degree (or equivalent overseas qualification); OR At least 3 years of professional experience in the animation, games, interactivity and/or digital media area. To have your professional experience considered you must include in your application a CV and a personal statement that details your experience.",
+     "quote": "You must have: Successfully completed an Australian bachelor's degree (or equivalent overseas qualification); OR At least 3 years of professional experience in the animation, games, interactivity and/or digital media area. To have your professional experience considered you must include in your application a CV and a personal statement that details your experience.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Selection task submission (all applicants)",
+      "date": "2027-02-26",
+      "quote": "Register and submit the selection task by All applicants 26 February 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Clinical Psychology",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-clinical-psychology-mc002",
+   "snapshot_sha256": "a65396f6766638ab22fd3c793971a73b5879be4854bf5b7e30b29727d368f129",
+   "cricos_code": "093570G",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have: Successfully completed an Australian Psychology Accreditation Council (APAC) approved fourth year of study in psychology (Honours or Graduate Diploma in Psychology) within the last 10 years with an average of at least 80%. If the APAC approved fourth year of study in psychology was completed more than 10 years ago, applicants must be currently registered as a psychologist with the Psychology Board of Australia and meet the Board's Continuing Professional Development (CPD) requirements. Applicants with international qualifications must have these assessed by the Australian Psychological Society (APS) as equivalent to a fourth year of study in psychology.",
+     "quote": "You must have: Successfully completed an Australian Psychology Accreditation Council (APAC) approved fourth year of study in psychology (Honours or Graduate Diploma in Psychology) within the last 10 years with an average of at least 80%. If the APAC approved fourth year of study in psychology was completed more than 10 years ago, applicants must be currently registered as a psychologist with the Psychology Board of Australia and meet the Board's Continuing Professional Development (CPD) requirements. Applicants with international qualifications must have these assessed by the Australian Psychological Society (APS) as equivalent to a fourth year of study in psychology.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 8.0,
+     "min_band": 8.0,
+     "quote": "IELTS (Academic): minimum overall band of 8.0 (with no individual band below 8.0); or",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 110,
+     "quote": "TOEFL (Internet Based test - IBT) for Australia: overall score of 110 (with minimum score of 29 in Reading, 28 in Listening, 26 in Speaking and 30 in Writing).",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 1, 2027 applications close",
+      "date": "2026-09-18",
+      "quote": "Applications close: 18 September 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Physiotherapy",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-physiotherapy-mc287",
+   "snapshot_sha256": "a6de5b30ed7dda695ac5ff77f4aa4ddb786da7c600c137d977565f85ba0cd025",
+   "cricos_code": "115014E",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have successfully completed an Australian Bachelor degree (or equivalent overseas qualification) within the last 10 years* with a minimum GPA of 2.0 (out of 4.0) in a Science, Biomedical Science, Exercise Science, Health or other discipline, with a major/minor in human anatomy (including musculoskeletal anatomy) and a major/minor in human physiology.",
+     "quote": "You must have successfully completed an Australian Bachelor degree (or equivalent overseas qualification) within the last 10 years* with a minimum GPA of 2.0 (out of 4.0) in a Science, Biomedical Science, Exercise Science, Health or other discipline, with a major/minor in human anatomy (including musculoskeletal anatomy) and a major/minor in human physiology.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "min_band": 7.0,
+     "quote": "IELTS (Academic): minimum overall band of 7.5 (with no individual band below 7.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 102,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 102 (with minimum of 24 in Reading, 24 in Listening, 23 in Speaking and 27 in Writing)",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 2, 2027 timely applications (equal consideration)",
+      "date": "2026-12-06",
+      "quote": "Deadline for timely applications (for equal consideration): Sunday 6 December 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Semester 2, 2027 late applications (if places are remaining)",
+      "date": "2027-04-05",
+      "quote": "Deadline for late applications (if places are remaining): Monday 5 April 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Translating and Interpreting",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-translating-and-interpreting-mc214",
+   "snapshot_sha256": "a9a2270e7f4144b1b355a3c9cc90a9ad1b292c262c2093dcd92b7a4e9d58a241",
+   "cricos_code": "079083F",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification) in any discipline. You may also be considered if: You have one of the following qualifications: NAATI Certified Translator NAATI Certified Interpreter NAATI Certified Provisional Interpreter NAATI Recognised Practicing Interpreter Diploma of Interpreting (Spoken Language) or Advanced Diploma of Interpreting (Spoken Language) AND have at least three years of relevant work experience in interpreting or translating or in the use of bilingual language skills.",
+     "quote": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification) in any discipline. You may also be considered if: You have one of the following qualifications: NAATI Certified Translator NAATI Certified Interpreter NAATI Certified Provisional Interpreter NAATI Recognised Practicing Interpreter Diploma of Interpreting (Spoken Language) or Advanced Diploma of Interpreting (Spoken Language) AND have at least three years of relevant work experience in interpreting or translating or in the use of bilingual language skills.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Clinical Osteopathy",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-clinical-osteopathy-mc284",
+   "snapshot_sha256": "b3dd7fee52b4a6c2d65507401fc9743e422a28a6b7b360c09417d2051d56c312",
+   "cricos_code": "116509G",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have completed the BP231OST Bachelor of Biomedical Science (Osteopathy) plan at RMIT University.",
+     "quote": "Applicants must have completed the BP231OST Bachelor of Biomedical Science (Osteopathy) plan at RMIT University.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS (academic module): Minimum overall score of 7 with a minimum score of 7 in listening, reading, speaking and 6.5 in writing",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 91,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: Minimum overall score of 91 with a minimum score of 22 in listening, reading, 23 in writing and 24 in speaking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Finance",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-finance-mc201",
+   "snapshot_sha256": "b50c0de052a576de3fc2d03a28b37fd83fce7e1515bb55a61adf1a7520950f0c",
+   "cricos_code": "077516B",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "2-year duration You must have successfully completed an Australian bachelor's degree (or equivalent overseas qualification) or higher-level qualification in any discipline from a recognised tertiary institution. 1.5-year duration (with advanced standing) You must have successfully completed: An Australian bachelor's degree (or equivalent overseas qualification) or higher-level qualification in a business (or related) discipline from a recognised tertiary institution; OR RMIT's Graduate Certificate in Finance. 1-year duration (with advanced standing) You must have successfully completed an Australian bachelor honours degree, with a major in finance or a cognate discipline or equivalent.",
+     "quote": "2-year duration You must have successfully completed an Australian bachelor's degree (or equivalent overseas qualification) or higher-level qualification in any discipline from a recognised tertiary institution. 1.5-year duration (with advanced standing) You must have successfully completed: An Australian bachelor's degree (or equivalent overseas qualification) or higher-level qualification in a business (or related) discipline from a recognised tertiary institution; OR RMIT's Graduate Certificate in Finance. 1-year duration (with advanced standing) You must have successfully completed an Australian bachelor honours degree, with a major in finance or a cognate discipline or equivalent.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Medical Physics",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-medical-physics-mc215",
+   "snapshot_sha256": "b7a5b1a14ba8cb4bcb336b80983bb0335252864cb8b23a27472a78cc558de30c",
+   "cricos_code": "080227G",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification) in a physical science, biomedical engineering disciplines having substantial physics and mathematics components, with a minimum GPA of at least 2.0 (out of 4.0).",
+     "quote": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification) in a physical science, biomedical engineering disciplines having substantial physics and mathematics components, with a minimum GPA of at least 2.0 (out of 4.0).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Policy",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-public-policy-mc290",
+   "snapshot_sha256": "b7d51a05c234673ff83f88a21f26aedcb5ec114b0851ae2cc3f0fd7467959071",
+   "cricos_code": "121286H",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "2-year duration An Australian bachelor's degree (or equivalent overseas qualification) with a grade point average (GPA) of at least 2.5 (out of 4.0); OR A minimum of 3 years of relevant experience in a designated policy position (equivalent to VPS4), or equivalent. To have your professional experience considered you must submit with your application a CV and a personal statement detailing your experience.",
+     "quote": "2-year duration An Australian bachelor's degree (or equivalent overseas qualification) with a grade point average (GPA) of at least 2.5 (out of 4.0); OR A minimum of 3 years of relevant experience in a designated policy position (equivalent to VPS4), or equivalent. To have your professional experience considered you must submit with your application a CV and a personal statement detailing your experience.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Policy",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-public-policy-mc290",
+   "snapshot_sha256": "b7d51a05c234673ff83f88a21f26aedcb5ec114b0851ae2cc3f0fd7467959071",
+   "cricos_code": "079593F",
+   "cricos_match": "name",
+   "fields": {
+    "academic": {
+     "text": "2-year duration An Australian bachelor's degree (or equivalent overseas qualification) with a grade point average (GPA) of at least 2.5 (out of 4.0); OR A minimum of 3 years of relevant experience in a designated policy position (equivalent to VPS4), or equivalent. To have your professional experience considered you must submit with your application a CV and a personal statement detailing your experience.",
+     "quote": "2-year duration An Australian bachelor's degree (or equivalent overseas qualification) with a grade point average (GPA) of at least 2.5 (out of 4.0); OR A minimum of 3 years of relevant experience in a designated policy position (equivalent to VPS4), or equivalent. To have your professional experience considered you must submit with your application a CV and a personal statement detailing your experience.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Social Work",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-social-work-mc150",
+   "snapshot_sha256": "b9c309e2a12ec42173b6988a76241b4eb68360f2f8ee473ec7ba701b2e7d00c4",
+   "cricos_code": "058234C",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have successfully completed an Australian bachelor's degree (or equivalent overseas qualification) in a relevant discipline which includes at least one year of full-time studies in social sciences (or equivalent).",
+     "quote": "You must have successfully completed an Australian bachelor's degree (or equivalent overseas qualification) in a relevant discipline which includes at least one year of full-time studies in social sciences (or equivalent).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 7.0,
+     "quote": "IELTS (Academic): minimum overall band of 7.0 (with no individual band below 7.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 94,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 94 (with minimum of 24 in Reading, 24 in Listening, 23 in Speaking and 27 in Writing)",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 1, 2027 application deadline (international)",
+      "date": "2027-02-17",
+      "quote": "Master of Social Work 17 February 2027",
+      "source_sha256": "81e98fdefa18c77e594b2de38dbd455e93a012a4623bad4e7b29030aeeccce92",
+      "check": "ok",
+      "source_url": "https://www.rmit.edu.au/study-with-us/international-students/apply-to-rmit-international-students/application-dates"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering (Civil Engineering)",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-engineering-civil-engineering-mc257",
+   "snapshot_sha256": "ba96d5206f6c2b695eb1971c25bd6c450380493e11ce98d33e1ec16f494261c6",
+   "cricos_code": "087986M",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "Successful completion of an Australian bachelor degree (or international equivalent) in Engineering, Science or Technology with a major in Civil Engineering, Environmental Engineering, Engineering systems, Structural or Mining engineering with a GPA of at least 2.0 out of 4.0. Applicants who have a successfully completed a relevant degree (as above) with a GPA of at least 1.5 out of 4, will be considered if they have at least 3 years of relevant industry experience. OR Successful completion of an Australian postgraduate qualification (or international equivalent) in a related discipline (as above).",
+     "quote": "Successful completion of an Australian bachelor degree (or international equivalent) in Engineering, Science or Technology with a major in Civil Engineering, Environmental Engineering, Engineering systems, Structural or Mining engineering with a GPA of at least 2.0 out of 4.0. Applicants who have a successfully completed a relevant degree (as above) with a GPA of at least 1.5 out of 4, will be considered if they have at least 3 years of relevant industry experience. OR Successful completion of an Australian postgraduate qualification (or international equivalent) in a related discipline (as above).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering (Mechanical Engineering)",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-engineering-mechanical-engineering-mc258",
+   "snapshot_sha256": "bf71cae750db05f44629c87b9fc8f2b3431c78cae7765c51ad9f59524ce83702",
+   "cricos_code": "087987K",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "Successful completion of an Australian bachelor degree (or international equivalent) in one of the following fields: Aerospace, Mechanical, Manufacturing, Mechatronics, Sustainable Systems or Automotive Engineering with a GPA of at least 2.0 out of 4.0. Applicants who have a successfully completed a relevant degree (as above) with a GPA of at least 1.5 out of 4, will be considered if they have at least 3 years of relevant industry experience. OR Successful completion of an Australian postgraduate qualification (or international equivalent) in a related discipline (as above).",
+     "quote": "Successful completion of an Australian bachelor degree (or international equivalent) in one of the following fields: Aerospace, Mechanical, Manufacturing, Mechatronics, Sustainable Systems or Automotive Engineering with a GPA of at least 2.0 out of 4.0. Applicants who have a successfully completed a relevant degree (as above) with a GPA of at least 1.5 out of 4, will be considered if they have at least 3 years of relevant industry experience. OR Successful completion of an Australian postgraduate qualification (or international equivalent) in a related discipline (as above).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering (Management)",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-engineering-management-mc226",
+   "snapshot_sha256": "c0e487716670d6805b13661ca3e12d6ea019701104fca3ad68e4370863bb456d",
+   "cricos_code": "079801C",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "Successful completion of an Australian bachelor degree (or international equivalent) in one of the following fields: Engineering, Technology, Business or Science with a GPA of at least 2.0 out of 4.0. Applicants who have a successfully completed a relevant degree (as above) with a GPA of at least 1.5 out of 4, will be considered if they have at least 3 years of relevant industry experience. OR Successful completion of an Australian postgraduate qualification (or international equivalent) in a related discipline (as above). OR Applicants without any relevant prior qualification will be considered if they have at least 10 years of relevant industry experience.",
+     "quote": "Successful completion of an Australian bachelor degree (or international equivalent) in one of the following fields: Engineering, Technology, Business or Science with a GPA of at least 2.0 out of 4.0. Applicants who have a successfully completed a relevant degree (as above) with a GPA of at least 1.5 out of 4, will be considered if they have at least 3 years of relevant industry experience. OR Successful completion of an Australian postgraduate qualification (or international equivalent) in a related discipline (as above). OR Applicants without any relevant prior qualification will be considered if they have at least 10 years of relevant industry experience.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Landscape Architecture",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-landscape-architecture-mc172",
+   "snapshot_sha256": "c1d7095cb5526e6424d41288df8297a09beeb2a817751bd504d4a425277c6b02",
+   "cricos_code": "064392E",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have successfully completed: the Bachelor of Landscape Architectural Design from RMIT University with a grade point average of 2.5 (out of 4.0) or above. OR an Australian bachelor degree (or equivalent overseas qualification) in architecture or landscape architecture or a related design field. You will be selected competitively based on your grades and folio.",
+     "quote": "You must have successfully completed: the Bachelor of Landscape Architectural Design from RMIT University with a grade point average of 2.5 (out of 4.0) or above. OR an Australian bachelor degree (or equivalent overseas qualification) in architecture or landscape architecture or a related design field. You will be selected competitively based on your grades and folio.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Selection task submission (all applicants)",
+      "date": "2027-02-26",
+      "quote": "Register and submit the selection task by All applicants 26 February 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Professional Accounting",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-professional-accounting-mc194",
+   "snapshot_sha256": "c5ce25a9222a417a903afb4bf1b279cffd0353977f50be66140ee68a170fee49",
+   "cricos_code": "077509A",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "2-year duration You must have successfully completed an Australian bachelor's degree (or equivalent overseas qualification) or higher-level qualification in any discipline from a recognised tertiary institution. 1.5-year duration (with advanced standing) You must have successfully completed: An Australian bachelor's degree (or equivalent overseas qualification) or higher-level qualification in a business or related discipline from a recognised tertiary institution; OR RMIT's Graduate Certificate in Professional Accounting.",
+     "quote": "2-year duration You must have successfully completed an Australian bachelor's degree (or equivalent overseas qualification) or higher-level qualification in any discipline from a recognised tertiary institution. 1.5-year duration (with advanced standing) You must have successfully completed: An Australian bachelor's degree (or equivalent overseas qualification) or higher-level qualification in a business or related discipline from a recognised tertiary institution; OR RMIT's Graduate Certificate in Professional Accounting.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Supply Chain and Logistics Management",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-supply-chain-and-logistics-management-mc198",
+   "snapshot_sha256": "c839f2626ce3ab06f486260c360c0a0a52c8e5b46ead1e28a9d90aa5a5caea75",
+   "cricos_code": "077513E",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "2-year duration You must have successfully completed an Australian bachelor's degree (or equivalent overseas qualification) or higher-level qualification in any discipline from a recognised tertiary institution.",
+     "quote": "2-year duration You must have successfully completed an Australian bachelor's degree (or equivalent overseas qualification) or higher-level qualification in any discipline from a recognised tertiary institution.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Occupational Health and Safety",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-occupational-health-and-safety-mc282",
+   "snapshot_sha256": "c8842c59f120144086e7ae5cf2b3ae2f14bdf87b1c0d8edfe380baa265be34cb",
+   "cricos_code": "107034A",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification). You may also be considered if you have 8 years professional work experience in a related industry. Applicants with professional experience at a senior level that is less than 8 years may also be considered.",
+     "quote": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification). You may also be considered if you have 8 years professional work experience in a related industry. Applicants with professional experience at a senior level that is less than 8 years may also be considered.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 1, 2027 application deadline (international)",
+      "date": "2027-02-24",
+      "quote": "Master of Occupational Health and Safety 24 February 2027",
+      "source_sha256": "81e98fdefa18c77e594b2de38dbd455e93a012a4623bad4e7b29030aeeccce92",
+      "check": "ok",
+      "source_url": "https://www.rmit.edu.au/study-with-us/international-students/apply-to-rmit-international-students/application-dates"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Teaching Practice (Early Childhood)",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-teaching-practice-early-childhood-mc291",
+   "snapshot_sha256": "c968044b9f154076a83b72eb6d647c57971f4821790ee3ccba1228578c1111fa",
+   "cricos_code": "121342E",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have successfully completed an Australian bachelor's degree (or equivalent overseas qualification) in any discipline.",
+     "quote": "You must have successfully completed an Australian bachelor's degree (or equivalent overseas qualification) in any discipline.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.5,
+     "quote": "IELTS (Academic): minimum overall band of 7.0 (with no individual band below 6.5)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 94,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 94 (with minimum of 19 in Reading, 20 in Listening, 20 in Speaking and 24 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Human Resource Management",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-human-resource-management-mc263",
+   "snapshot_sha256": "c9fd57e18c0d4bb6adb2d4c7fbe7d32a56d2c112a045026d565ea6445003859a",
+   "cricos_code": "088784B",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "2-year duration You must have successfully completed an Australian bachelor's degree (or equivalent overseas qualification) or higher-level qualification in any discipline from a recognised tertiary institution. 1.5-year duration (with advanced standing) You must have successfully completed: An Australian bachelor's degree (or equivalent overseas qualification) or higher-level qualification in a business (or related) discipline from a recognised tertiary institution; OR RMIT's Graduate Certificate in Human Resource Management.",
+     "quote": "2-year duration You must have successfully completed an Australian bachelor's degree (or equivalent overseas qualification) or higher-level qualification in any discipline from a recognised tertiary institution. 1.5-year duration (with advanced standing) You must have successfully completed: An Australian bachelor's degree (or equivalent overseas qualification) or higher-level qualification in a business (or related) discipline from a recognised tertiary institution; OR RMIT's Graduate Certificate in Human Resource Management.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Fashion (Design)",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-fashion-design-mc246",
+   "snapshot_sha256": "ca7df5e5aa55a68a6ca7e60597596ed599385561f08358cc96b37aebf4321aaf",
+   "cricos_code": "0100990",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have successfully completed an Australian 3 year bachelor degree in fashion design or textile design (or equivalent overseas qualification) with a minimum overall GPA of 2.0 (out of 4.0).",
+     "quote": "You must have successfully completed an Australian 3 year bachelor degree in fashion design or textile design (or equivalent overseas qualification) with a minimum overall GPA of 2.0 (out of 4.0).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Selection task submission (all applicants)",
+      "date": "2027-02-26",
+      "quote": "Register and submit the selection task by All applicants 26 February 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Fashion (Entrepreneurship)",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-fashion-entrepreneurship-mc213",
+   "snapshot_sha256": "cbe3eaeb006c4cb2b21dcd459f68f82c52cfd5f0983650a2c8cefa243b34e64e",
+   "cricos_code": "079302M",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have successfully completed: An Australian bachelor degree (or equivalent overseas qualification) in any discipline with a minimum overall grade point average of 2.5 (out of 4.0) OR an Australian four-year honours undergraduate degree (or equivalent overseas qualification) in any discipline with a minimum overall grade point average of 2.5 (out of 4.0). You may also be considered if you have completed a minimum of 5 years' fashion industry experience. If you have a GPA lower than 2.50 you may still apply but selection will be merit based and assessed on your experience, a one page personal statement and an interview.",
+     "quote": "You must have successfully completed: An Australian bachelor degree (or equivalent overseas qualification) in any discipline with a minimum overall grade point average of 2.5 (out of 4.0) OR an Australian four-year honours undergraduate degree (or equivalent overseas qualification) in any discipline with a minimum overall grade point average of 2.5 (out of 4.0). You may also be considered if you have completed a minimum of 5 years' fashion industry experience. If you have a GPA lower than 2.50 you may still apply but selection will be merit based and assessed on your experience, a one page personal statement and an interview.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Fine Art",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-fine-art-mc266",
+   "snapshot_sha256": "d1764108b9f98e61242e3ce0a38b5d5b1d3734a030c671768416cd1d6a0a0a30",
+   "cricos_code": "092466D",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification). You may also be considered if you have at least 5 years of relevant work experience, studio practice or professional practice. To have your professional experience considered you must include in your application a CV and a personal statement that details your experience.",
+     "quote": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification). You may also be considered if you have at least 5 years of relevant work experience, studio practice or professional practice. To have your professional experience considered you must include in your application a CV and a personal statement that details your experience.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Selection task submission, timely applications",
+      "date": "2026-11-30",
+      "quote": "Timely applications 30 November 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Selection task submission, late applications",
+      "date": "2027-02-26",
+      "quote": "Late applications 26 February 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Commerce",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-commerce-mc288",
+   "snapshot_sha256": "d2c99aedfdb485698459fa7277ab8f1fcccd73c626f2355d705406f767e43b9e",
+   "cricos_code": "113702H",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "2-year duration You must have successfully completed an Australian bachelor's degree (or equivalent overseas qualification) or higher-level qualification in any discipline from a recognised tertiary institution.",
+     "quote": "2-year duration You must have successfully completed an Australian bachelor's degree (or equivalent overseas qualification) or higher-level qualification in any discipline from a recognised tertiary institution.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Commerce",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-commerce-mc288",
+   "snapshot_sha256": "d2c99aedfdb485698459fa7277ab8f1fcccd73c626f2355d705406f767e43b9e",
+   "cricos_code": "077517A",
+   "cricos_match": "name",
+   "fields": {
+    "academic": {
+     "text": "2-year duration You must have successfully completed an Australian bachelor's degree (or equivalent overseas qualification) or higher-level qualification in any discipline from a recognised tertiary institution.",
+     "quote": "2-year duration You must have successfully completed an Australian bachelor's degree (or equivalent overseas qualification) or higher-level qualification in any discipline from a recognised tertiary institution.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Artificial Intelligence",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-artificial-intelligence-mc271",
+   "snapshot_sha256": "dcd1b43e6fe5a5ad3b4402ee7f2f36c1d53f4120f6244bda91ebe10319886e67",
+   "cricos_code": "0100716",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have successfully completed an Australian bachelor's degree (or equivalent overseas qualification) in computer science, data science, artificial intelligence, software engineering, information technology, or statistics with a minimum GPA of 2.0 (out of 4.0).",
+     "quote": "You must have successfully completed an Australian bachelor's degree (or equivalent overseas qualification) in computer science, data science, artificial intelligence, software engineering, information technology, or statistics with a minimum GPA of 2.0 (out of 4.0).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Artificial Intelligence",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-artificial-intelligence-mc271",
+   "snapshot_sha256": "dcd1b43e6fe5a5ad3b4402ee7f2f36c1d53f4120f6244bda91ebe10319886e67",
+   "cricos_code": "121296F",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have successfully completed an Australian bachelor's degree (or equivalent overseas qualification) in computer science, data science, artificial intelligence, software engineering, information technology, or statistics with a minimum GPA of 2.0 (out of 4.0).",
+     "quote": "You must have successfully completed an Australian bachelor's degree (or equivalent overseas qualification) in computer science, data science, artificial intelligence, software engineering, information technology, or statistics with a minimum GPA of 2.0 (out of 4.0).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Food Science and Technology",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-food-science-and-technology-mc237",
+   "snapshot_sha256": "dd2b239c6d6e69bfa903e5fbcdda91e065d18428cddf318a6f2eb6a7a0f5d1da",
+   "cricos_code": "094062G",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification) in science, engineering, agriculture, nutrition, veterinary science. medical or biomedical science that includes courses/ units in chemistry or biochemistry and nutrition or microbiology with a minimum GPA of 2.0 (out of 4.0).",
+     "quote": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification) in science, engineering, agriculture, nutrition, veterinary science. medical or biomedical science that includes courses/ units in chemistry or biochemistry and nutrition or microbiology with a minimum GPA of 2.0 (out of 4.0).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Laboratory Medicine",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-laboratory-medicine-mc158",
+   "snapshot_sha256": "e9e665bb8b808da34249c83a7661f9e6c42869d96b1d7b3bb56bd72563214afa",
+   "cricos_code": "056171G",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have successfully completed:",
+     "quote": "You must have successfully completed:",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Advertising",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-advertising-mc249",
+   "snapshot_sha256": "f24e6e693b1dbc5216f2719e0c9836a91b81afc119c5ce0ff645f1e1ef238ccf",
+   "cricos_code": "083949D",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification). You may also be considered if you have at least three years of professional work experience in a related industry.",
+     "quote": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification). You may also be considered if you have at least three years of professional work experience in a related industry.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Information Technology",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-information-technology-mc208",
+   "snapshot_sha256": "f250d95dcb860ee9ae22081aa14ee3b5f467c061d505a3ebb073e40ce964e644",
+   "cricos_code": "079795G",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification) in any discipline with a minimum GPA of 2.0 (out of 4.0). You may also be considered if you have a minimum of 5 years of relevant work experience or professional practice in programming (web, application, database); software engineering; system, functional or business analysis; information, system or enterprise architecture; ICT management; administration (network, systems); support (desktop, helpdesk, system); web design/media; business information systems or information systems.",
+     "quote": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification) in any discipline with a minimum GPA of 2.0 (out of 4.0). You may also be considered if you have a minimum of 5 years of relevant work experience or professional practice in programming (web, application, database); software engineering; system, functional or business analysis; information, system or enterprise architecture; ICT management; administration (network, systems); support (desktop, helpdesk, system); web design/media; business information systems or information systems.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Information Technology",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-information-technology-mc208",
+   "snapshot_sha256": "f250d95dcb860ee9ae22081aa14ee3b5f467c061d505a3ebb073e40ce964e644",
+   "cricos_code": "121298D",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification) in any discipline with a minimum GPA of 2.0 (out of 4.0). You may also be considered if you have a minimum of 5 years of relevant work experience or professional practice in programming (web, application, database); software engineering; system, functional or business analysis; information, system or enterprise architecture; ICT management; administration (network, systems); support (desktop, helpdesk, system); web design/media; business information systems or information systems.",
+     "quote": "You must have successfully completed an Australian bachelor degree (or equivalent overseas qualification) in any discipline with a minimum GPA of 2.0 (out of 4.0). You may also be considered if you have a minimum of 5 years of relevant work experience or professional practice in programming (web, application, database); software engineering; system, functional or business analysis; information, system or enterprise architecture; ICT management; administration (network, systems); support (desktop, helpdesk, system); web design/media; business information systems or information systems.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Teaching Practice (Secondary Education)",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-teaching-practice-secondary-education-mc220",
+   "snapshot_sha256": "f7bf1a9ec2b67640d22b0ff5f92a25d40ceffbd271ef818fa5a43bd5c96863fa",
+   "cricos_code": "113706D",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "You must have successfully completed an Australian bachelor degree or two-year masters degree (or equivalent overseas qualification) that includes a major in a specialist area and a minor in a second specialist area, or a major in a double specialist area. Please refer to the Secondary teaching specialist areas below for more information. You will need to nominate your specialist areas of study upon application.",
+     "quote": "You must have successfully completed an Australian bachelor degree or two-year masters degree (or equivalent overseas qualification) that includes a major in a specialist area and a minor in a second specialist area, or a major in a double specialist area. Please refer to the Secondary teaching specialist areas below for more information. You will need to nominate your specialist areas of study upon application.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "IELTS (Academic): minimum overall band of 7.5 (with 7.0-reading, 7.0-writing, 8.0-listening, 8.0-speaking)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 102,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 102 (with minimum of 24 in Reading, 28 in Listening, 26 in Speaking and 27 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Teaching Practice (Secondary Education)",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-teaching-practice-secondary-education-mc220",
+   "snapshot_sha256": "f7bf1a9ec2b67640d22b0ff5f92a25d40ceffbd271ef818fa5a43bd5c96863fa",
+   "cricos_code": "098980D",
+   "cricos_match": "name",
+   "fields": {
+    "academic": {
+     "text": "You must have successfully completed an Australian bachelor degree or two-year masters degree (or equivalent overseas qualification) that includes a major in a specialist area and a minor in a second specialist area, or a major in a double specialist area. Please refer to the Secondary teaching specialist areas below for more information. You will need to nominate your specialist areas of study upon application.",
+     "quote": "You must have successfully completed an Australian bachelor degree or two-year masters degree (or equivalent overseas qualification) that includes a major in a specialist area and a minor in a second specialist area, or a major in a double specialist area. Please refer to the Secondary teaching specialist areas below for more information. You will need to nominate your specialist areas of study upon application.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "IELTS (Academic): minimum overall band of 7.5 (with 7.0-reading, 7.0-writing, 8.0-listening, 8.0-speaking)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 102,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 102 (with minimum of 24 in Reading, 28 in Listening, 26 in Speaking and 27 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of International Business",
+   "url": "https://www.rmit.edu.au/study-with-us/levels-of-study/postgraduate-study/masters-by-coursework/master-of-international-business-mc192",
+   "snapshot_sha256": "fb967605cc55a282cd18f29b4bc6da422f05d2668e4a712b4cb200f37a9985fc",
+   "cricos_code": "078875D",
+   "cricos_match": "page",
+   "fields": {
+    "academic": {
+     "text": "2-year duration You must have successfully completed an Australian bachelor's degree (or equivalent overseas qualification) or higher-level qualification in any discipline from a recognised tertiary institution. 1.5-year duration (with advanced standing) You must have successfully completed: An Australian bachelor's degree (or equivalent overseas qualification) or higher-level qualification in a business (or related) discipline from a recognised tertiary institution; OR RMIT's Graduate Certificate in International Business.",
+     "quote": "2-year duration You must have successfully completed an Australian bachelor's degree (or equivalent overseas qualification) or higher-level qualification in any discipline from a recognised tertiary institution. 1.5-year duration (with advanced standing) You must have successfully completed: An Australian bachelor's degree (or equivalent overseas qualification) or higher-level qualification in a business (or related) discipline from a recognised tertiary institution; OR RMIT's Graduate Certificate in International Business.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS (Academic): minimum overall band of 6.5 (with no individual band below 6.0)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "TOEFL (Internet Based Test - IBT) for Australia: minimum overall score of 79 (with minimum of 13 in Reading, 12 in Listening, 18 in Speaking and 21 in Writing)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 79,
+  "机器核对": 79,
+  "待人工": 0
+ }
+}

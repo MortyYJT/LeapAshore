@@ -1,0 +1,86 @@
+{
+ "school_key": "california-institute-of-technology",
+ "school_name_en": "California Institute of Technology (Caltech)",
+ "country": "United States",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://catalog.caltech.edu/current/information-for-graduate-students/special-regulations-for-graduate-options/",
+  "https://catalog.caltech.edu/current/information-for-graduate-students/general-requirements-for-graduate-degrees/"
+ ],
+ "blocked": [
+  {
+   "url": "https://www.gradoffice.caltech.edu/admissions",
+   "reason": "robots.txt disallows"
+  }
+ ],
+ "complete": true,
+ "remaining_urls": [],
+ "notes": "The Graduate Studies Office host (www.gradoffice.caltech.edu) disallows all crawling in robots.txt, so its admissions, requirements/deadlines and FAQ pages were not used; the university-wide TOEFL/IELTS minimums and exact deadlines published there are therefore missing. Values come from the Caltech Catalog and the department sites (aerospace.caltech.edu, ee.caltech.edu). Direct master's admission exists only in three options: Aeronautics (MS), Space Engineering (MS) and Electrical Engineering (MSEE). Options whose Catalog or department pages say a new applicant is not admitted for a terminal MS (not included): Computer Science (only students who expect to pursue the Ph.D. are admitted), Materials Science (students interested in terminating at the master's level are not normally admitted), Civil Engineering (students intending the Ph.D. are admitted; the MS is typically awarded only to Ph.D. students), Mechanical Engineering (admission to the MS as final degree objective only in exceptional cases), Chemistry and Chemical Engineering (a master's is not ordinarily offered). Applied Mechanics and GPS describe the MS only as awarded to Ph.D. students. Other options were not read. Deadlines are not recorded: the department pages give December 15 (Aerospace) or a range of December 15 to January 15 (EE) without a year.",
+ "programs": [
+  {
+   "name": "Master of Science in Aeronautics",
+   "url": "https://catalog.caltech.edu/current/information-for-graduate-students/special-regulations-for-graduate-options/aerospace-ae/",
+   "snapshot_sha256": "879a643cb93e8ea5c573d2eb8232cb5693c119dd77f5542b31bc9ea6462646ce",
+   "fields": {
+    "academic": {
+     "text": "Baccalaureate degree equivalent to that given by the Institute",
+     "quote": "Students whose highest qualification is a baccalaureate degree equivalent to that given by the Institute are eligible to seek admission to work toward the master’s degree.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "TOEFL scores required if first language is not English (no minimum score stated)",
+      "quote": "Applicants whose first language or native language is not English are required to submit Test of English as a Foreign Language (TOEFL) scores with their applications.",
+      "source_sha256": "fb05756b65f654f9c3702e3f76b33bc3f3be25013c6a6ac032378ba30e331e16",
+      "source_url": "https://aerospace.caltech.edu/academics/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Space Engineering",
+   "url": "https://catalog.caltech.edu/current/information-for-graduate-students/special-regulations-for-graduate-options/aerospace-ae/",
+   "snapshot_sha256": "879a643cb93e8ea5c573d2eb8232cb5693c119dd77f5542b31bc9ea6462646ce",
+   "fields": {
+    "academic": {
+     "text": "Baccalaureate degree equivalent to that given by the Institute",
+     "quote": "Students whose highest qualification is a baccalaureate degree equivalent to that given by the Institute are eligible to seek admission to work toward the master’s degree.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "TOEFL scores required if first language is not English (no minimum score stated)",
+      "quote": "Applicants whose first language or native language is not English are required to submit Test of English as a Foreign Language (TOEFL) scores with their applications.",
+      "source_sha256": "fb05756b65f654f9c3702e3f76b33bc3f3be25013c6a6ac032378ba30e331e16",
+      "source_url": "https://aerospace.caltech.edu/academics/admissions",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Electrical Engineering (MSEE)",
+   "url": "https://catalog.caltech.edu/current/information-for-graduate-students/special-regulations-for-graduate-options/electrical-engineering-ee/",
+   "snapshot_sha256": "85b1a77a59028cd53689efcf8f2cffba483fe7874eae484b309a5953c6f4cf43",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in science or engineering equivalent to one of the Institute's options",
+     "quote": "To be admitted to graduate standing, an applicant must in general have received a bachelor's degree representing the completion of an undergraduate course in science or engineering equivalent to one of the options offered by the Institute.",
+     "source_sha256": "97f6826c345ad72d01e87bdbedde0a94ae8824bf16ebc088e2501a31cac8238c",
+     "source_url": "https://www.ee.caltech.edu/academics/grad",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 3,
+  "机器核对": 3,
+  "待人工": 0
+ }
+}

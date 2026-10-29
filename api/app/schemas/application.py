@@ -82,13 +82,14 @@ class ApplicationIn(BaseModel):
 
         ``model_fields_set`` is what separates an omitted field from an explicit ``null``: both leave
         the attribute equal to its default, so the value alone cannot tell them apart. A row always
-        holds one of the model's three statuses, so an explicit ``null`` is a request to store nothing
+        holds one of the model's statuses, so an explicit ``null`` is a request to store nothing
         rather than a value, and it is answered with a message instead of being read as silence.
         """
         if "status" in self.model_fields_set and self.status is None:
             raise ValueError(
-                "status cannot be null: a portfolio row always holds considering, applying or "
-                "excluded, and an omitted status is how 'leave it as it is' is spelled."
+                "status cannot be null: a portfolio row always holds one of considering, applying, "
+                "submitted, offered, rejected or excluded, and an omitted status is how 'leave it as "
+                "it is' is spelled."
             )
         return self
 

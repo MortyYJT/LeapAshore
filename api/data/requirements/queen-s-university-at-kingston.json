@@ -1,0 +1,311 @@
+{
+ "school_key": "queen-s-university-at-kingston",
+ "school_name_en": "Queen's University at Kingston",
+ "country": "Canada",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://www.queensu.ca/grad-postdoc/grad-studies/programs-degrees"
+ ],
+ "blocked": [
+  {
+   "url": "https://smith.queensu.ca/grad_studies/",
+   "reason": "robots.txt disallows (Smith School of Business: MBA, MFin, MMA, MMIE, MIB, MSc Management, MDPM not collected)"
+  },
+  {
+   "url": "https://www.econ.queensu.ca/graduate",
+   "reason": "robots.txt disallows (Economics MA not collected)"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://phs.queensu.ca/programs-courses/degree-programs/master-public-health",
+  "https://phs.queensu.ca/programs-courses/degree-programs/msc-biostatistics",
+  "https://phs.queensu.ca/programs-courses/degree-programs/msc-epidemiology",
+  "https://law.queensu.ca/programs/graduate",
+  "https://www.queensu.ca/employment-studies/graduate/mir/prospective-students",
+  "https://educ.queensu.ca/graduate/blended/wise",
+  "https://educ.queensu.ca/graduate/online/pme"
+ ],
+ "notes": "Smith School of Business and Economics departmental hosts disallow our fetcher via robots.txt, so those programmes are not collected. English minimums for programmes whose page defers to the School of Graduate Studies are cited from its apply page (source_sha256). SGSPA states TOEFL only on the 1-6 scale, so it is given as text. The phs.queensu.ca pages returned no text even when rendered. Deadlines stated without a year were left out. Coordinator: the five thesis-based Master of Applied Science programmes were removed (research degrees, as for Waterloo, UBC and McMaster).",
+ "programs": [
+  {
+   "name": "Master of Science (Computing)",
+   "url": "https://www.cs.queensu.ca/apply/graduate.php",
+   "snapshot_sha256": "27bab12fc44a21a832dd250e2e5d7ef8b8ca4a86088ea22a44993cefb2693cd4",
+   "fields": {
+    "academic": {
+     "text": "Honours Bachelor degree with second class standing or higher; international students must have a minimum A (first class) standing",
+     "quote": "Honours Bachelor degree; and second class standing or higher. International students must have a minimum \"A\" standing (first class).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "IELTS Academic (International English Language Testing System) - 7 (minimum overall score)",
+     "source_sha256": "19764b84b8494469031cbdcdb487946b744f08d1dde0cac881a9777b625b0f98",
+     "source_url": "https://www.queensu.ca/grad-postdoc/grad-studies/apply",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT on the 1-6 scale: average overall score of 4.5 (writing 5, speaking 4, reading 4.5, listening 4.5)",
+     "quote": "TOEFL iBT (Test of English as a Foreign Language Internet-based Test). Average overall score of 4.5.",
+     "source_sha256": "19764b84b8494469031cbdcdb487946b744f08d1dde0cac881a9777b625b0f98",
+     "source_url": "https://www.queensu.ca/grad-postdoc/grad-studies/apply",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 and January 2028 admission (funding consideration)",
+      "date": "2027-01-15",
+      "quote": "The application deadline is January 15, 2027 for completed applications to be considered for funding for both September 2027 and January 2028 admission.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering (Electrical and Computer Engineering)",
+   "url": "https://smithengineering.queensu.ca/ece/graduate/meng.html",
+   "snapshot_sha256": "1313e4c49515443673221f582fcc3c285aac892316abb31b349de0b7aeddc2fb",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in engineering or a closely related field; domestic applicants 75% or B+ or Upper Second Class Standing",
+     "quote": "A bachelor’s degree in engineering or a closely related field. Minimum grade requirements Domestic Applicants 75% or B+ or Upper Second Class Standing",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 75,
+     "min_mark_other": 75,
+     "quote": "International Applicants P.R. China: 75% or GPA of 3.0/4.0",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "We require a minimum of 7.0 on IELTS or 65 on PTE or for TOEFL; 580 (paper-based); 237 (Computer-based); and 88 (Internet-based) with a minimum score in each of the components: Writing test 24/30, Speaking test 22/30, Reading test 22/30 and Listening test 20/30.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 88,
+     "quote": "We require a minimum of 7.0 on IELTS or 65 on PTE or for TOEFL; 580 (paper-based); 237 (Computer-based); and 88 (Internet-based) with a minimum score in each of the components: Writing test 24/30, Speaking test 22/30, Reading test 22/30 and Listening test 20/30.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering (Chemical Engineering)",
+   "url": "https://smithengineering.queensu.ca/chee/graduate/meng.html",
+   "snapshot_sha256": "df5e30eb2510c4f1ce99c66c0df55298042f4a359eada369eb7a6321fa41604a",
+   "fields": {
+    "academic": {
+     "text": "First-class standing in an honours bachelor's degree in arts or science, or a bachelor's degree in applied science or law; the department requires a B+ average or equivalent",
+     "quote": "you must possess first-class standing in one of the following degrees awarded by a recognized university: Honours Bachelor’s Degree in Arts or Science Bachelor’s Degree in Applied Science or Law Degree of Doctor of Medicine or equivalent Minimum grade requirements The Department of Chemical Engineering requires a B+ average or equivalent for admission to all graduate programs.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "IELTS: 7 (academic module)",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT on the 1-6 scale: overall minimum 4.5 (writing 5, speaking 4, reading 4.5, listening 4.5)",
+     "quote": "Writing Test: 5 (out of 6); Speaking Test: 4 (out of 6); Reading Test: 4.5(out of 6); Listening Test: 4.5 (out of 6); Overall minimum score: 4.5 (out of 6).",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering (Civil Engineering)",
+   "url": "https://smithengineering.queensu.ca/civil/graduate/meng.html",
+   "snapshot_sha256": "8a314b722a3f9d110635c1cfff1385ad54713ccd79e64762fb0dd81e11690b87",
+   "fields": {
+    "academic": {
+     "text": "4-year undergraduate or bachelor's degree with a minimum B- (70%) average",
+     "quote": "4-year undergraduate or bachelor’s degree with a minimum B- (70%) average",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "or an IELTS overall band score of 7.0",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 88,
+     "quote": "a TOEFL iBT total score of 88/120 (minimum of 24/30 writing, 22/30 speaking, 22/30 reading, 20/30 listening)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering (Mechanical and Materials Engineering)",
+   "url": "https://smithengineering.queensu.ca/mme/graduate/meng.html",
+   "snapshot_sha256": "22bfb0bc8d0af6d546b081bdb60f1949220b9f0f8e5a3e789f2b38a387343d56",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in Applied Science or Engineering with a B- (70-72.9% or GPA 2.7)",
+     "quote": "A bachelor’s degree in Applied Science or Engineering with a B- (70-72.9% or GPA 2.7)",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "OR IELTS minimum score of 7.0",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 88,
+     "quote": "TOEFL iBT minimum scores of: writing (24/30); speaking (22/30); reading (22/30); listening (20/30), for a total of 88/120.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering (Mining Engineering)",
+   "url": "https://smithengineering.queensu.ca/mining/graduate/meng.html",
+   "snapshot_sha256": "7c4530fa4057ceba5c79e0c7c0cdabfcadb37d0940c4544c0acf129d0096abd1",
+   "fields": {
+    "academic": {
+     "text": "4-year undergraduate degree in Mining Engineering, Resources Engineering, Geological Engineering or Chemical Engineering with a minimum GPA of 2.7",
+     "quote": "Minimum GPA requirement: 2.7 in a 4 year Undergraduate Degree in Mining Engineering, Resources Engineering, Geological Engineering or Chemical Engineering.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "IELTS Academic (International English Language Testing System) - 7 (minimum overall score)",
+     "source_sha256": "19764b84b8494469031cbdcdb487946b744f08d1dde0cac881a9777b625b0f98",
+     "source_url": "https://www.queensu.ca/grad-postdoc/grad-studies/apply",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT on the 1-6 scale: average overall score of 4.5 (writing 5, speaking 4, reading 4.5, listening 4.5)",
+     "quote": "TOEFL iBT (Test of English as a Foreign Language Internet-based Test). Average overall score of 4.5.",
+     "source_sha256": "19764b84b8494469031cbdcdb487946b744f08d1dde0cac881a9777b625b0f98",
+     "source_url": "https://www.queensu.ca/grad-postdoc/grad-studies/apply",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science (Mathematics and Statistics)",
+   "url": "https://www.queensu.ca/mathstat/graduate/prospective-graduate/application-info",
+   "snapshot_sha256": "a79a149ea17259b47cce82ad717c8067efe06409cbfbb1b410aff0b5fd3091a5",
+   "fields": {
+    "academic": {
+     "text": "Minimum B+ standing in previous studies; normally a four-year bachelor's degree (preferably Honours) in Mathematics and/or Statistics or a related field",
+     "quote": "Applicants to our graduate programs will have a minimum B+ standing in their previous studies. Standing is based the grading scale of the degree granting university and not the grading scale of Queen’s University. Additional requirements are as follows: Applicants to our M.Sc. programs will normally have a four year Bachelor's degree (preferably Honours) or equivalent in Mathematics and/or Statistics or a related field.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Administration",
+   "url": "https://www.queensu.ca/sps/graduate-program/admissions",
+   "snapshot_sha256": "6b23f9fe2efd826ceeea56b32fc925f68a255545c9aca3a4cc62053f7e6a64f1",
+   "fields": {
+    "academic": {
+     "text": "Four-year undergraduate degree with a minimum upper second class standing (B+ standing; 3.3 GPA) in each of the last two years of study",
+     "quote": "A four-year undergraduate degree, with a minimum upper second class standing (B+ standing; 3.3 GPA) in each of the last two years of study (or the equivalent).",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE required if the previous degree is not from a Canadian or U.S. university; minimum Verbal Reasoning 152, Quantitative Reasoning 149, Analytical Writing 3.8",
+      "quote": "If your previous degree is NOT from a Canadian or U.S. university, you will be required to submit a GRE score. There are no exceptions to this rule. The minimum GRE score requirements are: Verbal Reasoning - 152 Quantitative Reasoning - 149 Analytical Writing - 3.8",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 7,
+     "quote": "IELTS Academic (International English Language Testing System) - 7 (minimum overall score)",
+     "source_sha256": "19764b84b8494469031cbdcdb487946b744f08d1dde0cac881a9777b625b0f98",
+     "source_url": "https://www.queensu.ca/grad-postdoc/grad-studies/apply",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL iBT on the 1-6 scale: average overall score of 4.5 (writing 5, speaking 4, reading 4.5, listening 4.5)",
+     "quote": "TOEFL iBT (Test of English as a Foreign Language Internet-based Test). Average overall score of 4.5.",
+     "source_sha256": "19764b84b8494469031cbdcdb487946b744f08d1dde0cac881a9777b625b0f98",
+     "source_url": "https://www.queensu.ca/grad-postdoc/grad-studies/apply",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake",
+      "date": "2027-02-01",
+      "quote": "Deadline: Monday, February 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Urban and Regional Planning (MPL)",
+   "url": "https://www.queensu.ca/geographyandplanning/planning/future-students/admissions",
+   "snapshot_sha256": "947f65e5ea1f791f4e66c65747a94c35493005c52faf2bed7e43335563b022c2",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor or honours degree; minimum B+ average, with preference for A- or better in the final two years",
+     "quote": "Candidates with either four-year bachelor or honours degrees may be admitted with full graduate student status. To be considered for admission, applicants should have a minimum of B+ average, with preference for those with an A-average or better in the final two years of undergraduate study.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 7.0,
+     "quote": "IELTS: 7.0 academic module overall band score and a 7.0 for each test band (listening, reading, writing and speaking)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "min_band": 25,
+     "quote": "TOEFL Internet-based Test (TOEFL iBT): The minimum overall score is 100, made up of the minimum scores in each component test as follows: Writing test: 25/30 Speaking test: 25/30 Reading test: 25/30 Listening test: 25/30",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Education (on-campus)",
+   "url": "https://educ.queensu.ca/graduate/on-campus/masters",
+   "snapshot_sha256": "034eb5b187e0c249e71c5289d5182c91ca30fc195b422bd1fcb1ada2527aa18e",
+   "fields": {
+    "academic": {
+     "text": "Domestic: mid-B average in a 4-year bachelor's degree. International: four-year undergraduate degree in a field related to education with a minimum average of 85%",
+     "quote": "A four-year undergraduate degree in a field related to education, with a minimum average of 85%.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "International applicants: two or more years of full-time professional experience in the field of education",
+      "quote": "Two or more years of full-time professional experience in the field of education.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Biomedical Informatics (MBI)",
+   "url": "https://www.cs.queensu.ca/graduate/bmif/",
+   "snapshot_sha256": "5cb18ca1f651917d07f80045000b98a1f93fa66d95be3618e75aaa181c5b6a98",
+   "fields": {
+    "academic": {
+     "text": "BSc (Honours) in biology, life sciences, biochemistry, computer science, biostatistics, engineering, or a related field; minimum B+ average in 3rd- and 4th-year courses",
+     "quote": "BSc (Honours) in biology, life sciences, biochemistry, computer science, biostatistics, engineering, or a related field Minimum B+ average in 3rd- and 4th-year courses",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 11,
+  "机器核对": 11,
+  "待人工": 0
+ }
+}

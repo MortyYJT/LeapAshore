@@ -1,0 +1,1885 @@
+{
+ "school_key": "duke-university",
+ "school_name_en": "Duke University",
+ "country": "United States",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://gradschool.duke.edu/academics/programs-and-degrees/masters-programs/",
+  "https://masters.pratt.duke.edu/programs/",
+  "https://www.fuqua.duke.edu/programs",
+  "https://nicholas.duke.edu/academics/masters-degrees",
+  "https://sanford.duke.edu/academics/masters-programs/"
+ ],
+ "blocked": [],
+ "complete": false,
+ "remaining_urls": [
+  "https://gradschool.duke.edu/academics/programs-degrees/humanities/",
+  "https://gradschool.duke.edu/academics/programs-degrees/master-arts-teaching/",
+  "https://gradschool.duke.edu/academics/programs-degrees/graduate-liberal-studies/",
+  "https://gradschool.duke.edu/academics/programs-degrees/quantitative-financial-economics/",
+  "https://gradschool.duke.edu/academics/programs-degrees/east-asian-studies/",
+  "https://gradschool.duke.edu/academics/programs-degrees/religious-studies-ma/",
+  "https://gradschool.duke.edu/academics/programs-degrees/slavic-and-eurasian-studies/",
+  "https://gradschool.duke.edu/academics/programs-degrees/history-ma/",
+  "https://gradschool.duke.edu/academics/programs-degrees/critical-asian-humanities/",
+  "https://gradschool.duke.edu/academics/programs-degrees/digital-art-history-computational-media/",
+  "https://www.fuqua.duke.edu/programs/mbcs",
+  "https://divinity.duke.edu/admissions"
+ ],
+ "notes": "The Graduate School programme pages give the university-wide TOEFL/IELTS guideline only via its admissions FAQ; those figures are cited for Graduate School masters that name the shared English exam. The programme list on gradschool.duke.edu is loaded by JavaScript and the rendered fetch timed out, so the list was taken from the masters-programs page links. Pratt MEng/MEM sets no minimum English score. Many deadlines state no year and were left out.",
+ "programs": [
+  {
+   "name": "Master of Science in Computer Science",
+   "url": "https://gradschool.duke.edu/academics/programs-degrees/computer-science-ms/",
+   "snapshot_sha256": "5dd10424d3b80fa6a382e076de9be7e72ee12c71000e50d704626515ea4d9c5c",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (US, or equivalent from an accredited institution)",
+     "quote": "Applicants must hold either a US bachelor's degree or its equivalent from a regionally accredited institution.",
+     "source_sha256": "ddeb7a9d19cb2f2a7ec3f47e9501e9db016582b23c01bd84b5712fce06a03e11",
+     "source_url": "https://gradschool.duke.edu/admissions/application-instructions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "The Graduate School generally seeks scores no less than: 90 for the Internet-based TOEFL*, 7.0 for the IELTS test, or 125 for the Duolingo English Test. Some departments may desire a score that exceeds the Graduate School's score guidelines. Contact your department of interest to determine their requirements.",
+     "source_sha256": "168e988c2423babb3c1fcd45d61929c7fa300134fbcc2be9cf0f5055b6ce2fb9",
+     "source_url": "https://gradschool.duke.edu/admissions/admissions-faqs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "The Graduate School generally seeks scores no less than: 90 for the Internet-based TOEFL*, 7.0 for the IELTS test, or 125 for the Duolingo English Test. Some departments may desire a score that exceeds the Graduate School's score guidelines. Contact your department of interest to determine their requirements. * For exams taken before January 21, 2026, we generally seek scores no less than a minimum TOEFL iBT score of 90. For exams taken on or after January 21, 2026, we generally seek scores no less than a minimum TOEFL iBT score of 5.",
+     "source_sha256": "168e988c2423babb3c1fcd45d61929c7fa300134fbcc2be9cf0f5055b6ce2fb9",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://gradschool.duke.edu/admissions/admissions-faqs/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Strong undergraduate grounding in calculus and discrete mathematics; basic knowledge of data structures, algorithms and one or more higher-level programming languages",
+      "quote": "A student entering graduate study in computer science should have a strong undergraduate grounding in the fundamentals of calculus and discrete mathematics, and basic knowledge of data structures, algorithms, and one or more higher-level computing programming languages.",
+      "check": "ok"
+     },
+     {
+      "text": "GRE General required",
+      "quote": "M.S.: GRE General Required; GRE Subject Optional",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-02-01",
+      "quote": "Computer Science 02/01/2027",
+      "source_sha256": "c03fba64a40bea12bc45e667afda9ecdc32a573a9f0608cf429bd09a7b021e53",
+      "source_url": "https://gradschool.duke.edu/admissions/application-deadlines/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Interdisciplinary Data Science (MIDS)",
+   "url": "https://gradschool.duke.edu/academics/programs-degrees/master-interdisciplinary-data-science/",
+   "snapshot_sha256": "1825f5075840b6e64bf275467e5e2b1bfaea3e9a957214cb3350f0fc429e7c72",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (US, or equivalent from an accredited institution)",
+     "quote": "Applicants must hold either a US bachelor's degree or its equivalent from a regionally accredited institution.",
+     "source_sha256": "ddeb7a9d19cb2f2a7ec3f47e9501e9db016582b23c01bd84b5712fce06a03e11",
+     "source_url": "https://gradschool.duke.edu/admissions/application-instructions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "The Graduate School generally seeks scores no less than: 90 for the Internet-based TOEFL*, 7.0 for the IELTS test, or 125 for the Duolingo English Test. Some departments may desire a score that exceeds the Graduate School's score guidelines. Contact your department of interest to determine their requirements.",
+     "source_sha256": "168e988c2423babb3c1fcd45d61929c7fa300134fbcc2be9cf0f5055b6ce2fb9",
+     "source_url": "https://gradschool.duke.edu/admissions/admissions-faqs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "The Graduate School generally seeks scores no less than: 90 for the Internet-based TOEFL*, 7.0 for the IELTS test, or 125 for the Duolingo English Test. Some departments may desire a score that exceeds the Graduate School's score guidelines. Contact your department of interest to determine their requirements. * For exams taken before January 21, 2026, we generally seek scores no less than a minimum TOEFL iBT score of 90. For exams taken on or after January 21, 2026, we generally seek scores no less than a minimum TOEFL iBT score of 5.",
+     "source_sha256": "168e988c2423babb3c1fcd45d61929c7fa300134fbcc2be9cf0f5055b6ce2fb9",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://gradschool.duke.edu/admissions/admissions-faqs/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Recorded video about a project you have worked on (3-5 minutes)",
+      "quote": "we would like you to submit a 3-5 minute video in which you tell us about a project you have worked on.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-01-28",
+      "quote": "Interdisciplinary Data Science 01/28/2027",
+      "source_sha256": "c03fba64a40bea12bc45e667afda9ecdc32a573a9f0608cf429bd09a7b021e53",
+      "source_url": "https://gradschool.duke.edu/admissions/application-deadlines/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Statistical Science",
+   "url": "https://gradschool.duke.edu/academics/programs-degrees/statistical-science-ms/",
+   "snapshot_sha256": "1df691f984048a6965d47f78dfa7479171d14cfccaa6b409465ba5753993d454",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (US, or equivalent from an accredited institution)",
+     "quote": "Applicants must hold either a US bachelor's degree or its equivalent from a regionally accredited institution.",
+     "source_sha256": "ddeb7a9d19cb2f2a7ec3f47e9501e9db016582b23c01bd84b5712fce06a03e11",
+     "source_url": "https://gradschool.duke.edu/admissions/application-instructions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "The Graduate School generally seeks scores no less than: 90 for the Internet-based TOEFL*, 7.0 for the IELTS test, or 125 for the Duolingo English Test. Some departments may desire a score that exceeds the Graduate School's score guidelines. Contact your department of interest to determine their requirements.",
+     "source_sha256": "168e988c2423babb3c1fcd45d61929c7fa300134fbcc2be9cf0f5055b6ce2fb9",
+     "source_url": "https://gradschool.duke.edu/admissions/admissions-faqs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "The Graduate School generally seeks scores no less than: 90 for the Internet-based TOEFL*, 7.0 for the IELTS test, or 125 for the Duolingo English Test. Some departments may desire a score that exceeds the Graduate School's score guidelines. Contact your department of interest to determine their requirements. * For exams taken before January 21, 2026, we generally seek scores no less than a minimum TOEFL iBT score of 90. For exams taken on or after January 21, 2026, we generally seek scores no less than a minimum TOEFL iBT score of 5.",
+     "source_sha256": "168e988c2423babb3c1fcd45d61929c7fa300134fbcc2be9cf0f5055b6ce2fb9",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://gradschool.duke.edu/admissions/admissions-faqs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-01-05",
+      "quote": "Statistical Science 01/05/2027",
+      "source_sha256": "c03fba64a40bea12bc45e667afda9ecdc32a573a9f0608cf429bd09a7b021e53",
+      "source_url": "https://gradschool.duke.edu/admissions/application-deadlines/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Economics and Computation",
+   "url": "https://gradschool.duke.edu/academics/programs-degrees/economics-and-computation/",
+   "snapshot_sha256": "096f25f9617e1aa871a6ebd9bae076ab0f871363cf2fbed37cdb8b0f394fd4e1",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (US, or equivalent from an accredited institution)",
+     "quote": "Applicants must hold either a US bachelor's degree or its equivalent from a regionally accredited institution.",
+     "source_sha256": "ddeb7a9d19cb2f2a7ec3f47e9501e9db016582b23c01bd84b5712fce06a03e11",
+     "source_url": "https://gradschool.duke.edu/admissions/application-instructions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "The Graduate School generally seeks scores no less than: 90 for the Internet-based TOEFL*, 7.0 for the IELTS test, or 125 for the Duolingo English Test. Some departments may desire a score that exceeds the Graduate School's score guidelines. Contact your department of interest to determine their requirements.",
+     "source_sha256": "168e988c2423babb3c1fcd45d61929c7fa300134fbcc2be9cf0f5055b6ce2fb9",
+     "source_url": "https://gradschool.duke.edu/admissions/admissions-faqs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "The Graduate School generally seeks scores no less than: 90 for the Internet-based TOEFL*, 7.0 for the IELTS test, or 125 for the Duolingo English Test. Some departments may desire a score that exceeds the Graduate School's score guidelines. Contact your department of interest to determine their requirements. * For exams taken before January 21, 2026, we generally seek scores no less than a minimum TOEFL iBT score of 90. For exams taken on or after January 21, 2026, we generally seek scores no less than a minimum TOEFL iBT score of 5.",
+     "source_sha256": "168e988c2423babb3c1fcd45d61929c7fa300134fbcc2be9cf0f5055b6ce2fb9",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://gradschool.duke.edu/admissions/admissions-faqs/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General required",
+      "quote": "GRE General Required; GRE Subject Optional (Note: GMAT not accepted)",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-02-01",
+      "quote": "Economics and Computation 02/01/2027",
+      "source_sha256": "c03fba64a40bea12bc45e667afda9ecdc32a573a9f0608cf429bd09a7b021e53",
+      "source_url": "https://gradschool.duke.edu/admissions/application-deadlines/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts in Economics",
+   "url": "https://gradschool.duke.edu/academics/programs-degrees/economics-masters/",
+   "snapshot_sha256": "6ef5c00b2a228dd3a615a32d4e3f310c126237f9ef0c6eb18d11de92e119ddb2",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (US, or equivalent from an accredited institution)",
+     "quote": "Applicants must hold either a US bachelor's degree or its equivalent from a regionally accredited institution.",
+     "source_sha256": "ddeb7a9d19cb2f2a7ec3f47e9501e9db016582b23c01bd84b5712fce06a03e11",
+     "source_url": "https://gradschool.duke.edu/admissions/application-instructions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "The Graduate School generally seeks scores no less than: 90 for the Internet-based TOEFL*, 7.0 for the IELTS test, or 125 for the Duolingo English Test. Some departments may desire a score that exceeds the Graduate School's score guidelines. Contact your department of interest to determine their requirements.",
+     "source_sha256": "168e988c2423babb3c1fcd45d61929c7fa300134fbcc2be9cf0f5055b6ce2fb9",
+     "source_url": "https://gradschool.duke.edu/admissions/admissions-faqs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "The Graduate School generally seeks scores no less than: 90 for the Internet-based TOEFL*, 7.0 for the IELTS test, or 125 for the Duolingo English Test. Some departments may desire a score that exceeds the Graduate School's score guidelines. Contact your department of interest to determine their requirements. * For exams taken before January 21, 2026, we generally seek scores no less than a minimum TOEFL iBT score of 90. For exams taken on or after January 21, 2026, we generally seek scores no less than a minimum TOEFL iBT score of 5.",
+     "source_sha256": "168e988c2423babb3c1fcd45d61929c7fa300134fbcc2be9cf0f5055b6ce2fb9",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://gradschool.duke.edu/admissions/admissions-faqs/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General required",
+      "quote": "GRE General: Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-01-14",
+      "quote": "Economics 01/14/2027",
+      "source_sha256": "c03fba64a40bea12bc45e667afda9ecdc32a573a9f0608cf429bd09a7b021e53",
+      "source_url": "https://gradschool.duke.edu/admissions/application-deadlines/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts in Analytical Political Economy",
+   "url": "https://gradschool.duke.edu/academics/programs-degrees/analytical-political-economy/",
+   "snapshot_sha256": "a47c4832d36cfb1bccb308c1d441219636dd934c124428f2a1117b512434edc1",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (US, or equivalent from an accredited institution)",
+     "quote": "Applicants must hold either a US bachelor's degree or its equivalent from a regionally accredited institution.",
+     "source_sha256": "ddeb7a9d19cb2f2a7ec3f47e9501e9db016582b23c01bd84b5712fce06a03e11",
+     "source_url": "https://gradschool.duke.edu/admissions/application-instructions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "The Graduate School generally seeks scores no less than: 90 for the Internet-based TOEFL*, 7.0 for the IELTS test, or 125 for the Duolingo English Test. Some departments may desire a score that exceeds the Graduate School's score guidelines. Contact your department of interest to determine their requirements.",
+     "source_sha256": "168e988c2423babb3c1fcd45d61929c7fa300134fbcc2be9cf0f5055b6ce2fb9",
+     "source_url": "https://gradschool.duke.edu/admissions/admissions-faqs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "The Graduate School generally seeks scores no less than: 90 for the Internet-based TOEFL*, 7.0 for the IELTS test, or 125 for the Duolingo English Test. Some departments may desire a score that exceeds the Graduate School's score guidelines. Contact your department of interest to determine their requirements. * For exams taken before January 21, 2026, we generally seek scores no less than a minimum TOEFL iBT score of 90. For exams taken on or after January 21, 2026, we generally seek scores no less than a minimum TOEFL iBT score of 5.",
+     "source_sha256": "168e988c2423babb3c1fcd45d61929c7fa300134fbcc2be9cf0f5055b6ce2fb9",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://gradschool.duke.edu/admissions/admissions-faqs/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General required",
+      "quote": "GRE General: Required",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-01-28",
+      "quote": "Analytical Political Economy 01/28/2027",
+      "source_sha256": "c03fba64a40bea12bc45e667afda9ecdc32a573a9f0608cf429bd09a7b021e53",
+      "source_url": "https://gradschool.duke.edu/admissions/application-deadlines/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts in Political Science",
+   "url": "https://gradschool.duke.edu/academics/programs-degrees/political-science-ma/",
+   "snapshot_sha256": "8355bf4aeee65fc8b41cf644f3cdb64dcf97f0e04b9a0898ccb4b4db4b601327",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (US, or equivalent from an accredited institution)",
+     "quote": "Applicants must hold either a US bachelor's degree or its equivalent from a regionally accredited institution.",
+     "source_sha256": "ddeb7a9d19cb2f2a7ec3f47e9501e9db016582b23c01bd84b5712fce06a03e11",
+     "source_url": "https://gradschool.duke.edu/admissions/application-instructions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "The Graduate School generally seeks scores no less than: 90 for the Internet-based TOEFL*, 7.0 for the IELTS test, or 125 for the Duolingo English Test. Some departments may desire a score that exceeds the Graduate School's score guidelines. Contact your department of interest to determine their requirements.",
+     "source_sha256": "168e988c2423babb3c1fcd45d61929c7fa300134fbcc2be9cf0f5055b6ce2fb9",
+     "source_url": "https://gradschool.duke.edu/admissions/admissions-faqs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "The Graduate School generally seeks scores no less than: 90 for the Internet-based TOEFL*, 7.0 for the IELTS test, or 125 for the Duolingo English Test. Some departments may desire a score that exceeds the Graduate School's score guidelines. Contact your department of interest to determine their requirements. * For exams taken before January 21, 2026, we generally seek scores no less than a minimum TOEFL iBT score of 90. For exams taken on or after January 21, 2026, we generally seek scores no less than a minimum TOEFL iBT score of 5.",
+     "source_sha256": "168e988c2423babb3c1fcd45d61929c7fa300134fbcc2be9cf0f5055b6ce2fb9",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://gradschool.duke.edu/admissions/admissions-faqs/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GRE General required",
+      "quote": "GRE General Required; GRE Subject Optional",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-02-16",
+      "quote": "Political Science 02/16/2027",
+      "source_sha256": "c03fba64a40bea12bc45e667afda9ecdc32a573a9f0608cf429bd09a7b021e53",
+      "source_url": "https://gradschool.duke.edu/admissions/application-deadlines/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Global Health",
+   "url": "https://gradschool.duke.edu/academics/programs-degrees/global-health/",
+   "snapshot_sha256": "9070e7b130754dfd293735084bcc6b96a5b2a3e83d492f748e89492a25641a11",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (US, or equivalent from an accredited institution)",
+     "quote": "Applicants must hold either a US bachelor's degree or its equivalent from a regionally accredited institution.",
+     "source_sha256": "ddeb7a9d19cb2f2a7ec3f47e9501e9db016582b23c01bd84b5712fce06a03e11",
+     "source_url": "https://gradschool.duke.edu/admissions/application-instructions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "The Graduate School generally seeks scores no less than: 90 for the Internet-based TOEFL*, 7.0 for the IELTS test, or 125 for the Duolingo English Test. Some departments may desire a score that exceeds the Graduate School's score guidelines. Contact your department of interest to determine their requirements.",
+     "source_sha256": "168e988c2423babb3c1fcd45d61929c7fa300134fbcc2be9cf0f5055b6ce2fb9",
+     "source_url": "https://gradschool.duke.edu/admissions/admissions-faqs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "The Graduate School generally seeks scores no less than: 90 for the Internet-based TOEFL*, 7.0 for the IELTS test, or 125 for the Duolingo English Test. Some departments may desire a score that exceeds the Graduate School's score guidelines. Contact your department of interest to determine their requirements. * For exams taken before January 21, 2026, we generally seek scores no less than a minimum TOEFL iBT score of 90. For exams taken on or after January 21, 2026, we generally seek scores no less than a minimum TOEFL iBT score of 5.",
+     "source_sha256": "168e988c2423babb3c1fcd45d61929c7fa300134fbcc2be9cf0f5055b6ce2fb9",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://gradschool.duke.edu/admissions/admissions-faqs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 (guaranteed review)",
+      "date": "2027-02-26",
+      "quote": "all applications received by February 26, 2027 are guaranteed review",
+      "source_sha256": "c03fba64a40bea12bc45e667afda9ecdc32a573a9f0608cf429bd09a7b021e53",
+      "source_url": "https://gradschool.duke.edu/admissions/application-deadlines/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Population Health Sciences",
+   "url": "https://gradschool.duke.edu/academics/programs-degrees/population-health-sciences-ms/",
+   "snapshot_sha256": "307f2fd209d5547ef096188131a21fc1fa644d8af3d542971f13a194a1da1c0b",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (US, or equivalent from an accredited institution)",
+     "quote": "Applicants must hold either a US bachelor's degree or its equivalent from a regionally accredited institution.",
+     "source_sha256": "ddeb7a9d19cb2f2a7ec3f47e9501e9db016582b23c01bd84b5712fce06a03e11",
+     "source_url": "https://gradschool.duke.edu/admissions/application-instructions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "The Graduate School generally seeks scores no less than: 90 for the Internet-based TOEFL*, 7.0 for the IELTS test, or 125 for the Duolingo English Test. Some departments may desire a score that exceeds the Graduate School's score guidelines. Contact your department of interest to determine their requirements.",
+     "source_sha256": "168e988c2423babb3c1fcd45d61929c7fa300134fbcc2be9cf0f5055b6ce2fb9",
+     "source_url": "https://gradschool.duke.edu/admissions/admissions-faqs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "The Graduate School generally seeks scores no less than: 90 for the Internet-based TOEFL*, 7.0 for the IELTS test, or 125 for the Duolingo English Test. Some departments may desire a score that exceeds the Graduate School's score guidelines. Contact your department of interest to determine their requirements. * For exams taken before January 21, 2026, we generally seek scores no less than a minimum TOEFL iBT score of 90. For exams taken on or after January 21, 2026, we generally seek scores no less than a minimum TOEFL iBT score of 5.",
+     "source_sha256": "168e988c2423babb3c1fcd45d61929c7fa300134fbcc2be9cf0f5055b6ce2fb9",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://gradschool.duke.edu/admissions/admissions-faqs/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "No specific prerequisites; familiarity with listed topics strongly recommended",
+      "quote": "We do not have any specific prerequisites, but we strongly recommend that applicants demonstrate familiarity with these topics through coursework, professional experience, or other means:",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 early application",
+      "date": "2026-12-01",
+      "quote": "The early application deadline is December 1, 2026.",
+      "source_sha256": "c03fba64a40bea12bc45e667afda9ecdc32a573a9f0608cf429bd09a7b021e53",
+      "source_url": "https://gradschool.duke.edu/admissions/application-deadlines/",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 priority",
+      "date": "2027-01-15",
+      "quote": "The priority deadline is January 15, 2027",
+      "source_sha256": "c03fba64a40bea12bc45e667afda9ecdc32a573a9f0608cf429bd09a7b021e53",
+      "source_url": "https://gradschool.duke.edu/admissions/application-deadlines/",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 guaranteed review",
+      "date": "2027-02-26",
+      "quote": "all applications received by February 26, 2027 are guaranteed review",
+      "source_sha256": "c03fba64a40bea12bc45e667afda9ecdc32a573a9f0608cf429bd09a7b021e53",
+      "source_url": "https://gradschool.duke.edu/admissions/application-deadlines/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts in Applied Ethics & Policy",
+   "url": "https://gradschool.duke.edu/academics/programs-degrees/applied-ethics-policy/",
+   "snapshot_sha256": "797708e996a1976034a261382d9fe70df08f50388928e0af2a6186a7929a3220",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (US, or equivalent from an accredited institution)",
+     "quote": "Applicants must hold either a US bachelor's degree or its equivalent from a regionally accredited institution.",
+     "source_sha256": "ddeb7a9d19cb2f2a7ec3f47e9501e9db016582b23c01bd84b5712fce06a03e11",
+     "source_url": "https://gradschool.duke.edu/admissions/application-instructions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "The Graduate School generally seeks scores no less than: 90 for the Internet-based TOEFL*, 7.0 for the IELTS test, or 125 for the Duolingo English Test. Some departments may desire a score that exceeds the Graduate School's score guidelines. Contact your department of interest to determine their requirements.",
+     "source_sha256": "168e988c2423babb3c1fcd45d61929c7fa300134fbcc2be9cf0f5055b6ce2fb9",
+     "source_url": "https://gradschool.duke.edu/admissions/admissions-faqs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "The Graduate School generally seeks scores no less than: 90 for the Internet-based TOEFL*, 7.0 for the IELTS test, or 125 for the Duolingo English Test. Some departments may desire a score that exceeds the Graduate School's score guidelines. Contact your department of interest to determine their requirements. * For exams taken before January 21, 2026, we generally seek scores no less than a minimum TOEFL iBT score of 90. For exams taken on or after January 21, 2026, we generally seek scores no less than a minimum TOEFL iBT score of 5.",
+     "source_sha256": "168e988c2423babb3c1fcd45d61929c7fa300134fbcc2be9cf0f5055b6ce2fb9",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://gradschool.duke.edu/admissions/admissions-faqs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 (guaranteed review)",
+      "date": "2027-03-18",
+      "quote": "Applications received by March 18, 2027 are guaranteed review.",
+      "source_sha256": "c03fba64a40bea12bc45e667afda9ecdc32a573a9f0608cf429bd09a7b021e53",
+      "source_url": "https://gradschool.duke.edu/admissions/application-deadlines/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Electrical and Computer Engineering (Graduate School)",
+   "url": "https://gradschool.duke.edu/academics/programs-degrees/electrical-and-computer-engineering-ms/",
+   "snapshot_sha256": "e4779bf9a412cf965eff20a95f98a7d59b8db9e1eeaca66f84e138d581e293fb",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (US, or equivalent from an accredited institution)",
+     "quote": "Applicants must hold either a US bachelor's degree or its equivalent from a regionally accredited institution.",
+     "source_sha256": "ddeb7a9d19cb2f2a7ec3f47e9501e9db016582b23c01bd84b5712fce06a03e11",
+     "source_url": "https://gradschool.duke.edu/admissions/application-instructions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "The Graduate School generally seeks scores no less than: 90 for the Internet-based TOEFL*, 7.0 for the IELTS test, or 125 for the Duolingo English Test. Some departments may desire a score that exceeds the Graduate School's score guidelines. Contact your department of interest to determine their requirements.",
+     "source_sha256": "168e988c2423babb3c1fcd45d61929c7fa300134fbcc2be9cf0f5055b6ce2fb9",
+     "source_url": "https://gradschool.duke.edu/admissions/admissions-faqs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "The Graduate School generally seeks scores no less than: 90 for the Internet-based TOEFL*, 7.0 for the IELTS test, or 125 for the Duolingo English Test. Some departments may desire a score that exceeds the Graduate School's score guidelines. Contact your department of interest to determine their requirements. * For exams taken before January 21, 2026, we generally seek scores no less than a minimum TOEFL iBT score of 90. For exams taken on or after January 21, 2026, we generally seek scores no less than a minimum TOEFL iBT score of 5.",
+     "source_sha256": "168e988c2423babb3c1fcd45d61929c7fa300134fbcc2be9cf0f5055b6ce2fb9",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://gradschool.duke.edu/admissions/admissions-faqs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 (guaranteed review)",
+      "date": "2027-01-16",
+      "quote": "Applications submitted by January 16, 2027 are guaranteed review.",
+      "source_sha256": "c03fba64a40bea12bc45e667afda9ecdc32a573a9f0608cf429bd09a7b021e53",
+      "source_url": "https://gradschool.duke.edu/admissions/application-deadlines/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Biomedical Engineering",
+   "url": "https://gradschool.duke.edu/academics/programs-degrees/biomedical-engineering-ms/",
+   "snapshot_sha256": "5eb8da0f28d7d2671368394bde5dccdb7f95c2e52a6c7b5a5670f89216226816",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (US, or equivalent from an accredited institution)",
+     "quote": "Applicants must hold either a US bachelor's degree or its equivalent from a regionally accredited institution.",
+     "source_sha256": "ddeb7a9d19cb2f2a7ec3f47e9501e9db016582b23c01bd84b5712fce06a03e11",
+     "source_url": "https://gradschool.duke.edu/admissions/application-instructions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "The Graduate School generally seeks scores no less than: 90 for the Internet-based TOEFL*, 7.0 for the IELTS test, or 125 for the Duolingo English Test. Some departments may desire a score that exceeds the Graduate School's score guidelines. Contact your department of interest to determine their requirements.",
+     "source_sha256": "168e988c2423babb3c1fcd45d61929c7fa300134fbcc2be9cf0f5055b6ce2fb9",
+     "source_url": "https://gradschool.duke.edu/admissions/admissions-faqs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "The Graduate School generally seeks scores no less than: 90 for the Internet-based TOEFL*, 7.0 for the IELTS test, or 125 for the Duolingo English Test. Some departments may desire a score that exceeds the Graduate School's score guidelines. Contact your department of interest to determine their requirements. * For exams taken before January 21, 2026, we generally seek scores no less than a minimum TOEFL iBT score of 90. For exams taken on or after January 21, 2026, we generally seek scores no less than a minimum TOEFL iBT score of 5.",
+     "source_sha256": "168e988c2423babb3c1fcd45d61929c7fa300134fbcc2be9cf0f5055b6ce2fb9",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://gradschool.duke.edu/admissions/admissions-faqs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 (guaranteed review)",
+      "date": "2027-02-01",
+      "quote": "Applications submitted by February 1, 2027 are guaranteed review on a space-available basis.",
+      "source_sha256": "c03fba64a40bea12bc45e667afda9ecdc32a573a9f0608cf429bd09a7b021e53",
+      "source_url": "https://gradschool.duke.edu/admissions/application-deadlines/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Civil and Environmental Engineering",
+   "url": "https://gradschool.duke.edu/academics/programs-degrees/civil-and-environmental-engineering-ms/",
+   "snapshot_sha256": "0774f74bbd01f7d03b32e8431d380999cbe0839499343d85f32f78248b224227",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (US, or equivalent from an accredited institution)",
+     "quote": "Applicants must hold either a US bachelor's degree or its equivalent from a regionally accredited institution.",
+     "source_sha256": "ddeb7a9d19cb2f2a7ec3f47e9501e9db016582b23c01bd84b5712fce06a03e11",
+     "source_url": "https://gradschool.duke.edu/admissions/application-instructions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "The Graduate School generally seeks scores no less than: 90 for the Internet-based TOEFL*, 7.0 for the IELTS test, or 125 for the Duolingo English Test. Some departments may desire a score that exceeds the Graduate School's score guidelines. Contact your department of interest to determine their requirements.",
+     "source_sha256": "168e988c2423babb3c1fcd45d61929c7fa300134fbcc2be9cf0f5055b6ce2fb9",
+     "source_url": "https://gradschool.duke.edu/admissions/admissions-faqs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "The Graduate School generally seeks scores no less than: 90 for the Internet-based TOEFL*, 7.0 for the IELTS test, or 125 for the Duolingo English Test. Some departments may desire a score that exceeds the Graduate School's score guidelines. Contact your department of interest to determine their requirements. * For exams taken before January 21, 2026, we generally seek scores no less than a minimum TOEFL iBT score of 90. For exams taken on or after January 21, 2026, we generally seek scores no less than a minimum TOEFL iBT score of 5.",
+     "source_sha256": "168e988c2423babb3c1fcd45d61929c7fa300134fbcc2be9cf0f5055b6ce2fb9",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://gradschool.duke.edu/admissions/admissions-faqs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 (guaranteed review)",
+      "date": "2027-01-10",
+      "quote": "Applications submitted by January 10, 2027 are guaranteed review.",
+      "source_sha256": "c03fba64a40bea12bc45e667afda9ecdc32a573a9f0608cf429bd09a7b021e53",
+      "source_url": "https://gradschool.duke.edu/admissions/application-deadlines/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Mechanical Engineering and Materials Science",
+   "url": "https://gradschool.duke.edu/academics/programs-degrees/mechanical-engineering-and-materials-science-ms/",
+   "snapshot_sha256": "2ef3f61fcc0f80fbb597c63e5517bb6ccac3d000ea25ad6794f7d71773d71541",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (US, or equivalent from an accredited institution)",
+     "quote": "Applicants must hold either a US bachelor's degree or its equivalent from a regionally accredited institution.",
+     "source_sha256": "ddeb7a9d19cb2f2a7ec3f47e9501e9db016582b23c01bd84b5712fce06a03e11",
+     "source_url": "https://gradschool.duke.edu/admissions/application-instructions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "The Graduate School generally seeks scores no less than: 90 for the Internet-based TOEFL*, 7.0 for the IELTS test, or 125 for the Duolingo English Test. Some departments may desire a score that exceeds the Graduate School's score guidelines. Contact your department of interest to determine their requirements.",
+     "source_sha256": "168e988c2423babb3c1fcd45d61929c7fa300134fbcc2be9cf0f5055b6ce2fb9",
+     "source_url": "https://gradschool.duke.edu/admissions/admissions-faqs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "The Graduate School generally seeks scores no less than: 90 for the Internet-based TOEFL*, 7.0 for the IELTS test, or 125 for the Duolingo English Test. Some departments may desire a score that exceeds the Graduate School's score guidelines. Contact your department of interest to determine their requirements. * For exams taken before January 21, 2026, we generally seek scores no less than a minimum TOEFL iBT score of 90. For exams taken on or after January 21, 2026, we generally seek scores no less than a minimum TOEFL iBT score of 5.",
+     "source_sha256": "168e988c2423babb3c1fcd45d61929c7fa300134fbcc2be9cf0f5055b6ce2fb9",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://gradschool.duke.edu/admissions/admissions-faqs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 (guaranteed review)",
+      "date": "2027-01-19",
+      "quote": "Applications submitted by January 19, 2027 are guaranteed review.",
+      "source_sha256": "c03fba64a40bea12bc45e667afda9ecdc32a573a9f0608cf429bd09a7b021e53",
+      "source_url": "https://gradschool.duke.edu/admissions/application-deadlines/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Materials Science and Engineering",
+   "url": "https://gradschool.duke.edu/academics/programs-degrees/materials-science-and-engineering-ms/",
+   "snapshot_sha256": "e9dd600858257d0f6140cea3e0b64d363ea57316b5babff647f1e0958dc1545f",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (US, or equivalent from an accredited institution)",
+     "quote": "Applicants must hold either a US bachelor's degree or its equivalent from a regionally accredited institution.",
+     "source_sha256": "ddeb7a9d19cb2f2a7ec3f47e9501e9db016582b23c01bd84b5712fce06a03e11",
+     "source_url": "https://gradschool.duke.edu/admissions/application-instructions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "The Graduate School generally seeks scores no less than: 90 for the Internet-based TOEFL*, 7.0 for the IELTS test, or 125 for the Duolingo English Test. Some departments may desire a score that exceeds the Graduate School's score guidelines. Contact your department of interest to determine their requirements.",
+     "source_sha256": "168e988c2423babb3c1fcd45d61929c7fa300134fbcc2be9cf0f5055b6ce2fb9",
+     "source_url": "https://gradschool.duke.edu/admissions/admissions-faqs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "The Graduate School generally seeks scores no less than: 90 for the Internet-based TOEFL*, 7.0 for the IELTS test, or 125 for the Duolingo English Test. Some departments may desire a score that exceeds the Graduate School's score guidelines. Contact your department of interest to determine their requirements. * For exams taken before January 21, 2026, we generally seek scores no less than a minimum TOEFL iBT score of 90. For exams taken on or after January 21, 2026, we generally seek scores no less than a minimum TOEFL iBT score of 5.",
+     "source_sha256": "168e988c2423babb3c1fcd45d61929c7fa300134fbcc2be9cf0f5055b6ce2fb9",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://gradschool.duke.edu/admissions/admissions-faqs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 (guaranteed review)",
+      "date": "2027-03-15",
+      "quote": "All applications received by March 15, 2027 are guaranteed review.",
+      "source_sha256": "c03fba64a40bea12bc45e667afda9ecdc32a573a9f0608cf429bd09a7b021e53",
+      "source_url": "https://gradschool.duke.edu/admissions/application-deadlines/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Medical Physics",
+   "url": "https://gradschool.duke.edu/academics/programs-degrees/medical-physics-ms/",
+   "snapshot_sha256": "3441af84fb0629752b8210f45545f6f3dbac9d4f710d3cc16238f610e13c9f52",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (US, or equivalent from an accredited institution)",
+     "quote": "Applicants must hold either a US bachelor's degree or its equivalent from a regionally accredited institution.",
+     "source_sha256": "ddeb7a9d19cb2f2a7ec3f47e9501e9db016582b23c01bd84b5712fce06a03e11",
+     "source_url": "https://gradschool.duke.edu/admissions/application-instructions/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "The Graduate School generally seeks scores no less than: 90 for the Internet-based TOEFL*, 7.0 for the IELTS test, or 125 for the Duolingo English Test. Some departments may desire a score that exceeds the Graduate School's score guidelines. Contact your department of interest to determine their requirements.",
+     "source_sha256": "168e988c2423babb3c1fcd45d61929c7fa300134fbcc2be9cf0f5055b6ce2fb9",
+     "source_url": "https://gradschool.duke.edu/admissions/admissions-faqs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "The Graduate School generally seeks scores no less than: 90 for the Internet-based TOEFL*, 7.0 for the IELTS test, or 125 for the Duolingo English Test. Some departments may desire a score that exceeds the Graduate School's score guidelines. Contact your department of interest to determine their requirements. * For exams taken before January 21, 2026, we generally seek scores no less than a minimum TOEFL iBT score of 90. For exams taken on or after January 21, 2026, we generally seek scores no less than a minimum TOEFL iBT score of 5.",
+     "source_sha256": "168e988c2423babb3c1fcd45d61929c7fa300134fbcc2be9cf0f5055b6ce2fb9",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://gradschool.duke.edu/admissions/admissions-faqs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 (guaranteed review)",
+      "date": "2027-01-31",
+      "quote": "all applications received by January 31, 2027 are guaranteed review.",
+      "source_sha256": "c03fba64a40bea12bc45e667afda9ecdc32a573a9f0608cf429bd09a7b021e53",
+      "source_url": "https://gradschool.duke.edu/admissions/application-deadlines/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering in Artificial Intelligence for Product Innovation",
+   "url": "https://masters.pratt.duke.edu/ai/",
+   "snapshot_sha256": "c0781344cf61a4c9c04b982bc798515dffee7380604ccb801273da250d28ab3b",
+   "fields": {
+    "academic": {
+     "text": "No minimum GPA, GRE or English test score for MEng/MEM; US bachelor's degree or equivalent from an accredited institution",
+     "quote": "There is no minimum GPA, GRE score or English language test score No work experience is required, except for our 12-month-accelerated Master of Engineering programs Transcript Applicants must hold either a U.S. bachelor’s degree or its equivalent from a regionally accredited institution.",
+     "source_sha256": "477287cf1d669f6410dced7a4ac124c1e9f45beca9e237c70aedeffa86bfa387",
+     "source_url": "https://masters.pratt.duke.edu/apply/instructions/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Two semesters of calculus; proficiency in at least one programming language (Python preferred)",
+      "quote": "Two (2) semesters of calculus • Proficiency in at least one programming language (Python preferred) • Prior coursework in probability/statistics and linear algebra are preferred, but not required",
+      "source_sha256": "477287cf1d669f6410dced7a4ac124c1e9f45beca9e237c70aedeffa86bfa387",
+      "source_url": "https://masters.pratt.duke.edu/apply/instructions/",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 Round 1",
+      "date": "2026-11-03",
+      "quote": "Master of Engineering Campus Programs All applicants November 3, 2026 January 19, 2027 March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 Round 2",
+      "date": "2027-01-19",
+      "quote": "Master of Engineering Campus Programs All applicants November 3, 2026 January 19, 2027 March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 Round 3",
+      "date": "2027-03-17",
+      "quote": "Master of Engineering Campus Programs All applicants November 3, 2026 January 19, 2027 March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     },
+     {
+      "label": "Online, Fall 2027 (international applicants needing an F-1 visa)",
+      "date": "2027-03-17",
+      "quote": "Artificial Intelligence (AI) for Product Innovation March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering in Cybersecurity",
+   "url": "https://masters.pratt.duke.edu/cybersecurity/",
+   "snapshot_sha256": "28ffbe147aaf45dd6b8c95aca9deafa59be3ba5338469014a6fdd5429a66df3f",
+   "fields": {
+    "academic": {
+     "text": "No minimum GPA, GRE or English test score for MEng/MEM; US bachelor's degree or equivalent from an accredited institution",
+     "quote": "There is no minimum GPA, GRE score or English language test score No work experience is required, except for our 12-month-accelerated Master of Engineering programs Transcript Applicants must hold either a U.S. bachelor’s degree or its equivalent from a regionally accredited institution.",
+     "source_sha256": "477287cf1d669f6410dced7a4ac124c1e9f45beca9e237c70aedeffa86bfa387",
+     "source_url": "https://masters.pratt.duke.edu/apply/instructions/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Proficiency in at least one programming language (Python preferred); one course in networking strongly recommended",
+      "quote": "Undergraduate degree • Proficiency in at least one programming language (Python preferred), use of AI tools for coding and development and any cybersecurity-related tools • One course in networking strongly recommended • Preferred coursework in Computer Science, Calculus, Linear Algebra",
+      "source_sha256": "477287cf1d669f6410dced7a4ac124c1e9f45beca9e237c70aedeffa86bfa387",
+      "source_url": "https://masters.pratt.duke.edu/apply/instructions/",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 Round 1",
+      "date": "2026-11-03",
+      "quote": "Master of Engineering Campus Programs All applicants November 3, 2026 January 19, 2027 March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 Round 2",
+      "date": "2027-01-19",
+      "quote": "Master of Engineering Campus Programs All applicants November 3, 2026 January 19, 2027 March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 Round 3",
+      "date": "2027-03-17",
+      "quote": "Master of Engineering Campus Programs All applicants November 3, 2026 January 19, 2027 March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     },
+     {
+      "label": "Online, Fall 2027 (international applicants needing an F-1 visa)",
+      "date": "2027-03-17",
+      "quote": "Cybersecurity March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering in Financial Technology (FinTech)",
+   "url": "https://masters.pratt.duke.edu/fintech/",
+   "snapshot_sha256": "3b3eafb29679d5cc5598c3c55dc2770669451e70ad3140fb9c1a266fb4dee161",
+   "fields": {
+    "academic": {
+     "text": "No minimum GPA, GRE or English test score for MEng/MEM; US bachelor's degree or equivalent from an accredited institution",
+     "quote": "There is no minimum GPA, GRE score or English language test score No work experience is required, except for our 12-month-accelerated Master of Engineering programs Transcript Applicants must hold either a U.S. bachelor’s degree or its equivalent from a regionally accredited institution.",
+     "source_sha256": "477287cf1d669f6410dced7a4ac124c1e9f45beca9e237c70aedeffa86bfa387",
+     "source_url": "https://masters.pratt.duke.edu/apply/instructions/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Undergraduate degree in finance, economics, engineering, mathematics or sciences; econometrics, statistics, linear algebra, programming, Calculus I-III",
+      "quote": "Undergraduate degree in finance, economics, engineering, mathematics, sciences • Econometrics, statistics, linear algebra • Programming or Computer Science • Calculus I, II, and III or higher",
+      "source_sha256": "477287cf1d669f6410dced7a4ac124c1e9f45beca9e237c70aedeffa86bfa387",
+      "source_url": "https://masters.pratt.duke.edu/apply/instructions/",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 Round 1",
+      "date": "2026-11-03",
+      "quote": "Master of Engineering Campus Programs All applicants November 3, 2026 January 19, 2027 March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 Round 2",
+      "date": "2027-01-19",
+      "quote": "Master of Engineering Campus Programs All applicants November 3, 2026 January 19, 2027 March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 Round 3",
+      "date": "2027-03-17",
+      "quote": "Master of Engineering Campus Programs All applicants November 3, 2026 January 19, 2027 March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     },
+     {
+      "label": "Online, Fall 2027 (international applicants needing an F-1 visa)",
+      "date": "2027-03-17",
+      "quote": "Financial Technology (FinTech) March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering in Systems Engineering",
+   "url": "https://masters.pratt.duke.edu/systems-engineering/",
+   "snapshot_sha256": "ec6df60ff74c4af4ec769f33385c9fcd22834ae7315363ea9242a7672fb8bf05",
+   "fields": {
+    "academic": {
+     "text": "No minimum GPA, GRE or English test score for MEng/MEM; US bachelor's degree or equivalent from an accredited institution",
+     "quote": "There is no minimum GPA, GRE score or English language test score No work experience is required, except for our 12-month-accelerated Master of Engineering programs Transcript Applicants must hold either a U.S. bachelor’s degree or its equivalent from a regionally accredited institution.",
+     "source_sha256": "477287cf1d669f6410dced7a4ac124c1e9f45beca9e237c70aedeffa86bfa387",
+     "source_url": "https://masters.pratt.duke.edu/apply/instructions/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Two semesters of calculus; proficiency in at least one programming language (Python preferred)",
+      "quote": "Two (2) semesters of calculus • Proficiency in at least one programming language (Python preferred) • Prior coursework in probability/statistics and linear algebra are preferred, but not required",
+      "source_sha256": "477287cf1d669f6410dced7a4ac124c1e9f45beca9e237c70aedeffa86bfa387",
+      "source_url": "https://masters.pratt.duke.edu/apply/instructions/",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 Round 1",
+      "date": "2026-11-03",
+      "quote": "Master of Engineering Campus Programs All applicants November 3, 2026 January 19, 2027 March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 Round 2",
+      "date": "2027-01-19",
+      "quote": "Master of Engineering Campus Programs All applicants November 3, 2026 January 19, 2027 March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 Round 3",
+      "date": "2027-03-17",
+      "quote": "Master of Engineering Campus Programs All applicants November 3, 2026 January 19, 2027 March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     },
+     {
+      "label": "Online, Fall 2027 (international applicants needing an F-1 visa)",
+      "date": "2027-03-17",
+      "quote": "Systems Engineering March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering Management",
+   "url": "https://masters.pratt.duke.edu/management/",
+   "snapshot_sha256": "eb8ed0d63ab1360d761c41b72d7a371efaa214cac2f5e396ad7865ef6d9efdd6",
+   "fields": {
+    "academic": {
+     "text": "No minimum GPA, GRE or English test score for MEng/MEM; US bachelor's degree or equivalent from an accredited institution",
+     "quote": "There is no minimum GPA, GRE score or English language test score No work experience is required, except for our 12-month-accelerated Master of Engineering programs Transcript Applicants must hold either a U.S. bachelor’s degree or its equivalent from a regionally accredited institution.",
+     "source_sha256": "477287cf1d669f6410dced7a4ac124c1e9f45beca9e237c70aedeffa86bfa387",
+     "source_url": "https://masters.pratt.duke.edu/apply/instructions/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Calculus I-III or statistics; other math beyond Calculus II; 2 or more courses in engineering, computer science, mathematics or physics",
+      "quote": "Calculus I, Calculus II and Calculus III or Statistic • Other math courses beyond Calculus II • 2 or more courses in engineering, computer science, mathematics, or physics",
+      "source_sha256": "477287cf1d669f6410dced7a4ac124c1e9f45beca9e237c70aedeffa86bfa387",
+      "source_url": "https://masters.pratt.duke.edu/apply/instructions/",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Campus, Fall 2027 Round 1",
+      "date": "2026-11-03",
+      "quote": "Campus Fall 2027 November 3, 2026 January 19, 2027 March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     },
+     {
+      "label": "Campus, Fall 2027 Round 2",
+      "date": "2027-01-19",
+      "quote": "Campus Fall 2027 November 3, 2026 January 19, 2027 March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     },
+     {
+      "label": "Campus, Fall 2027 Round 3",
+      "date": "2027-03-17",
+      "quote": "Campus Fall 2027 November 3, 2026 January 19, 2027 March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering in Design & Technology Innovation",
+   "url": "https://masters.pratt.duke.edu/dti/",
+   "snapshot_sha256": "1d1936553dc751630c87c2aa969eae54e55ceef307039d8ce866155f7d36b742",
+   "fields": {
+    "academic": {
+     "text": "No minimum GPA, GRE or English test score for MEng/MEM; US bachelor's degree or equivalent from an accredited institution",
+     "quote": "There is no minimum GPA, GRE score or English language test score No work experience is required, except for our 12-month-accelerated Master of Engineering programs Transcript Applicants must hold either a U.S. bachelor’s degree or its equivalent from a regionally accredited institution.",
+     "source_sha256": "477287cf1d669f6410dced7a4ac124c1e9f45beca9e237c70aedeffa86bfa387",
+     "source_url": "https://masters.pratt.duke.edu/apply/instructions/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Minimum 1 semester programming, 1 semester calculus, 1 semester physics (lab strongly preferred)",
+      "quote": "A minimum of: • 1 semester of programming (any language) • 1 semester of calculus • 1 semester of physics, with laboratory strongly preferred",
+      "source_sha256": "477287cf1d669f6410dced7a4ac124c1e9f45beca9e237c70aedeffa86bfa387",
+      "source_url": "https://masters.pratt.duke.edu/apply/instructions/",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 Round 1",
+      "date": "2026-11-03",
+      "quote": "Master of Engineering Campus Programs All applicants November 3, 2026 January 19, 2027 March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 Round 2",
+      "date": "2027-01-19",
+      "quote": "Master of Engineering Campus Programs All applicants November 3, 2026 January 19, 2027 March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 Round 3",
+      "date": "2027-03-17",
+      "quote": "Master of Engineering Campus Programs All applicants November 3, 2026 January 19, 2027 March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering in Game Design, Development & Innovation",
+   "url": "https://masters.pratt.duke.edu/gddi/",
+   "snapshot_sha256": "412b17da0b5a20225f44b9d5155714e1da09db61e87fe96f0039e20b0933e13d",
+   "fields": {
+    "academic": {
+     "text": "No minimum GPA, GRE or English test score for MEng/MEM; US bachelor's degree or equivalent from an accredited institution",
+     "quote": "There is no minimum GPA, GRE score or English language test score No work experience is required, except for our 12-month-accelerated Master of Engineering programs Transcript Applicants must hold either a U.S. bachelor’s degree or its equivalent from a regionally accredited institution.",
+     "source_sha256": "477287cf1d669f6410dced7a4ac124c1e9f45beca9e237c70aedeffa86bfa387",
+     "source_url": "https://masters.pratt.duke.edu/apply/instructions/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Undergraduate degrees in a variety of disciplines accepted but coursework in programming required",
+      "quote": "Undergraduate degrees in a variety of disciplines accepted but coursework in programming required",
+      "source_sha256": "477287cf1d669f6410dced7a4ac124c1e9f45beca9e237c70aedeffa86bfa387",
+      "source_url": "https://masters.pratt.duke.edu/apply/instructions/",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 Round 1",
+      "date": "2026-11-03",
+      "quote": "Master of Engineering Campus Programs All applicants November 3, 2026 January 19, 2027 March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 Round 2",
+      "date": "2027-01-19",
+      "quote": "Master of Engineering Campus Programs All applicants November 3, 2026 January 19, 2027 March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 Round 3",
+      "date": "2027-03-17",
+      "quote": "Master of Engineering Campus Programs All applicants November 3, 2026 January 19, 2027 March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering in Photonics & Optical Sciences",
+   "url": "https://masters.pratt.duke.edu/photonics/",
+   "snapshot_sha256": "d0c9bf31ceb33002f9493e1a8d3f1ec124aba70617102e0c997a88d819377c87",
+   "fields": {
+    "academic": {
+     "text": "No minimum GPA, GRE or English test score for MEng/MEM; US bachelor's degree or equivalent from an accredited institution",
+     "quote": "There is no minimum GPA, GRE score or English language test score No work experience is required, except for our 12-month-accelerated Master of Engineering programs Transcript Applicants must hold either a U.S. bachelor’s degree or its equivalent from a regionally accredited institution.",
+     "source_sha256": "477287cf1d669f6410dced7a4ac124c1e9f45beca9e237c70aedeffa86bfa387",
+     "source_url": "https://masters.pratt.duke.edu/apply/instructions/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 Round 1",
+      "date": "2026-11-03",
+      "quote": "Master of Engineering Campus Programs All applicants November 3, 2026 January 19, 2027 March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 Round 2",
+      "date": "2027-01-19",
+      "quote": "Master of Engineering Campus Programs All applicants November 3, 2026 January 19, 2027 March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 Round 3",
+      "date": "2027-03-17",
+      "quote": "Master of Engineering Campus Programs All applicants November 3, 2026 January 19, 2027 March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering in Risk Engineering",
+   "url": "https://cee.duke.edu/academics/masters/meng/risk/",
+   "snapshot_sha256": "2fca7aa6fef39aa371720c27be44761bc4b340d7b50de04013cccd93ba5e83a7",
+   "fields": {
+    "academic": {
+     "text": "No minimum GPA, GRE or English test score for MEng/MEM; US bachelor's degree or equivalent from an accredited institution",
+     "quote": "There is no minimum GPA, GRE score or English language test score No work experience is required, except for our 12-month-accelerated Master of Engineering programs Transcript Applicants must hold either a U.S. bachelor’s degree or its equivalent from a regionally accredited institution.",
+     "source_sha256": "477287cf1d669f6410dced7a4ac124c1e9f45beca9e237c70aedeffa86bfa387",
+     "source_url": "https://masters.pratt.duke.edu/apply/instructions/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Calculus, differential equations, statistics and probability, intro micro/macro economics, programming proficiency",
+      "quote": "Calculus • Differential Equations • Statistics and Probability • Introduction to Micro/Macro Economics • Proficiency in at least one programming language (Python preferred)",
+      "source_sha256": "477287cf1d669f6410dced7a4ac124c1e9f45beca9e237c70aedeffa86bfa387",
+      "source_url": "https://masters.pratt.duke.edu/apply/instructions/",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 Round 1",
+      "date": "2026-11-03",
+      "quote": "Master of Engineering Campus Programs All applicants November 3, 2026 January 19, 2027 March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 Round 2",
+      "date": "2027-01-19",
+      "quote": "Master of Engineering Campus Programs All applicants November 3, 2026 January 19, 2027 March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 Round 3",
+      "date": "2027-03-17",
+      "quote": "Master of Engineering Campus Programs All applicants November 3, 2026 January 19, 2027 March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering in Climate & Sustainability Engineering",
+   "url": "https://cee.duke.edu/academics/masters/meng/climate-sustainability/",
+   "snapshot_sha256": "f4cac73f48a4765da5ec814128f7b7192ab09a9dd37c3244d3c88b76dfc40765",
+   "fields": {
+    "academic": {
+     "text": "No minimum GPA, GRE or English test score for MEng/MEM; US bachelor's degree or equivalent from an accredited institution",
+     "quote": "There is no minimum GPA, GRE score or English language test score No work experience is required, except for our 12-month-accelerated Master of Engineering programs Transcript Applicants must hold either a U.S. bachelor’s degree or its equivalent from a regionally accredited institution.",
+     "source_sha256": "477287cf1d669f6410dced7a4ac124c1e9f45beca9e237c70aedeffa86bfa387",
+     "source_url": "https://masters.pratt.duke.edu/apply/instructions/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Calculus I and II plus statistics or other math beyond Calculus II; 2 courses in engineering, computer science, mathematics or physical sciences",
+      "quote": "1 semester of Calculus I and II and Statistics or other math classes beyond Calculus II • 2 courses in engineering, computer science, mathematics, or physical sciences (though more preferred)",
+      "source_sha256": "477287cf1d669f6410dced7a4ac124c1e9f45beca9e237c70aedeffa86bfa387",
+      "source_url": "https://masters.pratt.duke.edu/apply/instructions/",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 Round 1",
+      "date": "2026-11-03",
+      "quote": "Master of Engineering Campus Programs All applicants November 3, 2026 January 19, 2027 March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 Round 2",
+      "date": "2027-01-19",
+      "quote": "Master of Engineering Campus Programs All applicants November 3, 2026 January 19, 2027 March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 Round 3",
+      "date": "2027-03-17",
+      "quote": "Master of Engineering Campus Programs All applicants November 3, 2026 January 19, 2027 March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering in Computational Mechanics & Scientific Computing",
+   "url": "https://cee.duke.edu/academics/masters/meng/computational-mechanics/",
+   "snapshot_sha256": "2a1eceb241c34f4fb4b7b33d91e58a0e4bf93cd02a486bb7f870acd92a37005f",
+   "fields": {
+    "academic": {
+     "text": "No minimum GPA, GRE or English test score for MEng/MEM; US bachelor's degree or equivalent from an accredited institution",
+     "quote": "There is no minimum GPA, GRE score or English language test score No work experience is required, except for our 12-month-accelerated Master of Engineering programs Transcript Applicants must hold either a U.S. bachelor’s degree or its equivalent from a regionally accredited institution.",
+     "source_sha256": "477287cf1d669f6410dced7a4ac124c1e9f45beca9e237c70aedeffa86bfa387",
+     "source_url": "https://masters.pratt.duke.edu/apply/instructions/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Calculus I and II plus statistics or other math beyond Calculus II; 2 courses in engineering, computer science, mathematics or physical sciences",
+      "quote": "1 semester of Calculus I and II and Statistics or other math classes beyond Calculus II • 2 courses in engineering, computer science, mathematics, or physical sciences (though more preferred)",
+      "source_sha256": "477287cf1d669f6410dced7a4ac124c1e9f45beca9e237c70aedeffa86bfa387",
+      "source_url": "https://masters.pratt.duke.edu/apply/instructions/",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 Round 1",
+      "date": "2026-11-03",
+      "quote": "Master of Engineering Campus Programs All applicants November 3, 2026 January 19, 2027 March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 Round 2",
+      "date": "2027-01-19",
+      "quote": "Master of Engineering Campus Programs All applicants November 3, 2026 January 19, 2027 March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 Round 3",
+      "date": "2027-03-17",
+      "quote": "Master of Engineering Campus Programs All applicants November 3, 2026 January 19, 2027 March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering in Robotics & Autonomy",
+   "url": "https://mems.duke.edu/academics/masters/masters-in-robotics/",
+   "snapshot_sha256": "3fa9ae6f19b5b805bd7b0ca9d8b0a6284d19d18eae9e50594e6188a7e177beeb",
+   "fields": {
+    "academic": {
+     "text": "No minimum GPA, GRE or English test score for MEng/MEM; US bachelor's degree or equivalent from an accredited institution",
+     "quote": "There is no minimum GPA, GRE score or English language test score No work experience is required, except for our 12-month-accelerated Master of Engineering programs Transcript Applicants must hold either a U.S. bachelor’s degree or its equivalent from a regionally accredited institution.",
+     "source_sha256": "477287cf1d669f6410dced7a4ac124c1e9f45beca9e237c70aedeffa86bfa387",
+     "source_url": "https://masters.pratt.duke.edu/apply/instructions/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Multivariable calculus, differential equations, linear algebra, statistics, physics, programming; proficiency in one programming language, CAD/FEA or CFD experience",
+      "quote": "Multivariable Calculus • Differential Equations, Linear Algebra, Statistics/Probability • Physics • Chemistry • Programming or Computer Science • Quantum Mechanics • Proficiency in at least one programming language (Python preferred), experience using CAD/FEA or CFD software, general machine shop skills",
+      "source_sha256": "477287cf1d669f6410dced7a4ac124c1e9f45beca9e237c70aedeffa86bfa387",
+      "source_url": "https://masters.pratt.duke.edu/apply/instructions/",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 Round 1",
+      "date": "2026-11-03",
+      "quote": "Master of Engineering Campus Programs All applicants November 3, 2026 January 19, 2027 March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 Round 2",
+      "date": "2027-01-19",
+      "quote": "Master of Engineering Campus Programs All applicants November 3, 2026 January 19, 2027 March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 Round 3",
+      "date": "2027-03-17",
+      "quote": "Master of Engineering Campus Programs All applicants November 3, 2026 January 19, 2027 March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering in AI + Materials",
+   "url": "https://mems.duke.edu/academics/masters/meng-ai-materials/",
+   "snapshot_sha256": "c7990d179bedc0f9223af21283093e35f45b42240a83ef64d281e453feda96b2",
+   "fields": {
+    "academic": {
+     "text": "No minimum GPA, GRE or English test score for MEng/MEM; US bachelor's degree or equivalent from an accredited institution",
+     "quote": "There is no minimum GPA, GRE score or English language test score No work experience is required, except for our 12-month-accelerated Master of Engineering programs Transcript Applicants must hold either a U.S. bachelor’s degree or its equivalent from a regionally accredited institution.",
+     "source_sha256": "477287cf1d669f6410dced7a4ac124c1e9f45beca9e237c70aedeffa86bfa387",
+     "source_url": "https://masters.pratt.duke.edu/apply/instructions/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Preferred coursework in programming and AI/ML",
+      "quote": "Preferred coursework in programming and AI/ML",
+      "source_sha256": "477287cf1d669f6410dced7a4ac124c1e9f45beca9e237c70aedeffa86bfa387",
+      "source_url": "https://masters.pratt.duke.edu/apply/instructions/",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 Round 1",
+      "date": "2026-11-03",
+      "quote": "Master of Engineering Campus Programs All applicants November 3, 2026 January 19, 2027 March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 Round 2",
+      "date": "2027-01-19",
+      "quote": "Master of Engineering Campus Programs All applicants November 3, 2026 January 19, 2027 March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 Round 3",
+      "date": "2027-03-17",
+      "quote": "Master of Engineering Campus Programs All applicants November 3, 2026 January 19, 2027 March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering in Medical Technology Design",
+   "url": "https://bme.duke.edu/academics/masters/medtech/",
+   "snapshot_sha256": "ee30e4246b8c3d12d665df4aa6e2b85d644336b4896e159b51d435fa71751fd0",
+   "fields": {
+    "academic": {
+     "text": "No minimum GPA, GRE or English test score for MEng/MEM; US bachelor's degree or equivalent from an accredited institution",
+     "quote": "There is no minimum GPA, GRE score or English language test score No work experience is required, except for our 12-month-accelerated Master of Engineering programs Transcript Applicants must hold either a U.S. bachelor’s degree or its equivalent from a regionally accredited institution.",
+     "source_sha256": "477287cf1d669f6410dced7a4ac124c1e9f45beca9e237c70aedeffa86bfa387",
+     "source_url": "https://masters.pratt.duke.edu/apply/instructions/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Multivariable calculus, biology, physics, chemistry",
+      "quote": "Multivariable Calculus • Biology • Physics • Chemistry",
+      "source_sha256": "477287cf1d669f6410dced7a4ac124c1e9f45beca9e237c70aedeffa86bfa387",
+      "source_url": "https://masters.pratt.duke.edu/apply/instructions/",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 Round 1",
+      "date": "2026-11-03",
+      "quote": "Master of Engineering Campus Programs All applicants November 3, 2026 January 19, 2027 March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 Round 2",
+      "date": "2027-01-19",
+      "quote": "Master of Engineering Campus Programs All applicants November 3, 2026 January 19, 2027 March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 Round 3",
+      "date": "2027-03-17",
+      "quote": "Master of Engineering Campus Programs All applicants November 3, 2026 January 19, 2027 March 17, 2027",
+      "source_sha256": "39c32791e09327f8f0a90ca0fc66746bfaef00c06520fa72e8757278f04e7f63",
+      "source_url": "https://masters.pratt.duke.edu/apply/deadlines/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Policy (MPP)",
+   "url": "https://sanford.duke.edu/academics/masters-programs/master-public-policy/",
+   "snapshot_sha256": "5cfeafeaa44bc780bf756d764428c3cb724f777ec081e41c01ab619a5e21b466",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "One course in microeconomics and one in statistics, grade B or higher, before enrolment (may be completed after conditional admission)",
+      "quote": "The MPP program requires admitted students to have completed the following coursework at an accredited college or university with a grade of “B” or higher, prior to enrollment in the program. One course in microeconomics One course in statistics",
+      "check": "ok"
+     },
+     {
+      "text": "Proof of English language proficiency required if native language is not English (no score stated)",
+      "quote": "Proof of English language proficiency is required from applicants whose native language is not English.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of International Development Policy (MIDP)",
+   "url": "https://sanford.duke.edu/academics/masters-programs/master-international-development-policy/",
+   "snapshot_sha256": "759bf736b2cce73f96c8ab9d64b3cb3176b3201cb9023d55ee7bcb6a241c719d",
+   "fields": {
+    "academic": {
+     "text": "At least a 3.0 US GPA (or equivalent) and a bachelor's degree",
+     "quote": "Applicants should have at least a 3.0 U.S. GPA (or equivalent) in college-level coursework and have earned a bachelor’s degree.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "recommended": true,
+     "quote": "Required if English is not your first language. Preferred minimums: Duolingo 115; IELTS 7.0; PTE 64; TOEFL 90/ 4.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "recommended": true,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "Required if English is not your first language. Preferred minimums: Duolingo 115; IELTS 7.0; PTE 64; TOEFL 90/ 4.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Minimum five years of work experience with increasing responsibility",
+      "quote": "Applicants must have a minimum of five years of work experience and demonstrate an increase in responsibilities over time.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of National Security Policy (MNSP, hybrid)",
+   "url": "https://sanford.duke.edu/academics/masters-programs/master-national-security-policy/",
+   "snapshot_sha256": "dd4aa84358bdb1d33e238da999b8608fe7b459fcb5b99214741fe7c6618639a2",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from an accredited institution",
+     "quote": "Applicants must have a bachelor's degree from an accredited institution before applying for the MNSP program.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Environmental Management (MEM)",
+   "url": "https://nicholas.duke.edu/academics/masters-programs/master-environmental-management",
+   "snapshot_sha256": "cd1b3625b6bc0d25a00f44b6635a6b74140538f697ffe2e10ad9d9712e3b9738",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree from an accredited US institution or international equivalent; no minimum GPA",
+     "quote": "A four-year bachelor’s degree from an accredited U.S. institution or the international equivalent is required.",
+     "source_sha256": "d864594e40c9e1febd8c23316d67ffd7df919f6649bcd67db05ac96261ffb39b",
+     "source_url": "https://nicholas.duke.edu/admissions/how-apply",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "min_band": 7.0,
+     "quote": "IELTS minimum overall band score = 7.5 (must receive a minimum of a 7.0 on each individual section)",
+     "source_sha256": "d864594e40c9e1febd8c23316d67ffd7df919f6649bcd67db05ac96261ffb39b",
+     "source_url": "https://nicholas.duke.edu/admissions/how-apply",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT minimum score = 100",
+     "source_sha256": "d864594e40c9e1febd8c23316d67ffd7df919f6649bcd67db05ac96261ffb39b",
+     "source_url": "https://nicholas.duke.edu/admissions/how-apply",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2026-12-15",
+      "quote": "Fall 2027 Admissions Deadline: Dec. 15, 2026",
+      "source_sha256": "cd1b3625b6bc0d25a00f44b6635a6b74140538f697ffe2e10ad9d9712e3b9738",
+      "source_url": "https://nicholas.duke.edu/academics/masters-programs/master-environmental-management",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "At least one college-level semester each of calculus and statistics",
+      "source_sha256": "d864594e40c9e1febd8c23316d67ffd7df919f6649bcd67db05ac96261ffb39b",
+      "quote": "All areas of study within the Master of Environmental Management and the Master of Forestry require at least one college-level semester each of calculus and statistics.",
+      "source_url": "https://nicholas.duke.edu/admissions/how-apply",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Forestry (MF)",
+   "url": "https://nicholas.duke.edu/academics/masters-programs/master-forestry",
+   "snapshot_sha256": "5c4cfbfa411917b3c68474df8a2e8dec91e07794d36bf6afaf0de0c31c159e98",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree from an accredited US institution or international equivalent; no minimum GPA",
+     "quote": "A four-year bachelor’s degree from an accredited U.S. institution or the international equivalent is required.",
+     "source_sha256": "d864594e40c9e1febd8c23316d67ffd7df919f6649bcd67db05ac96261ffb39b",
+     "source_url": "https://nicholas.duke.edu/admissions/how-apply",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "min_band": 7.0,
+     "quote": "IELTS minimum overall band score = 7.5 (must receive a minimum of a 7.0 on each individual section)",
+     "source_sha256": "d864594e40c9e1febd8c23316d67ffd7df919f6649bcd67db05ac96261ffb39b",
+     "source_url": "https://nicholas.duke.edu/admissions/how-apply",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT minimum score = 100",
+     "source_sha256": "d864594e40c9e1febd8c23316d67ffd7df919f6649bcd67db05ac96261ffb39b",
+     "source_url": "https://nicholas.duke.edu/admissions/how-apply",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2026-12-15",
+      "quote": "Fall 2027 Admissions Deadline: Dec. 15, 2026",
+      "source_sha256": "5c4cfbfa411917b3c68474df8a2e8dec91e07794d36bf6afaf0de0c31c159e98",
+      "source_url": "https://nicholas.duke.edu/academics/masters-programs/master-forestry",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "At least one college-level semester each of calculus and statistics",
+      "source_sha256": "d864594e40c9e1febd8c23316d67ffd7df919f6649bcd67db05ac96261ffb39b",
+      "quote": "All areas of study within the Master of Environmental Management and the Master of Forestry require at least one college-level semester each of calculus and statistics.",
+      "source_url": "https://nicholas.duke.edu/admissions/how-apply",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Duke Environmental Leadership MEM (DEL-MEM, hybrid)",
+   "url": "https://nicholas.duke.edu/academics/masters-programs/duke-environmental-leadership-master-environmental-management",
+   "snapshot_sha256": "748dddb3f8991231709effde3614c9d83db5dcdfc5ee691bafcdb2850516ce67",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree from an accredited US institution or international equivalent; no minimum GPA",
+     "quote": "A four-year bachelor’s degree from an accredited U.S. institution or the international equivalent is required.",
+     "source_sha256": "d864594e40c9e1febd8c23316d67ffd7df919f6649bcd67db05ac96261ffb39b",
+     "source_url": "https://nicholas.duke.edu/admissions/how-apply",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "min_band": 7.0,
+     "quote": "IELTS minimum overall band score = 7.5 (must receive a minimum of a 7.0 on each individual section)",
+     "source_sha256": "d864594e40c9e1febd8c23316d67ffd7df919f6649bcd67db05ac96261ffb39b",
+     "source_url": "https://nicholas.duke.edu/admissions/how-apply",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT minimum score = 100",
+     "source_sha256": "d864594e40c9e1febd8c23316d67ffd7df919f6649bcd67db05ac96261ffb39b",
+     "source_url": "https://nicholas.duke.edu/admissions/how-apply",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2026-12-15",
+      "quote": "Fall 2027 Admissions Deadline: Dec. 15, 2026",
+      "source_sha256": "748dddb3f8991231709effde3614c9d83db5dcdfc5ee691bafcdb2850516ce67",
+      "source_url": "https://nicholas.duke.edu/academics/masters-programs/duke-environmental-leadership-master-environmental-management",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Quantitative Management: Business Analytics (MQM:BA)",
+   "url": "https://www.fuqua.duke.edu/programs/mqm-business-analytics",
+   "snapshot_sha256": "48ecc5e1705f4d8f57042e0c451ffc505b359bc5c39b101ff886e6a91aaded49",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in science, technology, engineering, mathematics, business, economics or an equivalent quantitative major",
+     "quote": "You must have earned, or expect to earn, a bachelor's degree in science, technology, engineering, mathematics, business, economics, or an equivalent quantitative major by the start of the program.",
+     "source_sha256": "2834e4cec9b8cc3e2af44786a57581e85e3102442bc60b2d65f34e7f26d5c75f",
+     "source_url": "https://www.fuqua.duke.edu/programs/mqm-business-analytics/application-instructions",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "MINIMUM AND PREFERRED SCORES Test Minimum Score Preferred Score Duolingo English Test 125 135+ TOEFL IBT (1-6 scale) 5 5.5+ TOEFL Exam (0-120 scale) 95 105+ IELTS Academic 7.0 7.5+",
+     "source_sha256": "2834e4cec9b8cc3e2af44786a57581e85e3102442bc60b2d65f34e7f26d5c75f",
+     "source_url": "https://www.fuqua.duke.edu/programs/mqm-business-analytics/application-instructions",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 95,
+     "quote": "MINIMUM AND PREFERRED SCORES Test Minimum Score Preferred Score Duolingo English Test 125 135+ TOEFL IBT (1-6 scale) 5 5.5+ TOEFL Exam (0-120 scale) 95 105+ IELTS Academic 7.0 7.5+",
+     "source_sha256": "2834e4cec9b8cc3e2af44786a57581e85e3102442bc60b2d65f34e7f26d5c75f",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://www.fuqua.duke.edu/programs/mqm-business-analytics/application-instructions",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Round 1 (Fall 2027 intake)",
+      "date": "2026-10-07",
+      "quote": "Application Deadline Interview Decision Sent Decision Release Deposit Deadline Round 1 Oct. 7, 2026",
+      "source_sha256": "36b89446eafd35f5faba17d230ba6468945c3d581359f0ccca16fce9bc7d88cd",
+      "source_url": "https://www.fuqua.duke.edu/programs/mqm-business-analytics/admissions-facts-dates",
+      "check": "ok"
+     },
+     {
+      "label": "Round 2",
+      "date": "2027-01-06",
+      "quote": "Round 2 Jan. 6, 2027",
+      "source_sha256": "36b89446eafd35f5faba17d230ba6468945c3d581359f0ccca16fce9bc7d88cd",
+      "source_url": "https://www.fuqua.duke.edu/programs/mqm-business-analytics/admissions-facts-dates",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3",
+      "date": "2027-03-04",
+      "quote": "Round 3 Mar. 4, 2027",
+      "source_sha256": "36b89446eafd35f5faba17d230ba6468945c3d581359f0ccca16fce9bc7d88cd",
+      "source_url": "https://www.fuqua.duke.edu/programs/mqm-business-analytics/admissions-facts-dates",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Management Studies: Foundations of Business (MMS)",
+   "url": "https://www.fuqua.duke.edu/programs/mms-foundations-of-business",
+   "snapshot_sha256": "6f38e1b60a3c759a533a488569c36e4e5490426533bda2d0a7b5eb7b8c7d492d",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from an accredited college or university by the start of the program; no MBA or equivalent",
+     "quote": "You must have earned, or expect to earn, a bachelor's degree from an accredited college or university by the start of the program. If you already have an MBA or its equivalent, you are not eligible.",
+     "source_sha256": "656575ea36af19230e9a7b6f7d33d57dce8485d3f165f2e1933d2bd07446a7e1",
+     "source_url": "https://www.fuqua.duke.edu/programs/mms-foundations-of-business/application-instructions",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "MINIMUM AND PREFERRED SCORES Test Minimum Score Preferred Score Duolingo English Test 125 135+ TOEFL IBT (1-6 scale) 5 5.5+ TOEFL Exam (0-120 scale) 95 105+ IELTS Academic 7.0 7.5+",
+     "source_sha256": "656575ea36af19230e9a7b6f7d33d57dce8485d3f165f2e1933d2bd07446a7e1",
+     "source_url": "https://www.fuqua.duke.edu/programs/mms-foundations-of-business/application-instructions",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 95,
+     "quote": "MINIMUM AND PREFERRED SCORES Test Minimum Score Preferred Score Duolingo English Test 125 135+ TOEFL IBT (1-6 scale) 5 5.5+ TOEFL Exam (0-120 scale) 95 105+ IELTS Academic 7.0 7.5+",
+     "source_sha256": "656575ea36af19230e9a7b6f7d33d57dce8485d3f165f2e1933d2bd07446a7e1",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://www.fuqua.duke.edu/programs/mms-foundations-of-business/application-instructions",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Round 1 (Fall 2027 intake)",
+      "date": "2026-10-07",
+      "quote": "Application Deadline Interview Decision Sent Decision Release Deposit Deadline Round 1 Oct. 7, 2026",
+      "source_sha256": "cea10e2d8a5847db39ada04147318eaef2d8de5e0ccdc85d50f1d7729e810238",
+      "source_url": "https://www.fuqua.duke.edu/programs/mms-foundations-of-business/admissions-facts-dates",
+      "check": "ok"
+     },
+     {
+      "label": "Round 2",
+      "date": "2027-01-13",
+      "quote": "Round 2 Jan. 13, 2027",
+      "source_sha256": "cea10e2d8a5847db39ada04147318eaef2d8de5e0ccdc85d50f1d7729e810238",
+      "source_url": "https://www.fuqua.duke.edu/programs/mms-foundations-of-business/admissions-facts-dates",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3",
+      "date": "2027-03-04",
+      "quote": "Round 3 Mar. 4, 2027",
+      "source_sha256": "cea10e2d8a5847db39ada04147318eaef2d8de5e0ccdc85d50f1d7729e810238",
+      "source_url": "https://www.fuqua.duke.edu/programs/mms-foundations-of-business/admissions-facts-dates",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Quantitative Management: Business Analytics (online MSQM:BA)",
+   "url": "https://www.fuqua.duke.edu/programs/msqm-business-analytics",
+   "snapshot_sha256": "c538d9c4a0eee03f0f35bf535f7f317f9b924b05bc2fd066e042796c3e73519f",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "Round 1 (2026-2027 application)",
+      "date": "2026-11-04",
+      "quote": "Application and Interview Deadline Decision Deadline Deposit Deadline Round 1 Nov. 4, 2026",
+      "source_sha256": "d903f8996e7b81faba911ca9554ad7c4c6ae9049f246eef8d10ce77e8b426e10",
+      "source_url": "https://www.fuqua.duke.edu/programs/msqm-business-analytics/admissions-facts-dates",
+      "check": "ok"
+     },
+     {
+      "label": "Round 2",
+      "date": "2026-12-02",
+      "quote": "Round 2 Dec. 2, 2026",
+      "source_sha256": "d903f8996e7b81faba911ca9554ad7c4c6ae9049f246eef8d10ce77e8b426e10",
+      "source_url": "https://www.fuqua.duke.edu/programs/msqm-business-analytics/admissions-facts-dates",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3",
+      "date": "2027-01-06",
+      "quote": "Round 3 Jan. 6, 2027",
+      "source_sha256": "d903f8996e7b81faba911ca9554ad7c4c6ae9049f246eef8d10ce77e8b426e10",
+      "source_url": "https://www.fuqua.duke.edu/programs/msqm-business-analytics/admissions-facts-dates",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Quantitative Management: Health Analytics (online MSQM:HA)",
+   "url": "https://www.fuqua.duke.edu/programs/msqm-health-analytics",
+   "snapshot_sha256": "19b606e2566249984a88b9fbf26e72eb488baa9aa5de21b225d02eb980e268a1",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "Round 1 (2026-2027 application)",
+      "date": "2026-11-04",
+      "quote": "Application and Interview Deadline Decision Deadline Deposit Deadline Round 1 Nov. 4, 2026",
+      "source_sha256": "f68b08991e3dc0692248327f6ba348c400f76a1480b2c8825ed3cee024dd9b27",
+      "source_url": "https://www.fuqua.duke.edu/programs/msqm-health-analytics/admissions-facts-dates",
+      "check": "ok"
+     },
+     {
+      "label": "Round 2",
+      "date": "2026-12-02",
+      "quote": "Round 2 Dec. 2, 2026",
+      "source_sha256": "f68b08991e3dc0692248327f6ba348c400f76a1480b2c8825ed3cee024dd9b27",
+      "source_url": "https://www.fuqua.duke.edu/programs/msqm-health-analytics/admissions-facts-dates",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3",
+      "date": "2027-01-06",
+      "quote": "Round 3 Jan. 6, 2027",
+      "source_sha256": "f68b08991e3dc0692248327f6ba348c400f76a1480b2c8825ed3cee024dd9b27",
+      "source_url": "https://www.fuqua.duke.edu/programs/msqm-health-analytics/admissions-facts-dates",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Administration (Daytime MBA)",
+   "url": "https://www.fuqua.duke.edu/programs/daytime-mba",
+   "snapshot_sha256": "615fe386624708288caacd7b9bacf69bb6373db4a9de501e24b14169ecc21af9",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from an accredited college or university; no minimum test score",
+     "quote": "an applicant must have earned, or be in the process of completing, a bachelor’s degree from an accredited college or university. No specific undergraduate major is considered preferable to any other.",
+     "source_sha256": "37b8593c65213a51c669ebf3155ff2f011aa3c9ce7f63d2bea6f729fcc728491",
+     "source_url": "https://www.fuqua.duke.edu/programs/daytime-mba/application-instructions",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Laws (LLM)",
+   "url": "https://law.duke.edu/internat/llm",
+   "snapshot_sha256": "23f2d1078925530fc342a03e542011e0268e79993f6e4694f404dd2d51a4b5ed",
+   "fields": {
+    "academic": {
+     "text": "First degree in law (JD, LLB or equivalent) from an accredited or comparably recognized foreign law school",
+     "quote": "To be eligible for admission to the LLM program, applicants must hold a first degree in law - the JD, LLB, or the equivalent - from an accredited or comparably recognized foreign law school or law faculty program.",
+     "source_sha256": "361fd029b62722821c4a15c9177cd2695264418c78d8e16e0274d9fce6d4010d",
+     "source_url": "https://law.duke.edu/internat/llm/appinformation",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 42,
+  "机器核对": 42,
+  "待人工": 0
+ }
+}

@@ -1,0 +1,2097 @@
+{
+ "school_key": "arizona-state-university",
+ "school_name_en": "Arizona State University",
+ "country": "United States",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://degrees.asu.edu/masters-phd/major-list/letter/all",
+  "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+  "https://admission.asu.edu/apply/graduate/admission"
+ ],
+ "blocked": [],
+ "complete": false,
+ "remaining_urls": [
+  "https://degrees.asu.edu/masters-phd/major/ASU00/GCADVSTMAS/advanced-studies-mas",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LAALDMS/aging-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LAAISCMS/american-indian-studies-cultural-resource-revitalization-and-sust-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LAAISIMS/american-indian-studies-indigenous-rights-and-social-justice-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LAAISTMS/american-indian-studies-tribal-leadership-and-governance-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LAAISVMS/american-indian-studies-visual-and-oral-culture-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LAAISMS/american-indian-studies-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LAAMSTMA/american-studies-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LAAPBAMS/applied-behavior-analysis-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LAAEPMEMA/applied-ethics-and-the-professions-biomedical-and-health-ethics-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LAAEPEETMA/applied-ethics-and-the-professions-ethics-and-emerging-technologies-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LAAEPSEEMA/applied-ethics-and-the-professions-science-technology-and-ethics-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/ARENERGYMS/architecture-energy-perf-climate-responsive-arch-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/ARARCMARCH/architecture-march",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/FAARTEDMA/art-art-education-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/FAARTHISMA/art-art-history-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/FADIGITMFA/art-digital-technology-mfa",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/FAARTMA/art-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/HIARTMFA/art-mfa",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LACHINAMA/asian-languages-civilizations-chinese-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LAJAPANMA/asian-languages-civilizations-japanese-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LAASTPHMS/astrophysics-and-astronomy-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/NHALNEUMS/auditory-and-language-neuroscience-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LABCHMCMS/biochemistry-medicinal-chemistry-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LABIOCHMS/biochemistry-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/ESBDEMS/biological-design-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LABIOSMS/biology-biology-and-society-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LABIOMS/biology-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LWGENOMLLM/biotechnology-and-genomics-llm",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LACHEMMS/chemistry-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LACLEDLMA/classical-liberal-education-and-civic-leadership-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/NHCEPMS/clinical-exercise-physiology-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LACOMDISMS/communication-disorders-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/PPCRDNPMS/community-resources-and-development-nonprofits-and-ngos-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/PPCRDPRMS/community-resources-and-development-parks-and-recreation-management-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/PPCRDSCMS/community-resources-and-development-sustainable-communities-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/PPCRDTMMS/community-resources-and-development-tourism-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/PPRECDTMS/community-resources-and-development-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/FADIGITMM/composition-interdisciplinary-digital-media-mm",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/FAMCOMPMM/composition-mm",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LACLSMS/computational-life-sciences-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LSCOUNSCMC/counseling-school-counseling-mc",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/EDCOUNMC/counseling-mc",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/HICECLMA/creative-enterprise-and-cultural-leadership-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LACWRITMFA/creative-writing-mfa",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/PPCRJMS/criminology-and-criminal-justice-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/FADANDIMFA/dance-interdisciplinary-digital-media-and-performance-mfa",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/FADANCEMFA/dance-mfa",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/ESDSECMDMS/data-science-analytics-and-engineering-computational-mathematics-and-data-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/HIDSCSMSD/design-space-architecture-and-extreme-environments-msd",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/ARVCDMSD/design-visual-communication-design-msd",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/HIDGCMA/digital-culture-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/EDACCTCMA/education-accomplished-teaching-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/EDSPFMA/educational-policy-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LAENEDMA/english-education-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LAENGLMA/english-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/HIEEMS/entertainment-engineering-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LAESDIMS/exploration-systems-design-instrumentation-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LAESDSNMS/exploration-systems-design-sensor-networks-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LAESDSEMS/exploration-systems-design-systems-engineering-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LAFRECLMA/french-comparative-literature-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LAFRELINMA/french-linguistics-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LAFRELITMA/french-literature-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LAWSTMA/gender-women-and-sexuality-studies-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/NHGCOMS/genetic-counseling-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LAGEOEDMAS/geographic-education-mas",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LAGEOGMA/geography-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LAGEOSCMS/geological-sciences-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LAGERMMA/german-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/TBGAMMA/global-affairs-and-management-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LASSHMA/global-health-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/TBGLSXMGLS/global-leadership-and-strategy---executive-mgls",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/TBGLSMGLS/global-leadership-and-strategy-mgls",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/TBGMCIDMGM/global-management-creative-industries-and-design-thinking-mgm",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/TBGMDASMGM/global-management-digital-audience-strategy-mgm",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/TBTGMXMGM/global-management-executive-mgm",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/TBGMGAMGM/global-management-global-affairs-mgm",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/TBGMGBMGM/global-management-global-business-mgm",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/TBGMGDIMGM/global-management-global-development-and-innovation-mgm",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/TBGMGDTMGM/global-management-global-digital-transformation-mgm",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/TBGMGEMGM/global-management-global-entrepreneurship-mgm",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/TBGMGHDMGM/global-management-global-health-care-delivery-mgm",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/TBTGMHCMGM/global-management-global-health-care-innovation-mgm",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/TBGMGLSMGM/global-management-global-legal-studies-mgm",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/TBGMNLMGM/global-management-nonprofit-leadership-and-management-mgm",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/TBGMPAMGM/global-management-public-administration-mgm",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/TBGMPPMGM/global-management-public-policy-mgm",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/TBGMSTMGM/global-management-sustainable-tourism-mgm",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/TBGMSBPMGM/global-management---executive-space-leadership-business-and-policy-mgm",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/TBTGMMGM/global-management-mgm",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/NHSHCDMS/health-care-administration-and-policy-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/NUHCSMS/health-care-simulation-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/ARHHEMSD/healthcare-and-healing-environments-msd",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/EDPOSTMED/higher-and-postsecondary-education-med",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LAHISTMA/history-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LWHREMHREL/human-resources-and-employment-law-mhrel",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/HIIPDMS/indigenous-placekeeping-and-design-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/HIINDMID/industrial-design-mid",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/ARINDDEMSD/industrial-design-msd",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LACDEMAS/infant---family-practice-mas",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/ESIMPCTMS/innovations-in-medical-and-patient-care-technologies-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/HIIAMIA/interior-architecture-mia",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/ARINTDEMSD/interior-design-msd",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/CSINVJOUMA/investigative-journalism-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/CSJRNMA/journalism-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LAJUSSTMS/justice-studies-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/ARLDEMLA/landscape-architecture-mla",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LALANTCHMA/language-teaching-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LAWLGLPLLM/laws-global-legal-studies-llm",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LAWLAWSLLM/laws-llm",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/EDPSYCHMA/learning-sciences-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LWLGSMLEGS/legal-studies-mls",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LAMLSMLS/liberal-studies-mlst",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LALINMA/linguistics-and-applied-linguistics-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/BAMCCMS/management-in-china-corporate-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LAMFTMAS/marriage-and-family-therapy-mas",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/CSMCOMMMC/mass-communication-mmc",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LAMATHMA/mathematics-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/HIDGCMS/media-arts-and-sciences-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/CSMRTMS/media-research-and-technology-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LAMICROMS/microbiology-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LACELLMS/molecular-and-cellular-biology-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LAMUSSTMA/museum-studies-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/FAETHNMA/music-ethnomusicology-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/FAMHISTMA/music-musicology-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/FAMUSEDMM/music-learning-and-teaching-mm",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/FAPERF3MM/music-performance-mm",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/FAMTHERMM/music-therapy-mm",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LANATSCIMN/natural-science-earth-and-space-sciences-mns",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LABMENMS/neuroscience-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/PPNPSMNS/nonprofit-leadership-and-management-mnlm",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/NUNRENPRMS/nursing-entry-to-nursing-practice-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/NUNURSEDMS/nursing-nursing-education-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/NUNURDTMS/nursing-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/ECHNUTMS/nutritional-science-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LSORGLMS/organizational-leadership-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/FACPIANOMM/performance-collaborative-piano-mm",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/HIPERCOMM/performance-conducting-mm",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/FAPPEDMM/performance-performance-pedagogy-mm",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/FAMUTPOMM/performance-voice-music-theatre-opera-mm",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LAPHILMA/philosophy-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LAPHYSMNS/physics-mns",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LAPHYSIMS/physics-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LAPLBIOMS/plant-biology-and-conservation-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LAPOLSCMA/political-science-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/NHPOPHLMS/population-health-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/PPPAFEMPA/public-administration-emergency-management-mpa",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/PPNONPRMPA/public-administration-nonprofit-administration-mpa",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/PPPAFPMPA/public-administration-public-finance-mpa",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/PPPAFUMPA/public-administration-urban-management-mpa",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/PPPADTMPA/public-administration-mpa",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/THPHPHTMPH/public-health-public-health-technology-mph",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/THPHTMS/public-health-technology-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/PPPUPEPMPP/public-policy-environmental-policy-mpp",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/PPPUPPIMPP/public-policy-policy-informatics-mpp",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/PPPUBPMPP/public-policy-mpp",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/NURSHSMS/regulatory-science-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LARELIGMA/religious-studies-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/CSSCOMMA/science-communication-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/PPAPDTMSW/social-work---advanced-standing---direct-practice-msw",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/PPSWDMSW/social-work---standard-program-msw",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LASCPMA/social-and-cultural-pedagogy-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LASPANMA/spanish-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/EDSPEDMA/special-education-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/CSSPJMA/sports-journalism-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LWSLBMSLB/sports-law-and-business-mslb",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/CSSPSTCOMA/sports-strategic-communication-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/CSSTRCHEMA/strategic-communication-health-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/CSSTRCOMMA/strategic-communication-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/NHSTRCDMS/strength-and-conditioning-ms",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LAENGMTESL/teaching-english-to-speakers-of-other-languages-mtesol",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/FADIRMFA/theatre-directing-mfa",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/FADRWRTMFA/theatre-dramatic-writing-mfa",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/FATHEADMFA/theatre-interdisciplinary-digital-media-mfa",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/FAPERFMFA/theatre-performance-mfa",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/FAYOUTHMFA/theatre-theatre-for-youth-and-community-mfa",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/FATHEAMA/theatre-ma",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LATCLMAS/transborder-studies-mas",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/LWTBLMLAWS/tribal-policy-law-and-government-llm",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/ARMUDMUD/urban-design-mud",
+  "https://degrees.asu.edu/masters-phd/major/ASU00/HIVCDMVCD/visual-communication-design-mvcd"
+ ],
+ "notes": "On-campus Tempe/Downtown master's in computing, engineering, analytics, business, statistics and sustainability. Deadlines on Degree Search give day and month only (no year), so none were recorded. The China credential page is a dynamic country filter with no percentage minimums, so china_requirement is omitted. Programmes whose page names no English score cite the Graduate admission English page (TOEFL 80 / new scale 4, IELTS 6.5). Arts, education, health, nursing, law, journalism and most other fields were not collected.",
+ "programs": [
+  {
+   "name": "Accountancy and Data Analytics, MACC",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/BAACCMACC/accountancy-and-data-analytics-macc",
+   "snapshot_sha256": "21da18275d296807534a1ebc0765a82697bd1887e63908eba03478ecf8461c7c",
+   "fields": {
+    "academic": {
+     "text": "minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "For exams taken before January 21, 2026: Minimum score of 80. For exams taken on or after January 21, 2026: Minimum score of 4.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Overall band score on the academic test of at least 6.5.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Applicants must have a foundational knowledge of accounting principles demonstrated by either a bachelor's degree in accountancy or proficiency achieved through an approved bridge or boot camp.",
+      "quote": "Applicants must have a foundational knowledge of accounting principles demonstrated by either a bachelor's degree in accountancy or proficiency achieved through an approved bridge or boot camp.",
+      "check": "ok"
+     },
+     {
+      "text": "Applicants must complete program prerequisites before admission to the program. Graduate-level accounting courses are open only to students admitted to the graduate program.",
+      "quote": "Applicants must complete program prerequisites before admission to the program. Graduate-level accounting courses are open only to students admitted to the graduate program.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Actuarial Science, MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/LAACTMS/actuarial-science-ms",
+   "snapshot_sha256": "de0558a1561e83db86b116f5215d29825d24f2ce4976cf6764de4b7b5228db1e",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's degree (or equivalent) or master's degree from a regionally accredited college or university in a related field, such as mathematics, statistics, business, economics or predictive analytics; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's degree (or equivalent) or master's degree from a regionally accredited college or university in a related field, such as mathematics, statistics, business, economics or predictive analytics. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "For exams taken before January 21, 2026: Minimum score of 80. For exams taken on or after January 21, 2026: Minimum score of 4.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Overall band score on the academic test of at least 6.5.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Applicants should have completed the following courses with a \"B\" or better (scale is 4.00 = \"A\"). ASU equivalents are given in parentheses. Courses may be substituted with approval of the academic unit:",
+      "quote": "Applicants should have completed the following courses with a \"B\" or better (scale is 4.00 = \"A\"). ASU equivalents are given in parentheses. Courses may be substituted with approval of the academic unit:",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Aerospace Engineering, MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESAEROSPMS/aerospace-engineering-ms",
+   "snapshot_sha256": "59e14122b5ee45cb9da97124166ff6b8c7c44172d7029b288a93c602f9244b8b",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS, 60 on the Pearson Test of English (PTE), or 105 on the Duolingo English test.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS, 60 on the Pearson Test of English (PTE), or 105 on the Duolingo English test.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Artificial Intelligence Engineering (Aerospace Engineering), MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESAIEAEMS/artificial-intelligence-engineering-aerospace-engineering-ms",
+   "snapshot_sha256": "ad163e0a2ce6176522110d7d3b8dcc1aeca9898738e6c49b1a864137d3274aca",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics or a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS, 60 on the Pearson Test of English (PTE), or 105 on the Duolingo English test.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS, 60 on the Pearson Test of English (PTE), or 105 on the Duolingo English test.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Artificial Intelligence Engineering (Chemical Engineering), MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESAIECEMS/artificial-intelligence-engineering-chemical-engineering-ms",
+   "snapshot_sha256": "5c9e51361ebf59c3fe54d18de14d362e2e6310410ef4c0f06c570c45bfaab3b8",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics or a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = ''A'') in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = ''A'') in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS or 105 on the Duolingo English test.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS or 105 on the Duolingo English test.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Artificial Intelligence Engineering (Electrical Engineering), MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESAIEEEMS/artificial-intelligence-engineering-electrical-engineering-ms",
+   "snapshot_sha256": "1894e3c2aa1d18fd2d3edd2bae7cae5f80b3acfd1a705d35b73d9fae42fedbbf",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics, operations research, information technology or a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics, operations research, information technology or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT)®, or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT)®, or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Artificial Intelligence Engineering (Intelligent Biomedical Systems Engineering), MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESAIEBSEMS/artificial-intelligence-engineering-intelligent-biomedical-systems-engineering-ms",
+   "snapshot_sha256": "8c72c34ad334af86cf7224f6f8a657481ed2ef9091ac96dd9be97947cf845158",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics, biomedical or a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics, biomedical or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT)®, or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT)®, or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Artificial Intelligence Engineering (Materials Science and Engineering), MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESAIEMSEMS/artificial-intelligence-engineering-materials-science-and-engineering-ms",
+   "snapshot_sha256": "f7e027485a9e494e7f9ebc4770b47bc131e847a9faf66771f0e05b08c061648b",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics, materials science or a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics, materials science or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of a student's first bachelor's degree program, or applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS or 105 on the Duolingo English test.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS or 105 on the Duolingo English test.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Artificial Intelligence Engineering (Mechanical Engineering), MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESAIEMEMS/artificial-intelligence-engineering-mechanical-engineering-ms",
+   "snapshot_sha256": "d3df5af0b4fc770e8744379a6f8c0dc64248c1c1de3cf3fab7af3c7163cf326c",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics, operations research, information technology or a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics, operations research, information technology or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS, 60 on the Pearson Test of English (PTE), or 105 on the Duolingo English test.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS, 60 on the Pearson Test of English (PTE), or 105 on the Duolingo English test.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Artificial Intelligence Engineering (Operations and Decision Science), MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESAIEODSMS/artificial-intelligence-engineering-operations-and-decision-science-ms",
+   "snapshot_sha256": "f9b0510a2fff0c56bd44e84a243c249cf523292dd9489bb5c5e6636176ed00f7",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics, operations research, information technology or a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics, operations research, information technology or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT)®, or a score of 80 if taken before January 21, 2026, in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT)®, or a score of 80 if taken before January 21, 2026, in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Artificial Intelligence Engineering (Sustainable Engineering and Built Environment), MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESAIESUBMS/artificial-intelligence-engineering-sustainable-engineering-and-built-environment-ms",
+   "snapshot_sha256": "8929237563c7d95a5de12b25d2ba51c513467e59dd49fb09bb289579980a225c",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics, construction, transportation or a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics, construction, transportation or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL® (iBT) or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL® (iBT) or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Artificial Intelligence in Business, MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/BAAIBMS/artificial-intelligence-in-business-ms",
+   "snapshot_sha256": "86a16c1aa0bdeb683fba2e5faf76c41cc2f53fdfe4f26a9bab1c015eaae561f8",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in business or a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in business or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "For exams taken before January 21, 2026: Minimum score of 80. For exams taken on or after January 21, 2026: Minimum score of 4.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Overall band score on the academic test of at least 6.5.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Artificial Intelligence, MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESAIMS/artificial-intelligence-ms",
+   "snapshot_sha256": "eea8a7654ab16f63c8be1af0d4362e4a06a24d7e020be9e3e1c8b7b875e2a302",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in computational biology, computer engineering, computer science, electrical and electronics engineering, math, mechanical engineering, software engineering or a related field from a regionally accredited institution; minimum cumulative GPA 3.25 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in computational biology, computer engineering, computer science, electrical and electronics engineering, math, mechanical engineering, software engineering or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.25 (scale is 4.00 = ''A'') in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.25 (scale is 4.00 = ''A'') in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "An applicant whose native language is not English must demonstrate proficiency in the English language with a TOEFL iBT® score of 4.5, or 90 if taken before January 21, 2026 in a testing center; 7 on the IELTS; or 115 on the Duolingo English test, regardless of current residency.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "An applicant whose native language is not English must demonstrate proficiency in the English language with a TOEFL iBT® score of 4.5, or 90 if taken before January 21, 2026 in a testing center; 7 on the IELTS; or 115 on the Duolingo English test, regardless of current residency.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Applicants are expected to have foundational coursework in the following topics:",
+      "quote": "Applicants are expected to have foundational coursework in the following topics:",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Biomedical Engineering, MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESBIOENMS/biomedical-engineering-ms",
+   "snapshot_sha256": "97c5d568cb5e27eb5a941d7d26bdda8944ece5265d92e7deab156f4a350df5c0",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in any field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants must have earned a bachelor's or master's degree in any field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "For exams taken before January 21, 2026: Minimum score of 80. For exams taken on or after January 21, 2026: Minimum score of 4.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Overall band score on the academic test of at least 6.5.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Biomedical Informatics and Data Science, MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESBIOINFMS/biomedical-informatics-and-data-science-ms",
+   "snapshot_sha256": "955d70f6fb8c4ee30c27df9d44bdc396a79e708c649e1548e2efbe7684f58890",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in biology, computer science, engineering, nursing or statistics from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in biology, computer science, engineering, nursing or statistics from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "For exams taken before January 21, 2026: Minimum score of 80. For exams taken on or after January 21, 2026: Minimum score of 4.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Overall band score on the academic test of at least 6.5.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "All applicants must have basic competencies in general biology (BIO 181 or equivalent), statistics (HCD 300 or STP 226 or equivalent) and computer programming (BMI 110 or CSE 110 or equivalent).",
+      "quote": "All applicants must have basic competencies in general biology (BIO 181 or equivalent), statistics (HCD 300 or STP 226 or equivalent) and computer programming (BMI 110 or CSE 110 or equivalent).",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Biostatistics, MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/NHBSTMS/biostatistics-ms",
+   "snapshot_sha256": "dd39fb11b1859950cc71cc8fea8457d110498b555d90c7ddb73721ce6a05cffa",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in biomedical informatics, demography, mathematics, public or population health, social sciences, or statistics from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants must have earned a bachelor's or master's degree in biomedical informatics, demography, mathematics, public or population health, social sciences, or statistics from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "For exams taken before January 21, 2026: Minimum score of 80. For exams taken on or after January 21, 2026: Minimum score of 4.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Overall band score on the academic test of at least 6.5.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "All applicants should have completed and passed an undergraduate statistics course (e.g., HCD 300, STP 226, ECN 221 or PSY 230), a linear algebra course (e.g., MAT 242, MAT 342 or MAT 343), and a calculus course (e.g. MAT 210, MAT 251 or MAT 270) before admission. If the requisite coursework is n...",
+      "quote": "All applicants should have completed and passed an undergraduate statistics course (e.g., HCD 300, STP 226, ECN 221 or PSY 230), a linear algebra course (e.g., MAT 242, MAT 342 or MAT 343), and a calculus course (e.g. MAT 210, MAT 251 or MAT 270) before admission. If the requisite coursework is not completed before admission, it must be completed before matriculating.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Business Analytics, MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/BABUSANMS/business-analytics-ms",
+   "snapshot_sha256": "0ee0aad337940e9778530d1622f8daeed766db0dc738cbe23c46645492d738d9",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants must have earned a bachelor's or master's degree from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "For exams taken before January 21, 2026: Minimum score of 80. For exams taken on or after January 21, 2026: Minimum score of 4.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Overall band score on the academic test of at least 6.5.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Chemical Engineering, MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESCHEMEMS/chemical-engineering-ms",
+   "snapshot_sha256": "b0d746b991b71b4767bcb33c7b66892d8ea1d8f3b56c50d94b94a73a09bf28b0",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants must have earned a bachelor's or master's degree from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS or 105 on the Duolingo English test.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS or 105 on the Duolingo English test.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Civil, Environmental and Sustainable Engineering, MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESCIVILMS/civil-environmental-and-sustainable-engineering-ms",
+   "snapshot_sha256": "5eeb0844bc595d281d7bf6e45be1a0765d89cd963425decf9b787ca20a70c2c9",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree with a major in engineering or a closely related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants must have earned a bachelor's or master's degree with a major in engineering or a closely related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program. Applicants with a lower GPA may be admitted provisionally at the discretion of the admission committee.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "For exams taken before January 21, 2026: Minimum score of 80. For exams taken on or after January 21, 2026: Minimum score of 4.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Overall band score on the academic test of at least 6.5.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Complex Systems Science, MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/GFCMPXSSMS/complex-systems-science-ms",
+   "snapshot_sha256": "f3c74d13267f0a396d9a9d90c471328cdcf53783ca633082d4b94cc8efb808c0",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants must have earned a bachelor's or master's degree from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "For exams taken before January 21, 2026: Minimum score of 80. For exams taken on or after January 21, 2026: Minimum score of 4.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Overall band score on the academic test of at least 6.5.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Computer Engineering (Computer Systems), MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESCENCMS/computer-engineering-computer-systems-ms",
+   "snapshot_sha256": "163399002a9e98af9cfe8609123755079be87c81bc4330fbfed8e51c2bfb7949",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's degree or equivalent or a master's degree from a regionally accredited college or university of recognized standing in a related field such as computer engineering, computer science, computer systems engineering or electrical engineering; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's degree or equivalent or a master's degree from a regionally accredited college or university of recognized standing in a related field such as computer engineering, computer science, computer systems engineering or electrical engineering. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT)®, or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT)®, or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Computer Engineering (Electrical Engineering), MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESCENEMS/computer-engineering-electrical-engineering-ms",
+   "snapshot_sha256": "f76fc79663c9819d4d313b3e916f8cc9bd037e5ae04aedaa0fd99868c4c42923",
+   "fields": {
+    "academic": {
+     "text": "minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT)®, or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT)®, or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Computer Science (Artificial Intelligence), MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESCSEAIMS/computer-science-artificial-intelligence-ms",
+   "snapshot_sha256": "071761ed0094b289e963e7199ef4e9b892a8a20494b72ca4160217a0a49f81d2",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in computer science, software engineering, STEM-related programs or a related field from a regionally accredited institution; minimum cumulative GPA 3.25 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in computer science, software engineering, STEM-related programs or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.25 (scale is 4.00 = ''A'') in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = ''A'') in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT)®, or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT)®, or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Before applying to the MS program in computer science, students are required to have completed two semesters or six credit hours of calculus, equivalent to Calculus I and II. Discrete math is also recommended prior to admission.",
+      "quote": "Before applying to the MS program in computer science, students are required to have completed two semesters or six credit hours of calculus, equivalent to Calculus I and II. Discrete math is also recommended prior to admission.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Computer Science (Big Data Systems), MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESCSEBDMS/computer-science-big-data-systems-ms",
+   "snapshot_sha256": "ee738db62a95ee986d5d18e0eeea46d647a0aefe3ea8e5a4dcb97e9d9dedf8a5",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree from a regionally accredited institution; minimum cumulative GPA 3.25 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.25 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.25 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "An applicant whose native language is not English must demonstrate proficiency in the English language with a TOEFL iBT® score of 4.5, or 90 (taken at a testing center) if taken before January 21, 2026; 7 on the IELTS; or 115 on the Duolingo English test, regardless of current residency.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "An applicant whose native language is not English must demonstrate proficiency in the English language with a TOEFL iBT® score of 4.5, or 90 (taken at a testing center) if taken before January 21, 2026; 7 on the IELTS; or 115 on the Duolingo English test, regardless of current residency.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Before applying to the program, students are required to have completed two semesters or six credit hours of calculus, equivalent to Calculus I and II, with a grade of \"C\" (scale is 4.00 = \"A\") or higher. It is also recommended that students complete a discrete math course before admission.",
+      "quote": "Before applying to the program, students are required to have completed two semesters or six credit hours of calculus, equivalent to Calculus I and II, with a grade of \"C\" (scale is 4.00 = \"A\") or higher. It is also recommended that students complete a discrete math course before admission.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Computer Science (Biomedical Informatics), MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESCSBIOIMS/computer-science-biomedical-informatics-ms",
+   "snapshot_sha256": "bdb539f000b5c2157eff55a454a9dfc6ee8769ecf528d42f120d90c3e02de4d2",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in computer science, computer engineering or a closely related area; minimum cumulative GPA 3.25 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in computer science, computer engineering or a closely related area. Applicants must have a minimum cumulative GPA of 3.25 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.25 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "An applicant whose native language is not English must demonstrate proficiency in the English language with a TOEFL iBT® score of 4.5, or 90 (taken at a testing center) if taken before January 21, 2026; 7 on the IELTS or 115 on the Duolingo English test, regardless of current residency.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "An applicant whose native language is not English must demonstrate proficiency in the English language with a TOEFL iBT® score of 4.5, or 90 (taken at a testing center) if taken before January 21, 2026; 7 on the IELTS or 115 on the Duolingo English test, regardless of current residency.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Before applying to the program, students must have completed two semesters or six credit hours of calculus, equivalent to Calculus I and II, with a \"C\" (scale is 4.00 = \"A\") or higher. Discrete math is also recommended before admission.",
+      "quote": "Before applying to the program, students must have completed two semesters or six credit hours of calculus, equivalent to Calculus I and II, with a \"C\" (scale is 4.00 = \"A\") or higher. Discrete math is also recommended before admission.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Computer Science (Cybersecurity), MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESCSEIAMS/computer-science-cybersecurity-ms",
+   "snapshot_sha256": "ad5e7c3efe2fc6103ef90682f3c86bc5eb9d51c88b80dc0837124925d107671d",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in computer science, computer engineering or a closely related area from a regionally accredited institution; minimum cumulative GPA 3.25 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants are eligible to apply for the program if they have earned a bachelor's or master's degree in computer science, computer engineering or a closely related area from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.25 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.25 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "An applicant whose native language is not English must demonstrate proficiency in the English language with a TOEFL iBT® score of 4.5, or 90 (taken at a testing center) if taken before January 21, 2026; 7 on the IELTS; or 115 on the Duolingo English test, regardless of current residency.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "An applicant whose native language is not English must demonstrate proficiency in the English language with a TOEFL iBT® score of 4.5, or 90 (taken at a testing center) if taken before January 21, 2026; 7 on the IELTS; or 115 on the Duolingo English test, regardless of current residency.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Before applying to the program, students must have completed two semesters or six credit hours of calculus, equivalent to Calculus I and II, with a grade of \"C\" (scale is 4.00 = \"A\") or higher. It is also recommended that students complete a discrete math course before admission.",
+      "quote": "Before applying to the program, students must have completed two semesters or six credit hours of calculus, equivalent to Calculus I and II, with a grade of \"C\" (scale is 4.00 = \"A\") or higher. It is also recommended that students complete a discrete math course before admission.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Computer Science (Media Arts and Sciences), MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESAMECSMS/computer-science-media-arts-and-sciences-ms",
+   "snapshot_sha256": "fa2a01d7e93a31032122eb39440534642a82bf2d96c955adb84fcd498a5db632",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in computer science, computer engineering or a closely related field from a regionally accredited institution; minimum cumulative GPA 3.25 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in computer science, computer engineering or a closely related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.25 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.25 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "An applicant whose native language is not English must demonstrate proficiency in the English language with a TOEFL iBT® score of 4.5, or 90 (taken at a testing center) if taken before January 21, 2026; 7 on the IELTS; or 115 on the Duolingo English test, regardless of current residency.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "An applicant whose native language is not English must demonstrate proficiency in the English language with a TOEFL iBT® score of 4.5, or 90 (taken at a testing center) if taken before January 21, 2026; 7 on the IELTS; or 115 on the Duolingo English test, regardless of current residency.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Before applying to the MS program, students are required to have completed two semesters or six credit hours of calculus, equivalent to Calculus I and II, with a grade of \"C\" (scale is 4.00 = \"A\") or higher. Completion of a discrete math course is also recommended before admission.",
+      "quote": "Before applying to the MS program, students are required to have completed two semesters or six credit hours of calculus, equivalent to Calculus I and II, with a grade of \"C\" (scale is 4.00 = \"A\") or higher. Completion of a discrete math course is also recommended before admission.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Computer Science, MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESCOMSCMS/computer-science-ms",
+   "snapshot_sha256": "fd6fa92db90c9447cf15a9164c126201a32e60dd429f3961c96c43034ebe6bb8",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in computer science, computer engineering or a closely related area from a regionally accredited institution; minimum cumulative GPA 3.25 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in computer science, computer engineering or a closely related area from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.25 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.25 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "For exams taken before January 21, 2026: Minimum score of 80. For exams taken on or after January 21, 2026: Minimum score of 4.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Overall band score on the academic test of at least 6.5.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Before applying to the program, students must have completed two semesters or six credit hours of calculus, equivalent to Calculus I and II. Completion of a discrete math course is also recommended before admission.",
+      "quote": "Before applying to the program, students must have completed two semesters or six credit hours of calculus, equivalent to Calculus I and II. Completion of a discrete math course is also recommended before admission.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Construction Engineering, MSE",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESCONEMSE/construction-engineering-mse",
+   "snapshot_sha256": "5df0190c659b3550c079eabafd3c57916c11624bb3a6885ae64defc5f961ae35",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in engineering or other closely related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in engineering or other closely related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "For exams taken before January 21, 2026: Minimum score of 80. For exams taken on or after January 21, 2026: Minimum score of 4.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Overall band score on the academic test of at least 6.5.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Construction Management and Technology, MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESCONSTMS/construction-management-and-technology-ms",
+   "snapshot_sha256": "f0dea74fa5a5e1a7b45629d0f5a382a6c366bc6dc0fe06208949526eb5a20f4b",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants must have earned a bachelor's or master's degree from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "For exams taken before January 21, 2026: Minimum score of 80. For exams taken on or after January 21, 2026: Minimum score of 4.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Overall band score on the academic test of at least 6.5.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Data Science, Analytics and Engineering (Bayesian Machine Learning), MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESDSEBMLMS/data-science-analytics-and-engineering-bayesian-machine-learning-ms",
+   "snapshot_sha256": "6803a025f4664b2e669c7b7140ea956184f90b96cfed7b70aa7e351e47e9ad90",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics, operations research, information technology or a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics, operations research, information technology or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS or 105 on the Duolingo English test.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS or 105 on the Duolingo English test.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Data Science, Analytics and Engineering (Computing and Decision Analytics), MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESDSECDAMS/data-science-analytics-and-engineering-computing-and-decision-analytics-ms",
+   "snapshot_sha256": "dd8c3d3dc3fc2838c55054dcd176dc31bcf90717679c03916bb920d469444bdd",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics, operations research, information technology or a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics, operations research, information technology or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT)®, or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT)®, or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Before applying to the MS program, students are required to have completed three semesters or nine credit hours of Calculus I, II and III, and it is recommended that students complete a discrete mathematics course.",
+      "quote": "Before applying to the MS program, students are required to have completed three semesters or nine credit hours of Calculus I, II and III, and it is recommended that students complete a discrete mathematics course.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Data Science, Analytics and Engineering (Electrical Engineering), MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESDSEEEMS/data-science-analytics-and-engineering-electrical-engineering-ms",
+   "snapshot_sha256": "4de07ab20cd3ae11de3d7d30b0aad8eb350a76e7046ab48ea1a10487ef8aad5e",
+   "fields": {
+    "academic": {
+     "text": "minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of their current residency by scoring at least 4 on the Internet-based TOEFL iBT® or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS or 105 on the Duolingo English test.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of their current residency by scoring at least 4 on the Internet-based TOEFL iBT® or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS or 105 on the Duolingo English test.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Data Science, Analytics and Engineering (Materials Science and Engineering), MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESDSEMSEMS/data-science-analytics-and-engineering-materials-science-and-engineering-ms",
+   "snapshot_sha256": "3e12b1b3fc47aba6edfa86ac69583034ead791115783be3e6af8939942bb32d6",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics, operations research, information technology or a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants must have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics, operations research, information technology or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = ''A'') in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = ''A'') in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS, 60 on the Pearson Test of English (PTE), or 105 on the Duolingo English test.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS, 60 on the Pearson Test of English (PTE), or 105 on the Duolingo English test.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Data Science, Analytics and Engineering (Mechanical and Aerospace Engineering), MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESDSEMAEMS/data-science-analytics-and-engineering-mechanical-and-aerospace-engineering-ms",
+   "snapshot_sha256": "9a2ca1573c01abd093c17130a9884b4cbfccca3fe014cb85dafbce46a95b33e8",
+   "fields": {
+    "academic": {
+     "text": "minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = ''A'') in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = ''A'') in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS, 60 on the Pearson Test of English (PTE), or 105 on the Duolingo English test.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS, 60 on the Pearson Test of English (PTE), or 105 on the Duolingo English test.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Data Science, Analytics and Engineering (Sustainable Engineering and Built Environment), MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESDSESEBMS/data-science-analytics-and-engineering-sustainable-engineering-and-built-environment-ms",
+   "snapshot_sha256": "b049923eba0ac037f0f457b1a3ccb8435810d303a66b0dca7cf69968d84fa64f",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics, operations research, information technology or a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants must have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics, operations research, information technology or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS or 105 on the Duolingo English test.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS or 105 on the Duolingo English test.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Economics, MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/BAECONMS/economics-ms",
+   "snapshot_sha256": "1de57f794f7d37f3bb8da54cc97ea36cc98ca86007802a7fff8f118bb57835f4",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants must have earned a bachelor's or master's degree in a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "For exams taken before January 21, 2026: Minimum score of 80. For exams taken on or after January 21, 2026: Minimum score of 4.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Overall band score on the academic test of at least 6.5.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Electrical Engineering (Media Arts and Sciences), MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESAMEMS/electrical-engineering-media-arts-and-sciences-ms",
+   "snapshot_sha256": "642f0a7ba205cad85b68ae0ad4d957e1f0be83d058e7a35ca26b76b5668ef26b",
+   "fields": {
+    "academic": {
+     "text": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in any field from a regionally accredited institution.",
+     "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in any field from a regionally accredited institution.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "For exams taken before January 21, 2026: Minimum score of 80. For exams taken on or after January 21, 2026: Minimum score of 4.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Overall band score on the academic test of at least 6.5.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Electrical Engineering, MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESEEMS/electrical-engineering-ms",
+   "snapshot_sha256": "80a36c8c16da76a1e2590e998870ab7ee680dd888f0d8cdd29c27400c7fd7b29",
+   "fields": {
+    "academic": {
+     "text": "minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "For exams taken before January 21, 2026: Minimum score of 80. For exams taken on or after January 21, 2026: Minimum score of 4.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Overall band score on the academic test of at least 6.5.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Electrical Engineering, MSE",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESEEMSE/electrical-engineering-mse",
+   "snapshot_sha256": "2a0e2f85dd4aaab81752445321546fb50735334ac02307aa8be672281adee057",
+   "fields": {
+    "academic": {
+     "text": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in any field from a regionally accredited institution.",
+     "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in any field from a regionally accredited institution.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "For exams taken before January 21, 2026: Minimum score of 80. For exams taken on or after January 21, 2026: Minimum score of 4.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Overall band score on the academic test of at least 6.5.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Entrepreneurship and Innovation, MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/HIIVDMS/entrepreneurship-and-innovation-ms",
+   "snapshot_sha256": "14f38cb91c926e2b2d9f8c3ae637b83ca22c0a207dfc0def5469cb1e05fcdef2",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in business, design, engineering or a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants must have earned a bachelor's or master's degree in business, design, engineering or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "For exams taken before January 21, 2026: Minimum score of 80. For exams taken on or after January 21, 2026: Minimum score of 4.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Overall band score on the academic test of at least 6.5.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Environmental Engineering, MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESEVEMS/environmental-engineering-ms",
+   "snapshot_sha256": "7dd3fbf251a1c95487d5ede8eb8722e65801652d15bdbb96e0436983580cee63",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned Applicants are eligible to apply if they have earned a bachelor's or master's degree in environmental engineering, chemical engineering, civil engineering, agricultural engineering, biological engineering or a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants are eligible to apply if they have earned a bachelor's or master's degree in environmental engineering, chemical engineering, civil engineering, agricultural engineering, biological engineering or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "For exams taken before January 21, 2026: Minimum score of 80. For exams taken on or after January 21, 2026: Minimum score of 4.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Overall band score on the academic test of at least 6.5.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Exploration Systems Design, MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/LAESDMS/exploration-systems-design-ms",
+   "snapshot_sha256": "32f77181b9d0038c1caa85b5dfee8b0cf4c15649afe3eb45e4971a4685c6a673",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in engineering, physical science or a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants must have earned a bachelor's or master's degree in engineering, physical science or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "For exams taken before January 21, 2026: Minimum score of 80. For exams taken on or after January 21, 2026: Minimum score of 4.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Overall band score on the academic test of at least 6.5.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Finance, MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/BAFINMS/finance-ms",
+   "snapshot_sha256": "aaf36d11ca0f48c2a51c30b788c2188fcf24c44a6c5671df43ceb2de38e45a2c",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree from a regionally accredited institution in business and management, economics, statistics, computer science, or other types of science, engineering, technology and mathematics areas; Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 credit hours or 90 quarter hours of their first bachelor's degree program or a minimum ...",
+     "quote": "Applicants must have earned a bachelor's or master's degree from a regionally accredited institution in business and management, economics, statistics, computer science, or other types of science, engineering, technology and mathematics areas. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 credit hours or 90 quarter hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "For exams taken before January 21, 2026: Minimum score of 80. For exams taken on or after January 21, 2026: Minimum score of 4.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Overall band score on the academic test of at least 6.5.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Geographic Information Systems, MAS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/LAGISMAS/geographic-information-systems-mas",
+   "snapshot_sha256": "463385ee37bfaa15427d353c3ca9b3ff1336df71cba2f2fd3893b27fb356e1fc",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's degree in a related field from a regionally accredited institution or a bachelor's degree in any field from a regionally accredited institution if they demonstrate a minimum of three years of related professional experience; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants must have earned a bachelor's degree in a related field from a regionally accredited institution or a bachelor's degree in any field from a regionally accredited institution if they demonstrate a minimum of three years of related professional experience. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "For exams taken before January 21, 2026: Minimum score of 80. For exams taken on or after January 21, 2026: Minimum score of 4.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Overall band score on the academic test of at least 6.5.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Global Management (Data Science), MGM",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/TBGMDSCMGM/global-management-data-science-mgm",
+   "snapshot_sha256": "afebfbd72d670d9598f5cc43f60b5093914b4e29d7170b1010e0117a95d08e29",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in any subject from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants must have earned a bachelor's or master's degree in any subject from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "For exams taken before January 21, 2026: Minimum score of 80. For exams taken on or after January 21, 2026: Minimum score of 4.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Overall band score on the academic test of at least 6.5.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Global Management (Sustainability Solutions), MGM",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/TBGMSSMGM/global-management-sustainability-solutions-mgm",
+   "snapshot_sha256": "52d48028d4dda4350fa353b1b69aefd22fb37ee62c74b9b6920df9b1b160339a",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned Applicants are eligible to apply if they have earned a bachelor's or master's degree in any subject from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants are eligible to apply if they have earned a bachelor's or master's degree in any subject from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "For exams taken before January 21, 2026: Minimum score of 80. For exams taken on or after January 21, 2026: Minimum score of 4.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Overall band score on the academic test of at least 6.5.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Global Technology and Development, MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/LSGTDMS/global-technology-and-development-ms",
+   "snapshot_sha256": "14c4ba1b391a4a5d8921fa1bdc9e2f33154e799fe4fbad2edbb21e62e5b607e9",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's degree from a regionally accredited college or university recognized by ASU in a related field such as political science, international relations, sociology, anthropology, economics, business, education, technology, engineering, life sciences, foreign languages or literature (i.e., topics related to global development, culture or socioeconomic institutions); minimum cumulative G...",
+     "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's degree from a regionally accredited college or university recognized by ASU in a related field such as political science, international relations, sociology, anthropology, economics, business, education, technology, engineering, life sciences, foreign languages or literature (i.e., topics related to global development, culture or socioeconomic institutions). Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "For exams taken before January 21, 2026: Minimum score of 80. For exams taken on or after January 21, 2026: Minimum score of 4.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Overall band score on the academic test of at least 6.5.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Industrial Engineering, MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESINDENMS/industrial-engineering-ms",
+   "snapshot_sha256": "78f67e03065f2571c76578ed9c79bf1566878d811500afab203ec0eb75f7e42c",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in any field from a regionally accredited institution; minimum cumulative GPA 3.20 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in any field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.20 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "An applicant whose native language is not English must demonstrate proficiency in the English language with a TOEFL iBT® score of 4.5, or 90 (taken at a testing center) if taken before January 21, 2026; 7 on the IELTS; or 115 on the Duolingo English test, regardless of current residency.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "An applicant whose native language is not English must demonstrate proficiency in the English language with a TOEFL iBT® score of 4.5, or 90 (taken at a testing center) if taken before January 21, 2026; 7 on the IELTS; or 115 on the Duolingo English test, regardless of current residency.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Information Systems Management, MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/BAINFOMS/information-systems-management-ms",
+   "snapshot_sha256": "55562700855062335747f07546baa5a48e110c6f0b0ccdd366847e7d771d0108",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants must have earned a bachelor's or master's degree from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "For exams taken before January 21, 2026: Minimum score of 80. For exams taken on or after January 21, 2026: Minimum score of 4.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Overall band score on the academic test of at least 6.5.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Management, MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/BACMRMS/management-ms",
+   "snapshot_sha256": "e26d6b627bb1a68220b3e560b7747e596d1158ec36af4668651a08a07abc22b8",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in any field from a regionally accredited institution; minimum cumulative GPA 3.0 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in any field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.0 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.50 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "For exams taken before January 21, 2026: Minimum score of 80. For exams taken on or after January 21, 2026: Minimum score of 4.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Overall band score on the academic test of at least 6.5.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Materials Science and Engineering, MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESMATEMS/materials-science-and-engineering-ms",
+   "snapshot_sha256": "9581d423de551b480586029f1f078fc03bb11fdebab86287197db1d3f2016576",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in any field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in any field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "The applicant is expected to have a TOEFL iBT score of 4, or a score of 80 if taken before January 21, 2026, in a testing center; 6.5 on the IELTS; 105 on the Duolingo English test; or the applicant must have a passing score in the English for Graduate Admission online course through ASU Global Launch.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "The applicant is expected to have a TOEFL iBT score of 4, or a score of 80 if taken before January 21, 2026, in a testing center; 6.5 on the IELTS; 105 on the Duolingo English test; or the applicant must have a passing score in the English for Graduate Admission online course through ASU Global Launch.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Mechanical Engineering, MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESMEMS/mechanical-engineering-ms",
+   "snapshot_sha256": "957754cb298cd1d2be3af4ae884e1f9dff6fd1ab8794d4e35e941e39ed366a8e",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in any field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants must have earned a bachelor's or master's degree in any field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS, 60 on the Pearson Test of English (PTE), or 105 on the Duolingo English test.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS, 60 on the Pearson Test of English (PTE), or 105 on the Duolingo English test.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Medical Engineering, MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESMEDENMS/medical-engineering-ms",
+   "snapshot_sha256": "bfc11073e95ad1d72696f60bda8d5598755b41cb94f47cab29f7d74ad16c8099",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in engineering, medicine or a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in engineering, medicine or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency by scoring at least 90 on the internet-based TOEFL (iBT) taken in a testing center, a 7 on the IELTS, or a 115 on the Duolingo English test.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency by scoring at least 90 on the internet-based TOEFL (iBT) taken in a testing center, a 7 on the IELTS, or a 115 on the Duolingo English test.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Modern Energy Production and Sustainable Use, MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESMEPSUMS/modern-energy-production-and-sustainable-use-ms",
+   "snapshot_sha256": "ec3f97c4ea969a237a7cf80e0955b17c8a4735cbc96eb46ea6f5a3d254af8a41",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in any engineering, physical science or related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in any engineering, physical science or related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS, 60 on the Pearson Test of English (PTE), or 105 on the Duolingo English test.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS, 60 on the Pearson Test of English (PTE), or 105 on the Duolingo English test.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Project Management, MPM",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/LSPMGMPM/project-management-mpm",
+   "snapshot_sha256": "38a6185578d118720d8dbcb8fac1575000177606b0ad3aee26b0e27cd4dce05f",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in any area from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants must have earned a bachelor's or master's degree in any area from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS, 105 on the Duolingo English test; or completion of the appropriate course through ASU Global Launch.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS, 105 on the Duolingo English test; or completion of the appropriate course through ASU Global Launch.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Public Policy (Science and Technology Policy), MPP",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/PPPUPSTMPP/public-policy-science-and-technology-policy-mpp",
+   "snapshot_sha256": "56e3cf4eb7d02647feb23fea216b74e87d69d81a6158a4a23f68cdeb537a2b38",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program, or applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "For exams taken before January 21, 2026: Minimum score of 80. For exams taken on or after January 21, 2026: Minimum score of 4.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Overall band score on the academic test of at least 6.5.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Real Estate Development, MRED",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ARREMREDEV/real-estate-development-mred",
+   "snapshot_sha256": "3eb34d565febdf3f5d57f68c398ca1bcd9617639aeb087e73864c93a19b3ed2f",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in any field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in any field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "For exams taken before January 21, 2026: Minimum score of 80. For exams taken on or after January 21, 2026: Minimum score of 4.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Overall band score on the academic test of at least 6.5.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Robotics and Autonomous Systems (Artificial Intelligence), MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESRASAIMS/robotics-and-autonomous-systems-artificial-intelligence-ms",
+   "snapshot_sha256": "214f88c770658e37df9da5a9d403fb3a8ce15aee6577202eed3c7b01989e4dd5",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in engineering, science, mathematics or a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants must have earned a bachelor's or master's degree in engineering, science, mathematics or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT)®, or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT)®, or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Robotics and Autonomous Systems (Biomedical Engineering), MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESRASBEMS/robotics-and-autonomous-systems-biomedical-engineering-ms",
+   "snapshot_sha256": "febc926d2954ab4bded6776e068043bcd106081943f2e97bcfd3f1254054610d",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in engineering, science, mathematics or a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in engineering, science, mathematics or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT)®, or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT)®, or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Robotics and Autonomous Systems (Electrical Engineering), MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESRASEEMS/robotics-and-autonomous-systems-electrical-engineering-ms",
+   "snapshot_sha256": "ab663724b084b8e93eb8925fbd4a37c9db9b1a4862dc0e2bd42fd68aea73e3ac",
+   "fields": {
+    "academic": {
+     "text": "minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT)®, or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT)®, or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Robotics and Autonomous Systems (Mechanical and Aerospace Engineering), MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ESRASMAEMS/robotics-and-autonomous-systems-mechanical-and-aerospace-engineering-ms",
+   "snapshot_sha256": "8f51bf8a53d73af095852b6bbd0c14b92999306a8361f38ff5cd9a8ab27d610f",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in engineering, science, mathematics or a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants must have earned a bachelor's or master's degree in engineering, science, mathematics or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = ''A'') in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = ''A'') in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS, 60 on the Pearson Test of English (PTE), or 105 on the Duolingo English test.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS, 60 on the Pearson Test of English (PTE), or 105 on the Duolingo English test.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Science and Technology Policy, MSTP",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/LAHSDPSM/science-and-technology-policy-mstp",
+   "snapshot_sha256": "ffbd96db59ade6921c9f0f0237e1eefa639cd082fda1b7e42b783a9609bf33aa",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's degree or equivalent or a graduate degree from a regionally accredited college or university of recognized standing. Students are strongly encouraged to have prior relevant education, training or experience in science and technology policy; management of science, technology or innovation; or science, technology and society; Applicants must have a minimum cumulative GPA of a 3.00...",
+     "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's degree or equivalent or a graduate degree from a regionally accredited college or university of recognized standing. Students are strongly encouraged to have prior relevant education, training or experience in science and technology policy; management of science, technology or innovation; or science, technology and society. Applicants must have a minimum cumulative GPA of a 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum of a 3.00 cumulative GPA (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "For exams taken before January 21, 2026: Minimum score of 80. For exams taken on or after January 21, 2026: Minimum score of 4.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Overall band score on the academic test of at least 6.5.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Statistics, MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/GCSTATMS/statistics-ms",
+   "snapshot_sha256": "ee86c4ef9f8e254708e5fa9a3eaab0197cb9528b94e9cce351171b85223a46c4",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in mathematics, statistics or a closely related area from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in mathematics, statistics or a closely related area from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "For exams taken before January 21, 2026: Minimum score of 80. For exams taken on or after January 21, 2026: Minimum score of 4.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Overall band score on the academic test of at least 6.5.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Applicants should have completed the following courses (equivalents at ASU are given in parentheses), and applicants who lack any of these prerequisite courses must complete them before being considered for admission:",
+      "quote": "Applicants should have completed the following courses (equivalents at ASU are given in parentheses), and applicants who lack any of these prerequisite courses must complete them before being considered for admission:",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Sustainability Solutions, MSUS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/SUSUSOMSUS/sustainability-solutions-msus",
+   "snapshot_sha256": "f64ca7a74312a16c6cf40e88ee50b1936b27cfc7773c1d1f75441b5bdb162dc2",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in any field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in any field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "For exams taken before January 21, 2026: Minimum score of 80. For exams taken on or after January 21, 2026: Minimum score of 4.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Overall band score on the academic test of at least 6.5.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Sustainability, MA",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/SUSUSTMA/sustainability-ma",
+   "snapshot_sha256": "d4cc9e57244187ce1ff6a0a496fc06af8104ae16860a4a9d1a491d33818f9852",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in any field from a regionally accredited institution; minimum cumulative GPA 3.25 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in any field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.25 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.25 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "For exams taken before January 21, 2026: Minimum score of 80. For exams taken on or after January 21, 2026: Minimum score of 4.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Overall band score on the academic test of at least 6.5.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Sustainability, MS",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/SUSUSTMS/sustainability-ms",
+   "snapshot_sha256": "900f1527c5ddc6ab24176fcdb69aecc05ffafd525bc925c06adcd8a0e4d7dbfb",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in any field from a regionally accredited institution; minimum cumulative GPA 3.25 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in any field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.25 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.25 in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "For exams taken before January 21, 2026: Minimum score of 80. For exams taken on or after January 21, 2026: Minimum score of 4.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Overall band score on the academic test of at least 6.5.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Taxation and Data Analytics, MTax",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/BATAMTAX/taxation-and-data-analytics-mtax",
+   "snapshot_sha256": "7025ef38e2220d993452af47a10af7185b412ed27269b59e074ff73d3167dae2",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in any field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in any field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program, or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "For exams taken before January 21, 2026: Minimum score of 80. For exams taken on or after January 21, 2026: Minimum score of 4.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Overall band score on the academic test of at least 6.5.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Urban and Environmental Planning, MUEP",
+   "url": "https://degrees.asu.edu/masters-phd/major/ASU00/ARURBMUEP/urban-and-environmental-planning-muep",
+   "snapshot_sha256": "a37e2a6da9b6effcfcba50e934ddcfeb78b12f9ef8f7831defe7482cc50c5da5",
+   "fields": {
+    "academic": {
+     "text": "Applicants have earned a bachelor's or master's degree in any field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
+     "quote": "Applicants must have earned a bachelor's or master's degree in any field from a regionally accredited institution. Applicants should have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program. An applicant with a cumulative GPA between 2.50 and 3.00 (scale is 4.00 = \"A\") may still be considered.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "For exams taken before January 21, 2026: Minimum score of 80. For exams taken on or after January 21, 2026: Minimum score of 4.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Overall band score on the academic test of at least 6.5.",
+     "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
+     "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 69,
+  "机器核对": 69,
+  "待人工": 0
+ }
+}

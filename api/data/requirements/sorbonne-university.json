@@ -1,0 +1,376 @@
+{
+ "school_key": "sorbonne-university",
+ "school_name_en": "Sorbonne University",
+ "country": "France",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://www.sorbonne-universite.fr/en/programs-english",
+  "https://sciences.sorbonne-universite.fr/formation-sciences/offre-de-formation/masters",
+  "https://formations-lettres.sorbonne-universite.fr/fr/index/master-XB/arts-lettres-langues-ALL.html",
+  "https://formations-lettres.sorbonne-universite.fr/fr/index/master-XB/sciences-humaines-et-sociales-SHS.html"
+ ],
+ "blocked": [
+  {
+   "url": "https://masters-sdi.sorbonne-universite.fr/",
+   "reason": "robots.txt could not be read (timeout), snapshot tool refused; Mechanics mention and Computational Mechanics track pages not collected"
+  },
+  {
+   "url": "https://master.physique.sorbonne-universite.fr/fr/index.html",
+   "reason": "robots.txt check failed (TLS certificate verify failed); physics master site not collected"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://formations-lettres.sorbonne-universite.fr/fr/index/master-XB/arts-lettres-langues-ALL.html",
+  "https://formations-lettres.sorbonne-universite.fr/fr/index/master-XB/sciences-humaines-et-sociales-SHS.html"
+ ],
+ "notes": "Sciences and English-taught tracks first; Letters only sampled (catalogue pages mostly state no requirement). Application dates seen on the pages are for past campaigns or lack a year, so no deadlines recorded. Mechanics, M2E, SOAC, Cog-SUP, BIP, BMC mention, Paris Physics Master (PDF flyer only), EIT Digital CNI and EUMaster4HPC step pages state no usable requirement or are PDF/blocked. Master application calendar: Mon Master in February-March, eCandidat for M2, Etudes en France for listed countries from October.",
+ "programs": [
+  {
+   "name": "Master of Computer Science: Digital International Program (DIGIT)",
+   "url": "https://sciences.sorbonne-universite.fr/en/formation-sciences/masters/master-informatique/digit-program",
+   "snapshot_sha256": "b5123844c6d19ef8e0a538b4f99bec3975800d8983a27279e7856d096fd62969",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree with honors in Computer Science, Computer Engineering or Information Systems, with competence in mathematics, theoretical foundations of computer science, algorithms and computer architectures",
+     "quote": "Who can apply: Bachelor’s holders in Computer Science, Computer Engineering or Information Systems with honors. Students should have competence in mathematics, theoretical foundations of computer science, algorithms and computer architectures.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Programme is exclusively open to non-French-speaking students",
+      "quote": "This program is exclusively accessible to non-French-speaking students.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Computer Science: Quantum Information (QI)",
+   "url": "https://sciences.sorbonne-universite.fr/en/formation-sciences/masters/master-informatique/parcours-IQ",
+   "snapshot_sha256": "a3b47bb99337d8ee9e1a114c6d8119ad8bd105a68a88dbbcbd0aca7b42c837e3",
+   "fields": {
+    "academic": {
+     "text": "M1: Licence/Bachelor's in Computer Science, Computer Engineering or Mathematics; M2: M1 in Computer Science, Computer Engineering or Mathematics",
+     "quote": "Who can apply to the M1: Licence/Bachelor’s holders in Computer Science, Computer Engineering or Mathematics.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Competences in mathematics and theoretical foundations of computer science, and a strong interest in physics (M1)",
+      "quote": "Students should have competences in mathematics and theoretical foundations of computer science, and a strong interest in physics.",
+      "check": "ok"
+     },
+     {
+      "text": "Comfortable with linear algebra (M1)",
+      "quote": "However, prospective students should be comfortable with linear algebra.",
+      "check": "ok"
+     },
+     {
+      "text": "M2: basic knowledge of quantum information; knowledge of quantum physics is absolutely required",
+      "quote": "Students should already have basic knowledge of quantum information. Knowledge of quantum physics is absolutely required for the M2.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's in Bio-Informatics and Modelling (BIMM)",
+   "url": "https://sciences.sorbonne-universite.fr/en/masters-bio-informatics-and-modelling-bimm",
+   "snapshot_sha256": "76e59a1886cc4f63e6ee560286d88c866ab2cc8ab23b7e059ae16af23362757a",
+   "fields": {
+    "academic": {
+     "text": "M1: undergraduate degree (bachelor's/licence) in computer science or mathematics, with a few grades in programming and algorithmics; physics, chemistry or related degrees assessed case by case",
+     "quote": "possess an undergraduate degree in computer science or in mathematics (bachelor’s/licence, with a few grades in programming and in algorithmics),",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Good background in computer science and/or applied mathematics",
+      "quote": "have a good background in computer science and/or applied mathematics,",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in High Performance Computing (HPC)",
+   "url": "https://sciences.sorbonne-universite.fr/en/masters-high-performance-computing-hpc",
+   "snapshot_sha256": "edf6f801c77b77e11a5ccd83cbc85862d07c5d109ab1d9ab70791da98b5aea6e",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's (Licence) degree in Mathematics and/or Computer Science",
+     "quote": "Students with a Bachelor’s (Licence) degree in Mathematics and/or Computer Science with English speaking/writing skills (English proficiency of at least CEFR B2 / TOEFL 85/ IELTS 5 or higher, within the last 3 years; or a certificate proving that you have completed a bachelor/master program of higher education in English).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5,
+     "quote": "English proficiency of at least CEFR B2 / TOEFL 85/ IELTS 5 or higher, within the last 3 years",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 85,
+     "quote": "English proficiency of at least CEFR B2 / TOEFL 85/ IELTS 5 or higher, within the last 3 years",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English proficiency of at least CEFR B2, obtained within the last 3 years, or a certificate of a bachelor/master programme completed in English",
+      "quote": "English proficiency of at least CEFR B2 / TOEFL 85/ IELTS 5 or higher, within the last 3 years; or a certificate proving that you have completed a bachelor/master program of higher education in English)",
+      "check": "ok"
+     },
+     {
+      "text": "Knowledge of linear algebra and related algorithms, basic numerical analysis; familiarity with a programming language (preferably C or C++), algorithm design and complexity",
+      "quote": "applicants should have knowledge of linear algebra notions and related algorithms, as well as basic numerical analysis. Concerning computer science, applicants are expected to be familiar with a programming language (preferably C or C++), as well as algorithm design and complexity.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Waves and Devices for Advanced Wireless Communication Systems (WaveWiCom, M2)",
+   "url": "https://sciences.sorbonne-universite.fr/en/node/6948",
+   "snapshot_sha256": "6c098ac8c5f4ecb35ec519f7dc1cb7155c1ed26ab814fe8bba2861ba8b6690a7",
+   "fields": {
+    "academic": {
+     "text": "First-year master (M1) or 4-year Bachelor in Electrical Engineering, with prerequisites in antenna and waveguide theory, microwave theory, electronics fundamentals, signal modulation and strong mathematics",
+     "quote": "Students having successfully passed a first-year master's (M1), or holding a 4-year Bachelor, in the field of Electrical Engineering with sufficient prerequisites in antenna and waveguide theory, microwave theory, electronics fundamentals, signal modulation, and a strong mathematical background.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "No English proficiency certificate required; English is assessed in an online interview if preselected",
+      "quote": "No English proficiency certificate is required. If preselected, students are contacted for an online interview during which the English proficiency is assessed.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Master 'From fundamental molecular biosciences to biotherapies' (M1 and M2)",
+   "url": "https://sciences.sorbonne-universite.fr/formation-sciences/offre-de-formation/masters/master-biologie-moleculaire-et-cellulaire-bmc-0",
+   "snapshot_sha256": "838a006bc3b35ca098f9ca89d90f2611c726e9de7b1d3df13c170bb64b689bdb",
+   "fields": {
+    "academic": {
+     "text": "Bachelor degree (licence) in Biological Sciences or equivalent, with a basic background in Genetics, Immunology, Cell biology and Developmental biology",
+     "quote": "The prerequisite for the admission in the master is to possess a Bachelor degree (licence) in Biological Sciences or an equivalent diploma with a basic background in Genetics, Immunology, Cell biology and Developmental biology.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Proficiency in English, minimum CEFR level B2",
+      "quote": "Students must also be proficient in English (minimum CEFR level B2).",
+      "check": "ok"
+     },
+     {
+      "text": "Application file includes an English language certificate (TOEIC, TOEFL, Cambridge, or certificate of English as Medium Of Instruction)",
+      "quote": "An English language certificate (TOEIC, TOEFL, Cambridge, or certificate of English as Medium Of Instruction)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Neurosciences (taught in English)",
+   "url": "https://sciences.sorbonne-universite.fr/formation-sciences/offre-de-formation/masters/master-neurosciences",
+   "snapshot_sha256": "1e18c76b89f2029dfabe0ac5e3d5758dd5c747c5e86f158378fdf94ac294f377",
+   "fields": {
+    "academic": {
+     "text": "First year (M1) open to students with a Bachelor's degree in Life Science or Health Science",
+     "quote": "First year open to: students with a Bachelor's degree in Life Science or Health Science.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Informatique",
+   "url": "https://sciences.sorbonne-universite.fr/formation-sciences/offre-de-formation/masters/master-informatique",
+   "snapshot_sha256": "20a20b91533dc7fc5495617a64e7ff945ef5197b5b1b7d5196d8593986defa85",
+   "fields": {
+    "academic": {
+     "text": "Primarily for holders of a Licence in Computer Science or an equivalent degree; Licence in Mathematics and Computer Science or Electronics accepted in some parcours",
+     "quote": "Le Master Informatique s'adresse en premier lieu aux titulaires d'une Licence mention Informatique ou tout diplôme équivalent.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Foreign applicants who did not study in French: French level test, B2 minimum, C1 strongly recommended",
+      "quote": "test de niveau de langue française B2 minimum, C1 fortement recommandé.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Mathématiques et applications",
+   "url": "https://sciences.sorbonne-universite.fr/formation-sciences/offre-de-formation/masters/master-mathematiques-et-applications-offre-2026-2027",
+   "snapshot_sha256": "2c442866b9e04a4f18c3bc887442bb0bd64e6fc3978530e3624d28e281477898",
+   "fields": {
+    "academic": {
+     "text": "Recommended licence for M1 entry is Mathematics; admission decided by a committee on whether the applicant has solid and broad acquired knowledge at the level of a mathematics licence",
+     "quote": "L'admission est décidée par une commission qui juge, sur la base des documents que vous avez fournis, si vous avez des acquis suffisamment solides et larges du niveau d'une licence de mathématiques.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "A solid base of mathematics knowledge is required (linear algebra, differential calculus, integration theory, topology)",
+      "quote": "Un socle solide de connaissances en mathématiques est exigé.  Des compétences acquises dans des domaines fondamentaux (comme l’algèbre linéaire, le calcul différentiel, la théorie de l’intégration, la topologie) sont nécessaires. Des connaissances acquises dans des domaines plus spécialisés seront également appréciées.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Actuariat",
+   "url": "https://sciences.sorbonne-universite.fr/formation-sciences/offre-de-formation/masters/master-actuariat",
+   "snapshot_sha256": "edacc85f36f2ceb1cee092286f8d6fb4adf9323d0838df748b014e77e07dc428",
+   "fields": {
+    "academic": {
+     "text": "At least one validated licence with a strong mathematics emphasis; admission in M1 only, with at least a validated licence",
+     "quote": "Étudiantes et étudiants ayant validé au moins une licence à forte dominante mathématique, et possédant des compétences avancées dans le domaine des probabilités et de la statistique.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Advanced skills in probability and statistics",
+      "quote": "possédant des compétences avancées dans le domaine des probabilités et de la statistique.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Automatique, Robotique",
+   "url": "https://sciences.sorbonne-universite.fr/formation-sciences/offre-de-formation/masters/master-automatique-robotique",
+   "snapshot_sha256": "f7698b5af8ff0e8dfa700c0a4d18a707edcaf54e926fb1d0e4f11fb8ace66bbc",
+   "fields": {
+    "academic": {
+     "text": "Licence in mechanics, electronics (EEA), physics or computer science, or equivalent; M2 open to holders of a first-year master or final-year engineering school students",
+     "quote": "Le master est ouvert aux étudiantes et étudiants titulaires d'une licence de mécanique, d'électronique (EEA), de physique ou d'informatique, ou d'un diplôme équivalent et satisfaisant les pré-requis nécessaire à la formation.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Physique fondamentale et applications",
+   "url": "https://sciences.sorbonne-universite.fr/formation-sciences/offre-de-formation/masters/master-physique-fondamentale-et-applications",
+   "snapshot_sha256": "45e9b0127d31352cacbc283f364e772137a667dcd789f22a79bf1b0bdcbf5ac1",
+   "fields": {
+    "academic": {
+     "text": "M1 is for holders of a licence in physics or physics-chemistry, or an equivalent degree",
+     "quote": "Le M1 de Physique s’adresse à des titulaires d’une licence de physique ou de physique-chimie, ou d’un diplôme équivalent désirant approfondir leur formation de base en physique et se préparer à une spécialisation. Il accueille des étudiantes et étudiants intéressés par la recherche académique en physique, ou par la valorisation de leurs compétences de physiciennes ou de physiciens pour aborder les disciplines connexes et/ou le monde de l’entreprise.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Électronique, énergie électrique, automatique",
+   "url": "https://sciences.sorbonne-universite.fr/formation-sciences/offre-de-formation/masters/master-electronique-energie-electrique-automatique",
+   "snapshot_sha256": "a8340353f128cf3c63db4140324f387e4ed7ff1913735283adbe65be7affaa15",
+   "fields": {
+    "academic": {
+     "text": "Licence in electronics (EEA), physics or computer science, or equivalent; M2 open to holders of a first-year master or final-year engineering school students",
+     "quote": "Le master est ouvert aux titulaires d'une Licence d'électronique (EEA), de physique ou d'informatique, ou d'un diplôme équivalent et satisfaisant les pré-requis nécessaire à la formation.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master de Chimie",
+   "url": "https://sciences.sorbonne-universite.fr/formation-sciences/offre-de-formation/masters/master-de-chimie",
+   "snapshot_sha256": "b21dae6ee0d9f906425441d4d74f938ca432163ac77842fb70aa91da579c2351",
+   "fields": {
+    "academic": {
+     "text": "Two-year master for holders of a licence in chemistry, chemistry-physics or chemistry-biology; M2 direct entry possible after a first-year chemistry master or equivalent",
+     "quote": "Le master sur deux ans s’adresse à des étudiantes et étudiants possédant une licence de chimie, de chimie-physique, de chimie-biologie. Ces deux dernières sont indispensables pour les programmes spécifiques chimie/physique (PCMAT) et chimie/biologie (iMoV).",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Management de l'innovation",
+   "url": "https://sciences.sorbonne-universite.fr/formation-sciences/offre-de-formation/masters/master-management-de-linnovation",
+   "snapshot_sha256": "a50eb4ea1fa81e0eb9048ccc4e16f7c526fee8a1037db5329f944b3575460aed",
+   "fields": {
+    "academic": {
+     "text": "Accessible from M1 to L3 science students; M2 minimum requirement is a scientific M1",
+     "quote": "Cette mention de Master est accessible à partir du M1 aux étudiantes et étudiants de L3 scientifique ainsi qu’en M2, à un public, en formation initiale ou continue, souhaitant obtenir une formation de haut niveau et une double compétence (minimum requis pour accéder au M2 : un M1 scientifique).",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Sciences de la mer",
+   "url": "https://sciences.sorbonne-universite.fr/formation-sciences/offre-de-formation/masters/master-sciences-de-la-mer",
+   "snapshot_sha256": "e2ef6699e0db7aff60adba03e8358a5b97f8a492b1e3631eb178bc9dbd9685c7",
+   "fields": {
+    "academic": {
+     "text": "General licence in biology, ecology, earth and environmental sciences or chemistry, or equivalent; selection on file, possibly with a phone interview",
+     "quote": "Pour postuler à notre formation, vous devez être titulaire d’une licence générale en biologie, en écologie, en sciences de la terre et de l’environnement, en chimie, ou d’un diplôme équivalent.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Sciences de la Terre et des planètes, environnement (STePE)",
+   "url": "https://sciences.sorbonne-universite.fr/formation-sciences/offre-de-formation/masters/master-sciences-de-la-terre-et-des-planetes",
+   "snapshot_sha256": "85f05963c1c72e3c9051d829047fee27ba15476d995480666bdc83455d2ea11c",
+   "fields": {
+    "academic": {
+     "text": "Licence (L3) or foreign equivalent, mainly in Earth and Environmental Sciences but also Physics, Chemistry and Biology; admission on file, possibly with an interview",
+     "quote": "La Mention STePE s'adresse à des étudiants titulaires d’une Licence (L3) ou équivalents étrangers. Elle accueille principalement des étudiantes et étudiants provenant de formation de Sciences de la Terre et de l’Environnement mais aussi ceux issus de Physique, Chimie et Biologie et désireux de se spécialiser vers les thématiques des Géosciences et des Hydrosciences.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Biodiversité, écologie et évolution (BEE)",
+   "url": "https://sciences.sorbonne-universite.fr/formation-sciences/offre-de-formation/masters/master-biodiversite-ecologie-et-evolution-bee",
+   "snapshot_sha256": "0bb72782f71d17bb4022828cb88c92876a8a4558b50dce2bac47c2fc5ef9304e",
+   "fields": {
+    "academic": {
+     "text": "Licence in biology (organisms and ecology) or in geosciences (for palaeontology); admissions are made within each parcours, which have different prerequisites",
+     "quote": "Titulaires d'une licence en biologie (coloration biologie des organismes et écologie) ou en géosciences (pour la paléontologie), motivés par la biologie évolutive, l’écologie, la biodiversité et leurs enjeux se destinant aux métiers de la recherche fondamentale ou appliquée et de la gestion de la biodiversité.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Lettres : Littérature comparée",
+   "url": "https://formations-lettres.sorbonne-universite.fr/fr/index/master-XB/arts-lettres-langues-ALL/master-lettres-litterature-comparee-MLETT1L_608.html",
+   "snapshot_sha256": "bc5a52a432663673180d2ae0b704e077cc957ccefe16e26eb2f22909efad4e4e",
+   "fields": {
+    "academic": {
+     "text": "Offered to holders of a literary licence",
+     "quote": "La formation est offerte à des étudiants titulaires d'une licence littéraire et qui se destinent à l'enseignement secondaire ou supérieur ainsi qu'à toutes les professions liées à la vie culturelle, l’édition, le journalisme etc.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 19,
+  "机器核对": 19,
+  "待人工": 0
+ }
+}

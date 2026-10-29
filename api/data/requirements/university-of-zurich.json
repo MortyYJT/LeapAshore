@@ -1,0 +1,610 @@
+{
+ "school_key": "university-of-zurich",
+ "school_name_en": "University of Zurich",
+ "country": "Switzerland",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://www.uzh.ch/en/studies/programs/master.html",
+  "https://www.uzh.ch/en/studies/application/master.html",
+  "https://www.uzh.ch/en/studies/application/deadlines.html",
+  "https://www.uzh.ch/en/studies/application/languagerequirements.html"
+ ],
+ "blocked": [],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.uzh.ch/en/studies/programs/master/neural_systems_computation.html",
+  "https://www.uzh.ch/en/studies/programs/master/neuroinformatics.html",
+  "https://www.uzh.ch/en/studies/programs/master/applied_probability_statistics.html",
+  "https://www.uzh.ch/en/studies/programs/master/mathematics.html",
+  "https://www.uzh.ch/en/studies/programs/master/bioinformatics.html",
+  "https://www.uzh.ch/en/studies/programs/master/spatial_data_science.html",
+  "https://www.uzh.ch/en/studies/programs/master/business.html"
+ ],
+ "notes": "The URLs in the brief (application/mastersdegree, degrees/master) return 404; the live pages are application/master.html and programs/master.html. UZH programme pages are marketing text only; admission rules come from the shared master page, the language page (IELTS/TOEFL for English-taught programmes, cited only where the programme or faculty page names English as the teaching language), and the Faculty of Business, Economics and Informatics admission pages (GRE/GMAT). No deadline is recorded: the UZH deadlines page and programme pages state days and months without a year. Skipped: minors (Informatics minor, Behavioral Economics, Accounting and Corporate Finance, Investment Management, Sustainable Finance, Business Analytics etc.), Neural Systems and Computation and Neuroinformatics (not read), the remaining 100+ programmes (humanities, law, medicine, science) and the Business Administration major. Per-programme PDF fact sheets were not read. No China-specific page exists.",
+ "programs": [
+  {
+   "name": "Master of Science UZH in Informatics: Data Science (major)",
+   "url": "https://www.uzh.ch/en/studies/programs/master/data_science.html",
+   "snapshot_sha256": "b6959838a51866c38ab4fc56bb5ca4aa6ec130c9efe968df0b9ae019fa33a38b",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's diploma (or equivalent) from a state-accredited university, in a programme of at least three years (180 ECTS)",
+     "quote": "Bachelor’s diploma or a degree that is at least equivalent from a state-accredited university.",
+     "source_sha256": "093c39f67eec7489f0665628a05c99fd85cdec9d895d48af18eccbfdc6b5841a",
+     "source_url": "https://www.uzh.ch/en/studies/application/master.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Foreign-language applicants must prove at least CEFR C1 in the programme's main language of instruction",
+      "quote": "Foreign-language applicants must prove that they have the necessary language skills of at least level C1 for their chosen study programs according to the Common European Framework of Reference for Languages (CEFR).",
+      "source_sha256": "093c39f67eec7489f0665628a05c99fd85cdec9d895d48af18eccbfdc6b5841a",
+      "source_url": "https://www.uzh.ch/en/studies/application/master.html",
+      "check": "ok"
+     },
+     {
+      "text": "GRE score mandatory for applicants from a university outside the EU/EFTA and the UK (ETS institution code 7136)",
+      "quote": "The submission of a GRE score is mandatory for all applicants from an university outside the European Union / EFTA and the United Kingdom.",
+      "source_sha256": "6a610cf74646faf439b338d4510c424c1927df578dd94daee066944cc27dbd24",
+      "source_url": "https://www.oec.uzh.ch/en/studies/admission/master/it.html",
+      "check": "ok"
+     },
+     {
+      "text": "Bachelor's degrees outside Switzerland/Lisbon-Convention countries: additional requirements or conditions (typically 60 ECTS) if the curriculum deviates; if deviations are comprehensive, no admission",
+      "quote": "If the curriculum deviates in subject-specific areas, additional requirements or conditions (typically 60 ECTS Credits) must be completed. If the subjects-specific deviations are comprehensive applicants will not be admitted to the master’s program.",
+      "source_sha256": "6a610cf74646faf439b338d4510c424c1927df578dd94daee066944cc27dbd24",
+      "source_url": "https://www.oec.uzh.ch/en/studies/admission/master/it.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science UZH in Informatics: Artificial Intelligence (major)",
+   "url": "https://www.uzh.ch/en/studies/programs/master/artificial_intelligence.html",
+   "snapshot_sha256": "1d5c2c11ad9e178c13193dbeddd900b8315055bb70e4ec71b6ca7165d5ea5843",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's diploma (or equivalent) from a state-accredited university, in a programme of at least three years (180 ECTS)",
+     "quote": "Bachelor’s diploma or a degree that is at least equivalent from a state-accredited university.",
+     "source_sha256": "093c39f67eec7489f0665628a05c99fd85cdec9d895d48af18eccbfdc6b5841a",
+     "source_url": "https://www.uzh.ch/en/studies/application/master.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Foreign-language applicants must prove at least CEFR C1 in the programme's main language of instruction",
+      "quote": "Foreign-language applicants must prove that they have the necessary language skills of at least level C1 for their chosen study programs according to the Common European Framework of Reference for Languages (CEFR).",
+      "source_sha256": "093c39f67eec7489f0665628a05c99fd85cdec9d895d48af18eccbfdc6b5841a",
+      "source_url": "https://www.uzh.ch/en/studies/application/master.html",
+      "check": "ok"
+     },
+     {
+      "text": "GRE score mandatory for applicants from a university outside the EU/EFTA and the UK (ETS institution code 7136)",
+      "quote": "The submission of a GRE score is mandatory for all applicants from an university outside the European Union / EFTA and the United Kingdom.",
+      "source_sha256": "6a610cf74646faf439b338d4510c424c1927df578dd94daee066944cc27dbd24",
+      "source_url": "https://www.oec.uzh.ch/en/studies/admission/master/it.html",
+      "check": "ok"
+     },
+     {
+      "text": "Bachelor's degrees outside Switzerland/Lisbon-Convention countries: additional requirements or conditions (typically 60 ECTS) if the curriculum deviates; if deviations are comprehensive, no admission",
+      "quote": "If the curriculum deviates in subject-specific areas, additional requirements or conditions (typically 60 ECTS Credits) must be completed. If the subjects-specific deviations are comprehensive applicants will not be admitted to the master’s program.",
+      "source_sha256": "6a610cf74646faf439b338d4510c424c1927df578dd94daee066944cc27dbd24",
+      "source_url": "https://www.oec.uzh.ch/en/studies/admission/master/it.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science UZH in Informatics: Human-Centered Computing (major)",
+   "url": "https://www.uzh.ch/en/studies/programs/master/human_centered_computing.html",
+   "snapshot_sha256": "d54fe2264e9fb70d0f6f2ac1bb01ffa6cfcf8d5023565ee27e0b66ebd8a316a1",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's diploma (or equivalent) from a state-accredited university, in a programme of at least three years (180 ECTS)",
+     "quote": "Bachelor’s diploma or a degree that is at least equivalent from a state-accredited university.",
+     "source_sha256": "093c39f67eec7489f0665628a05c99fd85cdec9d895d48af18eccbfdc6b5841a",
+     "source_url": "https://www.uzh.ch/en/studies/application/master.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Foreign-language applicants must prove at least CEFR C1 in the programme's main language of instruction",
+      "quote": "Foreign-language applicants must prove that they have the necessary language skills of at least level C1 for their chosen study programs according to the Common European Framework of Reference for Languages (CEFR).",
+      "source_sha256": "093c39f67eec7489f0665628a05c99fd85cdec9d895d48af18eccbfdc6b5841a",
+      "source_url": "https://www.uzh.ch/en/studies/application/master.html",
+      "check": "ok"
+     },
+     {
+      "text": "GRE score mandatory for applicants from a university outside the EU/EFTA and the UK (ETS institution code 7136)",
+      "quote": "The submission of a GRE score is mandatory for all applicants from an university outside the European Union / EFTA and the United Kingdom.",
+      "source_sha256": "6a610cf74646faf439b338d4510c424c1927df578dd94daee066944cc27dbd24",
+      "source_url": "https://www.oec.uzh.ch/en/studies/admission/master/it.html",
+      "check": "ok"
+     },
+     {
+      "text": "Bachelor's degrees outside Switzerland/Lisbon-Convention countries: additional requirements or conditions (typically 60 ECTS) if the curriculum deviates; if deviations are comprehensive, no admission",
+      "quote": "If the curriculum deviates in subject-specific areas, additional requirements or conditions (typically 60 ECTS Credits) must be completed. If the subjects-specific deviations are comprehensive applicants will not be admitted to the master’s program.",
+      "source_sha256": "6a610cf74646faf439b338d4510c424c1927df578dd94daee066944cc27dbd24",
+      "source_url": "https://www.oec.uzh.ch/en/studies/admission/master/it.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science UZH in Informatics: Software Systems (major)",
+   "url": "https://www.uzh.ch/en/studies/programs/master/software_systems.html",
+   "snapshot_sha256": "3cf7b7704b9d5c7766a56d8245afeedd6bc3b8557a07de28ea49d53ae78a5d3c",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's diploma (or equivalent) from a state-accredited university, in a programme of at least three years (180 ECTS)",
+     "quote": "Bachelor’s diploma or a degree that is at least equivalent from a state-accredited university.",
+     "source_sha256": "093c39f67eec7489f0665628a05c99fd85cdec9d895d48af18eccbfdc6b5841a",
+     "source_url": "https://www.uzh.ch/en/studies/application/master.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Foreign-language applicants must prove at least CEFR C1 in the programme's main language of instruction",
+      "quote": "Foreign-language applicants must prove that they have the necessary language skills of at least level C1 for their chosen study programs according to the Common European Framework of Reference for Languages (CEFR).",
+      "source_sha256": "093c39f67eec7489f0665628a05c99fd85cdec9d895d48af18eccbfdc6b5841a",
+      "source_url": "https://www.uzh.ch/en/studies/application/master.html",
+      "check": "ok"
+     },
+     {
+      "text": "GRE score mandatory for applicants from a university outside the EU/EFTA and the UK (ETS institution code 7136)",
+      "quote": "The submission of a GRE score is mandatory for all applicants from an university outside the European Union / EFTA and the United Kingdom.",
+      "source_sha256": "6a610cf74646faf439b338d4510c424c1927df578dd94daee066944cc27dbd24",
+      "source_url": "https://www.oec.uzh.ch/en/studies/admission/master/it.html",
+      "check": "ok"
+     },
+     {
+      "text": "Bachelor's degrees outside Switzerland/Lisbon-Convention countries: additional requirements or conditions (typically 60 ECTS) if the curriculum deviates; if deviations are comprehensive, no admission",
+      "quote": "If the curriculum deviates in subject-specific areas, additional requirements or conditions (typically 60 ECTS Credits) must be completed. If the subjects-specific deviations are comprehensive applicants will not be admitted to the master’s program.",
+      "source_sha256": "6a610cf74646faf439b338d4510c424c1927df578dd94daee066944cc27dbd24",
+      "source_url": "https://www.oec.uzh.ch/en/studies/admission/master/it.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science UZH in Informatics: Information Systems (major)",
+   "url": "https://www.uzh.ch/en/studies/programs/master/information_systems.html",
+   "snapshot_sha256": "b4f949f4fb856894671a58aeb78723669d1e6381832cd57fe734b55fb6ee2f30",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's diploma (or equivalent) from a state-accredited university, in a programme of at least three years (180 ECTS)",
+     "quote": "Bachelor’s diploma or a degree that is at least equivalent from a state-accredited university.",
+     "source_sha256": "093c39f67eec7489f0665628a05c99fd85cdec9d895d48af18eccbfdc6b5841a",
+     "source_url": "https://www.uzh.ch/en/studies/application/master.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Foreign-language applicants must prove at least CEFR C1 in the programme's main language of instruction",
+      "quote": "Foreign-language applicants must prove that they have the necessary language skills of at least level C1 for their chosen study programs according to the Common European Framework of Reference for Languages (CEFR).",
+      "source_sha256": "093c39f67eec7489f0665628a05c99fd85cdec9d895d48af18eccbfdc6b5841a",
+      "source_url": "https://www.uzh.ch/en/studies/application/master.html",
+      "check": "ok"
+     },
+     {
+      "text": "GRE score mandatory for applicants from a university outside the EU/EFTA and the UK (ETS institution code 7136)",
+      "quote": "The submission of a GRE score is mandatory for all applicants from an university outside the European Union / EFTA and the United Kingdom.",
+      "source_sha256": "6a610cf74646faf439b338d4510c424c1927df578dd94daee066944cc27dbd24",
+      "source_url": "https://www.oec.uzh.ch/en/studies/admission/master/it.html",
+      "check": "ok"
+     },
+     {
+      "text": "Bachelor's degrees outside Switzerland/Lisbon-Convention countries: additional requirements or conditions (typically 60 ECTS) if the curriculum deviates; if deviations are comprehensive, no admission",
+      "quote": "If the curriculum deviates in subject-specific areas, additional requirements or conditions (typically 60 ECTS Credits) must be completed. If the subjects-specific deviations are comprehensive applicants will not be admitted to the master’s program.",
+      "source_sha256": "6a610cf74646faf439b338d4510c424c1927df578dd94daee066944cc27dbd24",
+      "source_url": "https://www.oec.uzh.ch/en/studies/admission/master/it.html",
+      "check": "ok"
+     },
+     {
+      "text": "Most additional requirements for the Information Systems Master are taught in German",
+      "quote": "The majority of the additional requirements for the master program in Information Systems are in German.",
+      "source_sha256": "6a610cf74646faf439b338d4510c424c1927df578dd94daee066944cc27dbd24",
+      "source_url": "https://www.oec.uzh.ch/en/studies/admission/master/it.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts UZH in Business and Economics: Economics (major)",
+   "url": "https://www.uzh.ch/en/studies/programs/master/economics.html",
+   "snapshot_sha256": "8d4303121f73bcbd36ccb17a18fc80a41b025bbfd543e82e136194c53ed3fc59",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's diploma (or equivalent) from a state-accredited university, in a programme of at least three years (180 ECTS)",
+     "quote": "Bachelor’s diploma or a degree that is at least equivalent from a state-accredited university.",
+     "source_sha256": "093c39f67eec7489f0665628a05c99fd85cdec9d895d48af18eccbfdc6b5841a",
+     "source_url": "https://www.uzh.ch/en/studies/application/master.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.5,
+     "quote": "IELTS Academic (not older than 2 years)\nRequired score: 7. Minimum 6.5 in Speaking and Writing.",
+     "source_sha256": "3a2e225acfac26ed35f6e0d8bb1e409fbeae750fcef6236a8c35db01a4b67687",
+     "source_url": "https://www.uzh.ch/en/studies/application/languagerequirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "Note: Starting 21 January 2026, TOEFL iBT will use a new score scale of 1-6 (previously: 0–120). Required score:\nTest date before 21 January 2026: 100. Minimum 25 in Speaking and 26 in Writing.\nTest date from 21 January 2026 onwards: 5. Minimum 5 in Speaking and Writing.",
+     "source_sha256": "3a2e225acfac26ed35f6e0d8bb1e409fbeae750fcef6236a8c35db01a4b67687",
+     "source_url": "https://www.uzh.ch/en/studies/application/languagerequirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Good knowledge of English is required; most courses are taught in English",
+      "quote": "Good knowledge of English is required for the Master's program in Economics as the majority of courses are taught in English.",
+      "source_sha256": "4decdf5bbba4b6fb6bdbd991b9f8381f658095e39a1acec7e130c61fcaeae742",
+      "source_url": "https://www.oec.uzh.ch/en/academic-programs/master/oec/econ.html",
+      "check": "ok"
+     },
+     {
+      "text": "Foreign-language applicants must prove at least CEFR C1 in the programme's main language of instruction",
+      "quote": "Foreign-language applicants must prove that they have the necessary language skills of at least level C1 for their chosen study programs according to the Common European Framework of Reference for Languages (CEFR).",
+      "source_sha256": "093c39f67eec7489f0665628a05c99fd85cdec9d895d48af18eccbfdc6b5841a",
+      "source_url": "https://www.uzh.ch/en/studies/application/master.html",
+      "check": "ok"
+     },
+     {
+      "text": "GMAT or GRE mandatory for all applicants from universities abroad (GRE institution code 7136)",
+      "quote": "The submission of a GMAT or GRE is mandatory for all applicants from universities abroad, from universities of applied sciences (CH/abroad) or for applicants with a Bachelor's degree in a non-subject (CH/abroad).",
+      "source_sha256": "381511e9e7220f8ded079ee1aafac3f31fb671a9e02af317c64ed11d393731fe",
+      "source_url": "https://www.oec.uzh.ch/en/studies/admission/master/oec.html",
+      "check": "ok"
+     },
+     {
+      "text": "Weighted grade point average form (xlsx) mandatory for applicants from universities abroad; admission is by sur dossier examination of transcript and documents",
+      "quote": "The submission of this form is mandatory for all applicants from universities abroad, from universities of applied sciences (CH/abroad), for applicants with a minor degree comprising 60 ECTS in a specialization in business and economics and  for applicants with a Bachelor's degree from other fields (CH/abroad).",
+      "source_sha256": "381511e9e7220f8ded079ee1aafac3f31fb671a9e02af317c64ed11d393731fe",
+      "source_url": "https://www.oec.uzh.ch/en/studies/admission/master/oec.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts UZH in Business and Economics: Finance (major)",
+   "url": "https://www.uzh.ch/en/studies/programs/master/finance.html",
+   "snapshot_sha256": "60b466fa71d4a853c4aed477e8df5b628703ef38c051e67cb4b1d6c23dfd1b2f",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's diploma (or equivalent) from a state-accredited university, in a programme of at least three years (180 ECTS)",
+     "quote": "Bachelor’s diploma or a degree that is at least equivalent from a state-accredited university.",
+     "source_sha256": "093c39f67eec7489f0665628a05c99fd85cdec9d895d48af18eccbfdc6b5841a",
+     "source_url": "https://www.uzh.ch/en/studies/application/master.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.5,
+     "quote": "IELTS Academic (not older than 2 years)\nRequired score: 7. Minimum 6.5 in Speaking and Writing.",
+     "source_sha256": "3a2e225acfac26ed35f6e0d8bb1e409fbeae750fcef6236a8c35db01a4b67687",
+     "source_url": "https://www.uzh.ch/en/studies/application/languagerequirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "Note: Starting 21 January 2026, TOEFL iBT will use a new score scale of 1-6 (previously: 0–120). Required score:\nTest date before 21 January 2026: 100. Minimum 25 in Speaking and 26 in Writing.\nTest date from 21 January 2026 onwards: 5. Minimum 5 in Speaking and Writing.",
+     "source_sha256": "3a2e225acfac26ed35f6e0d8bb1e409fbeae750fcef6236a8c35db01a4b67687",
+     "source_url": "https://www.uzh.ch/en/studies/application/languagerequirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Good English skills are necessary; most courses are taught in English",
+      "quote": "Good English skills are necessary for the Master's study program in Finance, as most of the courses are taught in English.",
+      "source_sha256": "11fd7ee2a96c8416e704b5ec6608d7ec70b43d778a9f700a379eb01921b19f56",
+      "source_url": "https://www.oec.uzh.ch/en/academic-programs/master/oec/finance.html",
+      "check": "ok"
+     },
+     {
+      "text": "Foreign-language applicants must prove at least CEFR C1 in the programme's main language of instruction",
+      "quote": "Foreign-language applicants must prove that they have the necessary language skills of at least level C1 for their chosen study programs according to the Common European Framework of Reference for Languages (CEFR).",
+      "source_sha256": "093c39f67eec7489f0665628a05c99fd85cdec9d895d48af18eccbfdc6b5841a",
+      "source_url": "https://www.uzh.ch/en/studies/application/master.html",
+      "check": "ok"
+     },
+     {
+      "text": "GMAT or GRE mandatory for all applicants from universities abroad (GRE institution code 7136)",
+      "quote": "The submission of a GMAT or GRE is mandatory for all applicants from universities abroad, from universities of applied sciences (CH/abroad) or for applicants with a Bachelor's degree in a non-subject (CH/abroad).",
+      "source_sha256": "381511e9e7220f8ded079ee1aafac3f31fb671a9e02af317c64ed11d393731fe",
+      "source_url": "https://www.oec.uzh.ch/en/studies/admission/master/oec.html",
+      "check": "ok"
+     },
+     {
+      "text": "Weighted grade point average form (xlsx) mandatory for applicants from universities abroad; admission is by sur dossier examination of transcript and documents",
+      "quote": "The submission of this form is mandatory for all applicants from universities abroad, from universities of applied sciences (CH/abroad), for applicants with a minor degree comprising 60 ECTS in a specialization in business and economics and  for applicants with a Bachelor's degree from other fields (CH/abroad).",
+      "source_sha256": "381511e9e7220f8ded079ee1aafac3f31fb671a9e02af317c64ed11d393731fe",
+      "source_url": "https://www.oec.uzh.ch/en/studies/admission/master/oec.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts UZH in Business and Economics: Management and Economics (major)",
+   "url": "https://www.uzh.ch/en/studies/programs/master/management_economics.html",
+   "snapshot_sha256": "7e3ee6805ad6487cdeb29cc91f1de33d2cf481951da210b9581f271116cd1684",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's diploma (or equivalent) from a state-accredited university, in a programme of at least three years (180 ECTS)",
+     "quote": "Bachelor’s diploma or a degree that is at least equivalent from a state-accredited university.",
+     "source_sha256": "093c39f67eec7489f0665628a05c99fd85cdec9d895d48af18eccbfdc6b5841a",
+     "source_url": "https://www.uzh.ch/en/studies/application/master.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.5,
+     "quote": "IELTS Academic (not older than 2 years)\nRequired score: 7. Minimum 6.5 in Speaking and Writing.",
+     "source_sha256": "3a2e225acfac26ed35f6e0d8bb1e409fbeae750fcef6236a8c35db01a4b67687",
+     "source_url": "https://www.uzh.ch/en/studies/application/languagerequirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "Note: Starting 21 January 2026, TOEFL iBT will use a new score scale of 1-6 (previously: 0–120). Required score:\nTest date before 21 January 2026: 100. Minimum 25 in Speaking and 26 in Writing.\nTest date from 21 January 2026 onwards: 5. Minimum 5 in Speaking and Writing.",
+     "source_sha256": "3a2e225acfac26ed35f6e0d8bb1e409fbeae750fcef6236a8c35db01a4b67687",
+     "source_url": "https://www.uzh.ch/en/studies/application/languagerequirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Good knowledge of English is required; most courses are taught in English",
+      "quote": "Good knowledge of English is required for the Master's program in Management and Economics as the majority of courses are taught in English.",
+      "source_sha256": "34daac3aee0e17b8c258dcb771edb6d653c6dabf5ab8b13e5eb3e19b048e318a",
+      "source_url": "https://www.oec.uzh.ch/en/academic-programs/master/oec/me.html",
+      "check": "ok"
+     },
+     {
+      "text": "Foreign-language applicants must prove at least CEFR C1 in the programme's main language of instruction",
+      "quote": "Foreign-language applicants must prove that they have the necessary language skills of at least level C1 for their chosen study programs according to the Common European Framework of Reference for Languages (CEFR).",
+      "source_sha256": "093c39f67eec7489f0665628a05c99fd85cdec9d895d48af18eccbfdc6b5841a",
+      "source_url": "https://www.uzh.ch/en/studies/application/master.html",
+      "check": "ok"
+     },
+     {
+      "text": "GMAT or GRE mandatory for all applicants from universities abroad (GRE institution code 7136)",
+      "quote": "The submission of a GMAT or GRE is mandatory for all applicants from universities abroad, from universities of applied sciences (CH/abroad) or for applicants with a Bachelor's degree in a non-subject (CH/abroad).",
+      "source_sha256": "381511e9e7220f8ded079ee1aafac3f31fb671a9e02af317c64ed11d393731fe",
+      "source_url": "https://www.oec.uzh.ch/en/studies/admission/master/oec.html",
+      "check": "ok"
+     },
+     {
+      "text": "Weighted grade point average form (xlsx) mandatory for applicants from universities abroad; admission is by sur dossier examination of transcript and documents",
+      "quote": "The submission of this form is mandatory for all applicants from universities abroad, from universities of applied sciences (CH/abroad), for applicants with a minor degree comprising 60 ECTS in a specialization in business and economics and  for applicants with a Bachelor's degree from other fields (CH/abroad).",
+      "source_sha256": "381511e9e7220f8ded079ee1aafac3f31fb671a9e02af317c64ed11d393731fe",
+      "source_url": "https://www.oec.uzh.ch/en/studies/admission/master/oec.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science UZH ETH in Quantitative Finance",
+   "url": "https://www.uzh.ch/en/studies/programs/master/quantitative_finance_specialized.html",
+   "snapshot_sha256": "dc749be4ed21192c95af587e448d213492f5c00e060fc58b4b237fe53b8736c7",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's diploma from a state-accredited university; economics, finance and/or science background expected",
+     "quote": "Admission to the MSc UZH ETH in Quantitative Finance requires a Bachelor's diploma from a state-accredited University.\nBachelor students who will not graduate before 30 September should not apply.\nWe expect an economics, finance and/or science background (mathematics, physics, engineering, data science, etc).",
+     "source_sha256": "9ad4c8b94ba236a65b1e4a88bd19550cc377ea73dfa0bec7e0f201f43883fd1f",
+     "source_url": "https://www.msfinance.uzh.ch/en/admission/eligibilityandprerequisites.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.5,
+     "quote": "IELTS Academic (not older than 2 years)\nRequired score: 7. Minimum 6.5 in Speaking and Writing.",
+     "source_sha256": "3a2e225acfac26ed35f6e0d8bb1e409fbeae750fcef6236a8c35db01a4b67687",
+     "source_url": "https://www.uzh.ch/en/studies/application/languagerequirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "Note: Starting 21 January 2026, TOEFL iBT will use a new score scale of 1-6 (previously: 0–120). Required score:\nTest date before 21 January 2026: 100. Minimum 25 in Speaking and 26 in Writing.\nTest date from 21 January 2026 onwards: 5. Minimum 5 in Speaking and Writing.",
+     "source_sha256": "3a2e225acfac26ed35f6e0d8bb1e409fbeae750fcef6236a8c35db01a4b67687",
+     "source_url": "https://www.uzh.ch/en/studies/application/languagerequirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Good knowledge of English required; the whole programme is conducted in English",
+      "quote": "Good knowledge of English is required. The whole program is conducted in English.",
+      "source_sha256": "9ad4c8b94ba236a65b1e4a88bd19550cc377ea73dfa0bec7e0f201f43883fd1f",
+      "source_url": "https://www.msfinance.uzh.ch/en/admission/eligibilityandprerequisites.html",
+      "check": "ok"
+     },
+     {
+      "text": "Basic experience in a prototyping language (Julia, Matlab, Python, R)",
+      "quote": "It will be essential for several classes that students have at least basic experience in one of the major prototyping languages (Julia, Matlab, Python, R, etc.).",
+      "source_sha256": "9ad4c8b94ba236a65b1e4a88bd19550cc377ea73dfa0bec7e0f201f43883fd1f",
+      "source_url": "https://www.msfinance.uzh.ch/en/admission/eligibilityandprerequisites.html",
+      "check": "ok"
+     },
+     {
+      "text": "Advanced calculus (multivariate calculus, linear algebra) and real analysis",
+      "quote": "This means what is usually called \"advanced calculus\", namely multivariate calculus (and the associated linear and matrix algebra), and, crucially, courses in (at least univariate) Real Analysis that cover (sequential and topological) compactness, among all the other typical topics.",
+      "source_sha256": "9ad4c8b94ba236a65b1e4a88bd19550cc377ea73dfa0bec7e0f201f43883fd1f",
+      "source_url": "https://www.msfinance.uzh.ch/en/admission/eligibilityandprerequisites.html",
+      "check": "ok"
+     },
+     {
+      "text": "Good fundamental knowledge of microeconomics, corporate finance and investments",
+      "quote": "Each applicant must have or be able to prove good fundamental knowledge in microeconomics, corporate finance, and investments.",
+      "source_sha256": "9ad4c8b94ba236a65b1e4a88bd19550cc377ea73dfa0bec7e0f201f43883fd1f",
+      "source_url": "https://www.msfinance.uzh.ch/en/admission/eligibilityandprerequisites.html",
+      "check": "ok"
+     },
+     {
+      "text": "GMAT/GRE are not compulsory",
+      "quote": "No additional costs for GMAT/GRE, as they are not compulsory.",
+      "source_sha256": "059be8bba53a22d21c92b84731d8f1985abd6f2ae9bbf16b2c6c1fcc73ff9d1e",
+      "source_url": "https://www.msfinance.uzh.ch/en/admission/applicationinformation.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science UZH in Biostatistics",
+   "url": "https://www.uzh.ch/en/studies/programs/master/biostatistics.html",
+   "snapshot_sha256": "6e02300da2454b175adc645a20e9125ddf6a8f1ca7406debf4658e0d30af7423",
+   "fields": {
+    "academic": {
+     "text": "University degree (bachelor or master) including probability and statistics, analysis, linear algebra and biology/biomedicine; admission sur dossier",
+     "quote": "For admission to the program a university degree (bachelor or master), which includes\nintroductions to probability and statistics [9 ECTS]\nanalysis [6 ECTS]\nlinear algebra [3 ECTS]\nbiology/biomedicine [6 ECTS]\nis required.",
+     "source_sha256": "7ef39d34cbc25a3775ce1185f5fe33444b7446e96622ecc87eeb97c5b33a10db",
+     "source_url": "https://www.biostat.uzh.ch/application/prerequisites",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.5,
+     "quote": "IELTS Academic (not older than 2 years)\nRequired score: 7. Minimum 6.5 in Speaking and Writing.",
+     "source_sha256": "3a2e225acfac26ed35f6e0d8bb1e409fbeae750fcef6236a8c35db01a4b67687",
+     "source_url": "https://www.uzh.ch/en/studies/application/languagerequirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "Note: Starting 21 January 2026, TOEFL iBT will use a new score scale of 1-6 (previously: 0–120). Required score:\nTest date before 21 January 2026: 100. Minimum 25 in Speaking and 26 in Writing.\nTest date from 21 January 2026 onwards: 5. Minimum 5 in Speaking and Writing.",
+     "source_sha256": "3a2e225acfac26ed35f6e0d8bb1e409fbeae750fcef6236a8c35db01a4b67687",
+     "source_url": "https://www.uzh.ch/en/studies/application/languagerequirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Proof of English at about CEFR C1 level is required",
+      "quote": "Additionally, some proof that the level of English will be sufficient to follow the lectures is required; this is equivalent to the international C1 language level",
+      "source_sha256": "7ef39d34cbc25a3775ce1185f5fe33444b7446e96622ecc87eeb97c5b33a10db",
+      "source_url": "https://www.biostat.uzh.ch/application/prerequisites",
+      "check": "ok"
+     },
+     {
+      "text": "Sufficient knowledge of the statistical software R is presumed from the start",
+      "quote": "Sufficient knowledge in R is presumed from the start of the program.",
+      "source_sha256": "7ef39d34cbc25a3775ce1185f5fe33444b7446e96622ecc87eeb97c5b33a10db",
+      "source_url": "https://www.biostat.uzh.ch/application/prerequisites",
+      "check": "ok"
+     },
+     {
+      "text": "Additional requirements may be imposed and could include courses taught in German",
+      "quote": "The additional requirements could consist of courses taught in German.",
+      "source_sha256": "7ef39d34cbc25a3775ce1185f5fe33444b7446e96622ecc87eeb97c5b33a10db",
+      "source_url": "https://www.biostat.uzh.ch/application/prerequisites",
+      "check": "ok"
+     },
+     {
+      "text": "Application to the admission committee requires a motivation letter of at most 500 words (plus CV, transcripts, course descriptions, a recommendation letter, finance plan and proof of English)",
+      "quote": "motivation letter (max. 500 words)",
+      "source_sha256": "5602b6e8b75844157ee2846776b42310fd94ad845f155421d841acebebfef5c1",
+      "source_url": "https://www.biostat.uzh.ch/application/applicationexternal",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science UZH ETH in Interdisciplinary Brain Sciences",
+   "url": "https://www.uzh.ch/en/studies/programs/master/interdisciplinary_brain_sciences.html",
+   "snapshot_sha256": "da90e5eac99512c4ce748352ad81e790b2ef7ddb5c103ee7b92a4078a9098479",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in neurosciences, biology, biomedicine, biochemistry, biotechnology, health sciences, engineering, physics, pharmacy, computer sciences, psychology, chemistry or mathematics; foreign Bachelor's degree from a university ranked within the world top 1500",
+     "quote": "Admission is only possible with a Bachelor degree from a Swiss university, or from a foreign university having a world ranking within the top 1500.",
+     "source_sha256": "816dd9fdc4c4baf5c2d31625cc350fc9048ac658cac4ef52bc8b6e6495f563e0",
+     "source_url": "https://www.neuroscience.uzh.ch/en/Master-Studies/Admission.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Open to Bachelor's graduates in neurosciences, biology, biomedicine, biochemistry, biotechnology, health sciences, electrical engineering, engineering, physics, pharmacy, computer sciences, psychology, chemistry or mathematics; not open to Medicine/Nursing/Veterinary medicine/Physiotherapy backgrounds",
+      "quote": "The MSc IDB is open to students with a Bachelor’s degree in the following disciplines: neurosciences, biology, biomedicine, biochemistry, biotechnology, health sciences, electrical engineering, engineering, physics, pharmacy, computer sciences, psychology, chemistry, or mathematics.",
+      "source_sha256": "816dd9fdc4c4baf5c2d31625cc350fc9048ac658cac4ef52bc8b6e6495f563e0",
+      "source_url": "https://www.neuroscience.uzh.ch/en/Master-Studies/Admission.html",
+      "check": "ok"
+     },
+     {
+      "text": "Prior coursework expected in neurobiology, physiology/anatomy, molecular and cell biology, quantitative methods and cognitive psychology; ideal candidates cover at least 3/4 of it",
+      "quote": "Ideal candidates should have at least 3/4 of the equivalent knowledge/competences listed.",
+      "source_sha256": "816dd9fdc4c4baf5c2d31625cc350fc9048ac658cac4ef52bc8b6e6495f563e0",
+      "source_url": "https://www.neuroscience.uzh.ch/en/Master-Studies/Admission.html",
+      "check": "ok"
+     },
+     {
+      "text": "No English or German certificate or GRE required: English is assessed from written documents and a personal interview; the whole programme is in English",
+      "quote": "No, your proficiency in English will be assessed from your written documents and in a personal interview. It is not necessary to know German to apply to our program. We do not request scores from standardized tests like SAT or GRE.",
+      "source_sha256": "85bd657e90770aac81ad4a32e37833d4ea54766dcfebd2ade7de567275be72ef",
+      "source_url": "https://www.neuroscience.uzh.ch/en/Master-Studies/FAQ.html",
+      "check": "ok"
+     },
+     {
+      "text": "Autumn intake only: a start in the spring semester is not possible",
+      "quote": "Please note that it is currently not possible to apply for a start of the program in the Spring Semester.",
+      "source_sha256": "816dd9fdc4c4baf5c2d31625cc350fc9048ac658cac4ef52bc8b6e6495f563e0",
+      "source_url": "https://www.neuroscience.uzh.ch/en/Master-Studies/Admission.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science UZH in Computational Science (specialized Master)",
+   "url": "https://www.uzh.ch/en/studies/programs/master/computational_science.html",
+   "snapshot_sha256": "f71ffcc7d1f9c9adc3d52171d177da79111125898ffaf7ffe877949c7e0b4e6f",
+   "fields": {
+    "academic": {
+     "text": "Bachelor of Science with a major in a natural science plus a minor in computational science/computer science, or a major in a computational field plus a minor in a natural science",
+     "quote": "The specialized mono/major study program Computational Science (note: not Computer Science) at Master's level requires a Bachelor of Science degree with:\nA major in a natural science (e.g., Astrophysics, Biology, Chemistry, Geography, Physics) with a minor in Computational Science or Computer science (Informatics); or\nA major in a computational field with a minor in a natural science or Computational Science.",
+     "source_sha256": "fb5ef30deb6ae68d356b6792706ff0549a2e4504d59a76a93c3b34a25d0723e0",
+     "source_url": "https://www.astro.uzh.ch/en/studies/msc/spec_msc_cs.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Interest in both computing and natural science; first-year introductory natural science courses are not sufficient",
+      "quote": "Interest in both computing and natural science are prerequisites for applying. Please note that having 1st year introductory courses in the natural sciences (listed above) is not considered sufficient.",
+      "source_sha256": "fb5ef30deb6ae68d356b6792706ff0549a2e4504d59a76a93c3b34a25d0723e0",
+      "source_url": "https://www.astro.uzh.ch/en/studies/msc/spec_msc_cs.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 12,
+  "机器核对": 12,
+  "待人工": 0
+ }
+}

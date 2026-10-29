@@ -1,0 +1,1291 @@
+{
+ "school_key": "adelaide-university",
+ "school_name_en": "Adelaide University",
+ "country": "Australia",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://adelaide.edu.au/study/international-students/how-to-apply/entry-requirements/"
+ ],
+ "blocked": [],
+ "complete": false,
+ "remaining_urls": [
+  "https://adelaide.edu.au/study/degrees/2027/master-of-education-studies/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-mathematical-sciences/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-psychology-health/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-psychology-organisational-and-human-factors/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-public-health/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-science/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-social-work/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-statistics/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-strategic-communication/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-teaching-early-childhood-education/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-teaching-primary/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-teaching-secondary/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-technology-innovation-and-entrepreneurship/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-tourism-events-and-hospitality-management/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-urban-and-regional-planning/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-visual-effects/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-viticulture-and-oenology/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-wine-and-food-business/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-advanced-clinical-physiotherapy/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-pharmacy/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-computer-science/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-education-tesol/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-engineering-cyber-engineering-and-telecommunications/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-engineering-electrical-power/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-environmental-science/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-project-and-program-management/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-teaching-early-childhood/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-applied-economics/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-architecture-master-of-landscape-architecture/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-arts-interpreting-translation-and-transcultural-communication/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-biotechnology-biomedical-advanced/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-business-law/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-engineering-aerospace/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-finance-and-business-economics/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-international-security/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-maritime-engineering/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-planning-master-of-landscape-architecture/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-project-management/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-property/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-public-policy/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-teaching-middle-and-secondary/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-engineering-chemical/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-engineering-civil-and-infrastructure/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-engineering-civil-and-structural/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-engineering-electrical/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-engineering-electronic/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-engineering-environmental/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-engineering-mechanical/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-engineering-mechatronic/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-engineering-mining/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-petroleum-engineering/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-clinical-nursing/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-professional-accounting/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-engineering-water-resources-management/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-finance-financial-planning/int/",
+  "https://adelaide.edu.au/study/degrees/2027/master-of-biotechnology-biomedical/int/"
+ ],
+ "notes": "Used the International-student view of each 2027 degree page (/int/). The degree finder is JavaScript-built, so program URLs were derived from CRICOS course names; Master of Education Studies and Master of Mathematical Sciences returned 404 at that URL and are in remaining_urls. No postgraduate China-specific page was found: the only country table is for undergraduate admission (PDF). GPA thresholds are on Adelaide's 7-point scale and are stated in the academic text, not as China marks. No application closing dates are published on the degree pages (they link to Key study dates), so no deadlines were recorded.",
+ "programs": [
+  {
+   "name": "International Master of Business Administration",
+   "url": "https://adelaide.edu.au/study/degrees/2027/international-master-of-business-administration/int/",
+   "cricos_code": "115889J",
+   "snapshot_sha256": "9df986764d3af291035fee3c5ba6b596a76ce015f8f8afcfaa917cc6f9f6697c",
+   "fields": {
+    "academic": {
+     "text": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher from a recognised higher education institution.",
+     "quote": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher from a recognised higher education institution.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Aboriginal Studies",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-aboriginal-studies/int/",
+   "cricos_code": "115892C",
+   "snapshot_sha256": "28a01a5ae5816f8197a6f79960c74f1154b8faf346b5430e73717895d13cac97",
+   "fields": {
+    "academic": {
+     "text": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution.",
+     "quote": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Accounting",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-accounting/int/",
+   "cricos_code": "115893B",
+   "snapshot_sha256": "668d20b55f21722908d4e9592baba0159ed1ab0b2fc20e87c458d0baa04d8a74",
+   "fields": {
+    "academic": {
+     "text": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution.",
+     "quote": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Accounting and Business Analytics",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-accounting-and-business-analytics/int/",
+   "cricos_code": "115894A",
+   "snapshot_sha256": "d698215fc016d6a8168f62b536bf9f4d153ecfdadc81296a51917de5b4f087b6",
+   "fields": {
+    "academic": {
+     "text": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 4.5 on a 7-point scale for entry.",
+     "quote": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 4.5 on a 7-point scale for entry.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Accounting and Finance",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-accounting-and-finance/int/",
+   "cricos_code": "115895M",
+   "snapshot_sha256": "61ada8a4e07ac57738abe442d19d705d66147fa59762dadba6651dff3ba35aa0",
+   "fields": {
+    "academic": {
+     "text": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 4.5 on a 7-point scale for entry.",
+     "quote": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 4.5 on a 7-point scale for entry.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Applied Finance",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-applied-finance/int/",
+   "cricos_code": "115896K",
+   "snapshot_sha256": "96eab55cbbb302a1a17bde2fc029b64905b3387ea98c4c9e179f6eecd7320b6e",
+   "fields": {
+    "academic": {
+     "text": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 4.5 on a 7-point scale for entry.",
+     "quote": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 4.5 on a 7-point scale for entry.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Architecture",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-architecture/int/",
+   "cricos_code": "115897J",
+   "snapshot_sha256": "1a14afc60e3e49a413f134ae644b58fb9df42afa394188474520f3c1599e20f6",
+   "fields": {
+    "academic": {
+     "text": "A completed Bachelor of Architectural Design; OR A 3-year pre-professional architecture program from a recognised Australian higher education institution or equivalent. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 4.0 on a 7-point scale for entry. Applicants with a bachelor degree in architecture from a non-Australian institution may be considered and will be required to provide a portfolio. The portfolio should include the applicant's own creative works from previous degrees, professional, and/or personal background, showing design skills, knowledge, and familiarity with a range of design tools and media. In addition to final outcomes, it should",
+     "quote": "A completed Bachelor of Architectural Design; OR A 3-year pre-professional architecture program from a recognised Australian higher education institution or equivalent. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 4.0 on a 7-point scale for entry. Applicants with a bachelor degree in architecture from a non-Australian institution may be considered and will be required to provide a portfolio. The portfolio should include the applicant's own creative works from previous degrees, professional, and/or personal background, showing design skills, knowledge, and familiarity with a range of design tools and media. In addition to final outcomes, it should",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Artificial Intelligence and Machine Learning",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-artificial-intelligence-and-machine-learning/int/",
+   "cricos_code": "115898H",
+   "snapshot_sha256": "b2d891b52276f7b01fa0f79a11a9d10819041e892541f4d6cb6ed540709dfdab",
+   "fields": {
+    "academic": {
+     "text": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent in computer science, computer systems engineering, or software engineering from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher in computer science from a recognised higher education institution. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 4.5 on a 7-point scale for entry.",
+     "quote": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent in computer science, computer systems engineering, or software engineering from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher in computer science from a recognised higher education institution. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 4.5 on a 7-point scale for entry.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Administration",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-business-administration/int/",
+   "cricos_code": "115899G",
+   "snapshot_sha256": "8b268ee8d367533857e1bfe4a78bf50fcfcce733a9ce7831fd5f218dc27a0f30",
+   "fields": {
+    "academic": {
+     "text": "Applicants seeking direct entry to the Master of Business Administration must hold a completed bachelor's degree or equivalent and have a minimum of three years' full-time managerial experience.",
+     "quote": "Applicants seeking direct entry to the Master of Business Administration must hold a completed bachelor's degree or equivalent and have a minimum of three years' full-time managerial experience.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 7 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Analytics",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-business-analytics/int/",
+   "cricos_code": "115900H",
+   "snapshot_sha256": "13cc16a117675320065f07da56de70538531d7172975b390cae0f252f85ccc7b",
+   "fields": {
+    "academic": {
+     "text": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 4.5 on a 7-point scale for entry.",
+     "quote": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 4.5 on a 7-point scale for entry.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Construction Management",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-construction-management/int/",
+   "cricos_code": "115902F",
+   "snapshot_sha256": "9b3fc2fbacbcc6323ac6db93a56be99814519f15bdbbc6bdf10d97bbee763573",
+   "fields": {
+    "academic": {
+     "text": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 4.5 on a 7-point scale for entry.",
+     "quote": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 4.5 on a 7-point scale for entry.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Counselling and Psychotherapy",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-counselling-and-psychotherapy/int/",
+   "cricos_code": "115903E",
+   "snapshot_sha256": "28552b66bc7d7a0f399ffc5a32b38211992c74cd89fc3ce30fcf4716876317d0",
+   "fields": {
+    "academic": {
+     "text": "A completed bachelor (AQF level 7) degree or equivalent from a recognised higher education institution; AND Undertake the Casper Situational Judgement Test (CSJT); AND Attend an interview, if invited.",
+     "quote": "A completed bachelor (AQF level 7) degree or equivalent from a recognised higher education institution; AND Undertake the Casper Situational Judgement Test (CSJT); AND Attend an interview, if invited.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 7.0,
+     "quote": "IELTS Overall 7 IELTS Reading 7 IELTS Listening 7 IELTS Speaking 7 IELTS Writing 7",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Data Science",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-data-science/int/",
+   "cricos_code": "115904D",
+   "snapshot_sha256": "97539f16dc4272a8f008761f22e9bb8d4bdd2b8c559bb33e475051193eaaaf34",
+   "fields": {
+    "academic": {
+     "text": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 4.5 on a 7-point scale for entry.",
+     "quote": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 4.5 on a 7-point scale for entry.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Design",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-design/int/",
+   "cricos_code": "115905C",
+   "snapshot_sha256": "8e99b935fcfcadd02cad056b73ed2e295f5207643c5d154aa92f4310b1f6666e",
+   "fields": {
+    "academic": {
+     "text": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 4.0 on a 7-point scale for entry.",
+     "quote": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 4.0 on a 7-point scale for entry.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Economics and Resource Policy",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-economics-and-resource-policy/int/",
+   "cricos_code": "115906B",
+   "snapshot_sha256": "c133bc2f90bc31a16c0cd15cc1ecac692d20536f8390034a5be6de80f0197ccd",
+   "fields": {
+    "academic": {
+     "text": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or higher or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 5.0 on a 7-point scale for entry.",
+     "quote": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or higher or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 5.0 on a 7-point scale for entry.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Education",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-education/int/",
+   "cricos_code": "115907A",
+   "snapshot_sha256": "5369cbbba2b6a35b49de4bedfac809990f574c7de799ea3dd8f08ae963cbebde",
+   "fields": {
+    "academic": {
+     "text": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution. Applicants who have completed a four-year Bachelor degree in Education, or equivalent Initial Teacher Education qualifications, e.g. Graduate Diploma in Education, Master of Teaching, or a four-year Bachelor degree with studies in educational methodology and curriculum equivalent to 24 units are eligible to enter the program with 0.5 EFTSL Advanced Standing and complete the program in 1.5 years of full-time study or",
+     "quote": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution. Applicants who have completed a four-year Bachelor degree in Education, or equivalent Initial Teacher Education qualifications, e.g. Graduate Diploma in Education, Master of Teaching, or a four-year Bachelor degree with studies in educational methodology and curriculum equivalent to 24 units are eligible to enter the program with 0.5 EFTSL Advanced Standing and complete the program in 1.5 years of full-time study or",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering (Biopharmaceutical)",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-engineering-biopharmaceutical/int/",
+   "cricos_code": "115909K",
+   "snapshot_sha256": "adfa45c15c22d062d93e37dd185926db7ed5dc334cc93a620fae06511a8d3f6e",
+   "fields": {
+    "academic": {
+     "text": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent in science, engineering, technology or a related field from a recognised higher education institution.",
+     "quote": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent in science, engineering, technology or a related field from a recognised higher education institution.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering (Engineering Management)",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-engineering-engineering-management/int/",
+   "cricos_code": "115910F",
+   "snapshot_sha256": "13c1de9e1ff595f1ea53673537a8b04df0dedff3ae4d1dba5dde6b219e2e86d3",
+   "fields": {
+    "academic": {
+     "text": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent in a field relevant to the chosen engineering specialisation or a related graduate certificate (AQF level 8) or higher from a recognised higher education institution; OR A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent or a graduate certificate (AQF level 8) or higher from any discipline from a recognised higher education institution PLUS at least 3 years relevant work experience that includes relevant project experience in a field related to engineering, science or technology; OR A completed associate degree (AQF level 6) in a field relevant to the chosen",
+     "quote": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent in a field relevant to the chosen engineering specialisation or a related graduate certificate (AQF level 8) or higher from a recognised higher education institution; OR A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent or a graduate certificate (AQF level 8) or higher from any discipline from a recognised higher education institution PLUS at least 3 years relevant work experience that includes relevant project experience in a field related to engineering, science or technology; OR A completed associate degree (AQF level 6) in a field relevant to the chosen",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering (Maritime)",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-engineering-maritime/int/",
+   "cricos_code": "115911E",
+   "snapshot_sha256": "82e78db7a8b6a1ab8216e17e1ad26bf5b084936a456f2b3caa27bda2f8f8db3c",
+   "fields": {
+    "academic": {
+     "text": "A completed four year bachelor (AQF7) or bachelor honours (AQF8) degree or equivalent in science, engineering, technology or a related field from a recognised higher education institution..",
+     "quote": "A completed four year bachelor (AQF7) or bachelor honours (AQF8) degree or equivalent in science, engineering, technology or a related field from a recognised higher education institution..",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering (Materials)",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-engineering-materials/int/",
+   "cricos_code": "115912D",
+   "snapshot_sha256": "cf522302bc64fd784d20110ae2e561ff8b2b380e8b02e6d8af9a0dfe0a6e11db",
+   "fields": {
+    "academic": {
+     "text": "Higher education study A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent in science, engineering, technology or a related field from a recognised higher education institution.",
+     "quote": "Higher education study A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent in science, engineering, technology or a related field from a recognised higher education institution.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Environmental Policy and Management",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-environmental-policy-and-management/int/",
+   "cricos_code": "115913C",
+   "snapshot_sha256": "84d70c20c566ac686876d902cf12b745f81cc70562067bf75a81431ec47e0541",
+   "fields": {
+    "academic": {
+     "text": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 5.0 on a 7-point scale for entry.",
+     "quote": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 5.0 on a 7-point scale for entry.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Finance",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-finance/int/",
+   "cricos_code": "115914B",
+   "snapshot_sha256": "9b2738d0c2180fe053bf49df9b57778e60288329e5170bb5ba5bb3b6f38e17a5",
+   "fields": {
+    "academic": {
+     "text": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 4.5 on a 7-point scale for entry.",
+     "quote": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 4.5 on a 7-point scale for entry.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Finance and Business Analytics",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-finance-and-business-analytics/int/",
+   "cricos_code": "115915A",
+   "snapshot_sha256": "6597745a5fd9376b1aa03fd6540d4a6fb9ebfe667708defb0f67966b48a5763c",
+   "fields": {
+    "academic": {
+     "text": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 4.5 on a 7-point scale for entry.",
+     "quote": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 4.5 on a 7-point scale for entry.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Financial Planning",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-financial-planning/int/",
+   "cricos_code": "115916M",
+   "snapshot_sha256": "881de5f7e15e0695ba4a26644a61121a33248dcd76e1feefb8b3f68ade13b962",
+   "fields": {
+    "academic": {
+     "text": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution.",
+     "quote": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Health Services Management",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-health-services-management/int/",
+   "cricos_code": "115917K",
+   "snapshot_sha256": "f6de10009d315a7d2064ebd54db36f11b942afbb20c481fc4f866f8cb3ada056",
+   "fields": {
+    "academic": {
+     "text": "A completed bachelor (AQF level 7) degree or higher from a recognised higher education institution in one of the approved Fields of Education; OR A completed Graduate Certificate (AQF level 8) or Graduate Diploma (AQF level 8) in Health Services Management from a recognised higher education institution. Approved fields of education: Health Human Welfare Studies and Services Behavioural Science Biomedical Engineering Public and Health Care Management Biochemistry and Cell Biology Genetics Microbiology Human Biology",
+     "quote": "A completed bachelor (AQF level 7) degree or higher from a recognised higher education institution in one of the approved Fields of Education; OR A completed Graduate Certificate (AQF level 8) or Graduate Diploma (AQF level 8) in Health Services Management from a recognised higher education institution. Approved fields of education: Health Human Welfare Studies and Services Behavioural Science Biomedical Engineering Public and Health Care Management Biochemistry and Cell Biology Genetics Microbiology Human Biology",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6.5 IELTS Writing 6.5",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Human Resource Management",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-human-resource-management/int/",
+   "cricos_code": "115918J",
+   "snapshot_sha256": "e58b608738a98f795524266bbe5f4fcfa1450d01ac579fbced810ba55d4399a2",
+   "fields": {
+    "academic": {
+     "text": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution.",
+     "quote": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Immersive Media Technologies",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-immersive-media-technologies/int/",
+   "cricos_code": "115919H",
+   "snapshot_sha256": "1deb82688dfdaa30f4f80ebe263b8bba100529ad336511b7c29033d590f934ed",
+   "fields": {
+    "academic": {
+     "text": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution.",
+     "quote": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Information Technology (Applied Artificial Intelligence)",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-information-technology-applied-artificial-intelligence/int/",
+   "cricos_code": "115920D",
+   "snapshot_sha256": "fb8c172ddfcc4ab4086966eb57d6586b2521ae5fdde419ee4be5625d760a106a",
+   "fields": {
+    "academic": {
+     "text": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 4.5 on a 7-point scale for entry.",
+     "quote": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 4.5 on a 7-point scale for entry.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Information Technology (Computing and Innovation)",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-information-technology-computing-and-innovation/int/",
+   "cricos_code": "115921C",
+   "snapshot_sha256": "3619905a3ff9714308f38c7116ccb170d17784f0b658b45dc91b9b2f8481a754",
+   "fields": {
+    "academic": {
+     "text": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 4.5 on a 7-point scale for entry.",
+     "quote": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 4.5 on a 7-point scale for entry.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Information Technology (Cyber Security)",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-information-technology-cyber-security/int/",
+   "cricos_code": "115922B",
+   "snapshot_sha256": "45295e4bce5ff558025fb0203e69d4a74cb53f829e5c19c4e07802b2ec7ff96c",
+   "fields": {
+    "academic": {
+     "text": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 4.5 on a 7-point scale for entry.",
+     "quote": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 4.5 on a 7-point scale for entry.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Information Technology (Enterprise Management)",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-information-technology-enterprise-management/int/",
+   "cricos_code": "115923A",
+   "snapshot_sha256": "052454c0bd5a062abf767e11b581fdf9a7984ea170d82c2173f0952b33801c9f",
+   "fields": {
+    "academic": {
+     "text": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 4.5 on a 7-point scale for entry.",
+     "quote": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 4.5 on a 7-point scale for entry.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of International and Security Law",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-international-and-security-law/int/",
+   "cricos_code": "115924M",
+   "snapshot_sha256": "4e6e5e5a7b948a6ca6506e872f247a31c82df923f1f59338996875f52adb71ca",
+   "fields": {
+    "academic": {
+     "text": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution with a competitive Grade Point Average (GPA); OR A completed Graduate Diploma in Law or Graduate Certificate in Law. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 5.0 on a 7-point scale for entry.",
+     "quote": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution with a competitive Grade Point Average (GPA); OR A completed Graduate Diploma in Law or Graduate Certificate in Law. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 5.0 on a 7-point scale for entry.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.5,
+     "quote": "IELTS Overall 7 IELTS Reading 6.5 IELTS Listening 6.5 IELTS Speaking 6.5 IELTS Writing 6.5",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of International Business",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-international-business/int/",
+   "cricos_code": "115925K",
+   "snapshot_sha256": "ed2e98615edd9ae3f1370c4c57c0500fdae2edecbffd50a7d45a3b5b076f771b",
+   "fields": {
+    "academic": {
+     "text": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution.",
+     "quote": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Landscape Architecture",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-landscape-architecture/int/",
+   "cricos_code": "115926J",
+   "snapshot_sha256": "89e86476161f63f616e3a122c7cc625033dfe93d3521fbdb1f1953c0ac594bc1",
+   "fields": {
+    "academic": {
+     "text": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 4.0 on a 7-point scale for entry.",
+     "quote": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 4.0 on a 7-point scale for entry.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Laws",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-laws/int/",
+   "cricos_code": "115927H",
+   "snapshot_sha256": "ee4669881064a4db13a53a85cf59001295d8eb814b78b2e23a8bcd528f00553f",
+   "fields": {
+    "academic": {
+     "text": "A completed Bachelor of Laws (Honours) (or equivalent); OR A completed Bachelor of Laws (or equivalent), plus a completed Graduate Diploma in Legal Practice; OR A completed Bachelor of Laws (or equivalent), plus substantial professional experience within the profession; OR A completed Bachelor of Laws (or equivalent), plus substantial research experience within the profession. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 5.0 on a 7-point scale for entry. (Substantial professional experience is considered to be at least two years of practice as either a barrister or a solicitor. Substantial research experience is the ability to demonstrate knowledge",
+     "quote": "A completed Bachelor of Laws (Honours) (or equivalent); OR A completed Bachelor of Laws (or equivalent), plus a completed Graduate Diploma in Legal Practice; OR A completed Bachelor of Laws (or equivalent), plus substantial professional experience within the profession; OR A completed Bachelor of Laws (or equivalent), plus substantial research experience within the profession. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 5.0 on a 7-point scale for entry. (Substantial professional experience is considered to be at least two years of practice as either a barrister or a solicitor. Substantial research experience is the ability to demonstrate knowledge",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.5,
+     "quote": "IELTS Overall 7 IELTS Reading 6.5 IELTS Listening 6.5 IELTS Speaking 6.5 IELTS Writing 6.5",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Management",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-management/int/",
+   "cricos_code": "115928G",
+   "snapshot_sha256": "edcab1e91eb55308d3e65384eda029b2bd422ef0cad565a478755448071374d0",
+   "fields": {
+    "academic": {
+     "text": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution.",
+     "quote": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Marketing",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-marketing/int/",
+   "cricos_code": "115929F",
+   "snapshot_sha256": "8fcd5f15620dbe835111de3600d91b72cc4cd1e5b392895e958d24891a90a152",
+   "fields": {
+    "academic": {
+     "text": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution.",
+     "quote": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Midwifery",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-midwifery/int/",
+   "cricos_code": "115931A",
+   "snapshot_sha256": "c4e46c68b4199ae2903c5cd38e2dfda4a04a827829315e598deb349df808c080",
+   "fields": {
+    "academic": {
+     "text": "A completed bachelor degree (AQF level 7) or higher from a recognised higher education institution in the field of Midwifery; AND Hold or be eligible to hold registration with the Nursing and Midwifery Board of Australia (NMBA). This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 5.0 on a 7-point scale for entry.",
+     "quote": "A completed bachelor degree (AQF level 7) or higher from a recognised higher education institution in the field of Midwifery; AND Hold or be eligible to hold registration with the Nursing and Midwifery Board of Australia (NMBA). This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 5.0 on a 7-point scale for entry.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 7.0,
+     "quote": "IELTS Overall 7 IELTS Reading 7 IELTS Listening 7 IELTS Speaking 7 IELTS Writing 7",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Midwifery (Graduate Entry)",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-midwifery-graduate-entry/int/",
+   "cricos_code": "115932M",
+   "snapshot_sha256": "d6838b45e1a5a1078b365efc0000d7b2777fc8a5e402efd3044ef4d2c5f40adc",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have completed: A Bachelors degree (AQF level 7), in any discipline, from a recognised higher education institution, and achieved a minimum GPA of 5.0 (a Credit Average); and, the equivalent of 12 units (0.250 EFTSL) of study in human anatomy and physiology or a related topic from a recognised tertiary institution or equivalent as determined by the Program Director.",
+     "quote": "Applicants must have completed: A Bachelors degree (AQF level 7), in any discipline, from a recognised higher education institution, and achieved a minimum GPA of 5.0 (a Credit Average); and, the equivalent of 12 units (0.250 EFTSL) of study in human anatomy and physiology or a related topic from a recognised tertiary institution or equivalent as determined by the Program Director.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 7.0,
+     "quote": "IELTS Overall 7 IELTS Reading 7 IELTS Listening 7 IELTS Speaking 7 IELTS Writing 7",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Curatorial and Museum Studies",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-curatorial-and-museum-studies/int/",
+   "cricos_code": "115933K",
+   "snapshot_sha256": "617f31bc206b24beda31ed36118419d0e7a7b1b01bfc6c55628961a5b34aca6d",
+   "fields": {
+    "academic": {
+     "text": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution.",
+     "quote": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Music (Performance and Pedagogy)",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-music-performance-and-pedagogy/int/",
+   "cricos_code": "115934J",
+   "snapshot_sha256": "ca972bfca478f5ec507c579176282d788109df1d9d0d6d85abadd73c707629fc",
+   "fields": {
+    "academic": {
+     "text": "A completed Bachelor of Music or equivalent from a recognised higher education institution.",
+     "quote": "A completed Bachelor of Music or equivalent from a recognised higher education institution.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Music (Performance Studies)",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-music-performance-studies/int/",
+   "cricos_code": "115935H",
+   "snapshot_sha256": "63fd2102c9c0113ded76d56536599b6e5f53e099a1b5b793fc02781116c0cff0",
+   "fields": {
+    "academic": {
+     "text": "A completed Bachelor of Music or equivalent from a recognised higher education institution.",
+     "quote": "A completed Bachelor of Music or equivalent from a recognised higher education institution.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Nursing",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-nursing/int/",
+   "cricos_code": "115936G",
+   "snapshot_sha256": "cb61892cd539717138c782225fbbae26d517f010fd3a5d57bb630ad20034ea79",
+   "fields": {
+    "academic": {
+     "text": "A completed bachelor degree (AQF level 7) or higher from a recognised higher education institution; AND Hold or be eligible to hold registration with the Nursing and Midwifery Board of Australia (NMBA). This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 5.0 on a 7-point scale for entry.",
+     "quote": "A completed bachelor degree (AQF level 7) or higher from a recognised higher education institution; AND Hold or be eligible to hold registration with the Nursing and Midwifery Board of Australia (NMBA). This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 5.0 on a 7-point scale for entry.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 7.0,
+     "quote": "IELTS Overall 7 IELTS Reading 7 IELTS Listening 7 IELTS Speaking 7 IELTS Writing 7",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Nursing (Graduate Entry)",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-nursing-graduate-entry/int/",
+   "cricos_code": "115937F",
+   "snapshot_sha256": "640a5b5732ae122a38b95ed8d8be72501ef9bd9a2183524acaf0e561148256a0",
+   "fields": {
+    "academic": {
+     "text": "Applicants must have completed: A Bachelors degree (AQF level 7), in any discipline, from a recognised higher education institution, and achieved a minimum GPA of 5.0 (a Credit Average); and, the equivalent of 12 units (0.250 EFTSL) of study in human anatomy and physiology or a related topic from a recognised tertiary institution or equivalent as determined by the Program Director.",
+     "quote": "Applicants must have completed: A Bachelors degree (AQF level 7), in any discipline, from a recognised higher education institution, and achieved a minimum GPA of 5.0 (a Credit Average); and, the equivalent of 12 units (0.250 EFTSL) of study in human anatomy and physiology or a related topic from a recognised tertiary institution or equivalent as determined by the Program Director.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 7.0,
+     "quote": "IELTS Overall 7 IELTS Reading 7 IELTS Listening 7 IELTS Speaking 7 IELTS Writing 7",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Occupational Therapy (Graduate Entry)",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-occupational-therapy-graduate-entry/int/",
+   "cricos_code": "115938E",
+   "snapshot_sha256": "c748b24aa5bce88ec88e28fd757df03db8ff91c4780e25fecfd25f5ab6badd38",
+   "fields": {
+    "academic": {
+     "text": "A completed bachelor degree (AQF level 7) or higher from a recognised (CRICOS) Australian higher education institution with a highly competitive GPA; AND Satisfactory completion of prerequisite courses at a bachelor level (AQF level 7) or higher within the last 10 years.* *On a case-by-case basis, the Program Director may consider applicants whose prerequisites were completed more than 10 years ago if they have relevant, recent work experience. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 5.0 on a 7-point scale for entry.",
+     "quote": "A completed bachelor degree (AQF level 7) or higher from a recognised (CRICOS) Australian higher education institution with a highly competitive GPA; AND Satisfactory completion of prerequisite courses at a bachelor level (AQF level 7) or higher within the last 10 years.* *On a case-by-case basis, the Program Director may consider applicants whose prerequisites were completed more than 10 years ago if they have relevant, recent work experience. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 5.0 on a 7-point scale for entry.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 7.0,
+     "quote": "IELTS Overall 7 IELTS Reading 7 IELTS Listening 7 IELTS Speaking 7 IELTS Writing 7",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Applicants are required to provide evidence of satisfactory completion of prerequisite courses in the last 10 years in the following content areas: 0.125 EFTSL Human Anatomy; AND 0.125 EFTSL Human Physiology; AND 0.125 EFTSL Human Psychology or Sociology/Anthropology; AND 0.125 EFTSL Research Methodologies",
+      "quote": "Applicants are required to provide evidence of satisfactory completion of prerequisite courses in the last 10 years in the following content areas: 0.125 EFTSL Human Anatomy; AND 0.125 EFTSL Human Physiology; AND 0.125 EFTSL Human Psychology or Sociology/Anthropology; AND 0.125 EFTSL Research Methodologies",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Physiotherapy (Graduate Entry)",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-physiotherapy-graduate-entry/int/",
+   "cricos_code": "115939D",
+   "snapshot_sha256": "4854e3b168bae0943d0d38be773bf46c80e88f11524fb51cabb3e3cd334f86dc",
+   "fields": {
+    "academic": {
+     "text": "A completed bachelor (AQF level 7) degree or higher from a recognised (CRICOS) Australian higher education institution in one of the approved Fields of Education with a highly competitive GPA; AND Satisfactory completion of prerequisite courses at a Bachelor level or higher within the last 10 years.* *On a case-by-case basis, the Program Director may consider applicants whose prerequisites were completed more than 10 years ago if they have relevant, recent work experience. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 5.0 on a 7-point scale for entry. Approved Fields of Education Medical Studies Rehabilitation Therapies Human Biology Medical Science",
+     "quote": "A completed bachelor (AQF level 7) degree or higher from a recognised (CRICOS) Australian higher education institution in one of the approved Fields of Education with a highly competitive GPA; AND Satisfactory completion of prerequisite courses at a Bachelor level or higher within the last 10 years.* *On a case-by-case basis, the Program Director may consider applicants whose prerequisites were completed more than 10 years ago if they have relevant, recent work experience. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 5.0 on a 7-point scale for entry. Approved Fields of Education Medical Studies Rehabilitation Therapies Human Biology Medical Science",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 7.0,
+     "quote": "IELTS Overall 7 IELTS Reading 7 IELTS Listening 7 IELTS Speaking 7 IELTS Writing 7",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Applicants are required to provide evidence of satisfactory completion of prerequisite courses in the last 10 years in the following content areas: • 0.125 EFTSL Statistics and Research Methods; AND • 0.250 EFTSL Human Anatomy; AND • 0.250 EFTSL Human Physiology",
+      "quote": "Applicants are required to provide evidence of satisfactory completion of prerequisite courses in the last 10 years in the following content areas: • 0.125 EFTSL Statistics and Research Methods; AND • 0.250 EFTSL Human Anatomy; AND • 0.250 EFTSL Human Physiology",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Procurement and Supply Chain Management",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-procurement-and-supply-chain-management/int/",
+   "cricos_code": "115940M",
+   "snapshot_sha256": "eb46bd9275a777ea80a03ce7c19a4367ab13ea13600b77f092d8c23f3a72f834",
+   "fields": {
+    "academic": {
+     "text": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution.",
+     "quote": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Professional Accounting",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-professional-accounting/int/",
+   "cricos_code": "115941K",
+   "snapshot_sha256": "ee88136607337f18adc6565f0057e41401e9a1c1b4589f1141019f183907f513",
+   "fields": {
+    "academic": {
+     "text": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 4.5 on a 7-point scale for entry.",
+     "quote": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution. This degree requires a Grade Point Average (GPA) equivalent to an Adelaide University 4.5 on a 7-point scale for entry.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Professional Engineering (Chemical)",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-professional-engineering-chemical/int/",
+   "cricos_code": "115942J",
+   "snapshot_sha256": "40207a67eb7430869e378d6b067d2a49f2f50bc308f2a79134edf3e349ca3a6a",
+   "fields": {
+    "academic": {
+     "text": "A completed 4-year bachelor or bachelor honours degree or higher in a field relevant to the chosen engineering specialisation from a recognised higher education institution.",
+     "quote": "A completed 4-year bachelor or bachelor honours degree or higher in a field relevant to the chosen engineering specialisation from a recognised higher education institution.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Professional Engineering (Civil)",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-professional-engineering-civil/int/",
+   "cricos_code": "115943H",
+   "snapshot_sha256": "92c9ba2037b0c2b7b5b5df4f872b1cc51eaaca92e7d1e5bb068bcbae5c267c1d",
+   "fields": {
+    "academic": {
+     "text": "A completed 4-year bachelor or bachelor honours degree or higher in a field relevant to the chosen engineering specialisation from a recognised higher education institution.",
+     "quote": "A completed 4-year bachelor or bachelor honours degree or higher in a field relevant to the chosen engineering specialisation from a recognised higher education institution.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Professional Engineering (Electrical)",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-professional-engineering-electrical/int/",
+   "cricos_code": "115944G",
+   "snapshot_sha256": "f056609743136f0362deb35130592294409bf34d36cc13125086a4a99ee06324",
+   "fields": {
+    "academic": {
+     "text": "A completed 4-year bachelor or bachelor honours degree or higher in a field relevant to the chosen engineering specialisation from a recognised higher education institution.",
+     "quote": "A completed 4-year bachelor or bachelor honours degree or higher in a field relevant to the chosen engineering specialisation from a recognised higher education institution.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Professional Engineering (Energy Resources)",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-professional-engineering-energy-resources/int/",
+   "cricos_code": "115945F",
+   "snapshot_sha256": "eccd39f0d13e0859afcef12df6f1639d64b9459d918089a97f7b27061ebc8c3d",
+   "fields": {
+    "academic": {
+     "text": "A completed 4-year bachelor or bachelor honours degree or higher in a field relevant to the chosen engineering specialisation from a recognised higher education institution.",
+     "quote": "A completed 4-year bachelor or bachelor honours degree or higher in a field relevant to the chosen engineering specialisation from a recognised higher education institution.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Professional Engineering (Environmental and Water Resources Management)",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-professional-engineering-environmental-and-water-resources-management/int/",
+   "cricos_code": "115946E",
+   "snapshot_sha256": "fbf295ea64c3b2e63a05e5dd1fedef75fc3b25cc0f003b5f3ad70b154ba47b65",
+   "fields": {
+    "academic": {
+     "text": "A completed 4-year bachelor or bachelor honours degree or higher in a field relevant to the chosen engineering specialisation from a recognised higher education institution.",
+     "quote": "A completed 4-year bachelor or bachelor honours degree or higher in a field relevant to the chosen engineering specialisation from a recognised higher education institution.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Professional Engineering (Mechanical)",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-professional-engineering-mechanical/int/",
+   "cricos_code": "115947D",
+   "snapshot_sha256": "85c8ce87194c4052a160826301053e4c33f46c20c0aaa092b4c8445868ea8ffe",
+   "fields": {
+    "academic": {
+     "text": "A completed 4-year bachelor or bachelor honours degree or higher in a field relevant to the chosen engineering specialisation from a recognised higher education institution.",
+     "quote": "A completed 4-year bachelor or bachelor honours degree or higher in a field relevant to the chosen engineering specialisation from a recognised higher education institution.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Professional Engineering (Mechatronic)",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-professional-engineering-mechatronic/int/",
+   "cricos_code": "115948C",
+   "snapshot_sha256": "aa7ebd2d60f96cf8f124f0bafcb8e6e9a4e77dc41e821296ce481d684c619839",
+   "fields": {
+    "academic": {
+     "text": "A completed 4-year bachelor or bachelor honours degree or higher in a field relevant to the chosen engineering specialisation from a recognised higher education institution.",
+     "quote": "A completed 4-year bachelor or bachelor honours degree or higher in a field relevant to the chosen engineering specialisation from a recognised higher education institution.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Professional Engineering (Mining)",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-professional-engineering-mining/int/",
+   "cricos_code": "115949B",
+   "snapshot_sha256": "263b27487eb6b4ba62674037fba841cd71161cb7c6b156f95de729326e3b857d",
+   "fields": {
+    "academic": {
+     "text": "A completed 4-year bachelor or bachelor honours degree or higher in a field relevant to the chosen engineering specialisation from a recognised higher education institution.",
+     "quote": "A completed 4-year bachelor or bachelor honours degree or higher in a field relevant to the chosen engineering specialisation from a recognised higher education institution.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Professional Engineering (Structural)",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-professional-engineering-structural/int/",
+   "cricos_code": "115950J",
+   "snapshot_sha256": "143e4e56d0e82f0216371c4fadb4f73d2c31a7c8830cb3d541ae26f37299426e",
+   "fields": {
+    "academic": {
+     "text": "A completed 4-year bachelor or bachelor honours degree or higher in a field relevant to the chosen engineering specialisation from a recognised higher education institution.",
+     "quote": "A completed 4-year bachelor or bachelor honours degree or higher in a field relevant to the chosen engineering specialisation from a recognised higher education institution.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Professional Engineering (Telecommunications)",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-professional-engineering-telecommunications/int/",
+   "cricos_code": "115951H",
+   "snapshot_sha256": "08f31801fa6b74da7521085d03434f380b9dabb0b8f486a1ddaeaba720a47d77",
+   "fields": {
+    "academic": {
+     "text": "A completed 4-year bachelor or bachelor honours degree or higher in a field relevant to the chosen engineering specialisation from a recognised higher education institution.",
+     "quote": "A completed 4-year bachelor or bachelor honours degree or higher in a field relevant to the chosen engineering specialisation from a recognised higher education institution.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Project Management",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-project-management/int/",
+   "cricos_code": "115952G",
+   "snapshot_sha256": "a47a7332aa5271704cd5e43d22de0edb858dc93d6132cffa9546af2526deea7d",
+   "fields": {
+    "academic": {
+     "text": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution.",
+     "quote": "A completed bachelor (AQF level 7) or bachelor honours (AQF level 8) degree or equivalent from a recognised higher education institution; OR A completed nested or related graduate certificate (AQF level 8) or higher or equivalent from a recognised higher education institution.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS Overall 6.5 IELTS Reading 6 IELTS Listening 6 IELTS Speaking 6 IELTS Writing 6",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Psychology (Clinical)",
+   "url": "https://adelaide.edu.au/study/degrees/2027/master-of-psychology-clinical/int/",
+   "cricos_code": "115953F",
+   "snapshot_sha256": "fef1bf1572c24946deb6059ba1b0401a779d4b94469819e08f775bd6a2917051",
+   "fields": {
+    "academic": {
+     "text": "A completed four-year psychology honours degree with at least an upper second class or equivalent overall mark, or an equivalent degree that is accredited by the Australian Psychology Accreditation Council; AND Undertake the Casper Situational Judgement Test (CSJT); AND Provide two referee reports via the HODSPA – VTAC reference portal system; AND Attend an interview, if invited.",
+     "quote": "A completed four-year psychology honours degree with at least an upper second class or equivalent overall mark, or an equivalent degree that is accredited by the Australian Psychology Accreditation Council; AND Undertake the Casper Situational Judgement Test (CSJT); AND Provide two referee reports via the HODSPA – VTAC reference portal system; AND Attend an interview, if invited.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 7.0,
+     "quote": "IELTS Overall 7 IELTS Reading 7 IELTS Listening 7 IELTS Speaking 7 IELTS Writing 7",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 60,
+  "机器核对": 60,
+  "待人工": 0
+ }
+}

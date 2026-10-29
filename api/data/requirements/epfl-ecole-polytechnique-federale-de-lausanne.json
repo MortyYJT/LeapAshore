@@ -1,0 +1,539 @@
+{
+ "school_key": "epfl-ecole-polytechnique-federale-de-lausanne",
+ "school_name_en": "EPFL – École polytechnique fédérale de Lausanne",
+ "country": "Switzerland",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://www.epfl.ch/education/master/programs/",
+  "https://www.epfl.ch/education/admission/admission-2/master-admission-criteria-application/",
+  "https://www.epfl.ch/education/admission/admission-2/master-admission-criteria-application/online-application/"
+ ],
+ "blocked": [],
+ "complete": true,
+ "remaining_urls": [],
+ "notes": "The URL given for the master admission page returns 404; the live page is admission-2/master-admission-criteria-application/. Application windows are given as '15th of December' and '31st of March' without a year, so no deadline is recorded. No IELTS/TOEFL minimum is published (TOEFL is optional), no China-specific page exists, and 'Communication Systems' is not a separate master (it feeds Computer Science / Data Science). Programme pages give no grade threshold, only 'excellent academic records'. Architecture also requires a portfolio and 12 months of practical experience. Admission criteria are dossier-based; the Bachelor's field must be related.",
+ "programs": [
+  {
+   "name": "MSc in Applied Mathematics",
+   "url": "https://www.epfl.ch/education/master/programs/applied-mathematics/",
+   "snapshot_sha256": "70a4210f255a3dca4628085266519ca32053a928c4b40c0f8760a08efd8fdb29",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from another institution in the same or related fields, with an excellent academic record (dossier-based evaluation)",
+     "quote": "Bachelor’s degrees obtained in the same field but from another institution are eligible on the basis of an application dossier and must be accompanied by excellent academic records.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Applied Physics",
+   "url": "https://www.epfl.ch/education/master/programs/applied-physics/",
+   "snapshot_sha256": "e93f49861b34edadaef68dfed3cbc214497a9bc7363f4104eff3f0a1035ca760",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from another institution in the same or related fields, with an excellent academic record (dossier-based evaluation)",
+     "quote": "Bachelor’s degrees obtained in the same field but from another institution are eligible on the basis of an application dossier and must be accompanied by excellent academic records.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "In addition, skills in quantum mechanics, solid-state physics, statistical physics, particle physics, mechanics (Lagrange, Hamilton) and electromagnetism are required.",
+      "quote": "In addition, skills in quantum mechanics, solid-state physics, statistical physics, particle physics, mechanics (Lagrange, Hamilton) and electromagnetism are required.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Architecture",
+   "url": "https://www.epfl.ch/education/master/programs/architecture/",
+   "snapshot_sha256": "989d183b2dfbc3be3d621f14f1115c4b6ea7111f7b30412c209e699308b28412",
+   "fields": {
+    "academic": {
+     "text": "EPFL Bachelor's in Architecture, or from another institution with an excellent academic record",
+     "quote": "EPFL Bachelor’s degree in Architecture, or from another institution with an excellent academic record",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "12 months of practical experience, at least 6 consecutive months in the same architecture unit",
+      "quote": "Practical experience of 12 months, of which 6 consecutive months at least in the same architecture unit",
+      "check": "ok"
+     },
+     {
+      "text": "Architecture portfolio",
+      "quote": "A portfolio corresponding to the following criteria:",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Chemical Engineering and Biotechnology",
+   "url": "https://www.epfl.ch/education/master/programs/chemical-engineering-and-biotechnology/",
+   "snapshot_sha256": "ce7d64a9bb2530281bf0b57b2f7e44827a20b09a0744d431f683a5011289f288",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from another institution in the same or related fields, with an excellent academic record (dossier-based evaluation)",
+     "quote": "Bachelor’s degrees obtained in the same fields but from another institution are eligible on the basis of an application dossier and must be accompanied by excellent academic records.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Civil Engineering",
+   "url": "https://www.epfl.ch/education/master/programs/civil-engineering/",
+   "snapshot_sha256": "2e665f8143a8f863a2f06fd33bc04f493e34363b6556e0b2b2edef853c96d481",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from another institution in the same or related fields, with an excellent academic record (dossier-based evaluation)",
+     "quote": "Bachelor’s degrees obtained in the same field but from another institution are eligible on the basis of an application dossier and must be accompanied by excellent academic records.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Computational Science and Engineering",
+   "url": "https://www.epfl.ch/education/master/programs/computational-science-and-engineering/",
+   "snapshot_sha256": "c84ae80e889498cb0f53432d9cbf420ed43dc8d845b95784c86c903ac1c2d344",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from another institution in the same or related fields, with an excellent academic record (dossier-based evaluation)",
+     "quote": "Bachelor’s degrees obtained in the same fields but from another institution are eligible on the basis of the evaluation of their application dossier, accompanied by excellent academic records.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "In addition, excellent competencies in mathematics, programming and calculus, as well as a strong interest in the chosen field are required in order to apply them to science and engineering issues.",
+      "quote": "In addition, excellent competencies in mathematics, programming and calculus, as well as a strong interest in the chosen field are required in order to apply them to science and engineering issues.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Computer Science",
+   "url": "https://www.epfl.ch/education/master/programs/computer-science/",
+   "snapshot_sha256": "727522185684991f83dd5707ca5b564623cf4feae171ccf1514d0fa6e8d0ffbe",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from another institution in the same or related fields, with an excellent academic record (dossier-based evaluation)",
+     "quote": "Bachelor’s degrees obtained in the same fields but from another institution are eligible on the basis of an application dossier and must be accompanied by excellent academic records.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "In addition, skills in mathematics, in particular in calculus, discrete mathematics, linear algebra and probability, as well as a solid understanding of algorithms, data structures, and databases are required.",
+      "quote": "In addition, skills in mathematics, in particular in calculus, discrete mathematics, linear algebra and probability, as well as a solid understanding of algorithms, data structures, and databases are required.",
+      "check": "ok"
+     },
+     {
+      "text": "Excellent English language skills required (teaching language is English)",
+      "quote": "Excellent English language skills are required to follow this Master’s program.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Computer Science – Cyber Security (joint EPFL-ETHZ)",
+   "url": "https://www.epfl.ch/education/master/programs/cyber-security/",
+   "snapshot_sha256": "a8bde9f0936e4ee2abd0254db64b292624dedef68c460bd1b258898122b20b44",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from another institution in the same or related fields, with an excellent academic record (dossier-based evaluation)",
+     "quote": "Bachelor’s degrees obtained in the same fields but from another institution are eligible on the basis of an application dossier and must be accompanied by excellent academic records.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "In addition, skills in mathematics, in particular in calculus, discrete mathematics, linear algebra and probability, as well as a solid understanding of algorithms, data structures, and databases are required.",
+      "quote": "In addition, skills in mathematics, in particular in calculus, discrete mathematics, linear algebra and probability, as well as a solid understanding of algorithms, data structures, and databases are required.",
+      "check": "ok"
+     },
+     {
+      "text": "Excellent English language skills required (teaching language is English)",
+      "quote": "Excellent English language skills are required to follow this Master’s program.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Data Science",
+   "url": "https://www.epfl.ch/education/master/programs/data-science/",
+   "snapshot_sha256": "91d6e3ad55071cfcad82047f00cb2584b4fcbb7e057307fe74942629d8488ac9",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from another institution in the same or related fields, with an excellent academic record (dossier-based evaluation)",
+     "quote": "Bachelor’s degrees obtained in the same fields but from another institution are eligible on the basis of an application dossier and must be accompanied by excellent academic records.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "In addition, skills in mathematics, in particular in calculus, discrete mathematics, linear algebra and probability, as well as a solid understanding of algorithms, data structures, and databases are required.",
+      "quote": "In addition, skills in mathematics, in particular in calculus, discrete mathematics, linear algebra and probability, as well as a solid understanding of algorithms, data structures, and databases are required.",
+      "check": "ok"
+     },
+     {
+      "text": "Excellent English language skills required (teaching language is English)",
+      "quote": "Excellent English language skills are required to follow this Master’s program.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Digital Humanities",
+   "url": "https://www.epfl.ch/education/master/programs/digital-humanities/",
+   "snapshot_sha256": "ee276ccf2df41654c3b6b923b1a4a98629248df04255a94c8c49f3597d88cd9b",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from another institution in the same or related fields, with an excellent academic record (dossier-based evaluation)",
+     "quote": "Bachelor’s degrees obtained in the field of Computer Sciences, Communication Systems, Mathematics, Physics, Electrical and Electronic Engineering, Microengineering or Data Science are also eligible on the basis of the evaluation of their application dossier, accompanied by excellent academic records.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "In addition, skills in programming, algebra, statistics, signal processing are required.",
+      "quote": "In addition, skills in programming, algebra, statistics, signal processing are required.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Electrical and Electronic Engineering",
+   "url": "https://www.epfl.ch/education/master/programs/electrical-and-electronic-engineering/",
+   "snapshot_sha256": "27ef0b915c10d22caeb3e9f7f883418a9f17faf5f104327f18475fc59237822b",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from another institution in the same or related fields, with an excellent academic record (dossier-based evaluation)",
+     "quote": "Bachelor’s degrees obtained in the same fields but from another institution are eligible on the basis of an application dossier and must be accompanied by excellent academic records.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Energy Science and Technology",
+   "url": "https://www.epfl.ch/education/master/programs/energy-science-and-technology/",
+   "snapshot_sha256": "d3a7c6bf71980dd09b9549d3266ed16cb9307a1b43771745bbaaf692d22e5643",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from another institution in the same or related fields, with an excellent academic record (dossier-based evaluation)",
+     "quote": "Bachelor’s degrees obtained in these same fields but issued from another institution are eligible on the basis of the evaluation of their application dossier, accompanied by excellent academic records.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Environmental Sciences and Engineering",
+   "url": "https://www.epfl.ch/education/master/programs/environmental-sciences-and-engineering/",
+   "snapshot_sha256": "847feadb08fa879d26d7455a28419d57ab7c405868fb594d2eab38789384a14c",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from another institution in the same or related fields, with an excellent academic record (dossier-based evaluation)",
+     "quote": "Bachelor’s degrees obtained in the same field but from another institution are eligible on the basis of an application dossier and must be accompanied by excellent academic records.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Financial Engineering",
+   "url": "https://www.epfl.ch/education/master/programs/financial-engineering/",
+   "snapshot_sha256": "748e79cdb12e2612354d1e457051e92848bbe1c6881ffeb3c10ce445efd66352",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from another institution in the same or related fields, with an excellent academic record (dossier-based evaluation)",
+     "quote": "Bachelor’s degrees obtained in the same fields but from another institution are eligible on the basis of the evaluation of their application dossier, accompanied by excellent academic records.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "In addition, skills in mathematical analysis, linear algebra, differential and integral calculus, statistics and probability theory and at least one programming language (C, C++, Python, Java, …) or an interpreted language such as Matlab or Matematica are required.",
+      "quote": "In addition, skills in mathematical analysis, linear algebra, differential and integral calculus, statistics and probability theory and at least one programming language (C, C++, Python, Java, …) or an interpreted language such as Matlab or Matematica are required.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Life Sciences Engineering",
+   "url": "https://www.epfl.ch/education/master/programs/life-sciences-engineering/",
+   "snapshot_sha256": "47bc7efd2cf8bdf322c66f4424e552abec043292bc253fc1162b23bf73a022ec",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from another institution in the same or related fields, with an excellent academic record (dossier-based evaluation)",
+     "quote": "Bachelor’s degrees obtained in the same field but from another institution are eligible on the basis of an application and must be accompanied by excellent academic records.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "In addition, skills in engineering (signal processing, systems, electronics, data science and machine learning) and basic knowledge of life sciences (cellular and molecular biology, similar to the content of BIO-105 or BIO-109) are required.",
+      "quote": "In addition, skills in engineering (signal processing, systems, electronics, data science and machine learning) and basic knowledge of life sciences (cellular and molecular biology, similar to the content of BIO-105 or BIO-109) are required.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Management, Technology and Entrepreneurship",
+   "url": "https://www.epfl.ch/education/master/programs/management-technology-and-entrepreneurship/",
+   "snapshot_sha256": "81763856cb5222a16a0a238f6da7e25d3d8505c31516673b47ef609d04345e51",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from another institution in the same or related fields, with an excellent academic record (dossier-based evaluation)",
+     "quote": "Bachelor’s degrees obtained in the same fields but from another institution are eligible on the basis of the evaluation of their application dossier, accompanied by excellent academic records.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "In addition, skills in analysis, linear algebra, probability and statistics are required.",
+      "quote": "In addition, skills in analysis, linear algebra, probability and statistics are required.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Materials Science and Engineering",
+   "url": "https://www.epfl.ch/education/master/programs/materials-science-and-engineering/",
+   "snapshot_sha256": "3fda14841f0a3b8fc10714ed8b095e85c5216928de978406c18cbf2b7547bb10",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from another institution in the same or related fields, with an excellent academic record (dossier-based evaluation)",
+     "quote": "Bachelor’s degrees obtained in the same field but from another institution are eligible on the basis of an application dossier and must be accompanied by excellent academic records.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "In addition, skills in materials science are required.",
+      "quote": "In addition, skills in materials science are required.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Mathematics",
+   "url": "https://www.epfl.ch/education/master/programs/mathematics/",
+   "snapshot_sha256": "fe9ad233545bea3df3172decb07514d71677d2c503f2bfec9cf3d93d0162c6d5",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from another institution in the same or related fields, with an excellent academic record (dossier-based evaluation)",
+     "quote": "Bachelor’s degrees obtained in the same fields but from another institution are eligible on the basis of an application dossier and must be accompanied by excellent academic records.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Mechanical Engineering",
+   "url": "https://www.epfl.ch/education/master/programs/mechanical-engineering/",
+   "snapshot_sha256": "f60b27182329efeed1770bf908391c023bce845c5573ae434e2b939c234c89ed",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from another institution in the same or related fields, with an excellent academic record (dossier-based evaluation)",
+     "quote": "Bachelor’s degrees obtained in the same fields but from another institution are eligible on the basis of an application dossier and must be accompanied by excellent academic records.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Microengineering",
+   "url": "https://www.epfl.ch/education/master/programs/microengineering/",
+   "snapshot_sha256": "811afcd9b7feb78d6b606baf566800d28986c59c85ebe602ade3e6fe36cd0c3e",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from another institution in the same or related fields, with an excellent academic record (dossier-based evaluation)",
+     "quote": "Bachelor’s degrees obtained in the same field, in Computer Science, Electrical and Electronic Engineering, Mechanical Engineering, or any related field with an interdisciplinary background but from another institution are eligible on the basis of an application dossier and must be accompanied by excellent academic records.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Excellent skills in at least two of the following three domains (computer science, electrical and electronic engineering or mechanical engineering) are required.",
+      "quote": "Excellent skills in at least two of the following three domains (computer science, electrical and electronic engineering or mechanical engineering) are required.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Molecular and Biological Chemistry",
+   "url": "https://www.epfl.ch/education/master/programs/molecular-and-biological-chemistry/",
+   "snapshot_sha256": "0a5d2eafef1fdf4e20e8dbed72894531b45a4958daf35ed96fb6132b6b9a4928",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from another institution in the same or related fields, with an excellent academic record (dossier-based evaluation)",
+     "quote": "Bachelor’s degrees obtained in the same fields but from another institution are eligible on the basis of an application dossier and must be accompanied by excellent academic records.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Neuro-X",
+   "url": "https://www.epfl.ch/education/master/programs/neuro-x/",
+   "snapshot_sha256": "0118696ecdee7cb31b7f03add2e57a2db5dc760985020f49869d9fe5e1f669ea",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from another institution in the same or related fields, with an excellent academic record (dossier-based evaluation)",
+     "quote": "Bachelor’s degrees obtained in the same fields but from another institution are eligible on the basis of an application dossier and must be accompanied by excellent academic records.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "It is recommended to follow an introductory course to neurosciences.",
+      "quote": "It is recommended to follow an introductory course to neurosciences.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Nuclear Engineering (joint EPFL-ETHZ)",
+   "url": "https://www.epfl.ch/education/master/programs/nuclear-engineering/",
+   "snapshot_sha256": "ee4887ffa9a1a8695724be2497e410332a12d9ea399306633105714be183b16f",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from another institution in the same or related fields, with an excellent academic record (dossier-based evaluation)",
+     "quote": "Bachelor’s degrees obtained in the same fields but from another institution are eligible on the basis of the evaluation of their application dossier, accompanied by excellent academic records.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "In addition, skills in mathematics (analysis), natural sciences (physics) and engineering (mechanics, electrical engineering, thermodynamics, chemical engineering, materials science and engineering, control systems) are required.",
+      "quote": "In addition, skills in mathematics (analysis), natural sciences (physics) and engineering (mechanics, electrical engineering, thermodynamics, chemical engineering, materials science and engineering, control systems) are required.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Physics",
+   "url": "https://www.epfl.ch/education/master/programs/physics/",
+   "snapshot_sha256": "99d6dc93bbe9ee110163141b97e77970c5891c8761edf587e6c65743529c982f",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from another institution in the same or related fields, with an excellent academic record (dossier-based evaluation)",
+     "quote": "Bachelor’s degrees obtained in the same field but from another institution are eligible on the basis of an application dossier and must be accompanied by excellent academic records.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "In addition, skills in quantum mechanics, solid-state physics, statistical physics, particle physics, mechanics (Lagrange, Hamilton) and electromagnetism are required.",
+      "quote": "In addition, skills in quantum mechanics, solid-state physics, statistical physics, particle physics, mechanics (Lagrange, Hamilton) and electromagnetism are required.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Quantum Science and Engineering",
+   "url": "https://www.epfl.ch/education/master/programs/quantum-science/",
+   "snapshot_sha256": "5feeb8392805784491d2189e95442b094d7a150d93eceb90dd586cd3b72c0f55",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from another institution in the same or related fields, with an excellent academic record (dossier-based evaluation)",
+     "quote": "Bachelor’s degrees obtained in the same or equivalent fields but from another institution are also subject to a dossier-based analysis and must be accompanied by excellent academic records.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Robotics",
+   "url": "https://www.epfl.ch/education/master/programs/robotics/",
+   "snapshot_sha256": "6d1278d7698b60621a519658ae3714f04810ce4ffe7f1733ce4d8e0cce56f34d",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from another institution in the same or related fields, with an excellent academic record (dossier-based evaluation)",
+     "quote": "Bachelor’s degrees obtained in the same field, in Computer Science, Electrical and Electronic Engineering, Mechanical Engineering, or any related field with an interdisciplinary background but from another institution are eligible on the basis of an application dossier and must be accompanied by excellent academic records.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Excellent skills in at least two of the following three domains (computer science, electrical and electronic engineering or mechanical engineering) are required.",
+      "quote": "Excellent skills in at least two of the following three domains (computer science, electrical and electronic engineering or mechanical engineering) are required.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Statistics",
+   "url": "https://www.epfl.ch/education/master/programs/statistics/",
+   "snapshot_sha256": "62a10426a2a7688478f20644913e18a70a131204cb96d4520bbcd2dc9ccabc05",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from another institution in the same or related fields, with an excellent academic record (dossier-based evaluation)",
+     "quote": "Bachelor’s degrees obtained in the same fields but from another institution are eligible on the basis of an application dossier and must be accompanied by excellent academic records.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Sustainable Management and Technology",
+   "url": "https://www.epfl.ch/education/master/programs/sustainable-management-and-technology/",
+   "snapshot_sha256": "3a121ab5d6ad445509bf49c7e226ec769a5483afdf1d1c4fc1861a6a67382b2a",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from another institution in the same or related fields, with an excellent academic record (dossier-based evaluation)",
+     "quote": "Bachelor’s degrees obtained in the same fields or in management/economics but from another institution are eligible on the basis of the evaluation of their application dossier, accompanied by excellent academic records.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "In addition, skills in quantitative methods as well as a solid knowledge in statistics, programming, machine learning, and/or systems thinking and /or system modelling are required.",
+      "quote": "In addition, skills in quantitative methods as well as a solid knowledge in statistics, programming, machine learning, and/or systems thinking and /or system modelling are required.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Urban Systems",
+   "url": "https://www.epfl.ch/education/master/programs/urban-systems/",
+   "snapshot_sha256": "b54c5f5151299e282d657d9c48f36ddadba2f38eb21ae0fd23222825b9eed511",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from another institution in the same or related fields, with an excellent academic record (dossier-based evaluation)",
+     "quote": "Bachelor’s degrees obtained in the same fields but from another institution are eligible on the basis of an application dossier and must be accompanied by excellent academic records.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 29,
+  "机器核对": 29,
+  "待人工": 0
+ }
+}

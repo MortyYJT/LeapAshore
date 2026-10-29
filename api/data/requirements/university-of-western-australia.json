@@ -1,0 +1,1871 @@
+{
+ "school_key": "university-of-western-australia",
+ "school_name_en": "The University of Western Australia",
+ "country": "Australia",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://www.uwa.edu.au/study/explore-courses/postgraduate",
+  "https://www.uwa.edu.au/study/explore-courses/find-a-course",
+  "https://www.uwa.edu.au/study/how-to-apply/postgraduate"
+ ],
+ "blocked": [],
+ "complete": false,
+ "remaining_urls": [],
+ "notes": "UWA course finder is JavaScript-rendered and its sitemap lists no course pages, so program URLs were derived from CRICOS course names (https://www.uwa.edu.au/study/courses/<slug>) and each fetch returned HTTP 200 with admission text; unmatched CRICOS entries (HTTP 404 on guessed slugs, no URL found): Master of Hearing Sciences 0101137, Master of Health Professions Education 058208E/121418A, Master of Exercise Science 064926B, Master of Teaching Primary 077502G, Master of Legal Practice 098378M, Master of Dental Public Health and Primary Health 115049E, Master of Commerce Articulation 117031K; bachelor-plus-master and Doctor entries skipped. UWA publishes no China-specific postgraduate (mark/GPA) requirement: the only China page, the international qualifications page, covers the Gao Kao for undergraduate entry, and the Chinese site universityofwesternaustralia.cn lists none, so no china_requirement is recorded. TOEFL values come from the UWA English language requirements page (source_sha256) and are filled only where the program page states the standard or higher IELTS standard; academic quotes copy the first admission-requirements block of each page. Deadlines are only those the postgraduate dates page lists per course (Semester 1/2027 intake). Where one page serves two CRICOS codes, cricos_codes_also_covered lists the extra code.",
+ "programs": [
+  {
+   "name": "Master of Education",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-education",
+   "snapshot_sha256": "51c7f9d51d0889e0a22cae397be2781ba92c7da41f5a760e27f460b3d88211c1",
+   "fields": {
+    "academic": {
+     "text": "To be considered for admission to this course an applicant must have— (a)(i) a three year Bachelor's degree and a Graduate Diploma, or equivalent qualifications as recognised by UWA, or (ii) a four year Bachelor of Education or Graduate Diploma in Education or Master of Teaching, or an equivalent qualification as recognised by UWA, or (iii) a Bachelor's degree requiring at least four years of full-time study and (b) at least two years of professional experience in a relevant occupation.",
+     "quote": "To be considered for admission to this course an applicant must have— (a)(i) a three year Bachelor's degree and a Graduate Diploma, or equivalent qualifications as recognised by UWA, or (ii) a four year Bachelor of Education or Graduate Diploma in Education or Master of Teaching, or an equivalent qualification as recognised by UWA, or (iii) a Bachelor's degree requiring at least four years of full-time study and (b) at least two years of professional experience in a relevant occupation.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "min_band": 6.5,
+     "quote": "This course has higher ELC requirements. Applicants presenting with the IELTS Academic require an overall score of at least 7.5 and no band less than 6.5. For more information visit ELC requirements.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 1, 2027",
+      "date": "2027-02-22",
+      "quote": "Master of Education (30580) Semester 1, 2027 Semester 2, 2027 S1: Open now S2: Open now S1: 22 February 2027 S2: 30 June 2027",
+      "source_sha256": "3b6bd56de991e25a80aa98b9727582e8567dcdf29269b6c0cb908fdd622ec35b",
+      "check": "ok",
+      "source_url": "https://www.uwa.edu.au/study/how-to-apply/postgraduate"
+     },
+     {
+      "label": "Semester 2, 2027",
+      "date": "2027-06-30",
+      "quote": "Master of Education (30580) Semester 1, 2027 Semester 2, 2027 S1: Open now S2: Open now S1: 22 February 2027 S2: 30 June 2027",
+      "source_sha256": "3b6bd56de991e25a80aa98b9727582e8567dcdf29269b6c0cb908fdd622ec35b",
+      "check": "ok",
+      "source_url": "https://www.uwa.edu.au/study/how-to-apply/postgraduate"
+     }
+    ]
+   },
+   "cricos_code": "003029G",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Health",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-public-health",
+   "snapshot_sha256": "1367b4c2ed95baf79dffbeaee5b96afad7a8d9b7d9a44dc14f2eedc0cc4cb0e3",
+   "fields": {
+    "academic": {
+     "text": "(1) To be considered for admission to this course an applicant must have— (a)(i) a bachelor's degree, or an equivalent qualification, as recognised by UWA; or (ii) a Graduate Certificate in Population Health Studies 91230, Graduate Certificate in Environmental Health 92210, Graduate Certificate in Communicable Diseases Epidemiology 91220, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 60 per cent. (2) Applicants who have or have had a progress status of 'Suspended' or 'Excluded' against courses 92550 or 92560 are not eligible for admission.",
+     "quote": "(1) To be considered for admission to this course an applicant must have— (a)(i) a bachelor's degree, or an equivalent qualification, as recognised by UWA; or (ii) a Graduate Certificate in Population Health Studies 91230, Graduate Certificate in Environmental Health 92210, Graduate Certificate in Communicable Diseases Epidemiology 91220, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 60 per cent. (2) Applicants who have or have had a progress status of 'Suspended' or 'Excluded' against courses 92550 or 92560 are not eligible for admission.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "003032A",
+   "cricos_codes_also_covered": [
+    "075827C"
+   ],
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Economics",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-economics",
+   "snapshot_sha256": "1e82dfc4a9ba0c5c75b34fbf5060369514bdf0fc6eff313470c558ec6a3971e8",
+   "fields": {
+    "academic": {
+     "text": "To be considered for admission to this course an applicant must have— (a) Bachelor degree with a major in economics or an equivalent qualification as recognised by UWA with a weighted average mark of at least 65 per cent in Level 3 economic units; or (b) be enrolled in the Combined Bachelor Master (CBM) degree (Bachelor of Economics and Master of Economics degree).",
+     "quote": "To be considered for admission to this course an applicant must have— (a) Bachelor degree with a major in economics or an equivalent qualification as recognised by UWA with a weighted average mark of at least 65 per cent in Level 3 economic units; or (b) be enrolled in the Combined Bachelor Master (CBM) degree (Bachelor of Economics and Master of Economics degree).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "003091A",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Laws",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-laws",
+   "snapshot_sha256": "42130324cb67a9d13176ee001268f9683d76a58af1c31def4dbbee8ce0e54af0",
+   "fields": {
+    "academic": {
+     "text": "To be considered for admission to this course an applicant must have—1 (a)  a Juris Doctor or Bachelor of Laws, or an equivalent qualification, as recognised by UWA; or 2 (a) (i) a bachelor's degree in a cognate area, or an equivalent qualification, as recognised by UWA, and (ii) the equivalent of a UWA weighted average mark of at least 60 per cent; or 3 (a) (i) a bachelor's degree, or an equivalent qualification, as recognised by UWA, and (ii) the equivalent of a UWA weighted average mark of at least 60 per cent and (iii) at least two years of relevant professional experience.",
+     "quote": "To be considered for admission to this course an applicant must have—1 (a)  a Juris Doctor or Bachelor of Laws, or an equivalent qualification, as recognised by UWA; or 2 (a) (i) a bachelor's degree in a cognate area, or an equivalent qualification, as recognised by UWA, and (ii) the equivalent of a UWA weighted average mark of at least 60 per cent; or 3 (a) (i) a bachelor's degree, or an equivalent qualification, as recognised by UWA, and (ii) the equivalent of a UWA weighted average mark of at least 60 per cent and (iii) at least two years of relevant professional experience.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.5,
+     "quote": "This course has higher ELC requirements. Applicants presenting with the IELTS Academic require an overall score of at least 7.0 and no band less than 6.5. For more information visit ELC requirements.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 92,
+     "min_band": 20,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections. Higher standard ELC requirements - a minimum overall score of 92 with a minimum score of 23 in the Speaking and Writing sections, and a minimum score of 20 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "003308M",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Renewable and Future Energy",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-renewable-and-future-energy",
+   "snapshot_sha256": "684f649ff6d3495f4a71f334dc40fde9f0175f6223d4a188b26cb56da49bf9e2",
+   "fields": {
+    "academic": {
+     "text": "To be considered for admission to this course an applicant must have— (a) a UWA Master of Professional Engineering or a Bachelor of Engineering, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent; and (c) successfully completed prior tertiary study in electrical and electronic engineering, chemical engineering, or mechanical engineering, or in a related cognate discipline as recognised by UWA.",
+     "quote": "To be considered for admission to this course an applicant must have— (a) a UWA Master of Professional Engineering or a Bachelor of Engineering, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent; and (c) successfully completed prior tertiary study in electrical and electronic engineering, chemical engineering, or mechanical engineering, or in a related cognate discipline as recognised by UWA.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "0100266",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Analytics",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-business-analytics",
+   "snapshot_sha256": "82c0c5c335881ebc8eea8199c84e1ac9eb5f72affafd71bb886af169d139655e",
+   "fields": {
+    "academic": {
+     "text": "(1) To be considered for admission to this course an applicant must have— (a) a Bachelor's degree, or an equivalent qualification incorporating at least one unit of statistics or having a substantive quantitative component , as recognised by UWA; and either: (b) the equivalent of a UWA weighted average mark of at least 60 per cent; or (c) at least two years professional experience in a relevant occupation; or (2) completed a Graduate Certificate in Business Analytics at UWA.",
+     "quote": "(1) To be considered for admission to this course an applicant must have— (a) a Bachelor's degree, or an equivalent qualification incorporating at least one unit of statistics or having a substantive quantitative component , as recognised by UWA; and either: (b) the equivalent of a UWA weighted average mark of at least 60 per cent; or (c) at least two years professional experience in a relevant occupation; or (2) completed a Graduate Certificate in Business Analytics at UWA.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "0101328",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Clinical Audiology",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-clinical-audiology",
+   "snapshot_sha256": "d8e7d4cc76f19ce7eb6f33206ad003f9bbd0040a455c6f127189ad0e0d95f9d8",
+   "fields": {
+    "academic": {
+     "text": "(1) To be considered for admission to this course an applicant must have— (a) a bachelor's degree or an equivalent qualification, as recognised by UWA; and (b) a selection Weighted Average Mark (sWAM) of at least 65 per cent; (2) a current Australian National Police Certificate, or equivalent certification, indicating no criminal convictions. The currency of a National Police Certificate is 12 months.",
+     "quote": "(1) To be considered for admission to this course an applicant must have— (a) a bachelor's degree or an equivalent qualification, as recognised by UWA; and (b) a selection Weighted Average Mark (sWAM) of at least 65 per cent; (2) a current Australian National Police Certificate, or equivalent certification, indicating no criminal convictions. The currency of a National Police Certificate is 12 months.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 7.0,
+     "quote": "Graduate applicants require at least two successful years of full-time or equivalent degree studies undertaken in Australia, Canada (excluding Quebec), Ireland, New Zealand, the United Kingdom or the United States of America. Graduate applicants who do not meet the ELC requirement via degree studies require IELTS Academic with an overall score of at least 7.0 and no band less than 7.0.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 1, 2027",
+      "date": "2026-08-31",
+      "quote": "Master of Clinical Audiology (90540) Semester 1, 2027 1 March 2026 31 August 2026",
+      "source_sha256": "3b6bd56de991e25a80aa98b9727582e8567dcdf29269b6c0cb908fdd622ec35b",
+      "check": "ok",
+      "source_url": "https://www.uwa.edu.au/study/how-to-apply/postgraduate"
+     }
+    ]
+   },
+   "cricos_code": "033772E",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Administration",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-business-administration",
+   "snapshot_sha256": "1700c53cfeb4ed6d7198acdbbcbe8cafa6609a5559683812f127c873dabc731a",
+   "fields": {
+    "academic": {
+     "text": "To be considered for admission to this course an applicant must have— (a) a bachelor's degree, or an equivalent qualification, as recognised by UWA and; at least three years of relevant documented professional experience; and (i) the equivalent of a UWA weighted average mark of at least 60 per cent; or (b) a bachelor's degree, or an equivalent qualification, as recognised by UWA, with the equivalent of a UWA weighted average mark of at least 60 per cent; and a minimum score as indicated below in the following graduate entry examination: (i) 525 in the Graduate Management Admission Test (GMAT); or (ii) 170 in the Narsee Monjee Management Aptitude Test (NMAT); or (iii) 70 in the Common Admission Test (CAT); or (iv) 295 in the Graduate Record Examination (GRE); or (c) a bachelor's degree, or an equivalent qualification, as recognised by UWA; and at least two additional five years of relevant documented professional experience considered by UWA to be sufficient to permit satisfactory completion of the course.",
+     "quote": "To be considered for admission to this course an applicant must have— (a) a bachelor's degree, or an equivalent qualification, as recognised by UWA and; at least three years of relevant documented professional experience; and (i) the equivalent of a UWA weighted average mark of at least 60 per cent; or (b) a bachelor's degree, or an equivalent qualification, as recognised by UWA, with the equivalent of a UWA weighted average mark of at least 60 per cent; and a minimum score as indicated below in the following graduate entry examination: (i) 525 in the Graduate Management Admission Test (GMAT); or (ii) 170 in the Narsee Monjee Management Aptitude Test (NMAT); or (iii) 70 in the Common Admission Test (CAT); or (iv) 295 in the Graduate Record Examination (GRE); or (c) a bachelor's degree, or an equivalent qualification, as recognised by UWA; and at least two additional five years of relevant documented professional experience considered by UWA to be sufficient to permit satisfactory completion of the course.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.5,
+     "quote": "This course has higher ELC requirements. Applicants presenting with the IELTS Academic require an overall score of at least 7.0 and no band less than 6.5. For more information visit ELC requirements.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 92,
+     "min_band": 20,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections. Higher standard ELC requirements - a minimum overall score of 92 with a minimum score of 23 in the Speaking and Writing sections, and a minimum score of 20 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    },
+    "deadlines": [
+     {
+      "label": "January 2027",
+      "date": "2026-12-11",
+      "quote": "Master of Business Administration (MBA) (43520) January 2027 1 May 2026 11 December 2026",
+      "source_sha256": "3b6bd56de991e25a80aa98b9727582e8567dcdf29269b6c0cb908fdd622ec35b",
+      "check": "ok",
+      "source_url": "https://www.uwa.edu.au/study/how-to-apply/postgraduate"
+     }
+    ]
+   },
+   "cricos_code": "046894K",
+   "cricos_codes_also_covered": [
+    "081415F"
+   ],
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Resources and International Commercial Law",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-resources-and-international-commercial-law",
+   "snapshot_sha256": "d00b4cce78e89d699a385f2eb9e14369d3769714ede6e4e016e71ce610e60b62",
+   "fields": {
+    "academic": {
+     "text": "To be considered for admission to this course an applicant must have—1(a) a Juris Doctor or Bachelor of Laws, or an equivalent qualification, as recognised by UWA; or 2(a) (i) a bachelor's degree in a cognate area, or an equivalent qualification, as recognised by UWA; and (ii) the equivalent of a UWA weighted average mark of at least 50 per cent; or 3(a) (i) a bachelor's degree, or an equivalent qualification, as recognised by UWA; and (ii) the equivalent of a UWA weighted average mark of at least 50 per cent; and (iii) at least two years of relevant professional experience.",
+     "quote": "To be considered for admission to this course an applicant must have—1(a) a Juris Doctor or Bachelor of Laws, or an equivalent qualification, as recognised by UWA; or 2(a) (i) a bachelor's degree in a cognate area, or an equivalent qualification, as recognised by UWA; and (ii) the equivalent of a UWA weighted average mark of at least 50 per cent; or 3(a) (i) a bachelor's degree, or an equivalent qualification, as recognised by UWA; and (ii) the equivalent of a UWA weighted average mark of at least 50 per cent; and (iii) at least two years of relevant professional experience.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.5,
+     "quote": "This course has higher ELC requirements. Applicants presenting with the IELTS Academic require an overall score of at least 7.0 and no band less than 6.5. For more information visit ELC requirements.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 92,
+     "min_band": 20,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections. Higher standard ELC requirements - a minimum overall score of 92 with a minimum score of 23 in the Speaking and Writing sections, and a minimum score of 20 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "047155D",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Infectious Diseases",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-infectious-diseases",
+   "snapshot_sha256": "5b60186e6f2c47dbabc15f848e97c3d1c6a780cf8242c164934ec28050650668",
+   "fields": {
+    "academic": {
+     "text": "To be considered for admission to this course an applicant must have— (a) a relevant bachelor's degree1, or an equivalent qualification, as recognised by UWA; and (b)(i) the equivalent of a UWA weighted average mark of at least 60 per cent in the Level 3 units; or (ii) at least three years of relevant full-time professional experience; or (iii) evidence of adequate research outputs, as recognised by UWA. And (c) for students who have completed 48 points of the Graduate Diploma in Infectious Diseases, a course UWA weighted average mark of at least 60 percent 1A relevant bachelor's degree includes a Bachelor of Biomedical Sciences, or Bachelor of Science in a biomedical or biological discipline, Bachelor of Medicine and Bachelor of Surgery, Bachelor of Dental Science, or a bachelor's degree in applied biomedical science or public health (medical technology, nursing, pharmacy, public health, and veterinary science).",
+     "quote": "To be considered for admission to this course an applicant must have— (a) a relevant bachelor's degree1, or an equivalent qualification, as recognised by UWA; and (b)(i) the equivalent of a UWA weighted average mark of at least 60 per cent in the Level 3 units; or (ii) at least three years of relevant full-time professional experience; or (iii) evidence of adequate research outputs, as recognised by UWA. And (c) for students who have completed 48 points of the Graduate Diploma in Infectious Diseases, a course UWA weighted average mark of at least 60 percent 1A relevant bachelor's degree includes a Bachelor of Biomedical Sciences, or Bachelor of Science in a biomedical or biological discipline, Bachelor of Medicine and Bachelor of Surgery, Bachelor of Dental Science, or a bachelor's degree in applied biomedical science or public health (medical technology, nursing, pharmacy, public health, and veterinary science).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 1, 2027 (international)",
+      "date": "2026-08-31",
+      "quote": "Master of Infectious Diseases (54540) Semester 1, 2027 Domestic applications open Friday 1 August 2026. International applications open Sunday 1 June 2026. Domestic applications close 30 September 2026. International applications close 31 August 2026.",
+      "source_sha256": "3b6bd56de991e25a80aa98b9727582e8567dcdf29269b6c0cb908fdd622ec35b",
+      "check": "ok",
+      "source_url": "https://www.uwa.edu.au/study/how-to-apply/postgraduate"
+     }
+    ]
+   },
+   "cricos_code": "058929E",
+   "cricos_codes_also_covered": [
+    "107726F"
+   ],
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science Communication",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-science-communication",
+   "snapshot_sha256": "7c2c336782e4ded781783cce0139259cfdcc1cc237c08fd0e0b614cec38c5111",
+   "fields": {
+    "academic": {
+     "text": "To be considered for admission to this course an applicant must have— (a) a Bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent;",
+     "quote": "To be considered for admission to this course an applicant must have— (a) a Bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent;",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "061841J",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Social Work",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-social-work",
+   "snapshot_sha256": "4a2e45b9a9da3fbd83bcffd451c7f46587c2f33be58273184abff064aa1f8d54",
+   "fields": {
+    "academic": {
+     "text": "(1) To be considered for admission to this course an applicant must have— (a) a bachelor's degree or an equivalent qualification, as recognised by UWA; and (b) a selection Weighted Average Mark (sWAM) of at least 65 per cent; (2) a current Australian National Police Certificate, or equivalent certification, indicating no criminal convictions. The currency of a National Police Certificate is 12 months.",
+     "quote": "(1) To be considered for admission to this course an applicant must have— (a) a bachelor's degree or an equivalent qualification, as recognised by UWA; and (b) a selection Weighted Average Mark (sWAM) of at least 65 per cent; (2) a current Australian National Police Certificate, or equivalent certification, indicating no criminal convictions. The currency of a National Police Certificate is 12 months.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 7.0,
+     "quote": "A valid IELTS (Academic) minimum score of 7.0 overall with at least 7.0 in each section.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 1, 2027 (international main round)",
+      "date": "2026-06-30",
+      "quote": "Master of Social Work (11550) Semester 1, 2027 Domestic and international applications open on 1 March 2026. Domestic applications close on 30 November 2026. International main round applications close on 30 June 2026 with a second application round closing 30 September 2026.",
+      "source_sha256": "3b6bd56de991e25a80aa98b9727582e8567dcdf29269b6c0cb908fdd622ec35b",
+      "check": "ok",
+      "source_url": "https://www.uwa.edu.au/study/how-to-apply/postgraduate"
+     },
+     {
+      "label": "Semester 1, 2027 (international second round)",
+      "date": "2026-09-30",
+      "quote": "Master of Social Work (11550) Semester 1, 2027 Domestic and international applications open on 1 March 2026. Domestic applications close on 30 November 2026. International main round applications close on 30 June 2026 with a second application round closing 30 September 2026.",
+      "source_sha256": "3b6bd56de991e25a80aa98b9727582e8567dcdf29269b6c0cb908fdd622ec35b",
+      "check": "ok",
+      "source_url": "https://www.uwa.edu.au/study/how-to-apply/postgraduate"
+     }
+    ]
+   },
+   "cricos_code": "065091K",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of International Relations",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-international-relations",
+   "snapshot_sha256": "b08dbf9e62348901b4974a661157132ea86e2c5def8fe457333dda53fa57b357",
+   "fields": {
+    "academic": {
+     "text": "(1) To be considered for admission to this course an applicant must have— (a) a Bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent; and (c) successfully completed prior study in a field relevant to International Relations; or (2) completed a Graduate Certificate or Graduate Diploma in International Relations at UWA.",
+     "quote": "(1) To be considered for admission to this course an applicant must have— (a) a Bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent; and (c) successfully completed prior study in a field relevant to International Relations; or (2) completed a Graduate Certificate or Graduate Diploma in International Relations at UWA.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "069311D",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Urban Design",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-urban-design",
+   "snapshot_sha256": "7cbfd74f84c2ebf47be09f2948205a2b6108fdf61c614941366f073ad7a5d6e4",
+   "fields": {
+    "academic": {
+     "text": "(1) To be considered for admission to this course an applicant must have— (a) a Bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent; and (c) successfully completed prior study in a field relevant to Urban Design; or (2) completed a Graduate Certificate in Urban Design or Graduate Diploma in Urban Design at UWA.",
+     "quote": "(1) To be considered for admission to this course an applicant must have— (a) a Bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent; and (c) successfully completed prior study in a field relevant to Urban Design; or (2) completed a Graduate Certificate in Urban Design or Graduate Diploma in Urban Design at UWA.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "074757J",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Agricultural Science",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-agricultural-science",
+   "snapshot_sha256": "cf751273cd7a86b01ee74ca7e1e7ca23166bb7c5a4d4c2b15d48b1ebe4e4aabb",
+   "fields": {
+    "academic": {
+     "text": "To be considered for admission to this course an applicant must have— (a) a bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent; and (c) have successfully completed prior tertiary study in science or in a related cognate discipline as recognised by UWA.",
+     "quote": "To be considered for admission to this course an applicant must have— (a) a bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent; and (c) have successfully completed prior tertiary study in science or in a related cognate discipline as recognised by UWA.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "074945E",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Biological Science",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-biological-science",
+   "snapshot_sha256": "0f5e886c980dbe134d48ea715c608d0c08949ee0c2e9f3558541cb8fcad421f2",
+   "fields": {
+    "academic": {
+     "text": "(1) To be considered for admission to this course an applicant must have— (a) a Bachelor of Science, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent; and (c) met the prerequisite for the chosen specialisation (2) For the Conservation Biology specialisation an applicant must have successfully completed prior studies at a tertiary level in biology (excluding human biology); or in a related cognate discipline, as recognised by UWA (3) For the Ecology specialisation an applicant must have successfully completed prior studies at a tertiary level in biology (excluding human biology); or in a related cognate discipline, as recognised by UWA (4) For the Zoology specialisation an applicant must have successfully completed prior studies at a tertiary level in animal science; or in a related cognate discipline, as recognised by UWA",
+     "quote": "(1) To be considered for admission to this course an applicant must have— (a) a Bachelor of Science, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent; and (c) met the prerequisite for the chosen specialisation (2) For the Conservation Biology specialisation an applicant must have successfully completed prior studies at a tertiary level in biology (excluding human biology); or in a related cognate discipline, as recognised by UWA (3) For the Ecology specialisation an applicant must have successfully completed prior studies at a tertiary level in biology (excluding human biology); or in a related cognate discipline, as recognised by UWA (4) For the Zoology specialisation an applicant must have successfully completed prior studies at a tertiary level in animal science; or in a related cognate discipline, as recognised by UWA",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "074948B",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Environmental Science",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-environmental-science",
+   "snapshot_sha256": "29051b68a8be14b139edbbe7cb0838ff1523bf927935575a6d2b24e678230e83",
+   "fields": {
+    "academic": {
+     "text": "(1) To be considered for admission to this course an applicant must have— (a) a bachelor's degree, or equivalent as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent; and (c) met the prerequisite for the chosen specialisation (2) For the Environmental Management or Environmental Economics specialisations an applicant must have completed prior studies at a tertiary level in either science, engineering, economics, natural resource management, urban and regional planning, or policy studies; or a related cognate discipline, as recognised by UWA (3) For the Catchments and Water or Environmental Rehabilitation or Sensing and Data Science specialisations an applicant must have completed prior studies at a tertiary level in either earth, environmental, engineering, biological or physical sciences; or a related cognate discipline, as recognised by UWA (4) For the Marine and Coastal specialisation an applicant must have completed prior studies at a tertiary level in either marine, environmental, engineering, biological or physical sciences; or a related cognate discipline, as recognised by UWA (5) For the Environmental Applications specialisation (open only to students from universities with an articulation agreement for entry to this course), students must have achieved a mark of at least 70 per cent in ENVT4422, completed in their first year of study, and a UWA equivalent WAM of at least 70 per cent in their first year of study at the student's home university",
+     "quote": "(1) To be considered for admission to this course an applicant must have— (a) a bachelor's degree, or equivalent as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent; and (c) met the prerequisite for the chosen specialisation (2) For the Environmental Management or Environmental Economics specialisations an applicant must have completed prior studies at a tertiary level in either science, engineering, economics, natural resource management, urban and regional planning, or policy studies; or a related cognate discipline, as recognised by UWA (3) For the Catchments and Water or Environmental Rehabilitation or Sensing and Data Science specialisations an applicant must have completed prior studies at a tertiary level in either earth, environmental, engineering, biological or physical sciences; or a related cognate discipline, as recognised by UWA (4) For the Marine and Coastal specialisation an applicant must have completed prior studies at a tertiary level in either marine, environmental, engineering, biological or physical sciences; or a related cognate discipline, as recognised by UWA (5) For the Environmental Applications specialisation (open only to students from universities with an articulation agreement for entry to this course), students must have achieved a mark of at least 70 per cent in ENVT4422, completed in their first year of study, and a UWA equivalent WAM of at least 70 per cent in their first year of study at the student's home university",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "074951G",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Geoscience",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-geoscience",
+   "snapshot_sha256": "e5024af336da1369e175773392968abe6bb447b1f770c3de057b6985eb1c6805",
+   "fields": {
+    "academic": {
+     "text": "To be considered for admission to this course an applicant must have— (a) a Bachelor's degree or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent; and (c) successfully completed prior tertiary study in geology or in a related cognate discipline as recognised by UWA.",
+     "quote": "To be considered for admission to this course an applicant must have— (a) a Bachelor's degree or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent; and (c) successfully completed prior tertiary study in geology or in a related cognate discipline as recognised by UWA.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "074954D",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Hydrogeology",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-hydrogeology",
+   "snapshot_sha256": "22c026575a6fec6d18a99d7e5d3c17e88d853a2fd88cf04fc052d5904924b158",
+   "fields": {
+    "academic": {
+     "text": "To be considered for admission to this course an applicant must have— (a) a Bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent; and (c) successfully completed prior tertiary study in geology, environmental engineering, environmental science (including units in hydrology or equivalent), or hydrogeology or in a related cognate discipline as recognised by UWA.",
+     "quote": "To be considered for admission to this course an applicant must have— (a) a Bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent; and (c) successfully completed prior tertiary study in geology, environmental engineering, environmental science (including units in hydrology or equivalent), or hydrogeology or in a related cognate discipline as recognised by UWA.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "074963C",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Industrial and Organisational Psychology",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-industrial-and-organisational-psychology",
+   "snapshot_sha256": "dadf9ba250ffee144a2ec98eb96374b86039109b099ed4bd1aeedd5aad94e89e",
+   "fields": {
+    "academic": {
+     "text": "(1) To be considered for admission to this course an applicant must have— (1) An accredited bachelor's honours degree in psychology with at least an upper second class Honours (2A), or an equivalent qualification, as recognised by the Psychology Board of Australia or the Australian Psychology Accreditation Council. The Honours degree in psychology must be completed within the past 10 years at the time of application or you must be provisionally or generally registered as a psychologist with AHPRA at the time of application; and (2) Applicants must be eligible for provisional registration as a psychologist with the Psychology Board of Australia.",
+     "quote": "(1) To be considered for admission to this course an applicant must have— (1) An accredited bachelor's honours degree in psychology with at least an upper second class Honours (2A), or an equivalent qualification, as recognised by the Psychology Board of Australia or the Australian Psychology Accreditation Council. The Honours degree in psychology must be completed within the past 10 years at the time of application or you must be provisionally or generally registered as a psychologist with AHPRA at the time of application; and (2) Applicants must be eligible for provisional registration as a psychologist with the Psychology Board of Australia.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 1, 2027 (international)",
+      "date": "2026-08-31",
+      "quote": "Master of Industrial and Organisational Psychology (53580) Semester 1, 2027 1 August 2026 Domestic applications close 30 September 2026. International applications close 31 August 2026.",
+      "source_sha256": "3b6bd56de991e25a80aa98b9727582e8567dcdf29269b6c0cb908fdd622ec35b",
+      "check": "ok",
+      "source_url": "https://www.uwa.edu.au/study/how-to-apply/postgraduate"
+     }
+    ]
+   },
+   "cricos_code": "077549D",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Translation Studies",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-translation-studies",
+   "snapshot_sha256": "622b29df88206f986def0e5121adff054fcf1fea886d73937dfabad4fe472a2c",
+   "fields": {
+    "academic": {
+     "text": "To be considered for admission to this course an applicant must have— (a) a relevant bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 65 per cent in the Level 3 units of a relevant major; and (c)(i) demonstrated native or near-native proficiency in the chosen language specialisation; or ii) for French, Italian, German, Portuguese, Arabic, and Spanish, B2/C1 levels of the Common European Framework of Reference for Languages or equivalent internationally recognised test; for Chinese, a minimum of HSK 4; for Japanese, Level N2/N3 at the JLPT (Japanese Language Proficiency Test); for Indonesian, Level 3 at the UKBI (UjianKemahiran Bahasa Indonesia) or Level 4 at the ISLPR (International Second Language Proficiency Ratings); and for Korean, Level 4 at the TOPIK (Test of Proficiency in Korean).",
+     "quote": "To be considered for admission to this course an applicant must have— (a) a relevant bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 65 per cent in the Level 3 units of a relevant major; and (c)(i) demonstrated native or near-native proficiency in the chosen language specialisation; or ii) for French, Italian, German, Portuguese, Arabic, and Spanish, B2/C1 levels of the Common European Framework of Reference for Languages or equivalent internationally recognised test; for Chinese, a minimum of HSK 4; for Japanese, Level N2/N3 at the JLPT (Japanese Language Proficiency Test); for Indonesian, Level 3 at the UKBI (UjianKemahiran Bahasa Indonesia) or Level 4 at the ISLPR (International Second Language Proficiency Ratings); and for Korean, Level 4 at the TOPIK (Test of Proficiency in Korean).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "079540G",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Professional Engineering",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-professional-engineering",
+   "snapshot_sha256": "07b11898e94e294807a5bc53c0544551ba49c92029517f63053b9e87d3e1c905",
+   "fields": {
+    "academic": {
+     "text": "To be considered for admission to this course an applicant must have— (a) a UWA bachelor's degree with a major in MJD-ENGSC Engineering Science1 or Bachelor of Automation and Robotics; or (b) a bachelor's degree, or an equivalent qualification, as recognised by UWA; and (i) the equivalent of a UWA weighted average mark of at least 65 per cent; and (ii) prior studies in engineering, physics or mathematics assessed by UWA as providing an adequate basis for success in the course. 1 Students are required to achieve a course weighted average mark of at least 50 per cent in their bachelor's degree or a weighted average mark of at least 50 per cent in the Level 3 units of the Engineering Science major.",
+     "quote": "To be considered for admission to this course an applicant must have— (a) a UWA bachelor's degree with a major in MJD-ENGSC Engineering Science1 or Bachelor of Automation and Robotics; or (b) a bachelor's degree, or an equivalent qualification, as recognised by UWA; and (i) the equivalent of a UWA weighted average mark of at least 65 per cent; and (ii) prior studies in engineering, physics or mathematics assessed by UWA as providing an adequate basis for success in the course. 1 Students are required to achieve a course weighted average mark of at least 50 per cent in their bachelor's degree or a weighted average mark of at least 50 per cent in the Level 3 units of the Engineering Science major.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "081025J",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Human Resources and Employment Relations",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-human-resources-and-employment-relations",
+   "snapshot_sha256": "556b1e04f0b9b7f42521f2c2ba9f0bc68d5a2df0f8ebf7b8ce5b753fb6e878f5",
+   "fields": {
+    "academic": {
+     "text": "(1) To be considered for admission to this course an applicant must have— (a) a Bachelor's degree, or an equivalent qualification, as recognised by UWA; and either: (b) the equivalent of a UWA weighted average mark of at least 60 per cent; or (c) at least two years professional experience in a relevant occupation; or (2) completed a Graduate Certificate in Human Resources and Employment Relations or Graduate Certificate in Commerce at UWA.",
+     "quote": "(1) To be considered for admission to this course an applicant must have— (a) a Bachelor's degree, or an equivalent qualification, as recognised by UWA; and either: (b) the equivalent of a UWA weighted average mark of at least 60 per cent; or (c) at least two years professional experience in a relevant occupation; or (2) completed a Graduate Certificate in Human Resources and Employment Relations or Graduate Certificate in Commerce at UWA.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "083269F",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Applied Finance",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-applied-finance",
+   "snapshot_sha256": "f6ea5e1f5dadcfae599e13b7ecfe428d17637de70e6558bd8d5ab6cc1a98459d",
+   "fields": {
+    "academic": {
+     "text": "(1) To be considered for admission to this course an applicant must have— (a) a Bachelor's degree, or an equivalent qualification, as recognised by UWA; and either: (b) the equivalent of a UWA weighted average mark of at least 60 per cent; or (c) at least two years professional experience in a relevant occupation; or (2) (a) completed a Graduate Certificate in Finance or Graduate Certificate in Commerce at UWA. or (b) completion of a UWA College Pre Masters Program with a WAM of at least 50.",
+     "quote": "(1) To be considered for admission to this course an applicant must have— (a) a Bachelor's degree, or an equivalent qualification, as recognised by UWA; and either: (b) the equivalent of a UWA weighted average mark of at least 60 per cent; or (c) at least two years professional experience in a relevant occupation; or (2) (a) completed a Graduate Certificate in Finance or Graduate Certificate in Commerce at UWA. or (b) completion of a UWA College Pre Masters Program with a WAM of at least 50.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "083270B",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Commerce",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-commerce",
+   "snapshot_sha256": "fc378f18964ab119184c7c267fc430f47d33a55ed4424496b52e9c040e7acc0a",
+   "fields": {
+    "academic": {
+     "text": "(1) To be considered for admission to this course an applicant must have— (1)(a) a Bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 60 per cent; or (c) at least two years professional experience in a relevant occupation; or (2)(a) completed a Graduate Certificate in Finance, or Graduate Certificate in Human Resources and Employment Relations, or Graduate Certificate in Business Information and Logistics Management, or Graduate Certificate in Commerce, or Graduate Certificate in Marketing, or Graduate Certificate in Economics at UWA.",
+     "quote": "(1) To be considered for admission to this course an applicant must have— (1)(a) a Bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 60 per cent; or (c) at least two years professional experience in a relevant occupation; or (2)(a) completed a Graduate Certificate in Finance, or Graduate Certificate in Human Resources and Employment Relations, or Graduate Certificate in Business Information and Logistics Management, or Graduate Certificate in Commerce, or Graduate Certificate in Marketing, or Graduate Certificate in Economics at UWA.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "083272M",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Marketing",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-marketing",
+   "snapshot_sha256": "a1ceb9880f55b9c280f140b18f4a75416d0df54437092ac5b801d4a62a24a979",
+   "fields": {
+    "academic": {
+     "text": "(1) To be considered for admission to this course an applicant must have— (a) a Bachelor's degree, or an equivalent qualification, as recognised by UWA; and either: (b) the equivalent of a UWA weighted average mark of at least 60 per cent; or (c) at least two years professional experience in a relevant occupation; or (2)(a) completed a Graduate Certificate in Commerce or Graduate Certificate in Marketing at UWA; or (b) completion of a UWA College Pre Masters Program with a WAM of at least 50.",
+     "quote": "(1) To be considered for admission to this course an applicant must have— (a) a Bachelor's degree, or an equivalent qualification, as recognised by UWA; and either: (b) the equivalent of a UWA weighted average mark of at least 60 per cent; or (c) at least two years professional experience in a relevant occupation; or (2)(a) completed a Graduate Certificate in Commerce or Graduate Certificate in Marketing at UWA; or (b) completion of a UWA College Pre Masters Program with a WAM of at least 50.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "083273K",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Professional Accounting",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-professional-accounting",
+   "snapshot_sha256": "0abac0652e1ae22c96ca6983d1e118b5bba69884aef77b097d4898eafb6a1b92",
+   "fields": {
+    "academic": {
+     "text": "(1) To be considered for admission to this course an applicant must have— (a) a Bachelor's degree, or an equivalent qualification*, as recognised by UWA; and either: (b) the equivalent of a UWA weighted average mark of at least 60 per cent; or (c) at least two years professional experience in a relevant occupation; or (2)(a) completed a Graduate Certificate in Commerce at UWA. *Applicants who have a Bachelor's Degree with a major in accounting, or an equivalent qualification, are not eligible for admission. or (b) completion of a UWA College Pre Masters Program with a WAM of at least 50.",
+     "quote": "(1) To be considered for admission to this course an applicant must have— (a) a Bachelor's degree, or an equivalent qualification*, as recognised by UWA; and either: (b) the equivalent of a UWA weighted average mark of at least 60 per cent; or (c) at least two years professional experience in a relevant occupation; or (2)(a) completed a Graduate Certificate in Commerce at UWA. *Applicants who have a Bachelor's Degree with a major in accounting, or an equivalent qualification, are not eligible for admission. or (b) completion of a UWA College Pre Masters Program with a WAM of at least 50.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "083274J",
+   "cricos_codes_also_covered": [
+    "103502K"
+   ],
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of International Development",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-international-development",
+   "snapshot_sha256": "f8f0401c9ac97475196c88f3b52ba5608ac76ec7aed348b4f334d310deca8a37",
+   "fields": {
+    "academic": {
+     "text": "To be considered for admission to this course an applicant must have—a relevant Bachelor's degree, or an equivalent qualification, as recognised by UWA.",
+     "quote": "To be considered for admission to this course an applicant must have—a relevant Bachelor's degree, or an equivalent qualification, as recognised by UWA.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "083850D",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Biomedical Science",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-biomedical-science",
+   "snapshot_sha256": "cfa29e65007a27d0b5b67c920ad748e5fbbc510a496fb32dbe369cf1613b6138",
+   "fields": {
+    "academic": {
+     "text": "To be considered for admission to this course an applicant must have— (a) a Bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent; and (c) successfully completed prior tertiary study in— (i) biochemistry and molecular biology for the Biochemistry and Molecular Biology or Food Biochemistry specialisations; or (ii) biological, medical, or biomedical sciences for the Neuroscience specialisation; or (iii) a related cognate discipline as recognised by UWA.",
+     "quote": "To be considered for admission to this course an applicant must have— (a) a Bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent; and (c) successfully completed prior tertiary study in— (i) biochemistry and molecular biology for the Biochemistry and Molecular Biology or Food Biochemistry specialisations; or (ii) biological, medical, or biomedical sciences for the Neuroscience specialisation; or (iii) a related cognate discipline as recognised by UWA.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "083856J",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Biotechnology",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-biotechnology",
+   "snapshot_sha256": "506d5a8ed2eef379f9541499d6da0e46bc48d99837e79ca8480fabd5d7f0fa38",
+   "fields": {
+    "academic": {
+     "text": "(1) To be considered for admission to this course an applicant must have— (a) a Bachelor of Science, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent; and (c) met the prerequisite for the chosen specialisation (2) For the Biochemistry and Molecular Biology specialisation an applicant must have— (a) successfully completed intermediate units at a tertiary level in Biochemistry, or equivalent, as recognised by UWA; and (b) successfully completed intermediate units at a tertiary level in Molecular Biology, or equivalent, as recognised by UWA (3) For the Environmental and Agricultural Biotechnology specialisation, an applicant must have successfully completed Chemistry ATAR, or CHEM1003 Introductory Chemistry equivalent, as recognised by UWA (4) For the Genetics and Genomics specialisation, an applicant must have successfully completed intermediate units at a tertiary level in Genetics, or equivalent, as recognised by UWA (5) For the AQUAtech specialistion an applicant must have successfully completed Chemistry ATAR, or equivalent, as recognised by UWA (6) For the Synthetic Biology specialisation an applicant must have successfully completed intermediate units at a tertiary level in Biochemistry and Molecular Biology or Genetics, or equivalent, as recognised by UWA",
+     "quote": "(1) To be considered for admission to this course an applicant must have— (a) a Bachelor of Science, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent; and (c) met the prerequisite for the chosen specialisation (2) For the Biochemistry and Molecular Biology specialisation an applicant must have— (a) successfully completed intermediate units at a tertiary level in Biochemistry, or equivalent, as recognised by UWA; and (b) successfully completed intermediate units at a tertiary level in Molecular Biology, or equivalent, as recognised by UWA (3) For the Environmental and Agricultural Biotechnology specialisation, an applicant must have successfully completed Chemistry ATAR, or CHEM1003 Introductory Chemistry equivalent, as recognised by UWA (4) For the Genetics and Genomics specialisation, an applicant must have successfully completed intermediate units at a tertiary level in Genetics, or equivalent, as recognised by UWA (5) For the AQUAtech specialistion an applicant must have successfully completed Chemistry ATAR, or equivalent, as recognised by UWA (6) For the Synthetic Biology specialisation an applicant must have successfully completed intermediate units at a tertiary level in Biochemistry and Molecular Biology or Genetics, or equivalent, as recognised by UWA",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "083859F",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Information Technology",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-information-technology",
+   "snapshot_sha256": "ff84f77bac2cc40e5f85708465b43b7557d4c93bd21f0765216cbec3243b5807",
+   "fields": {
+    "academic": {
+     "text": "To be considered for admission to this course an applicant must have— (a) a bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 65 per cent; and (c) completed Mathematics Methods ATAR, or equivalent, as recognised by UWA; or (d) completion of a UWA College Pre Masters Program with a WAM of at least 50.",
+     "quote": "To be considered for admission to this course an applicant must have— (a) a bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 65 per cent; and (c) completed Mathematics Methods ATAR, or equivalent, as recognised by UWA; or (d) completion of a UWA College Pre Masters Program with a WAM of at least 50.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "083866G",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of International Law",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-international-law",
+   "snapshot_sha256": "af249522b8bfdfb62c7a6c50c3ab0c3a7c504e9124383b16a30fcfa24d8bfa90",
+   "fields": {
+    "academic": {
+     "text": "To be considered for admission to this course an applicant must have—1(a) a Juris Doctor or Bachelor of Laws, or an equivalent qualification, as recognised by UWA; or 2(a) (i) a bachelor's degree in a cognate area, or an equivalent qualification, as recognised by UWA; and (ii) the equivalent of a UWA weighted average mark of at least 50 per cent; or 3(a) (i) a bachelor's degree, or an equivalent qualification, as recognised by UWA; and (ii) the equivalent of a UWA weighted average mark of at least 50 per cent; and (iii) at least two years of relevant professional experience.",
+     "quote": "To be considered for admission to this course an applicant must have—1(a) a Juris Doctor or Bachelor of Laws, or an equivalent qualification, as recognised by UWA; or 2(a) (i) a bachelor's degree in a cognate area, or an equivalent qualification, as recognised by UWA; and (ii) the equivalent of a UWA weighted average mark of at least 50 per cent; or 3(a) (i) a bachelor's degree, or an equivalent qualification, as recognised by UWA; and (ii) the equivalent of a UWA weighted average mark of at least 50 per cent; and (iii) at least two years of relevant professional experience.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.5,
+     "quote": "This course has higher ELC requirements. Applicants presenting with the IELTS Academic require an overall score of at least 7.0 and no band less than 6.5. For more information visit ELC requirements.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 92,
+     "min_band": 20,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections. Higher standard ELC requirements - a minimum overall score of 92 with a minimum score of 23 in the Speaking and Writing sections, and a minimum score of 20 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "083868E",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Law, Policy and Government",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-law-policy-and-government",
+   "snapshot_sha256": "52c8a0f2fa83090c3e7ec3fcbdf8ad331698c90733a6c4c0d7a81d44e6d5dfe6",
+   "fields": {
+    "academic": {
+     "text": "To be considered for admission to this course an applicant must have—1(a) a Juris Doctor or Bachelor of Laws, or an equivalent qualification, as recognised by UWA; or 2(a) (i) a bachelor's degree in a cognate area, or an equivalent qualification, as recognised by UWA; and (ii) the equivalent of a UWA weighted average mark of at least 50 per cent; or 3(a) (i) a bachelor's degree, or an equivalent qualification, as recognised by UWA; and (ii) the equivalent of a UWA weighted average mark of at least 50 per cent; and (iii) at least two years of relevant professional experience.",
+     "quote": "To be considered for admission to this course an applicant must have—1(a) a Juris Doctor or Bachelor of Laws, or an equivalent qualification, as recognised by UWA; or 2(a) (i) a bachelor's degree in a cognate area, or an equivalent qualification, as recognised by UWA; and (ii) the equivalent of a UWA weighted average mark of at least 50 per cent; or 3(a) (i) a bachelor's degree, or an equivalent qualification, as recognised by UWA; and (ii) the equivalent of a UWA weighted average mark of at least 50 per cent; and (iii) at least two years of relevant professional experience.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.5,
+     "quote": "This course has higher ELC requirements. Applicants presenting with the IELTS Academic require an overall score of at least 7.0 and no band less than 6.5. For more information visit ELC requirements.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 92,
+     "min_band": 20,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections. Higher standard ELC requirements - a minimum overall score of 92 with a minimum score of 23 in the Speaking and Writing sections, and a minimum score of 20 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "083871K",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Strategic Communication",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-strategic-communication",
+   "snapshot_sha256": "5c972d6c17594cc92697f357cf6fe7b9315eecc1d3590dfe98f507997601b8e0",
+   "fields": {
+    "academic": {
+     "text": "(1) To be considered for admission to this course an applicant must have— (a) a Bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent; or (2) completed a Graduate Certificate or Graduate Diploma in Strategic Communication at UWA.",
+     "quote": "(1) To be considered for admission to this course an applicant must have— (a) a Bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent; or (2) completed a Graduate Certificate or Graduate Diploma in Strategic Communication at UWA.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "083878C",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Architecture",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-architecture",
+   "snapshot_sha256": "a6b2ee657e493ec3c2f2b5599587e0a074eedfb59c61208590675668d1480ef8",
+   "fields": {
+    "academic": {
+     "text": "To be considered for admission to this course an applicant must have— (a) a bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 60 per cent.",
+     "quote": "To be considered for admission to this course an applicant must have— (a) a bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 60 per cent.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "084738G",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Landscape Architecture",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-landscape-architecture",
+   "snapshot_sha256": "eca6118d3e6b8a3acece712c9eca55a1abb38ab0b5ff7b7b2bb85b6afe68ae9e",
+   "fields": {
+    "academic": {
+     "text": "To be considered for admission to this course an applicant must have— (a) a bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 60 per cent.",
+     "quote": "To be considered for admission to this course an applicant must have— (a) a bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 60 per cent.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "084739F",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of International Law and Master of International Relations",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-international-law-and-master-of-international-relations",
+   "snapshot_sha256": "d9f972e1757671069cc014afe2ca54ca6027b92d88011334940d2281c031fc71",
+   "fields": {
+    "academic": {
+     "text": "To be considered for admission to this course an applicant must have - 1(a) a Juris Doctor or Bachelor of Laws, or an equivalent qualification, as recognised by UWA; or 2(a) (i) a bachelor's degree in a cognate area, or an equivalent qualification, as recognised by UWA; and (ii) the equivalent of a UWA weighted average mark of at least 50 per cent; or 3(a) (i) a bachelor's degree, or an equivalent qualification, as recognised by UWA; and (ii) the equivalent of a UWA weighted average mark of at least 50 per cent; and (iii) at least two years of relevant professional experience.",
+     "quote": "To be considered for admission to this course an applicant must have - 1(a) a Juris Doctor or Bachelor of Laws, or an equivalent qualification, as recognised by UWA; or 2(a) (i) a bachelor's degree in a cognate area, or an equivalent qualification, as recognised by UWA; and (ii) the equivalent of a UWA weighted average mark of at least 50 per cent; or 3(a) (i) a bachelor's degree, or an equivalent qualification, as recognised by UWA; and (ii) the equivalent of a UWA weighted average mark of at least 50 per cent; and (iii) at least two years of relevant professional experience.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.5,
+     "quote": "This course has higher ELC requirements. Applicants presenting with the IELTS Academic require an overall score of at least 7.0 and no band less than 6.5. For more information visit ELC requirements.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 92,
+     "min_band": 20,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections. Higher standard ELC requirements - a minimum overall score of 92 with a minimum score of 23 in the Speaking and Writing sections, and a minimum score of 20 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "086296A",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Physics",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-physics",
+   "snapshot_sha256": "f69c0f60e45c3528a7284c153eced004edfa073a9aa85af489692b0ad165663d",
+   "fields": {
+    "academic": {
+     "text": "To be considered for admission to this course an applicant must have— (a)(i) a bachelor's degree in physics, or an equivalent qualification, as recognised by UWA; and (ii) the equivalent of a UWA weighted average mark of at least 70 per cent; or (b) an honours degree in physics, or an equivalent qualification, as recognised by UWA.",
+     "quote": "To be considered for admission to this course an applicant must have— (a)(i) a bachelor's degree in physics, or an equivalent qualification, as recognised by UWA; and (ii) the equivalent of a UWA weighted average mark of at least 70 per cent; or (b) an honours degree in physics, or an equivalent qualification, as recognised by UWA.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "087902J",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Administration and Master of Laws",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-business-administration-and-master-of-laws-mba",
+   "snapshot_sha256": "2f64975ff64545af2490207ce1b96ab0ff418134899da17a5909c213e1fa649e",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.5,
+     "quote": "This course has higher ELC requirements. Applicants presenting with the IELTS Academic require an overall score of at least 7.0 and no band less than 6.5. For more information visit ELC requirements.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 92,
+     "min_band": 20,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections. Higher standard ELC requirements - a minimum overall score of 92 with a minimum score of 23 in the Speaking and Writing sections, and a minimum score of 20 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "088010D",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Taxation Law",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-taxation-law",
+   "snapshot_sha256": "0a71d38edd1b86d209017d16804ca37e7e026422722f7ab87d8c527fa71ccaea",
+   "fields": {
+    "academic": {
+     "text": "(1) To be considered for admission to this course an applicant must have— (1)(a) a Juris Doctor or Bachelor of Laws, or an equivalent qualification, as recognised by UWA; or (2)(a) (i) a bachelor's degree in a cognate area, or an equivalent qualification, as recognised by UWA, and (ii) the equivalent of a UWA weighted average mark of at least 50 per cent; or (3)(a) (i) a bachelor's degree, or an equivalent qualification, as recognised by UWA, and (ii) the equivalent of a UWA weighted average mark of at least 50 per cent, and (iii) at least two years of relevant professional experience.",
+     "quote": "(1) To be considered for admission to this course an applicant must have— (1)(a) a Juris Doctor or Bachelor of Laws, or an equivalent qualification, as recognised by UWA; or (2)(a) (i) a bachelor's degree in a cognate area, or an equivalent qualification, as recognised by UWA, and (ii) the equivalent of a UWA weighted average mark of at least 50 per cent; or (3)(a) (i) a bachelor's degree, or an equivalent qualification, as recognised by UWA, and (ii) the equivalent of a UWA weighted average mark of at least 50 per cent, and (iii) at least two years of relevant professional experience.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "088236G",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Information and Logistics Management",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-business-information-and-logistics-management",
+   "snapshot_sha256": "749380f41f87df7282228e0940caa4db11a8c98321531a4b9e8a0831c117e654",
+   "fields": {
+    "academic": {
+     "text": "(1) To be considered for admission to this course an applicant must have— (a) a Bachelor's degree, or an equivalent qualification, as recognised by UWA; and either: (b) the equivalent of a UWA weighted average mark of at least 60 per cent; or (c) at least two years professional experience in a relevant occupation; or (2) completed a Graduate Certificate in Business Information and Logistics Management or Graduate Certificate in Commerce at UWA.",
+     "quote": "(1) To be considered for admission to this course an applicant must have— (a) a Bachelor's degree, or an equivalent qualification, as recognised by UWA; and either: (b) the equivalent of a UWA weighted average mark of at least 60 per cent; or (c) at least two years professional experience in a relevant occupation; or (2) completed a Graduate Certificate in Business Information and Logistics Management or Graduate Certificate in Commerce at UWA.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "088240A",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Agricultural Economics",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-agricultural-economics",
+   "snapshot_sha256": "19c7a6fcc704e9dd904706a832d0c38084ed5129e28a1822ea31a70076b7a394",
+   "fields": {
+    "academic": {
+     "text": "To be considered for admission to this course an applicant must have— (a) a Bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent; and (c) completed prior studies at a tertiary level with significant content in economics, statistics/econometrics or mathematics ; or in a related cognate discipline, as recognised by UWA.",
+     "quote": "To be considered for admission to this course an applicant must have— (a) a Bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent; and (c) completed prior studies at a tertiary level with significant content in economics, statistics/econometrics or mathematics ; or in a related cognate discipline, as recognised by UWA.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "089266E",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Clinical Exercise Physiology",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-clinical-exercise-physiology",
+   "snapshot_sha256": "2e579d71f7c803fd0381f37581c50003ab0d1f35391f1d0d8e8bdccd9a90468b",
+   "fields": {
+    "academic": {
+     "text": "(1) To be considered for admission to this course an applicant must have— (a) a relevant bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 60 per cent; (2) Applicants are awarded a place in the 72-point course if they have either; (a) a bachelor's degree that has been accredited by Exercise & Sport Science Australia at the 'Exercise Science' level; or (b) an official ESSA \"Graduate Entry Assessment\" letter that demonstrates equivalence with \"Exercise Science\" members. (3) All other applicants are awarded a place in the 96-point course and must have a relevant bachelor's degree that included foundation units in human anatomy, functional anatomy, biomechanics, exercise physiology, exercise and health and research methods/statistics with equivalence to ESSA ‘Exercise Science' standards.",
+     "quote": "(1) To be considered for admission to this course an applicant must have— (a) a relevant bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 60 per cent; (2) Applicants are awarded a place in the 72-point course if they have either; (a) a bachelor's degree that has been accredited by Exercise & Sport Science Australia at the 'Exercise Science' level; or (b) an official ESSA \"Graduate Entry Assessment\" letter that demonstrates equivalence with \"Exercise Science\" members. (3) All other applicants are awarded a place in the 96-point course and must have a relevant bachelor's degree that included foundation units in human anatomy, functional anatomy, biomechanics, exercise physiology, exercise and health and research methods/statistics with equivalence to ESSA ‘Exercise Science' standards.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 7.0,
+     "quote": "Graduate applicants require at least two successful years of full-time or equivalent degree studies undertaken in Australia, Canada (excluding Quebec), Ireland, New Zealand, the United Kingdom or the United States of America. Graduate applicants who do not meet the ELC requirement via degree studies require IELTS Academic with an overall score of at least 7.0 and no band less than 7.0.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 1, 2027",
+      "date": "2027-02-08",
+      "quote": "Master of Clinical Exercise Physiology (73520) Semester 1, 2027 S1: Open now S1: 8 February 2027",
+      "source_sha256": "3b6bd56de991e25a80aa98b9727582e8567dcdf29269b6c0cb908fdd622ec35b",
+      "check": "ok",
+      "source_url": "https://www.uwa.edu.au/study/how-to-apply/postgraduate"
+     }
+    ]
+   },
+   "cricos_code": "089267D",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Studies",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-studies",
+   "snapshot_sha256": "3a41458d1d4a841561086da92fa69424cffd0d57aca46463846d806e9b086abd",
+   "fields": {
+    "academic": {
+     "text": "To be considered for admission to this course an applicant must have—a bachelor's degree, or an equivalent qualification, as recognised by UWA.",
+     "quote": "To be considered for admission to this course an applicant must have—a bachelor's degree, or an equivalent qualification, as recognised by UWA.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "089501K",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Mining and Energy Law",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-mining-and-energy-law",
+   "snapshot_sha256": "892713a6e2951bcbd36e3b6f8a4e5050b827bbf06e903ee4c1d4f61bf029b54b",
+   "fields": {
+    "academic": {
+     "text": "To be considered for admission to this course an applicant must have—1(a) a Juris Doctor or Bachelor of Laws, or an equivalent qualification, as recognised by UWA; or 2(a) (i) a bachelor's degree in a cognate area, or an equivalent qualification, as recognised by UWA; and (ii) the equivalent of a UWA weighted average mark of at least 50 per cent; or 3(a) (i) a bachelor's degree, or an equivalent qualification, as recognised by UWA; and (ii) the equivalent of a UWA weighted average mark of at least 50 per cent; and (iii) at least two years of relevant professional experience.",
+     "quote": "To be considered for admission to this course an applicant must have—1(a) a Juris Doctor or Bachelor of Laws, or an equivalent qualification, as recognised by UWA; or 2(a) (i) a bachelor's degree in a cognate area, or an equivalent qualification, as recognised by UWA; and (ii) the equivalent of a UWA weighted average mark of at least 50 per cent; or 3(a) (i) a bachelor's degree, or an equivalent qualification, as recognised by UWA; and (ii) the equivalent of a UWA weighted average mark of at least 50 per cent; and (iii) at least two years of relevant professional experience.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.5,
+     "quote": "This course has higher ELC requirements. Applicants presenting with the IELTS Academic require an overall score of at least 7.0 and no band less than 6.5. For more information visit ELC requirements.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 92,
+     "min_band": 20,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections. Higher standard ELC requirements - a minimum overall score of 92 with a minimum score of 23 in the Speaking and Writing sections, and a minimum score of 20 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "091153G",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Energy Geoscience",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-energy-geoscience",
+   "snapshot_sha256": "55d95ae4091d96246c4363f9b92c28482d355c9276efb4211c322bc938b9742f",
+   "fields": {
+    "academic": {
+     "text": "To be considered for admission to this course an applicant must have— (a) a Bachelor of Geology, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent.",
+     "quote": "To be considered for admission to this course an applicant must have— (a) a Bachelor of Geology, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "093309J",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Data Science",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-data-science",
+   "snapshot_sha256": "48090185a9123afb77d7e0b3864d7cf5f2960498db5b8885a3493f2db0db3988",
+   "fields": {
+    "academic": {
+     "text": "To be considered for admission to this course an applicant must have— (a) a bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 65 per cent; and (c) completed ATAR Mathematics Methods, or equivalent, as recognised by UWA; or (d) Completion of a UWA College Pre Masters Program with a WAM of at least 50.",
+     "quote": "To be considered for admission to this course an applicant must have— (a) a bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 65 per cent; and (c) completed ATAR Mathematics Methods, or equivalent, as recognised by UWA; or (d) Completion of a UWA College Pre Masters Program with a WAM of at least 50.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "093310E",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Policy",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-public-policy",
+   "snapshot_sha256": "ba91ad162f5e17eb376d72d03e057553991d4c77401c975b4c926b5a1d880bbc",
+   "fields": {
+    "academic": {
+     "text": "(1) To be considered for admission to this course an applicant must have— (a) a Bachelor's degree, or an equivalent qualification, as recognised by UWA; and either: (b) the equivalent of a UWA weighted average mark of at least 60 per cent; or (c) at least two years professional experience in a relevant occupation; or (2) completed a Graduate Certificate in Public Policy at UWA.",
+     "quote": "(1) To be considered for admission to this course an applicant must have— (a) a Bachelor's degree, or an equivalent qualification, as recognised by UWA; and either: (b) the equivalent of a UWA weighted average mark of at least 60 per cent; or (c) at least two years professional experience in a relevant occupation; or (2) completed a Graduate Certificate in Public Policy at UWA.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "093562G",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Psychology",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-business-psychology",
+   "snapshot_sha256": "95412f161654045a65fb2b91444e6058a270a1a5db3cfebc4e1313821a4fdcc5",
+   "fields": {
+    "academic": {
+     "text": "To be considered for admission to this course an applicant must have— the equivalent of a 3 year Bachelors degree, with the equivalent of a UWA Weighted Average Mark of at least 60%",
+     "quote": "To be considered for admission to this course an applicant must have— the equivalent of a 3 year Bachelors degree, with the equivalent of a UWA Weighted Average Mark of at least 60%",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "093572E",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Forensic Anthropology",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-forensic-anthropology",
+   "snapshot_sha256": "586af65259743c1796395b6328cc1e64bedaff6852da5574bf1d077edb474d61",
+   "fields": {
+    "academic": {
+     "text": "(1) To be considered for admission to this course an applicant must have— (a) a Bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent; and (c) successfully completed prior study in a field relevant to Forensic Anthropology; or (2) completed a Graduate Certificate in Forensic Anthropology or Graduate Diploma in Forensic Anthropology at UWA.",
+     "quote": "(1) To be considered for admission to this course an applicant must have— (a) a Bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent; and (c) successfully completed prior study in a field relevant to Forensic Anthropology; or (2) completed a Graduate Certificate in Forensic Anthropology or Graduate Diploma in Forensic Anthropology at UWA.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "093807B",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Building Information Modelling",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-building-information-modelling",
+   "snapshot_sha256": "119515d3e4a2a8bcbcfeb3eb45a527acb6117ceb0333e6642f436a32eb032479",
+   "fields": {
+    "academic": {
+     "text": "(1) To be considered for admission to this course an applicant must have— (a) a Bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent; and (c) at least two years professional experience in a relevant occupation; and (d) successfully completed prior study in a field relevant to Building Information Modelling. OR (2)(a) a UWA graduate diploma which articulates with this course; and (b) the equivalent of a UWA weighted average mark of at least 60 per cent.",
+     "quote": "(1) To be considered for admission to this course an applicant must have— (a) a Bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent; and (c) at least two years professional experience in a relevant occupation; and (d) successfully completed prior study in a field relevant to Building Information Modelling. OR (2)(a) a UWA graduate diploma which articulates with this course; and (b) the equivalent of a UWA weighted average mark of at least 60 per cent.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "094494F",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Teaching-Secondary",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-teaching-secondary",
+   "snapshot_sha256": "104521f84535bb43a41b97871ba507f5c50e483723d8bd08d05f247bcb07d639",
+   "fields": {
+    "academic": {
+     "text": "(1) To be considered for admission to this course an applicant must have— (a) a bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) must have a degree with six units in a discipline that is relevant for the school curriculum major, with at least two of those units studied at second year university level and two at third year university level; and (c) the equivalent of a UWA weighted average mark of at least 60 per cent; and (2) Before admission, international students must obtain a criminal record check from their country of origin or recent residence.",
+     "quote": "(1) To be considered for admission to this course an applicant must have— (a) a bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) must have a degree with six units in a discipline that is relevant for the school curriculum major, with at least two of those units studied at second year university level and two at third year university level; and (c) the equivalent of a UWA weighted average mark of at least 60 per cent; and (2) Before admission, international students must obtain a criminal record check from their country of origin or recent residence.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "A valid IELTS Academic overall score of at least 7.5, a minimum score of 7.0 in the Reading and Writing bands, and a minimum score of 8.0 in the Listening and Speaking bands",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "January 2027",
+      "date": "2027-01-15",
+      "quote": "Master of Teaching (Secondary) (32550) January 2027 Open now 15 January 2027",
+      "source_sha256": "3b6bd56de991e25a80aa98b9727582e8567dcdf29269b6c0cb908fdd622ec35b",
+      "check": "ok",
+      "source_url": "https://www.uwa.edu.au/study/how-to-apply/postgraduate"
+     }
+    ]
+   },
+   "cricos_code": "095238C",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Ocean Leadership",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-ocean-leadership",
+   "snapshot_sha256": "97bd020b5c3550d6296cfcc6fcd8933658a2e03c70d875dd09f478a6fd1fea82",
+   "fields": {
+    "academic": {
+     "text": "To be considered for admission to this course an applicant must have— (a) a Bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent.",
+     "quote": "To be considered for admission to this course an applicant must have— (a) a Bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "096270F",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Bioinformatics",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-bioinformatics",
+   "snapshot_sha256": "5bdb14c22d6df49aa2e80e0cb97c970f4a37e7fa50558ec9401f904ff67ddcf4",
+   "fields": {
+    "academic": {
+     "text": "(1) To be considered for admission to this course an applicant must have— (a) a Bachelor of Science, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent; and (c) successfully completed prior tertiary study in—biological, medical, biomedical, or biomolecular sciences; or in a related cognate discipline as recognised by UWA. Admission requirements",
+     "quote": "(1) To be considered for admission to this course an applicant must have— (a) a Bachelor of Science, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent; and (c) successfully completed prior tertiary study in—biological, medical, biomedical, or biomolecular sciences; or in a related cognate discipline as recognised by UWA. Admission requirements",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "103500A",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Ore Deposit Geology",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-ore-deposit-geology",
+   "snapshot_sha256": "0790cc7ee19dfa123d046373b69aabb9962934770339fdc0aeff1bb39543da63",
+   "fields": {
+    "academic": {
+     "text": "(1) To be considered for admission to this course an applicant must have— (a) a Bachelor of Geology or Geoscience, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent; and (c) at least two years of professional experience in a relevant occupation; or (2)(a) a Bachelor of Geology or Geoscience with Honours, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent.",
+     "quote": "(1) To be considered for admission to this course an applicant must have— (a) a Bachelor of Geology or Geoscience, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent; and (c) at least two years of professional experience in a relevant occupation; or (2)(a) a Bachelor of Geology or Geoscience with Honours, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "104799B",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Oceanography",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-oceanography",
+   "snapshot_sha256": "5007835cf8d6de08e4f401ea91c0ce38a8c4eeb865eaa9e6ce541e44b5595d9f",
+   "fields": {
+    "academic": {
+     "text": "To be considered for admission to this course an applicant must have— (a) a Bachelor of Science, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent; and (c) successfully completed prior tertiary study in—marine science, environmental, engineering or physical sciences; or a related cognate discipline, as recognised by UWA",
+     "quote": "To be considered for admission to this course an applicant must have— (a) a Bachelor of Science, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent; and (c) successfully completed prior tertiary study in—marine science, environmental, engineering or physical sciences; or a related cognate discipline, as recognised by UWA",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "107555J",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Marine Biology",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-marine-biology",
+   "snapshot_sha256": "3f7f6310e8b1bdba17842dd34a6bd08a8181f110715ed062b0f7f7239deadcf6",
+   "fields": {
+    "academic": {
+     "text": "To be considered for admission to this course an applicant must have— (a) a Bachelor of Science, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent; and (c) successfully completed prior tertiary study in —marine science or marine biology; or in a related cognate discipline as recognised by UWA.",
+     "quote": "To be considered for admission to this course an applicant must have— (a) a Bachelor of Science, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 50 per cent; and (c) successfully completed prior tertiary study in —marine science or marine biology; or in a related cognate discipline as recognised by UWA.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "107725G",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Applied Human Performance Science",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-applied-human-performance-science",
+   "snapshot_sha256": "0baf2df22e4a0f02efa15f6517a3bc40e2b45fc0248a94c743962ad11639b4ab",
+   "fields": {
+    "academic": {
+     "text": "(1) To be considered for admission to this course an applicant must have— (a) a relevant bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 60 per cent. (2) Applicants must compete for a place in Semester 1 if they have either; (a) a bachelor's degree that has been accredited by Exercise & Sport Science Australia at the 'Exercise Science' level; or (b) an official ESSA \"Graduate Entry Assessment\" letter that demonstrates equivalence with \"Exercise Science\" members. (3) All other applicants must compete for a place in Semester 2, and must have a relevant bachelor's degree that included foundation units in anatomy, functional anatomy, human physiology, biomechanics, exercise physiology and research methods/statistics.",
+     "quote": "(1) To be considered for admission to this course an applicant must have— (a) a relevant bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 60 per cent. (2) Applicants must compete for a place in Semester 1 if they have either; (a) a bachelor's degree that has been accredited by Exercise & Sport Science Australia at the 'Exercise Science' level; or (b) an official ESSA \"Graduate Entry Assessment\" letter that demonstrates equivalence with \"Exercise Science\" members. (3) All other applicants must compete for a place in Semester 2, and must have a relevant bachelor's degree that included foundation units in anatomy, functional anatomy, human physiology, biomechanics, exercise physiology and research methods/statistics.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 7.0,
+     "quote": "Graduate applicants require at least two successful years of full-time or equivalent degree studies undertaken in Australia, Canada (excluding Quebec), Ireland, New Zealand, the United Kingdom or the United States of America. Graduate applicants who do not meet the ELC requirement via degree studies require IELTS Academic with an overall score of at least 7.0 and no band less than 7.0.",
+     "check": "ok"
+    }
+   },
+   "cricos_code": "108371J",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Offshore and Coastal Engineering",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-offshore-and-coastal-engineering",
+   "snapshot_sha256": "a0f5e78dd36f3b7d65c682fcf168227e05639368ed43a42eff5bd2b3c94e8747",
+   "fields": {
+    "academic": {
+     "text": "To be considered for admission to this course an applicant must have— (a) a Master of Professional Engineering; or (b) a Bachelor of Engineering (Honours) degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 65 per cent; and (c) prior studies in Civil Engineering; or Chemical Engineering or Environmental Engineering; or Mechanical Engineering; or Mining Engineering.",
+     "quote": "To be considered for admission to this course an applicant must have— (a) a Master of Professional Engineering; or (b) a Bachelor of Engineering (Honours) degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 65 per cent; and (c) prior studies in Civil Engineering; or Chemical Engineering or Environmental Engineering; or Mechanical Engineering; or Mining Engineering.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "110776C",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Medical Physics",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-medical-physics",
+   "snapshot_sha256": "38e1a4a5ba63b588015ec9a0ec4fe87fd194250082fdad9e451e7f22096fa1e7",
+   "fields": {
+    "academic": {
+     "text": "To be considered for admission to this course an applicant must have— (a) a bachelor's degree in physics, mathematics or engineering, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 70 per cent",
+     "quote": "To be considered for admission to this course an applicant must have— (a) a bachelor's degree in physics, mathematics or engineering, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 70 per cent",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "111847G",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Management",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-management",
+   "snapshot_sha256": "3c91833b74371d2f6a61cb4a0535b2f47cf03c119344e3a557cf70f636b10488",
+   "fields": {
+    "academic": {
+     "text": "(1) To be considered for admission to this course an applicant must have— (1)(a) a Bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 60 per cent; or (c) at least two years professional experience in a relevant occupation or (2)(a) completion of a UWA College Pre Masters Program with a WAM of at least 50.",
+     "quote": "(1) To be considered for admission to this course an applicant must have— (1)(a) a Bachelor's degree, or an equivalent qualification, as recognised by UWA; and (b) the equivalent of a UWA weighted average mark of at least 60 per cent; or (c) at least two years professional experience in a relevant occupation or (2)(a) completion of a UWA College Pre Masters Program with a WAM of at least 50.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "116873J",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Professional Psychology",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-professional-psychology-coursework",
+   "snapshot_sha256": "f09b588004642c079975dbb0c9c92ba8df099c2120ff080e16ad518aa5433222",
+   "fields": {
+    "academic": {
+     "text": "(1) To be considered for admission to this course an applicant must have—an accredited bachelor's honours degree in psychology with at least an upper second class Honours (2A), or an equivalent qualification, as recognised by the Psychology Board of Australia or the Australian Psychology Accreditation Council; (2) meet the inherent requirements for the course; and (3) Applicants must be eligible for provisional registration as a psychologist with the Psychology Board of Australia.",
+     "quote": "(1) To be considered for admission to this course an applicant must have—an accredited bachelor's honours degree in psychology with at least an upper second class Honours (2A), or an equivalent qualification, as recognised by the Psychology Board of Australia or the Australian Psychology Accreditation Council; (2) meet the inherent requirements for the course; and (3) Applicants must be eligible for provisional registration as a psychologist with the Psychology Board of Australia.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Semester 1, 2027 (international)",
+      "date": "2026-08-31",
+      "quote": "Master of Professional Psychology (73590) Semester 1, 2027 1 August 2026 Domestic applications close 30 September 2026. International applications close 31 August 2026.",
+      "source_sha256": "3b6bd56de991e25a80aa98b9727582e8567dcdf29269b6c0cb908fdd622ec35b",
+      "check": "ok",
+      "source_url": "https://www.uwa.edu.au/study/how-to-apply/postgraduate"
+     }
+    ]
+   },
+   "cricos_code": "119222J",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Commerce and Master of Translation Studies",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-commerce-and-master-of-translation-studies",
+   "snapshot_sha256": "7d7821d57b382da1bdf6f5ee2e9838c1f6a95a143ec78be3f2325448c3c5aaee",
+   "fields": {
+    "academic": {
+     "text": "To be considered for admission to this course an applicant must have - (1) a Bachelor's degree, or an equivalent qualification, as recognised by UWA; and (a) the equivalent of a UWA weighted average mark of at least 65 per cent in the Level 3 units of a relevant major; or (b) at least two years professional experience in a relevant occupation; or (c) completed a Graduate Certificate in Finance, or Graduate Certificate in Human Resources and Employment Relations, or Graduate Certificate in Business Information and Logistics Management, or Graduate Certificate in Commerce, or Graduate Certificate in Marketing, or Graduate Certificate in Economics at UWA. and (2)(a) demonstrated native or near-native proficiency in the chosen language specialisation; or (b) for French, Italian, German, and Spanish, B2/C1 levels of the Common European Framework of Reference for Languages; for Chinese, a minimum of HSK 4; for Japanese, Level N2/N3 at the JLPT (Japanese Language Proficiency Test); for Indonesian, Level 3 at the UKBI (UjianKemahiran Bahasa Indonesia) or Level 4 at the ISLPR (International Second Language Proficiency Ratings); and for Korean, Level 4 at the TOPIK (Test of Proficiency in Korean). Admission requirements",
+     "quote": "To be considered for admission to this course an applicant must have - (1) a Bachelor's degree, or an equivalent qualification, as recognised by UWA; and (a) the equivalent of a UWA weighted average mark of at least 65 per cent in the Level 3 units of a relevant major; or (b) at least two years professional experience in a relevant occupation; or (c) completed a Graduate Certificate in Finance, or Graduate Certificate in Human Resources and Employment Relations, or Graduate Certificate in Business Information and Logistics Management, or Graduate Certificate in Commerce, or Graduate Certificate in Marketing, or Graduate Certificate in Economics at UWA. and (2)(a) demonstrated native or near-native proficiency in the chosen language specialisation; or (b) for French, Italian, German, and Spanish, B2/C1 levels of the Common European Framework of Reference for Languages; for Chinese, a minimum of HSK 4; for Japanese, Level N2/N3 at the JLPT (Japanese Language Proficiency Test); for Indonesian, Level 3 at the UKBI (UjianKemahiran Bahasa Indonesia) or Level 4 at the ISLPR (International Second Language Proficiency Ratings); and for Korean, Level 4 at the TOPIK (Test of Proficiency in Korean). Admission requirements",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "Minimum overall IELTS score of 6.5, with no band less than 6.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 82,
+     "min_band": 17,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    }
+   },
+   "cricos_code": "0100157",
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Administration (Flexible)",
+   "url": "https://www.uwa.edu.au/study/courses/master-of-business-administration-flexible-mba",
+   "snapshot_sha256": "d899b95891287a4f24966698bffba7a2d56442f5fe84e7a9b3f91becb6a4e010",
+   "fields": {
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.5,
+     "quote": "This course has higher ELC requirements. Applicants presenting with the IELTS Academic require an overall score of at least 7.0 and no band less than 6.5. For more information visit ELC requirements.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 92,
+     "min_band": 20,
+     "quote": "TOEFL Internet-Based Test (iBT) (0-120 Scale) To allow verification of your scores use our TOEFL Institution Code: 7496 University of Western Australia (UWA). Minimum standard ELC requirements - a minimum overall score of 82 with a minimum score of 20 in the Speaking and Writing sections, and a minimum score of 17 in the Listening and Reading sections. Higher standard ELC requirements - a minimum overall score of 92 with a minimum score of 23 in the Speaking and Writing sections, and a minimum score of 20 in the Listening and Reading sections.",
+     "source_sha256": "0bc81449741b7919dab297afb81623f5d14c75534649f593bb6a9b5115029bf2",
+     "check": "ok",
+     "source_url": "https://www.uwa.edu.au/study/how-to-apply/pathways-and-eligibility/english-language-requirements"
+    },
+    "deadlines": [
+     {
+      "label": "Trimester 1, 2027",
+      "date": "2027-01-11",
+      "quote": "Master of Business Administration (Flexible) (42520) Trimester 1, 2027 Trimester 2, 2027 Trimester 3, 2027 T1: Open now T2: Open now T3: Open now T1: 11 January 2027 T2: 19 April 2027 T3: 2 August 2027",
+      "source_sha256": "3b6bd56de991e25a80aa98b9727582e8567dcdf29269b6c0cb908fdd622ec35b",
+      "check": "ok",
+      "source_url": "https://www.uwa.edu.au/study/how-to-apply/postgraduate"
+     },
+     {
+      "label": "Trimester 2, 2027",
+      "date": "2027-04-19",
+      "quote": "Master of Business Administration (Flexible) (42520) Trimester 1, 2027 Trimester 2, 2027 Trimester 3, 2027 T1: Open now T2: Open now T3: Open now T1: 11 January 2027 T2: 19 April 2027 T3: 2 August 2027",
+      "source_sha256": "3b6bd56de991e25a80aa98b9727582e8567dcdf29269b6c0cb908fdd622ec35b",
+      "check": "ok",
+      "source_url": "https://www.uwa.edu.au/study/how-to-apply/postgraduate"
+     },
+     {
+      "label": "Trimester 3, 2027",
+      "date": "2027-08-02",
+      "quote": "Master of Business Administration (Flexible) (42520) Trimester 1, 2027 Trimester 2, 2027 Trimester 3, 2027 T1: Open now T2: Open now T3: Open now T1: 11 January 2027 T2: 19 April 2027 T3: 2 August 2027",
+      "source_sha256": "3b6bd56de991e25a80aa98b9727582e8567dcdf29269b6c0cb908fdd622ec35b",
+      "check": "ok",
+      "source_url": "https://www.uwa.edu.au/study/how-to-apply/postgraduate"
+     }
+    ]
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 64,
+  "机器核对": 64,
+  "待人工": 0
+ }
+}

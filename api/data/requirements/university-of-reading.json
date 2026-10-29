@@ -1,0 +1,1507 @@
+{
+ "school_key": "university-of-reading",
+ "school_name_en": "University of Reading",
+ "country": "United Kingdom",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://www.reading.ac.uk/ready-to-study/study/subject-area/finance-pg",
+  "https://www.reading.ac.uk/ready-to-study/study/how-to-apply/entry-requirements-pg",
+  "https://www.reading.ac.uk/ready-to-study/study/how-to-apply/masters-how-to-apply"
+ ],
+ "china_page": {
+  "url": "https://www.reading.ac.uk/ready-to-study/international-and-eu/country-specific-information/country-specific-china",
+  "sha256": "3aeab5caba85e416f4ea18240e1d28ac7b52221216b631349d6cc58596c864d7"
+ },
+ "blocked": [],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.reading.ac.uk/ready-to-study/study/subject-area/agriculture-pg",
+  "https://www.reading.ac.uk/ready-to-study/study/subject-area/ancient-history-pg",
+  "https://www.reading.ac.uk/ready-to-study/study/subject-area/archaeology-pg",
+  "https://www.reading.ac.uk/ready-to-study/study/subject-area/architecture-pg",
+  "https://www.reading.ac.uk/ready-to-study/study/subject-area/art-pg",
+  "https://www.reading.ac.uk/ready-to-study/study/subject-area/biological-sciences-pg",
+  "https://www.reading.ac.uk/ready-to-study/study/subject-area/classics-and-ancient-history-pg",
+  "https://www.reading.ac.uk/ready-to-study/study/subject-area/climate-science-pg",
+  "https://www.reading.ac.uk/ready-to-study/study/subject-area/construction-management-and-engineering-pg",
+  "https://www.reading.ac.uk/ready-to-study/study/subject-area/ecology-pg",
+  "https://www.reading.ac.uk/ready-to-study/study/subject-area/energy-and-environmental-engineering-pg",
+  "https://www.reading.ac.uk/ready-to-study/study/subject-area/engineering-pg",
+  "https://www.reading.ac.uk/ready-to-study/study/subject-area/english-language-and-applied-linguistics-pg",
+  "https://www.reading.ac.uk/ready-to-study/study/subject-area/english-literature-pg",
+  "https://www.reading.ac.uk/ready-to-study/study/subject-area/environmental-science-pg",
+  "https://www.reading.ac.uk/ready-to-study/study/subject-area/film-theatre-and-television-pg",
+  "https://www.reading.ac.uk/ready-to-study/study/subject-area/food-and-nutritional-sciences-pg",
+  "https://www.reading.ac.uk/ready-to-study/study/subject-area/geography-and-environmental-science-pg",
+  "https://www.reading.ac.uk/ready-to-study/study/subject-area/graphic-design-pg",
+  "https://www.reading.ac.uk/ready-to-study/study/subject-area/history-pg",
+  "https://www.reading.ac.uk/ready-to-study/study/subject-area/linguistics-pg",
+  "https://www.reading.ac.uk/ready-to-study/study/subject-area/meteorology-and-climate-pg",
+  "https://www.reading.ac.uk/ready-to-study/study/subject-area/microbiology-pg",
+  "https://www.reading.ac.uk/ready-to-study/study/subject-area/nutritional-sciences-pg",
+  "https://www.reading.ac.uk/ready-to-study/study/subject-area/philosophy-pg",
+  "https://www.reading.ac.uk/ready-to-study/study/subject-area/teaching-pg",
+  "https://www.reading.ac.uk/ready-to-study/study/subject-area/theatre-pg",
+  "https://www.reading.ac.uk/ready-to-study/study/subject-area/typography-and-graphic-communication-pg"
+ ],
+ "notes": "Programme pages redirect to the official Henley Business School (henley.ac.uk) and ICMA Centre (icmacentre.ac.uk) sub-sites; those were quoted. Only about 25 of the subject listings were crawled; remaining_urls are the subject listing pages not reached (their programmes are not listed individually). The China page gives 68% to 80% depending on university and programme with no per-class mapping, so china_requirement is text only and attached only where the programme page points to country-specific information. The detailed China PDF (china-pgt-entry-requirement-may-24.pdf) has no extractable text in the snapshot, so nothing was quoted from it. Henley/ICMA application dates (1 July / 1 August) carry no year, so no deadlines recorded. Henley MSc Coaching for Behavioural Change page states no requirements and was skipped; PGCE, PGCert, PGDip, MRes and Malaysia programmes were skipped.",
+ "programs": [
+  {
+   "name": "MSc Accounting, Financial Management and Digital Business",
+   "url": "https://www.henley.ac.uk/study/masters/msc-accounting-financial-management-and-digital-business",
+   "snapshot_sha256": "937f917c1cd6c71a477c0b8406c9c652d5a2e1f37fb4477313093d75b742a37e",
+   "fields": {
+    "academic": {
+     "text": "A good second class honours degree or the equivalent from an Internationally recognised University",
+     "quote": "A good second class honours degree or the equivalent from an Internationally recognised University",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 with no component below 5.5 in any sub-skills",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "quote": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "source_sha256": "3aeab5caba85e416f4ea18240e1d28ac7b52221216b631349d6cc58596c864d7",
+     "source_url": "https://www.reading.ac.uk/ready-to-study/international-and-eu/country-specific-information/country-specific-china",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Applied Artificial Intelligence for Business",
+   "url": "https://www.henley.ac.uk/study/masters/msc-applied-ai-for-business",
+   "snapshot_sha256": "5e19c22e9ad0686213b023fe6a2424bbd6f2991427e1ec95c74357fb5bf8a8ff",
+   "fields": {
+    "academic": {
+     "text": "Good second class degree or the equivalent from an Internationally recognised university.",
+     "quote": "Good second class degree or the equivalent from an Internationally recognised university.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 with no component below 5.5 in any sub-skills",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "quote": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "source_sha256": "3aeab5caba85e416f4ea18240e1d28ac7b52221216b631349d6cc58596c864d7",
+     "source_url": "https://www.reading.ac.uk/ready-to-study/international-and-eu/country-specific-information/country-specific-china",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Digital Marketing",
+   "url": "https://www.henley.ac.uk/study/masters/msc-in-digital-marketing",
+   "snapshot_sha256": "cc07814964a59f13e933a6a547ed5df634c0df849db715c3c985daa7759104aa",
+   "fields": {
+    "academic": {
+     "text": "Good second class degree or the equivalent from an Internationally recognised university.",
+     "quote": "Good second class degree or the equivalent from an Internationally recognised university.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 with no component below 5.5 in any sub-skills",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "quote": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "source_sha256": "3aeab5caba85e416f4ea18240e1d28ac7b52221216b631349d6cc58596c864d7",
+     "source_url": "https://www.reading.ac.uk/ready-to-study/international-and-eu/country-specific-information/country-specific-china",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Entrepreneurship and Innovation",
+   "url": "https://www.henley.ac.uk/study/masters/msc-entrepreneurship-and-innovation",
+   "snapshot_sha256": "44c1af54a021140f2be1d5e435cc2e55e7eaf5ce9e5dcafd461f75350ba80238",
+   "fields": {
+    "academic": {
+     "text": "Good second class degree or the equivalent from an Internationally recognised university.",
+     "quote": "Good second class degree or the equivalent from an Internationally recognised university.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 with no component below 5.5 in any sub-skills",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "quote": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "source_sha256": "3aeab5caba85e416f4ea18240e1d28ac7b52221216b631349d6cc58596c864d7",
+     "source_url": "https://www.reading.ac.uk/ready-to-study/international-and-eu/country-specific-information/country-specific-china",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc International Accounting and Finance",
+   "url": "https://www.henley.ac.uk/study/masters/msc-international-accounting-and-finance",
+   "snapshot_sha256": "ec95ac4fba87209794f8a6ab9b84d66faaed65c6042ec5e8ed39f6de5fd33fed",
+   "fields": {
+    "academic": {
+     "text": "A good second class honours degree or the equivalent from an Internationally recognised University",
+     "quote": "A good second class honours degree or the equivalent from an Internationally recognised University",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 with no component below 5.5 in any sub-skills",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "quote": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "source_sha256": "3aeab5caba85e416f4ea18240e1d28ac7b52221216b631349d6cc58596c864d7",
+     "source_url": "https://www.reading.ac.uk/ready-to-study/international-and-eu/country-specific-information/country-specific-china",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc International Business",
+   "url": "https://www.henley.ac.uk/study/masters/msc-management-international-business",
+   "snapshot_sha256": "6aa8aaf2877498cb6c767251c36e423c6f54e1f4c2bfd23146e5bf7968ff194f",
+   "fields": {
+    "academic": {
+     "text": "Good second class degree or the equivalent from an Internationally recognised university.",
+     "quote": "Good second class degree or the equivalent from an Internationally recognised university.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 with no component below 5.5 in any sub-skills",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "quote": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "source_sha256": "3aeab5caba85e416f4ea18240e1d28ac7b52221216b631349d6cc58596c864d7",
+     "source_url": "https://www.reading.ac.uk/ready-to-study/international-and-eu/country-specific-information/country-specific-china",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc International Business and Finance",
+   "url": "https://www.henley.ac.uk/study/masters/msc-international-business-finance",
+   "snapshot_sha256": "f67f6828b806d996428960fd90ba020360a979ffbe6908541f1a0eb9ad02e9b9",
+   "fields": {
+    "academic": {
+     "text": "A good second class honours degree or the equivalent from an Internationally recognised University",
+     "quote": "A good second class honours degree or the equivalent from an Internationally recognised University",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 with no component below 5.5 in any sub-skills",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "quote": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "source_sha256": "3aeab5caba85e416f4ea18240e1d28ac7b52221216b631349d6cc58596c864d7",
+     "source_url": "https://www.reading.ac.uk/ready-to-study/international-and-eu/country-specific-information/country-specific-china",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc International Human Resource Management",
+   "url": "https://www.henley.ac.uk/study/masters/msc-international-human-resource-management",
+   "snapshot_sha256": "03e2d774464f175a648a61e8f068f2cf2560d4c62ec599b58f3c2ac939257ed3",
+   "fields": {
+    "academic": {
+     "text": "Good second class degree or the equivalent from an Internationally recognised university.",
+     "quote": "Good second class degree or the equivalent from an Internationally recognised university.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 with no component below 5.5 in any sub-skills",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "quote": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "source_sha256": "3aeab5caba85e416f4ea18240e1d28ac7b52221216b631349d6cc58596c864d7",
+     "source_url": "https://www.reading.ac.uk/ready-to-study/international-and-eu/country-specific-information/country-specific-china",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Management",
+   "url": "https://www.henley.ac.uk/study/masters/msc-management",
+   "snapshot_sha256": "997ea1859ab6df1a169abf70ec9411a3164395864aee148c1711c8958d3d224d",
+   "fields": {
+    "academic": {
+     "text": "Good second class degree or the equivalent from an Internationally recognised university.",
+     "quote": "Good second class degree or the equivalent from an Internationally recognised university.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 with no component below 5.5 in any sub-skills",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "quote": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "source_sha256": "3aeab5caba85e416f4ea18240e1d28ac7b52221216b631349d6cc58596c864d7",
+     "source_url": "https://www.reading.ac.uk/ready-to-study/international-and-eu/country-specific-information/country-specific-china",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Marketing (International Marketing)",
+   "url": "https://www.henley.ac.uk/study/masters/msc-in-marketing-international-marketing",
+   "snapshot_sha256": "f730e22422d206743be2aa5a78281adafcbf91bed5fe87996fe483b66193e1d0",
+   "fields": {
+    "academic": {
+     "text": "Good second class degree or the equivalent from an Internationally recognised university.",
+     "quote": "Good second class degree or the equivalent from an Internationally recognised university.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 with no component below 5.5 in any sub-skills",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "quote": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "source_sha256": "3aeab5caba85e416f4ea18240e1d28ac7b52221216b631349d6cc58596c864d7",
+     "source_url": "https://www.reading.ac.uk/ready-to-study/international-and-eu/country-specific-information/country-specific-china",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Marketing (Sustainable Marketing)",
+   "url": "https://www.henley.ac.uk/study/masters/msc-marketing-sustainable-marketing",
+   "snapshot_sha256": "05244ebf1d903d8f1f03196c095f054bc186e8f08a678a9e5e7ff0c7a89c7c0c",
+   "fields": {
+    "academic": {
+     "text": "Good second class degree or the equivalent from an Internationally recognised university.",
+     "quote": "Good second class degree or the equivalent from an Internationally recognised university.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 with no component below 5.5 in any sub-skills",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "quote": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "source_sha256": "3aeab5caba85e416f4ea18240e1d28ac7b52221216b631349d6cc58596c864d7",
+     "source_url": "https://www.reading.ac.uk/ready-to-study/international-and-eu/country-specific-information/country-specific-china",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Digital Innovation",
+   "url": "https://www.henley.ac.uk/study/masters/msc-digital-innovation",
+   "snapshot_sha256": "fb3f8233adf83a5cf2cfa2bf62c5e4e86816e9ffa1811bc495ace0cb5c4483a1",
+   "fields": {
+    "academic": {
+     "text": "Good second class degree or the equivalent from an Internationally recognised university.",
+     "quote": "Good second class degree or the equivalent from an Internationally recognised university.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 with no component below 5.5 in any sub-skills",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "quote": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "source_sha256": "3aeab5caba85e416f4ea18240e1d28ac7b52221216b631349d6cc58596c864d7",
+     "source_url": "https://www.reading.ac.uk/ready-to-study/international-and-eu/country-specific-information/country-specific-china",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc International Business and Digital Transformation",
+   "url": "https://www.henley.ac.uk/study/masters/masters-in-international-business-and-digital-transformation",
+   "snapshot_sha256": "fbdcccd358ea2cf701a69138d739e6f52202dd70d45c41a8cbf74e6ebd9255e8",
+   "fields": {
+    "academic": {
+     "text": "A good second-class honours degree or the equivalent from an internationally recognised university.",
+     "quote": "A good second-class honours degree or the equivalent from an internationally recognised university.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 with no component below 5.5 in any sub-skills",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "quote": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "source_sha256": "3aeab5caba85e416f4ea18240e1d28ac7b52221216b631349d6cc58596c864d7",
+     "source_url": "https://www.reading.ac.uk/ready-to-study/international-and-eu/country-specific-information/country-specific-china",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Digital Business and Data Analytics",
+   "url": "https://www.henley.ac.uk/study/masters/msc-digital-business-and-data-analytics",
+   "snapshot_sha256": "43318739c46bc5cdd57aa89416248aa87748fb6211f74ceaca417e701a73accd",
+   "fields": {
+    "academic": {
+     "text": "Good second class degree or the equivalent from an Internationally recognised university.",
+     "quote": "Good second class degree or the equivalent from an Internationally recognised university.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 with no component below 5.5 in any sub-skills",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "quote": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "source_sha256": "3aeab5caba85e416f4ea18240e1d28ac7b52221216b631349d6cc58596c864d7",
+     "source_url": "https://www.reading.ac.uk/ready-to-study/international-and-eu/country-specific-information/country-specific-china",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Behavioural Finance",
+   "url": "https://www.icmacentre.ac.uk/study/masters/msc-behavioural-finance",
+   "snapshot_sha256": "c9de886975d91f0e33d0a2b1669f3aa7c79c1cffe16b7b35dc48353690149d42",
+   "fields": {
+    "academic": {
+     "text": "A good second class honours degree or the equivalent from an Internationally recognised University",
+     "quote": "A good second class honours degree or the equivalent from an Internationally recognised University",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 with no component below 5.5 in any sub-skills",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Any degree discipline, but must have a satisfactory existing level of numeracy",
+      "quote": "Any degree discipline, but must have a satisfactory existing level of numeracy",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Climate Change, Sustainable Business and Green Finance",
+   "url": "https://www.icmacentre.ac.uk/study/masters/msc-climate-change-sustainable-business-green-finance",
+   "snapshot_sha256": "3bc6a178bbcb2db049a7b35f97be7146a09bce51fec4cee0d196de2cc0607a3f",
+   "fields": {
+    "academic": {
+     "text": "Good second class degree or the equivalent from an Internationally recognised university.",
+     "quote": "Good second class degree or the equivalent from an Internationally recognised university.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 with no component below 5.5 in any sub-skills",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Any degree discipline, but must have a satisfactory existing level of numeracy and have basic knowledge of Mathematics and Statistics.",
+      "quote": "Any degree discipline, but must have a satisfactory existing level of numeracy and have basic knowledge of Mathematics and Statistics.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Corporate Finance",
+   "url": "https://www.icmacentre.ac.uk/study/masters/msc-corporate-finance",
+   "snapshot_sha256": "b0565fb9857d58d070cb33d72539a05f2217e223b567333fc7dcf387fe5bb7ad",
+   "fields": {
+    "academic": {
+     "text": "A good second class honours degree or the equivalent from an Internationally recognised University",
+     "quote": "A good second class honours degree or the equivalent from an Internationally recognised University",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 with no component below 5.5 in any sub-skills",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Any degree discipline, but must have a satisfactory existing level of numeracy",
+      "quote": "Any degree discipline, but must have a satisfactory existing level of numeracy",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Finance, FinTech and Data Analytics",
+   "url": "https://www.icmacentre.ac.uk/study/masters/msc-finance-fintech-and-data-analytics",
+   "snapshot_sha256": "4de561e23b988826def56458d87ec241b44eec2cacb724daabb2661b640c0c74",
+   "fields": {
+    "academic": {
+     "text": "Good second class degree or the equivalent from an Internationally recognised university.",
+     "quote": "Good second class degree or the equivalent from an Internationally recognised university.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 with no component below 5.5 in any sub-skills",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Any degree discipline, but must have a satisfactory level of numeracy and have basic knowledge of Mathematics and Statistics.",
+      "quote": "Any degree discipline, but must have a satisfactory level of numeracy and have basic knowledge of Mathematics and Statistics.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Finance",
+   "url": "https://www.icmacentre.ac.uk/study/masters/msc-finance",
+   "snapshot_sha256": "6b8cb54c737443e503cea716c3986c7ef24655a1fdfa9ed4a4ff0aa6ab906c31",
+   "fields": {
+    "academic": {
+     "text": "Good second class degree or the equivalent from an Internationally recognised university.",
+     "quote": "Good second class degree or the equivalent from an Internationally recognised university.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 with no component below 5.5 in any sub-skills",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Any degree discipline, but must have a satisfactory existing level of numeracy",
+      "quote": "Any degree discipline, but must have a satisfactory existing level of numeracy",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Financial Risk Management",
+   "url": "https://www.icmacentre.ac.uk/study/masters/msc-financial-risk-management",
+   "snapshot_sha256": "4d36ffab2bea24084731fcede668e45d21207cf58766b4e08fee359cc23c275e",
+   "fields": {
+    "academic": {
+     "text": "Good second class degree or the equivalent from an Internationally recognised university.",
+     "quote": "Good second class degree or the equivalent from an Internationally recognised university.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 with no component below 5.5 in any sub-skills",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Any degree discipline, but must have a satisfactory level of numeracy",
+      "quote": "Any degree discipline, but must have a satisfactory level of numeracy",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Investment Management",
+   "url": "https://www.icmacentre.ac.uk/study/masters/masters-in-investment-management",
+   "snapshot_sha256": "6cb3fd07a1c56053b6d10a1533462289f75aa40cac20f33c6d560dbce13684e2",
+   "fields": {
+    "academic": {
+     "text": "Good second class degree or the equivalent from an Internationally recognised university.",
+     "quote": "Good second class degree or the equivalent from an Internationally recognised university.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 with no component below 5.5 in any sub-skills",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Any degree discipline, but must have a satisfactory existing level of numeracy",
+      "quote": "Any degree discipline, but must have a satisfactory existing level of numeracy",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Data Science and Advanced Computing",
+   "url": "https://www.reading.ac.uk/ready-to-study/study/subject-area/computer-science-pg/msc-data-science-and-advanced-computing",
+   "snapshot_sha256": "8171729154e08be5f315b028de998744a7027622cdc0b6212f6122e17cad8a41",
+   "fields": {
+    "academic": {
+     "text": "Normally at least a high 2:2 undergraduate honours degree in computing or a related discipline. These include (but are not limited to) mathematics, engineering, physics, chemistry, economics, or relevant work experience. You must have some experience of programming.",
+     "quote": "Normally at least a high 2:2 undergraduate honours degree in computing or a related discipline. These include (but are not limited to) mathematics, engineering, physics, chemistry, economics, or relevant work experience. You must have some experience of programming.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 overall with no element less than 5.5 (or equivalent)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Climate Change and Artificial Intelligence",
+   "url": "https://www.reading.ac.uk/ready-to-study/study/subject-area/meteorology-and-climate-pg/msc-climate-change-and-artificial-intelligence",
+   "snapshot_sha256": "4dac5cdf7d78317dfddaba2f904f723efddf17e6923b4791cbbeaaf3ddae7e85",
+   "fields": {
+    "academic": {
+     "text": "Normally a good undergraduate honours degree, 2:2 or above (or equivalent from an internationally recognised university) in a subject that demonstrates numeracy or quantitative reasoning. Suitable subjects can include agriculture, economics, engineering, environmental/geo and physical sciences, statistics, computer science, and quantitative social sciences.",
+     "quote": "Normally a good undergraduate honours degree, 2:2 or above (or equivalent from an internationally recognised university) in a subject that demonstrates numeracy or quantitative reasoning. Suitable subjects can include agriculture, economics, engineering, environmental/geo and physical sciences, statistics, computer science, and quantitative social sciences.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 overall with no element less than 5.5.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "You should also have some experience in coding or programming.",
+      "quote": "You should also have some experience in coding or programming.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA Education",
+   "url": "https://www.reading.ac.uk/ready-to-study/study/subject-area/education-pg/ma-education",
+   "snapshot_sha256": "af066e1753b354165376ccca7061e603cfc3a42c0df1e5959bc81d7a0adde3a3",
+   "fields": {
+    "academic": {
+     "text": "You hold, or are predicted to achieve, a 2.2 or above UK honours degree or equivalent non-UK qualification normally in Education Studies, or Education Studies with another subject. Other subjects will be accepted if you can demonstrate in your professional experience and/or personal statement that you have an active interest in education and/or an appropriate level of professional experience.",
+     "quote": "You hold, or are predicted to achieve, a 2.2 or above UK honours degree or equivalent non-UK qualification normally in Education Studies, or Education Studies with another subject. Other subjects will be accepted if you can demonstrate in your professional experience and/or personal statement that you have an active interest in education and/or an appropriate level of professional experience.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "International applicants must hold IELTS 6.5 overall with no component less than 5.5",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Applied Economics",
+   "url": "https://www.reading.ac.uk/ready-to-study/study/subject-area/economics-pg/msc-applied-economics",
+   "snapshot_sha256": "896b66ccfb38bbd7389f9d78e1272fbc2e3667e0b6335741463e585936891b81",
+   "fields": {
+    "academic": {
+     "text": "Normally a good undergraduate honours degree (2:2 or above) in a numerate, quantitative or business related discipline.",
+     "quote": "Normally a good undergraduate honours degree (2:2 or above) in a numerate, quantitative or business related discipline.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 overall with no element less than 5.5 (or equivalent)",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "To apply for this course, you must have an undergraduate degree in a numerate, quantitative or business-related discipline such as economics, business administration, finance, accounting, international trade, banking, financial management, public finance, mathematics, computer science, data science, geography.",
+      "quote": "To apply for this course, you must have an undergraduate degree in a numerate, quantitative or business-related discipline such as economics, business administration, finance, accounting, international trade, banking, financial management, public finance, mathematics, computer science, data science, geography.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Business Economics",
+   "url": "https://www.reading.ac.uk/ready-to-study/study/subject-area/economics-pg/msc-business-economics",
+   "snapshot_sha256": "5ad3c3a39253040e96ba60fa1f6de86998c8c248ca132b4b5e0257fc23965f0c",
+   "fields": {
+    "academic": {
+     "text": "You should have a bachelor's honours degree or international equivalent, typically a 2:2 or above.",
+     "quote": "You should have a bachelor's honours degree or international equivalent, typically a 2:2 or above.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 overall with no element less than 5.5 (or equivalent)",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "To apply for this course, you must have an undergraduate degree in a numerate, quantitative or business-related discipline such as economics, business administration, finance, accounting, international trade, banking, financial management, public finance, mathematics, computer science, data science, geography.",
+      "quote": "To apply for this course, you must have an undergraduate degree in a numerate, quantitative or business-related discipline such as economics, business administration, finance, accounting, international trade, banking, financial management, public finance, mathematics, computer science, data science, geography.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Economics",
+   "url": "https://www.reading.ac.uk/ready-to-study/study/subject-area/economics-pg/msc-economics",
+   "snapshot_sha256": "1b7b11a6ed1f8fd301f1dde8247c30cdf39e49ea7888b048536e2ce92c683200",
+   "fields": {
+    "academic": {
+     "text": "You should have a bachelor's honours degree or international equivalent, typically a 2:1 (2:2 for those whose degree contains a high level of economics content) or above.",
+     "quote": "You should have a bachelor's honours degree or international equivalent, typically a 2:1 (2:2 for those whose degree contains a high level of economics content) or above.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 overall with no element less than 5.5 (or equivalent)",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "To apply for this course, you must have an undergraduate degree in a numerate, quantitative or business-related discipline such as economics, business administration, finance, accounting, international trade, banking, financial management, public finance, mathematics, computer science, data science, geography.",
+      "quote": "To apply for this course, you must have an undergraduate degree in a numerate, quantitative or business-related discipline such as economics, business administration, finance, accounting, international trade, banking, financial management, public finance, mathematics, computer science, data science, geography.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Public Policy",
+   "url": "https://www.reading.ac.uk/ready-to-study/study/subject-area/economics-pg/msc-public-policy",
+   "snapshot_sha256": "08374ab8d6f5a93a64b48232baa256e339737192d36e89c03f4f76cd9268fea9",
+   "fields": {
+    "academic": {
+     "text": "Normally a good undergraduate honours degree (2:2 level or above), or equivalent from a university outside the UK. a social science, arts, business or humanities subject is preferred. Relevant work experience may also be taken into account.",
+     "quote": "Normally a good undergraduate honours degree (2:2 level or above), or equivalent from a university outside the UK. a social science, arts, business or humanities subject is preferred. Relevant work experience may also be taken into account.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 overall with no element less than 5.5 (or equivalent)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Consumer Behaviour",
+   "url": "https://www.reading.ac.uk/ready-to-study/study/subject-area/international-development-and-applied-economics-pg/msc-consumer-behaviour",
+   "snapshot_sha256": "fd29a52d599c285eefbf02b911d9144bd257bada77dfde5150a2b1ab79d57ebe",
+   "fields": {
+    "academic": {
+     "text": "Normally a good undergraduate honours",
+     "quote": "Normally a good undergraduate honours",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 overall with no element less than 5.5 (or equivalent).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "quote": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "source_sha256": "3aeab5caba85e416f4ea18240e1d28ac7b52221216b631349d6cc58596c864d7",
+     "source_url": "https://www.reading.ac.uk/ready-to-study/international-and-eu/country-specific-information/country-specific-china",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Development Finance",
+   "url": "https://www.reading.ac.uk/ready-to-study/study/subject-area/international-development-and-applied-economics-pg/msc-development-finance",
+   "snapshot_sha256": "0359e5524025a7046e783d51cbd40107b81ceb057c9c0bc861c6bac958d0d613",
+   "fields": {
+    "academic": {
+     "text": "Normally a good undergraduate honours degree (high 2:2 or above), or equivalent from a university outside the UK. Applicants who have relevant career experience are also welcome to apply.",
+     "quote": "Normally a good undergraduate honours degree (high 2:2 or above), or equivalent from a university outside the UK. Applicants who have relevant career experience are also welcome to apply.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 overall with no element less than 5.5 (or equivalent)",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Your undergraduate degree must include a significant element of economics/accounting or finance. Students are advised to take some preliminary economics course before commencing their study.",
+      "quote": "Your undergraduate degree must include a significant element of economics/accounting or finance. Students are advised to take some preliminary economics course before commencing their study.",
+      "check": "ok"
+     }
+    ],
+    "china_requirement": {
+     "text": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "quote": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "source_sha256": "3aeab5caba85e416f4ea18240e1d28ac7b52221216b631349d6cc58596c864d7",
+     "source_url": "https://www.reading.ac.uk/ready-to-study/international-and-eu/country-specific-information/country-specific-china",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Communication for Development",
+   "url": "https://www.reading.ac.uk/ready-to-study/study/subject-area/international-development-and-applied-economics-pg/msc-communication-for-development",
+   "snapshot_sha256": "5f149ad218eaf855ec46357767e04891b827a5cef5a5a18f806108e30c38ec5e",
+   "fields": {
+    "academic": {
+     "text": "Normally a good undergraduate honours degree (high 2:2 or above), or equivalent from a university outside the UK. Applicants who have relevant career experience are also encouraged to apply.",
+     "quote": "Normally a good undergraduate honours degree (high 2:2 or above), or equivalent from a university outside the UK. Applicants who have relevant career experience are also encouraged to apply.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 overall with no element less than 5.5 (or equivalent)",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "quote": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "source_sha256": "3aeab5caba85e416f4ea18240e1d28ac7b52221216b631349d6cc58596c864d7",
+     "source_url": "https://www.reading.ac.uk/ready-to-study/international-and-eu/country-specific-information/country-specific-china",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Global Development in Practice",
+   "url": "https://www.reading.ac.uk/ready-to-study/study/subject-area/international-development-and-applied-economics-pg/msc-global-development-in-practice",
+   "snapshot_sha256": "322e648cef1be8fc6f6c7a3c1defa1f5db6ebce08e32765a4e48e5f7e93c7312",
+   "fields": {
+    "academic": {
+     "text": "Normally a good undergraduate honours degree (high 2:2 or above), or equivalent from a university outside the UK. Applicants who have relevant career experience are also welcome to apply.",
+     "quote": "Normally a good undergraduate honours degree (high 2:2 or above), or equivalent from a university outside the UK. Applicants who have relevant career experience are also welcome to apply.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 overall with no element less than 5.5 (or equivalent)",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "quote": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "source_sha256": "3aeab5caba85e416f4ea18240e1d28ac7b52221216b631349d6cc58596c864d7",
+     "source_url": "https://www.reading.ac.uk/ready-to-study/international-and-eu/country-specific-information/country-specific-china",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Climate Change and Development",
+   "url": "https://www.reading.ac.uk/ready-to-study/study/subject-area/international-development-and-applied-economics-pg/msc-climate-change-and-development",
+   "snapshot_sha256": "42736496a47f832269120403bff706531d56c73c23465f41f5f4c3ad5360ee57",
+   "fields": {
+    "academic": {
+     "text": "Normally a good undergraduate honours degree (high 2:2 or above), or equivalent from a university outside the UK. Applicants who have relevant career experience are also encouraged to apply.",
+     "quote": "Normally a good undergraduate honours degree (high 2:2 or above), or equivalent from a university outside the UK. Applicants who have relevant career experience are also encouraged to apply.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 overall with no element less than 5.5 (or equivalent)",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "quote": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "source_sha256": "3aeab5caba85e416f4ea18240e1d28ac7b52221216b631349d6cc58596c864d7",
+     "source_url": "https://www.reading.ac.uk/ready-to-study/international-and-eu/country-specific-information/country-specific-china",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Agricultural Economics",
+   "url": "https://www.reading.ac.uk/ready-to-study/study/subject-area/international-development-and-applied-economics-pg/msc-agricultural-economics",
+   "snapshot_sha256": "0432dbce890b06c8f4466483ab31a73b5bd10f8907d9fc13777f555952fe0aef",
+   "fields": {
+    "academic": {
+     "text": "Normally a good undergraduate honours degree (high 2:2 or above), or equivalent from a university outside the UK. Applicants who have relevant career experience are also welcome to apply.",
+     "quote": "Normally a good undergraduate honours degree (high 2:2 or above), or equivalent from a university outside the UK. Applicants who have relevant career experience are also welcome to apply.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 overall with no element less than 5.5 (or equivalent)",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "quote": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "source_sha256": "3aeab5caba85e416f4ea18240e1d28ac7b52221216b631349d6cc58596c864d7",
+     "source_url": "https://www.reading.ac.uk/ready-to-study/international-and-eu/country-specific-information/country-specific-china",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Agriculture and Development",
+   "url": "https://www.reading.ac.uk/ready-to-study/study/subject-area/international-development-and-applied-economics-pg/msc-agriculture-and-development",
+   "snapshot_sha256": "06fd2da6539abcd224d1f1ad0667ccc9e951b62205e6cf0c5dc081abfeb246c0",
+   "fields": {
+    "academic": {
+     "text": "Normally a good undergraduate honours degree (high 2:2 or above), or equivalent from a university outside the UK. Applicants who have relevant career experience are also welcome to apply. Knowledge of agriculture or horticulture is desirable.",
+     "quote": "Normally a good undergraduate honours degree (high 2:2 or above), or equivalent from a university outside the UK. Applicants who have relevant career experience are also welcome to apply. Knowledge of agriculture or horticulture is desirable.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 overall with no element less than 5.5 (or equivalent)",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "quote": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "source_sha256": "3aeab5caba85e416f4ea18240e1d28ac7b52221216b631349d6cc58596c864d7",
+     "source_url": "https://www.reading.ac.uk/ready-to-study/international-and-eu/country-specific-information/country-specific-china",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Food Security and Development",
+   "url": "https://www.reading.ac.uk/ready-to-study/study/subject-area/international-development-and-applied-economics-pg/msc-food-security-and-development",
+   "snapshot_sha256": "42619bd77a39dadbe28f2c7f96227427070efc9c427ff84f9c4e2f147ea7c3f9",
+   "fields": {
+    "academic": {
+     "text": "Normally a good undergraduate honours degree (high 2:2 or above), or equivalent from a university outside the UK. Evidence of prior experience in the sector may also be taken into consideration.",
+     "quote": "Normally a good undergraduate honours degree (high 2:2 or above), or equivalent from a university outside the UK. Evidence of prior experience in the sector may also be taken into consideration.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 overall with no element less than 5.5 (or equivalent)",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "quote": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "source_sha256": "3aeab5caba85e416f4ea18240e1d28ac7b52221216b631349d6cc58596c864d7",
+     "source_url": "https://www.reading.ac.uk/ready-to-study/international-and-eu/country-specific-information/country-specific-china",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Food Economics and Marketing",
+   "url": "https://www.reading.ac.uk/ready-to-study/study/subject-area/international-development-and-applied-economics-pg/msc-food-economics-and-marketing",
+   "snapshot_sha256": "d139657933dd54f01333db06d3ff30d5793900593b88249105a41cd6ebfd3df9",
+   "fields": {
+    "academic": {
+     "text": "Normally a good undergraduate honours degree (high 2:2 or above), or equivalent from a university outside the UK, in a subject falling in the areas of marketing, business, economics, food science and agriculture. Applicants who have relevant career experience are also welcome to apply.",
+     "quote": "Normally a good undergraduate honours degree (high 2:2 or above), or equivalent from a university outside the UK, in a subject falling in the areas of marketing, business, economics, food science and agriculture. Applicants who have relevant career experience are also welcome to apply.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 overall with no element less than 5.5 (or equivalent)",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "quote": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "source_sha256": "3aeab5caba85e416f4ea18240e1d28ac7b52221216b631349d6cc58596c864d7",
+     "source_url": "https://www.reading.ac.uk/ready-to-study/international-and-eu/country-specific-information/country-specific-china",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA Conflict and International Security",
+   "url": "https://www.reading.ac.uk/ready-to-study/study/subject-area/politics-and-international-relations-pg/ma-conflict-and-international-security",
+   "snapshot_sha256": "a81a106a117b0c5f82e5141ac8d6d9022121acbef818320e5ddfd5346ea286a8",
+   "fields": {
+    "academic": {
+     "text": "Normally a good undergraduate honours degree (2.2 level or above), or equivalent from a university outside the UK. All of our programmes are appropriate for students from any discipline, although a social science, arts, business or humanities background would be of value. Relevant work experience may also be taken into account.",
+     "quote": "Normally a good undergraduate honours degree (2.2 level or above), or equivalent from a university outside the UK. All of our programmes are appropriate for students from any discipline, although a social science, arts, business or humanities background would be of value. Relevant work experience may also be taken into account.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 overall with no element less than 5.5",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA International Relations and Diplomacy",
+   "url": "https://www.reading.ac.uk/ready-to-study/study/subject-area/politics-and-international-relations-pg/ma-international-relations-and-diplomacy",
+   "snapshot_sha256": "a14fdb020cdc6e52ab874f24608695e47baffec8dd07adc29aca07eaba7de98f",
+   "fields": {
+    "academic": {
+     "text": "Normally a good undergraduate honours degree (2.2 level or above), or equivalent from a university outside the UK. All of our programmes are appropriate for students from any discipline, although a social science, arts, business or humanities background would be of value. Relevant work experience may also be taken into account.",
+     "quote": "Normally a good undergraduate honours degree (2.2 level or above), or equivalent from a university outside the UK. All of our programmes are appropriate for students from any discipline, although a social science, arts, business or humanities background would be of value. Relevant work experience may also be taken into account.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 overall with no element less than 5.5",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "LLM Advanced Legal Studies",
+   "url": "https://www.reading.ac.uk/ready-to-study/study/subject-area/law-pg/llm-advanced-legal-studies",
+   "snapshot_sha256": "513a84441c3e526a2b23a7139ae9457d53210f944247da10bab56696c9a63ade",
+   "fields": {
+    "academic": {
+     "text": "Normally a good undergraduate honours degree (2.1 or above) in Law, or equivalent from a university outside the UK",
+     "quote": "Normally a good undergraduate honours degree (2.1 or above) in Law, or equivalent from a university outside the UK",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 overall with no element less than 5.5 (or equivalent)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "LLM International Commercial Law",
+   "url": "https://www.reading.ac.uk/ready-to-study/study/subject-area/law-pg/llm-international-commercial-law",
+   "snapshot_sha256": "223a0a849324c67a993d380730c202d5423b6a6bec56f511d3980108178c266c",
+   "fields": {
+    "academic": {
+     "text": "Normally a good undergraduate honours degree (2.1 or above) in Law, Economics, Finance and Business Finance or equivalent from a university outside the UK",
+     "quote": "Normally a good undergraduate honours degree (2.1 or above) in Law, Economics, Finance and Business Finance or equivalent from a university outside the UK",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 overall with no element less than 5.5 (or equivalent)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "LLM International Commercial Law with Corporate Finance",
+   "url": "https://www.reading.ac.uk/ready-to-study/study/subject-area/law-pg/llm-international-commercial-law-with-corporate-finance",
+   "snapshot_sha256": "4552c8aa6e00ce0586cd87b18b020db764e9b071966ad0538c1162cfd56516dc",
+   "fields": {
+    "academic": {
+     "text": "Normally a good undergraduate honours degree (2.1 or above) in Law, Economics, Finance and Business Finance or equivalent from a university outside the UK",
+     "quote": "Normally a good undergraduate honours degree (2.1 or above) in Law, Economics, Finance and Business Finance or equivalent from a university outside the UK",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 overall with no element less than 5.5 (or equivalent)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "LLM International Commercial Law with Intellectual Property Law and Management",
+   "url": "https://www.reading.ac.uk/ready-to-study/study/subject-area/law-pg/llm-international-commercial-law-with-intellectual-property-law-and-management",
+   "snapshot_sha256": "9f3a5f7e6287218d095b056cc87c1913fe28adb7a2518c449945f2c8de32b3dc",
+   "fields": {
+    "academic": {
+     "text": "Normally a good undergraduate honours degree (2.1 or above) in Law, Economics, Finance and Business Finance or equivalent from a university outside the UK",
+     "quote": "Normally a good undergraduate honours degree (2.1 or above) in Law, Economics, Finance and Business Finance or equivalent from a university outside the UK",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 overall with no element less than 5.5 (or equivalent)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "LLM International Commercial Law with International Banking Law and Financial Regulation",
+   "url": "https://www.reading.ac.uk/ready-to-study/study/subject-area/law-pg/llm-international-commercial-law-with-international-banking-law-and-financial-regulation",
+   "snapshot_sha256": "ecacc1b22881e46e8fafece8cb10817020200ba28741c6280cd7a4d5721a8e76",
+   "fields": {
+    "academic": {
+     "text": "Normally a good undergraduate honours degree (2.1 or above) in Law, Economics, Finance and Business Finance or equivalent from a university outside the UK",
+     "quote": "Normally a good undergraduate honours degree (2.1 or above) in Law, Economics, Finance and Business Finance or equivalent from a university outside the UK",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 overall with no element less than 5.5 (or equivalent)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "LLM International Law",
+   "url": "https://www.reading.ac.uk/ready-to-study/study/subject-area/law-pg/llm-international-law",
+   "snapshot_sha256": "140e3d4514a017e4c2e06f9cdea2412a9126f2f105ccb407f8355631d1b92012",
+   "fields": {
+    "academic": {
+     "text": "Normally a good undergraduate honours degree (2.1 or above) in Law, or equivalent from a university outside the UK",
+     "quote": "Normally a good undergraduate honours degree (2.1 or above) in Law, or equivalent from a university outside the UK",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 overall with no element less than 5.5 (or equivalent)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Project Management",
+   "url": "https://www.reading.ac.uk/ready-to-study/study/subject-area/construction-management-and-engineering-pg/msc-project-management",
+   "snapshot_sha256": "940ad58034e620877eaa5de86b2c6cabc7df90c6636f7901a55eacec010818cc",
+   "fields": {
+    "academic": {
+     "text": "Normally a 2.2 undergraduate Honours degree, or equivalent non-UK qualification. If you have other qualifications and a number of years' relevant work experience, you are also welcome to apply.",
+     "quote": "Normally a 2.2 undergraduate Honours degree, or equivalent non-UK qualification. If you have other qualifications and a number of years' relevant work experience, you are also welcome to apply.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 overall with no element less than 5.5.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Project Management with Industry Placement",
+   "url": "https://www.reading.ac.uk/ready-to-study/study/subject-area/construction-management-and-engineering-pg/msc-project-management-with-industry-placement",
+   "snapshot_sha256": "39df00e84c249e09618cf7d67b33d11136338ef557988c04dc532e9835ab3541",
+   "fields": {
+    "academic": {
+     "text": "Normally a 2.2 undergraduate Honours degree, or equivalent non-UK qualification. If you have other qualifications and a number of years' relevant work experience, you are also welcome to apply.",
+     "quote": "Normally a 2.2 undergraduate Honours degree, or equivalent non-UK qualification. If you have other qualifications and a number of years' relevant work experience, you are also welcome to apply.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 overall with no element less than 5.5.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Construction Management",
+   "url": "https://www.reading.ac.uk/ready-to-study/study/subject-area/construction-management-and-engineering-pg/msc-construction-management",
+   "snapshot_sha256": "47ab6ac903b384f4acbad34db9a37da4306c5461f4544ef8a14a8739d2d631ca",
+   "fields": {
+    "academic": {
+     "text": "Normally a 2.2 undergraduate Honours degree, or equivalent non-UK qualification. If you have other qualifications and a number of years' relevant work experience, you are also welcome to apply.",
+     "quote": "Normally a 2.2 undergraduate Honours degree, or equivalent non-UK qualification. If you have other qualifications and a number of years' relevant work experience, you are also welcome to apply.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 overall with no element less than 5.5.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Construction Management with Industry Placement",
+   "url": "https://www.reading.ac.uk/ready-to-study/study/subject-area/construction-management-and-engineering-pg/msc-construction-management-with-industry-placement",
+   "snapshot_sha256": "3773743b87c15638b87f9d21ab0f4c4cdfe59551b2ab3a32214deb8173015b7c",
+   "fields": {
+    "academic": {
+     "text": "Normally a 2.2 undergraduate Honours degree, or equivalent non-UK qualification. If you have other qualifications and a number of years' relevant work experience, you are also welcome to apply.",
+     "quote": "Normally a 2.2 undergraduate Honours degree, or equivalent non-UK qualification. If you have other qualifications and a number of years' relevant work experience, you are also welcome to apply.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 overall with no element less than 5.5.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Construction Cost Management",
+   "url": "https://www.reading.ac.uk/ready-to-study/study/subject-area/construction-management-and-engineering-pg/msc-construction-cost-management",
+   "snapshot_sha256": "4a81514bad933dd695792359dcee612cb48d2109f365d54546d8a9941b33248f",
+   "fields": {
+    "academic": {
+     "text": "Normally a 2.2 undergraduate Honours degree, or equivalent non-UK qualification. If you have other qualifications and a number of years' relevant work experience, you are also welcome to apply.",
+     "quote": "Normally a 2.2 undergraduate Honours degree, or equivalent non-UK qualification. If you have other qualifications and a number of years' relevant work experience, you are also welcome to apply.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 overall with no element less than 5.5.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Design and Management of Sustainable Built Environment",
+   "url": "https://www.reading.ac.uk/ready-to-study/study/subject-area/construction-management-and-engineering-pg/msc-design-and-management-of-sustainable-built-environment",
+   "snapshot_sha256": "49194258794e463f173185baa062a819329a2d4b48819f76a4b8233f6146c307",
+   "fields": {
+    "academic": {
+     "text": "Normally a 2.2 undergraduate Honours degree, or equivalent non-UK qualification. If you have other qualifications and a number of years' relevant work experience, you are also welcome to apply.",
+     "quote": "Normally a 2.2 undergraduate Honours degree, or equivalent non-UK qualification. If you have other qualifications and a number of years' relevant work experience, you are also welcome to apply.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 overall with no element less than 5.5.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Cognitive Neuroscience",
+   "url": "https://www.reading.ac.uk/ready-to-study/study/subject-area/psychology-pg/msc-cognitive-neuroscience",
+   "snapshot_sha256": "cf893c5778e45ddd8cd5dbbef9ab18847e22b17212addd7d1e42d333a6ffda76",
+   "fields": {
+    "academic": {
+     "text": "Typically a good second class honours degree (57% or above, with 2.1 marks in Research Methods and project/dissertation modules) in psychology or a related discipline (for example, cognitive neuroscience). It must reflect psychology as a scientific discipline and have included the study of brain and behaviour.",
+     "quote": "Typically a good second class honours degree (57% or above, with 2.1 marks in Research Methods and project/dissertation modules) in psychology or a related discipline (for example, cognitive neuroscience). It must reflect psychology as a scientific discipline and have included the study of brain and behaviour.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 overall with no element less than 5.5",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Psychology (Conversion)",
+   "url": "https://www.reading.ac.uk/ready-to-study/study/subject-area/psychology-pg/msc-psychology-conversion",
+   "snapshot_sha256": "4c7257696ca5c18d65384798c6e7b6c850548b14f8a6d3669ecd6f902613c4af",
+   "fields": {
+    "academic": {
+     "text": "Typically a good undergraduate honours degree (2:1 or above). You will need to demonstrate your interest in studying psychology.",
+     "quote": "Typically a good undergraduate honours degree (2:1 or above). You will need to demonstrate your interest in studying psychology.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 overall with no element less than 5.5.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Research Methods in Psychology",
+   "url": "https://www.reading.ac.uk/ready-to-study/study/subject-area/psychology-pg/msc-research-methods-in-psychology",
+   "snapshot_sha256": "4c6118dee740708a17e5bfe3774ec8aca05dbf39582f8c6d6a2a7d7097610126",
+   "fields": {
+    "academic": {
+     "text": "Typically a good second class honours degree (57% or above, with 2.1 marks in Research Methods and project/dissertation modules) in psychology or a related discipline (for example, cognitive neuroscience). It must reflect psychology as a scientific discipline and have included the study of brain and behaviour.",
+     "quote": "Typically a good second class honours degree (57% or above, with 2.1 marks in Research Methods and project/dissertation modules) in psychology or a related discipline (for example, cognitive neuroscience). It must reflect psychology as a scientific discipline and have included the study of brain and behaviour.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 overall with no element less than 5.5 (or equivalent).",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Theory and Practice in Clinical Psychology",
+   "url": "https://www.reading.ac.uk/ready-to-study/study/subject-area/psychology-pg/msc-theory-and-practice-in-clinical-psychology",
+   "snapshot_sha256": "ea3ad0ae324ec476696f7d8ada406320f60cc2403fd1c4b7d1ea61d07ad59bf2",
+   "fields": {
+    "academic": {
+     "text": "Typically a good undergraduate honours degree (2:1 or above) in psychology. As part of your degree you should have completed/ be completing an empirical project. An understanding of the realities of clinical work is highly desirable.",
+     "quote": "Typically a good undergraduate honours degree (2:1 or above) in psychology. As part of your degree you should have completed/ be completing an empirical project. An understanding of the realities of clinical work is highly desirable.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.5,
+     "quote": "7.0 overall with no element less than 6.5",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Language Sciences",
+   "url": "https://www.reading.ac.uk/ready-to-study/study/subject-area/speech-and-language-therapy-pg/msc-language-sciences",
+   "snapshot_sha256": "6cc9bb8213e83966a7e1fffa27c5c76df4b5ece880f9386aae7454422161f613",
+   "fields": {
+    "academic": {
+     "text": "Normally a good second class honours degree (57% or above, with 2.1 marks in Research Methods and project/dissertation modules), or equivalent from a university outside the UK, in a field such as linguistics, psychology, cognitive (neuro)science, speech and language therapy, or education. Other degree subjects may be considered on a case-by-case basis. Applicants who narrowly miss these entrance requirements (for example a high 2:2) may be considered based on additional relevant experience or expertise.",
+     "quote": "Normally a good second class honours degree (57% or above, with 2.1 marks in Research Methods and project/dissertation modules), or equivalent from a university outside the UK, in a field such as linguistics, psychology, cognitive (neuro)science, speech and language therapy, or education. Other degree subjects may be considered on a case-by-case basis. Applicants who narrowly miss these entrance requirements (for example a high 2:2) may be considered based on additional relevant experience or expertise.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.5,
+     "quote": "7.0 overall with no element less than 6.5 (or equivalent).",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Real Estate",
+   "url": "https://www.henley.ac.uk/study/masters/msc-real-estate",
+   "snapshot_sha256": "4d255a77f34d13ad23f0b581dfe503ec72835d1f9e4b24c27a4a9736bc4b055a",
+   "fields": {
+    "academic": {
+     "text": "Minimum 2:1 or the equivalent from an Internationally recognised university",
+     "quote": "Minimum 2:1 or the equivalent from an Internationally recognised university",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 with no component below 5.5",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Real Estate Finance",
+   "url": "https://www.henley.ac.uk/study/masters/msc-real-estate-finance",
+   "snapshot_sha256": "74698129323aba2d472a36da663c0d246be47b84914f4bcef8039daaf98540ec",
+   "fields": {
+    "academic": {
+     "text": "Minimum 2:1 or the equivalent from an Internationally recognised university",
+     "quote": "Minimum 2:1 or the equivalent from an Internationally recognised university",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 with no component below 5.5",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Business and Finance, Accounting, Economics, Mathematics, Statistics, Sciences or Engineering.",
+      "quote": "Business and Finance, Accounting, Economics, Mathematics, Statistics, Sciences or Engineering.",
+      "check": "ok"
+     }
+    ],
+    "china_requirement": {
+     "text": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "quote": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "source_sha256": "3aeab5caba85e416f4ea18240e1d28ac7b52221216b631349d6cc58596c864d7",
+     "source_url": "https://www.reading.ac.uk/ready-to-study/international-and-eu/country-specific-information/country-specific-china",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Spatial Planning and Development (full and part-time)",
+   "url": "https://www.henley.ac.uk/study/masters/msc-development-planning",
+   "snapshot_sha256": "9e54e65c5c1fedc6b162e74f999de062064492ce6efb24207cf780c73e3bf90d",
+   "fields": {
+    "academic": {
+     "text": "Good second class degree or the equivalent from an Internationally recognised university.",
+     "quote": "Good second class degree or the equivalent from an Internationally recognised university.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "6.5 with no component below 5.5 in any sub-skills",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "quote": "Bachelors degree with a score of 68% to 80% depending on University attended and Reading or Henley Business School programme applying for.",
+     "source_sha256": "3aeab5caba85e416f4ea18240e1d28ac7b52221216b631349d6cc58596c864d7",
+     "source_url": "https://www.reading.ac.uk/ready-to-study/international-and-eu/country-specific-information/country-specific-china",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Real Estate (Flexible)",
+   "url": "https://www.henley.ac.uk/study/masters/msc-real-estate-part-time",
+   "snapshot_sha256": "f07fb5932b6f13a72a8054dfb776a457926f0185572960a9d1acccef6f4eba77",
+   "fields": {
+    "academic": {
+     "text": "An upper second-class honours degree from a UK university, or the equivalent from an internationally recognised university",
+     "quote": "An upper second-class honours degree from a UK university, or the equivalent from an internationally recognised university",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc Real Estate Investment and Finance (Flexible)",
+   "url": "https://www.henley.ac.uk/study/masters/msc-real-estate-investment-and-finance-part-time",
+   "snapshot_sha256": "4c50e0779c73b9e8bc06cd8af06d7c264fe85d63edc2a07301bb94f36254f700",
+   "fields": {
+    "academic": {
+     "text": "An upper second-class honours degree from a UK university, or the equivalent from an internationally recognised university",
+     "quote": "An upper second-class honours degree from a UK university, or the equivalent from an internationally recognised university",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Henley Executive MBA (Global)",
+   "url": "https://www.henley.ac.uk/study/mba/executive-mba-global",
+   "snapshot_sha256": "2878535b5b8bed9dfad172d2f0acc69450e690b1e5b2e93c685d34477b6deb27",
+   "fields": {
+    "academic": {
+     "text": "Good degree or equivalent professional or international qualification",
+     "quote": "Good degree or equivalent professional or international qualification",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "Take an IELTS test and achieve an overall score of 7.0 with no less than 6.0 in each element.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "The Henley Flexible Executive MBA",
+   "url": "https://www.henley.ac.uk/study/mba/flexible-executive-mba",
+   "snapshot_sha256": "fbfe9af0cb6805738c612778ac51d60a0280a8056f577fa6550f60fc9acbcf24",
+   "fields": {
+    "academic": {
+     "text": "Good degree or equivalent professional or international qualification",
+     "quote": "Good degree or equivalent professional or international qualification",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "Take an IELTS test and achieve an overall score of 7.0 with no less than 6.0 in each element.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 63,
+  "机器核对": 63,
+  "待人工": 0
+ }
+}

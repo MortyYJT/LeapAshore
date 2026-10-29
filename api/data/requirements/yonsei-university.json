@@ -1,0 +1,176 @@
+{
+ "school_key": "yonsei-university",
+ "school_name_en": "Yonsei University",
+ "country": "South Korea",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://graduate.yonsei.ac.kr/graduate_en/index.do",
+  "https://graduate.yonsei.ac.kr/graduate_en/intro/departlist.do",
+  "https://gsis.yonsei.ac.kr/gsis/education/master_degree.do",
+  "https://mba.yonsei.ac.kr/mba/admissions/admission-guide.do",
+  "https://ysb.yonsei.ac.kr/applygmba/admission/recruitment.do?mode=list_en&srCategoryId=32"
+ ],
+ "blocked": [
+  {
+   "url": "https://ysph.yonsei.ac.kr/",
+   "reason": "robots.txt disallows"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://graduate.yonsei.ac.kr/graduate_en/intro/departlist.do"
+ ],
+ "notes": "Eligibility, language and department-level rules of the Graduate School, GSIS (incl. TOPIK 4 for Global Citizenship and Sustainable Development, HSK 5 for Global Citizenship and Cooperation) and the Spring 2027 guideline are PDF-only and were not read. CS/AI, Engineering and Underwood International College (undergraduate) HTML pages state no master's admission rules. Dated windows are those already published for 2027 entry; the Global MBA 2027 cycle is not yet published. Coordinator: the Corporate MBA and the GSPH evening track were removed: their pages say they cannot support the D-2 student visa.",
+ "programs": [
+  {
+   "name": "Yonsei Graduate School (General Graduate School) master's programmes, international student track, Spring 2027 (all departments)",
+   "url": "https://graduate.yonsei.ac.kr/graduate_en/admission/forein_schedule.do",
+   "snapshot_sha256": "3c5463592177e1887cabe4106be335fb56f722038499c11ff25fa060d20b32dd",
+   "fields": {
+    "academic": {
+     "text": "International student track: non-Korean applicant with non-Korean parents, or an applicant (including Korean nationals) who completed the entire curriculum abroad; degree and grade rules are in the PDF guideline",
+     "quote": "1. Non-Korean applicant with Non-Korean parents 2. Non-Korean applicant who completed the entire curriculum abroad 3. Korean applicant who completed the entire curriculum abroad",
+     "source_sha256": "9699addceb8a0b66f90820b2149abe3c4f0966bf17a8df8132fbcb47e024b825",
+     "source_url": "https://graduate.yonsei.ac.kr/graduate_en/admission/schedule.do",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Spring 2027 (March 2027 entry) application period closes",
+      "date": "2026-10-14",
+      "quote": "Oct. 7th (Wed) 10:00 ~ Oct. 14th (Wed) 17:00, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts in Korean Studies (GSIS)",
+   "url": "https://gsis.yonsei.ac.kr/gsis/education/master_degree01.do",
+   "snapshot_sha256": "98224ef2613a455e59b1530921054d8bb11cee07afe831b69f3c7793aa4faec5",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "Spring 2027 international student admission: online application and document submission closes",
+      "date": "2026-10-02",
+      "quote": "September 21 (Mon) 2026 - October 2 (Fri) 2026",
+      "source_sha256": "350d6775245bd95c7b5e9f3d4359b281b15c83807e123257154da9e3f1bb4320",
+      "source_url": "https://gsis.yonsei.ac.kr/gsis/admissions/international.do",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "Korean Studies majors: the Korean Language Examination or Level 4 of the Korean Language and Communication course must be passed (stated as a degree requirement)",
+      "quote": "For Korean Studies majors, the Korean Language Examination or Level 4 of the Korean Language and Communication course should be passed.",
+      "source_sha256": "ec8866067e6610b64c983ec4172a2eee4726d0cc86002e15f18bd38a048fe706",
+      "source_url": "https://gsis.yonsei.ac.kr/gsis/education/master_degree.do",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Global Affairs & Policy - International Cooperation (GSIS)",
+   "url": "https://gsis.yonsei.ac.kr/gsis/education/master_degree02.do",
+   "snapshot_sha256": "de5f13ee819b3772bf4176462796f559a01c80ac5972b2638e0caf5419fef167",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "Spring 2027 international student admission: online application and document submission closes",
+      "date": "2026-10-02",
+      "quote": "September 21 (Mon) 2026 - October 2 (Fri) 2026",
+      "source_sha256": "350d6775245bd95c7b5e9f3d4359b281b15c83807e123257154da9e3f1bb4320",
+      "source_url": "https://gsis.yonsei.ac.kr/gsis/admissions/international.do",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Global Economy & Strategy - International Trade, Finance & Management (GSIS)",
+   "url": "https://gsis.yonsei.ac.kr/gsis/education/master_degree03.do",
+   "snapshot_sha256": "606254b190e88c4330165fe5d1db1a8f74258bd1954e6394247384be56912aa0",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "Spring 2027 international student admission: online application and document submission closes",
+      "date": "2026-10-02",
+      "quote": "September 21 (Mon) 2026 - October 2 (Fri) 2026",
+      "source_sha256": "350d6775245bd95c7b5e9f3d4359b281b15c83807e123257154da9e3f1bb4320",
+      "source_url": "https://gsis.yonsei.ac.kr/gsis/admissions/international.do",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Global Citizenship & Sustainable Development (GSIS, Korean-medium multilingual programme)",
+   "url": "https://gsis.yonsei.ac.kr/gsis/education/master_degree05.do",
+   "snapshot_sha256": "cb6822a1d3d65b8f3e105adcf35db6911717b25afb6cfea0dd3498f9ddae54ca",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "Spring 2027 international student admission: online application and document submission closes",
+      "date": "2026-10-02",
+      "quote": "September 21 (Mon) 2026 - October 2 (Fri) 2026",
+      "source_sha256": "350d6775245bd95c7b5e9f3d4359b281b15c83807e123257154da9e3f1bb4320",
+      "source_url": "https://gsis.yonsei.ac.kr/gsis/admissions/international.do",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Global Citizenship and Cooperation (GSIS, Chinese-medium programme)",
+   "url": "https://gsis.yonsei.ac.kr/gsis/education/master_degree06.do",
+   "snapshot_sha256": "5874a4e1964327b150e8ed6ce45ddfd906781822b24848a2428e343ed5a72d0d",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "Spring 2027 international student admission: online application and document submission closes",
+      "date": "2026-10-02",
+      "quote": "September 21 (Mon) 2026 - October 2 (Fri) 2026",
+      "source_sha256": "350d6775245bd95c7b5e9f3d4359b281b15c83807e123257154da9e3f1bb4320",
+      "source_url": "https://gsis.yonsei.ac.kr/gsis/admissions/international.do",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Global MBA (Yonsei School of Business)",
+   "url": "https://ysb.yonsei.ac.kr/applygmba/admission/recruitment.do?mode=list_en&srCategoryId=32",
+   "snapshot_sha256": "44a9924ed042bfefa6b1f6773148e045be63257bd451a5715111a9b3755722de",
+   "fields": {
+    "toefl": {
+     "overall": 91,
+     "quote": "TOEFL iBT 91, TOEIC 800 or IELTS 6.0 (TOEFL preferred)",
+     "source_sha256": "6108844321b70302ffcda8acda386dc367a399855d620081787dc5465138b99a",
+     "source_url": "https://ysb.yonsei.ac.kr/applygmba/admission/gmba-faq.do?pager.offset=10",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "TOEFL iBT 91, TOEIC 800 or IELTS 6.0 (TOEFL preferred)",
+     "source_sha256": "6108844321b70302ffcda8acda386dc367a399855d620081787dc5465138b99a",
+     "source_url": "https://ysb.yonsei.ac.kr/applygmba/admission/gmba-faq.do?pager.offset=10",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 7,
+  "机器核对": 7,
+  "待人工": 0
+ }
+}

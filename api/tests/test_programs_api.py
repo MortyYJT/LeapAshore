@@ -42,7 +42,9 @@ def test_lists_every_seeded_program_with_its_source(require_db, db_session):
     seeded program" from being satisfied by repetition.
     """
     seed_programs(db_session)
-    response = TestClient(app).get("/api/programs")
+    # By id: the catalogue holds thousands of rows and pages them, so a bare listing need not reach
+    # the seeded ones.
+    response = TestClient(app).get("/api/programs", params={"ids": ",".join(PROGRAM_IDS)})
     assert response.status_code == 200
 
     programs = response.json()
@@ -184,10 +186,10 @@ def test_a_program_without_a_source_does_not_take_the_healthy_rows_down():
     )
 
     session = MagicMock()
+    session.scalar.return_value = 2
     session.execute.return_value.scalars.return_value = iter([healthy, orphan])
-    session.get.side_effect = lambda model, ident, *args, **kwargs: (
-        found if ident == "src-that-exists" else None
-    )
+    # The sources on the page are read in one query; the orphan's id resolves to nothing.
+    session.scalars.return_value = iter([found])
 
     response = Response()
     body = list_programs(response=response, session=session, field=None)
@@ -319,3 +321,37 @@ def test_the_prerequisites_are_bare_labels_in_sort_order(require_db, db_session)
                 cleanup.delete(stored)
             cleanup.commit()
             assert cleanup.get(Program, program_id) is None
+
+
+def test_the_catalogue_can_be_read_by_ids_and_is_paged(require_db, db_session):
+    """Spec program-catalog: filters by ids, a 100-row cap, and the total in a header."""
+    from app.seed_catalog import seed_catalog
+
+    seed_programs(db_session)
+    seed_catalog(db_session)
+    client = TestClient(app)
+
+    picked = client.get("/api/programs", params={"ids": "cricos-111671D,cricos-0100139"})
+    assert picked.status_code == 200
+    assert sorted(p["slug"] for p in picked.json()) == ["cricos-0100139", "cricos-111671D"]
+
+    page = client.get("/api/programs")
+    assert len(page.json()) == 100
+    assert int(page.headers["X-Total-Count"]) > 2000
+    assert client.get("/api/programs", params={"limit": 101}).status_code == 422
+
+
+def test_programs_with_a_stated_requirement_come_first_and_can_be_filtered(require_db, db_session):
+    from app.seed_catalog import seed_catalog
+
+    seed_programs(db_session)
+    seed_catalog(db_session)
+    client = TestClient(app)
+
+    first = client.get("/api/programs", params={"limit": 3}).json()
+    assert all(p["minimumMark"] is not None or p["englishRequirement"] is not None for p in first)
+    stated = client.get("/api/programs", params={"has_requirements": "true", "provider": "usyd"}).json()
+    assert "cricos-111671D" in [p["slug"] for p in stated]
+    assert all(p["minimumMark"] is not None or p["englishRequirement"] is not None for p in stated)
+    unstated = client.get("/api/programs", params={"has_requirements": "false", "provider": "usyd", "limit": 5}).json()
+    assert unstated and all(p["minimumMark"] is None and p["englishRequirement"] is None for p in unstated)

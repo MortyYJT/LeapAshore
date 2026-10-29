@@ -1,0 +1,2125 @@
+{
+ "school_key": "university-of-pennsylvania",
+ "school_name_en": "University of Pennsylvania",
+ "country": "United States",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://gradadm.engineering.upenn.edu/masters/",
+  "https://www.gse.upenn.edu/admissions-and-aid/how-to-apply",
+  "https://sp2.upenn.edu/admissions/how-to-apply/masters-programs/",
+  "https://www.design.upenn.edu/degrees",
+  "https://lps.upenn.edu/",
+  "https://mba.wharton.upenn.edu/"
+ ],
+ "blocked": [
+  {
+   "url": "https://admissions.wharton.upenn.edu/",
+   "reason": "robots.txt disallows",
+   "at": "2026-10-28T20:43:46+00:00"
+  },
+  {
+   "url": "https://www.sas.upenn.edu/graduate-programs",
+   "reason": "robots.txt disallows",
+   "at": "2026-10-28T20:43:47+00:00"
+  },
+  {
+   "url": "https://stat.wharton.upenn.edu/programs/",
+   "reason": "robots.txt disallows",
+   "at": "2026-10-28T20:44:23+00:00"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://lps.upenn.edu/degree-programs/msag/application",
+  "https://lps.upenn.edu/degree-programs/mcpl/application",
+  "https://lps.upenn.edu/degree-programs/gmpa/application",
+  "https://www.law.upenn.edu/",
+  "https://www.nursing.upenn.edu/",
+  "https://www.sp2.upenn.edu/",
+  "https://www.med.upenn.edu/"
+ ],
+ "notes": "Collected Penn Engineering (residential and online), GSE, SP2, Weitzman, Wharton MBA and LPS programs. Blocked by robots.txt: admissions.wharton.upenn.edu, www.sas.upenn.edu (Arts & Sciences graduate programs), stat.wharton.upenn.edu (Wharton statistics), so no Arts & Sciences MA/MS or Wharton statistics programs. Penn Engineering states English scores only as recommended (no minimum) for residential programs; Weitzman scores are headed 'Minimum Suggested Scores'. Deadlines without a year in the quote (GSE, SP2) are left out. Skipped: MCIT and Nanotechnology (closed to applications), G-MPA (admissions paused), LPS Applied Geosciences and SP2 Nonprofit Leadership (online, no student visa), Carey Law, Nursing, Medicine and other health schools (not reached).",
+ "programs": [
+  {
+   "name": "Master of Applied Science in Computer Science (MAS-CS)",
+   "url": "https://gradadm.engineering.upenn.edu/masters/",
+   "snapshot_sha256": "6b1abdf09445305800aadd0b63d912c88ee488ddf0cc77084a47eada985b7a04",
+   "fields": {
+    "academic": {
+     "text": "An undergraduate degree in any discipline with some evidence of quantitative training (e.g., math undergraduate courses or high quantitative GRE score)",
+     "quote": "An undergraduate degree in any discipline with some evidence of quantitative training (e.g., math undergraduate courses or high quantitative GRE score)",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "You don’t have to achieve a particular score to be admitted, but we recommend that you aim for at least the following scores: TOEFL: 5.0 (or 100 on the legacy 0–120 scale) IELTS: 7.5 DET: 135",
+     "source_sha256": "a13ceba8d8e0ee9d8c441570b3ef99185d8fb4638b061012189754bab0da134e",
+     "note": "Recommended score; the page states no minimum",
+     "source_url": "https://gradadm.engineering.upenn.edu/how-to-apply/",
+     "check": "ok",
+     "recommended": true
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "You don’t have to achieve a particular score to be admitted, but we recommend that you aim for at least the following scores: TOEFL: 5.0 (or 100 on the legacy 0–120 scale) IELTS: 7.5 DET: 135",
+     "source_sha256": "a13ceba8d8e0ee9d8c441570b3ef99185d8fb4638b061012189754bab0da134e",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Recommended score; the page states no minimum",
+     "source_url": "https://gradadm.engineering.upenn.edu/how-to-apply/",
+     "check": "ok",
+     "recommended": true
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 early deadline",
+      "date": "2026-11-01",
+      "quote": "Early Application Deadline: November 1, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 regular deadline",
+      "date": "2027-02-01",
+      "quote": "Regular Application Deadline:February 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Engineering in Bioengineering",
+   "url": "https://gradadm.engineering.upenn.edu/masters/",
+   "snapshot_sha256": "6b1abdf09445305800aadd0b63d912c88ee488ddf0cc77084a47eada985b7a04",
+   "fields": {
+    "academic": {
+     "text": "An undergraduate degree in an engineering subject; or An undergraduate degree in physical science, natural science, and/or informational science",
+     "quote": "An undergraduate degree in an engineering subject; or An undergraduate degree in physical science, natural science, and/or informational science",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "You don’t have to achieve a particular score to be admitted, but we recommend that you aim for at least the following scores: TOEFL: 5.0 (or 100 on the legacy 0–120 scale) IELTS: 7.5 DET: 135",
+     "source_sha256": "a13ceba8d8e0ee9d8c441570b3ef99185d8fb4638b061012189754bab0da134e",
+     "note": "Recommended score; the page states no minimum",
+     "source_url": "https://gradadm.engineering.upenn.edu/how-to-apply/",
+     "check": "ok",
+     "recommended": true
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "You don’t have to achieve a particular score to be admitted, but we recommend that you aim for at least the following scores: TOEFL: 5.0 (or 100 on the legacy 0–120 scale) IELTS: 7.5 DET: 135",
+     "source_sha256": "a13ceba8d8e0ee9d8c441570b3ef99185d8fb4638b061012189754bab0da134e",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Recommended score; the page states no minimum",
+     "source_url": "https://gradadm.engineering.upenn.edu/how-to-apply/",
+     "check": "ok",
+     "recommended": true
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 early deadline",
+      "date": "2026-11-01",
+      "quote": "Early Application Deadline: November 1, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 regular deadline",
+      "date": "2027-02-01",
+      "quote": "Regular Application Deadline:February 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Biotechnology",
+   "url": "https://gradadm.engineering.upenn.edu/masters/",
+   "snapshot_sha256": "6b1abdf09445305800aadd0b63d912c88ee488ddf0cc77084a47eada985b7a04",
+   "fields": {
+    "academic": {
+     "text": "An undergraduate degree from an accredited institution No particular major is required, but we recommend at least one course in molecular biology and a year of college-level calculus",
+     "quote": "An undergraduate degree from an accredited institution No particular major is required, but we recommend at least one course in molecular biology and a year of college-level calculus",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "You don’t have to achieve a particular score to be admitted, but we recommend that you aim for at least the following scores: TOEFL: 5.0 (or 100 on the legacy 0–120 scale) IELTS: 7.5 DET: 135",
+     "source_sha256": "a13ceba8d8e0ee9d8c441570b3ef99185d8fb4638b061012189754bab0da134e",
+     "note": "Recommended score; the page states no minimum",
+     "source_url": "https://gradadm.engineering.upenn.edu/how-to-apply/",
+     "check": "ok",
+     "recommended": true
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "You don’t have to achieve a particular score to be admitted, but we recommend that you aim for at least the following scores: TOEFL: 5.0 (or 100 on the legacy 0–120 scale) IELTS: 7.5 DET: 135",
+     "source_sha256": "a13ceba8d8e0ee9d8c441570b3ef99185d8fb4638b061012189754bab0da134e",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Recommended score; the page states no minimum",
+     "source_url": "https://gradadm.engineering.upenn.edu/how-to-apply/",
+     "check": "ok",
+     "recommended": true
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 early deadline",
+      "date": "2026-11-01",
+      "quote": "Early Application Deadline: November 1, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 regular deadline",
+      "date": "2027-02-01",
+      "quote": "Our application is now open. Applications for our master’s programs are open from September 15, 2026, until February 1, 2027. Applications for our doctoral programs are open from September 15, 2026, until December 15, 2026.",
+      "source_sha256": "a13ceba8d8e0ee9d8c441570b3ef99185d8fb4638b061012189754bab0da134e",
+      "source_url": "https://gradadm.engineering.upenn.edu/how-to-apply/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Engineering in Chemical and Biomolecular Engineering",
+   "url": "https://gradadm.engineering.upenn.edu/masters/",
+   "snapshot_sha256": "6b1abdf09445305800aadd0b63d912c88ee488ddf0cc77084a47eada985b7a04",
+   "fields": {
+    "academic": {
+     "text": "An undergraduate degree in an engineering subject or an undergraduate degree from an accredited institution with a physical science, natural science, or math major",
+     "quote": "An undergraduate degree in an engineering subject or an undergraduate degree from an accredited institution with a physical science, natural science, or math major",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "You don’t have to achieve a particular score to be admitted, but we recommend that you aim for at least the following scores: TOEFL: 5.0 (or 100 on the legacy 0–120 scale) IELTS: 7.5 DET: 135",
+     "source_sha256": "a13ceba8d8e0ee9d8c441570b3ef99185d8fb4638b061012189754bab0da134e",
+     "note": "Recommended score; the page states no minimum",
+     "source_url": "https://gradadm.engineering.upenn.edu/how-to-apply/",
+     "check": "ok",
+     "recommended": true
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "You don’t have to achieve a particular score to be admitted, but we recommend that you aim for at least the following scores: TOEFL: 5.0 (or 100 on the legacy 0–120 scale) IELTS: 7.5 DET: 135",
+     "source_sha256": "a13ceba8d8e0ee9d8c441570b3ef99185d8fb4638b061012189754bab0da134e",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Recommended score; the page states no minimum",
+     "source_url": "https://gradadm.engineering.upenn.edu/how-to-apply/",
+     "check": "ok",
+     "recommended": true
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 early deadline",
+      "date": "2026-11-01",
+      "quote": "Early Application Deadline: November 1, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 regular deadline",
+      "date": "2027-02-01",
+      "quote": "Regular Application Deadline:February 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Engineering in Computer and Information Science",
+   "url": "https://gradadm.engineering.upenn.edu/masters/",
+   "snapshot_sha256": "6b1abdf09445305800aadd0b63d912c88ee488ddf0cc77084a47eada985b7a04",
+   "fields": {
+    "academic": {
+     "text": "An undergraduate degree in computer science, computer engineering, or software engineering",
+     "quote": "An undergraduate degree in computer science, computer engineering, or software engineering",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "You don’t have to achieve a particular score to be admitted, but we recommend that you aim for at least the following scores: TOEFL: 5.0 (or 100 on the legacy 0–120 scale) IELTS: 7.5 DET: 135",
+     "source_sha256": "a13ceba8d8e0ee9d8c441570b3ef99185d8fb4638b061012189754bab0da134e",
+     "note": "Recommended score; the page states no minimum",
+     "source_url": "https://gradadm.engineering.upenn.edu/how-to-apply/",
+     "check": "ok",
+     "recommended": true
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "You don’t have to achieve a particular score to be admitted, but we recommend that you aim for at least the following scores: TOEFL: 5.0 (or 100 on the legacy 0–120 scale) IELTS: 7.5 DET: 135",
+     "source_sha256": "a13ceba8d8e0ee9d8c441570b3ef99185d8fb4638b061012189754bab0da134e",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Recommended score; the page states no minimum",
+     "source_url": "https://gradadm.engineering.upenn.edu/how-to-apply/",
+     "check": "ok",
+     "recommended": true
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 early deadline",
+      "date": "2026-11-01",
+      "quote": "Early Application Deadline: November 1, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 regular deadline",
+      "date": "2027-02-01",
+      "quote": "Regular Application Deadline:February 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Engineering in Computer Graphics and Game Technology",
+   "url": "https://gradadm.engineering.upenn.edu/masters/",
+   "snapshot_sha256": "6b1abdf09445305800aadd0b63d912c88ee488ddf0cc77084a47eada985b7a04",
+   "fields": {
+    "academic": {
+     "text": "An undergraduate degree in computer science, mechanical or electrical engineering, digital media and technology, or game design.",
+     "quote": "An undergraduate degree in computer science, mechanical or electrical engineering, digital media and technology, or game design.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "You don’t have to achieve a particular score to be admitted, but we recommend that you aim for at least the following scores: TOEFL: 5.0 (or 100 on the legacy 0–120 scale) IELTS: 7.5 DET: 135",
+     "source_sha256": "a13ceba8d8e0ee9d8c441570b3ef99185d8fb4638b061012189754bab0da134e",
+     "note": "Recommended score; the page states no minimum",
+     "source_url": "https://gradadm.engineering.upenn.edu/how-to-apply/",
+     "check": "ok",
+     "recommended": true
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "You don’t have to achieve a particular score to be admitted, but we recommend that you aim for at least the following scores: TOEFL: 5.0 (or 100 on the legacy 0–120 scale) IELTS: 7.5 DET: 135",
+     "source_sha256": "a13ceba8d8e0ee9d8c441570b3ef99185d8fb4638b061012189754bab0da134e",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Recommended score; the page states no minimum",
+     "source_url": "https://gradadm.engineering.upenn.edu/how-to-apply/",
+     "check": "ok",
+     "recommended": true
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 early deadline",
+      "date": "2026-11-01",
+      "quote": "Early Application Deadline: November 1, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 regular deadline",
+      "date": "2027-02-01",
+      "quote": "Our application is now open. Applications for our master’s programs are open from September 15, 2026, until February 1, 2027. Applications for our doctoral programs are open from September 15, 2026, until December 15, 2026.",
+      "source_sha256": "a13ceba8d8e0ee9d8c441570b3ef99185d8fb4638b061012189754bab0da134e",
+      "source_url": "https://gradadm.engineering.upenn.edu/how-to-apply/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Engineering in Data Science and Artificial Intelligence",
+   "url": "https://gradadm.engineering.upenn.edu/masters/",
+   "snapshot_sha256": "6b1abdf09445305800aadd0b63d912c88ee488ddf0cc77084a47eada985b7a04",
+   "fields": {
+    "academic": {
+     "text": "An undergraduate degree in any discipline, with equivalent coursework to a minor in computer science (programming, discrete math, data structures and algorithms) and demonstrated strong mathematical and statistical proficiency.",
+     "quote": "An undergraduate degree in any discipline, with equivalent coursework to a minor in computer science (programming, discrete math, data structures and algorithms) and demonstrated strong mathematical and statistical proficiency.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "You don’t have to achieve a particular score to be admitted, but we recommend that you aim for at least the following scores: TOEFL: 5.0 (or 100 on the legacy 0–120 scale) IELTS: 7.5 DET: 135",
+     "source_sha256": "a13ceba8d8e0ee9d8c441570b3ef99185d8fb4638b061012189754bab0da134e",
+     "note": "Recommended score; the page states no minimum",
+     "source_url": "https://gradadm.engineering.upenn.edu/how-to-apply/",
+     "check": "ok",
+     "recommended": true
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "You don’t have to achieve a particular score to be admitted, but we recommend that you aim for at least the following scores: TOEFL: 5.0 (or 100 on the legacy 0–120 scale) IELTS: 7.5 DET: 135",
+     "source_sha256": "a13ceba8d8e0ee9d8c441570b3ef99185d8fb4638b061012189754bab0da134e",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Recommended score; the page states no minimum",
+     "source_url": "https://gradadm.engineering.upenn.edu/how-to-apply/",
+     "check": "ok",
+     "recommended": true
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 early deadline",
+      "date": "2026-11-01",
+      "quote": "Early Application Deadline: November 1, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 regular deadline",
+      "date": "2027-02-01",
+      "quote": "Regular Application Deadline:February 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Engineering in Electrical Engineering",
+   "url": "https://gradadm.engineering.upenn.edu/masters/",
+   "snapshot_sha256": "6b1abdf09445305800aadd0b63d912c88ee488ddf0cc77084a47eada985b7a04",
+   "fields": {
+    "academic": {
+     "text": "An undergraduate degree that provides a strong background in undergraduate electrical engineering or physics subjects and mathematics.",
+     "quote": "An undergraduate degree that provides a strong background in undergraduate electrical engineering or physics subjects and mathematics.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "You don’t have to achieve a particular score to be admitted, but we recommend that you aim for at least the following scores: TOEFL: 5.0 (or 100 on the legacy 0–120 scale) IELTS: 7.5 DET: 135",
+     "source_sha256": "a13ceba8d8e0ee9d8c441570b3ef99185d8fb4638b061012189754bab0da134e",
+     "note": "Recommended score; the page states no minimum",
+     "source_url": "https://gradadm.engineering.upenn.edu/how-to-apply/",
+     "check": "ok",
+     "recommended": true
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "You don’t have to achieve a particular score to be admitted, but we recommend that you aim for at least the following scores: TOEFL: 5.0 (or 100 on the legacy 0–120 scale) IELTS: 7.5 DET: 135",
+     "source_sha256": "a13ceba8d8e0ee9d8c441570b3ef99185d8fb4638b061012189754bab0da134e",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Recommended score; the page states no minimum",
+     "source_url": "https://gradadm.engineering.upenn.edu/how-to-apply/",
+     "check": "ok",
+     "recommended": true
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 early deadline",
+      "date": "2026-11-01",
+      "quote": "Early Application Deadline: November 1, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 regular deadline",
+      "date": "2027-02-01",
+      "quote": "Regular Application Deadline:February 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Engineering in Energy and Sustainability Engineering",
+   "url": "https://gradadm.engineering.upenn.edu/masters/",
+   "snapshot_sha256": "6b1abdf09445305800aadd0b63d912c88ee488ddf0cc77084a47eada985b7a04",
+   "fields": {
+    "academic": {
+     "text": "A technical undergraduate degree (engineering, physical sciences, or related field)",
+     "quote": "A technical undergraduate degree (engineering, physical sciences, or related field)",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "You don’t have to achieve a particular score to be admitted, but we recommend that you aim for at least the following scores: TOEFL: 5.0 (or 100 on the legacy 0–120 scale) IELTS: 7.5 DET: 135",
+     "source_sha256": "a13ceba8d8e0ee9d8c441570b3ef99185d8fb4638b061012189754bab0da134e",
+     "note": "Recommended score; the page states no minimum",
+     "source_url": "https://gradadm.engineering.upenn.edu/how-to-apply/",
+     "check": "ok",
+     "recommended": true
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "You don’t have to achieve a particular score to be admitted, but we recommend that you aim for at least the following scores: TOEFL: 5.0 (or 100 on the legacy 0–120 scale) IELTS: 7.5 DET: 135",
+     "source_sha256": "a13ceba8d8e0ee9d8c441570b3ef99185d8fb4638b061012189754bab0da134e",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Recommended score; the page states no minimum",
+     "source_url": "https://gradadm.engineering.upenn.edu/how-to-apply/",
+     "check": "ok",
+     "recommended": true
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 early deadline",
+      "date": "2026-11-01",
+      "quote": "Early Application Deadline: November 1, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 regular deadline",
+      "date": "2027-02-01",
+      "quote": "Regular Application Deadline:February 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Integrated Product Design (M:IPD / MSE:IPD)",
+   "url": "https://gradadm.engineering.upenn.edu/masters/",
+   "snapshot_sha256": "6b1abdf09445305800aadd0b63d912c88ee488ddf0cc77084a47eada985b7a04",
+   "fields": {
+    "academic": {
+     "text": "An undergraduate degree in engineering, design, or business. Applicants with non-traditional degrees can apply for the M:IPD degree. For the MSE:IPD, applicants are required to have an undergraduate degree in engineering.",
+     "quote": "An undergraduate degree in engineering, design, or business. Applicants with non-traditional degrees can apply for the M:IPD degree. For the MSE:IPD, applicants are required to have an undergraduate degree in engineering.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "You don’t have to achieve a particular score to be admitted, but we recommend that you aim for at least the following scores: TOEFL: 5.0 (or 100 on the legacy 0–120 scale) IELTS: 7.5 DET: 135",
+     "source_sha256": "a13ceba8d8e0ee9d8c441570b3ef99185d8fb4638b061012189754bab0da134e",
+     "note": "Recommended score; the page states no minimum",
+     "source_url": "https://gradadm.engineering.upenn.edu/how-to-apply/",
+     "check": "ok",
+     "recommended": true
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "You don’t have to achieve a particular score to be admitted, but we recommend that you aim for at least the following scores: TOEFL: 5.0 (or 100 on the legacy 0–120 scale) IELTS: 7.5 DET: 135",
+     "source_sha256": "a13ceba8d8e0ee9d8c441570b3ef99185d8fb4638b061012189754bab0da134e",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Recommended score; the page states no minimum",
+     "source_url": "https://gradadm.engineering.upenn.edu/how-to-apply/",
+     "check": "ok",
+     "recommended": true
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 deadline",
+      "date": "2027-02-01",
+      "quote": "Deadline:February 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Engineering in Materials Science and Engineering",
+   "url": "https://gradadm.engineering.upenn.edu/masters/",
+   "snapshot_sha256": "6b1abdf09445305800aadd0b63d912c88ee488ddf0cc77084a47eada985b7a04",
+   "fields": {
+    "academic": {
+     "text": "An undergraduate degree with training in either physical sciences such as physics, chemistry, or other engineering disciplines, such as materials science, polymer science, mechanical engineering, bioengineering, chemical engineering, energy sciences, electrical engineering, computer and data sciences with basic introductory courses in physics, chemistry, and mathematics.",
+     "quote": "An undergraduate degree with training in either physical sciences such as physics, chemistry, or other engineering disciplines, such as materials science, polymer science, mechanical engineering, bioengineering, chemical engineering, energy sciences, electrical engineering, computer and data sciences with basic introductory courses in physics, chemistry, and mathematics.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "You don’t have to achieve a particular score to be admitted, but we recommend that you aim for at least the following scores: TOEFL: 5.0 (or 100 on the legacy 0–120 scale) IELTS: 7.5 DET: 135",
+     "source_sha256": "a13ceba8d8e0ee9d8c441570b3ef99185d8fb4638b061012189754bab0da134e",
+     "note": "Recommended score; the page states no minimum",
+     "source_url": "https://gradadm.engineering.upenn.edu/how-to-apply/",
+     "check": "ok",
+     "recommended": true
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "You don’t have to achieve a particular score to be admitted, but we recommend that you aim for at least the following scores: TOEFL: 5.0 (or 100 on the legacy 0–120 scale) IELTS: 7.5 DET: 135",
+     "source_sha256": "a13ceba8d8e0ee9d8c441570b3ef99185d8fb4638b061012189754bab0da134e",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Recommended score; the page states no minimum",
+     "source_url": "https://gradadm.engineering.upenn.edu/how-to-apply/",
+     "check": "ok",
+     "recommended": true
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 early deadline",
+      "date": "2026-11-01",
+      "quote": "Early Application Deadline: November 1, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 regular deadline",
+      "date": "2027-02-01",
+      "quote": "Regular Application Deadline:February 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Engineering in Mechanical Engineering and Applied Mechanics",
+   "url": "https://gradadm.engineering.upenn.edu/masters/",
+   "snapshot_sha256": "6b1abdf09445305800aadd0b63d912c88ee488ddf0cc77084a47eada985b7a04",
+   "fields": {
+    "academic": {
+     "text": "An undergraduate degree in Mechanical Engineering or adjacent areas (e.g. Aerospace Engineering, Automotive Engineering, Civil Engineering, Industrial Engineering, Manufacturing, Materials Science and Engineering, Energy Engineering) Students with other engineering degrees or physics are welcome to apply, provided they have done some mechanical engineering coursework, e.g. in thermodynamics, solid mechanics, fluid mechanics, etc.",
+     "quote": "An undergraduate degree in Mechanical Engineering or adjacent areas (e.g. Aerospace Engineering, Automotive Engineering, Civil Engineering, Industrial Engineering, Manufacturing, Materials Science and Engineering, Energy Engineering) Students with other engineering degrees or physics are welcome to apply, provided they have done some mechanical engineering coursework, e.g. in thermodynamics, solid mechanics, fluid mechanics, etc.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "You don’t have to achieve a particular score to be admitted, but we recommend that you aim for at least the following scores: TOEFL: 5.0 (or 100 on the legacy 0–120 scale) IELTS: 7.5 DET: 135",
+     "source_sha256": "a13ceba8d8e0ee9d8c441570b3ef99185d8fb4638b061012189754bab0da134e",
+     "note": "Recommended score; the page states no minimum",
+     "source_url": "https://gradadm.engineering.upenn.edu/how-to-apply/",
+     "check": "ok",
+     "recommended": true
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "You don’t have to achieve a particular score to be admitted, but we recommend that you aim for at least the following scores: TOEFL: 5.0 (or 100 on the legacy 0–120 scale) IELTS: 7.5 DET: 135",
+     "source_sha256": "a13ceba8d8e0ee9d8c441570b3ef99185d8fb4638b061012189754bab0da134e",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Recommended score; the page states no minimum",
+     "source_url": "https://gradadm.engineering.upenn.edu/how-to-apply/",
+     "check": "ok",
+     "recommended": true
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 early deadline",
+      "date": "2026-11-01",
+      "quote": "Early Application Deadline: November 1, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 regular deadline",
+      "date": "2027-02-01",
+      "quote": "Regular Application Deadline:February 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Engineering in Robotics",
+   "url": "https://gradadm.engineering.upenn.edu/masters/",
+   "snapshot_sha256": "6b1abdf09445305800aadd0b63d912c88ee488ddf0cc77084a47eada985b7a04",
+   "fields": {
+    "academic": {
+     "text": "An undergraduate degree in computer science, electrical engineering, or mechanical engineering",
+     "quote": "An undergraduate degree in computer science, electrical engineering, or mechanical engineering",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "You don’t have to achieve a particular score to be admitted, but we recommend that you aim for at least the following scores: TOEFL: 5.0 (or 100 on the legacy 0–120 scale) IELTS: 7.5 DET: 135",
+     "source_sha256": "a13ceba8d8e0ee9d8c441570b3ef99185d8fb4638b061012189754bab0da134e",
+     "note": "Recommended score; the page states no minimum",
+     "source_url": "https://gradadm.engineering.upenn.edu/how-to-apply/",
+     "check": "ok",
+     "recommended": true
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "You don’t have to achieve a particular score to be admitted, but we recommend that you aim for at least the following scores: TOEFL: 5.0 (or 100 on the legacy 0–120 scale) IELTS: 7.5 DET: 135",
+     "source_sha256": "a13ceba8d8e0ee9d8c441570b3ef99185d8fb4638b061012189754bab0da134e",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Recommended score; the page states no minimum",
+     "source_url": "https://gradadm.engineering.upenn.edu/how-to-apply/",
+     "check": "ok",
+     "recommended": true
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 early deadline",
+      "date": "2026-11-01",
+      "quote": "Early Application Deadline: November 1, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 regular deadline",
+      "date": "2027-02-01",
+      "quote": "Regular Application Deadline:February 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Engineering in Scientific Computing",
+   "url": "https://gradadm.engineering.upenn.edu/masters/",
+   "snapshot_sha256": "6b1abdf09445305800aadd0b63d912c88ee488ddf0cc77084a47eada985b7a04",
+   "fields": {
+    "academic": {
+     "text": "An undergraduate degree with a strong background in physical or theoretical sciences, engineering, or applied math Some experience with computer programming is strongly recommended",
+     "quote": "An undergraduate degree with a strong background in physical or theoretical sciences, engineering, or applied math Some experience with computer programming is strongly recommended",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "You don’t have to achieve a particular score to be admitted, but we recommend that you aim for at least the following scores: TOEFL: 5.0 (or 100 on the legacy 0–120 scale) IELTS: 7.5 DET: 135",
+     "source_sha256": "a13ceba8d8e0ee9d8c441570b3ef99185d8fb4638b061012189754bab0da134e",
+     "note": "Recommended score; the page states no minimum",
+     "source_url": "https://gradadm.engineering.upenn.edu/how-to-apply/",
+     "check": "ok",
+     "recommended": true
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "You don’t have to achieve a particular score to be admitted, but we recommend that you aim for at least the following scores: TOEFL: 5.0 (or 100 on the legacy 0–120 scale) IELTS: 7.5 DET: 135",
+     "source_sha256": "a13ceba8d8e0ee9d8c441570b3ef99185d8fb4638b061012189754bab0da134e",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Recommended score; the page states no minimum",
+     "source_url": "https://gradadm.engineering.upenn.edu/how-to-apply/",
+     "check": "ok",
+     "recommended": true
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 early deadline",
+      "date": "2026-11-01",
+      "quote": "Early Application Deadline: November 1, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 regular deadline",
+      "date": "2027-02-01",
+      "quote": "Regular Application Deadline:February 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Engineering in Software Systems and Cybersecurity",
+   "url": "https://gradadm.engineering.upenn.edu/masters/",
+   "snapshot_sha256": "6b1abdf09445305800aadd0b63d912c88ee488ddf0cc77084a47eada985b7a04",
+   "fields": {
+    "academic": {
+     "text": "Individuals with an undergraduate degree in computer science, computer engineering, information science, or a related field, with coursework in mathematical foundations, probability/statistics, programming, algorithms/data structures, and systems programming/software engineering.",
+     "quote": "Individuals with an undergraduate degree in computer science, computer engineering, information science, or a related field, with coursework in mathematical foundations, probability/statistics, programming, algorithms/data structures, and systems programming/software engineering.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "You don’t have to achieve a particular score to be admitted, but we recommend that you aim for at least the following scores: TOEFL: 5.0 (or 100 on the legacy 0–120 scale) IELTS: 7.5 DET: 135",
+     "source_sha256": "a13ceba8d8e0ee9d8c441570b3ef99185d8fb4638b061012189754bab0da134e",
+     "note": "Recommended score; the page states no minimum",
+     "source_url": "https://gradadm.engineering.upenn.edu/how-to-apply/",
+     "check": "ok",
+     "recommended": true
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "You don’t have to achieve a particular score to be admitted, but we recommend that you aim for at least the following scores: TOEFL: 5.0 (or 100 on the legacy 0–120 scale) IELTS: 7.5 DET: 135",
+     "source_sha256": "a13ceba8d8e0ee9d8c441570b3ef99185d8fb4638b061012189754bab0da134e",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Recommended score; the page states no minimum",
+     "source_url": "https://gradadm.engineering.upenn.edu/how-to-apply/",
+     "check": "ok",
+     "recommended": true
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 early deadline",
+      "date": "2026-11-01",
+      "quote": "Early Application Deadline: November 1, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 regular deadline",
+      "date": "2027-02-01",
+      "quote": "Regular Application Deadline:February 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Engineering in Systems Engineering",
+   "url": "https://gradadm.engineering.upenn.edu/masters/",
+   "snapshot_sha256": "6b1abdf09445305800aadd0b63d912c88ee488ddf0cc77084a47eada985b7a04",
+   "fields": {
+    "academic": {
+     "text": "An undergraduate degree in engineering, mathematical, physical or economic sciences; or An undergraduate degree in a different field with demonstrated expertise in quantitative and computer analyses",
+     "quote": "An undergraduate degree in engineering, mathematical, physical or economic sciences; or An undergraduate degree in a different field with demonstrated expertise in quantitative and computer analyses",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "You don’t have to achieve a particular score to be admitted, but we recommend that you aim for at least the following scores: TOEFL: 5.0 (or 100 on the legacy 0–120 scale) IELTS: 7.5 DET: 135",
+     "source_sha256": "a13ceba8d8e0ee9d8c441570b3ef99185d8fb4638b061012189754bab0da134e",
+     "note": "Recommended score; the page states no minimum",
+     "source_url": "https://gradadm.engineering.upenn.edu/how-to-apply/",
+     "check": "ok",
+     "recommended": true
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "You don’t have to achieve a particular score to be admitted, but we recommend that you aim for at least the following scores: TOEFL: 5.0 (or 100 on the legacy 0–120 scale) IELTS: 7.5 DET: 135",
+     "source_sha256": "a13ceba8d8e0ee9d8c441570b3ef99185d8fb4638b061012189754bab0da134e",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Recommended score; the page states no minimum",
+     "source_url": "https://gradadm.engineering.upenn.edu/how-to-apply/",
+     "check": "ok",
+     "recommended": true
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 early deadline",
+      "date": "2026-11-01",
+      "quote": "Early Application Deadline: November 1, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 regular deadline",
+      "date": "2027-02-01",
+      "quote": "Regular Application Deadline:February 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Engineering in Data Science (Online)",
+   "url": "https://online.engineering.upenn.edu/degrees/mse-ds/mse-ds-admissions/",
+   "snapshot_sha256": "101ee12433fcdec1080b0e9ac5af5500f94abb168d11123be43ba4a9baa0ecd4",
+   "fields": {
+    "academic": {
+     "text": "To be qualified for the MSE-DS online program, applicants must meet one (1) of the following criteria: Undergraduate degree in computer science Undergraduate degree and at least four for-credit computer science courses, which can include for example: Introductory programming Discrete Math Computer Systems/Hardware Data Structures Other CS foundational courses are also accepted besides (1)-(4). Undergraduate degree in a highly quantitative field (e.g., engineering, statistics, math, physics) + 2 years of work experience as a data scientist, software engineer, or any field with quantitative+coding experience.",
+     "quote": "To be qualified for the MSE-DS online program, applicants must meet one (1) of the following criteria: Undergraduate degree in computer science Undergraduate degree and at least four for-credit computer science courses, which can include for example: Introductory programming Discrete Math Computer Systems/Hardware Data Structures Other CS foundational courses are also accepted besides (1)-(4). Undergraduate degree in a highly quantitative field (e.g., engineering, statistics, math, physics) + 2 years of work experience as a data scientist, software engineer, or any field with quantitative+coding experience.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Minimum Scores: You much achieve the following minimum scores to be admitted: TOEFL: 100 IELTS: 7.5",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "Minimum Scores: You much achieve the following minimum scores to be admitted: TOEFL: 100 IELTS: 7.5",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority deadline",
+      "date": "2027-03-01",
+      "quote": "Priority Deadline March 1, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final deadline",
+      "date": "2027-05-31",
+      "quote": "Final Application Deadline May 31, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Engineering in Artificial Intelligence (Online)",
+   "url": "https://online.engineering.upenn.edu/degrees/mse-ai/admissions/",
+   "snapshot_sha256": "2b8c27c736f2e81656c4c73752214db740ae120f824d67dfa1dd7b99f684e071",
+   "fields": {
+    "academic": {
+     "text": "The MSE-AI Online degree is designed for professionals who want to advance in their careers and keep up with the fast-changing world of AI. To qualify for admission, applicants must meet one (1) of the following criteria: Undergraduate degree in Computer Science Undergraduate degree in Computer Engineering Undergraduate degree in Information Science An equivalent degree",
+     "quote": "The MSE-AI Online degree is designed for professionals who want to advance in their careers and keep up with the fast-changing world of AI. To qualify for admission, applicants must meet one (1) of the following criteria: Undergraduate degree in Computer Science Undergraduate degree in Computer Engineering Undergraduate degree in Information Science An equivalent degree",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Minimum Scores: You much achieve the following minimum scores to be admitted: TOEFL: 100 IELTS: 7.5",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "Minimum Scores: You much achieve the following minimum scores to be admitted: TOEFL: 100 IELTS: 7.5",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority deadline",
+      "date": "2027-03-01",
+      "quote": "Priority Deadline March 1, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final deadline",
+      "date": "2027-05-31",
+      "quote": "Final Application Deadline May 31, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Engineering in Technology and Innovation (Online)",
+   "url": "https://online.engineering.upenn.edu/degrees/mse-ti/admissions/",
+   "snapshot_sha256": "98c9ee2cdbf01c9fc53b9fb0ead9aa1d887391b463b40b484c94d987e32688f7",
+   "fields": {
+    "academic": {
+     "text": "To be qualified for the MSE-TI online program, applicants must meet one (1) of the following criteria: Undergraduate degree in computer science Undergraduate degree and at least four for-credit computer science courses, which can include for example: Introductory programming Discrete Math Computer Systems/Hardware Data Structures Other CS foundational courses are also accepted besides (1)-(4). Undergraduate degree in a highly quantitative field (e.g., engineering, statistics, math, physics) + 2 years of work experience as a data scientist, software engineer, or any field with quantitative and coding experience.",
+     "quote": "To be qualified for the MSE-TI online program, applicants must meet one (1) of the following criteria: Undergraduate degree in computer science Undergraduate degree and at least four for-credit computer science courses, which can include for example: Introductory programming Discrete Math Computer Systems/Hardware Data Structures Other CS foundational courses are also accepted besides (1)-(4). Undergraduate degree in a highly quantitative field (e.g., engineering, statistics, math, physics) + 2 years of work experience as a data scientist, software engineer, or any field with quantitative and coding experience.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Minimum Scores: You much achieve the following minimum scores to be admitted: TOEFL: 100 IELTS: 7.5",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "Minimum Scores: You much achieve the following minimum scores to be admitted: TOEFL: 100 IELTS: 7.5",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority deadline",
+      "date": "2027-03-01",
+      "quote": "Priority Deadline March 1, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final deadline",
+      "date": "2027-05-31",
+      "quote": "Final Application Deadline May 31, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Engineering in Software Systems and Cybersecurity (Online)",
+   "url": "https://online.engineering.upenn.edu/degrees/mse-ssc/admissions/",
+   "snapshot_sha256": "a34cc1ee597cee8b792f27a4f64272d465249841340421fd287436e0c0698b44",
+   "fields": {
+    "academic": {
+     "text": "To be qualified for the MSE-SSC Online program, applicants must meet the following criteria: Undergraduate degree in computer science, information science, computer engineering, or a related field, with at least the following coursework: Mathematical Foundations, including basics of logic, discrete math, graph theory, combinatorics, proofs (rough equivalent of CIS1600) Basics of probability and statistics Introduction to programming, including solid knowledge of at least one modern programming language (rough equivalent of CIS1200) Basic algorithms and data structures (rough equivalent of CIS1210) At least one systems programming or software engineering course",
+     "quote": "To be qualified for the MSE-SSC Online program, applicants must meet the following criteria: Undergraduate degree in computer science, information science, computer engineering, or a related field, with at least the following coursework: Mathematical Foundations, including basics of logic, discrete math, graph theory, combinatorics, proofs (rough equivalent of CIS1600) Basics of probability and statistics Introduction to programming, including solid knowledge of at least one modern programming language (rough equivalent of CIS1200) Basic algorithms and data structures (rough equivalent of CIS1210) At least one systems programming or software engineering course",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "Minimum Scores: You much achieve the following minimum scores to be admitted: TOEFL: 100 IELTS: 7.5",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "Minimum Scores: You much achieve the following minimum scores to be admitted: TOEFL: 100 IELTS: 7.5",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority deadline",
+      "date": "2027-03-01",
+      "quote": "Priority Deadline March 1, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final deadline",
+      "date": "2027-05-31",
+      "quote": "Final Application Deadline May 31, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Applied Science in Computer Science (MAS-CS Online)",
+   "url": "https://online.engineering.upenn.edu/degrees/mas-cs/",
+   "snapshot_sha256": "9fabf8e3c855c4c7ab7a182032b8ef16a6422bae4cfdf769d252bdace325858b",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority deadline",
+      "date": "2027-03-01",
+      "quote": "Priority Deadline March 1, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final deadline",
+      "date": "2027-05-31",
+      "quote": "Final Application Deadline May 31, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Higher Education, M.S.Ed.",
+   "url": "https://www.gse.upenn.edu/admissions-and-aid/how-to-apply?program=Higher%20Education%2C%20M.S.Ed.",
+   "snapshot_sha256": "02acea16af4256cb9bc71c110e5b1e8eccffdb9508678f4ee9cac7d732e2f415",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from a regionally accredited U.S. university or its equivalent, completed before matriculation",
+     "quote": "Satisfactory completion of a baccalaureate degree from a regionally accredited U.S. university or its equivalent before matriculation into any program.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Learning Sciences and Technologies, M.S.Ed.",
+   "url": "https://www.gse.upenn.edu/admissions-and-aid/how-to-apply?program=Learning%20Sciences%20and%20Technologies%2C%20M.S.Ed.",
+   "snapshot_sha256": "0d14e4d9480ffde26897bf06fe7ec0843acee57d1c44258a480ee002319bad66",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from a regionally accredited U.S. university or its equivalent, completed before matriculation",
+     "quote": "Satisfactory completion of a baccalaureate degree from a regionally accredited U.S. university or its equivalent before matriculation into any program.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Education Policy, M.S.Ed.",
+   "url": "https://www.gse.upenn.edu/admissions-and-aid/how-to-apply?program=Education%20Policy%2C%20M.S.Ed.",
+   "snapshot_sha256": "0d32e7f91e471438e2946287da903a3a59eaf43c3b6cfcce99c10c24e5570fd1",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from a regionally accredited U.S. university or its equivalent, completed before matriculation",
+     "quote": "Satisfactory completion of a baccalaureate degree from a regionally accredited U.S. university or its equivalent before matriculation into any program.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Statistics, Measurement, Assessment, and Research Technology, M.S.Ed.",
+   "url": "https://www.gse.upenn.edu/admissions-and-aid/how-to-apply?program=Statistics%2C%20Measurement%2C%20Assessment%2C%20and%20Research%20Technology%2C%20M.S.Ed.",
+   "snapshot_sha256": "475721a78366dcc7d447a1f50940a6b2b1ebc1654c62568661b64af5c7fd3bdc",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from a regionally accredited U.S. university or its equivalent, completed before matriculation",
+     "quote": "Satisfactory completion of a baccalaureate degree from a regionally accredited U.S. university or its equivalent before matriculation into any program.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Teaching English to Speakers of Other Languages, M.S.Ed.",
+   "url": "https://www.gse.upenn.edu/admissions-and-aid/how-to-apply?program=Teaching%20English%20to%20Speakers%20of%20Other%20Languages%2C%20M.S.Ed.",
+   "snapshot_sha256": "4e0b8610274de1e22d09daf8fd2545cd5d9867bb012210f20b3a8a63554d5587",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from a regionally accredited U.S. university or its equivalent, completed before matriculation",
+     "quote": "Satisfactory completion of a baccalaureate degree from a regionally accredited U.S. university or its equivalent before matriculation into any program.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Teaching or tutoring experience highly recommended.",
+      "quote": "Teaching or tutoring experience highly recommended.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Urban Education, M.S.Ed.",
+   "url": "https://www.gse.upenn.edu/admissions-and-aid/how-to-apply?program=Urban%20Education%2C%20M.S.Ed.",
+   "snapshot_sha256": "6b2cc5cd0cf144b38efa576dd33436496bed5e609711825b31ea5bcb9b171b3e",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from a regionally accredited U.S. university or its equivalent, completed before matriculation",
+     "quote": "Satisfactory completion of a baccalaureate degree from a regionally accredited U.S. university or its equivalent before matriculation into any program.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Learning Analytics and Artificial Intelligence, M.S.Ed.",
+   "url": "https://www.gse.upenn.edu/admissions-and-aid/how-to-apply?program=Learning%20Analytics%20and%20Artificial%20Intelligence%2C%20M.S.Ed.",
+   "snapshot_sha256": "78902cbda31f55c2581d83cd59fdfbdb9fd69affe682cf9fe4ea95dac2bd2ef7",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from a regionally accredited U.S. university or its equivalent, completed before matriculation",
+     "quote": "Satisfactory completion of a baccalaureate degree from a regionally accredited U.S. university or its equivalent before matriculation into any program.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Introductory coursework in statistics, quantitative methods, calculus, or computer programming is recommended. While not required for admission consideration, students will need beginner-level knowledge of Python before beginning the program.",
+      "quote": "Introductory coursework in statistics, quantitative methods, calculus, or computer programming is recommended. While not required for admission consideration, students will need beginner-level knowledge of Python before beginning the program.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "School and Mental Health Counseling, M.S.Ed.",
+   "url": "https://www.gse.upenn.edu/admissions-and-aid/how-to-apply?program=School%20and%20Mental%20Health%20Counseling%2C%20M.S.Ed.",
+   "snapshot_sha256": "796e86646560b3e27181350ee2c12779de3054d7a7a0615c262cd34be06e7a3c",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from a regionally accredited U.S. university or its equivalent, completed before matriculation",
+     "quote": "Satisfactory completion of a baccalaureate degree from a regionally accredited U.S. university or its equivalent before matriculation into any program.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "3-5 years of post-baccalaureate work experience is required.",
+      "quote": "3-5 years of post-baccalaureate work experience is required.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Urban Teaching Apprenticeship, M.S.Ed.",
+   "url": "https://www.gse.upenn.edu/admissions-and-aid/how-to-apply?program=Urban%20Teaching%20Apprenticeship%2C%20M.S.Ed.",
+   "snapshot_sha256": "872faa5c1d3bab3aeb447453015642afb681149ec37b829987d9d5a8cc479aeb",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from a regionally accredited U.S. university or its equivalent, completed before matriculation",
+     "quote": "Satisfactory completion of a baccalaureate degree from a regionally accredited U.S. university or its equivalent before matriculation into any program.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "School Leadership, M.S.Ed.",
+   "url": "https://www.gse.upenn.edu/admissions-and-aid/how-to-apply?program=School%20Leadership%2C%20M.S.Ed.",
+   "snapshot_sha256": "8989db3439c56b48f990211ea9343203832d63d9028281e8e03f6a5f721a9e87",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from a regionally accredited U.S. university or its equivalent, completed before matriculation",
+     "quote": "Satisfactory completion of a baccalaureate degree from a regionally accredited U.S. university or its equivalent before matriculation into any program.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Both tracks require 3 years of professional experience in a school in order to be eligible for the Pennsylvania Principal Certification.",
+      "quote": "Both tracks require 3 years of professional experience in a school in order to be eligible for the Pennsylvania Principal Certification.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Education Entrepreneurship, M.S.Ed.",
+   "url": "https://www.gse.upenn.edu/admissions-and-aid/how-to-apply?program=Education%20Entrepreneurship%2C%20M.S.Ed.",
+   "snapshot_sha256": "bbad128cad50baa405e47bfa009979c894265ced139680aef8d18927e34ed25e",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from a regionally accredited U.S. university or its equivalent, completed before matriculation",
+     "quote": "Satisfactory completion of a baccalaureate degree from a regionally accredited U.S. university or its equivalent before matriculation into any program.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "2 years of professional work experience.",
+      "quote": "2 years of professional work experience.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Independent School Teaching Residency, M.S.Ed.",
+   "url": "https://www.gse.upenn.edu/admissions-and-aid/how-to-apply?program=Independent%20School%20Teaching%20Residency%2C%20M.S.Ed.",
+   "snapshot_sha256": "bdad8bbde599832aa8c81bf63354fa86f158188879753902c42ce0d972507ece",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from a regionally accredited U.S. university or its equivalent, completed before matriculation",
+     "quote": "Satisfactory completion of a baccalaureate degree from a regionally accredited U.S. university or its equivalent before matriculation into any program.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Applicants must first apply and be accepted for a teaching residency position at a partner school.",
+      "quote": "Applicants must first apply and be accepted for a teaching residency position at a partner school.",
+      "check": "ok"
+     },
+     {
+      "text": "This program is designed for applicants with less than 2 years of teaching experience.",
+      "quote": "This program is designed for applicants with less than 2 years of teaching experience.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Educational Development and Research, M.S.Ed.",
+   "url": "https://www.gse.upenn.edu/admissions-and-aid/how-to-apply?program=International%20Educational%20Development%20and%20Research%2C%20M.S.Ed.",
+   "snapshot_sha256": "c27a5ac8b1807234ced587a257e53b6bfa9272d4e4d62c38b7f7333937bc4d24",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from a regionally accredited U.S. university or its equivalent, completed before matriculation",
+     "quote": "Satisfactory completion of a baccalaureate degree from a regionally accredited U.S. university or its equivalent before matriculation into any program.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Medical Education, M.S.Ed.",
+   "url": "https://www.gse.upenn.edu/admissions-and-aid/how-to-apply?program=Medical%20Education%2C%20M.S.Ed.",
+   "snapshot_sha256": "c9cf4bf7d27a80f70de101a83b98f75f6ba653584ee183695b939fb4e74ff65e",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from a regionally accredited U.S. university or its equivalent, completed before matriculation",
+     "quote": "Satisfactory completion of a baccalaureate degree from a regionally accredited U.S. university or its equivalent before matriculation into any program.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Healthcare experience required.",
+      "quote": "Healthcare experience required.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2028 priority deadline",
+      "date": "2028-02-01",
+      "quote": "The next enrollment term is Fall 2028. The application for Fall 2028 will open on September 1, 2027. The priority application deadline is February 1, 2028, with rolling admission thereafter as space permits.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Interdisciplinary Studies in Human Development, M.S.Ed.",
+   "url": "https://www.gse.upenn.edu/admissions-and-aid/how-to-apply?program=Interdisciplinary%20Studies%20in%20Human%20Development%2C%20M.S.Ed.",
+   "snapshot_sha256": "cba35ddf208c534c9b7dc195918f9dc58da6ea3ef2e604eab860d489b56729b9",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from a regionally accredited U.S. university or its equivalent, completed before matriculation",
+     "quote": "Satisfactory completion of a baccalaureate degree from a regionally accredited U.S. university or its equivalent before matriculation into any program.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Teaching, Learning, and Leadership, M.S.Ed.",
+   "url": "https://www.gse.upenn.edu/admissions-and-aid/how-to-apply?program=Teaching%2C%20Learning%2C%20and%20Leadership%2C%20M.S.Ed.",
+   "snapshot_sha256": "d6c8b2b1d0291b741f5c325855f6b66beba585fab465a0f9f6cbfaa99547a0b3",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from a regionally accredited U.S. university or its equivalent, completed before matriculation",
+     "quote": "Satisfactory completion of a baccalaureate degree from a regionally accredited U.S. university or its equivalent before matriculation into any program.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Education, Culture, and Society, M.S.Ed.",
+   "url": "https://www.gse.upenn.edu/admissions-and-aid/how-to-apply?program=Education%2C%20Culture%2C%20and%20Society%2C%20M.S.Ed.",
+   "snapshot_sha256": "da83316caa2162090d516e607ee48bc09f64fed63e9ca1d4fac378dd845edeb7",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from a regionally accredited U.S. university or its equivalent, completed before matriculation",
+     "quote": "Satisfactory completion of a baccalaureate degree from a regionally accredited U.S. university or its equivalent before matriculation into any program.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Urban Teaching Residency, M.S.Ed.",
+   "url": "https://www.gse.upenn.edu/admissions-and-aid/how-to-apply?program=Urban%20Teaching%20Residency%2C%20M.S.Ed.",
+   "snapshot_sha256": "f1eb8cbab6b0e62993be6c4e882e684e06591888f70a7675c2dc26b9737b8909",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from a regionally accredited U.S. university or its equivalent, completed before matriculation",
+     "quote": "Satisfactory completion of a baccalaureate degree from a regionally accredited U.S. university or its equivalent before matriculation into any program.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Language, Globalization, and Intercultural Studies, M.S.Ed.",
+   "url": "https://www.gse.upenn.edu/admissions-and-aid/how-to-apply?program=Language%2C%20Globalization%2C%20and%20Intercultural%20Studies%2C%20M.S.Ed.",
+   "snapshot_sha256": "f34fdc9deb9c53bb9a623ba4aacb867d4af94e243af08614656a4683a423703e",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from a regionally accredited U.S. university or its equivalent, completed before matriculation",
+     "quote": "Satisfactory completion of a baccalaureate degree from a regionally accredited U.S. university or its equivalent before matriculation into any program.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "1+ years of professional experience highly recommended.",
+      "quote": "1+ years of professional experience highly recommended.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Social Work (MSW)",
+   "url": "https://sp2.upenn.edu/programs/masters/master-of-social-work/",
+   "snapshot_sha256": "04ecc5ecaf7cc1963c557d2ab1836049a31cd051a24e39b547c4a70d80f9225e",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from an accredited college or university with a liberal arts foundation (humanities, social sciences, natural sciences coursework)",
+     "quote": "A bachelor’s degree from an accredited college or university with a liberal arts foundation that includes coursework in areas such as the humanities, social sciences, and natural sciences.",
+     "source_sha256": "4c7897866ee77b1b6bab3693b31805fe308f19ba522546387258fce699af5787",
+     "source_url": "https://sp2.upenn.edu/admissions/how-to-apply/masters-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL Internet-Based Test (iBT) Pre-2026 scale 100 Institutional Code D698 and Department Code 99. TOEFL Internet-Based Test 2026-on (iBT26) Scale 5.0 Institutional Code D698 and Department Code 99.",
+     "source_sha256": "f5efb7df4fb9f8f68f91e8723d9897be952124ccf36703e25537fdb725a682c4",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://sp2.upenn.edu/admissions/international-applicants/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "IELTS Overall Band Score of 7.5",
+     "source_sha256": "f5efb7df4fb9f8f68f91e8723d9897be952124ccf36703e25537fdb725a682c4",
+     "source_url": "https://sp2.upenn.edu/admissions/international-applicants/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Social Policy (MSSP)",
+   "url": "https://sp2.upenn.edu/programs/masters/master-of-science-in-social-policy/",
+   "snapshot_sha256": "3e4d1c2d141f286be09c5e784ea4d429ef3574eb8d738d3ba1257491d9bd5b0c",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree and a strong academic record",
+     "quote": "A bachelor’s degree A strong academic record",
+     "source_sha256": "4c7897866ee77b1b6bab3693b31805fe308f19ba522546387258fce699af5787",
+     "source_url": "https://sp2.upenn.edu/admissions/how-to-apply/masters-programs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL Internet-Based Test (iBT) Pre-2026 scale 100 Institutional Code D698 and Department Code 99. TOEFL Internet-Based Test 2026-on (iBT26) Scale 5.0 Institutional Code D698 and Department Code 99.",
+     "source_sha256": "f5efb7df4fb9f8f68f91e8723d9897be952124ccf36703e25537fdb725a682c4",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://sp2.upenn.edu/admissions/international-applicants/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "IELTS Overall Band Score of 7.5",
+     "source_sha256": "f5efb7df4fb9f8f68f91e8723d9897be952124ccf36703e25537fdb725a682c4",
+     "source_url": "https://sp2.upenn.edu/admissions/international-applicants/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Social Policy with Data Analytics (MSSP+DA)",
+   "url": "https://sp2.upenn.edu/programs/masters/master-of-science-in-social-policy/",
+   "snapshot_sha256": "3e4d1c2d141f286be09c5e784ea4d429ef3574eb8d738d3ba1257491d9bd5b0c",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree and a strong academic record (MSSP admissions requirements)",
+     "quote": "A bachelor’s degree A strong academic record",
+     "source_sha256": "4c7897866ee77b1b6bab3693b31805fe308f19ba522546387258fce699af5787",
+     "source_url": "https://sp2.upenn.edu/admissions/how-to-apply/masters-programs/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Prior coursework or work experience in statistical analysis",
+      "quote": "Prior coursework or work experience in statistical analysis",
+      "source_sha256": "4c7897866ee77b1b6bab3693b31805fe308f19ba522546387258fce699af5787",
+      "source_url": "https://sp2.upenn.edu/admissions/how-to-apply/masters-programs/",
+      "check": "ok"
+     }
+    ],
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL Internet-Based Test (iBT) Pre-2026 scale 100 Institutional Code D698 and Department Code 99. TOEFL Internet-Based Test 2026-on (iBT26) Scale 5.0 Institutional Code D698 and Department Code 99.",
+     "source_sha256": "f5efb7df4fb9f8f68f91e8723d9897be952124ccf36703e25537fdb725a682c4",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_url": "https://sp2.upenn.edu/admissions/international-applicants/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "IELTS Overall Band Score of 7.5",
+     "source_sha256": "f5efb7df4fb9f8f68f91e8723d9897be952124ccf36703e25537fdb725a682c4",
+     "source_url": "https://sp2.upenn.edu/admissions/international-applicants/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Architecture (MArch)",
+   "url": "https://www.design.upenn.edu/graduate-admissions/how-apply",
+   "snapshot_sha256": "00ce4bb83f5e87fbb60fc77da58279a31df4f04209a0ae97a13509bc8b725f90",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "min_band": 25,
+     "quote": "TOEFL 120-point scale (taken prior to January 21, 2026): 100 total and a minimum of 25 in each section TOEFL 6-point scale (taken after January 21, 2026): 5 total and a minimum of 5 in each section IELTS: 7 overall band score and a minimum of 7 on each section",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Page headed 'Minimum Suggested Scores'",
+     "check": "ok",
+     "recommended": true
+    },
+    "ielts": {
+     "overall": 7,
+     "min_band": 7,
+     "quote": "TOEFL 120-point scale (taken prior to January 21, 2026): 100 total and a minimum of 25 in each section TOEFL 6-point scale (taken after January 21, 2026): 5 total and a minimum of 5 in each section IELTS: 7 overall band score and a minimum of 7 on each section",
+     "note": "Page headed 'Minimum Suggested Scores'",
+     "check": "ok",
+     "recommended": true
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 application deadline",
+      "date": "2027-01-06",
+      "quote": "January 6, 2027: Master of Architecture (M.Arch), MS in Architecture, MSD in Advanced Architectural Design (MSD-AAD), MSD in Environmental Building Design (MSD-EBD), and Master in Environmental Building Design (MEBD), MSD in Property Development and Design (MSD-PDD), and MSD in Robotics and Autonomous Systems (MSD-RAS)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Architecture (MSArch)",
+   "url": "https://www.design.upenn.edu/graduate-admissions/how-apply",
+   "snapshot_sha256": "00ce4bb83f5e87fbb60fc77da58279a31df4f04209a0ae97a13509bc8b725f90",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "min_band": 25,
+     "quote": "TOEFL 120-point scale (taken prior to January 21, 2026): 100 total and a minimum of 25 in each section TOEFL 6-point scale (taken after January 21, 2026): 5 total and a minimum of 5 in each section IELTS: 7 overall band score and a minimum of 7 on each section",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Page headed 'Minimum Suggested Scores'",
+     "check": "ok",
+     "recommended": true
+    },
+    "ielts": {
+     "overall": 7,
+     "min_band": 7,
+     "quote": "TOEFL 120-point scale (taken prior to January 21, 2026): 100 total and a minimum of 25 in each section TOEFL 6-point scale (taken after January 21, 2026): 5 total and a minimum of 5 in each section IELTS: 7 overall band score and a minimum of 7 on each section",
+     "note": "Page headed 'Minimum Suggested Scores'",
+     "check": "ok",
+     "recommended": true
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 application deadline",
+      "date": "2027-01-06",
+      "quote": "January 6, 2027: Master of Architecture (M.Arch), MS in Architecture, MSD in Advanced Architectural Design (MSD-AAD), MSD in Environmental Building Design (MSD-EBD), and Master in Environmental Building Design (MEBD), MSD in Property Development and Design (MSD-PDD), and MSD in Robotics and Autonomous Systems (MSD-RAS)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Design: Advanced Architectural Design (MSD-AAD)",
+   "url": "https://www.design.upenn.edu/graduate-admissions/how-apply",
+   "snapshot_sha256": "00ce4bb83f5e87fbb60fc77da58279a31df4f04209a0ae97a13509bc8b725f90",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "min_band": 25,
+     "quote": "TOEFL 120-point scale (taken prior to January 21, 2026): 100 total and a minimum of 25 in each section TOEFL 6-point scale (taken after January 21, 2026): 5 total and a minimum of 5 in each section IELTS: 7 overall band score and a minimum of 7 on each section",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Page headed 'Minimum Suggested Scores'",
+     "check": "ok",
+     "recommended": true
+    },
+    "ielts": {
+     "overall": 7,
+     "min_band": 7,
+     "quote": "TOEFL 120-point scale (taken prior to January 21, 2026): 100 total and a minimum of 25 in each section TOEFL 6-point scale (taken after January 21, 2026): 5 total and a minimum of 5 in each section IELTS: 7 overall band score and a minimum of 7 on each section",
+     "note": "Page headed 'Minimum Suggested Scores'",
+     "check": "ok",
+     "recommended": true
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 application deadline",
+      "date": "2027-01-06",
+      "quote": "January 6, 2027: Master of Architecture (M.Arch), MS in Architecture, MSD in Advanced Architectural Design (MSD-AAD), MSD in Environmental Building Design (MSD-EBD), and Master in Environmental Building Design (MEBD), MSD in Property Development and Design (MSD-PDD), and MSD in Robotics and Autonomous Systems (MSD-RAS)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Design: Environmental Building Design (MSD-EBD)",
+   "url": "https://www.design.upenn.edu/graduate-admissions/how-apply",
+   "snapshot_sha256": "00ce4bb83f5e87fbb60fc77da58279a31df4f04209a0ae97a13509bc8b725f90",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "min_band": 25,
+     "quote": "TOEFL 120-point scale (taken prior to January 21, 2026): 100 total and a minimum of 25 in each section TOEFL 6-point scale (taken after January 21, 2026): 5 total and a minimum of 5 in each section IELTS: 7 overall band score and a minimum of 7 on each section",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Page headed 'Minimum Suggested Scores'",
+     "check": "ok",
+     "recommended": true
+    },
+    "ielts": {
+     "overall": 7,
+     "min_band": 7,
+     "quote": "TOEFL 120-point scale (taken prior to January 21, 2026): 100 total and a minimum of 25 in each section TOEFL 6-point scale (taken after January 21, 2026): 5 total and a minimum of 5 in each section IELTS: 7 overall band score and a minimum of 7 on each section",
+     "note": "Page headed 'Minimum Suggested Scores'",
+     "check": "ok",
+     "recommended": true
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 application deadline",
+      "date": "2027-01-06",
+      "quote": "January 6, 2027: Master of Architecture (M.Arch), MS in Architecture, MSD in Advanced Architectural Design (MSD-AAD), MSD in Environmental Building Design (MSD-EBD), and Master in Environmental Building Design (MEBD), MSD in Property Development and Design (MSD-PDD), and MSD in Robotics and Autonomous Systems (MSD-RAS)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Environmental Building Design (MEBD)",
+   "url": "https://www.design.upenn.edu/graduate-admissions/how-apply",
+   "snapshot_sha256": "00ce4bb83f5e87fbb60fc77da58279a31df4f04209a0ae97a13509bc8b725f90",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "min_band": 25,
+     "quote": "TOEFL 120-point scale (taken prior to January 21, 2026): 100 total and a minimum of 25 in each section TOEFL 6-point scale (taken after January 21, 2026): 5 total and a minimum of 5 in each section IELTS: 7 overall band score and a minimum of 7 on each section",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Page headed 'Minimum Suggested Scores'",
+     "check": "ok",
+     "recommended": true
+    },
+    "ielts": {
+     "overall": 7,
+     "min_band": 7,
+     "quote": "TOEFL 120-point scale (taken prior to January 21, 2026): 100 total and a minimum of 25 in each section TOEFL 6-point scale (taken after January 21, 2026): 5 total and a minimum of 5 in each section IELTS: 7 overall band score and a minimum of 7 on each section",
+     "note": "Page headed 'Minimum Suggested Scores'",
+     "check": "ok",
+     "recommended": true
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 application deadline",
+      "date": "2027-01-06",
+      "quote": "January 6, 2027: Master of Architecture (M.Arch), MS in Architecture, MSD in Advanced Architectural Design (MSD-AAD), MSD in Environmental Building Design (MSD-EBD), and Master in Environmental Building Design (MEBD), MSD in Property Development and Design (MSD-PDD), and MSD in Robotics and Autonomous Systems (MSD-RAS)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Design: Property Development and Design (MSD-PDD)",
+   "url": "https://www.design.upenn.edu/graduate-admissions/how-apply",
+   "snapshot_sha256": "00ce4bb83f5e87fbb60fc77da58279a31df4f04209a0ae97a13509bc8b725f90",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "min_band": 25,
+     "quote": "TOEFL 120-point scale (taken prior to January 21, 2026): 100 total and a minimum of 25 in each section TOEFL 6-point scale (taken after January 21, 2026): 5 total and a minimum of 5 in each section IELTS: 7 overall band score and a minimum of 7 on each section",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Page headed 'Minimum Suggested Scores'",
+     "check": "ok",
+     "recommended": true
+    },
+    "ielts": {
+     "overall": 7,
+     "min_band": 7,
+     "quote": "TOEFL 120-point scale (taken prior to January 21, 2026): 100 total and a minimum of 25 in each section TOEFL 6-point scale (taken after January 21, 2026): 5 total and a minimum of 5 in each section IELTS: 7 overall band score and a minimum of 7 on each section",
+     "note": "Page headed 'Minimum Suggested Scores'",
+     "check": "ok",
+     "recommended": true
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 application deadline",
+      "date": "2027-01-06",
+      "quote": "January 6, 2027: Master of Architecture (M.Arch), MS in Architecture, MSD in Advanced Architectural Design (MSD-AAD), MSD in Environmental Building Design (MSD-EBD), and Master in Environmental Building Design (MEBD), MSD in Property Development and Design (MSD-PDD), and MSD in Robotics and Autonomous Systems (MSD-RAS)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Design: Robotics and Autonomous Systems (MSD-RAS)",
+   "url": "https://www.design.upenn.edu/graduate-admissions/how-apply",
+   "snapshot_sha256": "00ce4bb83f5e87fbb60fc77da58279a31df4f04209a0ae97a13509bc8b725f90",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "min_band": 25,
+     "quote": "TOEFL 120-point scale (taken prior to January 21, 2026): 100 total and a minimum of 25 in each section TOEFL 6-point scale (taken after January 21, 2026): 5 total and a minimum of 5 in each section IELTS: 7 overall band score and a minimum of 7 on each section",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Page headed 'Minimum Suggested Scores'",
+     "check": "ok",
+     "recommended": true
+    },
+    "ielts": {
+     "overall": 7,
+     "min_band": 7,
+     "quote": "TOEFL 120-point scale (taken prior to January 21, 2026): 100 total and a minimum of 25 in each section TOEFL 6-point scale (taken after January 21, 2026): 5 total and a minimum of 5 in each section IELTS: 7 overall band score and a minimum of 7 on each section",
+     "note": "Page headed 'Minimum Suggested Scores'",
+     "check": "ok",
+     "recommended": true
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 application deadline",
+      "date": "2027-01-06",
+      "quote": "January 6, 2027: Master of Architecture (M.Arch), MS in Architecture, MSD in Advanced Architectural Design (MSD-AAD), MSD in Environmental Building Design (MSD-EBD), and Master in Environmental Building Design (MEBD), MSD in Property Development and Design (MSD-PDD), and MSD in Robotics and Autonomous Systems (MSD-RAS)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of City Planning (MCP)",
+   "url": "https://www.design.upenn.edu/graduate-admissions/how-apply",
+   "snapshot_sha256": "00ce4bb83f5e87fbb60fc77da58279a31df4f04209a0ae97a13509bc8b725f90",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "min_band": 25,
+     "quote": "TOEFL 120-point scale (taken prior to January 21, 2026): 100 total and a minimum of 25 in each section TOEFL 6-point scale (taken after January 21, 2026): 5 total and a minimum of 5 in each section IELTS: 7 overall band score and a minimum of 7 on each section",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Page headed 'Minimum Suggested Scores'",
+     "check": "ok",
+     "recommended": true
+    },
+    "ielts": {
+     "overall": 7,
+     "min_band": 7,
+     "quote": "TOEFL 120-point scale (taken prior to January 21, 2026): 100 total and a minimum of 25 in each section TOEFL 6-point scale (taken after January 21, 2026): 5 total and a minimum of 5 in each section IELTS: 7 overall band score and a minimum of 7 on each section",
+     "note": "Page headed 'Minimum Suggested Scores'",
+     "check": "ok",
+     "recommended": true
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 application deadline",
+      "date": "2027-01-13",
+      "quote": "January 13, 2027: Master of City Planning (MCP), Master of Landscape Architecture (MLA), Master of Urban Spatial Analytics (MUSA), Master of Fine Arts (MFA), MSD in Historic Preservation (MSD-HP), and MS in Historic Preservation (MSHP)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Landscape Architecture (MLA)",
+   "url": "https://www.design.upenn.edu/graduate-admissions/how-apply",
+   "snapshot_sha256": "00ce4bb83f5e87fbb60fc77da58279a31df4f04209a0ae97a13509bc8b725f90",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "min_band": 25,
+     "quote": "TOEFL 120-point scale (taken prior to January 21, 2026): 100 total and a minimum of 25 in each section TOEFL 6-point scale (taken after January 21, 2026): 5 total and a minimum of 5 in each section IELTS: 7 overall band score and a minimum of 7 on each section",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Page headed 'Minimum Suggested Scores'",
+     "check": "ok",
+     "recommended": true
+    },
+    "ielts": {
+     "overall": 7,
+     "min_band": 7,
+     "quote": "TOEFL 120-point scale (taken prior to January 21, 2026): 100 total and a minimum of 25 in each section TOEFL 6-point scale (taken after January 21, 2026): 5 total and a minimum of 5 in each section IELTS: 7 overall band score and a minimum of 7 on each section",
+     "note": "Page headed 'Minimum Suggested Scores'",
+     "check": "ok",
+     "recommended": true
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 application deadline",
+      "date": "2027-01-13",
+      "quote": "January 13, 2027: Master of City Planning (MCP), Master of Landscape Architecture (MLA), Master of Urban Spatial Analytics (MUSA), Master of Fine Arts (MFA), MSD in Historic Preservation (MSD-HP), and MS in Historic Preservation (MSHP)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Urban Spatial Analytics (MUSA)",
+   "url": "https://www.design.upenn.edu/graduate-admissions/how-apply",
+   "snapshot_sha256": "00ce4bb83f5e87fbb60fc77da58279a31df4f04209a0ae97a13509bc8b725f90",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "min_band": 25,
+     "quote": "TOEFL 120-point scale (taken prior to January 21, 2026): 100 total and a minimum of 25 in each section TOEFL 6-point scale (taken after January 21, 2026): 5 total and a minimum of 5 in each section IELTS: 7 overall band score and a minimum of 7 on each section",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Page headed 'Minimum Suggested Scores'",
+     "check": "ok",
+     "recommended": true
+    },
+    "ielts": {
+     "overall": 7,
+     "min_band": 7,
+     "quote": "TOEFL 120-point scale (taken prior to January 21, 2026): 100 total and a minimum of 25 in each section TOEFL 6-point scale (taken after January 21, 2026): 5 total and a minimum of 5 in each section IELTS: 7 overall band score and a minimum of 7 on each section",
+     "note": "Page headed 'Minimum Suggested Scores'",
+     "check": "ok",
+     "recommended": true
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 application deadline",
+      "date": "2027-01-13",
+      "quote": "January 13, 2027: Master of City Planning (MCP), Master of Landscape Architecture (MLA), Master of Urban Spatial Analytics (MUSA), Master of Fine Arts (MFA), MSD in Historic Preservation (MSD-HP), and MS in Historic Preservation (MSHP)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Fine Arts (MFA)",
+   "url": "https://www.design.upenn.edu/graduate-admissions/how-apply",
+   "snapshot_sha256": "00ce4bb83f5e87fbb60fc77da58279a31df4f04209a0ae97a13509bc8b725f90",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "min_band": 25,
+     "quote": "TOEFL 120-point scale (taken prior to January 21, 2026): 100 total and a minimum of 25 in each section TOEFL 6-point scale (taken after January 21, 2026): 5 total and a minimum of 5 in each section IELTS: 7 overall band score and a minimum of 7 on each section",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Page headed 'Minimum Suggested Scores'",
+     "check": "ok",
+     "recommended": true
+    },
+    "ielts": {
+     "overall": 7,
+     "min_band": 7,
+     "quote": "TOEFL 120-point scale (taken prior to January 21, 2026): 100 total and a minimum of 25 in each section TOEFL 6-point scale (taken after January 21, 2026): 5 total and a minimum of 5 in each section IELTS: 7 overall band score and a minimum of 7 on each section",
+     "note": "Page headed 'Minimum Suggested Scores'",
+     "check": "ok",
+     "recommended": true
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 application deadline",
+      "date": "2027-01-13",
+      "quote": "January 13, 2027: Master of City Planning (MCP), Master of Landscape Architecture (MLA), Master of Urban Spatial Analytics (MUSA), Master of Fine Arts (MFA), MSD in Historic Preservation (MSD-HP), and MS in Historic Preservation (MSHP)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Design: Historic Preservation (MSD-HP)",
+   "url": "https://www.design.upenn.edu/graduate-admissions/how-apply",
+   "snapshot_sha256": "00ce4bb83f5e87fbb60fc77da58279a31df4f04209a0ae97a13509bc8b725f90",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "min_band": 25,
+     "quote": "TOEFL 120-point scale (taken prior to January 21, 2026): 100 total and a minimum of 25 in each section TOEFL 6-point scale (taken after January 21, 2026): 5 total and a minimum of 5 in each section IELTS: 7 overall band score and a minimum of 7 on each section",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Page headed 'Minimum Suggested Scores'",
+     "check": "ok",
+     "recommended": true
+    },
+    "ielts": {
+     "overall": 7,
+     "min_band": 7,
+     "quote": "TOEFL 120-point scale (taken prior to January 21, 2026): 100 total and a minimum of 25 in each section TOEFL 6-point scale (taken after January 21, 2026): 5 total and a minimum of 5 in each section IELTS: 7 overall band score and a minimum of 7 on each section",
+     "note": "Page headed 'Minimum Suggested Scores'",
+     "check": "ok",
+     "recommended": true
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 application deadline",
+      "date": "2027-01-13",
+      "quote": "January 13, 2027: Master of City Planning (MCP), Master of Landscape Architecture (MLA), Master of Urban Spatial Analytics (MUSA), Master of Fine Arts (MFA), MSD in Historic Preservation (MSD-HP), and MS in Historic Preservation (MSHP)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Historic Preservation (MSHP)",
+   "url": "https://www.design.upenn.edu/graduate-admissions/how-apply",
+   "snapshot_sha256": "00ce4bb83f5e87fbb60fc77da58279a31df4f04209a0ae97a13509bc8b725f90",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "min_band": 25,
+     "quote": "TOEFL 120-point scale (taken prior to January 21, 2026): 100 total and a minimum of 25 in each section TOEFL 6-point scale (taken after January 21, 2026): 5 total and a minimum of 5 in each section IELTS: 7 overall band score and a minimum of 7 on each section",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "note": "Page headed 'Minimum Suggested Scores'",
+     "check": "ok",
+     "recommended": true
+    },
+    "ielts": {
+     "overall": 7,
+     "min_band": 7,
+     "quote": "TOEFL 120-point scale (taken prior to January 21, 2026): 100 total and a minimum of 25 in each section TOEFL 6-point scale (taken after January 21, 2026): 5 total and a minimum of 5 in each section IELTS: 7 overall band score and a minimum of 7 on each section",
+     "note": "Page headed 'Minimum Suggested Scores'",
+     "check": "ok",
+     "recommended": true
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 application deadline",
+      "date": "2027-01-13",
+      "quote": "January 13, 2027: Master of City Planning (MCP), Master of Landscape Architecture (MLA), Master of Urban Spatial Analytics (MUSA), Master of Fine Arts (MFA), MSD in Historic Preservation (MSD-HP), and MS in Historic Preservation (MSHP)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Wharton MBA",
+   "url": "https://mba.wharton.upenn.edu/application-guide/",
+   "snapshot_sha256": "4f48a363c2d5f57e36ccbf21c00d2db7f73cc265ed2f8e98449513af54f3a410",
+   "fields": {
+    "academic": {
+     "text": "Completed undergraduate program in an accredited U.S. college or its equivalent in another country",
+     "quote": "To apply for the Wharton MBA program, applicants must have completed an undergraduate program in an accredited U.S. college or its equivalent in another country.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "2026-27 Round 2",
+      "date": "2027-01-05",
+      "quote": "Round 2: Tuesday, January 5, 2027 at 5:00 PM ET",
+      "source_sha256": "6a0069af67aa7e95c70398423c1e97dd4b8c0e661036e6aaba281b47b59286f4",
+      "source_url": "https://mba.wharton.upenn.edu/application-timeline-deadlines/",
+      "check": "ok"
+     },
+     {
+      "label": "2026-27 Round 3",
+      "date": "2027-03-31",
+      "quote": "Round 3: Wednesday, March 31, 2027 at 5:00 PM ET",
+      "source_sha256": "6a0069af67aa7e95c70398423c1e97dd4b8c0e661036e6aaba281b47b59286f4",
+      "source_url": "https://mba.wharton.upenn.edu/application-timeline-deadlines/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Behavioral and Decision Sciences (MBDS)",
+   "url": "https://lps.upenn.edu/degree-programs/mbds/application",
+   "snapshot_sha256": "8a3a18746f8df748669c01cbf49e8a71169a43fdaed594f3e25cb4bf6c409ed3",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "quote": "For exams taken on/before January 20, 2026, a minimum score of 100 on the internet-based test (iBT), with no subscore below 24 For exams taken on/after January 21, 2026, a minimum score of 5 on the internet-based test (iBT), with no subscore below 5",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "min_band": 24,
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS: The minimum score for consideration is a 7.0 composite, with listening and speaking scores of 7.0 or higher.",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "Bachelor's degree from an accredited institution; minimum GPA 3.5 or significant professional experience",
+     "quote": "A bachelor’s degree or higher from an accredited institution A minimum GPA of 3.5 or significant professional experience",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Undergraduate courses in introductory statistics and game theory or microeconomics",
+      "quote": "Undergraduate courses in (a) introductory statistics and (b) game theory or microeconomics. These can be completed at any accredited institution before the term begins; online summer courses in these subjects are available at Penn.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority",
+      "date": "2026-12-01",
+      "quote": "Fall 2027 (priority) December 1, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 regular",
+      "date": "2027-02-01",
+      "quote": "Fall 2027 (regular) February 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Master of Public Administration (I-MPA)",
+   "url": "https://lps.upenn.edu/degree-programs/impa/application",
+   "snapshot_sha256": "5d6cf60c52ddbde2ce6e2f250afbd624ab5fec55521bc6a3937b55dd31fbf9cb",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "quote": "For exams taken on/before January 20, 2026, a minimum score of 100 on the internet-based test (iBT), with no subscore below 24 For exams taken on/after January 21, 2026, a minimum score of 5 on the internet-based test (iBT), with no subscore below 5",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "min_band": 24,
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS: The minimum score for consideration is a 7.0 composite, with listening and speaking scores of 7.0 or higher.",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "Distinguished academic record in any field of undergraduate or graduate study; proficiency in English",
+     "quote": "A distinguished academic record in any field of undergraduate or graduate study Evidence of extracurricular, internship, or work experiences that reflect a dedication to helping others A desire for a successful professional career as an effective and ethical leader in one or more institutional sectors (nonprofit, business, or government) Proficiency in English",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 round 1",
+      "date": "2026-12-07",
+      "quote": "Round 1: Monday, December 7, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 round 2",
+      "date": "2027-01-11",
+      "quote": "Round 2: Monday, January 11, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final round",
+      "date": "2027-02-22",
+      "quote": "Final round: Monday, February 22, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Environmental Studies (MES)",
+   "url": "https://lps.upenn.edu/degree-programs/mes/application",
+   "snapshot_sha256": "f3e8f24830b663041ca7dfd97b795231bf85c739fc9fd9b766d613975a8abc09",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "quote": "For exams taken on/before January 20, 2026, a minimum score of 100 on the internet-based test (iBT), with no subscore below 24 For exams taken on/after January 21, 2026, a minimum score of 5 on the internet-based test (iBT), with no subscore below 5",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "min_band": 24,
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS: The minimum score for consideration is a 7.0 composite, with listening and speaking scores of 7.0 or higher.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority",
+      "date": "2026-12-15",
+      "quote": "Fall 2027 Priority application deadline: December 15, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 regular",
+      "date": "2027-03-15",
+      "quote": "Regular deadline: March 15, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Applied Positive Psychology (MAPP)",
+   "url": "https://lps.upenn.edu/degree-programs/mapp/application",
+   "snapshot_sha256": "851ae78bc6c000000954277200e4675c9339e46d0b4ac9b0219f123f953ec3d6",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, applicants must achieve a minimum overall score of 100. For TOEFL iBT exams taken on or after January 21, 2026, applicants must achieve a minimum overall score of 5.0 on the new TOEFL iBT score scale.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS: The minimum score for consideration is a 7.0 composite, with listening and speaking scores of 7.0 or higher.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-03-01",
+      "quote": "Fall 2027 March 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Chemical Sciences (MCS)",
+   "url": "https://lps.upenn.edu/degree-programs/mcs/application",
+   "snapshot_sha256": "7920a7ef138d2e64fff7b122c0331228d45176fcf5fb69b48eabcccbf1b9b5bf",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, applicants must achieve a minimum overall score of 100. For TOEFL iBT exams taken on or after January 21, 2026, applicants must achieve a minimum overall score of 5.0 on the new TOEFL iBT score scale.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS: The minimum score for consideration is a 7.0 composite.",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "Typically an undergraduate degree in chemistry, engineering, mathematics or equivalent",
+     "quote": "The typical student in the Master of Chemical Sciences program will hold an undergraduate degree in chemistry, engineering, mathematics or the equivalent. An adequate undergraduate background will vary, depending on area of concentration and will include some combination of coursework in chemistry, biology, mathematics, physics and/or engineering.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Two terms of calculus, two terms of introductory chemistry, two terms of organic chemistry with labs, and two terms of physics",
+      "quote": "At a minimum, applicants will need to have completed two terms of calculus, two terms of introductory chemistry and the equivalent of two terms of organic chemistry with associated labs, and two terms of physics. Given these requirements, a degree in chemistry, physics or biology would be ideal preparation.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority",
+      "date": "2026-12-15",
+      "quote": "Priority deadline: December 15, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 regular",
+      "date": "2027-04-30",
+      "quote": "Regular deadline: April 30, 2027 (rolling admissions review)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Liberal Arts (MLA)",
+   "url": "https://lps.upenn.edu/degree-programs/mla/application",
+   "snapshot_sha256": "a50a047c1e2dd42c615d19db7ff00d51641450233720f553ff88e77e761df0c6",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "quote": "For exams taken on/before January 20, 2026, a minimum score of 100 on the internet-based test (iBT), with no subscore below 24 For exams taken on/after January 21, 2026, a minimum score of 5 on the internet-based test (iBT), with no subscore below 5",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "min_band": 24,
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS: The minimum score for consideration is a 7.0 composite, with listening and speaking scores of 7.0 or higher.",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "Baccalaureate degree from a regionally accredited US institution (international: equivalent of a four-year US degree); at least 3.0 GPA",
+     "quote": "Applicants must hold a baccalaureate degree from a regionally accredited US institution. International students should make sure that their degree is the equivalent of a four-year degree in the US. Successful applicants to the Master of Liberal Arts program must possess at least a 3.0 grade point average in their undergraduate studies.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 international deadline",
+      "date": "2027-05-01",
+      "quote": "Fall 2027 May 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Applied Economics and Data Science (MAEDS)",
+   "url": "https://lps.upenn.edu/degree-programs/maeds/application",
+   "snapshot_sha256": "93fa2adbc399cc24ff1236ba8c456bc1c20ec9d6f245545f242a2312353f9b2f",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "quote": "For TOEFL iBT exams taken on or before January 20, 2026, applicants must achieve a minimum overall score of 100. For TOEFL iBT exams taken on or after January 21, 2026, applicants must achieve a minimum overall score of 5.0 on the new TOEFL iBT score scale.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS: The minimum score for consideration is a 7.0 composite, with a writing score of 7.0 or higher, and no other subscore below 6.5. Applicants are required to have IELTS send their official score report to the University of Pennsylvania College of Liberal and Professional Studies IELTS Results Service E-Delivery account. To locate a testing site near you or schedule an exam, visit the IELTS website.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority",
+      "date": "2026-12-01",
+      "quote": "Priority application deadline December 1, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 regular",
+      "date": "2027-01-15",
+      "quote": "Regular application deadline January 15, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Organizational Dynamics (MSOD)",
+   "url": "https://lps.upenn.edu/degree-programs/dynamics/application",
+   "snapshot_sha256": "03a688898fc7579e8f590cf98e64cfa76e355556f17f27925dac60eb4764b647",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "quote": "For exams taken on/before January 20, 2026, a minimum score of 100 on the internet-based test (iBT) For exams taken on/after January 21, 2026, a minimum score of 5 on the internet-based test (iBT)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS: The minimum score for consideration is a 7.0 composite.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority",
+      "date": "2027-01-15",
+      "quote": "Fall 2027 Priority Decision Deadline: January 15, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 regular",
+      "date": "2027-05-15",
+      "quote": "Regular Deadline: May 15, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 65,
+  "机器核对": 65,
+  "待人工": 0
+ }
+}

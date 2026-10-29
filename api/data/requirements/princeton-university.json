@@ -1,0 +1,259 @@
+{
+ "school_key": "princeton-university",
+ "school_name_en": "Princeton University",
+ "country": "United States",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://gradschool.princeton.edu/academics/degrees-requirements/fields-study",
+  "https://engineering.princeton.edu/graduate-studies/faq"
+ ],
+ "blocked": [
+  {
+   "url": "https://gradschool.princeton.edu/academics/degrees-requirements/fields-study/chemical-and-biological-engineering",
+   "reason": "HTTP 403 (host refused; no further requests to gradschool.princeton.edu)"
+  },
+  {
+   "url": "https://soa.princeton.edu/content/graduate-admissions",
+   "reason": "HTTP 403"
+  }
+ ],
+ "complete": true,
+ "remaining_urls": [],
+ "notes": "The Graduate School host (gradschool.princeton.edu) returned HTTP 403 after the first two requests, so its field pages and its English-proficiency page were not collected and no TOEFL/IELTS minimums are recorded; SPIA, BCF and CBE pages only point to that page. School of Architecture site also returned 403. Dec 1 / Dec 21 style deadlines stated without a year (Architecture, MAE, CBE) are left out. M.Eng. at MAE/ECE/CEE/CBE admits only applicants with full external funding (stated on the pages). Skipped as PhD-only or research-only: all PhD fields; M.S.E. (thesis, research focus: CBE, CEE, CS, MAE); Chemistry M.S. and Computer Science M.S.E. (not confirmed as direct-entry terminal degrees, host blocked); certificates; joint degrees (MPA/JD, MPA/MBA, Social Policy). Operations Research and Financial Engineering and Computer Science do not offer the M.Eng. (Engineering FAQ).",
+ "programs": [
+  {
+   "name": "Master of Architecture (M.Arch.), professional track (3 years)",
+   "url": "https://gradschool.princeton.edu/academics/degrees-requirements/fields-study/architecture",
+   "snapshot_sha256": "6b469c10bfc7a40d1331b1f09d78e62c271edce1affa99b66d507805860c1c54",
+   "fields": {
+    "academic": {
+     "text": "Open to applicants with or without undergraduate work in architecture",
+     "quote": "Students are eligible for admission to the graduate program whether or not they have had undergraduate work in architecture.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Design portfolio, bound into a brochure no larger than 8.5 by 11 inches, plus an electronic version",
+      "quote": "M.Arch. – Design portfolio, bound into a brochure no larger than 8 1/2 by 11 inches (overall size when closed).",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Architecture (M.Arch.), post-professional track (2 years)",
+   "url": "https://gradschool.princeton.edu/academics/degrees-requirements/fields-study/architecture",
+   "snapshot_sha256": "6b469c10bfc7a40d1331b1f09d78e62c271edce1affa99b66d507805860c1c54",
+   "fields": {
+    "academic": {
+     "text": "Bachelor of Architecture (B.Arch.) or its equivalent from an international institution",
+     "quote": "A post-professional M.Arch. degree is available to those who hold the degree of Bachelor of Architecture (B.Arch.) or its equivalent from an international institution.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Design portfolio, bound into a brochure no larger than 8.5 by 11 inches, plus an electronic version",
+      "quote": "M.Arch. – Design portfolio, bound into a brochure no larger than 8 1/2 by 11 inches (overall size when closed).",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Finance (M.Fin.)",
+   "url": "https://bcf.princeton.edu/academic-programs/master-in-finance/apply-for-the-master-in-finance-program",
+   "snapshot_sha256": "8e670dc72b20588cbb9e4721f2b282637868e820796019c7371c8e7144320881",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "TOEFL, DET or IELTS scores required for applicants whose primary language is not English or who did not complete all undergraduate instruction, or one year of full-time graduate instruction, entirely in English",
+      "quote": "For students whose primary language is not English or who did not either complete their entire undergraduate instruction entirely in English or at least one year of full-time graduate instruction entirely in English, TOEFL, DET, or IELTS test scores are required.",
+      "check": "ok"
+     },
+     {
+      "text": "Familiarity with linear algebra, multivariable calculus, differential equations, and probability and statistics at intermediate undergraduate level",
+      "quote": "At a minimum, we expect applicants to be familiar in mathematics with linear algebra, multivariable calculus, differential equations, and probability and statistics at the level of an intermediate undergraduate course.",
+      "source_sha256": "9b97f150cdd896451c043c35f11c435468fb95b2418eb12804973501c97f57e6",
+      "source_url": "https://bcf.princeton.edu/academic-programs/master-in-finance/common-questions/",
+      "check": "ok"
+     },
+     {
+      "text": "GRE or GMAT scores accepted but not required",
+      "quote": "GRE or GMAT test scores are accepted, but not required.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2026-12-15",
+      "quote": "The deadline to apply for the Fall 2027 program is December 15, 2026.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Public Affairs (MPA)",
+   "url": "https://spia.princeton.edu/graduate-admissions/master-public-affairs/application",
+   "snapshot_sha256": "531fdc45c2a6ab7218e3a982054926ad4081d3f0fbfaaf63b4eadb3bde1c4f0e",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "English language test scores (TOEFL/IELTS/DET) required unless primary language is English or prior instruction was entirely in English",
+      "quote": "English language test scores are required for all applicants whose primary language is not English, whose undergraduate instruction was not entirely in English as certified by the institution or who have not completed at least two years of full-time graduate study entirely in English as certified by the institution.",
+      "check": "ok"
+     },
+     {
+      "text": "Official GRE General Test results required",
+      "quote": "Official results of the GRE general test are required of all MPA applicants.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2026-12-01",
+      "quote": "Application Deadline: December 1, 2026, 11:59 p.m. ET",
+      "check": "ok"
+     }
+    ],
+    "academic": {
+     "text": "No prescribed undergraduate major; GPA from each degree-granting programme converted to a 4.0 scale must be provided",
+     "quote": "There is no prescribed undergraduate major for the MPA degree.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Public Policy (MPP)",
+   "url": "https://spia.princeton.edu/graduate-admissions/master-public-policy/application",
+   "snapshot_sha256": "07177efa067ccea025fa695b40b4d156d60bcf6b9f189bb0e24742a64b58e1d1",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "English language test scores (TOEFL/IELTS/DET) required unless primary language is English or prior instruction was entirely in English",
+      "quote": "English language test scores are required for all applicants whose primary language is not English, whose undergraduate instruction was not entirely in English as certified by the institution or who have not completed at least two years of full-time graduate study entirely in English as certified by the institution.",
+      "check": "ok"
+     },
+     {
+      "text": "At least seven years of full-time work experience in the public or nonprofit sectors",
+      "quote": "A minimum of seven years of full-time work experience in the public or nonprofit sectors is required for admission.",
+      "source_sha256": "94ec89b4ddd2dd929e2c92f9c989056b4c2d983277de6413d65a39e6167d39fe",
+      "source_url": "https://spia.princeton.edu/admissions/master-public-policy",
+      "check": "ok"
+     },
+     {
+      "text": "GRE scores optional",
+      "quote": "MPP applicants may submit GRE scores but it is not required as part of the application process.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2026-12-01",
+      "quote": "Application Deadline: December 1, 2026, 11:59 p.m. ET",
+      "check": "ok"
+     }
+    ],
+    "academic": {
+     "text": "No prescribed undergraduate major; GPA from each degree-granting programme converted to a 4.0 scale must be provided",
+     "quote": "There is no prescribed undergraduate major for the MPP degree.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering (M.Eng.), Mechanical and Aerospace Engineering",
+   "url": "https://mae.princeton.edu/graduate/admissions",
+   "snapshot_sha256": "bbe5098c341f2a6c4b6c573074ce0d4babdb79f5b76ddd1b6cfcba0270c08ed0",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in engineering or science (need not be in aerospace or mechanical engineering)",
+     "quote": "Normally, a student accepted by Mechanical and Aerospace Engineering is expected to have met requirements for a bachelor's degree in engineering or science.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Full external financial support required; self-supporting applicants not admitted",
+      "quote": "The M.Eng. program does not admit self-supporting applicants.",
+      "source_sha256": "5b2e468a152363b506bf6d7cf0f6c25f4fc96a52f49347f955a021ad1969995b",
+      "source_url": "https://engineering.princeton.edu/graduate-studies/faq",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering (M.Eng.), Electrical and Computer Engineering",
+   "url": "https://ece.princeton.edu/academics/graduate/apply",
+   "snapshot_sha256": "15e70e1029860f9bc66eb89b7b5f0d0c460c5f229309d6f2d250dbb0e52d19a2",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "Sufficient external financial support (employer or external fellowship) required; self-supporting applicants not admitted",
+      "quote": "The M.Eng. program does not admit self-supporting applicants. Those admitted to candidacy for the M.Eng. degree must demonstrate sufficient external financial support - typically provided by an employer or through an external fellowship - as Princeton does not offer institutional funding for students in this program.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2026-12-21",
+      "quote": "The next application deadline is December 21, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering (M.Eng.), Civil and Environmental Engineering",
+   "url": "https://cee.princeton.edu/graduate/degrees-offered",
+   "snapshot_sha256": "73a033506c1326dde1aa01b17d5c28296df597cf2b986a73b427fd9d201ac629",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "Sufficient external financial support (employer or external fellowship) required; self-supporting applicants not admitted",
+      "quote": "The M.Eng. program does not admit self-supporting applicants. Those admitted to candidacy for the M.Eng. degree must demonstrate sufficient external financial support - typically provided by an employer or through an external fellowship - as Princeton does not offer institutional funding for students in this program.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering (M.Eng.), Chemical and Biological Engineering",
+   "url": "https://cbe.princeton.edu/graduate/how-apply",
+   "snapshot_sha256": "d82bb8d93f1758c9bf15baf1f3e809c4214e075a426eda784b02718e4652d2ed",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "TOEFL or IELTS required for international students whose undergraduate degree is from a country where the native language is not English",
+      "quote": "TOEFL/IELTS: International students who have completed an undergraduate degree in a country where the native language is not English are required to take one of either the TOEFL or IELTS.",
+      "check": "ok"
+     },
+     {
+      "text": "Full external funding required for M.Eng. admission, typically from an employer or external fellowship",
+      "quote": "*MSE and M.Eng. students will not be admitted into the program without full external funding, which is typically from their employers or external fellowship.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 9,
+  "机器核对": 9,
+  "待人工": 0
+ }
+}

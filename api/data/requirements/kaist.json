@@ -1,0 +1,115 @@
+{
+ "school_key": "kaist",
+ "school_name_en": "KAIST",
+ "country": "South Korea",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://admission.kaist.ac.kr/intl-graduate/Discover/DepartmentInfo"
+ ],
+ "blocked": [
+  {
+   "url": "https://gradapply.kaist.ac.kr/",
+   "reason": "robots.txt disallows (application portal)"
+  },
+  {
+   "url": "https://ie.kaist.ac.kr/",
+   "reason": "robots.txt disallows"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.business.kaist.ac.kr/programs/0201",
+  "https://cs.kaist.ac.kr/people/admission",
+  "https://gsai.kaist.ac.kr/"
+ ],
+ "notes": "Central international graduate admission pages (eligibility, English, timeline) apply to all KAIST master's programmes; the department list is JavaScript-loaded and could not be rendered (timeout), so only the central route and the EE department page were collected. Business School MBA/Master pages are Korean-language professional programmes with no usable requirements text; CS, AI (gsai.kaist.ac.kr, empty without JS) and ISysE (robots.txt) pages gave nothing usable. Spring 2027 entry window (August 18 - September 1, 2026) has already closed; Fall 2027 entry is the next intake. TOEFL minimum of 83 applies to tests taken before Jan 21, 2026, 4.5 on the new scale from Jan 21, 2026. Waivers of the English test exist for citizens/graduates of listed English-speaking countries (China not listed). Per-department admissions guidelines may be PDF-only.",
+ "programs": [
+  {
+   "name": "KAIST International Graduate Admission - Master's (all departments)",
+   "url": "https://admission.kaist.ac.kr/intl-graduate/Admission/Eligibility",
+   "snapshot_sha256": "caf969b5a44e491b59dace5c408a11ac2700d98b37550822fdea11283d7a7c3e",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or equivalent standard by the start of the course for the Master's or Master's-Ph.D. programme application",
+     "quote": "Bachelor’s degree or equivalent standard by the start of your course for the Master’s or Master’s-Ph.D. degree program application",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "quote": "83 (Taken before Jan 21, 2026)\n4.5(Taken on or after Jan 21, 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS Academic\n6.5 band",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Applicants must hold citizenship other than Korean; Korean citizens are not eligible",
+      "quote": "Applicants must be citizens of countries other than Korea to be eligible for KAIST International Graduate Admissions.",
+      "check": "ok"
+     },
+     {
+      "text": "Alternative English tests accepted: TOEIC 720 (Listening & Reading), TEPS 326",
+      "quote": "TOEIC\n720",
+      "check": "ok"
+     },
+     {
+      "text": "English test score must be valid as of the online application deadline",
+      "quote": "The scores must be valid as of the online application deadline",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 entry (application period closes)",
+      "date": "2027-02-05",
+      "quote": "Fall 2027 Entry: January 7 - February 5, 2027",
+      "source_sha256": "00a6e043e3d57b646cdfb3ef8a1550bcb3c8f69833c72d0bc047d2b4d59ce73a",
+      "source_url": "https://admission.kaist.ac.kr/intl-graduate/Admission/YearlyTimelines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "School of Electrical Engineering - Master's (international)",
+   "url": "https://ee.kaist.ac.kr/en/admission-02/",
+   "snapshot_sha256": "db4445aecff8cb3d2a0bc913fb21b24ed02fc2b7f71bb97e62f099a989a853c4",
+   "fields": {
+    "academic": {
+     "text": "Adequate undergraduate GPA is required (no number stated)",
+     "quote": "Adequate undergraduate GPA is required to perform successful study in Master’s degree program.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 83,
+     "quote": "English Creditial Minimum Requirement: IBT TOEFL 83/ TOEIC 720 / TEPS 326 / IELTS 6.5",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "English Creditial Minimum Requirement: IBT TOEFL 83/ TOEIC 720 / TEPS 326 / IELTS 6.5",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "No advisor needed at application for the Master's programme, but recommended",
+      "quote": "For Master’s degree program, you are not required to have an advisor at the time of application, but we highly recommend you to determine your advisor before application.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 2,
+  "机器核对": 2,
+  "待人工": 0
+ }
+}

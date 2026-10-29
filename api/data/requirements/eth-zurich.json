@@ -1,0 +1,2734 @@
+{
+ "school_key": "eth-zurich",
+ "school_name_en": "ETH Zurich",
+ "country": "Switzerland",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://ethz.ch/en/studies/master/degree-programmes.html",
+  "https://ethz.ch/en/studies/master/application.html"
+ ],
+ "blocked": [],
+ "complete": true,
+ "remaining_urls": [],
+ "notes": "Per-programme requirement profiles (subject prerequisites with minimum percentages, GRE, etc.) are PDF-only at https://ethz.ch/en/studies/master/application/profile-requirements.html and were not read; the programme pages give only language of instruction and qualifying disciplines. IELTS/TOEFL scores and the 30 Nov 2026 deadline come from the shared ETH application pages (international Bachelor's window; Swiss Bachelor's window 1-30 April 2027 not recorded). English exemptions exist (e.g. Bachelor fully taught in English). No China-specific page. Skipped: Quantitative Finance (separate UZH/ETH application), Neural Systems and Computation and Interdisciplinary Brain Sciences (UZH application), Applied Geophysics (Delft application), Science Didactics (PH Zurich application).",
+ "programs": [
+  {
+   "name": "Master of Science ETH in Physics",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/natural-sciences-and-mathematics/physics.html",
+   "snapshot_sha256": "0abfe1da4264e81e64810ec7021d2797d4d15e73c950f0c4200502aeec05fcad",
+   "fields": {
+    "academic": {
+     "text": "Admission is always based on a completed Bachelor's degree; subject prerequisites and minimum percentages are in the programme requirement profile (PDF)",
+     "quote": "The basis for admission is ALWAYS your Bachelor’s degree.",
+     "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+     "source_url": "https://ethz.ch/en/studies/master/application.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English",
+      "quote": "Language of instruction\nEnglish",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science ETH in Pharmaceutical Sciences",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/natural-sciences-and-mathematics/pharmaceutical-sciences.html",
+   "snapshot_sha256": "0b3501851d23cfff4fe9304f7dc4dfdd8a8ec5bd270c96cb52997d3fbb9be509",
+   "fields": {
+    "academic": {
+     "text": "Admission is always based on a completed Bachelor's degree; subject prerequisites and minimum percentages are in the programme requirement profile (PDF)",
+     "quote": "The basis for admission is ALWAYS your Bachelor’s degree.",
+     "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+     "source_url": "https://ethz.ch/en/studies/master/application.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English",
+      "quote": "Language of instruction\nEnglish",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Physics ETH Zurich – University Paris-Saclay, Major in High Energy Physics",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/natural-sciences-and-mathematics/high-energy-physics.html",
+   "snapshot_sha256": "12757f86a48d7b3463db6cb85b760cd38b0ebe2f76d7d3074890f2671ac0c6a1",
+   "fields": {
+    "academic": {
+     "text": "Admission is always based on a completed Bachelor's degree; subject prerequisites and minimum percentages are in the programme requirement profile (PDF)",
+     "quote": "The basis for admission is ALWAYS your Bachelor’s degree.",
+     "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+     "source_url": "https://ethz.ch/en/studies/master/application.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English",
+      "quote": "Language of instruction\nEnglish",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts ETH UZH in Comparative and International Studies",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/management-and-social-sciences/comparative-and-international-studies.html",
+   "snapshot_sha256": "19508ba58a759864792d70e2dea953c86466ddc486077411a5feea2cc849b66c",
+   "fields": {
+    "academic": {
+     "text": "Qualifying disciplines (Bachelor): Political Science, Public Policy, Economics, Sociology, Psychology, Humanities, Business Studies, Law",
+     "quote": "Qualifying disciplines\nPolitical Science, Public Policy, Economics, Sociology, Psychology, Humanities, Business Studies, Law",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English",
+      "quote": "Language of instruction\nEnglish",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science ETH in Geomatics",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/architecture-and-civil-engineering/geomatics.html",
+   "snapshot_sha256": "1df89d484cf6c6535a19a1e06453d88d08d7cab8e6cae893a13c8fb2244f86b0",
+   "fields": {
+    "academic": {
+     "text": "Admission is always based on a completed Bachelor's degree; subject prerequisites and minimum percentages are in the programme requirement profile (PDF)",
+     "quote": "The basis for admission is ALWAYS your Bachelor’s degree.",
+     "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+     "source_url": "https://ethz.ch/en/studies/master/application.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English",
+      "quote": "Language of instruction\nEnglish",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science ETH in Materials Science and Engineering",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/engineering-sciences/materials-science.html",
+   "snapshot_sha256": "2572c23f5b62e2f8640b4759afe8baa1a1f4563132678eb2b92d3eca9438e628",
+   "fields": {
+    "academic": {
+     "text": "Qualifying disciplines (Bachelor): Materials Science and Engineering; Further natural science or engineering degrees with broad fundamentals in materials science",
+     "quote": "Qualifying disciplines\nMaterials Science and Engineering\nFurther natural science or engineering degrees with broad fundamentals in materials science",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English",
+      "quote": "Language of instruction\nEnglish",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science ETH in Biotechnology",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/engineering-sciences/biotechnologie.html",
+   "snapshot_sha256": "282d9a9670e2aba5a7a996b99493f692517873c80c44165644ac3bbfe4cd832f",
+   "fields": {
+    "academic": {
+     "text": "Admission is always based on a completed Bachelor's degree; subject prerequisites and minimum percentages are in the programme requirement profile (PDF)",
+     "quote": "The basis for admission is ALWAYS your Bachelor’s degree.",
+     "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+     "source_url": "https://ethz.ch/en/studies/master/application.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English",
+      "quote": "Language of instruction\nEnglish",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master History and Philosophy of Knowledge",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/management-and-social-sciences/history-and-philosophy-of-knowledge.html",
+   "snapshot_sha256": "2b3724e8f43cef34f7ce000e7e994e68d6a4a9d01c7e8bcffbcad73006e6ee5c",
+   "fields": {
+    "academic": {
+     "text": "Admission is always based on a completed Bachelor's degree; subject prerequisites and minimum percentages are in the programme requirement profile (PDF)",
+     "quote": "The basis for admission is ALWAYS your Bachelor’s degree.",
+     "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+     "source_url": "https://ethz.ch/en/studies/master/application.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English (starting autumn semester 2025)",
+      "quote": "Language of instruction\nEnglish (starting autumn semester 2025)",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science ETH in Mechanical Engineering",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/engineering-sciences/mechanical-engineering.html",
+   "snapshot_sha256": "31d30dc794d3149d2d1445e3760e37a8bec9cc2eec572e2697d290ad023e8349",
+   "fields": {
+    "academic": {
+     "text": "Qualifying disciplines (Bachelor): Bachelor-Diplom in Mechanical Engineering",
+     "quote": "Qualifying disciplines\nBachelor-Diplom in Mechanical Engineering",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English",
+      "quote": "Language of instruction\nEnglish",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science ETH in Energy Science and Technology",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/engineering-sciences/energy-science-and-technology.html",
+   "snapshot_sha256": "385f89940ce1c0a407482f1f753be582fa8f1e1b83cbee98eb15be649b97ac5a",
+   "fields": {
+    "academic": {
+     "text": "Qualifying disciplines (Bachelor): in particular (listed alphabetically):; Civil Engineering; Communications Systems; Computer Science; Electrical Engineering (and Information Technology); Environmental Engineering; Geomatic Engineering; Mathematics; Mechanical Engineering; Microtechnology; Physics",
+     "quote": "Qualifying disciplines\nin particular (listed alphabetically):\nCivil Engineering\nCommunications Systems\nComputer Science\nElectrical Engineering (and Information Technology)\nEnvironmental Engineering\nGeomatic Engineering\nMathematics\nMechanical Engineering\nMicrotechnology\nPhysics",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English",
+      "quote": "Language of instruction\nEnglish",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science ETH in Science, Technology and Policy",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/management-and-social-sciences/science-technology-and-policy.html",
+   "snapshot_sha256": "3a71500f674febe766bca12690b747b3d699450d0ab09cc4ce755573cf5554aa",
+   "fields": {
+    "academic": {
+     "text": "Qualifying disciplines (Bachelor): Admission to the degree programme presupposes a university Bachelor’s degree comprising at least 180 ECTS credits or an equivalent university degree in an engineering or scientific discipline or in Mathematics or Architecture.",
+     "quote": "Qualifying disciplines\nAdmission to the degree programme presupposes a university Bachelor’s degree comprising at least 180 ECTS credits or an equivalent university degree in an engineering or scientific discipline or in Mathematics or Architecture.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English",
+      "quote": "Language of instruction\nEnglish",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science ETH in Biomedical Engineering",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/engineering-sciences/biomedical-engineering.html",
+   "snapshot_sha256": "3f4cfc9802d45607f31d351930f0ffa34e819ede90a8083a46be3ae52e4cb6ef",
+   "fields": {
+    "academic": {
+     "text": "Qualifying disciplines (Bachelor): Biomedical Engineering; Biotechnology; Chemical Engineering; Electrical Engineering; Computer Science; Mechanical Engineering; Materials Science; Mathematics; Physics; Computational Science and Engineering; Human Movement Sciences *; Biology*; Chemistry*; Life Sciences and Technology *; Medicine*; Life Sciences und Technologie*; *does not qualify for all tracks",
+     "quote": "Qualifying disciplines\nBiomedical Engineering\nBiotechnology\nChemical Engineering\nElectrical Engineering\nComputer Science\nMechanical Engineering\nMaterials Science\nMathematics\nPhysics\nComputational Science and Engineering\nHuman Movement Sciences *\nBiology*\nChemistry*\nLife Sciences and Technology *\nMedicine*\nLife Sciences und Technologie*\n*does not qualify for all tracks",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English",
+      "quote": "Language of instruction\nEnglish",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science ETH in Pharmacy",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/natural-sciences-and-mathematics/pharmacy.html",
+   "snapshot_sha256": "51572a1ac28b0a4cd94bb3710011f94258d1f2608530f02391872f40c6a2ba81",
+   "fields": {
+    "academic": {
+     "text": "Admission is always based on a completed Bachelor's degree; subject prerequisites and minimum percentages are in the programme requirement profile (PDF)",
+     "quote": "The basis for admission is ALWAYS your Bachelor’s degree.",
+     "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+     "source_url": "https://ethz.ch/en/studies/master/application.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: German and English",
+      "quote": "Language of instruction\nGerman and English",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "German certificate required, e.g. Goethe-Zertifikat C1 with at least 80 points on average",
+      "quote": "Goethe-Zertifikat C1\nat least 80 points on average (all modules must be passed within 12 months)",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science ETH in Data Science",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/engineering-sciences/data-science.html",
+   "snapshot_sha256": "536f7035188d1c256d291371cde6480cd67b7c22929736721bba37eb4b7aa94d",
+   "fields": {
+    "academic": {
+     "text": "Qualifying disciplines (Bachelor): listed alphabetically:; Computer Science; Electrical Engineering; Mechanical Engineering; Mathematics; Physics",
+     "quote": "Qualifying disciplines\nlisted alphabetically:\nComputer Science\nElectrical Engineering\nMechanical Engineering\nMathematics\nPhysics",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English",
+      "quote": "Language of instruction\nEnglish",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science ETH in Environmental Sciences",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/system-oriented-natural-sciences/environmental-sciences.html",
+   "snapshot_sha256": "57e49795425723cb7529cafa6a64d11e3771253f499097e0fed6511b3ef5c304",
+   "fields": {
+    "academic": {
+     "text": "Admission is always based on a completed Bachelor's degree; subject prerequisites and minimum percentages are in the programme requirement profile (PDF)",
+     "quote": "The basis for admission is ALWAYS your Bachelor’s degree.",
+     "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+     "source_url": "https://ethz.ch/en/studies/master/application.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English",
+      "quote": "Language of instruction\nEnglish",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science ETH in Mathematics",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/natural-sciences-and-mathematics/mathematics-applied-mathematics.html",
+   "snapshot_sha256": "5f9b5f72948d963939c61a3af046a9e036879724c04fb42ebd0c384ca13f2bf5",
+   "fields": {
+    "academic": {
+     "text": "Qualifying disciplines (Bachelor): Bachelor‘s degree programmes in Mathematics",
+     "quote": "Qualifying disciplines\nBachelor‘s degree programmes in Mathematics",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English",
+      "quote": "Language of instruction\nEnglish",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science ETH in Robotics, Systems and Control",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/engineering-sciences/robotics-systems-and-control.html",
+   "snapshot_sha256": "615191eeaf16c06fca7f2c603ccdaf1800533529c5e943713700a67524e07c5b",
+   "fields": {
+    "academic": {
+     "text": "Qualifying disciplines (Bachelor): Bachelor's degree:; Electrical Engineering and Information Technology; Mechanical Engineering; Computer Science",
+     "quote": "Qualifying disciplines\nBachelor's degree:\nElectrical Engineering and Information Technology\nMechanical Engineering\nComputer Science",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English",
+      "quote": "Language of instruction\nEnglish",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science ETH Zürich – EPF Lausanne in Computer Science Major in Cyber Security",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/engineering-sciences/cyber-security.html",
+   "snapshot_sha256": "64d294fa15fc5464e3a122977fd1fe1309e25ae1730d9725a6acf3f5de228ab5",
+   "fields": {
+    "academic": {
+     "text": "Qualifying disciplines (Bachelor): Bachelor in Computer Science",
+     "quote": "Qualifying disciplines\nBachelor in Computer Science",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English",
+      "quote": "Language of instruction\nEnglish",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science ETH in Interdisciplinary Sciences",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/natural-sciences-and-mathematics/interdisciplinary-sciences.html",
+   "snapshot_sha256": "67c766b34f8ca77ea25fb7042fac55250330372ccc38f6e539de4907c0345ed5",
+   "fields": {
+    "academic": {
+     "text": "Admission is always based on a completed Bachelor's degree; subject prerequisites and minimum percentages are in the programme requirement profile (PDF)",
+     "quote": "The basis for admission is ALWAYS your Bachelor’s degree.",
+     "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+     "source_url": "https://ethz.ch/en/studies/master/application.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English",
+      "quote": "Language of instruction\nEnglish",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science ETH in Erdwissenschaften",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/system-oriented-natural-sciences/earth-sciences.html",
+   "snapshot_sha256": "67d8f326e99258c34d679955b616a0ac32b7bd3507cd62281fa97cacf0bd65be",
+   "fields": {
+    "academic": {
+     "text": "Qualifying disciplines (Bachelor): University Bachelor’s degree in Earth Sciences",
+     "quote": "Qualifying disciplines\nUniversity Bachelor’s degree in Earth Sciences",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English",
+      "quote": "Language of instruction\nEnglish",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science ETH in Computer Science",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/engineering-sciences/computer-science.html",
+   "snapshot_sha256": "694983a6d5e2db3f3bcda3dd9bb49e68be50a6edf3281fe00bb0be7765db3643",
+   "fields": {
+    "academic": {
+     "text": "Qualifying disciplines (Bachelor): Computer Science; or a related field such as (listed alphabetically); Electrical Engineering (and Information Technology); Mathematics; Mechanical Engineering; Physics",
+     "quote": "Qualifying disciplines\nComputer Science\nor a related field such as (listed alphabetically)\nElectrical Engineering (and Information Technology)\nMathematics\nMechanical Engineering\nPhysics",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English",
+      "quote": "Language of instruction\nEnglish",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science ETH in Space Systems",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/system-oriented-natural-sciences/space-systems.html",
+   "snapshot_sha256": "7690d2971b6e788b4f6483fe858cf1041fabcd975abd0f135ae347226772ca26",
+   "fields": {
+    "academic": {
+     "text": "Admission is always based on a completed Bachelor's degree; subject prerequisites and minimum percentages are in the programme requirement profile (PDF)",
+     "quote": "The basis for admission is ALWAYS your Bachelor’s degree.",
+     "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+     "source_url": "https://ethz.ch/en/studies/master/application.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English",
+      "quote": "Language of instruction\nEnglish",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Nuclear Engineering ETH Zurich – EPF Lausanne",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/engineering-sciences/nuclear-engineering.html",
+   "snapshot_sha256": "778e91b38a2e12d49376750426ef52141f2b684ea5352878f696d611244aa5f9",
+   "fields": {
+    "academic": {
+     "text": "Qualifying disciplines (Bachelor): Bachelor's degree:; Chemical Engineering; Chemistry; Electrical Engineering and Information Technology; Materials Science; Mathematics; Mechanical Engineering; Microtechnology; Physics",
+     "quote": "Qualifying disciplines\nBachelor's degree:\nChemical Engineering\nChemistry\nElectrical Engineering and Information Technology\nMaterials Science\nMathematics\nMechanical Engineering\nMicrotechnology\nPhysics",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English",
+      "quote": "Language of instruction\nEnglish",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science ETH in Integrated Building Systems",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/architecture-and-civil-engineering/integrated-building-systems.html",
+   "snapshot_sha256": "790802b8228ccfacdf706c4e7edecf1edea8e3d47329286029962fc8bed6244d",
+   "fields": {
+    "academic": {
+     "text": "Qualifying disciplines (Bachelor): In particular, a Bachelor's degree in:; Architecture; Civil Engineering; Electrical Engineering; Environmental Engineering; Geomatic Engineering and Planning; Mechanical Engineering",
+     "quote": "Qualifying disciplines\nIn particular, a Bachelor's degree in:\nArchitecture\nCivil Engineering\nElectrical Engineering\nEnvironmental Engineering\nGeomatic Engineering and Planning\nMechanical Engineering",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English",
+      "quote": "Language of instruction\nEnglish",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science ETH in Food Science and Nutrition",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/system-oriented-natural-sciences/food-science.html",
+   "snapshot_sha256": "79ddafa18264874f98db58b91837065cd0ee052dac85afc490e45ba797eaf333",
+   "fields": {
+    "academic": {
+     "text": "Admission is always based on a completed Bachelor's degree; subject prerequisites and minimum percentages are in the programme requirement profile (PDF)",
+     "quote": "The basis for admission is ALWAYS your Bachelor’s degree.",
+     "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+     "source_url": "https://ethz.ch/en/studies/master/application.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English",
+      "quote": "Language of instruction\nEnglish",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science ETH in Landscape Architecture",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/architecture-and-civil-engineering/landscape-architecture.html",
+   "snapshot_sha256": "84818f2e26d5f20e5d95ac30c4b453c25cdb11852eb283c9d3e535dfdaac6f37",
+   "fields": {
+    "academic": {
+     "text": "Qualifying disciplines (Bachelor): Bachelor's degree in:; Architecture; Landscape Architecture",
+     "quote": "Qualifying disciplines\nBachelor's degree in:\nArchitecture\nLandscape Architecture",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English",
+      "quote": "Language of instruction\nEnglish",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science ETH in Statistics",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/natural-sciences-and-mathematics/statistics.html",
+   "snapshot_sha256": "855eae2139fde353d47d03a344ce90aca5692b461b70ad43ddc30b31de8602cd",
+   "fields": {
+    "academic": {
+     "text": "Qualifying disciplines (Bachelor): All fields of study with a sufficient foundation in mathematics, statistics and computer science.",
+     "quote": "Qualifying disciplines\nAll fields of study with a sufficient foundation in mathematics, statistics and computer science.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English",
+      "quote": "Language of instruction\nEnglish",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science ETH in Health Sciences and Technology",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/system-oriented-natural-sciences/health-sciences-and-technology.html",
+   "snapshot_sha256": "85a84316e21e973c050261a435b427f1d71e6e6289d940fb6554bca291fb03b4",
+   "fields": {
+    "academic": {
+     "text": "Admission is always based on a completed Bachelor's degree; subject prerequisites and minimum percentages are in the programme requirement profile (PDF)",
+     "quote": "The basis for admission is ALWAYS your Bachelor’s degree.",
+     "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+     "source_url": "https://ethz.ch/en/studies/master/application.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English",
+      "quote": "Language of instruction\nEnglish",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science ETH in Spatial Development and Infrastructure Systems",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/architecture-and-civil-engineering/spatial-development-and-infrastructure-systems.html",
+   "snapshot_sha256": "880eea7ca39eeed47c30531a3ba3cba5b9c60973819805320859a33b312c63ea",
+   "fields": {
+    "academic": {
+     "text": "Admission is always based on a completed Bachelor's degree; subject prerequisites and minimum percentages are in the programme requirement profile (PDF)",
+     "quote": "The basis for admission is ALWAYS your Bachelor’s degree.",
+     "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+     "source_url": "https://ethz.ch/en/studies/master/application.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English",
+      "quote": "Language of instruction\nEnglish",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science ETH in Quantum Engineering",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/natural-sciences-and-mathematics/quantum-engineering.html",
+   "snapshot_sha256": "8abf3c110d432fe38d5e8118bbf6979d1e84480f7f7ba014b2dbb4c9f7e78133",
+   "fields": {
+    "academic": {
+     "text": "Qualifying disciplines (Bachelor): in particular (listed alphabetically):; Electrical Engineering and Information Technology; Physics; Other engineering or physics disciplines",
+     "quote": "Qualifying disciplines\nin particular (listed alphabetically):\nElectrical Engineering and Information Technology\nPhysics\nOther engineering or physics disciplines",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English",
+      "quote": "Language of instruction\nEnglish",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science ETH in Management, Technology, and Economy",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/management-and-social-sciences/management-technology-and-economics.html",
+   "snapshot_sha256": "8cc41e4d1cbe358f70c39459827a07e18bf909d93474aef1a90d2b2ac14d582f",
+   "fields": {
+    "academic": {
+     "text": "Qualifying disciplines (Bachelor): The programme is directed at ambitious students who hold a university Bachelor’s degree in engineering or the natural sciences.",
+     "quote": "Qualifying disciplines\nThe programme is directed at ambitious students who hold a university Bachelor’s degree in engineering or the natural sciences.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English",
+      "quote": "Language of instruction\nEnglish",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science ETH in Computational Biology and Bioinformatics",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/engineering-sciences/computational-biology-and-bioinformatics.html",
+   "snapshot_sha256": "93e2aedd4f889ab8cb0235662a47f241fb2d6325f4555ea757a0e8ded8682bce",
+   "fields": {
+    "academic": {
+     "text": "Admission is always based on a completed Bachelor's degree; subject prerequisites and minimum percentages are in the programme requirement profile (PDF)",
+     "quote": "The basis for admission is ALWAYS your Bachelor’s degree.",
+     "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+     "source_url": "https://ethz.ch/en/studies/master/application.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English",
+      "quote": "Language of instruction\nEnglish",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science ETH in Environmental Engineering",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/architecture-and-civil-engineering/environmental-engineering.html",
+   "snapshot_sha256": "97b0815f7235302b42ccb35d902b83afee6a7717ba8ef7b102b005092f5bc5a8",
+   "fields": {
+    "academic": {
+     "text": "Admission is always based on a completed Bachelor's degree; subject prerequisites and minimum percentages are in the programme requirement profile (PDF)",
+     "quote": "The basis for admission is ALWAYS your Bachelor’s degree.",
+     "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+     "source_url": "https://ethz.ch/en/studies/master/application.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English",
+      "quote": "Language of instruction\nEnglish",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science ETH in Biochemistry - Chemical Biology",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/natural-sciences-and-mathematics/biochemistry.html",
+   "snapshot_sha256": "9eb31c84c322d53bddf6aa0126a5d5033db1938f6e207d7dfcec847e12318104",
+   "fields": {
+    "academic": {
+     "text": "Admission is always based on a completed Bachelor's degree; subject prerequisites and minimum percentages are in the programme requirement profile (PDF)",
+     "quote": "The basis for admission is ALWAYS your Bachelor’s degree.",
+     "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+     "source_url": "https://ethz.ch/en/studies/master/application.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English",
+      "quote": "Language of instruction\nEnglish",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science ETH in Atmospheric and Climate Science",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/system-oriented-natural-sciences/atmosphaere-und-klima.html",
+   "snapshot_sha256": "b5034e6d2b513f6631ec7a8fe17b1399b0eb5bf6733119ae565ba5e187c1f623",
+   "fields": {
+    "academic": {
+     "text": "Admission is always based on a completed Bachelor's degree; subject prerequisites and minimum percentages are in the programme requirement profile (PDF)",
+     "quote": "The basis for admission is ALWAYS your Bachelor’s degree.",
+     "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+     "source_url": "https://ethz.ch/en/studies/master/application.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English",
+      "quote": "Language of instruction\nEnglish",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science ETH in Architecture",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/architecture-and-civil-engineering/architecture.html",
+   "snapshot_sha256": "b69b83dd4302a242f0420550c1fc4594ef39ca820853f66b48d1d621791e5bd6",
+   "fields": {
+    "academic": {
+     "text": "Qualifying disciplines (Bachelor): Bachelor's degree in Architecture",
+     "quote": "Qualifying disciplines\nBachelor's degree in Architecture",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: German",
+      "quote": "Language of instruction\nGerman",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "German certificate required, e.g. Goethe-Zertifikat C1 with at least 80 points on average",
+      "quote": "Goethe-Zertifikat C1\nat least 80 points on average (all modules must be passed within 12 months)",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science ETH in Process Engineering",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/engineering-sciences/process-engineering.html",
+   "snapshot_sha256": "c348553470da5c70114f6be499e9b2ead9af250abb82f6f0030902a66f87ed49",
+   "fields": {
+    "academic": {
+     "text": "Qualifying disciplines (Bachelor): Bachelor's degree or equivalent first degree from an internationally recognized university:; Chemical Engineering; Mechanical Engineering; Process Engineering",
+     "quote": "Qualifying disciplines\nBachelor's degree or equivalent first degree from an internationally recognized university:\nChemical Engineering\nMechanical Engineering\nProcess Engineering",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English",
+      "quote": "Language of instruction\nEnglish",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science ETH in Civil Engineering",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/architecture-and-civil-engineering/civil-engineering.html",
+   "snapshot_sha256": "c3be2c31991132a0e0cdf097288949b4f34d0209a3d0691b1e39cb75020a84f8",
+   "fields": {
+    "academic": {
+     "text": "Qualifying disciplines (Bachelor): Civil Engineering",
+     "quote": "Qualifying disciplines\nCivil Engineering",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English",
+      "quote": "Language of instruction\nEnglish",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science ETH in Chemical and Bioengineering",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/natural-sciences-and-mathematics/chemical-and-bioengineering.html",
+   "snapshot_sha256": "ceedad742e8410c863567c62ed2ff6bd4c158566ef37fe941414893f3df9cdc5",
+   "fields": {
+    "academic": {
+     "text": "Admission is always based on a completed Bachelor's degree; subject prerequisites and minimum percentages are in the programme requirement profile (PDF)",
+     "quote": "The basis for admission is ALWAYS your Bachelor’s degree.",
+     "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+     "source_url": "https://ethz.ch/en/studies/master/application.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English",
+      "quote": "Language of instruction\nEnglish",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science ETH in Electrical Engineering and Information Technology",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/engineering-sciences/electrical-engineering-and-information-technology.html",
+   "snapshot_sha256": "dc054ffc88cfa2dfaa00c4abfabf84ee5c21c1543e8b959468c35ad079982084",
+   "fields": {
+    "academic": {
+     "text": "Qualifying disciplines (Bachelor): Bachelor in Electrical Engineering and Information Technology (or related fields)",
+     "quote": "Qualifying disciplines\nBachelor in Electrical Engineering and Information Technology (or related fields)",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English",
+      "quote": "Language of instruction\nEnglish",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science ETH in Chemistry",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/natural-sciences-and-mathematics/chemistry.html",
+   "snapshot_sha256": "e32c1e57c4970b16433e69f5f816420f7f56407bcef4a31654516350deb9d36d",
+   "fields": {
+    "academic": {
+     "text": "Admission is always based on a completed Bachelor's degree; subject prerequisites and minimum percentages are in the programme requirement profile (PDF)",
+     "quote": "The basis for admission is ALWAYS your Bachelor’s degree.",
+     "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+     "source_url": "https://ethz.ch/en/studies/master/application.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English",
+      "quote": "Language of instruction\nEnglish",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science ETH in Quantum Engineering",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/engineering-sciences/quantum-engineering.html",
+   "snapshot_sha256": "e867eff44615c06ae828ad6d4895ed5c48e556e04434484f395f321826919c5f",
+   "fields": {
+    "academic": {
+     "text": "Qualifying disciplines (Bachelor): in particular (listed alphabetically):; Electrical Engineering and Information Technology; Physics; Other engineering or physics disciplines",
+     "quote": "Qualifying disciplines\nin particular (listed alphabetically):\nElectrical Engineering and Information Technology\nPhysics\nOther engineering or physics disciplines",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English",
+      "quote": "Language of instruction\nEnglish",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science ETH in Biology",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/natural-sciences-and-mathematics/biology.html",
+   "snapshot_sha256": "e9301b23847a482042ec94c43a8de2bc5d1fd5667c9842e77f8c5569ba47a765",
+   "fields": {
+    "academic": {
+     "text": "Admission is always based on a completed Bachelor's degree; subject prerequisites and minimum percentages are in the programme requirement profile (PDF)",
+     "quote": "The basis for admission is ALWAYS your Bachelor’s degree.",
+     "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+     "source_url": "https://ethz.ch/en/studies/master/application.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English",
+      "quote": "Language of instruction\nEnglish",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science ETH in Computational Science and Engineering",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/natural-sciences-and-mathematics/rechnergestuetzte-wissenschaften.html",
+   "snapshot_sha256": "f4db306760a09f2574396ebef61500731b6a34ac69bf540d1f3a8ad04e6e03ea",
+   "fields": {
+    "academic": {
+     "text": "Admission is always based on a completed Bachelor's degree; subject prerequisites and minimum percentages are in the programme requirement profile (PDF)",
+     "quote": "The basis for admission is ALWAYS your Bachelor’s degree.",
+     "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+     "source_url": "https://ethz.ch/en/studies/master/application.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English",
+      "quote": "Language of instruction\nEnglish",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science ETH in Agricultural Sciences",
+   "url": "https://ethz.ch/en/studies/master/degree-programmes/system-oriented-natural-sciences/agricultural-sciences.html",
+   "snapshot_sha256": "f666e07e9f9d352bdc5e681b4284a0d1b05fc0051741551251d4d81970261140",
+   "fields": {
+    "academic": {
+     "text": "Admission is always based on a completed Bachelor's degree; subject prerequisites and minimum percentages are in the programme requirement profile (PDF)",
+     "quote": "The basis for admission is ALWAYS your Bachelor’s degree.",
+     "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+     "source_url": "https://ethz.ch/en/studies/master/application.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS Online for IELTS Academic\n7.0 (overall band score), minimum band 6.0 in each section",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT®Home Edition,(Test of English as a Foreign Language)\n5.0 (exams taken after 21 January 2026)\n100 (exams taken before 21 January 2026)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+     "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language of instruction: English",
+      "quote": "Language of instruction\nEnglish",
+      "check": "ok"
+     },
+     {
+      "text": "Admission requires meeting the programme requirement profile (qualifying degrees, subject prerequisites and mandatory minimum percentages; published as a PDF)",
+      "quote": "Every profile lists the qualifying degrees as well as the specific subject related prerequisites and their mandatory minimum percentages.",
+      "source_sha256": "00a7c91893f1817d69272a543e8970e38de354f7406129e43ac606ce3fea2835",
+      "source_url": "https://ethz.ch/en/studies/master/application.html",
+      "check": "ok"
+     },
+     {
+      "text": "English certificates (TOEFL, IELTS, C1 Advanced) must be no more than two years old",
+      "quote": "The English language certificates TOEFL, IELTS and C1 Advanced (CAE) must be no more than two years old.",
+      "source_sha256": "95eadb10e0ccc8286ecea5a8e8cefd7df9bcc54e692d7e120276b76e785167aa",
+      "source_url": "https://ethz.ch/en/studies/master/application/language-requirements.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Autumn Semester 2027, applicants with an international Bachelor's degree (window 1-30 November 2026)",
+      "date": "2026-11-30",
+      "quote": "30 November 2026 11:59AM Central European Time (CET)",
+      "source_sha256": "5c83a9effa51dc0d616f0c4ad0c6c32c409da10090e041d56e49629d1f57ba5b",
+      "source_url": "https://ethz.ch/en/studies/master/application/dates.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 45,
+  "机器核对": 45,
+  "待人工": 0
+ }
+}

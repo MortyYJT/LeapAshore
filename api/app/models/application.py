@@ -43,6 +43,10 @@ class ApplicationStatus(StrEnum):
 
     CONSIDERING = "considering"
     APPLYING = "applying"
+    # Past `applying`, so the portfolio can stand in for the applications board it absorbed.
+    SUBMITTED = "submitted"
+    OFFERED = "offered"
+    REJECTED = "rejected"
     EXCLUDED = "excluded"
 
 

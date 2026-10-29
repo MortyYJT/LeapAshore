@@ -1,0 +1,828 @@
+{
+ "school_key": "university-of-toronto",
+ "school_name_en": "University of Toronto",
+ "country": "Canada",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://www.sgs.utoronto.ca/programs/",
+  "https://sgs.calendar.utoronto.ca/degree/Computer-Science",
+  "https://sgs.calendar.utoronto.ca/degree/Statistical-Sciences"
+ ],
+ "china_page": {
+  "url": "https://www.sgs.utoronto.ca/future-students/admission-application-requirements/international-credentials-equivalencies/",
+  "sha256": "b7da0e587046bf67061a44cf419e31918699410ca80b921a63d4e859f9a77ed7"
+ },
+ "blocked": [
+  {
+   "url": "https://www.statistics.utoronto.ca/graduate/admission-information",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://www.rotman.utoronto.ca/Degrees/MastersPrograms/MMA",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://www.rotman.utoronto.ca/Degrees/MastersPrograms/MasterOfFinance",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://mfe.economics.utoronto.ca/",
+   "reason": "robots.txt disallows"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.rotman.utoronto.ca/Degrees/MastersPrograms/MMA",
+  "https://www.rotman.utoronto.ca/Degrees/MastersPrograms/MasterOfFinance",
+  "https://www.rotman.utoronto.ca/Degrees/MastersPrograms/MFRM",
+  "https://www.rotman.utoronto.ca/Degrees/MastersPrograms/MBAPrograms/FullTimeMBA",
+  "https://mfe.economics.utoronto.ca/",
+  "https://www.statistics.utoronto.ca/graduate/admission-information",
+  "https://mse.utoronto.ca/areasresearch/",
+  "https://www.utm.utoronto.ca/mmi/",
+  "https://www.utsc.utoronto.ca/mgmt/maccfin",
+  "https://www.sgs.utoronto.ca/programs/mathematics/",
+  "https://www.sgs.utoronto.ca/programs/economics/"
+ ],
+ "notes": "Rotman (MMA, MF, MFRM, MBA), the Statistics department site and the MFE site are disallowed by robots.txt, so Management Analytics, Finance and Financial Economics were not collected; Statistics and MFI use the SGS Calendar instead. The SGS ELP page gives one university-wide table (TOEFL 93, IELTS 7.0/6.5) that is applied only where the programme page refers to the SGS requirements; units with own scores (MI, MBiotech, UTIAS) use theirs. MI deadline is stated without a year, so it is omitted. The SGS China equivalency (mid-B 80%/78% by grading scale) is not split by 985/211, so it is text only.",
+ "programs": [
+  {
+   "name": "Master of Science in Applied Computing (MScAC)",
+   "url": "https://mscac.utoronto.ca/apply/",
+   "snapshot_sha256": "49f86ab39cebf354dfd4b64741b9d7a572ddf1676f421171c5295eadefd48f75",
+   "fields": {
+    "academic": {
+     "text": "Appropriate undergraduate degree for the chosen concentration, with a final-year standing equivalent to at least B+ (U of T 77-79%); international degrees assessed via the SGS equivalencies tool",
+     "quote": "A standing equivalent to at least B+ (U of T 77-79%) in their final year (i.e., two terms) of study in the undergraduate degree (the equivalent of 5 full credits, or 10 half credits).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "SGS international degree equivalency for China: mid-B is 80% on grading scales where A- = 90% and 78% where A- = 85%; B+ is 85% or 82% respectively (stated by scale, not by 985/211 tier)",
+     "quote": "China Mid-B GPA 80% for grading scales where A- = 90%; 78% for grading scales where A- = 85% A Minus GPA 90% or 85%, depending on institutional grading scale B Plus GPA 85% for grading scales where A- = 90%; 82% for grading scales where A- = 85%",
+     "source_sha256": "b7da0e587046bf67061a44cf419e31918699410ca80b921a63d4e859f9a77ed7",
+     "source_url": "https://www.sgs.utoronto.ca/future-students/admission-application-requirements/international-credentials-equivalencies/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.5,
+     "quote": "Minimum required score: 7.0 (Academic) with at least 6.5 for each component.",
+     "source_sha256": "9bc7c348805b61b0d5e269da0a5d6357a1b7dffd351d6db97815dda58824e617",
+     "source_url": "https://www.sgs.utoronto.ca/future-students/admission-application-requirements/english-language-proficiency-testing/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 93,
+     "quote": "Academic Division Minimum Score Requirement (0-to-120 scale)* Minimum Score Requirement (1-to-6 scale)* Humanities Overall Score: 93 Writing / Speaking: 22 Overall Score: 4.5 Writing: 4.5 Speaking: 4.0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "9bc7c348805b61b0d5e269da0a5d6357a1b7dffd351d6db97815dda58824e617",
+     "source_url": "https://www.sgs.utoronto.ca/future-students/admission-application-requirements/english-language-proficiency-testing/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Applied Mathematics concentration: bachelor's coursework in advanced and multivariate calculus, linear algebra and probability, plus programming and algorithms",
+      "quote": "The completed bachelor’s degree must include coursework in advanced and multivariate calculus (preferably analysis), linear algebra, and probability. There should also be a demonstrated capacity in programming and algorithms.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2026-12-01",
+      "quote": "The application deadline is December 1, 2026, at 11:59 p.m. ET.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Computer Science (MSc)",
+   "url": "https://sgs.calendar.utoronto.ca/degree/Computer-Science",
+   "snapshot_sha256": "aa3ab67903aadf83f00f0f245f98e8f2de31d69f851f668b5924e1b0c539f76e",
+   "fields": {
+    "academic": {
+     "text": "Appropriate bachelor's degree with a standing equivalent to at least a University of Toronto B+; preference to computer science or closely related disciplines",
+     "quote": "An appropriate bachelor's degree with a standing equivalent to at least a University of Toronto B+. Preference is given to applicants who have studied computer science or a closely related discipline.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "SGS international degree equivalency for China: mid-B is 80% on grading scales where A- = 90% and 78% where A- = 85%; B+ is 85% or 82% respectively (stated by scale, not by 985/211 tier)",
+     "quote": "China Mid-B GPA 80% for grading scales where A- = 90%; 78% for grading scales where A- = 85% A Minus GPA 90% or 85%, depending on institutional grading scale B Plus GPA 85% for grading scales where A- = 90%; 82% for grading scales where A- = 85%",
+     "source_sha256": "b7da0e587046bf67061a44cf419e31918699410ca80b921a63d4e859f9a77ed7",
+     "source_url": "https://www.sgs.utoronto.ca/future-students/admission-application-requirements/international-credentials-equivalencies/",
+     "check": "ok"
+    },
+    "toefl": {
+     "text": "TOEFL minimum on the 1-6 scale: 4.5 overall, 4.5 writing, 4.0 speaking (no 0-120 value on this page)",
+     "quote": "must achieve Test of English as a Foreign Language (TOEFL) minimum scores of 4.5/6.0 overall with 4.5/6.0 in writing and 4.0/6.0 in speaking.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Financial Insurance (MFI)",
+   "url": "https://sgs.calendar.utoronto.ca/degree/Statistical-Sciences",
+   "snapshot_sha256": "227ea27e91791d530d9a30b76a5a3f9233a22ba2aa7d65e67c0f29d5b2ef3be3",
+   "fields": {
+    "academic": {
+     "text": "Appropriate quantitative bachelor's degree; average at least U of T B+ in the final year or over senior courses (applicants at SGS mid-B with exceptional workplace experience considered)",
+     "quote": "An average grade equivalent to at least a University of Toronto B+ in the final year or over senior courses; applicants who meet the SGS grade minimum of mid-B and demonstrate exceptional ability through appropriate workplace experience will be considered.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "SGS international degree equivalency for China: mid-B is 80% on grading scales where A- = 90% and 78% where A- = 85%; B+ is 85% or 82% respectively (stated by scale, not by 985/211 tier)",
+     "quote": "China Mid-B GPA 80% for grading scales where A- = 90%; 78% for grading scales where A- = 85% A Minus GPA 90% or 85%, depending on institutional grading scale B Plus GPA 85% for grading scales where A- = 90%; 82% for grading scales where A- = 85%",
+     "source_sha256": "b7da0e587046bf67061a44cf419e31918699410ca80b921a63d4e859f9a77ed7",
+     "source_url": "https://www.sgs.utoronto.ca/future-students/admission-application-requirements/international-credentials-equivalencies/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Coursework in advanced calculus, computational methods, linear algebra, probability and statistics",
+      "quote": "Studies must include significant exposure to statistics, mathematics, finance, and actuarial science, including coursework in advanced calculus, computational methods, linear algebra, probability, and statistics.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Statistics",
+   "url": "https://sgs.calendar.utoronto.ca/degree/Statistical-Sciences",
+   "snapshot_sha256": "227ea27e91791d530d9a30b76a5a3f9233a22ba2aa7d65e67c0f29d5b2ef3be3",
+   "fields": {
+    "academic": {
+     "text": "Appropriate bachelor's degree in a quantitative field; average at least U of T mid-B in the final year or over senior courses",
+     "quote": "An average grade equivalent to at least a University of Toronto mid-B in the final year or over senior courses.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "SGS international degree equivalency for China: mid-B is 80% on grading scales where A- = 90% and 78% where A- = 85%; B+ is 85% or 82% respectively (stated by scale, not by 985/211 tier)",
+     "quote": "China Mid-B GPA 80% for grading scales where A- = 90%; 78% for grading scales where A- = 85% A Minus GPA 90% or 85%, depending on institutional grading scale B Plus GPA 85% for grading scales where A- = 90%; 82% for grading scales where A- = 85%",
+     "source_sha256": "b7da0e587046bf67061a44cf419e31918699410ca80b921a63d4e859f9a77ed7",
+     "source_url": "https://www.sgs.utoronto.ca/future-students/admission-application-requirements/international-credentials-equivalencies/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Mathematical Finance (MMF)",
+   "url": "https://www.mmf.utoronto.ca/apply-to-mmf/",
+   "snapshot_sha256": "4db02bf1e4fad972a3fedacb5a20e20d752ae81761d1c5d7606ef77ccddfb32b",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree in a quantitative or technical discipline with a minimum GPA equivalent to U of T mid-B (75%) in the last two years of senior courses",
+     "quote": "You must have completed a four-year bachelor’s degree in a quantitative or technical discipline from a recognized university with a minimum GPA equivalent to a University of Toronto mid-B (75%) average in the last two years of senior level courses.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "SGS international degree equivalency for China: mid-B is 80% on grading scales where A- = 90% and 78% where A- = 85%; B+ is 85% or 82% respectively (stated by scale, not by 985/211 tier)",
+     "quote": "China Mid-B GPA 80% for grading scales where A- = 90%; 78% for grading scales where A- = 85% A Minus GPA 90% or 85%, depending on institutional grading scale B Plus GPA 85% for grading scales where A- = 90%; 82% for grading scales where A- = 85%",
+     "source_sha256": "b7da0e587046bf67061a44cf419e31918699410ca80b921a63d4e859f9a77ed7",
+     "source_url": "https://www.sgs.utoronto.ca/future-students/admission-application-requirements/international-credentials-equivalencies/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.5,
+     "quote": "Minimum required score: 7.0 (Academic) with at least 6.5 for each component.",
+     "source_sha256": "9bc7c348805b61b0d5e269da0a5d6357a1b7dffd351d6db97815dda58824e617",
+     "source_url": "https://www.sgs.utoronto.ca/future-students/admission-application-requirements/english-language-proficiency-testing/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 93,
+     "quote": "Academic Division Minimum Score Requirement (0-to-120 scale)* Minimum Score Requirement (1-to-6 scale)* Humanities Overall Score: 93 Writing / Speaking: 22 Overall Score: 4.5 Writing: 4.5 Speaking: 4.0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "9bc7c348805b61b0d5e269da0a5d6357a1b7dffd351d6db97815dda58824e617",
+     "source_url": "https://www.sgs.utoronto.ca/future-students/admission-application-requirements/english-language-proficiency-testing/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Linear algebra, multivariate calculus, differential equations, real analysis, an undergraduate statistics course, and programming (R, Python, C++, MATLAB)",
+      "quote": "Applicants must demonstrate evidence of proven ability in areas such as linear algebra, multivariate calculus, differential equations, real analysis and at least one undergraduate course in statistics that covers topics such as confidence testing, applied multivariate analysis, time series analysis and basic regression. Knowledge of economics and finance is helpful in understanding applied mathematics in the context of quantitative finance. Knowledge of programming languages such as R, Python, C++ and MATLAB are required.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2026-12-20",
+      "quote": "The application deadline is December 20, 2026 at 11:59pm ET",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Information (MI)",
+   "url": "https://ischool.utoronto.ca/future-students/apply-to-masters-programs/",
+   "snapshot_sha256": "7bb440faeb70d660476964d344186a6ab9b9947a5b107c2544defdcf92f7e4f9",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree or equivalent with a minimum mid-B average (3.3/4.0 GPA, cumulative or final year)",
+     "quote": "A mid-B equivalent is required for consideration (3.3 / 4.0 GPA cGPA or final year).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "SGS international degree equivalency for China: mid-B is 80% on grading scales where A- = 90% and 78% where A- = 85%; B+ is 85% or 82% respectively (stated by scale, not by 985/211 tier)",
+     "quote": "China Mid-B GPA 80% for grading scales where A- = 90%; 78% for grading scales where A- = 85% A Minus GPA 90% or 85%, depending on institutional grading scale B Plus GPA 85% for grading scales where A- = 90%; 82% for grading scales where A- = 85%",
+     "source_sha256": "b7da0e587046bf67061a44cf419e31918699410ca80b921a63d4e859f9a77ed7",
+     "source_url": "https://www.sgs.utoronto.ca/future-students/admission-application-requirements/international-credentials-equivalencies/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "International English Language Testing System (Academic) overall score: 7.5 Writing: 7.5 Speaking: 7",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 107,
+     "quote": "Minimum Score Requirement (0-to-120 scale)* Minimum Score Requirement (1-to-6 scale)* overall score: 107/120 speaking section: 24/30 writing section: 27/30 overall score: 5.5 speaking section: 4.5 writing section: 5.5",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Policy (MPP)",
+   "url": "https://munkschool.utoronto.ca/mpp/admissions",
+   "snapshot_sha256": "59badfbd1d345c3287decea15dbc575e3e813eb1a5a206e864d5fed06e598c44",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree (any discipline) or equivalent; minimum CGPA of B and a final-year GPA of B+ (3.3/4.0)",
+     "quote": "A minimum cumulative grade point average (CGPA) of a B and a minimum GPA of a B+ standing in the final year of undergraduate studies (3.3 out of a possible 4.0 grading scale).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "SGS international degree equivalency for China: mid-B is 80% on grading scales where A- = 90% and 78% where A- = 85%; B+ is 85% or 82% respectively (stated by scale, not by 985/211 tier)",
+     "quote": "China Mid-B GPA 80% for grading scales where A- = 90%; 78% for grading scales where A- = 85% A Minus GPA 90% or 85%, depending on institutional grading scale B Plus GPA 85% for grading scales where A- = 90%; 82% for grading scales where A- = 85%",
+     "source_sha256": "b7da0e587046bf67061a44cf419e31918699410ca80b921a63d4e859f9a77ed7",
+     "source_url": "https://www.sgs.utoronto.ca/future-students/admission-application-requirements/international-credentials-equivalencies/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.5,
+     "quote": "Minimum required score: 7.0 (Academic) with at least 6.5 for each component.",
+     "source_sha256": "9bc7c348805b61b0d5e269da0a5d6357a1b7dffd351d6db97815dda58824e617",
+     "source_url": "https://www.sgs.utoronto.ca/future-students/admission-application-requirements/english-language-proficiency-testing/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 93,
+     "quote": "Academic Division Minimum Score Requirement (0-to-120 scale)* Minimum Score Requirement (1-to-6 scale)* Humanities Overall Score: 93 Writing / Speaking: 22 Overall Score: 4.5 Writing: 4.5 Speaking: 4.0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "9bc7c348805b61b0d5e269da0a5d6357a1b7dffd351d6db97815dda58824e617",
+     "source_url": "https://www.sgs.utoronto.ca/future-students/admission-application-requirements/english-language-proficiency-testing/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-01-28",
+      "quote": "Deadline for applications for Fall 2027 is January 28, 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Global Affairs (MGA)",
+   "url": "https://munkschool.utoronto.ca/mga/how-apply",
+   "snapshot_sha256": "57961cbab2315d88ca7ff9e085457b9b6e768bf240a6a050a6020d02539a36a2",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree (any discipline) or equivalent; minimum CGPA of mid-B (3.0) and a final-year GPA of B+ (3.3) in 300/400-level courses",
+     "quote": "You are required to have a minimum CGPA of mid-B (3.0), and a minimum GPA of B+ (3.3) in the final year of undergraduate studies of 300 and 400 level courses.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "SGS international degree equivalency for China: mid-B is 80% on grading scales where A- = 90% and 78% where A- = 85%; B+ is 85% or 82% respectively (stated by scale, not by 985/211 tier)",
+     "quote": "China Mid-B GPA 80% for grading scales where A- = 90%; 78% for grading scales where A- = 85% A Minus GPA 90% or 85%, depending on institutional grading scale B Plus GPA 85% for grading scales where A- = 90%; 82% for grading scales where A- = 85%",
+     "source_sha256": "b7da0e587046bf67061a44cf419e31918699410ca80b921a63d4e859f9a77ed7",
+     "source_url": "https://www.sgs.utoronto.ca/future-students/admission-application-requirements/international-credentials-equivalencies/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.5,
+     "quote": "Minimum required score: 7.0 (Academic) with at least 6.5 for each component.",
+     "source_sha256": "9bc7c348805b61b0d5e269da0a5d6357a1b7dffd351d6db97815dda58824e617",
+     "source_url": "https://www.sgs.utoronto.ca/future-students/admission-application-requirements/english-language-proficiency-testing/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 93,
+     "quote": "Academic Division Minimum Score Requirement (0-to-120 scale)* Minimum Score Requirement (1-to-6 scale)* Humanities Overall Score: 93 Writing / Speaking: 22 Overall Score: 4.5 Writing: 4.5 Speaking: 4.0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "9bc7c348805b61b0d5e269da0a5d6357a1b7dffd351d6db97815dda58824e617",
+     "source_url": "https://www.sgs.utoronto.ca/future-students/admission-application-requirements/english-language-proficiency-testing/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-01-28",
+      "quote": "The Application Deadline for Fall 2027 is January 28, 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering, Electrical and Computer Engineering (MEng ECE)",
+   "url": "https://www.ece.utoronto.ca/graduates/admission/",
+   "snapshot_sha256": "2ab399eeca529a4c3cf01c423360bf62f85e4d41ed4b63f7ac3da1a11a690baf",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree in electrical or computer engineering or a related field with an average equivalent to at least mid-B in the final year (per SGS equivalencies tool)",
+     "quote": "an applicant must hold the equivalent of a University of Toronto four-year Bachelor’s degree in electrical or computer engineering, or a related field, with an average equivalent to at least a mid-B in the final year (as per the SGS International Credential Equivalencies tool).",
+     "source_sha256": "7be5d1fe9f6633aa8fcb3f66ebf2f72227474b85f876015f6b98f407b34e5e20",
+     "source_url": "https://www.ece.utoronto.ca/graduates/minimum-admission-requirements/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "SGS international degree equivalency for China: mid-B is 80% on grading scales where A- = 90% and 78% where A- = 85%; B+ is 85% or 82% respectively (stated by scale, not by 985/211 tier)",
+     "quote": "China Mid-B GPA 80% for grading scales where A- = 90%; 78% for grading scales where A- = 85% A Minus GPA 90% or 85%, depending on institutional grading scale B Plus GPA 85% for grading scales where A- = 90%; 82% for grading scales where A- = 85%",
+     "source_sha256": "b7da0e587046bf67061a44cf419e31918699410ca80b921a63d4e859f9a77ed7",
+     "source_url": "https://www.sgs.utoronto.ca/future-students/admission-application-requirements/international-credentials-equivalencies/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.5,
+     "quote": "Minimum required score: 7.0 (Academic) with at least 6.5 for each component.",
+     "source_sha256": "9bc7c348805b61b0d5e269da0a5d6357a1b7dffd351d6db97815dda58824e617",
+     "source_url": "https://www.sgs.utoronto.ca/future-students/admission-application-requirements/english-language-proficiency-testing/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 93,
+     "quote": "Academic Division Minimum Score Requirement (0-to-120 scale)* Minimum Score Requirement (1-to-6 scale)* Humanities Overall Score: 93 Writing / Speaking: 22 Overall Score: 4.5 Writing: 4.5 Speaking: 4.0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "9bc7c348805b61b0d5e269da0a5d6357a1b7dffd351d6db97815dda58824e617",
+     "source_url": "https://www.sgs.utoronto.ca/future-students/admission-application-requirements/english-language-proficiency-testing/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027, international",
+      "date": "2027-04-15",
+      "quote": "Application deadline for Fall start (September 2027) International April 15, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering, Mechanical and Industrial Engineering (MEng MIE)",
+   "url": "https://www.mie.utoronto.ca/programs/graduate/master-of-engineering/",
+   "snapshot_sha256": "6a32bc3f4c1fe35a1e91ac3e39d8d42fd802efbd8d3411d2b10d8468ecc3f3f0",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree with high academic standing; minimum GPA 3.0 (mid-B; 73-76%) in the final two years of undergraduate study",
+     "quote": "Minimum GPA requirement of 3.0 (mid-B; 73-76%) in the final two years of undergraduate study.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "SGS international degree equivalency for China: mid-B is 80% on grading scales where A- = 90% and 78% where A- = 85%; B+ is 85% or 82% respectively (stated by scale, not by 985/211 tier)",
+     "quote": "China Mid-B GPA 80% for grading scales where A- = 90%; 78% for grading scales where A- = 85% A Minus GPA 90% or 85%, depending on institutional grading scale B Plus GPA 85% for grading scales where A- = 90%; 82% for grading scales where A- = 85%",
+     "source_sha256": "b7da0e587046bf67061a44cf419e31918699410ca80b921a63d4e859f9a77ed7",
+     "source_url": "https://www.sgs.utoronto.ca/future-students/admission-application-requirements/international-credentials-equivalencies/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027, international",
+      "date": "2027-04-15",
+      "quote": "MEng full-time, extended full-time (non-co-op) and part-time: International: April 15, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering, Civil and Mineral Engineering (MEng)",
+   "url": "https://civmin.utoronto.ca/home/admissions/graduate-admissions/",
+   "snapshot_sha256": "8bfde087736e0be3d88c7a8178e6de3a53244bf28e05cd65c41ac4162ff84e53",
+   "fields": {
+    "academic": {
+     "text": "Undergraduate degree equivalent to a four-year U of T degree with a minimum final-year GPA of mid-B (3.0/4.0 or 75%)",
+     "quote": "Completion of an undergraduate degree equivalent to a four-year University of Toronto degree, with a minimum final year GPA of mid-B (3.0/4.0 or 75%).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "SGS international degree equivalency for China: mid-B is 80% on grading scales where A- = 90% and 78% where A- = 85%; B+ is 85% or 82% respectively (stated by scale, not by 985/211 tier)",
+     "quote": "China Mid-B GPA 80% for grading scales where A- = 90%; 78% for grading scales where A- = 85% A Minus GPA 90% or 85%, depending on institutional grading scale B Plus GPA 85% for grading scales where A- = 90%; 82% for grading scales where A- = 85%",
+     "source_sha256": "b7da0e587046bf67061a44cf419e31918699410ca80b921a63d4e859f9a77ed7",
+     "source_url": "https://www.sgs.utoronto.ca/future-students/admission-application-requirements/international-credentials-equivalencies/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027, international",
+      "date": "2027-04-15",
+      "quote": "MEng & MEngCEM International August 4, 2026 April 15, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering in Cities Engineering & Management (MEngCEM)",
+   "url": "https://civmin.utoronto.ca/home/admissions/graduate-admissions/",
+   "snapshot_sha256": "8bfde087736e0be3d88c7a8178e6de3a53244bf28e05cd65c41ac4162ff84e53",
+   "fields": {
+    "academic": {
+     "text": "Undergraduate degree equivalent to a four-year U of T degree with a minimum final-year GPA of mid-B (3.0/4.0 or 75%) and at least one year of work/professional experience",
+     "quote": "In addition, you must have at least one year of work/professional experience.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "SGS international degree equivalency for China: mid-B is 80% on grading scales where A- = 90% and 78% where A- = 85%; B+ is 85% or 82% respectively (stated by scale, not by 985/211 tier)",
+     "quote": "China Mid-B GPA 80% for grading scales where A- = 90%; 78% for grading scales where A- = 85% A Minus GPA 90% or 85%, depending on institutional grading scale B Plus GPA 85% for grading scales where A- = 90%; 82% for grading scales where A- = 85%",
+     "source_sha256": "b7da0e587046bf67061a44cf419e31918699410ca80b921a63d4e859f9a77ed7",
+     "source_url": "https://www.sgs.utoronto.ca/future-students/admission-application-requirements/international-credentials-equivalencies/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027, international",
+      "date": "2027-04-15",
+      "quote": "MEng & MEngCEM International August 4, 2026 April 15, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering, Aerospace Science and Engineering (MEng UTIAS)",
+   "url": "https://www.utias.utoronto.ca/admissions/",
+   "snapshot_sha256": "9f6b0ee7d50815d118a99c753dcd4d043ca534a655ec95da21db6285dbae58a0",
+   "fields": {
+    "academic": {
+     "text": "Mid-B average at the undergraduate level in the final year of study (equivalents for foreign credentials per the SGS equivalencies tool)",
+     "quote": "To qualify for admission to the MEng programs, you require a mid-B average at the undergraduate level in the final year of study.",
+     "source_sha256": "a3944652f151dc423459a92475d95cd4bc70d0012ed8015d23f64a881c1ef2bb",
+     "source_url": "https://www.utias.utoronto.ca/admissions/program-faqs/",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "SGS international degree equivalency for China: mid-B is 80% on grading scales where A- = 90% and 78% where A- = 85%; B+ is 85% or 82% respectively (stated by scale, not by 985/211 tier)",
+     "quote": "China Mid-B GPA 80% for grading scales where A- = 90%; 78% for grading scales where A- = 85% A Minus GPA 90% or 85%, depending on institutional grading scale B Plus GPA 85% for grading scales where A- = 90%; 82% for grading scales where A- = 85%",
+     "source_sha256": "b7da0e587046bf67061a44cf419e31918699410ca80b921a63d4e859f9a77ed7",
+     "source_url": "https://www.sgs.utoronto.ca/future-students/admission-application-requirements/international-credentials-equivalencies/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.5,
+     "quote": "IELTS: Minimum overall score of 7.0, with at least 6.5 for each of the four components.",
+     "source_sha256": "a3944652f151dc423459a92475d95cd4bc70d0012ed8015d23f64a881c1ef2bb",
+     "source_url": "https://www.utias.utoronto.ca/admissions/program-faqs/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 93,
+     "quote": "TOEFL: Minimum total 93, both writing and speaking must be at least 22.",
+     "source_sha256": "a3944652f151dc423459a92475d95cd4bc70d0012ed8015d23f64a881c1ef2bb",
+     "source_url": "https://www.utias.utoronto.ca/admissions/program-faqs/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027, international",
+      "date": "2027-04-15",
+      "quote": "Application deadline for Fall start (September 2027) International April 15, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering, Chemical Engineering and Applied Chemistry (MEng)",
+   "url": "https://chem-eng.utoronto.ca/graduate-studies/meng-applications/",
+   "snapshot_sha256": "69e6a6b8a28601bf0511136d15ac9ba7232ee6395c5c31cbb46cd24912dfe4a0",
+   "fields": {
+    "academic": {
+     "text": "4-year degree (or equivalent) in engineering or the physical/chemical/biological sciences with at least mid-B in each of the last two years of full-time study",
+     "quote": "A 4-year degree (or equivalent) in engineering or the physical/chemical/biological sciences with at least a mid-B (or equivalent) in each of the last two years of full-time study.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "SGS international degree equivalency for China: mid-B is 80% on grading scales where A- = 90% and 78% where A- = 85%; B+ is 85% or 82% respectively (stated by scale, not by 985/211 tier)",
+     "quote": "China Mid-B GPA 80% for grading scales where A- = 90%; 78% for grading scales where A- = 85% A Minus GPA 90% or 85%, depending on institutional grading scale B Plus GPA 85% for grading scales where A- = 90%; 82% for grading scales where A- = 85%",
+     "source_sha256": "b7da0e587046bf67061a44cf419e31918699410ca80b921a63d4e859f9a77ed7",
+     "source_url": "https://www.sgs.utoronto.ca/future-students/admission-application-requirements/international-credentials-equivalencies/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027, international",
+      "date": "2027-04-15",
+      "quote": "International applicants: April 15, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering, Biomedical Engineering (MEng)",
+   "url": "https://bme.utoronto.ca/prospective-student/admission-to-graduate-studies/",
+   "snapshot_sha256": "24abdb6316cd830f5783e17a83db99a82f034381efbc93a57f3261f1bd9356f8",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "September 2027, international",
+      "date": "2027-04-15",
+      "quote": "2027 September start International Nov 1, 2026 Apr 15, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Health Informatics (MHI)",
+   "url": "https://ihpme.utoronto.ca/programs/health-informatics/mhi-program-details/admissions/",
+   "snapshot_sha256": "de2a115165667e51106188a0130880cb44b5c3b5148e6ae2d4763879e1961d4f",
+   "fields": {
+    "academic": {
+     "text": "Related four-year undergraduate degree with a B+ average in the last academic year; international applicants check the SGS equivalency chart for the GPA requirement",
+     "quote": "Related four year undergraduate degree (e.g. Health Sciences, Social Sciences, Ontario Regulated Health Professions, Computer Science or Information Science) B+ Average in Last Academic Year",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "SGS international degree equivalency for China: mid-B is 80% on grading scales where A- = 90% and 78% where A- = 85%; B+ is 85% or 82% respectively (stated by scale, not by 985/211 tier)",
+     "quote": "China Mid-B GPA 80% for grading scales where A- = 90%; 78% for grading scales where A- = 85% A Minus GPA 90% or 85%, depending on institutional grading scale B Plus GPA 85% for grading scales where A- = 90%; 82% for grading scales where A- = 85%",
+     "source_sha256": "b7da0e587046bf67061a44cf419e31918699410ca80b921a63d4e859f9a77ed7",
+     "source_url": "https://www.sgs.utoronto.ca/future-students/admission-application-requirements/international-credentials-equivalencies/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "2027 intake",
+      "date": "2027-01-03",
+      "quote": "MHI Application Deadline: January 3, 2027",
+      "source_sha256": "91b697b665eaea8fbcd9ba8fcee3f9e7c0b238c31c99a2611e6233dd66ddf9f9",
+      "source_url": "https://ihpme.utoronto.ca/programs/health-informatics/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Health (MPH, two-year programs)",
+   "url": "https://www.dlsph.utoronto.ca/students/future-students/admission-requirements/",
+   "snapshot_sha256": "6b779999cfb5e7f81588ba6fb19f439edcb64c224cbf8ee25210f8442d2b8d82",
+   "fields": {
+    "academic": {
+     "text": "Appropriate bachelor's degree or equivalent with at least a mid-B average in the final year or the last 5.0 senior full course equivalents (SGS minimum; the department may require higher)",
+     "quote": "At least a mid-B average in final year of the degree or in the last 5.0 full course equivalents completed at a senior level*",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "SGS international degree equivalency for China: mid-B is 80% on grading scales where A- = 90% and 78% where A- = 85%; B+ is 85% or 82% respectively (stated by scale, not by 985/211 tier)",
+     "quote": "China Mid-B GPA 80% for grading scales where A- = 90%; 78% for grading scales where A- = 85% A Minus GPA 90% or 85%, depending on institutional grading scale B Plus GPA 85% for grading scales where A- = 90%; 82% for grading scales where A- = 85%",
+     "source_sha256": "b7da0e587046bf67061a44cf419e31918699410ca80b921a63d4e859f9a77ed7",
+     "source_url": "https://www.sgs.utoronto.ca/future-students/admission-application-requirements/international-credentials-equivalencies/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "At least one undergraduate statistics course (Black Health, Epidemiology, Health Promotion, Indigenous Health, Nutrition and Dietetics)",
+      "quote": "At least one undergraduate statistics course, completed at an accredited university, is required for Black Health, Epidemiology, Health Promotion, Indigenous Health, and Nutrition and Dietetics, and is recommended for Family & Community Medicine and Occupational & Environmental Health",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "2027-28, two-year MPH programs",
+      "date": "2027-01-15",
+      "source_sha256": "af67fd0ba947cac980f589dc3a2c5e244b3103de2e367d2549da6ee39772f19f",
+      "quote": "MPH 2-yr programs: Black Health, Epidemiology, Family & Comm Med, Health Promotion, Nutrition & Dietetics, Occ & Environ Health Friday, January 15, 2027",
+      "source_url": "https://www.dlsph.utoronto.ca/students/future-students/application-process/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Biostatistics (Public Health Sciences)",
+   "url": "https://www.dlsph.utoronto.ca/students/future-students/admission-requirements/",
+   "snapshot_sha256": "6b779999cfb5e7f81588ba6fb19f439edcb64c224cbf8ee25210f8442d2b8d82",
+   "fields": {
+    "academic": {
+     "text": "Appropriate bachelor's degree or equivalent with at least a mid-B average in the final year or the last 5.0 senior full course equivalents",
+     "quote": "At least a mid-B average in final year of the degree or in the last 5.0 full course equivalents completed at a senior level*",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "SGS international degree equivalency for China: mid-B is 80% on grading scales where A- = 90% and 78% where A- = 85%; B+ is 85% or 82% respectively (stated by scale, not by 985/211 tier)",
+     "quote": "China Mid-B GPA 80% for grading scales where A- = 90%; 78% for grading scales where A- = 85% A Minus GPA 90% or 85%, depending on institutional grading scale B Plus GPA 85% for grading scales where A- = 90%; 82% for grading scales where A- = 85%",
+     "source_sha256": "b7da0e587046bf67061a44cf419e31918699410ca80b921a63d4e859f9a77ed7",
+     "source_url": "https://www.sgs.utoronto.ca/future-students/admission-application-requirements/international-credentials-equivalencies/",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Courses in linear algebra, advanced calculus, probability and mathematical statistics",
+      "quote": "Courses in linear algebra, advanced calculus, probability and mathematical statistics",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "2027-28",
+      "date": "2027-01-15",
+      "source_sha256": "af67fd0ba947cac980f589dc3a2c5e244b3103de2e367d2549da6ee39772f19f",
+      "quote": "MSc Biostatistics, MScCH (all fields): Friday, January 15, 2027",
+      "source_url": "https://www.dlsph.utoronto.ca/students/future-students/application-process/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Biotechnology (MBiotech)",
+   "url": "https://www.utm.utoronto.ca/mbiotech/admissions",
+   "snapshot_sha256": "171fabfe6b402c1be1afff9890526f4b58c7b82e176dfce7af9ef65dde722c3b",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree in biological sciences, chemistry, engineering or a related field with a minimum mid-B (73-76%) standing in the final two years; international degrees assessed via the SGS equivalencies tool",
+     "quote": "A four-year bachelor’s degree from a recognized university in any area of biological sciences, chemistry, engineering, or related field with a minimum mid-B (73 – 76%) standing in the final two years of study; and",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "SGS international degree equivalency for China: mid-B is 80% on grading scales where A- = 90% and 78% where A- = 85%; B+ is 85% or 82% respectively (stated by scale, not by 985/211 tier)",
+     "quote": "China Mid-B GPA 80% for grading scales where A- = 90%; 78% for grading scales where A- = 85% A Minus GPA 90% or 85%, depending on institutional grading scale B Plus GPA 85% for grading scales where A- = 90%; 82% for grading scales where A- = 85%",
+     "source_sha256": "b7da0e587046bf67061a44cf419e31918699410ca80b921a63d4e859f9a77ed7",
+     "source_url": "https://www.sgs.utoronto.ca/future-students/admission-application-requirements/international-credentials-equivalencies/",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.5,
+     "quote": "IELTS: Overall 7.0 and 6.5 in each component",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL: Total: 100, Writing: 22, Speaking: 22 NEW TOEFL 1-6 Scale (Effective January 21, 2026): Overall score: 4.5, Writing: 4.5, Speaking: 4.0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "2027-28 cycle",
+      "date": "2027-01-15",
+      "quote": "Applications to the MBiotech open on September 15, 2026 and close on January 15, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Urban Design (MUD)",
+   "url": "https://www.daniels.utoronto.ca/programs/graduate/master-urban-design",
+   "snapshot_sha256": "4077a6f896bc6d901115e337282ddb479ecbb96bdf914b2ae3476981dec19eff",
+   "fields": {
+    "academic": {
+     "text": "Degree in architecture, landscape architecture, planning or a related field (portfolio required) with a final-year average of at least mid-B or equivalent",
+     "quote": "with a final year average of at least mid-B from the University of Toronto or its equivalent from a recognized university.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "SGS international degree equivalency for China: mid-B is 80% on grading scales where A- = 90% and 78% where A- = 85%; B+ is 85% or 82% respectively (stated by scale, not by 985/211 tier)",
+     "quote": "China Mid-B GPA 80% for grading scales where A- = 90%; 78% for grading scales where A- = 85% A Minus GPA 90% or 85%, depending on institutional grading scale B Plus GPA 85% for grading scales where A- = 90%; 82% for grading scales where A- = 85%",
+     "source_sha256": "b7da0e587046bf67061a44cf419e31918699410ca80b921a63d4e859f9a77ed7",
+     "source_url": "https://www.sgs.utoronto.ca/future-students/admission-application-requirements/international-credentials-equivalencies/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-01-11",
+      "quote": "January 11, 2027: Applications due",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Landscape Architecture (MLA)",
+   "url": "https://www.daniels.utoronto.ca/programs/graduate/master-landscape-architecture",
+   "snapshot_sha256": "ac05cd86211c32640211d7f181d1d12f7fdb6a5735619ca43df9cd75fa901956",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-01-11",
+      "quote": "January 11, 2027: Applications due",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Architecture (MArch)",
+   "url": "https://www.daniels.utoronto.ca/programs/graduate/master-architecture",
+   "snapshot_sha256": "bc288759d03e65780c6ac2a4af79ea8b0867c6e9c4adbbe968061d7a6fd71660",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-01-11",
+      "quote": "January 11, 2027: Applications due",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Education, Counselling Psychology (Counselling & Psychotherapy field)",
+   "url": "https://www.oise.utoronto.ca/aphd/programs/master-education-counselling-psychology-counselling-psychotherapy-field",
+   "snapshot_sha256": "6842f9dbb5df1de81c3e4c942a026faf9891580030568cf0fee1a03471719015",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in any discipline with a grade equivalent to a U of T B+ or better in the final year",
+     "quote": "An appropriate bachelor’s degree in any major or discipline, with a grade equivalent to a University of Toronto B+ or better in the final year, from a recognized university.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "SGS international degree equivalency for China: mid-B is 80% on grading scales where A- = 90% and 78% where A- = 85%; B+ is 85% or 82% respectively (stated by scale, not by 985/211 tier)",
+     "quote": "China Mid-B GPA 80% for grading scales where A- = 90%; 78% for grading scales where A- = 85% A Minus GPA 90% or 85%, depending on institutional grading scale B Plus GPA 85% for grading scales where A- = 90%; 82% for grading scales where A- = 85%",
+     "source_sha256": "b7da0e587046bf67061a44cf419e31918699410ca80b921a63d4e859f9a77ed7",
+     "source_url": "https://www.sgs.utoronto.ca/future-students/admission-application-requirements/international-credentials-equivalencies/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027",
+      "date": "2026-11-02",
+      "quote": "Application Deadline: November 2, 2026 at 5:00pm",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Education, Developmental Psychology and Education",
+   "url": "https://www.oise.utoronto.ca/aphd/programs/master-education-developmental-psychology-education",
+   "snapshot_sha256": "894b25bb5c5b66295fc23ba0f625b2976d9c38555be3337ff7a0a25db934acc2",
+   "fields": {
+    "academic": {
+     "text": "Four-year honours bachelor's degree with standing equivalent to a U of T mid-B or better in the final year or over senior courses",
+     "quote": "An appropriate honours bachelor’s degree (4-year) with standing equivalent to a University of Toronto mid-B or better in the final year or over senior courses.",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "text": "SGS international degree equivalency for China: mid-B is 80% on grading scales where A- = 90% and 78% where A- = 85%; B+ is 85% or 82% respectively (stated by scale, not by 985/211 tier)",
+     "quote": "China Mid-B GPA 80% for grading scales where A- = 90%; 78% for grading scales where A- = 85% A Minus GPA 90% or 85%, depending on institutional grading scale B Plus GPA 85% for grading scales where A- = 90%; 82% for grading scales where A- = 85%",
+     "source_sha256": "b7da0e587046bf67061a44cf419e31918699410ca80b921a63d4e859f9a77ed7",
+     "source_url": "https://www.sgs.utoronto.ca/future-students/admission-application-requirements/international-credentials-equivalencies/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027",
+      "date": "2027-01-18",
+      "quote": "Application Deadline: January 18, 2027 at 11:59pm",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 24,
+  "机器核对": 24,
+  "待人工": 0
+ }
+}

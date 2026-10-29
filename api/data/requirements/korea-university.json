@@ -1,0 +1,2833 @@
+{
+ "school_key": "korea-university",
+ "school_name_en": "Korea University",
+ "country": "South Korea",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://graduate.korea.ac.kr/main/main.html",
+  "https://graduate2.korea.ac.kr/department/major.html",
+  "https://graduate2.korea.ac.kr/admission/eligibility.html",
+  "https://graduate2.korea.ac.kr/admission/schedule.html",
+  "https://int.korea.edu/kuis/grad/admission_inter.do",
+  "https://biz.korea.ac.kr/eng/msphd/faq.html"
+ ],
+ "blocked": [
+  {
+   "url": "https://gsis.korea.ac.kr/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://idas.korea.ac.kr/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://cse.korea.ac.kr/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://pp.korea.ac.kr/",
+   "reason": "robots.txt disallows"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://graduate2.korea.ac.kr/department/major.html (remaining departments not listed as programs)",
+  "https://biz.korea.ac.kr/eng/mba/financeMBA/admission.html",
+  "https://biz.korea.ac.kr/eng/mba/koreaMBA/admission.html"
+ ],
+ "notes": "The Graduate School (graduate2.korea.ac.kr) publishes one set of international-track requirements for all general-graduate-school departments, so the department programs cite that page; its banner still reads '2022 Fall Semester' although its dates are for Spring 2027. Department-specific TOPIK and Economics rules are included only where that page names them. The detailed admission guidelines of the Graduate School, GSIS and the Business School are PDFs and were not read. IDAS, GSIS (gsis.korea.ac.kr), CSE and Public Policy department sites disallow us in robots.txt. Finance MBA and Korea MBA are for Korean speakers and were skipped. Closed Fall 2026 / Spring 2027 windows are labelled as such; no Fall 2027 dates are published yet.",
+ "programs": [
+  {
+   "name": "M.A. in International Studies, Graduate School of International Studies (International Commerce; International Development & Cooperation; International Peace & Security; Area Studies)",
+   "url": "https://int.korea.edu/kuis/grad/admission_inter.do",
+   "snapshot_sha256": "598a729a9731e3a3b2c9706b21af9c681c9dc2f4f774d6c0523971fb8c4b9212",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "English: GSIS states it has no minimum English test score for application",
+      "quote": "KU GSIS does not have a minimum English test score required for application.",
+      "source_sha256": "0fce08249b4a736348ffad1c54f41f729cbca896ba6ff3e2b182cbec304bb9fe",
+      "source_url": "https://int.korea.edu/kuis/grad/admission_faq.do",
+      "check": "ok"
+     },
+     {
+      "text": "Applicants who completed their undergraduate course entirely in English (not native speakers) may be exempted from TOEFL/IELTS with an official letter confirming English-only instruction",
+      "quote": "Please ask the university staff to provide a letter verifying that all of the classes were fully conducted in English ONLY.",
+      "source_sha256": "0fce08249b4a736348ffad1c54f41f729cbca896ba6ff3e2b182cbec304bb9fe",
+      "source_url": "https://int.korea.edu/kuis/grad/admission_faq.do",
+      "check": "ok"
+     },
+     {
+      "text": "Medium of instruction: all GSIS courses are taught in English (Korean language classes excepted)",
+      "quote": "All GSIS courses including Korean Studies courses are conducted in English.",
+      "source_sha256": "0fce08249b4a736348ffad1c54f41f729cbca896ba6ff3e2b182cbec304bb9fe",
+      "source_url": "https://int.korea.edu/kuis/grad/admission_faq.do",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027: online application and fee payment close",
+      "date": "2026-10-22",
+      "quote": "October 6 (Tue.) 10:00 ~ October 22 (Thur.) by 17:00, 2026 (KST)",
+      "source_sha256": "598a729a9731e3a3b2c9706b21af9c681c9dc2f4f774d6c0523971fb8c4b9212",
+      "source_url": "https://int.korea.edu/kuis/grad/admission_inter.do",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027: application documents submission closes",
+      "date": "2026-10-23",
+      "quote": "October 6 (Tue.) 10:00 ~ October 23 (Fri.) by 17:00, 2026 (KST)",
+      "source_sha256": "598a729a9731e3a3b2c9706b21af9c681c9dc2f4f774d6c0523971fb8c4b9212",
+      "source_url": "https://int.korea.edu/kuis/grad/admission_inter.do",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "M.A. in Korean Studies, Graduate School of International Studies",
+   "url": "https://int.korea.edu/kuis/grad/admission_inter.do",
+   "snapshot_sha256": "598a729a9731e3a3b2c9706b21af9c681c9dc2f4f774d6c0523971fb8c4b9212",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "English: GSIS states it has no minimum English test score for application",
+      "quote": "KU GSIS does not have a minimum English test score required for application.",
+      "source_sha256": "0fce08249b4a736348ffad1c54f41f729cbca896ba6ff3e2b182cbec304bb9fe",
+      "source_url": "https://int.korea.edu/kuis/grad/admission_faq.do",
+      "check": "ok"
+     },
+     {
+      "text": "Applicants who completed their undergraduate course entirely in English (not native speakers) may be exempted from TOEFL/IELTS with an official letter confirming English-only instruction",
+      "quote": "Please ask the university staff to provide a letter verifying that all of the classes were fully conducted in English ONLY.",
+      "source_sha256": "0fce08249b4a736348ffad1c54f41f729cbca896ba6ff3e2b182cbec304bb9fe",
+      "source_url": "https://int.korea.edu/kuis/grad/admission_faq.do",
+      "check": "ok"
+     },
+     {
+      "text": "Medium of instruction: all GSIS courses are taught in English (Korean language classes excepted)",
+      "quote": "All GSIS courses including Korean Studies courses are conducted in English.",
+      "source_sha256": "0fce08249b4a736348ffad1c54f41f729cbca896ba6ff3e2b182cbec304bb9fe",
+      "source_url": "https://int.korea.edu/kuis/grad/admission_faq.do",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027: online application and fee payment close",
+      "date": "2026-10-22",
+      "quote": "October 6 (Tue.) 10:00 ~ October 22 (Thur.) by 17:00, 2026 (KST)",
+      "source_sha256": "598a729a9731e3a3b2c9706b21af9c681c9dc2f4f774d6c0523971fb8c4b9212",
+      "source_url": "https://int.korea.edu/kuis/grad/admission_inter.do",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027: application documents submission closes",
+      "date": "2026-10-23",
+      "quote": "October 6 (Tue.) 10:00 ~ October 23 (Fri.) by 17:00, 2026 (KST)",
+      "source_sha256": "598a729a9731e3a3b2c9706b21af9c681c9dc2f4f774d6c0523971fb8c4b9212",
+      "source_url": "https://int.korea.edu/kuis/grad/admission_inter.do",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Business Administration, Korea University Business School (Management; Global Business; Marketing; Finance; Accounting; Strategy; LSOM; IS), international track",
+   "url": "https://biz.korea.ac.kr/eng/msphd/faq.html",
+   "snapshot_sha256": "f6831d61497f74ba7483b1c60c567e252388adcec84a6a16a26094522a3a50b5",
+   "fields": {
+    "academic": {
+     "text": "International students and overseas Koreans: must hold or be expected to obtain the bachelor's (or master's) degree required for the program before enrollment; applicant and both parents non-Korean citizens, 16 years of education",
+     "quote": "The applicant must hold or be expected to obtain the bachelor’s or master’s degree required for the intended program before enrollment.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 71,
+     "quote": "TOEFL iBT 71 or higher (3.5 or higher for test-takers taking the exam on or after January 21, 2026) / Academic IELTS 5.5 or higher / New TEPS 326 or higher / CEFR B2 or higher.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "TOEFL iBT 71 or higher (3.5 or higher for test-takers taking the exam on or after January 21, 2026) / Academic IELTS 5.5 or higher / New TEPS 326 or higher / CEFR B2 or higher.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English proficiency proof is required for Management, Global Business, Marketing, Finance, Accounting, Strategy, LSOM and IS (alternatives: native English speakers, degree from an English-speaking country, previous degree entirely in English, or department recognition)",
+      "quote": "Applicants to Management, Global Business, Marketing, Finance, Accounting, Strategy, LSOM, and IS must submit proof of English proficiency.",
+      "check": "ok"
+     },
+     {
+      "text": "Recommendation letter mandatory for Finance, Strategy and Accounting; optional for other majors",
+      "quote": "Mandatory for applicants to Finance, Strategy, and Accounting.",
+      "check": "ok"
+     },
+     {
+      "text": "Marketing and Accounting master's programs admit for Spring only",
+      "quote": "※ The Master’s Program in Marketing accepts applicants for Spring Admission only.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Business Administration (Business Analytics, BA; one-year), Korea University Business School, international track",
+   "url": "https://biz.korea.ac.kr/eng/msphd/faq.html",
+   "snapshot_sha256": "f6831d61497f74ba7483b1c60c567e252388adcec84a6a16a26094522a3a50b5",
+   "fields": {
+    "academic": {
+     "text": "International students and overseas Koreans: must hold or be expected to obtain the bachelor's (or master's) degree required for the program before enrollment",
+     "quote": "The applicant must hold or be expected to obtain the bachelor’s or master’s degree required for the intended program before enrollment.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Business Analytics (BA) applicants must submit a TOPIK score",
+      "quote": "Business Analytics (BA) applicants must submit a TOPIK score.",
+      "check": "ok"
+     },
+     {
+      "text": "Business Analytics (BA) is a one-year program; Accounting and BA accept Spring admission only",
+      "quote": "※ Business Analytics (BA) is a one-year program.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Global MBA (Master of Business Administration), Korea University Business School, international non-quota track",
+   "url": "https://biz.korea.ac.kr/eng/mba/globalMBA/admission.html",
+   "snapshot_sha256": "85148980c10395917a005be95d1462fa04734b4e771f7fc4c3534b0e2354a4c2",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or expected by August 2026) from Korea or overseas; international non-quota track for non-Korean applicants",
+     "quote": "One who has earned a bachelor’s degree or who is expected to earn a bachelor’s degree by August 2026 from Korea or overseas.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English proficiency certificate required (TOEIC, TOEFL, IELTS, TEPS, OPIC etc.; no minimum score stated); exemptions for degrees from listed English-speaking countries",
+      "quote": "TOEIC, TOEFL, IELTS, TEPS, OPIC, etc.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2026 Round 1 online application closes (closed)",
+      "date": "2026-02-11",
+      "quote": "Wednesday, January 21, 2026 - Wednesday, February 11, 2026 at 5 PM",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2026 Round 2 online application closes (closed)",
+      "date": "2026-03-20",
+      "quote": "Friday, February 27, 2026 - Friday, March 20, 2026 at 5 PM",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2026 Round 3 online application closes (closed)",
+      "date": "2026-04-17",
+      "quote": "Tuesday, March 31, 2026 - Friday, April 17, 2026 at 5 PM",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "CEMS Global MIM (Master in Management), Korea University Business School, international non-quota track",
+   "url": "https://biz.korea.ac.kr/eng/mba/globalMIM/admission.html",
+   "snapshot_sha256": "8d2077bc7726beda6644fd31df4cd5b7f6d79ac5b358fdbf98ac8c29553d9510",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (or expected by August 2026) with a major in business, management, economics or related fields, or 40 credits / 60 ECTS in those fields",
+     "quote": "one who majored in business, management, economy or related fields or ②one who earned 40 credits or 60 ECTS(European Credit Transfer and Accumulation System) or more in business, management, economy or related fields",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT 100 (prior to January 21, 2026) / 5 (from January 21, 2026 onward)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "②IELTS 7.0",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "No work experience or less than 2 years of employment (recommended, not required)",
+      "quote": "One who has no work experience or was employed for less than 2 years (recommended)",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2026 Round 1 online application closes (closed)",
+      "date": "2026-02-11",
+      "quote": "Wednesday, January 21, 2026 - Wednesday, February 11, 2026 at 5 PM",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2026 Round 2 online application closes (closed)",
+      "date": "2026-03-20",
+      "quote": "Friday, February 27, 2026 - Friday, March 20, 2026 at 5 PM",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2026 Round 3 online application closes (closed)",
+      "date": "2026-04-17",
+      "quote": "Tuesday, March 31, 2026 - Friday, April 17, 2026 at 5 PM",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's, Department of Law, Graduate School (international track)",
+   "url": "https://graduate2.korea.ac.kr/department/major.html",
+   "snapshot_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+   "fields": {
+    "academic": {
+     "text": "International-student track: the applicant and the applicant's parent(s) must all be non-Korean citizens (the degree level required is not stated on this page)",
+     "quote": "Both the applicant and applicant’s parent(s) must be non-Korean citizens.",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 71,
+     "quote": "TOEFL iBT 71(including Home Edition, a score of 3.5 for tests taken on or after Jan 21. 2026) or higher",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "Academic IELTS 5.5 or higher",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language proficiency: submit one or more of Korean (TOPIK level 3 or higher) or English (TOEFL iBT, Academic IELTS, New TEPS, CEFR B2) scores, or qualify under the listed exemptions",
+      "quote": "3. Language Proficiency Requirements: Please submit one or more of the following documents.",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Korean: TOPIK level 3 or higher is accepted as proof of language proficiency",
+      "quote": "A score report of the Test of Proficiency in Korean (TOPIK / TOPIK IBT regular test) level 3 or higher",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 international track: online application closes",
+      "date": "2026-09-10",
+      "quote": "September 1(Tue) 10:00 - September 10(Thu) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027 international track: document submission closes",
+      "date": "2026-09-16",
+      "quote": "September 1(Tue) 10:00 - September 16(Wed) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's, Department of English Language and Literature, Graduate School (international track)",
+   "url": "https://graduate2.korea.ac.kr/department/major.html",
+   "snapshot_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+   "fields": {
+    "academic": {
+     "text": "International-student track: the applicant and the applicant's parent(s) must all be non-Korean citizens (the degree level required is not stated on this page)",
+     "quote": "Both the applicant and applicant’s parent(s) must be non-Korean citizens.",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 71,
+     "quote": "TOEFL iBT 71(including Home Edition, a score of 3.5 for tests taken on or after Jan 21. 2026) or higher",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "Academic IELTS 5.5 or higher",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language proficiency: submit one or more of Korean (TOPIK level 3 or higher) or English (TOEFL iBT, Academic IELTS, New TEPS, CEFR B2) scores, or qualify under the listed exemptions",
+      "quote": "3. Language Proficiency Requirements: Please submit one or more of the following documents.",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Korean: TOPIK level 3 or higher is accepted as proof of language proficiency",
+      "quote": "A score report of the Test of Proficiency in Korean (TOPIK / TOPIK IBT regular test) level 3 or higher",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 international track: online application closes",
+      "date": "2026-09-10",
+      "quote": "September 1(Tue) 10:00 - September 10(Thu) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027 international track: document submission closes",
+      "date": "2026-09-16",
+      "quote": "September 1(Tue) 10:00 - September 16(Wed) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's, Department of Linguistics, Graduate School (international track)",
+   "url": "https://graduate2.korea.ac.kr/department/major.html",
+   "snapshot_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+   "fields": {
+    "academic": {
+     "text": "International-student track: the applicant and the applicant's parent(s) must all be non-Korean citizens (the degree level required is not stated on this page)",
+     "quote": "Both the applicant and applicant’s parent(s) must be non-Korean citizens.",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 71,
+     "quote": "TOEFL iBT 71(including Home Edition, a score of 3.5 for tests taken on or after Jan 21. 2026) or higher",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "Academic IELTS 5.5 or higher",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language proficiency: submit one or more of Korean (TOPIK level 3 or higher) or English (TOEFL iBT, Academic IELTS, New TEPS, CEFR B2) scores, or qualify under the listed exemptions",
+      "quote": "3. Language Proficiency Requirements: Please submit one or more of the following documents.",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Korean: TOPIK level 3 or higher is accepted as proof of language proficiency",
+      "quote": "A score report of the Test of Proficiency in Korean (TOPIK / TOPIK IBT regular test) level 3 or higher",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 international track: online application closes",
+      "date": "2026-09-10",
+      "quote": "September 1(Tue) 10:00 - September 10(Thu) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027 international track: document submission closes",
+      "date": "2026-09-16",
+      "quote": "September 1(Tue) 10:00 - September 16(Wed) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's, Department of Sociology, Graduate School (international track)",
+   "url": "https://graduate2.korea.ac.kr/department/major.html",
+   "snapshot_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+   "fields": {
+    "academic": {
+     "text": "International-student track: the applicant and the applicant's parent(s) must all be non-Korean citizens (the degree level required is not stated on this page)",
+     "quote": "Both the applicant and applicant’s parent(s) must be non-Korean citizens.",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 71,
+     "quote": "TOEFL iBT 71(including Home Edition, a score of 3.5 for tests taken on or after Jan 21. 2026) or higher",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "Academic IELTS 5.5 or higher",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language proficiency: submit one or more of Korean (TOPIK level 3 or higher) or English (TOEFL iBT, Academic IELTS, New TEPS, CEFR B2) scores, or qualify under the listed exemptions",
+      "quote": "3. Language Proficiency Requirements: Please submit one or more of the following documents.",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Korean: TOPIK level 3 or higher is accepted as proof of language proficiency",
+      "quote": "A score report of the Test of Proficiency in Korean (TOPIK / TOPIK IBT regular test) level 3 or higher",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 international track: online application closes",
+      "date": "2026-09-10",
+      "quote": "September 1(Tue) 10:00 - September 10(Thu) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027 international track: document submission closes",
+      "date": "2026-09-16",
+      "quote": "September 1(Tue) 10:00 - September 16(Wed) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's, Program in Global Korean Language and Culture Studies, Graduate School (international track)",
+   "url": "https://graduate2.korea.ac.kr/department/major.html",
+   "snapshot_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+   "fields": {
+    "academic": {
+     "text": "International-student track: the applicant and the applicant's parent(s) must all be non-Korean citizens (the degree level required is not stated on this page)",
+     "quote": "Both the applicant and applicant’s parent(s) must be non-Korean citizens.",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 71,
+     "quote": "TOEFL iBT 71(including Home Edition, a score of 3.5 for tests taken on or after Jan 21. 2026) or higher",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "Academic IELTS 5.5 or higher",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language proficiency: submit one or more of Korean (TOPIK level 3 or higher) or English (TOEFL iBT, Academic IELTS, New TEPS, CEFR B2) scores, or qualify under the listed exemptions",
+      "quote": "3. Language Proficiency Requirements: Please submit one or more of the following documents.",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Korean: TOPIK level 3 or higher is accepted as proof of language proficiency",
+      "quote": "A score report of the Test of Proficiency in Korean (TOPIK / TOPIK IBT regular test) level 3 or higher",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Program in Global Korean Language and Culture Studies (TOPIK level 5 or higher): TOPIK score required",
+      "quote": "★Program in Global Korean Language and Culture Studies: TOPIK 5 or higher",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 international track: online application closes",
+      "date": "2026-09-10",
+      "quote": "September 1(Tue) 10:00 - September 10(Thu) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027 international track: document submission closes",
+      "date": "2026-09-16",
+      "quote": "September 1(Tue) 10:00 - September 16(Wed) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's, Program in Humanities and East Asian Cultural Industry, Graduate School (international track)",
+   "url": "https://graduate2.korea.ac.kr/department/major.html",
+   "snapshot_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+   "fields": {
+    "academic": {
+     "text": "International-student track: the applicant and the applicant's parent(s) must all be non-Korean citizens (the degree level required is not stated on this page)",
+     "quote": "Both the applicant and applicant’s parent(s) must be non-Korean citizens.",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 71,
+     "quote": "TOEFL iBT 71(including Home Edition, a score of 3.5 for tests taken on or after Jan 21. 2026) or higher",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "Academic IELTS 5.5 or higher",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language proficiency: submit one or more of Korean (TOPIK level 3 or higher) or English (TOEFL iBT, Academic IELTS, New TEPS, CEFR B2) scores, or qualify under the listed exemptions",
+      "quote": "3. Language Proficiency Requirements: Please submit one or more of the following documents.",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Korean: TOPIK level 3 or higher is accepted as proof of language proficiency",
+      "quote": "A score report of the Test of Proficiency in Korean (TOPIK / TOPIK IBT regular test) level 3 or higher",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Program in Humanities and East Asian Cultural Industry (TOPIK level 5 or higher): TOPIK score required",
+      "quote": "★Program in Humanities and East Asian Cultural Industry : TOPIK 5 or higher",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 international track: online application closes",
+      "date": "2026-09-10",
+      "quote": "September 1(Tue) 10:00 - September 10(Thu) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027 international track: document submission closes",
+      "date": "2026-09-16",
+      "quote": "September 1(Tue) 10:00 - September 16(Wed) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's, Department of Creative Writing, Graduate School (international track)",
+   "url": "https://graduate2.korea.ac.kr/department/major.html",
+   "snapshot_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+   "fields": {
+    "academic": {
+     "text": "International-student track: the applicant and the applicant's parent(s) must all be non-Korean citizens (the degree level required is not stated on this page)",
+     "quote": "Both the applicant and applicant’s parent(s) must be non-Korean citizens.",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 71,
+     "quote": "TOEFL iBT 71(including Home Edition, a score of 3.5 for tests taken on or after Jan 21. 2026) or higher",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "Academic IELTS 5.5 or higher",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language proficiency: submit one or more of Korean (TOPIK level 3 or higher) or English (TOEFL iBT, Academic IELTS, New TEPS, CEFR B2) scores, or qualify under the listed exemptions",
+      "quote": "3. Language Proficiency Requirements: Please submit one or more of the following documents.",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Korean: TOPIK level 3 or higher is accepted as proof of language proficiency",
+      "quote": "A score report of the Test of Proficiency in Korean (TOPIK / TOPIK IBT regular test) level 3 or higher",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Department of Creative Writing (TOPIK level 6): TOPIK score required",
+      "quote": "★Department of Creative Writing : TOPIK 6",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 international track: online application closes",
+      "date": "2026-09-10",
+      "quote": "September 1(Tue) 10:00 - September 10(Thu) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027 international track: document submission closes",
+      "date": "2026-09-16",
+      "quote": "September 1(Tue) 10:00 - September 16(Wed) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's, Department of Political Science and International Relations, Graduate School (international track)",
+   "url": "https://graduate2.korea.ac.kr/department/major.html",
+   "snapshot_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+   "fields": {
+    "academic": {
+     "text": "International-student track: the applicant and the applicant's parent(s) must all be non-Korean citizens (the degree level required is not stated on this page)",
+     "quote": "Both the applicant and applicant’s parent(s) must be non-Korean citizens.",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 71,
+     "quote": "TOEFL iBT 71(including Home Edition, a score of 3.5 for tests taken on or after Jan 21. 2026) or higher",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "Academic IELTS 5.5 or higher",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language proficiency: submit one or more of Korean (TOPIK level 3 or higher) or English (TOEFL iBT, Academic IELTS, New TEPS, CEFR B2) scores, or qualify under the listed exemptions",
+      "quote": "3. Language Proficiency Requirements: Please submit one or more of the following documents.",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Korean: TOPIK level 3 or higher is accepted as proof of language proficiency",
+      "quote": "A score report of the Test of Proficiency in Korean (TOPIK / TOPIK IBT regular test) level 3 or higher",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 international track: online application closes",
+      "date": "2026-09-10",
+      "quote": "September 1(Tue) 10:00 - September 10(Thu) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027 international track: document submission closes",
+      "date": "2026-09-16",
+      "quote": "September 1(Tue) 10:00 - September 16(Wed) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's, Department of Public Administration, Graduate School (international track)",
+   "url": "https://graduate2.korea.ac.kr/department/major.html",
+   "snapshot_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+   "fields": {
+    "academic": {
+     "text": "International-student track: the applicant and the applicant's parent(s) must all be non-Korean citizens (the degree level required is not stated on this page)",
+     "quote": "Both the applicant and applicant’s parent(s) must be non-Korean citizens.",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 71,
+     "quote": "TOEFL iBT 71(including Home Edition, a score of 3.5 for tests taken on or after Jan 21. 2026) or higher",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "Academic IELTS 5.5 or higher",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language proficiency: submit one or more of Korean (TOPIK level 3 or higher) or English (TOEFL iBT, Academic IELTS, New TEPS, CEFR B2) scores, or qualify under the listed exemptions",
+      "quote": "3. Language Proficiency Requirements: Please submit one or more of the following documents.",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Korean: TOPIK level 3 or higher is accepted as proof of language proficiency",
+      "quote": "A score report of the Test of Proficiency in Korean (TOPIK / TOPIK IBT regular test) level 3 or higher",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 international track: online application closes",
+      "date": "2026-09-10",
+      "quote": "September 1(Tue) 10:00 - September 10(Thu) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027 international track: document submission closes",
+      "date": "2026-09-16",
+      "quote": "September 1(Tue) 10:00 - September 16(Wed) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's, Department of Economics, Graduate School (international track)",
+   "url": "https://graduate2.korea.ac.kr/department/major.html",
+   "snapshot_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+   "fields": {
+    "academic": {
+     "text": "International-student track: the applicant and the applicant's parent(s) must all be non-Korean citizens (the degree level required is not stated on this page)",
+     "quote": "Both the applicant and applicant’s parent(s) must be non-Korean citizens.",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 71,
+     "quote": "TOEFL iBT 71(including Home Edition, a score of 3.5 for tests taken on or after Jan 21. 2026) or higher",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "Academic IELTS 5.5 or higher",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language proficiency: submit one or more of Korean (TOPIK level 3 or higher) or English (TOEFL iBT, Academic IELTS, New TEPS, CEFR B2) scores, or qualify under the listed exemptions",
+      "quote": "3. Language Proficiency Requirements: Please submit one or more of the following documents.",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Korean: TOPIK level 3 or higher is accepted as proof of language proficiency",
+      "quote": "A score report of the Test of Proficiency in Korean (TOPIK / TOPIK IBT regular test) level 3 or higher",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Department of Economics: both Korean (TOPIK) and English language proficiency scores are required",
+      "quote": "※ Applicants to the Department of Economics are required to submit both A. Korean and B. English language proficiency scores.",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 international track: online application closes",
+      "date": "2026-09-10",
+      "quote": "September 1(Tue) 10:00 - September 10(Thu) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027 international track: document submission closes",
+      "date": "2026-09-16",
+      "quote": "September 1(Tue) 10:00 - September 16(Wed) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's, Department of Statistics, Graduate School (international track)",
+   "url": "https://graduate2.korea.ac.kr/department/major.html",
+   "snapshot_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+   "fields": {
+    "academic": {
+     "text": "International-student track: the applicant and the applicant's parent(s) must all be non-Korean citizens (the degree level required is not stated on this page)",
+     "quote": "Both the applicant and applicant’s parent(s) must be non-Korean citizens.",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 71,
+     "quote": "TOEFL iBT 71(including Home Edition, a score of 3.5 for tests taken on or after Jan 21. 2026) or higher",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "Academic IELTS 5.5 or higher",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language proficiency: submit one or more of Korean (TOPIK level 3 or higher) or English (TOEFL iBT, Academic IELTS, New TEPS, CEFR B2) scores, or qualify under the listed exemptions",
+      "quote": "3. Language Proficiency Requirements: Please submit one or more of the following documents.",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Korean: TOPIK level 3 or higher is accepted as proof of language proficiency",
+      "quote": "A score report of the Test of Proficiency in Korean (TOPIK / TOPIK IBT regular test) level 3 or higher",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 international track: online application closes",
+      "date": "2026-09-10",
+      "quote": "September 1(Tue) 10:00 - September 10(Thu) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027 international track: document submission closes",
+      "date": "2026-09-16",
+      "quote": "September 1(Tue) 10:00 - September 16(Wed) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's, Department of Mathematics, Graduate School (international track)",
+   "url": "https://graduate2.korea.ac.kr/department/major.html",
+   "snapshot_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+   "fields": {
+    "academic": {
+     "text": "International-student track: the applicant and the applicant's parent(s) must all be non-Korean citizens (the degree level required is not stated on this page)",
+     "quote": "Both the applicant and applicant’s parent(s) must be non-Korean citizens.",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 71,
+     "quote": "TOEFL iBT 71(including Home Edition, a score of 3.5 for tests taken on or after Jan 21. 2026) or higher",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "Academic IELTS 5.5 or higher",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language proficiency: submit one or more of Korean (TOPIK level 3 or higher) or English (TOEFL iBT, Academic IELTS, New TEPS, CEFR B2) scores, or qualify under the listed exemptions",
+      "quote": "3. Language Proficiency Requirements: Please submit one or more of the following documents.",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Korean: TOPIK level 3 or higher is accepted as proof of language proficiency",
+      "quote": "A score report of the Test of Proficiency in Korean (TOPIK / TOPIK IBT regular test) level 3 or higher",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 international track: online application closes",
+      "date": "2026-09-10",
+      "quote": "September 1(Tue) 10:00 - September 10(Thu) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027 international track: document submission closes",
+      "date": "2026-09-16",
+      "quote": "September 1(Tue) 10:00 - September 16(Wed) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's, Department of Physics, Graduate School (international track)",
+   "url": "https://graduate2.korea.ac.kr/department/major.html",
+   "snapshot_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+   "fields": {
+    "academic": {
+     "text": "International-student track: the applicant and the applicant's parent(s) must all be non-Korean citizens (the degree level required is not stated on this page)",
+     "quote": "Both the applicant and applicant’s parent(s) must be non-Korean citizens.",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 71,
+     "quote": "TOEFL iBT 71(including Home Edition, a score of 3.5 for tests taken on or after Jan 21. 2026) or higher",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "Academic IELTS 5.5 or higher",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language proficiency: submit one or more of Korean (TOPIK level 3 or higher) or English (TOEFL iBT, Academic IELTS, New TEPS, CEFR B2) scores, or qualify under the listed exemptions",
+      "quote": "3. Language Proficiency Requirements: Please submit one or more of the following documents.",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Korean: TOPIK level 3 or higher is accepted as proof of language proficiency",
+      "quote": "A score report of the Test of Proficiency in Korean (TOPIK / TOPIK IBT regular test) level 3 or higher",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 international track: online application closes",
+      "date": "2026-09-10",
+      "quote": "September 1(Tue) 10:00 - September 10(Thu) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027 international track: document submission closes",
+      "date": "2026-09-16",
+      "quote": "September 1(Tue) 10:00 - September 16(Wed) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's, Department of Chemistry, Graduate School (international track)",
+   "url": "https://graduate2.korea.ac.kr/department/major.html",
+   "snapshot_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+   "fields": {
+    "academic": {
+     "text": "International-student track: the applicant and the applicant's parent(s) must all be non-Korean citizens (the degree level required is not stated on this page)",
+     "quote": "Both the applicant and applicant’s parent(s) must be non-Korean citizens.",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 71,
+     "quote": "TOEFL iBT 71(including Home Edition, a score of 3.5 for tests taken on or after Jan 21. 2026) or higher",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "Academic IELTS 5.5 or higher",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language proficiency: submit one or more of Korean (TOPIK level 3 or higher) or English (TOEFL iBT, Academic IELTS, New TEPS, CEFR B2) scores, or qualify under the listed exemptions",
+      "quote": "3. Language Proficiency Requirements: Please submit one or more of the following documents.",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Korean: TOPIK level 3 or higher is accepted as proof of language proficiency",
+      "quote": "A score report of the Test of Proficiency in Korean (TOPIK / TOPIK IBT regular test) level 3 or higher",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 international track: online application closes",
+      "date": "2026-09-10",
+      "quote": "September 1(Tue) 10:00 - September 10(Thu) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027 international track: document submission closes",
+      "date": "2026-09-16",
+      "quote": "September 1(Tue) 10:00 - September 16(Wed) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's, Department of Life Sciences, Graduate School (international track)",
+   "url": "https://graduate2.korea.ac.kr/department/major.html",
+   "snapshot_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+   "fields": {
+    "academic": {
+     "text": "International-student track: the applicant and the applicant's parent(s) must all be non-Korean citizens (the degree level required is not stated on this page)",
+     "quote": "Both the applicant and applicant’s parent(s) must be non-Korean citizens.",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 71,
+     "quote": "TOEFL iBT 71(including Home Edition, a score of 3.5 for tests taken on or after Jan 21. 2026) or higher",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "Academic IELTS 5.5 or higher",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language proficiency: submit one or more of Korean (TOPIK level 3 or higher) or English (TOEFL iBT, Academic IELTS, New TEPS, CEFR B2) scores, or qualify under the listed exemptions",
+      "quote": "3. Language Proficiency Requirements: Please submit one or more of the following documents.",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Korean: TOPIK level 3 or higher is accepted as proof of language proficiency",
+      "quote": "A score report of the Test of Proficiency in Korean (TOPIK / TOPIK IBT regular test) level 3 or higher",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 international track: online application closes",
+      "date": "2026-09-10",
+      "quote": "September 1(Tue) 10:00 - September 10(Thu) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027 international track: document submission closes",
+      "date": "2026-09-16",
+      "quote": "September 1(Tue) 10:00 - September 16(Wed) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's, Department of Biotechnology, Graduate School (international track)",
+   "url": "https://graduate2.korea.ac.kr/department/major.html",
+   "snapshot_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+   "fields": {
+    "academic": {
+     "text": "International-student track: the applicant and the applicant's parent(s) must all be non-Korean citizens (the degree level required is not stated on this page)",
+     "quote": "Both the applicant and applicant’s parent(s) must be non-Korean citizens.",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 71,
+     "quote": "TOEFL iBT 71(including Home Edition, a score of 3.5 for tests taken on or after Jan 21. 2026) or higher",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "Academic IELTS 5.5 or higher",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language proficiency: submit one or more of Korean (TOPIK level 3 or higher) or English (TOEFL iBT, Academic IELTS, New TEPS, CEFR B2) scores, or qualify under the listed exemptions",
+      "quote": "3. Language Proficiency Requirements: Please submit one or more of the following documents.",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Korean: TOPIK level 3 or higher is accepted as proof of language proficiency",
+      "quote": "A score report of the Test of Proficiency in Korean (TOPIK / TOPIK IBT regular test) level 3 or higher",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 international track: online application closes",
+      "date": "2026-09-10",
+      "quote": "September 1(Tue) 10:00 - September 10(Thu) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027 international track: document submission closes",
+      "date": "2026-09-16",
+      "quote": "September 1(Tue) 10:00 - September 16(Wed) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's, Department of Environmental Science & Ecological Engineering, Graduate School (international track)",
+   "url": "https://graduate2.korea.ac.kr/department/major.html",
+   "snapshot_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+   "fields": {
+    "academic": {
+     "text": "International-student track: the applicant and the applicant's parent(s) must all be non-Korean citizens (the degree level required is not stated on this page)",
+     "quote": "Both the applicant and applicant’s parent(s) must be non-Korean citizens.",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 71,
+     "quote": "TOEFL iBT 71(including Home Edition, a score of 3.5 for tests taken on or after Jan 21. 2026) or higher",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "Academic IELTS 5.5 or higher",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language proficiency: submit one or more of Korean (TOPIK level 3 or higher) or English (TOEFL iBT, Academic IELTS, New TEPS, CEFR B2) scores, or qualify under the listed exemptions",
+      "quote": "3. Language Proficiency Requirements: Please submit one or more of the following documents.",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Korean: TOPIK level 3 or higher is accepted as proof of language proficiency",
+      "quote": "A score report of the Test of Proficiency in Korean (TOPIK / TOPIK IBT regular test) level 3 or higher",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 international track: online application closes",
+      "date": "2026-09-10",
+      "quote": "September 1(Tue) 10:00 - September 10(Thu) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027 international track: document submission closes",
+      "date": "2026-09-16",
+      "quote": "September 1(Tue) 10:00 - September 16(Wed) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's, Department of Geography, Graduate School (international track)",
+   "url": "https://graduate2.korea.ac.kr/department/major.html",
+   "snapshot_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+   "fields": {
+    "academic": {
+     "text": "International-student track: the applicant and the applicant's parent(s) must all be non-Korean citizens (the degree level required is not stated on this page)",
+     "quote": "Both the applicant and applicant’s parent(s) must be non-Korean citizens.",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 71,
+     "quote": "TOEFL iBT 71(including Home Edition, a score of 3.5 for tests taken on or after Jan 21. 2026) or higher",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "Academic IELTS 5.5 or higher",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language proficiency: submit one or more of Korean (TOPIK level 3 or higher) or English (TOEFL iBT, Academic IELTS, New TEPS, CEFR B2) scores, or qualify under the listed exemptions",
+      "quote": "3. Language Proficiency Requirements: Please submit one or more of the following documents.",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Korean: TOPIK level 3 or higher is accepted as proof of language proficiency",
+      "quote": "A score report of the Test of Proficiency in Korean (TOPIK / TOPIK IBT regular test) level 3 or higher",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 international track: online application closes",
+      "date": "2026-09-10",
+      "quote": "September 1(Tue) 10:00 - September 10(Thu) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027 international track: document submission closes",
+      "date": "2026-09-16",
+      "quote": "September 1(Tue) 10:00 - September 16(Wed) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's, Department of Chemical and Biological Engineering, Graduate School (international track)",
+   "url": "https://graduate2.korea.ac.kr/department/major.html",
+   "snapshot_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+   "fields": {
+    "academic": {
+     "text": "International-student track: the applicant and the applicant's parent(s) must all be non-Korean citizens (the degree level required is not stated on this page)",
+     "quote": "Both the applicant and applicant’s parent(s) must be non-Korean citizens.",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 71,
+     "quote": "TOEFL iBT 71(including Home Edition, a score of 3.5 for tests taken on or after Jan 21. 2026) or higher",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "Academic IELTS 5.5 or higher",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language proficiency: submit one or more of Korean (TOPIK level 3 or higher) or English (TOEFL iBT, Academic IELTS, New TEPS, CEFR B2) scores, or qualify under the listed exemptions",
+      "quote": "3. Language Proficiency Requirements: Please submit one or more of the following documents.",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Korean: TOPIK level 3 or higher is accepted as proof of language proficiency",
+      "quote": "A score report of the Test of Proficiency in Korean (TOPIK / TOPIK IBT regular test) level 3 or higher",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 international track: online application closes",
+      "date": "2026-09-10",
+      "quote": "September 1(Tue) 10:00 - September 10(Thu) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027 international track: document submission closes",
+      "date": "2026-09-16",
+      "quote": "September 1(Tue) 10:00 - September 16(Wed) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's, Department of Civil, Environmental and Architectural Engineering, Graduate School (international track)",
+   "url": "https://graduate2.korea.ac.kr/department/major.html",
+   "snapshot_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+   "fields": {
+    "academic": {
+     "text": "International-student track: the applicant and the applicant's parent(s) must all be non-Korean citizens (the degree level required is not stated on this page)",
+     "quote": "Both the applicant and applicant’s parent(s) must be non-Korean citizens.",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 71,
+     "quote": "TOEFL iBT 71(including Home Edition, a score of 3.5 for tests taken on or after Jan 21. 2026) or higher",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "Academic IELTS 5.5 or higher",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language proficiency: submit one or more of Korean (TOPIK level 3 or higher) or English (TOEFL iBT, Academic IELTS, New TEPS, CEFR B2) scores, or qualify under the listed exemptions",
+      "quote": "3. Language Proficiency Requirements: Please submit one or more of the following documents.",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Korean: TOPIK level 3 or higher is accepted as proof of language proficiency",
+      "quote": "A score report of the Test of Proficiency in Korean (TOPIK / TOPIK IBT regular test) level 3 or higher",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 international track: online application closes",
+      "date": "2026-09-10",
+      "quote": "September 1(Tue) 10:00 - September 10(Thu) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027 international track: document submission closes",
+      "date": "2026-09-16",
+      "quote": "September 1(Tue) 10:00 - September 16(Wed) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's, Department of Architecture, Graduate School (international track)",
+   "url": "https://graduate2.korea.ac.kr/department/major.html",
+   "snapshot_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+   "fields": {
+    "academic": {
+     "text": "International-student track: the applicant and the applicant's parent(s) must all be non-Korean citizens (the degree level required is not stated on this page)",
+     "quote": "Both the applicant and applicant’s parent(s) must be non-Korean citizens.",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 71,
+     "quote": "TOEFL iBT 71(including Home Edition, a score of 3.5 for tests taken on or after Jan 21. 2026) or higher",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "Academic IELTS 5.5 or higher",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language proficiency: submit one or more of Korean (TOPIK level 3 or higher) or English (TOEFL iBT, Academic IELTS, New TEPS, CEFR B2) scores, or qualify under the listed exemptions",
+      "quote": "3. Language Proficiency Requirements: Please submit one or more of the following documents.",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Korean: TOPIK level 3 or higher is accepted as proof of language proficiency",
+      "quote": "A score report of the Test of Proficiency in Korean (TOPIK / TOPIK IBT regular test) level 3 or higher",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 international track: online application closes",
+      "date": "2026-09-10",
+      "quote": "September 1(Tue) 10:00 - September 10(Thu) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027 international track: document submission closes",
+      "date": "2026-09-16",
+      "quote": "September 1(Tue) 10:00 - September 16(Wed) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's, Department of Mechanical Engineering, Graduate School (international track)",
+   "url": "https://graduate2.korea.ac.kr/department/major.html",
+   "snapshot_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+   "fields": {
+    "academic": {
+     "text": "International-student track: the applicant and the applicant's parent(s) must all be non-Korean citizens (the degree level required is not stated on this page)",
+     "quote": "Both the applicant and applicant’s parent(s) must be non-Korean citizens.",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 71,
+     "quote": "TOEFL iBT 71(including Home Edition, a score of 3.5 for tests taken on or after Jan 21. 2026) or higher",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "Academic IELTS 5.5 or higher",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language proficiency: submit one or more of Korean (TOPIK level 3 or higher) or English (TOEFL iBT, Academic IELTS, New TEPS, CEFR B2) scores, or qualify under the listed exemptions",
+      "quote": "3. Language Proficiency Requirements: Please submit one or more of the following documents.",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Korean: TOPIK level 3 or higher is accepted as proof of language proficiency",
+      "quote": "A score report of the Test of Proficiency in Korean (TOPIK / TOPIK IBT regular test) level 3 or higher",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 international track: online application closes",
+      "date": "2026-09-10",
+      "quote": "September 1(Tue) 10:00 - September 10(Thu) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027 international track: document submission closes",
+      "date": "2026-09-16",
+      "quote": "September 1(Tue) 10:00 - September 16(Wed) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's, Department of Materials Science and Engineering, Graduate School (international track)",
+   "url": "https://graduate2.korea.ac.kr/department/major.html",
+   "snapshot_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+   "fields": {
+    "academic": {
+     "text": "International-student track: the applicant and the applicant's parent(s) must all be non-Korean citizens (the degree level required is not stated on this page)",
+     "quote": "Both the applicant and applicant’s parent(s) must be non-Korean citizens.",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 71,
+     "quote": "TOEFL iBT 71(including Home Edition, a score of 3.5 for tests taken on or after Jan 21. 2026) or higher",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "Academic IELTS 5.5 or higher",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language proficiency: submit one or more of Korean (TOPIK level 3 or higher) or English (TOEFL iBT, Academic IELTS, New TEPS, CEFR B2) scores, or qualify under the listed exemptions",
+      "quote": "3. Language Proficiency Requirements: Please submit one or more of the following documents.",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Korean: TOPIK level 3 or higher is accepted as proof of language proficiency",
+      "quote": "A score report of the Test of Proficiency in Korean (TOPIK / TOPIK IBT regular test) level 3 or higher",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 international track: online application closes",
+      "date": "2026-09-10",
+      "quote": "September 1(Tue) 10:00 - September 10(Thu) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027 international track: document submission closes",
+      "date": "2026-09-16",
+      "quote": "September 1(Tue) 10:00 - September 16(Wed) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's, Department of Industrial and Management Engineering, Graduate School (international track)",
+   "url": "https://graduate2.korea.ac.kr/department/major.html",
+   "snapshot_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+   "fields": {
+    "academic": {
+     "text": "International-student track: the applicant and the applicant's parent(s) must all be non-Korean citizens (the degree level required is not stated on this page)",
+     "quote": "Both the applicant and applicant’s parent(s) must be non-Korean citizens.",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 71,
+     "quote": "TOEFL iBT 71(including Home Edition, a score of 3.5 for tests taken on or after Jan 21. 2026) or higher",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "Academic IELTS 5.5 or higher",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language proficiency: submit one or more of Korean (TOPIK level 3 or higher) or English (TOEFL iBT, Academic IELTS, New TEPS, CEFR B2) scores, or qualify under the listed exemptions",
+      "quote": "3. Language Proficiency Requirements: Please submit one or more of the following documents.",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Korean: TOPIK level 3 or higher is accepted as proof of language proficiency",
+      "quote": "A score report of the Test of Proficiency in Korean (TOPIK / TOPIK IBT regular test) level 3 or higher",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 international track: online application closes",
+      "date": "2026-09-10",
+      "quote": "September 1(Tue) 10:00 - September 10(Thu) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027 international track: document submission closes",
+      "date": "2026-09-16",
+      "quote": "September 1(Tue) 10:00 - September 16(Wed) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's, Department of Electrical and Computer Engineering, Graduate School (international track)",
+   "url": "https://graduate2.korea.ac.kr/department/major.html",
+   "snapshot_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+   "fields": {
+    "academic": {
+     "text": "International-student track: the applicant and the applicant's parent(s) must all be non-Korean citizens (the degree level required is not stated on this page)",
+     "quote": "Both the applicant and applicant’s parent(s) must be non-Korean citizens.",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 71,
+     "quote": "TOEFL iBT 71(including Home Edition, a score of 3.5 for tests taken on or after Jan 21. 2026) or higher",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "Academic IELTS 5.5 or higher",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language proficiency: submit one or more of Korean (TOPIK level 3 or higher) or English (TOEFL iBT, Academic IELTS, New TEPS, CEFR B2) scores, or qualify under the listed exemptions",
+      "quote": "3. Language Proficiency Requirements: Please submit one or more of the following documents.",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Korean: TOPIK level 3 or higher is accepted as proof of language proficiency",
+      "quote": "A score report of the Test of Proficiency in Korean (TOPIK / TOPIK IBT regular test) level 3 or higher",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 international track: online application closes",
+      "date": "2026-09-10",
+      "quote": "September 1(Tue) 10:00 - September 10(Thu) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027 international track: document submission closes",
+      "date": "2026-09-16",
+      "quote": "September 1(Tue) 10:00 - September 16(Wed) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's, Department of Bioengineering, Graduate School (international track)",
+   "url": "https://graduate2.korea.ac.kr/department/major.html",
+   "snapshot_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+   "fields": {
+    "academic": {
+     "text": "International-student track: the applicant and the applicant's parent(s) must all be non-Korean citizens (the degree level required is not stated on this page)",
+     "quote": "Both the applicant and applicant’s parent(s) must be non-Korean citizens.",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 71,
+     "quote": "TOEFL iBT 71(including Home Edition, a score of 3.5 for tests taken on or after Jan 21. 2026) or higher",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "Academic IELTS 5.5 or higher",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language proficiency: submit one or more of Korean (TOPIK level 3 or higher) or English (TOEFL iBT, Academic IELTS, New TEPS, CEFR B2) scores, or qualify under the listed exemptions",
+      "quote": "3. Language Proficiency Requirements: Please submit one or more of the following documents.",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Korean: TOPIK level 3 or higher is accepted as proof of language proficiency",
+      "quote": "A score report of the Test of Proficiency in Korean (TOPIK / TOPIK IBT regular test) level 3 or higher",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 international track: online application closes",
+      "date": "2026-09-10",
+      "quote": "September 1(Tue) 10:00 - September 10(Thu) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027 international track: document submission closes",
+      "date": "2026-09-16",
+      "quote": "September 1(Tue) 10:00 - September 16(Wed) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's, Department of Computer Science and Engineering, Graduate School (international track)",
+   "url": "https://graduate2.korea.ac.kr/department/major.html",
+   "snapshot_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+   "fields": {
+    "academic": {
+     "text": "International-student track: the applicant and the applicant's parent(s) must all be non-Korean citizens (the degree level required is not stated on this page)",
+     "quote": "Both the applicant and applicant’s parent(s) must be non-Korean citizens.",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 71,
+     "quote": "TOEFL iBT 71(including Home Edition, a score of 3.5 for tests taken on or after Jan 21. 2026) or higher",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "Academic IELTS 5.5 or higher",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language proficiency: submit one or more of Korean (TOPIK level 3 or higher) or English (TOEFL iBT, Academic IELTS, New TEPS, CEFR B2) scores, or qualify under the listed exemptions",
+      "quote": "3. Language Proficiency Requirements: Please submit one or more of the following documents.",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Korean: TOPIK level 3 or higher is accepted as proof of language proficiency",
+      "quote": "A score report of the Test of Proficiency in Korean (TOPIK / TOPIK IBT regular test) level 3 or higher",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 international track: online application closes",
+      "date": "2026-09-10",
+      "quote": "September 1(Tue) 10:00 - September 10(Thu) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027 international track: document submission closes",
+      "date": "2026-09-16",
+      "quote": "September 1(Tue) 10:00 - September 16(Wed) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's, Department of Artificial Intelligence, Graduate School (international track)",
+   "url": "https://graduate2.korea.ac.kr/department/major.html",
+   "snapshot_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+   "fields": {
+    "academic": {
+     "text": "International-student track: the applicant and the applicant's parent(s) must all be non-Korean citizens (the degree level required is not stated on this page)",
+     "quote": "Both the applicant and applicant’s parent(s) must be non-Korean citizens.",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 71,
+     "quote": "TOEFL iBT 71(including Home Edition, a score of 3.5 for tests taken on or after Jan 21. 2026) or higher",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "Academic IELTS 5.5 or higher",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language proficiency: submit one or more of Korean (TOPIK level 3 or higher) or English (TOEFL iBT, Academic IELTS, New TEPS, CEFR B2) scores, or qualify under the listed exemptions",
+      "quote": "3. Language Proficiency Requirements: Please submit one or more of the following documents.",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Korean: TOPIK level 3 or higher is accepted as proof of language proficiency",
+      "quote": "A score report of the Test of Proficiency in Korean (TOPIK / TOPIK IBT regular test) level 3 or higher",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 international track: online application closes",
+      "date": "2026-09-10",
+      "quote": "September 1(Tue) 10:00 - September 10(Thu) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027 international track: document submission closes",
+      "date": "2026-09-16",
+      "quote": "September 1(Tue) 10:00 - September 16(Wed) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's, Department of Brain and Cognitive Engineering, Graduate School (international track)",
+   "url": "https://graduate2.korea.ac.kr/department/major.html",
+   "snapshot_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+   "fields": {
+    "academic": {
+     "text": "International-student track: the applicant and the applicant's parent(s) must all be non-Korean citizens (the degree level required is not stated on this page)",
+     "quote": "Both the applicant and applicant’s parent(s) must be non-Korean citizens.",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 71,
+     "quote": "TOEFL iBT 71(including Home Edition, a score of 3.5 for tests taken on or after Jan 21. 2026) or higher",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "Academic IELTS 5.5 or higher",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language proficiency: submit one or more of Korean (TOPIK level 3 or higher) or English (TOEFL iBT, Academic IELTS, New TEPS, CEFR B2) scores, or qualify under the listed exemptions",
+      "quote": "3. Language Proficiency Requirements: Please submit one or more of the following documents.",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Korean: TOPIK level 3 or higher is accepted as proof of language proficiency",
+      "quote": "A score report of the Test of Proficiency in Korean (TOPIK / TOPIK IBT regular test) level 3 or higher",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 international track: online application closes",
+      "date": "2026-09-10",
+      "quote": "September 1(Tue) 10:00 - September 10(Thu) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027 international track: document submission closes",
+      "date": "2026-09-16",
+      "quote": "September 1(Tue) 10:00 - September 16(Wed) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's, Department of Cyber Security, Graduate School (international track)",
+   "url": "https://graduate2.korea.ac.kr/department/major.html",
+   "snapshot_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+   "fields": {
+    "academic": {
+     "text": "International-student track: the applicant and the applicant's parent(s) must all be non-Korean citizens (the degree level required is not stated on this page)",
+     "quote": "Both the applicant and applicant’s parent(s) must be non-Korean citizens.",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 71,
+     "quote": "TOEFL iBT 71(including Home Edition, a score of 3.5 for tests taken on or after Jan 21. 2026) or higher",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "Academic IELTS 5.5 or higher",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language proficiency: submit one or more of Korean (TOPIK level 3 or higher) or English (TOEFL iBT, Academic IELTS, New TEPS, CEFR B2) scores, or qualify under the listed exemptions",
+      "quote": "3. Language Proficiency Requirements: Please submit one or more of the following documents.",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Korean: TOPIK level 3 or higher is accepted as proof of language proficiency",
+      "quote": "A score report of the Test of Proficiency in Korean (TOPIK / TOPIK IBT regular test) level 3 or higher",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 international track: online application closes",
+      "date": "2026-09-10",
+      "quote": "September 1(Tue) 10:00 - September 10(Thu) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027 international track: document submission closes",
+      "date": "2026-09-16",
+      "quote": "September 1(Tue) 10:00 - September 16(Wed) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's, Department of Computer and Information Science, Graduate School (international track)",
+   "url": "https://graduate2.korea.ac.kr/department/major.html",
+   "snapshot_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+   "fields": {
+    "academic": {
+     "text": "International-student track: the applicant and the applicant's parent(s) must all be non-Korean citizens (the degree level required is not stated on this page)",
+     "quote": "Both the applicant and applicant’s parent(s) must be non-Korean citizens.",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 71,
+     "quote": "TOEFL iBT 71(including Home Edition, a score of 3.5 for tests taken on or after Jan 21. 2026) or higher",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "Academic IELTS 5.5 or higher",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language proficiency: submit one or more of Korean (TOPIK level 3 or higher) or English (TOEFL iBT, Academic IELTS, New TEPS, CEFR B2) scores, or qualify under the listed exemptions",
+      "quote": "3. Language Proficiency Requirements: Please submit one or more of the following documents.",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Korean: TOPIK level 3 or higher is accepted as proof of language proficiency",
+      "quote": "A score report of the Test of Proficiency in Korean (TOPIK / TOPIK IBT regular test) level 3 or higher",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 international track: online application closes",
+      "date": "2026-09-10",
+      "quote": "September 1(Tue) 10:00 - September 10(Thu) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027 international track: document submission closes",
+      "date": "2026-09-16",
+      "quote": "September 1(Tue) 10:00 - September 16(Wed) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's, Department of Media and Communication, Graduate School (international track)",
+   "url": "https://graduate2.korea.ac.kr/department/major.html",
+   "snapshot_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+   "fields": {
+    "academic": {
+     "text": "International-student track: the applicant and the applicant's parent(s) must all be non-Korean citizens (the degree level required is not stated on this page)",
+     "quote": "Both the applicant and applicant’s parent(s) must be non-Korean citizens.",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 71,
+     "quote": "TOEFL iBT 71(including Home Edition, a score of 3.5 for tests taken on or after Jan 21. 2026) or higher",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "Academic IELTS 5.5 or higher",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language proficiency: submit one or more of Korean (TOPIK level 3 or higher) or English (TOEFL iBT, Academic IELTS, New TEPS, CEFR B2) scores, or qualify under the listed exemptions",
+      "quote": "3. Language Proficiency Requirements: Please submit one or more of the following documents.",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Korean: TOPIK level 3 or higher is accepted as proof of language proficiency",
+      "quote": "A score report of the Test of Proficiency in Korean (TOPIK / TOPIK IBT regular test) level 3 or higher",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 international track: online application closes",
+      "date": "2026-09-10",
+      "quote": "September 1(Tue) 10:00 - September 10(Thu) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027 international track: document submission closes",
+      "date": "2026-09-16",
+      "quote": "September 1(Tue) 10:00 - September 16(Wed) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's, Department of Psychology, Graduate School (international track)",
+   "url": "https://graduate2.korea.ac.kr/department/major.html",
+   "snapshot_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+   "fields": {
+    "academic": {
+     "text": "International-student track: the applicant and the applicant's parent(s) must all be non-Korean citizens (the degree level required is not stated on this page)",
+     "quote": "Both the applicant and applicant’s parent(s) must be non-Korean citizens.",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 71,
+     "quote": "TOEFL iBT 71(including Home Edition, a score of 3.5 for tests taken on or after Jan 21. 2026) or higher",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "Academic IELTS 5.5 or higher",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language proficiency: submit one or more of Korean (TOPIK level 3 or higher) or English (TOEFL iBT, Academic IELTS, New TEPS, CEFR B2) scores, or qualify under the listed exemptions",
+      "quote": "3. Language Proficiency Requirements: Please submit one or more of the following documents.",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Korean: TOPIK level 3 or higher is accepted as proof of language proficiency",
+      "quote": "A score report of the Test of Proficiency in Korean (TOPIK / TOPIK IBT regular test) level 3 or higher",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 international track: online application closes",
+      "date": "2026-09-10",
+      "quote": "September 1(Tue) 10:00 - September 10(Thu) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027 international track: document submission closes",
+      "date": "2026-09-16",
+      "quote": "September 1(Tue) 10:00 - September 16(Wed) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's, Department of Big Data Science, Graduate School (international track)",
+   "url": "https://graduate2.korea.ac.kr/department/major.html",
+   "snapshot_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+   "fields": {
+    "academic": {
+     "text": "International-student track: the applicant and the applicant's parent(s) must all be non-Korean citizens (the degree level required is not stated on this page)",
+     "quote": "Both the applicant and applicant’s parent(s) must be non-Korean citizens.",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 71,
+     "quote": "TOEFL iBT 71(including Home Edition, a score of 3.5 for tests taken on or after Jan 21. 2026) or higher",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "Academic IELTS 5.5 or higher",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language proficiency: submit one or more of Korean (TOPIK level 3 or higher) or English (TOEFL iBT, Academic IELTS, New TEPS, CEFR B2) scores, or qualify under the listed exemptions",
+      "quote": "3. Language Proficiency Requirements: Please submit one or more of the following documents.",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Korean: TOPIK level 3 or higher is accepted as proof of language proficiency",
+      "quote": "A score report of the Test of Proficiency in Korean (TOPIK / TOPIK IBT regular test) level 3 or higher",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 international track: online application closes",
+      "date": "2026-09-10",
+      "quote": "September 1(Tue) 10:00 - September 10(Thu) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027 international track: document submission closes",
+      "date": "2026-09-16",
+      "quote": "September 1(Tue) 10:00 - September 16(Wed) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's, Program in National and Urban Policy, Graduate School (international track)",
+   "url": "https://graduate2.korea.ac.kr/department/major.html",
+   "snapshot_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+   "fields": {
+    "academic": {
+     "text": "International-student track: the applicant and the applicant's parent(s) must all be non-Korean citizens (the degree level required is not stated on this page)",
+     "quote": "Both the applicant and applicant’s parent(s) must be non-Korean citizens.",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 71,
+     "quote": "TOEFL iBT 71(including Home Edition, a score of 3.5 for tests taken on or after Jan 21. 2026) or higher",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "Academic IELTS 5.5 or higher",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language proficiency: submit one or more of Korean (TOPIK level 3 or higher) or English (TOEFL iBT, Academic IELTS, New TEPS, CEFR B2) scores, or qualify under the listed exemptions",
+      "quote": "3. Language Proficiency Requirements: Please submit one or more of the following documents.",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Korean: TOPIK level 3 or higher is accepted as proof of language proficiency",
+      "quote": "A score report of the Test of Proficiency in Korean (TOPIK / TOPIK IBT regular test) level 3 or higher",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 international track: online application closes",
+      "date": "2026-09-10",
+      "quote": "September 1(Tue) 10:00 - September 10(Thu) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027 international track: document submission closes",
+      "date": "2026-09-16",
+      "quote": "September 1(Tue) 10:00 - September 16(Wed) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's, Department of Economics and Statistics, Graduate School (international track)",
+   "url": "https://graduate2.korea.ac.kr/department/major.html",
+   "snapshot_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+   "fields": {
+    "academic": {
+     "text": "International-student track: the applicant and the applicant's parent(s) must all be non-Korean citizens (the degree level required is not stated on this page)",
+     "quote": "Both the applicant and applicant’s parent(s) must be non-Korean citizens.",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 71,
+     "quote": "TOEFL iBT 71(including Home Edition, a score of 3.5 for tests taken on or after Jan 21. 2026) or higher",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "Academic IELTS 5.5 or higher",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language proficiency: submit one or more of Korean (TOPIK level 3 or higher) or English (TOEFL iBT, Academic IELTS, New TEPS, CEFR B2) scores, or qualify under the listed exemptions",
+      "quote": "3. Language Proficiency Requirements: Please submit one or more of the following documents.",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Korean: TOPIK level 3 or higher is accepted as proof of language proficiency",
+      "quote": "A score report of the Test of Proficiency in Korean (TOPIK / TOPIK IBT regular test) level 3 or higher",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 international track: online application closes",
+      "date": "2026-09-10",
+      "quote": "September 1(Tue) 10:00 - September 10(Thu) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027 international track: document submission closes",
+      "date": "2026-09-16",
+      "quote": "September 1(Tue) 10:00 - September 16(Wed) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's, Department of Social Welfare, Graduate School (international track)",
+   "url": "https://graduate2.korea.ac.kr/department/major.html",
+   "snapshot_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+   "fields": {
+    "academic": {
+     "text": "International-student track: the applicant and the applicant's parent(s) must all be non-Korean citizens (the degree level required is not stated on this page)",
+     "quote": "Both the applicant and applicant’s parent(s) must be non-Korean citizens.",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 71,
+     "quote": "TOEFL iBT 71(including Home Edition, a score of 3.5 for tests taken on or after Jan 21. 2026) or higher",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "Academic IELTS 5.5 or higher",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language proficiency: submit one or more of Korean (TOPIK level 3 or higher) or English (TOEFL iBT, Academic IELTS, New TEPS, CEFR B2) scores, or qualify under the listed exemptions",
+      "quote": "3. Language Proficiency Requirements: Please submit one or more of the following documents.",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Korean: TOPIK level 3 or higher is accepted as proof of language proficiency",
+      "quote": "A score report of the Test of Proficiency in Korean (TOPIK / TOPIK IBT regular test) level 3 or higher",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 international track: online application closes",
+      "date": "2026-09-10",
+      "quote": "September 1(Tue) 10:00 - September 10(Thu) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027 international track: document submission closes",
+      "date": "2026-09-16",
+      "quote": "September 1(Tue) 10:00 - September 16(Wed) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's, Department of North Korean Studies, Graduate School (international track)",
+   "url": "https://graduate2.korea.ac.kr/department/major.html",
+   "snapshot_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+   "fields": {
+    "academic": {
+     "text": "International-student track: the applicant and the applicant's parent(s) must all be non-Korean citizens (the degree level required is not stated on this page)",
+     "quote": "Both the applicant and applicant’s parent(s) must be non-Korean citizens.",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 71,
+     "quote": "TOEFL iBT 71(including Home Edition, a score of 3.5 for tests taken on or after Jan 21. 2026) or higher",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "Academic IELTS 5.5 or higher",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language proficiency: submit one or more of Korean (TOPIK level 3 or higher) or English (TOEFL iBT, Academic IELTS, New TEPS, CEFR B2) scores, or qualify under the listed exemptions",
+      "quote": "3. Language Proficiency Requirements: Please submit one or more of the following documents.",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Korean: TOPIK level 3 or higher is accepted as proof of language proficiency",
+      "quote": "A score report of the Test of Proficiency in Korean (TOPIK / TOPIK IBT regular test) level 3 or higher",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 international track: online application closes",
+      "date": "2026-09-10",
+      "quote": "September 1(Tue) 10:00 - September 10(Thu) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027 international track: document submission closes",
+      "date": "2026-09-16",
+      "quote": "September 1(Tue) 10:00 - September 16(Wed) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's, Department of Future Science & Technology Business, Graduate School (international track)",
+   "url": "https://graduate2.korea.ac.kr/department/major.html",
+   "snapshot_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+   "fields": {
+    "academic": {
+     "text": "International-student track: the applicant and the applicant's parent(s) must all be non-Korean citizens (the degree level required is not stated on this page)",
+     "quote": "Both the applicant and applicant’s parent(s) must be non-Korean citizens.",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 71,
+     "quote": "TOEFL iBT 71(including Home Edition, a score of 3.5 for tests taken on or after Jan 21. 2026) or higher",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "Academic IELTS 5.5 or higher",
+     "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+     "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Language proficiency: submit one or more of Korean (TOPIK level 3 or higher) or English (TOEFL iBT, Academic IELTS, New TEPS, CEFR B2) scores, or qualify under the listed exemptions",
+      "quote": "3. Language Proficiency Requirements: Please submit one or more of the following documents.",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Korean: TOPIK level 3 or higher is accepted as proof of language proficiency",
+      "quote": "A score report of the Test of Proficiency in Korean (TOPIK / TOPIK IBT regular test) level 3 or higher",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     },
+     {
+      "text": "Department of Future Science & Technology Business (TOPIK level 5 or higher): TOPIK score required",
+      "quote": "★Department of Future Science & Technology Business: TOPIK 5 or higher",
+      "source_sha256": "bd1146b4f6c7e54a09a5d253fe26c28783c086633494c52881dc4e9c3a6024c1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/eligibility.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring 2027 international track: online application closes",
+      "date": "2026-09-10",
+      "quote": "September 1(Tue) 10:00 - September 10(Thu) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     },
+     {
+      "label": "Spring 2027 international track: document submission closes",
+      "date": "2026-09-16",
+      "quote": "September 1(Tue) 10:00 - September 16(Wed) 17:00, 2026",
+      "source_sha256": "025178ceffd65249ec26cedd89ae08cce34b9857142bfd59fa524b5fe9dca0a1",
+      "source_url": "https://graduate2.korea.ac.kr/admission/schedule.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 45,
+  "机器核对": 45,
+  "待人工": 0
+ }
+}

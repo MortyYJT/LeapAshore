@@ -1,0 +1,29 @@
+{
+ "school_key": "delft-university-of-technology",
+ "school_name_en": "Delft University of Technology",
+ "country": "Netherlands",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [],
+ "blocked": [
+  {
+   "url": "https://www.tudelft.nl/en/education/programmes/masters",
+   "reason": "robots.txt disallows (robots.txt itself: HTTP 403)"
+  },
+  {
+   "url": "https://www.tudelft.nl/en/",
+   "reason": "robots.txt disallows (robots.txt itself: HTTP 403)"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.tudelft.nl/en/education/programmes/masters"
+ ],
+ "notes": "www.tudelft.nl robots.txt returns HTTP 403, so the snapshot tool refuses every page on that host and all MSc programme pages are unreachable. The only other official host tried, studiegids.tudelft.nl (course catalogue), has no admission information. No values collected.",
+ "programs": [],
+ "verification": {
+  "programs": 0,
+  "机器核对": 0,
+  "待人工": 0
+ }
+}

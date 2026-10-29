@@ -1,0 +1,950 @@
+{
+ "school_key": "new-york-university",
+ "school_name_en": "New York University",
+ "country": "United States",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://engineering.nyu.edu/academics/programs/master-science",
+  "https://www.stern.nyu.edu/programs-admissions/masters-programs",
+  "https://publichealth.nyu.edu/admissions",
+  "https://www.law.nyu.edu/llmjsd",
+  "https://steinhardt.nyu.edu/degrees"
+ ],
+ "blocked": [
+  {
+   "url": "https://gsas.nyu.edu/admissions.html",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://wagner.nyu.edu/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://www.nyu.edu/admissions/graduate-admissions.html",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://math.nyu.edu/dynamic/graduate/mathematics-in-finance/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://cds.nyu.edu/",
+   "reason": "HTTP 403"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://steinhardt.nyu.edu/degree/ms-artificial-intelligence-learning",
+  "https://steinhardt.nyu.edu/degree/ms-applied-statistics-social-science-research",
+  "https://steinhardt.nyu.edu/degree/ma-education-policy",
+  "https://www.sps.nyu.edu/join/graduate-admissions.html",
+  "https://tisch.nyu.edu/admissions/graduate-admissions",
+  "https://www.stern.nyu.edu/programs-admissions/masters-programs/ms-fintech",
+  "https://cims.nyu.edu/"
+ ],
+ "notes": "Blocked: GSAS, Wagner, Courant math-in-finance (robots.txt) and Center for Data Science (HTTP 403). Not reached: Steinhardt (admissions on JS tab pages), SPS, Tisch, Stern specialised MS. Tandon and Law deadlines state no year and were left out.",
+ "programs": [
+  {
+   "name": "Computer Science, MS",
+   "url": "https://engineering.nyu.edu/academics/programs/computer-science-ms",
+   "snapshot_sha256": "f9c8bdb26c5838b89fae9488b218dba2c201fb7cf5fa352f360d241ee064961f",
+   "fields": {
+    "academic": {
+     "text": "Undergraduate degree in computer science, mathematics, science, or engineering with a superior undergraduate record; other fields considered individually",
+     "quote": "Admission to this program requires you to have an undergraduate degree in computer science, mathematics, science, or engineering, with a superior undergraduate record from an accredited institution. Applicants with degrees in other fields are considered individually for admission.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "TOEFL score of 4.5 (on a 1-6 point scale) TOEFL score of 90 (on a 0-120 point scale)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS score of 7.0",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "At least 1 year of university-level science",
+      "quote": "At least 1 year of university-level science",
+      "check": "ok"
+     },
+     {
+      "text": "Mathematics coursework through calculus",
+      "quote": "Mathematics coursework through calculus",
+      "check": "ok"
+     },
+     {
+      "text": "Working knowledge of a high-level programming language (preferably C++)",
+      "quote": "Working knowledge of a high-level, general-purpose programming language (preferably C++)",
+      "check": "ok"
+     },
+     {
+      "text": "Basic understanding of computer fundamentals, including data structures, computer organization, and computer architecture",
+      "quote": "Basic understanding of computer fundamentals, including data structures, computer organization, and computer architecture",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Civil Engineering, MS",
+   "url": "https://engineering.nyu.edu/academics/programs/civil-engineering-ms",
+   "snapshot_sha256": "7c71a1b63cfa5058626f6b7ab4560cd6d4e3214281428247c645d6e512b5a474",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in civil engineering from an ABET-accredited program and a 3.0 GPA or better; others reviewed by a graduate adviser",
+     "quote": "Admission to this program requires you to hold a bachelor’s degree in civil engineering from a program accredited by the Accreditation Board for Engineering and Technology (ABET). You also need to have a 3.0 GPA or better. Applicants lacking a BS from an ABET-accredited program in civil engineering (including those possessing undergraduate degrees in other engineering disciplines, engineering science, engineering technology and architecture, or from a foreign university) will have their qualifications reviewed by a graduate adviser. Admission may be granted and may include the requirement for additional undergraduate courses to correct deficiencies. These additional courses are not counted toward the MS degree, nor are undergraduate courses included in computing graduate grade-point averages.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "TOEFL score of 4.5 (on a 1-6 point scale) TOEFL score of 90 (on a 0-120 point scale)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS score of 7.0",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Construction Management, MS",
+   "url": "https://engineering.nyu.edu/academics/programs/construction-management-ms",
+   "snapshot_sha256": "d46f2f7091cf7d29219b1a6bbfe314c5d868b1406a5b5ce9c34e4cac4cf0e8b9",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from an accredited institution in a relevant field and minimum undergraduate GPA of 3.00 (waivable with significant professional experience)",
+     "quote": "To gain admission to this program, applicants must hold a bachelor’s degree from an accredited institution in a relevant field (engineering, mathematics, science, business, management, or the liberal arts) and a minimum undergraduate GPA of 3.00. If you have significant professional experience in construction management, the GPA requirement can be waived.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "TOEFL score of 4.5 (on a 1-6 point scale) TOEFL score of 90 (on a 0-120 point scale)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS score of 7.0",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "College-level mathematics background, evaluated by the Program Director",
+      "quote": "All candidates are expected to have sufficient background in college-level mathematics to allow for successful completion of the program. This requirement will be evaluated by a Construction Management Program Director. Students whose academic and professional backgrounds are deemed to be deficient may be required to complete additional undergraduate courses as a pre- or co-requisite to admission.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Financial Engineering, MS",
+   "url": "https://engineering.nyu.edu/academics/programs/financial-engineering-ms",
+   "snapshot_sha256": "417f1aebc0c054b1874cb16d6326a0dfd7b41a3d1731e5a2d4ae6384dcb2abcf",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree from an accredited institution",
+     "quote": "Students must have a Bachelor's degree from an accreditedited institution and proven proficiency in:",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "TOEFL score of 4.5 (on a 1-6 point scale) TOEFL score of 90 (on a 0-120 point scale)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS score of 7.0",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Linear Algebra",
+      "quote": "Linear Algebra",
+      "check": "ok"
+     },
+     {
+      "text": "Probability Theory",
+      "quote": "Probability Theory",
+      "check": "ok"
+     },
+     {
+      "text": "Multivariable Calculus (Advanced)",
+      "quote": "Multivariable Calculus (Advanced)",
+      "check": "ok"
+     },
+     {
+      "text": "Applied Statistics",
+      "quote": "Applied Statistics",
+      "check": "ok"
+     },
+     {
+      "text": "Computer Programming",
+      "quote": "Computer Programming",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Industrial Engineering, MS",
+   "url": "https://engineering.nyu.edu/academics/programs/industrial-engineering-ms",
+   "snapshot_sha256": "db6c1a18c680a9a058462ae2fe517e733fbb01a3cfe8b5c1fdc9232d98727a57",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in a related discipline from an accredited institution with a superior academic record",
+     "quote": "Admission to the Master of Science program requires a bachelor’s degree in a related discipline from an accredited institution. Applicants should have a superior undergraduate academic record.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "TOEFL score of 4.5 (on a 1-6 point scale) TOEFL score of 90 (on a 0-120 point scale)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS score of 7.0",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Mathematics, MS",
+   "url": "https://engineering.nyu.edu/academics/programs/mathematics-ms",
+   "snapshot_sha256": "19a554edff2d6d2733e6d9cafc3bcc4c62097edd6f23e715ae5f7bc5ccab43b8",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in mathematics; one-year course in advanced calculus expected",
+     "quote": "You must have a bachelor’s degree in mathematics for admission to this program. Students with degrees in other fields may be admitted; those with undergraduate deficiencies may be admitted at the discretion of departmental advisers. Before beginning graduate studies, you are expected to have completed a 1-year course in advanced calculus.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "TOEFL score of 4.5 (on a 1-6 point scale) TOEFL score of 90 (on a 0-120 point scale)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS score of 7.0",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Mechanical Engineering, MS",
+   "url": "https://engineering.nyu.edu/academics/programs/mechanical-engineering-ms",
+   "snapshot_sha256": "82f502666f60a20b6e6d33f017606ad9d3789e7cfd918896fce8a1c13ac4861e",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree and good academic record in mechanical engineering generally required",
+     "quote": "A bachelor’s degree and a good academic record in mechanical engineering from a reputable college or university are generally required for admission to this program. Applicants with degrees from fields other than mechanical engineering may be admitted but may have to complete additional studies to achieve a comparable background. Courses required to achieve this status are specified as part of the admission evaluation. Undergraduate courses specified for this purpose cannot count toward credits for the graduate degree. Graduate programs are subject to prior approval of a graduate adviser designated by the department.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "TOEFL score of 4.5 (on a 1-6 point scale) TOEFL score of 90 (on a 0-120 point scale)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS score of 7.0",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Mechatronics and Robotics, MS",
+   "url": "https://engineering.nyu.edu/academics/programs/mechatronics-and-robotics-ms",
+   "snapshot_sha256": "da2abe8e2522fed34f9b4dd0c267ab8009836c3ca6da899f871c187546b8895c",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree and good academic record in mechanical, electrical, or electronics engineering generally required",
+     "quote": "A bachelor’s degree and a good academic record in mechanical, electrical, or electronics engineering from a reputable college or university are generally required for admission to this program. Applicants with degrees from other fields may be admitted but may have to complete additional studies to achieve a comparable background. Courses required to achieve this status are specified as part of the admission evaluation. Undergraduate courses specified for this purpose cannot count toward credits for the graduate degree. Graduate programs are subject to prior approval of a graduate adviser designated by the department.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "TOEFL score of 4.5 (on a 1-6 point scale) TOEFL score of 90 (on a 0-120 point scale)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS score of 7.0",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Biomedical Engineering, MS",
+   "url": "https://engineering.nyu.edu/academics/programs/biomedical-engineering-ms",
+   "snapshot_sha256": "25cf82426a7b34d2855010140957679d2fef8295b800fd7862535cab5899e811",
+   "fields": {
+    "academic": {
+     "text": "BS/BA or more advanced degree in a listed engineering or science field",
+     "quote": "The BME MS program will consider applications for admission from students with a BS/BA or a more advanced degree in biomedical, chemical, mechanical, or electrical engineering; computer engineering or science; physics; mathematics, chemistry; or biological sciences. We also consider applications from students with medical, dental, nursing and legal degrees.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "TOEFL score of 4.5 (on a 1-6 point scale) TOEFL score of 90 (on a 0-120 point scale)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS score of 7.0",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Biotechnology and Entrepreneurship, MS",
+   "url": "https://engineering.nyu.edu/academics/programs/biotechnology-and-entrepreneurship-ms",
+   "snapshot_sha256": "a8ad51de77a017fc25480446102f6be26d077b2dc912b044da88786487aef75b",
+   "fields": {
+    "academic": {
+     "text": "Undergraduate degree in a science or engineering discipline with biochemistry and cell and molecular biology courses",
+     "quote": "You should have an undergraduate degree in a science or engineering discipline and must have taken undergraduate courses in biochemistry and cell and molecular biology.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "TOEFL score of 4.5 (on a 1-6 point scale) TOEFL score of 90 (on a 0-120 point scale)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS score of 7.0",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Emerging Technologies in Biotech and Computing, MS",
+   "url": "https://engineering.nyu.edu/academics/programs/emerging-technologies-ms",
+   "snapshot_sha256": "94455324d60c3c81445cbebeabaae0f95b7b4f015f0a55cc413a0925209a2bac",
+   "fields": {
+    "academic": {
+     "text": "4-year bachelor's degree from an accredited institution",
+     "quote": "As with all of our MS programs, applicants are required to have received a 4-year bachelor’s degree from an accredited institution. We recommend that applicants have a background in either biology/chemistry/a related science OR computer science/another related field. Some applicants have a background in both knowledge areas, but it is not an expectation to gain entrance to the program. For those interested in this program but without the necessary background, please check out our NYU Tandon Bridge course.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "TOEFL score of 4.5 (on a 1-6 point scale) TOEFL score of 90 (on a 0-120 point scale)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS score of 7.0",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Quantum Science and Technology, MS",
+   "url": "https://engineering.nyu.edu/academics/programs/quantum-science-and-technology-ms",
+   "snapshot_sha256": "05bd4ef958d1c0cbf5bba97f72913cda90ba71d87d1e9497b2441feae97b4746",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree (or international equivalent) from an accredited institution; minimum GPA 3.0 on a 4.0 scale",
+     "quote": "To be eligible for consideration to any graduate program at NYU Tandon, you must hold a four-year U.S. Bachelor's degree from an institution accredited by a U.S. Department of Education-recognized institutional accreditor; or its international equivalent. We do not accept undergraduate degrees that are equivalent to three years of study. However, degrees that are completed within the Bologna signatory system that are Bachelor of Engineering (or a related field), and earn 180+ ECTS credits, are eligible for consideration. The minimum GPA requirement is a 3.0 out of a 4.0 scale.The NYU Tandon School of Engineering reserves the right to investigate or disqualify educational credentials on a case-by-case basis.",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "TOEFL score of 4.5 (on a 1-6 point scale) TOEFL score of 90 (on a 0-120 point scale)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS score of 7.0",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Introductory mechanics, E&M, waves and optics; vector calculus, linear algebra, differential equations, Python",
+      "quote": "The Program may be completed on a full-time basis in one academic year (Fall, Spring, Summer), or within 3 years for students completing the program on a part-time basis. Incoming students are expected to have introductory-level knowledge in mechanics, electricity and magnetism, and waves and optics, as well as proficiency in vector calculus, linear algebra, differential equations, and python programming.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Transportation Systems, MS",
+   "url": "https://engineering.nyu.edu/academics/programs/transportation-systems-ms",
+   "snapshot_sha256": "f527e2e6b5884ad7bf72b98fd2529ae0faf56976dde661a169915ed6cd10de6c",
+   "fields": {
+    "academic": {
+     "text": "Undergraduate degree in engineering or related discipline with basic probability and statistics",
+     "quote": "Applicants to the M.S. in Transportation Systems are expected to have an undergraduate degree in an engineering or related discipline, with a basic level of knowledge of probability and statistics. This background includes one year of college-level calculus, one year of college-level physical science, one semester engineering-level probability and statistics and one semester computer programming.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "TOEFL score of 4.5 (on a 1-6 point scale) TOEFL score of 90 (on a 0-120 point scale)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS score of 7.0",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Urban Data Science, MS",
+   "url": "https://engineering.nyu.edu/academics/programs/urban-data-science-ms",
+   "snapshot_sha256": "27035acf646287dbfa358087d3ae737224db8a76c13c48b0ed5a3c85dd586152",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree (or international equivalent) from an accredited institution; minimum GPA 3.0 on a 4.0 scale",
+     "quote": "To be eligible for consideration to any graduate program at NYU Tandon, you must hold a four-year U.S. Bachelor's degree from an institution accredited by a U.S. Department of Education-recognized institutional accreditor; or its international equivalent. We do not accept undergraduate degrees that are equivalent to three years of study. However, degrees that are completed within the Bologna signatory system that are Bachelor of Engineering (or a related field), and earn 180+ ECTS credits, are eligible for consideration. The minimum GPA requirement is a 3.0 out of a 4.0 scale.The NYU Tandon School of Engineering reserves the right to investigate or disqualify educational credentials on a case-by-case basis.",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "TOEFL score of 4.5 (on a 1-6 point scale) TOEFL score of 90 (on a 0-120 point scale)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS score of 7.0",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Computer Engineering, MS",
+   "url": "https://engineering.nyu.edu/academics/programs/computer-engineering-ms",
+   "snapshot_sha256": "68b6ecc30e048bfc0db3efb4180d95b47faf802e2e647b340d491360ca8add3e",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree (or international equivalent) from an accredited institution; minimum GPA 3.0 on a 4.0 scale",
+     "quote": "To be eligible for consideration to any graduate program at NYU Tandon, you must hold a four-year U.S. Bachelor's degree from an institution accredited by a U.S. Department of Education-recognized institutional accreditor; or its international equivalent. We do not accept undergraduate degrees that are equivalent to three years of study. However, degrees that are completed within the Bologna signatory system that are Bachelor of Engineering (or a related field), and earn 180+ ECTS credits, are eligible for consideration. The minimum GPA requirement is a 3.0 out of a 4.0 scale.The NYU Tandon School of Engineering reserves the right to investigate or disqualify educational credentials on a case-by-case basis.",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "TOEFL score of 4.5 (on a 1-6 point scale) TOEFL score of 90 (on a 0-120 point scale)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS score of 7.0",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Electrical Engineering, MS",
+   "url": "https://engineering.nyu.edu/academics/programs/electrical-engineering-ms",
+   "snapshot_sha256": "ca8d364c97314a12e5a963735f23cace40ff234e7fdda69c4769a78182b5e0d3",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree (or international equivalent) from an accredited institution; minimum GPA 3.0 on a 4.0 scale",
+     "quote": "To be eligible for consideration to any graduate program at NYU Tandon, you must hold a four-year U.S. Bachelor's degree from an institution accredited by a U.S. Department of Education-recognized institutional accreditor; or its international equivalent. We do not accept undergraduate degrees that are equivalent to three years of study. However, degrees that are completed within the Bologna signatory system that are Bachelor of Engineering (or a related field), and earn 180+ ECTS credits, are eligible for consideration. The minimum GPA requirement is a 3.0 out of a 4.0 scale.The NYU Tandon School of Engineering reserves the right to investigate or disqualify educational credentials on a case-by-case basis.",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "TOEFL score of 4.5 (on a 1-6 point scale) TOEFL score of 90 (on a 0-120 point scale)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS score of 7.0",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Chemical Engineering, MS",
+   "url": "https://engineering.nyu.edu/academics/programs/chemical-engineering-ms",
+   "snapshot_sha256": "ff091910db1b1e7911f2fcc10db800a0d4517dbdadb18f7b4bda36a257bec71e",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree (or international equivalent) from an accredited institution; minimum GPA 3.0 on a 4.0 scale",
+     "quote": "To be eligible for consideration to any graduate program at NYU Tandon, you must hold a four-year U.S. Bachelor's degree from an institution accredited by a U.S. Department of Education-recognized institutional accreditor; or its international equivalent. We do not accept undergraduate degrees that are equivalent to three years of study. However, degrees that are completed within the Bologna signatory system that are Bachelor of Engineering (or a related field), and earn 180+ ECTS credits, are eligible for consideration. The minimum GPA requirement is a 3.0 out of a 4.0 scale.The NYU Tandon School of Engineering reserves the right to investigate or disqualify educational credentials on a case-by-case basis.",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "TOEFL score of 4.5 (on a 1-6 point scale) TOEFL score of 90 (on a 0-120 point scale)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS score of 7.0",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Cybersecurity, MS",
+   "url": "https://engineering.nyu.edu/academics/programs/cybersecurity-ms",
+   "snapshot_sha256": "7039ddfcf2588717a144eab675cd7aff4cf285cafe4597837a3042c4cb61cc2d",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree (or international equivalent) from an accredited institution; minimum GPA 3.0 on a 4.0 scale",
+     "quote": "To be eligible for consideration to any graduate program at NYU Tandon, you must hold a four-year U.S. Bachelor's degree from an institution accredited by a U.S. Department of Education-recognized institutional accreditor; or its international equivalent. We do not accept undergraduate degrees that are equivalent to three years of study. However, degrees that are completed within the Bologna signatory system that are Bachelor of Engineering (or a related field), and earn 180+ ECTS credits, are eligible for consideration. The minimum GPA requirement is a 3.0 out of a 4.0 scale.The NYU Tandon School of Engineering reserves the right to investigate or disqualify educational credentials on a case-by-case basis.",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "TOEFL score of 4.5 (on a 1-6 point scale) TOEFL score of 90 (on a 0-120 point scale)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS score of 7.0",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Management of Technology, MS",
+   "url": "https://engineering.nyu.edu/academics/programs/management-technology-ms",
+   "snapshot_sha256": "a369def8ad7488ae218934092343174b0d88218d4e696d4e2abe3963580a87f1",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree (or international equivalent) from an accredited institution; minimum GPA 3.0 on a 4.0 scale",
+     "quote": "To be eligible for consideration to any graduate program at NYU Tandon, you must hold a four-year U.S. Bachelor's degree from an institution accredited by a U.S. Department of Education-recognized institutional accreditor; or its international equivalent. We do not accept undergraduate degrees that are equivalent to three years of study. However, degrees that are completed within the Bologna signatory system that are Bachelor of Engineering (or a related field), and earn 180+ ECTS credits, are eligible for consideration. The minimum GPA requirement is a 3.0 out of a 4.0 scale.The NYU Tandon School of Engineering reserves the right to investigate or disqualify educational credentials on a case-by-case basis.",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "TOEFL score of 4.5 (on a 1-6 point scale) TOEFL score of 90 (on a 0-120 point scale)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS score of 7.0",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Biotechnology, MS",
+   "url": "https://engineering.nyu.edu/academics/programs/biotechnology-ms",
+   "snapshot_sha256": "ed75c773a7b1cc8fc582e450001231a6d03a3d1bb7727845b0df898535662408",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree (or international equivalent) from an accredited institution; minimum GPA 3.0 on a 4.0 scale",
+     "quote": "To be eligible for consideration to any graduate program at NYU Tandon, you must hold a four-year U.S. Bachelor's degree from an institution accredited by a U.S. Department of Education-recognized institutional accreditor; or its international equivalent. We do not accept undergraduate degrees that are equivalent to three years of study. However, degrees that are completed within the Bologna signatory system that are Bachelor of Engineering (or a related field), and earn 180+ ECTS credits, are eligible for consideration. The minimum GPA requirement is a 3.0 out of a 4.0 scale.The NYU Tandon School of Engineering reserves the right to investigate or disqualify educational credentials on a case-by-case basis.",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "TOEFL score of 4.5 (on a 1-6 point scale) TOEFL score of 90 (on a 0-120 point scale)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS score of 7.0",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Environmental Engineering, MS",
+   "url": "https://engineering.nyu.edu/academics/programs/environmental-engineering-ms",
+   "snapshot_sha256": "8ada2428b4380d5f966c37227cd0aa5d5ff0c49377023301798f60ab47c8bc4b",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree (or international equivalent) from an accredited institution; minimum GPA 3.0 on a 4.0 scale",
+     "quote": "To be eligible for consideration to any graduate program at NYU Tandon, you must hold a four-year U.S. Bachelor's degree from an institution accredited by a U.S. Department of Education-recognized institutional accreditor; or its international equivalent. We do not accept undergraduate degrees that are equivalent to three years of study. However, degrees that are completed within the Bologna signatory system that are Bachelor of Engineering (or a related field), and earn 180+ ECTS credits, are eligible for consideration. The minimum GPA requirement is a 3.0 out of a 4.0 scale.The NYU Tandon School of Engineering reserves the right to investigate or disqualify educational credentials on a case-by-case basis.",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "TOEFL score of 4.5 (on a 1-6 point scale) TOEFL score of 90 (on a 0-120 point scale)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS score of 7.0",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Environmental Science, MS",
+   "url": "https://engineering.nyu.edu/academics/programs/environmental-science-ms",
+   "snapshot_sha256": "99e8a82eac39b029e64404514fd0590825022a3ad36abde70f9347a012ce45f9",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree (or international equivalent) from an accredited institution; minimum GPA 3.0 on a 4.0 scale",
+     "quote": "To be eligible for consideration to any graduate program at NYU Tandon, you must hold a four-year U.S. Bachelor's degree from an institution accredited by a U.S. Department of Education-recognized institutional accreditor; or its international equivalent. We do not accept undergraduate degrees that are equivalent to three years of study. However, degrees that are completed within the Bologna signatory system that are Bachelor of Engineering (or a related field), and earn 180+ ECTS credits, are eligible for consideration. The minimum GPA requirement is a 3.0 out of a 4.0 scale.The NYU Tandon School of Engineering reserves the right to investigate or disqualify educational credentials on a case-by-case basis.",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "TOEFL score of 4.5 (on a 1-6 point scale) TOEFL score of 90 (on a 0-120 point scale)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS score of 7.0",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Integrated Design and Media, MS",
+   "url": "https://engineering.nyu.edu/academics/programs/integrated-design-media-ms",
+   "snapshot_sha256": "d41f71b8aac8adf28f67f39523fbd49f202935de7627c7d6bca028e01e7f8e9b",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree (or international equivalent) from an accredited institution; minimum GPA 3.0 on a 4.0 scale",
+     "quote": "To be eligible for consideration to any graduate program at NYU Tandon, you must hold a four-year U.S. Bachelor's degree from an institution accredited by a U.S. Department of Education-recognized institutional accreditor; or its international equivalent. We do not accept undergraduate degrees that are equivalent to three years of study. However, degrees that are completed within the Bologna signatory system that are Bachelor of Engineering (or a related field), and earn 180+ ECTS credits, are eligible for consideration. The minimum GPA requirement is a 3.0 out of a 4.0 scale.The NYU Tandon School of Engineering reserves the right to investigate or disqualify educational credentials on a case-by-case basis.",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "TOEFL score of 4.5 (on a 1-6 point scale) TOEFL score of 90 (on a 0-120 point scale)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS score of 7.0",
+     "source_sha256": "e9a5f5548425407939f37dc5d8708713a08c13ef80e74cf077a7ef35838b2830",
+     "source_url": "https://engineering.nyu.edu/admissions/graduate/apply/admissions-requirements",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Portfolio of creative work (PDF or website)",
+      "quote": "Portfolio of creative work (as PDF or website)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Health (MPH) (NYU School of Global Public Health)",
+   "url": "https://publichealth.nyu.edu/admissions/apply/mph",
+   "snapshot_sha256": "02cfb1ea2fb8fbef068f8479d6933f52190c79a701b720f9010e1cd4ebd25f54",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in any major from an accredited institution or international equivalent; GRE not required",
+     "quote": "We welcome applications from candidates with a Bachelor’s degree in any major from an institution accredited by a U.S.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT: 100 or higher (if exam was administered prior to January 2026) or 5.0 or higher (if exam was administered January 2026 or later)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "IELTS – Academic Exam: 7.5 (total band score)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Biostatistics (NYU School of Global Public Health)",
+   "url": "https://publichealth.nyu.edu/admissions/apply/ms-biostatistics",
+   "snapshot_sha256": "023983ebce4a5ae4254dd6fb9625e8a5366e264bfd177827ab918590f9941edc",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in any major from an accredited institution or international equivalent; GRE not required",
+     "quote": "We welcome applications from candidates with a Bachelor’s degree in any major from an institution accredited by a U.S.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT: 100 or higher (if exam was administered prior to January 2026) or 5.0 or higher (if exam was administered January 2026 or later)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "IELTS – Academic Exam: 7.5 (total band score)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Epidemiology (NYU School of Global Public Health)",
+   "url": "https://publichealth.nyu.edu/admissions/apply/ms-epidemiology",
+   "snapshot_sha256": "3237c92b545098d8bcb914c7d636f6238ab497fb4dbfa47a253bf117cb6091aa",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in any major from an accredited institution or international equivalent; GRE not required",
+     "quote": "We welcome applications from candidates with a Bachelor’s degree in any major from an institution accredited by a U.S.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL iBT: 100 or higher (if exam was administered prior to January 2026) or 5.0 or higher (if exam was administered January 2026 or later)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "IELTS – Academic Exam: 7.5 (total band score)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Business Analytics and AI (NYU Stern)",
+   "url": "https://www.stern.nyu.edu/programs-admissions/ms-business-analytics-ai/admissions/process-and-timeline",
+   "snapshot_sha256": "3a0ce8dc6b233a55768ef8124a77635fe45ce9344ea95804865db34a6c3ee8ec",
+   "fields": {
+    "academic": {
+     "text": "Completed bachelor's degree (or equivalent) with strong academic record; full-time professional work experience after the degree (no minimum years); GMAT/GRE not required",
+     "quote": "A completed bachelor's degree (or an equivalent degree) with a strong academic record/Grade Point Average",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Full-time professional work experience after completing the undergraduate degree; no minimum number of years; internships do not qualify",
+      "quote": "Full-time, professional, work experience gained after completing the required undergraduate degree",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Regular Decision Deadline II (Class of 2028, May 2027 start)",
+      "date": "2027-01-15",
+      "quote": "Regular Decision Deadline II: January 15th, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Final Deadline (Class of 2028)",
+      "date": "2027-03-01",
+      "quote": "Final Deadline: March 1st, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Full-time MBA (NYU Stern)",
+   "url": "https://www.stern.nyu.edu/programs-admissions/full-time-mba/admissions",
+   "snapshot_sha256": "36d94675ba72e92621e04c7da54699e0dce42f713e5904790b7dca655b269510",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor's degree from an accredited US college or equivalent foreign degree",
+     "quote": "Students entering a Stern MBA program are required to hold a four-year bachelor's degree from an accredited college or university in the U.S. or an equivalent degree from a foreign country",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Full-time MBA Fall 2027, 3rd deadline",
+      "date": "2027-01-15",
+      "quote": "3rd Deadline January 15, 2027",
+      "source_sha256": "2a06d2d6e1b13d53eca84cf11b69fd2e1de076a60acb1bf1d40fb2967910e426",
+      "source_url": "https://www.stern.nyu.edu/programs-admissions/full-time-mba/admissions/deadlines",
+      "check": "ok"
+     },
+     {
+      "label": "Full-time MBA Fall 2027, 4th deadline",
+      "date": "2027-04-15",
+      "quote": "4th Deadline April 15, 2027",
+      "source_sha256": "2a06d2d6e1b13d53eca84cf11b69fd2e1de076a60acb1bf1d40fb2967910e426",
+      "source_url": "https://www.stern.nyu.edu/programs-admissions/full-time-mba/admissions/deadlines",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "LLM (NYU School of Law)",
+   "url": "https://www.law.nyu.edu/llmjsd",
+   "snapshot_sha256": "aba1fe6c47c661e3f7f735e7cd2f0ecbc36577af557a50c02c4548f74e9c4940",
+   "fields": {
+    "toefl": {
+     "overall": 100,
+     "quote": "Overall 100 5.0 or above 7.0",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "e8b60b5bf99b8f35cff57d457c503401b1d81dfd2610dd5a359a2f35c86379dd",
+     "source_url": "https://www.law.nyu.edu/graduateadmissions/faqs",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "Overall 100 5.0 or above 7.0",
+     "source_sha256": "e8b60b5bf99b8f35cff57d457c503401b1d81dfd2610dd5a359a2f35c86379dd",
+     "source_url": "https://www.law.nyu.edu/graduateadmissions/faqs",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 29,
+  "机器核对": 29,
+  "待人工": 0
+ }
+}

@@ -1,0 +1,364 @@
+{
+ "school_key": "university-of-california-davis",
+ "school_name_en": "University of California, Davis",
+ "country": "United States",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://grad.ucdavis.edu/graduate-programs",
+  "https://grad.ucdavis.edu/minimum-requirements",
+  "https://gsm.ucdavis.edu"
+ ],
+ "blocked": [
+  {
+   "url": "https://grad.ucdavis.edu/program-application-deadlines",
+   "reason": "HTTP 403 (grad.ucdavis.edu not fetched further)"
+  },
+  {
+   "url": "https://cs.ucdavis.edu/graduate/our-programs/ms-degree",
+   "reason": "HTTP 403 (cs.ucdavis.edu not fetched further)"
+  },
+  {
+   "url": "https://statistics.ucdavis.edu/graduate/admissions",
+   "reason": "HTTP 403"
+  },
+  {
+   "url": "https://stat.ucdavis.edu",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://engineering.ucdavis.edu/graduate",
+   "reason": "HTTP 403"
+  },
+  {
+   "url": "https://ece.ucdavis.edu",
+   "reason": "HTTP 403"
+  },
+  {
+   "url": "https://mae.engr.ucdavis.edu",
+   "reason": "HTTP 403"
+  },
+  {
+   "url": "https://cee.engr.ucdavis.edu",
+   "reason": "HTTP 403"
+  },
+  {
+   "url": "https://mph.ucdavis.edu",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://viticulture-enology.ucdavis.edu",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://ee.engineering.ucdavis.edu",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://cheme.ucdavis.edu",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://gradprograms.engineering.ucdavis.edu",
+   "reason": "robots.txt disallows"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "Statistics (M.S.)",
+  "Engineering M.S./M.Eng. (all departments)",
+  "Public Health (MPH)",
+  "Sustainable Transportation / Transportation Technology and Policy",
+  "Viticulture and Enology",
+  "Biomedical Engineering",
+  "Energy Systems",
+  "Food Science"
+ ],
+ "notes": "Graduate Studies English-exam page and deadlines page were not fetched because grad.ucdavis.edu returned 403; university-wide English minimums are therefore not recorded. Most engineering, statistics, MPH and viticulture hosts are blocked (403 or robots.txt). Master of Science in Computer Science page gives no deadline year, so no deadline is recorded. ARE M.S. page states it accepts no applications for 2027-28. Agricultural and Resource Economics MS removed by the coordinator: not accepting applications for 2027-28.",
+ "programs": [
+  {
+   "name": "Computer Science (M.S.)",
+   "url": "https://cs.ucdavis.edu/graduate/prospective-students/how-apply",
+   "snapshot_sha256": "75a81401f6fdc7c923173e259158b6fdf09b2799eda5bfe8557c27cbfd51e46b",
+   "fields": {
+    "academic": {
+     "text": "Equivalent of a 3.0 minimum GPA on the US 4.0 scale (UC Davis Graduate Studies requirement)",
+     "quote": "UC Davis Graduate Studies requires that each applicant have the equivalent of a 3.0 minimum GPA, on the 4.0 scale used within the United States.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Prerequisite Proficiency Requirements: upper-division or graduate-level coursework in fundamental areas of computer science and mathematics (e.g. theory, software, operating systems)",
+      "quote": "applicants are also expected to demonstrate proficiency in several fundamental areas of computer science and mathematics.",
+      "source_sha256": "e86c363932d9289b11b8119e6c146d3f2e94b963211ba4fc66a6689ecb1271f6",
+      "source_url": "https://cs.ucdavis.edu/graduate/prospective-students/undergraduate-proficiency-requirements",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Full-Time MBA",
+   "url": "https://gsm.ucdavis.edu/full-time-mba/admissions",
+   "snapshot_sha256": "545eb73f31f1179ce47376a619a2f437a8ff901fa104eb125d3e355c601320d3",
+   "fields": {
+    "academic": {
+     "text": "US regionally accredited bachelor's degree or international equivalent; minimum 3.0 undergraduate GPA or equivalent (exception can be requested)",
+     "quote": "The UC Davis MBA Program requires a minimum 3.0 undergraduate grade point average or its equivalent if not on a 4.0 scale.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 105,
+     "quote": "The minimum score required for admissions is 5.5 or 105.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "6514a0ec482049fb9b9ab431cdcc47d4ceabf6ebe9185327c30e28117a102c41",
+     "source_url": "https://gsm.ucdavis.edu/full-time-mba/admissions/international-applicants",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "The minimum band score requirement for the IELTS is 7.5.",
+     "source_sha256": "6514a0ec482049fb9b9ab431cdcc47d4ceabf6ebe9185327c30e28117a102c41",
+     "source_url": "https://gsm.ucdavis.edu/full-time-mba/admissions/international-applicants",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Round 2",
+      "date": "2027-01-07",
+      "quote": "January 07, 2027 Full-Time MBA Application Deadline: Round 2",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3 (priority international)",
+      "date": "2027-03-04",
+      "quote": "March 04, 2027 Full-Time MBA Application Deadline: Round 3 (Priority international deadline)",
+      "check": "ok"
+     },
+     {
+      "label": "Round 4",
+      "date": "2027-05-13",
+      "quote": "May 13, 2027 Full-Time MBA Application Deadline: Round 4",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Full-Time Master of Management",
+   "url": "https://gsm.ucdavis.edu/master-management/admissions",
+   "snapshot_sha256": "a16a7701269ad0721fa4de27fd996ea30c46813db7ff24b8f067001fd4eb5fdc",
+   "fields": {
+    "academic": {
+     "text": "US regionally accredited bachelor's degree or international equivalent; minimum 3.0 undergraduate GPA or equivalent (exception can be requested)",
+     "quote": "The UC Davis MM Program requires a minimum 3.0 undergraduate grade point average or its equivalent if not on a 4.0 scale.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 105,
+     "quote": "The minimum score required for admissions is 5.5 or 105.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "81f826a9993badd2818f759cc7b49aa19325b0a6d7c93bb1e7d1d4a094266074",
+     "source_url": "https://gsm.ucdavis.edu/master-management/admissions/international-applicants",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "The minimum band score requirement for the IELTS is 7.5.",
+     "source_sha256": "81f826a9993badd2818f759cc7b49aa19325b0a6d7c93bb1e7d1d4a094266074",
+     "source_url": "https://gsm.ucdavis.edu/master-management/admissions/international-applicants",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Round 1",
+      "date": "2026-11-05",
+      "quote": "November 05, 2026 Full-Time Master of Management Application Deadline: Round 1",
+      "check": "ok"
+     },
+     {
+      "label": "Round 2",
+      "date": "2027-01-07",
+      "quote": "January 07, 2027 Full-Time Master of Management Application Deadline: Round 2",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3 (priority international)",
+      "date": "2027-03-04",
+      "quote": "March 04, 2027 Full-Time Master of Management Application Deadline: Round 3 (Priority international deadline)",
+      "check": "ok"
+     },
+     {
+      "label": "Round 4",
+      "date": "2027-05-13",
+      "quote": "May 13, 2027 Full-Time Master of Management Application Deadline: Round 4",
+      "check": "ok"
+     },
+     {
+      "label": "Round 5",
+      "date": "2027-07-08",
+      "quote": "July 08, 2027 Full-Time Master of Management Application Deadline: Round 5",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Professional Accountancy (MPAc)",
+   "url": "https://gsm.ucdavis.edu/master-professional-accountancy/admissions",
+   "snapshot_sha256": "7703d766b6d1667632ee7497f4a68aaef560e64c4e927ecf88e8b08c9af4b567",
+   "fields": {
+    "academic": {
+     "text": "US regionally accredited bachelor's degree or international equivalent; an undergraduate accounting degree is not required",
+     "quote": "To be considered for admission, you must hold a bachelor’s degree from a U.S. regionally accredited institution or the international equivalent.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Prerequisite coursework required before enrolling: MGT 011A Principles of Financial Accounting, MGT 011B Elementary Managerial Accounting, ARE 018 Business Law, STA 013 Elementary Statistics (B- or higher)",
+      "quote": "All prerequisites must be completed with a grade of B- or higher before enrollment in the fall term.",
+      "source_sha256": "cca8f9ab29218d03f97190b1f0ed11e04b7e869b7002d9ef86f186a9226b7ce6",
+      "source_url": "https://gsm.ucdavis.edu/master-professional-accountancy/admissions/application-process/prerequisites",
+      "check": "ok"
+     }
+    ],
+    "toefl": {
+     "overall": 105,
+     "quote": "The minimum score required for admissions is 5.5 or 105.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "844683b01c0a2136cbf2c81f96b36b7ac8795873f8e7f2d7b95f4df48dd01b2c",
+     "source_url": "https://gsm.ucdavis.edu/master-professional-accountancy/admissions/application-process/mpac-international",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "The minimum band score requirement for the IELTS is 7.5.",
+     "source_sha256": "844683b01c0a2136cbf2c81f96b36b7ac8795873f8e7f2d7b95f4df48dd01b2c",
+     "source_url": "https://gsm.ucdavis.edu/master-professional-accountancy/admissions/application-process/mpac-international",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Round 2",
+      "date": "2026-11-01",
+      "quote": "November 01, 2026 MPAc Application Deadline: Round 2",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3",
+      "date": "2026-12-01",
+      "quote": "December 01, 2026 MPAc Application Deadline: Round 3",
+      "check": "ok"
+     },
+     {
+      "label": "Round 4",
+      "date": "2027-02-01",
+      "quote": "February 01, 2027 MPAc Application Deadline: Round 4",
+      "check": "ok"
+     },
+     {
+      "label": "Round 5",
+      "date": "2027-03-01",
+      "quote": "March 01, 2027 MPAc Application Deadline: Round 5",
+      "check": "ok"
+     },
+     {
+      "label": "Round 6 (priority international)",
+      "date": "2027-04-01",
+      "quote": "April 01, 2027 MPAc Application Deadline: Round 6 (Priority international deadline)",
+      "check": "ok"
+     },
+     {
+      "label": "Round 7",
+      "date": "2027-05-01",
+      "quote": "May 01, 2027 MPAc Application Deadline: Round 7",
+      "check": "ok"
+     },
+     {
+      "label": "Round 8",
+      "date": "2027-06-01",
+      "quote": "June 01, 2027 MPAc Application Deadline: Round 8",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Business Analytics (MSBA)",
+   "url": "https://gsm.ucdavis.edu/master-science-business-analytics/admissions",
+   "snapshot_sha256": "ddb9a6d1cb18d93382d595d107641e26f3d4faeb1a25ce7ae13ed6ff03f18b85",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree equivalent to a four-year US bachelor's (16 years of education), or a three-year degree plus a one-year postgraduate diploma or other graduate degree",
+     "quote": "A bachelor’s degree equivalent to a four-year U.S. bachelor’s degree—16 total years of education.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Coursework in computing and statistics",
+      "quote": "Successful completion of coursework in these primary areas: computing and statistics.",
+      "check": "ok"
+     },
+     {
+      "text": "Computing: basic knowledge of Python or R, data structures, flow of control, iteration and functions",
+      "quote": "Principles and use of programming. Basic knowledge of Python or R.",
+      "source_sha256": "345dfb9719a41dba6185c8d6069d05751eed2b2e2b2e6405338144b0b39bcc5d",
+      "source_url": "https://gsm.ucdavis.edu/master-science-business-analytics-msba/admissions/application-process/msba",
+      "check": "ok"
+     }
+    ],
+    "toefl": {
+     "overall": 105,
+     "quote": "The minimum score required for admissions is 5.5 or 105.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "cc97112319044b1e46d93bb55bf2540e9d6b9043835c0f33a69800004191e5eb",
+     "source_url": "https://gsm.ucdavis.edu/master-science-business-analytics-msba/admissions/international",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "The minimum band score requirement for the IELTS is 7.5.",
+     "source_sha256": "cc97112319044b1e46d93bb55bf2540e9d6b9043835c0f33a69800004191e5eb",
+     "source_url": "https://gsm.ucdavis.edu/master-science-business-analytics-msba/admissions/international",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Round 1",
+      "date": "2026-11-15",
+      "quote": "November 15, 2026 MSBA Application Deadline: Round 1",
+      "check": "ok"
+     },
+     {
+      "label": "Round 2",
+      "date": "2027-01-15",
+      "quote": "January 15, 2027 MSBA Application Deadline: Round 2",
+      "check": "ok"
+     },
+     {
+      "label": "Round 3 (priority international)",
+      "date": "2027-03-15",
+      "quote": "March 15, 2027 MSBA Application Deadline: Round 3 (Priority international deadline)",
+      "check": "ok"
+     },
+     {
+      "label": "Round 4",
+      "date": "2027-05-15",
+      "quote": "May 15, 2027 MSBA Application Deadline: Round 4",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 5,
+  "机器核对": 5,
+  "待人工": 0
+ }
+}

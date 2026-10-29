@@ -1,0 +1,231 @@
+{
+ "school_key": "kyushu-university",
+ "school_name_en": "Kyushu University",
+ "country": "Japan",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://www.isc.kyushu-u.ac.jp/graduate/",
+  "https://www.kyushu-u.ac.jp/en/admission/",
+  "https://www.isc.kyushu-u.ac.jp/invitation/programs/"
+ ],
+ "blocked": [],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.eng.kyushu-u.ac.jp/en/graduate/graduate-international-programs/",
+  "https://www.isc.kyushu-u.ac.jp/graduate/voices/phar/",
+  "https://www.grad.med.kyushu-u.ac.jp/english/",
+  "http://www.dent.kyushu-u.ac.jp/eng/education/",
+  "https://www.hues.kyushu-u.ac.jp/eng/international-course/"
+ ],
+ "notes": "Kyushu's graduate schools publish eligibility, English scores and application dates almost only in PDF guidelines (Engineering, ISEE, Economics, Design, Agriculture, Science, Mathematics, Automotive Science, ISGS), which the snapshot tool cannot read, so those programmes carry few or no values. Only the Law programmes (LL.M., YLP, BiP) state eligibility and TOEFL in HTML. Application periods found in HTML (ISEE, Economics, Design, ISGS, IMAP, Medical) are either closed or lack a year, so no deadline was recorded. Doctoral-only, Japanese-taught and Medical Sciences (Japanese-only master's) programmes were skipped; Pharmaceutical Sciences, Dental Science master's, Systems Life Sciences, Interdisciplinary Engineering Sciences and the Educational Studies MA course were not reached.",
+ "programs": [
+  {
+   "name": "LL.M. Program (Graduate School of Law, taught entirely in English)",
+   "url": "http://www.law.kyushu-u.ac.jp/programsinenglish/html/programs-admissions/academic-programs/ll-m/",
+   "snapshot_sha256": "1ccdec3f1fa2bd35ac298b6269906a5cb459a2725f584f1abfe50eb7002d60e0",
+   "fields": {
+    "academic": {
+     "text": "An undergraduate degree in Law from an accredited university",
+     "quote": "An undergraduate degree in Law from an accredited university.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 92,
+     "quote": "A TOEFL score of 4.5+ or 92+ (Internet-based) or equivalent is required for non-native English speakers.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Young Leaders' Program (YLP) in Law (LL.M.)",
+   "url": "http://www.law.kyushu-u.ac.jp/programsinenglish/html/programs-admissions/academic-programs/ylp-ll-m/",
+   "snapshot_sha256": "3978cc6805c138a4ab3d465658c16f0044e88ee1bd95e563c462aeb73198320c",
+   "fields": {
+    "academic": {
+     "text": "An undergraduate degree in Law from an accredited university",
+     "quote": "An undergraduate degree in Law from an accredited university.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 92,
+     "quote": "A TOEFL score of 4.5+ or 92+ (Internet-based) or equivalent is required for non-native English speakers.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Under 40 years of age at time of enrollment",
+      "quote": "Under 40 years of age at time of enrollment at Kyushu University.",
+      "check": "ok"
+     },
+     {
+      "text": "In principle 4 years of full-time work experience in a law office or legal section of a company or government department in the home country",
+      "quote": "In Principle, 4 years of work experience in the applicant's home country in a law office or in the legal section of a company or government department.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "BiP (Bilingual Program in Law, Master of Laws)",
+   "url": "http://www.law.kyushu-u.ac.jp/programsinenglish/html/programs-admissions/academic-programs/bip-ll-m/",
+   "snapshot_sha256": "d279a21088b4bff0aaab59687d6983b51a7a840a4544292631d95b2c78f1cc85",
+   "fields": {
+    "academic": {
+     "text": "An undergraduate degree in either Law or Japanese/East Asian Studies",
+     "quote": "An undergraduate degree in either Law OR Japanese/East Asian Studies.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "A TOEFL score of 79+ (Internet-based) or equivalent is required for non-native English speakers.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Good command of oral, written and reading Japanese; no formal Japanese requirement but an interview checks ability to follow courses taught in Japanese",
+      "quote": "A good command of oral, written and reading Japanese. Although there is no formal Japanese language requirement for BiP, an interview will be conducted with all candidates to ensure that students have the ability to participate in courses taught in Japanese.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "CSPA Program (Master of Laws in Comparative Studies of Politics and Administration in Asia)",
+   "url": "http://law.kyushu-u.ac.jp/cspa/program/",
+   "snapshot_sha256": "55907b78c2afae8d9efd1126d37266e80e40f4186c613c9460fc220d3b1ce752",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Master's Program, Department of Automotive Science (Special Examination for International Students), Graduate School of Integrated Frontier Sciences",
+   "url": "http://www.ifs.kyushu-u.ac.jp/pages/eng/ams/admission/",
+   "snapshot_sha256": "e8d076d4cb89ee3527471d9f1223130d0701edf827a335fa19fd1a3e0edd224b",
+   "fields": {
+    "academic": {
+     "text": "Completed 16 years of formal education outside Japan with all necessary credits and an excellent academic record, or 16 years of Japanese education by March 31, or individually approved equivalent ability and at least 22 years of age",
+     "quote": "Those who have completed 16 years of formal education outside of Japan, and are recognized by our Graduate School to have received all the necessary credits and have earned an excellent academic record.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Master's/Doctoral Program in Automotive Science - Special Program in English Language for Foreign Students (Master's Course)",
+   "url": "http://www.ifs.kyushu-u.ac.jp/pages/eng/ams/admission/",
+   "snapshot_sha256": "e8d076d4cb89ee3527471d9f1223130d0701edf827a335fa19fd1a3e0edd224b",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "International Program in Public Economics (IPPE), Master's",
+   "url": "https://www.econ.kyushu-u.ac.jp/english/pa_index/pa_index2/",
+   "snapshot_sha256": "24a21514d72e8115e02a5f10434ae98581b96113bec610fff31a7d6a14262552",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "International Program in Financial and Business Economics (IPFBE), Master's",
+   "url": "https://www.econ.kyushu-u.ac.jp/english/pa_index/pa_index2/",
+   "snapshot_sha256": "24a21514d72e8115e02a5f10434ae98581b96113bec610fff31a7d6a14262552",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "International Program in Management and Accounting (IPMA), Master's",
+   "url": "https://www.econ.kyushu-u.ac.jp/english/pa_index/pa_index2/",
+   "snapshot_sha256": "24a21514d72e8115e02a5f10434ae98581b96113bec610fff31a7d6a14262552",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "International Master's Program (Global Course), Graduate School of Information Science and Electrical Engineering",
+   "url": "https://www.isee.kyushu-u.ac.jp/e/admissions_master.html",
+   "snapshot_sha256": "5a418dc9bf280f837c6da0bb2f5744efcd32fc030d06a536d735151c8250009b",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "International Master's Programs, Graduate School of Engineering",
+   "url": "https://www.eng.kyushu-u.ac.jp/en/admissions/graduate-admissions/",
+   "snapshot_sha256": "70f68468209d693519d0ed6fefffdbd1ea768e647cea0b199c9c1eb11145a77b",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Master's Program in the Department of Design (six courses), Graduate School of Design",
+   "url": "https://www.design.kyushu-u.ac.jp/en/admission/",
+   "snapshot_sha256": "2d7cfea81b76ae4d24a73e0a562de215f503c2dafa7fe5ca656ad39de84d0e8b",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "International Graduate Program, Master's course (October entry), Graduate School of Bioresource and Bioenvironmental Sciences",
+   "url": "https://ag.kyushu-u.ac.jp/english/international_exchange/how_to_apply/index.html",
+   "snapshot_sha256": "91d6a4b031381cf7959d6d19219006b08003f4b04b1650342222d0de1fe1d02e",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "Applicants for MEXT, Faculty of Agriculture or ADB-JSP scholarships must submit proof of English language proficiency",
+      "quote": "Applicants for the MEXT Scholarship, Faculty of Agriculture Scholarship, or ADB-JSP Scholarship are required to submit proof of English language proficiency.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Master's Program, Graduate School of Science",
+   "url": "https://www.sci.kyushu-u.ac.jp/e/admission/admission_sci.html",
+   "snapshot_sha256": "422629e42a31734b0c4be993693608e786ad1aa346d5b07258f35cc3423748a4",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "Japanese proficiency is not required for the English-taught International Program (October enrollment)",
+      "quote": "The International Program, a degree program conducted in English, is a program in which students enroll in October and for which Japanese proficiency is not required.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Master's Program in Mathematics, Graduate School of Mathematics",
+   "url": "https://www.math.kyushu-u.ac.jp/admission/graduateschool/en/",
+   "snapshot_sha256": "56c53c6e111e17d39830e97c557a1803d3c86f92833bad2128ada65d2c2b69be",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "International Master's Course in Sustainable Architecture and Urban Systems, Graduate School of Human-Environment Studies",
+   "url": "https://www.hues.kyushu-u.ac.jp/eng/admission/",
+   "snapshot_sha256": "b4ecdd2409b59b2ceccc79827fd7073e557142e23c3dd163b667785fbcff3cec",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "International Master's Program, Graduate School of Integrated Sciences for Global Society",
+   "url": "https://isgs.kyushu-u.ac.jp/en/admissions/admissions1.php",
+   "snapshot_sha256": "47edd4de27e5731e3a0a272ca71276539496cbce739caf43b229a397a1862072",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "International Master's Program in Japanese Humanities (IMAP), Graduate School of Humanities",
+   "url": "https://www.imapkyudai.net/application",
+   "snapshot_sha256": "0ebe8c032731fd7f97d36872fdef0742ff3e1845ec8ba2690288db0f6d8fe198",
+   "fields": {},
+   "status": "待人工"
+  }
+ ],
+ "verification": {
+  "programs": 18,
+  "机器核对": 6,
+  "待人工": 12
+ }
+}

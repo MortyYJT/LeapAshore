@@ -1,0 +1,717 @@
+{
+ "school_key": "university-of-california-san-diego",
+ "school_name_en": "University of California, San Diego (UC San Diego)",
+ "country": "United States",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://grad.ucsd.edu/admissions/programs.html",
+  "https://rady.ucsd.edu/programs/",
+  "https://gps.ucsd.edu/admissions/applying.html"
+ ],
+ "blocked": [
+  {
+   "url": "https://ne.ucsd.edu/graduate-programs/admissions",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://ece.ucsd.edu/graduate",
+   "reason": "HTTP 403 (one ECE admissions page fetched earlier; ECE host not used further)"
+  }
+ ],
+ "complete": true,
+ "remaining_urls": [],
+ "notes": "University-wide English minimums come from the Graduate Division page and are cited only for programmes whose own page names it (or states the same figure). Part-time Jacobs MAS programmes, online and executive programmes skipped; NanoEngineering blocked by robots.txt. Programme pages without a stated GPA or English figure carry only what they state.",
+ "programs": [
+  {
+   "name": "MS in Computer Science / Computer Engineering (CSE)",
+   "url": "https://cse.ucsd.edu/graduate/admissions",
+   "snapshot_sha256": "68b9444e1e88ffe92b3e7a14771f82146bf40a423a6c69052dc73a413e36d00c",
+   "fields": {
+    "toefl": {
+     "overall": 85,
+     "quote": "The university-wide minimum TOEFL score required for consideration for graduate admission is 4.5 for the new internet based test (iBT) or 85 for the previous (iBT).",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "7343d40d6d69677ee0c3aebe4dd532669cca0867291975a43ace75b03c34c081",
+     "source_url": "https://grad.ucsd.edu/admissions/requirements/international-students/english-proficiency.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "The university-wide minimum IELTS Academic Training exam score required for consideration for graduate admission is Band Score 7.",
+     "source_sha256": "7343d40d6d69677ee0c3aebe4dd532669cca0867291975a43ace75b03c34c081",
+     "source_url": "https://grad.ucsd.edu/admissions/requirements/international-students/english-proficiency.html",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "Bachelor's degree or equivalent; at least a B average (3.0 GPA) or its equivalent",
+     "quote": "At least a B average (3.0 GPA) or its equivalent is required for admission.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Bachelor's in CS, computer engineering, EE or mathematics preferred but not required; other disciplines considered if minimum required CSE courses completed",
+      "quote": "A bachelor's degree in computer science, computer engineering, electrical engineering, or mathematics is preferred, but not required.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2026-12-16",
+      "quote": "The UCSD Application for Graduate Admission opens for Fall 2027 admission from September 2, 2026 until December 16, 2026 at 11:59 p.m.  PST.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Data Science (HDSI)",
+   "url": "https://datascience.ucsd.edu/graduate/graduate-admissions/",
+   "snapshot_sha256": "0e6bc391b2cc7f92abe97f46d2d822ca2bb158316ebbd31eec306e70465b1b93",
+   "fields": {
+    "toefl": {
+     "overall": 85,
+     "quote": "The university-wide minimum TOEFL score required for consideration for graduate admission is 4.5 for the new internet based test (iBT) or 85 for the previous (iBT).",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "7343d40d6d69677ee0c3aebe4dd532669cca0867291975a43ace75b03c34c081",
+     "source_url": "https://grad.ucsd.edu/admissions/requirements/international-students/english-proficiency.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "The university-wide minimum IELTS Academic Training exam score required for consideration for graduate admission is Band Score 7.",
+     "source_sha256": "7343d40d6d69677ee0c3aebe4dd532669cca0867291975a43ace75b03c34c081",
+     "source_url": "https://grad.ucsd.edu/admissions/requirements/international-students/english-proficiency.html",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 (tentative)",
+      "date": "2026-12-02",
+      "quote": "Tentative Application Closes:  December 2, 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Electrical and Computer Engineering",
+   "url": "https://ece.ucsd.edu/graduate/graduate-admissions",
+   "snapshot_sha256": "2a09eea6a9881728406eb65f609bccdc1619ce61014e415dfd059e0b719e8039",
+   "fields": {
+    "academic": {
+     "text": "B.S. and/or M.S. in engineering, physical sciences or mathematics; minimum cumulative GPA of 3.0 (4.0 scale or equivalent)",
+     "quote": "Minimum cumulative GPA of 3.0 (on a 4.0 scale or its equivalent)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 85,
+     "quote": "TOEFL with a minimum score of 4.5 (or 85 on the previous scale) (internet based test-iBT)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "IELTS with a minimum Band Score of 7.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-01-06",
+      "quote": "M.S.: January 6th, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Mechanical and Aerospace Engineering",
+   "url": "https://maeweb.ucsd.edu/grad/graduate-admissions",
+   "snapshot_sha256": "df7bfc60312d9ff097aa364020df760ccce3c27368d18d656507583ca5c9f599",
+   "fields": {
+    "academic": {
+     "text": "Minimum GPA of 3.0 on a 4.0 scale (typical admitted GPA is higher)",
+     "quote": "The MS and Ph.D. program have a minimum GPA requirement of 3.0 on a 4.0 scale.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 85,
+     "quote": "TOEFL internet-based test (iBT) - 4.5 (new) or 85 (previous)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "IELTS Band - 7",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-01-13",
+      "quote": "M.S. - September 2nd, 2026 - January 13th, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Bioengineering (incl. MEng)",
+   "url": "https://be.ucsd.edu/grad/prospective-students",
+   "snapshot_sha256": "7f4cb302075791cadbe7ae8c170f34483ffe1c2e62a28d036f6a480da4be0665",
+   "fields": {
+    "toefl": {
+     "text": "Minimum overall TOEFL 4.5 (new 1-6 scale) with speaking 5.0 or higher",
+     "quote": "We require applicants to have a minimum overall TOEFL score of 4.5 with a minimum speaking score of 5.0 or higher.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "min_band": 7,
+     "quote": "For IELTS, applicants must have a minimum overall band score and speaking score of 7.0 or higher.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2026-12-02",
+      "quote": "Our Fall 2027 application opens September 2nd, 2026 with a deadline of December 2nd, 2026 at 11:59:59 PST.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Structural Engineering",
+   "url": "https://se.ucsd.edu/academics/graduate-program/2019-applications",
+   "snapshot_sha256": "b369ef1352de2f300fb4c9843a0dfd37cb3a5ac465496c8d8dc11fd21cf1459e",
+   "fields": {
+    "toefl": {
+     "overall": 85,
+     "quote": "The minimum TOEFL score required is 85 for the internet-based test (iBT).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "The minimum score for the IELTS exam is 7.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 MS priority consideration",
+      "date": "2026-12-16",
+      "quote": "SE MS Fall 2027 Priority Consideration* (SE 75, SE 81, SE 82) Wednesday, September 9, 2026 Wednesday, December 16, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 MS final",
+      "date": "2027-05-12",
+      "quote": "SE MS Fall 2027 (SE 75, SE 81, SE 82) Wednesday, September 9, 2026 Wednesday, May 12, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Materials Science and Engineering",
+   "url": "https://matsci.ucsd.edu/admissions",
+   "snapshot_sha256": "6200ce2169ae4cf126f52815f251c5f04c6decd4a611f78817464615a4902cc4",
+   "fields": {
+    "academic": {
+     "text": "B.S. and/or M.S. in engineering sciences, physical sciences or mathematics, per GEPA general requirements",
+     "quote": "Admission to the Program in Materials Science and Engineering is in accordance with the general requirements of GEPA, which requires at least a B.S. and or M.S. in some branch of Engineering Sciences, the Physical Sciences or Mathematics;",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 85,
+     "quote": "Minimum TOEFL requirements for admission are: IBT 85, paper-based 550; IELTS 7.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "Minimum TOEFL requirements for admission are: IBT 85, paper-based 550; IELTS 7.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-01-06",
+      "quote": "*the Fall 2027 Applications DEADLINE (PhD & MS) will be: Wednesday, January 06 2027 (01/06/27) 11:59PM PST",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Computational Social Science",
+   "url": "https://css.ucsd.edu/masters/Prospectives.html",
+   "snapshot_sha256": "844ec4fb9074dea6cf32d706f02646d52e6db261a36990e1dc1709511c658367",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree; GPA typically 3.0 or higher",
+     "quote": "GPA typically of 3.0 or higher",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Prior coursework in statistics and/or formal logic recommended",
+      "quote": "Prior coursework in statistics and/or formal logic is recommended",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority",
+      "date": "2026-12-03",
+      "quote": "Priority Application Deadline: Thursday, December 3rd, 2026*",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 final",
+      "date": "2027-01-11",
+      "quote": "Application Deadline: Monday, January 11th, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Statistics (Mathematics)",
+   "url": "https://math.ucsd.edu/students/graduate/how-to-apply",
+   "snapshot_sha256": "dc97866d792209ec07af8f048d7969272d719016490f77c177996e13184911ed",
+   "fields": {
+    "toefl": {
+     "overall": 85,
+     "quote": "The university-wide minimum TOEFL score required for consideration for graduate admission is 4.5 for the new internet based test (iBT) or 85 for the previous (iBT).",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "7343d40d6d69677ee0c3aebe4dd532669cca0867291975a43ace75b03c34c081",
+     "source_url": "https://grad.ucsd.edu/admissions/requirements/international-students/english-proficiency.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "The university-wide minimum IELTS Academic Training exam score required for consideration for graduate admission is Band Score 7.",
+     "source_sha256": "7343d40d6d69677ee0c3aebe4dd532669cca0867291975a43ace75b03c34c081",
+     "source_url": "https://grad.ucsd.edu/admissions/requirements/international-students/english-proficiency.html",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "Bachelor's in Mathematics recommended, or strong mathematics background; minimum GPA of 3.0",
+     "quote": "a Bachelor's degree in Mathematics is recommended or a strong background in mathematics with a minimum GPA of 3.0 required",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "A year's sequence in upper-division algebra and real analysis strongly encouraged",
+      "quote": "A year's sequence in both upper-division algebra and real analysis is strongly encouraged.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-02-03",
+      "quote": "M.S. in Statistics Opens: September 2, 2026 Closes: February 3, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA in Applied Mathematics",
+   "url": "https://math.ucsd.edu/students/graduate/how-to-apply",
+   "snapshot_sha256": "dc97866d792209ec07af8f048d7969272d719016490f77c177996e13184911ed",
+   "fields": {
+    "toefl": {
+     "overall": 85,
+     "quote": "The university-wide minimum TOEFL score required for consideration for graduate admission is 4.5 for the new internet based test (iBT) or 85 for the previous (iBT).",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "7343d40d6d69677ee0c3aebe4dd532669cca0867291975a43ace75b03c34c081",
+     "source_url": "https://grad.ucsd.edu/admissions/requirements/international-students/english-proficiency.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "The university-wide minimum IELTS Academic Training exam score required for consideration for graduate admission is Band Score 7.",
+     "source_sha256": "7343d40d6d69677ee0c3aebe4dd532669cca0867291975a43ace75b03c34c081",
+     "source_url": "https://grad.ucsd.edu/admissions/requirements/international-students/english-proficiency.html",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "Bachelor's in Mathematics recommended, or strong mathematics background; minimum GPA of 3.0",
+     "quote": "a Bachelor's degree in Mathematics is recommended or a strong background in mathematics with a minimum GPA of 3.0 required",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "A year's sequence in upper-division algebra and real analysis strongly encouraged",
+      "quote": "A year's sequence in both upper-division algebra and real analysis is strongly encouraged.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-02-03",
+      "quote": "M.A. in Applied Mathematics Opens: September 2, 2026 Closes: February 3, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MS in Biostatistics",
+   "url": "https://ph.ucsd.edu/masters/biostat/prospective-students/index.html",
+   "snapshot_sha256": "cb535ca2e0260d720ed88e6f5a3dbba29b2b439d0a24dfb3ad6a30364fe7b920",
+   "fields": {
+    "academic": {
+     "text": "GPA of 3.0 or higher required for admission",
+     "quote": "GPA >= 3.0 required for admission.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Recommended: one year of calculus incl. multivariate, linear algebra, one programming course, two statistics/probability courses",
+      "quote": "One year of calculus (including multivariate calculus).",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-01-06",
+      "quote": "The deadline for application to the MS program is January 6, 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Health (MPH)",
+   "url": "https://ph.ucsd.edu/masters/mph/admissions/index.html",
+   "snapshot_sha256": "89a8177e9f1f825ffa5b8adefc59e140aaa5aadbafa15b8e40d52cc1cb2cf0a9",
+   "fields": {
+    "toefl": {
+     "overall": 85,
+     "quote": "The university-wide minimum TOEFL score required for consideration for graduate admission is 4.5 for the new internet based test (iBT) or 85 for the previous (iBT).",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "7343d40d6d69677ee0c3aebe4dd532669cca0867291975a43ace75b03c34c081",
+     "source_url": "https://grad.ucsd.edu/admissions/requirements/international-students/english-proficiency.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "The university-wide minimum IELTS Academic Training exam score required for consideration for graduate admission is Band Score 7.",
+     "source_sha256": "7343d40d6d69677ee0c3aebe4dd532669cca0867291975a43ace75b03c34c081",
+     "source_url": "https://grad.ucsd.edu/admissions/requirements/international-students/english-proficiency.html",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "GPA of at least 3.3 in last two years of coursework and 3.0 overall",
+     "quote": "Eligible Bachelor’s degree students will have a GPA of at least 3.3 in their last two years of coursework and a 3.0 overall GPA.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 priority",
+      "date": "2026-12-02",
+      "quote": "Priority Deadline - Wednesday, December 2, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 standard",
+      "date": "2027-02-03",
+      "quote": "Standard Deadline - Wednesday, February 3, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of International Affairs (MIA)",
+   "url": "https://gps.ucsd.edu/academics/master-of-international-affairs/index.html",
+   "snapshot_sha256": "ec63f002fb4ae0a2bab713360ac575b7be37beba6d9b20947680c1505c10e834",
+   "fields": {
+    "toefl": {
+     "overall": 85,
+     "quote": "TOEFL iBT: 4.5 for the new internet based test (iBT) or 85 for the previous (iBT)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "caa770a07a67b951e3886eeb781299730630c60b93bc9847aae71a26329289fe",
+     "source_url": "https://gps.ucsd.edu/admissions/applying.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "IELTS Academic: 7.0",
+     "source_sha256": "caa770a07a67b951e3886eeb781299730630c60b93bc9847aae71a26329289fe",
+     "source_url": "https://gps.ucsd.edu/admissions/applying.html",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "Four-year bachelor's degree or equivalent with minimum GPA of 3.0 on a 4.0 scale",
+     "quote": "Applicants must hold a four-year bachelor's degree or its equivalent from an accredited institution with a minimum grade point average of 3.0 on a 4.0 scale.",
+     "source_sha256": "caa770a07a67b951e3886eeb781299730630c60b93bc9847aae71a26329289fe",
+     "source_url": "https://gps.ucsd.edu/admissions/applying.html",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Policy (MPP)",
+   "url": "https://gps.ucsd.edu/academics/master-of-public-policy/index.html",
+   "snapshot_sha256": "5461f52ea130906e2cf17449e70528bc25af16898c398bea3334800006045f57",
+   "fields": {
+    "toefl": {
+     "overall": 85,
+     "quote": "TOEFL iBT: 4.5 for the new internet based test (iBT) or 85 for the previous (iBT)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "caa770a07a67b951e3886eeb781299730630c60b93bc9847aae71a26329289fe",
+     "source_url": "https://gps.ucsd.edu/admissions/applying.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "IELTS Academic: 7.0",
+     "source_sha256": "caa770a07a67b951e3886eeb781299730630c60b93bc9847aae71a26329289fe",
+     "source_url": "https://gps.ucsd.edu/admissions/applying.html",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "Four-year bachelor's degree or equivalent with minimum GPA of 3.0 on a 4.0 scale",
+     "quote": "Applicants must hold a four-year bachelor's degree or its equivalent from an accredited institution with a minimum grade point average of 3.0 on a 4.0 scale.",
+     "source_sha256": "caa770a07a67b951e3886eeb781299730630c60b93bc9847aae71a26329289fe",
+     "source_url": "https://gps.ucsd.edu/admissions/applying.html",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Chinese Economic and Political Affairs (MCEPA)",
+   "url": "https://gps.ucsd.edu/admissions/applying.html",
+   "snapshot_sha256": "caa770a07a67b951e3886eeb781299730630c60b93bc9847aae71a26329289fe",
+   "fields": {
+    "toefl": {
+     "overall": 85,
+     "quote": "TOEFL iBT: 4.5 for the new internet based test (iBT) or 85 for the previous (iBT)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "caa770a07a67b951e3886eeb781299730630c60b93bc9847aae71a26329289fe",
+     "source_url": "https://gps.ucsd.edu/admissions/applying.html",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "IELTS Academic: 7.0",
+     "source_sha256": "caa770a07a67b951e3886eeb781299730630c60b93bc9847aae71a26329289fe",
+     "source_url": "https://gps.ucsd.edu/admissions/applying.html",
+     "check": "ok"
+    },
+    "academic": {
+     "text": "Four-year bachelor's degree or equivalent with minimum GPA of 3.0 on a 4.0 scale",
+     "quote": "Requires a four-year bachelor's degree (or equivalent) with a minimum grade point average of 3.0 on a 4.0 scale.",
+     "source_sha256": "caa770a07a67b951e3886eeb781299730630c60b93bc9847aae71a26329289fe",
+     "source_url": "https://gps.ucsd.edu/admissions/applying.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Two years of college-level Mandarin Chinese study (or equivalent)",
+      "quote": "Applicants must have completed a minimum of two years of college-level Mandarin Chinese study (or equivalent) and be comfortable reading and speaking Mandarin.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Full-Time MBA (Rady)",
+   "url": "https://rady.ucsd.edu/programs/mba/admissions/index.html",
+   "snapshot_sha256": "dc0d8d32c1bf38d0612ce398fbf6f29cd1f8767c8abda194ae30aeccbd0c9844",
+   "fields": {
+    "toefl": {
+     "overall": 85,
+     "quote": "The university-wide minimum TOEFL score required for consideration for graduate admission is 85 for the internet-based test (iBT), or 4.5 for the new TOEFL scoring scale.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "The university-wide minimum IELTS Academic Training exam score required for consideration for graduate admission is Band Score 7.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 Round 1",
+      "date": "2026-10-01",
+      "quote": "Round 1: October 1, 2026",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 Round 2",
+      "date": "2027-01-15",
+      "quote": "Round 2: January 15, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 Round 3 (fellowship and international)",
+      "date": "2027-04-01",
+      "quote": "Round 3 (Fellowship & International Deadline): April 1, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Business Analytics (MSBA, Rady)",
+   "url": "https://rady.ucsd.edu/programs/ms-business-analytics/admissions/index.html",
+   "snapshot_sha256": "b1281c72765c2197e472e5910897b04912ab7a257df737976cd0cf53e958d7b5",
+   "fields": {
+    "toefl": {
+     "overall": 85,
+     "quote": "The university-wide minimum TOEFL score required for consideration for graduate admission is 85 for the internet-based test (iBT), or 4.5 for the new TOEFL scoring scale.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "The university-wide minimum IELTS Academic Training exam score required for consideration for graduate admission is Band Score 7.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Summer 2027 Round 3",
+      "date": "2027-01-15",
+      "quote": "Round 3:  January 15, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Summer 2027 Round 4 (fellowship and international)",
+      "date": "2027-03-15",
+      "quote": "Round 4:  March 15, 2027 (Fellowship & International Deadline)",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "Demonstrated proficiency in Python, R and SQL is critical",
+      "quote": "Programming Languages: Demonstrated proficiency in Python, R, and SQL is critical, and familiarity with Java or C++ is a strong asset.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Quantitative Finance (MQF, Rady)",
+   "url": "https://rady.ucsd.edu/programs/master-quantitative-finance/admissions/index.html",
+   "snapshot_sha256": "e6b99c31a60c1c9d5ec8f982f65998a02073b4f308d77fe43b5e686c2d6ea1fc",
+   "fields": {
+    "toefl": {
+     "overall": 85,
+     "quote": "The university-wide minimum TOEFL score required for consideration for graduate admission is 85 for the internet-based test (iBT), or 4.5 for the new TOEFL scoring scale.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "The university-wide minimum IELTS Academic Training exam score required for consideration for graduate admission is Band Score 7.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 Round 3",
+      "date": "2027-02-01",
+      "quote": "Round 3: February 1, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 Round 4 (fellowship and international)",
+      "date": "2027-06-01",
+      "quote": "Round 4: (Fellowship & International Deadline): June 1, 2027",
+      "check": "ok"
+     }
+    ],
+    "prerequisites": [
+     {
+      "text": "Prior coursework in Calculus (grade B or higher); GRE or GMAT score required",
+      "quote": "A strong quantitative foundation is required for admission, evidenced by a high quantitative score on the GRE or GMAT and prior coursework in Calculus (grade ‘B’ or higher).",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Professional Accountancy (MPAc, Rady)",
+   "url": "https://rady.ucsd.edu/programs/master-professional-accountancy/admissions/index.html",
+   "snapshot_sha256": "e4bf0eb60a46cf519074a1a07d8315a264e62509dadc268971b72826fdab31a4",
+   "fields": {
+    "toefl": {
+     "overall": 85,
+     "quote": "The university-wide minimum TOEFL score required for consideration for graduate admission is 85 for the internet-based test (iBT), or 4.5 for the new TOEFL scoring scale.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "The university-wide minimum IELTS Academic Training exam score required for consideration for graduate admission is Band Score 7.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027 Round 3",
+      "date": "2027-01-15",
+      "quote": "Round 3: January 15, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "Fall 2027 Round 5 (international)",
+      "date": "2027-04-15",
+      "quote": "Round 5 (International Deadline): April 15, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MA in Latin American Studies",
+   "url": "https://las.ucsd.edu/graduate/admission/index.html",
+   "snapshot_sha256": "b8e8f1038598cd42df891cc0076fe7a3eea543a07729ce7e2b2f78895db2c73d",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or equivalent; at least a B average (3.0 GPA) overall or over the final two years",
+     "quote": "Prospective students must have at least a B average (3.0 GPA) or its equivalent overall or over the final two years of baccalaureate study.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 85,
+     "quote": "The University minimum for TOEFL scores is 85. However, the Admission Committee prefers applicants who have a score of at least 94.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 20,
+  "机器核对": 20,
+  "待人工": 0
+ }
+}

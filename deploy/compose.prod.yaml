@@ -40,8 +40,13 @@ services:
     restart: unless-stopped
     ports:
       - "80:80"
+      - "443:443"
+      - "443:443/udp"
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      # Certificates and ACME account; losing them on rebuild risks Let's Encrypt rate limits.
+      - caddy-data:/data
+      - caddy-config:/config
     depends_on:
       - web
       - api
@@ -49,3 +54,5 @@ services:
 volumes:
   db-data:
   documents:
+  caddy-data:
+  caddy-config:

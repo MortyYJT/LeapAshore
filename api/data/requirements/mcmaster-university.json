@@ -1,0 +1,549 @@
+{
+ "school_key": "mcmaster-university",
+ "school_name_en": "McMaster University",
+ "country": "Canada",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://gs.mcmaster.ca/programs/",
+  "https://gs.mcmaster.ca/how-to-apply/"
+ ],
+ "blocked": [
+  {
+   "url": "https://academiccalendars.romcmaster.ca/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://healthsci.mcmaster.ca/hei-mph",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://globalhealth.mcmaster.ca/about/about",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://globalhealth.mcmaster.ca/programs/master-of-science-in-global-health/",
+   "reason": "robots.txt disallows"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.eng.mcmaster.ca/sept/degree-options/meei-mtei/",
+  "https://mmai.degroote.mcmaster.ca/full-time-master-of-management-in-ai-and-analytics/",
+  "https://mmai.degroote.mcmaster.ca/part-time-master-of-management-in-applied-ai-and-data-driven-decision-making/",
+  "https://mbarecruit.degroote.mcmaster.ca/program/mba-programs/accelerated-mba/",
+  "https://gs.mcmaster.ca/program/health-policy/",
+  "https://gs.mcmaster.ca/program/health-management/",
+  "https://gs.mcmaster.ca/program/health-research-methodology/",
+  "https://gs.mcmaster.ca/program/computational-science-and-engineering/"
+ ],
+ "notes": "The Graduate Calendar (academiccalendars.romcmaster.ca) and the MPH and Global Health sites disallow our fetcher in robots.txt, so MPH and Global Health carry only the School of Graduate Studies degree credential. No university-wide SGS English minimum page was found; English scores come from each programme or faculty page. CS MSc and Software Engineering MASc are thesis-based; they are included because the brief lists them. Coordinator: the thesis-based CS MSc and Software Engineering MASc were removed (research degrees, as for Waterloo and UBC).",
+ "programs": [
+  {
+   "name": "Computing and Software (MEng)",
+   "url": "https://www.eng.mcmaster.ca/cas/degree-options/computing-and-software-meng/",
+   "snapshot_sha256": "2b3231964c2f720168cad3b96c75cdbc1f3b46027d7902ff98e985b401f44e42",
+   "fields": {
+    "academic": {
+     "text": "Honours Bachelor's degree in Engineering, Computer Science, Mathematics or equivalent; anticipated admission range minimum B- (70-72%)",
+     "quote": "Honours Bachelor’s degree in Engineering, Computer Science, Mathematics, or equivalent. Find English language requirements here. Anticipated Admission Range Min B- (70-72%)",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic): minimum overall score of 6.5, with at least 5.5 in each section",
+     "source_sha256": "4b56672f20923b468c42354a6e0a29b985dc96935f11f2530b9222e2695d9a3f",
+     "source_url": "https://www.eng.mcmaster.ca/future-students/future-graduate-students/how-to-apply/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 88,
+     "quote": "TOEFL: Faculty of Engineering a minimum score of 88 (internet-based) or 230 on the (computer-based) or 570 (paper-based)",
+     "source_sha256": "4b56672f20923b468c42354a6e0a29b985dc96935f11f2530b9222e2695d9a3f",
+     "source_url": "https://www.eng.mcmaster.ca/future-students/future-graduate-students/how-to-apply/",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027, international applicants",
+      "date": "2027-02-28",
+      "quote": "Faculty of Engineering graduate programs Start term Domestic applicant deadline International applicant deadline January 2027 November 30, 2026 June 30, 2026 May 2027 March 31, 2027 October 31, 2026 September 2027 July 31, 2027 February 28, 2027",
+      "source_sha256": "4b56672f20923b468c42354a6e0a29b985dc96935f11f2530b9222e2695d9a3f",
+      "source_url": "https://www.eng.mcmaster.ca/future-students/future-graduate-students/how-to-apply/",
+      "check": "ok"
+     },
+     {
+      "label": "September 2027, domestic applicants",
+      "date": "2027-07-31",
+      "quote": "Faculty of Engineering graduate programs Start term Domestic applicant deadline International applicant deadline January 2027 November 30, 2026 June 30, 2026 May 2027 March 31, 2027 October 31, 2026 September 2027 July 31, 2027 February 28, 2027",
+      "source_sha256": "4b56672f20923b468c42354a6e0a29b985dc96935f11f2530b9222e2695d9a3f",
+      "source_url": "https://www.eng.mcmaster.ca/future-students/future-graduate-students/how-to-apply/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Systems and Technology (MEng)",
+   "url": "https://www.eng.mcmaster.ca/sept/degree-options/systems-technology/",
+   "snapshot_sha256": "8889bc1168fdfa2bc632a9f95fe96257d218edf0cca089b377970c58be60040c",
+   "fields": {
+    "academic": {
+     "text": "Four-year degree in a STEM discipline with at least a B average (McMaster 8.0/12) in the final two years in the relevant courses",
+     "quote": "students must hold a four-year degree in a STEM discipline, with at least a B average (equivalent to a McMaster 8.0 GPA out of 12) in the final two years of study, in all courses in the discipline, or relating to the discipline, in which the applicant proposes to do graduate work.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS/TOEFL: International students are required to present a minimum IELTS score of 6.5 overall (minimum requirements 5.5 in reading and writing and 6 in listening and speaking).",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 88,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "Minimum TOEFL score is 88 (if taken before January 2026); 4.5 (if taken after January 2026).",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027, international students",
+      "date": "2027-02-28",
+      "quote": "January 2027 Admissions September 2027 Admissions Application Portal opens March 1, 2026 September 1, 2026 International Student Deadline July 31, 2026 February 28, 2027 Domestic Student Deadline October 31, 2026 July 31, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "September 2027, domestic students",
+      "date": "2027-07-31",
+      "quote": "January 2027 Admissions September 2027 Admissions Application Portal opens March 1, 2026 September 1, 2026 International Student Deadline July 31, 2026 February 28, 2027 Domestic Student Deadline October 31, 2026 July 31, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Engineering Design (MEng)",
+   "url": "https://www.eng.mcmaster.ca/sept/degree-options/engineering-design/",
+   "snapshot_sha256": "1684640bbb4ce74e550aea9fb502baf68e5f97305aa88b3e7da559dd1d710316",
+   "fields": {
+    "academic": {
+     "text": "Four-year engineering undergraduate degree with at least a B- average (McMaster 7.0/12) in the final year in the relevant courses",
+     "quote": "students must hold a four-year engineering undergraduate degree or equivalent, with at least a B- average (equivalent to a McMaster 7.0 GPA out of 12) in the final year in all courses in the discipline, or relating to the discipline, in which the applicant proposes to do graduate work.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS/TOEFL: International students are required to present a minimum IELTS score of 6.5 overall (minimum requirements 5.5 in reading and writing and 6 in listening and speaking).",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 88,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "Minimum TOEFL score is 88 (if taken before January 2026); 4.5 (if taken after January 2026).",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027, international students",
+      "date": "2027-02-28",
+      "quote": "September 2027 Admissions Application Portal Opens September 1, 2026 International Student Deadline February 28, 2027 Domestic Student Deadline July 31, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "September 2027, domestic students",
+      "date": "2027-07-31",
+      "quote": "September 2027 Admissions Application Portal Opens September 1, 2026 International Student Deadline February 28, 2027 Domestic Student Deadline July 31, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Manufacturing Engineering (MEng)",
+   "url": "https://www.eng.mcmaster.ca/sept/degree-options/manufacturing-engineering/",
+   "snapshot_sha256": "5237c0ae13a01af8cf19108ab70a3c29f65bb0c298fd06a8b35dc4ff0375bad4",
+   "fields": {
+    "academic": {
+     "text": "Degree in Engineering or Technology with at least a B average (McMaster 8.0/12) in the penultimate and final years",
+     "quote": "students must hold a degree in Engineering or Technology with at least a B average (equivalent to a McMaster 8.0/12 GPA) in the penultimate and final years.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS/TOEFL: International students are required to present a minimum IELTS score of 6.5 overall (minimum requirements 5.5 in reading and writing and 6 in listening and speaking).",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 88,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "Minimum TOEFL score is 88 (if taken before January 2026); 4.5 (if taken after January 2026).",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027, international students",
+      "date": "2027-02-28",
+      "quote": "January 2027 Admissions September 2027 Admissions Application Portal opens March 1, 2026 September 1, 2026 International Student Deadline July 31, 2026 February 28, 2027 Domestic Student Deadline October 31, 2026 July 31, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "September 2027, domestic students",
+      "date": "2027-07-31",
+      "quote": "January 2027 Admissions September 2027 Admissions Application Portal opens March 1, 2026 September 1, 2026 International Student Deadline July 31, 2026 February 28, 2027 Domestic Student Deadline October 31, 2026 July 31, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Engineering and Public Policy (MEng)",
+   "url": "https://www.eng.mcmaster.ca/sept/degree-options/engineering-and-public-policy/",
+   "snapshot_sha256": "60d881ccff2d882aa23f6ac15842df7c4b42c6e238dd14acba55fc79d8280933",
+   "fields": {
+    "academic": {
+     "text": "Undergraduate degree in STEM or a 4-year non-STEM degree in a public policy-related field with a B- average in the last 10 technical courses (McMaster 7.0/12)",
+     "quote": "Prior degree: Students must hold an undergraduate degree in STEM or a 4-year non-STEM degree in a public policy-related field including, for example, political science, public policy, public administration or global studies with a B- average in last 10 technical courses (equivalent to a McMaster 7.0 GPA out of 12).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS/TOEFL: International students are required to present a minimum IELTS score of 6.5 overall (minimum requirements 5.5 in reading and writing and 6 in listening and speaking).",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 88,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "quote": "Minimum TOEFL score is 88 (if taken before January 2026); 4.5 (if taken after January 2026).",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027, international students",
+      "date": "2027-02-28",
+      "quote": "January 2027 Admissions September 2027 Admissions Application Portal opens March 1, 2026 September 1, 2026 International Student Deadline July 31, 2026 February 28, 2027 Domestic Student Deadline October 31, 2026 July 31, 2027",
+      "check": "ok"
+     },
+     {
+      "label": "September 2027, domestic students",
+      "date": "2027-07-31",
+      "quote": "January 2027 Admissions September 2027 Admissions Application Portal opens March 1, 2026 September 1, 2026 International Student Deadline July 31, 2026 February 28, 2027 Domestic Student Deadline October 31, 2026 July 31, 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Electrical and Computer Engineering (MEng)",
+   "url": "https://www.eng.mcmaster.ca/ece/degree-options/electrical-and-computer-engineering-meng/",
+   "snapshot_sha256": "53f28bf41698d170a1cc9ba5d5753c65577eae3a59c90aa8b37f2db4a0a2af0d",
+   "fields": {
+    "academic": {
+     "text": "Honours Bachelor's degree (4 year) in Engineering, Sciences or equivalent; anticipated admission range minimum B+ (77-79%)",
+     "quote": "Honours Bachelor’s Degree (4 Year) in Engineering, Sciences, or equivalent. Find English language requirements here. Anticipated Admission Range Minimum B+ (77-79%)",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027, international applicants",
+      "date": "2027-02-28",
+      "quote": "Faculty of Engineering graduate programs Start term Domestic applicant deadline International applicant deadline January 2027 November 30, 2026 June 30, 2026 May 2027 March 31, 2027 October 31, 2026 September 2027 July 31, 2027 February 28, 2027",
+      "source_sha256": "4b56672f20923b468c42354a6e0a29b985dc96935f11f2530b9222e2695d9a3f",
+      "source_url": "https://www.eng.mcmaster.ca/future-students/future-graduate-students/how-to-apply/",
+      "check": "ok"
+     },
+     {
+      "label": "September 2027, domestic applicants",
+      "date": "2027-07-31",
+      "quote": "Faculty of Engineering graduate programs Start term Domestic applicant deadline International applicant deadline January 2027 November 30, 2026 June 30, 2026 May 2027 March 31, 2027 October 31, 2026 September 2027 July 31, 2027 February 28, 2027",
+      "source_sha256": "4b56672f20923b468c42354a6e0a29b985dc96935f11f2530b9222e2695d9a3f",
+      "source_url": "https://www.eng.mcmaster.ca/future-students/future-graduate-students/how-to-apply/",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS (Academic): minimum overall score of 6.5, with at least 5.5 in each section",
+     "source_sha256": "4b56672f20923b468c42354a6e0a29b985dc96935f11f2530b9222e2695d9a3f",
+     "source_url": "https://www.eng.mcmaster.ca/future-students/future-graduate-students/how-to-apply/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 88,
+     "quote": "TOEFL: Faculty of Engineering a minimum score of 88 (internet-based) or 230 on the (computer-based) or 570 (paper-based)",
+     "source_sha256": "4b56672f20923b468c42354a6e0a29b985dc96935f11f2530b9222e2695d9a3f",
+     "source_url": "https://www.eng.mcmaster.ca/future-students/future-graduate-students/how-to-apply/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Statistics (MSc, course-based and thesis)",
+   "url": "https://gs.mcmaster.ca/program/statistics/",
+   "snapshot_sha256": "38e5e4cb55081d994caf018428cfbae97258b28a0755cd57c3803cf97954015b",
+   "fields": {
+    "academic": {
+     "text": "Honours Bachelor's degree (or equivalent) in the relevant field",
+     "quote": "Required Credentials Honours Bachelor's degree (or equivalent) in the relevant field",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "IELTS: a minimum overall score of 6.5 and a minimum of 5.5 in each section of the Academic test.",
+     "source_sha256": "e40e369906625d990ef16b318594fb0267295a7eaa41efc9949c2999359d9346",
+     "source_url": "https://math.mcmaster.ca/graduate/application-procedure/",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 92,
+     "quote": "TOEFL: a minimum score of 92 (iBT), 580 (paper), or 237 (computer test) is required.",
+     "source_sha256": "e40e369906625d990ef16b318594fb0267295a7eaa41efc9949c2999359d9346",
+     "source_url": "https://math.mcmaster.ca/graduate/application-procedure/",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Finance (MFin)",
+   "url": "https://mfin.degroote.mcmaster.ca/admissions/",
+   "snapshot_sha256": "b0d80181efe210ff656a397891422203bff4574be9a5a7366c7f63f26a85b722",
+   "fields": {
+    "academic": {
+     "text": "Honours (4-year) bachelor's degree in any discipline with a minimum B+ average (McMaster GPA 8.5)",
+     "quote": "Honours (4-year) bachelor’s degree or equivalent in any discipline with a minimum B+ average (equivalent to a McMaster GPA of 8.5) from an accredited university.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Applicants must provide a valid TOEFL (minimum overall score of 92) or IELTS Academic (minimum overall score of 6.5) test",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 92,
+     "quote": "Applicants must provide a valid TOEFL (minimum overall score of 92) or IELTS Academic (minimum overall score of 6.5) test",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "At least one university-level course each in finance or economics, mathematics and statistics",
+      "quote": "Applicants must have also completed a minimum of one university-level course in each of 1) Finance or Economics, 2) Mathematics and 3) Statistics.",
+      "check": "ok"
+     },
+     {
+      "text": "Quantitative proficiency: GMAT total 600 (10th edition) or 555 (11th edition/Focus) with quantitative percentile of at least 60%",
+      "quote": "GMAT test (10th edition) with a minimum total score of 600 and a quantitative percentile of at least 60% GMAT test (11th edition/Focus Edition) with a minimum total score of 555 and a quantitative percentile of at least 60%",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "September 2027, Round 2 (scholarship consideration)",
+      "date": "2026-11-25",
+      "quote": "Round 2: November 25, 2026 (Scholarship consideration deadline)",
+      "source_sha256": "5285a96796375d51d132ad1196f7192cd609f918c7e5a3ac98a8bc5d92cc8b96",
+      "source_url": "https://mfin.degroote.mcmaster.ca/",
+      "check": "ok"
+     },
+     {
+      "label": "September 2027, Round 3 (international applicants deadline)",
+      "date": "2027-03-14",
+      "quote": "Round 3: March 14, 2027 (International applicants deadline)",
+      "source_sha256": "5285a96796375d51d132ad1196f7192cd609f918c7e5a3ac98a8bc5d92cc8b96",
+      "source_url": "https://mfin.degroote.mcmaster.ca/",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Administration (Full-Time MBA)",
+   "url": "https://mbarecruit.degroote.mcmaster.ca/admissions/",
+   "snapshot_sha256": "da1e2fda90a8a31d454147933e5ca69b03dc38e477b95a2ad639f402993ed317",
+   "fields": {
+    "academic": {
+     "text": "Honours Bachelor's degree from a recognized university; recommended B average (McMaster 8.0/12) or higher",
+     "quote": "Completion of an Honours Bachelor’s degree from a recognized university.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "quote": "Academic IELTS (Overall score of 7)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL (Overall score of 100)",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Minimum of 2 years of post-graduate work experience (exceptional applicants considered with less)",
+      "quote": "Minimum of 2 years of post-graduate work experience is required.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "September 2027, Round 3 (final international deadline)",
+      "date": "2027-03-14",
+      "quote": "Round 3: March 14, 2027 Final International Deadline",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Economics (MA)",
+   "url": "https://economics.mcmaster.ca/graduate-programs/ma-economics/",
+   "snapshot_sha256": "e7639f1ed83f0ddaf99e10ef6703d0329c50b8fef8ca0993f8310562905891b7",
+   "fields": {
+    "academic": {
+     "text": "Honours BA in Economics; B+ average in relevant courses in the final two years",
+     "quote": "The minimum academic requirements for admission into the MA program is Honours BA in Economics. The university requires entering Master’s students to have maintained a B+ average in courses (relevant to the Master’s program they are entering) during the final two years of their undergraduate programs.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "the minimum acceptable IELTS score is 6.5 with a minimum score of 5.5 in each category.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 92,
+     "quote": "The minimum acceptable TOEFL score for the Dept of Economics is 580 (237 on the computerized exam; 92 iBT)",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Advanced microeconomics and macroeconomics (at least one course in each beyond intermediate)",
+      "quote": "Advanced microeconomics and macroeconomics courses (that is, at least one course in each beyond the full-year intermediate courses).",
+      "check": "ok"
+     },
+     {
+      "text": "One upper-level university statistics or econometrics course",
+      "quote": "One upper-level (3rd year or above) university statistics or econometrics course, with econometrics preferred.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Economic Policy (MA)",
+   "url": "https://economics.mcmaster.ca/graduate-programs/ma-in-economic-policy/",
+   "snapshot_sha256": "b6321ef12582e7f48bb82d7f8a51582a28c024fb5cff2520deb069e3143e7a6f",
+   "fields": {
+    "academic": {
+     "text": "Normally an Honours Bachelor degree in Economics or equivalent; B+ average in relevant courses in the final two years",
+     "quote": "Successful applicants will normally have an Honours Bachelor degree in Economics or its equivalent. The university requires entering Master’s students to have maintained a B+ average in courses (relevant to the Master’s program they are entering) during the final two years of their undergraduate programs.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 5.5,
+     "quote": "the minimum acceptable IELTS score is 6.5 with a minimum score of 5.5 in each category.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 92,
+     "quote": "The minimum acceptable TOEFL score for the Dept of Economics is 580 (237 on the computerized exam; 92 iBT)",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Two courses each in microeconomic and macroeconomic theory beyond introductory economics",
+      "quote": "Two courses in microeconomics theory beyond introductory economics Two courses in macroeconomic theory beyond introductory economics",
+      "check": "ok"
+     },
+     {
+      "text": "A university calculus course",
+      "quote": "A university calculus course",
+      "check": "ok"
+     },
+     {
+      "text": "One upper-level university statistics or econometrics course",
+      "quote": "One upper-level (third-year or above) university statistics or econometrics course, with econometrics preferred",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "eHealth (MSc)",
+   "url": "https://ehealth.mcmaster.ca/apply/",
+   "snapshot_sha256": "69974be14f0a61107730b6bc56589041d214a1106cc4ff8be96a8d920748a518",
+   "fields": {
+    "academic": {
+     "text": "Four-year Honours Bachelor's degree with at least a B+ (or equivalent GPA)",
+     "quote": "Successful completion a four-year Honours Bachelor’s degree with at least a B+ (or the equivalent grade point average).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "A minimum TOEFL (iBT) score of 100. The IELTS minimum is 7.0 overall.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "A minimum TOEFL (iBT) score of 100.",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "Fall 2027",
+      "date": "2027-01-14",
+      "quote": "Application cycle for admission Fall 2027 Open: September 1, 2026 Close: January 14, 2027 at 11:59 pm",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Public Health (MPH)",
+   "url": "https://gs.mcmaster.ca/program/public-health/",
+   "snapshot_sha256": "ff7768e436f813e1d487386b917cb58d846c6a2c845280c587a87ab746e33056",
+   "fields": {
+    "academic": {
+     "text": "4 year undergraduate in Sciences or equivalent",
+     "quote": "Required Credentials 4 year undergraduate in Sciences or equivalent",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Global Health (MSc)",
+   "url": "https://gs.mcmaster.ca/program/global-health/",
+   "snapshot_sha256": "45912cd9d77824cbcf069f0ca190c138d3e94b9a9364dee50bce9d977ba077ca",
+   "fields": {
+    "academic": {
+     "text": "Honour's Bachelor degree or equivalent",
+     "quote": "Required Credentials Honour's Bachelor degree or equivalent",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 14,
+  "机器核对": 14,
+  "待人工": 0
+ }
+}

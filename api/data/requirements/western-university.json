@@ -1,0 +1,1071 @@
+{
+ "school_key": "western-university",
+ "school_name_en": "Western University",
+ "country": "Canada",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://grad.uwo.ca/admissions/explore-our-programs.cfm"
+ ],
+ "blocked": [
+  {
+   "url": "https://www.ivey.uwo.ca/msc/admission/apply/",
+   "reason": "robots.txt disallows"
+  },
+  {
+   "url": "https://www.ivey.uwo.ca/mba/admissions/",
+   "reason": "robots.txt disallows"
+  }
+ ],
+ "complete": true,
+ "remaining_urls": [],
+ "notes": "Programme pages on grad.uwo.ca (SGPS) were used for 47 coursework/professional master's programmes; research-only master's were skipped, as was MClSc Advanced Health Care Practice (Canadian citizens/PR only). Deadlines are omitted: pages give dates without a year or only past years. Ivey Business School (MBA, MSc Management) hosts disallow our fetcher via robots.txt, so those entries rely on the SGPS page alone. The China-specific requirement page does not exist; SGPS says it assesses international credentials for equivalency. Not reached: MMASc English page (404); the Western International College pathway for MEng/MDA.",
+ "programs": [
+  {
+   "name": "Advanced Health Care Practice - Master of Health Sciences",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=318",
+   "snapshot_sha256": "152a106350a11a7e32008f1cb2f9ebaa35c6e6842ead10bfb00161772b3e39bd",
+   "fields": {
+    "academic": {
+     "text": "A minimum bachelor's degree from a recognized university and at least a (B) standing (or equivalent) over the final two years of the program",
+     "quote": "A minimum bachelor's degree from a recognized university and at least a (B) standing (or equivalent) over the final two years of the program",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 105,
+     "quote": "For tests taken before January 21, 2026, Western requires a minimum overall score of 105, with no individual section score below 20. Some programs may require a higher minimum and/or specific band scores. Western’s TOEFL ID is 0984. For tests taken on or after January 21, 2026, Western requires a minimum overall score of 5.5, with no individual section score below 5. Some programs may require a higher minimum and/or specific band scores. Western’s TOEFL ID is 0984.",
+     "min_band": 20,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Anatomy and Cell Biology - Master of Science",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=5",
+   "snapshot_sha256": "fae341edcc47bc5ddc1cec5821fc6d58a65fb779618addf714704f52131fc690",
+   "fields": {
+    "academic": {
+     "text": "4-year honours degree or equivalent, in a Life or Allied Health Science, or a degree in Dentistry, Medicine or Veterinary Science. Minimum 80% (A-) average for the most recent two years of undergraduate study, or the most recent 10 full senior level courses.",
+     "quote": "4-year honours degree or equivalent, in a Life or Allied Health Science, or a degree in Dentistry, Medicine or Veterinary Science. Minimum 80% (A-) average for the most recent two years of undergraduate study, or the most recent 10 full senior level courses.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "The International English Language Testing Service (IELTS Academic). Minimum acceptable score is 7 out of 9.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 92,
+     "quote": "For tests taken before January 21, 2026, Western requires a minimum overall score of 92, with no individual section score below 20. Some programs may require a higher minimum and/or specific band scores. Western’s TOEFL ID is 0984. For tests taken on or after January 21, 2026, Western requires a minimum overall score of 5, with no individual section score below 4.5. Some programs may require a higher minimum and/or specific band scores. Western’s TOEFL ID is 0984.",
+     "min_band": 20,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Business Administration - Master of Business Administration",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=87",
+   "snapshot_sha256": "efcc86b5978a4ba5e755db57f00d12713291ed876bb612b1319b13da461c3717",
+   "fields": {
+    "academic": {
+     "text": "“B” average in last two years of previous degree. At least two years of quality, full-time work experience.",
+     "quote": "“B” average in last two years of previous degree. At least two years of quality, full-time work experience.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GMAT or GRE",
+      "quote": "A Graduate Management Admission Test (GMAT) or Graduate Records Examination (GRE).",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Chemical and Biochemical Engineering - Master of Engineering",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=26",
+   "snapshot_sha256": "6990adbfd6c1b5db61bd573e097d1806395de7bf36a5b88150871f496d22616b",
+   "fields": {
+    "academic": {
+     "text": "Minimum 70% average in a four-year honours degree or equivalent from a recognized university or college (average based on last two years of the degree).",
+     "quote": "Minimum 70% average in a four-year honours degree or equivalent from a recognized university or college (average based on last two years of the degree).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "The International English Language Testing Service (IELTS Academic). The minimum acceptable score is 6.5 out of 9, with no individual score below 6. The IELTS is offered in 6 test centres in the US and 3 in Canada.",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 86,
+     "quote": "For tests taken before January 21, 2026, Western requires a minimum overall score of 86, with no individual section score below 20. Some programs may require a higher minimum and/or specific band scores. Western’s TOEFL ID is 0984. For tests taken on or after January 21, 2026, Western requires a minimum overall score of 4.5, with no individual section score below 4.5. Some programs may require a higher minimum and/or specific band scores. Western’s TOEFL ID is 0984.",
+     "min_band": 20,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Civil and Environmental Engineering - Master of Engineering",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=29",
+   "snapshot_sha256": "49e5cb1e0b281f18f5f96e6dd4dc7132a5efadfb6906d683067d3ddf368278fa",
+   "fields": {
+    "academic": {
+     "text": "Four-year Bachelor of Engineering degree (or equivalent) from a recognized university. Applicants with a similar degree from another discipline are considered on an individual basis. Minimum average of 70% (North American) or equivalent from the last two years of full-time study in a degree program.",
+     "quote": "Four-year Bachelor of Engineering degree (or equivalent) from a recognized university. Applicants with a similar degree from another discipline are considered on an individual basis. Minimum average of 70% (North American) or equivalent from the last two years of full-time study in a degree program.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "The International English Language Testing Service (IELTS Academic). The minimum acceptable score is 6.5 out of 9, with no section score below 6.0. The IELTS is offered in test centres in countries such as the US and Canada.",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 86,
+     "quote": "For tests taken before January 21, 2026, Western requires a minimum overall score of 86, with no individual section score below 20. Some programs may require a higher minimum and/or specific band scores. Western’s TOEFL ID is 0984. For tests taken on or after January 21, 2026, Western requires a minimum overall score of 4.5, with no individual section score below 4.5. Some programs may require a higher minimum and/or specific band scores. Western’s TOEFL ID is 0984.",
+     "min_band": 20,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Classics - Master of Arts",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=31",
+   "snapshot_sha256": "67515806c60ae3cc73e27392f7e9c74aa6e9ea4816026a55504c708b9b6d59cb",
+   "fields": {
+    "academic": {
+     "text": "Honours level degree in Classics or Classical Studies. Obtained at least a high B average in the undergraduate degree.",
+     "quote": "Honours level degree in Classics or Classical Studies. Obtained at least a high B average in the undergraduate degree.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "The International English Language Testing Service (IELTS Academic). Minimum acceptable score is 6 out of 9.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 86,
+     "quote": "For tests taken before January 21, 2026, Western requires a minimum overall score of 86, with no individual section score below 20. Some programs may require a higher minimum and/or specific band scores. Western’s TOEFL ID is 0984. For tests taken on or after January 21, 2026, Western requires a minimum overall score of 4.5, with no individual section score below 4. Some programs may require a higher minimum and/or specific band scores. Western’s TOEFL ID is 0984.",
+     "min_band": 20,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Clinical Medical Biophysics - Master of Science",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=33",
+   "snapshot_sha256": "fe805e3e41a1cd5f9a69b0e42dff328bfdc232c04d266ff13173d1740d084e39",
+   "fields": {
+    "academic": {
+     "text": "Consideration will be given to applicants with a minimum of 78% average, however, preference will be given to applicants with a minimum of an A- or 80% average (based on the last two years of study).",
+     "quote": "Consideration will be given to applicants with a minimum of 78% average, however, preference will be given to applicants with a minimum of an A- or 80% average (based on the last two years of study).",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Communication Sciences and Disorders - Master of Clinical Science",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=34",
+   "snapshot_sha256": "c9e478af1eb17a92462b67bb07d40da464f8c07e983bdaac876a5185e6fb48c3",
+   "fields": {
+    "academic": {
+     "text": "Four-year undergraduate degree from a recognized university or college. Prerequisite courses and volunteer experience are required. Please visit CSD Admission Requirements for more information.",
+     "quote": "Four-year undergraduate degree from a recognized university or college. Prerequisite courses and volunteer experience are required. Please visit CSD Admission Requirements for more information.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "The International English Language Testing Service (IELTS Academic). Minimum acceptable score is 7.5 out of 9 with no individual score falling below 6.",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 86,
+     "quote": "For tests taken before January 21, 2026, Western requires a minimum overall score of 86, with no individual section score below 20. Some programs may require a higher minimum and/or specific band scores. Western’s TOEFL ID is 0984. For tests taken on or after January 21, 2026, Western requires a minimum overall score of 4.5, with no individual section score below 4. Some programs may require a higher minimum and/or specific band scores. Western’s TOEFL ID is 0984.",
+     "min_band": 20,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Computer Science - Master of Science",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=37",
+   "snapshot_sha256": "d0cc266ad2ba23ee1d31d4a48b930bc19111a2c1897bcf9beca2f02f01ef7c24",
+   "fields": {
+    "academic": {
+     "text": "Four-year Honours degree (or equivalent) in Computer Science from a recognized university or college. Achieved at least a 78% or B+ overall average as determined by the Department.",
+     "quote": "Four-year Honours degree (or equivalent) in Computer Science from a recognized university or college. Achieved at least a 78% or B+ overall average as determined by the Department.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "The International English Language Testing Service (IELTS Academic). Minimum acceptable score is 6.5 out of 9, with no individual score below 6.",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 86,
+     "quote": "For tests taken before January 21, 2026, Western requires a minimum overall score of 86, with no individual section score below 20. Some programs may require a higher minimum and/or specific band scores. Western’s TOEFL ID is 0984. For tests taken on or after January 21, 2026, Western requires a minimum overall score of 4.5, with no individual section score below 4. Some programs may require a higher minimum and/or specific band scores. Western’s TOEFL ID is 0984.",
+     "min_band": 20,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Required of applicants without a four-year Honours degree in Computer Science: CS 2212, CS 3340 and two further third/fourth-year CS courses",
+      "quote": "Computer Science 2212 (Introduction to Software Engineering), Computer Science 3340 (Analysis of Algorithms I), plus two additional Computer Science courses at the third-year or fourth-year level.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Drug Safety and Pharmacovigilance - Master of Science",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=317",
+   "snapshot_sha256": "fb21b084fff3e2691df916feb3836c994d814bf3cb20e8148eb7067be1572ff1",
+   "fields": {
+    "academic": {
+     "text": "Must have a minimum average of B+ (78% or higher) on the last 10 full courses or 20 half-courses completed (approximately 2 years of full-time study);",
+     "quote": "Must have a minimum average of B+ (78% or higher) on the last 10 full courses or 20 half-courses completed (approximately 2 years of full-time study);",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "The International English Language Testing Service (IELTS Academic). The competitive score is 7 out of 9 with no individual score lower than 6.0.",
+     "min_band": 6.0,
+     "recommended": true,
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Economics - Master of Arts",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=42",
+   "snapshot_sha256": "39bab1f3cbd70c749576e16deaa08bf02dd08d81c4e195aa04ade49589a7f0bc",
+   "fields": {
+    "academic": {
+     "text": "Honours BA degree. Minimum 78% average in last two years of undergraduate study.",
+     "quote": "Honours BA degree. Minimum 78% average in last two years of undergraduate study.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "The International English Language Testing Service (IELTS Academic). Minimum acceptable score is 6.5 out of 9.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 86,
+     "quote": "For tests taken before January 21, 2026, Western requires a minimum overall score of 86, with no individual section score below 20. Some programs may require a higher minimum and/or specific band scores. Western’s TOEFL ID is 0984. For tests taken on or after January 21, 2026, Western requires a minimum overall score of 4.5, with no individual section score below 4. Some programs may require a higher minimum and/or specific band scores. Western’s TOEFL ID is 0984.",
+     "min_band": 20,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Education - Professional - Master of Professional Education",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=117",
+   "snapshot_sha256": "9a43e5269f9c121b5f2cf4a42362fd599a25971c207b0b0f2055e2c8c5ffbf59",
+   "fields": {
+    "academic": {
+     "text": "A four-year degree (20 full courses or equivalent) from a recognized university or college. Minimum \"B\" standing (70%) or equivalent in the final two years of study.",
+     "quote": "A four-year degree (20 full courses or equivalent) from a recognized university or college. Minimum \"B\" standing (70%) or equivalent in the final two years of study.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "The International English Language Testing Service (IELTS Academic). Minimum acceptable score is 6.5/9 overall with no individual score less than 6.0 for consideration of direct entry. Applicants who fall below the requirements will be reviewed on a case-by-case basis by the Associate Dean, Graduate Programs, who may recommend an offer conditional on successfully completing a 12-week, WELC boost onsite English program or comparable online language program prior to the start of the program.",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 86,
+     "quote": "For tests taken before January 21, 2026, Western requires a minimum overall score of 86, with no individual section score below 20. Some programs may require a higher minimum and/or specific band scores. Western’s TOEFL ID is 0984. For tests taken on or after January 21, 2026, Western requires a minimum overall score of 4.5, with no individual section score below 4. Some programs may require a higher minimum and/or specific band scores. Western’s TOEFL ID is 0984.",
+     "min_band": 20,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Education Studies - Master of Arts",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=44",
+   "snapshot_sha256": "6315f2cbd91a418a9dec9f67ee2edaea7c71b109fe37c9bd82c31939f92f6202",
+   "fields": {
+    "academic": {
+     "text": "A four-year degree (20 full courses or equivalent) from a recognized university or college. Minimum \"B\" standing (70%) or equivalent in the final two years of study.",
+     "quote": "A four-year degree (20 full courses or equivalent) from a recognized university or college. Minimum \"B\" standing (70%) or equivalent in the final two years of study.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 86,
+     "quote": "For tests taken before January 21, 2026, Western requires a minimum overall score of 86, with no individual section score below 20. Some programs may require a higher minimum and/or specific band scores. Western’s TOEFL ID is 0984. For tests taken on or after January 21, 2026, Western requires a minimum overall score of 4.5, with no individual section score below 4. Some programs may require a higher minimum and/or specific band scores. Western’s TOEFL ID is 0984.",
+     "min_band": 20,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Electrical and Computer Engineering - Master of Engineering",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=40",
+   "snapshot_sha256": "6066c9d7bad5942c31be01e6421e55b4f80f8725a3a7ce00a9160fffa55f683c",
+   "fields": {
+    "academic": {
+     "text": "Minimum 70% average in the last two years of study in a four-year honours degree or equivalent from a recognized university or college.",
+     "quote": "Minimum 70% average in the last two years of study in a four-year honours degree or equivalent from a recognized university or college.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "The International English Language Testing Service (IELTS Academic). The minimum acceptable score is 6.5 out of 9, with no minimum score below 6.0. The IELTS is offered in 6 test centres in the US and 3 in Canada.",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 86,
+     "quote": "For tests taken before January 21, 2026, Western requires a minimum overall score of 86, with no individual section score below 20. Some programs may require a higher minimum and/or specific band scores. Western’s TOEFL ID is 0984. For tests taken on or after January 21, 2026, Western requires a minimum overall score of 4.5, with no individual section score below 4.5. Some programs may require a higher minimum and/or specific band scores. Western’s TOEFL ID is 0984.",
+     "min_band": 20,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "English - Master of Arts",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=46",
+   "snapshot_sha256": "416812996edbc4e2366e781f712ba41e1396d4f2976053f76e49d64b5d8e770d",
+   "fields": {
+    "academic": {
+     "text": "Honours B.A. in English or in English combined with another subject. Achieved at least an A minus average in the Honours English courses of their B.A. program.",
+     "quote": "Honours B.A. in English or in English combined with another subject. Achieved at least an A minus average in the Honours English courses of their B.A. program.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 8.0,
+     "quote": "The International English Language Testing Service (IELTS Academic). Minimum acceptable score is 8 out of 9.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Environment and Sustainability - Master of Environment and Sustainability",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=48",
+   "snapshot_sha256": "ae89fb3ae974d1dd02af1d57dbccd53263b7976821b6db96410f7f7a65e59d47",
+   "fields": {
+    "academic": {
+     "text": "4-year undergraduate degree in any discipline*, from a recognized university or college (BA, BSc, B.Eng) A third and fourth year combined average of 78% or greater (entrance average)",
+     "quote": "4-year undergraduate degree in any discipline*, from a recognized university or college (BA, BSc, B.Eng) A third and fourth year combined average of 78% or greater (entrance average)",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "The International English Language Testing Service (IELTS Academic). Minimum acceptable overall score of 7 out of 9. No individual band score less than 6.5.",
+     "min_band": 6.5,
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Financial Economics - Master of Financial Economics",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=55",
+   "snapshot_sha256": "5fa600562c3d0d24db63b3f634d2d304802dc12dc4b33958ee2464b476ecb45f",
+   "fields": {
+    "academic": {
+     "text": "A four-year undergraduate degree from an accredited university in: Economics",
+     "quote": "A four-year undergraduate degree from an accredited university in: Economics",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "The International English Language Testing Service (IELTS Academic). Minimum acceptable score is 6.5 out of 9.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Foods and Nutrition - Master of Science in Foods and Nutrition",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=56",
+   "snapshot_sha256": "f3f27f82b1888631d374ff728703b738fcfc3b4e62033b5fc069b2bdfe64e32a",
+   "fields": {
+    "academic": {
+     "text": "Minimum undergraduate GPA of 75%. Averages between 70-74.9% will be considered on a case-by-case basis.",
+     "quote": "Minimum undergraduate GPA of 75%. Averages between 70-74.9% will be considered on a case-by-case basis.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "The International English Language Testing Service (IELTS Academic). Minimum acceptable score is 7.5 with no individual score less than 6.5.",
+     "min_band": 6.5,
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Gender, Sexuality & Women's Studies - Master of Arts",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=301",
+   "snapshot_sha256": "1c283b12f07726fb818f35bc876312c5c8a6b399b4fe9b5908908648a551044f",
+   "fields": {
+    "academic": {
+     "text": "Honours BA in Women's, Gender or Feminist Studies. A minimum average of B+ (78%) in the last two years of study.",
+     "quote": "Honours BA in Women's, Gender or Feminist Studies. A minimum average of B+ (78%) in the last two years of study.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 8.0,
+     "quote": "The International English Language Testing Service (IELTS Academic). Minimum acceptable score is 8 out of 9.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Geology - Master of Science",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=62",
+   "snapshot_sha256": "d07f31ca6a096b10ecb1f69af48c1abb52af8df828ba776b99afb83bede54efe",
+   "fields": {
+    "academic": {
+     "text": "Four-year degree in science, engineering, math, computer science, geography, or a related discipline from a recognized university or college. For course-based degree: achieved at least a 75% average over the last two years of the Bachelor's degree.",
+     "quote": "Four-year degree in science, engineering, math, computer science, geography, or a related discipline from a recognized university or college. For course-based degree: achieved at least a 75% average over the last two years of the Bachelor's degree.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "The International English Language Testing Service (IELTS Academic). Minimum acceptable score is 6.5 out of 9 with no individual score falling below 6.",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 86,
+     "quote": "For tests taken before January 21, 2026, Western requires a minimum overall score of 86, with no individual section score below 20. Some programs may require a higher minimum and/or specific band scores. Western’s TOEFL ID is 0984. For tests taken on or after January 21, 2026, Western requires a minimum overall score of 4.5, with no individual section score below 4. Some programs may require a higher minimum and/or specific band scores. Western’s TOEFL ID is 0984.",
+     "min_band": 20,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Geophysics - Master of Science",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=65",
+   "snapshot_sha256": "e09d41d4e99cc7700a14c28219c5d7b62513d45ce6860a42217c60672e24b6fc",
+   "fields": {
+    "academic": {
+     "text": "Four-year degree in science, engineering, math, computer science, geography, or a related discipline from a recognized university or college. For course-based degree: achieved at least a 75% average over the last two years of the Bachelor's degree.",
+     "quote": "Four-year degree in science, engineering, math, computer science, geography, or a related discipline from a recognized university or college. For course-based degree: achieved at least a 75% average over the last two years of the Bachelor's degree.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "The International English Language Testing Service (IELTS Academic). Minimum acceptable score is 6.5 out of 9 with no individual score falling below 6.",
+     "min_band": 6.0,
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Global Health Systems - Master of Health Sciences",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=320",
+   "snapshot_sha256": "40cbc748af840381683e8e31921bd2a505ea53624274229a7050bc6154df6122",
+   "fields": {
+    "academic": {
+     "text": "Applicants must possess a four-year degree from a recognized university or college and have at least a 75% average across courses taken in the last two full-time years of the undergraduate degree.",
+     "quote": "Applicants must possess a four-year degree from a recognized university or college and have at least a 75% average across courses taken in the last two full-time years of the undergraduate degree.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "The International English Language Testing Service (IELTS Academic). The minimum acceptable score is 6.5 out of 9.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 86,
+     "quote": "For tests taken before January 21, 2026, Western requires a minimum overall score of 86, with no individual section score below 20. Some programs may require a higher minimum and/or specific band scores. Western’s TOEFL ID is 0984. For tests taken on or after January 21, 2026, Western requires a minimum overall score of 4.5, with no individual section score below 4. Some programs may require a higher minimum and/or specific band scores. Western’s TOEFL ID is 0984.",
+     "min_band": 20,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Health Information Science - Master of Health Information Science",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=68",
+   "snapshot_sha256": "a1596226c846ae878aa09484d1ba7b97a832d5f2b01bfdfb192cdc3a9acbc55d",
+   "fields": {
+    "academic": {
+     "text": "Honours BHSc, BSc, BA or equivalent from a recognized university or college. 78% overall average in the last two-full time years of the undergraduate degree.",
+     "quote": "Honours BHSc, BSc, BA or equivalent from a recognized university or college. 78% overall average in the last two-full time years of the undergraduate degree.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 8.0,
+     "quote": "The International English Language Testing Service (IELTS Academic). Minimum acceptable score is 8 out of 9.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 107,
+     "quote": "For tests taken before January 21, 2026, Western requires a minimum overall score of 107. For tests taken on or after January 21, 2026, Western requires a minimum overall score of 5.5.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "History - Master of Arts",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=72",
+   "snapshot_sha256": "718d21590634a65c4170b72b701d1cfacf080f52967a514e34efe95dd09ece11",
+   "fields": {
+    "academic": {
+     "text": "4-year B.A. degree or equivalent from a recognized university or college. 78% average or better on last ten courses.",
+     "quote": "4-year B.A. degree or equivalent from a recognized university or college. 78% average or better on last ten courses.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Journalism and Communication - Master of Media in Journalism and Communication",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=263",
+   "snapshot_sha256": "d885b2b871c9234216c17ad013eeafbc6c1b0318f23d9d85a1d4433960927c3a",
+   "fields": {
+    "academic": {
+     "text": "Four-year degree or equivalent and have an average of at least 70% in the last two years of full-time study.",
+     "quote": "Four-year degree or equivalent and have an average of at least 70% in the last two years of full-time study.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 8.0,
+     "quote": "The International English Language Testing Service (IELTS Academic). Minimum acceptable score is 8 out of 9.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 111,
+     "quote": "For tests taken before January 21, 2026, Western requires a minimum overall score of 111. For tests taken on or after January 21, 2026, Western requires a minimum overall score of 5.5.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Kinesiology - Master of Kinesiology",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=322",
+   "snapshot_sha256": "a286c445afc3ccb507b4f985483a07a1d9abbbfee5350e26bfebceb1f038d563",
+   "fields": {
+    "academic": {
+     "text": "Applicants to master’s programs require an admission average of 70% or greater in the last two years of full-time study (calculated by the School of Graduate and Postdoctoral Studies upon submission of the application) in a bachelor-level honours degree in Kinesiology or equivalent.",
+     "quote": "Applicants to master’s programs require an admission average of 70% or greater in the last two years of full-time study (calculated by the School of Graduate and Postdoctoral Studies upon submission of the application) in a bachelor-level honours degree in Kinesiology or equivalent.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "The International English Language Testing Service (IELTS Academic). The minimum IELTS score is 7.5/9.0, with no individual component score less than 6.5.",
+     "min_band": 6.5,
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Library & Information Science - Master of Library and Information Science",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=81",
+   "snapshot_sha256": "06e85a7c91dc598e1fc7f1b873c7b5a4c55cf4a0d9e45bddadc61cd36c814726",
+   "fields": {
+    "academic": {
+     "text": "Four-year university degree or equivalent. Students from a variety of academic backgrounds in the arts, humanities, social sciences and sciences are encouraged to apply. Average of at least 70% in the last two years of full-time study.",
+     "quote": "Four-year university degree or equivalent. Students from a variety of academic backgrounds in the arts, humanities, social sciences and sciences are encouraged to apply. Average of at least 70% in the last two years of full-time study.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 8.0,
+     "quote": "The International English Language Testing Service (IELTS Academic). Minimum acceptable score is 8 out of 9.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 107,
+     "quote": "For tests taken before January 21, 2026, Western requires a minimum overall score of 107. For tests taken on or after January 21, 2026, Western requires a minimum overall score of 5.5.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Management - Master of Management",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=304",
+   "snapshot_sha256": "029149d6f3b60e192096f06e7eacf679c1e740dcd7b69a28a7a4ecbd5072ed16",
+   "fields": {
+    "academic": {
+     "text": "An undergraduate degree with at least two years of full-time work experience. A strong academic history with a B average, or 75%, or 3.0 GPA achieved during the two most recent years of academic study.",
+     "quote": "An undergraduate degree with at least two years of full-time work experience. A strong academic history with a B average, or 75%, or 3.0 GPA achieved during the two most recent years of academic study.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "The International English Language Testing Service (IELTS Academic).Minimum acceptable score is 7 out of 9.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Management - Master of Science",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=88",
+   "snapshot_sha256": "7994275cdf8227257e693fc900d23b8995281dae1f87be72cb7dfb34693495a5",
+   "fields": {
+    "academic": {
+     "text": "Undergraduate degree received within the past two years. Competitive B (77%-79% Western University equivalent) average in your final two years of undergraduate study.",
+     "quote": "Undergraduate degree received within the past two years. Competitive B (77%-79% Western University equivalent) average in your final two years of undergraduate study.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "The International English Language Testing Service (IELTS Academic). Minimum acceptable score is 7 out of 9.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GMAT or GRE score required (expected score 600 or higher)",
+      "quote": "GMAT* or GRE** score (required) - expected score is 600 or higher.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Management of Applied Science - Master of Management of Applied Science",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=248",
+   "snapshot_sha256": "4c42e138bab0949f715465c86197ad2da47f38b5b9d093769d84901fb5758dd2",
+   "fields": {
+    "academic": {
+     "text": "Applicants must possess a four-year degree from a university, college or institute. A minimum admission average of 70% across courses taken in the last two full-time years of the undergraduate degree.",
+     "quote": "Applicants must possess a four-year degree from a university, college or institute. A minimum admission average of 70% across courses taken in the last two full-time years of the undergraduate degree.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Mathematics - Master of Science",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=84",
+   "snapshot_sha256": "c3991fd330dce74571de2e2d3ee1113c96d2764dae8dc4eafa003774a9035d03",
+   "fields": {
+    "academic": {
+     "text": "Honors Bachelor’s (or equivalent) degree in Pure Mathematics with a minimum B average",
+     "quote": "Honors Bachelor’s (or equivalent) degree in Pure Mathematics with a minimum B average",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "The International English Language Testing Service (IELTS Academic). Minimum acceptable score is 6.5 out of 9.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 86,
+     "quote": "For tests taken before January 21, 2026, Western requires a minimum overall score of 86, with no individual section score below 20. Some programs may require a higher minimum and/or specific band scores. Western’s TOEFL ID is 0984. For tests taken on or after January 21, 2026, Western requires a minimum overall score of 4.5, with no individual section score below 4. Some programs may require a higher minimum and/or specific band scores. Western’s TOEFL ID is 0984.",
+     "min_band": 20,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Mechanical and Materials Engineering - Master of Engineering",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=93",
+   "snapshot_sha256": "7f9d1ba2317962886dd8139b269457ab30b50d411522dde3b05f4e24a1f2687d",
+   "fields": {
+    "academic": {
+     "text": "Four-year Bachelor of Engineering degree (or equivalent) from a recognized university or college; Students with a similar degree from another discipline may be admitted on a case by case basis, with approval from the Associate Chair (Graduate Professional). Minimum 70% (North American equivalent) from the last 2 years of full-time study, or the last 20 courses.",
+     "quote": "Four-year Bachelor of Engineering degree (or equivalent) from a recognized university or college; Students with a similar degree from another discipline may be admitted on a case by case basis, with approval from the Associate Chair (Graduate Professional). Minimum 70% (North American equivalent) from the last 2 years of full-time study, or the last 20 courses.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "The International English Language Testing Service (IELTS Academic) of the British Council. The minimum acceptable score is 6.5 out of 9, with no individual score below 6. The IELTS is offered in 6 test centres in the US and 3 in Canada.",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 86,
+     "quote": "For tests taken before January 21, 2026, Western requires a minimum overall score of 86, with no individual section score below 20. Some programs may require a higher minimum and/or specific band scores. Western’s TOEFL ID is 0984. For tests taken on or after January 21, 2026, Western requires a minimum overall score of 4.5, with no individual section score below 4.5. Some programs may require a higher minimum and/or specific band scores. Western’s TOEFL ID is 0984.",
+     "min_band": 20,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Medical Sciences - Master of Science",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=286",
+   "snapshot_sha256": "997057cbeb3f4b51ea95d45d67e4764558276be5336c40eb757cc521283da133",
+   "fields": {
+    "academic": {
+     "text": "An undergraduate degree or equivalent in life sciences, biomedical science, health science or a science discipline. A strong academic history with a minimum B+ (78%) or equivalent average achieved during the two most recent years of academic study (some consideration will be given to equivalent work experience on a case-by-case basis).",
+     "quote": "An undergraduate degree or equivalent in life sciences, biomedical science, health science or a science discipline. A strong academic history with a minimum B+ (78%) or equivalent average achieved during the two most recent years of academic study (some consideration will be given to equivalent work experience on a case-by-case basis).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "The International English Language Testing Service Academic (IELTS Academic). The minimum acceptable score is 6 out of 9. The IELTS is offered in 6 test centres in the US and 3 in Canada.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 86,
+     "quote": "For tests taken before January 21, 2026, Western requires a minimum overall score of 86, with no individual section score below 20. Some programs may require a higher minimum and/or specific band scores. Western’s TOEFL ID is 0984. For tests taken on or after January 21, 2026, Western requires a minimum overall score of 4.5, with no individual section score below 4. Some programs may require a higher minimum and/or specific band scores. Western’s TOEFL ID is 0984.",
+     "min_band": 20,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Music - Master of Music",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=101",
+   "snapshot_sha256": "0d15d5960076f99bf5cbe69dd47351698d0b4af507873f6be21194eb7833fc72",
+   "fields": {
+    "ielts": {
+     "overall": 6.5,
+     "quote": "The International English Language Testing Service (IELTS Academic). Minimum acceptable score is 6.5 out of 9.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 86,
+     "quote": "For tests taken before January 21, 2026, Western requires a minimum overall score of 86, with no individual section score below 20. Some programs may require a higher minimum and/or specific band scores. Western’s TOEFL ID is 0984. For tests taken on or after January 21, 2026, Western requires a minimum overall score of 4.5, with no individual section score below 4. Some programs may require a higher minimum and/or specific band scores. Western’s TOEFL ID is 0984.",
+     "min_band": 20,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Nuclear Engineering - Master of Engineering",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=105",
+   "snapshot_sha256": "9a27a2892fee1b7be49fd8751bed4cd677e59c8a1cbceb852f564616b77dc13e",
+   "fields": {
+    "academic": {
+     "text": "Successful completion of an Honours Bachelors Degree in Engineering with grades equivalent to a mid B or better. Recommended three years or more post baccalaureate engineering experience in industry or the equivalent thereof.",
+     "quote": "Successful completion of an Honours Bachelors Degree in Engineering with grades equivalent to a mid B or better. Recommended three years or more post baccalaureate engineering experience in industry or the equivalent thereof.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "The International English Language Testing Service (IELTS Academic) of the British Council. The minimum acceptable score is 6.5 out of 9, with no minimum score below 6.0. The IELTS is offered in 6 test centres in the US and 3 in Canada.",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 86,
+     "quote": "For tests taken before January 21, 2026, Western requires a minimum overall score of 86, with no individual section score below 20. Some programs may require a higher minimum and/or specific band scores. Western’s TOEFL ID is 0984. For tests taken on or after January 21, 2026, Western requires a minimum overall score of 4.5, with no individual section score below 4. Some programs may require a higher minimum and/or specific band scores. Western’s TOEFL ID is 0984.",
+     "min_band": 20,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Nursing - Master of Nursing",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=106",
+   "snapshot_sha256": "3d78fc373547b0aa459ed58f51b058bdcad7f2394daf8a2d75d49f7765066921",
+   "fields": {
+    "academic": {
+     "text": "Completion of a bachelor’s degree in nursing. GPA of 78 per cent (B+) or higher.",
+     "quote": "Completion of a bachelor’s degree in nursing. GPA of 78 per cent (B+) or higher.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "The International English Language Testing Service (IELTS Academic). The minimum acceptable score is 7 out of 9 on the overall test and on each subcomponent.",
+     "min_band": 7.0,
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Occupational Therapy - Master of Science",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=109",
+   "snapshot_sha256": "59cd3f854165b26dddea80cbb67a4d06aca8ac00a771d07fe61711b2b84b8161",
+   "fields": {
+    "academic": {
+     "text": "Students with a sub-GPA of 3.4 (as calculated by ORPAS), or better, are eligible to apply.",
+     "quote": "Students with a sub-GPA of 3.4 (as calculated by ORPAS), or better, are eligible to apply.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "A minimum overall score of 7.5 out of 9 in both the overall and writing sections is required.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 105,
+     "quote": "A minimum overall score of 105 (internet-based) with a minimum of 23 on the speaking component and no other section below 20 TOEFL score is required.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Casper test",
+      "quote": "All applicants are required to complete a Casper test.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Pathologists' Assistant - Master of Clinical Science",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=111",
+   "snapshot_sha256": "c21acea05517319f97c41db2eecfbfba2add597bd3f118b69cfb64c1b4fb1bbf",
+   "fields": {
+    "academic": {
+     "text": "Four-year Bachelor's degree (science background preferred); MD, DDS or MBBS degree from a recognized university or college. A third- and fourth-year combined entrance average of 80% or greater.",
+     "quote": "Four-year Bachelor's degree (science background preferred); MD, DDS or MBBS degree from a recognized university or college. A third- and fourth-year combined entrance average of 80% or greater.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "The International English Language Testing Service (IELTS Academic)of the British Council. The minimum acceptable score is 7 out of 9. The IELTS is offered in 6 test centres in the US and 3 in Canada.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Physical Therapy - Master of Physical Therapy",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=125",
+   "snapshot_sha256": "07e697b22dfcfaa26a83273f44962fa9f0385e38d40747482e154fbde9ef1d97",
+   "fields": {
+    "academic": {
+     "text": "Four year bachelor's degree from a recognized university (minimum four academic years in length.) Prerequisite courses and volunteer experience are required. Please visit MPT Admission Requirements for more information.",
+     "quote": "Four year bachelor's degree from a recognized university (minimum four academic years in length.) Prerequisite courses and volunteer experience are required. Please visit MPT Admission Requirements for more information.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "The International English Language Testing Service (IELTS Academic). A minimum overall score of 7.5 in both the overall and writing section is required.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Physician Assistant Studies - Master of Physician Assistant Studies",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=330",
+   "snapshot_sha256": "27e30d54426859a4e3e1660e5a4139be5d7fadc47f5e2418324d952c2617ce32",
+   "fields": {
+    "academic": {
+     "text": "A minimum cumulative GPA of 3.0/4.0 (75%) in the last two full-time years (or 20 half-courses) of undergraduate study.",
+     "quote": "A minimum cumulative GPA of 3.0/4.0 (75%) in the last two full-time years (or 20 half-courses) of undergraduate study.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "The International English Language Testing Service (IELTS Academic). The minimum acceptable score is 7 out of 9. The IELTS is offered in 6 test centres in the US and 3 in Canada.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 86,
+     "quote": "For tests taken before January 21, 2026, Western requires a minimum overall score of 86, with no individual section score below 20. Some programs may require a higher minimum and/or specific band scores. Western’s TOEFL ID is 0984. For tests taken on or after January 21, 2026, Western requires a minimum overall score of 4.5, with no individual section score below 4. Some programs may require a higher minimum and/or specific band scores. Western’s TOEFL ID is 0984.",
+     "min_band": 20,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Political Science - Master of Arts",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=126",
+   "snapshot_sha256": "19040e7c3101fd6cbfaa18563fd2ea8da503cb8ea137289914528a6d09f7269c",
+   "fields": {
+    "academic": {
+     "text": "4-year Honours degree in Political Science. Achieved at least a 78% in all courses taken within the final two years of the undergraduate degree.",
+     "quote": "4-year Honours degree in Political Science. Achieved at least a 78% in all courses taken within the final two years of the undergraduate degree.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "The International English Language Testing Service (IELTS Academic). Minimum acceptable score is 6 out of 9.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Public Administration - Master of Public Administration",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=131",
+   "snapshot_sha256": "57d28c099cfa18e38f9a45002d6160ed1508dccc0e09000dcc4ff62fb64dab62",
+   "fields": {
+    "academic": {
+     "text": "Applicants without relevant employment experience should possess a four year honours degree in the social sciences and demonstrate that they have taken senior undergraduate Social Science courses, preferably within local government, public administration and/or urban studies and/or have an interest in pursuing a career within the local government sector.",
+     "quote": "Applicants without relevant employment experience should possess a four year honours degree in the social sciences and demonstrate that they have taken senior undergraduate Social Science courses, preferably within local government, public administration and/or urban studies and/or have an interest in pursuing a career within the local government sector.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "The International English Language Testing Service (IELTS Academic). Minimum acceptable score is 7 out of 9 with no individual score below 6.5.",
+     "min_band": 6.5,
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Public Health - Master of Public Health",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=114",
+   "snapshot_sha256": "ec412fb525ce2213964b37f04672672f393493d6f8348af07ced2f98234f1b7a",
+   "fields": {
+    "academic": {
+     "text": "A four-year undergraduate degree with a minimum 70 per cent (Canadian equivalent) over the last two years of study.",
+     "quote": "A four-year undergraduate degree with a minimum 70 per cent (Canadian equivalent) over the last two years of study.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "The International English Language Testing Service (IELTS Academic) of the British Council. The competitive score is 7 out of 9 with no individual score lower than 6.5. The IELTS is offered in 6 test centres in the US and 3 in Canada.",
+     "min_band": 6.5,
+     "recommended": true,
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Social Work - Master of Social Work",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=139",
+   "snapshot_sha256": "9d798aa171f1d963e880199cd3283e61672ac3b1a335c01bd1a2c8ca326fde57",
+   "fields": {
+    "academic": {
+     "text": "Completion of a 4-year degree (20 full courses or equivalent) from a recognized university or college.",
+     "quote": "Completion of a 4-year degree (20 full courses or equivalent) from a recognized university or college.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "The International English Language Testing Service (IELTS Academic). Minimum acceptable score is 7 out of 9 overall and on each subcomponent.",
+     "min_band": 7.0,
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Visual Arts - Master of Arts",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=146",
+   "snapshot_sha256": "c6ddea18ea226d783de40f0e4e64ce7846f245d1b4dd257a1e6ccd6bb9c2f733",
+   "fields": {
+    "academic": {
+     "text": "Honours BA degree in art history or visual arts with a minimum B+ standing. Students with equivalent qualifications in relevant visual fields such as film or media studies will also be considered.",
+     "quote": "Honours BA degree in art history or visual arts with a minimum B+ standing. Students with equivalent qualifications in relevant visual fields such as film or media studies will also be considered.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "The International English Language Testing Service (IELTS Academic). The minimum acceptable score is 6.5 out of 9.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 86,
+     "min_band": 20,
+     "quote": "The Test of English as a Foreign Language(TOEFL). iBT (internet-Based Test): The minimum acceptable score is 86, with no individual score below 20.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Statistics - Master of Science",
+   "url": "https://grad.uwo.ca/admissions/program.cfm?p=140",
+   "snapshot_sha256": "b91ab4e587dcc51e4f6a6485cc00b9322ed20f873dd406ab6e1081e031adc777",
+   "fields": {
+    "academic": {
+     "text": "Undergraduate degree from a recognized institution with sufficient background in Statistics, Actuarial Sciences and/or Financial Modelling.",
+     "quote": "Undergraduate degree from a recognized institution with sufficient background in Statistics, Actuarial Sciences and/or Financial Modelling.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "The International English Language Testing Service (IELTS Academic).The minimum acceptable score is 6.5 out of 9. The IELTS is offered in 6 test centres in the US and 3 in Canada.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 86,
+     "quote": "The Test of English as a Foreign Language (TOEFL). iBT (internet-Based Test): For tests taken before January 21, 2026, Western requires a minimum overall score of 86, with no individual section score below 20. Some programs may require a higher minimum and/or specific band scores. For tests taken on or after January 21, 2026, Western requires a minimum overall score of 4.5, with no individual section score below 4. Some programs may require a higher minimum and/or specific band scores. [Western's TOEFL ID is 0984].",
+     "min_band": 20,
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Data Analytics - Master of Data Analytics",
+   "url": "https://www.uwo.ca/mda/admissions/index.html",
+   "snapshot_sha256": "b1aa013f8c48ec4d4c57ecdc109bd4954d270d5cff06cbac5afe40e35abfb97c",
+   "fields": {
+    "academic": {
+     "text": "A four-year bachelor's degree in a related field with a minimum average of 75%/B over the final two years",
+     "quote": "A four-year bachelor's degree in computer science, statistics or a related field (e.g., actuarial science, financial modelling, mathematics, physics, economics or computer software engineering) from a recognized university A minimum average of 75%/B, or the Canadian equivalent for international students, is required over the final two years of study",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7,
+     "min_band": 6.5,
+     "quote": "Academic test Overall score: ≥7 out of 9 No individual score less than 6.5",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 94,
+     "quote": "Test of English as a Foreign Language – Internet-based Test (TOEFLiBT) Requirements: Overall score: ≥ 94 Reading: ≥ 22 Listening: ≥ 22 Speaking: ≥ 26 Writing: ≥ 24",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Calculus, linear algebra, calculus-based probability and statistics, an upper-year mathematically mature course and two computer programming courses, each with a minimum grade of 75%",
+      "quote": "Regardless of undergraduate discipline, prospective students must achieve a minimum grade of 75% in all prerequisite courses: Two half (0.5) courses of Calculus One half (0.5) course of Linear Algebra One half (0.5) course of Probability (Calculus-based) One half (0.5) course of Statistics (Calculus-based) One half (0.5) course that is mathematically mature and upper year Two half (0.5) courses of Computer Programming",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 47,
+  "机器核对": 47,
+  "待人工": 0
+ }
+}
