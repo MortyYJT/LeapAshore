@@ -37,7 +37,7 @@ from sqlalchemy import event, select
 
 from app.agent import evidence
 from app.db import SessionLocal, engine
-from app.models.program import Program, ProgramPrerequisite, University
+from app.models.program import Program, ProgramDeadline, ProgramPrerequisite, University
 from app.models.source import Source
 
 HERE = Path(__file__).resolve().parent
@@ -64,12 +64,17 @@ def relevant_ids(session, q: dict) -> set[str]:
         return set()
     rows = session.execute(
         select(Program.id, Program.name, Program.name_en, Program.field, Program.english_requirement,
-               Program.minimum_mark, Program.non_211_minimum_mark, Source.url, Source.title)
+               Program.minimum_mark, Program.non_211_minimum_mark, Program.academic_requirement,
+               Source.url, Source.title)
         .join(Source, Source.id == Program.source_id)
         .where(Program.university_id.in_(q["schools"]))
     ).all()
     with_prereqs = set(session.scalars(
         select(ProgramPrerequisite.program_id).where(ProgramPrerequisite.program_id.in_([r.id for r in rows]))
+    ))
+    # An academic requirement or a deadline is requirement data too (openspec requirement-dates D6).
+    with_deadlines = set(session.scalars(
+        select(ProgramDeadline.program_id).where(ProgramDeadline.program_id.in_([r.id for r in rows]))
     ))
     pattern = re.compile(q["name"], re.IGNORECASE) if q.get("name") else None
     out = set()
@@ -79,7 +84,8 @@ def relevant_ids(session, q: dict) -> set[str]:
         if pattern and not pattern.search(f"{r.name_en or ''} {r.name or ''}"):
             continue
         has_data = (r.english_requirement or r.minimum_mark is not None
-                    or r.non_211_minimum_mark is not None or r.id in with_prereqs)
+                    or r.non_211_minimum_mark is not None or r.id in with_prereqs
+                    or r.academic_requirement is not None or r.id in with_deadlines)
         citable = bool(r.title) and (r.url or "").startswith("https://")
         if has_data and citable:
             out.add(r.id)

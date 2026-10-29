@@ -267,3 +267,126 @@ def test_pruning_removes_rows_the_file_no_longer_lists_but_keeps_one_a_portfolio
         db_session.execute(delete(Program).where(Program.id.in_([f"{KEY}-dropped-a", f"{KEY}-dropped-b"])))
         db_session.execute(delete(Client).where(Client.id == client.id))
         db_session.commit()
+
+
+# ---- deadlines and the academic requirement (TASKS.md P1 #1, openspec requirement-dates) ----------
+
+DEADLINES = [
+    {"label": "Round 1", "date": "2026-11-15", "quote": "Round 1 closes 15 November 2026", "check": "ok"},
+    {"label": "Round 2", "date": "2027-01-31", "quote": "Round 2 closes 31 January 2027", "check": "ok",
+     "source_sha256": "d" * 64, "source_url": "https://example.test/deadlines"},
+    {"label": "Round 3", "date": "2027-03-31", "quote": "Round 3 closes 31 March", "check": "date not in quote"},
+]
+
+
+def _deadline_rows(session, pid):
+    from app.models.program import ProgramDeadline
+
+    return [
+        (row.label, row.deadline.isoformat(), row.source_url, row.quote, row.sort_order)
+        for row in session.scalars(
+            select(ProgramDeadline).where(ProgramDeadline.program_id == pid).order_by(ProgramDeadline.sort_order))
+    ]
+
+
+def test_verified_deadlines_and_the_academic_requirement_are_imported(db_session, require_db, cleanup, tmp_path):
+    import_school(db_session, school_file(deadlines=DEADLINES), SCHOOLS, root=tmp_path)
+    pid = program_id_for(KEY, {"url": URL, "name": "MSc Data Science"})
+    program = db_session.get(Program, pid)
+    assert program.academic_requirement == "2:1 honours"
+    # The failed third round is absent; a quote from a shared page cites that page, others the program page.
+    assert _deadline_rows(db_session, pid) == [
+        ("Round 1", "2026-11-15", URL, "Round 1 closes 15 November 2026", 0),
+        ("Round 2", "2027-01-31", "https://example.test/deadlines", "Round 2 closes 31 January 2027", 1),
+    ]
+    assert db_session.get(Source, source_id_for(URL)).verified_at is None
+
+
+def test_an_academic_requirement_that_failed_its_check_stays_unknown(db_session, require_db, cleanup, tmp_path):
+    data = school_file(academic={"text": "2:1 honours", "quote": "a 2:1", "check": "quote not found in snapshot"})
+    import_school(db_session, data, SCHOOLS, root=tmp_path)
+    program = db_session.get(Program, program_id_for(KEY, {"url": URL, "name": "MSc Data Science"}))
+    assert program.academic_requirement is None
+
+
+def test_rerunning_the_import_writes_nothing(db_session, require_db, cleanup, tmp_path):
+    from app.models.program import ProgramDeadline
+
+    import_school(db_session, school_file(deadlines=DEADLINES), SCHOOLS, root=tmp_path)
+    pid = program_id_for(KEY, {"url": URL, "name": "MSc Data Science"})
+
+    def state():
+        db_session.expire_all()
+        program = db_session.get(Program, pid)
+        deadlines = [(r.id, r.label, r.deadline, r.source_url, r.quote, r.sort_order)
+                     for r in db_session.scalars(select(ProgramDeadline).where(ProgramDeadline.program_id == pid)
+                                                 .order_by(ProgramDeadline.sort_order))]
+        prerequisites = [(r.id, r.label) for r in program.prerequisites]
+        versions = db_session.scalar(select(func.count()).select_from(SourceVersion)
+                                     .where(SourceVersion.source_id == source_id_for(URL)))
+        return program.updated_at, program.academic_requirement, deadlines, prerequisites, versions
+
+    before = state()
+    import_school(db_session, school_file(deadlines=DEADLINES), SCHOOLS, root=tmp_path)
+    assert state() == before
+
+
+def test_a_changed_deadline_list_replaces_the_stored_one(db_session, require_db, cleanup, tmp_path):
+    import_school(db_session, school_file(deadlines=DEADLINES), SCHOOLS, root=tmp_path)
+    moved = [dict(DEADLINES[1], date="2027-02-07", quote="Round 2 closes 7 February 2027")]
+    import_school(db_session, school_file(deadlines=moved), SCHOOLS, root=tmp_path)
+    pid = program_id_for(KEY, {"url": URL, "name": "MSc Data Science"})
+    assert _deadline_rows(db_session, pid) == [
+        ("Round 2", "2027-02-07", "https://example.test/deadlines", "Round 2 closes 7 February 2027", 0),
+    ]
+
+
+def test_a_toefl_minimum_on_the_new_six_point_scale_says_so():
+    """NTU states TOEFL iBT 4.5 on the 1-6 scale from January 2026; it is not a score of 4.5 out of 120."""
+    from app.collect.importer import english_text
+
+    fields = {"toefl": {"overall": 4.5, "scale": "iBT 1-6", "quote": "A TOEFL iBT score of 4.5 or more", "check": "ok"}}
+    assert english_text(fields) == "TOEFL iBT 4.5（新版 1–6 分制）"
+
+
+def test_the_import_never_touches_a_date_somebody_entered(
+    db_session, require_db, cleanup, tmp_path, clear_the_roadmap_definition_after_the_test
+):
+    """The portfolio row's own deadline and a user's roadmap row keep their dates through an import."""
+    import uuid
+    from datetime import date
+
+    from app.models.application import Application
+    from app.models.client import Client
+    from app.models.task import RoadmapTask
+    from app.seed_roadmap import seed_roadmap
+
+    seed_roadmap(db_session)
+    import_school(db_session, school_file(), SCHOOLS, root=tmp_path)
+    pid = program_id_for(KEY, {"url": URL, "name": "MSc Data Science"})
+    client = Client(id=str(uuid.uuid4()))
+    db_session.add(client)
+    db_session.flush()
+    db_session.add(Application(id=str(uuid.uuid4()), client_id=client.id, program_id=pid, tier="稳",
+                               official_deadline=date(2027, 1, 2), deadline_source_url="https://example.test/mine"))
+    db_session.add(RoadmapTask(id=str(uuid.uuid4()), client_id=client.id, material_key="sub-form", program_id=pid,
+                               phase="submission", due_at=date(2027, 1, 1), schedule_origin="user", origin="user"))
+    db_session.commit()
+
+    def entered():
+        db_session.expire_all()
+        app_row = db_session.scalars(select(Application).where(Application.client_id == client.id)).one()
+        task = db_session.scalars(select(RoadmapTask).where(RoadmapTask.client_id == client.id)).one()
+        return (app_row.official_deadline, app_row.deadline_source_url, app_row.updated_at,
+                task.due_at, task.schedule_origin, task.origin, task.updated_at)
+
+    before = entered()
+    try:
+        import_school(db_session, school_file(deadlines=DEADLINES), SCHOOLS, root=tmp_path)
+        assert entered() == before
+    finally:
+        db_session.rollback()
+        db_session.execute(delete(RoadmapTask).where(RoadmapTask.client_id == client.id))
+        db_session.execute(delete(Application).where(Application.client_id == client.id))
+        db_session.execute(delete(Client).where(Client.id == client.id))
+        db_session.commit()

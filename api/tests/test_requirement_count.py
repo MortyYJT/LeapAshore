@@ -7,6 +7,7 @@ page and in the advisor, yet counted as having none in the catalogue. These test
 same rule, on a school of their own that they remove again.
 """
 
+from datetime import date
 from uuid import uuid4
 
 from fastapi.testclient import TestClient
@@ -14,7 +15,7 @@ from sqlalchemy import delete, func, select
 
 from app.db import SessionLocal
 from app.main import app
-from app.models.program import Program, ProgramPrerequisite, University, has_requirement_data
+from app.models.program import Program, ProgramDeadline, ProgramPrerequisite, University, has_requirement_data
 from app.models.source import Source, SourceStatus
 
 
@@ -30,6 +31,8 @@ def _school_with_one_program_per_kind(session, marker: str) -> tuple[str, dict[s
         "mark": {"minimum_mark": 80},
         "other_mark": {"non_211_minimum_mark": 85},
         "prerequisite": {},
+        "academic": {"academic_requirement": "A bachelor's degree in a related field"},
+        "deadline": {},
         "nothing": {},
     }
     ids = {}
@@ -40,6 +43,9 @@ def _school_with_one_program_per_kind(session, marker: str) -> tuple[str, dict[s
     session.flush()
     session.add(ProgramPrerequisite(id=f"{ids['prerequisite']}-pre-0", program_id=ids["prerequisite"],
                                     label="Calculus", sort_order=0))
+    session.add(ProgramDeadline(id=f"{ids['deadline']}-dl-0", program_id=ids["deadline"], label="Round 1",
+                                deadline=date(2027, 1, 15), quote="Round 1: 15 January 2027",
+                                source_url=f"https://example.edu/stated-{marker}", sort_order=0))
     session.commit()
     return university_id, ids
 
@@ -56,17 +62,17 @@ def _remove(university_id: str) -> None:
 
 def test_every_count_of_stated_requirements_uses_one_rule(require_db, db_session):
     university_id, ids = _school_with_one_program_per_kind(db_session, uuid4().hex[:8])
-    expected = {ids["english"], ids["mark"], ids["other_mark"], ids["prerequisite"]}
+    expected = {ids["english"], ids["mark"], ids["other_mark"], ids["prerequisite"], ids["academic"], ids["deadline"]}
     try:
         client = TestClient(app)
         stated = client.get("/api/programs", params={"provider": university_id, "has_requirements": "true"})
         unstated = client.get("/api/programs", params={"provider": university_id, "has_requirements": "false"})
         assert {p["slug"] for p in stated.json()} == expected
-        assert stated.headers["X-Total-Count"] == "4"
+        assert stated.headers["X-Total-Count"] == "6"
         assert [p["slug"] for p in unstated.json()] == [ids["nothing"]]
 
         school = next(u for u in client.get("/api/universities").json() if u["id"] == university_id)
-        assert (school["programCount"], school["withRequirementsCount"]) == (5, 4)
+        assert (school["programCount"], school["withRequirementsCount"]) == (7, 6)
 
         with SessionLocal() as session:
             gated = set(session.scalars(
@@ -91,3 +97,18 @@ def test_the_advisor_gate_is_the_same_rule():
     from app.agent import evidence
 
     assert evidence.has_requirement_data is has_requirement_data
+
+
+def test_the_catalogue_serves_the_academic_requirement_and_the_deadlines(require_db, db_session):
+    marker = uuid4().hex[:8]
+    university_id, ids = _school_with_one_program_per_kind(db_session, marker)
+    try:
+        body = {p["slug"]: p for p in TestClient(app).get("/api/programs", params={"provider": university_id}).json()}
+        assert body[ids["academic"]]["academicRequirement"] == "A bachelor's degree in a related field"
+        assert body[ids["academic"]]["deadlines"] == []
+        assert body[ids["nothing"]]["academicRequirement"] is None
+        assert body[ids["deadline"]]["deadlines"] == [
+            {"label": "Round 1", "date": "2027-01-15", "sourceUrl": f"https://example.edu/stated-{marker}"}
+        ]
+    finally:
+        _remove(university_id)

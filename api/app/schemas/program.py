@@ -24,6 +24,8 @@ keys nor the frontend's declarations are changed by this task — the divergence
 visible so the wiring task resolves it deliberately.
 """
 
+from datetime import date
+
 from pydantic import BaseModel, ConfigDict, Field
 
 from app.schemas.common import _camel
@@ -44,6 +46,25 @@ class SourceOut(BaseModel):
     url: str
     title: str
     status: str
+
+
+class DeadlineOut(BaseModel):
+    """One collected application deadline: the round's label, the date, and the page that states it.
+
+    Served whether or not it has passed; the reader decides against today (openspec requirement-dates
+    D4), so a cached response cannot carry a stale "still open".
+    """
+
+    model_config = ConfigDict(alias_generator=_camel, populate_by_name=True)
+
+    label: str | None = None
+    date: date
+    source_url: str
+
+
+def deadlines_of(program) -> list[DeadlineOut]:
+    return [DeadlineOut(label=row.label, date=row.deadline, source_url=row.source_url)
+            for row in sorted(program.deadlines, key=lambda row: row.sort_order)]
 
 
 class ProgramOut(BaseModel):
@@ -82,5 +103,8 @@ class ProgramOut(BaseModel):
     requires_cognate: bool = False
     prerequisites: list[str] = Field(default_factory=list)
     english_requirement: str | None = None
+    # The collector's summary of the academic requirement (English), NULL when not collected.
+    academic_requirement: str | None = None
+    deadlines: list[DeadlineOut] = Field(default_factory=list)
     data_status: str
     source: SourceOut

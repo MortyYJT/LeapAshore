@@ -1,3 +1,5 @@
+import type { CollectedDeadline } from "./deadlines.ts";
+
 // LeapAshore domain model, front-end MVP version.
 // Mirrors the Pydantic models the FastAPI service will expose, so it can be swapped for API responses.
 
@@ -99,6 +101,10 @@ export interface Program {
   requiresCognate: boolean;
   prerequisites: string[];
   englishRequirement: string | null;
+  /** The collector's summary of the academic requirement (English), or null when not collected. */
+  academicRequirement: string | null;
+  /** Every application deadline the program's page states, past ones included (see `deadlines.ts`). */
+  deadlines: CollectedDeadline[];
   source: SourceCitation;
   /** Overall data confidence. Every record is pending verification during the MVP stage. */
   dataStatus: SourceStatus;
@@ -161,6 +167,11 @@ export interface PortfolioItem {
   /** The official deadline and its page, or null when nobody has recorded one. */
   officialDeadline?: string | null;
   deadlineSourceUrl?: string | null;
+  /**
+   * The program's collected deadlines, served beside the row's own date. The import writes these and
+   * never the row's own, so an entered date is never overwritten; `deadlineOf` picks which one shows.
+   */
+  collectedDeadlines?: CollectedDeadline[];
 }
 
 export type PhaseId =

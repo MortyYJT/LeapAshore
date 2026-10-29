@@ -14,6 +14,7 @@ from app.schemas.application import (
     ApplicationReplaceResult,
     ProgramRef,
 )
+from app.schemas.program import deadlines_of
 from app.services.applications import InvalidApplicationPayload, replace_applications
 
 router = APIRouter(prefix="/api/applications", tags=["applications"])
@@ -71,7 +72,7 @@ def read_applications(
         program.id: program
         for program in session.scalars(
             select(Program)
-            .options(selectinload(Program.university))
+            .options(selectinload(Program.university), selectinload(Program.deadlines))
             .where(Program.id.in_([row.program_id for row in rows] or [""]))
         )
     }
@@ -88,6 +89,7 @@ def read_applications(
                 city=program.city,
                 degree_level=program.degree_level,
                 data_status=program.data_status,
+                deadlines=deadlines_of(program),
             )
             if program is not None
             else None

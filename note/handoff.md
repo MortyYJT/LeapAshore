@@ -16,7 +16,9 @@
 - 仓库清理（PR #43）：删了 4 处移植说法和一处本机路径，加了 MIT LICENSE；README/PRD 的截止日期写成「已采集、未入库」（79 所、2,335 个项目、3,986 条）。P1 第一条里的 4,055 / 4,874 是删日本前的数，现在是 3,986 条截止日期、4,831 个带学术要求的机器核对项目。
 - 限流超时撤回（PR #44，10-30 部署，只重建 api）：放行回复超时时撤回本次放行，503 不再留下 8,000 token 预扣。部署前备份 `~/db-backup-20261030-pre-withdraw.sql.gz`。
 - 「有要求」口径统一（PR #46，10-30 部署 api + web）：生产库「带要求的项目 4,389 个」（删日本前；删后 4,383）和本机 5,163 不一样是口径不同，不是导入过期——生产库和采集文件逐项一致，没重新导入。现在只有一个口径 `has_requirement_data()`（`api/app/models/program.py`：英语、985/211 均分、其他院校均分、先修课之一），项目库筛选、学校库计数、顾问门槛共用；前端项目表和详情页用同规则的 `statesARequirement`（`web/lib/catalog.ts`），改一处要两处一起改。生产 4,815（部署前备份 `~/db-backup-20261030-pre-stated.sql.gz`，只重建 api 和 web）。三个数的含义：5,163 = 采集文件里机器核对、已入库的项目；4,813 = 其中详情页能显示要求的；4,815 = 4,813 + 2 个手填占位。查询见 `TASKS.md` 该条。
-- **P0 全部做完**（只剩卡在 MortyYJT 本人的部分，见下面「卡在 MortyYJT」）。下一步：`TASKS.md` P1 第一条「截止日期和学术要求入库」（数以重算为准：3,986 条截止日期、4,831 个带学术要求的机器核对项目；入库后上面那 350 个只有学术要求/截止日期的项目会进「有要求」，记得同步改 `has_requirement_data` 和 README/PRD 的数）。
+- **P0 全部做完**（只剩卡在 MortyYJT 本人的部分，见下面「卡在 MortyYJT」）。
+- 截止日期和学术要求入库（P1 第一条，PR #48）：Alembic `b7d4e2a91c60` 加 `programs.academic_requirement` 和表 `program_deadlines`；导入器写过了 `verify` 的学术要求摘要和截止日期，重跑不改任何行。截止日期**不写进** `applications.official_deadline`（那是组合行自己记的日期）；`GET /api/applications` 的 `program.deadlines` 带上项目的截止日期，前端 `web/lib/deadlines.ts` 的 `deadlineOf` 决定显示哪个（组合行自己的 > 下一轮 > 全部已过的标「已截止」> 未收录），「今天」按北京时间在渲染时算。「有要求」口径加了学术要求和截止日期（后端 `has_requirement_data`、前端 `statesARequirement`、顾问评估 `evals/run_advisor.py` 的相关集，三处一起改）。本机：3,986 条截止日期、4,831 个学术要求、「有要求」5,161。设计 `openspec/changes/requirement-dates/`（未归档）。
+- 下一步：`TASKS.md` P1 第二条「采集队列 + 变更检测」。
 - 线上（10-30）已跑 PR #40：compose 多了 `redis` 容器；部署前备份在服务器 `~/db-backup-20261030-pre-limits.sql.gz`（Alembic 仍是 `5c1e7f0a2b3d`，PR #40 没改表）。
 - 线上运行的是 main（截至 PR #38 合并，10-30 部署，登录模式关；生产库已用 `remove_schools --apply` 删掉日本 8 所），地址 https://leapashore.mortyyjt.site 。个人网站 https://mortyyjt.site 也由这里的 Caddy 出。
 - 生产库（10-30，PR #34 部署后）：programs 7496（删日本 8 所前 7586），范围外国家项目 0，`verified_at` 非空 0。最近一次部署前的备份在服务器 `~/db-backup-20261030-pre-retrieval.sql.gz`（PR #38 前；Alembic 现在是 `5c1e7f0a2b3d`）。
@@ -32,7 +34,7 @@
 ## 开放问题
 
 - 两个手填的 `待核验` 占位项目（`api/app/seed.py`：`cricos-103000K` Monash 人工智能、`cricos-111671D` 悉尼计算机）仍算「有要求」：英语一栏是「需同时满足 Monash 英语要求」这类指引，均分 60/65 是早期手填、没过 `verify`。待 MortyYJT 决定是否删掉这些手填值（删要连 `test_seed.py` 一起改）。
-- 有 350 个机器核对项目在界面上看不到任何要求：266 个只有学术要求和/或截止日期；其余还带有只有说明、没有数字的值——语言 30 个（导入器 `english_text` 只写带分数的）、中国学生要求 55 个（只写均分），其中 1 个两样都有。前一类 P1 第一条入库；后两类入库时一并考虑要不要显示说明文字。（重算：按导入器规则遍历 `api/data/requirements/*.json`，对已导入但不满足 `has_requirement_data` 的项目按通过核对的字段分组。）
+- 学术要求和截止日期入库后（PR #48），机器核对项目里只剩 4 个界面上看不到任何要求：都只有不带分数的语言说明（Emory 数学、芝加哥 2 个、USC 1 个；芝加哥的雅思只有单项 7.0、没有总分，导入器 `english_text` 只写有总分的）。只有说明文字的语言要求和中国学生要求要不要显示、怎么措辞，还没定。
 
 - **登录模式等 MortyYJT 配发信（卡在本人）**：步骤见「部署 → 切到登录模式」。隐私政策 `/privacy` 是 AI 草稿，要 MortyYJT 审核正文、补联系方式。
 - 生产顾问用的是 `api.deepseek.com` 的 `deepseek-chat`（服务器 `deploy/.env`），不是 TASKS.md 写的硅基流动 DeepSeek-V4-Flash；隐私政策按生产实际写的 DeepSeek。10-30 跑意图评估时 DeepSeek 返回的模型名是 `deepseek-flash`（价格页已不列 `deepseek-chat`，旧名仍可调用）。本机评估用的是 shell 里的 `DEEPSEEK_API_KEY`：`CHAT_BASE_URL=https://api.deepseek.com CHAT_MODEL=deepseek-chat CHAT_API_KEY="$DEEPSEEK_API_KEY"`。
@@ -40,10 +42,10 @@
 - **待 MortyYJT 复核（顾问检索）**：简称表是否地道；门槛「只有 CRICOS 课程名不算证据」是否太严（本机 31 所学校因此对要求问题全部拒答，如墨尔本、麦考瑞）；评估集标签是 AI 标的。
 
 - **GitHub 合并会写入 MortyYJT 的私人邮箱**：在 GitHub 网页或 `gh pr merge` 合并时，提交者字段用的是账号主邮箱。要 MortyYJT 在 GitHub → Settings → Emails 勾选「Keep my email addresses private」。已推送的历史不改写。
-- `nanyang-technological-university-singapore.json` 有 8 个项目的托福 `overall` 是 1–6 新分制的 4.5/5.0（采集说明要求这种只写 text），状态却是机器核对，界面会显示成「TOEFL iBT 4.5」。抽取那条发现的，没改；「仓库清理」或「截止日期和学术要求入库」时一并处理（删掉这几个 `overall` 或整条换成 text）。
+- NTU 8 个托福 1–6 新分制的值（PR #48 起）显示为「TOEFL iBT 4.5（新版 1–6 分制）」：导入器按 `scale: "iBT 1-6"` 加注，采集文件没改。
 - 抽取器的已知局限：`verify` 只保证引文逐字在页上、数字在引文里，`text`/`label`/`recommended` 是否忠实没查；同温度 0 下截止日期的拒收数在跑与跑之间能差一倍（模型时而从页面别处推年份）。
 - 采集数据里需要人工确认的点写在各校 json 的 `notes` 里（旧清单可在提交 `1a9fa30` 的 handoff 里查到）。
-- 截止日期会过期：10-29 时已有 139 条早于当天。截止日期入库后，界面要按当天日期标「已截止」，不能当成未来日期排时间线。
+- 截止日期会过期（10-30 按北京时间 130 条已过）：界面在渲染时按当天判断、标「已截止」，库里不存状态。最晚的一条是 2028-02-01，随着时间推移越来越多项目会变成「全部已截止」，要靠 P1「采集队列」定期重采。
 - Commons 上 CC BY / CC BY-SA 的校徽需要在界面上署名（`logo_license`、`logo_source` 已在 fixture 里），学校库页面还没有署名区。
 - 被拦的学校（按规则不绕过）：Monash、Melbourne、Macquarie、NUS 大部分、Oxford 主站、UCL（50 个后 403）、Bristol、Durham、Bath、Cardiff、York（16 个后 429）、QUB、Stanford 计算机系。
 
@@ -52,7 +54,8 @@
 - 服务器：`ubuntu@43.161.224.82`，SSH 加 `-i ~/.ssh/offerpilot_codex -o IdentitiesOnly=yes`（ssh-agent 里没有这把钥匙）。
 - 部署前先在服务器上用 `pg_dump` 备份生产库到 `~/db-backup-<日期>.sql.gz`。
 - 同步代码：本机 `git archive origin/main` 导出，再 `rsync --delete` 到服务器 `~/offerpilot/`，保留 `deploy/.env`、`deploy/*.bak-*`、`api/var/`。然后在服务器上 `cd ~/offerpilot/deploy && sudo docker compose -f compose.prod.yaml up -d --build`。
-- 导入采集数据：把本机快照的元数据 json 临时拷进 api 容器，导完立即删除（里面的 `text_path` 含本机路径，导入器不读它）。
+- 导入采集数据：把本机快照的元数据 json 临时拷进 api 容器，导完立即删除（里面的 `text_path` 含本机路径，导入器不读它）。做法（PR #48 部署时用的）：本机 `cd api/var && tar czf <tmp>/snapmeta.tgz --exclude='_*' $(cd snapshots && find . -name '*.json' -not -name '_*' | sed 's#^#snapshots/#')`，`scp` 到服务器，`sudo docker cp` 进 `deploy-api-1:/app/var/`，`sudo docker compose -f compose.prod.yaml exec -T api sh -c 'cd /app/var && tar xzf snapmeta.tgz && cd /app && python -m app.collect.importer'`，然后在容器里 `rm -rf /app/var/snapshots /app/var/snapmeta.tgz`、服务器上删 tgz。
+- 改表的部署：api 容器启动时自己跑 `alembic upgrade head`（`api/Dockerfile`），所以备份 → 同步代码 → `up -d --build` 就完成迁移；之后再按上一条导入。
 - 上线后只做只读检查（状态码、页面无报错）。注意匿名模式下 `GET /api/profile` 会建一个匿名主体，检查别打它，或者打完按 id 删掉。完整走查不要对线上跑：它的清理只删本机库的数据。
 - 密钥在服务器 `~/offerpilot/deploy/.env`，不进库。
 - 主域名 `mortyyjt.site` 和 `www` 是个人网站，由本服务器的 Caddy 托管，文件在 `/srv/mortyyjt.site`，由个人网站仓库的 GitHub Actions 上传（钥匙被 rrsync 限制在该目录）。`deploy/Caddyfile` 末尾两段站点配置和 compose 里的 `/srv/mortyyjt.site` 挂载属于个人网站，别删；部署前确认 main 的 Caddyfile 里还有它们，否则个人网站会挂。

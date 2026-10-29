@@ -363,6 +363,9 @@ tbody tr:hover { background: var(--hover); }
 .rules dd { margin: 0; color: var(--color-muted); }
 .req-table td:first-child { width: 34%; color: var(--color-muted); }
 @media (max-width: 760px) { .req-table td:first-child { width: 40%; } }
+.deadline-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
+.deadline-list li[data-state="closed"] a, .deadline-closed a { color: var(--color-muted); }
+.deadline .pill, .deadline-list .pill { font-size: 12px; }
 .btn[aria-disabled="true"] { opacity: 0.5; pointer-events: none; }
 .task input[type="checkbox"]:disabled { cursor: progress; }
 

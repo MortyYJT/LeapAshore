@@ -88,8 +88,8 @@ Code: [api/app/agent/](api/app/agent/).
 | Australian master's programs (2,920) | CRICOS, data.gov.au, CC BY 2.5 AU | Real, attributed, dated |
 | Chinese institutions (3,167) and tier tags | Public lists | Real; known gaps recorded in the fixture |
 | Overseas schools (287) | QS World University Rankings 2027 top 300 in the 29 countries and regions in scope (241) + 46 for regional coverage | Real |
-| Admission requirements (5,223 programs at 120 schools) | Official course pages, each quote checked against a saved snapshot | **Machine-checked (机器核对)** for 5,163; the other 60 have no value that passed the check and are not imported. None human-verified yet. In the site's catalogue, 4,813 of the 5,163 state a requirement the program page shows (English, a mark, or a prerequisite); the other 350 have only values the catalogue does not store yet (academic routes, deadlines, test notes without a score). The catalogue's 「有要求」 count is 4,815: those 4,813 plus 2 hand-entered 待核验 placeholders |
-| Deadlines | Official pages, each quote checked against a saved snapshot | **Collected, not imported yet**: 3,986 dates for 2,335 programs at 79 schools sit in `api/data/requirements/*.json` (all 机器核对); the importer does not load them, so the site still shows official deadlines as 待核验 |
+| Admission requirements (5,223 programs at 120 schools) | Official course pages, each quote checked against a saved snapshot | **Machine-checked (机器核对)** for 5,163; the other 60 have no value that passed the check and are not imported. None human-verified yet. In the site's catalogue, 5,159 of the 5,163 state a requirement the program page shows (English, a mark, a prerequisite, an academic requirement or a deadline; 4,831 carry an academic requirement); the other 4 have only English notes without a score, which are not stored. The catalogue's 「有要求」 count is 5,161: those 5,159 plus 2 hand-entered 待核验 placeholders (local import, 2026-10-30) |
+| Deadlines | Official pages, each quote checked against a saved snapshot | **Imported, machine-checked**: 3,986 dates for 2,335 programs at 79 schools (2026-10-30). Each is shown with its source page; one before today's Beijing date is labelled 已截止 (130 on 2026-10-30) and never drawn as a future date. A date entered on a portfolio row is never overwritten by the import |
 
 These rules exist because an earlier version of this product generated a plausible verification
 date and an official-looking threshold with no source. Do not undo them.
@@ -97,7 +97,7 @@ date and an official-looking threshold with no source. Do not undo them.
 1. Every requirement carries a verification state: 待核验 / 机器核对 / 人工已核验.
 2. `verified_at` is written by a human, never defaulted.
 3. Unknown stays unknown — never an empty string, never a zero.
-4. Suggested dates are labelled as system suggestions; empty official deadlines render as 待核验.
+4. Suggested dates are labelled as system suggestions; an official deadline without a source renders as 未收录, and a past one as 已截止.
 5. Tiers describe how far a background meets the published requirements, not admission odds.
 
 ## Tech stack

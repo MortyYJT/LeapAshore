@@ -93,7 +93,10 @@
 
 ## P1：核心升级（按顺序做）
 
-- [ ] **截止日期和学术要求入库**：已核对的 4,055 条截止日期、4,874 条学术要求还没进数据库。导入后路线图上的官方截止日显示实心并带来源，不覆盖用户手填的日期，导入要能重复执行。
+- [x] **截止日期和学术要求入库**：已核对的 4,055 条截止日期、4,874 条学术要求还没进数据库。导入后路线图上的官方截止日显示实心并带来源，不覆盖用户手填的日期，导入要能重复执行。 — PR #48
+  - 测量（本机 2026-10-30，`cd api && .venv/bin/python -m app.collect.importer` 后查库）：截止日期 3,986 条、2,335 个项目、79 所学校（删日本后的数；4,055 / 4,874 是删日本前的）；学术要求 4,831 个项目；按北京时间已过的截止日期 130 条；`verified_at` 非空 0。「有要求」4,815 → **5,161**（+346）：机器核对 5,163 里 5,159 个 + 2 个手填占位；剩 4 个机器核对项目只有不带分数的语言说明。重跑导入：programs、program_deadlines、program_prerequisites、sources、source_versions 整表 md5 前后相同。顾问评估 tune 组 `python -m evals.run_advisor --split tune --check`：Recall@4 1.0、Precision@4 0.98，和 PR #38 后一致。
+  - 计数 SQL：`select count(*) from programs p where p.english_requirement is not null or p.minimum_mark is not null or p.non_211_minimum_mark is not null or p.academic_requirement is not null or exists(select 1 from program_prerequisites x where x.program_id=p.id) or exists(select 1 from program_deadlines d where d.program_id=p.id)`；已截止：`select count(*) from program_deadlines where deadline < (now() at time zone 'Asia/Shanghai')::date`。
+  - 注：设计在 `openspec/changes/requirement-dates/`（改表：加 `programs.academic_requirement`、新表 `program_deadlines`，Alembic `b7d4e2a91c60`）。截止日期不写进选校组合行，组合行自己记的日期优先，导入器没有写 `applications` / `roadmap_tasks` 的路径，所以不会覆盖；路线图显示下一轮（实心、带来源链接），全部已过的标「已截止」、不画在时间轴上，「今天」按北京时间在渲染时算。NTU 8 个托福新分制值写成「TOEFL iBT 4.5（新版 1–6 分制）」。没做：不带分数的语言说明和中国学生说明文字仍不入库（另定措辞）。生产部署结果见 `note/handoff.md`。
 - [ ] **采集队列 + 变更检测**：用 Celery + Redis，每个页面一个任务；按域名令牌桶限速、失败指数退避、按快照哈希去重、断点续跑；用 beat 定时重新采集，把哪处要求变了记进表里。模型费用累计到 100 元就停止这条的采集部分，在 `注：` 写明已花多少、采到哪，然后继续下一条（不要等确认）。把 `_schools.json` 扩到范围内的 287 所，补采还没采的约 154 所，并重试范围内 13 所 0 项目的学校（仍然遵守 robots.txt，403/429 不绕过）。
 - [ ] **对话持久化**：换成 PG checkpointer。完成标准：等待确认时重启服务，确认后仍能正确写入，且只写一次。
 - [ ] **混合检索**：PG 全文检索 + pgvector + RRF，再按学校、国家过滤；embedding 用硅基流动的 bge-m3。用报数的 30 条重跑，同时报"只用全文""只用向量"两组对比；提升不明显就如实记录。

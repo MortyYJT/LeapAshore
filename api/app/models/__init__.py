@@ -13,7 +13,7 @@ from app.models.document import (
     DocumentVersion,
     UploadedBy,
 )
-from app.models.program import Program, ProgramPrerequisite, University
+from app.models.program import Program, ProgramDeadline, ProgramPrerequisite, University
 from app.models.review import (
     CheckType,
     CriterionScope,
@@ -56,6 +56,7 @@ __all__ = [
     "MaterialTemplate",
     "Profile",
     "Program",
+    "ProgramDeadline",
     "ProgramPrerequisite",
     "ReviewCriterion",
     "ReviewOverall",
