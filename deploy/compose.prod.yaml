@@ -51,6 +51,8 @@ services:
       # Certificates and ACME account; losing them on rebuild risks Let's Encrypt rate limits.
       - caddy-data:/data
       - caddy-config:/config
+      # Static files for the personal website at mortyyjt.site (see Caddyfile).
+      - /srv/mortyyjt.site:/srv/mortyyjt.site:ro
     depends_on:
       - web
       - api
