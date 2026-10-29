@@ -1,0 +1,753 @@
+{
+ "school_key": "universite-psl",
+ "school_name_en": "Université PSL",
+ "country": "France",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://dauphine.psl.eu/en/training/masters-degrees",
+  "https://www.phys.ens.psl.eu/en/formations/master-icfp"
+ ],
+ "blocked": [
+  {
+   "url": "https://psl.eu/en/education/masters",
+   "reason": "robots.txt unreachable (URLError: SSL CERTIFICATE_VERIFY_FAILED, self-signed certificate in chain), snapshot tool refuses every path on psl.eu and www.psl.eu; retried several times, also with --render"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://psl.eu/en/education/masters",
+  "https://psl.eu/en/education/master-s-degree-physics",
+  "https://psl.eu/en/programs-and-tracks-taught-english",
+  "https://dauphine.psl.eu/en/training/masters-degrees/business-law/english-track-in-law-2nd-year-of-masters-degree/admissions",
+  "https://dauphine.psl.eu/en/training/masters-degrees/international-affairs-and-development/peace-studies-127-masters-year-2",
+  "https://dauphine.psl.eu/en/training/masters-degrees/economics-and-finance/parcours-international-304-2nd-year-of-masters-degree"
+ ],
+ "notes": "The psl.eu host (the PSL programme pages) could not be fetched: its robots.txt gave a TLS certificate error, so the PSL-level pages and the PSL IASD/Mines/ESPCI/Chimie ParisTech pages were not collected. Only official psl.eu sub-sites that the tool let through were used: Dauphine-PSL (English-taught or bilingual master's, admissions tab of each programme) and the ENS-PSL physics department (ICFP, Quantum Engineering). Dauphine's 2026 application windows are printed as day/month with the year on a separate line, so no Dauphine deadline is recorded; Dauphine states no numeric English score except Quantitative Economics and the LUISS double diploma. French-only programmes, law programmes, and programmes closed to external candidates (Magistere Banking Finance Insurance Y2, Business Development MEM 276, Luxury Goods 207) were skipped. Important PDF-only: PSL 'Master's degree in Physics_PSL.pdf' admissions document on psl.eu (not fetched).",
+ "programs": [
+  {
+   "name": "Master Computer Science, Year 2: Artificial Intelligence, Systems, Data (IASD) - Computer science track",
+   "url": "https://dauphine.psl.eu/en/training/masters-degrees/computer-science/m2-artificial-intelligence-systems-data/admissions",
+   "snapshot_sha256": "71d38261fe275c8e0795d1027718d98ffa797a70b2be20e2e10c19faa67600c5",
+   "fields": {
+    "academic": {
+     "text": "Four-year degree (BAC+4, 240 ECTS) or equivalent in computer science or applied mathematics with a focus on computer science and algorithmic thinking, or last year of engineering school",
+     "quote": "Students who have completed a BAC+4 degree (a four-year degree worth 240 ECTS) or equivalent at Dauphine - PSL or another university or institution of higher education in one of the following disciplines: computer science, applied mathematics with a focus on computer science and algorithmic thinking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Computer Science, Year 2: IASD - Computer science track (apprenticeship)",
+   "url": "https://dauphine.psl.eu/en/training/masters-degrees/computer-science/masters-year-2-artificial-intelligence-systems-data-iasd-in-apprenticeship/admissions",
+   "snapshot_sha256": "f3bf2f785f195cade4c29572e43baee6c167409ec29e672dc9d9af25b9e55ebf",
+   "fields": {
+    "academic": {
+     "text": "Four-year degree (BAC+4, 240 ECTS) or equivalent in computer science or applied mathematics with a focus on computer science and algorithmic thinking, or last year of engineering school",
+     "quote": "Students who have completed a BAC+4 degree (a four-year degree worth 240 ECTS) or equivalent at Dauphine - PSL or another university or institution of higher education in one of the following disciplines: computer science, applied mathematics with a focus on computer science and algorithmic thinking",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Computer Science, Year 2: Modeling, Optimization, Decision and Organization (MODO)",
+   "url": "https://dauphine.psl.eu/en/training/masters-degrees/computer-science/m2-modo/admissions",
+   "snapshot_sha256": "5225e0b56b51142fe381d38eed20b93d62368d67568e3f66eb8a998c10cb9f80",
+   "fields": {
+    "academic": {
+     "text": "Four-year degree (BAC+4, 240 ECTS) or equivalent in mathematics, computer science or management economics (with training in operational research or quantitative techniques)",
+     "quote": "Students who have completed a BAC+4 degree (a four-year degree worth 240 ECTS) or equivalent at Dauphine or another university or institution of higher education in one of the following disciplines: mathematics, computer science, management economics (with training in operational research or quantitative techniques)",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Computer Science, Year 1: Computer Science, Decision-making, Data (I2D)",
+   "url": "https://dauphine.psl.eu/en/training/masters-degrees/computer-science/m1-i2d/admissions",
+   "snapshot_sha256": "10a8be127a65a63189ebc42b238243a7c07e21be2dff40a3c78ba8a4824fa3b4",
+   "fields": {
+    "academic": {
+     "text": "Three-year degree (BAC+3, 180 ECTS) or equivalent in computer science, mathematics, management or economics (with options in operational research, quantitative techniques or computer science)",
+     "quote": "Holders of a BAC+3 degree (180 ECTS credits) or equivalent from Dauphine, a university, business school, engineering school or other higher education establishment in the following fields: computer science, mathematics, management or economics (with options in operational research or quantitative techniques or computer science).",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Mathematics and Applications, Year 2: IASD - Mathematics track",
+   "url": "https://dauphine.psl.eu/en/training/masters-degrees/mathematics-and-applied-mathematics/masters-year-2-artificial-intelligence-systems-data/admissions",
+   "snapshot_sha256": "04ff132265c3038420502da817c76b28c0eb13ade933c923b7893ebfff4a5602",
+   "fields": {
+    "academic": {
+     "text": "Four-year degree (BAC+4, 240 ECTS) or equivalent in applied mathematics",
+     "quote": "Students who have completed a BAC+4 degree (a four-year degree worth 240 ECTS credits) or equivalent at Dauphine or another university or institution of higher education in applied mathematics",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Mathematics and Applied Mathematics, Year 1: Advanced Mathematics",
+   "url": "https://dauphine.psl.eu/en/training/masters-degrees/mathematics-and-applied-mathematics/advanced-mathematics-major-masters-1st-year/admissions",
+   "snapshot_sha256": "9f507eaf8af3c66ef28fe25b1a05f97eec3dd46c564609f06b62b41a8cd09321",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (180 ECTS) or equivalent in science or mathematics",
+     "quote": "Holders of a bachelor's degree (180 ECTS credits) or equivalent from Dauphine, a university, or another higher education institution in the following fields: science, mathematics.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Quantitative Economics, Year 1",
+   "url": "https://dauphine.psl.eu/en/training/masters-degrees/quantitative-economics/m1/admissions",
+   "snapshot_sha256": "bc9c742c3c62c078e6a64a8750b6f15e44b2ea6513f788a5f598314f0fb19fd6",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (180 ECTS) from a university, or an equivalent IEP, Grande Ecole or Grand Etablissement diploma, in France or abroad",
+     "quote": "Applicants should have obtained a bachelor's degree (Graduate degree equivalent to 180 ECTS) from a university, or a diploma from an IEP (Institute of Political Studies), Grande Ecole, or Grand Etablissement recognized as equivalent, in France or abroad.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "TOEFL iBT (minimum score 90), IELTS (minimum score 6.5), or Cambridge Certificate (C1)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "TOEFL iBT (minimum score 90), IELTS (minimum score 6.5), or Cambridge Certificate (C1)",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Applicants who completed most of their studies outside the EU must submit both a GRE score (minimum 160 in verbal and 160 in quantitative) and an English proficiency test (TOEFL iBT 90, IELTS 6.5 or Cambridge C1), all less than three years old",
+      "quote": "For students who have completed most of their studies outside the EU, this must be attested by both a GRE score (minimum scores of 160 in verbal and quantitative sections) and a test of English proficiency, such as TOEFL iBT (minimum score 90), IELTS (minimum score 6.5), or Cambridge Certificate (C1). All test results should be less than three years old.",
+      "check": "ok"
+     },
+     {
+      "text": "Applicants from an EU university must attest English with one of TOEFL iBT 90, IELTS 6.5, Cambridge C1 or GRE 160 in both verbal and quantitative, all less than three years old",
+      "quote": "For students from an EU university, this must be attested by one of the following test results: TOEFL iBT (minimum score 90), IELTS (minimum score 6.5), Cambridge Certificate (C1), or GRE (minimum scores of 160 in both verbal and quantitative sections), all less than three years old.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Quantitative Economics, Year 2: Data-Driven Decisions and Digital Economics",
+   "url": "https://dauphine.psl.eu/en/training/masters-degrees/quantitative-economics/2nd-year-of-masters-degree-data-driven-decisions-and-digital-economics/admissions",
+   "snapshot_sha256": "9f6ec6b3ad618fecfe4bf0ee0bd3df798bc26542b26742b7ba897d111bd3d9b6",
+   "fields": {
+    "academic": {
+     "text": "Postgraduate degree (Master 1 level, 60 ECTS) from Dauphine-PSL or another university in France or abroad, or an equivalent IEP, Grande Ecole or Grand Etablissement diploma",
+     "quote": "Applicants should hold a postgraduate degree (Master degree equivalent to 60 ECTS), from either the Master 1 in Quantitative Economics or another Master at Université Paris-Dauphine-PSL, or another university in France or abroad; or an equivalent diploma from an Institute of Political Studies (IEP), a Grande Ecole in business or engineering, or an equivalent recognized Grand Etablissement, in France or abroad.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "TOEFL iBT (minimum score 90), IELTS (minimum score 6.5), or Cambridge Certificate (C1)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "TOEFL iBT (minimum score 90), IELTS (minimum score 6.5), or Cambridge Certificate (C1)",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Applicants who completed most of their studies outside the EU must submit both a GRE score (minimum 160 in verbal and 160 in quantitative) and an English proficiency test (TOEFL iBT 90, IELTS 6.5 or Cambridge C1), all less than three years old",
+      "quote": "For students who have completed most of their studies outside the EU, this must be attested by both a GRE score (minimum scores of 160 in verbal and quantitative sections) and a test of English proficiency, such as TOEFL iBT (minimum score 90), IELTS (minimum score 6.5), or Cambridge Certificate (C1). All test results should be less than three years old.",
+      "check": "ok"
+     },
+     {
+      "text": "Applicants from an EU university must attest English with one of TOEFL iBT 90, IELTS 6.5, Cambridge C1 or GRE 160 in both verbal and quantitative, all less than three years old",
+      "quote": "For students from an EU university, this must be attested by one of the following test results: TOEFL iBT (minimum score 90), IELTS (minimum score 6.5), Cambridge Certificate (C1), or GRE (minimum scores of 160 in both verbal and quantitative sections), all less than three years old.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Quantitative Economics, Year 2: Quantitative Economic Analysis",
+   "url": "https://dauphine.psl.eu/en/training/masters-degrees/quantitative-economics/m2-quantitative-economics-analysis/admissions",
+   "snapshot_sha256": "3db635b183939b403766cdaec53ba775611e5f10562d9a87b81ee6d1d954031d",
+   "fields": {
+    "academic": {
+     "text": "Postgraduate degree (Master 1 level, 60 ECTS) from Dauphine-PSL or another university in France or abroad, or an equivalent IEP, Grande Ecole or Grand Etablissement diploma",
+     "quote": "Applicants should hold a postgraduate degree (Master degree equivalent to 60 ECTS), from either the Master 1 in Quantitative Economics or another Master at Université Paris-Dauphine-PSL, or another university in France or abroad; or an equivalent diploma from an Institute of Political Studies (IEP), a Grande Ecole in business or engineering, or an equivalent recognized Grand Etablissement, in France or abroad.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "TOEFL iBT (minimum score 90), IELTS (minimum score 6.5), or Cambridge Certificate (C1)",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "TOEFL iBT (minimum score 90), IELTS (minimum score 6.5), or Cambridge Certificate (C1)",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Applicants who completed most of their studies outside the EU must submit both a GRE score (minimum 160 in verbal and 160 in quantitative) and an English proficiency test (TOEFL iBT 90, IELTS 6.5 or Cambridge C1), all less than three years old",
+      "quote": "For students who have completed most of their studies outside the EU, this must be attested by both a GRE score (minimum scores of 160 in verbal and quantitative sections) and a test of English proficiency, such as TOEFL iBT (minimum score 90), IELTS (minimum score 6.5), or Cambridge Certificate (C1). All test results should be less than three years old.",
+      "check": "ok"
+     },
+     {
+      "text": "Applicants from an EU university must attest English with one of TOEFL iBT 90, IELTS 6.5, Cambridge C1 or GRE 160 in both verbal and quantitative, all less than three years old",
+      "quote": "For students from an EU university, this must be attested by one of the following test results: TOEFL iBT (minimum score 90), IELTS (minimum score 6.5), Cambridge Certificate (C1), or GRE (minimum scores of 160 in both verbal and quantitative sections), all less than three years old.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Social Sciences of the Economy, Year 1: Economics and Societies",
+   "url": "https://dauphine.psl.eu/en/training/masters-degrees/social-sciences-of-the-economy/masters-year-1-economics-and-societies/admissions",
+   "snapshot_sha256": "23318d2718a85350b74f99162643d46d556f3025376f6f39f2f41ce0cf567fa6",
+   "fields": {
+    "academic": {
+     "text": "Three-year degree (BAC+3, 180 ECTS) or equivalent in economics, social sciences, management or engineering (including environmental science)",
+     "quote": "Students who have completed a BAC+3 degree (a three-year degree worth 180 ECTS) or equivalent at Dauphine or another university or institution of higher education in one of the following disciplines: economics, social sciences, management, or engineering (including environmental science).",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Fluent enough in English to read for courses and understand lectures in English (no test score stated)",
+      "quote": "Students should be fluent enough in English to read for courses and understand lectures in English.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Social Sciences of the Economy, Year 2: Economics and Societies",
+   "url": "https://dauphine.psl.eu/en/training/masters-degrees/social-sciences-of-the-economy/masters-year-2-economics-and-societies/admissions",
+   "snapshot_sha256": "cae818e0f9e0f83bba8c4f6f1ce9da74a4d6976b20c00626310287262471b912",
+   "fields": {
+    "academic": {
+     "text": "Four-year degree (BAC+4, 240 ECTS) or equivalent from Dauphine, another university, a Grande Ecole or an equally prestigious institute, with a multidisciplinary background in economics and one other social science",
+     "quote": "Students who have completed a BAC+4 degree (a four-year degree worth 240 ECTS credits) or equivalent at Dauphine or another university, “Grand École” specializing in business or engineering, or another equally prestigious institute of higher education.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "Students whose fluency in English is the equivalent of a TOEFL score of 90.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Ten-page research proposal attached to the application",
+      "quote": "Students with a ten-page research proposal, which they should attach to their application.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Finance, Year 1",
+   "url": "https://dauphine.psl.eu/en/training/masters-degrees/finance/finance-masters-year-1/admissions",
+   "snapshot_sha256": "8a89b0528de223fa1680bfc7b77e947ef3bf6a9e7af149d9f100bd1e2006762a",
+   "fields": {
+    "academic": {
+     "text": "Three-year degree (BAC+3, 180 ECTS) in management, applied economics or applied mathematics, or a degree from a business or engineering Grande Ecole, ENS or an equally prestigious institution",
+     "quote": "Students with a BAC+3 (equivalent to 180 ECTS credits) in management, applied economics, or applied mathematics, or a degree from a Grande Ecole specializing in business or engineering, or from ENS or an equally prestigious institution.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English-language fluency (semester abroad and internship recommended)",
+      "quote": "English-language fluency. Semester abroad and internship recommended.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Finance, Year 1: Financial Markets (203)",
+   "url": "https://dauphine.psl.eu/en/training/masters-degrees/finance/masters-year-1-financial-markets-203/admissions",
+   "snapshot_sha256": "6df603c95c4c1261b39df457056fb8f352ad4052fba2156baae17570a57631be",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or Bachelor of Science in economics, management or math from a business or engineering school (Grande Ecole track), ENS, or an equivalent elite institution",
+     "quote": "Students holding a Bachelor's degree or a Bachelor of Science in Economics, Management, or Math from a business or engineering school (Grande Ecole track), ENS, or an equivalent elite institution of higher education.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "TOEFL iBT required (taken in the last two years), no minimum score stated; GMAT or GRE strongly recommended",
+      "quote": "TOEFL iBT required (taken in the last two years), GMAT or GRE strongly recommended",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Finance, Year 2: Financial Markets (203)",
+   "url": "https://dauphine.psl.eu/en/training/masters-degrees/finance/2nd-year-of-masters-degree-financial-markets-203/admissions",
+   "snapshot_sha256": "fb43c70926c0a3153f7265072a39111196d9b2875d4568475e5231e50c921aba",
+   "fields": {
+    "academic": {
+     "text": "Master 1 in Finance at Dauphine with required courses passed, or Dauphine students majoring in economics, management or mathematics, or non-Dauphine students holding or completing a Master's degree (MSc)",
+     "quote": "Who are non-Dauphine students holding or completing a Master’s degree (MSc).",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Minimum of 6 months of professional experience (internship) in financial markets or quantitative asset management",
+      "quote": "All candidates must have a minimum of 6 months of professional experience (internship) in financial markets or quantitative asset management.",
+      "check": "ok"
+     },
+     {
+      "text": "TOEFL iBT results no more than two years old, not requested for English native speakers; TOEIC not accepted; GMAT or GRE highly recommended",
+      "quote": "TOEFL iBT results dating back no more than two years(not requested for English native speakers). TOEIC not accepted.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Finance, Year 2: Research in Finance",
+   "url": "https://dauphine.psl.eu/en/training/masters-degrees/finance/m2-research-in-finance/admissions",
+   "snapshot_sha256": "137722448c6f041aa9a975d39aa6f899b78185399b41a9bc0c757197e17916ae",
+   "fields": {
+    "academic": {
+     "text": "First year of a Master (240 ECTS or equivalent) in management, economics, econometrics, mathematics, computer science or similar fields",
+     "quote": "Students who have successfully completed the first year of a Master (240 ECTS or equivalent)",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Research statement in English of at most 7 pages, references included",
+      "quote": "Applicants will be required to write a research statement, in English, that should not be longer than 7 pages, references included.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Finance, Year 2: Asset Management (222)",
+   "url": "https://dauphine.psl.eu/en/training/masters-degrees/finance/masters-year-2-asset-management-222/admissions",
+   "snapshot_sha256": "10f3c6f332c14cbe4fcdce2c5bd7e80e945a73d8956ced4fba2916bcd02a6c83",
+   "fields": {
+    "academic": {
+     "text": "Four-year degree (BAC+4, 240 ECTS) or equivalent at a university, business or engineering school, in finance, economics, or mathematics/computer science",
+     "quote": "Students who have completed a BAC+4 degree (four-year university degree worth 240 ECTS credits) or the equivalent at a university, business or engineering school, or another institution of institution of higher education",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Results of one English test (IELTS, TOEFL-IBT, TOEIC or Cambridge English) included with the application; no elimination round",
+      "quote": "Include the results of one of the three following English tests: IELTS, TOEFL-IBT, TOEIC, Cambridge English. There is no elimination round.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Finance, Year 2: Auditing and Financial Advising (229)",
+   "url": "https://dauphine.psl.eu/en/training/masters-degrees/finance/masters-year-2-auditing-amp-financial-advising-229/admissions",
+   "snapshot_sha256": "2f714a0953b2a47e8c09c920e58efae92e683de816f7a9aee70b42ecc84b6dce",
+   "fields": {
+    "academic": {
+     "text": "Four-year degree (BAC+4, 240 ECTS) or equivalent; graduates in management, finance, economics, accounting, law, applied mathematics or business informatics, or from an IEP or business/engineering Grande Ecole",
+     "quote": "Students who have completed a BAC+4 degree (a four-year degree worth 240 ECTS credits) or equivalent at Dauphine or another university or institution of higher education",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Finance, Year 2: Corporate Finance and Financial Engineering (225)",
+   "url": "https://dauphine.psl.eu/en/training/masters-degrees/finance/masters-year-2-corporate-finance-and-financial-engineering-225/admissions",
+   "snapshot_sha256": "4dbb2ac03b71514af0372abf5d258c293984f69f1b64ec2f295381e4979c2b0c",
+   "fields": {
+    "academic": {
+     "text": "Completed a four-year degree (BAC+4, 240 ECTS) or equivalent at Dauphine or another university or higher education institution",
+     "quote": "Students who have completed a BAC+4 degree (a four-year degree worth 240 ECTS credits) or equivalent at Dauphine or another university or institution of higher education",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Finance, Year 2: Insurance and Risk Management (218)",
+   "url": "https://dauphine.psl.eu/en/training/masters-degrees/finance/masters-year-2-insurance-and-risk-management-218/admissions",
+   "snapshot_sha256": "9c4869ce6e7c0914827b5c7a698b46972be4f2240062dad640ef19c7c1a36afc",
+   "fields": {
+    "academic": {
+     "text": "Four-year degree (BAC+4, 240 ECTS) or equivalent; graduates in economics, management, finance or law, or from a business/engineering grande ecole or IEP",
+     "quote": "Completed a BAC+4 degree (four-year university degree worth 240 ECTS credits), or the equivalent from a university or institution of institution of higher education",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Finance, Year 2: Investment Banking and Markets (268)",
+   "url": "https://dauphine.psl.eu/en/training/masters-degrees/finance/masters-year-2-investment-banking-and-markets-268/admissions",
+   "snapshot_sha256": "c97fb41f3b63febf4fc688ec01c8fa429a70dc67a2c9688302f6b562e0066439",
+   "fields": {
+    "academic": {
+     "text": "Four-year degree (BAC+4, 240 ECTS) or equivalent; finance, economics, econometrics or mathematics with honors, or a business or engineering Grande Ecole",
+     "quote": "Completed a BAC+4 degree (four-year university degree worth 240 ECTS credits), or the equivalent from a university or institution of institution of higher education",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "A good TOEFL or TOEIC score is a plus (recommended, no score stated)",
+      "quote": "A good TOEFL or TOEIC score is a plus.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Finance, Year 2: Real Estate Management (246)",
+   "url": "https://dauphine.psl.eu/en/training/masters-degrees/finance/masters-year-2-real-estate-management-246/admissions",
+   "snapshot_sha256": "72392b17c71c658f02bc7510bf43fdbfa393c24cc4d57f199f15c153c907a147",
+   "fields": {
+    "academic": {
+     "text": "Completed a four-year degree (BAC+4, 240 ECTS) or equivalent at Dauphine or another university or higher education institution",
+     "quote": "Students who have completed a BAC+4 degree (a four-year degree worth 240 ECTS credits) or equivalent at Dauphine or another university or institution of higher education",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "TOEIC test or equivalent test certifying at least a B2 level",
+      "quote": "TOEIC test or equivalent test certifying at least a B2 level",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Economics and Finance, Year 2: Energy, Finance, Carbon (129/288)",
+   "url": "https://dauphine.psl.eu/en/training/masters-degrees/economics-and-finance/masters-year-2-energy-finance-carbon-129/288/admissions",
+   "snapshot_sha256": "fe1c42e90c701ccc795a08f27e825db6be737955e6ba5e02bb05549acc22d968",
+   "fields": {
+    "academic": {
+     "text": "Four-year degree (BAC+4, 240 ECTS) or equivalent at Dauphine, another university, a business grande ecole, an IEP or another institution in France or abroad",
+     "quote": "Students who have completed a BAC+4 degree (a four-year degree worth 240 ECTS credits) or equivalent at Dauphine or another university, a grande ecole specializing in business, an Institut d'Etudes Politiques, or another institution of higher education in France or abroad",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Applicants with insufficient training in economics must take a refresher course before the school year begins",
+      "quote": "If a candidate does not have sufficient training in economics, they will be required to take a refresher course before the school year begins.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Information Systems, Networks and Digital Technology, Year 2: Network Industries and the Digital Economy (116)",
+   "url": "https://dauphine.psl.eu/en/training/masters-degrees/information-systems-networks-and-digital-technology/116-masters-year-2-network-industries-and-the-digital-economy/admissions",
+   "snapshot_sha256": "638d19bf9637e9c434a340cdcceafa2d6ce835bcff52f328e5f0baff41c5dac6",
+   "fields": {
+    "academic": {
+     "text": "Four-year degree (BAC+4, 240 ECTS) or equivalent in management science, economic science or applied mathematics for social sciences; or third year at a partner engineering school",
+     "quote": "Students who have completed a BAC+4 degree (a four-year degree worth 240 ECTS credits) or equivalent at Dauphine, another university, a business school, an institute of political studies, an engineering school, or another institution of higher education in one of the following disciplines: management science, economic science, applied mathematics for social sciences.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Information Systems, Networks and Digital Technology, Year 2: Telecommunications and Media Management (226)",
+   "url": "https://dauphine.psl.eu/en/training/masters-degrees/information-systems-networks-and-digital-technology/telecommunications-and-media-management-226-masters-year-2/admissions",
+   "snapshot_sha256": "fd075f1879e3e079641d6310482cffac2302ed0420cb380b8927e3007159a717",
+   "fields": {
+    "academic": {
+     "text": "Completed a four-year degree (BAC+4, 240 ECTS) or equivalent at Dauphine or another university or higher education institution",
+     "quote": "Students who have completed a BAC+4 degree (a four-year degree worth 240 ECTS credits) or equivalent at Dauphine or another university or institution of higher education",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "French-language test for non-Francophone students",
+      "quote": "A French-language test for non-Francophone students.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master International Affairs and Development, Year 2: International Economic Development (111)",
+   "url": "https://dauphine.psl.eu/en/training/masters-degrees/international-affairs-and-development/international-economic-development-111-masters-year-2/admissions",
+   "snapshot_sha256": "2f43620c0252b721642dc7477d1521bc4513fceb4787cae3c4a2c8bc7e0e4704",
+   "fields": {
+    "academic": {
+     "text": "Four-year degree (BAC+4, 240 ECTS) or equivalent in economics, economic sciences, management science, political science or engineering sciences; knowledge of economic theory and quantitative methods required",
+     "quote": "Students who have completed a BAC+4 degree (a four-year degree worth 240 ECTS credits) or equivalent at Dauphine or another university or institute of higher education",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "International students should have DALF C1-level French",
+      "quote": "International students should have DALF C1-level French skills.",
+      "check": "ok"
+     },
+     {
+      "text": "High level of English and French (no test score stated)",
+      "quote": "High level of English and French.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master International Affairs and Development, Year 2: International Economic Expertise",
+   "url": "https://dauphine.psl.eu/en/training/masters-degrees/international-affairs-and-development/international-economic-expertise/admissions",
+   "snapshot_sha256": "89e98184def4c8759bceb8f7f3338ce006d58a183ad14410ee8f9201855f85c4",
+   "fields": {
+    "academic": {
+     "text": "Four-year degree (BAC+4, 240 ECTS) or equivalent in economics, social sciences or management science; IEP or business Grande Ecole graduates",
+     "quote": "Students who have completed a BAC+4 degree (a four-year degree worth 240 ECTS credits) or equivalent at Dauphine or another university or institute of higher education",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "International students should have DALF C1-level French",
+      "quote": "International students should have DALF C1-level French skills.",
+      "check": "ok"
+     },
+     {
+      "text": "Fluency in English required (no test score stated)",
+      "quote": "Fluency in English required.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master International Affairs and Development, Year 2: International Affairs (212)",
+   "url": "https://dauphine.psl.eu/en/training/masters-degrees/international-affairs-and-development/masters-year-2-international-affairs-212/admissions",
+   "snapshot_sha256": "5b93d1bd33eac41e19304523950f0192d673cf7918623833441e5abe86c83c7a",
+   "fields": {
+    "academic": {
+     "text": "Four-year degree (BAC+4, 240 ECTS) or equivalent at a university, engineering school or other higher education institution, in management, applied economics, social sciences, political science, law or engineering sciences",
+     "quote": "Students who have completed a BAC+4 degree (a four-year degree worth 240 ECTS credits) or equivalent at a university, an engineering school, or another institution of higher education.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English test and interviews for shortlisted candidates",
+      "quote": "English test and interviews with shortlisted candidates from 8am.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master International Affairs and Development, Year 2: International Supply Chain (217)",
+   "url": "https://dauphine.psl.eu/en/training/masters-degrees/international-affairs-and-development/masters-year-2-international-supply-chain-217/admissions",
+   "snapshot_sha256": "77ff6d9069ba5daeb64398ea44e130052c3ce83e1e6cabe79b36b4d80933cdd1",
+   "fields": {
+    "academic": {
+     "text": "Four-year degree (BAC+4, 240 ECTS) or equivalent (apprenticeship training), in management science, economic sciences, applied economics, MASS, MIAGE, mathematics and statistics, or an engineering/business grande ecole diploma",
+     "quote": "Students who have completed a BAC+4 degree (a four-year degree worth 240 ECTS credits) or equivalent at Dauphine or another university or institution of higher education",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Apprenticeship track: candidate must be under 30 on December 1",
+      "quote": "Be under 30 on December 1.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Management and Organizations, Year 2: Business Transformation (MEM 227)",
+   "url": "https://dauphine.psl.eu/en/training/masters-degrees/management-and-organizations/business-transformation-mem-227-masters-year-2/admissions",
+   "snapshot_sha256": "f0321dad8d0e4cf9a941bcb5cba828684a7f108cb661cd9e9d1ce0175abd1813",
+   "fields": {
+    "academic": {
+     "text": "Four-year degree (BAC+4, 240 ECTS) or equivalent in management or social sciences; BBA holders are not admitted to Year 2",
+     "quote": "Have graduated with a BAC+4 degree (a four-year degree worth 240 ECTS credits) or equivalent from Dauphine or another university or institution of higher education in the following areas: management, social sciences",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English level required for the double diploma with LUISS: TOEFL iBT 90, level C1 or equivalent TOEIC",
+      "quote": "Level of English required for the Double-Diploma with LUISS: TOEFL IBT 90, Level C1 or equivalent TOIEC",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Management and Organizations, Year 2: Business Consulting and Digital Organization (128)",
+   "url": "https://dauphine.psl.eu/en/training/masters-degrees/management-and-organizations/masters-year-2-business-consulting-and-digital-organization-128/admissions",
+   "snapshot_sha256": "ccf9ec2ca1ab938472d35bc42224c3d82dc475df41cf809ab714d60e38acec59",
+   "fields": {
+    "academic": {
+     "text": "Four-year degree (BAC+4, 240 ECTS) or equivalent in management, finance, social science and humanities; IEP, business or engineering school, or ENS degree",
+     "quote": "Students who have completed a BAC+4 degree (four-year university degree worth 240 ECTS credits), or the equivalent at a university or institution of higher learning.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English-language fluency (no test score stated)",
+      "quote": "English-language fluency.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Management and Organizations, Year 2: Management in the Global South (294)",
+   "url": "https://dauphine.psl.eu/en/training/masters-degrees/management-and-organizations/masters-year-2-management-in-the-global-south-294/admissions",
+   "snapshot_sha256": "f7d43cdb291d41152f6fff0d8b0901bff32918191ff65f8fbb8ea83a52bd6e99",
+   "fields": {
+    "academic": {
+     "text": "Four-year degree (BAC+4, 240 ECTS) or equivalent at Dauphine, another university, an engineering school or another institution of higher education",
+     "quote": "Students who have completed a BAC+4 degree (a four-year degree worth 240 ECTS credits) or equivalent at Dauphine, another university, an engineering school, or another institution of higher education",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Management and Organizations, Year 2: Strategy and Organization (101)",
+   "url": "https://dauphine.psl.eu/en/training/masters-degrees/management-and-organizations/masters-year-2-strategy-and-organization-101/admissions",
+   "snapshot_sha256": "c0b59d969ee781cb93a447f9ea0c301c95bc0474aa83b3430f02663c83b39d4d",
+   "fields": {
+    "academic": {
+     "text": "Four-year degree (BAC+4, 240 ECTS) or equivalent in management or economics, or a five-year degree (BAC+5, 300 ECTS) in France or abroad",
+     "quote": "Students who have completed a BAC+4 degree (a four-year degree worth 240 ECTS credits) or equivalent at Dauphine or another university, a business or engineering school, an Institut d'Etudes Politiques, or another institution of higher education in France or abroad in the following areas: management, economics",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Fluency in English required; candidates lacking it but otherwise strong may be admitted and must improve before the school year begins",
+      "quote": "Fluency in English required",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Research in Management, Year 1",
+   "url": "https://dauphine.psl.eu/en/training/masters-degrees/research-in-management/first-year-of-research-in-management/admissions",
+   "snapshot_sha256": "00611941058c81c40217a1f7f23287ecaa1ac3a47c7650b1031299ec40c32607",
+   "fields": {
+    "academic": {
+     "text": "Three-year degree (BAC+3, 180 ECTS) or a recognized equivalent in management, social sciences, economics, or other fields upon review",
+     "quote": "Students with a BAC+3 (equivalent to 180 ECTS credits) or a recognized equivalent diploma in management, social sciences, economics, or other fields upon review of the application.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Accounting, Control and Auditing, Year 1",
+   "url": "https://dauphine.psl.eu/en/training/masters-degrees/accounting-control-and-auditing/masters-year-1-accounting-control-auditing-cca/admissions",
+   "snapshot_sha256": "970d7d3fe500b083d9b80082ef2edaa8e504dc2b3458d4788c081a23d0354fba",
+   "fields": {
+    "academic": {
+     "text": "Three-year degree (BAC+3, 180 ECTS) or equivalent in the field of management",
+     "quote": "Students who have completed a BAC+3 degree (a three-year degree worth 180 ECTS) or equivalent at Dauphine or another university or institution of higher education in the field of management.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Courses taken in general and financial accounting, management accounting, and finance",
+      "quote": "applicants must have taken courses in general and financial accounting, management accounting, and finance.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master ICFP (Fundamental Physics), ENS-PSL",
+   "url": "https://www.phys.ens.psl.eu/en/formations/master-icfp",
+   "snapshot_sha256": "c19293e0964a71b65edccdd48a759554230d757bee3be7a1cf6b6002923fdc3d",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree (BSc or BEng) with solid basic education in fundamental physics and mathematics for M1; direct M2 entry with 60 validated M1 ECTS in a compatible field",
+     "quote": "The Master’s in Fundamental Physics (first year, M1)  is available to students with Bachelor’s degrees (Bachelor of Science or Bachelor of Engineering) who have received a solid basic education in fundamental physics and mathematics.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English: taught in English, C1 level required for admission",
+      "quote": "The Master’s program is taught in English, and a C1 level is required for admission to the ICFP program.",
+      "check": "ok"
+     },
+     {
+      "text": "Strong background in quantum physics and statistical physics expected",
+      "quote": "Candidates are expected to have a strong background in quantum physics and statistical physics.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Master 1 (M1) application, 2027/2028 intake",
+      "date": "2027-01-21",
+      "quote": "January 21, 2027: Application deadline",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master Quantum Engineering (ENS, ESPCI, Chimie ParisTech, Mines Paris, Observatoire de Paris - PSL)",
+   "url": "https://www.phys.ens.psl.eu/en/formations/master-quantum-engineering",
+   "snapshot_sha256": "4dbbd28da655f3ab118fff4908c64c8c0bc5b990bdf71cf83978f563cef5785e",
+   "fields": {
+    "academic": {
+     "text": "M1: B.Sc in Physics, Physics-Chemistry, Engineering science etc.; M2: M1 level (240 ECTS) in Physics, Physics-Chemistry, Engineering science etc.",
+     "quote": "B.Sc in Physics, Physics-Chemistry, Engineering science etc.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Minimum English level B2/C1 required; programme taught in English (C1 recommended)",
+      "quote": "A minimum level of English B2/C1 is required.",
+      "check": "ok"
+     },
+     {
+      "text": "Excellent background in Physics and Mathematics is required",
+      "quote": "Excellent background in Physics and Mathematics is required.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 36,
+  "机器核对": 36,
+  "待人工": 0
+ }
+}
