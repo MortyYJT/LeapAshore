@@ -12,4 +12,4 @@ Branch `claude/requirement-dates`.
 - [x] 2.2 Roadmap, portfolio and program page use it; `statesARequirement` follows the rule
 - [x] 2.3 Walkthrough covers the roadmap deadline display
 - [x] 3.1 README / PRD numbers recomputed
-- [ ] 3.2 Deploy: backup, migrate, import, read-only counts, entered dates unchanged
+- [x] 3.2 Deploy: backup, migrate, import, read-only counts, entered dates unchanged
