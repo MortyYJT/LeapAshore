@@ -14,6 +14,13 @@ Two kinds of limit, both checked by one Lua script before a turn starts:
 
 When Redis does not answer, `check` raises `LimitsUnavailable` and the advisor refuses with 503
 (fail closed, D6): the advisor is the only endpoint that spends money.
+
+A reply that times out does not mean the script did not run: Redis may have admitted the turn and
+lost only the answer, and with no ticket nobody would `settle` the reservation. So every admission
+carries an id, and a failed `check` withdraws it (`_WITHDRAW`, retried in the background when Redis
+is still not answering): an admission that ran is undone, and one that has not run yet finds the id
+withdrawn and admits nothing. Both scripts are idempotent, so a withdrawal whose own reply is lost can
+be sent again.
 """
 
 import asyncio
@@ -39,14 +46,22 @@ BEIJING = timezone(timedelta(hours=8))
 # A day counter outlives its day by one more, so yesterday's total is still there to look at.
 DAY_KEY_TTL_SECONDS = 2 * 24 * 3600
 REDIS_TIMEOUT_SECONDS = 0.5
+# How long an admission id is remembered, which bounds how late a lost admission may still land.
+RESERVATION_ID_TTL_SECONDS = 3600
+# Background retries of a withdrawal whose first attempt failed, in seconds after the previous one.
+WITHDRAW_RETRY_DELAYS: tuple[float, ...] = (1, 5, 30)
 
 _WINDOW = re.compile(r"^(\d+)/(\d+)$")
 
-# KEYS: 3 day counters (subject, ip, site), then one sorted set per window.
+# KEYS: 3 day counters (subject, ip, site), the admission id's key, then one sorted set per window.
 # ARGV: 3 caps, the reservation, the request's member id, the window count, then (limit, span ms) per
-# window, then the day counters' TTL.
-# Returns {0, 0} when admitted (and reserved); {i, wait_ms} with i the 1-based KEYS index that refused.
+# window, then the day counters' TTL, then the admission id's TTL.
+# Returns {0, 0} when admitted (and reserved); {i, wait_ms} with i the 1-based KEYS index that refused;
+# {-1, 0} when this admission was already withdrawn.
 _CHECK = """
+if redis.call('EXISTS', KEYS[4]) == 1 then
+  return {-1, 0}
+end
 for i = 1, 3 do
   local used = tonumber(redis.call('GET', KEYS[i]) or '0')
   if used >= tonumber(ARGV[i]) then
@@ -60,22 +75,22 @@ if n > 0 then
   now = tonumber(t[1]) * 1000 + math.floor(tonumber(t[2]) / 1000)
 end
 for j = 1, n do
-  local key = KEYS[3 + j]
+  local key = KEYS[4 + j]
   local limit = tonumber(ARGV[5 + 2 * j])
   local span = tonumber(ARGV[6 + 2 * j])
   redis.call('ZREMRANGEBYSCORE', key, '-inf', now - span)
   local count = redis.call('ZCARD', key)
   if count >= limit then
     if limit <= 0 then
-      return {3 + j, span}
+      return {4 + j, span}
     end
     -- The entry whose expiry brings the count below the limit.
     local oldest = redis.call('ZRANGE', key, count - limit, count - limit, 'WITHSCORES')
-    return {3 + j, span - (now - tonumber(oldest[2]))}
+    return {4 + j, span - (now - tonumber(oldest[2]))}
   end
 end
 for j = 1, n do
-  local key = KEYS[3 + j]
+  local key = KEYS[4 + j]
   local span = tonumber(ARGV[6 + 2 * j])
   redis.call('ZADD', key, now, ARGV[5])
   redis.call('PEXPIRE', key, span)
@@ -86,7 +101,33 @@ for i = 1, 3 do
   redis.call('INCRBY', KEYS[i], reserve)
   redis.call('EXPIRE', KEYS[i], ttl)
 end
+redis.call('SET', KEYS[4], 'admitted', 'EX', tonumber(ARGV[8 + 2 * n]))
 return {0, 0}
+"""
+
+# KEYS: the admission id's key, the 3 day counters, then the window sorted sets.
+# ARGV: the reservation, the request's member id, the admission id's TTL.
+# Undoes an admission that ran (reservation and window entries) and marks the id withdrawn, so one
+# still on its way is refused. Returns 1 when something was given back, else 0; safe to repeat.
+_WITHDRAW = """
+local state = redis.call('GET', KEYS[1])
+if state == 'withdrawn' then
+  return 0
+end
+redis.call('SET', KEYS[1], 'withdrawn', 'EX', tonumber(ARGV[3]))
+if state ~= 'admitted' then
+  return 0
+end
+local reserve = tonumber(ARGV[1])
+for i = 2, 4 do
+  if redis.call('EXISTS', KEYS[i]) == 1 then
+    redis.call('DECRBY', KEYS[i], reserve)
+  end
+end
+for j = 5, #KEYS do
+  redis.call('ZREM', KEYS[j], ARGV[2])
+end
+return 1
 """
 
 UNAVAILABLE = "顾问暂时不可用，请稍后再试。"
@@ -195,15 +236,22 @@ async def check(subject: str, ip: str | None, *, windows: bool = True) -> Ticket
         ):
             for limit, seconds in parse_windows(spec):
                 spans.append((f"{p}win:{scope}:{ident}:{seconds}", limit, seconds * 1000))
-    argv: list[Any] = [*caps, reserve, uuid.uuid4().hex, len(spans)]
+    member = uuid.uuid4().hex
+    admission = f"{p}admission:{member}"
+    window_keys = [k for k, _, _ in spans]
+    argv: list[Any] = [*caps, reserve, member, len(spans)]
     for _key, limit, span_ms in spans:
         argv += [limit, span_ms]
-    argv.append(DAY_KEY_TTL_SECONDS)
+    argv += [DAY_KEY_TTL_SECONDS, RESERVATION_ID_TTL_SECONDS]
     try:
-        index, wait_ms = await _client().eval(_CHECK, 3 + len(spans), *keys, *(k for k, _, _ in spans), *argv)
+        index, wait_ms = await _client().eval(_CHECK, 4 + len(spans), *keys, admission, *window_keys, *argv)
     except (RedisError, OSError, asyncio.TimeoutError) as error:
+        # The script may have run with only its reply lost; nobody holds a ticket to settle it.
+        await _withdraw_soon([admission, *keys, *window_keys], reserve, member)
         raise LimitsUnavailable(str(error)) from error
     index, wait_ms = int(index), int(wait_ms)
+    if index < 0:
+        raise LimitsUnavailable("the admission arrived after it was withdrawn")
     if index == 0:
         return Ticket(subject=subject, ip=ip, day=day, reserved=reserve)
     if index <= 3:
@@ -211,6 +259,39 @@ async def check(subject: str, ip: str | None, *, windows: bool = True) -> Ticket
         return Refusal(f"daily_tokens_{scope}", _CAP_MESSAGES[scope], seconds_until_tomorrow())
     wait = max(1, -(-wait_ms // 1000))
     return Refusal("rate_limited", f"发送太频繁了，请 {wait} 秒后再试。", wait)
+
+
+# Withdrawals still being retried, kept so the tasks are not garbage-collected mid-run.
+_withdrawals: set[asyncio.Task] = set()
+
+
+async def _withdraw(keys: list[str], reserve: int, member: str) -> None:
+    await _client().eval(_WITHDRAW, len(keys), *keys, reserve, member, RESERVATION_ID_TTL_SECONDS)
+
+
+async def _withdraw_soon(keys: list[str], reserve: int, member: str) -> None:
+    """Withdraw an admission now; if Redis still does not answer, keep trying in the background."""
+    try:
+        await _withdraw(keys, reserve, member)
+        return
+    except (RedisError, OSError, asyncio.TimeoutError):
+        pass
+
+    async def retry() -> None:
+        for delay in WITHDRAW_RETRY_DELAYS:
+            await asyncio.sleep(delay)
+            try:
+                await _withdraw(keys, reserve, member)
+                return
+            except (RedisError, OSError, asyncio.TimeoutError):
+                continue
+        logger.error(
+            "could not withdraw advisor admission %s; up to %d tokens stay reserved today", member, reserve
+        )
+
+    task = asyncio.create_task(retry())
+    _withdrawals.add(task)
+    task.add_done_callback(_withdrawals.discard)
 
 
 async def _add(keys: list[str], tokens: int) -> None:

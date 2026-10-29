@@ -387,6 +387,87 @@ def test_the_advisor_fails_closed_without_redis(quiet_stream, generous, monkeypa
     assert TestClient(app).get("/api/advisor/status").status_code == 200
 
 
+class _LateReplies:
+    """The real client, except that chosen scripts run in Redis and then their reply times out.
+
+    `late` maps a script to how many of its calls lose their reply; `held` scripts are not sent at
+    all: their arguments are kept, the call times out, and the test runs them later (a command still
+    in flight when the caller gave up).
+    """
+
+    def __init__(self, real, late=None, held=()):
+        self.real, self.late, self.held, self.kept = real, dict(late or {}), set(held), []
+
+    async def eval(self, script, *args):
+        if script in self.held:
+            self.held.discard(script)
+            self.kept.append((script, args))
+            raise redis.exceptions.TimeoutError("Timeout reading from socket")
+        reply = await self.real.eval(script, *args)
+        if self.late.get(script, 0) > 0:
+            self.late[script] -= 1
+            raise redis.exceptions.TimeoutError("Timeout reading from socket")
+        return reply
+
+    def __getattr__(self, name):
+        return getattr(self.real, name)
+
+
+def test_an_admission_whose_reply_timed_out_gives_its_reservation_back(quiet_stream, generous, monkeypatch):
+    """The script ran (slot taken, tokens reserved) but the reply was lost: the 503 must undo both."""
+    monkeypatch.setattr(settings, "advisor_turn_token_reserve", 8000)
+    monkeypatch.setattr(settings, "advisor_subject_limits", "1/60")
+    real_client = limits._client
+    monkeypatch.setattr(limits, "_client", lambda: _LateReplies(real_client(), late={limits._CHECK: 1}))
+    client = TestClient(app)
+    response = ask(client)
+    assert response.status_code == 503
+    assert response.json()["detail"]["code"] == "limits_unavailable"
+    assert quiet_stream == []
+    subject = subject_of(client)
+    assert asyncio.run(limits.usage_today(subject, "testclient")) == {"subject": 0, "ip": 0, "site": 0}
+    # The lost admission did not keep its window slot either.
+    monkeypatch.setattr(limits, "_client", real_client)
+    assert ask(client).status_code == 200
+
+
+def test_an_admission_that_lands_after_its_withdrawal_reserves_nothing(generous, monkeypatch):
+    """The caller gave up before Redis ran the script; when it does run, it must not reserve."""
+    monkeypatch.setattr(settings, "advisor_turn_token_reserve", 8000)
+    subject, ip = str(uuid.uuid4()), unique_ip()
+    real_client = limits._client
+
+    async def scenario():
+        late = _LateReplies(real_client(), held={limits._CHECK})
+        monkeypatch.setattr(limits, "_client", lambda: late)
+        with pytest.raises(limits.LimitsUnavailable):
+            await limits.check(subject, ip)
+        await asyncio.gather(*limits._withdrawals)
+        (script, args), = late.kept
+        index, _ = await real_client().eval(script, *args)
+        assert int(index) != 0
+        return await limits.usage_today(subject, ip)
+
+    assert asyncio.run(scenario()) == {"subject": 0, "ip": 0, "site": 0}
+
+
+def test_a_withdrawal_retried_after_its_own_lost_reply_refunds_once(generous, monkeypatch):
+    monkeypatch.setattr(settings, "advisor_turn_token_reserve", 8000)
+    monkeypatch.setattr(limits, "WITHDRAW_RETRY_DELAYS", (0, 0))
+    subject, ip = str(uuid.uuid4()), unique_ip()
+    real_client = limits._client
+
+    async def scenario():
+        late = _LateReplies(real_client(), late={limits._CHECK: 1, limits._WITHDRAW: 2})
+        monkeypatch.setattr(limits, "_client", lambda: late)
+        with pytest.raises(limits.LimitsUnavailable):
+            await limits.check(subject, ip)
+        await asyncio.gather(*limits._withdrawals)
+        return await limits.usage_today(subject, ip)
+
+    assert asyncio.run(scenario()) == {"subject": 0, "ip": 0, "site": 0}
+
+
 # ---------- model output limit ----------
 
 
