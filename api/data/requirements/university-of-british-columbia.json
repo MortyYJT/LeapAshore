@@ -1,0 +1,2142 @@
+{
+ "school_key": "university-of-british-columbia",
+ "school_name_en": "University of British Columbia",
+ "country": "Canada",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs",
+  "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs?page=1",
+  "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs?page=2",
+  "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs?page=3"
+ ],
+ "china_page": {
+  "url": "https://www.grad.ubc.ca/country/china",
+  "sha256": "50080ea04e085ef476c215a9845b4d534d391b845b8a4fa345c7137e842f94ce"
+ },
+ "blocked": [
+  {
+   "url": "https://www.sauder.ubc.ca/programs/masters-degrees/mban",
+   "reason": "robots.txt disallows (Sauder School of Business site); admission data taken from the UBC Calendar instead"
+  },
+  {
+   "url": "https://ece.ubc.ca/graduate/programs/master-engineering/",
+   "reason": "UBC browser-verification challenge page even with --render; not bypassed"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-education-adult-learning-education",
+  "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-education-adult-learning-global-change",
+  "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-education-art-education",
+  "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-education-curriculum-studies",
+  "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-education-early-childhood-education",
+  "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-education-health-outdoor-physical-education",
+  "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-education-home-economics-education",
+  "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-education-human-development-learning-culture",
+  "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-education-indigenous-education",
+  "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-education-literacy-education",
+  "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-education-mathematics-education",
+  "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-education-measurement-evaluation-research-methodology",
+  "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-education-media-technology-studies-education",
+  "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-education-modern-languages-education",
+  "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-education-music-education",
+  "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-education-school-applied-child-psychology",
+  "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-education-science-education",
+  "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-education-social-studies-education",
+  "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-education-society-culture-politics-education",
+  "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-education-special-education",
+  "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-education-teaching-english-second-language",
+  "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-health-leadership-policy-clinical-care",
+  "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-health-leadership-policy-seniors-care",
+  "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-public-health-master-nursing"
+ ],
+ "notes": "G+PS programme pages carry the admission blocks for programmes it administers (quotes taken from them). MDS, MEng, MEL and Sauder programmes are not administered by G+PS: their data comes from the MDS site, the UBC Calendar, and apscpp.ubc.ca. Research (thesis) master's, MScBA and programmes not reached are omitted. Skipped as research/thesis-based or unclear: MSc Computer Science, MASc, MA/MSc by thesis, MA Economics, MSc Planning, MSc Occupational and Environmental Hygiene, MSc Business Administration streams, Master of Advanced Studies. MEL High Performance Buildings and Urban Systems have 2027 admissions paused; Master of Digital Media and Land and Water Systems pages state no requirements. Engineering department sites (ece.ubc.ca) show a browser-verification challenge, so MEng English minimums are the Graduate School's university-wide minimums, which the UBC Calendar says every MEng programme must meet or exceed.",
+ "programs": [
+  {
+   "name": "Master of Geomatics for Environmental Management (MGEM)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-geomatics-environmental-management",
+   "snapshot_sha256": "86beaa42895a08a462f8660ecb6ae70274a078db6f6bee816ee63a10f4fe2e61",
+   "fields": {
+    "academic": {
+     "text": "Minimum overall average in the B+ range (76% at UBC), set by Graduate and Postdoctoral Studies; the programme may set higher minimums",
+     "quote": "The Faculty of Graduate and Postdoctoral Studies establishes the minimum admission requirements common to all applicants, usually a minimum overall average in the B+ range (76% at UBC).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 85,
+     "text": "Four-year bachelor's with an overall B+ average (usually 85% on PRC grading systems); 80% for graduates of 211 universities",
+     "quote": "Eligibility for the Master's degree at UBC requires a four-year Bachelor's degree with an overall B+ average (usually corresponds to an 85% on most PRC university grading systems). If applicant is from a 211 UNIVERSITY, the minimum grade requirement is B (=80% on PRC grading scale) or higher.",
+     "source_sha256": "50080ea04e085ef476c215a9845b4d534d391b845b8a4fa345c7137e842f94ce",
+     "source_url": "https://www.grad.ubc.ca/country/china",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL: Test of English as a Foreign Language 6-point scale for tests taken as of Jan 21, 2026 Overall score requirement: 5.0 Reading 4.5 Writing 5.0 Speaking 4.0 Listening 5.0 120-point scale for tests taken prior to Jan 21, 2026 Overall score requirement: 100",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS: International English Language Testing System (Academic) Overall score requirement: 7.0 Reading 6.5 Writing 6.5 Speaking 6.5 Listening 6.5",
+     "min_band": 6.5,
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "July 2027 intake, international applicants",
+      "date": "2027-02-01",
+      "quote": "International Applicants Application Deadline1 February 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Global Health (MGH)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-global-health",
+   "snapshot_sha256": "9548e424d1a1853300dcafc5c6915683b6ef83ebd5e29e5a0ed04b7ade306bf6",
+   "fields": {
+    "academic": {
+     "text": "Minimum overall average in the B+ range (76% at UBC), set by Graduate and Postdoctoral Studies; the programme may set higher minimums",
+     "quote": "The Faculty of Graduate and Postdoctoral Studies establishes the minimum admission requirements common to all applicants, usually a minimum overall average in the B+ range (76% at UBC).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 85,
+     "text": "Four-year bachelor's with an overall B+ average (usually 85% on PRC grading systems); 80% for graduates of 211 universities",
+     "quote": "Eligibility for the Master's degree at UBC requires a four-year Bachelor's degree with an overall B+ average (usually corresponds to an 85% on most PRC university grading systems). If applicant is from a 211 UNIVERSITY, the minimum grade requirement is B (=80% on PRC grading scale) or higher.",
+     "source_sha256": "50080ea04e085ef476c215a9845b4d534d391b845b8a4fa345c7137e842f94ce",
+     "source_url": "https://www.grad.ubc.ca/country/china",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL: Test of English as a Foreign Language 6-point scale for tests taken as of Jan 21, 2026 Overall score requirement: 5.0 Reading 4.5 Writing 4.5 Speaking 4.0 Listening 5.0 120-point scale for tests taken prior to Jan 21, 2026 Overall score requirement: 100",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS: International English Language Testing System (Academic) Overall score requirement: 7.0 Reading 6.5 Writing 6.5 Speaking 6.5 Listening 6.5",
+     "min_band": 6.5,
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, international applicants",
+      "date": "2027-01-13",
+      "quote": "International Applicants Application Deadline13 January 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Global Surgical Care (MGSC)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-global-surgical-care",
+   "snapshot_sha256": "8e1512adbc728ab1485df91bde15f7ea4fc5d3a72a696c4e07ef9517d83545e9",
+   "fields": {
+    "academic": {
+     "text": "Minimum overall average in the B+ range (76% at UBC), set by Graduate and Postdoctoral Studies; the programme may set higher minimums",
+     "quote": "The Faculty of Graduate and Postdoctoral Studies establishes the minimum admission requirements common to all applicants, usually a minimum overall average in the B+ range (76% at UBC).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 85,
+     "text": "Four-year bachelor's with an overall B+ average (usually 85% on PRC grading systems); 80% for graduates of 211 universities",
+     "quote": "Eligibility for the Master's degree at UBC requires a four-year Bachelor's degree with an overall B+ average (usually corresponds to an 85% on most PRC university grading systems). If applicant is from a 211 UNIVERSITY, the minimum grade requirement is B (=80% on PRC grading scale) or higher.",
+     "source_sha256": "50080ea04e085ef476c215a9845b4d534d391b845b8a4fa345c7137e842f94ce",
+     "source_url": "https://www.grad.ubc.ca/country/china",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "TOEFL: Test of English as a Foreign Language 6-point scale for tests taken as of Jan 21, 2026 Overall score requirement: 4.5 Reading 4.5 Writing 4.5 Speaking 4.0 Listening 5.0 120-point scale for tests taken prior to Jan 21, 2026 Overall score requirement: 90",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS: International English Language Testing System (Academic) Overall score requirement: 6.5 Reading 6.0 Writing 6.0 Speaking 6.0 Listening 6.0",
+     "min_band": 6.0,
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of High Performance Coaching and Technical Leadership (MHPCTL)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-high-performance-coaching-technical-leadership",
+   "snapshot_sha256": "5d42430b2ad5f70d08b13180c4ca7f51fca7bc1b633e9bdb3d58b124c89f7159",
+   "fields": {
+    "academic": {
+     "text": "Minimum overall average in the B+ range (76% at UBC), set by Graduate and Postdoctoral Studies; the programme may set higher minimums",
+     "quote": "The Faculty of Graduate and Postdoctoral Studies establishes the minimum admission requirements common to all applicants, usually a minimum overall average in the B+ range (76% at UBC).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 85,
+     "text": "Four-year bachelor's with an overall B+ average (usually 85% on PRC grading systems); 80% for graduates of 211 universities",
+     "quote": "Eligibility for the Master's degree at UBC requires a four-year Bachelor's degree with an overall B+ average (usually corresponds to an 85% on most PRC university grading systems). If applicant is from a 211 UNIVERSITY, the minimum grade requirement is B (=80% on PRC grading scale) or higher.",
+     "source_sha256": "50080ea04e085ef476c215a9845b4d534d391b845b8a4fa345c7137e842f94ce",
+     "source_url": "https://www.grad.ubc.ca/country/china",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 96,
+     "quote": "TOEFL: Test of English as a Foreign Language 6-point scale for tests taken as of Jan 21, 2026 Overall score requirement: 5.0 Reading 5.0 Writing 5.0 Speaking 5.0 Listening 5.0 120-point scale for tests taken prior to Jan 21, 2026 Overall score requirement: 96",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS: International English Language Testing System (Academic) Overall score requirement: 7.0 Reading 7.0 Writing 6.5 Speaking 8.0 Listening 7.0",
+     "min_band": 6.5,
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of International Forestry (MIF)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-international-forestry",
+   "snapshot_sha256": "d55e10ed0e078e8867fe074e3bd3941f5692f7c1ea09f735472ef494fe9d60eb",
+   "fields": {
+    "academic": {
+     "text": "Minimum overall average in the B+ range (76% at UBC), set by Graduate and Postdoctoral Studies; the programme may set higher minimums",
+     "quote": "The Faculty of Graduate and Postdoctoral Studies establishes the minimum admission requirements common to all applicants, usually a minimum overall average in the B+ range (76% at UBC).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 85,
+     "text": "Four-year bachelor's with an overall B+ average (usually 85% on PRC grading systems); 80% for graduates of 211 universities",
+     "quote": "Eligibility for the Master's degree at UBC requires a four-year Bachelor's degree with an overall B+ average (usually corresponds to an 85% on most PRC university grading systems). If applicant is from a 211 UNIVERSITY, the minimum grade requirement is B (=80% on PRC grading scale) or higher.",
+     "source_sha256": "50080ea04e085ef476c215a9845b4d534d391b845b8a4fa345c7137e842f94ce",
+     "source_url": "https://www.grad.ubc.ca/country/china",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL: Test of English as a Foreign Language 6-point scale for tests taken as of Jan 21, 2026 Overall score requirement: 5.0 Reading 4.5 Writing 5.0 Speaking 4.0 Listening 5.0 120-point scale for tests taken prior to Jan 21, 2026 Overall score requirement: 100",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS: International English Language Testing System (Academic) Overall score requirement: 7.0 Reading 6.5 Writing 6.5 Speaking 6.5 Listening 6.5",
+     "min_band": 6.5,
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, international applicants",
+      "date": "2027-02-01",
+      "quote": "International Applicants Application Deadline1 February 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Architecture (MARCH)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-architecture",
+   "snapshot_sha256": "cf738a862c45798e257a7ae41df13b7102944485ba50a07a67fe22ea86493711",
+   "fields": {
+    "academic": {
+     "text": "Minimum overall average in the B+ range (76% at UBC), set by Graduate and Postdoctoral Studies; the programme may set higher minimums",
+     "quote": "The Faculty of Graduate and Postdoctoral Studies establishes the minimum admission requirements common to all applicants, usually a minimum overall average in the B+ range (76% at UBC).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 85,
+     "text": "Four-year bachelor's with an overall B+ average (usually 85% on PRC grading systems); 80% for graduates of 211 universities",
+     "quote": "Eligibility for the Master's degree at UBC requires a four-year Bachelor's degree with an overall B+ average (usually corresponds to an 85% on most PRC university grading systems). If applicant is from a 211 UNIVERSITY, the minimum grade requirement is B (=80% on PRC grading scale) or higher.",
+     "source_sha256": "50080ea04e085ef476c215a9845b4d534d391b845b8a4fa345c7137e842f94ce",
+     "source_url": "https://www.grad.ubc.ca/country/china",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL: Test of English as a Foreign Language 6-point scale for tests taken as of Jan 21, 2026 Overall score requirement: 4.5 Reading 4.5 Writing 4.5 Speaking 4.0 Listening 5.0 120-point scale for tests taken prior to Jan 21, 2026 Overall score requirement: 100",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS: International English Language Testing System (Academic) Overall score requirement: 7.0 Reading 6.5 Writing 6.5 Speaking 6.5 Listening 6.5",
+     "min_band": 6.5,
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, international applicants",
+      "date": "2027-01-15",
+      "quote": "International Applicants Application Deadline15 January 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Archival Studies (MAS)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-archival-studies",
+   "snapshot_sha256": "f5e20296a10a0c1e67489015227f23a06ee5979be543c985a389ae89d74890c8",
+   "fields": {
+    "academic": {
+     "text": "Minimum overall average in the B+ range (76% at UBC), set by Graduate and Postdoctoral Studies; the programme may set higher minimums",
+     "quote": "The Faculty of Graduate and Postdoctoral Studies establishes the minimum admission requirements common to all applicants, usually a minimum overall average in the B+ range (76% at UBC).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 85,
+     "text": "Four-year bachelor's with an overall B+ average (usually 85% on PRC grading systems); 80% for graduates of 211 universities",
+     "quote": "Eligibility for the Master's degree at UBC requires a four-year Bachelor's degree with an overall B+ average (usually corresponds to an 85% on most PRC university grading systems). If applicant is from a 211 UNIVERSITY, the minimum grade requirement is B (=80% on PRC grading scale) or higher.",
+     "source_sha256": "50080ea04e085ef476c215a9845b4d534d391b845b8a4fa345c7137e842f94ce",
+     "source_url": "https://www.grad.ubc.ca/country/china",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL: Test of English as a Foreign Language 6-point scale for tests taken as of Jan 21, 2026 Overall score requirement: 5.0 Reading 5.0 Writing 5.0 Speaking 4.5 Listening 5.0 120-point scale for tests taken prior to Jan 21, 2026 Overall score requirement: 100",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "IELTS: International English Language Testing System (Academic) Overall score requirement: 7.5 Reading 7.0 Writing 7.0 Speaking 7.0 Listening 7.0",
+     "min_band": 7.0,
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, international applicants",
+      "date": "2027-01-15",
+      "quote": "International Applicants Application Deadline15 January 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Archival Studies and Master of Library and Information Studies (MASLIS)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-archival-studies-library-information-studies",
+   "snapshot_sha256": "2ae45d93848eccb97b72fc3d9e8da5166bb61ca60d4fbc7bec9d2b351a85c07a",
+   "fields": {
+    "academic": {
+     "text": "Minimum overall average in the B+ range (76% at UBC), set by Graduate and Postdoctoral Studies; the programme may set higher minimums",
+     "quote": "The Faculty of Graduate and Postdoctoral Studies establishes the minimum admission requirements common to all applicants, usually a minimum overall average in the B+ range (76% at UBC).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 85,
+     "text": "Four-year bachelor's with an overall B+ average (usually 85% on PRC grading systems); 80% for graduates of 211 universities",
+     "quote": "Eligibility for the Master's degree at UBC requires a four-year Bachelor's degree with an overall B+ average (usually corresponds to an 85% on most PRC university grading systems). If applicant is from a 211 UNIVERSITY, the minimum grade requirement is B (=80% on PRC grading scale) or higher.",
+     "source_sha256": "50080ea04e085ef476c215a9845b4d534d391b845b8a4fa345c7137e842f94ce",
+     "source_url": "https://www.grad.ubc.ca/country/china",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL: Test of English as a Foreign Language 6-point scale for tests taken as of Jan 21, 2026 Overall score requirement: 5.0 Reading 5.0 Writing 5.0 Speaking 4.5 Listening 5.0 120-point scale for tests taken prior to Jan 21, 2026 Overall score requirement: 100",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "IELTS: International English Language Testing System (Academic) Overall score requirement: 7.5 Reading 7.0 Writing 7.0 Speaking 7.0 Listening 7.0",
+     "min_band": 7.0,
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, international applicants",
+      "date": "2027-01-15",
+      "quote": "International Applicants Application Deadline15 January 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Community and Regional Planning (MCRP)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-community-regional-planning",
+   "snapshot_sha256": "7232c0f7a8a2cd9eb59aad9f2202f77aa9e9bafdb8b0c00f8edc23ccb4ea5c08",
+   "fields": {
+    "academic": {
+     "text": "Minimum overall average in the B+ range (76% at UBC), set by Graduate and Postdoctoral Studies; the programme may set higher minimums",
+     "quote": "The Faculty of Graduate and Postdoctoral Studies establishes the minimum admission requirements common to all applicants, usually a minimum overall average in the B+ range (76% at UBC).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 85,
+     "text": "Four-year bachelor's with an overall B+ average (usually 85% on PRC grading systems); 80% for graduates of 211 universities",
+     "quote": "Eligibility for the Master's degree at UBC requires a four-year Bachelor's degree with an overall B+ average (usually corresponds to an 85% on most PRC university grading systems). If applicant is from a 211 UNIVERSITY, the minimum grade requirement is B (=80% on PRC grading scale) or higher.",
+     "source_sha256": "50080ea04e085ef476c215a9845b4d534d391b845b8a4fa345c7137e842f94ce",
+     "source_url": "https://www.grad.ubc.ca/country/china",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL: Test of English as a Foreign Language 6-point scale for tests taken as of Jan 21, 2026 Overall score requirement: 5.0 Reading 4.5 Writing 4.5 Speaking 4.0 Listening 5.0 120-point scale for tests taken prior to Jan 21, 2026 Overall score requirement: 100",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS: International English Language Testing System (Academic) Overall score requirement: 7.0 Reading 6.5 Writing 6.5 Speaking 6.5 Listening 6.5",
+     "min_band": 6.5,
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, international applicants",
+      "date": "2027-01-05",
+      "quote": "International Applicants Application Deadline5 January 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Education in Counselling Psychology (MEd)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-education-counselling-psychology",
+   "snapshot_sha256": "4970e4bab1b23a46458e4aede73d46cd0e72ee46699288cacb12f1b613190b55",
+   "fields": {
+    "academic": {
+     "text": "Minimum overall average in the B+ range (76% at UBC), set by Graduate and Postdoctoral Studies; the programme may set higher minimums",
+     "quote": "The Faculty of Graduate and Postdoctoral Studies establishes the minimum admission requirements common to all applicants, usually a minimum overall average in the B+ range (76% at UBC).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 85,
+     "text": "Four-year bachelor's with an overall B+ average (usually 85% on PRC grading systems); 80% for graduates of 211 universities",
+     "quote": "Eligibility for the Master's degree at UBC requires a four-year Bachelor's degree with an overall B+ average (usually corresponds to an 85% on most PRC university grading systems). If applicant is from a 211 UNIVERSITY, the minimum grade requirement is B (=80% on PRC grading scale) or higher.",
+     "source_sha256": "50080ea04e085ef476c215a9845b4d534d391b845b8a4fa345c7137e842f94ce",
+     "source_url": "https://www.grad.ubc.ca/country/china",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "TOEFL: Test of English as a Foreign Language 6-point scale for tests taken as of Jan 21, 2026 Overall score requirement: 4.5 Reading 4.5 Writing 4.5 Speaking 4.0 Listening 5.0 120-point scale for tests taken prior to Jan 21, 2026 Overall score requirement: 90",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS: International English Language Testing System (Academic) Overall score requirement: 6.5 Reading 6.0 Writing 6.0 Speaking 6.0 Listening 6.0",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, international applicants",
+      "date": "2026-12-01",
+      "quote": "International Applicants Application Deadline1 December 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Education in Curriculum and Leadership (MEd)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-education-curriculum-leadership",
+   "snapshot_sha256": "2ba797061df36c301fd8cf82a75a3638a9d846a144c1f2c38b0a639a1ba00006",
+   "fields": {
+    "academic": {
+     "text": "Minimum overall average in the B+ range (76% at UBC), set by Graduate and Postdoctoral Studies; the programme may set higher minimums",
+     "quote": "The Faculty of Graduate and Postdoctoral Studies establishes the minimum admission requirements common to all applicants, usually a minimum overall average in the B+ range (76% at UBC).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 85,
+     "text": "Four-year bachelor's with an overall B+ average (usually 85% on PRC grading systems); 80% for graduates of 211 universities",
+     "quote": "Eligibility for the Master's degree at UBC requires a four-year Bachelor's degree with an overall B+ average (usually corresponds to an 85% on most PRC university grading systems). If applicant is from a 211 UNIVERSITY, the minimum grade requirement is B (=80% on PRC grading scale) or higher.",
+     "source_sha256": "50080ea04e085ef476c215a9845b4d534d391b845b8a4fa345c7137e842f94ce",
+     "source_url": "https://www.grad.ubc.ca/country/china",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 92,
+     "quote": "TOEFL: Test of English as a Foreign Language 6-point scale for tests taken as of Jan 21, 2026 Overall score requirement: 4.5 Reading 4.5 Writing 4.5 Speaking 4.0 Listening 5.0 120-point scale for tests taken prior to Jan 21, 2026 Overall score requirement: 92",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS: International English Language Testing System (Academic) Overall score requirement: 6.5 Reading 6.0 Writing 6.0 Speaking 6.0 Listening 6.0",
+     "min_band": 6.0,
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Education in Educational Administration and Leadership (MEd)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-education-educational-administration-leadership",
+   "snapshot_sha256": "a6c091c66c0353597692463d356112ec790675f53416110c7ecf21821c0b3b20",
+   "fields": {
+    "academic": {
+     "text": "Minimum overall average in the B+ range (76% at UBC), set by Graduate and Postdoctoral Studies; the programme may set higher minimums",
+     "quote": "The Faculty of Graduate and Postdoctoral Studies establishes the minimum admission requirements common to all applicants, usually a minimum overall average in the B+ range (76% at UBC).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 85,
+     "text": "Four-year bachelor's with an overall B+ average (usually 85% on PRC grading systems); 80% for graduates of 211 universities",
+     "quote": "Eligibility for the Master's degree at UBC requires a four-year Bachelor's degree with an overall B+ average (usually corresponds to an 85% on most PRC university grading systems). If applicant is from a 211 UNIVERSITY, the minimum grade requirement is B (=80% on PRC grading scale) or higher.",
+     "source_sha256": "50080ea04e085ef476c215a9845b4d534d391b845b8a4fa345c7137e842f94ce",
+     "source_url": "https://www.grad.ubc.ca/country/china",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 92,
+     "quote": "TOEFL: Test of English as a Foreign Language 6-point scale for tests taken as of Jan 21, 2026 Overall score requirement: 4.5 Reading 4.5 Writing 4.5 Speaking 4.0 Listening 5.0 120-point scale for tests taken prior to Jan 21, 2026 Overall score requirement: 92",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS: International English Language Testing System (Academic) Overall score requirement: 6.5 Reading 6.0 Writing 6.0 Speaking 6.0 Listening 6.0",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, international applicants",
+      "date": "2027-02-01",
+      "quote": "International Applicants Application Deadline1 February 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Education in Educational Studies (MEd)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-education-educational-studies",
+   "snapshot_sha256": "ee3bdade7df887a2d6385e1a2d83fd30e01961b790b16a901e571c5df626cf5d",
+   "fields": {
+    "academic": {
+     "text": "Minimum overall average in the B+ range (76% at UBC), set by Graduate and Postdoctoral Studies; the programme may set higher minimums",
+     "quote": "The Faculty of Graduate and Postdoctoral Studies establishes the minimum admission requirements common to all applicants, usually a minimum overall average in the B+ range (76% at UBC).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 85,
+     "text": "Four-year bachelor's with an overall B+ average (usually 85% on PRC grading systems); 80% for graduates of 211 universities",
+     "quote": "Eligibility for the Master's degree at UBC requires a four-year Bachelor's degree with an overall B+ average (usually corresponds to an 85% on most PRC university grading systems). If applicant is from a 211 UNIVERSITY, the minimum grade requirement is B (=80% on PRC grading scale) or higher.",
+     "source_sha256": "50080ea04e085ef476c215a9845b4d534d391b845b8a4fa345c7137e842f94ce",
+     "source_url": "https://www.grad.ubc.ca/country/china",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 92,
+     "quote": "TOEFL: Test of English as a Foreign Language 6-point scale for tests taken as of Jan 21, 2026 Overall score requirement: 4.5 Reading 4.5 Writing 4.5 Speaking 4.0 Listening 5.0 120-point scale for tests taken prior to Jan 21, 2026 Overall score requirement: 92",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS: International English Language Testing System (Academic) Overall score requirement: 6.5 Reading 6.0 Writing 6.0 Speaking 6.0 Listening 6.0",
+     "min_band": 6.0,
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Education in Higher Education (MEd)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-education-higher-education",
+   "snapshot_sha256": "cf1a42053dc342b49e71be0a144173f4a6792899a1a1cfd08e79adf804291e6e",
+   "fields": {
+    "academic": {
+     "text": "Minimum overall average in the B+ range (76% at UBC), set by Graduate and Postdoctoral Studies; the programme may set higher minimums",
+     "quote": "The Faculty of Graduate and Postdoctoral Studies establishes the minimum admission requirements common to all applicants, usually a minimum overall average in the B+ range (76% at UBC).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 85,
+     "text": "Four-year bachelor's with an overall B+ average (usually 85% on PRC grading systems); 80% for graduates of 211 universities",
+     "quote": "Eligibility for the Master's degree at UBC requires a four-year Bachelor's degree with an overall B+ average (usually corresponds to an 85% on most PRC university grading systems). If applicant is from a 211 UNIVERSITY, the minimum grade requirement is B (=80% on PRC grading scale) or higher.",
+     "source_sha256": "50080ea04e085ef476c215a9845b4d534d391b845b8a4fa345c7137e842f94ce",
+     "source_url": "https://www.grad.ubc.ca/country/china",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 92,
+     "quote": "TOEFL: Test of English as a Foreign Language 6-point scale for tests taken as of Jan 21, 2026 Overall score requirement: 4.5 Reading 4.5 Writing 4.5 Speaking 4.0 Listening 5.0 120-point scale for tests taken prior to Jan 21, 2026 Overall score requirement: 92",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS: International English Language Testing System (Academic) Overall score requirement: 6.5 Reading 6.0 Writing 6.0 Speaking 6.0 Listening 6.0",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, international applicants",
+      "date": "2027-02-01",
+      "quote": "International Applicants Application Deadline1 February 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Educational Technology (MET)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-educational-technology",
+   "snapshot_sha256": "264ebc5b77194969fcef69f3238b714c351ad090855548c275ec024e3c5be670",
+   "fields": {
+    "academic": {
+     "text": "Minimum overall average in the B+ range (76% at UBC), set by Graduate and Postdoctoral Studies; the programme may set higher minimums",
+     "quote": "The Faculty of Graduate and Postdoctoral Studies establishes the minimum admission requirements common to all applicants, usually a minimum overall average in the B+ range (76% at UBC).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 85,
+     "text": "Four-year bachelor's with an overall B+ average (usually 85% on PRC grading systems); 80% for graduates of 211 universities",
+     "quote": "Eligibility for the Master's degree at UBC requires a four-year Bachelor's degree with an overall B+ average (usually corresponds to an 85% on most PRC university grading systems). If applicant is from a 211 UNIVERSITY, the minimum grade requirement is B (=80% on PRC grading scale) or higher.",
+     "source_sha256": "50080ea04e085ef476c215a9845b4d534d391b845b8a4fa345c7137e842f94ce",
+     "source_url": "https://www.grad.ubc.ca/country/china",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "TOEFL: Test of English as a Foreign Language 6-point scale for tests taken as of Jan 21, 2026 Overall score requirement: 4.5 Reading 4.5 Writing 4.5 Speaking 4.0 Listening 5.0 120-point scale for tests taken prior to Jan 21, 2026 Overall score requirement: 90",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS: International English Language Testing System (Academic) Overall score requirement: 6.5 Reading 6.0 Writing 6.0 Speaking 6.0 Listening 6.0",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "May 2027 intake, international applicants",
+      "date": "2027-01-25",
+      "quote": "International Applicants Application Deadline25 January 2027",
+      "check": "ok"
+     },
+     {
+      "label": "September 2027 intake, international applicants",
+      "date": "2027-04-28",
+      "quote": "International Applicants Application Deadline28 April 2027",
+      "check": "ok"
+     },
+     {
+      "label": "January 2028 intake, international applicants",
+      "date": "2027-09-16",
+      "quote": "International Applicants Application Deadline16 September 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Food and Resource Economics (MFRE)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-food-resource-economics",
+   "snapshot_sha256": "b13288f8864e743b902b8eedcb5b3fcaeb50d6a432fbb2ad5b014955cb1ef21a",
+   "fields": {
+    "academic": {
+     "text": "Minimum overall average in the B+ range (76% at UBC), set by Graduate and Postdoctoral Studies; the programme may set higher minimums",
+     "quote": "The Faculty of Graduate and Postdoctoral Studies establishes the minimum admission requirements common to all applicants, usually a minimum overall average in the B+ range (76% at UBC).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 85,
+     "text": "Four-year bachelor's with an overall B+ average (usually 85% on PRC grading systems); 80% for graduates of 211 universities",
+     "quote": "Eligibility for the Master's degree at UBC requires a four-year Bachelor's degree with an overall B+ average (usually corresponds to an 85% on most PRC university grading systems). If applicant is from a 211 UNIVERSITY, the minimum grade requirement is B (=80% on PRC grading scale) or higher.",
+     "source_sha256": "50080ea04e085ef476c215a9845b4d534d391b845b8a4fa345c7137e842f94ce",
+     "source_url": "https://www.grad.ubc.ca/country/china",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "TOEFL: Test of English as a Foreign Language 6-point scale for tests taken as of Jan 21, 2026 Overall score requirement: 4.5 Reading 4.5 Writing 4.5 Speaking 4.0 Listening 5.0 120-point scale for tests taken prior to Jan 21, 2026 Overall score requirement: 90",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS: International English Language Testing System (Academic) Overall score requirement: 6.5 Reading 6.0 Writing 6.0 Speaking 6.0 Listening 6.0",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, international applicants",
+      "date": "2027-01-10",
+      "quote": "International Applicants Application Deadline10 January 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Food Science (MFS)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-food-science",
+   "snapshot_sha256": "91999c50e344d21679a02f7a6176920bab99fa52e79854e288fc96c4c1098d0e",
+   "fields": {
+    "academic": {
+     "text": "Minimum overall average in the B+ range (76% at UBC), set by Graduate and Postdoctoral Studies; the programme may set higher minimums",
+     "quote": "The Faculty of Graduate and Postdoctoral Studies establishes the minimum admission requirements common to all applicants, usually a minimum overall average in the B+ range (76% at UBC).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 85,
+     "text": "Four-year bachelor's with an overall B+ average (usually 85% on PRC grading systems); 80% for graduates of 211 universities",
+     "quote": "Eligibility for the Master's degree at UBC requires a four-year Bachelor's degree with an overall B+ average (usually corresponds to an 85% on most PRC university grading systems). If applicant is from a 211 UNIVERSITY, the minimum grade requirement is B (=80% on PRC grading scale) or higher.",
+     "source_sha256": "50080ea04e085ef476c215a9845b4d534d391b845b8a4fa345c7137e842f94ce",
+     "source_url": "https://www.grad.ubc.ca/country/china",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "TOEFL: Test of English as a Foreign Language 6-point scale for tests taken as of Jan 21, 2026 Overall score requirement: 4.5 Reading 4.5 Writing 4.5 Speaking 4.0 Listening 5.0 120-point scale for tests taken prior to Jan 21, 2026 Overall score requirement: 90",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS: International English Language Testing System (Academic) Overall score requirement: 6.5 Reading 6.0 Writing 6.0 Speaking 6.0 Listening 6.0",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, international applicants",
+      "date": "2027-02-01",
+      "quote": "International Applicants Application Deadline1 February 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Forestry (MF)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-forestry",
+   "snapshot_sha256": "cf76fb64e0514f309cf09988a45ade2ace794a5a6b10aea15db2677ac576a56d",
+   "fields": {
+    "academic": {
+     "text": "Minimum overall average in the B+ range (76% at UBC), set by Graduate and Postdoctoral Studies; the programme may set higher minimums",
+     "quote": "The Faculty of Graduate and Postdoctoral Studies establishes the minimum admission requirements common to all applicants, usually a minimum overall average in the B+ range (76% at UBC).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 85,
+     "text": "Four-year bachelor's with an overall B+ average (usually 85% on PRC grading systems); 80% for graduates of 211 universities",
+     "quote": "Eligibility for the Master's degree at UBC requires a four-year Bachelor's degree with an overall B+ average (usually corresponds to an 85% on most PRC university grading systems). If applicant is from a 211 UNIVERSITY, the minimum grade requirement is B (=80% on PRC grading scale) or higher.",
+     "source_sha256": "50080ea04e085ef476c215a9845b4d534d391b845b8a4fa345c7137e842f94ce",
+     "source_url": "https://www.grad.ubc.ca/country/china",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL: Test of English as a Foreign Language 6-point scale for tests taken as of Jan 21, 2026 Overall score requirement: 5.0 Reading 4.5 Writing 5.0 Speaking 4.0 Listening 5.0 120-point scale for tests taken prior to Jan 21, 2026 Overall score requirement: 100",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS: International English Language Testing System (Academic) Overall score requirement: 7.0 Reading 6.5 Writing 6.5 Speaking 6.5 Listening 6.5",
+     "min_band": 6.5,
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, international applicants",
+      "date": "2027-01-05",
+      "quote": "International Applicants Application Deadline5 January 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Health Administration (MHA)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-health-administration",
+   "snapshot_sha256": "37067c6def704317d2be7d55334487ea456f141807fc7bbd53ee00f6863adbe4",
+   "fields": {
+    "academic": {
+     "text": "Minimum overall average in the B+ range (76% at UBC), set by Graduate and Postdoctoral Studies; the programme may set higher minimums",
+     "quote": "The Faculty of Graduate and Postdoctoral Studies establishes the minimum admission requirements common to all applicants, usually a minimum overall average in the B+ range (76% at UBC).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 85,
+     "text": "Four-year bachelor's with an overall B+ average (usually 85% on PRC grading systems); 80% for graduates of 211 universities",
+     "quote": "Eligibility for the Master's degree at UBC requires a four-year Bachelor's degree with an overall B+ average (usually corresponds to an 85% on most PRC university grading systems). If applicant is from a 211 UNIVERSITY, the minimum grade requirement is B (=80% on PRC grading scale) or higher.",
+     "source_sha256": "50080ea04e085ef476c215a9845b4d534d391b845b8a4fa345c7137e842f94ce",
+     "source_url": "https://www.grad.ubc.ca/country/china",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL: Test of English as a Foreign Language 6-point scale for tests taken as of Jan 21, 2026 Overall score requirement: 5.0 Reading 4.5 Writing 4.5 Speaking 4.0 Listening 5.0 120-point scale for tests taken prior to Jan 21, 2026 Overall score requirement: 100",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS: International English Language Testing System (Academic) Overall score requirement: 7.0 Reading 6.5 Writing 6.5 Speaking 6.5 Listening 6.5",
+     "min_band": 6.5,
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, international applicants",
+      "date": "2027-02-01",
+      "quote": "International Applicants Application Deadline1 February 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Journalism (MJ)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-journalism",
+   "snapshot_sha256": "40cf82ef8535d0eefc46c036c462ed5279cc3257f44dfe3482ed81efe9f7721d",
+   "fields": {
+    "academic": {
+     "text": "Minimum overall average in the B+ range (76% at UBC), set by Graduate and Postdoctoral Studies; the programme may set higher minimums",
+     "quote": "The Faculty of Graduate and Postdoctoral Studies establishes the minimum admission requirements common to all applicants, usually a minimum overall average in the B+ range (76% at UBC).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 85,
+     "text": "Four-year bachelor's with an overall B+ average (usually 85% on PRC grading systems); 80% for graduates of 211 universities",
+     "quote": "Eligibility for the Master's degree at UBC requires a four-year Bachelor's degree with an overall B+ average (usually corresponds to an 85% on most PRC university grading systems). If applicant is from a 211 UNIVERSITY, the minimum grade requirement is B (=80% on PRC grading scale) or higher.",
+     "source_sha256": "50080ea04e085ef476c215a9845b4d534d391b845b8a4fa345c7137e842f94ce",
+     "source_url": "https://www.grad.ubc.ca/country/china",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 104,
+     "quote": "TOEFL: Test of English as a Foreign Language 6-point scale for tests taken as of Jan 21, 2026 Overall score requirement: 5.5 Reading 4.5 Writing 4.5 Speaking 4.0 Listening 5.0 120-point scale for tests taken prior to Jan 21, 2026 Overall score requirement: 104",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "IELTS: International English Language Testing System (Academic) Overall score requirement: 7.5 Reading 6.5 Writing 6.5 Speaking 6.5 Listening 6.5",
+     "min_band": 6.5,
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, international applicants",
+      "date": "2027-01-31",
+      "quote": "International Applicants Application Deadline31 January 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Landscape Architecture (MLA)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-landscape-architecture",
+   "snapshot_sha256": "080783e72ac0cadf425c5c15901be7587d5cf5998e049321af0f99e6abf1e382",
+   "fields": {
+    "academic": {
+     "text": "Minimum overall average in the B+ range (76% at UBC), set by Graduate and Postdoctoral Studies; the programme may set higher minimums",
+     "quote": "The Faculty of Graduate and Postdoctoral Studies establishes the minimum admission requirements common to all applicants, usually a minimum overall average in the B+ range (76% at UBC).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 85,
+     "text": "Four-year bachelor's with an overall B+ average (usually 85% on PRC grading systems); 80% for graduates of 211 universities",
+     "quote": "Eligibility for the Master's degree at UBC requires a four-year Bachelor's degree with an overall B+ average (usually corresponds to an 85% on most PRC university grading systems). If applicant is from a 211 UNIVERSITY, the minimum grade requirement is B (=80% on PRC grading scale) or higher.",
+     "source_sha256": "50080ea04e085ef476c215a9845b4d534d391b845b8a4fa345c7137e842f94ce",
+     "source_url": "https://www.grad.ubc.ca/country/china",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL: Test of English as a Foreign Language 6-point scale for tests taken as of Jan 21, 2026 Overall score requirement: 4.5 Reading 4.5 Writing 4.5 Speaking 4.0 Listening 5.0 120-point scale for tests taken prior to Jan 21, 2026 Overall score requirement: 100",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS: International English Language Testing System (Academic) Overall score requirement: 7.0 Reading 6.5 Writing 6.5 Speaking 6.5 Listening 6.5",
+     "min_band": 6.5,
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, international applicants",
+      "date": "2027-01-15",
+      "quote": "International Applicants Application Deadline15 January 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Library and Information Studies (MLIS)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-library-information-studies",
+   "snapshot_sha256": "d9a399c5369805d64517bf35aba9eb4dff156fce7fffddbc0745b921ecbcce63",
+   "fields": {
+    "academic": {
+     "text": "Minimum overall average in the B+ range (76% at UBC), set by Graduate and Postdoctoral Studies; the programme may set higher minimums",
+     "quote": "The Faculty of Graduate and Postdoctoral Studies establishes the minimum admission requirements common to all applicants, usually a minimum overall average in the B+ range (76% at UBC).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 85,
+     "text": "Four-year bachelor's with an overall B+ average (usually 85% on PRC grading systems); 80% for graduates of 211 universities",
+     "quote": "Eligibility for the Master's degree at UBC requires a four-year Bachelor's degree with an overall B+ average (usually corresponds to an 85% on most PRC university grading systems). If applicant is from a 211 UNIVERSITY, the minimum grade requirement is B (=80% on PRC grading scale) or higher.",
+     "source_sha256": "50080ea04e085ef476c215a9845b4d534d391b845b8a4fa345c7137e842f94ce",
+     "source_url": "https://www.grad.ubc.ca/country/china",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL: Test of English as a Foreign Language 6-point scale for tests taken as of Jan 21, 2026 Overall score requirement: 5.0 Reading 5.0 Writing 5.0 Speaking 4.5 Listening 5.0 120-point scale for tests taken prior to Jan 21, 2026 Overall score requirement: 100",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.5,
+     "quote": "IELTS: International English Language Testing System (Academic) Overall score requirement: 7.5 Reading 7.0 Writing 7.0 Speaking 7.0 Listening 7.0",
+     "min_band": 7.0,
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, international applicants",
+      "date": "2027-01-15",
+      "quote": "International Applicants Application Deadline15 January 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Museum Education (MMEd)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-museum-education",
+   "snapshot_sha256": "e64becfde537843815446a4f46e0475487d14d602cddb4962669623b29216303",
+   "fields": {
+    "academic": {
+     "text": "Minimum overall average in the B+ range (76% at UBC), set by Graduate and Postdoctoral Studies; the programme may set higher minimums",
+     "quote": "The Faculty of Graduate and Postdoctoral Studies establishes the minimum admission requirements common to all applicants, usually a minimum overall average in the B+ range (76% at UBC).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 85,
+     "text": "Four-year bachelor's with an overall B+ average (usually 85% on PRC grading systems); 80% for graduates of 211 universities",
+     "quote": "Eligibility for the Master's degree at UBC requires a four-year Bachelor's degree with an overall B+ average (usually corresponds to an 85% on most PRC university grading systems). If applicant is from a 211 UNIVERSITY, the minimum grade requirement is B (=80% on PRC grading scale) or higher.",
+     "source_sha256": "50080ea04e085ef476c215a9845b4d534d391b845b8a4fa345c7137e842f94ce",
+     "source_url": "https://www.grad.ubc.ca/country/china",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 92,
+     "quote": "TOEFL: Test of English as a Foreign Language 6-point scale for tests taken as of Jan 21, 2026 Overall score requirement: 4.5 Reading 4.5 Writing 4.5 Speaking 4.0 Listening 5.0 120-point scale for tests taken prior to Jan 21, 2026 Overall score requirement: 92",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS: International English Language Testing System (Academic) Overall score requirement: 6.5 Reading 6.5 Writing 6.5 Speaking 6.5 Listening 6.5",
+     "min_band": 6.5,
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Health (MPH)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-public-health",
+   "snapshot_sha256": "6235cd84b1327cb536b6f7c19f2b99bcbbb71ab53ae0fde5e0aa6a77d6541332",
+   "fields": {
+    "academic": {
+     "text": "Minimum overall average in the B+ range (76% at UBC), set by Graduate and Postdoctoral Studies; the programme may set higher minimums",
+     "quote": "The Faculty of Graduate and Postdoctoral Studies establishes the minimum admission requirements common to all applicants, usually a minimum overall average in the B+ range (76% at UBC).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 85,
+     "text": "Four-year bachelor's with an overall B+ average (usually 85% on PRC grading systems); 80% for graduates of 211 universities",
+     "quote": "Eligibility for the Master's degree at UBC requires a four-year Bachelor's degree with an overall B+ average (usually corresponds to an 85% on most PRC university grading systems). If applicant is from a 211 UNIVERSITY, the minimum grade requirement is B (=80% on PRC grading scale) or higher.",
+     "source_sha256": "50080ea04e085ef476c215a9845b4d534d391b845b8a4fa345c7137e842f94ce",
+     "source_url": "https://www.grad.ubc.ca/country/china",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL: Test of English as a Foreign Language 6-point scale for tests taken as of Jan 21, 2026 Overall score requirement: 4.5 Reading 4.5 Writing 4.5 Speaking 4.0 Listening 5.0 120-point scale for tests taken prior to Jan 21, 2026 Overall score requirement: 100",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS: International English Language Testing System (Academic) Overall score requirement: 7.0 Reading 6.5 Writing 6.5 Speaking 6.5 Listening 6.5",
+     "min_band": 6.5,
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, international applicants",
+      "date": "2026-12-15",
+      "quote": "International Applicants Application Deadline15 December 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Policy and Global Affairs (MPPGA)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-public-policy-global-affairs",
+   "snapshot_sha256": "75c91856964caee1ec7c2a76a49087c8654b7f500510c3cd81973fa5935053b9",
+   "fields": {
+    "academic": {
+     "text": "Minimum overall average in the B+ range (76% at UBC), set by Graduate and Postdoctoral Studies; the programme may set higher minimums",
+     "quote": "The Faculty of Graduate and Postdoctoral Studies establishes the minimum admission requirements common to all applicants, usually a minimum overall average in the B+ range (76% at UBC).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 85,
+     "text": "Four-year bachelor's with an overall B+ average (usually 85% on PRC grading systems); 80% for graduates of 211 universities",
+     "quote": "Eligibility for the Master's degree at UBC requires a four-year Bachelor's degree with an overall B+ average (usually corresponds to an 85% on most PRC university grading systems). If applicant is from a 211 UNIVERSITY, the minimum grade requirement is B (=80% on PRC grading scale) or higher.",
+     "source_sha256": "50080ea04e085ef476c215a9845b4d534d391b845b8a4fa345c7137e842f94ce",
+     "source_url": "https://www.grad.ubc.ca/country/china",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL: Test of English as a Foreign Language 6-point scale for tests taken as of Jan 21, 2026 Overall score requirement: 5.0 Reading 5.0 Writing 5.0 Speaking 5.0 Listening 5.0 120-point scale for tests taken prior to Jan 21, 2026 Overall score requirement: 100",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS: International English Language Testing System (Academic) Overall score requirement: 7.0 Reading 7.0 Writing 7.0 Speaking 7.0 Listening 7.0",
+     "min_band": 7.0,
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, international applicants",
+      "date": "2027-01-26",
+      "quote": "International Applicants Application Deadline26 January 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Genetic Counselling (MSc)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-science-genetic-counselling",
+   "snapshot_sha256": "3a4f363582e05217abb6fa0067af2e1514c799c5b6285849620cc78784c3cb6e",
+   "fields": {
+    "academic": {
+     "text": "Minimum overall average in the B+ range (76% at UBC), set by Graduate and Postdoctoral Studies; the programme may set higher minimums",
+     "quote": "The Faculty of Graduate and Postdoctoral Studies establishes the minimum admission requirements common to all applicants, usually a minimum overall average in the B+ range (76% at UBC).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 85,
+     "text": "Four-year bachelor's with an overall B+ average (usually 85% on PRC grading systems); 80% for graduates of 211 universities",
+     "quote": "Eligibility for the Master's degree at UBC requires a four-year Bachelor's degree with an overall B+ average (usually corresponds to an 85% on most PRC university grading systems). If applicant is from a 211 UNIVERSITY, the minimum grade requirement is B (=80% on PRC grading scale) or higher.",
+     "source_sha256": "50080ea04e085ef476c215a9845b4d534d391b845b8a4fa345c7137e842f94ce",
+     "source_url": "https://www.grad.ubc.ca/country/china",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 103,
+     "quote": "TOEFL: Test of English as a Foreign Language 6-point scale for tests taken as of Jan 21, 2026 Overall score requirement: 4.5 Reading 4.5 Writing 4.5 Speaking 4.0 Listening 5.0 120-point scale for tests taken prior to Jan 21, 2026 Overall score requirement: 103",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS: International English Language Testing System (Academic) Overall score requirement: 7.0 Reading 7.0 Writing 7.0 Speaking 7.0 Listening 7.0",
+     "min_band": 7.0,
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, international applicants",
+      "date": "2027-01-09",
+      "quote": "International Applicants Application Deadline9 January 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Statistics (MSc)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-science-statistics",
+   "snapshot_sha256": "bf5705e2603b3fdd5286102b2c184562e9bccbadc0aecdc0a21fff0191e004dc",
+   "fields": {
+    "academic": {
+     "text": "Minimum overall average in the B+ range (76% at UBC), set by Graduate and Postdoctoral Studies; the programme may set higher minimums",
+     "quote": "The Faculty of Graduate and Postdoctoral Studies establishes the minimum admission requirements common to all applicants, usually a minimum overall average in the B+ range (76% at UBC).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 85,
+     "text": "Four-year bachelor's with an overall B+ average (usually 85% on PRC grading systems); 80% for graduates of 211 universities",
+     "quote": "Eligibility for the Master's degree at UBC requires a four-year Bachelor's degree with an overall B+ average (usually corresponds to an 85% on most PRC university grading systems). If applicant is from a 211 UNIVERSITY, the minimum grade requirement is B (=80% on PRC grading scale) or higher.",
+     "source_sha256": "50080ea04e085ef476c215a9845b4d534d391b845b8a4fa345c7137e842f94ce",
+     "source_url": "https://www.grad.ubc.ca/country/china",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL: Test of English as a Foreign Language 6-point scale for tests taken as of Jan 21, 2026 Overall score requirement: 5.0 Reading 4.5 Writing 4.5 Speaking 4.0 Listening 5.0 120-point scale for tests taken prior to Jan 21, 2026 Overall score requirement: 100",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS: International English Language Testing System (Academic) Overall score requirement: 7.0 Reading 6.5 Writing 6.5 Speaking 6.5 Listening 6.5",
+     "min_band": 6.5,
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, international applicants",
+      "date": "2027-01-04",
+      "quote": "International Applicants Application Deadline4 January 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Social Work (MSW)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-social-work",
+   "snapshot_sha256": "58078c18e8b11aa13b0256fca22ecf0eba586b2fff6b7e65668c6a21b357b50a",
+   "fields": {
+    "academic": {
+     "text": "Minimum overall average in the B+ range (76% at UBC), set by Graduate and Postdoctoral Studies; the programme may set higher minimums",
+     "quote": "The Faculty of Graduate and Postdoctoral Studies establishes the minimum admission requirements common to all applicants, usually a minimum overall average in the B+ range (76% at UBC).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 85,
+     "text": "Four-year bachelor's with an overall B+ average (usually 85% on PRC grading systems); 80% for graduates of 211 universities",
+     "quote": "Eligibility for the Master's degree at UBC requires a four-year Bachelor's degree with an overall B+ average (usually corresponds to an 85% on most PRC university grading systems). If applicant is from a 211 UNIVERSITY, the minimum grade requirement is B (=80% on PRC grading scale) or higher.",
+     "source_sha256": "50080ea04e085ef476c215a9845b4d534d391b845b8a4fa345c7137e842f94ce",
+     "source_url": "https://www.grad.ubc.ca/country/china",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "TOEFL: Test of English as a Foreign Language 6-point scale for tests taken as of Jan 21, 2026 Overall score requirement: 4.5 Reading 4.5 Writing 4.5 Speaking 4.0 Listening 5.0 120-point scale for tests taken prior to Jan 21, 2026 Overall score requirement: 90",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "IELTS: International English Language Testing System (Academic) Overall score requirement: 6.5 Reading 6.0 Writing 6.0 Speaking 6.0 Listening 6.0",
+     "min_band": 6.0,
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, international applicants",
+      "date": "2026-12-01",
+      "quote": "International Applicants Application Deadline1 December 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Sustainable Forest Management (MSFM)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-sustainable-forest-management",
+   "snapshot_sha256": "8375c919116ddd707156f9abd3d0a5c0c43f29ff34df5a0e39cb2248e9fa896e",
+   "fields": {
+    "academic": {
+     "text": "Minimum overall average in the B+ range (76% at UBC), set by Graduate and Postdoctoral Studies; the programme may set higher minimums",
+     "quote": "The Faculty of Graduate and Postdoctoral Studies establishes the minimum admission requirements common to all applicants, usually a minimum overall average in the B+ range (76% at UBC).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 85,
+     "text": "Four-year bachelor's with an overall B+ average (usually 85% on PRC grading systems); 80% for graduates of 211 universities",
+     "quote": "Eligibility for the Master's degree at UBC requires a four-year Bachelor's degree with an overall B+ average (usually corresponds to an 85% on most PRC university grading systems). If applicant is from a 211 UNIVERSITY, the minimum grade requirement is B (=80% on PRC grading scale) or higher.",
+     "source_sha256": "50080ea04e085ef476c215a9845b4d534d391b845b8a4fa345c7137e842f94ce",
+     "source_url": "https://www.grad.ubc.ca/country/china",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL: Test of English as a Foreign Language 6-point scale for tests taken as of Jan 21, 2026 Overall score requirement: 5.0 Reading 4.5 Writing 5.0 Speaking 4.0 Listening 5.0 120-point scale for tests taken prior to Jan 21, 2026 Overall score requirement: 100",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS: International English Language Testing System (Academic) Overall score requirement: 7.0 Reading 6.5 Writing 6.5 Speaking 6.5 Listening 6.5",
+     "min_band": 6.5,
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "July 2027 intake, international applicants",
+      "date": "2027-02-01",
+      "quote": "International Applicants Application Deadline1 February 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Urban Forestry Leadership (MUFL)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-urban-forestry-leadership",
+   "snapshot_sha256": "20abc1f9efa6b974f0afdf28e8418e9cab39a008e632d562f9b30ced519422ad",
+   "fields": {
+    "academic": {
+     "text": "Minimum overall average in the B+ range (76% at UBC), set by Graduate and Postdoctoral Studies; the programme may set higher minimums",
+     "quote": "The Faculty of Graduate and Postdoctoral Studies establishes the minimum admission requirements common to all applicants, usually a minimum overall average in the B+ range (76% at UBC).",
+     "check": "ok"
+    },
+    "china_requirement": {
+     "min_mark_211": 80,
+     "min_mark_other": 85,
+     "text": "Four-year bachelor's with an overall B+ average (usually 85% on PRC grading systems); 80% for graduates of 211 universities",
+     "quote": "Eligibility for the Master's degree at UBC requires a four-year Bachelor's degree with an overall B+ average (usually corresponds to an 85% on most PRC university grading systems). If applicant is from a 211 UNIVERSITY, the minimum grade requirement is B (=80% on PRC grading scale) or higher.",
+     "source_sha256": "50080ea04e085ef476c215a9845b4d534d391b845b8a4fa345c7137e842f94ce",
+     "source_url": "https://www.grad.ubc.ca/country/china",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL: Test of English as a Foreign Language 6-point scale for tests taken as of Jan 21, 2026 Overall score requirement: 5.0 Reading 4.5 Writing 5.0 Speaking 4.0 Listening 5.0 120-point scale for tests taken prior to Jan 21, 2026 Overall score requirement: 100",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "IELTS: International English Language Testing System (Academic) Overall score requirement: 7.0 Reading 6.5 Writing 6.5 Speaking 6.5 Listening 6.5",
+     "min_band": 6.5,
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "July 2027 intake, international applicants",
+      "date": "2027-02-01",
+      "quote": "International Applicants Application Deadline1 February 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Data Science (MDS), Vancouver",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-data-science",
+   "snapshot_sha256": "7589d6824d252d5d506d5bfa7b839207cc680b654ba755f8005a18c0a8626f09",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "One course in programming (3 credits)",
+      "quote": "One course in Programming (3 credits):",
+      "source_sha256": "99e0b92245164d5ab77ad5547ec76c5ed5acf9066594ccf4985a2ad465cb9761",
+      "source_url": "https://masterdatascience.ubc.ca/admissions/prerequisites",
+      "check": "ok"
+     },
+     {
+      "text": "One course in probability and/or statistics (3 credits)",
+      "quote": "One course in Probability and/or Statistics (3 credits):",
+      "source_sha256": "99e0b92245164d5ab77ad5547ec76c5ed5acf9066594ccf4985a2ad465cb9761",
+      "source_url": "https://masterdatascience.ubc.ca/admissions/prerequisites",
+      "check": "ok"
+     },
+     {
+      "text": "One course in calculus (3 credits) or linear algebra (3 credits)",
+      "quote": "One course in Calculus (3 credit) OR Linear Algebra (3 credit)",
+      "source_sha256": "99e0b92245164d5ab77ad5547ec76c5ed5acf9066594ccf4985a2ad465cb9761",
+      "source_url": "https://masterdatascience.ubc.ca/admissions/prerequisites",
+      "check": "ok"
+     }
+    ],
+    "toefl": {
+     "overall": 100,
+     "quote": "Minimum score is 100-ibt or equivalent on the 120-Point scale and 5 -ibt or equivalent on the 6-Point scale.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "8e91ed71f30d78bc16af123f07fe58ac90a199bcd0f5d2600e71846a273207c7",
+     "source_url": "https://masterdatascience.ubc.ca/admissions/international-students",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.5,
+     "quote": "Minimum overall band score of 7.0 is required with a minimum score of 6.5 in each component of the academic (NOT general) IELTS test",
+     "source_sha256": "8e91ed71f30d78bc16af123f07fe58ac90a199bcd0f5d2600e71846a273207c7",
+     "source_url": "https://masterdatascience.ubc.ca/admissions/international-students",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, international applicants",
+      "date": "2027-01-31",
+      "quote": "International Applicant Deadline31 January 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Data Science in Computational Linguistics (MDSCL)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-data-science-computational-linguistics",
+   "snapshot_sha256": "51660c14826c7cda6f57725f27a360b10b260d6afc5aadb37869a7c0d2079d4c",
+   "fields": {
+    "prerequisites": [
+     {
+      "text": "One course in programming (3 credits)",
+      "quote": "One course in Programming (3 credits):",
+      "source_sha256": "99e0b92245164d5ab77ad5547ec76c5ed5acf9066594ccf4985a2ad465cb9761",
+      "source_url": "https://masterdatascience.ubc.ca/admissions/prerequisites",
+      "check": "ok"
+     },
+     {
+      "text": "One course in probability and/or statistics (3 credits)",
+      "quote": "One course in Probability and/or Statistics (3 credits):",
+      "source_sha256": "99e0b92245164d5ab77ad5547ec76c5ed5acf9066594ccf4985a2ad465cb9761",
+      "source_url": "https://masterdatascience.ubc.ca/admissions/prerequisites",
+      "check": "ok"
+     },
+     {
+      "text": "One course in calculus (3 credits) or linear algebra (3 credits)",
+      "quote": "One course in Calculus (3 credit) OR Linear Algebra (3 credit)",
+      "source_sha256": "99e0b92245164d5ab77ad5547ec76c5ed5acf9066594ccf4985a2ad465cb9761",
+      "source_url": "https://masterdatascience.ubc.ca/admissions/prerequisites",
+      "check": "ok"
+     }
+    ],
+    "toefl": {
+     "overall": 100,
+     "recommended": true,
+     "quote": "Recommended minimum score is 100-ibt or equivalent",
+     "source_sha256": "8e91ed71f30d78bc16af123f07fe58ac90a199bcd0f5d2600e71846a273207c7",
+     "source_url": "https://masterdatascience.ubc.ca/admissions/international-students",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.5,
+     "recommended": true,
+     "quote": "Recommended minimum overall band score of 7.0 is required with a minimum score of 6.5 in each component of the academic (NOT general) IELTS test",
+     "source_sha256": "8e91ed71f30d78bc16af123f07fe58ac90a199bcd0f5d2600e71846a273207c7",
+     "source_url": "https://masterdatascience.ubc.ca/admissions/international-students",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, international applicants",
+      "date": "2027-01-31",
+      "quote": "International Applicant Deadline31 January 2027",
+      "check": "ok"
+     },
+     {
+      "label": "September 2027 intake, early round (MDS Computational Linguistics only)",
+      "date": "2026-12-15",
+      "quote": "Early Round (MDS Computational Linguistics only):: December 15, 2026",
+      "source_sha256": "99e0b92245164d5ab77ad5547ec76c5ed5acf9066594ccf4985a2ad465cb9761",
+      "source_url": "https://masterdatascience.ubc.ca/admissions/prerequisites",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering in Biomedical Engineering (MEng)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-engineering-biomedical-engineering",
+   "snapshot_sha256": "4d27ed473aa4afe68173cc69ec0105e381d425cd7d8cf13b273b47d93c6bb8b1",
+   "fields": {
+    "academic": {
+     "text": "Overall average of 76% (UBC-equivalency) for degrees from outside North America",
+     "quote": "The minimum admission requirement for applicants with degrees from outside North America is an overall average of 76% (UBC-equivalency).",
+     "source_sha256": "9cd1d57abe7d7b452606a5ddbb694f013e3b94390e98703068e34dc69e264f1f",
+     "source_url": "https://vancouver.calendar.ubc.ca/faculties-colleges-and-schools/faculty-applied-science/master-engineering",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "The minimum TOEFL score required for all applicants to the Faculty of Graduate and Postdoctoral Studies is Tests taken prior to January 21, 2026 (1-120 scale): 90 overall with a minimum component score of 22 (reading, listening) and 21 (writing, speaking) or Tests taken as of January 21, 2026 (1-6 scale): 4.5 overall with a minimum component score of 5 (listening), 4.5 (reading, writing) and 4 (speaking)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "5c1679705eb352ae7f69d75228b8b3daf95bf4c384a13bd5481d9c56c5739332",
+     "source_url": "https://www.grad.ubc.ca/prospective-students/application-admission/english-language-test",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "A minimum overall band score of 6.5 is required with a minimum score of 6.0 in each component of the academic (NOT general) IELTS test.",
+     "source_sha256": "5c1679705eb352ae7f69d75228b8b3daf95bf4c384a13bd5481d9c56c5739332",
+     "source_url": "https://www.grad.ubc.ca/prospective-students/application-admission/english-language-test",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, international applicants",
+      "date": "2027-01-15",
+      "quote": "International Applicant Deadline15 January 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering in Chemical and Biological Engineering (MEng)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-engineering-chemical-biological-engineering",
+   "snapshot_sha256": "d61392bd5cfd3a451ad7046eaf5a0017c431860568dbbe44d529c0d84baaa518",
+   "fields": {
+    "academic": {
+     "text": "Overall average of 76% (UBC-equivalency) for degrees from outside North America",
+     "quote": "The minimum admission requirement for applicants with degrees from outside North America is an overall average of 76% (UBC-equivalency).",
+     "source_sha256": "9cd1d57abe7d7b452606a5ddbb694f013e3b94390e98703068e34dc69e264f1f",
+     "source_url": "https://vancouver.calendar.ubc.ca/faculties-colleges-and-schools/faculty-applied-science/master-engineering",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "The minimum TOEFL score required for all applicants to the Faculty of Graduate and Postdoctoral Studies is Tests taken prior to January 21, 2026 (1-120 scale): 90 overall with a minimum component score of 22 (reading, listening) and 21 (writing, speaking) or Tests taken as of January 21, 2026 (1-6 scale): 4.5 overall with a minimum component score of 5 (listening), 4.5 (reading, writing) and 4 (speaking)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "5c1679705eb352ae7f69d75228b8b3daf95bf4c384a13bd5481d9c56c5739332",
+     "source_url": "https://www.grad.ubc.ca/prospective-students/application-admission/english-language-test",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "A minimum overall band score of 6.5 is required with a minimum score of 6.0 in each component of the academic (NOT general) IELTS test.",
+     "source_sha256": "5c1679705eb352ae7f69d75228b8b3daf95bf4c384a13bd5481d9c56c5739332",
+     "source_url": "https://www.grad.ubc.ca/prospective-students/application-admission/english-language-test",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, international applicants",
+      "date": "2027-04-01",
+      "quote": "International Applicant Deadline1 April 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering in Civil Engineering (MEng)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-engineering-civil-engineering",
+   "snapshot_sha256": "5ef0926d9e9d656698c00b187684cb95f97e8337f22454a53370da1237f57eb3",
+   "fields": {
+    "academic": {
+     "text": "Overall average of 76% (UBC-equivalency) for degrees from outside North America",
+     "quote": "The minimum admission requirement for applicants with degrees from outside North America is an overall average of 76% (UBC-equivalency).",
+     "source_sha256": "9cd1d57abe7d7b452606a5ddbb694f013e3b94390e98703068e34dc69e264f1f",
+     "source_url": "https://vancouver.calendar.ubc.ca/faculties-colleges-and-schools/faculty-applied-science/master-engineering",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "The minimum TOEFL score required for all applicants to the Faculty of Graduate and Postdoctoral Studies is Tests taken prior to January 21, 2026 (1-120 scale): 90 overall with a minimum component score of 22 (reading, listening) and 21 (writing, speaking) or Tests taken as of January 21, 2026 (1-6 scale): 4.5 overall with a minimum component score of 5 (listening), 4.5 (reading, writing) and 4 (speaking)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "5c1679705eb352ae7f69d75228b8b3daf95bf4c384a13bd5481d9c56c5739332",
+     "source_url": "https://www.grad.ubc.ca/prospective-students/application-admission/english-language-test",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "A minimum overall band score of 6.5 is required with a minimum score of 6.0 in each component of the academic (NOT general) IELTS test.",
+     "source_sha256": "5c1679705eb352ae7f69d75228b8b3daf95bf4c384a13bd5481d9c56c5739332",
+     "source_url": "https://www.grad.ubc.ca/prospective-students/application-admission/english-language-test",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, international applicants",
+      "date": "2027-01-31",
+      "quote": "International Applicant Deadline31 January 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering in Electrical and Computer Engineering (MEng)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-engineering-electrical-computer-engineering",
+   "snapshot_sha256": "1f20c431aca6458c38d007ec06e5f0ed2f99c2c8bca239de6396a09b758a0d7c",
+   "fields": {
+    "academic": {
+     "text": "Overall average of 76% (UBC-equivalency) for degrees from outside North America",
+     "quote": "The minimum admission requirement for applicants with degrees from outside North America is an overall average of 76% (UBC-equivalency).",
+     "source_sha256": "9cd1d57abe7d7b452606a5ddbb694f013e3b94390e98703068e34dc69e264f1f",
+     "source_url": "https://vancouver.calendar.ubc.ca/faculties-colleges-and-schools/faculty-applied-science/master-engineering",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "The minimum TOEFL score required for all applicants to the Faculty of Graduate and Postdoctoral Studies is Tests taken prior to January 21, 2026 (1-120 scale): 90 overall with a minimum component score of 22 (reading, listening) and 21 (writing, speaking) or Tests taken as of January 21, 2026 (1-6 scale): 4.5 overall with a minimum component score of 5 (listening), 4.5 (reading, writing) and 4 (speaking)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "5c1679705eb352ae7f69d75228b8b3daf95bf4c384a13bd5481d9c56c5739332",
+     "source_url": "https://www.grad.ubc.ca/prospective-students/application-admission/english-language-test",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "A minimum overall band score of 6.5 is required with a minimum score of 6.0 in each component of the academic (NOT general) IELTS test.",
+     "source_sha256": "5c1679705eb352ae7f69d75228b8b3daf95bf4c384a13bd5481d9c56c5739332",
+     "source_url": "https://www.grad.ubc.ca/prospective-students/application-admission/english-language-test",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, international applicants",
+      "date": "2026-12-12",
+      "quote": "International Applicant Deadline12 December 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering in Mechanical Engineering (MEng)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-engineering-mechanical-engineering",
+   "snapshot_sha256": "508b3b483d6f4cce48c7034b228f3d0b6ddfeedd1d9bd95f581a086ec3b59205",
+   "fields": {
+    "academic": {
+     "text": "Overall average of 76% (UBC-equivalency) for degrees from outside North America",
+     "quote": "The minimum admission requirement for applicants with degrees from outside North America is an overall average of 76% (UBC-equivalency).",
+     "source_sha256": "9cd1d57abe7d7b452606a5ddbb694f013e3b94390e98703068e34dc69e264f1f",
+     "source_url": "https://vancouver.calendar.ubc.ca/faculties-colleges-and-schools/faculty-applied-science/master-engineering",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "The minimum TOEFL score required for all applicants to the Faculty of Graduate and Postdoctoral Studies is Tests taken prior to January 21, 2026 (1-120 scale): 90 overall with a minimum component score of 22 (reading, listening) and 21 (writing, speaking) or Tests taken as of January 21, 2026 (1-6 scale): 4.5 overall with a minimum component score of 5 (listening), 4.5 (reading, writing) and 4 (speaking)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "5c1679705eb352ae7f69d75228b8b3daf95bf4c384a13bd5481d9c56c5739332",
+     "source_url": "https://www.grad.ubc.ca/prospective-students/application-admission/english-language-test",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "A minimum overall band score of 6.5 is required with a minimum score of 6.0 in each component of the academic (NOT general) IELTS test.",
+     "source_sha256": "5c1679705eb352ae7f69d75228b8b3daf95bf4c384a13bd5481d9c56c5739332",
+     "source_url": "https://www.grad.ubc.ca/prospective-students/application-admission/english-language-test",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, international applicants",
+      "date": "2027-01-31",
+      "quote": "International Applicant Deadline31 January 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering in Mechatronics Design (MEng)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-engineering-mechatronics-design",
+   "snapshot_sha256": "1eba65bb8526ef81c6d9df10b4246348d3c9d84d7eb4df6ddc5c79a2c6bed175",
+   "fields": {
+    "academic": {
+     "text": "Overall average of 76% (UBC-equivalency) for degrees from outside North America",
+     "quote": "The minimum admission requirement for applicants with degrees from outside North America is an overall average of 76% (UBC-equivalency).",
+     "source_sha256": "9cd1d57abe7d7b452606a5ddbb694f013e3b94390e98703068e34dc69e264f1f",
+     "source_url": "https://vancouver.calendar.ubc.ca/faculties-colleges-and-schools/faculty-applied-science/master-engineering",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "The minimum TOEFL score required for all applicants to the Faculty of Graduate and Postdoctoral Studies is Tests taken prior to January 21, 2026 (1-120 scale): 90 overall with a minimum component score of 22 (reading, listening) and 21 (writing, speaking) or Tests taken as of January 21, 2026 (1-6 scale): 4.5 overall with a minimum component score of 5 (listening), 4.5 (reading, writing) and 4 (speaking)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "5c1679705eb352ae7f69d75228b8b3daf95bf4c384a13bd5481d9c56c5739332",
+     "source_url": "https://www.grad.ubc.ca/prospective-students/application-admission/english-language-test",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "A minimum overall band score of 6.5 is required with a minimum score of 6.0 in each component of the academic (NOT general) IELTS test.",
+     "source_sha256": "5c1679705eb352ae7f69d75228b8b3daf95bf4c384a13bd5481d9c56c5739332",
+     "source_url": "https://www.grad.ubc.ca/prospective-students/application-admission/english-language-test",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, international applicants",
+      "date": "2027-01-31",
+      "quote": "International Applicant Deadline31 January 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering in Mining Engineering (MEng)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-engineering-mining-engineering",
+   "snapshot_sha256": "aecdba7bbfc84a99fd15db62e58dc343b5f3f78952b94980e8b1c4af34ebdfb8",
+   "fields": {
+    "academic": {
+     "text": "Overall average of 76% (UBC-equivalency) for degrees from outside North America",
+     "quote": "The minimum admission requirement for applicants with degrees from outside North America is an overall average of 76% (UBC-equivalency).",
+     "source_sha256": "9cd1d57abe7d7b452606a5ddbb694f013e3b94390e98703068e34dc69e264f1f",
+     "source_url": "https://vancouver.calendar.ubc.ca/faculties-colleges-and-schools/faculty-applied-science/master-engineering",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "The minimum TOEFL score required for all applicants to the Faculty of Graduate and Postdoctoral Studies is Tests taken prior to January 21, 2026 (1-120 scale): 90 overall with a minimum component score of 22 (reading, listening) and 21 (writing, speaking) or Tests taken as of January 21, 2026 (1-6 scale): 4.5 overall with a minimum component score of 5 (listening), 4.5 (reading, writing) and 4 (speaking)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "5c1679705eb352ae7f69d75228b8b3daf95bf4c384a13bd5481d9c56c5739332",
+     "source_url": "https://www.grad.ubc.ca/prospective-students/application-admission/english-language-test",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "A minimum overall band score of 6.5 is required with a minimum score of 6.0 in each component of the academic (NOT general) IELTS test.",
+     "source_sha256": "5c1679705eb352ae7f69d75228b8b3daf95bf4c384a13bd5481d9c56c5739332",
+     "source_url": "https://www.grad.ubc.ca/prospective-students/application-admission/english-language-test",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, international applicants",
+      "date": "2027-02-02",
+      "quote": "International Applicant Deadline2 February 2027",
+      "check": "ok"
+     },
+     {
+      "label": "September 2028 intake, international applicants",
+      "date": "2028-02-01",
+      "quote": "International Applicant Deadline1 February 2028",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering in Geological Engineering (MEng)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-engineering-geological-engineering",
+   "snapshot_sha256": "79c323a28213a036c7e6992f32b0badb122f571111daa6d91e638cf2f351cf75",
+   "fields": {
+    "academic": {
+     "text": "Overall average of 76% (UBC-equivalency) for degrees from outside North America",
+     "quote": "The minimum admission requirement for applicants with degrees from outside North America is an overall average of 76% (UBC-equivalency).",
+     "source_sha256": "9cd1d57abe7d7b452606a5ddbb694f013e3b94390e98703068e34dc69e264f1f",
+     "source_url": "https://vancouver.calendar.ubc.ca/faculties-colleges-and-schools/faculty-applied-science/master-engineering",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "The minimum TOEFL score required for all applicants to the Faculty of Graduate and Postdoctoral Studies is Tests taken prior to January 21, 2026 (1-120 scale): 90 overall with a minimum component score of 22 (reading, listening) and 21 (writing, speaking) or Tests taken as of January 21, 2026 (1-6 scale): 4.5 overall with a minimum component score of 5 (listening), 4.5 (reading, writing) and 4 (speaking)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "5c1679705eb352ae7f69d75228b8b3daf95bf4c384a13bd5481d9c56c5739332",
+     "source_url": "https://www.grad.ubc.ca/prospective-students/application-admission/english-language-test",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "A minimum overall band score of 6.5 is required with a minimum score of 6.0 in each component of the academic (NOT general) IELTS test.",
+     "source_sha256": "5c1679705eb352ae7f69d75228b8b3daf95bf4c384a13bd5481d9c56c5739332",
+     "source_url": "https://www.grad.ubc.ca/prospective-students/application-admission/english-language-test",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, international applicants",
+      "date": "2027-01-15",
+      "quote": "International Applicant Deadline15 January 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering in Naval Architecture and Marine Engineering (MEng)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-engineering-naval-architecture-marine-engineering",
+   "snapshot_sha256": "e63798baa419e0548f259eaaa75a7f53f01bbd9e4117473ff449f6172dc04d73",
+   "fields": {
+    "academic": {
+     "text": "Overall average of 76% (UBC-equivalency) for degrees from outside North America",
+     "quote": "The minimum admission requirement for applicants with degrees from outside North America is an overall average of 76% (UBC-equivalency).",
+     "source_sha256": "9cd1d57abe7d7b452606a5ddbb694f013e3b94390e98703068e34dc69e264f1f",
+     "source_url": "https://vancouver.calendar.ubc.ca/faculties-colleges-and-schools/faculty-applied-science/master-engineering",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "The minimum TOEFL score required for all applicants to the Faculty of Graduate and Postdoctoral Studies is Tests taken prior to January 21, 2026 (1-120 scale): 90 overall with a minimum component score of 22 (reading, listening) and 21 (writing, speaking) or Tests taken as of January 21, 2026 (1-6 scale): 4.5 overall with a minimum component score of 5 (listening), 4.5 (reading, writing) and 4 (speaking)",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "5c1679705eb352ae7f69d75228b8b3daf95bf4c384a13bd5481d9c56c5739332",
+     "source_url": "https://www.grad.ubc.ca/prospective-students/application-admission/english-language-test",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "A minimum overall band score of 6.5 is required with a minimum score of 6.0 in each component of the academic (NOT general) IELTS test.",
+     "source_sha256": "5c1679705eb352ae7f69d75228b8b3daf95bf4c384a13bd5481d9c56c5739332",
+     "source_url": "https://www.grad.ubc.ca/prospective-students/application-admission/english-language-test",
+     "check": "ok"
+    },
+    "deadlines": [
+     {
+      "label": "September 2027 intake, international applicants",
+      "date": "2027-01-31",
+      "quote": "International Applicant Deadline31 January 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering Leadership in Clean Energy Engineering (MEL)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-engineering-leadership-clean-energy-engineering",
+   "snapshot_sha256": "e2805a26496acdf9439dc382a783f69328d9971887ecad1e572c0b077dc72a84",
+   "fields": {
+    "academic": {
+     "text": "Undergraduate degree in engineering or a bachelor of science degree in environmental science; second-year undergraduate thermodynamics course with high academic achievement",
+     "quote": "Clean Energy Engineering Undergraduate degree in engineering or a bachelor of science degree in environmental science Completion of a second-year undergraduate thermodynamics course with high academic achievement Three or more years of relevant work experience after completing your undergraduate degree",
+     "source_sha256": "0336f7ccf375d2bb13788933ca489502469ec5128dbe0314467309943c9fdfb2",
+     "source_url": "https://apscpp.ubc.ca/eligibility/eligibility-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "For tests taken prior to January 21, 2026: Minimum score of 90 with minimum component scores of 22 in reading and listening, and minimum component scores of 21 in writing and speaking. For tests taken as of January 21, 2026: Minimum overall score of 4.5 with a minimum component score of 5 in listening, 4.5 in reading and writing, and 4 in speaking.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "f459f510bb531898263b212e68e3e29d815f4dce5fd5b7180f1bbc21af1d30aa",
+     "source_url": "https://apscpp.ubc.ca/eligibility/english-language-proficiency",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "A minimum overall band score of 6.5 with no single component score less than 6.0.",
+     "source_sha256": "f459f510bb531898263b212e68e3e29d815f4dce5fd5b7180f1bbc21af1d30aa",
+     "source_url": "https://apscpp.ubc.ca/eligibility/english-language-proficiency",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Minimum of three years full-time work experience in a related field by the program start date, counted after the bachelor's degree",
+      "quote": "You must have a minimum of three years full-time work experience in a related field by the start date of the program.",
+      "source_sha256": "0336f7ccf375d2bb13788933ca489502469ec5128dbe0314467309943c9fdfb2",
+      "source_url": "https://apscpp.ubc.ca/eligibility/eligibility-requirements",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering Leadership in Naval Architecture and Marine Engineering (MEL)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-engineering-leadership-naval-architecture-marine-engineering",
+   "snapshot_sha256": "5889024c43c7f2432f025512d58e9821e2d2b09c464edc1cc10b3d6cb44d483f",
+   "fields": {
+    "academic": {
+     "text": "Undergraduate degree in engineering or naval architecture",
+     "quote": "Naval Architecture and Marine Engineering Undergraduate degree in engineering or naval architecture Three or more years of relevant work experience after completing your undergraduate degree",
+     "source_sha256": "0336f7ccf375d2bb13788933ca489502469ec5128dbe0314467309943c9fdfb2",
+     "source_url": "https://apscpp.ubc.ca/eligibility/eligibility-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "For tests taken prior to January 21, 2026: Minimum score of 90 with minimum component scores of 22 in reading and listening, and minimum component scores of 21 in writing and speaking. For tests taken as of January 21, 2026: Minimum overall score of 4.5 with a minimum component score of 5 in listening, 4.5 in reading and writing, and 4 in speaking.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "f459f510bb531898263b212e68e3e29d815f4dce5fd5b7180f1bbc21af1d30aa",
+     "source_url": "https://apscpp.ubc.ca/eligibility/english-language-proficiency",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "A minimum overall band score of 6.5 with no single component score less than 6.0.",
+     "source_sha256": "f459f510bb531898263b212e68e3e29d815f4dce5fd5b7180f1bbc21af1d30aa",
+     "source_url": "https://apscpp.ubc.ca/eligibility/english-language-proficiency",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Minimum of three years full-time work experience in a related field by the program start date, counted after the bachelor's degree",
+      "quote": "You must have a minimum of three years full-time work experience in a related field by the start date of the program.",
+      "source_sha256": "0336f7ccf375d2bb13788933ca489502469ec5128dbe0314467309943c9fdfb2",
+      "source_url": "https://apscpp.ubc.ca/eligibility/eligibility-requirements",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering Leadership in Dependable Software Systems (MEL)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-engineering-leadership-dependable-software-systems",
+   "snapshot_sha256": "b09a18dc364af1435a66d6ea06f0ec1d89ff4062f72ce14656a7d59133e4df1a",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in a field relevant to the program, and UBC's minimum academic requirements for the country of the degree",
+     "quote": "You must have a bachelor’s degree in a field relevant to the program you wish to study. You must also meet UBC’s minimum academic requirements, which are based on the country where you completed your undergraduate degree.",
+     "source_sha256": "0336f7ccf375d2bb13788933ca489502469ec5128dbe0314467309943c9fdfb2",
+     "source_url": "https://apscpp.ubc.ca/eligibility/eligibility-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "For tests taken prior to January 21, 2026: Minimum score of 90 with minimum component scores of 22 in reading and listening, and minimum component scores of 21 in writing and speaking. For tests taken as of January 21, 2026: Minimum overall score of 4.5 with a minimum component score of 5 in listening, 4.5 in reading and writing, and 4 in speaking.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "f459f510bb531898263b212e68e3e29d815f4dce5fd5b7180f1bbc21af1d30aa",
+     "source_url": "https://apscpp.ubc.ca/eligibility/english-language-proficiency",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "A minimum overall band score of 6.5 with no single component score less than 6.0.",
+     "source_sha256": "f459f510bb531898263b212e68e3e29d815f4dce5fd5b7180f1bbc21af1d30aa",
+     "source_url": "https://apscpp.ubc.ca/eligibility/english-language-proficiency",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Minimum of three years full-time work experience in a related field by the program start date, counted after the bachelor's degree",
+      "quote": "You must have a minimum of three years full-time work experience in a related field by the start date of the program.",
+      "source_sha256": "0336f7ccf375d2bb13788933ca489502469ec5128dbe0314467309943c9fdfb2",
+      "source_url": "https://apscpp.ubc.ca/eligibility/eligibility-requirements",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering Leadership in Integrated Water Management (MEL)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-engineering-leadership-integrated-water-management",
+   "snapshot_sha256": "d0fe32a7d4dd45194068e4b703002a03804865abdd034953a9782b1c88b8615a",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in a field relevant to the program, and UBC's minimum academic requirements for the country of the degree",
+     "quote": "You must have a bachelor’s degree in a field relevant to the program you wish to study. You must also meet UBC’s minimum academic requirements, which are based on the country where you completed your undergraduate degree.",
+     "source_sha256": "0336f7ccf375d2bb13788933ca489502469ec5128dbe0314467309943c9fdfb2",
+     "source_url": "https://apscpp.ubc.ca/eligibility/eligibility-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "For tests taken prior to January 21, 2026: Minimum score of 90 with minimum component scores of 22 in reading and listening, and minimum component scores of 21 in writing and speaking. For tests taken as of January 21, 2026: Minimum overall score of 4.5 with a minimum component score of 5 in listening, 4.5 in reading and writing, and 4 in speaking.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "f459f510bb531898263b212e68e3e29d815f4dce5fd5b7180f1bbc21af1d30aa",
+     "source_url": "https://apscpp.ubc.ca/eligibility/english-language-proficiency",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "A minimum overall band score of 6.5 with no single component score less than 6.0.",
+     "source_sha256": "f459f510bb531898263b212e68e3e29d815f4dce5fd5b7180f1bbc21af1d30aa",
+     "source_url": "https://apscpp.ubc.ca/eligibility/english-language-proficiency",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Minimum of three years full-time work experience in a related field by the program start date, counted after the bachelor's degree",
+      "quote": "You must have a minimum of three years full-time work experience in a related field by the start date of the program.",
+      "source_sha256": "0336f7ccf375d2bb13788933ca489502469ec5128dbe0314467309943c9fdfb2",
+      "source_url": "https://apscpp.ubc.ca/eligibility/eligibility-requirements",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering Leadership in Sustainable Process Engineering (MEL)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-engineering-leadership-sustainable-process-engineering",
+   "snapshot_sha256": "a9817fee5c15b4d8f7dc0a2af424534555744d2402987ecdbc6102f2dd2043b9",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in a field relevant to the program, and UBC's minimum academic requirements for the country of the degree",
+     "quote": "You must have a bachelor’s degree in a field relevant to the program you wish to study. You must also meet UBC’s minimum academic requirements, which are based on the country where you completed your undergraduate degree.",
+     "source_sha256": "0336f7ccf375d2bb13788933ca489502469ec5128dbe0314467309943c9fdfb2",
+     "source_url": "https://apscpp.ubc.ca/eligibility/eligibility-requirements",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 90,
+     "quote": "For tests taken prior to January 21, 2026: Minimum score of 90 with minimum component scores of 22 in reading and listening, and minimum component scores of 21 in writing and speaking. For tests taken as of January 21, 2026: Minimum overall score of 4.5 with a minimum component score of 5 in listening, 4.5 in reading and writing, and 4 in speaking.",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "source_sha256": "f459f510bb531898263b212e68e3e29d815f4dce5fd5b7180f1bbc21af1d30aa",
+     "source_url": "https://apscpp.ubc.ca/eligibility/english-language-proficiency",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "A minimum overall band score of 6.5 with no single component score less than 6.0.",
+     "source_sha256": "f459f510bb531898263b212e68e3e29d815f4dce5fd5b7180f1bbc21af1d30aa",
+     "source_url": "https://apscpp.ubc.ca/eligibility/english-language-proficiency",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Minimum of three years full-time work experience in a related field by the program start date, counted after the bachelor's degree",
+      "quote": "You must have a minimum of three years full-time work experience in a related field by the start date of the program.",
+      "source_sha256": "0336f7ccf375d2bb13788933ca489502469ec5128dbe0314467309943c9fdfb2",
+      "source_url": "https://apscpp.ubc.ca/eligibility/eligibility-requirements",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Analytics (MBAN)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-business-analytics",
+   "snapshot_sha256": "0b75e51d8b25f92bb7c942f53f0b51e1619939d0ab414ff65582599deef951fa",
+   "fields": {
+    "academic": {
+     "text": "Undergraduate degree with a minimum overall B+ average or 76%, or recognized equivalent; four-year bachelor's equivalent",
+     "quote": "Applicants must hold an undergraduate degree with a minimum overall B+ average or 76% or recognized equivalent from an accredited institution.",
+     "source_sha256": "f3748187e05e4389f163cdf38b970bdc341d8e1f3a52d7063d04a15ea884f815",
+     "source_url": "https://vancouver.calendar.ubc.ca/faculties-colleges-and-schools/faculty-commerce-and-business-administration/professional-masters-degrees/master-business-analytics",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL (Test of English as a Foreign Language): 100 (Internet version)",
+     "source_sha256": "f3748187e05e4389f163cdf38b970bdc341d8e1f3a52d7063d04a15ea884f815",
+     "source_url": "https://vancouver.calendar.ubc.ca/faculties-colleges-and-schools/faculty-commerce-and-business-administration/professional-masters-degrees/master-business-analytics",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GMAT 550 (at least 50th percentile in quantitative and verbal) or GRE 155 on each of verbal and quantitative",
+      "quote": "550 GMAT with at least a 50th percentile in the quantitative and verbal sections of the test; or 155 GRE score on each of the verbal and quantitative sections.",
+      "source_sha256": "f3748187e05e4389f163cdf38b970bdc341d8e1f3a52d7063d04a15ea884f815",
+      "source_url": "https://vancouver.calendar.ubc.ca/faculties-colleges-and-schools/faculty-commerce-and-business-administration/professional-masters-degrees/master-business-analytics",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS (International English Language Testing Service): minimum overall band score of 7.0 with no component score less than 6.0",
+     "source_sha256": "f3748187e05e4389f163cdf38b970bdc341d8e1f3a52d7063d04a15ea884f815",
+     "source_url": "https://vancouver.calendar.ubc.ca/faculties-colleges-and-schools/faculty-commerce-and-business-administration/professional-masters-degrees/master-business-analytics",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Administration (MBA)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-business-administration",
+   "snapshot_sha256": "b028e81c5f59dd79b379b3ce1b9b1567ce34cadad58a7b5f1750199ea9935001",
+   "fields": {
+    "academic": {
+     "text": "Undergraduate degree with a minimum overall B+ average or 76%, or recognized equivalent; four-year bachelor's equivalent",
+     "quote": "Applicants must hold an undergraduate degree with a minimum overall B+ average or 76% or recognized equivalent from an accredited institution.",
+     "source_sha256": "48ae7b3d7effac915cb861ed8c6899c0e4a87987673c65cd68ec1f2289b977da",
+     "source_url": "https://vancouver.calendar.ubc.ca/faculties-colleges-and-schools/faculty-commerce-and-business-administration/professional-masters-degrees/master-business-administration",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL (Test of English as a Foreign Language): 100 (Internet version)",
+     "source_sha256": "48ae7b3d7effac915cb861ed8c6899c0e4a87987673c65cd68ec1f2289b977da",
+     "source_url": "https://vancouver.calendar.ubc.ca/faculties-colleges-and-schools/faculty-commerce-and-business-administration/professional-masters-degrees/master-business-administration",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GMAT 550 (at least 50th percentile in quantitative and verbal) or GRE 155 on each of verbal and quantitative",
+      "quote": "550 GMAT with at least a 50th percentile in the quantitative and verbal sections of the test; or 155 GRE score on each of the verbal and quantitative sections.",
+      "source_sha256": "48ae7b3d7effac915cb861ed8c6899c0e4a87987673c65cd68ec1f2289b977da",
+      "source_url": "https://vancouver.calendar.ubc.ca/faculties-colleges-and-schools/faculty-commerce-and-business-administration/professional-masters-degrees/master-business-administration",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS (International English Language Testing Service): minimum overall band score of 7.0 with no other component score less than 6.0",
+     "source_sha256": "48ae7b3d7effac915cb861ed8c6899c0e4a87987673c65cd68ec1f2289b977da",
+     "source_url": "https://vancouver.calendar.ubc.ca/faculties-colleges-and-schools/faculty-commerce-and-business-administration/professional-masters-degrees/master-business-administration",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Professional Master of Business Administration (PMBA)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/professional-master-of-business-administration",
+   "snapshot_sha256": "988fb0a311f827accc6027338600af8ddf9bcb95c2944f43895bdca41d51455f",
+   "fields": {
+    "academic": {
+     "text": "Undergraduate degree with a minimum overall B+ average or 76%, or recognized equivalent; four-year bachelor's equivalent",
+     "quote": "Applicants must hold an undergraduate degree with a minimum overall B+ average or 76% or recognized equivalent from an accredited institution.",
+     "source_sha256": "5d3b4f9dbb4da808599bdf55ca3e13bfa86ecff8a7647b24fe168a33f2abb32a",
+     "source_url": "https://vancouver.calendar.ubc.ca/faculties-colleges-and-schools/faculty-commerce-and-business-administration/professional-masters-degrees/professional-master-business-administration",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL (Test of English as a Foreign Language): 100 (Internet version)",
+     "source_sha256": "5d3b4f9dbb4da808599bdf55ca3e13bfa86ecff8a7647b24fe168a33f2abb32a",
+     "source_url": "https://vancouver.calendar.ubc.ca/faculties-colleges-and-schools/faculty-commerce-and-business-administration/professional-masters-degrees/professional-master-business-administration",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GMAT 550 (at least 50th percentile in quantitative and verbal) or GRE 155 on each of verbal and quantitative",
+      "quote": "550 GMAT with at least a 50th percentile in the quantitative and verbal sections of the test; or 155 GRE score on each of the verbal and quantitative sections.",
+      "source_sha256": "5d3b4f9dbb4da808599bdf55ca3e13bfa86ecff8a7647b24fe168a33f2abb32a",
+      "source_url": "https://vancouver.calendar.ubc.ca/faculties-colleges-and-schools/faculty-commerce-and-business-administration/professional-masters-degrees/professional-master-business-administration",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS (International English Language Testing Service): minimum overall band score of 7.0 with no other component score less than 6.0",
+     "source_sha256": "5d3b4f9dbb4da808599bdf55ca3e13bfa86ecff8a7647b24fe168a33f2abb32a",
+     "source_url": "https://vancouver.calendar.ubc.ca/faculties-colleges-and-schools/faculty-commerce-and-business-administration/professional-masters-degrees/professional-master-business-administration",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Management (MM)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-management",
+   "snapshot_sha256": "04315e6343d7b987cb4f546ba7c6c0502f4b7e6c4bc61e1d3825ac666e4803c5",
+   "fields": {
+    "academic": {
+     "text": "Undergraduate degree with a minimum overall B+ average or 76%, or recognized equivalent; four-year bachelor's equivalent",
+     "quote": "Applicants must hold an undergraduate degree with a minimum overall B+ average or 76% or recognized equivalent from an accredited institution.",
+     "source_sha256": "d1c7f57caf0e1eb561d1f3630020af606c0fb2ab29d42c8aeeddfa2d1e54c599",
+     "source_url": "https://vancouver.calendar.ubc.ca/faculties-colleges-and-schools/faculty-commerce-and-business-administration/professional-masters-degrees/master-management",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 100,
+     "quote": "TOEFL (Test of English as a Foreign Language): 100 (Internet version)",
+     "source_sha256": "d1c7f57caf0e1eb561d1f3630020af606c0fb2ab29d42c8aeeddfa2d1e54c599",
+     "source_url": "https://vancouver.calendar.ubc.ca/faculties-colleges-and-schools/faculty-commerce-and-business-administration/professional-masters-degrees/master-management",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GMAT 550 (at least 50th percentile in quantitative and verbal) or GRE 155 on each of verbal and quantitative",
+      "quote": "550 GMAT with at least a 50th percentile in the quantitative and verbal sections of the test; or 155 GRE score on each of the verbal and quantitative sections.",
+      "source_sha256": "d1c7f57caf0e1eb561d1f3630020af606c0fb2ab29d42c8aeeddfa2d1e54c599",
+      "source_url": "https://vancouver.calendar.ubc.ca/faculties-colleges-and-schools/faculty-commerce-and-business-administration/professional-masters-degrees/master-management",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 6.0,
+     "quote": "IELTS (International English Language Testing Service): minimum overall band score of 7.0 with no component score less than 6.0",
+     "source_sha256": "d1c7f57caf0e1eb561d1f3630020af606c0fb2ab29d42c8aeeddfa2d1e54c599",
+     "source_url": "https://vancouver.calendar.ubc.ca/faculties-colleges-and-schools/faculty-commerce-and-business-administration/professional-masters-degrees/master-management",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Urban Design (MUD)",
+   "url": "https://www.grad.ubc.ca/prospective-students/graduate-degree-programs/master-of-urban-design",
+   "snapshot_sha256": "9bbf8c9203c189e0722b39f869c474caa15b31cd35d6ec34999d8da2fd03b608",
+   "fields": {
+    "deadlines": [
+     {
+      "label": "May 2027 intake, international applicants",
+      "date": "2026-12-01",
+      "quote": "International Applicant Deadline1 December 2026",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 51,
+  "机器核对": 51,
+  "待人工": 0
+ }
+}
