@@ -7,10 +7,12 @@
 
 | Entry | What to try |
 | --- | --- |
-| [`/`](https://leapashore.mortyyjt.site/) | Ten-step onboarding; finishing it opens the assessment result |
-| [`/prototype/schools`](https://leapashore.mortyyjt.site/prototype/schools) | 346 schools, filterable by region, QS band and alliance |
-| [`/prototype/assess`](https://leapashore.mortyyjt.site/prototype/assess) | Enter a background, get every program tiered 冲刺 / 匹配 / 保底 / 不满足 with rule-by-rule evidence |
-| [`/prototype/advisor`](https://leapashore.mortyyjt.site/prototype/advisor) | Chat with the LangGraph advisor agent |
+| [`/assess`](https://leapashore.mortyyjt.site/assess) | One-page background assessment, saved to the server |
+| [`/assess/result`](https://leapashore.mortyyjt.site/assess/result) | Every program with a stated requirement in your field, tiered 保底 / 稳妥 / 冲刺 / 不满足, with what to check on the official page |
+| [`/roadmap`](https://leapashore.mortyyjt.site/roadmap) | The timeline from today to the intake: suggested dates dashed, unrecorded deadlines hollow |
+| [`/schools`](https://leapashore.mortyyjt.site/schools) | 346 schools by QS rank, with how many programs each has collected |
+| [`/programs`](https://leapashore.mortyyjt.site/programs) | Search the collected programs; each cites its official page |
+| [`/advisor`](https://leapashore.mortyyjt.site/advisor) | Chat with the LangGraph advisor agent |
 
 Things to ask the advisor:
 
