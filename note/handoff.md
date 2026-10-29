@@ -15,8 +15,9 @@
 
 - 部署：**先把现在线上的版本挂到新域名 + HTTPS**（只改 `deploy/Caddyfile`：`:80` → 域名，Caddy 自动签证书），新数据与新前端之后再上。服务器在**香港或海外**，不用 ICP 备案。
   - 域名是 `leapashore.mortyyjt.site`（主域名 `mortyyjt.site` 在 DNSPod，MortyYJT 确认带 a 的拼写）。`deploy/Caddyfile` 已改成该域名，裸 IP 301 到它；`compose.prod.yaml` 加了 443/tcp、443/udp 和 `caddy-data`/`caddy-config` 卷（证书持久化）。只“改 Caddyfile”不够：原 compose 只映射了 80。
-  - 10-29 检查：`leapashore` 的 A 记录还没加；从本机连 443 超时（80 正常），推断云安全组没放行 443。两件都要 MortyYJT 在控制台做。
-  - 上线步骤（只换 Caddy，不动线上应用代码）：把这两个文件 scp 到服务器 `~/offerpilot/deploy/`，再 `sudo docker compose -f compose.prod.yaml up -d caddy`，看 `docker compose logs caddy` 里证书签发成功。服务器 SSH 用 `~/.ssh/offerpilot_codex`（ssh-agent 里没有，要 `-i` 指定）。
+  - **10-29 已上线**：https://leapashore.mortyyjt.site （Let's Encrypt 证书，到期 2027-01-27，Caddy 自动续）。轻量服务器防火墙已加 443。只换了 Caddy 容器，应用代码仍是改名前的旧版本。服务器上旧配置备份为 `deploy/*.bak-20261029`。
+  - 以后部署：SSH 用 `-i ~/.ssh/offerpilot_codex -o IdentitiesOnly=yes`（ssh-agent 里没有这把钥匙）。
+  - 主域名 `mortyyjt.site` 和 `www` 归个人网站（GitHub Pages），不要在这个项目里占用。
 - 前端：**开工**，按已认可的原型（`.taste-skill/prototype/`）和 OpenSpec `ledger-redesign` 实现主路径，用真实数据，重写走查让 `make verify` 全绿。
 - 展示标准（我提的）：前端主路径真实数据跑通 + `make verify` 全绿 + 合并 #27 后生产库导入并上域名 + README / GitHub About 更新。剩余 49 所采集、PDF 解析不阻塞展示。
 
