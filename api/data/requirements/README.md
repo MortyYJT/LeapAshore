@@ -28,7 +28,9 @@ Use `api/.venv/bin/python` for the tools.
    challenge, a CAPTCHA, or "access denied", that host is blocking us: record it and stop. Never
    solve a challenge or change identity to get past one. The tool prints JSON with `sha256` and `text_path`. It honours robots.txt and spaces
    requests out; do not try to make it faster.
-   WebSearch / WebFetch may be used **only to find URLs**, never as the source of a quote.
+   WebSearch / WebFetch may be used **only to find URLs**, never as the source of a quote, and never
+   on a host of the school itself. Never run curl or wget against the school, robots.txt included:
+   they do not carry our User-Agent.
 3. **If the tool prints `{"blocked": …}` (403, 429, or robots.txt), stop fetching that host.** Do not
    retry with other URLs on the same host to get around it, and never change the User-Agent.
    `www.x` and `x` are one host: a refusal from either holds for both (the tool enforces this).
