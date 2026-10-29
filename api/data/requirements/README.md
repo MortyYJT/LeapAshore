@@ -113,7 +113,9 @@ Use `api/.venv/bin/python` for the tools.
   only `text` + `quote`.
 - `deadlines` are application closing dates for the next intake, as ISO dates. The quote must state
   the day, the month **and the year**; a year read off another part of the page ("31 May of the
-  previous year") is an inference and fails the check.
+  previous year") is an inference and fails the check. Numeric dates are read in the school's own
+  order: month first for the US (`12/01/2026` = 1 December 2026), day first everywhere else; set
+  `country` exactly as `_schools.json` gives it.
 - Run `verify.py --write` last; it adds `check`, `status`, and `verification`.
 
 ### Combining two official pages

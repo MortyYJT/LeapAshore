@@ -272,3 +272,19 @@ def test_every_committed_file_still_matches_its_snapshots():
             checked += 1
     if not checked:
         pytest.skip("no local snapshots to re-check against")
+
+
+def test_a_us_page_writes_numeric_dates_month_first(tmp_path):
+    """12/01/2026 on a US page is 1 December, not 12 January; reading it the other way round would
+    accept a wrong date as machine-checked."""
+    write_snapshot(tmp_path, "example", SHA, "<p>Fall 2027 application deadline: 12/01/2026</p>")
+    quote = "Fall 2027 application deadline: 12/01/2026"
+
+    def check(country, when):
+        result = verify({**data(program({"deadlines": [{"label": "Fall", "date": when, "quote": quote}]})), "country": country}, root=tmp_path)
+        return result["programs"][0]["status"]
+
+    assert check("United States", "2026-12-01") == MACHINE_CHECKED
+    assert check("United States", "2026-01-12") == NEEDS_HUMAN
+    assert check("United Kingdom", "2026-01-12") == MACHINE_CHECKED
+    assert check("United Kingdom", "2026-12-01") == NEEDS_HUMAN

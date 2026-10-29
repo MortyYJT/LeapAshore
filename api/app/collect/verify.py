@@ -66,13 +66,19 @@ def _contains_number(quote: str, value: float) -> bool:
 NUMERIC_DATES = re.compile(r"(\d{4})[-/.](\d{1,2})[-/.](\d{1,2})|(\d{1,2})[-/.](\d{1,2})[-/.](\d{4})")
 
 
-def _numeric_dates(quote: str) -> list[date]:
+# Countries whose official pages write a numeric date month first (12/01/2026 = 1 December).
+MONTH_FIRST = {"United States", "US", "USA", "United States of America", "Philippines"}
+
+
+def _numeric_dates(quote: str, month_first: bool = False) -> list[date]:
     found = []
     for match in NUMERIC_DATES.finditer(quote):
         try:
             if match.group(1):
                 found.append(date(int(match.group(1)), int(match.group(2)), int(match.group(3))))
-            else:  # day/month/year, the order every non-US official page in scope uses
+            elif month_first:
+                found.append(date(int(match.group(6)), int(match.group(4)), int(match.group(5))))
+            else:  # day/month/year, the order everywhere in scope except the US
                 found.append(date(int(match.group(6)), int(match.group(5)), int(match.group(4))))
         except ValueError:
             continue
@@ -121,7 +127,7 @@ def validate(data: dict) -> None:
                         raise SchemaError(f"{where}.{name}.{key} must be a number")
 
 
-def check_item(name: str, item: dict, text: str) -> list[str]:
+def check_item(name: str, item: dict, text: str, month_first: bool = False) -> list[str]:
     """The reasons this item fails; empty when it passes."""
     problems = []
     quote = item["quote"]
@@ -133,7 +139,7 @@ def check_item(name: str, item: dict, text: str) -> list[str]:
             problems.append(f"{key}={value:g} not in quote")
     if name == "deadlines":
         when = date.fromisoformat(item["date"])
-        numeric = _numeric_dates(quote)
+        numeric = _numeric_dates(quote, month_first)
         if numeric:
             # A quote that writes the date in digits has to write this date.
             if when not in numeric:
@@ -162,6 +168,7 @@ def verify(data: dict, root: Path = SNAPSHOT_ROOT) -> dict:
             cache[sha] = normalize(path.read_text(encoding="utf-8")) if path.exists() else None
         return cache[sha]
 
+    month_first = data.get("country") in MONTH_FIRST
     summary = {"programs": 0, MACHINE_CHECKED: 0, NEEDS_HUMAN: 0}
     for program in data["programs"]:
         all_ok, reported = True, 0
@@ -175,7 +182,7 @@ def verify(data: dict, root: Path = SNAPSHOT_ROOT) -> dict:
                     meta = root / school / f"{item['source_sha256']}.json"
                     if meta.exists():
                         item["source_url"] = json.loads(meta.read_text(encoding="utf-8")).get("final_url") or item.get("source_url")
-                problems = ["snapshot missing"] if text is None else check_item(name, item, text)
+                problems = ["snapshot missing"] if text is None else check_item(name, item, text, month_first)
                 item["check"] = "ok" if not problems else "; ".join(problems)
                 all_ok = all_ok and not problems
         program["status"] = MACHINE_CHECKED if reported and all_ok else NEEDS_HUMAN
