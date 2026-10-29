@@ -417,3 +417,15 @@ def test_the_import_never_touches_a_date_somebody_entered(
         db_session.execute(delete(Application).where(Application.client_id == client.id))
         db_session.execute(delete(Client).where(Client.id == client.id))
         db_session.commit()
+
+
+def test_a_european_school_gets_its_country_in_chinese(db_session, require_db, cleanup, tmp_path):
+    """Rows written before the European names were mapped said `Germany`; an import puts them right."""
+    data = school_file()
+    data["country"] = "Germany"
+    import_school(db_session, data, {KEY: {**SCHOOLS[KEY], "country": "Germany"}}, root=tmp_path)
+    assert db_session.get(University, KEY).country == "德国"
+    db_session.get(University, KEY).country = "Germany"
+    db_session.commit()
+    import_school(db_session, data, {KEY: {**SCHOOLS[KEY], "country": "Germany"}}, root=tmp_path)
+    assert db_session.get(University, KEY).country == "德国"

@@ -46,6 +46,26 @@ class Settings(BaseSettings):
     # given back when the turn ends, leaving the counters at the reported usage (D4).
     advisor_turn_token_reserve: int = 8_000
 
+    # --- Collection queue (openspec/changes/collect-queue) ---
+    # Celery's broker: Redis database 1, so its keys never share a keyspace with the advisor's counters.
+    celery_broker_url: str = "redis://localhost:56379/1"
+    # Model prices in CNY per million tokens, used to cost every extraction against the budget:
+    # DeepSeek's peak price (api-docs.deepseek.com/zh-cn/quick_start/pricing, read 2026-10-30), so the
+    # recorded spend is an upper bound (off-peak is half).
+    collect_price_cache_hit: float = 0.04
+    collect_price_cache_miss: float = 2.0
+    collect_price_output: float = 8.0
+    # The beat's re-collection: pages not fetched for this many days, at most this many a day, under
+    # this daily model spend (Beijing day).
+    collect_recollect_days: int = 30
+    collect_recollect_per_day: int = 200
+    collect_daily_budget_cny: float = 1.0
+    # Discovery keeps at most this many program pages per school (the agents' brief stopped at ~60).
+    collect_programs_per_school: int = 60
+    # Rendering needs Node and Chrome (scripts/render-page.cjs); the production image has neither, so
+    # pages that need it are deferred there and collected on a machine that can render.
+    collect_can_render: bool = True
+
     # --- Accounts (openspec/changes/account-login) ---
     # Login mode. Off keeps the anonymous-cookie behaviour, which is what production runs until
     # MortyYJT has a verified SES sender and SMTP credentials; `make api-dev-bg` turns it on locally.

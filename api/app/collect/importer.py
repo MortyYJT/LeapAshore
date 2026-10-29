@@ -45,7 +45,11 @@ SOURCE_NAMESPACE = uuid.UUID("6f2b7a1e-0c55-4c1f-9d7a-2e3b0f6c8a41")
 COUNTRY_ZH = {
     "Australia": "澳大利亚", "Hong Kong SAR": "中国香港", "Singapore": "新加坡", "United Kingdom": "英国",
     "United States": "美国", "Canada": "加拿大", "New Zealand": "新西兰", "Japan": "日本",
-    "South Korea": "韩国", "Malaysia": "马来西亚",
+    "South Korea": "韩国", "Malaysia": "马来西亚", "Macau SAR": "中国澳门",
+    "Germany": "德国", "Netherlands": "荷兰", "Switzerland": "瑞士", "France": "法国", "Belgium": "比利时",
+    "Sweden": "瑞典", "Italy": "意大利", "Spain": "西班牙", "Ireland": "爱尔兰", "Denmark": "丹麦",
+    "Norway": "挪威", "Austria": "奥地利", "Finland": "芬兰", "Portugal": "葡萄牙", "Czechia": "捷克",
+    "Poland": "波兰", "United Arab Emirates": "阿联酋", "Saudi Arabia": "沙特阿拉伯", "Qatar": "卡塔尔",
 }
 
 
@@ -172,10 +176,14 @@ def has_verified_value(fields: dict) -> bool:
 def _university(session: Session, data: dict, school: dict | None, program_ids: list[str]) -> str:
     """The university row for this school; Australian ones already exist from the CRICOS seed."""
     existing = session.scalars(select(Program.university_id).where(Program.id.in_(program_ids))).first()
+    key = existing or data["school_key"]
+    row = session.get(University, key)
+    if row is not None and row.country in COUNTRY_ZH:
+        # Rows written before the European and Middle Eastern names were mapped carry the English name.
+        row.country = COUNTRY_ZH[row.country]
     if existing:
         return existing
-    key = data["school_key"]
-    if session.get(University, key) is None:
+    if row is None:
         listing = (data.get("listing_urls") or [None])[0]
         session.add(University(
             id=key,

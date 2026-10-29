@@ -23,6 +23,26 @@ does not write any file. `python -m evals.extract_rejection` measures it on ten 
 (results in `api/evals/results/extract-<date>.json`). A value it keeps has a verbatim quote, which is
 not the same as a faithful summary: `text`, `label` and `recommended` are not checked.
 
+## The collection queue
+
+`app.collect.queue` (openspec/changes/collect-queue) collects pages without an agent: Celery workers
+(`make worker`, with Redis and the database up) take one page per task, wait their turn per host in a
+Redis token bucket (one request per host every 2 s across all workers), honour robots.txt and recorded
+refusals, skip the model when the HTML or visible text has not changed, extract with the advisor's model
+and `verify`, and record every requirement that changed in `requirement_changes`. Model spend is
+checked against a budget before every call.
+
+```
+python -m app.collect.queue discover <school_key>...   # listing (from _schools.json) → program pages
+python -m app.collect.queue enqueue --budget backfill --cap 100
+python -m app.collect.queue resume                       # after a restart: re-send pending/queued pages
+python -m app.collect.queue status
+python -m app.collect.queue export [--school K]          # merge results into these files (review, commit)
+```
+
+The queue never writes the catalogue: `export` writes these files, and the importer reads them as before.
+A program the queue wrote carries `collector: "leapashore-queue (<model>)"` and its `fetched_at`.
+
 ## Brief for a collecting agent
 
 You collect one school. Work from the repository root.
