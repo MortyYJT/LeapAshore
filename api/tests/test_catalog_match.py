@@ -102,6 +102,18 @@ def test_short_forms_still_work_next_to_each_other_and_before_a_subject():
     assert schools("哥大 TESOL") == ["columbia-university"]
 
 
+def test_a_short_form_followed_by_a_word_starting_with_xue_is_still_the_school():
+    """Second review of PR #38: 港大学费 is 港大 + 学费, not an unknown 港大学."""
+    assert schools("港大学费是多少") == ["university-of-hong-kong"]
+    assert schools("港大 学生宿舍") == ["university-of-hong-kong"]
+    assert schools("哥大学费") == ["columbia-university"]
+
+
+def test_a_faculty_of_the_named_school_is_not_another_school():
+    assert schools("牛津商学院 硕士") == ["university-of-oxford"]
+    assert schools("港大法学院的 LLM") == ["university-of-hong-kong"]
+
+
 def test_the_rest_of_the_question_is_kept_for_name_search():
     assert parse(INDEX, "UNSW Juris Doctor").rest == "juris doctor"
 

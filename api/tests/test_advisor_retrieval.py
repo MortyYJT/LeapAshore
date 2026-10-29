@@ -35,6 +35,8 @@ PROGRAMS = [
     ("university-of-hong-kong", "Master of Science in Computer Science", "计算机与数据", True),
     ("university-of-hong-kong", "Master of Finance", "商科与金融", True),
     ("university-of-hong-kong", "Master of Data Science", "计算机与数据", False),
+    ("university-of-hong-kong", "Master of Common Law", "法律与犯罪学", True),
+    ("university-of-hong-kong", "Master of Laws in Human Rights", "法律与犯罪学", True),
     ("chinese-university-of-hong-kong", "MSc in Computer Science", "计算机与数据", True),
 ]
 
@@ -206,8 +208,9 @@ def test_the_portfolio_search_tool_understands_short_forms(catalogue):
 def test_the_portfolio_search_tool_keeps_the_other_words(catalogue):
     """Review of PR #38: once a school was recognised the program's own name was ignored, so
     "<school> Juris Doctor" listed the school's first ten programs instead."""
-    result = search_programs.invoke({"keyword": "港大 Master of Finance"})
-    assert "Master of Finance" in result
-    assert "Computer Science" not in result
+    # "law" picks the area; "common" must then pick one of its two rows.
+    result = search_programs.invoke({"keyword": "港大 Common Law"})
+    assert "Master of Common Law" in result
+    assert "Human Rights" not in result
     # Words that match no name ("硕士") are filler and do not empty the result.
     assert "Master of Science in Computer Science" in search_programs.invoke({"keyword": "港大 计算机 硕士"})

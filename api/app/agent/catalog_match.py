@@ -163,22 +163,32 @@ class SchoolIndex:
     @staticmethod
     def _runs_into_unknown_name(text: str, start: int, end: int, others: list[tuple[int, int]]) -> bool:
         """Chinese text that carries on into 大学 or 学院 right after the match, with no break and no
-        other name or subject in between, is a longer school name: "牛津布鲁克斯大学", "圣地亚哥大学"
-        (which holds 哥大)."""
+        other name or subject in between, is a longer school name: "牛津布鲁克斯大学".
+
+        Two readings are kept on purpose. A 学院 at most two characters on is a faculty of the school
+        named ("港大商学院", "哈佛法学院"). A short form ending in 大 that runs into 学 ("哥大学…") is only
+        another school when the short form is itself in the middle of a word ("圣地亚哥大学"); at the
+        start of the question or after a break it is the short form ("港大学费", "哥大学生")."""
         term = text[start:end]
         if not term or not _cjk(term[-1]) or term.endswith(_SCHOOL_SUFFIXES):
             return False
+        embedded = start > 0 and _cjk(text[start - 1]) and text[start - 1] not in _NAME_STOPS \
+            and not any(e == start for _, e in others)
         window_end = min(len(text), end + _SUFFIX_REACH)
         for suffix in _SCHOOL_SUFFIXES:
             at = text.find(suffix, max(start + 1, end - len(suffix) + 1), window_end)
             if at == -1 or at + len(suffix) <= end:
                 continue
+            if at < end and not embedded:
+                continue
             between = text[end:at]
+            if suffix == "学院" and len(between) <= 2:
+                continue
             if any(not _cjk(c) or c in _NAME_STOPS for c in between):
                 continue
             if any(end <= s < at for s, _ in others):
                 continue
-            if _longest_matches(between, _subject_vocabulary()):
+            if _longest_matches(text[end:at + len(suffix)], _subject_vocabulary()):
                 continue
             return True
         return False
