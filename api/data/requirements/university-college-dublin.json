@@ -1,0 +1,34 @@
+{
+ "school_key": "university-college-dublin",
+ "school_name_en": "University College Dublin",
+ "country": "Ireland",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-29",
+ "listing_urls": [
+  "https://hub.ucd.ie/usis/!W_HU_MENU.P_PUBLISH?p_tag=COURSES"
+ ],
+ "blocked": [
+  {
+   "url": "https://www.ucd.ie/",
+   "reason": "robots.txt unreadable (HTTP 403); covers graduatestudies, graduateadmissions, global, registry, courses and school sites"
+  },
+  {
+   "url": "https://www.smurfitschool.ie/",
+   "reason": "robots.txt unreadable (HTTP 403)"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.ucd.ie/courses/b154",
+  "https://www.ucd.ie/graduateadmissions/admissions/entryrequirements/",
+  "https://www.ucd.ie/registry/prospectivestudents/admissions/policiesandgeneralregulations/generalrequirements/minimumenglishlanguagerequirements/",
+  "https://www.smurfitschool.ie/programmes/masters/mscinbusinessanalytics/"
+ ],
+ "notes": "www.ucd.ie and www.smurfitschool.ie return HTTP 403 for robots.txt, so the tool treats them as blocked and no programme page was fetched. hub.ucd.ie is reachable, but its programme/course URLs (p_tag=PROG or COURSE) only returned the course-search shell (also with --render), and its JSON listing endpoint came back as an undecoded gzip body; no programme requirements could be quoted. UCD publishes no China-specific graduate-taught page that was reachable.",
+ "programs": [],
+ "verification": {
+  "programs": 0,
+  "机器核对": 0,
+  "待人工": 0
+ }
+}
