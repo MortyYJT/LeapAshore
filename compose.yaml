@@ -1,14 +1,18 @@
 services:
+  # PostgreSQL 16 with pgvector (openspec hybrid-retrieval). `C` collation keeps text in code-point
+  # order, which is what the earlier Alpine (musl) image gave; a new volume, because a data directory
+  # written under musl has text indexes in an order glibc does not agree with (D1).
   db:
-    image: postgres:16-alpine
+    image: pgvector/pgvector:pg16
     environment:
       POSTGRES_USER: offerpilot
       POSTGRES_PASSWORD: offerpilot
       POSTGRES_DB: offerpilot
+      POSTGRES_INITDB_ARGS: "--encoding=UTF8 --lc-collate=C --lc-ctype=en_US.utf8"
     ports:
       - "55432:5432"
     volumes:
-      - offerpilot-db:/var/lib/postgresql/data
+      - offerpilot-pgdata:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U offerpilot"]
       interval: 3s
@@ -67,5 +71,5 @@ services:
         condition: service_healthy
 
 volumes:
-  offerpilot-db:
+  offerpilot-pgdata:
   offerpilot-redis:

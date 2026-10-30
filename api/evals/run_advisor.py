@@ -1,6 +1,13 @@
 """Score the advisor's requirement retrieval and evidence gate, and optionally its intent router.
 
-    python -m evals.run_advisor [--split tune|heldout|all] [--details] [--intent] [--out FILE] [--check]
+    python -m evals.run_advisor [--split tune|heldout|all] [--retrieval rules|fts|vector|hybrid]
+                                [--details] [--intent] [--out FILE] [--check]
+
+``--retrieval`` picks the ranking inside the named schools (openspec hybrid-retrieval D7). A ranking
+asked for by name that needs vectors is refused unless the key is set, every program has a vector for
+the configured model and every question embeds, so a missing key or an unfinished backfill cannot pass
+for a vector result. Without the flag, the production setting ``ADVISOR_RETRIEVAL`` is scored exactly as
+production runs it, fallback to full text included; the summary's ``ranking`` lists what was used.
 
 The retrieval part calls ``app.agent.evidence.gate`` exactly as the graph does and needs no model, so
 CI runs it (``--split tune --check``). ``--intent`` calls the production classifier against the chat
@@ -143,13 +150,43 @@ class QueryCounter:
         self._hooked = True
 
 
-def score_retrieval(questions: list[dict], details: bool) -> dict:
+def check_vectors(session, ranking: str) -> None:
+    """Refuse a vector ranking that would silently run on full text or on part of the catalogue."""
+    from sqlalchemy import func
+
+    from app.agent import embeddings
+    from app.config import settings
+    from app.models.program import ProgramEmbedding
+
+    if ranking not in ("vector", "hybrid"):
+        return
+    if embeddings.configured_client() is None:
+        raise SystemExit(f"--retrieval {ranking} needs EMBED_API_KEY; not scoring")
+    missing = session.scalar(
+        select(func.count()).select_from(Program)
+        .outerjoin(ProgramEmbedding, (ProgramEmbedding.program_id == Program.id)
+                   & (ProgramEmbedding.model == settings.embed_model))
+        .where(ProgramEmbedding.program_id.is_(None))
+    )
+    if missing:
+        raise SystemExit(f"{missing} programs have no {settings.embed_model} vector; run "
+                         "`python -m app.agent.embeddings` first")
+
+
+def score_retrieval(questions: list[dict], details: bool, ranking: str | None = None) -> dict:
+    from app.config import settings
+
+    strict = ranking is not None
+    ranking = ranking or settings.advisor_retrieval
     k = top_k()
     counter = QueryCounter()
     counter.hook()
     per_question = []
+    used_rankings: set[str] = set()
     with SessionLocal() as session:
         relevant = validate_labels(session, questions)
+        if strict:
+            check_vectors(session, ranking)
     for q in questions:
         if q["intent"] != REQUIREMENT_INTENT:
             continue
@@ -157,9 +194,15 @@ def score_retrieval(questions: list[dict], details: bool) -> dict:
             counter.statements = counter.rows = 0
             counter.active = True
             started = time.perf_counter()
-            update = evidence.gate(session, q["question"])
+            update = evidence.gate(session, q["question"], ranking=ranking)
             elapsed = time.perf_counter() - started
             counter.active = False
+        used = update["trace"]["gate_signals"].get("ranking")
+        if update["trace"]["gate_signals"]["schools"]:
+            used_rankings.add(used)
+        if strict and update["trace"]["gate_signals"]["schools"] and used != ranking:
+            raise SystemExit(f"{q['id']}: asked for ranking {ranking!r}, the gate used {used!r} "
+                             "(the question did not embed)")
         returned = [c["programId"] for c in update.get("citations", [])]
         if len(returned) > k:
             raise SystemExit(f"{q['id']}: the gate returned {len(returned)} rows, more than K={k}")
@@ -182,6 +225,7 @@ def score_retrieval(questions: list[dict], details: bool) -> dict:
         return round(sum(values) / len(values), 4) if values else None
 
     summary = {
+        "ranking": ranking if strict else f"{ranking} (used: {', '.join(sorted(used_rankings)) or 'none'})",
         "k": k,
         "questions": len(per_question),
         "answerable": len(answerable),
@@ -251,6 +295,8 @@ def check(summary: dict) -> list[str]:
 def main(argv: list[str]) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--split", choices=("tune", "heldout", "all"), default="tune")
+    parser.add_argument("--retrieval", choices=evidence.RANKINGS,
+                        help="ranking inside the named schools (default: the ADVISOR_RETRIEVAL setting)")
     parser.add_argument("--details", action="store_true", help="include per-question rows")
     parser.add_argument("--intent", action="store_true", help="also score the intent router (calls the model)")
     parser.add_argument("--out", help="write the full report as JSON")
@@ -260,7 +306,7 @@ def main(argv: list[str]) -> int:
         parser.error("--check only applies to the tune split")
 
     questions = load_questions(args.split)
-    report = {"split": args.split, "retrieval": score_retrieval(questions, args.details)}
+    report = {"split": args.split, "retrieval": score_retrieval(questions, args.details, args.retrieval)}
     if args.intent:
         report["intent"] = score_intent(questions, args.details)
     print(json.dumps({k: (v["summary"] if isinstance(v, dict) else v) for k, v in report.items()},

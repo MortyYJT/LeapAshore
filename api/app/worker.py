@@ -38,6 +38,8 @@ app.conf.update(
     beat_schedule={
         "recollect-due-pages": {"task": "collect.recollect_due", "schedule": crontab(hour=4, minute=7)},
         "cleanup-anonymous-data": {"task": "maintenance.cleanup", "schedule": crontab(hour=3, minute=17)},
+        # New or renamed programs get their vectors within the hour (openspec hybrid-retrieval D5).
+        "embed-programs": {"task": "maintenance.embed_programs", "schedule": crontab(minute=37)},
     },
 )
 
@@ -149,4 +151,20 @@ def cleanup() -> dict:
         return sweep.run(session, apply=True)
 
 
-__all__ = ["app", "page_task", "discover_task", "recollect_due", "cleanup", "SNAPSHOT_ROOT"]
+@app.task(name="maintenance.embed_programs")
+def embed_programs() -> dict:
+    """Embed programs whose vector is missing or stale, at most `EMBED_BACKFILL_PER_RUN` a run. Without
+    a key it does nothing; a service error ends the run, and the next run resumes."""
+    from app.agent import embeddings
+
+    client = embeddings.configured_client()
+    if client is None:
+        return {"skipped": "EMBED_API_KEY is not set"}
+    report = embeddings.backfill(SessionLocal, client, batch_size=settings.embed_batch_size,
+                                 limit=settings.embed_backfill_per_run)
+    if "error" in report:
+        log.warning("embedding backfill stopped: %s", report["error"])
+    return report
+
+
+__all__ = ["app", "page_task", "discover_task", "recollect_due", "cleanup", "embed_programs", "SNAPSHOT_ROOT"]

@@ -24,7 +24,8 @@
 - 补采的审查和生产入库（PR #52，10-30 部署）：审查 PR #51 找到 3 个问题已修（细节见 `TASKS.md` 该条和归档的 collect-queue tasks.md Run log）：澳洲学校只导到 CRICOS 行上（没有 CRICOS 代码的跳过，宁缺不重）；新 `app/collect/tidy.py` 清掉列表页、本科等非项目页和名字里的 CSS/卡片文字（发现、队列、`export` 都会用，改已提交的文件用 `python -m app.collect.tidy --apply`，只动队列采的项目）。采集文件现在 248 所、234 所有项目、8,783 个项目、7,376 个机器核对。**生产已入库**，和本机一致：「有要求」7,310、截止日期 4,722 条 / 2,728 个项目 / 119 所、学术要求 6,806、`verified_at` 非空 0。生产 beat 的第一次重采在 10-31 04:07（北京），在那之前 `collect_pages`、`requirement_changes` 都是空的。
 - 第二轮采集（PR #54，10-30 导入生产）：39 所没有文件的学校由 Claude 子代理采（MortyYJT 指示，本机采集一律用子代理、不调 DeepSeek；生产 beat 仍用 DeepSeek），16 所采到 252 个项目（每校最多 20 个，文件里 `complete: false` + `remaining_urls`，以后可接着采）。现在采集文件 282 所、250 所有项目、9,035 个项目、7,611 个机器核对；生产「有要求」7,545、截止日期 4,763 条、学术要求 7,039。P1 第二条「采集队列 + 变更检测」全部做完，openspec change 已归档（`openspec/changes/archive/2026-10-30-collect-queue/`，Run log 在那里的 tasks.md）。
 - 对话持久化（P1 第三条，PR #56）：顾问的对话从内存换到 PG（`langgraph-checkpoint-postgres==3.2.0`，`api/app/agent/checkpoint.py`），表由 Alembic `c4e8a1d2f6b9` 建（`checkpoint_migrations`、`checkpoints`、`checkpoint_blobs`、`checkpoint_writes`，不调库的 `setup()`）。线程 id 仍是 `{主体}:{对话 id}`。确认（`/confirm`）按线程拿 PG advisory lock、重读暂停状态、按中断 id 续上；每轮结束剪到最新一个存档。注销/90 天匿名清理在同一事务里删对话，登录合并时搬对话，beat 每天 03:17 删 90 天没动的对话（匿名模式也删）。设计 `openspec/changes/archive/2026-10-30-advisor-persistence/`（已归档，spec 在 `openspec/specs/advisor-persistence/`）。**10-30 已部署**：部署前备份 `~/db-backup-20261030-pre-checkpoints.sql.gz`，Alembic 现在是 `c4e8a1d2f6b9`；生产跑过 1 轮真实顾问，重启 api 后确认卡仍在（生产没点确认，写入只写一次是本机测的），测试线程已删。
-- **下一步：P1 第四条「混合检索」**（报数组 h08 标签要先照实改，见「开放问题」）。
+- 混合检索（P1 第四条，PR #58）：数据库镜像换成 `pgvector/pgvector:pg16`（本机、CI、生产），**用 dump/restore 搬到新卷**（本机 `offerpilot-pgdata`、生产 `pgdata`，`C` 排序），旧卷原样留着（本机 `leapashore_offerpilot-db`、生产 `deploy_db-data`）。Alembic `e3a9c5d17b42`：扩展 `vector`、生成列 `programs.search_tsv`（GIN）、表 `program_embeddings`。顾问检索在原范围和门槛不变的前提下，学校内排序可选 `rules`（P0 #4 的旧排序）/`fts`/`vector`/`hybrid`（RRF），生产设置 `ADVISOR_RETRIEVAL=hybrid`（默认），**没有硅基流动 key，所以实际跑的是 `fts`**，问题文本不发给任何人。国家/地区词只用来区分同名学校（`api/data/advisor/countries.json`），只说国家不说学校仍然拒答。向量回填 `python -m app.agent.embeddings [--dry-run]`（幂等、可断点续跑），beat 每小时 :37 补新项目（没 key 时什么都不做）。设计 `openspec/changes/hybrid-retrieval/`。评估 `python -m evals.run_advisor --split tune|heldout --retrieval rules|fts|vector|hybrid`；不加 `--retrieval` 时按生产设置跑（含回退），点名 `vector`/`hybrid` 时没 key 或向量没填满会拒绝打分。报数组 h08 标签已照实改（answerable false → true）。
+- **下一步：P1 第五条「快照 RAG」**。混合检索的向量部分卡在 MortyYJT 的 key（见「卡在 MortyYJT」第 5 条）。
 - 线上（10-30）已跑 PR #40：compose 多了 `redis` 容器；部署前备份在服务器 `~/db-backup-20261030-pre-limits.sql.gz`（Alembic 仍是 `5c1e7f0a2b3d`，PR #40 没改表）。
 - 线上运行的是 main（截至 PR #38 合并，10-30 部署，登录模式关；生产库已用 `remove_schools --apply` 删掉日本 8 所），地址 https://leapashore.mortyyjt.site 。个人网站 https://mortyyjt.site 也由这里的 Caddy 出。
 - 生产库（10-30，PR #34 部署后）：programs 7496（删日本 8 所前 7586），范围外国家项目 0，`verified_at` 非空 0。最近一次部署前的备份在服务器 `~/db-backup-20261030-pre-retrieval.sql.gz`（PR #38 前；Alembic 现在是 `5c1e7f0a2b3d`）。
@@ -35,6 +36,7 @@
 1. **开登录模式**：开通腾讯云 SES、DNSPod 加发信域名记录（SPF/DKIM/DMARC）、建发信地址并把 SMTP 账号密码填进服务器 `deploy/.env`。步骤见「部署 → 切到登录模式」第 1–3 步；之后任何 agent 都能做第 4–7 步。
 2. **审核隐私政策** `/privacy`（AI 草稿）正文，补联系方式。
 3. **GitHub 邮箱隐私**：Settings → Emails 勾选「Keep my email addresses private」，否则合并提交会带私人邮箱。
+5. **硅基流动 key（P1 混合检索的向量部分）**：本机 shell、`api/.env`、服务器 `deploy/.env` 都没有硅基流动的 key（10-30 只查了变量名）。MortyYJT 在 cloud.siliconflow.cn 建一个 API key，填进服务器 `deploy/.env` 的 `EMBED_API_KEY=`（本机评估另外 `export EMBED_API_KEY=…`）。之后任何 agent 都能做「部署 → 打开向量检索」的步骤，并补跑报数组的 `vector`、`hybrid` 两组。`BAAI/bge-m3` 在价格页标「免费」（10-30 查）。
 4. **复核 AI 自主决定**（`note/decisions.md` 里标「待 MortyYJT 复核」的各条），主要是：顾问限流默认额度和 Redis 挂了就 503；顾问门槛「只有 CRICOS 课程名不算证据」是否太严、简称表、评估集标签；抽取器多条学术路线只留第一条；README 数据条款措辞和 QS 转载授权；两个手填占位项目要不要删（见下）。
 
 ## 开放问题
@@ -56,10 +58,26 @@
 - **Crawl-delay**（10-30 起遵守）：82 个已缓存的 robots.txt 写了 5–120 秒，快照工具以前一律 2 秒；补采时 13 个站点被按 2 秒抓了（数据保留，见 decisions）。
 - （10-30 第二轮已做，见上；现在还没采到项目的是 37 所，多数被拒，规则不允许绕过。下面是第二轮之前的记录。）补采后还没采到项目的 49 所：10 所有文件但被拒（见下一条），39 所没有文件——10 所没找到列表页，其余是列表页被拒、渲染超时或页面上没有项目链接。第二轮找列表页没做（会话的网页搜索额度用完），下一个有搜索额度的 agent 可以接着做：把新 URL 写进 `_schools.json` 的 `listing_urls`，`python -m app.collect.queue discover <key>...`，worker 跑完 `export`。
 - 队列采的 1,366 个项目页没有要求通过核对（多数学校把入学要求写在另一页，队列只读项目页本身），在文件里是 `待人工`、不入库。
-- 顾问评估报数组 h08（悉大建筑）标签和库不一致（PR #48 学术要求进口径后就有），`--split heldout` 会拒绝打分；P1「混合检索」用报数组前要先照实改标签。
+- （10-30 已改）报数组 h08（悉大建筑）标签：原标不可答，库里 5 个建筑方向项目有学术要求和来源，改成可答，field 不变，改动写在该题的 `note` 里。
+- 混合检索评估的局限：调参组的相关集按学科大类标，`rules` 和 `fts` 都是 Recall@4 1.0 / Precision@4 0.98，分不出谁排得更好；要比较排序得补「点名具体项目」的标注题。
 - 被拦的学校（按规则不绕过）：Monash、Melbourne、Macquarie、NUS 大部分、Oxford 主站、UCL（50 个后 403）、Bristol、Durham、Bath、Cardiff、York（16 个后 429）、QUB、Stanford 计算机系。
 
 ## 部署
+
+- **数据库镜像搬到 pgvector（PR #58 起；以后重建库也照这个做）**：别直接在旧卷上换镜像。旧镜像是 Alpine（musl），新镜像是 Debian（glibc），同样叫 `en_US.utf8`，文本排序却不同：本机拿旧数据目录直接起 pgvector，`amcheck` 报 53 个 btree 索引里 7 个顺序错（含 `programs_pkey`、`sources_url_key`），而且 PostgreSQL 启动时一句警告都没有。也别照普通部署直接 `up -d --build`：新卷是空的，api 会在空库上建表、种子，线上就成了空库。顺序：
+  1. 备份：`sudo docker compose -f compose.prod.yaml exec -T db pg_dump -U offerpilot -d offerpilot | gzip > ~/db-backup-<日期>-pre-pgvector.sql.gz`。
+  2. 同步代码（照下面的 `git archive` + `rsync`），但先不要 `up`。
+  3. 停写库的服务：`sudo docker compose -f compose.prod.yaml stop api worker beat`。
+  4. 最终 dump（自定义格式）和摘要：`... exec -T db pg_dump -U offerpilot -d offerpilot -Fc > ~/pgvector-move.dump`；摘要脚本（每张表行数 + 排序后的行 md5 再 md5，和排序规则无关）在 PR #58 的 Run log 里（`openspec/changes/hybrid-retrieval/tasks.md`），`docker cp` 进容器用 `psql -f` 跑，输出存成 `~/digest-old.txt`。
+  5. `sudo docker compose -f compose.prod.yaml up -d db`：换镜像、挂新卷 `pgdata`，按 `POSTGRES_INITDB_ARGS` 初始化（`C` 排序）。等 healthy。
+  6. `... exec -T db pg_restore -U offerpilot -d offerpilot --no-owner --exit-on-error < ~/pgvector-move.dump`，再跑同一个摘要脚本存成 `~/digest-new.txt`，`diff` 必须完全相同；`amcheck` 也跑一次（建扩展、查、删扩展）。
+  7. `sudo docker compose -f compose.prod.yaml up -d --build`：api 启动时 Alembic 到 `e3a9c5d17b42`。然后只读检查。
+  8. 回滚：把 `compose.prod.yaml` 和代码换回上一版（db 用 `postgres:16-alpine`、卷 `db-data`），`up -d --build`。旧卷没被写过，所以回到的是第 3 步停写时的数据；第 7 步之后新库里的写入会丢。新代码不能接旧卷（`CREATE EXTENSION vector` 在 Alpine 镜像里没有）。
+- **打开向量检索**（有了 `EMBED_API_KEY` 之后，任何 agent 都可以做）：
+  1. 服务器 `deploy/.env` 加 `EMBED_API_KEY=…`，`sudo docker compose -f compose.prod.yaml up -d --force-recreate --no-deps api worker beat`。
+  2. 先 `... exec -T api python -m app.agent.embeddings --dry-run` 看要发多少（10-30 本机：9,748 个项目、455,121 个字符），再去掉 `--dry-run` 跑一次；输出里有 `tokens`、`cost_cny`、`seconds`，记进 `TASKS.md`。中途失败（比如 429）再跑一次会接着做。
+  3. **同一次部署里改隐私政策**（`web/app/privacy/page.tsx`）：顾问会把要求类问题的文本发给硅基流动做向量。
+  4. 本机：`export EMBED_API_KEY=…`，`cd api && .venv/bin/python -m app.agent.embeddings`，然后 `python -m evals.run_advisor --split heldout --retrieval vector` 和 `--retrieval hybrid` 各跑一次（报数组每组只跑一次），结果补进 `TASKS.md` 该条。
 
 - 对话持久化（PR #56）的部署只是普通的「备份 → 同步代码 → `up -d --build`」：api 容器启动时 `alembic upgrade head` 建四张 checkpoint 表。部署那一刻正在等确认的对话（还在内存里）会丢最后一次。看对话数：`sudo docker compose -f compose.prod.yaml exec -T db psql -U offerpilot -d offerpilot -c "select count(distinct thread_id) from checkpoints"`（库名、用户以 `deploy/.env` 为准）。手动跑 90 天对话清理：`... exec -T api python -m app.cleanup --conversations-only`（加 `--apply` 才删）。
 
@@ -84,6 +102,9 @@
 - 只改 Caddy 配置时，只重启 caddy：`sudo docker compose -f compose.prod.yaml up -d --force-recreate --no-deps caddy`（不加 `--force-recreate` 时，只改 Caddyfile 内容 compose 不会重建容器，rsync 换掉的新文件也不会进到旧容器的单文件挂载里）。
 
 ## 坑
+
+- 本机库（PR #58 起）是 `pgvector/pgvector:pg16`、卷 `leapashore_offerpilot-pgdata`、`C` 排序；旧的 Alpine 卷 `leapashore_offerpilot-db` 没删，确认不需要后可以 `docker volume rm`。`C` 排序下 `ORDER BY name` 是码位顺序（大写在小写前），和以前 Alpine 的行为一样，测试里按名字排序的断言依赖它。
+- 顾问检索的排序由 `ADVISOR_RETRIEVAL` 决定；测试和评估可以显式传 `ranking=`。改 `subjects.json` 的 `gloss` 会改变全文检索的词（中文学科词经 gloss 变成英文词），不只是测试用。
 
 - 顾问对话的表（PR #56 起）：后端测试要先 `make migrate`（`alembic upgrade head`），否则顾问相关测试报表不存在。conftest 的 `remove_the_conversations_these_tests_create` 按线程 id 清掉测试写的对话。升级 `langgraph-checkpoint-postgres` 时，`test_alembic_carries_every_migration_of_the_pinned_library` 会在库多了迁移时失败：把新迁移抄进一个新的 Alembic revision（只加不删），再改 `checkpoint.MIGRATIONS_APPLIED` 和 `MIGRATIONS_DIGEST`。
 - 顾问的 checkpointer 是同步 `PostgresSaver` + 线程（不是 `AsyncPostgresSaver`）：异步版绑死创建时的事件循环，测试客户端每个请求一个循环，会坏。它自己的连接池最多 2 个连接（`CHECKPOINT_POOL_SIZE`），每个进行中的确认另占 1 个短连接（advisory lock）。

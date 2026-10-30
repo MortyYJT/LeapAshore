@@ -1,0 +1,387 @@
+{
+ "split": "heldout",
+ "retrieval": {
+  "summary": {
+   "ranking": "rules",
+   "k": 4,
+   "questions": 21,
+   "answerable": 16,
+   "unanswerable": 5,
+   "recall_at_k": 0.8958,
+   "precision_at_k": 0.9375,
+   "false_pass_rate": 0.0,
+   "false_block_rate": 0.0,
+   "false_passes": 0,
+   "false_blocks": 0,
+   "mean_rows_read": 312.6667,
+   "max_rows_read": 328,
+   "mean_statements": 5.2857,
+   "mean_ms": 18.6238
+  },
+  "questions": [
+   {
+    "id": "h01",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "imperial-college-london-msc-advanced-mechanical-engineer-7c126d"
+    ],
+    "relevant": 1,
+    "hit": 1,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 6,
+    "rows_read": 307,
+    "ms": 30.2
+   },
+   {
+    "id": "h02",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "hong-kong-university-of-master-of-science-program-in-big-c5b76c",
+     "hong-kong-university-of-master-of-science-program-in-dat-f3656e"
+    ],
+    "relevant": 2,
+    "hit": 2,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 6,
+    "rows_read": 317,
+    "ms": 16.3
+   },
+   {
+    "id": "h03",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "hong-kong-polytechnic-un-master-of-arts-in-global-fashion-43f297",
+     "hong-kong-polytechnic-un-master-of-finance-investment-man-fea4e9",
+     "hong-kong-polytechnic-un-master-of-science-scheme-in-hosp-d68097",
+     "hong-kong-polytechnic-un-master-of-science-in-asset-and-w-b6ff25"
+    ],
+    "relevant": 30,
+    "hit": 4,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 6,
+    "rows_read": 317,
+    "ms": 19.2
+   },
+   {
+    "id": "h04",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "city-university-of-hong-msc-computer-science-3bc376",
+     "city-university-of-hong-msc-computer-and-information-eng-09ebde",
+     "city-university-of-hong-msc-digital-commerce-and-computi-6e4aa6",
+     "city-university-of-hong-msc-artificial-intelligence-a0fa2d"
+    ],
+    "relevant": 13,
+    "hit": 4,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 6,
+    "rows_read": 317,
+    "ms": 18.5
+   },
+   {
+    "id": "h05",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "king-s-college-london-construction-law-dispute-resolut-a2831a",
+     "king-s-college-london-economics-for-competition-law-pg-570a8e",
+     "king-s-college-london-master-of-laws-llm-de347d",
+     "king-s-college-london-medical-ethics-law-medical-law-m-485edb"
+    ],
+    "relevant": 5,
+    "hit": 4,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 6,
+    "rows_read": 320,
+    "ms": 17.1
+   },
+   {
+    "id": "h06",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "london-school-of-economi-msc-accounting-and-finance-e8ccb5",
+     "london-school-of-economi-msc-finance-full-time-d9ef58",
+     "london-school-of-economi-msc-finance-part-time-e336ab",
+     "london-school-of-economi-msc-finance-and-private-equity-a2ad6e"
+    ],
+    "relevant": 8,
+    "hit": 4,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 6,
+    "rows_read": 321,
+    "ms": 20.0
+   },
+   {
+    "id": "h07",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "nanyang-technological-un-master-of-computing-in-applied-a-a34ef1",
+     "nanyang-technological-un-master-of-science-in-computer-co-5c48e3",
+     "nanyang-technological-un-master-of-science-in-artificial-e7fb81",
+     "nanyang-technological-un-master-of-science-in-cybersecuri-d18557"
+    ],
+    "relevant": 9,
+    "hit": 4,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 6,
+    "rows_read": 313,
+    "ms": 16.7
+   },
+   {
+    "id": "h08",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "cricos-060904G",
+     "cricos-000681C",
+     "cricos-000677K",
+     "cricos-000682B"
+    ],
+    "relevant": 5,
+    "hit": 4,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 6,
+    "rows_read": 313,
+    "ms": 17.0
+   },
+   {
+    "id": "h09",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "cricos-067604G",
+     "cricos-084282A",
+     "cricos-084284K",
+     "cricos-084283M"
+    ],
+    "relevant": 5,
+    "hit": 4,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 6,
+    "rows_read": 313,
+    "ms": 17.9
+   },
+   {
+    "id": "h10",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "university-of-toronto-master-of-engineering-electrical-f8c888",
+     "university-of-toronto-master-of-science-in-applied-com-d0bf10",
+     "university-of-toronto-master-of-science-in-computer-sc-7fee2c",
+     "university-of-toronto-master-of-health-informatics-mhi-781243"
+    ],
+    "relevant": 4,
+    "hit": 4,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 6,
+    "rows_read": 317,
+    "ms": 16.8
+   },
+   {
+    "id": "h11",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "university-of-british-co-master-of-business-administratio-227ad0",
+     "university-of-british-co-master-of-business-analytics-mba-cb3fc4",
+     "university-of-british-co-master-of-geomatics-for-environm-539110",
+     "university-of-british-co-master-of-management-mm-6d7134"
+    ],
+    "relevant": 8,
+    "hit": 4,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 6,
+    "rows_read": 317,
+    "ms": 16.8
+   },
+   {
+    "id": "h12",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "columbia-university-adult-learning-and-leadership-ma-7773cb",
+     "columbia-university-anthropology-and-education-ma-te-ec30a3",
+     "columbia-university-applied-anthropology-ma-teachers-64dbe5",
+     "columbia-university-applied-statistics-ms-teachers-c-4e5de6"
+    ],
+    "relevant": 1,
+    "hit": 0,
+    "recall": 0.0,
+    "precision": 0.0,
+    "statements": 6,
+    "rows_read": 328,
+    "ms": 17.9
+   },
+   {
+    "id": "h13",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "university-of-pennsylvan-master-of-applied-science-in-com-39d5fe",
+     "university-of-pennsylvan-master-of-applied-science-in-com-b9e366",
+     "university-of-pennsylvan-master-of-science-in-engineering-226763",
+     "university-of-pennsylvan-master-of-science-in-engineering-20a81b"
+    ],
+    "relevant": 12,
+    "hit": 4,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 6,
+    "rows_read": 319,
+    "ms": 16.3
+   },
+   {
+    "id": "h14",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "university-of-warwick-statistics-msc-e404eb"
+    ],
+    "relevant": 3,
+    "hit": 1,
+    "recall": 0.3333333333333333,
+    "precision": 1.0,
+    "statements": 6,
+    "rows_read": 305,
+    "ms": 16.7
+   },
+   {
+    "id": "h15",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "university-of-hong-kong-master-of-science-in-computer-sc-d36e99",
+     "university-of-hong-kong-master-of-science-in-computer-sc-b9098c",
+     "university-of-hong-kong-master-of-science-in-computer-sc-760391"
+    ],
+    "relevant": 3,
+    "hit": 3,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 6,
+    "rows_read": 316,
+    "ms": 17.7
+   },
+   {
+    "id": "h16",
+    "answerable": true,
+    "passed": true,
+    "refusal": null,
+    "returned": [
+     "seoul-national-universit-full-time-mba-graduate-school-of-9ef537",
+     "seoul-national-universit-graduate-programs-international-46263b"
+    ],
+    "relevant": 2,
+    "hit": 2,
+    "recall": 1.0,
+    "precision": 1.0,
+    "statements": 6,
+    "rows_read": 313,
+    "ms": 17.4
+   },
+   {
+    "id": "h17",
+    "answerable": false,
+    "passed": false,
+    "refusal": "no_program_in_field",
+    "returned": [],
+    "relevant": 0,
+    "hit": 0,
+    "recall": null,
+    "precision": null,
+    "statements": 3,
+    "rows_read": 302,
+    "ms": 16.9
+   },
+   {
+    "id": "h18",
+    "answerable": false,
+    "passed": false,
+    "refusal": "no_school",
+    "returned": [],
+    "relevant": 0,
+    "hit": 0,
+    "recall": null,
+    "precision": null,
+    "statements": 3,
+    "rows_read": 305,
+    "ms": 38.0
+   },
+   {
+    "id": "h19",
+    "answerable": false,
+    "passed": false,
+    "refusal": "no_program_in_field",
+    "returned": [],
+    "relevant": 0,
+    "hit": 0,
+    "recall": null,
+    "precision": null,
+    "statements": 3,
+    "rows_read": 302,
+    "ms": 15.1
+   },
+   {
+    "id": "h20",
+    "answerable": false,
+    "passed": false,
+    "refusal": "school_not_collected",
+    "returned": [],
+    "relevant": 0,
+    "hit": 0,
+    "recall": null,
+    "precision": null,
+    "statements": 3,
+    "rows_read": 302,
+    "ms": 14.0
+   },
+   {
+    "id": "h21",
+    "answerable": false,
+    "passed": false,
+    "refusal": "school_not_collected",
+    "returned": [],
+    "relevant": 0,
+    "hit": 0,
+    "recall": null,
+    "precision": null,
+    "statements": 3,
+    "rows_read": 302,
+    "ms": 14.6
+   }
+  ]
+ }
+}

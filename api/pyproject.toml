@@ -27,6 +27,10 @@ dependencies = [
   "redis",
   # The collection queue (openspec/changes/collect-queue): one task per page, Redis as the broker.
   "celery",
+  # The `vector` column type for SQLAlchemy and psycopg (openspec hybrid-retrieval).
+  "pgvector",
+  # The embeddings client (openspec hybrid-retrieval); already installed through langchain-openai.
+  "httpx",
 ]
 
 [project.optional-dependencies]

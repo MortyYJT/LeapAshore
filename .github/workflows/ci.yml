@@ -46,11 +46,12 @@ jobs:
       # none of those survive being mocked. `compose.yaml` runs the same image locally on 55432; here
       # the container publishes 5432 and `DATABASE_URL` below points the app at it.
       postgres:
-        image: postgres:16-alpine
+        image: pgvector/pgvector:pg16
         env:
           POSTGRES_USER: offerpilot
           POSTGRES_PASSWORD: offerpilot
           POSTGRES_DB: offerpilot
+          POSTGRES_INITDB_ARGS: "--encoding=UTF8 --lc-collate=C --lc-ctype=en_US.utf8"
         ports:
           - 5432:5432
         options: >-
@@ -100,11 +101,12 @@ jobs:
         working-directory: api
     services:
       postgres:
-        image: postgres:16-alpine
+        image: pgvector/pgvector:pg16
         env:
           POSTGRES_USER: offerpilot
           POSTGRES_PASSWORD: offerpilot
           POSTGRES_DB: offerpilot
+          POSTGRES_INITDB_ARGS: "--encoding=UTF8 --lc-collate=C --lc-ctype=en_US.utf8"
         ports:
           - 5432:5432
         options: >-

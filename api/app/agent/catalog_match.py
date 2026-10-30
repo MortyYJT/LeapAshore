@@ -24,6 +24,7 @@ from pathlib import Path
 DATA_DIR = Path(__file__).resolve().parents[2] / "data" / "advisor"
 ALIASES_FILE = DATA_DIR / "university_aliases.json"
 SUBJECTS_FILE = DATA_DIR / "subjects.json"
+COUNTRIES_FILE = DATA_DIR / "countries.json"
 T2S_FILE = DATA_DIR / "zh_t2s.json"
 
 _CJK = r"㐀-鿿"
@@ -193,22 +194,28 @@ class SchoolIndex:
             return True
         return False
 
-    def match(self, text: str) -> tuple[list[str], list[tuple[int, int]]]:
-        """University ids named in `text` (folded), in the order they appear, and their spans."""
+    def match_groups(self, text: str) -> list[tuple[tuple[int, int], list[str]]]:
+        """Each school name in `text` (folded), in order, with every university id it can mean: one id
+        for most names, several for a name schools share ("纽卡斯尔大学")."""
         found = _longest_matches(text, self.vocabulary)
         spans = [span for span, _ in found]
-        ids: list[str] = []
         kept = []
         for (start, end), uids in found:
             if self._incomplete_full_name(text, start, end, uids):
                 continue
             if self._runs_into_unknown_name(text, start, end, [s for s in spans if s != (start, end)]):
                 continue
-            kept.append((start, end))
-            for uid in sorted(uids):
-                if uid not in ids:
-                    ids.append(uid)
-        return ids, kept
+            kept.append(((start, end), sorted(uids)))
+        return kept
+
+    def match(self, text: str) -> tuple[list[str], list[tuple[int, int]]]:
+        """University ids named in `text` (folded), in the order they appear, and their spans."""
+        groups = self.match_groups(text)
+        return _flatten(groups), [span for span, _ in groups]
+
+
+def _flatten(groups: list[tuple[tuple[int, int], list[str]]]) -> list[str]:
+    return list(dict.fromkeys(uid for _, uids in groups for uid in uids))
 
 
 _index_cache: dict[tuple, SchoolIndex] = {}
@@ -231,6 +238,7 @@ class Subject:
     field: str
     name_pattern: str  # a regex on the program's English name, used to rank rows inside the field
     narrows: bool = False  # a specific subject keeps only the rows its pattern fits, when there are any
+    gloss: tuple[str, ...] = ()  # English names of the subject: what full-text search looks for
 
 
 @lru_cache(maxsize=1)
@@ -242,7 +250,7 @@ def subject_entries() -> list[dict]:
 def _subject_vocabulary() -> dict[str, set[Subject]]:
     vocabulary: dict[str, set[Subject]] = {}
     for entry in subject_entries():
-        subject = Subject(entry["field"], entry["name"], entry.get("narrows", False))
+        subject = Subject(entry["field"], entry["name"], entry.get("narrows", False), tuple(entry.get("gloss", ())))
         for term in entry["terms"]:
             vocabulary.setdefault(normalize(term), set()).add(subject)
     return vocabulary
@@ -263,12 +271,64 @@ def match_subjects(text: str) -> tuple[list[Subject], list[str], list[tuple[int,
     return out, list(dict.fromkeys(words)), spans
 
 
+def _search_terms(text: str) -> list[str]:
+    """What full-text search looks for, for each subject word in `text`: a Latin word as the
+    applicant typed it ("TESOL" is TESOL, not all of education), a Chinese one through its subjects'
+    English glosses ("统计" is "statistics")."""
+    terms: list[str] = []
+    for (start, end), subjects in _longest_matches(text, _subject_vocabulary()):
+        word = text[start:end]
+        if _is_ascii(word):
+            terms.append(word)
+        else:
+            for s in sorted(subjects, key=lambda s: (s.field, s.name_pattern)):
+                terms.extend(s.gloss)
+    return list(dict.fromkeys(terms))
+
+
+# ---- countries --------------------------------------------------------------------------------
+
+
+@lru_cache(maxsize=1)
+def country_terms() -> dict[str, list[str]]:
+    """`universities.country` value -> the words that name it."""
+    return json.loads(COUNTRIES_FILE.read_text(encoding="utf-8"))["countries"]
+
+
+@lru_cache(maxsize=1)
+def _country_vocabulary() -> dict[str, set[str]]:
+    vocabulary: dict[str, set[str]] = {}
+    for country, terms in country_terms().items():
+        for term in terms:
+            vocabulary.setdefault(normalize(term), set()).add(country)
+    return vocabulary
+
+
+# Latin words that say nothing about which program is meant: every requirement question has them, and
+# matching them in a program's name ("Master of ...") only adds noise to the ranking. English function
+# words are listed too, so the terms the trace records are the ones that count.
+GENERIC_WORDS = frozenset({
+    "the", "a", "an", "of", "for", "in", "at", "to", "and", "or", "on", "with", "about", "is", "are",
+    "what", "which", "how", "do", "does", "i", "me", "my", "us", "we", "you", "tell", "please", "there",
+    "master", "masters", "msc", "ma", "mres", "mphil", "meng", "llm", "mba", "degree", "degrees",
+    "postgraduate", "graduate", "taught", "program", "programs", "programme", "programmes", "course",
+    "courses", "requirement", "requirements", "require", "required", "requires", "entry", "admission",
+    "admissions", "apply", "application", "applications", "deadline", "deadlines", "ielts", "toefl",
+    "pte", "gre", "gmat", "gpa", "score", "scores", "mark", "marks", "language", "english", "university",
+    "school", "college", "what's", "whats", "s", "need", "needed", "minimum",
+})
+_LATIN_WORD = re.compile(r"[a-z][a-z0-9'.+&-]*[a-z0-9+]|[a-z]")
+
+
 @dataclass
 class Parsed:
     schools: list[str]
     subjects: list[Subject]
     subject_words: list[str] = field(default_factory=list)  # as the question wrote them, folded
-    rest: str = ""  # the folded question with the school names and subject words blanked out
+    rest: str = ""  # the folded question with the school, subject and country words blanked out
+    countries: list[str] = field(default_factory=list)  # `universities.country` values named
+    school_groups: list[list[str]] = field(default_factory=list)  # ids per school name, in order
+    fts_terms: list[str] = field(default_factory=list)  # what full-text search looks for, each an OR branch
 
     @property
     def fields(self) -> list[str]:
@@ -293,10 +353,18 @@ def _union(patterns) -> str | None:
 
 
 def parse(index: SchoolIndex, question: str) -> Parsed:
-    """Schools first; their names are then blanked so "伦敦政治经济学院" is not also a subject."""
+    """Schools first; their names are then blanked so "伦敦政治经济学院" is not also a subject, and
+    "香港大学" is not also a region. Subjects next, then countries."""
     text = normalize(question)
-    schools, spans = index.match(text)
+    groups = index.match_groups(text)
+    schools, spans = _flatten(groups), [span for span, _ in groups]
     without_schools = _blank(text, spans)
     subjects, words, subject_spans = match_subjects(without_schools)
-    return Parsed(schools=schools, subjects=subjects, subject_words=words,
-                  rest=_SPACES.sub(" ", _blank(without_schools, subject_spans)).strip())
+    without_subjects = _blank(without_schools, subject_spans)
+    found = _longest_matches(without_subjects, _country_vocabulary())
+    countries = list(dict.fromkeys(c for _, names in found for c in sorted(names)))
+    rest = _SPACES.sub(" ", _blank(without_subjects, [span for span, _ in found])).strip()
+    other_words = [w for w in _LATIN_WORD.findall(rest) if w not in GENERIC_WORDS]
+    terms = [t for t in _search_terms(without_schools) if t not in GENERIC_WORDS]
+    return Parsed(schools=schools, subjects=subjects, subject_words=words, rest=rest, countries=countries,
+                  school_groups=[uids for _, uids in groups], fts_terms=list(dict.fromkeys(terms + other_words)))

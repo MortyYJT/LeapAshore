@@ -17,6 +17,11 @@ question until the whole catalogue is verified — hides the official page the a
 The filtering runs in SQL, so a question reads the universities table (about 165 rows) and at most
 ``TOP_K`` program rows per named school, never the whole catalogue. Anything that fails the gate is
 refused with a reason and a text built from the catalogue's own counts, and logged as a knowledge gap.
+
+Inside that scope the rows are ordered by one of four rankings (openspec hybrid-retrieval D7):
+``rules`` (the subject's name pattern, P0 #4), ``fts`` (PostgreSQL full text over the program's names),
+``vector`` (cosine distance to the question's bge-m3 vector) and ``hybrid`` (Reciprocal Rank Fusion of
+the last two). The ranking changes the order only; which rows may be evidence is the same for all four.
 """
 
 import logging
@@ -25,11 +30,13 @@ import time
 from dataclasses import dataclass, field
 from datetime import date, datetime, timedelta, timezone
 
-from sqlalchemy import and_, case, func, literal, select
+from sqlalchemy import Float, and_, case, cast, func, literal, null, select
+from sqlalchemy.dialects.postgresql import REGCONFIG
 from sqlalchemy.orm import Session, joinedload, selectinload
 
-from app.agent import catalog_match
-from app.models.program import Program, University, has_requirement_data
+from app.agent import catalog_match, embeddings
+from app.config import settings
+from app.models.program import Program, ProgramEmbedding, University, has_requirement_data
 from app.models.source import Source
 
 logger = logging.getLogger("leapashore.knowledge_gap")
@@ -39,6 +46,13 @@ logger = logging.getLogger("leapashore.knowledge_gap")
 TOP_K = 4
 
 MACHINE_CHECKED = "机器核对"
+
+RANKINGS = ("rules", "fts", "vector", "hybrid")
+# Reciprocal Rank Fusion's constant (Cormack, Clarke and Buettcher, SIGIR 2009): a row's score is the
+# sum of 1 / (RRF_K + its rank) over the lists it is in. 60 is the paper's value, not tuned here.
+RRF_K = 60
+# The text-search configuration of `programs.search_tsv` (alembic e3a9c5d17b42).
+TS_CONFIG = "english"
 
 
 def citable_source():
@@ -62,26 +76,73 @@ class Retrieval:
     subject_words: list[str] = field(default_factory=list)
     narrowing_pattern: str | None = None  # set when a specific subject was named ("金融", not "商科")
     subject_fallback: bool = False  # ... but no returned row's name fits it; these are its broader area
+    countries: list[str] = field(default_factory=list)  # countries named; they narrow `schools` (D6)
+    fts_terms: list[str] = field(default_factory=list)
+    ranking: str = "rules"  # the ranking actually used, after any fallback
 
 
 def _school_rows(session: Session) -> list[tuple[str, str | None, str | None]]:
     return [tuple(r) for r in session.execute(select(University.id, University.name, University.name_en))]
 
 
-def search_requirements(session: Session, query: str, limit: int = TOP_K) -> Retrieval:
+def _in_countries(session: Session, groups: list[list[str]], countries: list[str]) -> list[str]:
+    """The named schools, in mention order, with each shared name narrowed to the named countries.
+
+    A country only tells apart schools that share the name it qualifies ("英国的纽卡斯尔大学"): a
+    school named without ambiguity is kept whatever country the question mentions ("我在英国读本科，
+    问港大和 UCL" keeps 港大; found in review). A shared name none of whose schools is in a named
+    country keeps all of them."""
+    schools = list(dict.fromkeys(u for g in groups for u in g))
+    ambiguous = [g for g in groups if len(g) > 1]
+    if not countries or not ambiguous:
+        return schools
+    there = set(session.scalars(
+        select(University.id).where(University.id.in_([u for g in ambiguous for u in g]),
+                                    University.country.in_(countries))
+    ))
+    kept = []
+    for group in groups:
+        narrowed = [u for u in group if u in there] if len(group) > 1 else group
+        kept.extend(narrowed or group)
+    return list(dict.fromkeys(kept))
+
+
+def _tsquery(terms: list[str]):
+    """One OR branch per term; inside a term every word must appear ("computer science")."""
+    branches = [func.plainto_tsquery(literal(TS_CONFIG, REGCONFIG), t) for t in terms]
+    query = branches[0]
+    for branch in branches[1:]:
+        query = query.op("||")(branch)
+    return query
+
+
+def _effective_ranking(ranking: str, query_vector) -> str:
+    if ranking not in RANKINGS:
+        raise ValueError(f"unknown ranking {ranking!r}; expected one of {RANKINGS}")
+    if ranking in ("vector", "hybrid") and query_vector is None:
+        return "fts"
+    return ranking
+
+
+def search_requirements(session: Session, query: str, limit: int = TOP_K, ranking: str = "rules",
+                        query_vector: list[float] | None = None) -> Retrieval:
     """The rows that can answer a requirement question about the schools and subject it names.
 
     Rows are taken in turn from each named school (row 1 of every school, then row 2, ...), so a
-    question comparing two schools gets evidence for both. Inside a school, rows whose English name
-    fits the subject come first (and alone, when there are any), then machine-checked rows, then by
-    name.
+    question comparing two schools gets evidence for both. Inside a school, when a specific subject
+    was named, only rows whose English name fits it are kept (when there are any); the order among the
+    kept rows is `ranking`'s. `vector` and `hybrid` need `query_vector`; without it they rank by full
+    text, and `Retrieval.ranking` says so.
     """
     index = catalog_match.school_index(_school_rows(session))
     parsed = catalog_match.parse(index, query)
-    result = Retrieval(schools=parsed.schools, fields=parsed.fields, hits=[],
-                       school_names={u: index.names[u] for u in parsed.schools},
-                       subject_words=parsed.subject_words, narrowing_pattern=parsed.narrowing_pattern)
-    if not parsed.schools:
+    schools = _in_countries(session, parsed.school_groups, parsed.countries)
+    result = Retrieval(schools=schools, fields=parsed.fields, hits=[],
+                       school_names={u: index.names[u] for u in schools},
+                       subject_words=parsed.subject_words, narrowing_pattern=parsed.narrowing_pattern,
+                       countries=parsed.countries, fts_terms=parsed.fts_terms,
+                       ranking=_effective_ranking(ranking, query_vector))
+    if not schools:
         return result
 
     name_fit = (
@@ -94,7 +155,19 @@ def search_requirements(session: Session, query: str, limit: int = TOP_K) -> Ret
     )
     checked = case((Program.data_status == MACHINE_CHECKED, 1), else_=0)
     usable = case((and_(has_requirement_data(), citable_source()), 1), else_=0)
-    scope = [Program.university_id.in_(parsed.schools)]
+    if parsed.fts_terms:
+        tsq = _tsquery(parsed.fts_terms)
+        # Normalisation 1 divides by 1 + log(length): of two names that both say "statistics", the one
+        # that says little else comes first.
+        fts_score = case((Program.search_tsv.op("@@")(tsq), func.ts_rank_cd(Program.search_tsv, tsq, 1)),
+                         else_=null())
+    else:
+        fts_score = cast(null(), Float)
+    if result.ranking in ("vector", "hybrid"):
+        distance = ProgramEmbedding.embedding.cosine_distance(query_vector)
+    else:
+        distance = cast(null(), Float)
+    scope = [Program.university_id.in_(schools)]
     if parsed.fields:
         scope.append(Program.field.in_(parsed.fields))
     # 1. Every row of the named schools in the named areas, with what the next steps need. The best
@@ -106,35 +179,57 @@ def search_requirements(session: Session, query: str, limit: int = TOP_K) -> Ret
             Program.id, Program.university_id, Program.name,
             name_fit.label("rank_fit"), narrow_fit.label("fit"), checked.label("checked"), usable.label("usable"),
             func.max(narrow_fit).over(partition_by=Program.university_id).label("best_fit"),
+            fts_score.label("fts_score"), distance.label("distance"),
         )
         .join(Source, Source.id == Program.source_id)
+        .outerjoin(ProgramEmbedding, and_(ProgramEmbedding.program_id == Program.id,
+                                          ProgramEmbedding.model == settings.embed_model))
         .where(*scope)
         .subquery()
     )
-    # 2. The usable rows that fit as well as the school's best, numbered per school.
+    # 2. The usable rows that fit as well as the school's best: each list's rank per school, then the
+    #    ranking's score. A row missing from a list (no full-text match, no vector) adds nothing.
+    c = in_scope.c
+    usable_rows = and_(c.usable == 1, c.fit == c.best_fit)
+    fts_rank = func.rank().over(partition_by=c.university_id, order_by=c.fts_score.desc().nulls_last())
+    vec_rank = func.rank().over(partition_by=c.university_id, order_by=c.distance.asc().nulls_last())
+    lists = (
+        select(
+            c.id, c.university_id, c.name, c.rank_fit, c.checked,
+            case((c.fts_score.is_not(None), 1.0 / (RRF_K + fts_rank)), else_=0.0).label("rrf_fts"),
+            case((c.distance.is_not(None), 1.0 / (RRF_K + vec_rank)), else_=0.0).label("rrf_vec"),
+        )
+        .where(usable_rows)
+        .subquery()
+    )
+    score = {
+        "rules": lists.c.rank_fit,
+        "fts": lists.c.rrf_fts,
+        "vector": lists.c.rrf_vec,
+        "hybrid": lists.c.rrf_fts + lists.c.rrf_vec,
+    }[result.ranking]
     ranked = (
         select(
-            in_scope.c.id, in_scope.c.university_id,
+            lists.c.id, lists.c.university_id,
             func.row_number().over(
-                partition_by=in_scope.c.university_id,
-                order_by=(in_scope.c.rank_fit.desc(), in_scope.c.checked.desc(), in_scope.c.name, in_scope.c.id),
+                partition_by=lists.c.university_id,
+                order_by=(score.desc(), lists.c.checked.desc(), lists.c.name, lists.c.id),
             ).label("rn"),
         )
-        .where(in_scope.c.usable == 1, in_scope.c.fit == in_scope.c.best_fit)
         .subquery()
     )
     # 3. Each school's first `limit` rows, so the rows returned stay bounded by schools x K.
     candidates = session.execute(
         select(ranked.c.id, ranked.c.university_id, ranked.c.rn).where(ranked.c.rn <= limit)
     ).all()
-    order = {uid: i for i, uid in enumerate(parsed.schools)}
+    order = {uid: i for i, uid in enumerate(schools)}
     candidates.sort(key=lambda r: (r.rn, order[r.university_id]))
     chosen = [r.id for r in candidates[:limit]]
     # A name two rows share (a CRICOS row and an empty one, "墨尔本大学") is only missing when
     # neither row matched.
     matched_names = {index.names[r.university_id] for r in candidates}
     result.missing_schools = [
-        u for u in parsed.schools
+        u for u in schools
         if u not in {r.university_id for r in candidates} and index.names[u] not in matched_names
     ]
     if not chosen:
@@ -314,17 +409,25 @@ def refusal(session: Session, found: Retrieval) -> tuple[str, str]:
     return "no_citable_source", "找到了相关项目，但它没有可引用的官方来源链接，所以我不能回答它的要求。已记录为待补来源。"
 
 
-def gate(session: Session, query: str) -> dict:
-    """Run retrieval and the gate. Returns the state update for the graph."""
-    found = search_requirements(session, query)
+def gate(session: Session, query: str, ranking: str | None = None) -> dict:
+    """Run retrieval and the gate. Returns the state update for the graph.
+
+    `ranking` defaults to ``ADVISOR_RETRIEVAL``; the question is embedded only when the ranking uses
+    vectors and a key is configured (otherwise nothing is sent anywhere)."""
+    ranking = ranking or settings.advisor_retrieval
+    vector = embeddings.embed_query(query) if ranking in ("vector", "hybrid") else None
+    found = search_requirements(session, query, ranking=ranking, query_vector=vector)
     strong = [h for h in found.hits if _citable(h.source)]
     signals = {
         "schools": found.schools,
         "fields": found.fields,
+        "countries": found.countries,
         "hits": len(found.hits),
         "citable": len(strong),
         "missing_schools": found.missing_schools,
         "subject_fallback": found.subject_fallback,
+        "ranking": found.ranking,
+        "fts_terms": found.fts_terms,
     }
     if not strong:
         reason, text = refusal(session, found)

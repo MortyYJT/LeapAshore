@@ -68,7 +68,7 @@ def test_a_subject_alone_is_refused_as_no_school(monkeypatch):
     """Asking about an uncollected school must not borrow another school's requirements: a subject
     with no school named returns no rows and is refused."""
     found = evidence.Retrieval(schools=[], fields=["计算机与数据"], hits=[])
-    monkeypatch.setattr(evidence, "search_requirements", lambda session, query: found)
+    monkeypatch.setattr(evidence, "search_requirements", lambda session, query, **kwargs: found)
     monkeypatch.setattr(evidence, "_catalogue_counts", lambda session: (2, 10, ["甲大学", "乙大学"]))
     update = evidence.gate(session=None, query="MIT 的计算机硕士要什么条件？")
     assert update["evidence_strong"] is False
