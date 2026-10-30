@@ -1,7 +1,7 @@
 # document-library Specification
 
 ## Purpose
-TBD - created by archiving change stage-2-m3-document-library. Update Purpose after archive.
+The applicant's material library: ownership, immutable versions, upload size and type checks, de-duplicated storage outside the database, archiving and review states, and safe reading and download.
 ## Requirements
 ### Requirement: A document belongs to exactly one subject
 

@@ -2,6 +2,12 @@
 
 只记当前仍然有效、跨 change 的决定。被推翻或已经做完的条目直接删掉，历史在 git 里。属于某个 OpenSpec change 的决定写进那个 change。产品需求以 `docs/product/PRD.md` 为准，两边冲突时以 PRD 为准。
 
+## 2026-10-31 文档精简，工程文档改英文，不用钩子
+
+- **决定**：`docs/` 里的文档一律英文（含 PRD）；`note/`（handoff、decisions、design、product）保持中文。`TASKS.md` 已完成的条目压成一行，测量和注释挪到 `docs/measurements.md`；部署步骤从 handoff 挪到 `docs/deploy.md`；handoff 只写当前状态。全部完成的 OpenSpec 变更要归档（规则合并进 `openspec/specs/`）。删掉过时的 `docs/verification/`。不再用 Claude Code 钩子（#71）。
+- **谁定的**：MortyYJT（2026-10-30、10-31）。
+- **理由**：全局规则要求工程文档用英文；handoff 和 TASKS.md 太长，每次会话读起来浪费上下文；没归档的变更让现行规格只剩 5 份，跟不上代码。
+
 ## 2026-10-30 规则收成一份 `CLAUDE.md`，任务清单为 `TASKS.md`
 
 - **决定**：删掉 `AGENTS.md`、`CONTRIBUTING.md`、`docs/engineering/agent-guidelines.md`、Codex 技能和 PR 模板，只留 `CLAUDE.md`。开发、合并 PR 和部署都由 Claude 做；只有大改动先写 OpenSpec；逻辑改动 TDD；合并前跑 `make verify`，再由新上下文子代理审查。guard hook 只拦两项：写密钥文件、推送到 main；不再拦强推、`reset --hard`、`rm -rf`。仍不装 `verify.sh`，因为 `make verify` 要起数据库、跑截图，挂在每个回合结束时跑太慢。

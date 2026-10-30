@@ -1,5 +1,8 @@
-## ADDED Requirements
+# advisor-limits Specification
 
+## Purpose
+Abuse and cost limits on the advisor: sliding-window rate limits per subject and per IP, daily token caps per subject, IP and site, failing closed when the limit store is unreachable, and an output cap on every model call.
+## Requirements
 ### Requirement: Advisor chats are rate limited by subject and by IP
 
 `POST /api/advisor/chat` SHALL be refused with 429 when the subject or the client IP has used up any
@@ -47,3 +50,9 @@ The advisor SHALL return 503 and call no model when the limit store cannot be re
 ### Requirement: Every model call has an output limit
 
 Every chat model request SHALL carry `max_tokens` in its body.
+
+#### Scenario: The cap is in the request body
+
+- **WHEN** the advisor builds a chat model request without an explicit limit
+- **THEN** the request body carries `max_tokens` set to `CHAT_MAX_TOKENS`, not `max_completion_tokens`
+
