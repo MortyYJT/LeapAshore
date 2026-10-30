@@ -3,10 +3,11 @@
     python -m evals.run_advisor [--split tune|heldout|all] [--retrieval rules|fts|vector|hybrid]
                                 [--details] [--intent] [--out FILE] [--check]
 
-``--retrieval`` picks the ranking inside the named schools (openspec hybrid-retrieval D7); without it
-the production setting ``ADVISOR_RETRIEVAL`` is scored. A ranking that needs vectors is refused unless
-the question embeds and every program it could return has a vector for the configured model, so a
-missing key or an unfinished backfill cannot pass for a vector result.
+``--retrieval`` picks the ranking inside the named schools (openspec hybrid-retrieval D7). A ranking
+asked for by name that needs vectors is refused unless the key is set, every program has a vector for
+the configured model and every question embeds, so a missing key or an unfinished backfill cannot pass
+for a vector result. Without the flag, the production setting ``ADVISOR_RETRIEVAL`` is scored exactly as
+production runs it, fallback to full text included; the summary's ``ranking`` lists what was used.
 
 The retrieval part calls ``app.agent.evidence.gate`` exactly as the graph does and needs no model, so
 CI runs it (``--split tune --check``). ``--intent`` calls the production classifier against the chat
@@ -175,14 +176,17 @@ def check_vectors(session, ranking: str) -> None:
 def score_retrieval(questions: list[dict], details: bool, ranking: str | None = None) -> dict:
     from app.config import settings
 
+    strict = ranking is not None
     ranking = ranking or settings.advisor_retrieval
     k = top_k()
     counter = QueryCounter()
     counter.hook()
     per_question = []
+    used_rankings: set[str] = set()
     with SessionLocal() as session:
         relevant = validate_labels(session, questions)
-        check_vectors(session, ranking)
+        if strict:
+            check_vectors(session, ranking)
     for q in questions:
         if q["intent"] != REQUIREMENT_INTENT:
             continue
@@ -194,7 +198,9 @@ def score_retrieval(questions: list[dict], details: bool, ranking: str | None = 
             elapsed = time.perf_counter() - started
             counter.active = False
         used = update["trace"]["gate_signals"].get("ranking")
-        if q["schools"] and update["trace"]["gate_signals"]["schools"] and used != ranking:
+        if update["trace"]["gate_signals"]["schools"]:
+            used_rankings.add(used)
+        if strict and update["trace"]["gate_signals"]["schools"] and used != ranking:
             raise SystemExit(f"{q['id']}: asked for ranking {ranking!r}, the gate used {used!r} "
                              "(the question did not embed)")
         returned = [c["programId"] for c in update.get("citations", [])]
@@ -219,7 +225,7 @@ def score_retrieval(questions: list[dict], details: bool, ranking: str | None = 
         return round(sum(values) / len(values), 4) if values else None
 
     summary = {
-        "ranking": ranking,
+        "ranking": ranking if strict else f"{ranking} (used: {', '.join(sorted(used_rankings)) or 'none'})",
         "k": k,
         "questions": len(per_question),
         "answerable": len(answerable),
