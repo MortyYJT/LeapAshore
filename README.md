@@ -94,7 +94,7 @@ Code: [api/app/agent/](api/app/agent/). Design choices:
 | Decision | Why |
 | --- | --- |
 | **Route on the state a message wants to change**, not on keywords | An application changes in five ways (plan, verify a requirement, add background, operate on the portfolio, general questions), so routing on the state touched is exhaustive and explainable |
-| **Evidence gate before generation** | A requirement answer needs a recognised school, a program that states a requirement, an https source with a title, and a matching subject when one is named. Otherwise the agent refuses, says what the library does hold, and records a knowledge gap. Sources no person has verified are shown with an "unverified" label and their link |
+| **Evidence gate before generation** | A requirement answer needs a recognised school, a program that states a requirement, an https source with a title, and a matching subject when one is named. Otherwise the agent refuses, says what the library does hold, and records a knowledge gap. Every cited source is linked so the applicant can check the official page |
 | **Two write levels** | Profile updates are idempotent and run at once. Portfolio changes can overwrite the applicant's choices, so the tool calls `interrupt()` and writes only after a confirm click resumes the graph |
 | **Step cap, not a token cap** | One step is one model call: countable and explainable. A token cap that misfires cuts the chain after the model has already decided to call a tool |
 | **Identity from the run config, never from the model** | Tools read the applicant's id from the config, so no prompt can make the agent read or write another applicant's rows |
