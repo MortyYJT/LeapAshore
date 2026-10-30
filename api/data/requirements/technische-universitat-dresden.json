@@ -1,0 +1,481 @@
+{
+ "school_key": "technische-universitat-dresden",
+ "school_name_en": "Technische Universität Dresden",
+ "country": "Germany",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-30",
+ "listing_urls": [
+  "https://tu-dresden.de/ing/studium/studienangebot?set_language=en",
+  "https://tu-dresden.de/bu/studium/studienangebot?set_language=en",
+  "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_start?set_language=en"
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=105",
+  "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=85",
+  "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=267",
+  "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=289",
+  "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=12698",
+  "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=269",
+  "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=10160",
+  "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=3",
+  "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=1",
+  "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=279",
+  "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=317",
+  "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=1898",
+  "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=1893",
+  "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=1895",
+  "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=95",
+  "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=24362",
+  "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=1978",
+  "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=1985",
+  "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=25",
+  "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=1983",
+  "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=331",
+  "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=35",
+  "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=30098",
+  "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=24404",
+  "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=24400",
+  "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=337",
+  "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=24395",
+  "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=37",
+  "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=121"
+ ],
+ "blocked": [
+  {
+   "url": "https://tu-dresden.de/studium/vor-dem-studium/uni-testen/master-tag/studiengaenge_suche_virtuell",
+   "reason": "redirects to Shibboleth login (robots.txt disallows)"
+  }
+ ],
+ "notes": "SINS course finder is JavaScript-only and timed out when rendered, so programs were found via school-level listings (School of Engineering Sciences, School of Civil and Environmental Engineering) and URL search; capped at 18 English/bilingual master's. SINS pages give application periods without a year, so no deadlines; English levels stated only as CEFR are in prerequisites.",
+ "programs": [
+  {
+   "name": "Computer Science (M.Sc.)",
+   "url": "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?autoid=73&set_language=en",
+   "snapshot_sha256": "7578fb1a8f9e9ae89bb4db9bd99b73b8847a916baab413a29bb05d62add365a8",
+   "fields": {
+    "academic": {
+     "text": "First professionally qualifying degree in computer science, plus aptitude assessment",
+     "quote": "The prerequisite for admission to the course is a first professionally qualifying university degree recognized in Germany or a degree from a state or state-recognized vocational academy in computer science.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English at CEFR C1",
+      "quote": "In addition, English language skills at level C 1 of the Common European Framework of Reference for Languages are required.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Computational Modeling and Simulation (M.Sc.)",
+   "url": "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=29461",
+   "snapshot_sha256": "97d0165f4f0747b144477175cd06138494061198e3d2aba9e1b9745af4729182",
+   "fields": {
+    "academic": {
+     "text": "First degree in IT, mathematics, natural sciences, economics or engineering",
+     "quote": "The prerequisite for admission is a first higher education degree that has been recognized in Germany and that qualifies the student for entry into a profession; or a degree from a state or state-approved university of cooperative education in information technology, mathematics, natural sciences, economics or engineering.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English at CEFR B2 and special expertise in computer modelling",
+      "quote": "In addition, English language skills at B2 level of the European Framework of Reference for Languages as well as special expertise in computer modelling are required.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Nanoelectronic Systems (M.Sc.)",
+   "url": "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=1858",
+   "snapshot_sha256": "44b34be0fcfde095de6fe1b2d05c46b7cf1ca011b9fbbef5d0a642d1563f9139",
+   "fields": {
+    "academic": {
+     "text": "First degree in electrical engineering, information systems engineering, computer science, physics or equivalent",
+     "quote": "• First university degree qualifying for a profession in one of the fields of electrical engineering, information systems engineering, computer science, physics or in equivalent fields,",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English at CEFR B2",
+      "quote": "• Proficiency in English at B 2 level of the Common European Framework of Reference for Language,",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Transportation Economics and Data Science (M.Sc.)",
+   "url": "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=31374",
+   "snapshot_sha256": "725f78bae3da9d4b624a808a5cc966950520390f17f3d18e794ca2aee9b40b7c",
+   "fields": {
+    "academic": {
+     "text": "First degree in economics, transportation economics, STEM or another strongly quantitative field",
+     "quote": "The prerequisite for admission to the program is a first university degree recognized in Germany that qualifies you for a specific profession, or a degree from a state or state-recognized university of cooperative education in the field of economics, transportation economics, or from the STEM field (mathematics, information technology, natural sciences and technology) or a degree in another course of study with a strong quantitative orientation in terms of content.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Knowledge of economics, business management and quantitative methods",
+      "quote": "In addition, special knowledge in the fields of economics, business management, and quantitative methods (mathematics, statistics, econometrics, operations research, programing, data analytics) is required.",
+      "check": "ok"
+     },
+     {
+      "text": "English at CEFR B2",
+      "quote": "Furthermore, knowledge of English at B2 level of the Common European Framework of Reference for Language is a prerequisite.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Public and International Economics (M.Sc.)",
+   "url": "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=113",
+   "snapshot_sha256": "99bafc4b0f62b0568c10d956c8cb857f27c7915610fb798cee468d3b7903a446",
+   "fields": {
+    "academic": {
+     "text": "First degree in economics or a related field",
+     "quote": "• Owning a first university degree in Economics or a related field of study recognized in Germany or a degree from a state or state-recognized university of cooperative education in economics,",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English at CEFR B2",
+      "quote": "• Proficiency in English according to the level B2 of the Common European Framework of Reference for Languages,",
+      "check": "ok"
+     },
+     {
+      "text": "35 ECTS in economics with a good average grade",
+      "quote": "35 credit points (ECTS) earned in economics with a good average grade and",
+      "check": "ok"
+     },
+     {
+      "text": "15 ECTS in quantitative methods",
+      "quote": "15 credit points (ECTS) earned in quantitative methods (Mathematics, Statistics, Econometrics, e.g.).",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Management (M.Sc., IHI Zittau)",
+   "url": "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=11682",
+   "snapshot_sha256": "3f9a662dda32e50946909b249a910ae94fd8326243cc50059b70921343c14933",
+   "fields": {
+    "academic": {
+     "text": "First degree in economics or with an economics focus (at least 60 credit points)",
+     "quote": "In order to be accepted into the program, you must have obtained a first university degree that qualifies for a profession; or a degree from a state or state-recognised university of cooperative education in the field of economics or in a field of study with a focus on economics (at least 60 credit points).",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English at CEFR B2 (TOEFL or IELTS certificate)",
+      "quote": "Proficiency of English at the B2 level according to the Common European Framework of Reference for Languages is required.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Air Transport and Logistics (M.Sc.)",
+   "url": "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=29417",
+   "snapshot_sha256": "01600d47821b36a24ba798ae18bd8ab8867c18b2bd0442524bd06516d6ffb307",
+   "fields": {
+    "academic": {
+     "text": "First degree in engineering, natural sciences, transport economics or comparable",
+     "quote": "To be admitted to the degree program, applicants must have completed a first degree in engineering (civil engineering, economics and engineering, transport engineering, mechanical engineering, electrical engineering or computer science), in the natural sciences (physics, mathematics, geography or geodesy), in transport economics, or another degree guaranteeing comparable prior knowledge at a university or vocational academy that is officially recognized in Germany and qualifies the degree holder for a profession.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Knowledge of mathematics, physics, technical mechanics and computer science; English at CEFR B2",
+      "quote": "Furthermore, special knowledge is required in mathematics, physics, technical mechanics and computer science as well as proficiency in English at B2 level of the Common European Framework of Reference for Languages.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Mathematics in Business and Economics (M.Sc.)",
+   "url": "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=5335",
+   "snapshot_sha256": "827381e11a1a093a4dd94915f2ed94fd403b40700a286211500a08cd21298d78",
+   "fields": {
+    "academic": {
+     "text": "First degree in mathematics or a closely related program",
+     "quote": "• Candidates must have completed a first vocational university degree recognized in Germany or a qualification from an officially recognized vocational academy in the field of mathematics or a closely related program of study, in particular in mathematics in business and economics or technomathematics. An Admissions Committee will be set up to decide on questions of doubt regarding the assessment of study programs.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 5.5,
+     "quote": "Proof must be provided in the form of a certificate for general university entrance qualification, a certificate for subject-specific university entrance qualification comprising English as a foreign language, a certificate for university entrance qualification from a program completed in English, a certificate of a university degree program completed in English or the result of an internationally recognized language test, e.g. TOEFL (72), IELTS (5.5), UNIcert II.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 72,
+     "quote": "Proof must be provided in the form of a certificate for general university entrance qualification, a certificate for subject-specific university entrance qualification comprising English as a foreign language, a certificate for university entrance qualification from a program completed in English, a certificate of a university degree program completed in English or the result of an internationally recognized language test, e.g. TOEFL (72), IELTS (5.5), UNIcert II.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Ecosystem Services (M.Sc., IHI Zittau)",
+   "url": "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=28273",
+   "snapshot_sha256": "56cd042883235f5fc05d6b86b1f37bed4c548953a9a248e0eeeca1485feb0c5a",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's in life sciences, environmental science, geosciences, forestry, or economics/social sciences with related specialization",
+     "quote": "• Bachelor's degree in subjects or related fields of life sciences, environmental science, geosciences and forestry, or economics and social sciences with a related specialization",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "• Knowledge of English at level B2 of the Common European Framework of Reference for Languages (CEFR), proven by an independent language certificate like IELTS (6.0) or TOEFL (IBT 80); Further information can be found on the IHI Zittau website",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "• Knowledge of English at level B2 of the Common European Framework of Reference for Languages (CEFR), proven by an independent language certificate like IELTS (6.0) or TOEFL (IBT 80); Further information can be found on the IHI Zittau website",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Joint Studies in Intellectual Property and Data Law (LL.M., Erasmus Mundus)",
+   "url": "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=34650",
+   "snapshot_sha256": "3b39c5413edb9d0a355fbbd1fd44a68ca52738c19698b38dc359deae697858cb",
+   "fields": {
+    "academic": {
+     "text": "First degree in law of at least 240 ECTS",
+     "quote": "1. Completion of a first degree in law that qualifies the degree holder for a profession to the value of at least 240 ECTS (four years of study). The degree must be recognized in all of the participating partner countries: Estonia, France, Germany, Spain and the United Kingdom (e.g. a three-year Bachelor’s program + a first Master’s degree, or a four-year Bachelor’s program).",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English at CEFR C1 (B2+ in exceptional cases)",
+      "quote": "For degrees delivered in English, applicants require proficiency in English at the C1 level of the Common European Framework of Reference for Languages (B2+ level is accepted in exceptional cases).",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International Studies in Intellectual Property Law and Data Law (LL.M.)",
+   "url": "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=75",
+   "snapshot_sha256": "38a10f36310210911b7526cc0815e9a1803b0a6f532cca0ab49d812094bb23a4",
+   "fields": {
+    "academic": {
+     "text": "First degree in law, or sufficient knowledge of law after a non-law degree",
+     "quote": "1. have obtained a first university degree recognized in Germany or a degree from a state or state-recognized university of cooperative education in law or can prove sufficient knowledge of law within the framework of special aptitude upon completion of a non-law university degree,",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Relevant professional activity, usually one year",
+      "quote": "2. demonstrate relevant professional activity, which usually has lasted for one year,",
+      "check": "ok"
+     },
+     {
+      "text": "English at CEFR B2+",
+      "quote": "3. demonstrate proficient command of the English language at the advanced level B2 (B2+) of the Common European Framework of Reference for Languages, and",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Hydro Science and Engineering (M.Sc.)",
+   "url": "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=71",
+   "snapshot_sha256": "58bb6e1ca057d92dc5b41e5a939eab0283ef683b83775d776b065461a8e4d3c9",
+   "fields": {
+    "academic": {
+     "text": "First degree in a science or engineering field",
+     "quote": "• a first university degree in a science or engineering degree (e.g. in Hydrology, Meteorology, Geography, Geology, Chemistry, Biology, Water management, Construction engineering, Waste management and contaminated sites, Landscape architecture, Forestry and agricultural engineering, Environmental engineering or related study courses),",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English at CEFR C1",
+      "quote": "• English language skills at the C1 level according to the Common European Framework of Reference for Languages (evidenced by a language certificate like TOEFL, IELTS, UNIcert®)",
+      "check": "ok"
+     },
+     {
+      "text": "Basic mathematics and natural sciences, tested in an aptitude test",
+      "quote": "• proof of basic knowledge of Mathematics and the Natural sciences to be tested in an aptitude test",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "ACCESS - Advanced Computational and Civil Engineering Structural Studies (M.Sc.)",
+   "url": "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=27",
+   "snapshot_sha256": "277fb2246d2de3850e4a1a6e1e4c3c024f9663819125aa97524be217cec6f969",
+   "fields": {
+    "academic": {
+     "text": "Degree in engineering sciences (preferably civil engineering)",
+     "quote": "• a university degree in the field of engineering sciences (preferably in Civil engineering),",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "• English proficiency IELTS level 6.0 or TOEFL ibt 79 points (New: 4.5 Points),",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "• English proficiency IELTS level 6.0 or TOEFL ibt 79 points (New: 4.5 Points),",
+     "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Mathematics and mechanics marks in the upper third of the grading scale",
+      "quote": "• proof of good knowledge in mathematics and mechanics. \"Good\" means that the marks in these field must be in the upper third of the respective grading scale.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Mobility Systems (M.Sc.)",
+   "url": "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=35310",
+   "snapshot_sha256": "2ef1146b0fa1310df3cc9c1afea3ba9650650276a27a95546779cdd009c23a68",
+   "fields": {
+    "academic": {
+     "text": "First degree related to transportation science, civil/environmental/industrial engineering, or comparable",
+     "quote": "• The prerequisite for admission to the program is a first university degree recognized in Germany that qualifies the holder for professional practice, or a degree from a state or state-recognized vocational academy in a field related to transportation science, in particular the fields of transportation engineering, transportation economics, or mobility and transportation systems, or a degree in civil engineering, environmental engineering, or industrial engineering, or another university degree with comparable prior knowledge.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "quote": "• English language skills at level C1 of the Common European Framework of Reference for Languages (CEFR) are required. Proof of this must be provided in the form of certificates or language certificates. These may include, in particular, a certificate of a university degree completed entirely in English or a language certificate such as TOEFL iBT (minimum 95 points) or IELTS (7.0).",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 95,
+     "quote": "• English language skills at level C1 of the Common European Framework of Reference for Languages (CEFR) are required. Proof of this must be provided in the form of certificates or language certificates. These may include, in particular, a certificate of a university degree completed entirely in English or a language certificate such as TOEFL iBT (minimum 95 points) or IELTS (7.0).",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Non-EU/EEA degree holders: GRE quantitative at least 162 and verbal at least 151",
+      "quote": "• Applicants who do not hold a university degree from a university in the European Union or the European Economic Area must also provide proof of a Graduate Record Examination (GRE) score of at least 162 points in quantitative reasoning and at least 151 points in verbal reasoning. The certificate must not be more than five years old. The deadline is the last possible day for application.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Water Security and Global Change (M.Sc., joint degree)",
+   "url": "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=34353",
+   "snapshot_sha256": "4ca8d1feea6c3e2bcc649b15c0cb548a7e025fc3baa7b510d35d3cadab10eee6",
+   "fields": {
+    "academic": {
+     "text": "First degree in engineering, environmental sciences or a comparable field",
+     "quote": "To be admitted to the degree program, candidates must have completed a first accredited vocational university degree in engineering or environmental sciences that is officially recognized in Germany or a qualification from a state vocational academy or an officially recognized vocational academy in engineering, or environmental sciences or a comparable specialist field.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "Knowledge of English at the B2 level of the Common European Framework of Reference for Language is a prerequisite. Proof thereof is a relevant examination certificate or language certificate. In particular, this can be a certificate of a university degree completed entirely in English or a language certificate such as TOEFL (at least 79) or IELTS (at least 6.0).",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "Knowledge of English at the B2 level of the Common European Framework of Reference for Language is a prerequisite. Proof thereof is a relevant examination certificate or language certificate. In particular, this can be a certificate of a university degree completed entirely in English or a language certificate such as TOEFL (at least 79) or IELTS (at least 6.0).",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Tropical Forestry (M.Sc.)",
+   "url": "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=107",
+   "snapshot_sha256": "73288a9ad119298ac3e6c9620b06fe8536d742ad885c1d13088e07563975fc2f",
+   "fields": {
+    "academic": {
+     "text": "Degree in forest sciences or a similar subject",
+     "quote": "• Completed university degree program in the area of forest sciences or a similar subject (e.g. agriculture, horticulture, landscape architecture and regional planning, geography, water management, biology)",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "• Knowledge of English (TOEFL ibt 4.5 or IELTS 6.0)",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "TOEFL iBT 4.5 (1-6 band scale)",
+      "quote": "• Knowledge of English (TOEFL ibt 4.5 or IELTS 6.0)",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Organismic and Molecular Biodiversity (M.Sc., IHI Zittau)",
+   "url": "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=31342",
+   "snapshot_sha256": "b8035c5f76d750f9e47bd8767c5de33f19f37418e691d0eca037d48706046ac5",
+   "fields": {
+    "academic": {
+     "text": "First degree in biology or a closely related field",
+     "quote": "To be admitted onto the degree program, candidates must have completed a first recognized vocational university degree acquired in Germany or a qualification from an officially recognized vocational academy in the field of biology or a closely related program of study such as forestry, agricultural ecology, nature conservation and landscape planning, or geoecology.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.0,
+     "quote": "Knowledge of English at level B2 of the Common European Framework of Reference for Languages (CEFR), proven by an independent language certificate like IELTS (6.0) or TOEFL (IBT 80); Further information can be found on the IHI Zittau website",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 80,
+     "quote": "Knowledge of English at level B2 of the Common European Framework of Reference for Languages (CEFR), proven by an independent language certificate like IELTS (6.0) or TOEFL (IBT 80); Further information can be found on the IHI Zittau website",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Biotechnology and Applied Ecology (M.Sc., IHI Zittau)",
+   "url": "https://tu-dresden.de/studium/vor-dem-studium/studienangebot/sins/sins_studiengang?set_language=en&autoid=11648",
+   "snapshot_sha256": "02a3fc4fd08f66e1669029cf8cd503c621af1ee58ac7aa3d84b96ad316419c34",
+   "fields": {
+    "academic": {
+     "text": "First degree in chemistry, life sciences, environmental engineering or related",
+     "quote": "In order to be accepted into the programme, you must have obtained a first university degree that qualifies for a profession; a degree or a qualification in the field of chemistry, life sciences or environmental engineering from a university or state/state-approved university of cooperative education that is recognised in Germany; a degree or qualification with a focus on the life sciences, environment or biology/ecology.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English at CEFR B2",
+      "quote": "Proficiency of English at the B2 level according to the Common European Framework of Reference for Languages is required.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 18,
+  "机器核对": 18,
+  "待人工": 0
+ }
+}
