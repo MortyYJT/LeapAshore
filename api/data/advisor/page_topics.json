@@ -1,0 +1,86 @@
+{
+ "_note": "Questions the catalogue's columns cannot answer but the official pages can (openspec snapshot-rag D6). `terms` are what the applicant writes (folded like school names; Latin terms match as whole words); a question that names a school and one of these, routed to requirements or general Q&A, is answered from the page chunks. `search` are what the chunks are searched for: each is one OR branch of an English full-text query, matched as a phrase (stemmed, stop words skipped), so 'letter of recommendation' finds 'Letters of Recommendation' (a stop word holds its place: 'letter recommendation' would not). A bare word that also means something else on these pages is left out ('recommend' is in 'we recommend IELTS 7.0', 'refer' in 'refer to'). The non-English words are for the pages in French, German, Italian, Spanish and Dutch. `label` words a refusal.",
+ "topics": [
+  {
+   "key": "tuition",
+   "label": "学费",
+   "terms": [
+    "学费",
+    "学杂费",
+    "费用",
+    "多少钱",
+    "tuition",
+    "tuition fee",
+    "tuition fees",
+    "fees",
+    "fee"
+   ],
+   "search": [
+    "tuition",
+    "fee",
+    "course cost",
+    "frais",
+    "droits d'inscription",
+    "Studiengebühren",
+    "Studienbeitrag",
+    "Semesterbeitrag",
+    "tasse universitarie",
+    "contribuzione",
+    "matrícula",
+    "precio",
+    "collegegeld"
+   ]
+  },
+  {
+   "key": "recommendation",
+   "label": "推荐信",
+   "terms": [
+    "推荐信",
+    "推荐人",
+    "推荐函",
+    "recommendation letter",
+    "recommendation letters",
+    "letter of recommendation",
+    "letters of recommendation",
+    "reference letter",
+    "reference letters",
+    "referee",
+    "referees",
+    "references"
+   ],
+   "search": [
+    "letter of recommendation",
+    "recommendation letter",
+    "letter of reference",
+    "reference letter",
+    "referee",
+    "academic reference",
+    "professional reference",
+    "two references",
+    "lettre de recommandation",
+    "Empfehlungsschreiben",
+    "lettera di raccomandazione",
+    "carta de recomendación",
+    "aanbevelingsbrief"
+   ]
+  },
+  {
+   "key": "interview",
+   "label": "面试",
+   "terms": [
+    "面试",
+    "面谈",
+    "interview",
+    "interviews"
+   ],
+   "search": [
+    "interview",
+    "entretien",
+    "Auswahlgespräch",
+    "Vorstellungsgespräch",
+    "colloquio",
+    "entrevista"
+   ]
+  }
+ ]
+}

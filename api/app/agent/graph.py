@@ -2,6 +2,8 @@
 
     START -> classify_intent -+-> retrieve_requirements -> evidence gate -+-> main_agent <-> tools -> END
                               |                                          +-> refuse -> END
+                              +-> retrieve_passages -> passage gate -+-> answer_passages -> END
+                              |                                      +-> refuse -> END
                               +-> main_agent <-> tools -> END
 
 The router decides the exit from the intent, requirement questions take a
@@ -14,7 +16,7 @@ from langchain_core.messages import AIMessage, AnyMessage, HumanMessage, SystemM
 from langgraph.graph import END, START, StateGraph
 from langgraph.prebuilt import ToolNode
 
-from app.agent import evidence, intent
+from app.agent import answer, evidence, intent, passages
 from app.agent.checkpoint import checkpointer
 from app.agent.llm import get_chat_model
 from app.agent.state import AdvisorState
@@ -55,21 +57,56 @@ def _history_text(state: AdvisorState, turns: int = 6) -> str:
 
 
 async def classify_intent(state: AdvisorState) -> dict:
-    result = await intent.classify(_last_user_text(state), _history_text(state))
-    route = intent.INTENT_TO_ROUTE.get(result["intent"], "agent")
+    question = _last_user_text(state)
+    result = await intent.classify(question, _history_text(state))
+    with SessionLocal() as session:
+        # A question about tuition, references or an interview that names a school is answered from the
+        # official pages, whose words can be checked; the catalogue's columns do not hold these
+        # (openspec snapshot-rag D6).
+        topics = passages.route(session, question, result["intent"])
+    route = "passages" if topics else intent.INTENT_TO_ROUTE.get(result["intent"], "agent")
     return {
         "intent": result["intent"],
         "intent_confidence": result["confidence"],
         # Each turn starts clean: last turn's evidence must not leak into this one.
         "evidence": "",
         "citations": [],
+        "passages": [],
+        "page_topics": [t.key for t in topics],
         "steps": 0,
         "trace": {"intent": result["intent"], "confidence": result["confidence"], "route": route},
     }
 
 
 def route_by_intent(state: AdvisorState) -> str:
+    if state.get("page_topics"):
+        return "passages"
     return intent.INTENT_TO_ROUTE.get(state.get("intent", ""), "agent")
+
+
+def retrieve_passages(state: AdvisorState) -> dict:
+    wanted = set(state.get("page_topics") or [])
+    topics = [t for t in passages.detect_topics(_last_user_text(state)) if t.key in wanted]
+    with SessionLocal() as session:
+        return passages.gate(session, _last_user_text(state), topics)
+
+
+async def answer_passages(state: AdvisorState) -> dict:
+    """Answer from the passages, then keep only the sentences whose quotes check out (D8, D9). The reply
+    is sent whole, after the check: an unchecked sentence is never streamed."""
+    found = state.get("passages") or []
+    reply = await answer.generate(_last_user_text(state), found, model=get_chat_model(temperature=0))
+    checked = answer.verify(reply.answer, [p["text"] for p in found])
+    if not checked.kept:
+        text, citations = answer.refusal_after_check(found), []
+    else:
+        text, citations = answer.render(checked, found)
+    return {
+        "messages": [AIMessage(content=text)],
+        "citations": citations,
+        "trace": {"citation_check": checked.summary(), "answered": bool(checked.kept),
+                  **({"answer_error": reply.error} if reply.error else {})},
+    }
 
 
 def retrieve_requirements(state: AdvisorState) -> dict:
@@ -156,13 +193,20 @@ def build_graph(checkpointer=None):
     b.add_node("classify_intent", classify_intent)
     b.add_node("retrieve_requirements", retrieve_requirements)
     b.add_node("refuse", refuse)
+    b.add_node("retrieve_passages", retrieve_passages)
+    b.add_node("answer_passages", answer_passages)
     b.add_node("main_agent", main_agent)
     b.add_node("tools", ToolNode(TOOLS))
 
     b.add_edge(START, "classify_intent")
     b.add_conditional_edges(
-        "classify_intent", route_by_intent, {"requirements": "retrieve_requirements", "agent": "main_agent"}
+        "classify_intent", route_by_intent,
+        {"requirements": "retrieve_requirements", "passages": "retrieve_passages", "agent": "main_agent"},
     )
+    b.add_conditional_edges(
+        "retrieve_passages", evidence_gate, {"strong": "answer_passages", "weak": "refuse"}
+    )
+    b.add_edge("answer_passages", END)
     b.add_conditional_edges(
         "retrieve_requirements", evidence_gate, {"strong": "main_agent", "weak": "refuse"}
     )

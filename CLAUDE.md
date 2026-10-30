@@ -41,6 +41,7 @@
   LangGraph advisor in `api/app/agent/`; requirement collection in `api/app/collect/`.
 - `make install`, `make dev`, `make verify`; `make help` lists the rest.
 - The owner's shell exports `NODE_ENV=development` and `NODE_DEBUG`; unset both before building.
-- Collected requirements: `api/data/requirements/*.json`. Page snapshots: `api/var/snapshots/` (local
-  only, not in git or production).
+- Collected requirements: `api/data/requirements/*.json`. Page snapshots: `api/var/snapshots/` (local,
+  not in git); production keeps its own in the worker's `snapshots` volume. The advisor quotes the cited
+  pages' text from the `snapshot_chunks` table (no paths stored).
 - Deploy steps and known pitfalls: `note/handoff.md`.
