@@ -1,0 +1,141 @@
+{
+ "school_key": "kiang-wu-nursing-college-of-macau",
+ "school_name_en": "Kiang Wu Nursing College Of Macau",
+ "country": "Macau SAR",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-30",
+ "listing_urls": [
+  "https://www2.kwnc.edu.mo/en/standard/master_degree_programmes.html",
+  "https://www2.kwnc.edu.mo/en/standard/Enrollment.html"
+ ],
+ "blocked": [],
+ "complete": true,
+ "remaining_urls": [],
+ "notes": "Four taught master's programmes (all nursing/gerontology, evening study, Chinese/English); requirements taken from each programme page's non-local section. No minimum English score is stated for admission (IELTS 6.5 applies only to the optional La Trobe dual-degree track); MANP's non-local window for the next intake is not yet published.",
+ "programs": [
+  {
+   "name": "Master of Nursing (MN)",
+   "url": "https://www2.kwnc.edu.mo/en/standard/MN_Programme.html",
+   "snapshot_sha256": "91e8b24d9406137014b443e651e594d455353c72f695f51ebbe9ff2ac6cbfa29",
+   "fields": {
+    "academic": {
+     "text": "Nursing undergraduate / bachelor's degree",
+     "quote": "1. Obtained nursing undergraduate / bachelor's degree and",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "At least one year of nursing work experience, or an excellent fresh nursing graduate",
+      "quote": "2. One year or more nursing work experience, or excellent fresh graduates of nursing bachelor's degree.",
+      "check": "ok"
+     },
+     {
+      "text": "Mainland applicants: sat the latest National Postgraduate Entrance Examination and met the national preliminary line",
+      "quote": "3. Students must have participated in the most recent National Postgraduate Entrance Examination. The preliminary examination must meet national requirements.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Non-local applicants, 2027 intake",
+      "date": "2027-03-31",
+      "quote": "21 September 2026 - 31 March 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Applied Gerontology (MAG)",
+   "url": "https://www2.kwnc.edu.mo/en/standard/MAG_programme.html",
+   "snapshot_sha256": "b602fee705e627e818cce3a146d7eb622cba14ce8f0638dc0fa13283f744e568",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree or equivalent; preference for health or social work disciplines",
+     "quote": "A Bachelor's Degree or equivalent qualification recognised by the Academic Committee. Preference will be given to holders of a Bachelor's Degree in a health or social work related discipline (e.g. Medicine, Nursing, Social Work, Physiotherapy, Occupational Therapy, Counselling, etc.).",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Sat the latest National Postgraduate Entrance Examination and met the national preliminary line",
+      "quote": "2. Students must have participated in the most recent National Postgraduate Entrance Examination. The preliminary examination must meet national requirements.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Non-local applicants, 2027 intake",
+      "date": "2027-03-31",
+      "quote": "21 September 2026 - 31 March 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Advanced Nursing Practice (MANP)",
+   "url": "https://www2.kwnc.edu.mo/en/standard/MANP_programme.html",
+   "snapshot_sha256": "1ae2c59973c6b0b3040a66809f1276c7794ce09a2424251f320320e34edfe7c9",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in Nursing",
+     "quote": "1. Obtain a Bachelor's degree in Nursing from a higher education institution; and",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "At least three years of clinical nursing experience",
+      "quote": "2. At least three years of clinical nursing experience;",
+      "check": "ok"
+     },
+     {
+      "text": "Mainland National Graduate Entrance Examination taken and national line met, or a related bachelor's from Macao",
+      "quote": "3. Having taken the Unified National Graduate Entrance Examination in the Mainland and met the national requirements; or having obtained a Bachelor's degree in a related discipline in Macao.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Nursing Management (MNM)",
+   "url": "https://www2.kwnc.edu.mo/en/standard/MNM_Programme.html",
+   "snapshot_sha256": "4f96697979fa56326323541d679f4f1ce33f971ca8d0302d91a9158b1a662ede",
+   "fields": {
+    "academic": {
+     "text": "Undergraduate degree in nursing or a healthcare-related discipline",
+     "quote": "1.Applicants should possess an undergraduate degree in nursing from a recognized institution; or with an undergraduate degree in healthcare related disciplines; and",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Preference for 2 years of healthcare work experience or managerial functions",
+      "quote": "2.Preference for applicants who possess 2 years of work experience in healthcare related organisation/settings or those with managerial functions; and",
+      "check": "ok"
+     },
+     {
+      "text": "Mainland students: National Postgraduate Entrance Examination results meeting the national line",
+      "quote": "3.Required to submit the National Postgraduate Entrance Examination results reaching the required National requirement; （Mainland students）",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Non-local applicants, 2027 intake",
+      "date": "2027-03-31",
+      "quote": "21 September 2026 - 31 March 2027",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 4,
+  "机器核对": 4,
+  "待人工": 0
+ }
+}

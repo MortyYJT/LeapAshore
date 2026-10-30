@@ -1,0 +1,31 @@
+{
+ "school_key": "aalto-university",
+ "school_name_en": "Aalto University",
+ "country": "Finland",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-30",
+ "listing_urls": [
+  "https://www.aalto.fi/en/admission-services/masters-programmes-and-requirements"
+ ],
+ "blocked": [
+  {
+   "url": "https://www.aalto.fi/en/admission-services/masters-programmes-and-requirements",
+   "reason": "HTTP 406 (plain and rendered fetch)"
+  },
+  {
+   "url": "https://www.aalto.fi/en/study-options/computer-science-master-of-science-technology",
+   "reason": "HTTP 406 (plain and rendered fetch)"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.aalto.fi/en/admission-services/masters-programmes-and-requirements"
+ ],
+ "notes": "www.aalto.fi refused both the master's listing and a programme page with HTTP 406 to our User-Agent, rendered or not, so fetching stopped; Studyinfo.fi is a central portal and was not used as a requirement source.",
+ "programs": [],
+ "verification": {
+  "programs": 0,
+  "机器核对": 0,
+  "待人工": 0
+ }
+}

@@ -1,0 +1,29 @@
+{
+ "school_key": "queensland-university-of-technology-qut",
+ "school_name_en": "Queensland University of Technology (QUT)",
+ "country": "Australia",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-30",
+ "listing_urls": [
+  "https://cms.qut.edu.au/__data/assets/pdf_file/0008/1566476/international-quick-gide-2027.pdf"
+ ],
+ "blocked": [
+  {
+   "url": "https://www.qut.edu.au/courses/master-of-data-analytics",
+   "reason": "robots.txt returns HTTP 403 (whole host www.qut.edu.au treated as disallowed)"
+  },
+  {
+   "url": "https://pdf.courses.qut.edu.au/coursepdf/qut_IN01_44995_int_cms.pdf",
+   "reason": "robots.txt disallows (course PDF host)"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [],
+ "notes": "www.qut.edu.au (robots.txt HTTP 403) and pdf.courses.qut.edu.au (robots.txt disallow) refuse us. The official 2027 International Quick Guide on cms.qut.edu.au was fetched (sha256 c4548ee3...), but the snapshot tool stores PDFs without text extraction, so nothing on it can be quoted; no program was recorded.",
+ "programs": [],
+ "verification": {
+  "programs": 0,
+  "机器核对": 0,
+  "待人工": 0
+ }
+}

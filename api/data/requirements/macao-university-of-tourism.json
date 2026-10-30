@@ -1,0 +1,35 @@
+{
+ "school_key": "macao-university-of-tourism",
+ "school_name_en": "Macao University of Tourism",
+ "country": "Macau SAR",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-30",
+ "listing_urls": [
+  "https://www.utm.edu.mo/admission/en/postgraduate_programmes/master-of-science/index.html"
+ ],
+ "blocked": [
+  {
+   "url": "https://www.utm.edu.mo/admission/en/postgraduate_programmes/master-of-science/index.html",
+   "reason": "robots.txt unreadable: SSL CERTIFICATE_VERIFY_FAILED (unable to get local issuer certificate); tool treats as disallow"
+  },
+  {
+   "url": "https://www.ift.edu.mo/",
+   "reason": "same SSL certificate failure on robots.txt"
+  },
+  {
+   "url": "https://www.iftm.edu.mo/",
+   "reason": "same SSL certificate failure on robots.txt"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.utm.edu.mo/admission/en/postgraduate_programmes/master-of-science/index.html"
+ ],
+ "notes": "Every official UTM host fails TLS verification for robots.txt (incomplete certificate chain from our client), so the snapshot tool refuses all pages. No programmes collected; retry once the tool trusts the chain.",
+ "programs": [],
+ "verification": {
+  "programs": 0,
+  "机器核对": 0,
+  "待人工": 0
+ }
+}

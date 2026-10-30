@@ -1,0 +1,33 @@
+{
+ "school_key": "griffith-university",
+ "school_name_en": "Griffith University",
+ "country": "Australia",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-30",
+ "listing_urls": [
+  "https://www.griffith.edu.au/apply/postgraduate-study"
+ ],
+ "blocked": [
+  {
+   "url": "https://www.griffith.edu.au/apply/postgraduate-study",
+   "reason": "robots.txt returns HTTP 403 (whole host www.griffith.edu.au treated as disallowed)"
+  },
+  {
+   "url": "https://degrees.griffith.edu.au/Program/5251/Overview/International",
+   "reason": "robots.txt disallows (program catalogue host)"
+  },
+  {
+   "url": "https://www148.griffith.edu.au/programs-courses/Program/5251/Overview/International",
+   "reason": "redirects to my.griffith.edu.au/programs-courses/, which robots.txt disallows"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [],
+ "notes": "Every official Griffith host that publishes program requirements refuses us: www.griffith.edu.au (robots.txt HTTP 403), degrees.griffith.edu.au and my.griffith.edu.au (robots.txt disallow). No program was recorded.",
+ "programs": [],
+ "verification": {
+  "programs": 0,
+  "机器核对": 0,
+  "待人工": 0
+ }
+}
