@@ -136,7 +136,7 @@ def recollect_due() -> dict:
 
 @app.task(name="maintenance.cleanup")
 def cleanup() -> dict:
-    """The 90-day sweeps (D12; handoff "切到登录模式" step 6).
+    """The 90-day sweeps (D12; docs/deploy.md "Switch to sign-in mode" step 6).
 
     Anonymous subjects are swept only in login mode: with it off every user is anonymous. Advisor
     conversations untouched for 90 days and knowledge-gap reports older than 90 days are swept in both

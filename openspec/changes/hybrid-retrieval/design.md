@@ -91,6 +91,6 @@ PostgreSQL 16 on `postgres:16-alpine`, about 9,700 programs. No SiliconFlow key 
 - **Partial coverage during a backfill** biases `hybrid` towards rows that already have a vector.
   Minutes for the first fill; the beat closes gaps within the hour.
 - **Privacy**: with the key on, question text goes to SiliconFlow. The privacy page must say so when the
-  key is turned on (handoff step).
+  key is turned on (docs/deploy.md, "Turn on vector retrieval").
 - **Image move**: writes between the final dump and the restore would be lost, so the API, worker and
   beat are stopped first. Rollback after accepting writes on the new volume loses those writes.

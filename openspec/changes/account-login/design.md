@@ -159,7 +159,7 @@ console. A send failure answers 502 and the code still counts toward the limits.
 - PostgreSQL-based rate limits cost a few queries per send; acceptable at this volume, and Redis replaces the
   advisor limits in the next item. → Counting is indexed on `(email, created_at)` and `(ip, created_at)`.
 - A 6-digit code is guessable in principle. → One live code per email, 5 guesses, 10 codes a day.
-- Mail can land in spam until SPF/DKIM/DMARC pass. → The DNS steps are in `note/handoff.md`.
+- Mail can land in spam until SPF/DKIM/DMARC pass. → The DNS steps are in `docs/deploy.md` ("Switch to sign-in mode").
 - The privacy policy is a draft by Claude, not legal advice. → MortyYJT reviews it before login mode is on.
 
 ## Migration Plan
