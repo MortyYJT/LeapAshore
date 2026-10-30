@@ -23,14 +23,14 @@ class Settings(BaseSettings):
     chat_api_key: str = ""
     # Upper bound on model calls in one ReAct loop; counting steps is what stops a tool loop.
     max_agent_steps: int = 6
-    # Output caps per model call (openspec/changes/advisor-limits, D5). Sent as `max_tokens` in the
+    # Output caps per model call (openspec/changes/archive/2026-10-30-advisor-limits, D5). Sent as `max_tokens` in the
     # request body, because DeepSeek ignores the `max_completion_tokens` field LangChain uses.
     chat_max_tokens: int = 1500
     intent_max_tokens: int = 200
     # The requirement extractor (`app.collect.extract`) returns every field with its quote in one call.
     extract_max_tokens: int = 4000
 
-    # --- Advisor limits (openspec/changes/advisor-limits) ---
+    # --- Advisor limits (openspec/changes/archive/2026-10-30-advisor-limits) ---
     # The window store; also the Celery broker once P1 adds the queue. Local compose maps it to 56379.
     redis_url: str = "redis://localhost:56379/0"
     limits_key_prefix: str = "leapashore:"

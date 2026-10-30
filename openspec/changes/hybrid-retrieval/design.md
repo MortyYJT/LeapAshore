@@ -1,6 +1,6 @@
 ## Context
 
-TASKS.md P1 #4. The requirement retrieval of P0 #4 (`openspec/changes/advisor-retrieval`) recognises
+TASKS.md P1 #4. The requirement retrieval of P0 #4 (`openspec/changes/archive/2026-10-30-advisor-retrieval`) recognises
 the named schools and subject in Python, filters in SQL (schools, `Program.field`, the specific-subject
 gate, requirement data, citable source) and orders each school's rows by a regex from
 `data/advisor/subjects.json`. The tune split scores Recall@4 1.0 / Precision@4 0.98, the held-out split

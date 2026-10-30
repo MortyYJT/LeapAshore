@@ -1,7 +1,7 @@
 # collect-queue Specification
 
 ## Purpose
-TBD - created by archiving change collect-queue. Update Purpose after archive.
+The background collection queue: polite per-host fetching, no model call for unchanged pages, a record of requirement changes, a cap on model spend, and the rule that the queue never writes the catalogue or verification state.
 ## Requirements
 ### Requirement: Collection is polite per host
 

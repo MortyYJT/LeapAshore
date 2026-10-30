@@ -1,7 +1,7 @@
 # document-review Specification
 
 ## Purpose
-TBD - created by archiving change stage-2-m3-document-library. Update Purpose after archive.
+Recorded reviews of application materials: each names the version it judged, cites criteria that apply, cannot contradict itself, moves the material's state, and is recorded by a human operator.
 ## Requirements
 ### Requirement: A review names the exact version it judged
 

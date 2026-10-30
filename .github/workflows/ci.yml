@@ -59,7 +59,7 @@ jobs:
           --health-interval 5s
           --health-timeout 5s
           --health-retries 10
-      # The advisor's windows and token caps (openspec/changes/advisor-limits) are Lua scripts over
+      # The advisor's windows and token caps (openspec/changes/archive/2026-10-30-advisor-limits) are Lua scripts over
       # sorted sets; the tests run them against a real Redis, as `compose.yaml` does on 56379.
       redis:
         image: redis:7-alpine

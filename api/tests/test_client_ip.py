@@ -1,4 +1,4 @@
-"""Which address a request is counted against (openspec/changes/advisor-limits, D8)."""
+"""Which address a request is counted against (openspec/changes/archive/2026-10-30-advisor-limits, D8)."""
 
 import pytest
 from starlette.requests import Request

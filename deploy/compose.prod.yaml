@@ -44,7 +44,7 @@ services:
       redis:
         condition: service_healthy
 
-  # Advisor rate limits and daily token counters (openspec/changes/advisor-limits); the P1 Celery
+  # Advisor rate limits and daily token counters (openspec/changes/archive/2026-10-30-advisor-limits); the P1 Celery
   # queue reuses it. Not published: only containers on this network reach it, so no password.
   # noeviction makes a full Redis refuse writes (the advisor then answers 503) instead of silently
   # dropping counters or queued tasks.

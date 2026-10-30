@@ -1,4 +1,4 @@
-"""The address a request is counted against (openspec/changes/advisor-limits, D8).
+"""The address a request is counted against (openspec/changes/archive/2026-10-30-advisor-limits, D8).
 
 `X-Forwarded-For` is whatever the sender wrote, so it is read only when the connection itself comes
 from a listed proxy (`TRUSTED_PROXIES`). Production lists the `caddy` service, whose Caddyfile sets the

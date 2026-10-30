@@ -1,7 +1,7 @@
 # review-criteria Specification
 
 ## Purpose
-TBD - created by archiving change stage-2-m3-document-library. Update Purpose after archive.
+Review criteria for application materials: each cites an official source, has a human-set verification state, and states only what it can be checked against.
 ## Requirements
 ### Requirement: A review criterion must cite an official source
 

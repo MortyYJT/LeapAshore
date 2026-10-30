@@ -1,4 +1,4 @@
-"""Advisor rate limits and token quotas, kept in Redis (openspec/changes/advisor-limits).
+"""Advisor rate limits and token quotas, kept in Redis (openspec/changes/archive/2026-10-30-advisor-limits).
 
 Two kinds of limit, both checked by one Lua script before a turn starts:
 
