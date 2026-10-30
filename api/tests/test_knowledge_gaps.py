@@ -152,12 +152,14 @@ def test_a_long_question_is_cut(recording):
     assert len(reports(gap_id)[0].question) == kg.QUESTION_CHARS
 
 
-def test_without_a_key_no_asker_is_stored_and_askers_are_unknown(recording, monkeypatch):
+def test_without_a_key_the_question_is_not_kept_but_the_gap_counts(recording, monkeypatch):
+    """Without a key a report could not be found again to delete with its subject (review of #67)."""
     monkeypatch.setattr(settings, "knowledge_gap_hash_key", "")
     gap_id = record(str(uuid.uuid4()), schools=[uid()])
-    assert reports(gap_id)[0].reporter_hash is None
+    assert reports(gap_id) == [] and gap(gap_id).report_count == 1
     with SessionLocal() as s:
-        assert kg.show_gap(s, gap_id)["askers"] is None
+        shown = kg.show_gap(s, gap_id)
+    assert (shown["reports"], shown["keptReports"], shown["questions"]) == (1, 0, [])
 
 
 def test_nothing_is_recorded_while_recording_is_off(recording, monkeypatch):
@@ -464,16 +466,24 @@ def test_a_dismissed_gap_keeps_counting(admin, collected):
     assert gap_id in [g["id"] for g in admin.get(ADMIN, params={"status": "dismissed"}).json()["gaps"]]
 
 
-def test_a_failed_send_reopens_the_gap(admin, collected, monkeypatch):
+def test_a_failed_send_leaves_the_gap_and_the_pages_as_they_were(admin, collected, monkeypatch):
     def down(*args, **kwargs):
         raise ConnectionError("broker down")
 
     monkeypatch.setattr(kg, "send_tasks", down)
     gap_id = record(str(uuid.uuid4()), schools=[collected["key"]])
-    response = admin.post(f"{ADMIN}/{gap_id}/review", json={"decision": "recollect"})
+    response = admin.post(f"{ADMIN}/{gap_id}/review", json={"decision": "recollect", "note": "补采"})
     assert response.status_code == 503
     row = gap(gap_id)
-    assert row.status == kg.OPEN and "broker down" in row.review_note
+    assert row.status == kg.OPEN and row.reviewed_at is None and row.reviewed_by is None and row.recollect is None
+    assert "broker down" in row.review_note
+    pages = collected["pages"]
+    for state in (PageState.FAILED, PageState.DEFERRED, PageState.PENDING):
+        assert page_state(pages[state]) == state
+    # With the broker back, the same review queues the same pages.
+    monkeypatch.setattr(kg, "send_tasks", lambda p, d, b, c: collected["sent"].append((sorted(p), d, b, c)))
+    assert admin.post(f"{ADMIN}/{gap_id}/review", json={"decision": "recollect"}).status_code == 200
+    assert collected["sent"][0][0] == sorted(pages[s] for s in (PageState.FAILED, PageState.DEFERRED, PageState.PENDING))
 
 
 def test_the_command_line_lists_and_reviews(recording, collected, capsys):

@@ -66,8 +66,10 @@ cannot be recomputed from an id, so the table alone links a report to nobody. On
 per gap), so a deletion can find a subject's reports with one query; the cost is that the reports of
 one subject can be grouped, which the question text could do anyway.
 
-Without a key configured the reports are stored with `reporter_hash` NULL (no linkage at all; askers
-are then unknown, shown as `null`, not 0) and one warning is logged per process.
+Without a key configured no report is stored at all (a report without a hash could not be found again
+to delete with its subject, so its words would outlive the deletion; review of #67): the gap's count
+still moves, and one warning is logged per process. The list shows `reports` (all time),
+`keptReports` and `askers` (both over the reports still kept).
 
 ### D5. Deletion, merge, retention
 
@@ -101,8 +103,9 @@ For each key: the school's pages that are `pending`, `failed` or `deferred` are 
 discovery task is sent when the school has listing URLs (new program pages are queued by the worker).
 Both run on the day's collection budget (`daily:<date>`), like the beat. No key, or nothing to send:
 409, the gap stays open, so the reviewer can dismiss it instead. Database changes are committed first,
-then the tasks are sent; if sending fails the gap goes back to open with the error in its note and the
-API answers 503 (queued page rows without a task are re-sent by `python -m app.collect.queue resume`).
+then the tasks are sent; if sending fails the review is undone (the pages back to their earlier states,
+the gap's status and review fields as before, the failure added to its note) and the API answers 503,
+so the same review can simply be made again (review of #67).
 
 A reviewed gap keeps collecting reports; the list shows how many arrived since the review, so a gap the
 recollection did not close is visible again without changing its status automatically.

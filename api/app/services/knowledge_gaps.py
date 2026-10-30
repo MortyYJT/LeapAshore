@@ -96,8 +96,12 @@ def record(session: Session, *, route: str, reason: str, question: str, subject:
               "last_seen_at": func.greatest(KnowledgeGap.last_seen_at, statement.excluded.last_seen_at)},
     ).returning(KnowledgeGap.id)
     gap_id = session.execute(statement).scalar_one()
-    session.add(KnowledgeGapReport(id=str(uuid.uuid4()), gap_id=gap_id, reporter_hash=reporter_hash(subject),
-                                   question=(question or "")[:QUESTION_CHARS], created_at=now))
+    hashed = reporter_hash(subject)
+    if hashed is not None or not subject:
+        # Without a key a report could not be found again to delete with its subject, so its words are
+        # not kept at all; the gap's count still moves (D4).
+        session.add(KnowledgeGapReport(id=str(uuid.uuid4()), gap_id=gap_id, reporter_hash=hashed,
+                                       question=(question or "")[:QUESTION_CHARS], created_at=now))
     session.commit()
     return gap_id
 
@@ -161,7 +165,8 @@ def _summaries(session: Session, gaps: list[KnowledgeGap]) -> list[dict]:
         row.gap_id: row for row in session.execute(
             select(KnowledgeGapReport.gap_id,
                    func.count(distinct(KnowledgeGapReport.reporter_hash)).label("askers"),
-                   func.count().filter(KnowledgeGapReport.reporter_hash.is_(None)).label("anonymous"))
+                   func.count().filter(KnowledgeGapReport.reporter_hash.is_(None)).label("anonymous"),
+                   func.count().label("kept"))
             .where(KnowledgeGapReport.gap_id.in_(ids)).group_by(KnowledgeGapReport.gap_id))
     }
     since = {gap_id: 0 for gap_id in ids}
@@ -174,14 +179,15 @@ def _summaries(session: Session, gaps: list[KnowledgeGap]) -> list[dict]:
     out = []
     for g in gaps:
         stat = stats.get(g.id)
-        # Askers are counted from the reports still kept; with any report stored without an asker
-        # (no key configured) the number is unknown, not a smaller one.
+        # Askers are counted from the reports still kept (the last 90 days); a report stored without an
+        # asker makes the number unknown, not a smaller one.
         askers = None if stat is not None and stat.anonymous else (stat.askers if stat is not None else 0)
+        kept = stat.kept if stat is not None else 0
         out.append({
             "id": g.id, "route": g.route, "reason": g.reason,
             "schools": [{"id": u, "name": names.get(u)} for u in g.university_ids],
             "fields": g.fields, "subjectWords": g.subject_words, "topics": g.topics,
-            "reports": g.report_count, "askers": askers,
+            "reports": g.report_count, "keptReports": kept, "askers": askers,
             "firstSeenAt": _iso(g.first_seen_at), "lastSeenAt": _iso(g.last_seen_at),
             "status": g.status, "reviewedAt": _iso(g.reviewed_at), "reviewNote": g.review_note,
             "recollect": g.recollect, "reportsSinceReview": since[g.id],
@@ -281,6 +287,7 @@ def review(session: Session, gap_id: str, decision: str, *, reviewer: str | None
         keys = list(dict.fromkeys(k for uid in gap.university_ids for k in mapped[uid]))
         unmapped = [uid for uid in gap.university_ids if not mapped[uid]]
     plan, page_ids, discover = [], [], []
+    previous: dict[str, str] = {}
     for key in keys:
         pages = list(session.scalars(select(CollectPage).where(
             CollectPage.school_key == key, CollectPage.state.in_(REQUEUE_STATES)).with_for_update()))
@@ -288,6 +295,7 @@ def review(session: Session, gap_id: str, decision: str, *, reviewer: str | None
         if not pages and not listed:
             continue
         for page in pages:
+            previous[page.id] = page.state
             page.state = PageState.QUEUED
             page_ids.append(page.id)
         if listed:
@@ -298,6 +306,7 @@ def review(session: Session, gap_id: str, decision: str, *, reviewer: str | None
         why = "、".join(keys or unmapped) or "（缺口没有对应的学校）"
         raise Refused(409, f"没有可补采的内容：{why} 没有可重排的页面，也没有列表页。可以指定 schoolKeys，或改为 dismiss。")
     budget_key = f"daily:{now.astimezone(BEIJING).date().isoformat()}"
+    before = (gap.status, gap.reviewed_at, gap.reviewed_by, gap.review_note, gap.recollect)
     gap.status, gap.reviewed_at, gap.reviewed_by, gap.review_note = RECOLLECT_QUEUED, now, reviewer, note
     gap.recollect = {"schools": plan, "unmapped": unmapped, "budget": budget_key}
     session.commit()
@@ -305,13 +314,23 @@ def review(session: Session, gap_id: str, decision: str, *, reviewer: str | None
         send_tasks(page_ids, discover, budget_key, settings.collect_daily_budget_cny)
     except Exception as error:  # noqa: BLE001 - the broker is down: the review did not happen
         logger.exception("could not send the re-collection of gap %s", gap_id)
-        gap = session.get(KnowledgeGap, gap_id)
-        gap.status = OPEN
-        gap.review_note = f"{note + '；' if note else ''}任务没发出去（{type(error).__name__}: {str(error)[:200]}）；" \
-                          "已排队的页面可用 python -m app.collect.queue resume 重发"
-        session.commit()
-        raise Refused(503, "补采任务没发出去（采集队列不可用），缺口仍是待审核。") from error
+        _undo(session, gap_id, before, previous, error)
+        raise Refused(503, "补采任务没发出去（采集队列不可用），缺口和页面都没有改动。") from error
     return show_gap(session, gap_id)
+
+
+def _undo(session: Session, gap_id: str, before: tuple, previous: dict[str, str], error: Exception) -> None:
+    """A review whose tasks could not be sent did not happen: the pages and the gap go back to how they
+    were, and the gap's note says why (review of #67)."""
+    session.rollback()
+    for page in session.scalars(select(CollectPage).where(CollectPage.id.in_(previous)).with_for_update()):
+        if page.state == PageState.QUEUED:
+            page.state = previous[page.id]
+    gap = session.get(KnowledgeGap, gap_id, with_for_update=True)
+    gap.status, gap.reviewed_at, gap.reviewed_by, old_note, gap.recollect = before
+    failure = f"补采任务没发出去（{type(error).__name__}: {str(error)[:200]}）"
+    gap.review_note = f"{old_note}；{failure}" if old_note else failure
+    session.commit()
 
 
 __all__ = ["OPEN", "RECOLLECT_QUEUED", "DISMISSED", "STATUSES", "RECOLLECT", "DISMISS", "QUESTION_CHARS", "gap_key",
