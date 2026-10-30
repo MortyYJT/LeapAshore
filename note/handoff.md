@@ -8,21 +8,22 @@
 - **生产数据：** 「有要求」7,374，`机器核对` 4,115，`sources.verified_at` 非空 0，快照 9,345 页、132,208 块；近几次部署前后用户的组合和路线图表整表 md5 不变。beat 第一次重采在 10-31 04:07（北京），在那之前 `collect_pages`、`requirement_changes` 是空的。
 - **本机采集文件：** 282 所、250 所有项目、9,035 个项目；忠实度回填后机器核对 4,162，还有 125 个项目和中国学生要求 2,278 条没判（DeepSeek 余额用完，见「卡在 MortyYJT」第 5 条）。
 - **任务进度（`TASKS.md`）：** P0、P1 做完（卡在 MortyYJT 的除外）；P2 #1 知识缺口（#67）、#3 人工核验入口（#69）已部署，#2 可观测性跳过（没有 Langfuse key）。**下一条：P2 #4「界面收尾」**（`ledger-redesign` 剩 4.4、5.12、7.1、7.2、7.3、7.5）。
-- **已有能力**（细节在对应 OpenSpec change 和 `TASKS.md` 各条「注：」）：邮箱验证码登录（生产没开）、顾问检索与评估（`api/evals/`）、限流与 token 额度（Redis，连不上就 503）、截止日期和学术要求入库、采集队列（Celery + Redis，worker/beat）、对话持久化（PG checkpointer）、混合检索（没有 `EMBED_API_KEY`，实际跑 `fts`）、快照 RAG、概括忠实度判官、同名学校合并、模型不可用降级、知识缺口队列、人工核验入口（只有管理员能用，生产匿名模式下没人能用）。离线工具：抽取 `python -m app.collect.extract`（没部署）。
+- **已有能力**（细节在对应 OpenSpec change 和 `docs/measurements.md`）：邮箱验证码登录（生产没开）、顾问检索与评估（`api/evals/`）、限流与 token 额度（Redis，连不上就 503）、截止日期和学术要求入库、采集队列（Celery + Redis，worker/beat）、对话持久化（PG checkpointer）、混合检索（没有 `EMBED_API_KEY`，实际跑 `fts`）、快照 RAG、概括忠实度判官、同名学校合并、模型不可用降级、知识缺口队列、人工核验入口（只有管理员能用，生产匿名模式下没人能用）。离线工具：抽取 `python -m app.collect.extract`（没部署）。
 - **评估：** 顾问报数组 30 条已在最终代码上跑过，**别再拿它调参**，重跑对比只照实记录；CI 的 `advisor-eval` 只跑调参组。
-- **未归档的 OpenSpec change：** account-login、advisor-limits、advisor-retrieval、hybrid-retrieval、knowledge-gaps、ledger-redesign、requirement-dates、snapshot-rag、source-verification。
+- **未归档的 OpenSpec change：** account-login、hybrid-retrieval、knowledge-gaps、snapshot-rag（各剩 1 项卡在 MortyYJT）、ledger-redesign（P2 #4 进行中）。
 - **仓库整理（10-30）：** 不用 Claude Code 钩子（#71 删了 `guard.sh`）；删了学习用的 `note/interview/`（#72，git 历史里可找回）。`note/design/` 保留：代码注释和 README 把它当设计依据引用。钩子删了以后，「不推 main、不 force push、不碰密钥文件」只靠规则；GitHub 上 main 有分支保护（必须过 `backend`、`web`）。
+- **文档（10-31 精简）：** `docs/` 全是英文：`deploy.md`（部署与运维）、`measurements.md`（各任务的测量、命令和注释，从 `TASKS.md` 挪来）、`product/PRD.md`；`TASKS.md` 每条只留一行；`openspec/specs/` 9 份（#73 归档了 4 个已完成的变更）。`note/` 保持中文。
 - **本机：** `make api-dev-bg` 默认登录模式，验证码写到 `api/var/mail.log`（不发信）；走查要求后端在登录模式，否则直接退出并说明。
 
 ## 卡在 MortyYJT（10-30）
 
-1. **开登录模式**：开通腾讯云 SES、DNSPod 加发信域名记录（SPF/DKIM/DMARC）、建发信地址并把 SMTP 账号密码填进服务器 `deploy/.env`。步骤见「部署 → 切到登录模式」第 1–3 步；之后任何 agent 都能做第 4–7 步。
+1. **开登录模式**：开通腾讯云 SES、DNSPod 加发信域名记录（SPF/DKIM/DMARC）、建发信地址并把 SMTP 账号密码填进服务器 `deploy/.env`。步骤见`docs/deploy.md`「Switch to sign-in mode」第 1–3 步；之后任何 agent 都能做第 4–7 步。
 2. **审核隐私政策** `/privacy`（AI 草稿）正文，补联系方式。
 3. **GitHub 邮箱隐私**：Settings → Emails 勾选「Keep my email addresses private」，否则合并提交会带私人邮箱。
-4. **硅基流动 key（P1 混合检索的向量部分）**：本机 shell、`api/.env`、服务器 `deploy/.env` 都没有硅基流动的 key（10-30 只查了变量名）。MortyYJT 在 cloud.siliconflow.cn 建一个 API key，填进服务器 `deploy/.env` 的 `EMBED_API_KEY=`（本机评估另外 `export EMBED_API_KEY=…`）。之后任何 agent 都能做「部署 → 打开向量检索」的步骤，并补跑报数组的 `vector`、`hybrid` 两组。`BAAI/bge-m3` 在价格页标「免费」（10-30 查）。
-5. **DeepSeek 充值（10-30 起，最急）**：（余额恢复前生产也记不到知识缺口：意图分类先调模型就 402 了。）P1 第六条的回填把 DeepSeek 账户用到 −0.06 元（`/user/balance` 显示 `is_available: false`）。**生产 `deploy/.env` 的 key 和本机 `DEEPSEEK_API_KEY` 是同一个账户**，所以生产顾问（每轮回答都调模型）和 beat 的采集都会 402，直到充值。充值后：生产不用重启（顾问下一轮就恢复；采集队列里因 402 记成 `deferred`、`last_error` 以 `model unavailable: ` 开头的页面照旧到期，第二天 04:07 的 beat 会再挑到，Redis 的暂停标记 1 小时后自动消失）；本机先查余额（「坑」第一条），再 `cd api && python -m app.collect.faithful --apply --budget-cny 5` 补判 125 个项目和中国学生要求 2,278 条（估约 3 元，见 `TASKS.md` P1 第六条的 `注：`），提交改动的采集文件，按「部署 → 导入采集数据」导入生产。看有多少页在等模型：`... exec -T db psql -U offerpilot -d offerpilot -c "select count(*) from collect_pages where last_error like 'model unavailable:%'"`。
+4. **硅基流动 key（P1 混合检索的向量部分）**：本机 shell、`api/.env`、服务器 `deploy/.env` 都没有硅基流动的 key（10-30 只查了变量名）。MortyYJT 在 cloud.siliconflow.cn 建一个 API key，填进服务器 `deploy/.env` 的 `EMBED_API_KEY=`（本机评估另外 `export EMBED_API_KEY=…`）。之后任何 agent 都能做`docs/deploy.md`「Turn on vector retrieval」的步骤，并补跑报数组的 `vector`、`hybrid` 两组。`BAAI/bge-m3` 在价格页标「免费」（10-30 查）。
+5. **DeepSeek 充值（10-30 起，最急）**：（余额恢复前生产也记不到知识缺口：意图分类先调模型就 402 了。）P1 第六条的回填把 DeepSeek 账户用到 −0.06 元（`/user/balance` 显示 `is_available: false`）。**生产 `deploy/.env` 的 key 和本机 `DEEPSEEK_API_KEY` 是同一个账户**，所以生产顾问（每轮回答都调模型）和 beat 的采集都会 402，直到充值。充值后：生产不用重启（顾问下一轮就恢复；采集队列里因 402 记成 `deferred`、`last_error` 以 `model unavailable: ` 开头的页面照旧到期，第二天 04:07 的 beat 会再挑到，Redis 的暂停标记 1 小时后自动消失）；本机先查余额（「坑」里 DeepSeek 余额那条），再 `cd api && python -m app.collect.faithful --apply --budget-cny 5` 补判 125 个项目和中国学生要求 2,278 条（估约 3 元，见 `docs/measurements.md`「Summary faithfulness check」），提交改动的采集文件，按 `docs/deploy.md`「Import collected data」导入生产。看有多少页在等模型：`... exec -T db psql -U offerpilot -d offerpilot -c "select count(*) from collect_pages where last_error like 'model unavailable:%'"`。
 6. **Langfuse Cloud key（P2 第二条「可观测性」，已跳过）**：没有 key，按清单跳过；需要 MortyYJT 提供 Langfuse Cloud key 后再做（public + secret key，填服务器 `deploy/.env`；之后任何 agent 都能接着做这一条）。
-7. **成为管理员（P2 第三条「人工核验入口」）**：要先开登录模式（第 1 条），然后 MortyYJT 用自己的邮箱在网站上登录一次，再由任何 agent 在服务器上跑「部署 → 切到登录模式」第 8 步。之前 `/admin` 对谁都是 404。
+7. **成为管理员（P2 第三条「人工核验入口」）**：要先开登录模式（第 1 条），然后 MortyYJT 用自己的邮箱在网站上登录一次，再由任何 agent 在服务器上跑`docs/deploy.md`「Switch to sign-in mode」第 8 步。之前 `/admin` 对谁都是 404。
 8. **复核 AI 自主决定**（`note/decisions.md` 里标「待 MortyYJT 复核」的各条），主要是：顾问限流默认额度和 Redis 挂了就 503；顾问门槛「只有 CRICOS 课程名不算证据」是否太严、简称表、评估集标签；抽取器多条学术路线只留第一条；README 数据条款措辞和 QS 转载授权；两个手填占位项目要不要删（见下）。
 
 ## 开放问题
@@ -30,7 +31,7 @@
 - 两个手填的 `待核验` 占位项目（`api/app/seed.py`：`cricos-103000K` Monash 人工智能、`cricos-111671D` 悉尼计算机）仍算「有要求」：英语一栏是「需同时满足 Monash 英语要求」这类指引，均分 60/65 是早期手填、没过 `verify`。待 MortyYJT 决定是否删掉这些手填值（删要连 `test_seed.py` 一起改）。
 - 学术要求和截止日期入库后（PR #48），机器核对项目里只剩 4 个界面上看不到任何要求：都只有不带分数的语言说明（Emory 数学、芝加哥 2 个、USC 1 个；芝加哥的雅思只有单项 7.0、没有总分，导入器 `english_text` 只写有总分的）。只有说明文字的语言要求和中国学生要求要不要显示、怎么措辞，还没定。
 
-- 生产顾问用的是 `api.deepseek.com` 的 `deepseek-chat`（服务器 `deploy/.env`），不是 TASKS.md 写的硅基流动 DeepSeek-V4-Flash；隐私政策按生产实际写的 DeepSeek。10-30 跑意图评估时 DeepSeek 返回的模型名是 `deepseek-flash`（价格页已不列 `deepseek-chat`，旧名仍可调用）。本机评估用的是 shell 里的 `DEEPSEEK_API_KEY`：`CHAT_BASE_URL=https://api.deepseek.com CHAT_MODEL=deepseek-chat CHAT_API_KEY="$DEEPSEEK_API_KEY"`。
+- 生产顾问用的是 `api.deepseek.com` 的 `deepseek-chat`（服务器 `deploy/.env`），不是任务清单原来写的硅基流动 DeepSeek-V4-Flash；隐私政策按生产实际写的 DeepSeek。10-30 跑意图评估时 DeepSeek 返回的模型名是 `deepseek-flash`（价格页已不列 `deepseek-chat`，旧名仍可调用）。本机评估用的是 shell 里的 `DEEPSEEK_API_KEY`：`CHAT_BASE_URL=https://api.deepseek.com CHAT_MODEL=deepseek-chat CHAT_API_KEY="$DEEPSEEK_API_KEY"`。
 - **待 MortyYJT 复核（顾问限流）**：默认额度（主体 10 次/分钟、60 次/小时；IP 30 次/分钟、200 次/小时；每天每主体 20 万、每 IP 60 万、全站 200 万 token）；Redis 挂了顾问就 503 是否可接受。改数字只要改服务器 `deploy/.env`（变量名见 `deploy/.env.example`）再重建 api。
 - **待 MortyYJT 复核（顾问检索）**：简称表是否地道；门槛「只有 CRICOS 课程名不算证据」是否太严（本机 31 所学校因此对要求问题全部拒答，如墨尔本、麦考瑞）；评估集标签是 AI 标的。
 
@@ -48,55 +49,10 @@
 
 ## 部署
 
-- **数据库镜像搬到 pgvector（PR #58 起；以后重建库也照这个做）**：别直接在旧卷上换镜像。旧镜像是 Alpine（musl），新镜像是 Debian（glibc），同样叫 `en_US.utf8`，文本排序却不同：本机拿旧数据目录直接起 pgvector，`amcheck` 报 53 个 btree 索引里 7 个顺序错（含 `programs_pkey`、`sources_url_key`），而且 PostgreSQL 启动时一句警告都没有。也别照普通部署直接 `up -d --build`：新卷是空的，api 会在空库上建表、种子，线上就成了空库。顺序：
-  1. 备份：`sudo docker compose -f compose.prod.yaml exec -T db pg_dump -U offerpilot -d offerpilot | gzip > ~/db-backup-<日期>-pre-pgvector.sql.gz`。
-  2. 同步代码（照下面的 `git archive` + `rsync`），但先不要 `up`。
-  3. 停写库的服务：`sudo docker compose -f compose.prod.yaml stop api worker beat`。
-  4. 最终 dump（自定义格式）和摘要：`... exec -T db pg_dump -U offerpilot -d offerpilot -Fc > ~/pgvector-move.dump`；摘要脚本（每张表行数 + 排序后的行 md5 再 md5，和排序规则无关）在 PR #58 的 Run log 里（`openspec/changes/hybrid-retrieval/tasks.md`），`docker cp` 进容器用 `psql -f` 跑，输出存成 `~/digest-old.txt`。
-  5. `sudo docker compose -f compose.prod.yaml up -d db`：换镜像、挂新卷 `pgdata`，按 `POSTGRES_INITDB_ARGS` 初始化（`C` 排序）。等 healthy。
-  6. `... exec -T db pg_restore -U offerpilot -d offerpilot --no-owner --exit-on-error < ~/pgvector-move.dump`，再跑同一个摘要脚本存成 `~/digest-new.txt`，`diff` 必须完全相同；`amcheck` 也跑一次（建扩展、查、删扩展）。
-  7. `sudo docker compose -f compose.prod.yaml up -d --build`：api 启动时 Alembic 到 `e3a9c5d17b42`。然后只读检查。
-  8. 回滚：把 `compose.prod.yaml` 和代码换回上一版（db 用 `postgres:16-alpine`、卷 `db-data`），`up -d --build`。旧卷没被写过，所以回到的是第 3 步停写时的数据；第 7 步之后新库里的写入会丢。新代码不能接旧卷（`CREATE EXTENSION vector` 在 Alpine 镜像里没有）。
-- **打开向量检索**（有了 `EMBED_API_KEY` 之后，任何 agent 都可以做）：
-  1. 服务器 `deploy/.env` 加 `EMBED_API_KEY=…`，`sudo docker compose -f compose.prod.yaml up -d --force-recreate --no-deps api worker beat`。
-  2. 先 `... exec -T api python -m app.agent.embeddings --dry-run` 看要发多少（10-30 本机：9,748 个项目、455,121 个字符），再去掉 `--dry-run` 跑一次；输出里有 `tokens`、`cost_cny`、`seconds`，记进 `TASKS.md`。中途失败（比如 429）再跑一次会接着做。
-  3. **同一次部署里改隐私政策**（`web/app/privacy/page.tsx`）：顾问会把要求类问题的文本发给硅基流动做向量。
-  4. 本机：`export EMBED_API_KEY=…`，`cd api && .venv/bin/python -m app.agent.embeddings`，然后 `python -m evals.run_advisor --split heldout --retrieval vector` 和 `--retrieval hybrid` 各跑一次（报数组每组只跑一次），结果补进 `TASKS.md` 该条。
-  5. 快照块（P1 #5 起）：生产 `... exec -T worker python -m app.agent.embeddings --chunks --dry-run`，再去掉 `--dry-run`（本机 134,843 块、约 4,200 次请求，向量约 550 MB；中途失败再跑会接着做）。本机同样跑一次后，可以给 `evals.run_passages` 加 `--retrieval` 比较 `fts`/`vector`/`hybrid`（现在它按生产设置跑）。
-
-- **快照入库（P1 #5 起；采集文件或快照有大变动时重做）**：生产 `snapshots` 卷原来是空的。做法：
-  1. 本机打包引用到的快照正文和元数据（去掉含本机路径的 `text_path`）：`cd api && .venv/bin/python -m app.collect.chunks bundle --out <临时目录>/snaptext.tgz`（只打包采集文件引用的 `.txt` + `.json`；本机队列另采、文件没收的页不打包，生产的队列会自己采）。
-  2. `scp` 到服务器，`sudo docker cp snaptext.tgz deploy-worker-1:/tmp/`，`... exec -T worker sh -c 'cd /app/var/snapshots && tar xzf /tmp/snaptext.tgz && rm /tmp/snaptext.tgz'`（已有同名文件内容相同，sha256 命名）。
-  3. `... exec -T worker python -m app.collect.chunks ingest`（不加 `--prune`），输出记进 `TASKS.md`。再跑一次应写 0 页。
-  4. 删服务器上的 tgz。回滚：`snapshot_*` 三张表可以整表清空（`TRUNCATE snapshot_pages CASCADE`），代码回滚后顾问不再读它们；表本身按「只加不删」留着。
-
-- 对话持久化（PR #56）的部署只是普通的「备份 → 同步代码 → `up -d --build`」：api 容器启动时 `alembic upgrade head` 建四张 checkpoint 表。部署那一刻正在等确认的对话（还在内存里）会丢最后一次。看对话数：`sudo docker compose -f compose.prod.yaml exec -T db psql -U offerpilot -d offerpilot -c "select count(distinct thread_id) from checkpoints"`（库名、用户以 `deploy/.env` 为准）。手动跑 90 天对话清理：`... exec -T api python -m app.cleanup --conversations-only`（加 `--apply` 才删）。
-
-- 服务器：`ubuntu@43.161.224.82`，SSH 加 `-i ~/.ssh/offerpilot_codex -o IdentitiesOnly=yes`（ssh-agent 里没有这把钥匙）。
-- 部署前先在服务器上用 `pg_dump` 备份生产库到 `~/db-backup-<日期>.sql.gz`。
-- 同步代码：本机 `git archive origin/main` 导出，再 `rsync --delete` 到服务器 `~/offerpilot/`，保留 `deploy/.env`、`deploy/*.bak-*`、`api/var/`。然后在服务器上 `cd ~/offerpilot/deploy && sudo docker compose -f compose.prod.yaml up -d --build`。
-- 导入采集数据（PR #52 起的做法）：快照元数据 tgz 解到 api 容器里一个单独目录（如 `/app/var/importmeta`），用一个临时脚本调 `import_school(session, data, schools, root=<那个目录>/snapshots)` 逐个文件导入（写成文件 `scp` 再 `docker cp` 进去跑，不要从 ssh 的标准输入喂给 `docker compose exec`），**不加 `--prune`**（会删掉 3 个早先导入、没有 CRICOS 代码的 Curtin 项目），导完删 tgz、脚本、解包目录。下面是 PR #48 时的旧做法，供参考。旧做法：把本机快照的元数据 json 临时拷进 api 容器，导完立即删除（里面的 `text_path` 含本机路径，导入器不读它）。做法（PR #48 部署时用的）：本机 `cd api/var && tar czf <tmp>/snapmeta.tgz --exclude='_*' $(cd snapshots && find . -name '*.json' -not -name '_*' | sed 's#^#snapshots/#')`，`scp` 到服务器，`sudo docker cp` 进 `deploy-api-1:/app/var/`，`sudo docker compose -f compose.prod.yaml exec -T api sh -c 'cd /app/var && tar xzf snapmeta.tgz && cd /app && python -m app.collect.importer'`，然后在容器里 `rm -rf /app/var/snapshots /app/var/snapmeta.tgz`、服务器上删 tgz。
-- 改表的部署：api 容器启动时自己跑 `alembic upgrade head`（`api/Dockerfile`），所以备份 → 同步代码 → `up -d --build` 就完成迁移；之后再按上一条导入。
-- 上线后只做只读检查（状态码、页面无报错）。注意匿名模式下 `GET /api/profile` 会建一个匿名主体，检查别打它，或者打完按 id 删掉。完整走查不要对线上跑：它的清理只删本机库的数据。
-- 密钥在服务器 `~/offerpilot/deploy/.env`，不进库。
-- 主域名 `mortyyjt.site` 和 `www` 是个人网站，由本服务器的 Caddy 托管，文件在 `/srv/mortyyjt.site`，由个人网站仓库的 GitHub Actions 上传（钥匙被 rrsync 限制在该目录）。`deploy/Caddyfile` 末尾两段站点配置和 compose 里的 `/srv/mortyyjt.site` 挂载属于个人网站，别删；部署前确认 main 的 Caddyfile 里还有它们，否则个人网站会挂。
-- **切到登录模式**（MortyYJT 配好之后，任何一个 agent 都可以做）：
-  1. MortyYJT：腾讯云控制台开通「邮件推送 SES」（服务器在中国香港地域，SMTP 用 `smtp.qcloudmail.com:465`；如果 SES 开在广州地域则是 `gz-smtp.qcloudmail.com`）。新建发信域名，建议用子域 `mail.mortyyjt.site`（别用主域名，免得和主域名其他邮件记录冲突）。
-  2. MortyYJT：在 DNSPod 给 `mortyyjt.site` 加记录（值以 SES 控制台「发信域名 → 验证」页面显示的为准，DKIM 公钥每个域名不同，只能从控制台复制）：SPF——主机 `mail`、TXT、`v=spf1 include:qcloudmail.com ~all`；DKIM——主机形如 `xxx._domainkey.mail`、TXT、`v=DKIM1; k=rsa; p=…`（控制台给）；DMARC——主机 `_dmarc.mail`、TXT、`v=DMARC1; p=none`；控制台若列了 MX 记录也照抄。等 10 分钟左右，在控制台点「验证」，状态变「验证通过」。
-  3. MortyYJT：SES 控制台新建发信地址 `noreply@mail.mortyyjt.site`，给它设 SMTP 密码（不需要建邮件模板，代码直接发正文）。
-  4. 填服务器 `~/offerpilot/deploy/.env`（模板见 `deploy/.env.example`）：`AUTH_ENABLED=true`、`MAIL_BACKEND=smtp`、`SMTP_HOST`、`SMTP_PORT=465`、`SMTP_USER=noreply@mail.mortyyjt.site`、`SMTP_PASSWORD=…`、`MAIL_FROM=鱼跃彼岸 <noreply@mail.mortyyjt.site>`。
-  5. `sudo docker compose -f compose.prod.yaml up -d --force-recreate --no-deps api`；`docker compose logs api` 里没有 `AUTH_ENABLED=true in production needs a real mail backend` 才算启动成功。用自己的邮箱在网站上登录一次，确认收到信（看一下是不是进了垃圾箱）。
-  6. 加 90 天清理的 cron（`crontab -e`，用服务器本地时间）：`17 3 * * * cd ~/offerpilot/deploy && sudo docker compose -f compose.prod.yaml exec -T api python -m app.cleanup --apply >> ~/cleanup.log 2>&1`。先手动跑一次不带 `--apply` 的看报告。
-  7. 回滚：删掉 `.env` 里的 `AUTH_ENABLED=true` 再重建 api，回到匿名模式；表可以留着。
-  8. 给 MortyYJT 管理员（P2 第三条）：MortyYJT 先在网站上用自己的邮箱登录一次（账号要先存在），然后 `sudo docker compose -f compose.prod.yaml exec -T api python -m app.roles grant <MortyYJT 登录用的邮箱>`，`... python -m app.roles list` 确认。邮箱问 MortyYJT，别写进仓库。之后 `https://leapashore.mortyyjt.site/admin` 才打得开（核验 + 知识缺口审核）。撤销：`python -m app.roles revoke <邮箱>`。
-- 采集队列（PR #50 起）：生产 compose 多了 `worker`（`--pool threads --concurrency 2`）和 `beat`（只能有一个），快照在命名卷 `snapshots`（`/app/var/snapshots`），beat 调度文件在卷 `beat-data`。beat 每天 04:07（北京）重采 30 天没采过的页面（默认每天 200 页、模型费 1 元，`deploy/.env` 里 `COLLECT_*` 可调），03:17 跑 90 天匿名清理（只在 `AUTH_ENABLED=true` 时删，所以「切到登录模式」第 6 步的 cron 不用加了）。看进度：`sudo docker compose -f compose.prod.yaml exec -T worker python -m app.collect.queue status --budget daily:$(TZ=Asia/Shanghai date +%F)`。要把生产发现的变化入库：容器里 `python -m app.collect.queue export --out /app/var/snapshots/_export`，`docker cp` 出来对比仓库里的文件，审阅、提交、按上面的导入步骤导入。生产镜像没 Chrome，要渲染的页面在生产记 `deferred`。
-- compose 里有 `redis` 服务（顾问限流，P1 Celery 复用），数据卷 `redis-data`；api 依赖它健康才启动。Caddyfile 改了的部署，`up -d --build` 之后还要单独 `up -d --force-recreate --no-deps caddy`（见下一条）。看今天的用量：`sudo docker compose -f compose.prod.yaml exec redis redis-cli --scan --pattern 'leapashore:tokens:site:*'` 再 `GET` 对应键。
-- 只改 Caddy 配置时，只重启 caddy：`sudo docker compose -f compose.prod.yaml up -d --force-recreate --no-deps caddy`（不加 `--force-recreate` 时，只改 Caddyfile 内容 compose 不会重建容器，rsync 换掉的新文件也不会进到旧容器的单文件挂载里）。
+部署步骤、导入、快照入库、换库、打开向量检索、切到登录模式和服务器上的坑都在 `docs/deploy.md`（英文）。各任务的测量和部署结果在 `docs/measurements.md`。
 
 ## 坑
 
-- 在服务器上用 `while read` 循环调 `docker compose exec -T` 要加 `< /dev/null`，否则 exec 会吃掉循环的输入（10-30 合并同名学校时第一次只跑了第一组）。
-- **服务器 `deploy/.env` 的 `KNOWLEDGE_GAP_HASH_KEY` 别换、别删**：换了以后旧的缺口记录在注销时无法删除，只能等 90 天过期。
 - 「有要求」只有一个口径：后端 `has_requirement_data()`（`api/app/models/program.py`）、前端 `statesARequirement`（`web/lib/catalog.ts`）、顾问评估 `evals/run_advisor.py` 的相关集，改一处要三处一起改。
 - 生产下次导入采集数据时，约 62 个多项目页面的最新版本引文会改写一次（PR #69 起一页多个项目的引文合并成一份），这是正常的。
 - **DeepSeek 余额是生产和本机共用的**（不同 key、同一账户）。跑大批量付费任务前先查 `curl -s https://api.deepseek.com/user/balance -H "Authorization: Bearer $DEEPSEEK_API_KEY"`，预算要低于剩余余额，不只是低于任务上限（10-30 回填把余额用光，生产顾问跟着 402）。
@@ -105,7 +61,6 @@
 - 本机库（PR #58 起）是 `pgvector/pgvector:pg16`、卷 `leapashore_offerpilot-pgdata`、`C` 排序；旧的 Alpine 卷 `leapashore_offerpilot-db` 没删，确认不需要后可以 `docker volume rm`。`C` 排序下 `ORDER BY name` 是码位顺序（大写在小写前），和以前 Alpine 的行为一样，测试里按名字排序的断言依赖它。
 - 顾问检索的排序由 `ADVISOR_RETRIEVAL` 决定；测试和评估可以显式传 `ranking=`。改 `subjects.json` 的 `gloss` 会改变全文检索的词（中文学科词经 gloss 变成英文词），不只是测试用。
 
-- 在 api/worker 容器里跑临时脚本别用 `python /tmp/x.py`：脚本目录排在搜索路径最前，`app` 会落到 `pip install .` 装进 site-packages 的那份，10-30 实测报 `No module named 'app.agent'`。用 `python -c` 或 `python -m`（工作目录 `/app`）。
 - 顾问对话的表（PR #56 起）：后端测试要先 `make migrate`（`alembic upgrade head`），否则顾问相关测试报表不存在。conftest 的 `remove_the_conversations_these_tests_create` 按线程 id 清掉测试写的对话。升级 `langgraph-checkpoint-postgres` 时，`test_alembic_carries_every_migration_of_the_pinned_library` 会在库多了迁移时失败：把新迁移抄进一个新的 Alembic revision（只加不删），再改 `checkpoint.MIGRATIONS_APPLIED` 和 `MIGRATIONS_DIGEST`。
 - 顾问的 checkpointer 是同步 `PostgresSaver` + 线程（不是 `AsyncPostgresSaver`）：异步版绑死创建时的事件循环，测试客户端每个请求一个循环，会坏。它自己的连接池最多 2 个连接（`CHECKPOINT_POOL_SIZE`），每个进行中的确认另占 1 个短连接（advisory lock）。
 - zsh 里 `"$SUB:restart1"` 的 `:r` 会被当成修饰符（去扩展名），拼线程 id 要写 `"${SUB}:restart1"`。

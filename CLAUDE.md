@@ -44,4 +44,4 @@
 - Collected requirements: `api/data/requirements/*.json`. Page snapshots: `api/var/snapshots/` (local,
   not in git); production keeps its own in the worker's `snapshots` volume. The advisor quotes the cited
   pages' text from the `snapshot_chunks` table (no paths stored).
-- Deploy steps and known pitfalls: `note/handoff.md`.
+- Deploy steps and server pitfalls: `docs/deploy.md`; current production state: `note/handoff.md`.
