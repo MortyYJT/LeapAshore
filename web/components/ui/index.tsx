@@ -130,20 +130,26 @@ export function SchoolMark({ logo, name }: { logo?: string | null; name: string 
   );
 }
 
-/** A page's sources and caveats, stated once at the foot instead of on every row. */
-export function SourceNote({ children }: { children: ReactNode }) {
+/**
+ * Loading, for any block whose data is still on its way: grey bars where the content will be, so the page
+ * keeps its layout instead of flashing a line of text. The words are kept for screen readers.
+ */
+export function Loading({ what = "内容", lines = 3 }: { what?: string; lines?: number }) {
   return (
-    <footer className="foot">
-      <p className="source-note">{children}</p>
-    </footer>
+    <div className="skeleton" role="status">
+      {Array.from({ length: lines }, (_, i) => (
+        <span key={i} className="skeleton-line" />
+      ))}
+      <span className="sr-only">正在读取{what}…</span>
+    </div>
   );
 }
 
-/** Loading, for any block whose data is still on its way. */
-export function Loading({ what = "内容" }: { what?: string }) {
+/** A panel of loading bars, for a page section whose data has not arrived. */
+export function LoadingPanel({ what }: { what?: string }) {
   return (
-    <p className="muted" role="status">
-      正在读取{what}…
-    </p>
+    <section className="panel panel-pad section" aria-busy="true">
+      <Loading what={what} />
+    </section>
   );
 }

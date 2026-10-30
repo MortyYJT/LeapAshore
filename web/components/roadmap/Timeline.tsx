@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type KeyboardEvent } from "react";
+import { useLayoutEffect, useRef, useState, type KeyboardEvent } from "react";
 
 import type { DeadlineView } from "@/lib/deadlines";
 import type { Timeline as TimelineModel, TimelinePhase } from "@/lib/roadmap-timeline";
@@ -51,24 +51,29 @@ function onKey(event: KeyboardEvent, run: () => void) {
   }
 }
 
+// The widths the two layouts are drawn at before the box is measured; the SVG scales to its box.
+const NOMINAL_WIDE = 640;
+const NOMINAL_NARROW = 358;
+
 /**
  * The roadmap's time axis (design D8): the dated phases from the earlier of today and the first phase
  * to the intake, drawn as SVG from data. Below 640px it turns vertical so its labels keep 14px.
+ *
+ * It used to draw nothing until it had measured its box, so the server sent an empty frame and the home
+ * page's sample stayed blank until the scripts had loaded and run. Now the server and the first render
+ * draw both layouts at a nominal width, CSS shows the one the screen width calls for (`.tl-wide`,
+ * `.tl-narrow`), and the measured layout replaces them before the first paint after hydration.
  */
 export function Timeline(props: Props) {
   const host = useRef<HTMLDivElement>(null);
-  const [width, setWidth] = useState(0);
-  const [phone, setPhone] = useState(false);
+  const [box, setBox] = useState<{ width: number; phone: boolean } | null>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const el = host.current;
     if (!el) return;
     // Vertical below a 640px screen (design D8); a narrow box on a wide screen keeps the axis.
     const query = window.matchMedia("(max-width: 639px)");
-    const measure = () => {
-      setWidth(Math.floor(el.clientWidth));
-      setPhone(query.matches);
-    };
+    const measure = () => setBox({ width: Math.floor(el.clientWidth), phone: query.matches });
     measure();
     const observer = new ResizeObserver(measure);
     observer.observe(el);
@@ -79,9 +84,20 @@ export function Timeline(props: Props) {
     };
   }, []);
 
+  // The wide layout stays first so that, once measured, React keeps the same node and the entrance
+  // animation the server's HTML started is not restarted.
   return (
     <div ref={host} style={{ minHeight: 120 }}>
-      {width === 0 ? null : phone ? <Vertical {...props} width={width} /> : <Horizontal {...props} width={width} />}
+      {(!box || !box.phone) && (
+        <div className="tl-wide">
+          <Horizontal {...props} width={box?.width || NOMINAL_WIDE} />
+        </div>
+      )}
+      {(!box || box.phone) && (
+        <div className="tl-narrow">
+          <Vertical {...props} width={box?.width || NOMINAL_NARROW} />
+        </div>
+      )}
     </div>
   );
 }

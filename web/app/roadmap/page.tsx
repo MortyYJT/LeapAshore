@@ -7,7 +7,7 @@ import { LoginPrompt, RequireAccount } from "@/components/auth/AuthProvider";
 import { SampleTimeline } from "@/components/home/SampleTimeline";
 import { DeadlineText } from "@/components/roadmap/DeadlineText";
 import { drawnDeadlines, Timeline, type DeadlineMark } from "@/components/roadmap/Timeline";
-import { Empty, Loading, Notice, SourceNote } from "@/components/ui";
+import { LoadingPanel, Notice } from "@/components/ui";
 import { uploadMaterial } from "@/lib/api";
 import { beijingToday, deadlineOf } from "@/lib/deadlines";
 import { useProfile } from "@/lib/hooks/useProfile";
@@ -15,7 +15,7 @@ import { usePortfolio } from "@/lib/hooks/usePortfolio";
 import { useRoadmap } from "@/lib/hooks/useRoadmap";
 import { intakeAnchor } from "@/lib/roadmap";
 import { timelineOf, type Timeline as TimelineModel, type TimelinePhase } from "@/lib/roadmap-timeline";
-import { dataStatusLabel } from "@/lib/taxonomy";
+import { verifiedMark } from "@/lib/taxonomy";
 
 const md = (iso: string) => {
   const d = new Date(`${iso.slice(0, 10)}T00:00:00Z`);
@@ -24,7 +24,10 @@ const md = (iso: string) => {
 
 /** The one sentence under the title: the fact the applicant most needs today. */
 function headline(model: TimelineModel): string {
-  if (!model.dated) return "还没填入学时间，所以各阶段没有排日期。";
+  if (!model.dated) {
+    const current = model.current;
+    return current ? `当前在「${current.title}」，还有 ${current.total - current.done} 项。` : "所有步骤都已完成。";
+  }
   const late = model.phases.filter((p) => p.overdue);
   if (late.length > 0) {
     const left = late.reduce((n, p) => n + (p.total - p.done), 0);
@@ -56,6 +59,14 @@ export default function RoadmapPage() {
             <SampleTimeline />
           </div>
           <LoginPrompt what="你自己的路线图" />
+        </main>
+      }
+      pending={
+        <main className="page">
+          <div className="title-row">
+            <h1>申请路线图</h1>
+          </div>
+          <LoadingPanel what="路线图" />
         </main>
       }
     >
@@ -90,106 +101,114 @@ function Roadmap() {
   }));
   const phase = model?.phases.find((p) => p.id === selected) ?? null;
   const anchor = profile.data ? intakeAnchor(profile.data.intake) : null;
+  // Without an intake nothing on the axis has a date, so the page shows one line and the way to fix it,
+  // and keeps the current phase's checklist, which can be ticked without dates.
+  const undatedPhase = model && !model.dated ? model.current ?? model.phases[0] ?? null : null;
 
   return (
-    <>
-      <main className="page">
-        <div className="title-row">
-          <div>
-            <h1>申请路线图</h1>
-            <p className="lede">{model ? headline(model) : " "}</p>
-          </div>
+    <main className="page">
+      <div className="title-row">
+        <div>
+          <h1>申请路线图</h1>
+          <p className="lede">{model ? headline(model) : " "}</p>
+        </div>
+        {anchor && (
           <div className="toolbar">
-            <span className="muted">{anchor ? `${anchor.getUTCFullYear()} 年 ${anchor.getUTCMonth() + 1} 月入学` : "入学时间未填"}</span>
+            <span className="muted">{`${anchor.getUTCFullYear()} 年 ${anchor.getUTCMonth() + 1} 月入学`}</span>
             <Link className="btn btn-secondary" href="/me">
               改入学时间
             </Link>
           </div>
+        )}
+      </div>
+
+      {(profile.loading || roadmap.loading) && !model && <LoadingPanel what="路线图" />}
+      {profile.error && !profile.data && <div className="section"><Notice error>没有读到你的背景（{profile.error}）。</Notice></div>}
+      {roadmap.notice && <div className="section"><Notice>{roadmap.notice}</Notice></div>}
+      {roadmap.syncError && <div className="section"><Notice error>{roadmap.syncError}</Notice></div>}
+      {model && !model.dated && (
+        <div className="stagger">
+          <section className="panel panel-pad section roadmap-empty" aria-label="还没有入学时间">
+            <p style={{ margin: 0 }}>填上入学时间，各阶段就会按它倒推出建议日期。</p>
+            <Link className="btn btn-primary" href="/me">
+              填入学时间
+            </Link>
+          </section>
+          {undatedPhase && (
+            <div className="section">
+              <PhaseTasks key={undatedPhase.id} phase={undatedPhase} roadmap={roadmap} />
+            </div>
+          )}
         </div>
+      )}
 
-        {(profile.loading || roadmap.loading) && !model && <div className="section"><Loading what="路线图" /></div>}
-        {profile.error && !profile.data && <div className="section"><Notice error>没有读到你的背景（{profile.error}）。</Notice></div>}
-        {roadmap.notice && <div className="section"><Notice>{roadmap.notice}</Notice></div>}
-        {roadmap.syncError && <div className="section"><Notice error>{roadmap.syncError}</Notice></div>}
-        {model && !model.dated && (
-          <div className="section">
-            <Empty>
-              没有入学时间，系统不会替你假设一个。<Link href="/me">去「我的」填入学时间</Link>，各阶段就会从入学时间往前倒推排出建议日期。
-            </Empty>
-          </div>
-        )}
+      {model && model.dated && (
+        <div className="stagger">
+          <section className="panel section" aria-labelledby="tl-h">
+            <div className="panel-head">
+              <h2 id="tl-h">从今天到入学</h2>
+              <Legend overdue={model.phases.some((p) => p.overdue)} recorded={drawnDeadlines(deadlines).length > 0} />
+            </div>
+            <div style={{ padding: "20px 24px 12px" }}>
+              <Timeline model={model} today={today} deadlines={deadlines} selected={selected} onSelect={setSelected} animate={!drawn.current} />
+            </div>
+          </section>
 
-        {model && (
-          <div className="stagger">
-            <section className="panel section" aria-labelledby="tl-h">
-              <div className="panel-head">
-                <h2 id="tl-h">从今天到入学</h2>
-                <Legend overdue={model.phases.some((p) => p.overdue)} recorded={drawnDeadlines(deadlines).length > 0} />
-              </div>
-              <div style={{ padding: "20px 24px 12px" }}>
-                <Timeline model={model} today={today} deadlines={deadlines} selected={selected} onSelect={setSelected} animate={!drawn.current} />
-              </div>
-            </section>
-
-            {phase && (
-              <div className="grid grid-8-4 section">
-                <PhaseTasks key={phase.id} phase={phase} roadmap={roadmap} />
-                <aside className="grid" style={{ gap: 16 }}>
-                  <section className="panel panel-pad" aria-labelledby="dates-h">
-                    <h2 id="dates-h" style={{ marginBottom: 12 }}>这一阶段的日期</h2>
-                    <dl className="kv">
-                      <dt>建议开始</dt>
-                      <dd className="num">
-                        {phase.start ? md(phase.start) : "未排日期"}
-                        <div className="small muted">系统建议 · 非官方日期</div>
-                      </dd>
-                      <dt>建议完成</dt>
-                      <dd className="num">{phase.end ? md(phase.end) : "未排日期"}</dd>
-                      <dt>官方截止</dt>
-                      <dd>
-                        <span className="hollow" />
-                        见右侧各项目
-                      </dd>
-                    </dl>
-                    {phase.overdue && <p className="negative small" style={{ margin: "12px 0 0" }}>已过建议时间</p>}
-                  </section>
-                  <section className="panel" aria-labelledby="dl-h">
-                    <div className="panel-head">
-                      <h2 id="dl-h">官方截止日期</h2>
-                      <span className="muted num">{deadlines.length} 个项目</span>
-                    </div>
-                    <div className="rows">
-                      {deadlines.length === 0 && (
-                        <div className="row">
-                          <span className="muted">
-                            还没有选项目。<Link href="/tiers">去选校</Link>
-                          </span>
+          {phase && (
+            <div className="grid grid-8-4 section">
+              <PhaseTasks key={phase.id} phase={phase} roadmap={roadmap} />
+              <aside className="grid" style={{ gap: 16 }}>
+                <section className="panel panel-pad" aria-labelledby="dates-h">
+                  <h2 id="dates-h" style={{ marginBottom: 12 }}>这一阶段的日期</h2>
+                  <dl className="kv">
+                    <dt>建议开始</dt>
+                    <dd className="num">
+                      {phase.start ? md(phase.start) : "未排日期"}
+                      <div className="small muted">系统建议 · 非官方日期</div>
+                    </dd>
+                    <dt>建议完成</dt>
+                    <dd className="num">{phase.end ? md(phase.end) : "未排日期"}</dd>
+                    <dt>官方截止</dt>
+                    <dd>
+                      <span className="hollow" />
+                      见右侧各项目
+                    </dd>
+                  </dl>
+                  {phase.overdue && <p className="negative small" style={{ margin: "12px 0 0" }}>已过建议时间</p>}
+                </section>
+                <section className="panel" aria-labelledby="dl-h">
+                  <div className="panel-head">
+                    <h2 id="dl-h">官方截止日期</h2>
+                    <span className="muted num">{deadlines.length} 个项目</span>
+                  </div>
+                  <div className="rows">
+                    {deadlines.length === 0 && (
+                      <div className="row">
+                        <span className="muted">
+                          还没有选项目。<Link href="/tiers">去选校</Link>
+                        </span>
+                      </div>
+                    )}
+                    {deadlines.map((d) => (
+                      <div className="row deadline-row" data-state={d.view.state} key={d.key} style={{ gridTemplateColumns: "minmax(0, 1fr) auto", gap: 12 }}>
+                        <div className="two-line">
+                          <Link className="l1" href={`/programs/${encodeURIComponent(d.key)}`}>{d.label}</Link>
+                          {d.view.label && d.view.origin === "collected" && <div className="l2">{d.view.label}</div>}
+                          {d.view.origin === "entered" && <div className="l2">组合里记录的日期</div>}
                         </div>
-                      )}
-                      {deadlines.map((d) => (
-                        <div className="row deadline-row" data-state={d.view.state} key={d.key} style={{ gridTemplateColumns: "minmax(0, 1fr) auto", gap: 12 }}>
-                          <div className="two-line">
-                            <Link className="l1" href={`/programs/${encodeURIComponent(d.key)}`}>{d.label}</Link>
-                            {d.view.label && d.view.origin === "collected" && <div className="l2">{d.view.label}</div>}
-                            {d.view.origin === "entered" && <div className="l2">组合里记录的日期</div>}
-                          </div>
-                          <div style={{ textAlign: "right" }}>
-                            <DeadlineText view={d.view} showLabel={false} />
-                          </div>
+                        <div style={{ textAlign: "right" }}>
+                          <DeadlineText view={d.view} showLabel={false} />
                         </div>
-                      ))}
-                    </div>
-                  </section>
-                </aside>
-              </div>
-            )}
-          </div>
-        )}
-      </main>
-      <SourceNote>
-        阶段与任务来自服务器上的路线图定义；建议日期按入学时间倒推，不是任何学校的官方日期。官方截止只有收录了官网来源才显示日期：有多轮的显示下一轮，全部已过的标「已截止」、不画在时间轴上。截止日期摘自官网、尚未经人工核对，申请前请以官网为准。
-      </SourceNote>
-    </>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              </aside>
+            </div>
+          )}
+        </div>
+      )}
+    </main>
   );
 }
 
@@ -281,10 +300,10 @@ function PhaseTasks({ phase, roadmap }: { phase: TimelinePhase; roadmap: ReturnT
               {t.source && (
                 <div className="d">
                   依据：
-                  <a href={t.source.url} target="_blank" rel="noreferrer">
+                  <a className="link" href={t.source.url} target="_blank" rel="noreferrer">
                     {t.source.title}
-                  </a>{" "}
-                  · {dataStatusLabel(t.source.status)}
+                  </a>
+                  {verifiedMark(t.source.status) && <> · {verifiedMark(t.source.status)}</>}
                 </div>
               )}
               {failed && <div className="d negative" role="alert">这次勾选没有保存，已恢复原状。</div>}

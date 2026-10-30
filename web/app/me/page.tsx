@@ -5,7 +5,7 @@ import { useState } from "react";
 
 import { RequireAccount, useAuth } from "@/components/auth/AuthProvider";
 import { ProfileForm } from "@/components/profile/ProfileForm";
-import { Button, Loading, Notice, SourceNote } from "@/components/ui";
+import { Button, Loading, Notice } from "@/components/ui";
 import { deleteAccount, normalizeEmail } from "@/lib/auth";
 import { addMaterialVersion, archiveMaterial, fetchMaterial, submitMaterial } from "@/lib/api";
 import { useMaterials } from "@/lib/hooks/useMaterials";
@@ -35,20 +35,17 @@ function rowsOf(p: Profile): [string, string][] {
 /** 我的: the profile every page uses, the materials library (spec document-library) and the account. */
 export default function MePage() {
   return (
-    <>
-      <main className="page">
-        <div className="title-row">
-          <div>
-            <h1>我的</h1>
-            <p className="lede">分档、选校和路线图都用这一份背景。改了背景，分档会按新背景重算。</p>
-          </div>
+    <main className="page">
+      <div className="title-row">
+        <div>
+          <h1>我的</h1>
+          <p className="lede">分档、选校和路线图都用这一份背景。改了背景，分档会按新背景重算。</p>
         </div>
-        <RequireAccount what="你的背景和材料">
-          <Mine />
-        </RequireAccount>
-      </main>
-      <SourceNote>背景和材料保存在服务器上，清空浏览器缓存不会丢。材料在路线图的任务上上传，会按任务归在这里。</SourceNote>
-    </>
+      </div>
+      <RequireAccount what="你的背景和材料">
+        <Mine />
+      </RequireAccount>
+    </main>
   );
 }
 

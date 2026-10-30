@@ -1,6 +1,6 @@
 // Browser walkthrough in login mode (openspec account-login). A logged-out visitor types a question in the
 // advisor and presses 发送 -> logs in with a mailed code -> fills the four basics -> the advisor sends the
-// sentence that was typed. Then /tiers -> /portfolio (confirm) -> 我的 (edit intake) -> /roadmap (tick,
+// sentence that was typed (answered by a stub in the browser: the walkthrough never calls the paid model). Then /tiers -> /portfolio (confirm) -> 我的 (edit intake) -> /roadmap (tick,
 // upload) -> 我的 (materials) -> the library pages -> logout. A second visitor presses 加入选校组合 on a
 // program, registers, skips the info step, sees 先补信息 on /tiers, is refused /admin and deletes the account.
 // A third registers, is refused /admin, is granted the admin role by the server command, reads one page on
@@ -231,6 +231,12 @@ async function adminPass(browser, email, errors) {
     await layout(page, "首页");
     check("首页：有“看看能申哪些”和“先看学校”", (await page.getByRole("link", { name: "看看能申哪些" }).count()) > 0 && (await page.getByRole("link", { name: "先看学校" }).count()) > 0);
     check("首页：示例时间线标了“示例”", (await page.locator("figure .pill-sample").count()) === 1);
+    // The sample used to be drawn only after the scripts measured its box, so the server sent a blank card.
+    const homeHtml = await (await fetch(`${BASE}/`)).text();
+    check("首页：示例路线图在服务器返回的 HTML 里就已画好", /<figure[\s\S]*?<svg[^>]*timeline-svg/.test(homeHtml));
+    check("首页：没有每页底部的说明段落，只有一行页脚", (await page.locator("footer.foot, .source-note").count()) === 0 && (await page.locator("footer.site-foot").count()) === 1);
+    check("页脚：保留 CRICOS 和 QS 的出处与隐私政策", /CC BY 2\.5 AU/.test(await page.locator("footer.site-foot").innerText()) && /QS/.test(await page.locator("footer.site-foot").innerText()) && (await page.locator('footer.site-foot a[href="/privacy"]').count()) === 1);
+    check("导航：没有“项目库”", (await page.locator('nav[aria-label="主导航"]').getByRole("link", { name: "项目库" }).count()) === 0);
     check("首页：未登录时顶栏有“登录”", await page.locator(".bar").getByRole("button", { name: "登录" }).isVisible());
     await screenshot(page, "home");
 
@@ -238,6 +244,15 @@ async function adminPass(browser, email, errors) {
     await settle(page);
     check("未登录：路线图只显示示例并请你登录", (await page.locator("figure .pill-sample").count()) === 1 && (await page.getByText("登录后查看你自己的路线图").count()) === 1);
     await layout(page, "路线图（未登录）");
+    // While the session is being read, the page keeps its title and shows loading bars, not a bare line.
+    await page.route("**/api/auth/me", async (route) => {
+      await new Promise((r) => setTimeout(r, 2500));
+      await route.continue().catch(() => {});
+    });
+    await page.goto(`${BASE}/tiers`, { waitUntil: "domcontentloaded" });
+    await page.locator(".skeleton").first().waitFor({ timeout: 5000 }).catch(() => {});
+    check("读取登录状态时：分档页保留标题并显示占位", (await page.locator("main h1", { hasText: "分档结果" }).count()) === 1 && (await page.locator(".skeleton").count()) > 0);
+    await page.unroute("**/api/auth/me");
     await page.goto(`${BASE}/me`);
     await settle(page);
     check("未登录：我的页请你登录", (await page.getByText("登录后查看你的背景和材料").count()) === 1);
@@ -247,6 +262,13 @@ async function adminPass(browser, email, errors) {
     check("背景测评页已删除，跳到分档页", page.url().endsWith("/tiers") && assess.status() === 200, page.url());
 
     // ---------- 未登录点发送 -> 登录 -> 信息页 -> 回到顾问并发出原句 ----------
+    // The advisor is never really asked: a reply costs a paid model call. The browser's request is
+    // answered here with a one-line stub, and the request itself is checked for the sentence and session.
+    await page.route("**/api/advisor/**", (route) => route.fulfill({
+      status: 200,
+      contentType: "text/event-stream",
+      body: 'data: {"type":"token","text":"走查不调用顾问。"}\n\ndata: {"type":"done"}\n\n',
+    }));
     await page.goto(`${BASE}/advisor`);
     await settle(page);
     check("顾问：页面里没有 emoji", !/[\u{1F300}-\u{1FAFF}]/u.test(await page.locator("main").innerText()));
@@ -285,8 +307,8 @@ async function adminPass(browser, email, errors) {
     check("顾问：登录后发出的就是原句", sentBody.message === question, sentBody);
     await page.locator(".msg-user", { hasText: question }).waitFor({ timeout: 15000 });
     check("顾问：对话里显示原句，输入框已清空", (await page.locator("#msg").inputValue()) === "");
-    const chatResponse = await chat.response();
-    check("顾问：发送请求带着登录会话（不是 401）", chatResponse && chatResponse.status() === 200, chatResponse && chatResponse.status());
+    const chatCookie = (await chat.headerValue("cookie")) || "";
+    check("顾问：发送请求带着登录会话", chatCookie.includes("leapashore_session="), chatCookie.replace(/=[^;]+/g, "=…"));
     await settle(page);
     await layout(page, "顾问");
     await screenshot(page, "advisor");
@@ -456,17 +478,42 @@ async function adminPass(browser, email, errors) {
     check("学校详情：列出这所学校的项目", (await page.locator("tbody tr a.l1").count()) > 0);
     await layout(page, "学校详情");
     await screenshot(page, "school");
+    // The school page is where programs are browsed: search by name, filter by study area, page through.
+    await page.goto(`${BASE}/schools/00026A`);
+    await settle(page);
+    await page.locator("#field").selectOption("计算机与数据");
+    await page.getByRole("button", { name: "筛选" }).click();
+    await page.waitForURL(/field=/);
+    await settle(page);
+    const areas = await page.locator("table.program-table tbody tr td:nth-child(2)").allInnerTexts();
+    check("学校详情：按方向筛选后只剩这个方向的项目", areas.length > 0 && areas.every((a) => a === "计算机与数据"), areas.slice(0, 3));
+    const next = page.locator(".pager a", { hasText: "下一页" });
+    check("学校详情：翻页链接带着筛选条件", (await next.count()) === 0 || /field=/.test(await next.getAttribute("href")));
+    await page.locator("#q").fill("Data");
+    await page.getByRole("button", { name: "筛选" }).click();
+    await page.waitForURL(/q=Data/);
+    await settle(page);
+    const names = await page.locator("table.program-table tbody tr a.l1").allInnerTexts();
+    check("学校详情：按名称搜索", names.length > 0 && names.every((n) => /data/i.test(n)), names.slice(0, 3));
+    await page.goto(`${BASE}/schools/imperial-college-london`);
+    await settle(page);
+    const heads = await page.locator("table.program-table thead th").allInnerTexts();
+    check("学校详情：全校都未收录的列不显示（帝国理工没有学制和总学费）", heads.length > 0 && !heads.includes("学制") && !heads.includes("总学费"), heads);
+    check("学校详情：没有“未核对”“自动标注”字样", (await page.getByText(/未核对|自动标注/).count()) === 0);
+    await layout(page, "学校详情：帝国理工");
 
     await page.goto(`${BASE}/programs/0100139`);
     await settle(page);
-    check("项目详情：没收录的要求写“未收录”", (await page.locator(".req-table").getByText("未收录").count()) >= 2);
-    check("项目详情：引用 CRICOS 数据集", (await page.getByText("CRICOS（澳大利亚教育部").count()) > 0);
+    check("项目详情：没收录的要求合成一行“未收录”", (await page.locator(".req-table tr.req-missing").count()) === 1
+      && /均分门槛.*英语/.test(await page.locator(".req-table tr.req-missing").innerText()));
+    check("项目详情：来源是指向官方页面的链接", (await page.locator('.req-table a.link[target="_blank"]').count()) > 0);
+    check("项目详情：面包屑是学校库 › 学校", (await page.locator('nav.crumb a[href="/schools"]').count()) === 1 && (await page.locator('nav.crumb a[href^="/schools/"]').count()) === 1);
+    check("项目详情：页脚引用 CRICOS 数据集", (await page.getByText("澳大利亚教育部").count()) > 0);
     await layout(page, "项目详情");
     await screenshot(page, "program");
 
-    await page.goto(`${BASE}/programs`);
-    await settle(page);
-    await layout(page, "项目库");
+    const list = await page.goto(`${BASE}/programs`);
+    check("项目库列表页已删除（404）", list.status() === 404, list.status());
     await page.goto(`${BASE}/privacy`);
     await settle(page);
     check("隐私政策：公开可读并标明是草稿", (await page.getByText("等待 MortyYJT 审核").count()) === 1);
@@ -516,6 +563,10 @@ async function adminPass(browser, email, errors) {
     check("加入选校：登录后回到项目页并接着选档位", true);
     await b.getByRole("group", { name: "选择档位" }).getByRole("button", { name: "稳" }).click();
     check("加入选校：选了档位后显示“已加入”", (await b.getByRole("button", { name: /已加入/ }).count()) === 1);
+    await b.goto(`${BASE}/roadmap`);
+    await b.locator(".roadmap-empty").waitFor({ timeout: 15000 }).catch(() => {});
+    check("路线图：没有入学时间时只有一句话和去填的按钮，不画空时间轴", (await b.locator('.roadmap-empty a[href="/me"]').count()) === 1 && (await b.locator("svg.timeline-svg").count()) === 0);
+    await layout(b, "路线图：没有入学时间");
     await b.goto(`${BASE}/tiers`);
     await settle(b);
     check("跳过信息页的用户在分档页看到“先补信息”", (await b.getByRole("heading", { name: "先补信息" }).count()) === 1);
@@ -555,7 +606,7 @@ async function adminPass(browser, email, errors) {
     check("390：导航收进菜单", !(await intro.locator("#main-nav").isVisible()) && (await intro.getByRole("button", { name: "菜单" }).isVisible()));
     check("390：未登录时“登录”按钮可见", await intro.locator(".bar").getByRole("button", { name: "登录" }).isVisible());
     await intro.getByRole("button", { name: "菜单" }).click();
-    check("390：按菜单后出现五个链接", await intro.locator("#main-nav").getByRole("link", { name: "学校库" }).isVisible());
+    check("390：按菜单后出现导航链接", await intro.locator("#main-nav").getByRole("link", { name: "学校库" }).isVisible());
     await screenshot(intro, "home-390");
     await intro.locator(".bar").getByRole("button", { name: "登录" }).click();
     await intro.locator("dialog.dialog").waitFor();
@@ -573,6 +624,7 @@ async function adminPass(browser, email, errors) {
       ["/me", "me-390"],
       ["/advisor", "advisor-390"],
       ["/schools", "schools-390"],
+      ["/schools/imperial-college-london", "school-390"],
       ["/programs/cricos-0100139", "program-390"],
       ["/privacy", "privacy-390"],
     ]) {

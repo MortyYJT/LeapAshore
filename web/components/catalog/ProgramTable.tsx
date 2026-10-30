@@ -2,26 +2,40 @@ import Link from "next/link";
 
 import { cricosFacts, statesARequirement } from "@/lib/catalog";
 import { masterPrograms } from "@/lib/catalog-server";
-import { dataStatusLabel } from "@/lib/taxonomy";
+import { verifiedMark } from "@/lib/taxonomy";
 import type { Program } from "@/lib/types";
 
-/** One page of catalogue programs as rows. Australian rows add their CRICOS weeks and tuition (design D3). */
-export function ProgramTable({ programs, showSchool = true, empty }: { programs: Program[]; showSchool?: boolean; empty: React.ReactNode }) {
+const ALL_COLUMNS = { duration: true, tuition: true, requirements: true };
+
+/**
+ * One page of a school's programs as rows. Australian rows add their CRICOS weeks and tuition (design D3).
+ * `columns` drops a column no program of the school fills (see `programColumns`).
+ */
+export function ProgramTable({
+  programs,
+  columns = ALL_COLUMNS,
+  empty,
+}: {
+  programs: Program[];
+  columns?: { duration: boolean; tuition: boolean; requirements: boolean };
+  empty: React.ReactNode;
+}) {
+  const span = 2 + Number(columns.duration) + Number(columns.tuition) + Number(columns.requirements);
   return (
-    <table className="stack">
+    <table className="stack program-table">
       <thead>
         <tr>
           <th>项目</th>
           <th className="hide-phone">方向</th>
-          <th className="num hide-phone">学制</th>
-          <th className="num hide-phone">总学费</th>
-          <th>录取要求</th>
+          {columns.duration && <th className="num hide-phone">学制</th>}
+          {columns.tuition && <th className="num hide-phone">总学费</th>}
+          {columns.requirements && <th className="num">录取要求</th>}
         </tr>
       </thead>
       <tbody>
         {programs.length === 0 && (
           <tr>
-            <td colSpan={5} className="wide">
+            <td colSpan={span} className="wide">
               <div className="empty">{empty}</div>
             </td>
           </tr>
@@ -35,28 +49,28 @@ export function ProgramTable({ programs, showSchool = true, empty }: { programs:
                   <Link className="l1" href={`/programs/${encodeURIComponent(p.slug)}`}>
                     {p.name ?? "未知"}
                   </Link>
-                  {showSchool && (
-                    <div className="l2">
-                      {p.university}
-                      {p.country ? ` · ${p.country}` : ""}
-                    </div>
-                  )}
                 </div>
               </td>
               <td className="muted hide-phone">{p.field ?? "未分类"}</td>
-              <td className="num hide-phone">
-                {facts?.weeks ? (
-                  <>
-                    {facts.weeks} <span className="muted">周</span>
-                  </>
-                ) : (
-                  p.duration ?? <span className="muted">未收录</span>
-                )}
-              </td>
-              <td className="num hide-phone">{facts?.tuition ? `A${facts.tuition.replace(".00", "")}` : <span className="muted">未收录</span>}</td>
-              <td>
-                {statesARequirement(p) ? <span className="pill pill-neutral">已收录 · {dataStatusLabel(p.dataStatus)}</span> : <span className="muted">未收录</span>}
-              </td>
+              {columns.duration && (
+                <td className="num hide-phone nowrap">
+                  {facts?.weeks ? (
+                    <>
+                      {facts.weeks} <span className="muted">周</span>
+                    </>
+                  ) : (
+                    p.duration ?? <span className="muted">未收录</span>
+                  )}
+                </td>
+              )}
+              {columns.tuition && (
+                <td className="num hide-phone nowrap">{facts?.tuition ? `A${facts.tuition.replace(".00", "")}` : <span className="muted">未收录</span>}</td>
+              )}
+              {columns.requirements && (
+                <td className="num nowrap">
+                  {statesARequirement(p) ? <span className="pill pill-neutral">{verifiedMark(p.dataStatus) ? `已收录 · ${verifiedMark(p.dataStatus)}` : "已收录"}</span> : <span className="muted">未收录</span>}
+                </td>
+              )}
             </tr>
           );
         })}

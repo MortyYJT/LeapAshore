@@ -3,9 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 
 import { useAuth } from "@/components/auth/AuthProvider";
-import { Pill, SourceNote } from "@/components/ui";
+import { Pill } from "@/components/ui";
 import { confirmAdvisorAction, sendAdvisorMessage, TOOL_LABELS, type AdvisorEvent, type Citation } from "@/lib/advisor";
-import { dataStatusLabel } from "@/lib/taxonomy";
+import { verifiedMark } from "@/lib/taxonomy";
 
 interface Message {
   id: string;
@@ -36,8 +36,9 @@ const newConversation = (): Conversation => ({ id: uid(), title: "新对话", me
 
 /**
  * The advisor (spec app-navigation: restyled on the shell, confirm flow unchanged). Replies stream from
- * the agent behind /api/advisor; each reply shows the routed intent, the tools called and the official
- * sources the evidence gate let through, and a portfolio change waits for the applicant's confirm.
+ * the agent behind /api/advisor; each reply shows the tools called and the official sources the evidence
+ * gate let through, and a portfolio change waits for the applicant's confirm. The routed intent and the
+ * gate's verdict are kept on the message but not shown: they describe the machinery, not the answer.
  */
 export default function AdvisorPage() {
   const [conversations, setConversations] = useState<Conversation[]>(() => [newConversation()]);
@@ -143,97 +144,92 @@ export default function AdvisorPage() {
   }
 
   return (
-    <>
-      <main className="page">
-        <div className="title-row">
-          <div>
-            <h1>顾问</h1>
-            <p className="lede">问某个项目的官方要求、补充你的背景、调整选校组合。改组合之前会先请你确认。</p>
-          </div>
-          <button className="btn btn-secondary" type="button" onClick={startNew}>
-            新对话
-          </button>
+    <main className="page">
+      <div className="title-row">
+        <div>
+          <h1>顾问</h1>
+          <p className="lede">问某个项目的官方要求、补充你的背景、调整选校组合。改组合之前会先请你确认。</p>
         </div>
-        <section className="panel section chat" aria-label="对话">
-          <nav className="chat-list" aria-label="对话列表">
-            {conversations.map((c) => (
-              <button key={c.id} type="button" className="conv" aria-current={c.id === active.id ? "true" : undefined} onClick={() => setActiveId(c.id)}>
-                {c.title}
-              </button>
-            ))}
-          </nav>
-          <div className="chat-main">
-            <div ref={body} className={`chat-body${active.messages.length === 0 ? " empty-chat" : ""}`} aria-live="polite">
-              {active.messages.length === 0 ? (
-                <>
-                  <h2>可以这样问</h2>
-                  <div className="grid" style={{ gap: 8 }}>
-                    {SUGGESTIONS.map((s) => (
-                      <button key={s} type="button" className="prompt" onClick={() => void send(s)}>
-                        {s}
-                      </button>
-                    ))}
-                  </div>
-                  <dl className="rules">
-                    <div><dt>官方要求</dt><dd>只引用学校官网页面，并标明是否核对过；查不到来源时直接说查不到。</dd></div>
-                    <div><dt>你的背景</dt><dd>从对话里读出的分数和院校会更新到「我的背景」。</dd></div>
-                    <div><dt>选校组合</dt><dd>加入、移出、设首选、改申请状态，都会先给出改动，等你确认。</dd></div>
-                  </dl>
-                </>
-              ) : (
-                active.messages.map((m) =>
-                  m.role === "user" ? (
-                    <div key={m.id} className="msg-user">{m.content}</div>
-                  ) : (
-                    <AssistantMessage key={m.id} message={m} busy={thinking} onAnswer={(m, ok) => void answer(m, ok)} />
-                  ),
-                )
-              )}
-              {thinking && active.messages.at(-1)?.content === "" && !active.messages.at(-1)?.confirm && (
-                <p className="muted" role="status">正在整理…</p>
-              )}
-            </div>
-            <form
-              className="composer"
-              onSubmit={(e) => {
-                e.preventDefault();
-                void send(draft);
-              }}
-            >
-              <label className="sr-only" htmlFor="msg">输入问题</label>
-              <textarea
-                id="msg"
-                rows={1}
-                value={draft}
-                placeholder="输入问题，Enter 发送，Shift+Enter 换行"
-                onChange={(e) => setDraft(e.target.value)}
-                onKeyDown={(e) => {
-                  if (e.key === "Enter" && !e.shiftKey) {
-                    e.preventDefault();
-                    void send(draft);
-                  }
-                }}
-              />
-              <button className="btn btn-primary" type="submit" disabled={!draft.trim() || thinking}>
-                发送
-              </button>
-            </form>
+        <button className="btn btn-secondary" type="button" onClick={startNew}>
+          新对话
+        </button>
+      </div>
+      <section className="panel section chat" aria-label="对话">
+        <nav className="chat-list" aria-label="对话列表">
+          {conversations.map((c) => (
+            <button key={c.id} type="button" className="conv" aria-current={c.id === active.id ? "true" : undefined} onClick={() => setActiveId(c.id)}>
+              {c.title}
+            </button>
+          ))}
+        </nav>
+        <div className="chat-main">
+          <div ref={body} className={`chat-body${active.messages.length === 0 ? " empty-chat" : ""}`} aria-live="polite">
+            {active.messages.length === 0 ? (
+              <>
+                <h2>可以这样问</h2>
+                <div className="grid" style={{ gap: 8 }}>
+                  {SUGGESTIONS.map((s) => (
+                    <button key={s} type="button" className="prompt" onClick={() => void send(s)}>
+                      {s}
+                    </button>
+                  ))}
+                </div>
+                <dl className="rules">
+                  <div><dt>官方要求</dt><dd>只引用学校官网页面；查不到来源时直接说查不到。</dd></div>
+                  <div><dt>你的背景</dt><dd>从对话里读出的分数和院校会更新到「我的背景」。</dd></div>
+                  <div><dt>选校组合</dt><dd>加入、移出、设首选、改申请状态，都会先给出改动，等你确认。</dd></div>
+                </dl>
+              </>
+            ) : (
+              active.messages.map((m) =>
+                m.role === "user" ? (
+                  <div key={m.id} className="msg-user">{m.content}</div>
+                ) : (
+                  <AssistantMessage key={m.id} message={m} busy={thinking} onAnswer={(m, ok) => void answer(m, ok)} />
+                ),
+              )
+            )}
+            {thinking && active.messages.at(-1)?.content === "" && !active.messages.at(-1)?.confirm && (
+              <p className="muted" role="status">正在整理…</p>
+            )}
           </div>
-        </section>
-      </main>
-      <SourceNote>回答只引用已收录的官方来源；标“未核对”或“自动标注”的数据都还没有人工核对，请以学校官网为准。对话保存在服务器内存里，服务重启后会清空。</SourceNote>
-    </>
+          <form
+            className="composer"
+            onSubmit={(e) => {
+              e.preventDefault();
+              void send(draft);
+            }}
+          >
+            <label className="sr-only" htmlFor="msg">输入问题</label>
+            <textarea
+              id="msg"
+              rows={1}
+              value={draft}
+              placeholder="输入问题，Enter 发送"
+              onChange={(e) => setDraft(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                  e.preventDefault();
+                  void send(draft);
+                }
+              }}
+            />
+            <button className="btn btn-primary" type="submit" disabled={!draft.trim() || thinking}>
+              发送
+            </button>
+          </form>
+        </div>
+      </section>
+    </main>
   );
 }
 
 function AssistantMessage({ message: m, busy, onAnswer }: { message: Message; busy: boolean; onAnswer: (m: Message, approved: boolean) => void }) {
   return (
     <div className="msg-assistant">
-      {(m.intent || m.gate || (m.tools && m.tools.length > 0)) && (
+      {m.tools && m.tools.length > 0 && (
         <div className="msg-meta">
-          {m.intent && <Pill>意图：{m.intent}</Pill>}
-          {m.gate && <Pill kind={m.gate === "pass" ? "tier" : "outline"}>证据门禁：{m.gate === "pass" ? "通过" : "拒答"}</Pill>}
-          {m.tools?.map((t, i) => (
+          {m.tools.map((t, i) => (
             <Pill key={i} kind="outline">{TOOL_LABELS[t] ?? t}</Pill>
           ))}
         </div>
@@ -243,7 +239,8 @@ function AssistantMessage({ message: m, busy, onAnswer }: { message: Message; bu
         <ol className="citations">
           {m.citations.map((c) => (
             <li key={c.n}>
-              <a href={c.url} target="_blank" rel="noreferrer">{c.title}</a> <span className="muted">· {dataStatusLabel(c.status)}</span>
+              <a className="link" href={c.url} target="_blank" rel="noreferrer">{c.title}</a>
+              {verifiedMark(c.status) && <span className="muted"> · {verifiedMark(c.status)}</span>}
             </li>
           ))}
         </ol>

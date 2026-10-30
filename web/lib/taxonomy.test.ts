@@ -3,10 +3,9 @@ import { test } from "node:test";
 
 import {
   APPLICATION_STATUSES,
-  DATA_STATUS_LABELS,
   TIER_OF_BAND,
   applicationStatusLabel,
-  dataStatusLabel,
+  verifiedMark,
 } from "./taxonomy.ts";
 import type { ApplicationStatus, SourceStatus } from "./types.ts";
 
@@ -25,15 +24,13 @@ test("every stored application status has its interface label, in the spec's ord
   );
 });
 
-test("every stored data status is shown in the applicant's words", () => {
-  for (const status of STORED_DATA_STATUSES) assert.ok(DATA_STATUS_LABELS[status], status);
-  assert.equal(dataStatusLabel("待核验"), "未核对");
-  assert.equal(dataStatusLabel("机器核对"), "自动标注");
-  assert.equal(dataStatusLabel("已核验"), "已核对");
+test("only a page a person checked carries a mark; the other stored statuses show nothing", () => {
+  assert.deepEqual(STORED_DATA_STATUSES.map(verifiedMark), [null, null, "已核对"]);
 });
 
 test("an unknown stored value is never shown as checked", () => {
-  assert.equal(dataStatusLabel("失效"), "未核对");
+  assert.equal(verifiedMark("失效"), null);
+  assert.equal(verifiedMark(undefined), null);
   assert.equal(applicationStatusLabel("waitlisted"), "考虑中");
 });
 

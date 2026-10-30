@@ -3,7 +3,8 @@
 ### Requirement: One route map for the whole product
 
 The web application SHALL serve exactly these pages: `/`, `/assess`, `/assess/result`, `/portfolio`, `/roadmap`,
-`/schools`, `/schools/[provider]`, `/programs`, `/programs/[code]`, `/advisor`, and `/me`. No route under
+`/schools`, `/schools/[provider]`, `/programs/[code]`, `/advisor`, and `/me`. Programs are browsed on their
+school's page; `/programs` itself SHALL be not found (removed 2026-10-31). No route under
 `/prototype` SHALL remain, and `/admin` SHALL NOT be served.
 
 #### Scenario: A removed prototype route is not found
@@ -19,7 +20,7 @@ The web application SHALL serve exactly these pages: `/`, `/assess`, `/assess/re
 ### Requirement: Every page shares one shell that names the product
 
 Every page SHALL render inside one shell whose top bar shows the product mark and the name 鱼跃彼岸 on the left,
-the links 路线图, 选校, 学校库, 项目库, and 顾问, and a 我的背景 link on the right. The link for the current
+the links 路线图, 选校, 学校库, and 顾问, and a 我的背景 link on the right. The link for the current
 page SHALL carry `aria-current="page"`. Below 640px wide the links SHALL fold into a menu opened by one button,
 and the page SHALL NOT scroll sideways.
 
@@ -31,7 +32,7 @@ and the page SHALL NOT scroll sideways.
 #### Scenario: The navigation folds on a phone
 
 - **WHEN** the page is 390px wide
-- **THEN** the five links are hidden until the menu button is pressed, and the document is no wider than the
+- **THEN** the four links are hidden until the menu button is pressed, and the document is no wider than the
   viewport
 
 ### Requirement: A first visit and a return visit open different pages

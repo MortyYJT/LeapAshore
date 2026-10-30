@@ -5,7 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 
 import { LoginPrompt, RequireAccount } from "@/components/auth/AuthProvider";
 import { DeadlineText } from "@/components/roadmap/DeadlineText";
-import { Button, Loading, Notice, Pill, SourceNote } from "@/components/ui";
+import { Button, LoadingPanel, Notice, Pill } from "@/components/ui";
 import { fetchProgramPage, replaceApplications } from "@/lib/api";
 import { beijingToday, deadlineOf } from "@/lib/deadlines";
 import { usePortfolio } from "@/lib/hooks/usePortfolio";
@@ -29,6 +29,14 @@ export default function PortfolioPage() {
             <h1>选校组合</h1>
           </div>
           <LoginPrompt what="你的选校组合" />
+        </main>
+      }
+      pending={
+        <main className="page">
+          <div className="title-row">
+            <h1>选校组合</h1>
+          </div>
+          <LoadingPanel what="选校组合" />
         </main>
       }
     >
@@ -116,7 +124,7 @@ function Portfolio() {
         </div>
 
         {saved.error && !saved.data && <div className="section"><Notice error>没有读到已保存的组合（{saved.error}）。</Notice></div>}
-        {draft === null && !saved.error && <div className="section"><Loading what="选校组合" /></div>}
+        {draft === null && !saved.error && <LoadingPanel what="选校组合" />}
 
         {draft !== null && (
           <div className="stagger">
@@ -246,9 +254,6 @@ function Portfolio() {
         )}
         {savedNote && !changed && <div className="section"><Notice>{savedNote}</Notice></div>}
       </main>
-      <SourceNote>
-        确认后，组合写入服务器，路线图按新组合显示截止日期。官方截止日期只有收录了官网来源才显示日期，已经过了的标「已截止」，其余显示为未收录。档位标“未经系统分档”的，是你自己定的档位。
-      </SourceNote>
     </>
   );
 }

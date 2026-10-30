@@ -95,3 +95,43 @@ export function statesARequirement(p: StatedFields): boolean {
     p.deadlines.length > 0
   );
 }
+
+/** The requirement fields a program page lists, with whether each is stated. */
+export interface RequirementFields extends StatedFields {
+  requiresCognate: boolean;
+}
+
+/**
+ * The requirements a program's page has nothing for, named in the order the page lists them, so the
+ * page can say them once (未收录：均分门槛、英语) instead of a row of 未收录 each. The two mark rows fold
+ * into 均分门槛 when both are missing.
+ */
+export function missingRequirements(p: RequirementFields): string[] {
+  const missing: string[] = [];
+  if (p.minimumMark === null && p.non211MinimumMark === null) missing.push("均分门槛");
+  else if (p.minimumMark === null) missing.push("均分门槛（985 / 211）");
+  else if (p.non211MinimumMark === null) missing.push("均分门槛（其他院校）");
+  if (!p.requiresCognate) missing.push("相关专业背景");
+  if (p.prerequisites.length === 0) missing.push("先修课");
+  if (p.englishRequirement === null) missing.push("英语");
+  if (p.academicRequirement === null) missing.push("学术要求");
+  if (p.deadlines.length === 0) missing.push("申请截止");
+  return missing;
+}
+
+/**
+ * Which optional columns of a school's program table any of its programs fills: the duration (CRICOS
+ * weeks or a collected duration), the CRICOS total tuition, and the requirement badge. A column empty
+ * for every program is left out rather than shown as a column of 未收录.
+ */
+export function programColumns(
+  programs: (StatedFields & { slug: string; duration: string | null })[],
+  courses: MasterProgram[],
+): { duration: boolean; tuition: boolean; requirements: boolean } {
+  const facts = programs.map((p) => cricosFacts(p.slug, courses));
+  return {
+    duration: programs.some((p, i) => Boolean(facts[i]?.weeks) || p.duration !== null),
+    tuition: facts.some((f) => Boolean(f?.tuition)),
+    requirements: programs.some(statesARequirement),
+  };
+}

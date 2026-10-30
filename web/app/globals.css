@@ -79,7 +79,7 @@ a { color: inherit; }
 /* ---------- shell ---------- */
 .bar { position: sticky; top: 0; z-index: 20; border-bottom: 1px solid transparent; transition: background-color 0.2s, border-color 0.2s; }
 .bar.scrolled { background: rgba(251, 246, 236, 0.72); -webkit-backdrop-filter: blur(16px); backdrop-filter: blur(16px); border-bottom-color: var(--line); }
-.bar-inner, .page, .foot { max-width: 1152px; margin: 0 auto; padding: 0 24px; box-sizing: content-box; }
+.bar-inner, .page { max-width: 1152px; margin: 0 auto; padding: 0 24px; box-sizing: content-box; }
 .bar-inner { height: 48px; display: flex; align-items: center; gap: 32px; }
 .brand { display: flex; align-items: center; gap: 8px; text-decoration: none; font-weight: 600; font-size: 15px; color: var(--color-ink); }
 .brand svg { flex: none; }
@@ -89,7 +89,6 @@ a { color: inherit; }
 .nav a[aria-current="page"], .me-link[aria-current="page"] { color: var(--color-ink); background: var(--color-active); }
 .bar .menu-btn, .phone-only { display: none; }
 .page { padding-top: 32px; padding-bottom: 40px; }
-.foot { padding-bottom: 64px; }
 .title-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
 h1 { font-size: 24px; line-height: 32px; font-weight: 600; margin: 0; letter-spacing: -0.01em; }
 h2 { font-size: 16px; line-height: 24px; font-weight: 600; margin: 0; }
@@ -97,12 +96,15 @@ h3 { font-size: 14px; line-height: 20px; font-weight: 600; margin: 0; }
 .lede { margin: 6px 0 0; font-size: 15px; line-height: 22px; color: var(--color-muted); max-width: 64ch; }
 .lede strong { color: var(--color-ink); font-weight: 500; }
 .crumb { color: var(--color-muted); text-decoration: none; display: inline-block; margin-bottom: 12px; }
-.crumb:hover { color: var(--color-ink); }
+.crumb:hover, .crumb a:hover { color: var(--color-ink); }
+nav.crumb a { text-decoration: none; }
+/* An inline link to an official page: green and underlined, so it reads as a link (preflight strips both). */
+.link { color: var(--color-accent-text); text-decoration: underline; text-underline-offset: 3px; text-decoration-color: rgba(47, 122, 90, 0.35); overflow-wrap: anywhere; }
+.link:hover { text-decoration-color: currentColor; }
+.nowrap { white-space: nowrap; }
 .section { margin-top: 32px; }
 .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 12px; flex-wrap: wrap; }
 .section-head .count { color: var(--color-muted); font-weight: 400; margin-left: 6px; }
-.source-note { margin: 24px 0 0; color: var(--color-muted); font-size: 12px; line-height: 18px; max-width: 90ch; }
-.source-note a { color: var(--color-muted); }
 
 /* ---------- surfaces ---------- */
 .panel {
@@ -121,6 +123,13 @@ h3 { font-size: 14px; line-height: 20px; font-weight: 600; margin: 0; }
 .strip .label { color: var(--color-muted); font-size: 12px; line-height: 16px; }
 .strip .value { font-size: 16px; line-height: 24px; margin-top: 4px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .strip .value .unit { color: var(--color-muted); font-size: 13px; font-weight: 400; }
+/* Loading: bars where the content will be, breathing slowly; still under reduced motion. */
+.skeleton { display: grid; gap: 10px; padding: 4px 0; }
+.skeleton-line { display: block; height: 12px; border-radius: 6px; background: var(--color-track); animation: skeleton-breathe 1.4s ease-in-out infinite; }
+.skeleton-line:nth-child(1) { width: 42%; }
+.skeleton-line:nth-child(2) { width: 88%; }
+.skeleton-line:nth-child(3) { width: 64%; }
+@keyframes skeleton-breathe { 50% { opacity: 0.55; } }
 .empty { border: 1px dashed rgba(61, 58, 53, 0.16); border-radius: 14px; padding: 12px 16px; color: var(--color-muted); }
 .notice { border-radius: 14px; padding: 12px 16px; background: var(--color-sample-bg); color: var(--color-sample-ink); }
 .notice-error { background: #fdecec; color: #8a1c20; }
@@ -207,6 +216,11 @@ tbody tr:hover { background: var(--hover); }
 
 /* ---------- roadmap ---------- */
 .timeline-svg { display: block; width: 100%; height: auto; overflow: visible; }
+/* Before the timeline has measured its box (and in the server's HTML) both layouts are drawn; the
+   screen width picks one, by the same 640px rule the component uses once it has measured. */
+@media (max-width: 639px) { .tl-wide { display: none; } }
+@media (min-width: 640px) { .tl-narrow { display: none; } }
+.roadmap-empty { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 .legend { display: flex; gap: 16px; flex-wrap: wrap; color: var(--color-muted); font-size: 12px; align-items: center; }
 .legend span { display: inline-flex; align-items: center; gap: 6px; }
 .phase-hit { cursor: pointer; }
@@ -263,7 +277,7 @@ tbody tr:hover { background: var(--hover); }
 
 /* ---------- phone ---------- */
 @media (max-width: 760px) {
-  .bar-inner, .page, .foot { padding-left: 16px; padding-right: 16px; }
+  .bar-inner, .page { padding-left: 16px; padding-right: 16px; }
   .bar-inner { gap: 12px; position: relative; }
   .nav, .me-link { display: none; }
   .bar.open { background: rgba(251, 246, 236, 0.96); }
@@ -362,6 +376,7 @@ tbody tr:hover { background: var(--hover); }
 .rules dt { font-weight: 500; }
 .rules dd { margin: 0; color: var(--color-muted); }
 .req-table td:first-child { width: 34%; color: var(--color-muted); }
+.req-table td { overflow-wrap: anywhere; }
 @media (max-width: 760px) { .req-table td:first-child { width: 40%; } }
 .deadline-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 4px; }
 .deadline-list li[data-state="closed"] a, .deadline-closed a { color: var(--color-muted); }
@@ -380,8 +395,9 @@ tbody tr:hover { background: var(--hover); }
 .code-input { font-size: 22px; letter-spacing: 0.4em; height: 48px; }
 .ink { color: var(--color-ink); }
 .dialog .fields { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
-.site-foot { max-width: 1152px; margin: 0 auto; padding: 0 24px 32px; box-sizing: content-box; font-size: 12px; color: var(--color-muted); }
-.site-foot a { color: var(--color-muted); }
+.site-foot { max-width: 1152px; margin: 0 auto; padding: 24px 24px 32px; box-sizing: content-box; font-size: 12px; line-height: 18px; color: var(--color-muted); }
+.site-foot p { margin: 0; }
+.site-foot a { color: var(--color-muted); text-decoration: underline; text-underline-offset: 2px; text-decoration-color: var(--color-control); }
 .privacy h2 { margin-top: 28px; }
 .privacy p, .privacy li { line-height: 24px; }
 @media (max-width: 760px) {

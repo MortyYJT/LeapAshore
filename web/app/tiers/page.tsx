@@ -5,13 +5,13 @@ import { useEffect, useMemo, useState } from "react";
 
 import { LoginPrompt, RequireAccount } from "@/components/auth/AuthProvider";
 import { ProfileForm } from "@/components/profile/ProfileForm";
-import { Button, Loading, Notice, SourceNote } from "@/components/ui";
+import { Button, LoadingPanel, Notice } from "@/components/ui";
 import { fetchAllPrograms, fetchProgramPage } from "@/lib/api";
 import { hasBasics, missingBasics, toApplicant } from "@/lib/assess";
+import { verifiedMark } from "@/lib/taxonomy";
 import { useProfile } from "@/lib/hooks/useProfile";
 import { usePortfolio } from "@/lib/hooks/usePortfolio";
 import { addToDraft, readDraft, removeFromDraft, writeDraft } from "@/lib/portfolio-draft";
-import { dataStatusLabel } from "@/lib/taxonomy";
 import {
   REACH_AVERAGE_SHORTFALL,
   REACH_IELTS_SHORTFALL,
@@ -42,7 +42,7 @@ const sign = (n: number) => `${n > 0 ? "+" : n < 0 ? "−" : "±"}${Math.abs(Mat
  */
 export default function TiersPage() {
   return (
-    <RequireAccount what="分档结果" fallback={<Page><LoginPrompt what="你的分档结果" /></Page>}>
+    <RequireAccount what="分档结果" fallback={<Page><LoginPrompt what="你的分档结果" /></Page>} pending={<Page><LoadingPanel what="分档结果" /></Page>}>
       <Tiers />
     </RequireAccount>
   );
@@ -100,7 +100,7 @@ function Tiers() {
     [programs],
   );
 
-  if (profile.loading && !profile.data) return <Page><Loading what="你的背景" /></Page>;
+  if (profile.loading && !profile.data) return <Page><LoadingPanel what="你的背景" /></Page>;
   if (profile.error && !profile.data) return <Page><Notice error>没有读到你的背景（{profile.error}）。<button className="btn btn-text" onClick={profile.reload}>重试</button></Notice></Page>;
   if (!profile.data || !complete) {
     const missing = profile.data ? missingBasics(profile.data).map((m) => m.label) : [];
@@ -128,9 +128,9 @@ function Tiers() {
       <section className="panel section" aria-label="你的背景">
         <div className="strip">
           <Fact label="本科院校" value={profile.data.schoolName || "未填"} unit={tierWord(applicant.institution)} />
-          <Fact label="专业" value={profile.data.major} />
+          <Fact label="专业" value={profile.data.major || "未填"} />
           <Fact label="均分" value={String(profile.data.gpaScore)} unit={`/ ${profile.data.gpaScale}`} />
-          <Fact label="英语" value={profile.data.englishScore} />
+          <Fact label="英语" value={profile.data.englishScore || "未填"} />
           <Fact label="方向" value={profile.data.targetField ?? "未填"} />
         </div>
       </section>
@@ -140,7 +140,7 @@ function Tiers() {
         </p>
       )}
       {readError && <div className="section"><Notice error>项目读取失败（{readError}）。</Notice></div>}
-      {!tiered && !readError && <div className="section"><Loading what="项目和要求" /></div>}
+      {!tiered && !readError && <LoadingPanel what="项目和要求" />}
       {tiered && (
         <>
           {countries.length > 1 && (
@@ -217,12 +217,9 @@ function Tiers() {
                 <h2 id="not-collected">
                   要求未收录<span className="count num">{pending.total}</span>
                 </h2>
-                <Link className="btn btn-text" href={`/programs?field=${encodeURIComponent(field ?? "")}`}>
-                  在项目库查看全部
-                </Link>
               </div>
               <p className="muted" style={{ margin: "-4px 0 12px" }}>
-                这些项目还没有收录录取要求，不参与分档。可以加进组合，档位由你自己定，系统会标明它没有被分档。
+                这些项目还没有收录录取要求，不参与分档。可以加进组合，档位由你自己定。
               </p>
               <div className="panel rows">
                 {pending.programs.length === 0 && <div className="row"><span className="muted">这个方向的项目都已收录要求。</span></div>}
@@ -244,30 +241,25 @@ function tierWord(institution: ReturnType<typeof toApplicant>["institution"]): s
 
 function Page({ children, draftCount }: { children: React.ReactNode; draftCount?: number }) {
   return (
-    <>
-      <main className="page">
-        <div className="title-row">
-          <div>
-            <h1>分档结果</h1>
-            <p className="lede">
-              按已收录的官方要求比较你的背景。分档说明满足了几项要求，<strong>不是录取概率</strong>。
-            </p>
-          </div>
-          <div className="toolbar">
-            <Link className="btn btn-secondary" href="/me">
-              修改背景
-            </Link>
-            <Link className="btn btn-primary" href="/portfolio">
-              {draftCount ? `去选校（已加 ${draftCount} 个）` : "去选校"}
-            </Link>
-          </div>
+    <main className="page">
+      <div className="title-row">
+        <div>
+          <h1>分档结果</h1>
+          <p className="lede">
+            按已收录的官方要求比较你的背景。分档说明满足了几项要求，<strong>不是录取概率</strong>。
+          </p>
         </div>
-        {children}
-      </main>
-      <SourceNote>
-        要求摘自各校官网页面：“自动标注”表示程序已对照官网原文核对，“未核对”表示还没核对过，两者都还没有人工核对，申请前请以官网为准。澳洲项目事实来自 CRICOS（澳大利亚教育部，CC BY 2.5 AU）；院校层次来自教育部《全国高等学校名单》。
-      </SourceNote>
-    </>
+        <div className="toolbar">
+          <Link className="btn btn-secondary" href="/me">
+            修改背景
+          </Link>
+          <Link className="btn btn-primary" href="/portfolio">
+            {draftCount ? `去选校（已加 ${draftCount} 个）` : "去选校"}
+          </Link>
+        </div>
+      </div>
+      {children}
+    </main>
   );
 }
 
@@ -328,10 +320,10 @@ function TierRow({
           </div>
         )}
         <div>
-          <a className="muted" href={program.source.url} target="_blank" rel="noreferrer">
-            官网
-          </a>{" "}
-          · {dataStatusLabel(program.dataStatus)}
+          <a className="link" href={program.source.url} target="_blank" rel="noreferrer">
+            官网 <span aria-hidden="true">↗</span>
+          </a>
+          {verifiedMark(program.dataStatus) && <> · {verifiedMark(program.dataStatus)}</>}
         </div>
       </div>
       <div className="notes">
@@ -372,7 +364,7 @@ function PendingRow({
   return (
     <div className="row pending-row">
       <ProgramName program={program} />
-      <div className="muted small hide-phone">{program.duration ?? "学制未收录"}</div>
+      <div className="muted small hide-phone">{program.duration ?? ""}</div>
       <div style={{ textAlign: "right" }}>
         {chosen ? (
           <Button small aria-pressed onClick={onRemove}>

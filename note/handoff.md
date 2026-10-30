@@ -8,6 +8,7 @@
 - **服务器 SSH（10-31）：** 只认密钥，密码登录和 root 登录都关了；fail2ban 已开（5 次失败封 1 小时）。细节和解封命令见 `docs/deploy.md`。没检查腾讯云安全组的 22 端口来源限制。
 - **生产数据：** 「有要求」7,374，`机器核对` 4,115，截止日期 3,555 条（1,947 个项目、111 所，10-30 北京时间已过 289 条），`sources.verified_at` 非空 0，快照 9,345 页、132,208 块；近几次部署前后用户的组合和路线图表整表 md5 不变。beat 第一次重采在 10-31 04:07（北京），在那之前 `collect_pages`、`requirement_changes` 是空的。
 - **本机采集文件：** 282 所、250 所有项目、9,035 个项目；忠实度回填后机器核对 4,162，还有 125 个项目和中国学生要求 2,278 条没判（DeepSeek 余额用完，见「卡在 MortyYJT」第 5 条）。
+- **产品站收尾（10-31 夜，未合并、未部署）：** PR #79（标签页图标）和 PR #80（删 `/programs` 列表、学校详情页可搜索和按方向筛选、项目详情只列有值的要求、去掉内部字样和每页底注、一行页脚署名、路线图无入学时间的空状态、加载占位、首页示例路线图服务器端画好）都已开、CI 绿，等 lead 复核后合并并部署。决定和理由见 `note/decisions.md` 10-31「产品站收尾」。
 - **任务进度（`TASKS.md`）：** P0、P1 做完（卡在 MortyYJT 的除外）；P2 #1 知识缺口（#67）、#3 人工核验入口（#69）已部署，#2 可观测性跳过（没有 Langfuse key）。**下一条：P2 #4「界面收尾」**（`ledger-redesign` 剩 4.4、5.12、7.1、7.2、7.3、7.5）。
 - **已有能力**（细节在对应 OpenSpec change 和 `docs/measurements.md`）：邮箱验证码登录（生产没开）、顾问检索与评估（`api/evals/`）、限流与 token 额度（Redis，连不上就 503）、截止日期和学术要求入库、采集队列（Celery + Redis，worker/beat）、对话持久化（PG checkpointer）、混合检索（没有 `EMBED_API_KEY`，实际跑 `fts`）、快照 RAG、概括忠实度判官、同名学校合并、模型不可用降级、知识缺口队列、人工核验入口（只有管理员能用，生产匿名模式下没人能用）。离线工具：抽取 `python -m app.collect.extract`（没部署）。
 - **评估：** 顾问报数组 30 条已在最终代码上跑过，**别再拿它调参**，重跑对比只照实记录；CI 的 `advisor-eval` 只跑调参组。
@@ -40,7 +41,8 @@
 - 抽取器的已知局限：`verify` 只保证引文逐字在页上、数字在引文里，`text`/`label`/`recommended` 是否忠实没查；同温度 0 下截止日期的拒收数在跑与跑之间能差一倍（模型时而从页面别处推年份）。
 - 采集数据里需要人工确认的点写在各校 json 的 `notes` 里（旧清单可在提交 `1a9fa30` 的 handoff 里查到）。
 - 截止日期会过期（10-30 按北京时间 3,555 条里 289 条已过，102 个项目全部已过）：界面在渲染时按当天判断、标「已截止」，库里不存状态。最晚的一条是 2028-02-01，随着时间推移越来越多项目会变成「全部已截止」，要靠 P1「采集队列」定期重采。
-- Commons 上 CC BY / CC BY-SA 的校徽需要在界面上署名（`logo_license`、`logo_source` 已在 fixture 里），学校库页面还没有署名区。
+- 顾问拒答话术还写着「在项目库里查看该校已收录的项目」（`api/app/agent/evidence.py`），项目库列表页删了以后应改成「学校库」；PR #80 不许动后端，留到下次改后端时。
+- CC BY-SA 校徽的署名（PR #80 起）在全站页脚，名单从 `overseas-institutions.json` 的 `logo_license` 读；以后加 CC 校徽要填 `logo_license` 和 `logo_source`，否则不会被署名。
 - **Crawl-delay**（10-30 起遵守）：82 个已缓存的 robots.txt 写了 5–120 秒，快照工具以前一律 2 秒；补采时 13 个站点被按 2 秒抓了（数据保留，见 decisions）。
 - 还没采到项目的学校 37 所，多数被拒，规则不允许绕过。找列表页还能接着做：把新 URL 写进 `_schools.json` 的 `listing_urls`，`python -m app.collect.queue discover <key>...`，worker 跑完 `export`。
 - 队列采的 1,366 个项目页没有要求通过核对（多数学校把入学要求写在另一页，队列只读项目页本身），在文件里是 `待人工`、不入库。
@@ -76,6 +78,7 @@
 - 顾问的限流在 endpoint 里、请求体校验通过之后才查（不要改回 `Depends`：依赖先于校验运行，422 也会占名额、预扣也不会还）。一轮对话在后台任务（`advisor._detached`）里跑完，结束时 `limits.settle` 归还预扣；新加花钱的路径要拿 ticket 并保证 settle。`check` 超时会先撤回本次放行（`_WITHDRAW`，按放行 id 幂等）再抛 `LimitsUnavailable`，所以 503 不会留下预扣；改 `_CHECK` 的 KEYS/ARGV 顺序时两个脚本一起改。
 
 - 顾问的学科名称模式（`subjects.json` 的 `name`）在 PostgreSQL 里跑，别写 `\b`（PG 里是退格），用 `(^|[^a-z])…([^a-z]|$)`。改简称表后跑 `python -m evals.run_advisor --split tune`：它会检查每个 id 都在库里、标签和库一致。
+- `make verify` 的走查（PR #80 起）在浏览器里拦下 `/api/advisor/*` 返回桩回复，不会真的问顾问、不花模型钱；要验证顾问本身走后端测试和 `api/evals/`。本机后端也没有 `CHAT_API_KEY`。
 - 本机 :3000 的 dev server 若是很早起的旧进程，`/assess` 会 404、走查 28/30；对 `make build` 产物走查即可（见下一条）。
 
 - 登录后、退出登录后不要用 `router.push("/")`：客户端路由可能缓存了登录状态下预取的 `/`，而 proxy 对它的回答是跳 `/roadmap`。退出登录用整页跳转（`window.location.assign`）。

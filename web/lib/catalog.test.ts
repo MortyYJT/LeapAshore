@@ -5,6 +5,8 @@ import { test } from "node:test";
 import {
   cricosCode,
   cricosFacts,
+  missingRequirements,
+  programColumns,
   schoolSlugForUniversity,
   statesARequirement,
   universityIdsFor,
@@ -74,4 +76,37 @@ test("a program states a requirement by the backend's has_requirement_data rule"
   assert.equal(statesARequirement({ ...none, academicRequirement: "A 2:1 honours degree" }), true);
   // A past deadline still counts: the page lists it, labelled 已截止.
   assert.equal(statesARequirement({ ...none, deadlines: [{ label: "Round 1", date: "2026-01-15", sourceUrl: "https://example.edu" }] }), true);
+});
+
+const nothingStated = {
+  minimumMark: null, non211MinimumMark: null, requiresCognate: false, englishRequirement: null,
+  prerequisites: [] as string[], academicRequirement: null,
+  deadlines: [] as { label: string | null; date: string; sourceUrl: string }[],
+};
+
+test("a program's missing requirements are named in one list, in the order the page shows them", () => {
+  assert.deepEqual(missingRequirements(nothingStated), ["均分门槛", "相关专业背景", "先修课", "英语", "学术要求", "申请截止"]);
+  assert.deepEqual(
+    missingRequirements({ ...nothingStated, minimumMark: 80, englishRequirement: "IELTS 6.5", requiresCognate: true, prerequisites: ["Calculus"], academicRequirement: "A 2:1", deadlines: [{ label: null, date: "2027-01-15", sourceUrl: "https://example.edu" }] }),
+    ["均分门槛（其他院校）"],
+  );
+  assert.deepEqual(missingRequirements({ ...nothingStated, non211MinimumMark: 85 }).slice(0, 1), ["均分门槛（985 / 211）"]);
+});
+
+test("a school's table keeps only the columns some program fills", () => {
+  const program = (slug: string, overrides: { duration?: string | null; englishRequirement?: string | null } = {}) => ({
+    ...nothingStated, slug, duration: null as string | null, ...overrides,
+  });
+  // Imperial-like: no CRICOS facts, no duration, every program states a requirement.
+  assert.deepEqual(programColumns([program("imperial-a", { englishRequirement: "IELTS 7.0" })], courses), {
+    duration: false, tuition: false, requirements: true,
+  });
+  // An Australian course brings its CRICOS weeks and tuition.
+  assert.deepEqual(programColumns([program("cricos-0100139"), program("x")], courses), {
+    duration: true, tuition: true, requirements: false,
+  });
+  // A collected duration alone keeps the duration column.
+  assert.deepEqual(programColumns([program("y", { duration: "1 year" })], courses), {
+    duration: true, tuition: false, requirements: false,
+  });
 });

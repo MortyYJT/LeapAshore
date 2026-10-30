@@ -8,13 +8,13 @@ import { useAuth } from "@/components/auth/AuthProvider";
 
 import { Mark } from "./Mark";
 
-// Spec app-navigation: five links and 我的, the current one marked, folding into a menu below 640px.
+// Spec app-navigation: four links and 我的, the current one marked, folding into a menu below 640px.
+// Programs are browsed on their school's page; /programs/[id] still marks 学校库 as current.
 // In login mode a logged-out visitor sees 登录 instead of 我的 (openspec account-login D11).
 const LINKS: { label: string; href: string; matches: string[] }[] = [
   { label: "路线图", href: "/roadmap", matches: ["/roadmap"] },
   { label: "选校", href: "/portfolio", matches: ["/portfolio", "/tiers"] },
-  { label: "学校库", href: "/schools", matches: ["/schools"] },
-  { label: "项目库", href: "/programs", matches: ["/programs"] },
+  { label: "学校库", href: "/schools", matches: ["/schools", "/programs"] },
   { label: "顾问", href: "/advisor", matches: ["/advisor"] },
 ];
 
@@ -22,7 +22,7 @@ function isCurrent(pathname: string, matches: string[]): boolean {
   return matches.some((m) => pathname === m || pathname.startsWith(`${m}/`));
 }
 
-export function Shell({ children }: { children: ReactNode }) {
+export function Shell({ children, footer }: { children: ReactNode; footer?: ReactNode }) {
   const pathname = usePathname() ?? "/";
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -78,9 +78,7 @@ export function Shell({ children }: { children: ReactNode }) {
         </div>
       </header>
       {children}
-      <div className="site-foot">
-        <Link href="/privacy">隐私政策</Link>
-      </div>
+      <footer className="site-foot">{footer}</footer>
     </>
   );
 }

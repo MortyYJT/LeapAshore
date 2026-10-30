@@ -8,7 +8,6 @@ import type {
   DegreeLevel,
   EducationLevel,
   PortfolioTier,
-  SourceStatus,
   StudyArea,
 } from "./types";
 
@@ -85,22 +84,13 @@ export function applicationStatusLabel(status: string | null | undefined): strin
   return APPLICATION_STATUSES.find((s) => s.value === status)?.label ?? "考虑中";
 }
 
-export const DATA_STATUS_LABELS: Record<SourceStatus, string> = {
-  待核验: "未核对",
-  机器核对: "自动标注",
-  已核验: "已核对",
-};
-
-/** What each data status means, for a line of explanation beside the label. */
-export const DATA_STATUS_MEANINGS: Record<SourceStatus, string> = {
-  待核验: "摘自官网，还没人核对",
-  机器核对: "摘自官网，程序已对照官网原文核对，还没人核对",
-  已核验: "有人对照官网核对过",
-};
-
-/** Anything other than the three known values reads as unchecked, never as checked. */
-export function dataStatusLabel(status: string | null | undefined): string {
-  return DATA_STATUS_LABELS[status as SourceStatus] ?? DATA_STATUS_LABELS["待核验"];
+/**
+ * The mark a stored data status earns on screen: 已核对 for a page a person checked against the official
+ * site, and nothing otherwise. Unchecked and machine-checked data are the default and carry no label;
+ * a status this build does not know is never shown as checked.
+ */
+export function verifiedMark(status: string | null | undefined): string | null {
+  return status === "已核验" ? "已核对" : null;
 }
 
 /** The stored one-character band and the tier name the interface shows for it. */
