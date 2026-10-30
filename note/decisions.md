@@ -2,6 +2,21 @@
 
 只记当前仍然有效、跨 change 的决定。被推翻或已经做完的条目直接删掉，历史在 git 里。属于某个 OpenSpec change 的决定写进那个 change。产品需求以 `docs/product/PRD.md` 为准，两边冲突时以 PRD 为准。
 
+## 2026-10-31 README 重写成开源项目的样子（Claude 自主（待 MortyYJT 复核））
+
+- **背景**：lead 要求 README 全英文、像成熟开源项目，只改文档。MortyYJT 睡前授权不问、自己定。
+- **决定**：
+  - 不写中文名「鱼跃彼岸」，README 里没有一个汉字；只在开头说一次界面是中文。
+  - 结构：一句话定位 → 徽章（CI、MIT、线上站）→ 首页截图 → 功能 → 架构（Mermaid：Caddy、Next.js、FastAPI、LangGraph、PostgreSQL+pgvector、Redis、Celery worker/beat）和顾问流程图（补上快照问答那条路）→ 工程亮点（每个数字照抄 `docs/measurements.md` 并链到对应一节）→ 数据与许可 → 技术栈 → 本机运行 → 评估 → 现状与局限 → 目录 → 文档索引 → 许可。
+  - 顾问只讲做法，不写「去试试顾问」、不列示例问题；局限里写「顾问依赖付费模型账户，可能不可用，不可用时会直说」，不写余额细节。生产检索写明只跑全文，向量和混合没测过。
+  - 文档索引不链 `TASKS.md`、`CLAUDE.md`、`note/decisions.md`、`note/handoff.md`（内部流程）；保留 `note/design/`（标明中文）。
+  - 本机运行用 `python3.12 -m venv` + `pip install -e "api[test]"`（和 CI 一样），不写 `make install`：它要求 uv 放在被忽略的 `.runtime-tools/` 里，外人克隆下来没有。
+  - 删掉旧 README 的「2 核 4 GB 服务器」：仓库文档里没有出处。QS 排名不加外链：topuniversities.com 对非浏览器请求回 403，链接检查过不了。
+  - 旧 README 的「On a server」两条命令挪进 `docs/deploy.md` 新的「First-time setup」一节。
+  - 截图放 `docs/images/`（webp，1280 宽，每张 27–46 KB，用浏览器 canvas 转码，没装新工具）：首页、帝国理工学校页、一个项目页取自线上（截图时浏览器拦掉 `/api/profile`、`/api/applications`、`/api/roadmap`、`/api/advisor`、`/api/documents`、`/api/admin`，确实拦下了项目页发出的 `/api/profile` 和 `/api/applications`，所以生产没建匿名主体）；分档、选校组合、路线图取自本机 `make build` 产物（:3100）+ 本机后端（登录模式），用临时账号 `readme-shots@example.com` 和编的背景（北邮 211、软件工程、均分 85、雅思 7.0、2027 S2 入学、3 个项目），截完已注销该账号（本机账号数和客户端数恢复原样）。`docs/screenshots/`（走查输出）不动。
+- **理由**：lead 的要求；MortyYJT 2026-10-31 授权 AI 自主决定。
+- **待 MortyYJT 复核**：要不要在 README 标题保留中文名；数据与许可一段的措辞（QS 转载条款、校徽「仅作识别」）；本机运行步骤是否要改回 `make install`。
+
 ## 2026-10-31 产品站收尾：删项目库列表、只标「已核对」、一行页脚、标签页图标（Claude 自主（待 MortyYJT 复核））
 
 - **背景**：lead 要求把站点包装成成品（不加功能、不动后端）。MortyYJT 睡前授权不问、自己定，每条记在这里。
