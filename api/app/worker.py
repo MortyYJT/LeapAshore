@@ -1,4 +1,4 @@
-"""Celery: the collection queue's tasks and the beat schedule (openspec/changes/collect-queue).
+"""Celery: the collection queue's tasks and the beat schedule (openspec/changes/archive/2026-10-30-collect-queue).
 
     celery -A app.worker worker --pool threads --concurrency 4 --loglevel INFO
     celery -A app.worker beat --loglevel INFO

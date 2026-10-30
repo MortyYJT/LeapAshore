@@ -1,4 +1,4 @@
-"""The knowledge-gap review queue (openspec/changes/knowledge-gaps, TASKS.md P2 #1).
+"""The knowledge-gap review queue (openspec/changes/archive/2026-10-30-knowledge-gaps, TASKS.md P2 #1).
 
 Refusals are recorded as reports of a gap (the asker only as a keyed hash), deleted with the subject and
 after 90 days; an admin lists, reads and reviews gaps; a review queues a re-collection on the collection

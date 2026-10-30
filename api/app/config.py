@@ -46,7 +46,7 @@ class Settings(BaseSettings):
     # given back when the turn ends, leaving the counters at the reported usage (D4).
     advisor_turn_token_reserve: int = 8_000
 
-    # --- Advisor conversations (openspec/changes/advisor-persistence) ---
+    # --- Advisor conversations (openspec/changes/archive/2026-10-30-advisor-persistence) ---
     # The checkpointer's own psycopg pool, beside SQLAlchemy's (5 + 10 overflow). The saver runs one
     # statement at a time under its lock, so a second connection is only a spare (D3).
     checkpoint_pool_size: int = 2
@@ -54,7 +54,7 @@ class Settings(BaseSettings):
     # conversation ids in memory only, so an idle thread is one nobody can reach any more (D7).
     advisor_thread_retention_days: int = 90
 
-    # --- Collection queue (openspec/changes/collect-queue) ---
+    # --- Collection queue (openspec/changes/archive/2026-10-30-collect-queue) ---
     # Celery's broker: Redis database 1, so its keys never share a keyspace with the advisor's counters.
     celery_broker_url: str = "redis://localhost:56379/1"
     # Model prices in CNY per million tokens, used to cost every extraction against the budget:
@@ -92,7 +92,7 @@ class Settings(BaseSettings):
     # Pro/BAAI/bge-m3 is ¥0.07). Recorded spend is tokens x this.
     embed_price_cny_per_mtok: float = 0.0
 
-    # --- Accounts (openspec/changes/account-login) ---
+    # --- Accounts (openspec/changes/archive/2026-10-30-account-login) ---
     # Login mode. Off keeps the anonymous-cookie behaviour, which is what production runs until
     # MortyYJT has a verified SES sender and SMTP credentials; `make api-dev-bg` turns it on locally.
     auth_enabled: bool = False
@@ -120,7 +120,7 @@ class Settings(BaseSettings):
     auth_session_days: int = 30
     anonymous_retention_days: int = 90
 
-    # --- Knowledge gaps (openspec/changes/knowledge-gaps) ---
+    # --- Knowledge gaps (openspec/changes/archive/2026-10-30-knowledge-gaps) ---
     # The key of the HMAC that stands for the asker of a refused question (D4). A random secret kept only
     # in the server's `.env`; empty means reports are stored with no asker at all.
     knowledge_gap_hash_key: str = ""

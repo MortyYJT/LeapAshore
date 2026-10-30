@@ -19,7 +19,7 @@ depends_on: Union[str, Sequence[str], None] = None
 
 
 def upgrade() -> None:
-    """Add-only: accounts, server-side sessions and login codes (openspec/changes/account-login).
+    """Add-only: accounts, server-side sessions and login codes (openspec/changes/archive/2026-10-30-account-login).
 
     `documents.current_version_id`'s foreign key is created by the document-library migration and is
     deliberately not declared on the model; autogenerate proposes dropping it, which is removed here.

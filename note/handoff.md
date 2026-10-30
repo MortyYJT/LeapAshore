@@ -5,14 +5,14 @@
 ## 现在（2026-10-30）
 
 - **线上：** <https://leapashore.mortyyjt.site> 跑 main 到 PR #69（10-30 部署），**匿名模式**（`AUTH_ENABLED` 未设）。Alembic `c8e1f4a7b2d9`；最近一次部署前备份 `~/db-backup-20261030-pre-source-verification.sql.gz`。库是 `pgvector/pgvector:pg16`、卷 `deploy_pgdata`（`C` 排序）；旧卷 `deploy_db-data` 停在 10-30 14:44（北京）换镜像那一刻，之后的部署（快照 RAG、忠实度重导、学校合并、知识缺口、人工核验）都不在里面，**回滚用最近的备份，不用它**；确认没问题后可删。个人网站 mortyyjt.site 也由这台的 Caddy 出。
-- **生产数据：** 「有要求」7,374，`机器核对` 4,115，`sources.verified_at` 非空 0，快照 9,345 页、132,208 块；近几次部署前后用户的组合和路线图表整表 md5 不变。beat 第一次重采在 10-31 04:07（北京），在那之前 `collect_pages`、`requirement_changes` 是空的。
+- **生产数据：** 「有要求」7,374，`机器核对` 4,115，截止日期 3,555 条（1,947 个项目、111 所，10-30 北京时间已过 289 条），`sources.verified_at` 非空 0，快照 9,345 页、132,208 块；近几次部署前后用户的组合和路线图表整表 md5 不变。beat 第一次重采在 10-31 04:07（北京），在那之前 `collect_pages`、`requirement_changes` 是空的。
 - **本机采集文件：** 282 所、250 所有项目、9,035 个项目；忠实度回填后机器核对 4,162，还有 125 个项目和中国学生要求 2,278 条没判（DeepSeek 余额用完，见「卡在 MortyYJT」第 5 条）。
 - **任务进度（`TASKS.md`）：** P0、P1 做完（卡在 MortyYJT 的除外）；P2 #1 知识缺口（#67）、#3 人工核验入口（#69）已部署，#2 可观测性跳过（没有 Langfuse key）。**下一条：P2 #4「界面收尾」**（`ledger-redesign` 剩 4.4、5.12、7.1、7.2、7.3、7.5）。
 - **已有能力**（细节在对应 OpenSpec change 和 `docs/measurements.md`）：邮箱验证码登录（生产没开）、顾问检索与评估（`api/evals/`）、限流与 token 额度（Redis，连不上就 503）、截止日期和学术要求入库、采集队列（Celery + Redis，worker/beat）、对话持久化（PG checkpointer）、混合检索（没有 `EMBED_API_KEY`，实际跑 `fts`）、快照 RAG、概括忠实度判官、同名学校合并、模型不可用降级、知识缺口队列、人工核验入口（只有管理员能用，生产匿名模式下没人能用）。离线工具：抽取 `python -m app.collect.extract`（没部署）。
 - **评估：** 顾问报数组 30 条已在最终代码上跑过，**别再拿它调参**，重跑对比只照实记录；CI 的 `advisor-eval` 只跑调参组。
-- **未归档的 OpenSpec change：** account-login、hybrid-retrieval、knowledge-gaps、snapshot-rag（各剩 1 项卡在 MortyYJT）、ledger-redesign（P2 #4 进行中）。
+- **未归档的 OpenSpec change：** hybrid-retrieval、snapshot-rag（各剩 1 项，都卡在 MortyYJT 的 `EMBED_API_KEY`）、ledger-redesign（P2 #4 进行中）。account-login、knowledge-gaps 已在 10-31 文档审计 PR 里归档（最后一项「部署」10-30 已做完）。
 - **仓库整理（10-30）：** 不用 Claude Code 钩子（#71 删了 `guard.sh`）；删了学习用的 `note/interview/`（#72，git 历史里可找回）。`note/design/` 保留：代码注释和 README 把它当设计依据引用。钩子删了以后，「不推 main、不 force push、不碰密钥文件」只靠规则；GitHub 上 main 有分支保护（必须过 `backend`、`web`）。
-- **文档（10-31 精简）：** `docs/` 全是英文：`deploy.md`（部署与运维）、`measurements.md`（各任务的测量、命令和注释，从 `TASKS.md` 挪来）、`product/PRD.md`；`TASKS.md` 每条只留一行；`openspec/specs/` 9 份（#73 归档了 4 个已完成的变更）。`note/` 保持中文。
+- **文档（10-31 精简）：** `docs/` 全是英文：`deploy.md`（部署与运维）、`measurements.md`（各任务的测量、命令和注释，从 `TASKS.md` 挪来）、`product/PRD.md`；`TASKS.md` 每条只留一行；`openspec/specs/` 15 份（#73 归档了 4 个已完成的变更，10-31 文档审计又归档 2 个）。`note/` 保持中文。
 - **本机：** `make api-dev-bg` 默认登录模式，验证码写到 `api/var/mail.log`（不发信）；走查要求后端在登录模式，否则直接退出并说明。
 
 ## 卡在 MortyYJT（10-30）
@@ -38,7 +38,7 @@
 - NTU 8 个托福 1–6 新分制的值（PR #48 起）显示为「TOEFL iBT 4.5（新版 1–6 分制）」：导入器按 `scale: "iBT 1-6"` 加注，采集文件没改。
 - 抽取器的已知局限：`verify` 只保证引文逐字在页上、数字在引文里，`text`/`label`/`recommended` 是否忠实没查；同温度 0 下截止日期的拒收数在跑与跑之间能差一倍（模型时而从页面别处推年份）。
 - 采集数据里需要人工确认的点写在各校 json 的 `notes` 里（旧清单可在提交 `1a9fa30` 的 handoff 里查到）。
-- 截止日期会过期（10-30 按北京时间 130 条已过）：界面在渲染时按当天判断、标「已截止」，库里不存状态。最晚的一条是 2028-02-01，随着时间推移越来越多项目会变成「全部已截止」，要靠 P1「采集队列」定期重采。
+- 截止日期会过期（10-30 按北京时间 3,555 条里 289 条已过，102 个项目全部已过）：界面在渲染时按当天判断、标「已截止」，库里不存状态。最晚的一条是 2028-02-01，随着时间推移越来越多项目会变成「全部已截止」，要靠 P1「采集队列」定期重采。
 - Commons 上 CC BY / CC BY-SA 的校徽需要在界面上署名（`logo_license`、`logo_source` 已在 fixture 里），学校库页面还没有署名区。
 - **Crawl-delay**（10-30 起遵守）：82 个已缓存的 robots.txt 写了 5–120 秒，快照工具以前一律 2 秒；补采时 13 个站点被按 2 秒抓了（数据保留，见 decisions）。
 - 还没采到项目的学校 37 所，多数被拒，规则不允许绕过。找列表页还能接着做：把新 URL 写进 `_schools.json` 的 `listing_urls`，`python -m app.collect.queue discover <key>...`，worker 跑完 `export`。

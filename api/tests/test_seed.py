@@ -119,7 +119,7 @@ def restore_applications(session, displaced: list[dict]) -> dict:
                 f"portfolio row {values['id']} for client {values['client_id']} names program "
                 f"{values['program_id']!r}, which the catalogue seed no longer writes, so the row "
                 "cannot be restored and is dropped. To keep it, the program has to come back to "
-                "web/lib/programs.ts and api/app/seed.py; otherwise the stale row can be deleted.",
+                "api/app/seed.py; otherwise the stale row can be deleted.",
                 stacklevel=2,
             )
             skipped_without_a_program += 1

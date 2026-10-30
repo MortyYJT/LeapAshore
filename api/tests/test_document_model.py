@@ -2,7 +2,7 @@
 
 Each test inserts the row the rule forbids and asserts the database refuses it. A later migration
 that relaxed a constraint fails here instead of quietly restoring the hole. The rules themselves are
-the specs in `openspec/changes/stage-2-m3-document-library/specs/`; what these tests pin is that the
+the specs in `openspec/changes/archive/2026-10-08-stage-2-m3-document-library/specs/`; what these tests pin is that the
 database, and not only a service, is what enforces them.
 
 Every row these tests write is either swept by the autouse client sweep or removed by the test's own

@@ -34,7 +34,7 @@ services:
       timeout: 3s
       retries: 20
 
-  # The collection queue (openspec/changes/collect-queue). Behind the `queue` profile, so `make db-up`
+  # The collection queue (openspec/changes/archive/2026-10-30-collect-queue). Behind the `queue` profile, so `make db-up`
   # does not start them; locally the queue usually runs from the venv instead (`make worker`), where
   # Chrome is available for pages that need rendering. Snapshots stay in api/var/snapshots (not in git).
   worker:

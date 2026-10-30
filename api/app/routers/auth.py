@@ -1,4 +1,4 @@
-"""Login, logout, the current account, and account deletion (openspec/changes/account-login)."""
+"""Login, logout, the current account, and account deletion (openspec/changes/archive/2026-10-30-account-login)."""
 
 from typing import Annotated
 

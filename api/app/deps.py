@@ -57,7 +57,7 @@ def get_optional_subject(
     session: Annotated[Session, Depends(get_session)],
     leapashore_client: Annotated[str | None, Cookie()] = None,
 ) -> str | None:
-    """The data subject this request acts for (openspec/changes/account-login, D8).
+    """The data subject this request acts for (openspec/changes/archive/2026-10-30-account-login, D8).
 
     Login mode: the account's subject when the session cookie is valid, otherwise None. The anonymous
     cookie is ignored for this, so a former anonymous id grants nothing once accounts exist. Login mode

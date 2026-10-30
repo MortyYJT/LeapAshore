@@ -1,4 +1,4 @@
-"""Accounts, their sessions and the one-time login codes (openspec/changes/account-login, D1-D4).
+"""Accounts, their sessions and the one-time login codes (openspec/changes/archive/2026-10-30-account-login, D1-D4).
 
 An account owns exactly one data subject (`clients` row). Every user table stays keyed by `client_id`;
 a logged-in request resolves to the account's client id, and deleting that client cascades to the

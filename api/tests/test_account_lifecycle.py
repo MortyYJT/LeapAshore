@@ -1,4 +1,4 @@
-"""Account deletion, the 90-day sweep, and concurrent first logins (openspec/changes/account-login)."""
+"""Account deletion, the 90-day sweep, and concurrent first logins (openspec/changes/archive/2026-10-30-account-login)."""
 
 import threading
 import uuid

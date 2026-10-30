@@ -25,7 +25,7 @@ dependencies = [
   "langgraph-checkpoint-postgres==3.2.0",
   # Advisor rate limits and token quotas (openspec/changes/archive/2026-10-30-advisor-limits); its asyncio client.
   "redis",
-  # The collection queue (openspec/changes/collect-queue): one task per page, Redis as the broker.
+  # The collection queue (openspec/changes/archive/2026-10-30-collect-queue): one task per page, Redis as the broker.
   "celery",
   # The `vector` column type for SQLAlchemy and psycopg (openspec hybrid-retrieval).
   "pgvector",

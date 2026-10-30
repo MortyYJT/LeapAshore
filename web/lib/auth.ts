@@ -1,4 +1,4 @@
-// The login client (openspec/changes/account-login). The session lives in an httpOnly cookie the
+// The login client (openspec/changes/archive/2026-10-30-account-login). The session lives in an httpOnly cookie the
 // browser cannot read, so "who am I" is always a request to `/api/auth/me`.
 
 export interface Account {

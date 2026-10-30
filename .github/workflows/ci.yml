@@ -137,17 +137,13 @@ jobs:
 # Not covered by this workflow, and deliberately so:
 #
 # - The end-to-end walkthrough (`make screenshots`) drives a real Chromium through
-#   `scripts/e2e-walkthrough.cjs`. `npm ci` above already installs the
+#   `scripts/walkthrough.cjs`. `npm ci` above already installs the
 #   `@playwright/test` package from `web/`, but not a browser, and the walkthrough
 #   also needs the database, the API and a dev server, so it only runs locally.
 #   Adding it here means `npx playwright install chromium` plus those services.
 # - Styling skips TDD (CLAUDE.md): pages are accepted from real browser output.
-# - The four guards `make test` runs first (`scripts/check-no-fake-dates.cjs`,
-#   `scripts/verify-programs-mirror.cjs`, `scripts/check-no-programs-import.cjs` and
+# - The two guards `make test` runs first (`scripts/check-no-fake-dates.cjs` and
 #   `scripts/verify-roadmap-mirror.cjs`) stay out of this workflow. Each one reads files and
-#   needs no service, so they belong with the frontend if they are wired in later; the two
-#   mirror guards compare their `web/lib/*.ts` against the committed snapshot, the readers
-#   guard resolves the import graph out of `web/app`, and the backend's own half of that
-#   contract is
-#   `api/tests/test_seed.py` and `api/tests/test_seed_roadmap.py`, which the backend job
-#   above runs.
+#   needs no service, so they belong with the frontend if they are wired in later; the mirror
+#   guard compares `web/lib/roadmap.ts` against the committed snapshot, and the backend's own
+#   half of that contract is `api/tests/test_seed_roadmap.py`, which the backend job above runs.
