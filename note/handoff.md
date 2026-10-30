@@ -4,7 +4,7 @@
 
 ## 现在（2026-10-30）
 
-- **线上：** <https://leapashore.mortyyjt.site> 跑 main 到 PR #69（10-30 部署），**匿名模式**（`AUTH_ENABLED` 未设）。Alembic `c8e1f4a7b2d9`；最近一次部署前备份 `~/db-backup-20261030-pre-source-verification.sql.gz`。库是 `pgvector/pgvector:pg16`、卷 `deploy_pgdata`（`C` 排序）；旧卷 `deploy_db-data` 留作回滚，确认没问题后可删。个人网站 mortyyjt.site 也由这台的 Caddy 出。
+- **线上：** <https://leapashore.mortyyjt.site> 跑 main 到 PR #69（10-30 部署），**匿名模式**（`AUTH_ENABLED` 未设）。Alembic `c8e1f4a7b2d9`；最近一次部署前备份 `~/db-backup-20261030-pre-source-verification.sql.gz`。库是 `pgvector/pgvector:pg16`、卷 `deploy_pgdata`（`C` 排序）；旧卷 `deploy_db-data` 停在 10-30 14:44（北京）换镜像那一刻，之后的部署（快照 RAG、忠实度重导、学校合并、知识缺口、人工核验）都不在里面，**回滚用最近的备份，不用它**；确认没问题后可删。个人网站 mortyyjt.site 也由这台的 Caddy 出。
 - **生产数据：** 「有要求」7,374，`机器核对` 4,115，`sources.verified_at` 非空 0，快照 9,345 页、132,208 块；近几次部署前后用户的组合和路线图表整表 md5 不变。beat 第一次重采在 10-31 04:07（北京），在那之前 `collect_pages`、`requirement_changes` 是空的。
 - **本机采集文件：** 282 所、250 所有项目、9,035 个项目；忠实度回填后机器核对 4,162，还有 125 个项目和中国学生要求 2,278 条没判（DeepSeek 余额用完，见「卡在 MortyYJT」第 5 条）。
 - **任务进度（`TASKS.md`）：** P0、P1 做完（卡在 MortyYJT 的除外）；P2 #1 知识缺口（#67）、#3 人工核验入口（#69）已部署，#2 可观测性跳过（没有 Langfuse key）。**下一条：P2 #4「界面收尾」**（`ledger-redesign` 剩 4.4、5.12、7.1、7.2、7.3、7.5）。
@@ -95,6 +95,7 @@
 
 ## 坑
 
+- 在服务器上用 `while read` 循环调 `docker compose exec -T` 要加 `< /dev/null`，否则 exec 会吃掉循环的输入（10-30 合并同名学校时第一次只跑了第一组）。
 - **服务器 `deploy/.env` 的 `KNOWLEDGE_GAP_HASH_KEY` 别换、别删**：换了以后旧的缺口记录在注销时无法删除，只能等 90 天过期。
 - 「有要求」只有一个口径：后端 `has_requirement_data()`（`api/app/models/program.py`）、前端 `statesARequirement`（`web/lib/catalog.ts`）、顾问评估 `evals/run_advisor.py` 的相关集，改一处要三处一起改。
 - 生产下次导入采集数据时，约 62 个多项目页面的最新版本引文会改写一次（PR #69 起一页多个项目的引文合并成一份），这是正常的。
