@@ -138,7 +138,7 @@
 
 ## P2：有余力再做
 
-- [x] **知识缺口审核队列**：拒答记录落表（用户标识只存哈希），加审核接口，审核后向采集队列投补采任务。 — PR #67（另：PR #65 模型不可用时的降级，10-30 已部署）
+- [x] **知识缺口审核队列**：拒答记录落表（用户标识只存哈希），加审核接口，审核后向采集队列投补采任务。 — PR #67（10-30 已部署；另：PR #65 模型不可用时的降级，10-30 已部署）
   - 测量（10-30，本机）：记录一次拒答（upsert 缺口 + 写一条提问记录）300 次、20 个缺口：p50 1.24 ms、p99 2.23 ms；列出 20 个缺口（含提问人数）11.8 ms（脚本直接调 `kg.record_safely` / `kg.list_gaps`，跑完删掉）。测试 `tests/test_knowledge_gaps.py` 29 个（新上下文审查找到 2 个问题已修并改测试：任务发不出去时页面留在 queued、没密钥时注销删不掉提问原文）：同一缺口不同说法合并、8 线程并发同一缺口计数 8、库里不存主体 id、没密钥时不存提问原文只计数、注销删提问记录而缺口计数不变、匿名并入账号改挂哈希、90 天清理、记录失败不影响回答、模型 402 不记缺口、判官没给判决不记、没登录 401 / 非管理员 403 / 匿名模式 403、补采只重排 pending/failed/deferred（不碰 blocked、needs_human）并发发现任务、无可发内容 409、broker 挂了 503 且页面和缺口都回到原样、命令行 list/show/review。`make verify`：构建过、后端 800、前端 246、走查 120/120。命令：`cd api && .venv/bin/python -m pytest -q tests/test_knowledge_gaps.py`。
   - 注：设计 `openspec/changes/knowledge-gaps/`，决定记在 `note/decisions.md`。两张表（Alembic `a3d5f8c1e2b7`，只加不删）：`knowledge_gaps`（按门槛信号合并的缺口，不含个人信息，长期保留）、`knowledge_gap_reports`（提问前 500 字 + `HMAC-SHA256(KNOWLEDGE_GAP_HASH_KEY, 主体 id)`，注销时删、并入账号时改挂、90 天删）。没有现成的管理员概念，按 P2 第三条预告加了 `accounts.role`（只用 `admin`，只能 `python -m app.roles grant <邮箱>` 在服务器上授予）；接口 `/api/admin/knowledge-gaps`。审核 `recollect` 把学校映射到采集 key，重排 pending/failed/deferred 页面、有列表页的发发现任务，用当天采集预算。**生产是匿名模式，没有账号能当管理员，审核走服务器命令行** `python -m app.knowledge_gaps list|show|review`。**DeepSeek 余额恢复前生产记不到缺口**：意图分类先调模型，402 时整轮按「顾问暂时不可用」结束（PR #65），走不到门槛。没做：网页管理页（P2 第三条）；没在生产真实触发一次拒答记录（402）；补采对「学费在另一页」这种主题缺口帮助有限。
 - [ ] **可观测性**：接入 Langfuse Cloud，记录每轮对话的 token、耗时和工具调用，算出单轮平均成本。需要 MortyYJT 提供 key；没有 key 就跳过这条；不上报用户标识和邮箱。
