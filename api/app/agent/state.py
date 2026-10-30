@@ -22,5 +22,7 @@ class AdvisorState(TypedDict, total=False):
     evidence_strong: bool  # the gate's verdict
     refusal: str  # why the gate refused: no_school, school_not_collected, no_program_in_field, ...
     refusal_text: str  # what the applicant is told, worded from the catalogue's counts
+    page_topics: list  # page topics the question asks about, when it is answered from the pages
+    passages: list  # official page chunks retrieved for a page-topic question (snapshot-rag)
     steps: int  # model calls in this turn's ReAct loop
     trace: Annotated[dict, merge_dict]

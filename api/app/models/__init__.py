@@ -26,6 +26,7 @@ from app.models.review import (
     ReviewOverall,
 )
 from app.models.roadmap import MaterialTemplate, RoadmapPhase
+from app.models.snapshot import SnapshotChunk, SnapshotChunkEmbedding, SnapshotPage
 from app.models.source import Source, SourceStatus, SourceVersion, SourceVersionStatus
 from app.models.task import (
     RoadmapTask,
@@ -68,6 +69,9 @@ __all__ = [
     "RoadmapPhase",
     "RoadmapTask",
     "ScheduleOrigin",
+    "SnapshotChunk",
+    "SnapshotChunkEmbedding",
+    "SnapshotPage",
     "Source",
     "SourceStatus",
     "SourceVersion",

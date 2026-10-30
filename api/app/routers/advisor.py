@@ -1,6 +1,7 @@
 """The advisor endpoints. Replies stream as server-sent events, one JSON object per event.
 
-Event types: ``intent`` (the router's decision), ``citations`` (the evidence the gate let through),
+Event types: ``intent`` (the router's decision), ``citations`` (the evidence the gate let through, or
+for a question answered from the official pages, the passages its checked sentences cite),
 ``tool`` (a tool the agent called), ``token`` (a piece of the reply), ``confirm`` (a portfolio change
 waiting for the applicant, with the ``id`` a confirm sends back), ``error``, and a final ``done``.
 """
@@ -170,6 +171,16 @@ async def _stream(graph_input, config: dict) -> AsyncIterator[str]:
                             "citations": update.get("citations", []),
                         }
                     )
+                elif node == "retrieve_passages" and not update.get("evidence_strong"):
+                    yield _event({"type": "citations", "gate": "refuse", "citations": []})
+                elif node == "answer_passages":
+                    # Sent whole once every quote has been checked (openspec snapshot-rag D9).
+                    yield _event({
+                        "type": "citations",
+                        "gate": "pass" if update.get("citations") else "refuse",
+                        "citations": update.get("citations", []),
+                    })
+                    yield _event({"type": "token", "text": update["messages"][0].content})
                 elif node == "refuse":
                     yield _event({"type": "token", "text": update["messages"][0].content})
                 elif node == "main_agent":

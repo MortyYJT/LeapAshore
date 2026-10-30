@@ -9,7 +9,10 @@ made from. The backfill embeds exactly the programs whose row is missing or whos
 longer match, in batches that each commit, so it can be stopped at any point and run again: a second
 run over an unchanged catalogue sends nothing.
 
-    python -m app.agent.embeddings [--dry-run] [--limit N] [--batch-size N]
+    python -m app.agent.embeddings [--chunks] [--dry-run] [--limit N] [--batch-size N]
+
+`--chunks` does the same for the official page chunks the advisor quotes (openspec snapshot-rag D10),
+stored in ``snapshot_chunk_embeddings``.
 """
 
 import argparse
@@ -21,13 +24,14 @@ import time
 from dataclasses import dataclass
 
 import httpx
-from sqlalchemy import select
+from sqlalchemy import func, select
 from sqlalchemy.dialects.postgresql import insert
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
 from app.config import settings
 from app.models.program import EMBEDDING_DIM, Program, ProgramEmbedding
+from app.models.snapshot import SnapshotChunk, SnapshotChunkEmbedding, SnapshotPage
 
 log = logging.getLogger(__name__)
 
@@ -121,7 +125,7 @@ def content_hash(text: str) -> str:
 
 @dataclass
 class Pending:
-    program_id: str
+    program_id: str  # the program's id, or the chunk's for a chunk backfill
     text: str
     sha256: str
 
@@ -156,18 +160,61 @@ def _store(session: Session, model: str, batch: list[Pending], vectors: list[lis
     ))
 
 
+# ---- page chunks ------------------------------------------------------------------------------
+
+
+def stale_chunks(session: Session, model: str, limit: int | None = None,
+                 school_keys: list[str] | None = None) -> tuple[int, list[Pending]]:
+    """How many chunks have no vector for `model` (or one of other text), and the first `limit` of
+    them, in id order; only these schools' when given. Decided in SQL from the stored text hash, so only
+    the texts to embed are read."""
+    stale = (
+        select(SnapshotChunk.id, SnapshotChunk.content_sha256)
+        .outerjoin(SnapshotChunkEmbedding, SnapshotChunkEmbedding.chunk_id == SnapshotChunk.id)
+        .where((SnapshotChunkEmbedding.chunk_id.is_(None)) | (SnapshotChunkEmbedding.model != model)
+               | (SnapshotChunkEmbedding.content_sha256 != SnapshotChunk.content_sha256))
+    )
+    if school_keys:
+        stale = stale.join(SnapshotPage, SnapshotPage.id == SnapshotChunk.page_id) \
+            .where(SnapshotPage.school_key.in_(school_keys))
+    count = session.scalar(select(func.count()).select_from(stale.subquery())) or 0
+    rows = session.execute(
+        select(SnapshotChunk.id, SnapshotChunk.text, SnapshotChunk.content_sha256)
+        .where(SnapshotChunk.id.in_(stale.with_only_columns(SnapshotChunk.id).scalar_subquery()))
+        .order_by(SnapshotChunk.id).limit(limit)
+    ).all()
+    return count, [Pending(r.id, r.text, r.content_sha256) for r in rows]
+
+
+def _store_chunks(session: Session, model: str, batch: list[Pending], vectors: list[list[float]]) -> None:
+    statement = insert(SnapshotChunkEmbedding).values([
+        {"chunk_id": p.program_id, "model": model, "content_sha256": p.sha256, "embedding": v}
+        for p, v in zip(batch, vectors)
+    ])
+    session.execute(statement.on_conflict_do_update(
+        index_elements=[SnapshotChunkEmbedding.chunk_id],
+        set_={"model": statement.excluded.model, "content_sha256": statement.excluded.content_sha256,
+              "embedding": statement.excluded.embedding, "embedded_at": statement.excluded.embedded_at},
+    ))
+
+
 def backfill(session_factory, client: OpenAIEmbeddings, batch_size: int = 32, limit: int | None = None,
-             dry_run: bool = False) -> dict:
-    """Embed the stale programs, one committed batch at a time. Stops at the first service error and
-    reports it; whatever was stored before stays, and the next run picks up the rest."""
+             dry_run: bool = False, chunks: bool = False) -> dict:
+    """Embed the stale programs (or, with `chunks`, page chunks), one committed batch at a time. Stops
+    at the first service error and reports it; whatever was stored before stays, and the next run picks
+    up the rest."""
     started = time.monotonic()
     with session_factory() as session:
-        todo = stale_programs(session, client.model)
-    stale = len(todo)
+        if chunks:
+            stale, todo = stale_chunks(session, client.model, limit)
+        else:
+            todo = stale_programs(session, client.model)
+            stale = len(todo)
+    store = _store_chunks if chunks else _store
     if limit is not None:
         todo = todo[:limit]
     report = {
-        "model": client.model, "stale": stale, "embedded": 0, "skipped": 0, "batches": 0, "tokens": 0,
+        "target": "chunks" if chunks else "programs", "model": client.model, "stale": stale, "embedded": 0, "skipped": 0, "batches": 0, "tokens": 0,
         "characters": sum(len(p.text) for p in todo),
     }
     if dry_run:
@@ -182,10 +229,10 @@ def backfill(session_factory, client: OpenAIEmbeddings, batch_size: int = 32, li
             break
         with session_factory() as session:
             try:
-                _store(session, client.model, batch, result.vectors)
+                store(session, client.model, batch, result.vectors)
                 session.commit()
             except IntegrityError:
-                # A program deleted since the list was read; the rest of the batch goes next run.
+                # A program (or chunk) deleted since the list was read; the rest of the batch goes next run.
                 session.rollback()
                 report["skipped"] += len(batch)
                 continue
@@ -202,6 +249,7 @@ def main(argv: list[str]) -> int:
     parser.add_argument("--dry-run", action="store_true", help="count what would be sent, send nothing")
     parser.add_argument("--limit", type=int, help="embed at most this many programs")
     parser.add_argument("--batch-size", type=int, default=settings.embed_batch_size)
+    parser.add_argument("--chunks", action="store_true", help="embed the official page chunks instead")
     args = parser.parse_args(argv)
     from app.db import SessionLocal
 
@@ -211,7 +259,8 @@ def main(argv: list[str]) -> int:
             print("EMBED_API_KEY is not set; nothing sent.", file=sys.stderr)
             return 2
         client = OpenAIEmbeddings(settings.embed_base_url, settings.embed_model, "", 1.0)
-    report = backfill(SessionLocal, client, batch_size=args.batch_size, limit=args.limit, dry_run=args.dry_run)
+    report = backfill(SessionLocal, client, batch_size=args.batch_size, limit=args.limit, dry_run=args.dry_run,
+                      chunks=args.chunks)
     print(json.dumps(report, ensure_ascii=False))
     return 1 if "error" in report else 0
 

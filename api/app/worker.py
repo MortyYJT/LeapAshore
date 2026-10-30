@@ -153,7 +153,8 @@ def cleanup() -> dict:
 
 @app.task(name="maintenance.embed_programs")
 def embed_programs() -> dict:
-    """Embed programs whose vector is missing or stale, at most `EMBED_BACKFILL_PER_RUN` a run. Without
+    """Embed programs, then page chunks, whose vector is missing or stale, at most
+    `EMBED_BACKFILL_PER_RUN` of each a run. Without
     a key it does nothing; a service error ends the run, and the next run resumes."""
     from app.agent import embeddings
 
@@ -164,7 +165,13 @@ def embed_programs() -> dict:
                                  limit=settings.embed_backfill_per_run)
     if "error" in report:
         log.warning("embedding backfill stopped: %s", report["error"])
-    return report
+        return report
+    # Then the official page chunks (openspec snapshot-rag D10); the first fill is the CLI's.
+    chunk_report = embeddings.backfill(SessionLocal, client, batch_size=settings.embed_batch_size,
+                                       limit=settings.embed_backfill_per_run, chunks=True)
+    if "error" in chunk_report:
+        log.warning("chunk embedding backfill stopped: %s", chunk_report["error"])
+    return {**report, "chunks": chunk_report}
 
 
 __all__ = ["app", "page_task", "discover_task", "recollect_due", "cleanup", "embed_programs", "SNAPSHOT_ROOT"]

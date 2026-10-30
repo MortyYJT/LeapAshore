@@ -20,6 +20,7 @@ import argparse
 import hashlib
 import http.client
 import json
+import logging
 import random
 import sys
 import uuid
@@ -43,6 +44,7 @@ from app.config import settings
 from app.models.collect import CollectPage, PageState, RequirementChange
 
 DATA_DIR = Path(__file__).resolve().parents[2] / "data" / "requirements"
+log = logging.getLogger(__name__)
 NAMESPACE = uuid.UUID("0b8f3c52-6a1d-4c3e-9a57-5d2f1e7c4b90")
 BEIJING = ZoneInfo("Asia/Shanghai")
 BACKFILL_BUDGET = "backfill"
@@ -319,7 +321,9 @@ def collect_page(session: Session, page_id: str, *, budget: Budget, fetch=snapsh
     if sha == old_sha or (old_text_sha is not None and new_text_sha == old_text_sha):
         # The page says what it said: no model call, nothing changed (D6).
         page.snapshot_sha256, page.text_sha256 = sha, new_text_sha
-        return _settle(session, page, PageState.UNCHANGED)
+        _settle(session, page, PageState.UNCHANGED)
+        refresh_chunks(session, page, root)
+        return PageState.UNCHANGED
     if not budget.allows():
         # Not extracted, so not collected: due again as soon as there is money, not in a month.
         page.fetched_at = previous_attempt
@@ -365,7 +369,24 @@ def collect_page(session: Session, page_id: str, *, budget: Budget, fetch=snapsh
             ))
     page.result = program
     page.snapshot_sha256, page.text_sha256 = sha, new_text_sha
-    return _settle(session, page, PageState.DONE)
+    _settle(session, page, PageState.DONE)
+    refresh_chunks(session, page, root)
+    return PageState.DONE
+
+
+def refresh_chunks(session: Session, page: CollectPage, root: Path = SNAPSHOT_ROOT) -> str:
+    """Re-cut the advisor's chunks of a page the queue has just collected (openspec snapshot-rag D5).
+
+    Best effort, after the page's own state is committed: a failure here is logged and leaves the page
+    collected; the next `python -m app.collect.chunks ingest` catches up."""
+    from app.collect import chunks
+
+    try:
+        return chunks.refresh_page(session, page.school_key, page.url, page.snapshot_sha256, root)
+    except Exception:  # noqa: BLE001 - the advisor's copy must not fail the collection
+        session.rollback()
+        log.exception("could not refresh the chunks of %s", page.url)
+        return "error"
 
 
 # --- Many pages --------------------------------------------------------------------------------------
