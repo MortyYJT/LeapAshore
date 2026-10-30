@@ -3500,7 +3500,7 @@
    }
   }
  },
- "metrics_note": "Metrics recomputed from the same recorded answers after the run: (1) gold_quote_retrieved / gold_quote_cited were added after seeing the answers; (2) after the review of PR #60 the number check no longer reads the modal 'may' as 5 and checks Chinese counts 二-十 before a measure word, which drops one more sentence (r01, 两名推荐人, quoted from a passage that says 'one referee ... the other referee'). metrics_at_run is what the check said at run time.",
+ "metrics_note": "Metrics recomputed from the same recorded answers after the run: (1) gold_quote_retrieved / gold_quote_cited were added after seeing the answers; (2) after the review of PR #60 the number check no longer reads the modal 'may' as 5 and reads Chinese numbers before a measure word or a currency whole (a lone 一 and ordinals excepted), which drops one more sentence (r01, 两名推荐人, quoted from a passage that says 'one referee ... the other referee'). metrics_at_run is what the check said at run time.",
  "metrics_at_run": {
   "questions": 38,
   "answerable": 32,

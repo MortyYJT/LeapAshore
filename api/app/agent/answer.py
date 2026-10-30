@@ -86,7 +86,7 @@ class Verification:
 _NUMBER = re.compile(r"\d+(?:[.,]\d+)*")
 _WORDS = {
     "one": "1", "two": "2", "three": "3", "four": "4", "five": "5", "six": "6", "seven": "7", "eight": "8",
-    "nine": "9", "ten": "10", "eleven": "11", "twelve": "12", "single": "1", "both": "2",
+    "nine": "9", "ten": "10", "eleven": "11", "twelve": "12", "single": "1", "both": "2", "twice": "2",
     # Not "may": the modal verb is on every admissions page and would vouch for any 5 (review of #60).
     "january": "1", "february": "2", "march": "3", "april": "4", "june": "6", "july": "7",
     "august": "8", "september": "9", "october": "10", "november": "11", "december": "12",
@@ -105,17 +105,39 @@ def _canonical(number: str) -> str:
     return text.lstrip("0") or "0"
 
 
-# A Chinese numeral before a measure word states a count ("两封推荐信", "三位推荐人"). 一 is left out: before
-# a measure word it is as often the article ("一次额外面试" is "an additional interview") as the number,
-# and elsewhere it is in too many words (一般, 统一). 第二个 is an ordinal.
-_CHINESE_DIGITS = {"二": "2", "两": "2", "三": "3", "四": "4", "五": "5", "六": "6", "七": "7",
-                   "八": "8", "九": "9", "十": "10"}
-_CHINESE_COUNT = re.compile(r"(?<![第\d])([二两三四五六七八九十])(?=(?:封|位|名|个|轮|次|份|门|年|学期|个月|周|天|小时|分钟))")
+# A Chinese number before a measure word or a currency states a count, a length or an amount ("两封推荐信",
+# "三十天", "十二个月", "二〇二六年", "三万五千美元"). The whole run of numerals is read, so 三十 is 30, not 10. A lone 一 is left out: before a
+# measure word it is as often the article ("一次额外面试" is "an additional interview") as the number. A
+# run after 第 is an ordinal ("第十二轮").
+_CN_DIGITS = {"零": 0, "〇": 0, "一": 1, "二": 2, "两": 2, "三": 3, "四": 4, "五": 5, "六": 6, "七": 7, "八": 8,
+              "九": 9}
+_CN_UNITS = {"十": 10, "百": 100, "千": 1000}
+_CN_CHARS = "零〇一二两三四五六七八九十百千万"
+_CHINESE_COUNT = re.compile(
+    rf"(?<![第\d{_CN_CHARS}])([{_CN_CHARS}]+)(?=(?:封|位|名|个|轮|次|份|门|年|学期|个月|周|天|小时|分钟|学分|(?:美|欧|澳|加|港|新)?元|英?镑))"
+)
+
+
+def _chinese_value(run: str) -> int:
+    if not any(c in _CN_UNITS or c == "万" for c in run):
+        return int("".join(str(_CN_DIGITS[c]) for c in run))  # read digit by digit: 二〇二六
+    total = section = digit = 0
+    for c in run:
+        if c in _CN_DIGITS:
+            digit = _CN_DIGITS[c]
+        elif c in _CN_UNITS:
+            section += (digit or (1 if c == "十" else 0)) * _CN_UNITS[c]
+            digit = 0
+        elif c == "万":
+            total += (section + digit) * 10000
+            section = digit = 0
+    return total + section + digit
 
 
 def numbers_in(text: str) -> set[str]:
     """The numbers a sentence states: Arabic ones, and Chinese numerals that count something."""
-    return {_canonical(n) for n in _NUMBER.findall(text)} | {_CHINESE_DIGITS[c] for c in _CHINESE_COUNT.findall(text)}
+    counts = {str(_chinese_value(run)) for run in _CHINESE_COUNT.findall(text) if run != "一"}
+    return {_canonical(n) for n in _NUMBER.findall(text)} | counts
 
 
 def numbers_quoted(quotes: list[str]) -> set[str]:

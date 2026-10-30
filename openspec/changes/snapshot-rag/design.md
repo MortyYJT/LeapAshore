@@ -98,9 +98,10 @@ Commands run in `api/`.
 - **D9 The check.** For every sentence: at least one citation; each passage number exists; each quote is
   at least 12 characters and, after the collectors' folding (`collect.text.normalize`), a substring of
   the stored chunk; every number in the sentence (Arabic digits, thousands separators folded, and
-  Chinese counts 二 to 十 before a measure word) is in that sentence's quotes, where English number
-  words and month names count as their numbers (not "may", the modal verb, and not 一, which before a
-  measure word is as often the article). One failing quote drops the whole sentence.
+  Chinese numbers before a measure word or a currency, read whole: 三十天 is 30, 二〇二六年 2026) is in
+  that sentence's quotes, where English number words, "twice" and month names count as their numbers
+  (not "may", the modal verb). A lone 一 is not read (before a measure word it is as often the article)
+  and a number after 第 is an ordinal. One failing quote drops the whole sentence.
   Nothing left: a refusal that lists the pages read and states nothing. Shown answers end with the
   fetch dates and 待核验 (no human has verified a chunk; `verified_at` is untouched). The check is
   syntactic: a verbatim quote that does not support its sentence, or a sentence about another

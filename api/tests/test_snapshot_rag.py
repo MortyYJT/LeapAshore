@@ -417,3 +417,22 @@ def test_a_vector_never_lets_in_a_chunk_that_does_not_state_the_topic(school):
             found = passages.search_passages(s, "切片检索测试大学要面试吗", topics("interview"), ranking=ranking,
                                              query_vector=one_hot(off_topic))
             assert found.passages and all("interview" in p.text for p in found.passages)
+
+
+@pytest.mark.parametrize("text, numbers", [
+    ("二十天内", {"20"}), ("三十天内提交", {"30"}), ("需要十二个月工作经验", {"12"}), ("十五年", {"15"}),
+    ("第十二轮", set()), ("二〇二六年入学", {"2026"}), ("一百二十个学分", {"120"}), ("两封推荐信", {"2"}),
+    ("一次额外面试", set()), ("十一个月", {"11"}), ("学费三万五千美元", {"35000"}), ("一万欧元", {"10000"}),
+])
+def test_chinese_numbers_are_read_whole(text, numbers):
+    assert answer.numbers_in(text) == numbers
+
+
+def test_a_chinese_compound_needs_its_own_number_quoted():
+    chunks = ["Applications close in October.", "12 months of work experience is required."]
+    reply = PassageAnswer(sentences=[
+        sentence("需在三十天内提交申请。", (1, "Applications close in October.")),
+        sentence("需要十二个月的工作经验。", (2, "12 months of work experience is required")),
+        sentence("可以申请两次。", (2, "12 months of work experience is required")),
+    ])
+    assert [s.ok for s in answer.verify(reply, chunks).sentences] == [False, True, False]
