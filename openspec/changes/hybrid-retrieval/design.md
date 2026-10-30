@@ -60,9 +60,11 @@ PostgreSQL 16 on `postgres:16-alpine`, about 9,700 programs. No SiliconFlow key 
   answering; a refusal would be worse than a slightly worse order).
 - **D6 Country is a filter on the named schools.** Words for a country or region
   (`data/advisor/countries.json`, keyed by `universities.country`) are matched after school names are
-  blanked (香港 in 香港大学 is the school). They keep only the named schools in those countries, which
-  tells same-named schools apart ("英国的纽卡斯尔大学"); when that would leave none, the explicitly named
-  school wins. A question that names only a country is still refused as `no_school`: the gate's first
+  blanked (香港 in 香港大学 is the school). A country only chooses among the schools that share one
+  name ("英国的纽卡斯尔大学" keeps the UK one); a school named without ambiguity is kept whatever country
+  is mentioned (review found the first version dropping 港大 from "我在英国读本科，问港大和 UCL"), and a
+  shared name with no school in a named country keeps all of them. Countries are not bound to a
+  position: "英国的纽卡斯尔和澳洲的悉尼" names two countries, so the shared name keeps both Newcastles. A question that names only a country is still refused as `no_school`: the gate's first
   condition is a named school (P0 #4), and answering "英国的计算机硕士" from four arbitrary schools is a
   product change, not a ranking one; it also would turn "澳门大学" (not collected) into answers from
   other Macau schools.

@@ -173,6 +173,13 @@ def test_a_country_tells_two_schools_of_the_same_name_apart(catalogue):
     assert schools_for("澳洲同名测试大学计算机硕士要求") == [f"{PREFIX}au"]
 
 
+def test_a_country_never_drops_a_school_named_without_ambiguity(catalogue):
+    """Found in review: "英国" removed every named school outside the UK, so "我在英国读本科，问港大和
+    UCL" lost HKU silently. A country only chooses among schools that share the name it qualifies."""
+    assert set(schools_for("我在英国读本科，想问混检测试大学和同名测试大学的计算机硕士要求")) == {
+        f"{PREFIX}tc", f"{PREFIX}uk"}
+
+
 def test_a_country_that_holds_none_of_the_named_schools_is_ignored(catalogue):
     assert schools_for("加拿大的混检测试大学 TESOL") == [f"{PREFIX}tc"]
 

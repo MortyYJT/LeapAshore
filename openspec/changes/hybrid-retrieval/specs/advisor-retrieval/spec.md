@@ -20,13 +20,19 @@ available. The ranking SHALL NOT change which rows may be evidence.
 
 ### Requirement: A country narrows the named schools
 
-A country or region in a requirement question SHALL keep only the named schools in it, and SHALL NOT by
-itself make a question answerable.
+A country or region in a requirement question SHALL narrow a school name that several schools share to
+the schools in that country, SHALL NOT drop a school named without ambiguity, and SHALL NOT by itself
+make a question answerable.
 
 #### Scenario: Two schools share a name
 
 - **WHEN** the question names a school whose name two schools in different countries share, and one country
 - **THEN** only the school in that country is searched
+
+#### Scenario: A country beside an unambiguous school
+
+- **WHEN** the question mentions a country and names a school that is not in it and shares its name with no other
+- **THEN** that school is still searched
 
 #### Scenario: Only a country is named
 

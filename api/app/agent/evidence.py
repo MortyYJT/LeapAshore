@@ -85,16 +85,26 @@ def _school_rows(session: Session) -> list[tuple[str, str | None, str | None]]:
     return [tuple(r) for r in session.execute(select(University.id, University.name, University.name_en))]
 
 
-def _in_countries(session: Session, schools: list[str], countries: list[str]) -> list[str]:
-    """The named schools in the named countries, in mention order. A country tells two schools of the
-    same name apart ("英国的纽卡斯尔大学"); when it leaves none, the school was named outright and wins."""
-    if not countries or not schools:
+def _in_countries(session: Session, groups: list[list[str]], countries: list[str]) -> list[str]:
+    """The named schools, in mention order, with each shared name narrowed to the named countries.
+
+    A country only tells apart schools that share the name it qualifies ("英国的纽卡斯尔大学"): a
+    school named without ambiguity is kept whatever country the question mentions ("我在英国读本科，
+    问港大和 UCL" keeps 港大; found in review). A shared name none of whose schools is in a named
+    country keeps all of them."""
+    schools = list(dict.fromkeys(u for g in groups for u in g))
+    ambiguous = [g for g in groups if len(g) > 1]
+    if not countries or not ambiguous:
         return schools
     there = set(session.scalars(
-        select(University.id).where(University.id.in_(schools), University.country.in_(countries))
+        select(University.id).where(University.id.in_([u for g in ambiguous for u in g]),
+                                    University.country.in_(countries))
     ))
-    kept = [u for u in schools if u in there]
-    return kept or schools
+    kept = []
+    for group in groups:
+        narrowed = [u for u in group if u in there] if len(group) > 1 else group
+        kept.extend(narrowed or group)
+    return list(dict.fromkeys(kept))
 
 
 def _tsquery(terms: list[str]):
@@ -126,7 +136,7 @@ def search_requirements(session: Session, query: str, limit: int = TOP_K, rankin
     """
     index = catalog_match.school_index(_school_rows(session))
     parsed = catalog_match.parse(index, query)
-    schools = _in_countries(session, parsed.schools, parsed.countries)
+    schools = _in_countries(session, parsed.school_groups, parsed.countries)
     result = Retrieval(schools=schools, fields=parsed.fields, hits=[],
                        school_names={u: index.names[u] for u in schools},
                        subject_words=parsed.subject_words, narrowing_pattern=parsed.narrowing_pattern,

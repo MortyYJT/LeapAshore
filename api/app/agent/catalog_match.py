@@ -194,22 +194,28 @@ class SchoolIndex:
             return True
         return False
 
-    def match(self, text: str) -> tuple[list[str], list[tuple[int, int]]]:
-        """University ids named in `text` (folded), in the order they appear, and their spans."""
+    def match_groups(self, text: str) -> list[tuple[tuple[int, int], list[str]]]:
+        """Each school name in `text` (folded), in order, with every university id it can mean: one id
+        for most names, several for a name schools share ("纽卡斯尔大学")."""
         found = _longest_matches(text, self.vocabulary)
         spans = [span for span, _ in found]
-        ids: list[str] = []
         kept = []
         for (start, end), uids in found:
             if self._incomplete_full_name(text, start, end, uids):
                 continue
             if self._runs_into_unknown_name(text, start, end, [s for s in spans if s != (start, end)]):
                 continue
-            kept.append((start, end))
-            for uid in sorted(uids):
-                if uid not in ids:
-                    ids.append(uid)
-        return ids, kept
+            kept.append(((start, end), sorted(uids)))
+        return kept
+
+    def match(self, text: str) -> tuple[list[str], list[tuple[int, int]]]:
+        """University ids named in `text` (folded), in the order they appear, and their spans."""
+        groups = self.match_groups(text)
+        return _flatten(groups), [span for span, _ in groups]
+
+
+def _flatten(groups: list[tuple[tuple[int, int], list[str]]]) -> list[str]:
+    return list(dict.fromkeys(uid for _, uids in groups for uid in uids))
 
 
 _index_cache: dict[tuple, SchoolIndex] = {}
@@ -321,6 +327,7 @@ class Parsed:
     subject_words: list[str] = field(default_factory=list)  # as the question wrote them, folded
     rest: str = ""  # the folded question with the school, subject and country words blanked out
     countries: list[str] = field(default_factory=list)  # `universities.country` values named
+    school_groups: list[list[str]] = field(default_factory=list)  # ids per school name, in order
     fts_terms: list[str] = field(default_factory=list)  # what full-text search looks for, each an OR branch
 
     @property
@@ -349,7 +356,8 @@ def parse(index: SchoolIndex, question: str) -> Parsed:
     """Schools first; their names are then blanked so "伦敦政治经济学院" is not also a subject, and
     "香港大学" is not also a region. Subjects next, then countries."""
     text = normalize(question)
-    schools, spans = index.match(text)
+    groups = index.match_groups(text)
+    schools, spans = _flatten(groups), [span for span, _ in groups]
     without_schools = _blank(text, spans)
     subjects, words, subject_spans = match_subjects(without_schools)
     without_subjects = _blank(without_schools, subject_spans)
@@ -359,4 +367,4 @@ def parse(index: SchoolIndex, question: str) -> Parsed:
     other_words = [w for w in _LATIN_WORD.findall(rest) if w not in GENERIC_WORDS]
     terms = [t for t in _search_terms(without_schools) if t not in GENERIC_WORDS]
     return Parsed(schools=schools, subjects=subjects, subject_words=words, rest=rest, countries=countries,
-                  fts_terms=list(dict.fromkeys(terms + other_words)))
+                  school_groups=[uids for _, uids in groups], fts_terms=list(dict.fromkeys(terms + other_words)))
