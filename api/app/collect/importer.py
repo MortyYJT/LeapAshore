@@ -201,9 +201,28 @@ def _snapshot_meta(school_key: str, sha: str, root: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
 
 
+def _importable(data: dict, school: dict | None) -> tuple[list[dict], int]:
+    """The file's programs the importer may write, and how many it leaves out.
+
+    An Australian school's programs are its CRICOS catalogue rows: a course without its CRICOS code
+    has no row to land on, and writing it anyway made a second row for the school (named from its
+    school key) or a second row for a course the catalogue already lists (review of PR #51).
+    """
+    programs = data.get("programs", [])
+    if not (school or {}).get("cricos_institution"):
+        return programs, 0
+    kept = [p for p in programs if p.get("cricos_code")]
+    return kept, len(programs) - len(kept)
+
+
 def import_school(session: Session, data: dict, schools: dict[str, dict], root: Path = SNAPSHOT_ROOT) -> dict:
     key = data["school_key"]
-    programs = data.get("programs", [])
+    programs, skipped = _importable(data, schools.get(key))
+    report = {"school": key, "programs_added": 0, "programs_updated": 0}
+    if skipped:
+        report["skipped_without_cricos_code"] = skipped
+        if not programs:
+            return report  # every course lacks its code: no row to find the school by, none to make
     ids = [program_id_for(key, p) for p in programs]
     university_id = _university(session, data, schools.get(key), ids)
     added = updated = 0
@@ -286,7 +305,7 @@ def import_school(session: Session, data: dict, schools: dict[str, dict], root: 
                                                 category="collected", sort_order=index))
         _sync_deadlines(session, pid, deadline_rows(pid, program["url"], fields))
     session.commit()
-    return {"school": key, "programs_added": added, "programs_updated": updated}
+    return {**report, "programs_added": added, "programs_updated": updated}
 
 
 def load_schools(path: Path = SCHOOLS_FILE) -> dict[str, dict]:
@@ -307,7 +326,10 @@ def prune_school(session: Session, data: dict, schools: dict[str, dict]) -> dict
     from app.models.application import Application
 
     key = data["school_key"]
-    ids = {program_id_for(key, p) for p in data.get("programs", [])}
+    programs, skipped = _importable(data, schools.get(key))
+    ids = {program_id_for(key, p) for p in programs}
+    if skipped and not ids:
+        return {"school": key, "pruned": 0, "kept_in_portfolios": []}  # no CRICOS row to find the school by
     university_id = _university(session, data, schools.get(key), sorted(ids))
     stale = [pid for pid in session.scalars(select(Program.id).where(Program.university_id == university_id))
              if not pid.startswith("cricos-") and pid not in ids]

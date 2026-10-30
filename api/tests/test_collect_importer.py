@@ -429,3 +429,81 @@ def test_a_european_school_gets_its_country_in_chinese(db_session, require_db, c
     db_session.commit()
     import_school(db_session, data, {KEY: {**SCHOOLS[KEY], "country": "Germany"}}, root=tmp_path)
     assert db_session.get(University, KEY).country == "德国"
+
+
+# ---- Australian schools: the CRICOS catalogue is the program list (review of PR #51) ------------------
+
+AU_KEY = "test-au-importer-university"
+AU_SCHOOLS = {AU_KEY: {"school_key": AU_KEY, "name_zh": "测试澳洲大学", "country": "Australia",
+                       "cricos_institution": "Test AU Importer University"}}
+
+
+def _au_file(*programs):
+    return {"school_key": AU_KEY, "school_name_en": "Test AU Importer University", "country": "Australia",
+            "listing_urls": ["https://au.example.test/courses"], "programs": list(programs)}
+
+
+def _au_program(name, url, **extra):
+    return {"name": name, "url": url, "snapshot_sha256": SHA, "status": "机器核对",
+            "fields": {"ielts": {"overall": 6.5, "min_band": 6.0, "quote": "IELTS 6.5 (6.0)", "check": "ok"}}, **extra}
+
+
+def test_an_australian_program_without_a_cricos_code_is_not_imported(db_session, require_db, tmp_path):
+    """Without its CRICOS code a course would land beside the catalogue: a second row for the school
+    (named from its school key) or a second row for a course the catalogue already lists."""
+    url = "https://au.example.test/master-of-testing"
+    data = _au_file(_au_program("Master of Testing", url))
+    try:
+        result = import_school(db_session, data, AU_SCHOOLS, root=tmp_path)
+        assert result["programs_added"] == 0 and result["skipped_without_cricos_code"] == 1
+        assert db_session.get(University, AU_KEY) is None
+        assert db_session.get(Program, program_id_for(AU_KEY, data["programs"][0])) is None
+    finally:
+        db_session.rollback()
+        db_session.execute(delete(Program).where(Program.university_id == AU_KEY))
+        db_session.execute(delete(SourceVersion).where(SourceVersion.source_id == source_id_for(url)))
+        db_session.execute(delete(Source).where(Source.id == source_id_for(url)))
+        db_session.execute(delete(University).where(University.id == AU_KEY))
+        db_session.commit()
+
+
+def test_pruning_an_australian_file_removes_rows_written_without_a_cricos_code(db_session, require_db, tmp_path):
+    from app.collect.importer import prune_school
+
+    seed_programs(db_session)
+    seed_catalog(db_session)
+    url = "https://au.example.test/master-of-data-science-duplicate"
+    stray = _au_program("Master of Data Science", url)
+    data = {**_au_file(stray, _au_program("Master of Data Science", "https://au.example.test/mds",
+                                          cricos_code="087981E")), "school_key": "university-of-sydney"}
+    schools = {"university-of-sydney": {**AU_SCHOOLS[AU_KEY], "school_key": "university-of-sydney"}}
+    pid = program_id_for("university-of-sydney", stray)
+    # What an import before this rule wrote: the course again, under the CRICOS school.
+    db_session.add(Program(id=pid, university_id="usyd", name=stray["name"], data_status="机器核对",
+                           source_id=db_session.get(Program, "cricos-087981E").source_id))
+    db_session.commit()
+    try:
+        result = prune_school(db_session, data, schools)
+        assert result["pruned"] == 1
+        assert db_session.get(Program, pid) is None
+        assert db_session.get(Program, "cricos-087981E") is not None
+        assert db_session.get(University, "university-of-sydney") is None
+        nothing = prune_school(db_session, _au_file(_au_program("Master of Testing", url)), AU_SCHOOLS)
+        assert nothing["pruned"] == 0 and db_session.get(University, AU_KEY) is None
+    finally:
+        db_session.rollback()
+        db_session.execute(delete(Program).where(Program.id == pid))
+        db_session.execute(delete(University).where(University.id.in_([AU_KEY, "university-of-sydney"])))
+        db_session.commit()
+
+
+def test_an_empty_file_still_names_its_school(db_session, require_db, tmp_path):
+    """A school whose site refused us gets a row, as before this rule: the advisor evaluation names
+    such rows (t29 `university-of-melbourne`), and the web merges rows of one school by name."""
+    try:
+        import_school(db_session, {**_au_file(), "programs": []}, AU_SCHOOLS, root=tmp_path)
+        assert db_session.get(University, AU_KEY) is not None
+    finally:
+        db_session.rollback()
+        db_session.execute(delete(University).where(University.id == AU_KEY))
+        db_session.commit()

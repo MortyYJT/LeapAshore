@@ -4,6 +4,7 @@ snapshot files the way the real snapshot tool does."""
 
 import hashlib
 import json
+import subprocess
 import uuid
 from datetime import UTC, datetime, timedelta
 from decimal import Decimal
@@ -359,6 +360,50 @@ def test_a_discovered_page_with_a_vague_link_is_named_by_its_heading(db_session,
     assert db_session.get(CollectPage, page.id).program_name == "Master of Data Science"
 
 
+def test_a_discovered_name_with_a_card_description_is_cut_back_to_the_heading(db_session, school, client):
+    page = add_page(db_session, school, name="Master of Data Science Learn to work with data at scale, online or on campus")
+    run(db_session, school, page, budget=budget(client), fetch=fake_fetch({page.url: PAGE}),
+        extract=fake_extract({"ielts": ielts(6.5)}))
+    assert db_session.get(CollectPage, page.id).program_name == "Master of Data Science"
+
+
+def test_a_discovered_page_that_is_not_a_masters_program_costs_no_model_call(db_session, school, client):
+    page = add_page(db_session, school, name="CA10")
+    extracted = []
+    html = PAGE.replace("Master of Data Science", "CA10 - Bachelor of Arts")
+    state = run(db_session, school, page, budget=budget(client), fetch=fake_fetch({page.url: html}),
+                extract=fake_extract({"ielts": ielts(6.5)}, extracted))
+    assert state == PageState.FAILED and not extracted
+    row = db_session.get(CollectPage, page.id)
+    assert row.program_name == "CA10 - Bachelor of Arts" and "not a taught master's" in row.last_error
+
+
+def test_a_collected_page_found_not_to_be_a_program_is_not_extracted_again(db_session, school, client):
+    page = add_page(db_session, school, name="CA10")
+    page.result = {"status": "待人工", "fields": {}}  # collected before the rule
+    db_session.commit()
+    extracted = []
+    html = PAGE.replace("Master of Data Science", "CA10 - Bachelor of Arts")
+    state = run(db_session, school, page, budget=budget(client), fetch=fake_fetch({page.url: html}),
+                extract=fake_extract({"ielts": ielts(6.5)}, extracted))
+    assert state == PageState.FAILED and not extracted
+
+
+def test_discovery_leaves_out_picks_that_are_not_a_masters_program(db_session, school, client):
+    listing = "https://www.example.edu.au/study/masters"
+    html = ('<a href="/mds">Master of Data Science</a><a href="/ba">Bachelor of Arts</a>'
+            '<a href="/study/masters?page=2">Postgraduate</a>')
+
+    def pick(links, info):
+        return links, {}
+
+    report = discover_school(db_session, school["key"], budget=budget(client), fetch=fake_fetch({listing: html}),
+                             pick=pick, data_dir=school["data_dir"], root=school["root"], can_render=False)
+    assert report["added"] == 1
+    names = db_session.scalars(select(CollectPage.program_name).where(CollectPage.school_key == school["key"])).all()
+    assert names == ["Master of Data Science"]
+
+
 # --- Retries in the worker -----------------------------------------------------------------------------
 
 
@@ -472,6 +517,25 @@ def test_export_replaces_by_url_and_keeps_the_rest(db_session, school, client):
     assert data["programs"][0]["fetched_at"]
     assert data["programs"][2]["status"] == "待人工"
     assert "verified_at" not in path.read_text()
+
+
+def test_export_keeps_the_tidied_names_and_drops(db_session, school, client):
+    """The queue's rows keep the link text they were found by; export applies the same rules as
+    `python -m app.collect.tidy`, so it does not undo a tidied file (review of PR #52)."""
+    page = add_page(db_session, school, name="Master of Data Science Learn to work with data at scale, online or on campus")
+    page.origin = "file"  # collected before the naming rule: the row still holds the long link text
+    db_session.commit()
+    run(db_session, school, page, budget=budget(client), fetch=fake_fetch({page.url: PAGE}),
+        extract=fake_extract({"ielts": ielts(6.5)}))
+    listing = add_page(db_session, school, url="https://www.example.edu.au/study/masters", name="Masters")
+    listing.origin = "file"
+    db_session.commit()
+    run(db_session, school, listing, budget=budget(client), fetch=fake_fetch({listing.url: PAGE}),
+        extract=fake_extract({"ielts": ielts(6.5)}))
+    queue.export_school(db_session, school["key"], data_dir=school["data_dir"], root=school["root"])
+    data = json.loads((school["data_dir"] / f"{school['key']}.json").read_text())
+    assert [p["name"] for p in data["programs"]] == ["Master of Data Science"]
+    assert data["verification"]["programs"] == 1
 
 
 def test_export_starts_a_file_for_a_new_school(db_session, school, client):
@@ -612,6 +676,51 @@ def test_a_far_crawl_delay_during_the_render_retry_reschedules_the_page(db_sessi
     with pytest.raises(RetryLater):
         run(db_session, school, page, budget=budget(client), fetch=fetch, extract=fake_extract({}, extracted))
     assert not extracted
+
+
+def test_after_a_far_crawl_delay_the_retry_goes_straight_to_the_render(db_session, school, client):
+    # The rescheduled task must not fetch the plain page again (spending the host's turn) and then
+    # wait a whole Crawl-delay for the render once more, forever: the render is remembered.
+    page = add_page(db_session, school)
+    calls = []
+
+    def fetch(url, school_key, render=False, root=None):
+        calls.append(render)
+        if render and len(calls) == 2:
+            raise RetryLater("www.example.edu.au", 118)
+        return snap.save_snapshot(school_key, url, url, 200, "text/html", "<html><body>Loading</body></html>", root)
+
+    with pytest.raises(RetryLater):
+        run(db_session, school, page, budget=budget(client), fetch=fetch, extract=fake_extract({}))
+    db_session.expire_all()  # what the worker's next session sees: only what was committed
+    assert db_session.get(CollectPage, page.id).render is True
+    run(db_session, school, page, budget=budget(client), fetch=fetch, extract=fake_extract({}))
+    assert calls == [False, True, True]
+
+
+def test_when_the_awaited_render_fails_the_plain_fetch_stands(db_session, school, client):
+    # The render a page waited a Crawl-delay for fails: the plain fetch it already has is used, as
+    # when the render fails on the first try, rather than the page failing after its retries.
+    page = add_page(db_session, school)
+    plain = "<html><body><h1>Master of Data Science</h1>IELTS 6.5</body></html>"
+    calls, extracted = [], []
+
+    def fetch(url, school_key, render=False, root=None):
+        calls.append(render)
+        if render and len(calls) == 2:
+            raise RetryLater("www.example.edu.au", 118)
+        if render:
+            raise subprocess.TimeoutExpired("chrome", 120)  # what a Chrome timeout raises
+        return snap.save_snapshot(school_key, url, url, 200, "text/html", plain, root)
+
+    with pytest.raises(RetryLater):
+        run(db_session, school, page, budget=budget(client), fetch=fetch, extract=fake_extract({}, extracted))
+    db_session.expire_all()
+    state = run(db_session, school, page, budget=budget(client), fetch=fetch,
+                extract=fake_extract({"ielts": ielts(6.5)}, extracted))
+    assert calls == [False, True, True] and state == PageState.DONE
+    row = db_session.get(CollectPage, page.id)
+    assert row.render is False and row.snapshot_sha256 == hashlib.sha256(plain.encode()).hexdigest()
 
 
 def test_the_snapshot_tool_reads_crawl_delay_from_robots_txt(tmp_path):

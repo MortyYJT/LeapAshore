@@ -51,3 +51,41 @@ Spend is the upper bound at DeepSeek's peak price; `python -m app.collect.queue 
   robots.txt files ask for 5–120 s; the snapshot tool (agents and queue alike) had used 2 s. 13 hosts in
   this run were fetched faster than they ask (Alberta's Acalog and Virginia's records at 120 s requested,
   Surrey's catalogue and Lisbon at 10 s, …). Honoured from commit "honour robots.txt Crawl-delay" on.
+- 10-30 review of PR #51 (fresh context, scripted checks over every file): TOEFL/IELTS scales, empty
+  strings and zeros, `verified_at`, local paths, duplicate URLs and ids, off-domain URLs, quotes on
+  every `ok` value: all clean; the importer ran on every file. Three real problems, fixed in PR #52:
+  1. A thin page on a host with a Crawl-delay over 10 s looped forever (plain fetch, then RetryLater
+     on the render, render never remembered). The render is now committed before rescheduling.
+  2. Australian programs without a CRICOS code made a second university row (CQU, SCU, WSU, Torrens,
+     Canberra, named from the school key) or duplicated catalogue courses (Victoria, Flinders). The
+     importer now writes an Australian school's programs only onto CRICOS rows; 65 machine-checked
+     ones without a known code are skipped (3 Curtin rows from an earlier import stay in the catalogue).
+  3. Non-program pages and polluted names: listing pages (SCU `?page=2..6`, La Trobe, Groningen, SDU,
+     VUB, UKM, KFUPM), CQU bachelor's / associate degrees / "Course Not Found", WSU research and
+     closing-dates pages, a Canberra bachelor's; names carrying icon CSS (Flinders) or a card's text
+     (Dalhousie, Loughborough, UAM, Twente, ...). New `app/collect/tidy.py`: the name is cut back to the
+     page's own `<h1>` when the heading is part of a long link text; the rules drop non-master pages;
+     discovery and the queue apply them from now on. `python -m app.collect.tidy --apply` changed only
+     queue-collected programs: 23 files, 305 renamed, 68 dropped, 8 Flinders programs got their CRICOS
+     code by exact name. A rename is not made when it would give two programs in one file the same name
+     (Loughborough's London and Loughborough campuses), nor when what it cuts is short ("(Online)"). Files now: 248 with a file, 234 with programs, 8,783 programs, 7,376 machine-checked; queue
+     3,560 programs at 114 schools (2,213 machine-checked). Local import: 「有要求」 7,310, deadlines
+     4,722 / 2,728 programs / 119 schools (324 past), academic 6,806, `verified_at` 0.
+- Local cleanup after the reviewer's import of the old files: `remove_schools --apply` for the five
+  school-key duplicates, `importer --prune` for Avondale, Flinders, Victoria, Sunshine Coast and the 24
+  tidied files. Production never imported the old files, so it needs a plain import (no `--prune`:
+  that would delete the 3 Curtin rows).
+- 10-30 review of PR #52 (fresh context): three more, fixed in the same PR. (1) `queue export` would
+  have undone the tidy (the queue's rows keep the old link text, and dropped URLs would be appended
+  again): export now applies `tidy_file` and matches a row to the tidied name. (2) The heading rule cut
+  "(Online)" off a Flinders online MBA, which then took the campus course's CRICOS code: see the two
+  limits above. (3) A render that waited for a Crawl-delay and then failed made the page fail; the
+  plain fetch it already had now stands (the sha is kept in `last_error` while it waits). Also: a
+  discovered page that is not a program is caught on every visit, not only the first, so it never
+  costs a model call again. An empty file still makes its school's row (as before; the advisor's school
+  names point at those rows, e.g. `university-of-melbourne`), so SCU, La Trobe and Canberra, whose
+  files are now empty, get a row with no programs like Melbourne's.
+- Re-review of that commit: the awaited-render fallback caught only `RuntimeError`, but a Chrome
+  timeout is `subprocess.TimeoutExpired`; it now takes any failure of the awaited render. Kept on
+  purpose: an empty Australian file still makes a school-key row (pre-existing; the web merges rows of
+  one school by name, and eval t29 names `university-of-melbourne`).

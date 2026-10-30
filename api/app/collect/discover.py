@@ -39,17 +39,22 @@ class _Links(HTMLParser):
         self.links: list[tuple[str, str]] = []
         self._href: str | None = None
         self._text: list[str] = []
+        self._hidden = 0  # inside <style> or <script>: an inline icon's CSS is not the link's text
 
     def handle_starttag(self, tag, attrs):
         if tag == "a":
             self._href = dict(attrs).get("href")
             self._text = []
+        elif tag in ("style", "script"):
+            self._hidden += 1
 
     def handle_data(self, data):
-        if self._href is not None:
+        if self._href is not None and not self._hidden:
             self._text.append(data)
 
     def handle_endtag(self, tag):
+        if tag in ("style", "script") and self._hidden:
+            self._hidden -= 1
         if tag == "a" and self._href is not None:
             self.links.append((self._href, re.sub(r"\s+", " ", "".join(self._text)).strip()))
             self._href = None
@@ -233,8 +238,15 @@ def discover_school(session, school_key: str, *, budget, fetch=None, pick=pick_p
     report["picked"] = len(picked)
     codes = cricos_courses(school.get("cricos_institution"))
     room = max(0, cap - len(existing))
+    from app.collect.tidy import not_a_program, program_name
+
+    listings = school.get("listing_urls") or []
     for link in picked:
+        link = {**link, "text": program_name(link["text"], None)}
         if link["url"] in existing or room <= 0:
+            continue
+        if not_a_program(link["text"], link["url"], listings):
+            report["not_a_program"] = report.get("not_a_program", 0) + 1
             continue
         queue.upsert_page(session, school_key, link["url"], link["text"],
                           cricos_code=codes.get(normalize(link["text"])), origin="discovered")

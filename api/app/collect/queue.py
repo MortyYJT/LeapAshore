@@ -37,6 +37,7 @@ from app.collect.extract import ExtractResult, extract_snapshot
 from app.collect.ratelimit import RetryLater
 from app.collect.snapshot import SNAPSHOT_ROOT, Blocked, HttpError, snapshot
 from app.collect.text import normalize
+from app.collect.tidy import heading_of, program_name, tidy_file
 from app.collect.verify import MACHINE_CHECKED, NEEDS_HUMAN
 from app.config import settings
 from app.models.collect import CollectPage, PageState, RequirementChange
@@ -52,6 +53,8 @@ COLLECTOR = "leapashore-queue"
 # Visible text shorter than this usually means the page needs its scripts run (measured: a Sydney course
 # page is 685 characters plain, 6,269 rendered).
 THIN_PAGE_CHARS = 1500
+# `last_error` of a page whose render waits for its host's Crawl-delay, then the plain fetch's sha256.
+RENDER_PENDING = "render waits for the host's Crawl-delay; plain fetch "
 ITEM_KEYS = ("label", "date", "text", "overall", "min_band", "min_mark_211", "min_mark_other", "recommended",
              "scale_note", "quote", "source_sha256", "source_url", "check")
 PROGRAM_KEYS = ("cricos_code", "snapshot_sha256", "fetched_at", "rendered", "collector", "fields", "status")
@@ -120,11 +123,12 @@ def load_schools(data_dir: Path = DATA_DIR) -> dict[str, dict]:
 def school_info(school_key: str, data_dir: Path = DATA_DIR) -> dict:
     row = load_schools(data_dir).get(school_key)
     if row:
-        return {"name": row["name_en"], "country": row.get("country")}
+        return {"name": row["name_en"], "country": row.get("country"), "listing_urls": row.get("listing_urls") or []}
     path = data_dir / f"{school_key}.json"
     if path.exists():
         data = json.loads(path.read_text(encoding="utf-8"))
-        return {"name": data["school_name_en"], "country": data.get("country")}
+        return {"name": data["school_name_en"], "country": data.get("country"),
+                "listing_urls": data.get("listing_urls") or []}
     raise KeyError(f"unknown school {school_key!r}")
 
 
@@ -199,14 +203,18 @@ def _unanswered(blocked: Blocked) -> bool:
 
 def _name_from_heading(page: CollectPage, html_path: Path) -> None:
     """A discovered page is named by its link's text; when that text names no degree ("Learn more"),
-    the page's own first heading is used instead, if it does."""
+    the page's own first heading is used instead, if it does. A link text that carries more than the
+    name (a card's description, a bare course code) is cut back to the heading (`tidy.program_name`)."""
     from app.collect.discover import HINT, page_heading
+    from app.collect.tidy import program_name
 
-    if HINT.search(page.program_name) or not html_path.exists():
+    if not html_path.exists():
         return
     heading = page_heading(html_path.read_text(encoding="utf-8"))
-    if heading and HINT.search(heading):
-        page.program_name = heading
+    name = program_name(page.program_name, heading)
+    if not HINT.search(name) and heading and HINT.search(heading):
+        name = heading
+    page.program_name = name
 
 
 def _settle(session: Session, page: CollectPage, state: str, error: str | None = None) -> str:
@@ -235,6 +243,10 @@ def collect_page(session: Session, page_id: str, *, budget: Budget, fetch=snapsh
     # The last attempt, whatever its outcome: a refused page is not due again the next day.
     previous_attempt, page.fetched_at = page.fetched_at, now()
 
+    pending = page.last_error or ""
+    plain = pending[len(RENDER_PENDING):] if page.render and pending.startswith(RENDER_PENDING) else None
+    plain_meta_path = root / page.school_key / f"{plain}.json" if plain else None
+    render_failed = False
     try:
         meta = fetch(page.url, page.school_key, render=page.render, root=root)
     except Blocked as blocked:
@@ -243,25 +255,36 @@ def collect_page(session: Session, page_id: str, *, budget: Budget, fetch=snapsh
             session.commit()
             raise Transient(page.last_error) from blocked
         return _settle(session, page, PageState.BLOCKED, str(blocked)[:500])
-    except HttpError as error:
-        if error.status >= 500:
-            page.last_error = str(error)
+    except RetryLater:
+        raise
+    except Exception as error:  # noqa: BLE001 - sorted below; anything unexpected is raised again
+        if plain_meta_path is not None and plain_meta_path.exists():
+            # The render this page waited a Crawl-delay for failed, however it failed (a Chrome
+            # timeout is a subprocess error, an empty render an HttpError): the plain fetch it already
+            # has stands, as when a render fails on the first try.
+            meta = json.loads(plain_meta_path.read_text(encoding="utf-8"))
+            page.render, render_failed = False, True
+        elif isinstance(error, HttpError):
+            if error.status >= 500:
+                page.last_error = str(error)
+                session.commit()
+                raise Transient(str(error)) from error
+            return _settle(session, page, PageState.FAILED, str(error))
+        elif isinstance(error, (OSError, TimeoutError, RuntimeError, http.client.HTTPException)):
+            # URLError, resets and socket timeouts are OSErrors; a cut-off body is an HTTPException; a
+            # failed render is a RuntimeError.
+            page.last_error = f"{type(error).__name__}: {str(error)[:300]}"
             session.commit()
-            raise Transient(str(error)) from error
-        return _settle(session, page, PageState.FAILED, str(error))
-    except (OSError, TimeoutError, RuntimeError, http.client.HTTPException) as error:
-        # URLError, resets and socket timeouts are OSErrors; a cut-off body is an HTTPException; a
-        # failed render is a RuntimeError.
-        page.last_error = f"{type(error).__name__}: {str(error)[:300]}"
-        session.commit()
-        raise Transient(page.last_error) from error
+            raise Transient(page.last_error) from error
+        else:
+            raise
 
     if not page.render and not can_render and (meta.get("text_chars") or 0) < THIN_PAGE_CHARS:
         # Too thin to be the page a reader sees, and this host cannot run its scripts: no model call
         # on a shell page; a machine with Chrome collects it.
         page.render = True
         return _settle(session, page, PageState.DEFERRED, "the page needs rendering; this host cannot render")
-    if not page.render and can_render and (meta.get("text_chars") or 0) < THIN_PAGE_CHARS:
+    if not page.render and can_render and not render_failed and (meta.get("text_chars") or 0) < THIN_PAGE_CHARS:
         # A page built by JavaScript shows next to nothing without its scripts: render it once, and
         # from then on (the agents' brief did the same by hand).
         try:
@@ -270,12 +293,27 @@ def collect_page(session: Session, page_id: str, *, budget: Budget, fetch=snapsh
         except Blocked as blocked:
             return _settle(session, page, PageState.BLOCKED, str(blocked)[:500])
         except RetryLater:
-            raise  # the host's turn (its Crawl-delay) is far away: try the whole page again then
+            # The host's turn (its Crawl-delay) is far away. Remember that the page needs rendering,
+            # so the rescheduled task goes straight to the render instead of spending the host's
+            # turn on the plain fetch again and waiting a whole Crawl-delay once more, forever.
+            page.render = True
+            page.fetched_at = previous_attempt
+            page.last_error = f"{RENDER_PENDING}{meta['sha256']}"
+            session.commit()
+            raise
         except Exception:  # noqa: BLE001 - a failed render: the plain fetch still stands
             pass
     sha = meta["sha256"]
-    if page.origin == "discovered" and page.result is None:
-        _name_from_heading(page, root / page.school_key / f"{sha}.html")
+    if page.origin == "discovered":
+        from app.collect.tidy import not_a_program
+
+        if page.result is None:
+            _name_from_heading(page, root / page.school_key / f"{sha}.html")
+        name = program_name(page.program_name, heading_of(root, page.school_key, sha))
+        reason = not_a_program(name, page.url, school.get("listing_urls") or [])
+        if reason:
+            # No model call on a page that is not one program, on the first visit or a later one.
+            return _settle(session, page, PageState.FAILED, reason)
     new_text_sha = _snapshot_text_sha(page.school_key, sha, root)
     old_sha, old_text_sha, old_fields = prior_state(page, data_dir, root)
     if sha == old_sha or (old_text_sha is not None and new_text_sha == old_text_sha):
@@ -405,7 +443,7 @@ def _ordered(item: dict) -> dict:
 
 
 def export_school(session: Session, school_key: str, data_dir: Path = DATA_DIR, out_dir: Path | None = None,
-                  today: date | None = None) -> dict:
+                  today: date | None = None, root: Path = SNAPSHOT_ROOT) -> dict:
     """Merge the queue's results for one school into its requirement file (D8).
 
     A collected program replaces the file's program with the same URL and name, else the only one on
@@ -440,7 +478,9 @@ def export_school(session: Session, school_key: str, data_dir: Path = DATA_DIR, 
         program["fields"] = {name: ([_ordered(i) for i in value] if isinstance(value, list) else _ordered(value))
                              for name, value in (program.get("fields") or {}).items()}
         same = [i for i, p in enumerate(programs) if p.get("url") == page.url]
-        named = [i for i in same if programs[i].get("name") == page.program_name]
+        # The file may hold the name `tidy` gave it rather than the row's link text.
+        tidied = program_name(page.program_name, heading_of(root, school_key, result.get("snapshot_sha256")))
+        named = [i for i in same if programs[i].get("name") in (page.program_name, tidied)]
         target = named[0] if named else (same[0] if len(same) == 1 else None)
         if target is None:
             programs.append(program)
@@ -448,6 +488,9 @@ def export_school(session: Session, school_key: str, data_dir: Path = DATA_DIR, 
         else:
             programs[target] = program
             replaced += 1
+    # The same rules as `python -m app.collect.tidy`, so an export does not undo a tidied file.
+    data, _ = tidy_file(data, load_schools(data_dir).get(school_key), root=root)
+    programs = data["programs"]
     summary = {"programs": len(programs), MACHINE_CHECKED: 0, NEEDS_HUMAN: 0}
     for program in programs:
         summary[MACHINE_CHECKED if program.get("status") == MACHINE_CHECKED else NEEDS_HUMAN] += 1

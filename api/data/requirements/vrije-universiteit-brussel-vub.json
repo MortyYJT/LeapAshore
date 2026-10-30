@@ -12,21 +12,6 @@
  "complete": false,
  "programs": [
   {
-   "name": "Master's",
-   "url": "https://www.vub.be/en/studying-vub/all-study-programmes-vub/masters-programmes",
-   "snapshot_sha256": "dbfee8d9e8e69eb9b415341ff6a79efadaa9e0c04bfa70c0d337022ba8abddbb",
-   "fetched_at": "2026-10-29T20:33:30+00:00",
-   "collector": "leapashore-queue (deepseek-flash)",
-   "fields": {
-    "academic": {
-     "text": "A specific academic bachelor's degree is required to start a master's programme.",
-     "quote": "To start a master’s programme, you need a specific academic bachelor’s degree.",
-     "check": "ok"
-    }
-   },
-   "status": "机器核对"
-  },
-  {
    "name": "educational master’s programme",
    "url": "https://www.vub.be/nl/studeren-aan-de-vub/alle-opleidingen/bachelor-en-masteropleidingen-aan-de-vub/educatieve-master",
    "snapshot_sha256": "2c03bd742049e9613283f8b9b40afc328582e2e0502ab493920065185ef58c5d",
@@ -37,8 +22,8 @@
   }
  ],
  "verification": {
-  "programs": 2,
-  "机器核对": 1,
+  "programs": 1,
+  "机器核对": 0,
   "待人工": 1
  }
 }
