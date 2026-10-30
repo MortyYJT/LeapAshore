@@ -133,12 +133,19 @@ def recollect_due() -> dict:
 
 @app.task(name="maintenance.cleanup")
 def cleanup() -> dict:
-    """The 90-day anonymous-data sweep, only in login mode (D12; handoff "切到登录模式" step 6)."""
-    if not settings.auth_enabled:
-        return {"skipped": "AUTH_ENABLED is off: every user is anonymous, the 90-day sweep is for login mode"}
+    """The 90-day sweeps (D12; handoff "切到登录模式" step 6).
+
+    Anonymous subjects are swept only in login mode: with it off every user is anonymous. Advisor
+    conversations untouched for 90 days are swept in both modes (openspec advisor-persistence D7).
+    """
     from app import cleanup as sweep
 
     with SessionLocal() as session:
+        if not settings.auth_enabled:
+            return {
+                "skipped": "AUTH_ENABLED is off: every user is anonymous, the subject sweep is for login mode",
+                **sweep.sweep_conversations(session, apply=True),
+            }
         return sweep.run(session, apply=True)
 
 

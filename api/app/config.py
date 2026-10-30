@@ -46,6 +46,14 @@ class Settings(BaseSettings):
     # given back when the turn ends, leaving the counters at the reported usage (D4).
     advisor_turn_token_reserve: int = 8_000
 
+    # --- Advisor conversations (openspec/changes/advisor-persistence) ---
+    # The checkpointer's own psycopg pool, beside SQLAlchemy's (5 + 10 overflow). The saver runs one
+    # statement at a time under its lock, so a second connection is only a spare (D3).
+    checkpoint_pool_size: int = 2
+    # A conversation untouched for this many days is deleted, in every mode: the page keeps its
+    # conversation ids in memory only, so an idle thread is one nobody can reach any more (D7).
+    advisor_thread_retention_days: int = 90
+
     # --- Collection queue (openspec/changes/collect-queue) ---
     # Celery's broker: Redis database 1, so its keys never share a keyspace with the advisor's counters.
     celery_broker_url: str = "redis://localhost:56379/1"

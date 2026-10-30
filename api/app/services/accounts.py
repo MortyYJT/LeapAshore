@@ -15,6 +15,7 @@ from app.models.application import Application
 from app.models.client import Client, Profile
 from app.models.document import Document, DocumentVersion
 from app.models.task import RoadmapTask, TaskEvent
+from app.services.conversations import delete_conversations, move_conversations
 from app.services.documents import storage_root
 
 logger = logging.getLogger(__name__)
@@ -68,11 +69,13 @@ def merge_subject(session: Session, source_id: str, target_id: str) -> dict[str,
     - applications: rows for programs the target lacks move; the target's first choice is kept.
     - roadmap tasks: rows the target lacks move; a duplicate's materials are re-pointed first.
     - documents (with versions and reviews) and task events always move.
+    - advisor conversations move, except a conversation id the target already has
+      (openspec advisor-persistence D7).
     The source client is deleted at the end, and the cascade drops what was not moved.
     """
     if source_id == target_id:
         return {}
-    counts = {"profile": 0, "applications": 0, "tasks": 0, "documents": 0, "events": 0}
+    counts = {"profile": 0, "applications": 0, "tasks": 0, "documents": 0, "events": 0, "conversations": 0}
 
     source_profile = session.get(Profile, source_id)
     target_profile = session.get(Profile, target_id)
@@ -127,6 +130,7 @@ def merge_subject(session: Session, source_id: str, target_id: str) -> dict[str,
     counts["events"] = session.execute(
         update(TaskEvent).where(TaskEvent.client_id == source_id).values(client_id=target_id)
     ).rowcount
+    counts["conversations"] = move_conversations(session, source_id, target_id)["moved"]
     session.execute(delete(Client).where(Client.id == source_id))
     session.flush()
     session.expire_all()
@@ -158,24 +162,13 @@ def _unlink_orphans(session: Session, paths: Iterable[str]) -> int:
     return removed
 
 
-def _forget_conversations(client_id: str) -> None:
-    """Drop the advisor's in-memory threads for this subject (`{client_id}:{conversation_id}`)."""
-    from app.agent.graph import graph
-
-    saver = graph.checkpointer
-    storage = getattr(saver, "storage", None)
-    if not storage:
-        return
-    for thread_id in [t for t in list(storage) if str(t).startswith(f"{client_id}:")]:
-        saver.delete_thread(thread_id)
-
-
 def delete_subject(session: Session, client_id: str) -> dict[str, int]:
     """Delete a subject with everything it owns, its account, sessions and login codes, and its files.
 
     One `DELETE FROM clients`: the foreign keys cascade to the profile, applications, roadmap tasks,
     task events, documents (and versions, reviews, findings), the account and its sessions. Login
-    codes are keyed by email, so they are deleted by the account's email. Files are content-addressed
+    codes are keyed by email, so they are deleted by the account's email, and the advisor's
+    conversations by their thread prefix, in the same transaction (openspec advisor-persistence D7). Files are content-addressed
     and may be shared with another subject's identical upload, so a blob is removed only when no
     remaining version references it, and only after the rows are committed.
     """
@@ -190,7 +183,7 @@ def delete_subject(session: Session, client_id: str) -> dict[str, int]:
     session.execute(delete(Client).where(Client.id == client_id))
     if emails:
         session.execute(delete(LoginCode).where(LoginCode.email.in_(emails)))
+    conversations = delete_conversations(session, client_id)
     session.commit()
     removed = _unlink_orphans(session, paths)
-    _forget_conversations(client_id)
-    return {"files_removed": removed, "accounts": len(emails)}
+    return {"files_removed": removed, "accounts": len(emails), "conversations": conversations}

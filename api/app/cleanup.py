@@ -3,12 +3,18 @@
     python -m app.cleanup            # report only
     python -m app.cleanup --apply    # delete
 
-- anonymous subjects (no account) not seen for `ANONYMOUS_RETENTION_DAYS` (90), with their files;
+- anonymous subjects (no account) not seen for `ANONYMOUS_RETENTION_DAYS` (90), with their files and
+  advisor conversations;
 - expired sessions;
-- login codes older than two days (the daily rate limits only look back 24 hours).
+- login codes older than two days (the daily rate limits only look back 24 hours);
+- advisor conversations untouched for `ADVISOR_THREAD_RETENTION_DAYS` (90), whoever they belong to
+  (openspec advisor-persistence D7).
 
-In production the Celery beat runs it daily with `--apply` once login mode is on (`app.worker.cleanup`,
-openspec/changes/collect-queue D12); in anonymous mode it does nothing.
+    python -m app.cleanup --conversations-only [--apply]   # the last item alone
+
+In production the Celery beat runs it daily with `--apply` (`app.worker.cleanup`, openspec/changes/
+collect-queue D12); in anonymous mode only the conversation sweep runs, since every subject is
+anonymous there.
 """
 
 import argparse
@@ -23,6 +29,7 @@ from app.db import SessionLocal
 from app.models.account import Account, AuthSession, LoginCode
 from app.models.client import Client
 from app.services.accounts import delete_subject
+from app.services.conversations import delete_threads, stale_threads
 
 CODE_RETENTION = timedelta(days=2)
 
@@ -38,6 +45,16 @@ def stale_anonymous_subjects(session: Session, now: datetime) -> list[str]:
     )
 
 
+def sweep_conversations(session: Session, apply: bool, now: datetime | None = None) -> dict:
+    """Delete advisor conversations nobody has touched for the retention period (D7)."""
+    threads = stale_threads(session, now or datetime.now(UTC))
+    report = {"apply": apply, "stale_conversations": len(threads)}
+    if apply:
+        delete_threads(session, threads)
+        session.commit()
+    return report
+
+
 def run(session: Session, apply: bool, now: datetime | None = None) -> dict:
     now = now or datetime.now(UTC)
     subjects = stale_anonymous_subjects(session, now)
@@ -45,7 +62,13 @@ def run(session: Session, apply: bool, now: datetime | None = None) -> dict:
     codes = session.scalar(
         select(func.count()).select_from(LoginCode).where(LoginCode.created_at < now - CODE_RETENTION)
     )
-    report = {"apply": apply, "anonymous_subjects": len(subjects), "expired_sessions": sessions, "old_codes": codes}
+    report = {
+        "apply": apply,
+        "anonymous_subjects": len(subjects),
+        "expired_sessions": sessions,
+        "old_codes": codes,
+        "stale_conversations": len(stale_threads(session, now)),
+    }
     if not apply:
         return report
     files = 0
@@ -66,15 +89,20 @@ def run(session: Session, apply: bool, now: datetime | None = None) -> dict:
     session.execute(delete(LoginCode).where(LoginCode.created_at < now - CODE_RETENTION))
     session.commit()
     report["files_removed"] = files
+    report["stale_conversations"] = sweep_conversations(session, apply=True, now=now)["stale_conversations"]
     return report
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--apply", action="store_true", help="delete; without it only report")
+    parser.add_argument(
+        "--conversations-only", action="store_true", help="only the advisor-conversation sweep (anonymous mode)"
+    )
     args = parser.parse_args()
     with SessionLocal() as session:
-        print(json.dumps(run(session, apply=args.apply), ensure_ascii=False))
+        sweep = sweep_conversations if args.conversations_only else run
+        print(json.dumps(sweep(session, apply=args.apply), ensure_ascii=False))
 
 
 if __name__ == "__main__":

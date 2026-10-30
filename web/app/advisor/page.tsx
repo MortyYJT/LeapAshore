@@ -15,7 +15,7 @@ interface Message {
   tools?: string[];
   citations?: Citation[];
   gate?: "pass" | "refuse";
-  confirm?: { summary: string; state: "pending" | "approved" | "rejected" };
+  confirm?: { summary: string; id?: string; state: "pending" | "approved" | "rejected" };
   error?: string;
 }
 
@@ -76,7 +76,7 @@ export default function AdvisorPage() {
           case "token":
             return { ...m, content: m.content + e.text };
           case "confirm":
-            return { ...m, confirm: { summary: e.summary, state: "pending" } };
+            return { ...m, confirm: { summary: e.summary, id: e.id, state: "pending" } };
           case "error":
             return { ...m, error: e.message };
         }
@@ -123,7 +123,7 @@ export default function AdvisorPage() {
     const reply: Message = { id: uid(), role: "assistant", content: "" };
     setConversations((prev) => prev.map((c) => (c.id === convId ? { ...c, messages: [...c.messages, reply] } : c)));
     setThinking(true);
-    confirmAdvisorAction(convId, approved, handlerFor(convId, reply.id))
+    confirmAdvisorAction(convId, approved, handlerFor(convId, reply.id), message.confirm?.id)
       .then((outcome) => {
         if (outcome === "unauthorized") void refresh();
         // Refused before anything ran: the change is still pending, so offer the buttons again.

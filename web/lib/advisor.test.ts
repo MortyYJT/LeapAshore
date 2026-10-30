@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 
-import { advisorRefusal } from "./advisor.ts";
+import { advisorRefusal, confirmBody } from "./advisor.ts";
 
 test("a rate or quota refusal shows the server's Chinese message and counts as limited", () => {
   const refusal = advisorRefusal(429, { detail: { code: "rate_limited", message: "发送太频繁了，请 12 秒后再试。", retryAfter: 12 } });
@@ -20,4 +20,10 @@ test("a refusal without a readable body still says something", () => {
   assert.ok(advisorRefusal(429, null).message.includes("频繁"));
   assert.deepEqual(advisorRefusal(500, null), { outcome: "failed", message: "顾问服务不可用（HTTP 500）" });
   assert.equal(advisorRefusal(401, null).outcome, "unauthorized");
+});
+
+test("a confirm names the change it answers, so a late repeat cannot answer a newer one", () => {
+  assert.deepEqual(confirmBody("c1", true, "a1b2"), { conversationId: "c1", approved: true, interruptId: "a1b2" });
+  // A change shown before the id existed is answered without one, as before.
+  assert.deepEqual(confirmBody("c1", false), { conversationId: "c1", approved: false });
 });
