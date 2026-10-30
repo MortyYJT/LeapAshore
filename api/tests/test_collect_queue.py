@@ -614,6 +614,26 @@ def test_a_far_crawl_delay_during_the_render_retry_reschedules_the_page(db_sessi
     assert not extracted
 
 
+def test_after_a_far_crawl_delay_the_retry_goes_straight_to_the_render(db_session, school, client):
+    # The rescheduled task must not fetch the plain page again (spending the host's turn) and then
+    # wait a whole Crawl-delay for the render once more, forever: the render is remembered.
+    page = add_page(db_session, school)
+    calls = []
+
+    def fetch(url, school_key, render=False, root=None):
+        calls.append(render)
+        if render and len(calls) == 2:
+            raise RetryLater("www.example.edu.au", 118)
+        return snap.save_snapshot(school_key, url, url, 200, "text/html", "<html><body>Loading</body></html>", root)
+
+    with pytest.raises(RetryLater):
+        run(db_session, school, page, budget=budget(client), fetch=fetch, extract=fake_extract({}))
+    db_session.expire_all()  # what the worker's next session sees: only what was committed
+    assert db_session.get(CollectPage, page.id).render is True
+    run(db_session, school, page, budget=budget(client), fetch=fetch, extract=fake_extract({}))
+    assert calls == [False, True, True]
+
+
 def test_the_snapshot_tool_reads_crawl_delay_from_robots_txt(tmp_path):
     cache = tmp_path / "_robots" / "cat.example.edu"
     cache.parent.mkdir(parents=True)

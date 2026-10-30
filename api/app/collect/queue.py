@@ -270,7 +270,13 @@ def collect_page(session: Session, page_id: str, *, budget: Budget, fetch=snapsh
         except Blocked as blocked:
             return _settle(session, page, PageState.BLOCKED, str(blocked)[:500])
         except RetryLater:
-            raise  # the host's turn (its Crawl-delay) is far away: try the whole page again then
+            # The host's turn (its Crawl-delay) is far away. Remember that the page needs rendering,
+            # so the rescheduled task goes straight to the render instead of spending the host's
+            # turn on the plain fetch again and waiting a whole Crawl-delay once more, forever.
+            page.render = True
+            page.fetched_at = previous_attempt
+            session.commit()
+            raise
         except Exception:  # noqa: BLE001 - a failed render: the plain fetch still stands
             pass
     sha = meta["sha256"]
