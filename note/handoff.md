@@ -15,7 +15,7 @@
 - **未归档的 OpenSpec change：** hybrid-retrieval、snapshot-rag（各剩 1 项，都卡在 MortyYJT 的 `EMBED_API_KEY`）、ledger-redesign（P2 #4 进行中）。account-login、knowledge-gaps 已在 10-31 文档审计 PR 里归档（最后一项「部署」10-30 已做完）。
 - **仓库整理（10-30）：** 不用 Claude Code 钩子（#71 删了 `guard.sh`）；删了学习用的 `note/interview/`（#72，git 历史里可找回）。`note/design/` 保留：代码注释和 README 把它当设计依据引用。钩子删了以后，「不推 main、不 force push、不碰密钥文件」只靠规则；GitHub 上 main 有分支保护（必须过 `backend`、`web`）。
 - **文档（10-31 精简）：** `docs/` 全是英文：`deploy.md`（部署与运维）、`measurements.md`（各任务的测量、命令和注释，从 `TASKS.md` 挪来）、`product/PRD.md`、`images/`（README 截图）；`TASKS.md` 每条只留一行；`openspec/specs/` 15 份（#73 归档了 4 个已完成的变更，10-31 文档审计又归档 2 个）。`note/` 保持中文。
-- **README（10-31，PR 待合并）：** 全英文重写（不写中文名），每个数字链到 `docs/measurements.md` 或 PRD 对应一节；6 张截图在 `docs/images/`；`docs/deploy.md` 加了「First-time setup」。分支 `claude/readme-rewrite`，PR 见 GitHub，CI 过了才能合并（只改文档，不用部署）。决定见 `note/decisions.md` 10-31「README 重写」。
+- **README（10-31，PR 待合并）：** 全英文重写（不写中文名），每个数字链到 `docs/measurements.md` 或 PRD 对应一节；6 张截图在 `docs/images/`；`docs/deploy.md` 加了「First-time setup」。分支 `claude/readme-rewrite`，PR #82，CI 过了才能合并（只改文档，不用部署）。决定见 `note/decisions.md` 10-31「README 重写」。
 - **本机：** 库卷 `leapashore_pgdata`、Redis 卷 `leapashore_redis-data`（10-31 从旧卷复制并改名，旧卷已删），连接串 `leapashore:leapashore@localhost:55432/leapashore`。`make api-dev-bg` 默认登录模式，验证码写到 `api/var/mail.log`（不发信）；走查要求后端在登录模式，否则直接退出并说明。
 
 ## 卡在 MortyYJT（10-30）
