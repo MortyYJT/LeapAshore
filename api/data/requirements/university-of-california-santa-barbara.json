@@ -30,19 +30,25 @@
      "overall": 100,
      "quote": "TOEFL Minimum Total iBT Score: 5 (post-January 2026) or 100 (pre-January 2026)",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 100 (quote gives 5 post-January 2026 or 100 pre-January 2026)",
+     "summary_sha": "f5b7a26e667b1032"
     },
     "ielts": {
      "overall": 7,
      "quote": "IELTS Minimum Overall Band Score: 7",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "813dfa0be9d20de0"
     },
     "academic": {
      "text": "Minimum 3.0 cumulative GPA in undergraduate study (4.0 scale); GPAs of institutions not on a 4.0 scale are re-calculated by the department",
      "quote": "A minimum of a 3.0 cumulative GPA in undergraduate study.",
      "source_sha256": "5d7d302a8e40dbf380f444492f96656de8b088d8227424b015d6f15cfd4f12ba",
      "source_url": "https://cs.ucsb.edu/education/graduate/how-to-apply",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: 4.0 scale and re-calculation by the department",
+     "summary_sha": "759cbcfece11fcf1"
     },
     "prerequisites": [
      {
@@ -50,7 +56,9 @@
       "quote": "the Department of Computer Science requires a bachelor's degree in some discipline of science, engineering, or mathematics",
       "source_sha256": "5d7d302a8e40dbf380f444492f96656de8b088d8227424b015d6f15cfd4f12ba",
       "source_url": "https://cs.ucsb.edu/education/graduate/how-to-apply",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "356c77ab68687778"
      }
     ],
     "deadlines": [
@@ -58,11 +66,13 @@
       "label": "Fall 2027 final deadline",
       "date": "2026-12-16",
       "quote": "Wednesday, December 16, 2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Fall 2027 final deadline",
+      "summary_sha": "89461b7ac19c6b02"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MS (Communications, Control & Signal Processing Emphasis) - Electrical & Computer Engineering",
@@ -73,23 +83,29 @@
      "overall": 80,
      "quote": "TOEFL Minimum Total iBT Score: 4.0 (post-January 2026) or 80 (pre-January 2026)",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote gives 4.0 post-Jan 2026 or 80 pre-Jan 2026)",
+     "summary_sha": "5a7daa69c02e7594"
     },
     "ielts": {
      "overall": 7,
      "quote": "IELTS Minimum Overall Band Score: 7",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "813dfa0be9d20de0"
     },
     "deadlines": [
      {
       "label": "Fall 2027 final deadline",
       "date": "2026-12-16",
       "quote": "Wednesday, December 16, 2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Fall 2027 final deadline",
+      "summary_sha": "89461b7ac19c6b02"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MS (Computer Engineering Emphasis) - Electrical & Computer Engineering",
@@ -100,23 +116,29 @@
      "overall": 80,
      "quote": "TOEFL Minimum Total iBT Score: 4.0 (post-January 2026) or 80 (pre-January 2026)",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits that 80 applies only pre-January 2026; current minimum is 4.0",
+     "summary_sha": "5a7daa69c02e7594"
     },
     "ielts": {
      "overall": 7,
      "quote": "IELTS Minimum Overall Band Score: 7",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "813dfa0be9d20de0"
     },
     "deadlines": [
      {
       "label": "Fall 2027 final deadline",
       "date": "2026-12-16",
       "quote": "Wednesday, December 16, 2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Fall 2027 final deadline",
+      "summary_sha": "89461b7ac19c6b02"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MS (Electronics & Photonics Emphasis) - Electrical & Computer Engineering",
@@ -127,23 +149,29 @@
      "overall": 80,
      "quote": "TOEFL Minimum Total iBT Score: 4.0 (post-January 2026) or 80 (pre-January 2026)",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the post-January 2026 minimum of 4.0, presenting 80 as the minimum",
+     "summary_sha": "5a7daa69c02e7594"
     },
     "ielts": {
      "overall": 7,
      "quote": "IELTS Minimum Overall Band Score: 7",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "813dfa0be9d20de0"
     },
     "deadlines": [
      {
       "label": "Fall 2027 final deadline",
       "date": "2026-12-16",
       "quote": "Wednesday, December 16, 2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Fall 2027 final deadline",
+      "summary_sha": "89461b7ac19c6b02"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MA - Statistics",
@@ -154,12 +182,16 @@
      "overall": 80,
      "quote": "TOEFL Minimum Total iBT Score: 4.0 (post-January 2026) or 80 (pre-January 2026)",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote gives 80 only for pre-January 2026, and 4.0 post-January 2026)",
+     "summary_sha": "5a7daa69c02e7594"
     },
     "ielts": {
      "overall": 7,
      "quote": "IELTS Minimum Overall Band Score: 7",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "813dfa0be9d20de0"
     },
     "prerequisites": [
      {
@@ -167,7 +199,9 @@
       "quote": "Applicants must hold a bachelor's degree in Statistics, Mathematics, or a related quantitative field.",
       "source_sha256": "ea40a60059331761f01f2953c9ee71931c4d170a052b7230e80ea3784084ebd7",
       "source_url": "https://www.pstat.ucsb.edu/graduate/masters",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "5697b7c3853ac0ef"
      }
     ],
     "deadlines": [
@@ -175,11 +209,13 @@
       "label": "Fall 2027 final deadline",
       "date": "2027-02-18",
       "quote": "Thursday, February 18, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Fall 2027 final deadline",
+      "summary_sha": "921d9b7d7ba1d45d"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MS - Mechanical Engineering",
@@ -190,23 +226,29 @@
      "overall": 80,
      "quote": "TOEFL Minimum Total iBT Score: 4.0 (post-January 2026) or 80 (pre-January 2026)",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 as the minimum, omitting the 4.0 post-January 2026 score",
+     "summary_sha": "5a7daa69c02e7594"
     },
     "ielts": {
      "overall": 7,
      "quote": "IELTS Minimum Overall Band Score: 7",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "813dfa0be9d20de0"
     },
     "deadlines": [
      {
       "label": "Fall 2027 final deadline",
       "date": "2026-12-16",
       "quote": "Wednesday, December 16, 2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Fall 2027 final deadline",
+      "summary_sha": "89461b7ac19c6b02"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MS - Materials",
@@ -217,23 +259,29 @@
      "overall": 80,
      "quote": "TOEFL Minimum Total iBT Score: 4.0 (post-January 2026) or 80 (pre-January 2026)",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 as the minimum, omitting the 4.0 post-January 2026 score",
+     "summary_sha": "5a7daa69c02e7594"
     },
     "ielts": {
      "overall": 7,
      "quote": "IELTS Minimum Overall Band Score: 7",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "813dfa0be9d20de0"
     },
     "deadlines": [
      {
       "label": "Fall 2027 final deadline",
       "date": "2026-12-16",
       "quote": "Wednesday, December 16, 2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Fall 2027 final deadline",
+      "summary_sha": "89461b7ac19c6b02"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MEDS - Environmental Data Science",
@@ -244,19 +292,25 @@
      "overall": 80,
      "quote": "TOEFL Minimum Total iBT Score: 4.0 (post-January 2026) or 80 (pre-January 2026)",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote gives 80 only for pre-January 2026)",
+     "summary_sha": "5a7daa69c02e7594"
     },
     "ielts": {
      "overall": 7,
      "quote": "IELTS Minimum Overall Band Score: 7",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "813dfa0be9d20de0"
     },
     "academic": {
      "text": "Bachelor's degree (or equivalent) from an accredited four-year institution; minimum cumulative undergraduate GPA 3.0 on a 4.0 scale",
      "quote": "The undergraduate minimum cumulative grade point average (GPA) is 3.0 or higher on a 4.0 scale.",
      "source_sha256": "8b44a1955f2582e13231e0c260af3a5c4fc607bb5698af4e831031f64c0a7a20",
      "source_url": "https://bren.ucsb.edu/masters-programs/master-environmental-data-science/admissions-meds-program",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: Bachelor's degree from accredited four-year institution",
+     "summary_sha": "1039ae2d95cca40c"
     },
     "prerequisites": [
      {
@@ -264,28 +318,36 @@
       "quote": "who have completed environmentally-related coursework (at least 4 courses) or a degree in an environmentally related discipline",
       "source_sha256": "8b44a1955f2582e13231e0c260af3a5c4fc607bb5698af4e831031f64c0a7a20",
       "source_url": "https://bren.ucsb.edu/masters-programs/master-environmental-data-science/admissions-meds-program",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "bb7856c6c9c4f410"
      },
      {
       "text": "Math: one course (quarter or semester)",
       "quote": "Math – one course (quarter or semester)",
       "source_sha256": "8b44a1955f2582e13231e0c260af3a5c4fc607bb5698af4e831031f64c0a7a20",
       "source_url": "https://bren.ucsb.edu/masters-programs/master-environmental-data-science/admissions-meds-program",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "aa2c05331ebd736b"
      },
      {
       "text": "Statistics: one course (quarter or semester)",
       "quote": "Statistics – one course (quarter or semester)",
       "source_sha256": "8b44a1955f2582e13231e0c260af3a5c4fc607bb5698af4e831031f64c0a7a20",
       "source_url": "https://bren.ucsb.edu/masters-programs/master-environmental-data-science/admissions-meds-program",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "1e776e67ae2dd2de"
      },
      {
       "text": "Prerequisite courses must be passed with a grade of C or higher",
       "quote": "Only courses earned with a grade of C or higher will be counted toward meeting MEDS prerequisite requirements.",
       "source_sha256": "8b44a1955f2582e13231e0c260af3a5c4fc607bb5698af4e831031f64c0a7a20",
       "source_url": "https://bren.ucsb.edu/masters-programs/master-environmental-data-science/admissions-meds-program",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f580752af1400311"
      }
     ],
     "deadlines": [
@@ -293,17 +355,21 @@
       "label": "Summer 2027 priority financial deadline",
       "date": "2026-12-16",
       "quote": "Wednesday, December 16, 2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Summer 2027 priority financial deadline",
+      "summary_sha": "ec2b7b9610a2be22"
      },
      {
       "label": "Summer 2027 final deadline",
       "date": "2027-03-03",
       "quote": "Wednesday, March 3, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Summer 2027 final deadline",
+      "summary_sha": "f78dd1f1d514ec21"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MESM - Environmental Science & Management",
@@ -314,19 +380,25 @@
      "overall": 80,
      "quote": "TOEFL Minimum Total iBT Score: 4.0 (post-January 2026) or 80 (pre-January 2026)",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote gives 4.0 post-Jan 2026 or 80 pre-Jan 2026)",
+     "summary_sha": "5a7daa69c02e7594"
     },
     "ielts": {
      "overall": 7,
      "quote": "IELTS Minimum Overall Band Score: 7",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "813dfa0be9d20de0"
     },
     "academic": {
      "text": "Bachelor's degree (or equivalent) from an accredited four-year institution; minimum cumulative undergraduate GPA 3.0 on a 4.0 scale",
      "quote": "The undergraduate minimum cumulative grade point average (GPA) is 3.0 or higher on a 4.0 scale.",
      "source_sha256": "01e7f785b451a68f85d52065fa7d5bd72713c0bd0589b23e3bee5bddd1d5ac93",
      "source_url": "https://bren.ucsb.edu/masters-programs/master-environmental-science-and-management/admissions-mesm",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: Bachelor's degree from accredited four-year institution",
+     "summary_sha": "1039ae2d95cca40c"
     },
     "prerequisites": [
      {
@@ -334,28 +406,36 @@
       "quote": "Science – two courses (quarter or semester)",
       "source_sha256": "01e7f785b451a68f85d52065fa7d5bd72713c0bd0589b23e3bee5bddd1d5ac93",
       "source_url": "https://bren.ucsb.edu/masters-programs/master-environmental-science-and-management/admissions-mesm",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "75f5f2a0ed994421"
      },
      {
       "text": "Math: two courses (quarter or semester)",
       "quote": "Math – two courses (quarter or semester)",
       "source_sha256": "01e7f785b451a68f85d52065fa7d5bd72713c0bd0589b23e3bee5bddd1d5ac93",
       "source_url": "https://bren.ucsb.edu/masters-programs/master-environmental-science-and-management/admissions-mesm",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "370414029aee10f4"
      },
      {
       "text": "Social science: one course (quarter or semester)",
       "quote": "Social Science – one course (quarter or semester)",
       "source_sha256": "01e7f785b451a68f85d52065fa7d5bd72713c0bd0589b23e3bee5bddd1d5ac93",
       "source_url": "https://bren.ucsb.edu/masters-programs/master-environmental-science-and-management/admissions-mesm",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "de01654dc87f150d"
      },
      {
       "text": "Prerequisite courses must be passed with a grade of C or higher",
       "quote": "Only courses earned with a grade of C or higher will be counted toward meeting MESM prerequisite requirements.",
       "source_sha256": "01e7f785b451a68f85d52065fa7d5bd72713c0bd0589b23e3bee5bddd1d5ac93",
       "source_url": "https://bren.ucsb.edu/masters-programs/master-environmental-science-and-management/admissions-mesm",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f3ab5ab5ed7abb27"
      }
     ],
     "deadlines": [
@@ -363,11 +443,13 @@
       "label": "Fall 2027 final deadline",
       "date": "2026-12-16",
       "quote": "Wednesday, December 16, 2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Fall 2027 final deadline",
+      "summary_sha": "89461b7ac19c6b02"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MTM - Technology Management",
@@ -378,35 +460,45 @@
      "overall": 80,
      "quote": "TOEFL Minimum Total iBT Score: 4.0 (post-January 2026) or 80 (pre-January 2026)",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 as the minimum; quote gives 4.0 post-January 2026 or 80 pre-January 2026",
+     "summary_sha": "5a7daa69c02e7594"
     },
     "ielts": {
      "overall": 7,
      "quote": "IELTS Minimum Overall Band Score: 7",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "813dfa0be9d20de0"
     },
     "deadlines": [
      {
       "label": "Fall 2027 priority financial deadline",
       "date": "2026-12-02",
       "quote": "Wednesday, December 2, 2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Fall 2027 priority financial deadline",
+      "summary_sha": "e8794b680ba7b400"
      },
      {
       "label": "Fall 2027 priority deadline",
       "date": "2027-02-18",
       "quote": "Thursday, February 18, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Fall 2027 priority deadline",
+      "summary_sha": "9193d9850b968097"
      },
      {
       "label": "Fall 2027 final deadline",
       "date": "2027-04-30",
       "quote": "Friday, April 30, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Fall 2027 final deadline",
+      "summary_sha": "2d91356c08a8dee0"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MA - Education",
@@ -417,29 +509,37 @@
      "overall": 80,
      "quote": "TOEFL Minimum Total iBT Score: 4.0 (post-January 2026) or 80 (pre-January 2026)",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 as the minimum, omitting the 4.0 post-January 2026 score",
+     "summary_sha": "5a7daa69c02e7594"
     },
     "ielts": {
      "overall": 7,
      "quote": "IELTS Minimum Overall Band Score: 7",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "813dfa0be9d20de0"
     },
     "deadlines": [
      {
       "label": "Fall 2027 priority deadline",
       "date": "2026-12-02",
       "quote": "Wednesday, December 2, 2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Fall 2027 priority deadline",
+      "summary_sha": "33dda34655e0b89c"
      },
      {
       "label": "Fall 2027 final deadline",
       "date": "2027-05-14",
       "quote": "Friday, May 14, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Fall 2027 final deadline",
+      "summary_sha": "dc042ba46e0aba76"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MS - Media Arts and Technology",
@@ -450,23 +550,29 @@
      "overall": 80,
      "quote": "TOEFL Minimum Total iBT Score: 4.0 (post-January 2026) or 80 (pre-January 2026)",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 as the minimum, omitting the 4.0 post-January 2026 score",
+     "summary_sha": "5a7daa69c02e7594"
     },
     "ielts": {
      "overall": 7,
      "quote": "IELTS Minimum Overall Band Score: 7",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "813dfa0be9d20de0"
     },
     "deadlines": [
      {
       "label": "Fall 2027 final deadline",
       "date": "2026-12-16",
       "quote": "Wednesday, December 16, 2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Fall 2027 final deadline",
+      "summary_sha": "89461b7ac19c6b02"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MA - Applied Mathematics",
@@ -477,23 +583,29 @@
      "overall": 80,
      "quote": "TOEFL Minimum Total iBT Score: 4.0 (post-January 2026) or 80 (pre-January 2026)",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 only; quote gives 4.0 post-January 2026 or 80 pre-January 2026",
+     "summary_sha": "5a7daa69c02e7594"
     },
     "ielts": {
      "overall": 7,
      "quote": "IELTS Minimum Overall Band Score: 7",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "813dfa0be9d20de0"
     },
     "deadlines": [
      {
       "label": "Fall 2027 final deadline",
       "date": "2026-12-16",
       "quote": "Wednesday, December 16, 2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Fall 2027 final deadline",
+      "summary_sha": "89461b7ac19c6b02"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MA - Mathematics",
@@ -504,28 +616,34 @@
      "overall": 80,
      "quote": "TOEFL Minimum Total iBT Score: 4.0 (post-January 2026) or 80 (pre-January 2026)",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 as the minimum, omitting the 4.0 post-January 2026 score",
+     "summary_sha": "5a7daa69c02e7594"
     },
     "ielts": {
      "overall": 7,
      "quote": "IELTS Minimum Overall Band Score: 7",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "813dfa0be9d20de0"
     },
     "deadlines": [
      {
       "label": "Fall 2027 final deadline",
       "date": "2026-12-16",
       "quote": "Wednesday, December 16, 2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Fall 2027 final deadline",
+      "summary_sha": "89461b7ac19c6b02"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   }
  ],
  "verification": {
   "programs": 14,
-  "机器核对": 14,
-  "待人工": 0
+  "机器核对": 0,
+  "待人工": 14
  }
 }

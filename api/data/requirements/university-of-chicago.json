@@ -29,21 +29,27 @@
     "academic": {
      "text": "Bachelor's degree from an accredited institution; no CS bachelor's required",
      "quote": "Your transcripts must include proof that you’ve earned a bachelor’s degree from an accredited institution.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: no CS bachelor's required",
+     "summary_sha": "ef4898f7273eade1"
     },
     "toefl": {
      "text": "TOEFL 5.0 or higher (1-6 scale) unless an English waiver applies",
      "quote": "Applicants who do not qualify for an English language proficiency waiver must submit one of the following: TOEFL score of 5.0 or higher IELTS Academic overall score of 7.0 or higher",
      "source_sha256": "075f72f2c72398f6a8faa2e491c382bb86e997b75b0ad07d82d094467f67139f",
      "source_url": "https://masters.cs.uchicago.edu/frequently-asked-questions-1/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "29e2aff09cec4779"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "Applicants who do not qualify for an English language proficiency waiver must submit one of the following: TOEFL score of 5.0 or higher IELTS Academic overall score of 7.0 or higher",
      "source_sha256": "075f72f2c72398f6a8faa2e491c382bb86e997b75b0ad07d82d094467f67139f",
      "source_url": "https://masters.cs.uchicago.edu/frequently-asked-questions-1/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "e38c40b9c6c47d07"
     },
     "deadlines": [
      {
@@ -52,7 +58,9 @@
       "quote": "Round 1 November 2, 2026",
       "source_sha256": "e73de80833378e766e0a3faa236d67663282059c4845a7da8338eea5a0c0aca8",
       "source_url": "https://masters.cs.uchicago.edu/mpcs-admissions/application-deadlines/",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "4d13b780ff7a333f"
      },
      {
       "label": "Autumn 2027 full-time, Round 2",
@@ -60,7 +68,9 @@
       "quote": "Round 2 February 1, 2027",
       "source_sha256": "e73de80833378e766e0a3faa236d67663282059c4845a7da8338eea5a0c0aca8",
       "source_url": "https://masters.cs.uchicago.edu/mpcs-admissions/application-deadlines/",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "fb35fada17dfc112"
      },
      {
       "label": "Autumn 2027 full-time, Round 3",
@@ -68,11 +78,13 @@
       "quote": "Round 3 May 3, 2027",
       "source_sha256": "e73de80833378e766e0a3faa236d67663282059c4845a7da8338eea5a0c0aca8",
       "source_url": "https://masters.cs.uchicago.edu/mpcs-admissions/application-deadlines/",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "c8b8ccb0109cc1fa"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MS in Statistics",
@@ -83,12 +95,16 @@
      {
       "text": "Calculus and linear algebra",
       "quote": "Calculus and Linear Algebra",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "b5dd9707cdfa012f"
      },
      {
       "text": "Probability and mathematical statistics",
       "quote": "Probability and Mathematical Statistics",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "744ae11d5b6e3349"
      }
     ],
     "deadlines": [
@@ -96,19 +112,25 @@
       "label": "Application deadline (round 1)",
       "date": "2026-11-02",
       "quote": "November 2, 2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "2ee26e78c2a4e22b"
      },
      {
       "label": "Application deadline (round 2)",
       "date": "2027-02-01",
       "quote": "February 1, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "6467d6b7d20fefb7"
      },
      {
       "label": "Application deadline (round 3)",
       "date": "2027-05-03",
       "quote": "May 3, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "1944c81d2a3fb402"
      }
     ]
    },
@@ -122,23 +144,31 @@
     "toefl": {
      "overall": 90,
      "quote": "Policy in the Physical Sciences Division requires a score of at least 90 on the TOEFL or 7 IELTS",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d3ef057b8921b0f2"
     },
     "ielts": {
      "overall": 7,
      "quote": "Policy in the Physical Sciences Division requires a score of at least 90 on the TOEFL or 7 IELTS",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b82b8123c68e5f95"
     },
     "prerequisites": [
      {
       "text": "Multivariable calculus, linear algebra and probability",
       "quote": "The minimal math prerequisites are the successful completion of at least multivariable calculus, linear algebra, and probability.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "af8983f988a0fca3"
      },
      {
       "text": "Some computer programming skills, ideally C++, Python or another object-oriented language",
       "quote": "candidates must have some level of computer programming skills, ideally in either C++, or Python, or other object-oriented languages.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "12abb47d1a3b99ff"
      }
     ],
     "deadlines": [
@@ -146,13 +176,17 @@
       "label": "Autumn 2027 in-person, Round 1",
       "date": "2026-11-02",
       "quote": "Round 1: Monday, November 2, 2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "7153c0bb6d8d74f3"
      },
      {
       "label": "Autumn 2027 in-person, Round 2",
       "date": "2027-02-01",
       "quote": "Round 2: Monday, February 1, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "76f9c92ffb2c8ab8"
      }
     ]
    },
@@ -166,47 +200,61 @@
     "academic": {
      "text": "A bachelor's degree is required to apply",
      "quote": "note a bachelor’s degree is required to apply to the program",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0ab0f4549af222a2"
     },
     "toefl": {
      "overall": 102,
      "quote": "Minimum scores for the Master’s in Applied Data Science program: TOEFL: 102 (prior requirement) or 5 (current requirement; no subscore requirement); IELTS, 7 (no subscore requirement).",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "8079288109b7afce"
     },
     "ielts": {
      "overall": 7,
      "quote": "Minimum scores for the Master’s in Applied Data Science program: TOEFL: 102 (prior requirement) or 5 (current requirement; no subscore requirement); IELTS, 7 (no subscore requirement).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "8c0e51d4dd4b9457"
     },
     "deadlines": [
      {
       "label": "First priority deadline",
       "date": "2026-11-09",
       "quote": "November 9, 2026 – First Priority Application Deadline",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "90299d6abc8ddc2b"
      },
      {
       "label": "Second priority deadline",
       "date": "2026-12-07",
       "quote": "December 7, 2026 – Second Priority Application Deadline",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "674c52db52a514c9"
      },
      {
       "label": "International deadline (visa sponsorship from UChicago)",
       "date": "2027-01-26",
       "quote": "January 26, 2027 – International Application Deadline (requiring visa sponsorship from UChicago)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "2448a115e341e168"
      },
      {
       "label": "Final application deadline, Autumn 2027",
       "date": "2027-06-23",
       "quote": "June 23, 2027 – Final Application Deadline",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Autumn 2027 intake",
+      "summary_sha": "3c67aee00db28e5e"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Arts Program in the Social Sciences (MAPSS)",
@@ -218,17 +266,21 @@
      "quote": "Master of Arts Program in the Social Sciences (MAPSS) (MA) 5.0 on each section Reading 24, Listening 22, Writing 24, Speaking 25 7.0 on each section",
      "source_sha256": "2b618fc9541c73c1d39065573948f7b3b9fdc66a483347818515d948de19baf5",
      "source_url": "https://socialsciences.uchicago.edu/admissions/application-materials/english-proficiency-requirements",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: TOEFL iBT, 1-6 scale, Autumn 2027 entry",
+     "summary_sha": "7d9cece3d8bcd3e4"
     },
     "ielts": {
      "min_band": 7.0,
      "quote": "Master of Arts Program in the Social Sciences (MAPSS) (MA) 5.0 on each section Reading 24, Listening 22, Writing 24, Speaking 25 7.0 on each section",
      "source_sha256": "2b618fc9541c73c1d39065573948f7b3b9fdc66a483347818515d948de19baf5",
      "source_url": "https://socialsciences.uchicago.edu/admissions/application-materials/english-proficiency-requirements",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "334a73b3e9af3f9d"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Arts in Computational Social Science (MACSS)",
@@ -240,17 +292,21 @@
      "quote": "Computational Social Science (MACSS) (MA) 5.0 on each section Reading 24, Listening 22, Writing 24, Speaking 25 7.0 on each section",
      "source_sha256": "2b618fc9541c73c1d39065573948f7b3b9fdc66a483347818515d948de19baf5",
      "source_url": "https://socialsciences.uchicago.edu/admissions/application-materials/english-proficiency-requirements",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: TOEFL iBT 5.0 on each section (1-6 scale); the quote's 5.0 is not labeled TOEFL iBT and the scale is not stated",
+     "summary_sha": "03e128cf1526a5d4"
     },
     "ielts": {
      "min_band": 7.0,
      "quote": "Computational Social Science (MACSS) (MA) 5.0 on each section Reading 24, Listening 22, Writing 24, Speaking 25 7.0 on each section",
      "source_sha256": "2b618fc9541c73c1d39065573948f7b3b9fdc66a483347818515d948de19baf5",
      "source_url": "https://socialsciences.uchicago.edu/admissions/application-materials/english-proficiency-requirements",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "01f3a13ffd939c06"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Arts in Economics (MAE)",
@@ -261,31 +317,41 @@
      {
       "text": "Advanced coursework in calculus-based microeconomics, macroeconomics and econometric theory",
       "quote": "Calculus-based microeconomics, macroeconomics, and econometric theory",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Advanced coursework in",
+      "summary_sha": "0f5c3467a486e1e5"
      },
      {
       "text": "Multivariable calculus",
       "quote": "Multivariable calculus",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "6d277dc48c06ad13"
      },
      {
       "text": "Linear algebra",
       "quote": "Linear algebra",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "27d3a1fb0036530f"
      },
      {
       "text": "Probability",
       "quote": "Probability",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "7a2cef083fdaf077"
      },
      {
       "text": "Statistics",
       "quote": "Statistics",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "42beb9639b022b1f"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Public Policy (MPP)",
@@ -298,7 +364,9 @@
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_sha256": "61d984a8d592c745f165ddf0fb072bb91593fd5b8fc879a6ed7257f0c3066ea4",
      "source_url": "https://grad.uchicago.edu/admissions/apply/english-language-requirements/required-scores/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "1e5cfd130638efc5"
     },
     "ielts": {
      "overall": 7.0,
@@ -306,7 +374,9 @@
      "quote": "Harris School of Public Policy 5.0 overall 95 total 7.0 overall, no less than 7.0 on each section",
      "source_sha256": "61d984a8d592c745f165ddf0fb072bb91593fd5b8fc879a6ed7257f0c3066ea4",
      "source_url": "https://grad.uchicago.edu/admissions/apply/english-language-requirements/required-scores/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "460e300e91c69a73"
     },
     "deadlines": [
      {
@@ -315,7 +385,9 @@
       "quote": "Round One December 3, 2026",
       "source_sha256": "6ea466110689470039142f9aa3f27b2296bc25b3d3f4e5eabfd8494dd3fee18c",
       "source_url": "https://harris.uchicago.edu/admissions/requirements-and-deadlines",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "7bedbfed1bf7085b"
      },
      {
       "label": "Round Two",
@@ -323,7 +395,9 @@
       "quote": "Round Two January 21, 2027",
       "source_sha256": "6ea466110689470039142f9aa3f27b2296bc25b3d3f4e5eabfd8494dd3fee18c",
       "source_url": "https://harris.uchicago.edu/admissions/requirements-and-deadlines",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "c2215bd0fea2e78a"
      },
      {
       "label": "Round Three",
@@ -331,11 +405,13 @@
       "quote": "June 17, 2027",
       "source_sha256": "6ea466110689470039142f9aa3f27b2296bc25b3d3f4e5eabfd8494dd3fee18c",
       "source_url": "https://harris.uchicago.edu/admissions/requirements-and-deadlines",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Round Three",
+      "summary_sha": "5c3cb6d067b9c247"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MA in Public Policy",
@@ -348,7 +424,9 @@
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_sha256": "61d984a8d592c745f165ddf0fb072bb91593fd5b8fc879a6ed7257f0c3066ea4",
      "source_url": "https://grad.uchicago.edu/admissions/apply/english-language-requirements/required-scores/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: TOEFL iBT / overall 95 (quote gives 95 total without naming TOEFL; 5.0 overall is a different score)",
+     "summary_sha": "1e5cfd130638efc5"
     },
     "ielts": {
      "overall": 7.0,
@@ -356,7 +434,9 @@
      "quote": "Harris School of Public Policy 5.0 overall 95 total 7.0 overall, no less than 7.0 on each section",
      "source_sha256": "61d984a8d592c745f165ddf0fb072bb91593fd5b8fc879a6ed7257f0c3066ea4",
      "source_url": "https://grad.uchicago.edu/admissions/apply/english-language-requirements/required-scores/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "460e300e91c69a73"
     },
     "deadlines": [
      {
@@ -365,7 +445,9 @@
       "quote": "Round One December 3, 2026",
       "source_sha256": "6ea466110689470039142f9aa3f27b2296bc25b3d3f4e5eabfd8494dd3fee18c",
       "source_url": "https://harris.uchicago.edu/admissions/requirements-and-deadlines",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "7bedbfed1bf7085b"
      },
      {
       "label": "Round Two",
@@ -373,7 +455,9 @@
       "quote": "Round Two January 21, 2027",
       "source_sha256": "6ea466110689470039142f9aa3f27b2296bc25b3d3f4e5eabfd8494dd3fee18c",
       "source_url": "https://harris.uchicago.edu/admissions/requirements-and-deadlines",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "c2215bd0fea2e78a"
      },
      {
       "label": "Round Three",
@@ -381,11 +465,13 @@
       "quote": "June 17, 2027",
       "source_sha256": "6ea466110689470039142f9aa3f27b2296bc25b3d3f4e5eabfd8494dd3fee18c",
       "source_url": "https://harris.uchicago.edu/admissions/requirements-and-deadlines",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Round Three",
+      "summary_sha": "5c3cb6d067b9c247"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MS in Computational Analysis and Public Policy (MSCAPP)",
@@ -398,7 +484,9 @@
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_sha256": "61d984a8d592c745f165ddf0fb072bb91593fd5b8fc879a6ed7257f0c3066ea4",
      "source_url": "https://grad.uchicago.edu/admissions/apply/english-language-requirements/required-scores/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "1e5cfd130638efc5"
     },
     "ielts": {
      "overall": 7.0,
@@ -406,7 +494,9 @@
      "quote": "Harris School of Public Policy 5.0 overall 95 total 7.0 overall, no less than 7.0 on each section",
      "source_sha256": "61d984a8d592c745f165ddf0fb072bb91593fd5b8fc879a6ed7257f0c3066ea4",
      "source_url": "https://grad.uchicago.edu/admissions/apply/english-language-requirements/required-scores/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "460e300e91c69a73"
     },
     "deadlines": [
      {
@@ -415,7 +505,9 @@
       "quote": "Round One December 3, 2026",
       "source_sha256": "6ea466110689470039142f9aa3f27b2296bc25b3d3f4e5eabfd8494dd3fee18c",
       "source_url": "https://harris.uchicago.edu/admissions/requirements-and-deadlines",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "7bedbfed1bf7085b"
      },
      {
       "label": "Round Two",
@@ -423,7 +515,9 @@
       "quote": "Round Two January 21, 2027",
       "source_sha256": "6ea466110689470039142f9aa3f27b2296bc25b3d3f4e5eabfd8494dd3fee18c",
       "source_url": "https://harris.uchicago.edu/admissions/requirements-and-deadlines",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "c2215bd0fea2e78a"
      },
      {
       "label": "Round Three",
@@ -431,11 +525,13 @@
       "quote": "June 17, 2027",
       "source_sha256": "6ea466110689470039142f9aa3f27b2296bc25b3d3f4e5eabfd8494dd3fee18c",
       "source_url": "https://harris.uchicago.edu/admissions/requirements-and-deadlines",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Round Three",
+      "summary_sha": "5c3cb6d067b9c247"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MS in Climate and Energy Policy (MSCEP)",
@@ -448,7 +544,9 @@
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_sha256": "61d984a8d592c745f165ddf0fb072bb91593fd5b8fc879a6ed7257f0c3066ea4",
      "source_url": "https://grad.uchicago.edu/admissions/apply/english-language-requirements/required-scores/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "1e5cfd130638efc5"
     },
     "ielts": {
      "overall": 7.0,
@@ -456,7 +554,9 @@
      "quote": "Harris School of Public Policy 5.0 overall 95 total 7.0 overall, no less than 7.0 on each section",
      "source_sha256": "61d984a8d592c745f165ddf0fb072bb91593fd5b8fc879a6ed7257f0c3066ea4",
      "source_url": "https://grad.uchicago.edu/admissions/apply/english-language-requirements/required-scores/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "460e300e91c69a73"
     },
     "deadlines": [
      {
@@ -465,7 +565,9 @@
       "quote": "Round One December 3, 2026",
       "source_sha256": "6ea466110689470039142f9aa3f27b2296bc25b3d3f4e5eabfd8494dd3fee18c",
       "source_url": "https://harris.uchicago.edu/admissions/requirements-and-deadlines",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "7bedbfed1bf7085b"
      },
      {
       "label": "Round Two",
@@ -473,7 +575,9 @@
       "quote": "Round Two January 21, 2027",
       "source_sha256": "6ea466110689470039142f9aa3f27b2296bc25b3d3f4e5eabfd8494dd3fee18c",
       "source_url": "https://harris.uchicago.edu/admissions/requirements-and-deadlines",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "c2215bd0fea2e78a"
      },
      {
       "label": "Round Three",
@@ -481,11 +585,13 @@
       "quote": "June 17, 2027",
       "source_sha256": "6ea466110689470039142f9aa3f27b2296bc25b3d3f4e5eabfd8494dd3fee18c",
       "source_url": "https://harris.uchicago.edu/admissions/requirements-and-deadlines",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Round Three",
+      "summary_sha": "5c3cb6d067b9c247"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MS in Data Analytics and Policy (MSDAP)",
@@ -498,7 +604,9 @@
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_sha256": "61d984a8d592c745f165ddf0fb072bb91593fd5b8fc879a6ed7257f0c3066ea4",
      "source_url": "https://grad.uchicago.edu/admissions/apply/english-language-requirements/required-scores/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "1e5cfd130638efc5"
     },
     "ielts": {
      "overall": 7.0,
@@ -506,7 +614,9 @@
      "quote": "Harris School of Public Policy 5.0 overall 95 total 7.0 overall, no less than 7.0 on each section",
      "source_sha256": "61d984a8d592c745f165ddf0fb072bb91593fd5b8fc879a6ed7257f0c3066ea4",
      "source_url": "https://grad.uchicago.edu/admissions/apply/english-language-requirements/required-scores/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "460e300e91c69a73"
     },
     "deadlines": [
      {
@@ -515,7 +625,9 @@
       "quote": "Round One December 3, 2026",
       "source_sha256": "6ea466110689470039142f9aa3f27b2296bc25b3d3f4e5eabfd8494dd3fee18c",
       "source_url": "https://harris.uchicago.edu/admissions/requirements-and-deadlines",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "7bedbfed1bf7085b"
      },
      {
       "label": "Round Two",
@@ -523,7 +635,9 @@
       "quote": "Round Two January 21, 2027",
       "source_sha256": "6ea466110689470039142f9aa3f27b2296bc25b3d3f4e5eabfd8494dd3fee18c",
       "source_url": "https://harris.uchicago.edu/admissions/requirements-and-deadlines",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "c2215bd0fea2e78a"
      },
      {
       "label": "Round Three",
@@ -531,11 +645,13 @@
       "quote": "June 17, 2027",
       "source_sha256": "6ea466110689470039142f9aa3f27b2296bc25b3d3f4e5eabfd8494dd3fee18c",
       "source_url": "https://harris.uchicago.edu/admissions/requirements-and-deadlines",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Round Three",
+      "summary_sha": "5c3cb6d067b9c247"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MA in Public Policy with Certificate in Research Methods (MACRM)",
@@ -548,7 +664,9 @@
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_sha256": "61d984a8d592c745f165ddf0fb072bb91593fd5b8fc879a6ed7257f0c3066ea4",
      "source_url": "https://grad.uchicago.edu/admissions/apply/english-language-requirements/required-scores/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: TOEFL iBT overall 95 (quote gives IELTS 7.0 and a 95 total without naming TOEFL)",
+     "summary_sha": "1e5cfd130638efc5"
     },
     "ielts": {
      "overall": 7.0,
@@ -556,7 +674,9 @@
      "quote": "Harris School of Public Policy 5.0 overall 95 total 7.0 overall, no less than 7.0 on each section",
      "source_sha256": "61d984a8d592c745f165ddf0fb072bb91593fd5b8fc879a6ed7257f0c3066ea4",
      "source_url": "https://grad.uchicago.edu/admissions/apply/english-language-requirements/required-scores/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "460e300e91c69a73"
     },
     "deadlines": [
      {
@@ -565,7 +685,9 @@
       "quote": "Round One December 3, 2026",
       "source_sha256": "6ea466110689470039142f9aa3f27b2296bc25b3d3f4e5eabfd8494dd3fee18c",
       "source_url": "https://harris.uchicago.edu/admissions/requirements-and-deadlines",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "7bedbfed1bf7085b"
      },
      {
       "label": "Round Two",
@@ -573,7 +695,9 @@
       "quote": "Round Two January 21, 2027",
       "source_sha256": "6ea466110689470039142f9aa3f27b2296bc25b3d3f4e5eabfd8494dd3fee18c",
       "source_url": "https://harris.uchicago.edu/admissions/requirements-and-deadlines",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "c2215bd0fea2e78a"
      },
      {
       "label": "Round Three",
@@ -581,11 +705,13 @@
       "quote": "June 17, 2027",
       "source_sha256": "6ea466110689470039142f9aa3f27b2296bc25b3d3f4e5eabfd8494dd3fee18c",
       "source_url": "https://harris.uchicago.edu/admissions/requirements-and-deadlines",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Round Three",
+      "summary_sha": "5c3cb6d067b9c247"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Chicago Booth Full-Time MBA",
@@ -595,7 +721,9 @@
     "academic": {
      "text": "Undergraduate degree from an accredited US college or university or its equivalent in another country",
      "quote": "you must have an undergraduate degree from an accredited US college or university or its equivalent in another country.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "6d9f043af1dcf045"
     },
     "toefl": {
      "overall": 104,
@@ -603,14 +731,18 @@
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_sha256": "f1dd91f064dd5f68b3a10942ea36e87700031d1c05fa3ddce11ced835b6378a4",
      "source_url": "https://www.chicagobooth.edu/mba/full-time/admissions/international-students",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d11f5e40f869b262"
     },
     "ielts": {
      "overall": 7,
      "quote": "IELTS Minimum score 7",
      "source_sha256": "f1dd91f064dd5f68b3a10942ea36e87700031d1c05fa3ddce11ced835b6378a4",
      "source_url": "https://www.chicagobooth.edu/mba/full-time/admissions/international-students",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b75818aefee93c55"
     },
     "deadlines": [
      {
@@ -619,7 +751,9 @@
       "quote": "Two January 7, 2027 11:59 p.m. CT",
       "source_sha256": "4e08624e9a8d03d607f0cd9e85556c5a3a8d3f52c4243891e898bf824ff099e8",
       "source_url": "https://www.chicagobooth.edu/mba/full-time/admissions",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "31380b3111dba153"
      },
      {
       "label": "Round Three (Autumn 2027 entry)",
@@ -627,7 +761,9 @@
       "quote": "Three April 1, 2027 11:59 p.m. CT",
       "source_sha256": "4e08624e9a8d03d607f0cd9e85556c5a3a8d3f52c4243891e898bf824ff099e8",
       "source_url": "https://www.chicagobooth.edu/mba/full-time/admissions",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "34b47993f9f71a5d"
      }
     ]
    },
@@ -641,20 +777,26 @@
     "academic": {
      "text": "Applicants educated outside the US are expected to hold a baccalaureate-level degree or its equivalent",
      "quote": "Students who have completed or will be completing their undergraduate education at an institution outside the United States are expected to have a baccalaureate-level degree or its equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d42772f6bdc7492d"
     },
     "toefl": {
      "overall": 104,
      "min_band": 26,
      "quote": "TOEFL IBT26: No less than 5 on Reading, Writing, and Speaking, and no less than 5.5 on Listening. TOEFL IBT: 104 overall, with a sub-score of 26 in each category. IELTS: 7 overall, with sub-scores of 7 in each category.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "13c5111220e0d9d0"
     },
     "ielts": {
      "overall": 7,
      "min_band": 7,
      "quote": "TOEFL IBT26: No less than 5 on Reading, Writing, and Speaking, and no less than 5.5 on Listening. TOEFL IBT: 104 overall, with a sub-score of 26 in each category. IELTS: 7 overall, with sub-scores of 7 in each category.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "cc51a30d15cffea7"
     }
    },
    "status": "机器核对"
@@ -669,7 +811,9 @@
      "quote": "Arts & Humanities Division No less than 5.0 on each subsection No less than 25 on each subsection 7.0 overall, no less than 7.0 on each section",
      "source_sha256": "61d984a8d592c745f165ddf0fb072bb91593fd5b8fc879a6ed7257f0c3066ea4",
      "source_url": "https://grad.uchicago.edu/admissions/apply/english-language-requirements/required-scores/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: TOEFL iBT; 1-6 scale and 0-120 scale labels",
+     "summary_sha": "31d7e193f7c6c364"
     },
     "ielts": {
      "overall": 7.0,
@@ -677,30 +821,38 @@
      "quote": "Arts & Humanities Division No less than 5.0 on each subsection No less than 25 on each subsection 7.0 overall, no less than 7.0 on each section",
      "source_sha256": "61d984a8d592c745f165ddf0fb072bb91593fd5b8fc879a6ed7257f0c3066ea4",
      "source_url": "https://grad.uchicago.edu/admissions/apply/english-language-requirements/required-scores/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "9137b9c949dee626"
     },
     "deadlines": [
      {
       "label": "Round 1 (MAPH 2027-2028)",
       "date": "2026-11-02",
       "quote": "Round 1 November 2, 2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f030146a9c1094fa"
      },
      {
       "label": "Round 2 (MAPH 2027-2028)",
       "date": "2027-02-01",
       "quote": "Round 2 February 1, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "bf61eae2326c62d0"
      },
      {
       "label": "Round 3 (MAPH 2027-2028)",
       "date": "2027-05-03",
       "quote": "Round 3 May 3, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "812723442b38353b"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Engineering (Pritzker School of Molecular Engineering)",
@@ -712,7 +864,9 @@
      "quote": "We do not require a BS in engineering for MEng applicants.",
      "source_sha256": "eca6a0cfc28c156f55de4960e51549078b49163b08c71312240e4694e5f1d9d7",
      "source_url": "https://pme.uchicago.edu/admissions/master-engineering-admissions/faqs",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "bfdd667cdecb9d65"
     },
     "toefl": {
      "overall": 90,
@@ -720,39 +874,51 @@
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_sha256": "61d984a8d592c745f165ddf0fb072bb91593fd5b8fc879a6ed7257f0c3066ea4",
      "source_url": "https://grad.uchicago.edu/admissions/apply/english-language-requirements/required-scores/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "61dba760fa4ab0c3"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "Pritzker School of Molecular Engineering 4.5 overall 90 total 7.0 overall",
      "source_sha256": "61d984a8d592c745f165ddf0fb072bb91593fd5b8fc879a6ed7257f0c3066ea4",
      "source_url": "https://grad.uchicago.edu/admissions/apply/english-language-requirements/required-scores/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a1cbbd22d36d750f"
     },
     "deadlines": [
      {
       "label": "Round 1",
       "date": "2026-11-12",
       "quote": "Round 1 – Thursday, November 12, 2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "82bae43e23af608f"
      },
      {
       "label": "Round 2",
       "date": "2027-01-21",
       "quote": "Round 2 – Thursday, January 21, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "d9723e3355744635"
      },
      {
       "label": "Round 3",
       "date": "2027-04-01",
       "quote": "Round 3 – Thursday, April 1, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "85c05f59d1a2483d"
      },
      {
       "label": "Round 4",
       "date": "2027-06-21",
       "quote": "Round 4 – Monday, June 21, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "56ce2062b7ab8a04"
      }
     ]
    },
@@ -766,19 +932,25 @@
     "academic": {
      "text": "Undergraduate degree (completed or on track) from an accredited US college or university or its equivalent in another country",
      "quote": "Students must have graduated from or be on track to graduate with an undergraduate degree from an accredited US college or university or its equivalent in another country.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0450f6bed071867e"
     },
     "toefl": {
      "overall": 104,
      "min_band": 26,
      "quote": "TOEFL: 104 total, no less than 26 on each subsection. IELTS: 7.0 overall, no less than 7.0 on each section.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "cf786ef89bc78218"
     },
     "ielts": {
      "overall": 7.0,
      "min_band": 7.0,
      "quote": "TOEFL: 104 total, no less than 26 on each subsection. IELTS: 7.0 overall, no less than 7.0 on each section.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ee2f13e22421ff89"
     },
     "deadlines": [
      {
@@ -787,11 +959,13 @@
       "quote": "One January 7, 2027",
       "source_sha256": "1b929b427621495e14382027c4232f8412438e52d8f31b8b96218bf93d4ef174",
       "source_url": "https://www.chicagobooth.edu/master-in-finance/admissions/how-to-apply",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Round One",
+      "summary_sha": "d870da0022d292c9"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MS in Applied Artificial Intelligence (MS-AAI)",
@@ -803,7 +977,9 @@
       "label": "Autumn 2027 entry",
       "date": "2027-01-26",
       "quote": "Prospective students can apply by January 26, 2027, for Autumn 2027 entry.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "e2d1b56c59153285"
      }
     ]
    },
@@ -812,7 +988,7 @@
  ],
  "verification": {
   "programs": 19,
-  "机器核对": 19,
-  "待人工": 0
+  "机器核对": 6,
+  "待人工": 13
  }
 }

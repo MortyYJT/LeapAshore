@@ -35,13 +35,17 @@
     "academic": {
      "text": "Bachelor's degree in Computer Science or related field; 3.0+ GPA",
      "quote": "Bachelor's degree in Computer Science or related field Undergraduate transcripts 3.0+ GPA",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "9672d2076e2517bf"
     },
     "prerequisites": [
      {
       "text": "Linear algebra, calculus, probability and statistics, programming, data structures and algorithms, computer organization and systems",
       "quote": "Prerequisites: Linear algebra, calculus, probability and statistics, programming, data structures and algorithms, computer organization and systems.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "3f18310dc738c011"
      }
     ],
     "deadlines": [
@@ -49,11 +53,13 @@
       "label": "Fall 2027 (domestic application deadline)",
       "date": "2027-07-01",
       "quote": "July 1, 2027: Domestic application deadline.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Fall 2027 intake",
+      "summary_sha": "afe32d0f504aa7e9"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Engineering Management and Leadership (on campus)",
@@ -63,7 +69,9 @@
     "academic": {
      "text": "BA or BS degree in any field of engineering or related study",
      "quote": "Students who have a BA or a BS degree in any field of engineering or related study may apply.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "3c1331d40fbea798"
     }
    },
    "status": "机器核对"
@@ -76,20 +84,26 @@
     "academic": {
      "text": "B.S. or B.A. degree in a quantitative field from an accredited institution, minimum GPA 3.0",
      "quote": "B.S. or B.A. degree in a quantitative field from an accredited institution (Minimum GPA 3.0)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "2398dcaf68dfd143"
     },
     "deadlines": [
      {
       "label": "Spring 2027",
       "date": "2026-11-30",
       "quote": "The application deadline for Spring 2027 admission is November 30, 2026.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "3c10a1dec2c8bf93"
      },
      {
       "label": "Fall 2027",
       "date": "2027-02-15",
       "quote": "The application deadline for Fall 2027 admission is February 15, 2027.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "8dc231bfeceaff0f"
      }
     ]
    },
@@ -103,14 +117,18 @@
     "academic": {
      "text": "Bachelor's degree (or equivalent) in engineering, mathematics, or the physical, biological or mathematical sciences",
      "quote": "Admission to the MCAAM program is open to qualified students holding bachelor's degrees (or its equivalent) in engineering, mathematics, or the physical, biological or mathematical sciences.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "2098e04bd4e3fac2"
     },
     "toefl": {
      "overall": 90,
      "quote": "Applicants whose native language is not English must submit TOEFL scores with a minimum IBT score of 90.",
      "source_sha256": "3d4ccf6a4e1a9a22074171f41822240768ed21c89521a07f43fe1df0c0a51426",
      "source_url": "https://cmor.rice.edu/academics/graduate-programs/graduate-admissions",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "3a3080177184d029"
     }
    },
    "status": "机器核对"
@@ -125,7 +143,9 @@
      "quote": "Applicants whose native language is not English must submit TOEFL scores with a minimum IBT score of 90.",
      "source_sha256": "3d4ccf6a4e1a9a22074171f41822240768ed21c89521a07f43fe1df0c0a51426",
      "source_url": "https://cmor.rice.edu/academics/graduate-programs/graduate-admissions",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "3a3080177184d029"
     }
    },
    "status": "机器核对"
@@ -140,21 +160,27 @@
      "quote": "In general, Rice University applicants should have at least a 3.0 (B) grade point average (or equivalent) in their undergraduate work.",
      "source_sha256": "05c5d27e3140c1d9ced0dac5bcfda00b35e49cd0a380c6d97e99068586e41c44",
      "source_url": "https://chbe.rice.edu/academics/graduate-programs/graduate-admissions",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "3cbe21a7a9c73e13"
     },
     "toefl": {
      "overall": 90,
      "quote": "Test-takers should score at least 90 on the iBT (internet-based) TOEFL",
      "source_sha256": "05c5d27e3140c1d9ced0dac5bcfda00b35e49cd0a380c6d97e99068586e41c44",
      "source_url": "https://chbe.rice.edu/academics/graduate-programs/graduate-admissions",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "64dd118836d7b610"
     },
     "ielts": {
      "overall": 7,
      "quote": "In lieu of the TOEFL the IELTS test will be accepted with a required score of 7 or greater.",
      "source_sha256": "05c5d27e3140c1d9ced0dac5bcfda00b35e49cd0a380c6d97e99068586e41c44",
      "source_url": "https://chbe.rice.edu/academics/graduate-programs/graduate-admissions",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "6db0d1a9ae47507b"
     }
    },
    "status": "机器核对"
@@ -167,43 +193,59 @@
     "academic": {
      "text": "B.S. or B.A. degree in any field of engineering or related study",
      "quote": "Students who have a B.S. or B.A. degree in any field of engineering or related study may apply to our professional master’s program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b1d5fa9f603fc45c"
     },
     "prerequisites": [
      {
       "text": "Civil Engineering track: BS in Civil Engineering, Mechanical Engineering, or related engineering field with adequate preparation in structural mechanics",
       "quote": "A BS in Civil Engineering, Mechanical Engineering, or other related engineering fields with adequate preparation in structural mechanics.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "4c925823df9ba0fc"
      },
      {
       "text": "Environmental Engineering track: 2 semesters of calculus",
       "quote": "2 semesters of calculus;",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "ca45e25b325c1388"
      },
      {
       "text": "Environmental Engineering track: 1 semester of differential equations",
       "quote": "1 semester of differential equations;",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "e73aa31d7e4cea52"
      },
      {
       "text": "Environmental Engineering track: 1 year of chemistry",
       "quote": "1 year of chemistry",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "82e5de21e21d0e35"
      },
      {
       "text": "Environmental Engineering track: 1 semester of physics",
       "quote": "1 semester of physics;",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "fb58ecbcb8bfc0e6"
      },
      {
       "text": "Environmental Engineering track: 1 semester of biology",
       "quote": "1 semester of biology;",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "d1929d8e462855f3"
      },
      {
       "text": "Environmental Engineering track: 1 semester of fluid mechanics",
       "quote": "1 semester of fluid mechanics",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "5cd8f6c6df9a7bcc"
      }
     ]
    },
@@ -220,35 +262,47 @@
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_sha256": "746d8ae1e92f9859792aad96ee61d3fc88138ff413767897ee02b51399c756c9",
      "source_url": "https://graduate.rice.edu/admissions/language-proficiency-requirements",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "4b423c5079fc00c1"
     },
     "ielts": {
      "overall": 7,
      "quote": "At least 7 on the IELTS.",
      "source_sha256": "746d8ae1e92f9859792aad96ee61d3fc88138ff413767897ee02b51399c756c9",
      "source_url": "https://graduate.rice.edu/admissions/language-proficiency-requirements",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "151b60307ba86d4e"
     },
     "prerequisites": [
      {
       "text": "Single and multivariable calculus",
       "quote": "Single and multivariable calculus",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "603b14c230bcb3fa"
      },
      {
       "text": "Linear or matrix algebra",
       "quote": "Linear or matrix algebra",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "59718ab96e0bca4a"
      },
      {
       "text": "Calculus-based probability and statistics",
       "quote": "Probability and Statistics (Calculus-based)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "e92759b481618f99"
      },
      {
       "text": "Demonstrated knowledge of a high-level programming language",
       "quote": "Demonstrated knowledge of a high-level programming language",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "4e706f9200d20106"
      }
     ]
    },
@@ -264,7 +318,9 @@
      "quote": "Minimum GPA requirement is 3.0 on a 4.0 scale. Proof of bachelor's degree must be provided upon acceptance to the program",
      "source_sha256": "4446b5baf62ab90642d8ff149564b0189bf33a4299dded5e7c8d1dd60575f9cb",
      "source_url": "https://eceweb.rice.edu/academics/graduate-programs/graduate-admissions",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "f4b5a58faf091712"
     },
     "toefl": {
      "overall": 90,
@@ -272,17 +328,21 @@
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_sha256": "746d8ae1e92f9859792aad96ee61d3fc88138ff413767897ee02b51399c756c9",
      "source_url": "https://graduate.rice.edu/admissions/language-proficiency-requirements",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 90 without the date condition (before Jan 21, 2026)",
+     "summary_sha": "4b423c5079fc00c1"
     },
     "ielts": {
      "overall": 7,
      "quote": "At least 7 on the IELTS.",
      "source_sha256": "746d8ae1e92f9859792aad96ee61d3fc88138ff413767897ee02b51399c756c9",
      "source_url": "https://graduate.rice.edu/admissions/language-proficiency-requirements",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "151b60307ba86d4e"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Digital Health (MDH)",
@@ -292,7 +352,9 @@
     "academic": {
      "text": "Minimum GPA 3.0 on a 4.0 scale; proof of bachelor's degree on acceptance",
      "quote": "minimum GPA requirement is 3.0 on a 4.0 scale. Proof of a bachelor's degree must be provided upon acceptance to the program",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0f3443bf4f6b2e3b"
     }
    },
    "status": "机器核对"
@@ -305,20 +367,26 @@
     "academic": {
      "text": "Undergraduate degree in an engineering-related field; minimum GPA 3.0 (B) or equivalent",
      "quote": "Minimum grade point average of 3.0 (B), or the equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: Undergraduate degree in an engineering-related field",
+     "summary_sha": "f4787721e2599409"
     },
     "toefl": {
      "overall": 90,
      "quote": "The minimum score is 90 on Internet-based, 250 on computer-based, and 600 on the paper-based test.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "53019f908a88a12d"
     },
     "ielts": {
      "overall": 7,
      "quote": "IELTS (minimum score of 7) is acceptable in lieu of TOEFL.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b9bd4c3cce53f794"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Materials Science and NanoEngineering (MMSNE)",
@@ -328,28 +396,36 @@
     "academic": {
      "text": "Bachelor's degree or equivalent; GPA of at least 3.0 on a 4.0 scale or equivalent",
      "quote": "Grade point average of at least 3.0 on a 4.0 scale or the equivalent in another grading system",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: Bachelor's degree or equivalent",
+     "summary_sha": "81a5ddd16c2a56ec"
     },
     "toefl": {
      "overall": 90,
      "quote": "Students must score at least 90 on the iBT (internet-based) TOEFL, 250 on computer-based, and 600 on paper-based test.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "2cc9385abd3c68b3"
     },
     "ielts": {
      "overall": 7,
      "quote": "For students who choose to take the IELTS in lieu of TOEFL, the minimum score is 7.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "8b04dcf45171ff9b"
     },
     "deadlines": [
      {
       "label": "Fall/spring admission, closing date stated for 2026 (late applications accepted through December 31, 2026)",
       "date": "2026-12-04",
       "quote": "Applications are due the first Friday of December, which for 2026 means December 4, 2026, by 11:59P Central Time.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: late applications accepted through December 31, 2026; spring admission",
+      "summary_sha": "e17272bb046f8e5c"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Bioengineering - Applied Bioengineering",
@@ -360,17 +436,23 @@
      {
       "text": "Physiology (or equivalent, 3 credit hours)",
       "quote": "Physiology (or equivalent, 3 credit hours)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "61ebc1ab51c1cc4a"
      },
      {
       "text": "Cell Biology (or equivalent, 3 credit hours)",
       "quote": "Cell Biology (or equivalent, 3 credit hours)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f9519f8eedc081cd"
      },
      {
       "text": "Statistics (or equivalent, 1 credit hour)",
       "quote": "Statistics (or equivalent, 1 credit hour)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "d102fc6edbc93595"
      }
     ]
    },
@@ -387,21 +469,27 @@
       "quote": "Physiology (or equivalent, 3 credit hours)",
       "source_sha256": "c9099bd611ea13d1483932f8b21a7c5a4439f82b97c042c17b2be5ca86808eaa",
       "source_url": "https://bioengineering.rice.edu/academics/masters-programs/mbe-applied-bioengineering",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "61ebc1ab51c1cc4a"
      },
      {
       "text": "Cell Biology (or equivalent, 3 credit hours)",
       "quote": "Cell Biology (or equivalent, 3 credit hours)",
       "source_sha256": "c9099bd611ea13d1483932f8b21a7c5a4439f82b97c042c17b2be5ca86808eaa",
       "source_url": "https://bioengineering.rice.edu/academics/masters-programs/mbe-applied-bioengineering",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f9519f8eedc081cd"
      },
      {
       "text": "Statistics (or equivalent, 1 credit hour)",
       "quote": "Statistics (or equivalent, 1 credit hour)",
       "source_sha256": "c9099bd611ea13d1483932f8b21a7c5a4439f82b97c042c17b2be5ca86808eaa",
       "source_url": "https://bioengineering.rice.edu/academics/masters-programs/mbe-applied-bioengineering",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "d102fc6edbc93595"
      }
     ]
    },
@@ -415,12 +503,16 @@
     "toefl": {
      "overall": 90,
      "quote": "The TOEFL IBT or IBT Home Edition. A minimum score of 90 is required",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "2327c50df0fffc41"
     },
     "ielts": {
      "overall": 7,
      "quote": "IELTS Indicator. A minimum score of 7 is required.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "663b5f8b1508ee65"
     }
    },
    "status": "机器核对"
@@ -433,14 +525,18 @@
     "academic": {
      "text": "Four-year U.S. bachelor's degree, or its international equivalent",
      "quote": "we require applicants to hold a four-year U.S. bachelor's degree, or its international equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "9c203724f589649f"
     },
     "deadlines": [
      {
       "label": "Full-Time MBA, Round 2",
       "date": "2027-01-06",
       "quote": "January 6, 2027, 11:59 PM CT",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "29a0a91908d78857"
      }
     ]
    },
@@ -454,18 +550,24 @@
     "toefl": {
      "text": "TOEFL iBT of at least 4.5 (1-6 scale) for applicants without a bachelor's degree from an English-speaking institution",
      "quote": "iBT score of at least 4.5 required",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: for applicants without a bachelor's degree from an English-speaking institution; 1-6 scale",
+     "summary_sha": "a2bceb4bd3566c5c"
     },
     "ielts": {
      "overall": 7,
      "quote": "IELTS score of at least 7 required",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ae7aa72f1a9d58ce"
     },
     "prerequisites": [
      {
       "text": "Introductory financial accounting course completed before applying",
       "quote": "Applicants need to have completed an introductory financial accounting course before submitting an application.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "05b2b7484544b6c4"
      }
     ],
     "deadlines": [
@@ -473,11 +575,13 @@
       "label": "MAcc Class of 2028, Round 2",
       "date": "2027-01-08",
       "quote": "Friday, January 8, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: MAcc Class of 2028, Round 2",
+      "summary_sha": "e84119a2af631280"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Global Affairs (MGA)",
@@ -489,27 +593,35 @@
      "quote": "Yes, all applicants must have a minimum 3.0 GPA.",
      "source_sha256": "feb7cab07d4a2f386ded9989185c49301aa230d2ad5aa4e7f51e94912901da1b",
      "source_url": "https://mga.rice.edu/admissions/faq",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "1c6d69b0d9cb55b2"
     },
     "ielts": {
      "overall": 7,
      "quote": "For students who choose to take the IELTS in lieu of TOEFL, the minimum score is 7.",
      "source_sha256": "feb7cab07d4a2f386ded9989185c49301aa230d2ad5aa4e7f51e94912901da1b",
      "source_url": "https://mga.rice.edu/admissions/faq",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "8b04dcf45171ff9b"
     },
     "deadlines": [
      {
       "label": "Fall 2027, Early Decision",
       "date": "2026-12-15",
       "quote": "The Early Decision deadline for fall 2027 applications is December 15, 2026 and the Regular Decision deadline for applications is February 15, 2027.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "864909712b135419"
      },
      {
       "label": "Fall 2027, Regular Decision",
       "date": "2027-02-15",
       "quote": "The Early Decision deadline for fall 2027 applications is December 15, 2026 and the Regular Decision deadline for applications is February 15, 2027.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "114d3a38036aa33f"
      }
     ]
    },
@@ -523,18 +635,24 @@
     "academic": {
      "text": "Minimum GPA 3.0 on a 4.0 scale for Master of Architecture applicants",
      "quote": "The minimum GPA is 3.0 for applicants applying to the Master of Architecture and Master of Arts in Architecture programs.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "799da0cde580d087"
     },
     "ielts": {
      "overall": 7,
      "quote": "For students who choose to take the IELTS in lieu of TOEFL, the minimum score is 7.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "8b04dcf45171ff9b"
     },
     "prerequisites": [
      {
       "text": "Digital portfolio of creative work, uploaded as a single PDF no larger than 15 MB",
       "quote": "A digital portfolio of an applicant's creative work is required for all Rice Architecture applicants and must be uploaded to the online application. It must be uploaded in pdf format as a single document no larger than 15 MB.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "e78eebe71e2ddd1b"
      }
     ]
    },
@@ -578,7 +696,7 @@
  ],
  "verification": {
   "programs": 24,
-  "机器核对": 19,
-  "待人工": 5
+  "机器核对": 14,
+  "待人工": 10
  }
 }

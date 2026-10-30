@@ -46,18 +46,24 @@
     "academic": {
      "text": "Bachelor's degree or equivalent in any field by the time MSIM courses begin",
      "quote": "Applicants must have a bachelor’s degree or equivalent from a recognized accredited institution, in any field, by the time MSIM courses begin.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fe0b4ad682d393d4"
     },
     "prerequisites": [
      {
       "text": "UW Graduate School minimum GPA 3.0; applicants below 3.0 may still apply",
       "quote": "The UW Graduate School has a minimum GPA requirement of 3.0. Any applicant with a GPA below 3.0 is welcome to apply to the MSIM program.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "ca175346432a8153"
      },
      {
       "text": "Mid-Career track: at least five years of full-time professional work experience",
       "quote": "Mid-Career MSIM applicants must demonstrate at least five years of full-time, professional work experience post-undergraduate degree.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "94151d56ed5e8bb5"
      }
     ],
     "ielts": {
@@ -65,17 +71,21 @@
      "quote": "Official IELTS scores — minimum score of 7.0 with speaking score of 7.0",
      "source_sha256": "13eeb5bb8a8b3a266dc4497401f21376f786b3e2819d19b0ee3bbaa0522e11ef",
      "source_url": "https://ischool.uw.edu/programs/msim/admissions/application-materials",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 7 (quote gives minimum 7.0 with speaking 7.0, not stated as overall)",
+     "summary_sha": "29665b33da8ea203"
     },
     "toefl": {
      "text": "TOEFL iBT (new 1-6 scale): minimum 4.5 with speaking score of 5",
      "quote": "Official TOEFL scores — minimum score of 4.5 with speaking score of 5",
      "source_sha256": "13eeb5bb8a8b3a266dc4497401f21376f786b3e2819d19b0ee3bbaa0522e11ef",
      "source_url": "https://ischool.uw.edu/programs/msim/admissions/application-materials",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: TOEFL iBT new 1-6 scale",
+     "summary_sha": "314aeed3ade33962"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Library and Information Science (MLIS)",
@@ -85,21 +95,27 @@
     "academic": {
      "text": "Bachelor's degree or equivalent in any field by the time courses begin; UW Graduate School GPA minimum, lower GPA may be considered",
      "quote": "Applicants must have a bachelor’s degree or equivalent from a recognized accredited institution, in any field, by the time courses begin.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: UW Graduate School GPA minimum, lower GPA may be considered",
+     "summary_sha": "c58baf83da74dc3e"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Official IELTS scores — minimum score of 6.5",
      "source_sha256": "5c15af43a0859924affb9a0df9bbf37b26a70fc3f46da577466b86bd1119568f",
      "source_url": "https://ischool.uw.edu/programs/mlis/admissions/application-materials",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ae9b10c17dc09781"
     },
     "toefl": {
      "overall": 80,
      "quote": "Official TOEFL scores — minimum score of 80",
      "source_sha256": "5c15af43a0859924affb9a0df9bbf37b26a70fc3f46da577466b86bd1119568f",
      "source_url": "https://ischool.uw.edu/programs/mlis/admissions/application-materials",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "7d6005ddaab3698a"
     },
     "deadlines": [
      {
@@ -108,11 +124,13 @@
       "quote": "Dec. 9, 2026, 11:59 p.m. PT",
       "source_sha256": "bfcd3b97e90574abe48a04155449dae0ccdf468db31e2437e80c773a5320854a",
       "source_url": "https://ischool.uw.edu/programs/mlis/admissions/application-process",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "3ed1baa8ad619e49"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Full-time MBA (Foster School of Business)",
@@ -122,42 +140,54 @@
     "academic": {
      "text": "Completed four-year U.S. bachelor's degree from a regionally accredited institution or the equivalent",
      "quote": "Transcripts from a completed four-year U.S. bachelor’s degree from a regionally accredited college or university or the equivalent",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "f0ee6af17bfdb516"
     },
     "prerequisites": [
      {
       "text": "No minimum GPA; 3.0 or better generally the standard for a competitive candidate",
       "quote": "Although Foster does not have a minimum requirement, a GPA of 3.0 (B) or better is generally the standard we look for in a competitive candidate.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "468a385630095a51"
      }
     ],
     "ielts": {
      "overall": 7.0,
      "quote": "IELTS 7.0 or higher",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "8880f46deeba313f"
     },
     "toefl": {
      "overall": 100,
      "quote": "TOEFL 5 (100iBT for tests taken before Jan. 21, 2026)",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "2aef08427e162eb7"
     },
     "deadlines": [
      {
       "label": "Round 2 (final deadline for international applicants), 2026-2027 cycle",
       "date": "2027-01-05",
       "quote": "Application Deadline: January 5, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Round 2 (final deadline for international applicants)",
+      "summary_sha": "6c4b31d8e1f890c9"
      },
      {
       "label": "Round 3, 2026-2027 cycle",
       "date": "2027-03-23",
       "quote": "Application Deadline: March 23, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Round 3",
+      "summary_sha": "fbb5ae16aba5a403"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Professional Accounting (MPAcc)",
@@ -167,27 +197,35 @@
     "academic": {
      "text": "Bachelor's degree completed by September of the start year",
      "quote": "Your bachelor’s degree must be completed by the September of the year in which you wish to start the MPAcc Program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "1628e89019e446ad"
     },
     "prerequisites": [
      {
       "text": "Prerequisite accounting major classes completed before the September start",
       "quote": "Satisfactory completion of prerequisite accounting major classes before the September in which you wish to start the program.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "e07cdbc859814141"
      }
     ],
     "ielts": {
      "overall": 7,
      "quote": "We require a minimum iBT of 4.5 for TOEFL, 7 for IELTS, and 130 for Duolingo.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "87218ef16738eed9"
     },
     "toefl": {
      "text": "TOEFL iBT minimum 4.5 (new 1-6 scale)",
      "quote": "We require a minimum iBT of 4.5 for TOEFL, 7 for IELTS, and 130 for Duolingo.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: new 1-6 scale",
+     "summary_sha": "88b48cb654d7ace7"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Finance (MSF)",
@@ -197,29 +235,37 @@
     "academic": {
      "text": "Equivalent of a four-year U.S. bachelor's degree; minimum GPA 3.0 on a 4.0 scale for the most recent academic work",
      "quote": "Applicants must hold the equivalent of a four-year U.S. bachelor’s degree. A minimum GPA of 3.0 on a 4.0 scale is required for the most recent academic work.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "7661b81836d4acc5"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "Complete the IELTS exam. Minimum score requirement is at least 7.0.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ced469cdf74ed3cb"
     },
     "toefl": {
      "overall": 92,
      "quote": "Minimum score requirement is 4.5 iBT (new scoring) or 92 iBT (before Jan 21, 2026).",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 92 (quote gives 92 only for tests before Jan 21, 2026)",
+     "summary_sha": "177c97b5cc56be74"
     },
     "deadlines": [
      {
       "label": "Round 1, 2027 entry",
       "date": "2027-02-02",
       "quote": "Application Deadline: February 2nd, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Round 1",
+      "summary_sha": "dd0f1b6c84629d99"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Information Systems (MSIS)",
@@ -229,48 +275,62 @@
     "academic": {
      "text": "Cumulative GPA of 3.0 minimum for each prior school",
      "quote": "Cumulative GPAs are required (3.0 minimum) for each listed prior school.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "85212d69804d1f7c"
     },
     "prerequisites": [
      {
       "text": "Exposure to basic IT infrastructure: databases, data networking, an object-oriented development environment",
       "quote": "Foster MSIS applicants must demonstrate exposure to basic IT infrastructure, including databases, data networking, and some object-oriented development environment.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "6f76435265babec2"
      }
     ],
     "ielts": {
      "overall": 7.0,
      "quote": "Complete the IELTS exam. Minimum score requirement is 7.0.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "751e8b04b13ae1cb"
     },
     "toefl": {
      "overall": 92,
      "quote": "Complete the TOEFL exam. Minimum score requirement is 4.5 iBT (new scoring) or 92 iBT (before Jan 21, 2026)",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 92 (quote gives 4.5 new scoring or 92 before Jan 21, 2026)",
+     "summary_sha": "2dcaffea761db5a6"
     },
     "deadlines": [
      {
       "label": "MSIS Direct (Summer 2027 start), Round 1",
       "date": "2026-11-10",
       "quote": "Round 1 Deadline: November 10, 2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "d6c4971543ed1ef5"
      },
      {
       "label": "MSIS Bridge (Spring 2027 start), Round 2",
       "date": "2026-12-01",
       "quote": "Round 2 Deadline: December 1, 2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "1bf019af5f5518e6"
      },
      {
       "label": "MSIS Direct (Summer 2027 start), Round 2",
       "date": "2027-01-05",
       "quote": "Round 2 Deadline: January 5, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "e8c9e5d97e900fae"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Business Analytics (MSBA)",
@@ -280,35 +340,45 @@
     "academic": {
      "text": "Equivalent of a U.S. bachelor's degree; minimum GPA 3.0 for the last 90 quarter or 60 semester credits",
      "quote": "You must have completed the equivalent of a U.S. bachelor’s degree from a regionally accredited college or university to be considered for admission. The minimum GPA is 3.0 for the last 90-quarter or 60-semester credits.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "6deb570992e010b0"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "Complete the IELTS exam. Minimum score requirement is at least 7.0.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ced469cdf74ed3cb"
     },
     "toefl": {
      "overall": 92,
      "quote": "Complete the TOEFL iBT or TOEFL iBT Home Edition exam. Minimum score requirement is 4.5 iBT (new scoring) or 92 iBT (before Jan 21, 2026).",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "00d9b36382ff105a"
     },
     "deadlines": [
      {
       "label": "Round 1",
       "date": "2026-10-20",
       "quote": "Application Deadline: October 20, 2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Round 1",
+      "summary_sha": "3b19ec8ab4f5dfe2"
      },
      {
       "label": "Round 2",
       "date": "2027-01-05",
       "quote": "Application Deadline: January 5, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Round 2",
+      "summary_sha": "0c031f3c2f87ad22"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Public Administration (MPA)",
@@ -318,32 +388,40 @@
     "academic": {
      "text": "Cumulative GPA of at least 3.0 on a 4-point scale (or equivalent from an accredited foreign institution)",
      "quote": "Applicants must have at least a 3.0 cumulative grade-point-average on a 4 point scale (or equivalent measures of performance if a graduate of an institution with no grading system; or equivalent grade-point-average from an accredited foreign institution) for those credits earned at the regionally accredited institution awarding the bachelor’s degree OR at least a 3.0 grade-point-average (on a 4 point scale) for the last 90 graded quarter credits or 60 graded semester credits.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "e1ba6ec49765d017"
     },
     "ielts": {
      "overall": 6.5,
      "min_band": 6.5,
      "recommended": true,
      "quote": "IELTS 6.5 overall score, with a minimum speaking and listening score of 6.5",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: recommended, not a minimum; no section below 6.5 (quote gives minimum speaking and listening only)",
+     "summary_sha": "144ab34bb857cef0"
     },
     "toefl": {
      "overall": 92,
      "recommended": true,
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "quote": "Competitive Score TOEFL (taken before January 2026): 92 total score, with a minimum speaking and listening subscore of 23 Competitive Score TOEFL (taken January 2026 or later): 4.5 total score, with a minimum speaking and listening score of 4.5",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: recommended, not a minimum",
+     "summary_sha": "a418febd25bca9e0"
     },
     "deadlines": [
      {
       "label": "Priority deadline (fellowship consideration)",
       "date": "2027-01-15",
       "quote": "Priority Deadline: January 15, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: fellowship consideration",
+      "summary_sha": "719be8045b9fb546"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Professional Master's Program in Electrical and Computer Engineering (ECE PMP)",
@@ -353,17 +431,23 @@
     "academic": {
      "text": "Bachelor's degree in a STEM field with a minimum 3.0 GPA in recent coursework",
      "quote": "Bachelor’s degree in a STEM field, a minimum 3.0 GPA in recent coursework, and a strong foundation in mathematics, programming, and core engineering principles.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "92cbc5b95e1a2c52"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Minimum English Language Proficiency: 4.0 (TOEFL iBT), 110 (Duolingo), 6.5 (IELTS)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "87fb80e2531d6678"
     },
     "toefl": {
      "text": "TOEFL iBT minimum 4.0 (new 1-6 scale)",
      "quote": "Minimum English Language Proficiency: 4.0 (TOEFL iBT), 110 (Duolingo), 6.5 (IELTS)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "7b69a8099f116c8c"
     },
     "deadlines": [
      {
@@ -372,11 +456,13 @@
       "quote": "Cycle 1 January 5, 2027",
       "source_sha256": "306078c11be9aa965c83ad3f60c115e8f375649ee15bcd73ca2d906b3b32f767",
       "source_url": "https://www.ece.uw.edu/academics/pmp/admissions/",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: priority for international and domestic full-time students, Autumn 2027",
+      "summary_sha": "9d980ac135547107"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Industrial Engineering (MSIE)",
@@ -386,17 +472,23 @@
     "academic": {
      "text": "Bachelor's degree in engineering, mathematics or science with a GPA of at least 3.0",
      "quote": "applicants are expected to have a bachelor's degree in engineering, mathematics, or science, with a GPA of at least 3.0.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: states as a requirement what the quote only says applicants are expected to have",
+     "summary_sha": "dfa2c03b19b034bc"
     },
     "ielts": {
      "overall": 7,
      "quote": "Students must get a minimum of 92 or better on the TOEFL exam or a 7 on IELTS to be considered.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "74858b7fd2d22e61"
     },
     "toefl": {
      "overall": 92,
      "quote": "Students must get a minimum of 92 or better on the TOEFL exam or a 7 on IELTS to be considered.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "64928b4b8d3e040a"
     },
     "deadlines": [
      {
@@ -405,11 +497,13 @@
       "quote": "Priority deadline: Feb. 1, 2027",
       "source_sha256": "d2e3f6d3da0e03fc5bc0e9dda1ce4032decfc5d37219f46e5267898656d3901c",
       "source_url": "https://ise.washington.edu/admissions/MSIE/procedure",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "16e758d5e23f611a"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Mechanical Engineering (MSME)",
@@ -419,14 +513,18 @@
     "academic": {
      "text": "Department prefers a cumulative GPA of at least 3.3 for M.S. applicants; Graduate School requires at least 3.00",
      "quote": "The Department of Mechanical Engineering prefers an overall cumulative GPA of at least 3.3 for M.S. applicants.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: Graduate School requires at least 3.00",
+     "summary_sha": "a3e78b4a97bb06ee"
     },
     "ielts": {
      "overall": 7,
      "quote": "7 on the IELTS",
      "source_sha256": "f42234f934c1e33347aba497e8c6057874fe64666382a09a14e1ffdb6c1b3e1e",
      "source_url": "https://www.me.washington.edu/future-students/grad/application/english-reqs",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c2c8e72925b5fa73"
     },
     "toefl": {
      "overall": 92,
@@ -434,10 +532,12 @@
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_sha256": "f42234f934c1e33347aba497e8c6057874fe64666382a09a14e1ffdb6c1b3e1e",
      "source_url": "https://www.me.washington.edu/future-students/grad/application/english-reqs",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "53da576c59de9be9"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Civil Engineering (CEE)",
@@ -447,17 +547,23 @@
     "academic": {
      "text": "Minimum 3.0 GPA over the past two years of study on a 4.0 scale",
      "quote": "Applicants must enter a 3.0 minimum GPA for the past two years of study (or 90 quarter credits or 60 semester credits), based on a 4.0 scale.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0ffbbae22b55a85a"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "The minimum score required by the Graduate School is 92 for TOEFL, 120 for Duolingo and 7.0 for IELTS.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b658291c2190145f"
     },
     "toefl": {
      "overall": 92,
      "quote": "The minimum score required by the Graduate School is 92 for TOEFL, 120 for Duolingo and 7.0 for IELTS.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "8e8ee7ecc159740c"
     }
    },
    "status": "机器核对"
@@ -470,23 +576,29 @@
     "academic": {
      "text": "Bachelor's degree or higher; department sets no minimum GPA beyond the Graduate School's 3.0",
      "quote": "While our department does not have minimum GPA requirements besides the 3.0 GPA required by the graduate school,",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "30178b7789a7650f"
     },
     "prerequisites": [
      {
       "text": "About 30 or more quarter credits in mathematics and statistics, including multivariable calculus, linear algebra and calculus-based probability",
       "quote": "All applicants to the MS and PhD program should have the equivalent of approximately 30 or more quarter credits in mathematics and statistics",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: including multivariable calculus, linear algebra and calculus-based probability",
+      "summary_sha": "fa6256e1c927cf5f"
      }
     ],
     "toefl": {
      "overall": 100,
      "recommended": true,
      "quote": "While our department does not have minimum score requirements, most competitive applicants will have: TOEFL total score ≥ 100",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: Recommended (not a minimum)",
+     "summary_sha": "f948075fd382ec7d"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Urban Planning (MUP)",
@@ -496,18 +608,24 @@
     "academic": {
      "text": "GPA of at least 3.0 (4-point scale) for the last 90 graded quarter or 60 graded semester credits of the bachelor's degree",
      "quote": "GPA [at least a 3.0 grade-point-average (on a 4 point scale) from a regionally accredited college or university in the U.S.1 or its equivalent from a foreign institution2 for the last 90 graded quarter credits or 60 graded semester credits from a baccalaureate degree]",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "519b57b00d7c2c8b"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "7.0 on the Academic IELTS exam",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "f670ec77a299d61d"
     },
     "toefl": {
      "overall": 92,
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "quote": "92 on the TOEFL iBT or TOEFL MyBest exam (for exams prior to January 21, 2026; scores will remain valid for two years after the exam date) 4.5 overall score (for TOEFL exams taken on or after January 21, 2026)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "939600eedab10f69"
     }
    },
    "status": "机器核对"
@@ -520,17 +638,23 @@
     "academic": {
      "text": "GPA of at least 3.0 for the last 90 graded quarter or 60 graded semester credits",
      "quote": "A minimum grade point average (GPA) of at least 3.0 for the last 90 graded quarter credits or 60 graded semester credits.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ad5e07d527612b32"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "IELTS: Minimum score of 7.0.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "f23b0924ed01c167"
     },
     "toefl": {
      "overall": 92,
      "quote": "TOEFL iBT: Minimum score of 92.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b04e3d7152d49780"
     }
    },
    "status": "机器核对"
@@ -538,7 +662,7 @@
  ],
  "verification": {
   "programs": 15,
-  "机器核对": 15,
-  "待人工": 0
+  "机器核对": 3,
+  "待人工": 12
  }
 }

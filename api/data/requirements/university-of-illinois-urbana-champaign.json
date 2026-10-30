@@ -48,24 +48,32 @@
      "quote": "A grade point average (GPA) of 3.0 (A=4.0), or comparable GPA for an international applicant, for last two years of undergraduate study is a minimum requirement for admission.",
      "source_sha256": "e05defda70cbadc8fe8cd1b8539e6e25b3f09df500397305bafcde8af44019ab",
      "source_url": "https://grad.illinois.edu/admissions/graduate-admissions-minimum-requirements",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: programmes may require higher",
+     "summary_sha": "fa4fafb6330d2035"
     },
     "toefl": {
      "overall": 79,
      "quote": "Limited-Status Admission: TOEFL (iBT/iBT Home/iBT Paper) – 4.0 (for scores dated after 1/20/2026) or TOEFL (iBT/iBT Home/iBT Paper) – 79 (for scores dated prior to 1/21/2026); IELTS Academic – 6.5; Duolingo – 115",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 79 as the minimum (quote gives 79 only for scores before 1/21/2026, limited-status)",
+     "summary_sha": "422e6eca52e0667d"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Limited-Status Admission: TOEFL (iBT/iBT Home/iBT Paper) – 4.0 (for scores dated after 1/20/2026) or TOEFL (iBT/iBT Home/iBT Paper) – 79 (for scores dated prior to 1/21/2026); IELTS Academic – 6.5; Duolingo – 115",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "52293c9b7abaaa06"
     },
     "prerequisites": [
      {
       "text": "Full-status English minimums: IELTS Academic 7.5, TOEFL iBT 103 (scores before 2026-01-21) or 5.0 (scores after 2026-01-20); scores meeting only the limited-status minimum require an English Placement Test on arrival",
       "quote": "Full-Status Admission: TOEFL (iBT/iBT Home/iBT Paper) – 103 for scores prior to 1/21/26 or 5.0 for scores dated after 1/20/26; IELTS Academic – 7.5; Duolingo – 135",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: English Placement Test on arrival requirement",
+      "summary_sha": "7574b9ed298550a8"
      }
     ],
     "deadlines": [
@@ -73,29 +81,37 @@
       "label": "Fall 2027 Round 1",
       "date": "2026-10-28",
       "quote": "Round 1: October 28, 2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Fall 2027",
+      "summary_sha": "600472fe93d81e7b"
      },
      {
       "label": "Fall 2027 Round 2",
       "date": "2027-01-13",
       "quote": "Round 2: January 13, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Fall 2027",
+      "summary_sha": "4ed7994bc8efe6c3"
      },
      {
       "label": "Fall 2027 Round 3",
       "date": "2027-03-31",
       "quote": "Round 3: March 31, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Fall 2027",
+      "summary_sha": "d7dab8cd76a1cdc1"
      },
      {
       "label": "Fall 2027 Round 4 (final deadline for international applicants)",
       "date": "2027-05-05",
       "quote": "Round 4: May 5, 2027*",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Fall 2027; final deadline for international applicants",
+      "summary_sha": "be876b90a09f976c"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Accountancy (Gies, on-campus)",
@@ -105,29 +121,39 @@
     "academic": {
      "text": "Bachelor's degree in any academic discipline, subject to business background prerequisites",
      "quote": "welcomes students with a bachelor’s degree in any academic discipline, subject to certain business background prerequisites specified under application materials",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d9960c6a0dffbac6"
     },
     "toefl": {
      "overall": 79,
      "quote": "Limited-Status Admission: TOEFL (iBT/iBT Home/iBT Paper) – 4.0 (for scores dated after 1/20/2026) or TOEFL (iBT/iBT Home/iBT Paper) – 79 (for scores dated prior to 1/21/2026); IELTS Academic – 6.5; Duolingo – 115",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 79 as the minimum; quote gives 79 only for scores before 1/21/2026 and 4.0 after",
+     "summary_sha": "422e6eca52e0667d"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Limited-Status Admission: TOEFL (iBT/iBT Home/iBT Paper) – 4.0 (for scores dated after 1/20/2026) or TOEFL (iBT/iBT Home/iBT Paper) – 79 (for scores dated prior to 1/21/2026); IELTS Academic – 6.5; Duolingo – 115",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "52293c9b7abaaa06"
     },
     "prerequisites": [
      {
       "text": "Introductory course in both financial accounting and finance",
       "quote": "Applicants must have completed an introductory course in both financial accounting and finance.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "be1155389680ece4"
      },
      {
       "text": "Full-status English minimums: IELTS Academic 7.5, TOEFL iBT 103 (scores before 2026-01-21) or 5.0 (scores after 2026-01-20); scores meeting only the limited-status minimum require an English Placement Test on arrival",
       "quote": "Full-Status Admission: TOEFL (iBT/iBT Home/iBT Paper) – 103 for scores prior to 1/21/26 or 5.0 for scores dated after 1/20/26; IELTS Academic – 7.5; Duolingo – 135",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: English Placement Test on arrival requirement",
+      "summary_sha": "7574b9ed298550a8"
      }
     ],
     "deadlines": [
@@ -135,29 +161,37 @@
       "label": "Summer 2027 Round 1",
       "date": "2026-10-28",
       "quote": "Round 1: October 28, 2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "6666c5652cc684fa"
      },
      {
       "label": "Summer 2027 Round 2",
       "date": "2027-01-13",
       "quote": "Round 2: January 13, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "0ff33e56a33278a5"
      },
      {
       "label": "Summer 2027 Round 3 (final deadline for international applicants)",
       "date": "2027-03-03",
       "quote": "Round 3: March 3, 2027 *",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: final deadline for international applicants",
+      "summary_sha": "b6f100c74d14c8db"
      },
      {
       "label": "Summer 2027 Round 4",
       "date": "2027-03-31",
       "quote": "Round 4: March 31, 2027**",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "3ad6ee55fbb1f259"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Finance (Gies, on-campus)",
@@ -169,24 +203,32 @@
      "quote": "A grade point average (GPA) of 3.0 (A=4.0), or comparable GPA for an international applicant, for last two years of undergraduate study is a minimum requirement for admission.",
      "source_sha256": "e05defda70cbadc8fe8cd1b8539e6e25b3f09df500397305bafcde8af44019ab",
      "source_url": "https://grad.illinois.edu/admissions/graduate-admissions-minimum-requirements",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: programmes may require higher",
+     "summary_sha": "fa4fafb6330d2035"
     },
     "toefl": {
      "overall": 79,
      "quote": "Limited-Status Admission: TOEFL (iBT/iBT Home/iBT Paper) – 4.0 (for scores dated after 1/20/2026) or TOEFL (iBT/iBT Home/iBT Paper) – 79 (for scores dated prior to 1/21/2026); IELTS Academic – 6.5; Duolingo – 115",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: minimum TOEFL overall 79 (quote gives limited-status admission score)",
+     "summary_sha": "422e6eca52e0667d"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Limited-Status Admission: TOEFL (iBT/iBT Home/iBT Paper) – 4.0 (for scores dated after 1/20/2026) or TOEFL (iBT/iBT Home/iBT Paper) – 79 (for scores dated prior to 1/21/2026); IELTS Academic – 6.5; Duolingo – 115",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: minimum IELTS overall 6.5 (quote gives limited-status admission score)",
+     "summary_sha": "52293c9b7abaaa06"
     },
     "prerequisites": [
      {
       "text": "Full-status English minimums: IELTS Academic 7.5, TOEFL iBT 103 (scores before 2026-01-21) or 5.0 (scores after 2026-01-20); scores meeting only the limited-status minimum require an English Placement Test on arrival",
       "quote": "Full-Status Admission: TOEFL (iBT/iBT Home/iBT Paper) – 103 for scores prior to 1/21/26 or 5.0 for scores dated after 1/20/26; IELTS Academic – 7.5; Duolingo – 135",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: scores meeting only the limited-status minimum require an English Placement Test on arrival",
+      "summary_sha": "7574b9ed298550a8"
      }
     ],
     "deadlines": [
@@ -194,29 +236,37 @@
       "label": "Fall 2027 Round 1",
       "date": "2026-10-28",
       "quote": "Round 1: October 28, 2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "600472fe93d81e7b"
      },
      {
       "label": "Fall 2027 Round 2",
       "date": "2027-01-13",
       "quote": "Round 2: January 13, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "4ed7994bc8efe6c3"
      },
      {
       "label": "Fall 2027 Round 3",
       "date": "2027-03-31",
       "quote": "Round 3: March 31, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "d7dab8cd76a1cdc1"
      },
      {
       "label": "Fall 2027 Round 4 (final deadline for international applicants)",
       "date": "2027-05-05",
       "quote": "Round 4: May 5, 2027*",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: final deadline for international applicants",
+      "summary_sha": "be876b90a09f976c"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Management (Gies, on-campus)",
@@ -228,24 +278,32 @@
      "quote": "A grade point average (GPA) of 3.0 (A=4.0), or comparable GPA for an international applicant, for last two years of undergraduate study is a minimum requirement for admission.",
      "source_sha256": "e05defda70cbadc8fe8cd1b8539e6e25b3f09df500397305bafcde8af44019ab",
      "source_url": "https://grad.illinois.edu/admissions/graduate-admissions-minimum-requirements",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: programmes may require higher",
+     "summary_sha": "fa4fafb6330d2035"
     },
     "toefl": {
      "overall": 79,
      "quote": "Limited-Status Admission: TOEFL (iBT/iBT Home/iBT Paper) – 4.0 (for scores dated after 1/20/2026) or TOEFL (iBT/iBT Home/iBT Paper) – 79 (for scores dated prior to 1/21/2026); IELTS Academic – 6.5; Duolingo – 115",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: minimum TOEFL overall 79 (quote gives limited-status admission score)",
+     "summary_sha": "422e6eca52e0667d"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Limited-Status Admission: TOEFL (iBT/iBT Home/iBT Paper) – 4.0 (for scores dated after 1/20/2026) or TOEFL (iBT/iBT Home/iBT Paper) – 79 (for scores dated prior to 1/21/2026); IELTS Academic – 6.5; Duolingo – 115",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: minimum IELTS overall 6.5 (quote gives limited-status admission score)",
+     "summary_sha": "52293c9b7abaaa06"
     },
     "prerequisites": [
      {
       "text": "Full-status English minimums: IELTS Academic 7.5, TOEFL iBT 103 (scores before 2026-01-21) or 5.0 (scores after 2026-01-20); scores meeting only the limited-status minimum require an English Placement Test on arrival",
       "quote": "Full-Status Admission: TOEFL (iBT/iBT Home/iBT Paper) – 103 for scores prior to 1/21/26 or 5.0 for scores dated after 1/20/26; IELTS Academic – 7.5; Duolingo – 135",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: scores meeting only the limited-status minimum require an English Placement Test on arrival",
+      "summary_sha": "7574b9ed298550a8"
      }
     ],
     "deadlines": [
@@ -253,29 +311,37 @@
       "label": "Fall 2027 Round 1",
       "date": "2026-10-28",
       "quote": "Round 1: October 28, 2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "600472fe93d81e7b"
      },
      {
       "label": "Fall 2027 Round 2",
       "date": "2027-01-13",
       "quote": "Round 2: January 13, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "4ed7994bc8efe6c3"
      },
      {
       "label": "Fall 2027 Round 3",
       "date": "2027-03-31",
       "quote": "Round 3: March 31, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "d7dab8cd76a1cdc1"
      },
      {
       "label": "Fall 2027 Round 4 (final deadline for international applicants)",
       "date": "2027-05-05",
       "quote": "Round 4: May 5, 2027*",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: final deadline for international applicants",
+      "summary_sha": "be876b90a09f976c"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Technology Management (Gies, on-campus)",
@@ -287,24 +353,32 @@
      "quote": "A grade point average (GPA) of 3.0 (A=4.0), or comparable GPA for an international applicant, for last two years of undergraduate study is a minimum requirement for admission.",
      "source_sha256": "e05defda70cbadc8fe8cd1b8539e6e25b3f09df500397305bafcde8af44019ab",
      "source_url": "https://grad.illinois.edu/admissions/graduate-admissions-minimum-requirements",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: programmes may require higher",
+     "summary_sha": "fa4fafb6330d2035"
     },
     "toefl": {
      "overall": 79,
      "quote": "Limited-Status Admission: TOEFL (iBT/iBT Home/iBT Paper) – 4.0 (for scores dated after 1/20/2026) or TOEFL (iBT/iBT Home/iBT Paper) – 79 (for scores dated prior to 1/21/2026); IELTS Academic – 6.5; Duolingo – 115",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 79 as the minimum (quote gives 79 only for scores before 1/21/2026, and 4.0 after)",
+     "summary_sha": "422e6eca52e0667d"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Limited-Status Admission: TOEFL (iBT/iBT Home/iBT Paper) – 4.0 (for scores dated after 1/20/2026) or TOEFL (iBT/iBT Home/iBT Paper) – 79 (for scores dated prior to 1/21/2026); IELTS Academic – 6.5; Duolingo – 115",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "52293c9b7abaaa06"
     },
     "prerequisites": [
      {
       "text": "Full-status English minimums: IELTS Academic 7.5, TOEFL iBT 103 (scores before 2026-01-21) or 5.0 (scores after 2026-01-20); scores meeting only the limited-status minimum require an English Placement Test on arrival",
       "quote": "Full-Status Admission: TOEFL (iBT/iBT Home/iBT Paper) – 103 for scores prior to 1/21/26 or 5.0 for scores dated after 1/20/26; IELTS Academic – 7.5; Duolingo – 135",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: English Placement Test on arrival requirement",
+      "summary_sha": "7574b9ed298550a8"
      }
     ],
     "deadlines": [
@@ -312,29 +386,37 @@
       "label": "Fall 2027 Round 1",
       "date": "2026-10-28",
       "quote": "Round 1: October 28, 2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "600472fe93d81e7b"
      },
      {
       "label": "Fall 2027 Round 2",
       "date": "2027-01-13",
       "quote": "Round 2: January 13, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "4ed7994bc8efe6c3"
      },
      {
       "label": "Fall 2027 Round 3",
       "date": "2027-03-31",
       "quote": "Round 3: March 31, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "d7dab8cd76a1cdc1"
      },
      {
       "label": "Fall 2027 Round 4 (final deadline for international applicants)",
       "date": "2027-05-05",
       "quote": "Round 4: May 5, 2027*",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: final deadline for international applicants",
+      "summary_sha": "be876b90a09f976c"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Information Management (iSchool, on-campus)",
@@ -344,23 +426,31 @@
     "academic": {
      "text": "Bachelor's degree required, in any discipline",
      "quote": "While a bachelor's degree is required for admission, your degree can be in any discipline.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "642c816ad805732b"
     },
     "toefl": {
      "overall": 79,
      "quote": "Grad. College Min. for Limited Status Grad. College Min. for Full Status TOEFL 79 103 IELTS 6.5 7.5",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 79 (quote gives limited-status minimum, not overall)",
+     "summary_sha": "90e0899e0bd4f363"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Grad. College Min. for Limited Status Grad. College Min. for Full Status TOEFL 79 103 IELTS 6.5 7.5",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 6.5 (quote gives limited-status minimum, not overall)",
+     "summary_sha": "804bfdc34ba06bfd"
     },
     "prerequisites": [
      {
       "text": "Full-status English minimums (Graduate College): TOEFL 103, IELTS 7.5; limited-status minimums are TOEFL 79, IELTS 6.5",
       "quote": "Grad. College Min. for Limited Status Grad. College Min. for Full Status TOEFL 79 103 IELTS 6.5 7.5",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "1c4345b48c31052f"
      }
     ],
     "deadlines": [
@@ -368,17 +458,21 @@
       "label": "Early action deadline (Fall 2027)",
       "date": "2026-11-17",
       "quote": "Early action deadline: November 17, 2026, 10:59 pm CST",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "9142c4344f8a1dd4"
      },
      {
       "label": "Regular decision deadline (Fall 2027)",
       "date": "2027-01-29",
       "quote": "Regular decision deadline: January 29, 2027, 10:59 pm CST",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "fcecc29702d814bd"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Library and Information Science (iSchool, on-campus)",
@@ -388,23 +482,31 @@
     "academic": {
      "text": "Bachelor's degree required, in any discipline",
      "quote": "While a bachelor's degree is required for admission, your degree can be in any discipline.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "642c816ad805732b"
     },
     "toefl": {
      "overall": 79,
      "quote": "Grad. College Min. for Limited Status Grad. College Min. for Full Status TOEFL 79 103 IELTS 6.5 7.5",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 79 (quote gives 79 as limited-status minimum)",
+     "summary_sha": "90e0899e0bd4f363"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Grad. College Min. for Limited Status Grad. College Min. for Full Status TOEFL 79 103 IELTS 6.5 7.5",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 6.5 (quote gives 6.5 as limited-status minimum)",
+     "summary_sha": "804bfdc34ba06bfd"
     },
     "prerequisites": [
      {
       "text": "Full-status English minimums (Graduate College): TOEFL 103, IELTS 7.5; limited-status minimums are TOEFL 79, IELTS 6.5",
       "quote": "Grad. College Min. for Limited Status Grad. College Min. for Full Status TOEFL 79 103 IELTS 6.5 7.5",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "1c4345b48c31052f"
      }
     ],
     "deadlines": [
@@ -412,11 +514,13 @@
       "label": "Fall 2027 application deadline",
       "date": "2026-12-01",
       "quote": "Application Deadline: December 1, 2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Fall 2027 application deadline",
+      "summary_sha": "448704062c48375b"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Bioinformatics (iSchool)",
@@ -426,28 +530,38 @@
     "academic": {
      "text": "Bachelor's degree; GPA of at least 3.0 on a 4.0 scale in the last two years of undergraduate coursework, otherwise GRE scores are required",
      "quote": "A grade-point average of at least 3.0 on a 4.0 scale in the last two years of undergraduate coursework, in which case GRE scores are not required.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: Bachelor's degree; otherwise GRE scores are required (quote says GRE not required)",
+     "summary_sha": "82cb1b1929c8586b"
     },
     "toefl": {
      "overall": 79,
      "quote": "Grad. College Min. for Limited Status Grad. College Min. for Full Status TOEFL 79 103 IELTS 6.5 7.5",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 79 given as the minimum; quote lists 79 as limited-status minimum",
+     "summary_sha": "90e0899e0bd4f363"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Grad. College Min. for Limited Status Grad. College Min. for Full Status TOEFL 79 103 IELTS 6.5 7.5",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 6.5 given as the minimum; quote lists 6.5 as limited-status minimum",
+     "summary_sha": "804bfdc34ba06bfd"
     },
     "prerequisites": [
      {
       "text": "Undergraduate computing and mathematics background (data structures, introductory programming), remediated without credit if lacking",
       "quote": "CS 225 (Data Structures) and introductory programming (IS 452)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: mathematics background; remediated without credit if lacking",
+      "summary_sha": "3dfb2f9ada664f89"
      },
      {
       "text": "Full-status English minimums (Graduate College): TOEFL 103, IELTS 7.5; limited-status minimums are TOEFL 79, IELTS 6.5",
       "quote": "Grad. College Min. for Limited Status Grad. College Min. for Full Status TOEFL 79 103 IELTS 6.5 7.5",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "1c4345b48c31052f"
      }
     ],
     "deadlines": [
@@ -455,11 +569,13 @@
       "label": "Fall 2027 application deadline",
       "date": "2026-12-01",
       "quote": "Application Deadline: December 1, 2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Fall 2027 application deadline",
+      "summary_sha": "448704062c48375b"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Statistics (Department of Statistics)",
@@ -470,7 +586,9 @@
      {
       "text": "Calculus through multivariable calculus, linear algebra (MATH 257 equivalent), introductory mathematical statistics and probability (STAT 400 equivalent)",
       "quote": "The prerequisites for the program include calculus through multivariable calculus, linear algebra equivalent to MATH 257, and an introduction to mathematical statistics and probability equivalent to STAT 400.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "32544e002a94fb8c"
      }
     ]
    },
@@ -484,7 +602,9 @@
     "academic": {
      "text": "Bachelor's degree or comparable; minimum GPA 2.75 (A=4.0) for the last two years of undergraduate study",
      "quote": "A grade point average (GPA) of 2.75 (A=4.0), or comparable GPA for an international applicant, for last two years of undergraduate study is a minimum requirement for admission.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: Bachelor's degree or comparable",
+     "summary_sha": "e24f90699280ce32"
     },
     "toefl": {
      "overall": 79,
@@ -492,29 +612,37 @@
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_sha256": "abd70b882ccaebae2688d551cf6d7752999be7d721e1ba930fc2678f91f6effb",
      "source_url": "https://grad.illinois.edu/admissions/international-applicants",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 79 as the minimum (quote gives 79 as limited-status, 103 full status)",
+     "summary_sha": "efc86c8fad21a490"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Limited Status Admission Minimum Full Status Admission Minimum TOEFL iBT TOEFL iBT Home Edition 4.0 (for scores dated after 1/20/2026) 79 (for scores dated prior to 1/21/2026) 5.0 (for scores dated after 1/20/2026) 103 (for scores dated prior to 1/21/2026) IELTS Academic Exam 6.5 7.5",
      "source_sha256": "abd70b882ccaebae2688d551cf6d7752999be7d721e1ba930fc2678f91f6effb",
      "source_url": "https://grad.illinois.edu/admissions/international-applicants",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 6.5 as the minimum (quote gives 6.5 limited status, 7.5 full status)",
+     "summary_sha": "3b3fef55c8b74713"
     },
     "prerequisites": [
      {
       "text": "Calculus through multivariable calculus, linear algebra, and an introduction to probability and statistics",
       "quote": "Calculus through multivariable calculus, linear algebra, and an introduction to probability and statistics.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "c6a95aecd0f6a4c7"
      },
      {
       "text": "International applicants must satisfy the Graduate College English proficiency requirement (limited-status minimums given; full status is TOEFL 5.0/103, IELTS 7.5)",
       "quote": "All international applicants must satisfy the Graduate College English Proficiency Requirement for Admission.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: limited-status minimums given; full status is TOEFL 5.0/103, IELTS 7.5",
+      "summary_sha": "e56f99d5450f428a"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Urban Planning",
@@ -525,11 +653,13 @@
      {
       "text": "TOEFL or IELTS scores required for non-native English speakers (exemption possible for admission)",
       "quote": "Proof of Language Proficiency for Non-Native English Speakers: Submit TOEFL or IELTS scores with your online application.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: exemption possible for admission",
+      "summary_sha": "891c4a6bee71c777"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Health Technology",
@@ -539,28 +669,38 @@
     "academic": {
      "text": "Minimum GPA 3.00/4.00 (below 3.00 may be admitted on limited status)",
      "quote": "Minimum GPA: 3.00/4.00",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: below 3.00 may be admitted on limited status",
+     "summary_sha": "a49e7a688c268324"
     },
     "toefl": {
      "overall": 79,
      "quote": "TOEFL: 103 or higher for full status admission; 79-102 for limited status admission with English Placement Test (EPT) requirement",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 79 as minimum (79-102 is limited status)",
+     "summary_sha": "15088b24931e75f9"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "IELTS: 7.5 or higher for full status admission; 6.5-7.0 for limited status admission with English Placement Test (EPT) requirement",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 6.5 as minimum (6.5-7.0 is limited status)",
+     "summary_sha": "67301a9ca9201dca"
     },
     "prerequisites": [
      {
       "text": "Full-status English minimums: TOEFL 103, IELTS 7.5; limited status (TOEFL 79-102, IELTS 6.5-7.0) requires an English Placement Test",
       "quote": "TOEFL: 103 or higher for full status admission; 79-102 for limited status admission with English Placement Test (EPT) requirement",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: IELTS 7.5 and IELTS 6.5-7.0 (quote only gives TOEFL)",
+      "summary_sha": "46eae660cd2d0fb9"
      },
      {
       "text": "Application prerequisite course areas: Introduction to Computer Science, Psychology, Public Health, Statistics or Health Statistics, Linear Algebra, Research Methods (may be completed by July 15)",
       "quote": "Introduction to Computer Science",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Psychology, Public Health, Statistics, Linear Algebra, Research Methods, July 15",
+      "summary_sha": "9fd27214a88b096f"
      }
     ],
     "deadlines": [
@@ -568,17 +708,21 @@
       "label": "Fall 2027 priority deadline",
       "date": "2026-12-01",
       "quote": "a priority deadline of December 1, 2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "40cfb3a34a90f4d1"
      },
      {
       "label": "Fall 2027 regular deadline",
       "date": "2027-03-01",
       "quote": "a regular deadline of March 1, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "12a5a70a0f779940"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Social Work (campus, School of Social Work)",
@@ -588,40 +732,50 @@
     "academic": {
      "text": "Bachelor's degree; minimum GPA 3.0/4.0 over the last 60 semester hours",
      "quote": "A minimum grade point average of 3.0 (on a 4.0 scale) or better for the last sixty (60) semester hours or ninety (90) quarter hours of coursework",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: Bachelor's degree",
+     "summary_sha": "63b82a76f4bc1045"
     },
     "toefl": {
      "overall": 103,
      "quote": "TOEFL total score of at least 103 and a speaking score of at least 24; or a 7.0 in all areas of IELTS.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "4369e019cc303e9b"
     },
     "ielts": {
      "overall": 7.0,
      "min_band": 7.0,
      "quote": "TOEFL total score of at least 103 and a speaking score of at least 24; or a 7.0 in all areas of IELTS.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "f9c5737d54a14574"
     },
     "deadlines": [
      {
       "label": "Summer/Fall 2027 priority deadline",
       "date": "2026-12-01",
       "quote": "Priority Deadline is December 1, 2026.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Summer/Fall 2027 intake",
+      "summary_sha": "9d044e8048e09d27"
      },
      {
       "label": "Summer/Fall 2027 final deadline",
       "date": "2027-01-15",
       "quote": "Final January 15, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Summer/Fall 2027 intake",
+      "summary_sha": "e086e30f953bffa8"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   }
  ],
  "verification": {
   "programs": 13,
-  "机器核对": 13,
-  "待人工": 0
+  "机器核对": 1,
+  "待人工": 12
  }
 }

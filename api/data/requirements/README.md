@@ -21,7 +21,27 @@ lists it in `rejected` with the reason. It prints one program in the format belo
 `unused` (academic routes after the first), `model` (the name the API reports) and token `usage`; it
 does not write any file. `python -m evals.extract_rejection` measures it on ten collected schools
 (results in `api/evals/results/extract-<date>.json`). A value it keeps has a verbatim quote, which is
-not the same as a faithful summary: `text`, `label` and `recommended` are not checked.
+not the same as a faithful summary, so it then runs the summary check below on every kept value.
+
+## The summary check
+
+`verify` cannot tell whether the words around a quote are faithful (UT Austin's MSCS: "Bachelor's
+degree or comparable foreign degree; GPA of 3.0…" over a quote that only states the GPA).
+`app.collect.faithful` asks the advisor's chat model, one request per program, whether each value's
+quote on its own states its summary (`text`, `label`, `recommended`, which number is which). The
+verdict is stored on the item:
+
+- `summary_check`: `"ok"`, `"unsupported: <what the quote does not back>"`, or `"not checked: …"`
+  (the model gave no usable verdict; it blocks like an unsupported one and a rerun tries again);
+- `summary_sha`: a digest of the values judged. Editing the summary or the quote makes the verdict
+  stale: it no longer counts, and `verify --write` removes it.
+
+A value whose current verdict is not `"ok"` is **downgraded, not deleted or edited**: it stays in the
+file with its reason, the importer does not write it, and its program is `待人工`. A value never
+judged (collected by an agent, or before the check existed) counts as before. Backfill or re-judge:
+`python -m app.collect.faithful` (estimate only) and `--apply [--budget-cny N]` (writes the files).
+Measured against AI labels in `api/evals/faithfulness.py` (`python -m evals.faithfulness --replay
+api/evals/results/faithfulness-2026-10-30.json`).
 
 ## The collection queue
 
@@ -157,7 +177,8 @@ Use `api/.venv/bin/python` for the tools.
   recognised in English, French, German, Spanish, Italian, Dutch, Portuguese, Swedish, Danish,
   Norwegian and Finnish, and 3月 / 3월 in Japanese, Chinese and Korean; set
   `country` exactly as `_schools.json` gives it.
-- Run `verify.py --write` last; it adds `check`, `status`, and `verification`.
+- Run `verify.py --write` last; it adds `check`, `status`, and `verification`. Agents do not write
+  `summary_check` / `summary_sha`; `python -m app.collect.faithful --apply <file>` adds them.
 
 ### Combining two official pages
 

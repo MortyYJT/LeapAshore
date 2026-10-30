@@ -519,6 +519,24 @@ def test_export_replaces_by_url_and_keeps_the_rest(db_session, school, client):
     assert "verified_at" not in path.read_text()
 
 
+def test_export_keeps_a_summary_verdict_for_a_value_stated_as_before(db_session, school, client):
+    from app.collect.faithful import set_summary_verdict
+
+    path = school["data_dir"] / f"{school['key']}.json"
+    downgraded = ielts(6.5)
+    set_summary_verdict(downgraded, "unsupported: recommended, not a minimum")
+    path.write_text(json.dumps({"school_key": school["key"], "school_name_en": "Example University", "programs": [
+        {"name": "Master of Data Science", "url": "https://www.example.edu.au/mds", "snapshot_sha256": "a" * 64,
+         "status": "待人工", "fields": {"ielts": downgraded}}]}))
+    page = add_page(db_session, school)
+    run(db_session, school, page, budget=budget(client), fetch=fake_fetch({page.url: PAGE}),
+        extract=fake_extract({"ielts": ielts(6.5)}))  # a result from before the check: no verdict
+    queue.export_school(db_session, school["key"], data_dir=school["data_dir"])
+    program = json.loads(path.read_text())["programs"][0]
+    assert program["fields"]["ielts"]["summary_check"] == "unsupported: recommended, not a minimum"
+    assert program["status"] == "待人工"
+
+
 def test_export_keeps_the_tidied_names_and_drops(db_session, school, client):
     """The queue's rows keep the link text they were found by; export applies the same rules as
     `python -m app.collect.tidy`, so it does not undo a tidied file (review of PR #52)."""

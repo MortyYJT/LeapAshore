@@ -35,22 +35,28 @@
     "academic": {
      "text": "Cumulative GPA of 3.5 or equivalent (A=4.0) for master's applicants",
      "quote": "Cumulative Grade Point Average from most recently conferred undergraduate, graduate, or professional degree: 3.5 or equivalent (A=4.0)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: for master's applicants",
+     "summary_sha": "b1fa1c71f195de52"
     },
     "toefl": {
      "overall": 100,
      "quote": "TOEFL: iBT: Minimum Overall Required Score: 100 (For exams taken before January 21, 2026) Minimum section requirements: Reading: 22 Listening: 22 Speaking: 22 Writing: 22 TOEFL: iBT: Minimum Overall Required Score: 4.5 (For exams taken on or after January 21, 2026)",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "3647f431006c7a16"
     },
     "ielts": {
      "overall": 7,
      "recommended": true,
      "quote": "Computer Science prefers a TOEFL score of at least 100 with sub scores no less than 22 and IELTS score of 7",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: Recommended (not a minimum)",
+     "summary_sha": "8ffbdd9ac274dd7e"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MS in Electrical and Computer Engineering (MSECE)",
@@ -60,7 +66,9 @@
     "academic": {
      "text": "Cumulative GPA of 3.25 or equivalent (A=4.0)",
      "quote": "Cumulative Grade Point Average from most recently conferred undergraduate, graduate, or professional degree: 3.25 or equivalent (A=4.0)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "de224f9eee342571"
     },
     "toefl": {
      "overall": 80,
@@ -68,14 +76,18 @@
      "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "20f73657d7dc5808"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Minimum IELTS Scores Required by OGSPS for Admission IELTS Reading 6.5 Listening 6.0 Speaking 6.0 Writing 5.5 Minimum Overall Required for Admission 6.5",
      "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
      "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "08b73d720b035c9f"
     }
    },
    "status": "机器核对"
@@ -88,7 +100,9 @@
     "academic": {
      "text": "Recently admitted students have had an average GPA of 3.7; the minimum recommended GPA to apply is 3.2",
      "quote": "The minimum recommended GPA to apply is 3.2",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: average GPA of 3.7 for recently admitted students",
+     "summary_sha": "a01d159808dd0595"
     },
     "toefl": {
      "overall": 80,
@@ -96,17 +110,21 @@
      "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "20f73657d7dc5808"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Minimum IELTS Scores Required by OGSPS for Admission IELTS Reading 6.5 Listening 6.0 Speaking 6.0 Writing 5.5 Minimum Overall Required for Admission 6.5",
      "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
      "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "08b73d720b035c9f"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MS in Industrial Engineering (MSIE)",
@@ -116,22 +134,28 @@
     "academic": {
      "text": "Undergraduate cumulative GPA of 3.2/4.0 or equivalent (recommended) for the residential master's",
      "quote": "Undergraduate Cumulative Grade Point Average (recommended): 3.2/4.0 or equivalent",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: for the residential master's",
+     "summary_sha": "b319d3953a409fea"
     },
     "toefl": {
      "overall": 90,
      "quote": "TOEFL: Internet-Based Test (IBT): Minimum Overall Required Score: 90 (For exams taken before January 21, 2026)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d4cc1c0442225379"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "IELTS (Academic Module): Minimum Overall Required Score: 6.5",
      "source_sha256": "fb7dec09fe9a585fe2c6b68a9e0a522cb4142a6550c285c6fbabd0338d5dd754",
      "source_url": "https://engineering.purdue.edu/IE/academics/graduate/future/english-reqs",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d0df7e58c438ff35"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MS in Aeronautics and Astronautics (MSAA)",
@@ -141,7 +165,9 @@
     "academic": {
      "text": "Cumulative GPA of 3.25 or equivalent (A=4.0) for master's applicants",
      "quote": "Cumulative Grade Point Average from most recently conferred undergraduate, graduate, or professional degree: 3.25 or equivalent (A=4.0)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: for master's applicants",
+     "summary_sha": "17800709d4a3751d"
     },
     "toefl": {
      "overall": 80,
@@ -149,17 +175,21 @@
      "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "20f73657d7dc5808"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Minimum IELTS Scores Required by OGSPS for Admission IELTS Reading 6.5 Listening 6.0 Speaking 6.0 Writing 5.5 Minimum Overall Required for Admission 6.5",
      "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
      "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "08b73d720b035c9f"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MS in Civil Engineering (MSCE)",
@@ -169,21 +199,27 @@
     "academic": {
      "text": "Cumulative GPA of 3.0 or equivalent (A=4.0), doctoral and master's",
      "quote": "Cumulative Grade Point Average from most recently conferred undergraduate, graduate, or professional degree: 3.0 or equivalent (A=4.0)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: doctoral and master's",
+     "summary_sha": "870da3c517515b59"
     },
     "toefl": {
      "overall": 90,
      "quote": "TOEFL: Internet-Based Test (IBT): Minimum Overall Required Score: 90 (For exams taken before January 21, 2026) Minimum section requirements: Reading: 19 Listening: 14 Speaking: 18 Writing: 18 TOEFL: Internet-Based Test (IBT): Minimum Overall Required Score: 4.5 (For exams taken on or after January 21, 2026)",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "aaeddf0a0d2d8bc8"
     },
     "ielts": {
      "overall": 7,
      "quote": "IELTS (Academic Module): Minimum Overall Required Score: 7",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba64ce29f1275fee"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MS in Chemical Engineering (MSCHE), non-thesis professional master's",
@@ -193,7 +229,9 @@
     "academic": {
      "text": "Cumulative GPA of 3.0 or equivalent (A=4.0), doctoral and master's",
      "quote": "Cumulative Grade Point Average from most recently conferred undergraduate, graduate, or professional degree: 3.0 or equivalent (A=4.0)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: doctoral and master's (audience not stated)",
+     "summary_sha": "870da3c517515b59"
     },
     "toefl": {
      "overall": 80,
@@ -201,17 +239,21 @@
      "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "20f73657d7dc5808"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Minimum IELTS Scores Required by OGSPS for Admission IELTS Reading 6.5 Listening 6.0 Speaking 6.0 Writing 5.5 Minimum Overall Required for Admission 6.5",
      "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
      "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "08b73d720b035c9f"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MS in Statistics (residential)",
@@ -221,24 +263,32 @@
     "academic": {
      "text": "Bachelor's degree from an accredited institution; cumulative GPA of 3.0 or equivalent",
      "quote": "Doctoral and Master’s Degree Program Requirements A bachelor’s degree from an accredited institution Cumulative GPA of 3.0 or equivalent",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "dd88e347efcc79a1"
     },
     "toefl": {
      "overall": 80,
      "quote": "TOEFL: Internet-Based Test (IBT): Minimum Overall Required Score: 80 (For exams taken before January 21, 2026) Minimum section requirements: Reading: 20 Listening: 20 Speaking: 20 Writing: 20 TOEFL: Internet-Based Test (IBT): Minimum Overall Required Score: 4 (For exams taken on or after January 21, 2026)",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "af581450599df3a4"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "IELTS (Academic Module): Minimum Overall Required Score: 6.5",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d0df7e58c438ff35"
     },
     "prerequisites": [
      {
       "text": "One semester of calculus",
       "quote": "Doctoral and Master’s Degree Program Requirements A bachelor’s degree from an accredited institution Cumulative GPA of 3.0 or equivalent An applicant’s prior education must include the following prerequisites: One (1) semester of Calculus",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "4cc0f9a8b48caafd"
      }
     ]
    },
@@ -252,28 +302,36 @@
     "academic": {
      "text": "Cumulative GPA of 3.0 or equivalent (A=4.0)",
      "quote": "Cumulative Grade Point Average from most recently conferred undergraduate, graduate, or professional degree: 3.0 or equivalent (A=4.0)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d6ba17550b7b055d"
     },
     "toefl": {
      "overall": 91,
      "quote": "TOEFL: Internet-Based Test (IBT): Minimum Overall Required Score: 4.5 (For exams taken on or after January 21, 2026) Minimum section requirements: Reading: 4.5 Listening: 4.5 Speaking: 4.5 Writing: 4.5 TOEFL: Internet-Based Test (IBT): Minimum Overall Required Score: 91 (For exams taken before January 21, 2026)",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "494ad107d92bcf3d"
     },
     "ielts": {
      "overall": 7.5,
      "quote": "IELTS: Minimum Overall Required Score: 7.5",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ac2c7663a6a0bd23"
     },
     "prerequisites": [
      {
       "text": "GMAT or GRE score required",
       "quote": "GMAT or Graduate Record Examination (GRE) Essays",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: score required (quote only lists GMAT/GRE essays)",
+      "summary_sha": "540271df943c7355"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MS in Management (Daniels School of Business)",
@@ -283,18 +341,24 @@
     "academic": {
      "text": "Cumulative GPA of 3.0 or equivalent (A=4.0)",
      "quote": "Cumulative Grade Point Average from most recently conferred undergraduate, graduate, or professional degree: 3.0 or equivalent (A=4.0)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d6ba17550b7b055d"
     },
     "toefl": {
      "overall": 93,
      "quote": "TOEFL: Internet-Based Test (IBT): Minimum Overall Required Score: 93 (For exams taken before January 21, 2026) Minimum section requirements: Reading: 22 Listening: 18 Speaking: 22 Writing: 20 TOEFL: Internet-Based Test (IBT): Minimum Overall Required Score: 4.5 (For exams taken on or after January 21, 2026)",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a7c8a7d1a1961b76"
     },
     "ielts": {
      "overall": 7.5,
      "quote": "IELTS (Academic Module): Minimum Overall Required Score: 7.5",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "184280c67de5ec4d"
     }
    },
    "status": "机器核对"
@@ -307,18 +371,24 @@
     "academic": {
      "text": "Cumulative GPA of 3.0 or equivalent (A=4.0)",
      "quote": "Cumulative Grade Point Average from most recently conferred undergraduate, graduate, or professional degree: 3.0 or equivalent (A=4.0)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d6ba17550b7b055d"
     },
     "toefl": {
      "overall": 93,
      "quote": "TOEFL: Internet-Based Test (IBT): Minimum Overall Required Score: 93 (For exams taken before January 21, 2026) Minimum section requirements: Reading: 22 Listening: 18 Speaking: 22 Writing: 20 TOEFL: Internet-Based Test (IBT): Minimum Overall Required Score: 4.5 (For exams taken on or after January 21, 2026)",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a7c8a7d1a1961b76"
     },
     "ielts": {
      "overall": 7.5,
      "quote": "IELTS (Academic Module): Minimum Overall Required Score: 7.5",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "184280c67de5ec4d"
     }
    },
    "status": "机器核对"
@@ -331,18 +401,24 @@
     "academic": {
      "text": "Cumulative GPA of 3.0 or equivalent (A=4.0)",
      "quote": "Cumulative Grade Point Average from most recently conferred undergraduate, graduate, or professional degree: 3.0 or equivalent (A=4.0)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d6ba17550b7b055d"
     },
     "toefl": {
      "overall": 91,
      "quote": "TOEFL: Internet-Based Test (IBT): Minimum Overall Required Score: 91 (For exams taken before January 21, 2026) Minimum section requirements: Reading: 23 Listening: 21 Speaking: 24 Writing: 23 TOEFL: Internet-Based Test (IBT): Minimum Overall Required Score: 4.5 (For exams taken on or after January 21, 2026)",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "28a5516e10649fe7"
     },
     "ielts": {
      "overall": 7.5,
      "quote": "IELTS: Minimum Overall Required Score: 7.5",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ac2c7663a6a0bd23"
     }
    },
    "status": "机器核对"
@@ -355,24 +431,32 @@
     "academic": {
      "text": "Cumulative GPA of 3.0 or equivalent (A=4.0)",
      "quote": "Cumulative Grade Point Average from most recently conferred undergraduate, graduate, or professional degree: 3.0 or equivalent (A=4.0)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d6ba17550b7b055d"
     },
     "toefl": {
      "overall": 91,
      "quote": "TOEFL: Minimum Overall Required Score: 91 (For exams taken before January 21, 2026) Minimum section requirements: Reading: 23 Listening: 21 Speaking: 24 Writing: 23 TOEFL: Minimum Overall Required Score: 4.5 (For exams taken on or after January 21, 2026)",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c087dd74819b9bae"
     },
     "ielts": {
      "overall": 7.5,
      "quote": "IELTS: Minimum Overall Required Score: 7.5",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ac2c7663a6a0bd23"
     },
     "prerequisites": [
      {
       "text": "GRE or GMAT score report (residential only)",
       "quote": "GRE/GMAT Score Report – (Residential Only)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "75a4e4a5a80b09d8"
      }
     ]
    },
@@ -386,18 +470,24 @@
     "academic": {
      "text": "Cumulative GPA of 3.0 or equivalent (A=4.0)",
      "quote": "Cumulative Grade Point Average from most recently conferred undergraduate, graduate, or professional degree: 3.0 or equivalent (A=4.0)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d6ba17550b7b055d"
     },
     "toefl": {
      "overall": 91,
      "quote": "TOEFL: Minimum Overall Required Score: 91 (For exams taken before January 21, 2026) Minimum section requirements: Reading: 23 Listening: 21 Speaking: 24 Writing: 23 TOEFL: Minimum Overall Required Score: 4.5 (For exams taken on or after January 21, 2026)",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c087dd74819b9bae"
     },
     "ielts": {
      "overall": 7.5,
      "quote": "IELTS: Minimum Overall Required Score: 7.5",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ac2c7663a6a0bd23"
     }
    },
    "status": "机器核对"
@@ -411,12 +501,16 @@
      "overall": 93,
      "quote": "TOEFL: Internet-Based Test (IBT): Minimum Overall Required Score: 93 (For exams taken before January 21, 2026) Minimum section requirements: Reading: 19 Listening: 14 Speaking: 22 Writing: 18 TOEFL: Internet-Based Test (IBT): Minimum Overall Required Score: 4.5 (For exams taken on or after January 21, 2026)",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "2109f1be484485a2"
     },
     "ielts": {
      "overall": 7.5,
      "quote": "IELTS (Academic Module): Minimum Overall Required Score: 7.5",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "184280c67de5ec4d"
     }
    },
    "status": "机器核对"
@@ -429,7 +523,9 @@
     "academic": {
      "text": "Cumulative GPA of 3.0 or equivalent (A=4.0)",
      "quote": "Cumulative Grade Point Average from most recently conferred undergraduate, graduate, or professional degree: 3.0 or equivalent (A=4.0)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d6ba17550b7b055d"
     },
     "toefl": {
      "overall": 80,
@@ -437,20 +533,26 @@
      "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "20f73657d7dc5808"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Minimum IELTS Scores Required by OGSPS for Admission IELTS Reading 6.5 Listening 6.0 Speaking 6.0 Writing 5.5 Minimum Overall Required for Admission 6.5",
      "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
      "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "08b73d720b035c9f"
     },
     "prerequisites": [
      {
       "text": "GRE or GMAT scores at or above the 50th percentile for each subsection for unconditional admission (residential only)",
       "quote": "GRE or GMAT (Residential only) Graduate Record Examination (GRE) scores at or above the 50th percentile for each test subsection are required for unconditional admission.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "fedca4bec768d80e"
      }
     ]
    },
@@ -464,7 +566,9 @@
     "academic": {
      "text": "Cumulative GPA of 3.0 or equivalent (A=4.0), doctoral and master's",
      "quote": "Cumulative Grade Point Average from most recently conferred undergraduate, graduate, or professional degree: 3.0 or equivalent (A=4.0)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: doctoral and master's",
+     "summary_sha": "870da3c517515b59"
     },
     "toefl": {
      "overall": 80,
@@ -472,17 +576,21 @@
      "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "20f73657d7dc5808"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Minimum IELTS Scores Required by OGSPS for Admission IELTS Reading 6.5 Listening 6.0 Speaking 6.0 Writing 5.5 Minimum Overall Required for Admission 6.5",
      "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
      "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "08b73d720b035c9f"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MS in Biomedical Engineering (MSBME)",
@@ -492,7 +600,9 @@
     "academic": {
      "text": "Cumulative GPA of 3.25 or equivalent (A=4.0), doctoral and master's",
      "quote": "Cumulative Grade Point Average from most recently conferred undergraduate, graduate, or professional degree: 3.25 or equivalent (A=4.0)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: doctoral and master's",
+     "summary_sha": "e0da0d782cd67416"
     },
     "toefl": {
      "overall": 80,
@@ -500,17 +610,21 @@
      "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "20f73657d7dc5808"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Minimum IELTS Scores Required by OGSPS for Admission IELTS Reading 6.5 Listening 6.0 Speaking 6.0 Writing 5.5 Minimum Overall Required for Admission 6.5",
      "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
      "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "08b73d720b035c9f"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MS in Nuclear Engineering (MSNE)",
@@ -520,7 +634,9 @@
     "academic": {
      "text": "Cumulative GPA of 3.0 or equivalent (A=4.0) for master's applicants",
      "quote": "Cumulative Grade Point Average from most recently conferred undergraduate, graduate, or professional degree: 3.0 or equivalent (A=4.0)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: for master's applicants",
+     "summary_sha": "e519feafd770ceec"
     },
     "toefl": {
      "overall": 80,
@@ -528,17 +644,21 @@
      "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "20f73657d7dc5808"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Minimum IELTS Scores Required by OGSPS for Admission IELTS Reading 6.5 Listening 6.0 Speaking 6.0 Writing 5.5 Minimum Overall Required for Admission 6.5",
      "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
      "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "08b73d720b035c9f"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MS / MS in Engineering in Engineering Management",
@@ -548,7 +668,9 @@
     "academic": {
      "text": "Cumulative GPA of 3.0 or equivalent (A=4.0) for master's applicants",
      "quote": "Cumulative Grade Point Average from most recently conferred undergraduate, graduate, or professional degree: 3.0 or equivalent (A=4.0)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "e519feafd770ceec"
     },
     "toefl": {
      "overall": 80,
@@ -556,14 +678,18 @@
      "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "20f73657d7dc5808"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Minimum IELTS Scores Required by OGSPS for Admission IELTS Reading 6.5 Listening 6.0 Speaking 6.0 Writing 5.5 Minimum Overall Required for Admission 6.5",
      "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
      "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "08b73d720b035c9f"
     }
    },
    "status": "机器核对"
@@ -576,7 +702,9 @@
     "academic": {
      "text": "Cumulative GPA of 3.0 or equivalent (A=4.0) for master's applicants",
      "quote": "Cumulative Grade Point Average from most recently conferred undergraduate, graduate, or professional degree: 3.0 or equivalent (A=4.0)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: for master's applicants",
+     "summary_sha": "e519feafd770ceec"
     },
     "toefl": {
      "overall": 80,
@@ -584,17 +712,21 @@
      "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "20f73657d7dc5808"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Minimum IELTS Scores Required by OGSPS for Admission IELTS Reading 6.5 Listening 6.0 Speaking 6.0 Writing 5.5 Minimum Overall Required for Admission 6.5",
      "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
      "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "08b73d720b035c9f"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MS in Physics",
@@ -604,7 +736,9 @@
     "academic": {
      "text": "Cumulative GPA of 3.0 or equivalent (A=4.0), doctoral and master's",
      "quote": "Cumulative Grade Point Average from most recently conferred undergraduate, graduate, or professional degree: 3.0 or equivalent (A=4.0)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: doctoral and master's",
+     "summary_sha": "870da3c517515b59"
     },
     "toefl": {
      "overall": 80,
@@ -612,17 +746,21 @@
      "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "20f73657d7dc5808"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Minimum IELTS Scores Required by OGSPS for Admission IELTS Reading 6.5 Listening 6.0 Speaking 6.0 Writing 5.5 Minimum Overall Required for Admission 6.5",
      "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
      "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "08b73d720b035c9f"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MS in Environmental and Ecological Engineering (MSEEE)",
@@ -632,13 +770,17 @@
     "academic": {
      "text": "Baccalaureate degree at a college or university of recognized standing; cumulative GPA of 3.0 or equivalent (A=4.0)",
      "quote": "Master’s Degree Program Requirements Completion of a baccalaureate degree at a college or university of recognized standing Cumulative Grade Point Average from most recently conferred undergraduate, graduate, or professional degree: 3.0 or equivalent (A=4.0)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d8553a93b756d99b"
     },
     "toefl": {
      "overall": 80,
      "quote": "TOEFL: Internet-Based Test (IBT): Minimum Overall Required Score: 80 (For exams taken before January 21, 2026) Minimum section requirements: Reading: 19 Listening: 14 Speaking: 18 Writing: 18 TOEFL: Internet-Based Test (IBT): Minimum Overall Required Score: 4.5 (For exams taken on or after January 21, 2026)",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "92d4cbd32d290fa1"
     }
    },
    "status": "机器核对"
@@ -651,7 +793,9 @@
     "academic": {
      "text": "Bachelor's degree with a minimum cumulative GPA of 3.0 or equivalent (A=4.0)",
      "quote": "Student must hold a bachelor’s degree with a minimum cumulative GPA of 3.0 or equivalent (A=4.0)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "4bd5c76141385b8f"
     },
     "toefl": {
      "overall": 80,
@@ -659,14 +803,18 @@
      "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "20f73657d7dc5808"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Minimum IELTS Scores Required by OGSPS for Admission IELTS Reading 6.5 Listening 6.0 Speaking 6.0 Writing 5.5 Minimum Overall Required for Admission 6.5",
      "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
      "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "08b73d720b035c9f"
     }
    },
    "status": "机器核对"
@@ -679,7 +827,9 @@
     "academic": {
      "text": "Cumulative GPA of 3.2 or equivalent (A=4.0) for the residential master's",
      "quote": "Cumulative Grade Point Average from most recently conferred undergraduate, graduate, or professional degree: 3.2 or equivalent (A=4.0) (Residential)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "3d5eb246561c2c82"
     },
     "toefl": {
      "overall": 80,
@@ -687,14 +837,18 @@
      "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "20f73657d7dc5808"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Minimum IELTS Scores Required by OGSPS for Admission IELTS Reading 6.5 Listening 6.0 Speaking 6.0 Writing 5.5 Minimum Overall Required for Admission 6.5",
      "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
      "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "08b73d720b035c9f"
     }
    },
    "status": "机器核对"
@@ -707,7 +861,9 @@
     "academic": {
      "text": "Cumulative GPA of 3.0 or equivalent (A=4.0) for master's applicants",
      "quote": "Cumulative Grade Point Average from most recently conferred undergraduate, graduate, or professional degree: 3.0 or equivalent (A=4.0)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "e519feafd770ceec"
     },
     "toefl": {
      "overall": 80,
@@ -715,14 +871,18 @@
      "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "20f73657d7dc5808"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Minimum IELTS Scores Required by OGSPS for Admission IELTS Reading 6.5 Listening 6.0 Speaking 6.0 Writing 5.5 Minimum Overall Required for Admission 6.5",
      "source_sha256": "7565d492996e83b2a47b11a3c9fe4513e64b061e44ed1b8be9c5d290c26397b3",
      "source_url": "https://www.purdue.edu/academics/ogsps/admissions/admission-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "08b73d720b035c9f"
     }
    },
    "status": "机器核对"
@@ -730,7 +890,7 @@
  ],
  "verification": {
   "programs": 26,
-  "机器核对": 26,
-  "待人工": 0
+  "机器核对": 14,
+  "待人工": 12
  }
 }

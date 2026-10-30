@@ -3,7 +3,9 @@
 No test calls a real model. `fixtures/extract/response.json` is one real DeepSeek response, recorded on
 2026-10-30 for the fictional page `fixtures/extract/page.html` (Example University, not a real school);
 the tests replay it through `ChatOpenAI` over a mocked transport, and plant faults by editing a copy of
-its function-call arguments.
+its function-call arguments. `fixtures/extract/judge.json` is the real response of the summary check
+(`app.collect.faithful`) for that answer, recorded the same day; other tests use a judge that backs
+every claim, or one that backs none.
 """
 
 import copy
@@ -24,6 +26,7 @@ from app.config import settings
 FIXTURES = Path(__file__).parent / "fixtures" / "extract"
 PAGE = (FIXTURES / "page.html").read_text(encoding="utf-8")
 RECORDED = json.loads((FIXTURES / "response.json").read_text(encoding="utf-8"))
+JUDGED = json.loads((FIXTURES / "judge.json").read_text(encoding="utf-8"))
 SHA = hashlib.sha256(PAGE.encode()).hexdigest()
 
 
@@ -57,9 +60,23 @@ def with_arguments(edit) -> dict:
     return body
 
 
-def run(model, root, **kwargs):
+def judging(supported: bool = True, reason: str = "an added condition") -> dict:
+    """A judge response giving every claim id the same verdict (ids it was not asked about are ignored)."""
+    body = copy.deepcopy(JUDGED)
+    verdicts = [{"id": i, "supported": supported, **({} if supported else {"unsupported": reason})} for i in range(1, 40)]
+    body["choices"][0]["message"]["tool_calls"][0]["function"]["arguments"] = json.dumps({"verdicts": verdicts})
+    return body
+
+
+def run(model, root, judge=None, **kwargs):
     return ex.extract_snapshot("example", SHA, program_name="Master of Data Science",
-                               school_name="Example University", country="Australia", model=model, root=root, **kwargs)
+                               school_name="Example University", country="Australia", model=model,
+                               judge_model=answering(judge or judging()), root=root, **kwargs)
+
+
+def bare(item: dict) -> dict:
+    """An item without the summary check's bookkeeping."""
+    return {k: v for k, v in item.items() if k not in ("summary_check", "summary_sha")}
 
 
 def walk(value):
@@ -74,20 +91,27 @@ def walk(value):
 
 def test_the_recorded_answer_passes_verify_and_keeps_the_model_name_and_usage(root):
     seen = []
-    result = run(answering(RECORDED, seen), root)
+    result = run(answering(RECORDED, seen), root, judge=JUDGED)
     program = result.program
     assert program["status"] == MACHINE_CHECKED
     assert program["url"] == "https://example.edu/mds"
     assert program["snapshot_sha256"] == SHA
     assert set(program["fields"]) == {"academic", "china_requirement", "ielts", "toefl", "prerequisites", "deadlines"}
-    assert program["fields"]["ielts"] == {"overall": 6.5, "min_band": 6.0, "check": "ok",
-                                          "quote": "IELTS Academic: an overall score of 6.5 with no band below 6.0."}
+    assert bare(program["fields"]["ielts"]) == {"overall": 6.5, "min_band": 6.0, "check": "ok",
+                                                "quote": "IELTS Academic: an overall score of 6.5 with no band below 6.0."}
     assert program["fields"]["china_requirement"]["min_mark_211"] == 80
-    assert program["fields"]["deadlines"] == [{"label": "2027 intake", "date": "2026-11-30", "check": "ok",
-                                               "quote": "Applications for the 2027 intake close on 30 November 2026."}]
-    assert result.rejected == []
+    assert [bare(d) for d in program["fields"]["deadlines"]] == [
+        {"label": "2027 intake", "date": "2026-11-30", "check": "ok",
+         "quote": "Applications for the 2027 intake close on 30 November 2026."}]
+    assert result.rejected == [] and result.downgraded == []
+    # The judge backed every summary of the recorded answer.
+    assert all(item["summary_check"] == "ok" for name, value in program["fields"].items()
+               for item in (value if isinstance(value, list) else [value]))
     assert result.model == "deepseek-flash"
-    assert result.usage == {"input_tokens": 2260, "output_tokens": 532, "cache_read_tokens": 1024}
+    # Both calls are counted: the extraction (2260 / 532 / 1024) and the summary check.
+    judge_usage = JUDGED["usage"]
+    assert result.usage["input_tokens"] == 2260 + judge_usage["prompt_tokens"]
+    assert result.usage["output_tokens"] == 532 + judge_usage["completion_tokens"]
     assert result.attempts == 1 and result.unused == []
     # One forced function call, carrying the page text.
     assert len(seen) == 1
@@ -208,7 +232,26 @@ def test_a_malformed_answer_is_asked_for_once_more(root):
     result = run(answering([malformed(), RECORDED]), root)
     assert result.attempts == 2 and result.error is None
     assert result.program["status"] == MACHINE_CHECKED
-    assert result.usage["input_tokens"] == 2 * 2260
+    assert result.usage["input_tokens"] == 2 * 2260 + JUDGED["usage"]["prompt_tokens"]
+
+
+def test_a_summary_the_judge_does_not_back_stays_marked_and_sends_the_program_to_a_person(root):
+    result = run(answering(RECORDED), root, judge=judging(False, "added a degree"))
+    fields = result.program["fields"]
+    assert result.program["status"] == NEEDS_HUMAN
+    # Downgraded, not deleted or edited: every value is still in the program, with the reason.
+    assert set(fields) == {"academic", "china_requirement", "ielts", "toefl", "prerequisites", "deadlines"}
+    assert fields["academic"]["summary_check"] == "unsupported: added a degree"
+    assert {d["field"] for d in result.downgraded} == set(fields)
+    assert result.rejected == []
+
+
+def test_a_judge_that_cannot_be_read_blocks_every_summary_as_not_checked(root):
+    broken = copy.deepcopy(JUDGED)
+    broken["choices"][0]["message"]["tool_calls"][0]["function"]["arguments"] = "{"
+    result = run(answering(RECORDED), root, judge=broken)
+    assert result.program["status"] == NEEDS_HUMAN
+    assert all(d["reason"].startswith("not checked") for d in result.downgraded) and result.downgraded
 
 
 def test_a_long_page_is_cut_to_the_lines_around_requirement_words():

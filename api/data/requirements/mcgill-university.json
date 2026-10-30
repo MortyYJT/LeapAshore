@@ -36,22 +36,28 @@
     "academic": {
      "text": "An undergraduate degree in Agricultural Economics or Economics, including courses in intermediate economic theory (micro and macro), calculus, algebra, statistics, and econometrics.",
      "quote": "The ideal prior preparation is an undergraduate degree in Agricultural Economics or Economics, including undergraduate courses in intermediate economic theory (micro and macro), calculus, algebra, statistics, and econometrics.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: states as requirement; quote says ideal prior preparation",
+     "summary_sha": "ac9466c8651d81c5"
     },
     "prerequisites": [
      {
       "text": "Undergraduate courses in intermediate economic theory (micro and macro), calculus, algebra, statistics, and econometrics.",
       "quote": "including undergraduate courses in intermediate economic theory (micro and macro), calculus, algebra, statistics, and econometrics",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "2531913a7c6d1211"
      },
      {
       "text": "Documented proof of English proficiency for applicants whose mother tongue is not English and who have not completed a degree at a recognized institution where English is the language of instruction.",
       "quote": "For graduate applicants whose mother tongue is not English, and who have not completed an undergraduate or graduate degree from a recognized Canadian or American (English or French) institution or from a recognized foreign institution where English is the language of instruction, documented proof of English proficiency is required prior to admission.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "9cf2f4ad2d48d6fd"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Animal Science",
@@ -64,13 +70,17 @@
     "academic": {
      "text": "M.Sc. (Thesis): a bachelor's degree in Agriculture, or a B.Sc. in an appropriate related discipline with a CGPA of 3.0/4.0 or a GPA of 3.2/4.0 over the last two years of full-time study.",
      "quote": "Candidates are required to have either a bachelor's degree in Agriculture or a B.Sc. degree in an appropriate, related discipline with an equivalent cumulative grade point average (CGPA) of 3.0/4.0 (second class–upper division) or a grade point average (GPA) of 3.2/4.0 during the last two years of full-time university study.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d4357597ad898402"
     },
     "prerequisites": [
      {
       "text": "A staff member must agree to serve as the student's supervisor.",
       "quote": "Acceptance to all programs depends on a staff member agreeing to serve as the student’s supervisor.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "e0746e7a346bea4b"
      }
     ]
    },
@@ -87,37 +97,49 @@
     "academic": {
      "text": "An equivalent cumulative grade point average (CGPA) of 3.0/4.0 (second class–upper division) at the bachelor's level.",
      "quote": "An equivalent cumulative grade point average (CGPA) of 3.0/4.0 (second class–upper division) or a grade point average (GPA) of 3.2/4.0 during the last two years of full-time university study is required at the bachelor's level.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the alternative GPA 3.2/4.0 in last two years, presenting 3.0 as the sole requirement",
+     "summary_sha": "94058c578a6a636b"
     },
     "prerequisites": [
      {
       "text": "High grades in courses the academic unit considers preparatory to the graduate program.",
       "quote": "High grades are expected in courses the academic unit considers to be preparatory to the graduate program.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: required (quote says expected)",
+      "summary_sha": "1158a6f49f2a266a"
      },
      {
       "text": "For the M.Sc.A. program: qualification as a professional engineer in a Canadian professional engineering association, such as the Ordre des ingénieurs du Québec (OIQ).",
       "quote": "Candidates for the M.Sc.A. program must meet the qualification of a professional engineer in a Canadian professional engineering association,  such as the Ordre des ingénieurs du Québec (OIQ), either before or during their M.Sc.A. program.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "39de55feac53fc16"
      },
      {
       "text": "For the M.Sc.A. in Environmental Engineering: a completed undergraduate degree in engineering.",
       "quote": "Candidates for the M.Sc.A. program in Environmental Engineering shall have completed an undergraduate degree in engineering.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "31c789a70be1be06"
      },
      {
       "text": "For the M.Sc.A. in Integrated Food and Bioprocessing: a Bachelor of Engineering, Bachelor of Science in Engineering or Bachelor of Technology, with strong knowledge of fluid mechanics, heat and/or mass transfer, thermodynamics, and engineering mathematics (including statistics).",
       "quote": "Candidates for the M.Sc.A. in Integrated Food and Bioprocessing shall have graduated with a Bachelor of Engineering, Bachelor of Science in Engineering or a Bachelor of Technology, and possess a strong knowledge in the following core engineering areas: fluid mechanics, heat and/or mass transfer, thermodynamics, and engineering mathematics (including statistics).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "7baa55005aa5e991"
      },
      {
       "text": "For the M.Sc. (Non-Thesis) in Integrated Water Resources Management: a Bachelor's degree, which need not be in engineering.",
       "quote": "Candidates for the M.Sc. (Non-Thesis) program in Integrated Water Resources Management must hold a Bachelor's degree, but it does not need to be an engineering degree.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "9034c3a7e007f925"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Biotechnology",
@@ -130,13 +152,17 @@
     "academic": {
      "text": "A bachelor's degree in biological sciences or equivalent with a minimum CGPA of 3.2/4.0.",
      "quote": "Candidates for the M.Sc.(Applied) in Biotechnology must possess a bachelor’s degree in biological sciences or equivalent with a minimum cumulative grade point average (CGPA) of 3.2/4.0, as well as all prerequisites or their equivalents.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "98a16b3c73222f19"
     },
     "prerequisites": [
      {
       "text": "Sufficient background in biochemistry, cellular biology and molecular biology, preferably at an advanced level.",
       "quote": "Applicants are required to have sufficient background in biochemistry, cellular biology, and molecular biology, preferably at an advanced level for the Master's Applied.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "93f11f38a69514e6"
      }
     ]
    },
@@ -153,17 +179,21 @@
     "academic": {
      "text": "Applicants to the M.Sc. programs (thesis or non-thesis) must be graduates of a recognized university and hold a B.Sc. in Food Science or a related discipline such as Chemistry, Biochemistry, or Microbiology with a minimum CGPA of 3.4/4.0.",
      "quote": "Applicants to the M.Sc. programs (thesis or non-thesis) must be graduates of a university of recognized reputation and hold a B.Sc. in Food Science or a related discipline such as Chemistry, Biochemistry, or Microbiology with a minimum cumulative grade point average (CGPA) of 3.4/4.0 (second class–upper division).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "3248d06fd5c7de6d"
     },
     "prerequisites": [
      {
       "text": "For applicants whose mother tongue is not English and who have not completed a degree at a recognized institution where English is the language of instruction, documented proof of English proficiency is required.",
       "quote": "For graduate applicants whose mother tongue is not English, and who have not completed an undergraduate or graduate degree from a recognized Canadian or American (English or French) institution or from a recognized foreign institution where English is the language of instruction, documented proof of English proficiency is required prior to admission.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: degree at a recognized institution where English is the language of instruction (omits Canadian/American or undergraduate/graduate specifics)",
+      "summary_sha": "62a3c75ddbf4fb64"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Human Nutrition",
@@ -176,27 +206,35 @@
     "academic": {
      "text": "Applicants must hold a B.Sc. degree equivalent to a McGill degree in a subject closely related to the one selected for graduate work, with a minimum CGPA of 3.3/4.0 for the M.Sc. Thesis and M.Sc. Applied.",
      "quote": "Applicants must be graduates of a university of recognized reputation and hold a B.Sc. degree equivalent to a McGill degree in a subject closely related to the one selected for graduate work. Applicants must have a minimum cumulative grade point average (CGPA) in McGill University’s credit equivalency of 3.3/4.0 (high second class–upper division) for the M.Sc. Thesis and M.Sc. Applied during their bachelor's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ebf78c3bf080f357"
     },
     "prerequisites": [
      {
       "text": "The dietetics credentialing option requires French proficiency at minimum level B2.",
       "quote": "This program has a specific entrance CGPA requirement of 3.5/4.0 and French proficiency (minimum level B2) requirement.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: dietetics credentialing option (quote doesn't name the option)",
+      "summary_sha": "433c6a66f7cd99ce"
      },
      {
       "text": "The practicum option is reserved for those who have completed a dietetics internship and six months of work experience and are members of the ODNQ.",
       "quote": "The practicum option, which is reserved for those who have completed a dietetics internship and six months of work experience and are members of the ODNQ and wish to further develop their skills in a particular area of practice through an advanced internship;",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "107bfa4fbd17bd96"
      },
      {
       "text": "The GRE is required for all Ph.D. applicants submitting non-Canadian or non-U.S. transcripts.",
       "quote": "Graduate Record Exam (GRE) – The GRE is required for all Ph.D. applicants to the School of Human Nutrition who are submitting non-Canadian or non-U.S. transcripts.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f34b201b8ada957e"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Natural Resource Sciences",
@@ -209,22 +247,28 @@
     "academic": {
      "text": "Direct admission to the M.Sc. requires a B.Sc. in Agricultural Economics or a closely related area, with a minimum equivalent CGPA of 3.0/4.0 or a minimum GPA of 3.2/4.0 over the last two years of full-time study.",
      "quote": "Direct admission to the M.Sc. requires the completion of a B.Sc. in Agricultural Economics or a closely related area, with the minimum equivalent cumulative grade point average (CGPA) of 3.0/4.0 (second class–upper division) or minimum grade point average (GPA) of 3.2/4.0 during the last two years of full-time university study.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "acfd7f4d04c691b8"
     },
     "prerequisites": [
      {
       "text": "Ideal preparation includes courses in agricultural economics, economic theory (intermediate micro and macro), calculus, linear algebra, and statistics.",
       "quote": "The ideal preparation includes courses in agricultural economics, economic theory (intermediate micro and macro), calculus, linear algebra, and statistics.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "a2b593bc49c48474"
      },
      {
       "text": "Applicants whose mother tongue is not English and who have not completed a degree where English was the language of instruction must provide documented proof of English proficiency.",
       "quote": "For graduate applicants whose mother tongue is not English, and who have not completed an undergraduate or graduate degree from a recognized Canadian or American (English or French) institution or from a recognized foreign institution where English is the language of instruction, documented proof of English proficiency is required prior to admission.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: degree where English was the language of instruction (omits recognized Canadian/American or foreign institution condition)",
+      "summary_sha": "389bae22cf77686a"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Parasitology",
@@ -237,18 +281,24 @@
     "academic": {
      "text": "A bachelor's degree in biological or medical sciences with a minimum CGPA of 3.2/4.0 (second class–upper division).",
      "quote": "Candidates for either the M.Sc. or the Ph.D. degree should possess a bachelor's degree in biological or medical sciences with a minimum cumulative grade point average (CGPA) of 3.2/4.0 (second class–upper division).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "13aa0a0af5b18d9f"
     },
     "prerequisites": [
      {
       "text": "High grades expected in courses the academic unit considers preparatory to the graduate program.",
       "quote": "High grades are expected in courses considered by the academic unit to be preparatory to the graduate program.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "ec170a1d7eb25afa"
      },
      {
       "text": "A staff member must agree to serve as the student's supervisor for acceptance to thesis research programs.",
       "quote": "Acceptance to all thesis research programs depends on a staff member agreeing to serve as the student’s supervisor.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f442483c389507fc"
      }
     ]
    },
@@ -265,13 +315,17 @@
     "academic": {
      "text": "Minimum CGPA of 3.0/4.0 (second class–upper division), or a minimum GPA of 3.2/4.0 during the last two years of full-time university study.",
      "quote": "The minimum cumulative grade point average (CGPA) is 3.0/4.0 (second class–upper division) or a minimum GPA of 3.2/4.0 during the last two years of full-time university study.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "55e5a18ec8a36332"
     },
     "prerequisites": [
      {
       "text": "Acceptance to all thesis research programs depends on a staff member agreeing to serve as the student's supervisor.",
       "quote": "Acceptance to all thesis research programs depends on a staff member agreeing to serve as the student’s supervisor.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "c90244dfdd83d35c"
      }
     ]
    },
@@ -288,13 +342,17 @@
     "academic": {
      "text": "An Honours or Major B.A. in Anthropology or Archaeology.",
      "quote": "Admission to the M.A. program is open competitively to students holding an Honours or Major B.A. in Anthropology or Archaeology.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "5e87b34a5c539f02"
     },
     "prerequisites": [
      {
       "text": "Proof of English language competency (official TOEFL scores) if your mother tongue is not English and you have not graduated from an institution where English is the main language of instruction.",
       "quote": "If your mother tongue is not English and you have not graduated from a university or college where English is the main language of instruction, you must provide proof of language competency, i.e., a copy of your official Test of English as a Second Language (TOEFL) scores.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "d6326e9ca113d4c1"
      }
     ]
    },
@@ -311,18 +369,24 @@
     "academic": {
      "text": "A B.A. degree in Art History or another closely related field, normally expected.",
      "quote": "To apply to the M.A. program, candidates are normally expected to have a B.A. degree in Art History or in another closely related field",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "74d8d9b74bcf69ed"
     },
     "prerequisites": [
      {
       "text": "A research proposal of at least 500 words outlining the candidate's research interest in Art History.",
       "quote": "The Department requires a research proposal of at least 500 words outlining the candidate's particular research interest in Art History",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "69bcfd749eb537cc"
      },
      {
       "text": "A sample of written work, such as a seminar paper.",
       "quote": "as well as a sample of their written work such as a seminar paper or, in the case of Ph.D. applicants, all or part of the M.A. paper or thesis.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "548aa1eb30339208"
      }
     ]
    },
@@ -339,13 +403,17 @@
     "academic": {
      "text": "A B.A. degree with a minimum CGPA of 3.3.",
      "quote": "To apply to the M.A. program in Communication Studies, candidates are expected to have a B.A. degree with a minimum CGPA of 3.3.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d16791e1cb1db00a"
     },
     "prerequisites": [
      {
       "text": "Documented proof of English proficiency for applicants whose mother tongue is not English and who have not completed a degree at a recognized institution where English is the language of instruction.",
       "quote": "For graduate applicants whose mother tongue is not English, and who have not completed an undergraduate or graduate degree from a recognized Canadian or American (English or French) institution or from a recognized foreign institution where English is the language of instruction, documented proof of English proficiency is required prior to admission.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "9cf2f4ad2d48d6fd"
      }
     ]
    },
@@ -362,18 +430,24 @@
     "ielts": {
      "overall": 6.5,
      "quote": "Alternatively, students proving their English proficiency may use the International English Language Testing System (IELTS) examination, for which the minimum score is an overall band score of 6.5 (academic module).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "7507f2f76f12a892"
     },
     "academic": {
      "text": "A minimum standing equivalent to a cumulative GPA of 3.0/4.0, or a GPA of 3.2/4.0 for the last two full-time academic years.",
      "quote": "A minimum Standing equivalent to a cumulative grade point average (CGPA) of 3.0/4.0, or a GPA of 3.2/4.0 for the last two full-time academic years.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d668bed21d51dc63"
     },
     "prerequisites": [
      {
       "text": "Proficiency in the East Asian language(s) most useful for the proposed graduate work, preferably three years or more of coursework or equivalent.",
       "quote": "Applicants are expected to have proficiency in the East Asian language(s) most useful for the proposed graduate work (preferably three years or more of coursework, or equivalent).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "25b108d3a4a3d072"
      }
     ]
    },
@@ -390,13 +464,17 @@
     "academic": {
      "text": "A master's degree in economics is required for entry to the Ph.D. program.",
      "quote": "You must hold, or reasonably expect to hold by September, a master's degree in economics for entry to the Ph.D. program",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0512a00aed83e6c9"
     },
     "prerequisites": [
      {
       "text": "Applicants whose education was interrupted or who lack an undergraduate or graduate degree in economics from a Canadian university must take the GRE General Test.",
       "quote": "If your education has been interrupted or if you do not have an undergraduate or graduate degree in economics from a Canadian university, you must take the Graduate Record Examination (GRE; General Test) and arrange for your scores to be sent to us.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "191587945bbe41da"
      }
     ]
    },
@@ -413,22 +491,28 @@
     "academic": {
      "text": "A B.A. degree in English (honours or major) or its equivalent, with a very strong academic record.",
      "quote": "Admission to the M.A. program requires a B.A. degree in English (honours or major) or its equivalent, with a very strong record of academic success (especially in the final two years of the B.A.).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "661a8905e84ca765"
     },
     "prerequisites": [
      {
       "text": "Solid training and coverage within the chosen area of theatre, cultural studies, or literature.",
       "quote": "Typically, applicants will have solid training and coverage within their chosen area of theatre, cultural studies, or literature.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: states as requirement; quote says 'typically'",
+      "summary_sha": "b648350341478334"
      },
      {
       "text": "Documented proof of English proficiency for applicants whose mother tongue is not English and who have not completed a degree at a recognized institution where English is the language of instruction.",
       "quote": "For graduate applicants whose mother tongue is not English, and who have not completed an undergraduate or graduate degree from a recognized Canadian or American (English or French) institution or from a recognized foreign institution where English is the language of instruction, documented proof of English proficiency is required prior to admission.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "9cf2f4ad2d48d6fd"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "French Language and Literature",
@@ -441,13 +525,17 @@
     "academic": {
      "text": "A bachelor's degree (B.A.) with a major or specialization in literary studies and practices or in translation, or a B.A. whose content and level are equivalent to the Department's B.A. with major or specialization, with a B+ average (CGPA 3.3 out of 4.0) during undergraduate studies.",
      "quote": "Pour être admis directement en M.A. I, le candidat doit être titulaire d'un diplôme de 1er cycle universitaire (B.A.) avec majeur (ou spécialisation) en études et pratiques littéraires ou en traduction, ou encore d'un B.A. dont le contenu et le niveau doivent équivaloir au programme du B.A. avec majeure ou du B.A. avec spécialisation offert par le Département de langue et littérature françaises de l'Université McGill. En outre, le candidat devra avoir maintenu une moyenne générale de B+ (CGPA 3,3 sur 4,0) pendant ses études de 1er cycle universitaire.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "4438fef7e7efa246"
     },
     "prerequisites": [
      {
       "text": "Students from outside the Department must provide a sample of written work in French.",
       "quote": "Échantillon de travail écrit – les étudiants de l'extérieur du Département doivent fournir un échantillon de travail écrit, en français",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "0489ee299c5a53ce"
      }
     ]
    },
@@ -464,17 +552,21 @@
     "academic": {
      "text": "Applicants with primary undergraduate specialization in a cognate field who do not satisfy the general graduate admission conditions may be admitted to the M.A. or M.Sc. in Geography under certain circumstances.",
      "quote": "Applicants not satisfying the conditions set out in Graduate Admissions and Application Procedures, but with primary undergraduate specialization in a cognate field, may be admitted to the M.A. or M.Sc. degree in Geography under certain circumstances.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "5d474acb659809f6"
     },
     "prerequisites": [
      {
       "text": "Documented proof of English proficiency for applicants whose mother tongue is not English and who have not completed a degree at a recognized institution where English is the language of instruction.",
       "quote": "For graduate applicants whose mother tongue is not English, and who have not completed an undergraduate or graduate degree from a recognized Canadian or American (English or French) institution or from a recognized foreign institution where English is the language of instruction, documented proof of English proficiency is required prior to admission.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: omits that the degree must be Canadian or American; drops 'prior to admission'",
+      "summary_sha": "9cf2f4ad2d48d6fd"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Information Studies",
@@ -487,28 +579,36 @@
     "ielts": {
      "overall": 7.5,
      "quote": "the International English Language Testing System (IELTS) with a minimum overall band score of 7.5",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "728ba0829bce5fe4"
     },
     "toefl": {
      "text": "TOEFL iBT with a minimum score of 6, a written score of at least 5, and reading, speaking and listening scores not less than 4.5 (1-6 band scale).",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "quote": "the Test of English as a Foreign Language (TOEFL) with a minimum score of 6 on the Internet-based test (iBT), with a written score of at least 5 and a reading, speaking, and listening score not less than 4.5",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: 1-6 band scale",
+     "summary_sha": "9309189d0e54f2e8"
     },
     "academic": {
      "text": "A bachelor's degree from a recognized university with a minimum standing equivalent to a McGill CGPA of 3.0/4.0, or a GPA of 3.2/4.0 over the last two full-time academic years.",
      "quote": "Applicants must have a bachelor's degree from a recognized university. The applicant must present evidence of academic achievement: a minimum Standing equivalent to a McGill cumulative grade point average (CGPA) of 3.0/4.0 or a grade point average (GPA) of 3.2/4.0 for the last two full-time academic years.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "e6b7ec50f81f6eb7"
     },
     "prerequisites": [
      {
       "text": "Applicants whose mother tongue is not English and who have not completed a degree where English is the language of instruction must submit documented proof of English proficiency.",
       "quote": "Applicants to graduate studies whose mother tongue is not English, and who have not completed an undergraduate or graduate degree from a recognized foreign institution where English is the language of instruction or from a recognized Canadian institution (anglophone or francophone), must submit documented proof of competency in oral and written English prior to admission.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "76794d95ac2034ba"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "International Development",
@@ -521,17 +621,21 @@
     "academic": {
      "text": "Applicants are only considered for the Development Studies Option after being accepted into a master's program in one of the six participating departments at McGill.",
      "quote": "Students will only be considered for the Development Studies Option (DSO) once they have been accepted into a master's program in one of the six participating departments (Anthropology, Economics, Geography, History, Political Science, and Sociology) at McGill.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "204a8748899cc003"
     },
     "prerequisites": [
      {
       "text": "Proof of English proficiency is required for applicants whose mother tongue is not English and who have not completed a degree at a recognized Canadian or American institution or a recognized foreign institution where English is the language of instruction.",
       "quote": "For graduate applicants whose mother tongue is not English, and who have not completed an undergraduate or graduate degree from a recognized Canadian or American (English or French) institution or from a recognized foreign institution where English is the language of instruction, documented proof of English proficiency is required prior to admission.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: degree (quote says undergraduate or graduate degree)",
+      "summary_sha": "14208cb41d80b47e"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Islamic Studies",
@@ -544,22 +648,28 @@
     "academic": {
      "text": "A B.A. or M.A. degree from a recognized university with a minimum CGPA of 3.0/4.0 (or equivalent), or a GPA of 3.2/4.0 in the last two years of full-time studies, in the Humanities or Social Sciences, preferably in Islamic or Middle Eastern Studies.",
      "quote": "Applicants must have a B.A. or M.A. degree from a recognized university, with a minimum cumulative grade point average (CGPA) of 3.0/4.0 (or equivalent), or a grade point average (GPA) of 3.2/4.0 in the last two years of full-time studies, according to Canadian standards.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: in the Humanities or Social Sciences, preferably in Islamic or Middle Eastern Studies",
+     "summary_sha": "e6498e17971ce4fe"
     },
     "prerequisites": [
      {
       "text": "The degree should be in the Humanities or Social Sciences, preferably in Islamic or Middle Eastern Studies.",
       "quote": "The degree should be in the Humanities or Social Sciences, preferably in Islamic or Middle Eastern Studies.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "4138b6e8bbe8ad02"
      },
      {
       "text": "Knowledge of Arabic or Persian is an asset: one year of language training for M.A. applicants.",
       "quote": "Knowledge of Arabic or Persian is an asset, as follows: one year of language training for M.A. applicants; two years for Ph.D. applicants",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "70bf946c1cc1da43"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Jewish Studies",
@@ -572,32 +682,42 @@
     "academic": {
      "text": "Ideally, applicants would have completed a B.A. in Jewish Studies; otherwise acceptable applicants may be admitted to a Qualifying Year.",
      "quote": "Ideally, applicants would have completed a B.A. in Jewish Studies. If an applicant is otherwise deemed acceptable, it is possible to be admitted to a Qualifying Year.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fb36f4490779e98f"
     },
     "prerequisites": [
      {
       "text": "Applicants to the History of the Jewish Interpretation of the Bible stream must demonstrate competence in Hebrew before starting the program.",
       "quote": "Students seeking admission to the History of the Jewish Interpretation of the Bible stream must demonstrate competence in Hebrew prior to beginning the program.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "3082a9de55f368d2"
      },
      {
       "text": "Thesis students in Eastern European studies, Jewish thought or Hebrew literature must enter with a good command of Hebrew or Yiddish according to their specialization.",
       "quote": "Students choosing Eastern European studies, Jewish thought, or Hebrew literature must enter the program with a good command of either Hebrew or Yiddish according to their chosen specialization.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Thesis students",
+      "summary_sha": "e56450f76da53eb2"
      },
      {
       "text": "Thesis students in the History of the Jewish Interpretation of the Bible stream must enter with a good command of Hebrew.",
       "quote": "Students choosing this path must enter the program with a good command of Hebrew.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Thesis students; History of the Jewish Interpretation of the Bible stream",
+      "summary_sha": "55d72b86ed179577"
      },
      {
       "text": "Non-thesis students must demonstrate a good command of Yiddish or Hebrew before graduating.",
       "quote": "Students must demonstrate good command of Yiddish or Hebrew prior to graduation.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Non-thesis students",
+      "summary_sha": "5e1ec7ecab00489b"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Languages, Literatures, and Cultures",
@@ -610,23 +730,31 @@
     "ielts": {
      "overall": 6.5,
      "quote": "Students also have the option of taking the IELTS (International English Language Testing Service System) examination, for which the minimum score is an overall band average of 6.5 (academic module).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "e0216eec4d337833"
     },
     "academic": {
      "text": "A B.A. degree in German from McGill or an equivalent degree from another recognized institution, for the German Studies M.A.",
      "quote": "In order to be admitted to the M.A. program in German Studies, candidates must have at least a B.A. degree in German from McGill University or an equivalent degree from another recognized college or university.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "18ab65dd925d2b62"
     },
     "prerequisites": [
      {
       "text": "Considerable fluency in German for graduate studies in German.",
       "quote": "In order to pursue graduate studies in German, all candidates must have considerable fluency in German.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "a7aeab02ba184779"
      },
      {
       "text": "Proficiency in Spanish and, when appropriate, Portuguese, plus a working knowledge of either French or English (Hispanic Studies Ph.D.).",
       "quote": "Applicants must demonstrate proficiency in Spanish, and when appropriate, in Portuguese, plus a working knowledge of either French or English.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "a1446a647e9bf0e2"
      }
     ]
    },
@@ -643,17 +771,21 @@
     "academic": {
      "text": "A B.A. with a specialization in linguistics.",
      "quote": "Applicants to the M.A. or Ph.D. should have completed a B.A. with a specialization in linguistics.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "5802d86374f7eab9"
     },
     "prerequisites": [
      {
       "text": "Proof of English proficiency for non-native English speakers without a degree from a recognized institution where English is the language of instruction.",
       "quote": "For graduate applicants whose mother tongue is not English, and who have not completed an undergraduate or graduate degree from a recognized Canadian or American (English or French) institution or from a recognized foreign institution where English is the language of instruction, documented proof of English proficiency is required prior to admission.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: non-native English speakers (quote says mother tongue not English); omits Canadian/American institution detail",
+      "summary_sha": "6b321d94d12f2acc"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Mathematics and Statistics",
@@ -666,23 +798,31 @@
     "academic": {
      "text": "A Canadian honours degree or its equivalent, with high Standing, in mathematics or a closely related discipline (for applicants concentrating in statistics or applied mathematics).",
      "quote": "The normal entrance requirement for the master's programs is a Canadian honours degree or its equivalent, with high Standing, in mathematics or a closely related discipline in the case of applicants intending to concentrate in statistics or applied mathematics.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c31c64f4bc146e61"
     },
     "prerequisites": [
      {
       "text": "For pure mathematics: a strong background in linear algebra, abstract algebra, and real and complex analysis.",
       "quote": "Applicants wishing to concentrate in pure mathematics should have a strong background in linear algebra, abstract algebra, and real and complex analysis.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f5ec9ec3fa058f12"
      },
      {
       "text": "For statistics: a strong background in linear algebra and basic real analysis; a calculus-based course in probability and one in statistics are required, plus some knowledge of computer programming.",
       "quote": "Applicants wishing to concentrate in statistics should have a strong background in linear algebra and basic real analysis. A calculus-based course in probability and one in statistics are required, as well as some knowledge of computer programming.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "0289f34cd8148158"
      },
      {
       "text": "For applied mathematics: a strong background in most areas of linear algebra, analysis, differential equations, discrete mathematics, and numerical analysis.",
       "quote": "Applicants wishing to concentrate in applied mathematics should have a strong background in most of the areas of linear algebra, analysis, differential equations, discrete mathematics, and numerical analysis.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "1ddc5bf460093504"
      }
     ]
    },
@@ -699,32 +839,42 @@
     "toefl": {
      "text": "Documented proof of competency in oral and written English (TOEFL score) is required unless the applicant's mother tongue is English or they completed a degree at a recognized institution where English is the language of instruction.",
      "quote": "Applicants to graduate studies whose mother tongue is not English, and who have not completed an undergraduate or graduate degree from a recognized foreign institution where English is the language of instruction or from a recognized Canadian institution (anglophone or francophone), must submit documented proof of competency in oral and written English (TOEFL score).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: unless mother tongue is English; degree at recognized institution (quote says mother tongue not English and no degree from English-language institution)",
+     "summary_sha": "2f161c62648128d8"
     },
     "academic": {
      "text": "Ph.D. 1 is a direct-entry program for students with an Honours B.A. degree in Philosophy or the equivalent.",
      "quote": "Ph.D. 1 is a direct-entry program for students with an Honours B.A. degree in Philosophy or the equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "95d331ef6c3100da"
     },
     "prerequisites": [
      {
       "text": "Adequate undergraduate training in philosophy, including general knowledge of the history of Western philosophy (Greek, Medieval, Modern).",
       "quote": "a general knowledge of the history of Western philosophy: Greek, Medieval, Modern;",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Adequate undergraduate training in philosophy",
+      "summary_sha": "6d8a8f4ad948090d"
      },
      {
       "text": "Systematic knowledge of the main philosophical disciplines: logic, ethics, epistemology, and metaphysics.",
       "quote": "a systematic knowledge of the main philosophical disciplines in their contemporary as well as historical contexts: logic, ethics, epistemology, and metaphysics;",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "58a2d366561edece"
      },
      {
       "text": "Ability to present clear and substantial written reconstructions and analyses of the materials studied in those areas.",
       "quote": "an ability to present, in written form, clear and substantial reconstructions and analyses of the materials normally studied in the areas mentioned in (1) and (2).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "5be5e0cae3451b20"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Political Science",
@@ -737,18 +887,24 @@
     "ielts": {
      "overall": 6.5,
      "quote": "The IELTS (International English Language Testing Systems) with a minimum overall band of 6.5 is also acceptable.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "e7ac5c159d939b90"
     },
     "academic": {
      "text": "Applicants must already hold an undergraduate academic degree in political science or a closely related field.",
      "quote": "The Graduate Admissions Committee only considers applications from those who already have an undergraduate academic degree in political science or a closely related field (e.g., international studies, sociology, philosophy for prospective political theorists, etc.).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "70c8a7e2b4632ab3"
     },
     "prerequisites": [
      {
       "text": "Applicants whose mother tongue is not English and who have not completed a degree where English is the language of instruction must submit TOEFL scores.",
       "quote": "Applicants to graduate studies whose mother tongue is not English, and who have not completed an undergraduate or graduate degree from a recognized foreign institution where English is the language of instruction or from a recognized Canadian/American institution (anglophone or francophone), must submit TOEFL scores.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "64e63cc29cf7713d"
      }
     ]
    },
@@ -765,32 +921,42 @@
     "academic": {
      "text": "An Honours or Major degree (B.A. or B.Sc.) in Psychology is the usual requirement for admission.",
      "quote": "The usual requirement for admission is an Honours or Major degree (B.A. or B.Sc.) in Psychology.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0d7364737d8f6480"
     },
     "prerequisites": [
      {
       "text": "An introductory psychology course plus twelve psychology courses, each equivalent to three term hours.",
       "quote": "This usually includes an introductory course plus twelve courses in psychology (each equivalent to three term hours).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "c293ebd1209cdbe6"
      },
      {
       "text": "Courses in experimental psychology, the theoretical development of modern ideas in psychology, and statistical methods applied to psychological problems (equivalent to an introductory course) are essential.",
       "quote": "Courses in experimental psychology, the theoretical development of modern ideas in psychology, and statistical methods as applied to psychological problems (equivalent to an introductory course) are essential.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "79ec84e8224e992a"
      },
      {
       "text": "Applicants to the clinical program are advised to complete 42 specific undergraduate psychology credits specified by the Order of Psychologists of Quebec.",
       "quote": "Students applying to the clinical program are advised to complete 42 specific undergraduate credits in psychology as specified by the Order of Psychologists of Quebec (Ordre des psychologues du Québec).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "eff2d28e7c57194e"
      },
      {
       "text": "Documented proof of English proficiency is required for applicants whose mother tongue is not English and who have not completed a degree at a recognized institution where English is the language of instruction.",
       "quote": "For graduate applicants whose mother tongue is not English, and who have not completed an undergraduate or graduate degree from a recognized Canadian or American (English or French) institution or from a recognized foreign institution where English is the language of instruction, documented proof of English proficiency is required prior to admission.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: omits Canadian/American degree condition; says 'a degree' where quote requires undergraduate or graduate degree from recognized Canadian or American institution",
+      "summary_sha": "b85c9e90e38b688c"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Public Policy",
@@ -804,28 +970,38 @@
      "overall": 7.0,
      "min_band": 7.0,
      "quote": "A minimum overall band score of 7.0 is required, with each component score not less than 7.0.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ff5ffa6dea452269"
     },
     "toefl": {
      "text": "Minimum score of 5 on the Internet-based test (iBT) with each component score not less than 4.",
      "quote": "A minimum score of 5 for the Internet-based test (iBT) with each component score not less than 4 is required.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "3449cbaeadd08231"
     },
     "academic": {
      "text": "A bachelor's degree (or equivalent as recognized by McGill University) is required.",
      "quote": "A bachelor's degree (or equivalent as recognized by McGill University) is required.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "46197e1ba42b2544"
     },
     "prerequisites": [
      {
       "text": "Undergraduate courses in Political Science, Economics, Quantitative Methods, and Statistics (ideal applicant).",
       "quote": "The ideal applicant will have completed undergraduate courses in Political Science, Economics, Quantitative Methods, and Statistics.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "ef7a0966c49c884c"
      },
      {
       "text": "Ideally two to five years of professional experience.",
       "quote": "The Master of Public Policy (M.P.P.) program is directed at early career professionals—ideally with two to five years of professional experience—who are interested in developing expertise in the field of public policy.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "d106d6c60c22387b"
      }
     ]
    },
@@ -852,22 +1028,28 @@
     "academic": {
      "text": "A B.A. with a Major or Honours in Religious Studies, a Bachelor of Theology (B.Th.), or a Master of Divinity (M.Div.), normally with a minimum CGPA of 3.3/4.0 (B+).",
      "quote": "Applicants must possess a B.A. with a Major or Honours in Religious Studies or a Bachelor of Theology (B.Th.), or a Master of Divinity (M.Div.) degree, normally with a minimum CGPA of 3.3/4.0 (B+) from an accredited university or college.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "467c483c8fc96136"
     },
     "prerequisites": [
      {
       "text": "M.A. students must give their area committee evidence of reading knowledge of a scholarly language other than English.",
       "quote": "Students are required to give their area committee evidence of reading knowledge of a scholarly language other than English.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: M.A. students (quote does not name the program/audience)",
+      "summary_sha": "6938caa5e1f65eb9"
      },
      {
       "text": "Applicants with fewer than 30 appropriate credits in Religious Studies or Theology are normally required to complete a Qualifying program before entering the M.A.",
       "quote": "Applicants with fewer than 30 appropriate credits in Religious Studies or Theology are normally required to complete a Qualifying program before entering the M.A.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "9172be888f9fad5e"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Social Studies of Medicine",
@@ -880,7 +1062,9 @@
     "academic": {
      "text": "For the M.A. in Medical Anthropology, the program is open to students with backgrounds in the social sciences, medical professions, or medical sciences.",
      "quote": "The program is open to students with backgrounds in the social sciences, medical professions, or medical sciences.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d24488ce62fadd03"
     }
    },
    "status": "机器核对"
@@ -896,42 +1080,56 @@
     "academic": {
      "text": "A DCS/DEC from CEGEP plus a minimum 90-credit (three-year) university degree, or a high school diploma plus a minimum 120-credit (four-year) university degree, with a minimum high B average (GPA 3.2/4.0), for the Qualifying Year.",
      "quote": "Applicants who have completed a DCS/DEC from CEGEP plus a minimum  90-credit (three-year) university degree, or a high school diploma plus a minimum 120-credit (four-year) university degree before entry into the Qualifying Year, with a minimum high B average (GPA 3.2/4.0)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d16fcc2b7f931056"
     },
     "prerequisites": [
      {
       "text": "University-level coursework in Statistics and Human Development Across the Lifespan completed by August 15 for a September start (Qualifying Year).",
       "quote": "who have completed university-level coursework in Statistics and Human Development Across the Lifespan by August 15 for a September start date, are admissible to the Qualifying Year of study for admission to the M.S.W (Non-Thesis) program",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "a051bb98e895e0fa"
      },
      {
       "text": "One year of paid or volunteer professional social work experience before admission (Qualifying Year).",
       "quote": "Applicants are also expected to have one year of paid or volunteer professional social work experience before admission.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "064e22adcccde889"
      },
      {
       "text": "University-level coursework in Statistics and in Human Development Across the Lifespan completed by August 15 for a September start (M.S.W.).",
       "quote": "who have completed university-level coursework in Statistics and in Human Development Across the Lifespan by August 15 for a September start date, are admissible to the Master of Social Work program",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "209eae77effd1daf"
      },
      {
       "text": "One year of paid or volunteer professional social work experience before admission (M.S.W.).",
       "quote": "Applicants are also expected to have one year of paid or volunteer professional social work experience before admission.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "dcd8edd12258a429"
      },
      {
       "text": "University-level coursework in statistics and in research methods completed within the last five years (Ph.D.).",
       "quote": "All applicants must also have completed, at the university level, coursework in statistics and in research methods within the last five years.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "da4c29621790d4a1"
      },
      {
       "text": "Working knowledge of French, expected to be functional in French (comprehension, spoken, and written) for the field placement component of the Qualifying Year and the M.S.W. (Non-Thesis) program.",
       "quote": "Students are expected to be functional in French (comprehension, spoken, and written) for the field placement component of the Qualifying Year and the M.S.W. (Non-Thesis) program.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: working knowledge of French",
+      "summary_sha": "187640177a728cae"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Sociology",
@@ -944,18 +1142,24 @@
     "academic": {
      "text": "A bachelor's degree with a standing equivalent to a cumulative GPA of 3.3/4.0, in sociology or another relevant social science.",
      "quote": "Applicants—whether for an M.A. or Ph.D. program—should ideally have a bachelor's degree with a Standing equivalent to a cumulative grade point average (CGPA) of 3.3/4.0. The degree may be in sociology or another relevant social science.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "9251649475feb270"
     },
     "prerequisites": [
      {
       "text": "Undergraduate courses in statistics, research methods, and sociological theory.",
       "quote": "Applicants are expected to have taken courses in statistics, research methods, and sociological theory at the undergraduate level.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "44cd3b661f3e9c4a"
      },
      {
       "text": "Proof of English language proficiency for applicants whose mother tongue is not English and who have not completed a degree at a recognized English-language institution.",
       "quote": "Applicants whose mother tongue is not English and who have not completed a degree at a recognized institution where English is the primary language of instruction are required to provide proof of English language proficiency.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "c8f29cfacb37a699"
      }
     ]
    },
@@ -984,52 +1188,70 @@
      "overall": 7.0,
      "min_band": 7.0,
      "quote": "IELTS with a minimum overall band of 7.0 with a minimum writing score of 7.0; or",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: no section below 7",
+     "summary_sha": "285045f530386d16"
     },
     "toefl": {
      "text": "TOEFL iBT minimum overall band of 4.5 with a minimum score of 4 each for Writing and Speaking and a minimum of 20 each for Reading and Listening.",
      "quote": "TOEFL iBT (Internet-based test) – minimum overall band of 4.5 with a minimum score of 4 each for the Writing and Speaking sections and a minimum of 20 each for the Reading and Listening sections.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "55d3987dedad89fe"
     },
     "academic": {
      "text": "Applicants to the Certificate and M.A. programs must hold a bachelor's degree from a recognized university, with a minimum standing equivalent to a CGPA of 3.0/4.0 (or 3.2/4.0 for the last two full-time academic years).",
      "quote": "Applicants to the Certificate and M.A. programs must hold a bachelor's degree from a recognized university. A minimum Standing equivalent to a CGPA of 3.0/4.0, or 3.2/4.0 for the last two full-time academic years, is required.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "317ad2db90fb59e7"
     },
     "prerequisites": [
      {
       "text": "A concentration of courses related to the area chosen for graduate work is usually required.",
       "quote": "A concentration of courses related to the area chosen for graduate work is usually required (see #5 below).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "fa6bd2cc02d9aa3c"
      },
      {
       "text": "For the M.A. in Second Language Education: normally a minimum of 36 credits including a combination of relevant courses in education and language studies, and at least two years of relevant professional experience in education.",
       "quote": "Master of Arts in Second Language Education — Normally, applicants are required to have a minimum of 36 credits including a combination of relevant courses in education and language studies. Applicants are required to have at least two years of relevant professional experience in education.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "3c43eee49bb335e0"
      },
      {
       "text": "For the M.A. in Educational Leadership: normally at least two years of relevant leadership experience (teaching or related professional experience).",
       "quote": "Master of Arts in Educational Leadership — Normally, applicants are required to have at least two years of relevant leadership experience (teaching or related professional experience).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "39ac0d6094df62f6"
      },
      {
       "text": "For the Graduate Certificates in Educational Leadership 1 and 2: normally at least two years of relevant educational experience.",
       "quote": "Graduate Certificates in Educational Leadership 1 and 2 — Normally, applicants are required to have at least two years of relevant educational experience (in leadership roles or related professional experience).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "efa1c97e1d784bf5"
      },
      {
       "text": "For the MATL (Non-Thesis): experience in educational settings (formal or informal).",
       "quote": "Applicants are required to have experience in educational settings (formal or informal).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "0497a36cd2d7d02e"
      },
      {
       "text": "For the MATL TESL option: functional proficiency in French is also required.",
       "quote": "Functional proficiency in French is also required.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "d938a4547a0e56d3"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Kinesiology and Physical Education",
@@ -1042,7 +1264,9 @@
     "academic": {
      "text": "An undergraduate degree in Physical and Health Education, Exercise Science, Kinesiology, or its equivalent is required.",
      "quote": "An undergraduate degree in Physical and Health Education, Exercise Science, Kinesiology, or its equivalent is required.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "e18b10d8019f9631"
     }
    },
    "status": "机器核对"
@@ -1058,17 +1282,21 @@
     "academic": {
      "text": "Applicants holding the McGill B.Sc.(Arch.) degree, or equivalent, with a CGPA of at least 3.0 on a scale of 4.0, are eligible for the Professional M.Arch. (Non-Thesis).",
      "quote": "Applicants holding the McGill B.Sc.(Arch.) degree, or equivalent, with a cumulative grade point average (CGPA) of at least 3.0 on a scale of 4.0, are eligible to apply for admission.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: eligible for the Professional M.Arch. (Non-Thesis) (quote only says eligible to apply for admission)",
+     "summary_sha": "3d00346bc7785baf"
     },
     "prerequisites": [
      {
       "text": "A working knowledge of a language or languages relevant to the area of research is required (Ph.D.).",
       "quote": "A working knowledge of a language or languages relevant to the area of research is required.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "a3036b305d612ad9"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Chemical Engineering",
@@ -1081,22 +1309,28 @@
     "ielts": {
      "overall": 7.0,
      "quote": "or a minimum IELTS (International English Language Testing System) band score of 7 in order to apply",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "2954608cffd8bf5e"
     },
     "academic": {
      "text": "A bachelor's degree (or equivalent) in engineering or science disciplines is required for the M.Sc. (Thesis) and M.Eng. (Non-Thesis).",
      "quote": "Admission requires a bachelor's degree (or equivalent) in engineering or science disciplines.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: for the M.Sc. (Thesis) and M.Eng. (Non-Thesis)",
+     "summary_sha": "4f1f076667e6cfc3"
     },
     "prerequisites": [
      {
       "text": "Ph.D. applicants must submit two letters of recommendation, one from their master's research supervisor.",
       "quote": "Reference Letter – Ph.D. applicants must submit two letters of recommendation, one of which should be from their master's research supervisor.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: one from their master's research supervisor (quote says 'should be')",
+      "summary_sha": "b7829c312fb28f57"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Civil Engineering",
@@ -1110,22 +1344,28 @@
      "text": "Minimum band score of 7 required to apply.",
      "overall": 7.0,
      "quote": "the IELTS (International English Language Testing System); Applicants must achieve a minimum band score of 7 in order to apply.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 7",
+     "summary_sha": "36475bb63db58547"
     },
     "academic": {
      "text": "A cumulative grade point average (CGPA) of 3.0–4.0 in a recognized program.",
      "quote": "The minimum academic standard for admission is a cumulative grade point average (CGPA) of 3.0–4.0 in a recognized program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "e173e0db603718ae"
     },
     "prerequisites": [
      {
       "text": "Candidates must possess a bachelor's degree in engineering (M.Eng. Non-Thesis).",
       "quote": "Candidates must possess a bachelor's degree in engineering.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: M.Eng. Non-Thesis",
+      "summary_sha": "19e84ecd89e56ca4"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Electrical and Computer Engineering",
@@ -1138,17 +1378,21 @@
     "academic": {
      "text": "A bachelor's degree or equivalent, as determined by McGill, in Electrical, Computer, or Software Engineering or a closely related field, from a recognized university, with high academic achievement (CGPA 3.0/4.0, or 3.2/4.0 for the last two full-time years).",
      "quote": "The applicant must be the graduate of a recognized university and hold a bachelor's degree or its equivalent, as determined by McGill, in Electrical, Computer, or Software Engineering or a closely related field.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: high academic achievement (CGPA 3.0/4.0, or 3.2/4.0 for the last two full-time years)",
+     "summary_sha": "e1ad1e1d76924640"
     },
     "prerequisites": [
      {
       "text": "Documented proof of competency in English for applicants whose mother tongue is not English and who have not completed a degree where English is the language of instruction.",
       "quote": "Applicants to graduate studies whose mother tongue is not English, and who have not completed an undergraduate or graduate degree from a recognized foreign institution where English is the language of instruction or from a recognized Canadian institution (anglophone or francophone), must submit documented proof of competency in English.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "016fb4a303f36a44"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Mechanical Engineering",
@@ -1161,22 +1405,28 @@
     "ielts": {
      "overall": 7.0,
      "quote": "or a minimum overall band of 7.0 on the IELTS test",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a568d200e4a6d20d"
     },
     "academic": {
      "text": "M.Sc. (Thesis) applicants must hold an undergraduate degree (or equivalent) in Engineering or a degree in Physical, Math, or Computer Sciences.",
      "quote": "Applicants to the M.Sc. (Thesis) program must hold an undergraduate degree (or equivalent) in Engineering or a degree in Physical, Math, or Computer Sciences.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "54300df4f32683de"
     },
     "prerequisites": [
      {
       "text": "Applicants to the M.Eng. (Aerospace) program must be proficient in French.",
       "quote": "Applicants must be proficient in French.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Applicants to the M.Eng. (Aerospace) program",
+      "summary_sha": "4757de157ef3f1b4"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Mining and Materials Engineering",
@@ -1189,13 +1439,17 @@
     "academic": {
      "text": "Graduates with suitable Academic Standing in any branch of engineering or science may enter the Graduate Diploma in Mining Engineering.",
      "quote": "The Graduate Diploma in Mining Engineering is open to graduates with suitable Academic Standing in any branch of engineering or science.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "016dff2aca89743c"
     },
     "prerequisites": [
      {
       "text": "The Master of Engineering (Project) (Mining option) is designed for graduates who have received adequate academic training in modern mining technology, mineral economics, computer programming, and probabilities and statistics; those without it must complete a Qualifying term.",
       "quote": "The Master of Engineering (Project) (Mining option) is primarily designed for graduates from mining engineering programs who have received adequate academic training in modern mining technology, mineral economics, computer programming, and probabilities and statistics. Students without this academic training must complete a Qualifying term.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "712ee113925be4b7"
      }
     ]
    },
@@ -1213,12 +1467,16 @@
      "overall": 7.0,
      "min_band": 6.5,
      "quote": "The minimum score for the IELTS test is 7.0, with a score of at least 6.5 for each component.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "4ba8060a95bc2495"
     },
     "toefl": {
      "text": "Minimum TOEFL score of 5 on the Internet-based test (iBT), with each component score not less than 4.",
      "quote": "The minimum requirement for the TOEFL is a score of 5 on the Internet-based test (iBT), with each component score not less than 4.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "656aad275c4586b8"
     }
    },
    "status": "机器核对"
@@ -1234,13 +1492,17 @@
     "academic": {
      "text": "Admissibility is based on the applicant's academic experience and performance, and on the availability of a potential Bieler School-accredited supervisor or co-supervisor for the proposed research.",
      "quote": "Their admissibility will be based on their academic experience and performance, and the availability of a potential Bieler School-accredited supervisor or co-supervisor for their proposed research.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "65e82b1188ff13a5"
     },
     "prerequisites": [
      {
       "text": "A supervisor or co-supervisor must be affiliated with the Bieler School (signed option supervisory form).",
       "quote": "Signed option supervisory form (a supervisor or co-supervisor must be affiliated with the Bieler School)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "32cd55a110947918"
      }
     ]
    },
@@ -1267,13 +1529,17 @@
     "academic": {
      "text": "A bachelor's degree, or its equivalent, from a recognized institution in a field related to the subject selected for graduate work, with an adequate background in basic sciences.",
      "quote": "Applicants must hold a bachelor's degree, or its equivalent, from a recognized institution in a field related to the subject selected for graduate work, and must display an adequate background in basic sciences.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "66244edd9e06dc36"
     },
     "prerequisites": [
      {
       "text": "Adequate background in basic sciences.",
       "quote": "must display an adequate background in basic sciences",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "7f62966ee8da5e65"
      }
     ]
    },
@@ -1290,17 +1556,21 @@
     "academic": {
      "text": "Applicants are expected to hold an undergraduate degree in biology, chemistry, physiology, genetics, engineering, computer science, mathematics, statistics, physics, or chemistry (or equivalent).",
      "quote": "Applicants are expected to hold an undergraduate degree in one of the following areas (or equivalent): biology, chemistry, physiology, genetics, engineering, computer science, mathematics, statistics, physics, or chemistry.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "cf006548edb58bc3"
     },
     "prerequisites": [
      {
       "text": "English language proficiency: applicants whose mother tongue is not English and who have not completed a degree where English is the language of instruction must submit TOEFL results.",
       "quote": "Applicants to graduate studies whose mother tongue is not English, and who have not completed an undergraduate or graduate degree from a recognized foreign institution where English is the language of instruction or from a recognized Canadian institution (anglophone or francophone), must submit results of the TOEFL exam with their application",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: completed a degree where English is the language of instruction (omits undergraduate/graduate and recognized institution)",
+      "summary_sha": "a925a07865445080"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Law",
@@ -1313,13 +1583,17 @@
     "academic": {
      "text": "A bachelor's degree (or equivalent) in Law, such as an LL.B. or J.D., with a minimum CGPA of 3.0/4.0 (or equivalent).",
      "quote": "Candidates for admission to the master's programs must hold a bachelor's degree (or equivalent) in Law (such as LL.B. or J.D.), with a minimum cumulative grade point average (CGPA) of 3.0/4.0 (or equivalent).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d5e21fdb2eed6d90"
     },
     "prerequisites": [
      {
       "text": "Documented proof of English proficiency for applicants whose mother tongue is not English and who have not completed a degree at a recognized institution where English is the language of instruction.",
       "quote": "For graduate applicants whose mother tongue is not English, and who have not completed an undergraduate or graduate degree from a recognized Canadian or American (English or French) institution or from a recognized foreign institution where English is the language of instruction, documented proof of English proficiency is required prior to admission.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "9cf2f4ad2d48d6fd"
      }
     ]
    },
@@ -1336,18 +1610,24 @@
     "ielts": {
      "overall": 7.0,
      "quote": "A minimum score of 7 is required for IELTS.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "af34b513fb462035"
     },
     "academic": {
      "text": "Candidates normally hold a master's-level degree with a strong academic record from a recognized university.",
      "quote": "Candidates normally hold a master's-level degree, with a strong academic record from a recognized university.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b02e159c85c534ea"
     },
     "prerequisites": [
      {
       "text": "Documented proof of competency in oral and written English for applicants whose mother tongue is not English and who have not completed a degree where English is the language of instruction.",
       "quote": "Applicants to graduate studies whose mother tongue is not English, and who have not completed an undergraduate or graduate degree from a recognized foreign institution where English is the language of instruction or from a recognized Canadian institution (anglophone or francophone), must submit documented proof of competency in oral and written English.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "1807993acd934049"
      }
     ]
    },
@@ -1364,22 +1644,28 @@
     "ielts": {
      "overall": 7.0,
      "quote": "the International English Language Testing System (IELTS) with a minimum overall band score of 7.0.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "2b8ba23ac3d7a2df"
     },
     "academic": {
      "text": "An undergraduate degree with a minimum B average (3.0 on a 4.0 scale).",
      "quote": "McGill University Graduate and Postdoctoral Studies requires that applicants to graduate programs hold an undergraduate degree with a minimum B average (3.0 on a 4.0 point scale) or better.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "9098666530c1690c"
     },
     "prerequisites": [
      {
       "text": "For the M.Sc. (Applied), 21 credits of prerequisite coursework, including 3 credits in statistics.",
       "quote": "There are 21 credits of prerequisite coursework, including 3 credits in statistics, and a total of 18 credits across the disciplines of linguistics and psychology or related areas (with a minimum of 6 credits each in linguistics and psychology).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: For the M.Sc. (Applied)",
+      "summary_sha": "bb0e69315dc6db29"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Medical Physics",
@@ -1392,18 +1678,24 @@
     "academic": {
      "text": "Applicants to the Graduate Diploma must hold a Ph.D. degree and also a B.Sc. in Physics, Physics Major, or related Physics-oriented science.",
      "quote": "Candidates applying to the Graduate Diploma must hold a Ph.D. degree and also a B.Sc. in Physics, Physics Major, or related Physics-oriented science.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "4119a57bc97524fb"
     },
     "prerequisites": [
      {
       "text": "A Ph.D. degree",
       "quote": "Candidates applying to the Graduate Diploma must hold a Ph.D. degree",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f5fa597f314e702e"
      },
      {
       "text": "A B.Sc. in Physics, Physics Major, or related Physics-oriented science",
       "quote": "and also a B.Sc. in Physics, Physics Major, or related Physics-oriented science.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "0afb02813b194540"
      }
     ]
    },
@@ -1420,23 +1712,31 @@
     "academic": {
      "text": "A bachelor's degree or its equivalent, typically with a Major in music including considerable work in the area of specialization.",
      "quote": "Applicants for the master's degree must hold a bachelor's degree or its equivalent (as determined by McGill University), typically with a Major in music, including considerable work done in the area of specialization.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "95ebe93be00fe193"
     },
     "prerequisites": [
      {
       "text": "Placement examinations for all applicants except Performance, Musicology and Sound Recording.",
       "quote": "All applicants (except those for Performance, Musicology, and Sound Recording) will be required to take placement examinations.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "111007a6ed6e20dd"
      },
      {
       "text": "M.Mus. Performance applicants must pass an audition (live or recorded).",
       "quote": "All M.Mus. Performance applicants are required to pass an audition. Applicants can attend a live audition or submit recorded material.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "b646498c80ffff02"
      },
      {
       "text": "Conducting and jazz applicants choosing the live audition must submit screening material for pre-selection.",
       "quote": "Conducting and jazz applicants who apply for the live audition option must submit screening material for pre-selection.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "ea1e1f58e34838d6"
      }
     ]
    },
@@ -1453,57 +1753,77 @@
     "ielts": {
      "overall": 7.5,
      "quote": "IELTS: a minimum overall score of 7.5",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "329761ef41280900"
     },
     "academic": {
      "text": "Applicants to the master's degree must have completed a bachelor's degree in nursing with a minimum CGPA of 3.0/4.0, comparable to McGill's bachelor's in nursing programs including an Introductory Statistics course (3 credits).",
      "quote": "Applicants to the master's degree must have completed a bachelor's degree in nursing with a minimum CGPA of 3.0/4.0. This preparation must be comparable to that offered in the bachelor's in nursing programs at McGill, which includes an Introductory Statistics course (3 credits).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d897f0e01fd4a600"
     },
     "prerequisites": [
      {
       "text": "Introductory Statistics course (3 credits) as part of the nursing preparation.",
       "quote": "which includes an Introductory Statistics course (3 credits)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "eaafe2f88587ab3f"
      },
      {
       "text": "Current registration as a nurse in a Canadian province or in the United States.",
       "quote": "Nurse applicants are expected to hold current registration in their Canadian province or in the United States.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: required; quote says 'expected to hold'",
+      "summary_sha": "231b688e0de10fb2"
      },
      {
       "text": "Nurses not licensed in Quebec must be registered with the Ordre des infirmières et infirmiers du Québec upon the start of their graduate studies.",
       "quote": "Nurses who are not licensed in Quebec must be registered with the Ordre des infirmières et infirmiers du Québec upon the start of their graduate studies.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "e19def992bc5cace"
      },
      {
       "text": "Applicants whose nursing degree was completed outside Canada need at least one year of nursing experience in their country of origin plus one year in Canada.",
       "quote": "Nurse applicants whose previous nursing degree(s) was completed outside of Canada are required to have at least one year of experience as nurses in their country of origin, in addition to one year of experience as nurses in Canada.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "6d329f1bdb087d51"
      },
      {
       "text": "Proficiency in French, necessary for clinical settings and successful completion of the program.",
       "quote": "In the clinical settings where much of our program delivery takes place, the ability to communicate proficiently in French is necessary to effectively learn and safely work with and support patients, families, and healthcare teams. French is essential to the successful completion of this Nursing degree program.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f8b70903bd2711cc"
      },
      {
       "text": "Nurse Practitioner applicants need a minimum of 3,360 hours of nursing experience, including within the specialty.",
       "quote": "A minimum of 3,360 hours of experience in nursing, including within the specialty, is required.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Nurse Practitioner applicants (audience not stated)",
+      "summary_sha": "445b6fd3e185448b"
      },
      {
       "text": "International applicants licensed in another country must have worked as a registered nurse in the United States or Canada for at least one year.",
       "quote": "International applicants who have been licensed in another country must have worked as a registered nurse in the United States or Canada for at least one year, which will provide them with the necessary knowledge of the health care system required for advanced nursing studies.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f97aac7a40e7fcba"
      },
      {
       "text": "NP Program students must be proficient in French (oral and written comprehension, and oral and written expression).",
       "quote": "The NP Program requires that students be proficient in French (oral and written comprehension, and oral and written expression) in alignment with the OIIQ requirements for licensing in Quebec.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "2449c9cab5f0cda1"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Atmospheric and Oceanic Sciences",
@@ -1516,18 +1836,24 @@
     "academic": {
      "text": "A bachelor's degree with high Standing in atmospheric science, oceanic science, physics, mathematics, engineering, chemistry, or a similar field, plus the general requirements of Graduate and Postdoctoral Studies.",
      "quote": "Applicants to the M.Sc. program must meet the general requirements of Graduate and Postdoctoral Studies and hold a bachelor's degree with high Standing in atmospheric science, oceanic science, physics, mathematics, engineering, chemistry, or a similar field.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "4cfad0c6d2da8944"
     },
     "prerequisites": [
      {
       "text": "Documented proof of English proficiency, unless the applicant's mother tongue is English or they hold a degree from a recognized Canadian or American institution or a recognized institution where English is the language of instruction.",
       "quote": "For graduate applicants whose mother tongue is not English, and who have not completed an undergraduate or graduate degree from a recognized Canadian or American (English or French) institution or from a recognized foreign institution where English is the language of instruction, documented proof of English proficiency is required prior to admission.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "c7ef666cd00c56dd"
      },
      {
       "text": "Acceptance by a research supervisor (required for the Ph.D. program).",
       "quote": "Acceptance by a research supervisor – required for the Ph.D. program",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "7023e3f9ed83120f"
      }
     ]
    },
@@ -1544,27 +1870,35 @@
     "ielts": {
      "overall": 6.5,
      "quote": "A score of 4.5 on the TOEFL Internet-based test (iBT) with each component score not less than 4, or 6.5 on IELTS is the minimum standard for admission.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 6.5 (quote gives 6.5 on IELTS, no overall/component breakdown)",
+     "summary_sha": "208734664128ee23"
     },
     "academic": {
      "text": "A minimum CGPA of 3.0/4.0, or a GPA of 3.2/4.0 in the last two years of full-time studies.",
      "quote": "The minimum cumulative grade point average (CGPA) is 3.0/4.0, or a grade point average (GPA) of 3.2/4.0 in the last two years of full-time studies.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "90e677c122c2d721"
     },
     "prerequisites": [
      {
       "text": "A strong background in the biological sciences.",
       "quote": "Prospective Biology graduate students will have a strong background in the biological sciences, often with specific strengths in their proposed area of study.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: stated as a prerequisite requirement; quote only describes prospective students",
+      "summary_sha": "4e6f8d2556c1be00"
      },
      {
       "text": "TOEFL required if mother tongue is not English and no degree from an English-language institution.",
       "quote": "The Test of English as a Foreign Language (TOEFL) is required of applicants to graduate studies whose mother tongue is not English, and who have not completed an undergraduate or graduate degree from a recognized foreign institution where English is the language of instruction or from a recognized Canadian institution (anglophone or francophone).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "1cb20a31c81f79ed"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Chemistry",
@@ -1577,7 +1911,9 @@
     "academic": {
      "text": "Normally a high Second-Class Standing (CGPA > 3.00) for the M.Sc. and Ph.D. programs.",
      "quote": "The minimum academic standard for admission to the M.Sc. and Ph.D degree programs is normally a high Second-Class Standing (CGPA > 3.00).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "55a8dab0dfabaff1"
     }
    },
    "status": "机器核对"
@@ -1593,13 +1929,17 @@
     "academic": {
      "text": "For the M.Sc.: a bachelor's degree with a cumulative GPA of 3.2/4.0 or better, or equivalent, with coursework in Computer Science and Mathematics as listed on the School's website.",
      "quote": "The minimum requirement for admission is a bachelor's degree (cumulative grade point average (CGPA) of 3.2/4.0 or better, or equivalent) with the coursework in Computer Science and Mathematics as listed on our School's website.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "3197e13906fc7136"
     },
     "prerequisites": [
      {
       "text": "Coursework in Computer Science and Mathematics as listed on the School's website.",
       "quote": "with the coursework in Computer Science and Mathematics as listed on our School's website",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "48947a80d391c525"
      }
     ]
    },
@@ -1616,17 +1956,21 @@
     "academic": {
      "text": "An academic background equivalent to a McGill graduate in Honours or Major programs in geology, geophysics, chemistry, biology, physics, engineering or a related degree, with a minimum CGPA of 3.0/4.0.",
      "quote": "Applicants should have an academic background equivalent to that of a McGill graduate in the Honours or Major programs in geology, geophysics, chemistry, biology, physics, engineering or a related degree (minimum CGPA of 3.0/4.0).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "6569c71f7db52234"
     },
     "prerequisites": [
      {
       "text": "Documented proof of English proficiency for applicants whose mother tongue is not English and who have not completed a degree at a recognized institution where English is the language of instruction.",
       "quote": "For graduate applicants whose mother tongue is not English, and who have not completed an undergraduate or graduate degree from a recognized Canadian or American (English or French) institution or from a recognized foreign institution where English is the language of instruction, documented proof of English proficiency is required prior to admission.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: omits Canadian/American institution and undergraduate/graduate degree specifics; says 'a degree' where quote requires undergraduate or graduate degree from recognized Canadian or American institution",
+      "summary_sha": "9cf2f4ad2d48d6fd"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Physics",
@@ -1639,32 +1983,40 @@
     "academic": {
      "text": "For the M.Sc., a background equivalent to McGill's Physics Major (B.Sc.) of 63 credits is normally required.",
      "quote": "We normally require a background that is equivalent to our Physics Major (B.Sc.) (63 credits).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: For the M.Sc.",
+     "summary_sha": "930ace79a5742af4"
     },
     "prerequisites": [
      {
       "text": "Two letters of reference.",
       "quote": "two letters of reference;",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "aca6da1ef343bd89"
      },
      {
       "text": "A Physics CV.",
       "quote": "Physics CV;",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "52fc5166b6296703"
      },
      {
       "text": "A personal statement.",
       "quote": "personal statement;",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "2bb24711e7f59b91"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   }
  ],
  "verification": {
   "programs": 59,
-  "机器核对": 56,
-  "待人工": 3
+  "机器核对": 28,
+  "待人工": 31
  }
 }

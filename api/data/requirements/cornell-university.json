@@ -39,20 +39,26 @@
     "academic": {
      "text": "Cumulative GPA of at least 2.70 (4.0 scale) and at least 2.50 in each of the three most recent terms; individual programs may set higher limits",
      "quote": "To be eligible to apply to the M.Eng. program, applicants must have a cumulative grade-point average of at least 2.70 and at least a 2.50 for each of the three most recent terms.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: individual programs may set higher limits",
+     "summary_sha": "ef5cbb81e3f56202"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "IELTS Minimum Requirements* Overall band score of at least 7.0",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "7c681b6d7d78a253"
     },
     "toefl": {
      "text": "Section minimums only, no overall score stated: Speaking 4.5, Reading 4.5, Listening 5.0, Writing 5.0 (new 1-6 scale; former scale 23/22/22/24)",
      "quote": "TOEFL iBT Minimum Requirements* Speaking: 4.5 or above (former scale: 23 or above) Reading: 4.5 or above (former scale: 22 or above) Listening: 5.0 or above (former scale: 22 or above) Writing: 5.0 or above (former scale: 24 or above)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "233be2b4fa466ca3"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "M.Eng. in Applied Engineering Physics",
@@ -63,7 +69,9 @@
      {
       "text": "No particular classes required; strong undergraduate background in math and physics preferred",
       "quote": "No particular classes are required, but a strong undergraduate background in Math and physics is preferred.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "8487ea984a6ba89b"
      }
     ]
    },
@@ -78,12 +86,16 @@
      {
       "text": "One college-level biology course",
       "quote": "One college-level biology course.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "1a51114f1a5fc3f4"
      },
      {
       "text": "Knowledge of anatomy, physiology, biology, biochemistry, calculus I-III, linear algebra, differential equations and statistics must be demonstrated during admission; unmet items can be made up after conditional admission",
       "quote": "Independent of the incoming student’s background, each student must demonstrate knowledge in anatomy, physiology, biology, biochemistry, calculus I, calculus II, calculus III, linear algebra, differential equations and statistics. Their qualification is done during the admission process and if there are any unmet requirements the student can be conditionally admitted and advised to fulfill the requirements by taking a series of suggested courses.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "ec5b1518eed091a7"
      }
     ]
    },
@@ -97,17 +109,21 @@
     "academic": {
      "text": "Minimum GPA of 2.7/4.0; a STEM degree is required",
      "quote": "Our M.Eng. program sets a minimum grade point average of 2.7/4.0 for admission. The admissions committee takes a holistic view of applications.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: a STEM degree is required",
+     "summary_sha": "8a33dd7c0581d958"
     },
     "prerequisites": [
      {
       "text": "A STEM degree is required; strong mathematics background highly recommended",
       "quote": "A STEM degree is required, and a strong mathematics background is highly recommended.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "9665ac2c4a74bd95"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "M.Eng. in Earth and Atmospheric Sciences",
@@ -118,11 +134,13 @@
      {
       "text": "No particular courses required; some calculus, physics, programming and statistics courses recommended",
       "quote": "No particular courses are required. The following courses are recommended: Calculus I–III, Linear Algebra, Differential Equations",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: physics, programming and statistics courses",
+      "summary_sha": "b7ffa5170e986607"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "M.Eng. in Materials Science and Engineering",
@@ -133,7 +151,9 @@
      {
       "text": "No particular classes required; strong undergraduate background in math and chemistry preferred",
       "quote": "No particular classes are required, but a strong undergraduate background in Math and Chemistry is preferred.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "430e8a49a1522ce3"
      }
     ]
    },
@@ -148,17 +168,23 @@
      {
       "text": "Engineering calculus sequence including linear algebra and vector calculus",
       "quote": "A standard engineering calculus sequence, including linear algebra (with eigenvalues and eigenvectors), and vector calculus, similar in content and rigor to Cornell courses MATH 1910, MATH 1920, and MATH 2940.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "e57e07db4320de86"
      },
      {
       "text": "Introductory engineering probability and statistics course",
       "quote": "An introductory engineering probability and statistics course similar in content and rigor to Cornell course ENGRD 2700.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "84b3b47f8163b262"
      },
      {
       "text": "Introductory and intermediate-level programming courses",
       "quote": "An introductory computer programming course similar to CS 1110, as well as an intermediate-level computer programming course in a general programming language such as C, C++, Java, or Python, similar in content and rigor to Cornell course ENGRD 2110. Courses that entail programming applications, but where programming is not the primary focus are not acceptable substitutes. Courses in statistical modeling languages, such as SAS, are not acceptable substitutes.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f3bcb7a26339c7e7"
      }
     ]
    },
@@ -172,18 +198,24 @@
     "academic": {
      "text": "Recommended minimum GPA 3.5/4.0",
      "quote": "Recommended Minimum GPA 3.5/4.0",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "5b966bcc9e7239a0"
     },
     "prerequisites": [
      {
       "text": "Introduction to Circuits (similar to ECE 2100)",
       "quote": "Introduction to Circuits similar to Cornell course ECE 2100.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "e83e321b83ee6c31"
      },
      {
       "text": "Digital Logic and Computer Organization (similar to ECE 2300)",
       "quote": "Digital Logic and Computer Organization similar to Cornell course ECE 2300.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "d77647237213bb38"
      }
     ]
    },
@@ -198,7 +230,9 @@
      {
       "text": "Calculus 1-3, differential equations, a probability and statistics course",
       "quote": "Calculus 1 Calculus 2 Calculus 3 Differential Equations A probability and statistics course",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "9358cb13ae557c39"
      }
     ]
    },
@@ -212,20 +246,26 @@
     "academic": {
      "text": "Bachelor's degree in computer science or a related technical field typically suffices, with demonstrated knowledge of the listed prerequisite subjects",
      "quote": "A bachelor's degree (BA / BS / BE) in computer science or a related technical field (e.g., electrical and computer engineering, information science, operations research) typically suffices. Applicants who have majored in these and other fields are absolutely encouraged to apply provided they have demonstrated knowledge of the following subjects:",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "f8e139e05218ad4c"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "IELTS: is also accepted as a test of English Language Proficiency. An overall band score of 7.0 or higher is required.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fb366730e266b027"
     },
     "toefl": {
      "text": "Section minimums only: Writing 4, Listening 3.5, Reading 4, Speaking 5.5 (as stated by the Graduate School)",
      "quote": "TOEFL: The Graduate School mandates that applicants meet the following minimum scores in order to be considered for admission: Writing (>=4), Listening (>=3.5), Reading (>=4), and Speaking (>=5.5).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: \"Section minimums only\" — quote gives no overall score and does not say only sections matter",
+     "summary_sha": "414e2a285eb473aa"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Cornell Tech Master of Engineering, full-time (Computer Science, Electrical and Computer Engineering, ORIE, Data Science and Decision Analytics)",
@@ -235,36 +275,48 @@
     "academic": {
      "text": "Proof of graduation from a bachelor's programme is required with the application",
      "quote": "you must provide all academic records or transcripts from each previously attended university and proof of graduation from a Bachelor’s program",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "2c1aca7e632905fd"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "If your first language is not English, you must submit a valid TOEFL score of minimum 100 or IELTS score of minimum 7.0 overall band",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "eee6b7f6fab3fba9"
     },
     "toefl": {
      "overall": 100,
      "quote": "If your first language is not English, you must submit a valid TOEFL score of minimum 100 or IELTS score of minimum 7.0 overall band",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fa7975802dd1641c"
     },
     "deadlines": [
      {
       "label": "Fall 2027 full-time, priority",
       "date": "2026-12-01",
       "quote": "Masters of Engineering Full-Time: Priority Deadline: Tuesday, December 1, 2026 at 5:00 PM EST",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "fe04808e0b459e7d"
      },
      {
       "label": "Fall 2027 full-time, round 2",
       "date": "2027-01-26",
       "quote": "Round 2 Deadline: Tuesday, January 26, 2027 at 5:00 PM EST",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "0080863da5557ff2"
      },
      {
       "label": "Fall 2027 full-time, rolling",
       "date": "2027-04-01",
       "quote": "Rolling Deadline: Thursday, April 1, 2027 at 5:00 PM EST",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "7e5a4f3f1aab4d84"
      }
     ]
    },
@@ -278,25 +330,33 @@
     "ielts": {
      "overall": 7.0,
      "quote": "If your first language is not English, you must submit a valid TOEFL score of minimum 100 or IELTS score of minimum 7.0 overall band",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "eee6b7f6fab3fba9"
     },
     "toefl": {
      "overall": 100,
      "quote": "If your first language is not English, you must submit a valid TOEFL score of minimum 100 or IELTS score of minimum 7.0 overall band",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fa7975802dd1641c"
     },
     "deadlines": [
      {
       "label": "Fall 2027 part-time, priority",
       "date": "2027-01-26",
       "quote": "Masters of Engineering in Computer Science Part-Time: Priority Deadline: Tuesday, January 26, 2027 at 5:00 PM EST",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "3f04c749178db837"
      },
      {
       "label": "Fall 2027 part-time, rolling",
       "date": "2027-04-01",
       "quote": "Masters of Engineering in Computer Science Part-Time: Priority Deadline: Tuesday, January 26, 2027 at 5:00 PM EST Rolling Deadline: Thursday, April 1, 2027 at 5:00PM EST",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "1851d1a7fed28849"
      }
     ]
    },
@@ -311,7 +371,9 @@
      {
       "text": "One course each in linear algebra, intermediate probability and statistics, calculus and programming before applying",
       "quote": "The technical requirements are that you have completed one course on linear algebra, one course on intermediate-level probability and statistics, one course on calculus, and one course on programming before applying.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "9da23afbd93ae48b"
      }
     ]
    },
@@ -326,7 +388,9 @@
      {
       "text": "One course each in linear algebra, intermediate probability and statistics, calculus and programming before applying",
       "quote": "The technical requirements are that you have completed one course on linear algebra, one course on intermediate-level probability and statistics, one course on calculus, and one course on programming before applying.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "9da23afbd93ae48b"
      }
     ]
    },
@@ -340,36 +404,48 @@
     "academic": {
      "text": "Proof of graduation from a bachelor's programme is required with the application",
      "quote": "you must provide all academic records or transcripts from each previously attended university and proof of graduation from a Bachelor’s program",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "2c1aca7e632905fd"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "If your first language is not English, you must submit a valid TOEFL score of minimum 100 or IELTS score of minimum 7.0 overall band",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "eee6b7f6fab3fba9"
     },
     "toefl": {
      "overall": 100,
      "quote": "If your first language is not English, you must submit a valid TOEFL score of minimum 100 or IELTS score of minimum 7.0 overall band",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fa7975802dd1641c"
     },
     "deadlines": [
      {
       "label": "Fall 2027 priority",
       "date": "2027-01-05",
       "quote": "Jacobs Technion-Cornell Dual M.S. Deadlines: Priority Deadline: Tuesday, January 5, 2027 at 5:00 PM EST",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "0dd60b7095d82f0c"
      },
      {
       "label": "Fall 2027 round 2",
       "date": "2027-02-02",
       "quote": "Round Deadline: Tuesday, February 2, 2027 at 5:00 PM EST",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "0023b477ffe044ca"
      },
      {
       "label": "Fall 2027 rolling",
       "date": "2027-04-01",
       "quote": "Rolling Deadline Thursday, April 1, 2027 at 5:00 PM EST",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "fd1244ae0f5e4fce"
      }
     ]
    },
@@ -383,37 +459,49 @@
     "ielts": {
      "overall": 7.0,
      "quote": "you must submit a valid TOEFL score of minimum 100 or IELTS score of minimum 7.0 overall band",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "24d04f3def69cabe"
     },
     "toefl": {
      "overall": 100,
      "quote": "you must submit a valid TOEFL score of minimum 100 or IELTS score of minimum 7.0 overall band",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "241428409446e642"
     },
     "deadlines": [
      {
       "label": "Fall 2027 full-time, priority",
       "date": "2026-12-07",
       "quote": "Master of Laws Full-Time: Priority: Monday, December 7, 2026 at 5:00 PM EST",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "9401e20a86d61559"
      },
      {
       "label": "Fall 2027 full-time, round 2",
       "date": "2027-02-01",
       "quote": "Round 2: Monday, February 1, 2027 at 5:00 PM EST (Deadline to submit for 3-semester applicants)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "37fb859bb2a8b8fe"
      },
      {
       "label": "Fall 2027 full-time, round 3",
       "date": "2027-03-15",
       "quote": "Round 3: Monday, March 15, 2027 at 5:00 PM EST",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "0b64caaab6c644d9"
      },
      {
       "label": "Fall 2027 full-time, rolling",
       "date": "2027-05-03",
       "quote": "Round 3: Monday, March 15, 2027 at 5:00 PM EST Rolling: Monday, May 3, 2027 at 5:00 PM EST",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "bdc92dafe81e68d0"
      }
     ]
    },
@@ -427,31 +515,41 @@
     "ielts": {
      "overall": 7.0,
      "quote": "If your first language is not English, you must submit a valid TOEFL score of minimum 100, IELTS score of minimum 7.0 overall band",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "e0a3024dafd2d2b5"
     },
     "toefl": {
      "overall": 100,
      "quote": "If your first language is not English, you must submit a valid TOEFL score of minimum 100, IELTS score of minimum 7.0 overall band",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "402cbc04ffa74d13"
     },
     "deadlines": [
      {
       "label": "Summer 2027 priority round",
       "date": "2026-10-08",
       "quote": "Priority Round: Thursday, October 8, 2026, at 11:59 AM EST",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "35ac1976dee6cb2c"
      },
      {
       "label": "Summer 2027 round 2",
       "date": "2027-01-07",
       "quote": "Round 2: Thursday, January 7, 2027, at 11:59 AM EST",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "3e7f185d14d3992b"
      },
      {
       "label": "Summer 2027 rolling admissions",
       "date": "2027-03-04",
       "quote": "Rolling Admissions: Thursday, March 4, 2027, at 11:59 AM EST",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "5f61543efd2c25c5"
      }
     ]
    },
@@ -465,20 +563,26 @@
     "academic": {
      "text": "Bachelor's degree from an accredited institution (non-US degrees need a recognised equivalent); no minimum GPA stated",
      "quote": "Applicants must hold a bachelor’s degree from an accredited institution. Submit unofficial transcripts from all colleges or universities attended. If admitted, you will be required to provide official transcripts for verification.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: non-US degrees need a recognised equivalent; no minimum GPA stated",
+     "summary_sha": "6f66249aaafebe85"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "IELTS Academic: An overall band score of at least 7.0",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a9d341dd205cfb46"
     },
     "toefl": {
      "text": "Section minimums only, no overall score stated. Exams before January 2026: Speaking 22, Reading 20, Listening 15, Writing 20. Interim for exams from January 2026: Speaking 4, Reading 4, Listening 3.5, Writing 4",
      "quote": "TOEFL iBT* Score requirements for exams taken before January 2026 Speaking: 22 or higher Reading: 20 or higher Listening: 15 or higher Writing: 20 or higher Interim score requirements for exams taken beginning January 2026 Speaking: 4 or higher Reading: 4 or higher Listening: 3.5 or higher Writing: 4 or higher",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ec6e2d077d4fed43"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Professional Studies in Applied Economics and Management (MPS-AEM)",
@@ -488,20 +592,26 @@
     "academic": {
      "text": "Bachelor's degree from an accredited institution (non-US degrees need a recognised equivalent); no minimum GPA stated",
      "quote": "Applicants must hold a bachelor’s degree from an accredited institution. Submit unofficial transcripts from all colleges or universities attended. If admitted, you will be required to provide official transcripts for verification.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: non-US degrees need a recognised equivalent; no minimum GPA stated",
+     "summary_sha": "6f66249aaafebe85"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "IELTS Academic: An overall band score of at least 7.0",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a9d341dd205cfb46"
     },
     "toefl": {
      "text": "Section minimums only, no overall score stated. Exams before January 2026: Speaking 22, Reading 20, Listening 15, Writing 20. Interim for exams from January 2026: Speaking 4, Reading 4, Listening 3.5, Writing 4",
      "quote": "TOEFL iBT* Score requirements for exams taken before January 2026 Speaking: 22 or higher Reading: 20 or higher Listening: 15 or higher Writing: 20 or higher Interim score requirements for exams taken beginning January 2026 Speaking: 4 or higher Reading: 4 or higher Listening: 3.5 or higher Writing: 4 or higher",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ec6e2d077d4fed43"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Professional Studies in Management",
@@ -511,20 +621,26 @@
     "academic": {
      "text": "Bachelor's degree from an accredited institution (non-US degrees need a recognised equivalent); no minimum GPA stated",
      "quote": "Applicants must hold a bachelor’s degree from an accredited institution. Submit unofficial transcripts from all colleges or universities attended. If admitted, you will be required to provide official transcripts for verification.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: non-US degrees need a recognised equivalent; no minimum GPA stated",
+     "summary_sha": "6f66249aaafebe85"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "IELTS Academic: An overall band score of at least 7.0",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a9d341dd205cfb46"
     },
     "toefl": {
      "text": "Section minimums only, no overall score stated. Exams before January 2026: Speaking 22, Reading 20, Listening 15, Writing 20. Interim for exams from January 2026: Speaking 4, Reading 4, Listening 3.5, Writing 4",
      "quote": "TOEFL iBT* Score requirements for exams taken before January 2026 Speaking: 22 or higher Reading: 20 or higher Listening: 15 or higher Writing: 20 or higher Interim score requirements for exams taken beginning January 2026 Speaking: 4 or higher Reading: 4 or higher Listening: 3.5 or higher Writing: 4 or higher",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ec6e2d077d4fed43"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Professional Studies in Management - Accounting Specialization",
@@ -534,27 +650,35 @@
     "academic": {
      "text": "Bachelor's degree from an accredited institution (non-US degrees need a recognised equivalent); no minimum GPA stated",
      "quote": "Applicants must hold a bachelor’s degree from an accredited institution. Submit unofficial transcripts from all colleges or universities attended. If admitted, you will be required to provide official transcripts for verification.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: non-US degrees need a recognised equivalent; no minimum GPA stated",
+     "summary_sha": "6f66249aaafebe85"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "IELTS Academic: An overall band score of at least 7.0",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a9d341dd205cfb46"
     },
     "toefl": {
      "text": "Section minimums only, no overall score stated. Exams before January 2026: Speaking 22, Reading 20, Listening 15, Writing 20. Interim for exams from January 2026: Speaking 4, Reading 4, Listening 3.5, Writing 4",
      "quote": "TOEFL iBT* Score requirements for exams taken before January 2026 Speaking: 22 or higher Reading: 20 or higher Listening: 15 or higher Writing: 20 or higher Interim score requirements for exams taken beginning January 2026 Speaking: 4 or higher Reading: 4 or higher Listening: 3.5 or higher Writing: 4 or higher",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ec6e2d077d4fed43"
     },
     "prerequisites": [
      {
       "text": "Business minor or equivalent (six business-related courses, 18 credits, including Financial Accounting, Finance, Economics, Marketing, Management and Statistics); Business Law and Intermediate Accounting I before matriculation",
       "quote": "Students interested in this specialization must possess, at a minimum, a business minor or its equivalent including six business-related courses (18 credits) that must include Financial Accounting, Finance, Economics, Marketing, Management and Statistics and complete an undergraduate degree involving 120 credits or more. Students must also take Business Law (3 credits) and Intermediate Accounting I (3 credits) before matriculation.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "409bcba19f77f215"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MPS-AEM + CEMS Master in International Management (dual degree)",
@@ -564,20 +688,26 @@
     "academic": {
      "text": "Bachelor's degree from an accredited institution (non-US degrees need a recognised equivalent); no minimum GPA stated",
      "quote": "Applicants must hold a bachelor’s degree from an accredited institution. Submit unofficial transcripts from all colleges or universities attended. If admitted, you will be required to provide official transcripts for verification.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: non-US degrees need a recognised equivalent; no minimum GPA stated",
+     "summary_sha": "6f66249aaafebe85"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "IELTS Academic: An overall band score of at least 7.0",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a9d341dd205cfb46"
     },
     "toefl": {
      "text": "Section minimums only, no overall score stated. Exams before January 2026: Speaking 22, Reading 20, Listening 15, Writing 20. Interim for exams from January 2026: Speaking 4, Reading 4, Listening 3.5, Writing 4",
      "quote": "TOEFL iBT* Score requirements for exams taken before January 2026 Speaking: 22 or higher Reading: 20 or higher Listening: 15 or higher Writing: 20 or higher Interim score requirements for exams taken beginning January 2026 Speaking: 4 or higher Reading: 4 or higher Listening: 3.5 or higher Writing: 4 or higher",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ec6e2d077d4fed43"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Business Analytics (MSBA)",
@@ -587,15 +717,19 @@
     "academic": {
      "text": "Bachelor's degree from an accredited college or university (or equivalent international degree)",
      "quote": "Successful applicants will have received a bachelor’s degree from an accredited college or university.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: or equivalent international degree",
+     "summary_sha": "1bc471895b01a4e6"
     },
     "toefl": {
      "text": "TOEFL, IELTS Academic or Duolingo accepted; applicants must meet the minimum sub-scores set by the Cornell Graduate School (not stated on this page); Duolingo minimum 130",
      "quote": "The MSBA program does not accept My Best Score reports for the TOEFL examination and requires applicants to meet the minimum sub-scores in speaking, reading, listening and writing set by the Cornell Graduate School.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: TOEFL, IELTS Academic or Duolingo accepted; Duolingo minimum 130",
+     "summary_sha": "9a58e8351b3b8224"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Cornell SC Johnson Two-Year MBA",
@@ -605,18 +739,24 @@
     "academic": {
      "text": "Bachelor's degree required for those accepted and enrolled",
      "quote": "Candidates who are accepted to and enrolled in the Cornell MBA program must hold a bachelor’s degree.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "1ed477aa7ffc2adb"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "7.0 band score IELTS with a minimum score of 7.0 in the speaking and writing modules",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "019ea1d56abd7330"
     },
     "toefl": {
      "overall": 100,
      "min_band": 25,
      "quote": "100 overall Internet-based TOEFL score with a minimum score of 25 in each section",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d5846936f1f04dcc"
     },
     "deadlines": [
      {
@@ -625,7 +765,9 @@
       "quote": "Round 1 September 17, 2026",
       "source_sha256": "bf63ba00f04e2f257e3724353bd0ca4ca7c7116542195c05a018cb68c35493bd",
       "source_url": "https://business.cornell.edu/admissions/graduate/mba/application-guide/important-dates/",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "783430b788e34767"
      },
      {
       "label": "Round 2",
@@ -633,7 +775,9 @@
       "quote": "Round 2 January 5, 2027",
       "source_sha256": "bf63ba00f04e2f257e3724353bd0ca4ca7c7116542195c05a018cb68c35493bd",
       "source_url": "https://business.cornell.edu/admissions/graduate/mba/application-guide/important-dates/",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "568fe24e611d6fdc"
      },
      {
       "label": "Round 3",
@@ -641,7 +785,9 @@
       "quote": "Round 3 April 6, 2027",
       "source_sha256": "bf63ba00f04e2f257e3724353bd0ca4ca7c7116542195c05a018cb68c35493bd",
       "source_url": "https://business.cornell.edu/admissions/graduate/mba/application-guide/important-dates/",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "95a78bb2c84dd7a9"
      }
     ]
    },
@@ -650,7 +796,7 @@
  ],
  "verification": {
   "programs": 24,
-  "机器核对": 24,
-  "待人工": 0
+  "机器核对": 14,
+  "待人工": 10
  }
 }

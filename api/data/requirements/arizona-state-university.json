@@ -204,7 +204,9 @@
     "academic": {
      "text": "minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "292cd7917b13d6e2"
     },
     "toefl": {
      "overall": 80,
@@ -212,29 +214,37 @@
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 without noting it applies only to exams before January 21, 2026",
+     "summary_sha": "2b321a8338a68677"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Overall band score on the academic test of at least 6.5.",
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fe5895dcaac71c08"
     },
     "prerequisites": [
      {
       "text": "Applicants must have a foundational knowledge of accounting principles demonstrated by either a bachelor's degree in accountancy or proficiency achieved through an approved bridge or boot camp.",
       "quote": "Applicants must have a foundational knowledge of accounting principles demonstrated by either a bachelor's degree in accountancy or proficiency achieved through an approved bridge or boot camp.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "045b9a4310b0c994"
      },
      {
       "text": "Applicants must complete program prerequisites before admission to the program. Graduate-level accounting courses are open only to students admitted to the graduate program.",
       "quote": "Applicants must complete program prerequisites before admission to the program. Graduate-level accounting courses are open only to students admitted to the graduate program.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "7b612f2a552f6f1c"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Actuarial Science, MS",
@@ -244,7 +254,9 @@
     "academic": {
      "text": "Applicants have earned a bachelor's degree (or equivalent) or master's degree from a regionally accredited college or university in a related field, such as mathematics, statistics, business, economics or predictive analytics; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's degree (or equivalent) or master's degree from a regionally accredited college or university in a related field, such as mathematics, statistics, business, economics or predictive analytics. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the master's degree GPA alternative; presents GPA as single requirement",
+     "summary_sha": "48aa39d440711cf5"
     },
     "toefl": {
      "overall": 80,
@@ -252,24 +264,30 @@
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: TOEFL iBT; overall 80 (quote gives 80 and 4 without naming iBT or overall)",
+     "summary_sha": "2b321a8338a68677"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Overall band score on the academic test of at least 6.5.",
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fe5895dcaac71c08"
     },
     "prerequisites": [
      {
       "text": "Applicants should have completed the following courses with a \"B\" or better (scale is 4.00 = \"A\"). ASU equivalents are given in parentheses. Courses may be substituted with approval of the academic unit:",
       "quote": "Applicants should have completed the following courses with a \"B\" or better (scale is 4.00 = \"A\"). ASU equivalents are given in parentheses. Courses may be substituted with approval of the academic unit:",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "9e7d3086efe8975c"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Aerospace Engineering, MS",
@@ -279,21 +297,27 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the alternative master's degree GPA route, presenting GPA 3.00 as required in the first bachelor's only",
+     "summary_sha": "133e6cd88714d104"
     },
     "toefl": {
      "overall": 80,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS, 60 on the Pearson Test of English (PTE), or 105 on the Duolingo English test.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote gives 4 on iBT, or 80 only if taken before January 21, 2026)",
+     "summary_sha": "99b7d41b3cf5f209"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS, 60 on the Pearson Test of English (PTE), or 105 on the Duolingo English test.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a42a1684c71f4598"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Artificial Intelligence Engineering (Aerospace Engineering), MS",
@@ -303,21 +327,27 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics or a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the alternative master's degree GPA option, presenting GPA 3.00 as only the first bachelor's requirement",
+     "summary_sha": "b146852737817930"
     },
     "toefl": {
      "overall": 80,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS, 60 on the Pearson Test of English (PTE), or 105 on the Duolingo English test.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote gives 4 on iBT, or 80 only if taken before Jan 21, 2026 at a testing center)",
+     "summary_sha": "99b7d41b3cf5f209"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS, 60 on the Pearson Test of English (PTE), or 105 on the Duolingo English test.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a42a1684c71f4598"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Artificial Intelligence Engineering (Chemical Engineering), MS",
@@ -327,21 +357,27 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics or a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = ''A'') in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = ''A'') in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the alternative master's degree GPA option, presenting GPA 3.00 as the only requirement",
+     "summary_sha": "3f172da698cabde2"
     },
     "toefl": {
      "overall": 80,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS or 105 on the Duolingo English test.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote gives 4 as the TOEFL score, 80 only for tests before Jan 21, 2026)",
+     "summary_sha": "97ff000b88c1dab5"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS or 105 on the Duolingo English test.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d6035469c7490a41"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Artificial Intelligence Engineering (Electrical Engineering), MS",
@@ -351,21 +387,27 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics, operations research, information technology or a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics, operations research, information technology or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the alternative master's degree GPA 3.00 option, presenting GPA as only from first bachelor's",
+     "summary_sha": "ae202d055855a15e"
     },
     "toefl": {
      "overall": 80,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT)®, or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote gives 4 as the iBT score, 80 only for tests before Jan 21, 2026)",
+     "summary_sha": "1260627c4af035d7"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT)®, or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "8a92c53a76c85333"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Artificial Intelligence Engineering (Intelligent Biomedical Systems Engineering), MS",
@@ -375,21 +417,27 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics, biomedical or a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics, biomedical or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the alternative master's degree GPA route, presenting GPA 3.00 as only in last 60 hours of first bachelor's",
+     "summary_sha": "21ce3d81d4bb5c1c"
     },
     "toefl": {
      "overall": 80,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT)®, or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote gives 4 iBT, or 80 only if taken before Jan 21, 2026 in a testing center)",
+     "summary_sha": "1260627c4af035d7"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT)®, or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "8a92c53a76c85333"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Artificial Intelligence Engineering (Materials Science and Engineering), MS",
@@ -399,21 +447,27 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics, materials science or a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics, materials science or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of a student's first bachelor's degree program, or applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the alternative master's degree GPA option, presenting the bachelor's last-60-hours GPA as the only route",
+     "summary_sha": "9fdef9ee3194e745"
     },
     "toefl": {
      "overall": 80,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS or 105 on the Duolingo English test.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote gives 80 only for tests before January 21, 2026 at a testing center; 'at least 4' is the iBT score)",
+     "summary_sha": "97ff000b88c1dab5"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS or 105 on the Duolingo English test.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d6035469c7490a41"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Artificial Intelligence Engineering (Mechanical Engineering), MS",
@@ -423,21 +477,27 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics, operations research, information technology or a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics, operations research, information technology or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the alternative: GPA 3.00 in an applicable master's degree program",
+     "summary_sha": "ae202d055855a15e"
     },
     "toefl": {
      "overall": 80,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS, 60 on the Pearson Test of English (PTE), or 105 on the Duolingo English test.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote gives 4 on iBT, or 80 only if taken before Jan 21, 2026 at a testing center)",
+     "summary_sha": "99b7d41b3cf5f209"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS, 60 on the Pearson Test of English (PTE), or 105 on the Duolingo English test.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a42a1684c71f4598"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Artificial Intelligence Engineering (Operations and Decision Science), MS",
@@ -447,21 +507,27 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics, operations research, information technology or a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics, operations research, information technology or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the alternative master's degree GPA 3.00 option, presenting GPA as only from first bachelor's",
+     "summary_sha": "ae202d055855a15e"
     },
     "toefl": {
      "overall": 80,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT)®, or a score of 80 if taken before January 21, 2026, in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote gives 4 on iBT, 80 only for tests before Jan 21, 2026 at a testing center)",
+     "summary_sha": "94a58185a9a5e2a1"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT)®, or a score of 80 if taken before January 21, 2026, in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "144b301940218059"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Artificial Intelligence Engineering (Sustainable Engineering and Built Environment), MS",
@@ -471,21 +537,27 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics, construction, transportation or a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics, construction, transportation or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the master's degree GPA alternative, presenting GPA 3.00 as only for the first bachelor's",
+     "summary_sha": "e0dc20439f8a6424"
     },
     "toefl": {
      "overall": 80,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL® (iBT) or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote gives 4 for iBT, 80 only for tests before Jan 21, 2026 at a testing center)",
+     "summary_sha": "6a85e30a1e2f8b08"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL® (iBT) or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a121172cb07b6a65"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Artificial Intelligence in Business, MS",
@@ -495,7 +567,9 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in business or a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in business or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the alternative master's degree GPA option, presenting GPA 3.00 as only in the last 60 hours of the first bachelor's",
+     "summary_sha": "ce6324d5d121ce0c"
     },
     "toefl": {
      "overall": 80,
@@ -503,17 +577,21 @@
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote gives 80 before Jan 21, 2026 and 4 after)",
+     "summary_sha": "2b321a8338a68677"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Overall band score on the academic test of at least 6.5.",
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fe5895dcaac71c08"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Artificial Intelligence, MS",
@@ -523,28 +601,36 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in computational biology, computer engineering, computer science, electrical and electronics engineering, math, mechanical engineering, software engineering or a related field from a regionally accredited institution; minimum cumulative GPA 3.25 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in computational biology, computer engineering, computer science, electrical and electronics engineering, math, mechanical engineering, software engineering or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.25 (scale is 4.00 = ''A'') in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.25 (scale is 4.00 = ''A'') in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the alternative master's degree GPA route, presenting GPA 3.25 as only for the first bachelor's",
+     "summary_sha": "2e6c2b3ebbfbada2"
     },
     "toefl": {
      "overall": 90,
      "quote": "An applicant whose native language is not English must demonstrate proficiency in the English language with a TOEFL iBT® score of 4.5, or 90 if taken before January 21, 2026 in a testing center; 7 on the IELTS; or 115 on the Duolingo English test, regardless of current residency.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 90 (quote gives 90 only for tests before Jan 21, 2026 at a testing center; current score is 4.5)",
+     "summary_sha": "aaed827a5a7c83a4"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "An applicant whose native language is not English must demonstrate proficiency in the English language with a TOEFL iBT® score of 4.5, or 90 if taken before January 21, 2026 in a testing center; 7 on the IELTS; or 115 on the Duolingo English test, regardless of current residency.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "f8410e1da30def21"
     },
     "prerequisites": [
      {
       "text": "Applicants are expected to have foundational coursework in the following topics:",
       "quote": "Applicants are expected to have foundational coursework in the following topics:",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "4734bd5f42865c93"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Biomedical Engineering, MS",
@@ -554,7 +640,9 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in any field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants must have earned a bachelor's or master's degree in any field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the master's degree GPA alternative, presenting 3.00 in last 60 hours of first bachelor's as the only route",
+     "summary_sha": "e032fc3dbc3b1a76"
     },
     "toefl": {
      "overall": 80,
@@ -562,17 +650,21 @@
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote gives 80 for exams before Jan 21, 2026, and 4 after)",
+     "summary_sha": "2b321a8338a68677"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Overall band score on the academic test of at least 6.5.",
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fe5895dcaac71c08"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Biomedical Informatics and Data Science, MS",
@@ -582,7 +674,9 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in biology, computer science, engineering, nursing or statistics from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in biology, computer science, engineering, nursing or statistics from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the alternative of a 3.00 GPA in an applicable master's degree program",
+     "summary_sha": "7d67de5a39f1e46a"
     },
     "toefl": {
      "overall": 80,
@@ -590,24 +684,30 @@
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote gives 80 before Jan 21, 2026 and 4 after)",
+     "summary_sha": "2b321a8338a68677"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Overall band score on the academic test of at least 6.5.",
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fe5895dcaac71c08"
     },
     "prerequisites": [
      {
       "text": "All applicants must have basic competencies in general biology (BIO 181 or equivalent), statistics (HCD 300 or STP 226 or equivalent) and computer programming (BMI 110 or CSE 110 or equivalent).",
       "quote": "All applicants must have basic competencies in general biology (BIO 181 or equivalent), statistics (HCD 300 or STP 226 or equivalent) and computer programming (BMI 110 or CSE 110 or equivalent).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "dca9bfad7048722e"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Biostatistics, MS",
@@ -617,7 +717,9 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in biomedical informatics, demography, mathematics, public or population health, social sciences, or statistics from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants must have earned a bachelor's or master's degree in biomedical informatics, demography, mathematics, public or population health, social sciences, or statistics from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the alternative of a 3.00 GPA in an applicable master's degree program",
+     "summary_sha": "c08b506b0b6bbe33"
     },
     "toefl": {
      "overall": 80,
@@ -625,24 +727,30 @@
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: TOEFL iBT overall 80 (quote gives 80 for exams before Jan 21, 2026, and 4 after)",
+     "summary_sha": "2b321a8338a68677"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Overall band score on the academic test of at least 6.5.",
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fe5895dcaac71c08"
     },
     "prerequisites": [
      {
       "text": "All applicants should have completed and passed an undergraduate statistics course (e.g., HCD 300, STP 226, ECN 221 or PSY 230), a linear algebra course (e.g., MAT 242, MAT 342 or MAT 343), and a calculus course (e.g. MAT 210, MAT 251 or MAT 270) before admission. If the requisite coursework is n...",
       "quote": "All applicants should have completed and passed an undergraduate statistics course (e.g., HCD 300, STP 226, ECN 221 or PSY 230), a linear algebra course (e.g., MAT 242, MAT 342 or MAT 343), and a calculus course (e.g. MAT 210, MAT 251 or MAT 270) before admission. If the requisite coursework is not completed before admission, it must be completed before matriculating.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f705641367bde384"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Business Analytics, MS",
@@ -652,7 +760,9 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants must have earned a bachelor's or master's degree from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the master's-degree GPA alternative; states GPA only for first bachelor's",
+     "summary_sha": "167ac5af4534c4ec"
     },
     "toefl": {
      "overall": 80,
@@ -660,17 +770,21 @@
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote gives 80 only for exams before Jan 21, 2026, and 4 after)",
+     "summary_sha": "2b321a8338a68677"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Overall band score on the academic test of at least 6.5.",
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fe5895dcaac71c08"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Chemical Engineering, MS",
@@ -680,21 +794,27 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants must have earned a bachelor's or master's degree from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the master's degree GPA alternative, presenting GPA 3.00 as only for the first bachelor's",
+     "summary_sha": "167ac5af4534c4ec"
     },
     "toefl": {
      "overall": 80,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS or 105 on the Duolingo English test.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote gives 4 as the TOEFL score, 80 only for tests before Jan 21, 2026 at a testing center)",
+     "summary_sha": "97ff000b88c1dab5"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS or 105 on the Duolingo English test.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d6035469c7490a41"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Civil, Environmental and Sustainable Engineering, MS",
@@ -704,7 +824,9 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree with a major in engineering or a closely related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants must have earned a bachelor's or master's degree with a major in engineering or a closely related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program. Applicants with a lower GPA may be admitted provisionally at the discretion of the admission committee.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the master's-degree GPA alternative, presenting 3.00 as only the first bachelor's requirement",
+     "summary_sha": "4c55b959d2171b3a"
     },
     "toefl": {
      "overall": 80,
@@ -712,17 +834,21 @@
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: TOEFL iBT; overall 80 as the minimum (quote gives 80 for exams before Jan 21, 2026, and 4 after)",
+     "summary_sha": "2b321a8338a68677"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Overall band score on the academic test of at least 6.5.",
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fe5895dcaac71c08"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Complex Systems Science, MS",
@@ -732,7 +858,9 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants must have earned a bachelor's or master's degree from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the master's-degree GPA alternative, presenting 3.00 in last 60 hours of first bachelor's as the only path",
+     "summary_sha": "167ac5af4534c4ec"
     },
     "toefl": {
      "overall": 80,
@@ -740,17 +868,21 @@
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 as the minimum, ignoring the 4 for exams on/after January 21, 2026",
+     "summary_sha": "2b321a8338a68677"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Overall band score on the academic test of at least 6.5.",
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fe5895dcaac71c08"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Computer Engineering (Computer Systems), MS",
@@ -760,21 +892,27 @@
     "academic": {
      "text": "Applicants have earned a bachelor's degree or equivalent or a master's degree from a regionally accredited college or university of recognized standing in a related field such as computer engineering, computer science, computer systems engineering or electrical engineering; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's degree or equivalent or a master's degree from a regionally accredited college or university of recognized standing in a related field such as computer engineering, computer science, computer systems engineering or electrical engineering. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: minimum GPA 3.00 in last 60 hours of the first bachelor's degree (quote allows an applicable master's degree instead)",
+     "summary_sha": "df3d6a827230885a"
     },
     "toefl": {
      "overall": 80,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT)®, or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote gives 4 as the iBT score, 80 only for tests before January 21, 2026)",
+     "summary_sha": "1260627c4af035d7"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT)®, or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "8a92c53a76c85333"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Computer Engineering (Electrical Engineering), MS",
@@ -784,21 +922,27 @@
     "academic": {
      "text": "minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "292cd7917b13d6e2"
     },
     "toefl": {
      "overall": 80,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT)®, or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 as the minimum; quote gives 4, with 80 only for tests before Jan 21, 2026",
+     "summary_sha": "1260627c4af035d7"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT)®, or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "8a92c53a76c85333"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Computer Science (Artificial Intelligence), MS",
@@ -808,28 +952,36 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in computer science, software engineering, STEM-related programs or a related field from a regionally accredited institution; minimum cumulative GPA 3.25 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in computer science, software engineering, STEM-related programs or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.25 (scale is 4.00 = ''A'') in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = ''A'') in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the master's GPA 3.00 alternative, presenting 3.25 as the only minimum",
+     "summary_sha": "cb7d7f62b0c2b9a2"
     },
     "toefl": {
      "overall": 80,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT)®, or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote gives 4 as the iBT score, 80 only for tests before Jan 21, 2026)",
+     "summary_sha": "1260627c4af035d7"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT)®, or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "8a92c53a76c85333"
     },
     "prerequisites": [
      {
       "text": "Before applying to the MS program in computer science, students are required to have completed two semesters or six credit hours of calculus, equivalent to Calculus I and II. Discrete math is also recommended prior to admission.",
       "quote": "Before applying to the MS program in computer science, students are required to have completed two semesters or six credit hours of calculus, equivalent to Calculus I and II. Discrete math is also recommended prior to admission.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "e176fa9ffe120dee"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Computer Science (Big Data Systems), MS",
@@ -839,28 +991,36 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree from a regionally accredited institution; minimum cumulative GPA 3.25 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.25 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.25 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the master's-degree GPA alternative, presenting 3.25 as only from the first bachelor's",
+     "summary_sha": "cdab048c2dc0bb92"
     },
     "toefl": {
      "overall": 90,
      "quote": "An applicant whose native language is not English must demonstrate proficiency in the English language with a TOEFL iBT® score of 4.5, or 90 (taken at a testing center) if taken before January 21, 2026; 7 on the IELTS; or 115 on the Duolingo English test, regardless of current residency.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d932fd3279fa1ef5"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "An applicant whose native language is not English must demonstrate proficiency in the English language with a TOEFL iBT® score of 4.5, or 90 (taken at a testing center) if taken before January 21, 2026; 7 on the IELTS; or 115 on the Duolingo English test, regardless of current residency.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "53194b749cc60f1c"
     },
     "prerequisites": [
      {
       "text": "Before applying to the program, students are required to have completed two semesters or six credit hours of calculus, equivalent to Calculus I and II, with a grade of \"C\" (scale is 4.00 = \"A\") or higher. It is also recommended that students complete a discrete math course before admission.",
       "quote": "Before applying to the program, students are required to have completed two semesters or six credit hours of calculus, equivalent to Calculus I and II, with a grade of \"C\" (scale is 4.00 = \"A\") or higher. It is also recommended that students complete a discrete math course before admission.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "714376518e07744b"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Computer Science (Biomedical Informatics), MS",
@@ -870,28 +1030,36 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in computer science, computer engineering or a closely related area; minimum cumulative GPA 3.25 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in computer science, computer engineering or a closely related area. Applicants must have a minimum cumulative GPA of 3.25 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.25 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the alternative 3.25 GPA in an applicable master's degree program",
+     "summary_sha": "c0b7c04771a129f1"
     },
     "toefl": {
      "overall": 90,
      "quote": "An applicant whose native language is not English must demonstrate proficiency in the English language with a TOEFL iBT® score of 4.5, or 90 (taken at a testing center) if taken before January 21, 2026; 7 on the IELTS or 115 on the Duolingo English test, regardless of current residency.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "e65a00ab7a296319"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "An applicant whose native language is not English must demonstrate proficiency in the English language with a TOEFL iBT® score of 4.5, or 90 (taken at a testing center) if taken before January 21, 2026; 7 on the IELTS or 115 on the Duolingo English test, regardless of current residency.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d950ac716012e10c"
     },
     "prerequisites": [
      {
       "text": "Before applying to the program, students must have completed two semesters or six credit hours of calculus, equivalent to Calculus I and II, with a \"C\" (scale is 4.00 = \"A\") or higher. Discrete math is also recommended before admission.",
       "quote": "Before applying to the program, students must have completed two semesters or six credit hours of calculus, equivalent to Calculus I and II, with a \"C\" (scale is 4.00 = \"A\") or higher. Discrete math is also recommended before admission.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "a39d6b4cc5accc2e"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Computer Science (Cybersecurity), MS",
@@ -901,28 +1069,36 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in computer science, computer engineering or a closely related area from a regionally accredited institution; minimum cumulative GPA 3.25 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants are eligible to apply for the program if they have earned a bachelor's or master's degree in computer science, computer engineering or a closely related area from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.25 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.25 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the alternative 3.25 GPA in an applicable master's degree program",
+     "summary_sha": "5a55ad76b886179b"
     },
     "toefl": {
      "overall": 90,
      "quote": "An applicant whose native language is not English must demonstrate proficiency in the English language with a TOEFL iBT® score of 4.5, or 90 (taken at a testing center) if taken before January 21, 2026; 7 on the IELTS; or 115 on the Duolingo English test, regardless of current residency.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d932fd3279fa1ef5"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "An applicant whose native language is not English must demonstrate proficiency in the English language with a TOEFL iBT® score of 4.5, or 90 (taken at a testing center) if taken before January 21, 2026; 7 on the IELTS; or 115 on the Duolingo English test, regardless of current residency.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "53194b749cc60f1c"
     },
     "prerequisites": [
      {
       "text": "Before applying to the program, students must have completed two semesters or six credit hours of calculus, equivalent to Calculus I and II, with a grade of \"C\" (scale is 4.00 = \"A\") or higher. It is also recommended that students complete a discrete math course before admission.",
       "quote": "Before applying to the program, students must have completed two semesters or six credit hours of calculus, equivalent to Calculus I and II, with a grade of \"C\" (scale is 4.00 = \"A\") or higher. It is also recommended that students complete a discrete math course before admission.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "874f9d295f820e34"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Computer Science (Media Arts and Sciences), MS",
@@ -932,28 +1108,36 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in computer science, computer engineering or a closely related field from a regionally accredited institution; minimum cumulative GPA 3.25 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in computer science, computer engineering or a closely related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.25 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.25 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the alternative of a 3.25 GPA in an applicable master's degree program",
+     "summary_sha": "1cb55b31bbe1f819"
     },
     "toefl": {
      "overall": 90,
      "quote": "An applicant whose native language is not English must demonstrate proficiency in the English language with a TOEFL iBT® score of 4.5, or 90 (taken at a testing center) if taken before January 21, 2026; 7 on the IELTS; or 115 on the Duolingo English test, regardless of current residency.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d932fd3279fa1ef5"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "An applicant whose native language is not English must demonstrate proficiency in the English language with a TOEFL iBT® score of 4.5, or 90 (taken at a testing center) if taken before January 21, 2026; 7 on the IELTS; or 115 on the Duolingo English test, regardless of current residency.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "53194b749cc60f1c"
     },
     "prerequisites": [
      {
       "text": "Before applying to the MS program, students are required to have completed two semesters or six credit hours of calculus, equivalent to Calculus I and II, with a grade of \"C\" (scale is 4.00 = \"A\") or higher. Completion of a discrete math course is also recommended before admission.",
       "quote": "Before applying to the MS program, students are required to have completed two semesters or six credit hours of calculus, equivalent to Calculus I and II, with a grade of \"C\" (scale is 4.00 = \"A\") or higher. Completion of a discrete math course is also recommended before admission.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "1186438529868ea1"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Computer Science, MS",
@@ -963,7 +1147,9 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in computer science, computer engineering or a closely related area from a regionally accredited institution; minimum cumulative GPA 3.25 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in computer science, computer engineering or a closely related area from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.25 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.25 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the alternative 3.25 GPA in an applicable master's degree program",
+     "summary_sha": "0c931fb46fec5b4a"
     },
     "toefl": {
      "overall": 80,
@@ -971,24 +1157,30 @@
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote gives 80 for exams before Jan 21, 2026, and 4 after)",
+     "summary_sha": "2b321a8338a68677"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Overall band score on the academic test of at least 6.5.",
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fe5895dcaac71c08"
     },
     "prerequisites": [
      {
       "text": "Before applying to the program, students must have completed two semesters or six credit hours of calculus, equivalent to Calculus I and II. Completion of a discrete math course is also recommended before admission.",
       "quote": "Before applying to the program, students must have completed two semesters or six credit hours of calculus, equivalent to Calculus I and II. Completion of a discrete math course is also recommended before admission.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "6c152edffd404c2a"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Construction Engineering, MSE",
@@ -998,7 +1190,9 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in engineering or other closely related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in engineering or other closely related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the alternative: GPA 3.00 in an applicable master's degree program",
+     "summary_sha": "d99234387e62d1c5"
     },
     "toefl": {
      "overall": 80,
@@ -1006,17 +1200,21 @@
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote gives 80 before Jan 21, 2026 and 4 after)",
+     "summary_sha": "2b321a8338a68677"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Overall band score on the academic test of at least 6.5.",
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fe5895dcaac71c08"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Construction Management and Technology, MS",
@@ -1026,7 +1224,9 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants must have earned a bachelor's or master's degree from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the alternative of a 3.00 GPA in an applicable master's degree program",
+     "summary_sha": "167ac5af4534c4ec"
     },
     "toefl": {
      "overall": 80,
@@ -1034,17 +1234,21 @@
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote gives 80 before Jan 21, 2026 and 4 after)",
+     "summary_sha": "2b321a8338a68677"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Overall band score on the academic test of at least 6.5.",
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fe5895dcaac71c08"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Data Science, Analytics and Engineering (Bayesian Machine Learning), MS",
@@ -1054,21 +1258,27 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics, operations research, information technology or a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics, operations research, information technology or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the alternative master's degree GPA 3.00 option, presenting GPA as only in last 60 hours of first bachelor's",
+     "summary_sha": "6d310205bd08edbf"
     },
     "toefl": {
      "overall": 80,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS or 105 on the Duolingo English test.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote gives 80 only for tests before January 21, 2026 at a testing center; 'at least 4' is the iBT score)",
+     "summary_sha": "97ff000b88c1dab5"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS or 105 on the Duolingo English test.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d6035469c7490a41"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Data Science, Analytics and Engineering (Computing and Decision Analytics), MS",
@@ -1078,28 +1288,36 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics, operations research, information technology or a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics, operations research, information technology or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the master's degree GPA alternative, presenting 3.00 as the only route",
+     "summary_sha": "ae202d055855a15e"
     },
     "toefl": {
      "overall": 80,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT)®, or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote gives 4 for current iBT; 80 only for tests before Jan 21, 2026)",
+     "summary_sha": "1260627c4af035d7"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT)®, or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "8a92c53a76c85333"
     },
     "prerequisites": [
      {
       "text": "Before applying to the MS program, students are required to have completed three semesters or nine credit hours of Calculus I, II and III, and it is recommended that students complete a discrete mathematics course.",
       "quote": "Before applying to the MS program, students are required to have completed three semesters or nine credit hours of Calculus I, II and III, and it is recommended that students complete a discrete mathematics course.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "68a2695dea159ffd"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Data Science, Analytics and Engineering (Electrical Engineering), MS",
@@ -1109,21 +1327,27 @@
     "academic": {
      "text": "minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "292cd7917b13d6e2"
     },
     "toefl": {
      "overall": 80,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of their current residency by scoring at least 4 on the Internet-based TOEFL iBT® or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS or 105 on the Duolingo English test.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 as minimum; quote gives 4, and 80 only for tests before Jan 21, 2026 at a testing center",
+     "summary_sha": "cfe0344388215ab6"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of their current residency by scoring at least 4 on the Internet-based TOEFL iBT® or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS or 105 on the Duolingo English test.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "f7106a375a6f0504"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Data Science, Analytics and Engineering (Materials Science and Engineering), MS",
@@ -1133,21 +1357,27 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics, operations research, information technology or a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants must have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics, operations research, information technology or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = ''A'') in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = ''A'') in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the alternative of a 3.00 GPA in an applicable master's degree program",
+     "summary_sha": "91b35b25e2a76c29"
     },
     "toefl": {
      "overall": 80,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS, 60 on the Pearson Test of English (PTE), or 105 on the Duolingo English test.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote gives 4 on iBT, or 80 only if taken before Jan 21, 2026 at a testing center)",
+     "summary_sha": "99b7d41b3cf5f209"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS, 60 on the Pearson Test of English (PTE), or 105 on the Duolingo English test.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a42a1684c71f4598"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Data Science, Analytics and Engineering (Mechanical and Aerospace Engineering), MS",
@@ -1157,21 +1387,27 @@
     "academic": {
      "text": "minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = ''A'') in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = ''A'') in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "5fd45c6d2ec075ad"
     },
     "toefl": {
      "overall": 80,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS, 60 on the Pearson Test of English (PTE), or 105 on the Duolingo English test.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote gives 80 only for tests before Jan 21, 2026 at a testing center; 'at least 4' is the iBT score)",
+     "summary_sha": "99b7d41b3cf5f209"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS, 60 on the Pearson Test of English (PTE), or 105 on the Duolingo English test.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a42a1684c71f4598"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Data Science, Analytics and Engineering (Sustainable Engineering and Built Environment), MS",
@@ -1181,21 +1417,27 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics, operations research, information technology or a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants must have earned a bachelor's or master's degree in computing, engineering, mathematics, statistics, operations research, information technology or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the master's degree GPA alternative, presenting 3.00 in last 60 hours of first bachelor's as the only option",
+     "summary_sha": "dbb649c76082e667"
     },
     "toefl": {
      "overall": 80,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS or 105 on the Duolingo English test.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote gives 80 only for tests before January 21, 2026 at a testing center; 'at least 4' is the iBT score)",
+     "summary_sha": "97ff000b88c1dab5"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS or 105 on the Duolingo English test.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d6035469c7490a41"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Economics, MS",
@@ -1205,7 +1447,9 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants must have earned a bachelor's or master's degree in a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the master's-degree GPA alternative, presenting 3.00 in last 60 hours as the only route",
+     "summary_sha": "970cd1b42362fd6e"
     },
     "toefl": {
      "overall": 80,
@@ -1213,17 +1457,21 @@
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 as the minimum (quote gives 80 only for exams before Jan 21, 2026, and 4 after)",
+     "summary_sha": "2b321a8338a68677"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Overall band score on the academic test of at least 6.5.",
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fe5895dcaac71c08"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Electrical Engineering (Media Arts and Sciences), MS",
@@ -1233,7 +1481,9 @@
     "academic": {
      "text": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in any field from a regionally accredited institution.",
      "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in any field from a regionally accredited institution.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "7998ef55fb5c11d7"
     },
     "toefl": {
      "overall": 80,
@@ -1241,17 +1491,21 @@
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 as the minimum, ignoring the 4 for exams on/after Jan 21, 2026",
+     "summary_sha": "2b321a8338a68677"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Overall band score on the academic test of at least 6.5.",
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fe5895dcaac71c08"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Electrical Engineering, MS",
@@ -1261,7 +1515,9 @@
     "academic": {
      "text": "minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "292cd7917b13d6e2"
     },
     "toefl": {
      "overall": 80,
@@ -1269,17 +1525,21 @@
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 as the minimum, omitting the date condition and the 4 score for exams on/after Jan 21, 2026",
+     "summary_sha": "2b321a8338a68677"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Overall band score on the academic test of at least 6.5.",
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fe5895dcaac71c08"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Electrical Engineering, MSE",
@@ -1289,7 +1549,9 @@
     "academic": {
      "text": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in any field from a regionally accredited institution.",
      "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in any field from a regionally accredited institution.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "7998ef55fb5c11d7"
     },
     "toefl": {
      "overall": 80,
@@ -1297,17 +1559,21 @@
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 as the minimum, omitting the date-based split and the 4 for exams on/after Jan 21, 2026",
+     "summary_sha": "2b321a8338a68677"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Overall band score on the academic test of at least 6.5.",
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fe5895dcaac71c08"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Entrepreneurship and Innovation, MS",
@@ -1317,7 +1583,9 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in business, design, engineering or a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants must have earned a bachelor's or master's degree in business, design, engineering or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the alternative: GPA 3.00 in an applicable master's degree program",
+     "summary_sha": "c241184d73a9c6fa"
     },
     "toefl": {
      "overall": 80,
@@ -1325,17 +1593,21 @@
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 as the minimum (quote gives 80 before Jan 21, 2026 and 4 after)",
+     "summary_sha": "2b321a8338a68677"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Overall band score on the academic test of at least 6.5.",
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fe5895dcaac71c08"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Environmental Engineering, MS",
@@ -1345,7 +1617,9 @@
     "academic": {
      "text": "Applicants have earned Applicants are eligible to apply if they have earned a bachelor's or master's degree in environmental engineering, chemical engineering, civil engineering, agricultural engineering, biological engineering or a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants are eligible to apply if they have earned a bachelor's or master's degree in environmental engineering, chemical engineering, civil engineering, agricultural engineering, biological engineering or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the master's degree GPA alternative, presenting GPA 3.00 as only for the first bachelor's",
+     "summary_sha": "f8047d617f943234"
     },
     "toefl": {
      "overall": 80,
@@ -1353,17 +1627,21 @@
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 as the minimum; quote gives 80 only for exams before Jan 21, 2026, and 4 after",
+     "summary_sha": "2b321a8338a68677"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Overall band score on the academic test of at least 6.5.",
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fe5895dcaac71c08"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Exploration Systems Design, MS",
@@ -1373,7 +1651,9 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in engineering, physical science or a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants must have earned a bachelor's or master's degree in engineering, physical science or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the alternative of a 3.00 GPA in an applicable master's degree program",
+     "summary_sha": "a26edd3607bfedb3"
     },
     "toefl": {
      "overall": 80,
@@ -1381,17 +1661,21 @@
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 as the minimum (quote gives 80 only for exams before Jan 21, 2026, and 4 after)",
+     "summary_sha": "2b321a8338a68677"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Overall band score on the academic test of at least 6.5.",
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fe5895dcaac71c08"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Finance, MS",
@@ -1401,7 +1685,9 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree from a regionally accredited institution in business and management, economics, statistics, computer science, or other types of science, engineering, technology and mathematics areas; Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 credit hours or 90 quarter hours of their first bachelor's degree program or a minimum ...",
      "quote": "Applicants must have earned a bachelor's or master's degree from a regionally accredited institution in business and management, economics, statistics, computer science, or other types of science, engineering, technology and mathematics areas. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 credit hours or 90 quarter hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d6894d6dedb4b6ef"
     },
     "toefl": {
      "overall": 80,
@@ -1409,17 +1695,21 @@
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: TOEFL iBT overall 80 (quote gives 80 only for exams before Jan 21, 2026, and 4 after)",
+     "summary_sha": "2b321a8338a68677"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Overall band score on the academic test of at least 6.5.",
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fe5895dcaac71c08"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Geographic Information Systems, MAS",
@@ -1429,7 +1719,9 @@
     "academic": {
      "text": "Applicants have earned a bachelor's degree in a related field from a regionally accredited institution or a bachelor's degree in any field from a regionally accredited institution if they demonstrate a minimum of three years of related professional experience; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants must have earned a bachelor's degree in a related field from a regionally accredited institution or a bachelor's degree in any field from a regionally accredited institution if they demonstrate a minimum of three years of related professional experience. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "3880c6c8c384b438"
     },
     "toefl": {
      "overall": 80,
@@ -1437,17 +1729,21 @@
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 as the minimum (quote gives 80 before Jan 21, 2026 and 4 after)",
+     "summary_sha": "2b321a8338a68677"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Overall band score on the academic test of at least 6.5.",
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fe5895dcaac71c08"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Global Management (Data Science), MGM",
@@ -1457,7 +1753,9 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in any subject from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants must have earned a bachelor's or master's degree in any subject from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the master's-degree GPA alternative, presenting 3.00 in the last 60 hours of the first bachelor's as the only route",
+     "summary_sha": "bef4f9c03ef7ea98"
     },
     "toefl": {
      "overall": 80,
@@ -1465,17 +1763,21 @@
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote gives 80 before Jan 21, 2026 and 4 after)",
+     "summary_sha": "2b321a8338a68677"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Overall band score on the academic test of at least 6.5.",
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fe5895dcaac71c08"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Global Management (Sustainability Solutions), MGM",
@@ -1485,7 +1787,9 @@
     "academic": {
      "text": "Applicants have earned Applicants are eligible to apply if they have earned a bachelor's or master's degree in any subject from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants are eligible to apply if they have earned a bachelor's or master's degree in any subject from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the master's degree GPA alternative; states GPA only for first bachelor's",
+     "summary_sha": "799a69424ea0ef6f"
     },
     "toefl": {
      "overall": 80,
@@ -1493,17 +1797,21 @@
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: TOEFL iBT; overall 80 as the minimum (quote gives 80 before Jan 21, 2026 and 4 after)",
+     "summary_sha": "2b321a8338a68677"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Overall band score on the academic test of at least 6.5.",
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fe5895dcaac71c08"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Global Technology and Development, MS",
@@ -1513,7 +1821,9 @@
     "academic": {
      "text": "Applicants have earned a bachelor's degree from a regionally accredited college or university recognized by ASU in a related field such as political science, international relations, sociology, anthropology, economics, business, education, technology, engineering, life sciences, foreign languages or literature (i.e., topics related to global development, culture or socioeconomic institutions); minimum cumulative G...",
      "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's degree from a regionally accredited college or university recognized by ASU in a related field such as political science, international relations, sociology, anthropology, economics, business, education, technology, engineering, life sciences, foreign languages or literature (i.e., topics related to global development, culture or socioeconomic institutions). Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d04c2ed968b50ac6"
     },
     "toefl": {
      "overall": 80,
@@ -1521,17 +1831,21 @@
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: TOEFL iBT overall 80; quote gives 80 only for exams before Jan 21, 2026",
+     "summary_sha": "2b321a8338a68677"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Overall band score on the academic test of at least 6.5.",
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fe5895dcaac71c08"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Industrial Engineering, MS",
@@ -1541,21 +1855,27 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in any field from a regionally accredited institution; minimum cumulative GPA 3.20 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in any field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.20 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the master's degree GPA 3.00 alternative, presenting 3.20 as the only minimum",
+     "summary_sha": "b9408738c7fec300"
     },
     "toefl": {
      "overall": 90,
      "quote": "An applicant whose native language is not English must demonstrate proficiency in the English language with a TOEFL iBT® score of 4.5, or 90 (taken at a testing center) if taken before January 21, 2026; 7 on the IELTS; or 115 on the Duolingo English test, regardless of current residency.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d932fd3279fa1ef5"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "An applicant whose native language is not English must demonstrate proficiency in the English language with a TOEFL iBT® score of 4.5, or 90 (taken at a testing center) if taken before January 21, 2026; 7 on the IELTS; or 115 on the Duolingo English test, regardless of current residency.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "53194b749cc60f1c"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Information Systems Management, MS",
@@ -1565,7 +1885,9 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants must have earned a bachelor's or master's degree from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the alternative: 3.00 GPA in an applicable master's degree program",
+     "summary_sha": "167ac5af4534c4ec"
     },
     "toefl": {
      "overall": 80,
@@ -1573,17 +1895,21 @@
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 as the minimum (quote gives 80 before Jan 21, 2026 and 4 after)",
+     "summary_sha": "2b321a8338a68677"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Overall band score on the academic test of at least 6.5.",
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fe5895dcaac71c08"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Management, MS",
@@ -1593,7 +1919,9 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in any field from a regionally accredited institution; minimum cumulative GPA 3.0 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in any field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.0 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.50 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the master's GPA 3.50 alternative, presenting 3.0 as the only minimum",
+     "summary_sha": "a219fc1a118c3f25"
     },
     "toefl": {
      "overall": 80,
@@ -1601,17 +1929,21 @@
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 as the minimum, omitting the 4 for exams on/after January 21, 2026",
+     "summary_sha": "2b321a8338a68677"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Overall band score on the academic test of at least 6.5.",
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fe5895dcaac71c08"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Materials Science and Engineering, MS",
@@ -1621,21 +1953,27 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in any field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in any field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the alternative master's degree GPA route, presenting GPA 3.00 in last 60 hours as the sole requirement",
+     "summary_sha": "dc3880587b6640e0"
     },
     "toefl": {
      "overall": 80,
      "quote": "The applicant is expected to have a TOEFL iBT score of 4, or a score of 80 if taken before January 21, 2026, in a testing center; 6.5 on the IELTS; 105 on the Duolingo English test; or the applicant must have a passing score in the English for Graduate Admission online course through ASU Global Launch.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote gives 80 only for tests before January 21, 2026, and also a score of 4)",
+     "summary_sha": "4326046ab2d14cb1"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "The applicant is expected to have a TOEFL iBT score of 4, or a score of 80 if taken before January 21, 2026, in a testing center; 6.5 on the IELTS; 105 on the Duolingo English test; or the applicant must have a passing score in the English for Graduate Admission online course through ASU Global Launch.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "253c1fb03f4266ab"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Mechanical Engineering, MS",
@@ -1645,21 +1983,27 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in any field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants must have earned a bachelor's or master's degree in any field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the alternative master's degree GPA path, presenting GPA 3.00 in last 60 hours of first bachelor's as the only option",
+     "summary_sha": "e032fc3dbc3b1a76"
     },
     "toefl": {
      "overall": 80,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS, 60 on the Pearson Test of English (PTE), or 105 on the Duolingo English test.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote says at least 4, or 80 only if taken before January 21, 2026, in a testing center)",
+     "summary_sha": "99b7d41b3cf5f209"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS, 60 on the Pearson Test of English (PTE), or 105 on the Duolingo English test.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a42a1684c71f4598"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Medical Engineering, MS",
@@ -1669,21 +2013,27 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in engineering, medicine or a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in engineering, medicine or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the alternative master's degree GPA option, presenting the bachelor's last-60-hours GPA as the only route",
+     "summary_sha": "6cd34305ae1106e6"
     },
     "toefl": {
      "overall": 90,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency by scoring at least 90 on the internet-based TOEFL (iBT) taken in a testing center, a 7 on the IELTS, or a 115 on the Duolingo English test.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "6173dac58d97a100"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency by scoring at least 90 on the internet-based TOEFL (iBT) taken in a testing center, a 7 on the IELTS, or a 115 on the Duolingo English test.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "61aa344598e30c91"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Modern Energy Production and Sustainable Use, MS",
@@ -1693,21 +2043,27 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in any engineering, physical science or related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in any engineering, physical science or related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the alternative master's degree GPA path, presenting GPA 3.00 as only in last 60 hours of first bachelor's",
+     "summary_sha": "064f5a4923e8b115"
     },
     "toefl": {
      "overall": 80,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS, 60 on the Pearson Test of English (PTE), or 105 on the Duolingo English test.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote gives 4 on iBT, and 80 only if taken before Jan 21, 2026 in a testing center)",
+     "summary_sha": "99b7d41b3cf5f209"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS, 60 on the Pearson Test of English (PTE), or 105 on the Duolingo English test.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a42a1684c71f4598"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Project Management, MPM",
@@ -1717,21 +2073,27 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in any area from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants must have earned a bachelor's or master's degree in any area from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the master's degree GPA alternative, presenting 3.00 in last 60 hours of first bachelor's as the only option",
+     "summary_sha": "9625c02ad9c7f5ad"
     },
     "toefl": {
      "overall": 80,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS, 105 on the Duolingo English test; or completion of the appropriate course through ASU Global Launch.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote gives 4 on iBT, or 80 only if taken before Jan 21, 2026 at a testing center)",
+     "summary_sha": "86c5c2875fb852de"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS, 105 on the Duolingo English test; or completion of the appropriate course through ASU Global Launch.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "de778dd616ffc045"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Public Policy (Science and Technology Policy), MPP",
@@ -1741,7 +2103,9 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program, or applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the alternative of a 3.00 GPA in an applicable master's degree program",
+     "summary_sha": "84ae079fa195c81c"
     },
     "toefl": {
      "overall": 80,
@@ -1749,17 +2113,21 @@
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote gives 80 before Jan 21, 2026 and 4 after)",
+     "summary_sha": "2b321a8338a68677"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Overall band score on the academic test of at least 6.5.",
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fe5895dcaac71c08"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Real Estate Development, MRED",
@@ -1769,7 +2137,9 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in any field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in any field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the alternative master's degree GPA route, presenting GPA 3.00 as only in the last 60 hours of the first bachelor's",
+     "summary_sha": "dc3880587b6640e0"
     },
     "toefl": {
      "overall": 80,
@@ -1777,17 +2147,21 @@
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote gives 80 before Jan 21, 2026 and 4 after)",
+     "summary_sha": "2b321a8338a68677"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Overall band score on the academic test of at least 6.5.",
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fe5895dcaac71c08"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Robotics and Autonomous Systems (Artificial Intelligence), MS",
@@ -1797,21 +2171,27 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in engineering, science, mathematics or a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants must have earned a bachelor's or master's degree in engineering, science, mathematics or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the alternative master's degree GPA route, presenting GPA as only from first bachelor's",
+     "summary_sha": "c3319c60aa0810f4"
     },
     "toefl": {
      "overall": 80,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT)®, or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote gives 4 for iBT, 80 only for tests before Jan 21, 2026 at a testing center)",
+     "summary_sha": "1260627c4af035d7"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT)®, or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "8a92c53a76c85333"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Robotics and Autonomous Systems (Biomedical Engineering), MS",
@@ -1821,21 +2201,27 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in engineering, science, mathematics or a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in engineering, science, mathematics or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the master's degree GPA alternative, presenting GPA 3.00 as only in last 60 hours of first bachelor's",
+     "summary_sha": "ed02c3cace01ff57"
     },
     "toefl": {
      "overall": 80,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT)®, or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote gives 4 for iBT, 80 only for tests before Jan 21, 2026 at a testing center)",
+     "summary_sha": "1260627c4af035d7"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT)®, or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "8a92c53a76c85333"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Robotics and Autonomous Systems (Electrical Engineering), MS",
@@ -1845,21 +2231,27 @@
     "academic": {
      "text": "minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "292cd7917b13d6e2"
     },
     "toefl": {
      "overall": 80,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT)®, or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 as the minimum; quote gives 4, with 80 only for tests before Jan 21, 2026",
+     "summary_sha": "1260627c4af035d7"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT)®, or a score of 80 if taken before January 21, 2026 in a testing center; 6.5 on the IELTS; or 105 on the Duolingo English test.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "8a92c53a76c85333"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Robotics and Autonomous Systems (Mechanical and Aerospace Engineering), MS",
@@ -1869,21 +2261,27 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in engineering, science, mathematics or a related field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants must have earned a bachelor's or master's degree in engineering, science, mathematics or a related field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = ''A'') in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = ''A'') in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the alternative 3.00 GPA in an applicable master's degree program",
+     "summary_sha": "c785f7896ce27c9c"
     },
     "toefl": {
      "overall": 80,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS, 60 on the Pearson Test of English (PTE), or 105 on the Duolingo English test.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote gives 4 on iBT, or 80 only if taken before Jan 21, 2026 at a testing center)",
+     "summary_sha": "99b7d41b3cf5f209"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "An applicant whose native language is not English must provide proof of English proficiency regardless of current residency by scoring at least 4 on the Internet-based TOEFL (iBT) or a score of 80 if taken before January 21, 2026, in a testing center, 6.5 on the IELTS, 60 on the Pearson Test of English (PTE), or 105 on the Duolingo English test.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a42a1684c71f4598"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Science and Technology Policy, MSTP",
@@ -1893,7 +2291,9 @@
     "academic": {
      "text": "Applicants have earned a bachelor's degree or equivalent or a graduate degree from a regionally accredited college or university of recognized standing. Students are strongly encouraged to have prior relevant education, training or experience in science and technology policy; management of science, technology or innovation; or science, technology and society; Applicants must have a minimum cumulative GPA of a 3.00...",
      "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's degree or equivalent or a graduate degree from a regionally accredited college or university of recognized standing. Students are strongly encouraged to have prior relevant education, training or experience in science and technology policy; management of science, technology or innovation; or science, technology and society. Applicants must have a minimum cumulative GPA of a 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum of a 3.00 cumulative GPA (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "4bb44cdcaba7355c"
     },
     "toefl": {
      "overall": 80,
@@ -1901,17 +2301,21 @@
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 as the minimum (quote gives 80 before Jan 21, 2026 and 4 after)",
+     "summary_sha": "2b321a8338a68677"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Overall band score on the academic test of at least 6.5.",
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fe5895dcaac71c08"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Statistics, MS",
@@ -1921,7 +2325,9 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in mathematics, statistics or a closely related area from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in mathematics, statistics or a closely related area from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the master's degree GPA alternative",
+     "summary_sha": "9956a12ce2e65928"
     },
     "toefl": {
      "overall": 80,
@@ -1929,24 +2335,30 @@
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote gives 80 before Jan 21, 2026, and 4 after)",
+     "summary_sha": "2b321a8338a68677"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Overall band score on the academic test of at least 6.5.",
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fe5895dcaac71c08"
     },
     "prerequisites": [
      {
       "text": "Applicants should have completed the following courses (equivalents at ASU are given in parentheses), and applicants who lack any of these prerequisite courses must complete them before being considered for admission:",
       "quote": "Applicants should have completed the following courses (equivalents at ASU are given in parentheses), and applicants who lack any of these prerequisite courses must complete them before being considered for admission:",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "c3ab35acf2e63f3b"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Sustainability Solutions, MSUS",
@@ -1956,7 +2368,9 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in any field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in any field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the master's-degree GPA alternative, presenting 3.00 as the only route",
+     "summary_sha": "dc3880587b6640e0"
     },
     "toefl": {
      "overall": 80,
@@ -1964,17 +2378,21 @@
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote gives 80 only for exams before Jan 21, 2026; 4 after)",
+     "summary_sha": "2b321a8338a68677"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Overall band score on the academic test of at least 6.5.",
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fe5895dcaac71c08"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Sustainability, MA",
@@ -1984,7 +2402,9 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in any field from a regionally accredited institution; minimum cumulative GPA 3.25 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in any field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.25 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.25 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the alternative 3.25 GPA in an applicable master's degree program",
+     "summary_sha": "71d158f689de6c81"
     },
     "toefl": {
      "overall": 80,
@@ -1992,17 +2412,21 @@
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote gives 80 only for exams before Jan 21, 2026; 4 after)",
+     "summary_sha": "2b321a8338a68677"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Overall band score on the academic test of at least 6.5.",
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fe5895dcaac71c08"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Sustainability, MS",
@@ -2012,7 +2436,9 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in any field from a regionally accredited institution; minimum cumulative GPA 3.25 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in any field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.25 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.25 in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the master's degree GPA alternative, presenting 3.25 as only for the first bachelor's",
+     "summary_sha": "0d5bea44620c3fe5"
     },
     "toefl": {
      "overall": 80,
@@ -2020,17 +2446,21 @@
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote gives 80 only for exams before Jan 21, 2026, and 4 after)",
+     "summary_sha": "2b321a8338a68677"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Overall band score on the academic test of at least 6.5.",
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fe5895dcaac71c08"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Taxation and Data Analytics, MTax",
@@ -2040,7 +2470,9 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in any field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants are eligible to apply to the program if they have earned a bachelor's or master's degree in any field from a regionally accredited institution. Applicants must have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program, or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the alternative master's degree GPA route, presenting GPA 3.00 as required in the first bachelor's only",
+     "summary_sha": "2156b8006c5ad3a3"
     },
     "toefl": {
      "overall": 80,
@@ -2048,17 +2480,21 @@
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (quote gives 80 only for exams before Jan 21, 2026, and 4 after)",
+     "summary_sha": "2b321a8338a68677"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Overall band score on the academic test of at least 6.5.",
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fe5895dcaac71c08"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Urban and Environmental Planning, MUEP",
@@ -2068,7 +2504,9 @@
     "academic": {
      "text": "Applicants have earned a bachelor's or master's degree in any field from a regionally accredited institution; minimum cumulative GPA 3.00 (4.00 scale) in the last 60 hours of the first bachelor's degree",
      "quote": "Applicants must have earned a bachelor's or master's degree in any field from a regionally accredited institution. Applicants should have a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in the last 60 hours of their first bachelor's degree program or a minimum cumulative GPA of 3.00 (scale is 4.00 = \"A\") in an applicable master's degree program. An applicant with a cumulative GPA between 2.50 and 3.00 (scale is 4.00 = \"A\") may still be considered.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the master's-degree GPA alternative, making the 3.00 GPA apply only to the first bachelor's",
+     "summary_sha": "9eff493dca5f6371"
     },
     "toefl": {
      "overall": 80,
@@ -2076,22 +2514,26 @@
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 without the before-January 21, 2026 condition",
+     "summary_sha": "2b321a8338a68677"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Overall band score on the academic test of at least 6.5.",
      "source_sha256": "a04e9b70a61d1543b7442ea29fe9ffbb20b39221b37ad71dadd4a1432211a050",
      "source_url": "https://admission.asu.edu/apply/international/graduate/english-proficiency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fe5895dcaac71c08"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   }
  ],
  "verification": {
   "programs": 69,
-  "机器核对": 69,
-  "待人工": 0
+  "机器核对": 0,
+  "待人工": 69
  }
 }

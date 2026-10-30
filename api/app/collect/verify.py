@@ -7,9 +7,17 @@ it cites, and (2) every number the field states (a mark, an IELTS score, a deadl
 inside that quote. A program is `机器核对` when it reports at least one field and every reported
 field passes; otherwise it is `待人工` and goes to the human queue. With `--write` the result is
 stored back into the file; without it the file is only checked.
+
+A third check, whether the field's summary (`text`, `label`, `recommended`, which number is which)
+says only what its quote says, needs a model and is run by `app.collect.faithful`. Its verdict is kept
+on the item as `summary_check` ("ok" or the reason) with `summary_sha`, a digest of the values it
+judged. A verdict counts only while the digest still matches: editing the summary or the quote makes
+the item unjudged again. An item whose current verdict is not "ok" keeps its value in the file but is
+not usable (`usable`), and its program is `待人工`. Nothing here calls a model.
 """
 
 import argparse
+import hashlib
 import json
 import re
 import sys
@@ -33,6 +41,51 @@ NUMERIC_KEYS = {
 
 class SchemaError(ValueError):
     pass
+
+
+# --- The summary check's bookkeeping (the check itself is `app.collect.faithful`) ---
+
+SUMMARY_CHECK = "summary_check"
+SUMMARY_SHA = "summary_sha"
+# The values a verdict is about: what the summary says and the quote it was judged against.
+CLAIM_KEYS = ("text", "label", "date", "overall", "min_band", "min_mark_211", "min_mark_other", "recommended",
+              "quote")
+
+
+def summary_digest(item: dict) -> str:
+    """A short digest of the values the summary check judged on this item."""
+    claim = {key: item[key] for key in CLAIM_KEYS if item.get(key) is not None}
+    return hashlib.sha256(json.dumps(claim, sort_keys=True, ensure_ascii=False).encode()).hexdigest()[:16]
+
+
+def summary_verdict(item: dict) -> str | None:
+    """The item's current summary verdict ("ok" or a reason), or None when it is unjudged or stale."""
+    if item.get(SUMMARY_CHECK) is None or item.get(SUMMARY_SHA) != summary_digest(item):
+        return None
+    return item[SUMMARY_CHECK]
+
+
+def set_summary_verdict(item: dict, verdict: str) -> None:
+    item[SUMMARY_CHECK] = verdict
+    item[SUMMARY_SHA] = summary_digest(item)
+
+
+def usable(item: dict) -> bool:
+    """A value the catalogue may show: its quote passed, and its summary was not found unfaithful.
+
+    An item not yet judged (collected before the summary check, or by an agent) is usable, as before.
+    """
+    if not isinstance(item, dict) or item.get("check") != "ok":
+        return False
+    verdict = summary_verdict(item)
+    return verdict is None or verdict == "ok"
+
+
+def program_status(program: dict) -> str:
+    """`机器核对` when the program reports a field and every reported field is usable, else `待人工`."""
+    items = [item for name, field in program.get("fields", {}).items()
+             for item in (field if name in LIST_FIELDS else [field])]
+    return MACHINE_CHECKED if items and all(usable(item) for item in items) else NEEDS_HUMAN
 
 
 def _number_forms(value: float) -> set[str]:
@@ -203,10 +256,12 @@ def verify(data: dict, root: Path = SNAPSHOT_ROOT) -> dict:
     either_order = data.get("country") in EITHER_ORDER
     summary = {"programs": 0, MACHINE_CHECKED: 0, NEEDS_HUMAN: 0}
     for program in data["programs"]:
-        all_ok, reported = True, 0
         for name, field in program["fields"].items():
             for item in field if name in LIST_FIELDS else [field]:
-                reported += 1
+                if item.get(SUMMARY_CHECK) is not None and summary_verdict(item) is None:
+                    # Judged on values the item no longer has: the verdict is about something else.
+                    item.pop(SUMMARY_CHECK, None)
+                    item.pop(SUMMARY_SHA, None)
                 text = snapshot_text(item.get("source_sha256") or program["snapshot_sha256"])
                 if item.get("source_sha256"):
                     # Record which page the quote is on, so an import can cite that page, not the
@@ -216,8 +271,7 @@ def verify(data: dict, root: Path = SNAPSHOT_ROOT) -> dict:
                         item["source_url"] = json.loads(meta.read_text(encoding="utf-8")).get("final_url") or item.get("source_url")
                 problems = ["snapshot missing"] if text is None else check_item(name, item, text, month_first, either_order)
                 item["check"] = "ok" if not problems else "; ".join(problems)
-                all_ok = all_ok and not problems
-        program["status"] = MACHINE_CHECKED if reported and all_ok else NEEDS_HUMAN
+        program["status"] = program_status(program)
         summary["programs"] += 1
         summary[program["status"]] += 1
     data["verification"] = summary
@@ -257,8 +311,9 @@ def main(argv: list[str] | None = None) -> int:
     if args.write:
         args.path.write_text(json.dumps(result, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     failing = [
-        {"program": p["name"], "problems": [f"{n}: {i['check']}" for n, f in p["fields"].items()
-                                            for i in (f if n in LIST_FIELDS else [f]) if i["check"] != "ok"]}
+        {"program": p["name"], "problems": [f"{n}: {i['check'] if i['check'] != 'ok' else 'summary: ' + str(summary_verdict(i))}"
+                                            for n, f in p["fields"].items()
+                                            for i in (f if n in LIST_FIELDS else [f]) if not usable(i)]}
         for p in result["programs"] if p["status"] != MACHINE_CHECKED
     ]
     print(json.dumps({"summary": result["verification"], "failing": failing[:20]}, ensure_ascii=False, indent=1))

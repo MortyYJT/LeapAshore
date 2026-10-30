@@ -7,7 +7,9 @@ The model reads the snapshot's text and returns the requirement fields of
 quote it says it copied from the page. Nothing it returns is trusted: every value then goes through
 `app.collect.verify` against the same snapshot, and a value whose quote is not on the page, or whose
 number is not inside its quote, is dropped and its reason recorded in `rejected`. A value is never
-edited to make it pass.
+edited to make it pass. The values that pass then go to `app.collect.faithful`, which asks the same
+model whether each quote on its own states what the summary says; a value it does not back stays,
+marked (`summary_check`), is listed in `downgraded`, and makes the program `待人工`.
 
 The output is one program in the requirement-file shape (`name`, `url`, `snapshot_sha256`, `fields`,
 `status`). Unknown stays unknown: a field the page does not state is left out, never written as an
@@ -29,8 +31,9 @@ from langchain_core.language_models import BaseChatModel
 from pydantic import BaseModel, Field, field_validator
 
 from app.agent.llm import get_chat_model
+from app.collect.faithful import check_program
 from app.collect.snapshot import SNAPSHOT_ROOT
-from app.collect.verify import LIST_FIELDS, MACHINE_CHECKED, NEEDS_HUMAN, drop_failing, verify
+from app.collect.verify import LIST_FIELDS, MACHINE_CHECKED, NEEDS_HUMAN, drop_failing, usable, verify
 from app.config import settings
 
 DATA_DIR = Path(__file__).resolve().parents[2] / "data" / "requirements"
@@ -166,6 +169,8 @@ class ExtractResult:
     attempts: int = 0
     # Values the model returned that the file format has no place for: not checked, not rejected.
     unused: list[dict] = field(default_factory=list)
+    # Values whose quote passed but whose summary the faithfulness check did not back: kept, not usable.
+    downgraded: list[dict] = field(default_factory=list)
     error: str | None = None
 
 
@@ -306,8 +311,9 @@ def _usage(raw) -> dict:
 
 def extract_snapshot(school_key: str, sha256: str, *, program_name: str, school_name: str,
                      country: str | None, url: str | None = None, model: BaseChatModel | None = None,
-                     root: Path = SNAPSHOT_ROOT) -> ExtractResult:
-    """Extract, then check, the requirements one snapshot states. `model` defaults to the advisor's."""
+                     judge_model: BaseChatModel | None = None, root: Path = SNAPSHOT_ROOT) -> ExtractResult:
+    """Extract, then check, the requirements one snapshot states. `model` defaults to the advisor's;
+    `judge_model`, which checks the summaries, defaults to `model`."""
     folder = root / school_key
     text = (folder / f"{sha256}.txt").read_text(encoding="utf-8")
     meta_path = folder / f"{sha256}.json"
@@ -349,6 +355,14 @@ def extract_snapshot(school_key: str, sha256: str, *, program_name: str, school_
     fields, refused, result.unused = to_fields(answer["parsed"])
     program["fields"] = fields
     checked, failed = check_fields(program, school_key, school_name, country, root)
+    judgement = check_program(checked, school_name, judge_model or model)
+    for key, value in judgement.usage.items():
+        result.usage[key] = result.usage.get(key, 0) + value
+    for name, value in checked["fields"].items():
+        for item in value if name in LIST_FIELDS else [value]:
+            if item.get("check") == "ok" and not usable(item):
+                result.downgraded.append({"field": name, "value": {k: v for k, v in item.items() if k != "check"},
+                                          "reason": item["summary_check"]})
     result.program = checked
     result.rejected = refused + failed
     return result

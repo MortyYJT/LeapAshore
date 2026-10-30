@@ -65,7 +65,9 @@
     "academic": {
      "text": "A bachelor's degree in any field, including subjects related to social sciences or sciences, for the 180-point taught programme.",
      "quote": "Our comprehensive MEP taught programme (180 points) is open to graduates from a full range of bachelor’s degrees, including subjects related to social sciences or sciences.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "36c2ec1b57e7d230"
     }
    },
    "status": "机器核对"
@@ -98,10 +100,12 @@
     "academic": {
      "text": "A bachelor's degree in another area (no prior accounting study required).",
      "quote": "Waikato's Master of Professional Accounting (MPAcct) is tailor-made for university graduates who already have a bachelor's degree in another area.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: no prior accounting study required",
+     "summary_sha": "10ffae7539801132"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science",
@@ -115,7 +119,7 @@
  ],
  "verification": {
   "programs": 10,
-  "机器核对": 2,
-  "待人工": 8
+  "机器核对": 1,
+  "待人工": 9
  }
 }

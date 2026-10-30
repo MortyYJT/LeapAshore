@@ -22,15 +22,19 @@
      "overall": 90,
      "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 90. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 4.5.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits that 90 applies only to exams taken on or before January 20, 2026",
+     "summary_sha": "564ea0f9b508769b"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "For IELTS, the minimum score is 7.0.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c656765f0025ca09"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Biostatistics (A.M., Sc.M.)",
@@ -41,22 +45,28 @@
      "overall": 100,
      "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 100. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 100 (quote gives 100 only for exams on or before Jan 20, 2026; 5.0 after)",
+     "summary_sha": "ad93ad020c69ed8f"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "For IELTS, the minimum score is 7.0.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c656765f0025ca09"
     },
     "prerequisites": [
      {
       "text": "Experience with numerical computing and two to three semesters of calculus (recommended)",
       "quote": "Experience with numerical computing and two to three semesters of calculus are recommended",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "6b9b8aed435f1be0"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Biostatistics, Online (Sc.M.)",
@@ -66,38 +76,50 @@
     "academic": {
      "text": "Bachelor’s degree from an accredited institution",
      "quote": "A bachelor’s degree from an accredited institution.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b062b7e15a7e048c"
     },
     "toefl": {
      "overall": 100,
      "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 100. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 100 as the minimum (quote gives 100 only for exams on or before Jan 20, 2026, and 5.0 after)",
+     "summary_sha": "ea89c0462f1a01aa"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "For IELTS, the minimum score is 7.0.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c656765f0025ca09"
     },
     "prerequisites": [
      {
       "text": "At least one semester of calculus (including differentiation and integration); B or better recommended",
       "quote": "At least one semester of calculus (including differentiation & integration) with a recommended grade of B or better.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "4946527d420399fd"
      },
      {
       "text": "At least one semester of linear algebra; B or better recommended",
       "quote": "At least one semester of linear algebra, with a recommended grade of B or better.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "0dd0c85ff30ba641"
      },
      {
       "text": "At least one semester of probability; B or better recommended",
       "quote": "At least one semester of probability, with a recommended grade of B or better.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "658051ec7aa7743b"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Biotechnology (A.M., Sc.M.)",
@@ -108,15 +130,19 @@
      "overall": 100,
      "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 100. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the date condition; states 100 as the overall minimum for all exams",
+     "summary_sha": "ad93ad020c69ed8f"
     },
     "ielts": {
      "overall": 8.0,
      "quote": "For IELTS, the minimum score is 8.0.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "65cbc6ca6c87f2e9"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Business Analytics, Online (Sc.M.)",
@@ -126,24 +152,32 @@
     "academic": {
      "text": "Bachelor’s degree from an accredited institution and at least two years of full-time professional experience",
      "quote": "A bachelor’s degree from an accredited institution and a minimum of two years of full-time professional experience is required. If you have any questions regarding the application process for this program, please email onlinemasters_admissions@brown.edu.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "3caf420162077100"
     },
     "toefl": {
      "overall": 90,
      "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 90. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "6c67466b090c8782"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "For IELTS, the minimum score is 7.0.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c656765f0025ca09"
     },
     "prerequisites": [
      {
       "text": "At least one semester of foundational college-level math or statistics; B or better recommended",
       "quote": "At least one semester of foundational college-level math or statistics is required. A grade of B or better is recommended.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "3490743675a29309"
      }
     ]
    },
@@ -158,15 +192,19 @@
      "overall": 90,
      "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 90. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 90 stated without the date condition (only for exams on or before January 20, 2026)",
+     "summary_sha": "6c67466b090c8782"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "For IELTS, the minimum score is 7.0.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c656765f0025ca09"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Computer Science (Sc.M.)",
@@ -176,44 +214,60 @@
     "academic": {
      "text": "Typically an undergraduate CS degree or the equivalent",
      "quote": "There are exceptions, but typically we look for outstanding students who already have an undergraduate CS degree or the equivalent and are ready to take our Master's-level courses. While we sometimes discount weaknesses in some areas if there are strengths in others, we'd like to see most of the following courses:",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "db88db14a9bf087e"
     },
     "toefl": {
      "overall": 105,
      "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 105. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0, but a score of 5.5 or higher is strongly recommended.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d1d98d297b7bd30f"
     },
     "ielts": {
      "overall": 8.0,
      "quote": "For IELTS, the minimum score is 8.0.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "65cbc6ca6c87f2e9"
     },
     "prerequisites": [
      {
       "text": "Introductory programming",
       "quote": "Introductory Programming",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "d1c6498d5e9dddd5"
      },
      {
       "text": "Introductory algorithms and data structures",
       "quote": "Introductory Algorithms and Data Structures",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "957d15afc86b9695"
      },
      {
       "text": "Computer systems or software engineering (preferably both)",
       "quote": "Computer Systems or Software Engineering (preferably both)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "3986cb4640992ecf"
      },
      {
       "text": "Discrete mathematics and basic probability",
       "quote": "Discrete Mathematics and basic Probability",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "915f25437522a377"
      },
      {
       "text": "Linear algebra",
       "quote": "Linear Algebra",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "0a53c0cf664d9513"
      }
     ]
    },
@@ -227,48 +281,64 @@
     "academic": {
      "text": "Typically an undergraduate CS degree or the equivalent",
      "quote": "There are exceptions, but typically we look for outstanding students who already have an undergraduate CS degree or the equivalent and are ready to take our Master's-level courses. While we sometimes discount weaknesses in some areas if there are strengths in others, we'd like to see most of the following courses:",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "db88db14a9bf087e"
     },
     "toefl": {
      "overall": 105,
      "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 105. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0, but a score of 5.5 or higher is strongly recommended.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 105 as the minimum, omitting the date condition and the 5.0 minimum for later exams",
+     "summary_sha": "d1d98d297b7bd30f"
     },
     "ielts": {
      "overall": 8.0,
      "quote": "For IELTS, the minimum score is 8.0.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "65cbc6ca6c87f2e9"
     },
     "prerequisites": [
      {
       "text": "Introductory programming",
       "quote": "Introductory Programming",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "d1c6498d5e9dddd5"
      },
      {
       "text": "Introductory algorithms and data structures",
       "quote": "Introductory Algorithms and Data Structures",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "957d15afc86b9695"
      },
      {
       "text": "Computer systems or software engineering (preferably both)",
       "quote": "Computer Systems or Software Engineering (preferably both)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "3986cb4640992ecf"
      },
      {
       "text": "Discrete mathematics and basic probability",
       "quote": "Discrete Mathematics and basic Probability",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "915f25437522a377"
      },
      {
       "text": "Linear algebra",
       "quote": "Linear Algebra",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "0a53c0cf664d9513"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Cybersecurity (Sc.M.)",
@@ -278,29 +348,39 @@
     "academic": {
      "text": "Computer Science Track: undergraduate degree in a STEM or social sciences discipline",
      "quote": "An undergraduate degree in a STEM or social sciences discipline",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "13d8ada54cb30552"
     },
     "toefl": {
      "overall": 105,
      "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 105. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.5.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "546a8f9dcc2b8fc5"
     },
     "ielts": {
      "overall": 8.0,
      "quote": "For IELTS, the minimum score is 8.0.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "65cbc6ca6c87f2e9"
     },
     "prerequisites": [
      {
       "text": "Computer Science Track: coursework in mathematics (calculus, discrete mathematics, probability or statistics) and introductory computer science (programming, data structures and algorithms)",
       "quote": "Undergraduate-level coursework in (1) mathematics that covers calculus, discrete mathematics, and probability or statistics, and (2) introductory computer science that covers computer programming and data structures and algorithms",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "6048f697488df323"
      },
      {
       "text": "Policy Track: an undergraduate degree in any subject",
       "quote": "An undergraduate degree in any subject",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "c2d4a2f4addf5606"
      }
     ]
    },
@@ -314,28 +394,36 @@
     "academic": {
      "text": "Bachelor’s degree in Engineering, Physical Sciences, Natural Sciences, or related subject",
      "quote": "Bachelor’s degree in Engineering, Physical Sciences, Natural Sciences, or related subject",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "bf7ece0e56be0b81"
     },
     "toefl": {
      "overall": 90,
      "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 90. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.5.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 90 as the minimum, omitting the 5.5 minimum for exams after January 21, 2026",
+     "summary_sha": "1dc2b3c194f2273d"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "For IELTS, the minimum score is 7.0.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c656765f0025ca09"
     },
     "prerequisites": [
      {
       "text": "Strongest preference to applicants with an undergraduate GPA of at least 3.4",
       "quote": "The strongest preference is given to those with an undergraduate GPA of at least 3.4.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "d9dd0a1ad5e5a0eb"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Data Science: Policy, Governance & Society, Online (Sc.M.)",
@@ -345,28 +433,36 @@
     "academic": {
      "text": "Bachelor’s degree from an accredited institution",
      "quote": "A bachelor’s degree from an accredited institution",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "adbffd1a18c6997a"
     },
     "toefl": {
      "overall": 105,
      "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 105. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 105 as the minimum, omitting the date condition and the 5.0 score for exams after January 21, 2026",
+     "summary_sha": "f2d4c25f8d6926d9"
     },
     "ielts": {
      "overall": 7.5,
      "quote": "For IELTS, the minimum score is 7.5.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ac81731f72bf72d6"
     },
     "prerequisites": [
      {
       "text": "Python experience preferred; other languages may be accepted",
       "quote": "Python experience is preferred; other languages (SAS, STATA, R, Julia, etc) may be accepted.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "bf828f47ffae354c"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Data Science (Sc.M.)",
@@ -377,15 +473,19 @@
      "overall": 105,
      "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 105. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.5.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 105 stated without the exam-date condition (only for exams on or before January 20, 2026)",
+     "summary_sha": "546a8f9dcc2b8fc5"
     },
     "ielts": {
      "overall": 7.5,
      "quote": "For IELTS, the minimum score is 7.5.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ac81731f72bf72d6"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Design Engineering (A.M.)",
@@ -396,15 +496,19 @@
      "overall": 90,
      "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 90. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the date condition; 90 applies only to exams on or before January 20, 2026",
+     "summary_sha": "59b196b5c8585308"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "For IELTS, the minimum score is 7.0.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c656765f0025ca09"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Education: Master of Arts in Teaching (MAT)",
@@ -414,21 +518,27 @@
     "academic": {
      "text": "Bachelor's degree or significant coursework in the content area for which the applicant plans to seek certification",
      "quote": "Applicants should have a bachelor's degree or significant coursework completed in the content area for which they plan to seek certification.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b40f6a7bc4cb47f2"
     },
     "toefl": {
      "overall": 90,
      "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 90. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 4.5.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the date condition; 90 applies only to exams on or before January 20, 2026",
+     "summary_sha": "564ea0f9b508769b"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "For IELTS, the minimum score is 7.0.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c656765f0025ca09"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Education: Urban Education Policy (A.M.)",
@@ -439,15 +549,19 @@
      "overall": 90,
      "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 90. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 4.5.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 90 as the minimum, omitting the date condition and the 4.5 minimum for later exams",
+     "summary_sha": "564ea0f9b508769b"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "For IELTS, the minimum score is 7.0.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c656765f0025ca09"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Electrical and Computer Engineering (Sc.M.)",
@@ -458,15 +572,19 @@
      "overall": 90,
      "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 90. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits that 90 applies only to exams taken on or before January 20, 2026",
+     "summary_sha": "6c67466b090c8782"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "For IELTS, the minimum score is 7.0.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c656765f0025ca09"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Environmental Engineering (Sc.M.)",
@@ -477,12 +595,16 @@
      "overall": 90,
      "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 90. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "6c67466b090c8782"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "For IELTS, the minimum score is 7.0.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c656765f0025ca09"
     }
    },
    "status": "机器核对"
@@ -496,15 +618,19 @@
      "overall": 90,
      "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 90. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 90 stated without the exam-date condition (only for exams on or before January 20, 2026)",
+     "summary_sha": "59b196b5c8585308"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "For IELTS, the minimum score is 7.0.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c656765f0025ca09"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Healthcare Leadership (Sc.M.)",
@@ -514,17 +640,23 @@
     "academic": {
      "text": "Minimum of 2 years of experience working within healthcare-related fields",
      "quote": "Professionals with a minimum of 2 years experience working within healthcare-related fields",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "5adf7c7f2e478def"
     },
     "toefl": {
      "overall": 105,
      "quote": "We require a minimum score of 105 on the TOEFL internet-based exam or a minimum score of 7.5 on the IELTS.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "84dae990be1000ff"
     },
     "ielts": {
      "overall": 7.5,
      "quote": "We require a minimum score of 105 on the TOEFL internet-based exam or a minimum score of 7.5 on the IELTS.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "42f390b518a439e1"
     }
    },
    "status": "机器核对"
@@ -538,15 +670,19 @@
      "overall": 105,
      "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 105. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 105 stated without the exam-date condition (only for exams on or before January 20, 2026)",
+     "summary_sha": "f2d4c25f8d6926d9"
     },
     "ielts": {
      "overall": 8.0,
      "quote": "For IELTS, the minimum score is 8.0.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "65cbc6ca6c87f2e9"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Innovation Management and Entrepreneurship (Sc.M.)",
@@ -557,15 +693,19 @@
      "overall": 105,
      "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 105. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 105 stated without the exam-date condition (only for exams on or before January 20, 2026)",
+     "summary_sha": "40d7d4e73ba94965"
     },
     "ielts": {
      "overall": 8.0,
      "quote": "For IELTS, the minimum score is 8.0.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "65cbc6ca6c87f2e9"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Integrative Studies (A.M., Sc.M.)",
@@ -582,28 +722,36 @@
     "academic": {
      "text": "Bachelor’s degree from an accredited institution",
      "quote": "A bachelor’s degree from an accredited institution is required.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ab21b4e3ce306bd4"
     },
     "toefl": {
      "overall": 90,
      "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 90. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 4.5.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 90 without the exam-date condition (scores after Jan 21, 2026 need 4.5)",
+     "summary_sha": "564ea0f9b508769b"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "For IELTS, the minimum score is 7.0.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c656765f0025ca09"
     },
     "prerequisites": [
      {
       "text": "One semester of college-level math or statistics; B or better recommended",
       "quote": "One semester of college-level math or statistics. A grade of B or better is recommended.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "2858b005309e5cfd"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Materials Science and Engineering (Sc.M.)",
@@ -614,12 +762,16 @@
      "overall": 90,
      "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 90. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "6c67466b090c8782"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "For IELTS, the minimum score is 7.0.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c656765f0025ca09"
     }
    },
    "status": "机器核对"
@@ -633,15 +785,19 @@
      "overall": 90,
      "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 90. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 90 as the minimum, omitting the date condition and the 5.0 minimum for later exams",
+     "summary_sha": "6c67466b090c8782"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "For IELTS, the minimum score is 7.0.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c656765f0025ca09"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Medical Physics (Sc.M.)",
@@ -651,13 +807,17 @@
     "academic": {
      "text": "At least a minor in physics, or equivalent",
      "quote": "All students must possess at least a minor in physics, or equivalent",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "5c35e99f8427b84c"
     },
     "prerequisites": [
      {
       "text": "Demonstrated programming skills (coursework, research, or technical experience)",
       "quote": "Demonstration of programming skills is required, whether through successful completion of relevant coursework, research, or technical experience.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "8f8ae67981365018"
      }
     ],
     "deadlines": [
@@ -665,7 +825,9 @@
       "label": "Application Deadline",
       "date": "2027-03-01",
       "quote": "Application Deadline March 1, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "ae19f415bd84d2c9"
      }
     ]
    },
@@ -679,21 +841,27 @@
     "academic": {
      "text": "Bachelor’s degree from an accredited institution and three years of professional employment",
      "quote": "A bachelor’s degree from an accredited institution and three years of professional employment are required.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a49348f9795e726f"
     },
     "toefl": {
      "overall": 90,
      "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 90. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 4.5.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits that 90 applies only to exams on or before January 20, 2026",
+     "summary_sha": "564ea0f9b508769b"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "For IELTS, the minimum score is 7.0.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c656765f0025ca09"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Physics (Sc.M.)",
@@ -703,21 +871,27 @@
     "academic": {
      "text": "Strong undergraduate background in physics or closely related subjects",
      "quote": "Applicants are expected to have a strong background in physics or closely related subjects at the undergraduate level.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "83cc28c635527f47"
     },
     "toefl": {
      "overall": 90,
      "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 90. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 90 stated as the minimum without the exam-date condition",
+     "summary_sha": "6c67466b090c8782"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "For IELTS, the minimum score is 6.5.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c7d582cdea452444"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Public Affairs (MPA)",
@@ -728,15 +902,19 @@
      "overall": 100,
      "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 100. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the date condition; 100 applies only to exams on or before January 20, 2026",
+     "summary_sha": "ad93ad020c69ed8f"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "For IELTS, the minimum score is 7.0.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c656765f0025ca09"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Public Health, Accelerated (MPH)",
@@ -746,14 +924,18 @@
     "academic": {
      "text": "Advanced clinical degree (or international equivalent), or completion of at least two years of medical school",
      "quote": "Applicants must either possess an advanced clinical degree (e.g., M.D., Ph.D., D.O., Pharm.D., DDS, DMD, O.D., DVM, DNP, DPT, or the international equivalent) or be a medical student who has completed at least two years of medical school.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "49a6ed31891d947a"
     },
     "deadlines": [
      {
       "label": "Application Deadline",
       "date": "2027-01-15",
       "quote": "Application Deadline January 15, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "8a8ef913feabcff3"
      }
     ]
    },
@@ -769,7 +951,9 @@
       "label": "Application Deadline",
       "date": "2027-01-15",
       "quote": "Application Deadline January 15, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "8a8ef913feabcff3"
      }
     ]
    },
@@ -784,15 +968,19 @@
      "overall": 90,
      "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 90. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.5.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the date condition; 90 applies only to exams on or before January 20, 2026",
+     "summary_sha": "1dc2b3c194f2273d"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "For IELTS, the minimum score is 7.0.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c656765f0025ca09"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Public Health, Online (MPH)",
@@ -802,21 +990,27 @@
     "academic": {
      "text": "Undergraduate degree and professional work experience",
      "quote": "Candidates should have an undergraduate degree and professional work experience. The program is ideal for those looking to advance or pivot their career and want to protect and improve the health of populations.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "bc3d478f4eb639c1"
     },
     "toefl": {
      "overall": 100,
      "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 100. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.5.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits the date condition; 100 applies only to exams on or before January 20, 2026",
+     "summary_sha": "17404828f0d39e4d"
     },
     "ielts": {
      "overall": 7.5,
      "quote": "For IELTS, the minimum score is 7.5.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ac81731f72bf72d6"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Public Humanities, Integrative Studies (A.M.)",
@@ -827,15 +1021,19 @@
      "overall": 100,
      "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 100. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.5.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits that 100 applies only to exams taken on or before January 20, 2026",
+     "summary_sha": "17404828f0d39e4d"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "For IELTS, the minimum score is 7.0.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c656765f0025ca09"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Public Policy, Online (MPP)",
@@ -845,21 +1043,27 @@
     "academic": {
      "text": "Bachelor’s degree from an accredited college/university and three years of full-time employment before the program starts",
      "quote": "A bachelor’s degree from an accredited college/university and three years of full-time employment are required prior to the start of the program. This program is ideally suited for currently employed, working-professionals.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "2606f66ca0bd9f63"
     },
     "toefl": {
      "overall": 100,
      "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 100. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits that 100 applies only to exams on or before January 20, 2026",
+     "summary_sha": "ad93ad020c69ed8f"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "For IELTS, the minimum score is 7.0.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c656765f0025ca09"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Social Data Analytics (Sc.M.)",
@@ -870,22 +1074,28 @@
      "overall": 105,
      "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 105. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.5.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 105 as the minimum; quote gives 105 only for exams on or before Jan 20, 2026, and 5.5 after",
+     "summary_sha": "546a8f9dcc2b8fc5"
     },
     "ielts": {
      "overall": 8.0,
      "quote": "For IELTS, the minimum score is 8.0.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "65cbc6ca6c87f2e9"
     },
     "prerequisites": [
      {
       "text": "One-semester introductory statistics course; a more advanced statistics course or college calculus; one-semester research methods course",
       "quote": "All entering students are required to have (1) a one–semester introductory statistics course (SOC 1100 Introductory Statistics for Social Research or an equivalent), (2) a more advanced course in statistics or a course in college calculus (MATH 0050 and 0060, or MATH 0090 or an equivalent), and (3) a one–semester course in research methods (SOC 1020 Methods of Social Research or an equivalent).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "a51b23bc41c0fa1d"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Sustainable Energy (Sc.M.)",
@@ -896,15 +1106,19 @@
      "overall": 90,
      "quote": "For TOEFL iBT exams taken on or before January 20, 2026, the minimum score is 90. For TOEFL iBT exams taken on or after January 21, 2026, the minimum score is 5.0.",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 90 stated as the minimum without the exam-date condition (90 applies only to exams on or before January 20, 2026)",
+     "summary_sha": "59b196b5c8585308"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "For IELTS, the minimum score is 7.0.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c656765f0025ca09"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Technology Leadership (Sc.M.)",
@@ -914,12 +1128,16 @@
     "toefl": {
      "overall": 105,
      "quote": "We require a minimum score of 105 on the TOEFL internet-based exam or a minimum score of 7.5 on the IELTS.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "84dae990be1000ff"
     },
     "ielts": {
      "overall": 7.5,
      "quote": "We require a minimum score of 105 on the TOEFL internet-based exam or a minimum score of 7.5 on the IELTS.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "42f390b518a439e1"
     }
    },
    "status": "机器核对"
@@ -927,7 +1145,7 @@
  ],
  "verification": {
   "programs": 38,
-  "机器核对": 37,
-  "待人工": 1
+  "机器核对": 10,
+  "待人工": 28
  }
 }

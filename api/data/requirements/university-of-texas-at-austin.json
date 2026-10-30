@@ -34,7 +34,9 @@
     "academic": {
      "text": "Bachelor's degree or comparable foreign degree; GPA of 3.0 or higher on a 4.0 scale in upper-division courses and any graduate work",
      "quote": "To be eligible for admission, you’ll need a GPA of 3.0 or higher (on a 4.0 scale) in upper-division courses and any graduate work you’ve completed.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: Bachelor's degree or comparable foreign degree",
+     "summary_sha": "49f2add7dd5262bf"
     },
     "toefl": {
      "overall": 79,
@@ -42,17 +44,21 @@
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_sha256": "f481517327b8759b4de11bd9674e75d124be85f58b6c638cadf85b8c6425c27b",
      "source_url": "https://graduate.utexas.edu/admissions/apply/international",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "1a6c8184743c1fbe"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "IELTS: An overall band of 6.5 on the Academic Examination",
      "source_sha256": "f481517327b8759b4de11bd9674e75d124be85f58b6c638cadf85b8c6425c27b",
      "source_url": "https://graduate.utexas.edu/admissions/apply/international",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "8a2498d1082139be"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Business Analytics and AI (on campus)",
@@ -63,19 +69,25 @@
      {
       "text": "Undergraduate degree with at least 1 semester of Calculus and 1 semester of Statistics",
       "quote": "An undergraduate degree from an accredited institution with exposure to quantitative coursework related to at least 1 semester of Calculus and 1 semester of Statistics is required.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: at least 1 semester of Calculus and 1 semester of Statistics as the degree requirement (quote says exposure to quantitative coursework related to)",
+      "summary_sha": "26949a6603242bb5"
      },
      {
       "text": "University coursework or professional experience in computer programming",
       "quote": "University coursework or professional experience in computer programming is required",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "676e7f519300f633"
      },
      {
       "text": "International applicants submit TOEFL, IELTS or Duolingo English Test scores (exceptions may apply)",
       "quote": "International students must submit either an official Test of English as a Foreign Language (TOEFL), International English Language Testing System (IELTS) or Duolingo English Test (DET) score report demonstrating an adequate knowledge of English, however exceptions may apply.",
       "source_sha256": "6f981bfa688634f14e4e2a03233c649236184080cf554e82723f5abdf12376e0",
       "source_url": "https://www.mccombs.utexas.edu/graduate/specialized-masters/ms-business-analytics-and-artificial-intelligence/on-campus/admissions/application-process/",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "fb4260009d5f68f7"
      }
     ],
     "deadlines": [
@@ -85,7 +97,9 @@
       "quote": "Round 2*\nStep 1 Due: January 12, 2027",
       "source_sha256": "6f981bfa688634f14e4e2a03233c649236184080cf554e82723f5abdf12376e0",
       "source_url": "https://www.mccombs.utexas.edu/graduate/specialized-masters/ms-business-analytics-and-artificial-intelligence/on-campus/admissions/application-process/",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: final deadline for international students",
+      "summary_sha": "00558518280acbae"
      },
      {
       "label": "Round 3 Step 1",
@@ -93,7 +107,9 @@
       "quote": "Round 3\nStep 1 Due: March 30, 2027",
       "source_sha256": "6f981bfa688634f14e4e2a03233c649236184080cf554e82723f5abdf12376e0",
       "source_url": "https://www.mccombs.utexas.edu/graduate/specialized-masters/ms-business-analytics-and-artificial-intelligence/on-campus/admissions/application-process/",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f14e2e7fba65c8fd"
      },
      {
       "label": "Round 4 Step 1",
@@ -101,11 +117,13 @@
       "quote": "Round 4\nStep 1 Due: May 4, 2027",
       "source_sha256": "6f981bfa688634f14e4e2a03233c649236184080cf554e82723f5abdf12376e0",
       "source_url": "https://www.mccombs.utexas.edu/graduate/specialized-masters/ms-business-analytics-and-artificial-intelligence/on-campus/admissions/application-process/",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "aafa9c4cd329abba"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Finance (MSF)",
@@ -116,14 +134,18 @@
      {
       "text": "Applicants should demonstrate analytical expertise through academics or work experience; no pre-application requirements beyond the application process",
       "quote": "MSF applicants should be able to demonstrate analytical expertise, through academics or work experience.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: no pre-application requirements beyond the application process",
+      "summary_sha": "fb238d7f7616f702"
      },
      {
       "text": "International applicants submit TOEFL, IELTS or Duolingo English Test scores (exceptions may apply)",
       "quote": "International students must submit either an official Test of English as a Foreign Language (TOEFL), International English Language Testing System (IELTS) or Duolingo English Test (DET) score report demonstrating an adequate knowledge of English, however exceptions may apply.",
       "source_sha256": "07ef96ccce2d5347241d7ded7af4fa75d40acd22d19e573178500c0ffe8045d7",
       "source_url": "https://www.mccombs.utexas.edu/graduate/specialized-masters/ms-finance/admissions/application-process/",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "fb4260009d5f68f7"
      }
     ],
     "deadlines": [
@@ -133,7 +155,9 @@
       "quote": "Round 2*\nStep 1 Due: January 12, 2027",
       "source_sha256": "07ef96ccce2d5347241d7ded7af4fa75d40acd22d19e573178500c0ffe8045d7",
       "source_url": "https://www.mccombs.utexas.edu/graduate/specialized-masters/ms-finance/admissions/application-process/",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: final deadline for international students",
+      "summary_sha": "00558518280acbae"
      },
      {
       "label": "Round 3 Step 1",
@@ -141,7 +165,9 @@
       "quote": "Round 3\nStep 1 Due: March 30, 2027",
       "source_sha256": "07ef96ccce2d5347241d7ded7af4fa75d40acd22d19e573178500c0ffe8045d7",
       "source_url": "https://www.mccombs.utexas.edu/graduate/specialized-masters/ms-finance/admissions/application-process/",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f14e2e7fba65c8fd"
      },
      {
       "label": "Round 4 Step 1",
@@ -149,11 +175,13 @@
       "quote": "Round 4\nStep 1 Due: May 4, 2027",
       "source_sha256": "07ef96ccce2d5347241d7ded7af4fa75d40acd22d19e573178500c0ffe8045d7",
       "source_url": "https://www.mccombs.utexas.edu/graduate/specialized-masters/ms-finance/admissions/application-process/",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "aafa9c4cd329abba"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Business Technology and AI (MSBTAI)",
@@ -164,12 +192,16 @@
      {
       "text": "University coursework or professional experience in computer programming and database",
       "quote": "University coursework or professional experience in computer programming and database is required; major, minor, or certificate in Computer Science or Management Information Systems is preferred.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f624d1bad1658d89"
      },
      {
       "text": "International applicants submit TOEFL, IELTS or Duolingo English Test scores (exceptions may apply)",
       "quote": "International students must submit either an official Test of English as a Foreign Language (TOEFL), International English Language Testing System (IELTS) or Duolingo English Test (DET) score report demonstrating an adequate knowledge of English, however exceptions may apply.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "fb4260009d5f68f7"
      }
     ],
     "deadlines": [
@@ -177,17 +209,21 @@
       "label": "Round 2 Step 1 (final deadline for international applicants)",
       "date": "2027-01-12",
       "quote": "Round 2*\nStep 1 Due: January 12, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: final deadline for international applicants",
+      "summary_sha": "92eba4fde2a70e8d"
      },
      {
       "label": "Round 4 Step 1 (final deadline for all applicants)",
       "date": "2027-05-04",
       "quote": "Round 4\nStep 1 Due: May 4, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: final deadline for all applicants",
+      "summary_sha": "3de7d8387f983e8d"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Marketing (MSM)",
@@ -198,7 +234,9 @@
      {
       "text": "International applicants submit TOEFL, IELTS or Duolingo English Test scores (exceptions may apply)",
       "quote": "International students must submit either an official Test of English as a Foreign Language (TOEFL), International English Language Testing System (IELTS) or Duolingo English Test (DET) score report demonstrating an adequate knowledge of English, however exceptions may apply.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "fb4260009d5f68f7"
      }
     ],
     "deadlines": [
@@ -206,23 +244,29 @@
       "label": "Round 2 Step 1 (final deadline for international students)",
       "date": "2027-01-12",
       "quote": "Round 2*\nStep 1 Due: January 12, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: final deadline for international students",
+      "summary_sha": "00558518280acbae"
      },
      {
       "label": "Round 3 Step 1",
       "date": "2027-03-30",
       "quote": "Round 3\nStep 1 Due: March 30, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f14e2e7fba65c8fd"
      },
      {
       "label": "Round 4 Step 1",
       "date": "2027-05-04",
       "quote": "Round 4\nStep 1 Due: May 4, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "aafa9c4cd329abba"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master in Professional Accounting (MPA)",
@@ -232,37 +276,47 @@
     "academic": {
      "text": "Bachelor's degree from a regionally accredited US institution or a comparable foreign degree",
      "quote": "The University of Texas at Austin requires graduate school applicants to have earned a bachelor’s degree from a regionally accredited institution in the U.S. or a comparable degree from a foreign institution.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "2e5a3f9d503e53f0"
     },
     "toefl": {
      "overall": 105,
      "quote": "TOEFL: 5 overall and section scores (6-point scale) or 105 overall and 24 section scores (120 scale; tests taken before January 21, 2026)",
      "recommended": true,
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: Recommended (not a minimum)",
+     "summary_sha": "726133f1545d13c5"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "IELTS: 7.0-7.5 overall and section band scores",
      "recommended": true,
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: Recommended (not a minimum)",
+     "summary_sha": "b0056c6ae7f62a94"
     },
     "deadlines": [
      {
       "label": "Early deadline, all applicants (submit application)",
       "date": "2026-11-01",
       "quote": "Early Deadline: All Applicants\nSubmit Application:\nNovember 1, 2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "970ba67ac7c45ff2"
      },
      {
       "label": "Final deadline, international applicants (submit application)",
       "date": "2027-01-12",
       "quote": "Final Deadline:\nInternational Applicants\nSubmit Application:\nJanuary 12, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "da06163b6941a51f"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Business Administration (Full-Time MBA)",
@@ -272,23 +326,31 @@
     "academic": {
      "text": "Bachelor's degree from a regionally accredited US institution or a comparable foreign degree",
      "quote": "The University of Texas at Austin requires graduate school applicants to have earned a bachelor’s degree from a regionally accredited institution in the U.S. or a comparable degree from a foreign institution.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "2e5a3f9d503e53f0"
     },
     "prerequisites": [
      {
       "text": "GMAT, GMAT Focus, GRE or Executive Assessment score required unless waived",
       "quote": "All Full-Time MBA applicants are required to submit a GMAT, GMAT Focus, GRE, or Executive Assessment (EA) score.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: unless waived",
+      "summary_sha": "33c5d5547bd0d1b9"
      },
      {
       "text": "Typically two years of full-time post-bachelor's work experience",
       "quote": "Typically, two years of full-time post-bachelor’s work experience (not internships) are required for admission.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f4cd36412c6a1001"
      },
      {
       "text": "International applicants submit TOEFL, IELTS or DET unless they meet a waiver criterion",
       "quote": "If you do not meet any of these conditions, you are required to submit the TOEFL, IELTS, or DET exam without exception.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: International applicants; unless they meet a waiver criterion",
+      "summary_sha": "21e7b9bf35307498"
      }
     ],
     "deadlines": [
@@ -296,17 +358,21 @@
       "label": "Round 2 application due",
       "date": "2027-01-15",
       "quote": "Round 2\nApplication Due:\nJanuary 15, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "1f1f5ef4ad70be0d"
      },
      {
       "label": "Round 3 application due",
       "date": "2027-04-01",
       "quote": "Round 3\nApplication Due:\nApril 1, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "db1bd9cc2bc830b3"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Information Studies (MSIS)",
@@ -316,17 +382,21 @@
     "academic": {
      "text": "Bachelor's degree from a regionally accredited US institution or a comparable foreign degree; GPA of 3.0 or higher in upper-division and graduate coursework",
      "quote": "Grade Point Average (GPA): A GPA of 3.0 or higher in all junior-and senior-level upper division and graduate level-coursework attempted or completed.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: Bachelor's degree from a regionally accredited US institution or comparable foreign degree",
+     "summary_sha": "f5b6f748ef51b32b"
     },
     "prerequisites": [
      {
       "text": "TOEFL or IELTS scores for international students, according to Graduate School guidelines",
       "quote": "TOEFL or IELTS scores (international students only):  International students may be required to submit official test results from either the TOEFL or IELTS exams, according to the guidelines provided by OGA.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: may be required stated as required; OGA given as Graduate School",
+      "summary_sha": "ffa844fc490daf6f"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Public Affairs (MPAff)",
@@ -337,12 +407,16 @@
      {
       "text": "Understanding of descriptive statistics, probability and algebra before beginning coursework",
       "quote": "Students will be expected to have an understanding of descriptive statistics, probability and algebra before beginning coursework.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "a30ac66004fca7a1"
      },
      {
       "text": "International students must submit TOEFL scores; IELTS is not accepted",
       "quote": "International students also must submit TOEFL scores. We do not accept the IELTS.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "48b6f1f8c89cbe2c"
      }
     ],
     "deadlines": [
@@ -350,11 +424,13 @@
       "label": "Final deadline (applications with missing materials are not reviewed)",
       "date": "2027-03-01",
       "quote": "Applications with any missing materials on March 1, 2027, will not be reviewed",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: application deadline / final deadline",
+      "summary_sha": "befdd3abc7fd8e35"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Global Policy Studies (MGPS)",
@@ -365,12 +441,16 @@
      {
       "text": "Understanding of descriptive statistics, probability and algebra before beginning coursework",
       "quote": "Students will be expected to have an understanding of descriptive statistics, probability and algebra before beginning coursework.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "a30ac66004fca7a1"
      },
      {
       "text": "International students must submit TOEFL scores; IELTS is not accepted",
       "quote": "International students must submit TOEFL scores. We do not accept the IELTS.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "3ef58c08d736d8bd"
      }
     ],
     "deadlines": [
@@ -378,13 +458,17 @@
       "label": "Priority funding deadline",
       "date": "2026-12-01",
       "quote": "Priority Funding Deadline: December 1, 2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "d55c3655720cf3e1"
      },
      {
       "label": "Final deadline",
       "date": "2027-03-01",
       "quote": "Final Deadline: March 1, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "52e52660689e95d8"
      }
     ]
    },
@@ -400,18 +484,22 @@
       "label": "Application deadline 2026-2027",
       "date": "2026-12-01",
       "quote": "The deadline to complete and submit your application is December 1, 2026.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "9be964535c05123e"
      }
     ],
     "prerequisites": [
      {
       "text": "International applicants submit TOEFL or IELTS; GRE not considered",
       "quote": "International applicants are required to submit an exam score for English proficiency. The TOEFL and IELTS exams are both accepted.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: GRE not considered",
+      "summary_sha": "f91c396ea3e5f582"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Aerospace Engineering and Engineering Mechanics (graduate program, MS/MSE)",
@@ -421,13 +509,17 @@
     "academic": {
      "text": "BS in aerospace engineering, engineering mechanics or a closely related engineering field; GPA of at least 3.0 on a 4.0 scale in junior/senior-level and graduate work",
      "quote": "Hold a bachelor of science degree in aerospace engineering or engineering mechanics, or in a closely related field of engineering from an accredited institution.\nHave a minimum 3.0 (on a 4.0 scale) grade point average (GPA) in junior- and senior-level work and in any graduate work already completed.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "4ef31e0c00335232"
     },
     "prerequisites": [
      {
       "text": "GRE General Test required",
       "quote": "General Test of the Graduate Record Examination (GRE) Requirement The GRE test is required for Spring, Summer and Fall admissions.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f7aeec12a5814423"
      }
     ],
     "toefl": {
@@ -436,14 +528,18 @@
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_sha256": "f481517327b8759b4de11bd9674e75d124be85f58b6c638cadf85b8c6425c27b",
      "source_url": "https://graduate.utexas.edu/admissions/apply/international",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "1a6c8184743c1fbe"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "IELTS: An overall band of 6.5 on the Academic Examination",
      "source_sha256": "f481517327b8759b4de11bd9674e75d124be85f58b6c638cadf85b8c6425c27b",
      "source_url": "https://graduate.utexas.edu/admissions/apply/international",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "8a2498d1082139be"
     }
    },
    "status": "机器核对"
@@ -456,13 +552,17 @@
     "academic": {
      "text": "GPA of at least 3.0 on a 4.0 scale in junior/senior-level and graduate work",
      "quote": "Have a minimum 3.0 (on a 4.0 scale) grade point average (GPA) in junior- and senior-level work and in any graduate work already completed.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "bed85c8c003d968e"
     },
     "prerequisites": [
      {
       "text": "GRE required; no minimum score",
       "quote": "Yes, you are required to take the GRE for admission into the ORIE graduate program.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: no minimum score",
+      "summary_sha": "8cee722825c1220f"
      }
     ],
     "toefl": {
@@ -471,17 +571,21 @@
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_sha256": "f481517327b8759b4de11bd9674e75d124be85f58b6c638cadf85b8c6425c27b",
      "source_url": "https://graduate.utexas.edu/admissions/apply/international",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "1a6c8184743c1fbe"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "IELTS: An overall band of 6.5 on the Academic Examination",
      "source_sha256": "f481517327b8759b4de11bd9674e75d124be85f58b6c638cadf85b8c6425c27b",
      "source_url": "https://graduate.utexas.edu/admissions/apply/international",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "8a2498d1082139be"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Civil, Architectural and Environmental Engineering (graduate program)",
@@ -491,7 +595,9 @@
     "academic": {
      "text": "Minimum GPA of 3.0; English exam for international applicants",
      "quote": "Minimum Requirements: GPA 3.0, English exam for international applicants",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fa88153ec136ba3d"
     },
     "toefl": {
      "overall": 79,
@@ -499,14 +605,18 @@
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_sha256": "f481517327b8759b4de11bd9674e75d124be85f58b6c638cadf85b8c6425c27b",
      "source_url": "https://graduate.utexas.edu/admissions/apply/international",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "1a6c8184743c1fbe"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "IELTS: An overall band of 6.5 on the Academic Examination",
      "source_sha256": "f481517327b8759b4de11bd9674e75d124be85f58b6c638cadf85b8c6425c27b",
      "source_url": "https://graduate.utexas.edu/admissions/apply/international",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "8a2498d1082139be"
     }
    },
    "status": "机器核对"
@@ -519,18 +629,24 @@
     "academic": {
      "text": "Bachelor's degree in physical sciences or an engineering discipline; GPA of at least 3.0 on a 4.0 scale in junior/senior-level and graduate work",
      "quote": "Have a minimum 3.0 (on a 4.0 scale) grade point average (GPA) in junior- and senior-level work and in any graduate work already completed.\nHold a bachelor’s degree in physical sciences (e.g., chemistry, physics) or in an engineering discipline from an accredited institution.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "398688fd6bfb2e7e"
     },
     "prerequisites": [
      {
       "text": "GRE scores optional for the MS program",
       "quote": "Applications to the M.S. and Ph.D. programs in Mechanical Engineering no longer require the submission of GRE scores. Submitting these scores is optional.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "98a1fe36cd1364c4"
      },
      {
       "text": "TOEFL or IELTS for international students",
       "quote": "TOEFL or IELTS (international students only)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "d2f5a8063c9a7906"
      }
     ]
    },
@@ -544,13 +660,17 @@
     "academic": {
      "text": "Bachelor's degree in physical sciences or an engineering discipline (other degrees case by case); GPA of at least 3.0 on a 4.0 scale in junior/senior-level and graduate work",
      "quote": "Have a minimum 3.0 (on a 4.0 scale) grade point average (GPA) in junior- and senior-level work and in any graduate work already completed\nHold a bachelor of arts or science degree in physical sciences (chemistry, physics) or in an engineering discipline from an accredited institution. Applicants with other bachelor’s degrees may be considered on a case-by-case basis.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "15494f5796299a94"
     },
     "prerequisites": [
      {
       "text": "TOEFL or IELTS for international students",
       "quote": "TOEFL or IELTS (international students only)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "d2f5a8063c9a7906"
      }
     ]
    },
@@ -565,12 +685,16 @@
      {
       "text": "GRE General Test required and not waived",
       "quote": "The GRE is required of all applicants. The GRE is not waived.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "534afa3ead24caef"
      },
      {
       "text": "International applicants submit TOEFL or IELTS; Duolingo not accepted",
       "quote": "International applicants are required to submit official TOEFL or IELTS test scores. We do not accept the Duolingo English Test (DET).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "8032d3c270eb2710"
      }
     ]
    },
@@ -584,34 +708,42 @@
     "academic": {
      "text": "Bachelor's degree in engineering, natural sciences, mathematics/statistics/data science, computer science or a field using advanced mathematical modeling; GPA of at least 3.0 on a 4.0 scale",
      "quote": "Overall grade point average (GPA) of at least a 3.0 (on a 4.0 scale), or the equivalent, in all upper-division work and any graduate work",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: Bachelor's degree in engineering, natural sciences, mathematics/statistics/data science, computer science or a field using advanced mathematical modeling; GPA in all upper-division and graduate work",
+     "summary_sha": "8f1934d26f03bd06"
     },
     "toefl": {
      "overall": 79,
      "quote": "TOEFL: score of 79 (120-point scale) or 4 (6-point scale) internet-based test",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "4ca524066812b389"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "IELTS: overall band score of 6.5 on the Academic Examination",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "26b35c46afc68983"
     },
     "deadlines": [
      {
       "label": "Application deadline (all materials)",
       "date": "2026-12-10",
       "quote": "Application Deadline – December 10, 2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "95e2ae64c88104a0"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   }
  ],
  "verification": {
   "programs": 18,
-  "机器核对": 18,
-  "待人工": 0
+  "机器核对": 6,
+  "待人工": 12
  }
 }

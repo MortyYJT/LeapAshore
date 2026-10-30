@@ -26,17 +26,21 @@
     "academic": {
      "text": "Bachelor (AQF 7 or overseas equivalent) in a relevant discipline (Rule A); AQF 8 in a relevant discipline for Rule B",
      "quote": "Rule A: You have completed a Bachelor qualification (AQF Level 7 or overseas equivalent) in a relevant discipline.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: AQF 8 in a relevant discipline for Rule B",
+     "summary_sha": "d7c0f775806bb37c"
     },
     "prerequisites": [
      {
       "text": "Assumed knowledge: Java or C++ programming",
       "quote": "By applying for this course, we assume that you have sound knowledge of the programming language Java or C++.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "a8a6cbc0519c736f"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Data Science",
@@ -47,7 +51,9 @@
     "academic": {
      "text": "Bachelor (AQF 7 or overseas equivalent) in any discipline (Rule A)",
      "quote": "Rule A: You have completed a Bachelor qualification (AQF Level 7 or overseas equivalent) in any discipline.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "14cf567b55a412eb"
     }
    },
    "status": "机器核对"
@@ -61,7 +67,9 @@
     "academic": {
      "text": "Bachelor or above (AQF 7, 8 or 9 or overseas equivalent) in any discipline (Rule A)",
      "quote": "You can apply for this course if you have completed a Bachelor qualification or above (AQF Level 7, 8 or 9 or overseas equivalent) in any discipline.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "16f6cac8aadff3c7"
     }
    },
    "status": "机器核对"
@@ -75,10 +83,12 @@
     "academic": {
      "text": "Bachelor from an overseas institution in any discipline, full-time at UNE Sydney (Rule D); or bachelor in a relevant discipline (Rule B)",
      "quote": "Rule D: You have completed a Bachelor qualification from an overseas institution in any discipline. You must be studying full-time at the UNE Sydney campus on a fee-paying basis.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: Rule B: bachelor in a relevant discipline",
+     "summary_sha": "f7bbe9ae060cebe4"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Cybersecurity",
@@ -89,7 +99,9 @@
     "academic": {
      "text": "Bachelor or above (AQF 7, 8 or 9 or overseas equivalent) in a relevant discipline (Rule A)",
      "quote": "Rule A: You have completed a Bachelor qualification or above (AQF Level 7, 8 or 9 or overseas equivalent) in a relevant discipline.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "7deca05899cf6d62"
     }
    },
    "status": "机器核对"
@@ -103,7 +115,9 @@
     "academic": {
      "text": "Bachelor or above (AQF 7, 8 or 9 or overseas equivalent) in any discipline (Rule A)",
      "quote": "Rule A: You have completed a Bachelor qualification or above (AQF Level 7, 8 or 9 or overseas equivalent) in any discipline.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "8794b27f32bce8b3"
     }
    },
    "status": "机器核对"
@@ -117,10 +131,12 @@
     "academic": {
      "text": "Bachelor or higher (or overseas equivalent) in any discipline (Rule A)",
      "quote": "Rule A: You have completed ONE of the following qualifications (or their overseas equivalents) in any discipline:",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: Bachelor or higher",
+     "summary_sha": "68777b7f97dcb305"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Economics",
@@ -131,7 +147,9 @@
     "academic": {
      "text": "Bachelor (AQF 7 or overseas equivalent) in any discipline (Rule A)",
      "quote": "Rule A: You have completed a Bachelor qualification (AQF Level 7 or overseas equivalent) in any discipline.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "14cf567b55a412eb"
     }
    },
    "status": "机器核对"
@@ -145,10 +163,12 @@
     "academic": {
      "text": "Bachelor or higher qualification (or overseas equivalent) (Rule C)",
      "quote": "Rule C: You have completed ONE of the following qualifications (or their overseas equivalents):",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: Bachelor or higher qualification; quote only says 'one of the following qualifications' without naming it",
+     "summary_sha": "d257b1ed4155c0d9"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Economic and Regional Development",
@@ -159,7 +179,9 @@
     "academic": {
      "text": "Bachelor (AQF 7 or overseas equivalent) in any discipline (Rule A)",
      "quote": "Rule A: You have completed a Bachelor qualification (AQF Level 7 or overseas equivalent) in any discipline.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "14cf567b55a412eb"
     }
    },
    "status": "机器核对"
@@ -173,7 +195,9 @@
     "academic": {
      "text": "Bachelor of Laws or Juris Doctor (or overseas equivalent) (Rule B)",
      "quote": "Rule B: You have completed a Bachelor of Laws (AQF Level 7) or Juris Doctor (AQF Level 9) or overseas equivalents.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "e17c4e8fbc6d7c31"
     }
    },
    "status": "机器核对"
@@ -187,7 +211,9 @@
     "academic": {
      "text": "Bachelor (AQF 7 or overseas equivalent) in a relevant science discipline with a minimum GPA of 5.0 and the major's minimum knowledge requirements",
      "quote": "Rule A: You have completed a Bachelor qualification (AQF Level 7 or overseas equivalent) in a relevant discipline* with a minimum Grade Point Average (GPA) of 5.0 AND you meet the minimum knowledge requirements for your preferred major.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "526bc4291ac73897"
     }
    },
    "status": "机器核对"
@@ -201,7 +227,9 @@
     "academic": {
      "text": "Bachelor (AQF 7 or overseas equivalent) in any discipline (Rule C)",
      "quote": "Rule C: You have a Bachelor qualification (AQF Level 7 or overseas equivalent) in any discipline.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "4c0fdb66d3c488b0"
     }
    },
    "status": "机器核对"
@@ -215,7 +243,9 @@
     "academic": {
      "text": "Bachelor (AQF 7 or overseas equivalent) in any discipline (Rule A)",
      "quote": "Rule A: You have completed a Bachelor qualification (AQF Level 7 or overseas equivalent) in any discipline.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "14cf567b55a412eb"
     }
    },
    "status": "机器核对"
@@ -229,7 +259,9 @@
     "academic": {
      "text": "Bachelor (AQF 7 or overseas equivalent) in any discipline (Rule A)",
      "quote": "Rule A: You have completed a Bachelor qualification (AQF Level 7 or overseas equivalent) in any discipline.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "14cf567b55a412eb"
     }
    },
    "status": "机器核对"
@@ -243,17 +275,21 @@
     "academic": {
      "text": "Three-year undergraduate qualification (AQF 7 or overseas equivalent) in a discipline other than Social Work (Rule A)",
      "quote": "Rule A: You have completed a three-year undergraduate qualification (AQF Level 7 or overseas equivalent) from a recognised tertiary institution in a discipline other than Social Work.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits 'from a recognised tertiary institution'",
+     "summary_sha": "85b722df0aab7a3c"
     },
     "prerequisites": [
      {
       "text": "48 credit points (one full-time year) in a Social Science discipline",
       "quote": "Your degree must include 48 credit points (1 year of full-time study, or part-time equivalent) in any Social Science discipline.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "379dd5dc05ffa25e"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Nursing Practice (Preregistration)",
@@ -264,7 +300,9 @@
     "academic": {
      "text": "Bachelor (AQF 7 or overseas equivalent) or higher, not currently registered as a nurse in Australia (Rule A)",
      "quote": "Rule A: You have completed a Bachelor qualification (AQF Level 7 or overseas equivalent) or higher, AND you are not currently registered to practice as a nurse in Australia.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "10c278c6abf6694b"
     }
    },
    "status": "机器核对"
@@ -272,7 +310,7 @@
  ],
  "verification": {
   "programs": 17,
-  "机器核对": 17,
-  "待人工": 0
+  "机器核对": 12,
+  "待人工": 5
  }
 }

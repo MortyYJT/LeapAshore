@@ -56,27 +56,35 @@
     "ielts": {
      "overall": 6.0,
      "quote": "IELTS Academic Test* - an overall score of Band 6.0 or above (we do not accept One Skill Retake); or",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ded857fdc5838a33"
     },
     "toefl": {
      "overall": 78.0,
      "quote": "TOEFL iBT (internet-based Test)* - 78 or above (for tests taken before 21 January 2026) (we do not accept MyBest score); or",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0d354948ad586f16"
     },
     "academic": {
      "text": "A Bachelor's degree from a recognised institution, normally with honours not lower than Second Class (Upper Division), or an average grade of not lower than B.",
      "quote": "Obtained a Bachelor's degree from a recognised institution, normally with honours not lower than Second Class (Upper Division), or an average grade of not lower than B; and",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "f10918a760143f65"
     },
     "prerequisites": [
      {
       "text": "English language requirement (IELTS or TOEFL) if the Bachelor's degree was obtained from an institution where the medium of instruction is not English.",
       "quote": "Fulfilled one of the following English language requirements if the Bachelor’s degree is obtained from an institution where the medium of instruction is not English:",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: IELTS or TOEFL",
+      "summary_sha": "c297ecf92f5b1f63"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Fine Arts in Theatre and Entertainment Arts",
@@ -90,7 +98,7 @@
  ],
  "verification": {
   "programs": 6,
-  "机器核对": 1,
-  "待人工": 5
+  "机器核对": 0,
+  "待人工": 6
  }
 }

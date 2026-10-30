@@ -91,7 +91,9 @@
     "academic": {
      "text": "A bachelor's degree in chemistry or another related specialization.",
      "quote": "The program is intended for candidates with a bachelor’s degree in chemistry or other related specialization.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "f9d967addb28ce04"
     }
    },
    "status": "机器核对"
@@ -106,78 +108,108 @@
     "academic": {
      "text": "A minimum of 30 credited hours as specified in the program categories, with a minimum CGPA of 3.0.",
      "quote": "Students seeking the degree of MSc in CS must successfully complete a minimum of 30 credited hours as specified in the categories detailed in this section, with a minimum Cumulative Grade Point Average (CGPA) of 3.0.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "6e8adb67ec0e9282"
     },
     "prerequisites": [
      {
       "text": "Undergraduate course in Software Engineering (or equivalent).",
       "quote": "Prerequisite: Undergraduate course in Software Engineering (or equivalent).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "cadd5aae63df8308"
      },
      {
       "text": "Undergraduate course in artificial intelligence (or equivalent).",
       "quote": "Prerequisite: Undergraduate course in artificial intelligence (or equivalent).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "68bdfa4552ba30af"
      },
      {
       "text": "Undergraduate course in artificial intelligence.",
       "quote": "Prerequisite: Undergraduate course in artificial intelligence.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "a03a7ee5f8cf840d"
      },
      {
       "text": "Undergraduate course in software engineering (or equivalent).",
       "quote": "Prerequisite: Undergraduate course in software engineering (or equivalent).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "9bfede08e4603e83"
      },
      {
       "text": "Knowledge of Python programming; statistics and probability; linear algebra.",
       "quote": "Prerequisite: Knowledge of Python programming; statistics and probability; linear algebra).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "4578a2656816e89e"
      },
      {
       "text": "Undergraduate course in design and analysis of algorithms (or equivalent).",
       "quote": "Prerequisite: Undergraduate course in design and analysis of algorithms (or equivalent).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "5202928762eb1ee6"
      },
      {
       "text": "Undergraduate courses in computer networks and parallel and distributed computing (or equivalent).",
       "quote": "Prerequisite: Undergraduate courses in computer networks and parallel and distributed computing (or equivalent).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "99ec980e508ccef1"
      },
      {
       "text": "Undergraduate knowledge of Computer Networks or Communications Networks.",
       "quote": "Prerequisite: Undergraduate knowledge of Computer Networks or Communications Networks.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "c3ad06a77d0842cb"
      },
      {
       "text": "Undergraduate course in bioinformatics and genomic data science (or equivalent).",
       "quote": "Prerequisite: Undergraduate course in bioinformatics and genomic data science (or equivalent).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "893684fac252050d"
      },
      {
       "text": "Knowledge of undergraduate course in probability and statistics (or equivalent).",
       "quote": "Prerequisite: Knowledge of undergraduate course in probability and statistics (or equivalent).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "aa4d6bb9adb93a94"
      },
      {
       "text": "Undergraduate course in operating systems.",
       "quote": "Prerequisite: Undergraduate course in operating systems.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "01e84734118b4977"
      },
      {
       "text": "Undergraduate knowledge of artificial intelligence (or equivalent).",
       "quote": "Prerequisite: Undergraduate knowledge of artificial intelligence (or equivalent).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "a4e24e1b77c2c7be"
      },
      {
       "text": "Undergraduate knowledge of software engineering.",
       "quote": "Prerequisite: Undergraduate knowledge of software engineering.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "8c2491cef800ca10"
      },
      {
       "text": "Undergraduate course in artificial intelligence.",
       "quote": "Prerequisite: Undergraduate course in artificial intelligence.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "a03a7ee5f8cf840d"
      }
     ]
    },
@@ -256,10 +288,12 @@
     "academic": {
      "text": "A bachelor's degree is required to obtain the MSc degree.",
      "quote": "Students holding a Bachelor degree",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: required to obtain the MSc degree (quote only describes students holding a Bachelor degree)",
+     "summary_sha": "0fc8eac1ec8ddb14"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Msc in Health Systems Management - NEW",
@@ -272,7 +306,9 @@
      {
       "text": "Seminar in Research Methods (ENGR 695) must be taken and passed before enrolling in thesis credit.",
       "quote": "To be able to enroll in HSMA 699 thesis credit, students are first required to take and pass ENGR 695 Seminar in Research Methods, as a prerequisite.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "d87b9a23936fdc84"
      }
     ]
    },
@@ -288,23 +324,31 @@
     "ielts": {
      "overall": 6.5,
      "quote": "an overall academic IELTS score of 6.5",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "3ddfbf94a77cdbdc"
     },
     "toefl": {
      "overall": 91.0,
      "quote": "an iBT TOEFL (internet-based test) score of 91 or equivalent",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0984e5908e343d4e"
     },
     "academic": {
      "text": "A completed BSc degree in Physics (or equivalent) with a minimum CGPA of 3.0 out of 4.0 (75%), or equivalent, from an accredited institution.",
      "quote": "Completed BSc degree in Physics (or equivalent) with a minimum Cumulative Grade Point Average (CGPA) of 3.0 out of 4.0 (75%), or equivalent, from an accredited institution.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "50745dcb0af5429c"
     },
     "prerequisites": [
      {
       "text": "Deficiency courses in physics (Modern Physics, Quantum Physics, Instrumentation Physics) and math (Linear Algebra, Differential Equations, Statistics) for applicants from other science or engineering branches.",
       "quote": "Students with Bachelor’s degrees from other branches of science or engineering should take deficiency courses in physics (including Modern Physics, Quantum Physics and Instrumentation Physics) and Math (including Linear Algebra, Differential Equations and Statistics).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "02f1358f2dbe2760"
      }
     ]
    },
@@ -322,7 +366,7 @@
  ],
  "verification": {
   "programs": 21,
-  "机器核对": 5,
-  "待人工": 16
+  "机器核对": 4,
+  "待人工": 17
  }
 }

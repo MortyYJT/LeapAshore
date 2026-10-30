@@ -19,33 +19,43 @@
     "ielts": {
      "overall": 7.0,
      "quote": "IELTS Academic\n7\n2 years",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "2a75d5c64cf631c5"
     },
     "toefl": {
      "overall": 95.0,
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "quote": "TOEFL iBT (Score 0-120)*\n95\n2 years\nTOEFL iBT (Score 1-6)*\n5\n2 years",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "f8a32d05a1dd340e"
     },
     "academic": {
      "text": "Bachelor's degree from a Swiss university or Swiss university of applied sciences with a minimum grade point average of 4.5, in one of the listed branches, plus a standardized interview.",
      "quote": "Bachelor's degree from a Swiss university or a Swiss university of applied sciences, minimum grade point average 4.5 and a demonstration of the candidate’s suitability for study through a standardized interview, only in one of the following branches or fields of studies:",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c5ded5cb85bb3496"
     },
     "prerequisites": [
      {
       "text": "Bachelor's degree in one of: Biomedical Engineering, Electrical Engineering, Computer Science, Mechanical Engineering, Mathematics, Physics.",
       "quote": "Biomedical Engineering\nElectrical Engineering\nComputer Science\nMechanical Engineering\nMathematics\nPhysics",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Bachelor's degree in one of",
+      "summary_sha": "0365afe7f3dd9e69"
      },
      {
       "text": "Suitability for study demonstrated through a standardized interview.",
       "quote": "a demonstration of the candidate’s suitability for study through a standardized interview",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "5d07e04cc373b5f8"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Biomedical Engineering",
@@ -57,22 +67,28 @@
     "academic": {
      "text": "Bachelor's degree from a Swiss university or Swiss university of applied sciences in one of the listed branches of study (electrical engineering, computer science, mechanical engineering, microtechnology, physics, computational science, or a comparable field).",
      "quote": "Bachelor's degree from a Swiss university or a Swiss university of applied sciences in one of the following branches of studies:",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: the list of branches of study (electrical engineering, computer science, ...)",
+     "summary_sha": "04fea6fcdc103d64"
     },
     "prerequisites": [
      {
       "text": "Applicants with an international degree must also take a GRE test.",
       "quote": "If you are applying with an international degree, you must also take a GRE test.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "69b705ee9576db88"
      },
      {
       "text": "The degree used for assessment may not be more than five years old.",
       "quote": "The degree used for assessment purposes may not be more than five years old.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "4a4ad95b97b74613"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Biomedical Sciences",
@@ -84,33 +100,45 @@
     "academic": {
      "text": "Bachelor's degree in Biomedical Sciences from the University of Fribourg, admitted with no restrictions.",
      "quote": "Admission with no restrictions: Bachelor's degree in Biomedical Sciences from the University of Fribourg",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "3904b24f6dee58fc"
     },
     "prerequisites": [
      {
       "text": "Fundamental mathematics and science (mathematics, physics, chemistry and biology)",
       "quote": "Fundamental mathematics and science (mathematics, physics, chemistry and biology)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "85bff56092089ce4"
      },
      {
       "text": "Anatomic-morphologic knowledge and basic knowledge of the human body",
       "quote": "Anatomic-morphologic knowledge and basic knowledge of the human body",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "e6f5de9adc4391a5"
      },
      {
       "text": "Pathophysiology of selected organ systems",
       "quote": "Pathophysiology of selected organ systems",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "c666bd16b44f7848"
      },
      {
       "text": "Laboratory skills in biochemistry and molecular biology",
       "quote": "Laboratory skills in biochemistry and molecular biology",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "607d3213c77535d9"
      },
      {
       "text": "Knowledge of methods of biomedical research",
       "quote": "Knowledge of methods of biomedical research",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f3ead87179d0d7d0"
      }
     ]
    },
@@ -126,13 +154,17 @@
     "academic": {
      "text": "Bachelor's degree in Dental Medicine from the University of Bern.",
      "quote": "Bachelor's degree in Dental Medicine from the University of Bern",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "1287a8c6d172604c"
     },
     "prerequisites": [
      {
       "text": "German language skills at level C1.",
       "quote": "German language skills at level C1 are required.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "131adf8f88ed05e1"
      }
     ]
    },
@@ -148,13 +180,17 @@
     "academic": {
      "text": "Bachelor's degree in Medicine from the University of Bern.",
      "quote": "Bachelor's degree in Medicine from the University of Bern",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b4f4390da803974e"
     },
     "prerequisites": [
      {
       "text": "German language skills at level C1 for applicants with an academic qualification from a foreign non-German speaking university.",
       "quote": "Applicants with an academic qualification from a foreign non-German speaking university must demonstrate proficiency in German as described in the German test regulations of the University of Bern. German language skills at level C1 are required.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "0a76e77c3bba4ca3"
      }
     ]
    },
@@ -170,13 +206,17 @@
     "academic": {
      "text": "Bachelor's degree in a MedBG-accredited program in Pharmaceutical Sciences.",
      "quote": "Bachelorabschluss in einem nach MedBG akkreditierten Studiengang in der Studienrichtung Pharmazeutische Wissenschaften",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "f251b43e651d1e4e"
     },
     "prerequisites": [
      {
       "text": "Very good German skills (level C1 or higher) for applicants with foreign, non-German-language study certificates.",
       "quote": "Studienbewerber/innen mit ausländischen, nicht deutschsprachigen Studienausweisen haben sehr gute Deutschkenntnisse (Niveau C1 oder höher) nachzuweisen (siehe Studienplan, Artikel 8, Absatz 2).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "fc890f137a0cfd90"
      }
     ]
    },
@@ -192,13 +232,17 @@
     "academic": {
      "text": "Bachelor's degree from a Swiss university, or an equivalent degree, in French Language and Literature.",
      "quote": "Bachelor's degree from a Swiss university, or an equivalent degree, in the branch of studies French Language and Literature.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "8ee4d048784a5047"
     },
     "prerequisites": [
      {
       "text": "Bachelor's level course Introduction to Latin Language and Culture for Students of Romance Studies, if not already completed.",
       "quote": "If you have not completed the bachelor's level course Introduction to Latin Language and Culture for Students of Romance Studies, you must do this as part of your extracurricular studies during the master's degree program.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "7f269315e5b1b1a0"
      }
     ]
    },
@@ -214,13 +258,17 @@
     "academic": {
      "text": "Bachelor's degree from a Swiss university with at least 105 ECTS credits in Art History.",
      "quote": "Bachelor`s degree from a Swiss university with at least 105 ECTS credits in the branch of studies of Art history.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a208a4e62865b197"
     },
     "prerequisites": [
      {
       "text": "Three modern foreign languages, or Latin plus two modern foreign languages.",
       "quote": "a) three modern foreign languages or b) Latin plus two modern foreign languages",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "7943f22d79349e8c"
      }
     ]
    },
@@ -236,17 +284,21 @@
     "academic": {
      "text": "Bachelor's degree from a Swiss university with at least 105 ECTS credits in the branch of studies of Art history.",
      "quote": "Bachelor`s degree from a Swiss university with at least 105 ECTS credits in the branch of studies of Art history.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "db6957105fd9eaf4"
     },
     "prerequisites": [
      {
       "text": "Three modern foreign languages, or Latin plus two modern foreign languages; proficiency must be evidenced before the master's can be completed.",
       "quote": "a) three modern foreign languages or b) Latin plus two modern foreign languages",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: proficiency must be evidenced before the master's can be completed",
+      "summary_sha": "3b1e5b8bd100d9f1"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master's in Anthropology of Transnationalism and the State",
@@ -258,13 +310,17 @@
     "academic": {
      "text": "Bachelor's degree from a Swiss university, or an equivalent degree, with a major in Social and Cultural Anthropology.",
      "quote": "Bachelor's degree from a Swiss university, or an equivalent degree, with a major in the branch of studies Social and Cultural Anthropology",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a09b52c3f8933687"
     },
     "prerequisites": [
      {
       "text": "The bachelor's degree may not be more than ten years old; exceptions are possible where justified.",
       "quote": "The bachelor's degree may not be more than ten years old. Exceptions are possible where justified.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "df890068ef183635"
      }
     ]
    },
@@ -280,13 +336,17 @@
     "academic": {
      "text": "A bachelor's degree from a recognized university in the branch of studies Archaeology.",
      "quote": "Bachelor's degree from a recognized university in the branch of studies Archaeology.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "12085be801637d57"
     },
     "prerequisites": [
      {
       "text": "Knowledge of Latin for the special qualifications in Mediterranean Archaeology and in Archaeology of the Roman Provinces.",
       "quote": "The special qualifications in Mediterranean Archaeology and in Archaeology of the Roman Provinces require knowledge of Latin.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f391a505b92adaf1"
      }
     ]
    },
@@ -302,13 +362,17 @@
     "academic": {
      "text": "Bachelor's degree from a Swiss university with at least 105 ECTS credits in Art History.",
      "quote": "Bachelor`s degree from a Swiss university with at least 105 ECTS credits in the branch of studies of Art history.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a208a4e62865b197"
     },
     "prerequisites": [
      {
       "text": "Three modern foreign languages, or Latin plus two modern foreign languages.",
       "quote": "a) three modern foreign languages or b) Latin plus two modern foreign languages",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "7943f22d79349e8c"
      }
     ]
    },
@@ -324,13 +388,17 @@
     "academic": {
      "text": "Bachelor's degree from a recognized university in Classical Philology.",
      "quote": "Bachelor's degree from a recognized university in the branch of studies Classical Philology",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "3f6112ab9b6b8205"
     },
     "prerequisites": [
      {
       "text": "Knowledge of Latin must be acquired in extracurricular studies during the master's program.",
       "quote": "Knowledge of Latin must be acquired as part of extracurricular studies during the master's degree program.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "055a26ffd1ae2fb5"
      }
     ]
    },
@@ -346,13 +414,17 @@
     "academic": {
      "text": "Bachelor's degree or equivalent from a recognized university with a major or minor of at least 60 ECTS credits in Social and Cultural Anthropology.",
      "quote": "Bachelor's degree or equivalent degree from a recognized university with a major or minor with at least 60 ECTS credits in the branch of studies Social and Cultural Anthropology",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fdcf2b9f200edb68"
     },
     "prerequisites": [
      {
       "text": "At least 60 ECTS credits in Social and Cultural Anthropology (major or minor).",
       "quote": "with a major or minor with at least 60 ECTS credits in the branch of studies Social and Cultural Anthropology",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "ff823b25abe823be"
      }
     ]
    },
@@ -368,13 +440,17 @@
     "academic": {
      "text": "Admission requires 60 ECTS credits in a field of study offered by the Faculty of Humanities or the Faculty of Theology, or in the field of computer science.",
      "quote": "Admission requires 60 ECTS credits in either a field of study offered by the Faculty of Humanities or the Faculty of Theology, or in the field of computer science.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "6a55f49f01ab640a"
     },
     "prerequisites": [
      {
       "text": "Excellent knowledge of German and English (C1 according to the European Framework of Reference) is expected.",
       "quote": "Excellent knowledge of German and English (C1 according to the European Framework of Reference) is expected.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "62298ab0f837be2a"
      }
     ]
    },
@@ -390,17 +466,21 @@
     "academic": {
      "text": "Bachelor's degree from a recognized university with a major in Slavonic languages and literatures, History, Political Science, or Social and Cultural Anthropology.",
      "quote": "Bachelor's degree from a recognized university with a major in one of the following branches of studies: Slavonic languages and literatures History* Political Science* Social and Cultural Anthropology *",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "41d19aecf5d4b550"
     },
     "prerequisites": [
      {
       "text": "Evidence of proficiency in one East European language (native proficiency or a language diploma/courses meeting the bachelor's program requirements) before beginning the master's program.",
       "quote": "Evidence of language proficiency in one East European language must be presented before you can begin the master's degree program.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: native proficiency or a language diploma/courses meeting the bachelor's program requirements",
+      "summary_sha": "8825fa2e9504e0d3"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Editorial Studies (Major)",
@@ -412,13 +492,17 @@
     "academic": {
      "text": "Bachelor's degree from a Swiss university with at least 60 ECTS credits in one of the study programmes listed in the Annex, provided the master's can be completed with a maximum of 60 additional ECTS credits.",
      "quote": "Bachelor's degree from a Swiss university with at least 60 ECTS credits in one of the study programmes listed in the Annex, provided that the necessary requirements for the successful completion of the Master's programme can be met by earning a maximum of 60 ECTS credits;",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b418fde5ed07d88c"
     },
     "prerequisites": [
      {
       "text": "Good to excellent knowledge of German.",
       "quote": "Good to excellent knowledge of German is expected as well as a good command of other languages used for tuition (particularly English for courses in Digital Humanities or English Studies and French for courses in Romance Studies).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "441769bfba485305"
      }
     ]
    },
@@ -434,18 +518,24 @@
     "ielts": {
      "overall": 7.0,
      "quote": "IELTS Academic Test\n7",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "1e8b2ab68760a2b2"
     },
     "academic": {
      "text": "Bachelor of Arts in Languages and Literatures in English from the University of Bern or an equivalent degree; additional attainments of up to 60 ECTS credits may be required.",
      "quote": "Bachelor of Arts in Languages and Literatures in English from the University of Bern or an equivalent degree. Additional attainments of up to 60 ECTS credits may be required.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d2d22b7870549381"
     },
     "prerequisites": [
      {
       "text": "A qualification in a classical language (Latin and/or Greek) is strongly recommended.",
       "quote": "It is strongly recommended that you obtain a qualification in a classical language (Latin and/or Greek).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "9801b709ba2948a2"
      }
     ]
    },
@@ -461,13 +551,17 @@
     "academic": {
      "text": "Applicants must meet the general admission requirements for study at the University of Bern as well as Articles 50 and 51 of the RSL Phil.-hist. 21.",
      "quote": "Admission ist granted to people who meet the general admission requirements for study at the University of Bern as well as Articles 50 and 51 of the RSL Phil.-hist. 21.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "3e42463b5777a11c"
     },
     "prerequisites": [
      {
       "text": "Solid basic knowledge of German linguistics and the ability to conduct scholarly work.",
       "quote": "Students who wish to participate in this Master program need to have solid basic knowledge of German linguistics and the ability to conduct scholarly work.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f56b23a4b70166d9"
      }
     ]
    },
@@ -483,13 +577,17 @@
     "academic": {
      "text": "Applicants must meet the general admission requirements for study at the University of Bern as well as Articles 50 and 51 of the RSL Phil.-hist. 21.",
      "quote": "Admission ist granted to people who meet the general admission requirements for study at the University of Bern as well as Articles 50 and 51 of the RSL Phil.-hist. 21.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "3e42463b5777a11c"
     },
     "prerequisites": [
      {
       "text": "Knowledge equivalent to 70 ECTS credits in German Language and Literature",
       "quote": "Admission requires knowledge equivalent to 70 ECTS credits in the field of German Language and Literature, of which up to 60 ECTS credits may be made up as requirements or conditions.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "26150b79f3ce570c"
      }
     ]
    },
@@ -505,13 +603,17 @@
     "academic": {
      "text": "Applicants must meet the general admission requirements for study at the University of Bern as well as Articles 50 and 51 of the RSL Phil.-hist. 21.",
      "quote": "Admission ist granted to people who meet the general admission requirements for study at the University of Bern as well as Articles 50 and 51 of the RSL Phil.-hist. 21.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "3e42463b5777a11c"
     },
     "prerequisites": [
      {
       "text": "A qualification in a classical language (Latin and/or Greek) is strongly recommended.",
       "quote": "It is strongly recommended that you obtain a qualification in a classical language (Latin and/or Greek).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "9801b709ba2948a2"
      }
     ]
    },
@@ -527,32 +629,42 @@
     "academic": {
      "text": "Bachelor's degree from a recognized Swiss university in History; up to 60 additional ECTS credits may be required.",
      "quote": "Bachelor's degree from a recognized Swiss university in the branch of studies History. Additional attainments of up to 60 ECTS credits may be required.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "24b5eb4da34a153c"
     },
     "prerequisites": [
      {
       "text": "For the mono (120 ECTS): knowledge of at least two foreign languages, evidenced by an upper secondary school-leaving certificate or a supplementary examination.",
       "quote": "If you wish to pursue the mono in History, you must have knowledge of at least two foreign languages, with evidence of language proficiency to be provided in the form of an upper secondary school-leaving certificate or a supplementary examination.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "ef033e256c86c7af"
      },
      {
       "text": "For the mono (120 ECTS): Latin is required regardless of the main subject field chosen.",
       "quote": "Latin is also required, regardless of the main subject field chosen.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: For the mono (120 ECTS)",
+      "summary_sha": "cf3670a2ed5a4006"
      },
      {
       "text": "For the major (90 ECTS): knowledge of at least two foreign languages, evidenced by an upper secondary school-leaving certificate or a supplementary examination.",
       "quote": "If you wish to pursue the major in History, you must have knowledge of at least two foreign languages, with evidence of language proficiency to be provided in the form of an upper secondary school-leaving certificate or a supplementary examination.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "6314c5ae330cab63"
      },
      {
       "text": "For the major (90 ECTS): Latin is required if Ancient History or Medieval History is chosen as the main subject field.",
       "quote": "Latin is required for the major if Ancient History or Medieval History is chosen as the main subject field; Latin is not required for any of the other main subject fields.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "2587994fc14dc7db"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Arts in Italian Linguistics and Literature",
@@ -564,13 +676,17 @@
     "academic": {
      "text": "Bachelor's degree from a Swiss university, or an equivalent degree, in Italian Language and Literature.",
      "quote": "Bachelor's degree from a Swiss university, or an equivalent degree, in the branch of studies Italian Language and Literature.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "30bcb7a67a22418b"
     },
     "prerequisites": [
      {
       "text": "If the bachelor's course Introduction to Latin Language and Culture for Students of Romance Studies has not been completed, it must be taken as extracurricular studies during the master's program.",
       "quote": "If you have not completed the bachelor's level course Introduction to Latin Language and Culture for Students of Romance Studies, you must do this as part of your extracurricular studies during the master's degree program.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "87d4a977623151e7"
      }
     ]
    },
@@ -586,13 +702,17 @@
     "academic": {
      "text": "Bachelor's degree from a recognized Swiss university with a major in History, Spanish Linguistics and Literature, Musicology, Social and Cultural Anthropology or Latin American Studies.",
      "quote": "Bachelor's degree from a recognized Swiss university with a major in one of the following branches of studies: History Spanish Linguistics and Literature Musicology Social and Cultural Anthropology Latin American Studies",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "098252f25eac8d1c"
     },
     "prerequisites": [
      {
       "text": "Good to excellent knowledge of Spanish (DELE C1) is expected.",
       "quote": "Good to excellent knowledge of Spanish (DELE C1) is expected for the mono and major study programs in Latin American Studies.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "1ca8f2558d7ed4d3"
      }
     ]
    },
@@ -608,13 +728,17 @@
     "academic": {
      "text": "Bachelor's degree with a major in Linguistics from a Swiss university or an equivalent degree, if necessary with additional achievements defined individually.",
      "quote": "Bachelor's degree with a major in Linguistics from a Swiss university or an equivalent degree, if necessary with additional achievements to be defined individually in accordance with paragraph 2 of the study plan, or:",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c81be66535bae306"
     },
     "prerequisites": [
      {
       "text": "Proficiency at upper secondary school-leaving level in English and French, needed to read the academic literature.",
       "quote": "Proficiency at upper secondary school-leaving level in English and French is necessary in order to be able to read the academic literature.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "9685cd87cc1fa865"
      }
     ]
    },
@@ -630,18 +754,24 @@
     "academic": {
      "text": "Bachelor's degree from the University of Bern or another Swiss university in musicology (at least 60 ECTS credits), with conditions or stipulations of up to 60 ECTS credits if needed.",
      "quote": "Bachelor's degree from the University of Bern or another Swiss university in musicology (at least 60 ECTS credits), provided that the necessary requirements for the successful completion of the master's program are met by fulfilling additional requirements in the form of conditions or stipulations equivalent to up to 60 ECTS credits.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "4856ce084dd84191"
     },
     "prerequisites": [
      {
       "text": "German at C1 level is mandatory.",
       "quote": "A C1 level of German is mandatory for studying musicology.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "d4570b08cb90d1ff"
      },
      {
       "text": "English language skills sufficient to read research literature fluently.",
       "quote": "Additionally, you will need English language skills that enable you to read research literature fluently.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "212ef34557e349b4"
      }
     ]
    },
@@ -657,13 +787,17 @@
     "academic": {
      "text": "Bachelor's degree from a Swiss university, or an equivalent degree, with a major in Philosophy.",
      "quote": "Bachelor's degree from a Swiss university, or an equivalent degree, with a major in Philosophy.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "92396039b17ab736"
     },
     "prerequisites": [
      {
       "text": "Knowledge of Latin or Greek must be acquired in extracurricular studies during the master's program if necessary for research on specific topics.",
       "quote": "If knowledge of Latin or Greek is necessary for research on specific topics, you must acquire this as part of extracurricular studies during your master's degree program.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f03ffd537fbe924f"
      }
     ]
    },
@@ -679,18 +813,24 @@
     "academic": {
      "text": "Competences corresponding to 90 ECTS credits in philosophy, including an introductory course and a proseminar, in philosophy.",
      "quote": "Competences corresponding to 90 ECTS credits in philosophy, including an introductory course, and an proseminar, in philosophy or",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a48428d77927f8f3"
     },
     "prerequisites": [
      {
       "text": "If no courses in philosophy of science have been taken, additional attainments from the Bachelor program in Philosophy with a focus in philosophy of science are required.",
       "quote": "If no courses in philosophy of science have been taken thus far, additional attainments from the Bachelor program in Philosophy with a focus in philosophy of science will be required.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "df5f172391cbdb6c"
      },
      {
       "text": "Knowledge of Latin or Greek, if necessary for research on specific topics, must be obtained outside the master's degree program.",
       "quote": "If knowledge of Latin or Greek is necessary for research on specific topics, students must obtain this knowledge outside the master's degree program.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "093154f7c08c843e"
      }
     ]
    },
@@ -706,42 +846,56 @@
     "ielts": {
      "overall": 6.5,
      "quote": "IELTS\n6.5",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "36147e5027909e45"
     },
     "toefl": {
      "overall": 92.0,
      "quote": "TOEFL Internet\n92",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b13d9a117ce17d48"
     },
     "academic": {
      "text": "Bachelor's degree from a recognized university with 90 ECTS credits in Philosophy.",
      "quote": "Bachelor's degree from a recognized university with:\na)\n90 ECTS credits in the branch of studies Philosophy or",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0aded368f80d7f41"
     },
     "prerequisites": [
      {
       "text": "For routes a) and e): if no evidence of 60 ECTS credits in Political Sciences, Business Administration / Management and Economics or Law, suitable bachelor's-level courses worth 15 ECTS credits in those branches must be completed as admission requirements.",
       "quote": "As regards a) and e), if no evidence is provided of 60 ECTS credits in the branches of studies Political Sciences, Business Administration / Management and Economics or Law, suitable courses at bachelor’s level relating to the branches of studies of Political Sciences, Business Administration and Economics or Law to the value of 15 ECTS credits must be completed as admission requirements, which must be fulfilled in order to complete the master's degree program.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "c7eca2c21b077cd6"
      },
      {
       "text": "For routes b), c), d) and e): if no evidence of 60 ECTS credits in Philosophy, four introductory courses (ethics, political philosophy, philosophy of law, action theory; 6 ECTS each) must be completed during the first two semesters.",
       "quote": "As regards b), c), and d) and e), if no evidence is provided of 60 ECTS credits in the branch of studies Philosophy, the following four introductory courses will need to be completed as admission requirements, which must be fulfilled during the first two semesters of study on an extra-curricular basis:",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: four introductory courses (ethics, political philosophy, philosophy of law, action theory; 6 ECTS each)",
+      "summary_sha": "c0552cebc5ab94fb"
      },
      {
       "text": "The bachelor's degree may not be more than ten years old.",
       "quote": "The bachelor's degree may not be more than ten years old. Exceptions are possible where justified.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "2673d149bc2df342"
      },
      {
       "text": "German at minimum level C1 (CEFR) is required before starting studies if applying with a foreign qualification and needing to satisfy admission requirements in German.",
       "quote": "A minimum of level C1 of the Common European Framework of Reference for Languages is required.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: German, before starting studies, foreign qualification, admission requirements in German",
+      "summary_sha": "0e6f54688bf9f85b"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Arts in Science of Religion",
@@ -753,13 +907,17 @@
     "academic": {
      "text": "Bachelor's degree from a recognized university with a major or minor in Science of Religion (60 ECTS credits).",
      "quote": "Bachelor's degree from a recognized university with a major or minor in Science of Religion (60 ECTS credits)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "42388139acf5d4f5"
     },
     "prerequisites": [
      {
       "text": "Depending on the empirical study focus selected, Latin or Greek, or a non-European language; proficiency must be evidenced before the master's program can be completed.",
       "quote": "Depending on the empirical study focus selected, Latin or Greek, or a non-European language. Evidence of language proficiency must be presented before the master's degree program can be completed.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "901f688b3aa20818"
      }
     ]
    },
@@ -775,22 +933,28 @@
     "academic": {
      "text": "Bachelor's degree from a recognized Swiss or foreign university with a major in Slavic Studies.",
      "quote": "Bachelor's degree from a recognized Swiss or foreign university with a major in Slavic Studies",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b9710f624d58325d"
     },
     "prerequisites": [
      {
       "text": "Knowledge of at least one Slavic language at level A2 of the Common European Framework of Reference (route b).",
       "quote": "knowledge of at least one Slavic language at level A2 of the Common European Framework of Reference",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: route b",
+      "summary_sha": "428541d74035a1db"
      },
      {
       "text": "60 ECTS credits in Slavic linguistics and literary studies (route b).",
       "quote": "Admission requires 60 ECTS credits in Slavic linguistics and literary studies",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: route b",
+      "summary_sha": "0d9ae80bee70fe67"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Arts in Social Anthropology",
@@ -802,13 +966,17 @@
     "academic": {
      "text": "Bachelor's degree from a recognized Swiss or foreign university in Social and Cultural Anthropology.",
      "quote": "Bachelor's degree from a recognized Swiss or foreign university in the branch of studies Social and Cultural Anthropology",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ed9710144a711b19"
     },
     "prerequisites": [
      {
       "text": "Sufficient knowledge of German, French and English is essential from the start of the program.",
       "quote": "Sufficient knowledge of German, French and English is essential for all courses from the very beginning of the degree program.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "b01a34d3fd263b88"
      }
     ]
    },
@@ -824,10 +992,12 @@
     "academic": {
      "text": "Bachelor's degree from a Swiss university in one of the listed branches of studies (English Languages and Literatures, German Language and Literature, French Language and Literature, Italian Language and Literature, Ibero-Romance Languages and Literatures, Slavonic Languages and Literatures, Linguistics, Social and Cultural Anthropology, Communication and Media Sciences, Sociology or Psychology).",
      "quote": "Bachelor's degree from a Swiss university in one of the following branches of studies: *",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: the enumerated list of branches of studies",
+     "summary_sha": "fcfefb641147c7d0"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Arts in Art History with special qualification in Monument Preservation and Monument Management",
@@ -839,13 +1009,17 @@
     "academic": {
      "text": "Bachelor's degree from a Swiss university with at least 105 ECTS credits in Art History.",
      "quote": "Bachelor`s degree from a Swiss university with at least 105 ECTS credits in the branch of studies of Art history.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a208a4e62865b197"
     },
     "prerequisites": [
      {
       "text": "Three modern foreign languages, or Latin plus two modern foreign languages.",
       "quote": "a) three modern foreign languages or b) Latin plus two modern foreign languages",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "7943f22d79349e8c"
      }
     ]
    },
@@ -861,17 +1035,21 @@
     "academic": {
      "text": "Bachelor's degree from a Swiss university in the branch of studies Education.",
      "quote": "Bachelor's degree from a Swiss university in the branch of studies Education *",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "2ac8b073c2059ec8"
     },
     "prerequisites": [
      {
       "text": "German language proficiency (program language is German).",
       "quote": "Language:\nGerman",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: program language is German",
+      "summary_sha": "5bb49446bed28b29"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Psychology",
@@ -883,13 +1061,17 @@
     "academic": {
      "text": "A bachelor's degree from a recognized university, or an equivalent degree, with a major in Psychology.",
      "quote": "Bachelor's degree from a recognized university, or an equivalent degree, with a major in Psychology*",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "93b5390869dab66c"
     },
     "prerequisites": [
      {
       "text": "Proof of German language proficiency at least at level C1 (diploma), for non-German-speaking applicants.",
       "quote": "Non German speaking applicants must provide proof of a diploma in German language proficiency at least at level C1.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "3c0ff092818a06f7"
      }
     ]
    },
@@ -905,10 +1087,12 @@
     "academic": {
      "text": "Bachelor's degree from a recognized Swiss university or an equivalent degree with at least 90 ECTS credits in one of the listed branches of studies (biology, biochemistry, mathematics, computer science, life sciences and technologies, applied biosciences, computational science and engineering, or another Swiss degree recognized as equivalent).",
      "quote": "Bachelor's degree from a recognized Swiss university or an equivalent degree with at least 90 ECTS credits in one of the following branches of studies:",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: the enumerated list of branches of studies",
+     "summary_sha": "f2f49dd471b7e41a"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Chemistry and Molecular Sciences",
@@ -920,17 +1104,23 @@
     "ielts": {
      "overall": 5.0,
      "quote": "IELTS\n5",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "baba02792fcf88ea"
     },
     "toefl": {
      "overall": 72.0,
      "quote": "TOEFL iBT\n4\nTOEFL iBT (until January 2026)\n72",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "87b8afb6621f250b"
     },
     "academic": {
      "text": "Bachelor's degree in Chemistry from a Swiss university.",
      "quote": "Bachelor's degree in the field of Chemistry from a Swiss university,",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "433572e4adf4cdac"
     }
    },
    "status": "机器核对"
@@ -945,13 +1135,17 @@
     "academic": {
      "text": "A Bachelor of Science, a Bachelor of Arts or a higher academic degree is required for admission.",
      "quote": "A Bachelor of Science, a Bachelor of Arts or a higher academic degree are the precondition for admission to the program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "4d072793b89389b4"
     },
     "prerequisites": [
      {
       "text": "Advanced English skills (oral, written, reading) at CEF level C1; applicants at CEF B2 are admitted with the obligation to reach C1 within the first year.",
       "quote": "Advanced skills in English (oral, written and reading) corresponding to CEF level C1 are required. Students with CEF level B2 are admitted to the program with the obligation to reach CEF level C1 within the first year.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "8a8ed3ae6e094e7d"
      }
     ]
    },
@@ -967,13 +1161,17 @@
     "academic": {
      "text": "Bachelor's degree in Computer Science or an equivalent degree from a recognized university.",
      "quote": "Bachelor's degree in Computer Science or an equivalent degree from a recognized university",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "15298325102b1e0e"
     },
     "prerequisites": [
      {
       "text": "Bachelor's degree in Computer Science (or equivalent).",
       "quote": "Admission into the MSc program in Computer Science requires a Bachelor degree in Computer Science",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "d121047b25d38fbe"
      }
     ]
    },
@@ -989,17 +1187,21 @@
     "academic": {
      "text": "A bachelor's degree in Earth Sciences from a Swiss university, or an equivalent degree.",
      "quote": "Bachelor's degree in Earth Sciences from a Swiss university, or an equivalent degree",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "8c8792a2f6eea2fa"
     },
     "prerequisites": [
      {
       "text": "At least 60 ECTS credits earned in Earth Sciences during the bachelor's degree program (for applicants with a different bachelor's degree).",
       "quote": "provided at least 60 ECTS credits were earned in Earth Sciences during the bachelor’s degree program",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: for applicants with a different bachelor's degree",
+      "summary_sha": "61bdb30de74491bd"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Ecology and Evolution (Biology)",
@@ -1011,18 +1213,24 @@
     "academic": {
      "text": "Bachelor's degree from the University of Bern in Biology with special qualification in Ecology and Evolution.",
      "quote": "Bachelor's degree from the University of Bern in Biology with special qualification in Ecology and Evolution",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ed0922d8445c55bd"
     },
     "prerequisites": [
      {
       "text": "At least 60 ECTS credits earned in Biology (for a bachelor's degree from a recognized university).",
       "quote": "Bachelor's degree from a recognized university, provided at least 60 ECTS credits were earned in Biology",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "a86e8314395a073c"
      },
      {
       "text": "The degree submitted at the time of assessment may not be more than ten years old.",
       "quote": "The degree submitted at the time of assessment may not be more than ten years old.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f853416db1caf979"
      }
     ]
    },
@@ -1038,13 +1246,17 @@
     "academic": {
      "text": "Bachelor's degree in Geography from a Swiss university.",
      "quote": "Bachelor's degree in Geography from a Swiss university",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ff926157a97d3863"
     },
     "prerequisites": [
      {
       "text": "For applicants with a bachelor's in a different subject: at least 60 ECTS in geography.",
       "quote": "Bachelor’s degree from a Swiss university in a different subject with a minimum of 60 ECTS in geography",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "708d6f84e3677da7"
      }
     ]
    },
@@ -1060,13 +1272,17 @@
     "academic": {
      "text": "Bachelor's degree from a recognized Swiss university with a major in Mathematics.",
      "quote": "Bachelor's degree from a recognized Swiss university with a major in the branch of studies Mathematics",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b0901cac8627d672"
     },
     "prerequisites": [
      {
       "text": "The degree used for assessment may not be more than ten years old.",
       "quote": "The degree used for assessment purposes may not be more than ten years old.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "27082e5d7179b00d"
      }
     ]
    },
@@ -1082,7 +1298,9 @@
     "academic": {
      "text": "A recognized bachelor's-level university degree (minimum three years of full-time study) in mathematics from a state or state-recognized university.",
      "quote": "Recognized university degree at bachelor's level (minimum duration: three years of full-time study) in mathematics from a state or state-recognized university.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "8a7de59a8f96e976"
     }
    },
    "status": "机器核对"
@@ -1097,13 +1315,17 @@
     "academic": {
      "text": "Bachelor's degree from a Swiss university or an equivalent degree in Biology, Biochemistry or Chemistry.",
      "quote": "Bachelor's degree from a Swiss university or an equivalent degree in one of the following branches of studies: Biology Biochemistry Chemistry",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "f35705f202f2a9ec"
     },
     "prerequisites": [
      {
       "text": "The degree used for assessment may not be more than ten years old.",
       "quote": "The degree used for assessment purposes may not be more than ten years old.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "27082e5d7179b00d"
      }
     ]
    },
@@ -1119,13 +1341,17 @@
     "academic": {
      "text": "Bachelor's degree from a Swiss university with a major in Physics.",
      "quote": "Bachelor's degree from a Swiss university with a major in the branch of studies Physics.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "7626962a95695790"
     },
     "prerequisites": [
      {
       "text": "The degree used for assessment purposes may not be more than ten years old.",
       "quote": "The degree used for assessment purposes may not be more than ten years old.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "1b1a53c18ad81d99"
      }
     ]
    },
@@ -1141,17 +1367,21 @@
     "academic": {
      "text": "A bachelor's degree from a Swiss university or university of applied sciences in one of the listed branches or fields of study, with a minimum unrounded grade of 5.0 or ECTS grade C.",
      "quote": "Graduates with a bachelor’s degree from a Swiss university or a university of applied sciences out in the subsequent branches of studies or fields of studies with the minimum unrounded grade of 5.0 or grade C of the ECTS grading scale can be admitted:",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "9b6615f7bb24a75f"
     },
     "prerequisites": [
      {
       "text": "Bachelor's degree in one of the listed branches or fields of study (e.g. automotive and vehicle technology, chemistry, chemical engineering, electrical engineering, energy and environmental engineering, mechanical engineering, materials science, medical technology, microtechnology, photonics, physics, systems engineering).",
       "quote": "a) Automotive and vehicle technology\nb) Chemistry\nc) Chemical engineering\nd) Electrical engineering\ne) Energy and environmental engineering\nf) Mechanical engineering\ng) Materials science\nh) Medical technology\ni) Microtechnology\nj) Photonics\nk) Physics\nl) Systems engineering",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Bachelor's degree in one of the listed branches (quote only lists branches)",
+      "summary_sha": "aeda167a0e8bc260"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Law",
@@ -1163,17 +1393,21 @@
     "academic": {
      "text": "Bachelor of Law from a Swiss university.",
      "quote": "Bachelor of Law from a Swiss university",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ee0d44f7c8293899"
     },
     "prerequisites": [
      {
       "text": "German language (program language).",
       "quote": "Language:\nGerman",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: program language",
+      "summary_sha": "854582e5225d9ee9"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Arts in Public Management and Policy",
@@ -1185,13 +1419,17 @@
     "academic": {
      "text": "Bachelor's degree from a Swiss university, or an equivalent academic qualification, with a major in Public Management, Economics, Business Administration, Political Sciences, Sociology, Law, or Media studies and communication.",
      "quote": "Bachelor's degree from a Swiss university, or an equivalent academic qualification, with a major in: Public Management Economics Business Administration Political Sciences Sociology Law Media studies and communication",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "48db268e0b0ce539"
     },
     "prerequisites": [
      {
       "text": "German language proficiency at level C1 (CEFR) for applicants with a foreign educational credential, unless native German speakers as defined in the University's German Language Test Regulations.",
       "quote": "Applicants with a foreign educational credential must provide proof of a German language proficiency test at level C1 of the Common European Framework of Reference for Languages when applying for admission, unless they are native German speakers as defined in the University of Bern’s German Language Test Regulations.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "04b3b8b6ec49c164"
      }
     ]
    },
@@ -1207,13 +1445,17 @@
     "academic": {
      "text": "Bachelor's degree from a Swiss university with a major in Religious Studies.",
      "quote": "Bachelor's degree from a Swiss university with a major in Religious Studies.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ec2e0b23c02fe98d"
     },
     "prerequisites": [
      {
       "text": "The bachelor's degree may not be more than 15 years old (exceptions possible where justified).",
       "quote": "The bachelor's degree may not be more than 15 years old. Exceptions are possible where justified.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "a7ed8cfeb8dca987"
      }
     ]
    },
@@ -1229,17 +1471,21 @@
     "academic": {
      "text": "Bachelor's degree or higher from a recognised Swiss or foreign university in one of the listed fields (history, Jewish studies, classical philology, religious studies, Semitic studies, theology, religious studies/interreligious studies) or another equivalent degree recognised by both theological faculties.",
      "quote": "Bachelorabschluss oder höherwertiger Studienabschluss einer anerkannten in- oder ausländischen Universität in einem der folgenden Bereiche:",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: the listed fields and 'or another equivalent degree recognised by both theological faculties'",
+     "summary_sha": "138a44c9c303c86f"
     },
     "prerequisites": [
      {
       "text": "Knowledge of Hebrew and Greek at Matura level or at the level of the university Hebraicum or Graecum certificates.",
       "quote": "Sprachkenntnisse in Hebräisch und Griechisch auf Maturitätsniveau oder dem Niveau der universitären Hebraicum- oder Graecum-Leistungsnachweise.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f6bb378ae7c962d0"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Applied Economic Analysis",
@@ -1251,22 +1497,28 @@
     "academic": {
      "text": "Bachelor's degree from a Swiss university in the branch of studies Economics.",
      "quote": "a) Bachelor's degree from a Swiss university in the branch of studies Economics",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c6f3516b03fdc50e"
     },
     "prerequisites": [
      {
       "text": "For route (c): coursework in Econometrics, Microeconomics and Macroeconomics, each with a minimum grade of 5.0.",
       "quote": "this must include coursework in the subjects of Econometrics, Microeconomics and Macroeconomics, each with a minimum grade of 5.0",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: For route (c)",
+      "summary_sha": "8c5a0c2a1bc1e5e5"
      },
      {
       "text": "For international bachelor's degrees: GMAT of at least 550 points or GRE quantitative reasoning of at least 154 points.",
       "quote": "If you are applying with an international bachelor's degree, you must also provide proof of a GMAT score of a minimum of 550 points or proof of a GRE score of a minimum of 154 points (quantitative reasoning).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "4d28e0a250f95f00"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Arts in Business and Law",
@@ -1278,52 +1530,70 @@
     "academic": {
      "text": "Bachelor's degree from a recognized university with a major in Business Administration or Economics (and a minor in Business Administration with at least 30 ECTS credits), plus one of the listed Law minors.",
      "quote": "Bachelor's degree from a recognized university with either a major in Business Administration or Economics (and a minor in Business Administration with at least 30 ECTS credits)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "18222f0f24db1229"
     },
     "prerequisites": [
      {
       "text": "One of the following Law minors: Obligationenrecht und Wirtschaftsrecht (30 ECTS), Staatsrecht und Staatstheorie (30 ECTS), Grundlagen des Rechts (30 ECTS) or Öffentliches Recht (60 ECTS).",
       "quote": "For both options, students need to have completed one of the following minors in Law:",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: the specific list of Law minors and their ECTS credits",
+      "summary_sha": "125ffdc88a4a5f22"
      },
      {
       "text": "Introduction to Management (3 ECTS credits).",
       "quote": "Introduction to Management\n3 ECTS credits",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "b08be8002c0ac1d6"
      },
      {
       "text": "Introduction to Financial Management and Accounting (3 ECTS credits).",
       "quote": "Introduction to Financial Management and Accounting\n3 ECTS credits",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "604d96fe24b0362c"
      },
      {
       "text": "Introduction to Marketing (3 ECTS credits).",
       "quote": "Introduction to Marketing\n3 ECTS credits",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "e61fa89a539a087c"
      },
      {
       "text": "Introduction in Business Information Systems (3 ECTS credits).",
       "quote": "Introduction in Business Information Systems\n3 ECTS credits",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "e47927d8bec5484c"
      },
      {
       "text": "Quantitative Methods in Business Administration I (6 ECTS credits).",
       "quote": "Quantitative Methods in Business Administration I\n6 ECTS credits",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "10240cce1f18f71d"
      },
      {
       "text": "Other Business Administration courses at Bachelor's level (main study program), min. 12 ECTS credits.",
       "quote": "Other Business Administration courses at Bachelor's level (main study program)\nmin. 12 ECTS credits",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "0ea7921c529b3797"
      },
      {
       "text": "German language proficiency at level C1, comparable with the University of Bern's German test regulations, if admission requirements relate to German skills.",
       "quote": "you will need to demonstrate sufficient language proficiency in German (level C1) comparable with the German test regulations set out by the Executive Board of the University of Bern, before starting your studies.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: conditional 'if admission requirements relate to German skills'",
+      "summary_sha": "e745c387d265d6ba"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Arts in Political Science",
@@ -1335,33 +1605,45 @@
     "academic": {
      "text": "Bachelor's degree from a recognized university with a major or minor in Political Science or Social Sciences (at least 60 ECTS credits with courses in basic methodology).",
      "quote": "Bachelor's degree from a recognized university with a major or minor in Political Science or Social Sciences (at least 60 ECTS credits with courses in basic methodology)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "9a2948d4b1676f4f"
     },
     "prerequisites": [
      {
       "text": "Lecture and accompanying seminar in \"Social Science Statistics\" (6 ECTS credits).",
       "quote": "Lecture and accompanying seminar in \"Social Science Statistics\" (6 ECTS credits)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "779298faef701d01"
      },
      {
       "text": "Lecture in \"Introduction to Empirical Social Research\" (3 ECTS credits).",
       "quote": "Lecture in \"Introduction to Empirical Social Research\" (3 ECTS credits)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "0ce7f6d97d18cb70"
      },
      {
       "text": "Lecture in \"Qualitative Methods in Social Science\" (3 ECTS credits).",
       "quote": "Lecture in \"Qualitative Methods in Social Science\" (3 ECTS credits)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "64f6c1b138be8f42"
      },
      {
       "text": "Empirical research internship (8 ECTS credits).",
       "quote": "Empirical research internship (8 ECTS credits)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "8dfeb0242c0af277"
      },
      {
       "text": "Sufficient knowledge of German.",
       "quote": "Sufficient knowledge of German is required in order to be able to understand source texts, lectures or examination questions.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "7f8789f8bc3fa626"
      }
     ]
    },
@@ -1377,33 +1659,45 @@
     "academic": {
      "text": "Bachelor's degree from a recognized university with a major or minor in Political Science or Social Sciences (at least 60 ECTS credits with courses in Basic Methodology).",
      "quote": "Bachelor's degree from a recognized university with a major or minor in Political Science or Social Sciences (at least 60 ECTS credits with courses in Basic Methodology)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "99c3a3b81a390ef8"
     },
     "prerequisites": [
      {
       "text": "Lecture and accompanying seminar in \"Social Science Statistics\" (6 ECTS credits).",
       "quote": "Lecture and accompanying seminar in \"Social Science Statistics\" (6 ECTS credits)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "779298faef701d01"
      },
      {
       "text": "Lecture in \"Introduction to Empirical Social Research\" (3 ECTS credits).",
       "quote": "Lecture in \"Introduction to Empirical Social Research\" (3 ECTS credits)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "0ce7f6d97d18cb70"
      },
      {
       "text": "Lecture in \"Qualitative Methods in Social Science\" (3 ECTS credits).",
       "quote": "Lecture in \"Qualitative Methods in Social Science\" (3 ECTS credits)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "64f6c1b138be8f42"
      },
      {
       "text": "Empirical research internship (8 ECTS credits).",
       "quote": "Empirical research internship (8 ECTS credits)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "8dfeb0242c0af277"
      },
      {
       "text": "Sufficient knowledge of German at level C1.",
       "quote": "Sufficient knowledge of German, level C1, is required in order to be able to understand source texts, lectures or examination questions.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "048f7aa036259eae"
      }
     ]
    },
@@ -1419,13 +1713,17 @@
     "academic": {
      "text": "Bachelor's degree from a Swiss university in Business Administration (mono or major).",
      "quote": "Bachelor's degree from a Swiss university in Business Administration (mono or major) *",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "aaf13dc9b059f653"
     },
     "prerequisites": [
      {
       "text": "Applicants with a foreign bachelor's degree must submit a GMAT test result.",
       "quote": "Applicants with a foreign bachelor's degree must submit a GMAT test result in addition to the requirements specified in Article 13 of the study plan.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "00e5566099061ca1"
      }
     ]
    },
@@ -1441,22 +1739,28 @@
     "academic": {
      "text": "Bachelor's degree from a recognized university with a major in Business Administration and a minor in Economics (minimum 15 ECTS credits).",
      "quote": "Bachelor's degree from a recognized university with a major in Business Administration and a minor in Economics (minimum 15 ECTS credits)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b194ec56c24ae676"
     },
     "prerequisites": [
      {
       "text": "Bachelor's-level courses in Business Administration and Economics: Financial Reporting, Valuation, Quantitative Methods of Business Administration I, Strategic Management.",
       "quote": "The following courses must have been successfully completed at Bachelor's level:\nBusiness Administration\nEconomics\nFinancial Reporting\nMicroeconomics I\nValuation\nMacroeconomics I\nQuantitative Methods of Business Administration I\nEconometrics I\nStrategic Management\nIntroduction to Game Theory",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: lists only four of the required courses",
+      "summary_sha": "63a9eecf5ae5baa1"
      },
      {
       "text": "Applicants with a foreign bachelor's degree must submit a GMAT test result (minimum score specified in Appendix 3).",
       "quote": "Applicants with a foreign bachelor's degree must, in addition to the requirements set out in Article 7 of the study plan, submit a GMAT test result in order to be admitted to the master's program.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: minimum score specified in Appendix 3",
+      "summary_sha": "217e064ce394a20d"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Economics",
@@ -1468,13 +1772,17 @@
     "academic": {
      "text": "Bachelor's degree from a Swiss university, or an equivalent degree, in the branch of studies Economics.",
      "quote": "Bachelor's degree from a Swiss university, or an equivalent degree, in the branch of studies Economics *",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c4d32a8696eb855c"
     },
     "prerequisites": [
      {
       "text": "Applicants with a foreign bachelor's degree must submit a GMAT score of at least 575 or a GMAT Focus Edition test result of at least 550 before the application is submitted.",
       "quote": "Applicants with a foreign bachelor's degree must, in addition to the requirements set out in Article 7 of the study plan, submit a GMAT score of at least 575 or a GMAT Focus Edition test result of at least 550 in order to be admitted to the master's program. The test may not be taken retrospectively; it must be completed before the application is submitted.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "dab00d44774619e8"
      }
     ]
    },
@@ -1490,13 +1798,17 @@
     "academic": {
      "text": "Bachelor of Science in Economics from the University of Bern.",
      "quote": "Bachelor of Science in Economics, University of Bern",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c0764feaabe8f0c5"
     },
     "prerequisites": [
      {
       "text": "A strong background in economics and quantitative methods.",
       "quote": "The MIME is intended for ambitious students who have a strong background in economics and quantitative methods and who are willing to be challenged.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "ac65050f6b4397ad"
      }
     ]
    },
@@ -1505,7 +1817,7 @@
  ],
  "verification": {
   "programs": 60,
-  "机器核对": 60,
-  "待人工": 0
+  "机器核对": 43,
+  "待人工": 17
  }
 }

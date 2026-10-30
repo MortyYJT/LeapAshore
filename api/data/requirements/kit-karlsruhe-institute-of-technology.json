@@ -24,7 +24,9 @@
     "academic": {
      "text": "Bachelor's degree in Computer Science or a programme with essentially the same content, at least three years and 180 ECTS",
      "quote": "a bachelor's degree (or at least an equivalent degree) in Computer Science (or a program with essentially the same content) from a university, university of applied sciences, university of cooperative education or a foreign university. The degree program must have been completed within a standard period of study of at least three years and with a minimum number of 180 ECTS credits.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c4f2cd70e67b6f2d"
     },
     "china_requirement": {
      "text": "Applicants from China, Vietnam and India are required to enclose the original APS certificate in their application (KIT does not accept group APS certificates).",
@@ -37,37 +39,49 @@
      "overall": 6.5,
      "min_band": 5.5,
      "quote": "IELTS with an overall score of at least 6.5, no section below 5.5",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "209e47f0a96d81cd"
     },
     "toefl": {
      "overall": 90,
      "quote": "TOEFL iBT (internet-based) with at least 90 points",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "cb1ddd19b8fb571a"
     },
     "prerequisites": [
      {
       "text": "GRE (Verbal 151, Quantitative 164, Analytical Writing 4) unless the degree is from an EHEA or Lisbon Convention state, or a GATE result is presented",
       "quote": "Proof of the GRE is not necessary if:",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: GRE scores 151/164/4, EHEA/Lisbon Convention, GATE",
+      "summary_sha": "e2007db8ec3d74a7"
      },
      {
       "text": "Minimum knowledge: Theoretical CS 15, Practical CS 30, Computer Engineering 8, Mathematics 25 credit points",
       "quote": "Practical Computer Science: 30 credit points",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Theoretical CS 15, Computer Engineering 8, Mathematics 25",
+      "summary_sha": "7ac5d798d13ed21b"
      },
      {
       "text": "Selection interview possible with lower minimum credits in three of four areas",
       "quote": "you will successfully complete an aptitude interview. A prerequisite for participation is that your proven knowledge and achievements do not fall below the following requirements in three of the four areas mentioned:",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "749fc92edf5236e7"
      },
      {
       "text": "English at least CEFR level B2 (proof required regardless of citizenship, by the end of the enrollment period at the latest)",
       "quote": "For the master's degree program in Computer Science, you need sufficient knowledge of the English language. Your English language skills must correspond to at least level B2 of the Common European Framework of Reference for Languages (CEFR).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: proof required regardless of citizenship, by end of enrollment period",
+      "summary_sha": "dfa2386243a814f9"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Electrical Engineering and Information Technology M.Sc. (taught in English)",
@@ -77,7 +91,9 @@
     "academic": {
      "text": "Bachelor's degree in Electrical Engineering and Information Technology or a related programme, at least three years and 180 ECTS",
      "quote": "a passed bachelor's degree or at least an equivalent degree in the bachelor's program in Electrical Engineering and Information Technology or a related degree program with essentially the same content at a university, university of applied sciences or university of cooperative education or at a foreign university. The program must have been completed within a regular study period of at least three years and with a minimum number of 180 ECTS credits, ECTS credit points.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "6bbbb5b4d8e5e186"
     },
     "china_requirement": {
      "text": "Applicants from China, Vietnam and India are required to enclose the original APS certificate in their application (KIT does not accept group APS certificates).",
@@ -90,32 +106,42 @@
      "overall": 6.5,
      "min_band": 5.5,
      "quote": "IELTS with an overall score of at least 6.5, no section below 5.5",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "209e47f0a96d81cd"
     },
     "toefl": {
      "overall": 90,
      "quote": "TOEFL iBT (internet-based) with at least 90 points",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "cb1ddd19b8fb571a"
     },
     "prerequisites": [
      {
       "text": "Minimum knowledge: Higher Mathematics 14 CP",
       "quote": "Higher Mathematics: 14 CP",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Minimum knowledge",
+      "summary_sha": "01b84dba40cac65e"
      },
      {
       "text": "GATE (Electrical Engineering) or GRE required for degrees from outside the EHEA and Lisbon Convention states",
       "quote": "Persons who have completed their university degree in a country that is not a member of the European Higher Education Area (EHEA) and is not a signatory to the Lisbon Convention must also have successfully completed a test, either the Graduate Aptitude Test in Engineering (GATE) in the Electrical Engineering discipline or the Graduate Examination Test (GRE). The following scores must have been achieved in the GRE:",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "0c94987c7fd528e5"
      },
      {
       "text": "English at least CEFR level B2 (proof required regardless of citizenship, by the end of the enrollment period at the latest)",
       "quote": "For the master's degree program in Electrical Engineering and Information Technology, you need sufficient knowledge of the English language. Your English language skills must correspond to at least level B2 of the Common European Framework of Reference for Languages (CEFR).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: proof required regardless of citizenship, by the end of the enrollment period at the latest",
+      "summary_sha": "e969dc6b42009973"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Mechanical Engineering M.Sc. (taught in German or English)",
@@ -125,7 +151,9 @@
     "academic": {
      "text": "Bachelor's degree in an engineering or natural sciences programme, at least three years and 180 ECTS",
      "quote": "a successfully completed bachelor's degree in an engineering or natural sciences program at a university, university of applied sciences, university of cooperative education or at a foreign university. The degree must have been completed within a standard period of study of at least three years and with a minimum number of 180 ECTS credits.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "e01bea74a68a72eb"
     },
     "china_requirement": {
      "text": "Applicants from China, Vietnam and India are required to enclose the original APS certificate in their application (KIT does not accept group APS certificates).",
@@ -138,47 +166,63 @@
      "overall": 6.5,
      "min_band": 5.5,
      "quote": "IELTS with an overall score of at least 6.5, no section below 5.5",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "209e47f0a96d81cd"
     },
     "toefl": {
      "overall": 90,
      "quote": "TOEFL iBT (internet-based) with at least 90 points",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "cb1ddd19b8fb571a"
     },
     "prerequisites": [
      {
       "text": "Minimum knowledge: fundamentals of engineering 37 CP",
       "quote": "in order to be admitted to the master's degree program in Mechanical Engineering, you must provide evidence of certain minimum knowledge from your bachelor's degree. Specifically: fundamentals of engineering (in particular higher mathematics, engineering mechanics and thermodynamics): 37 CP",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "890c83396684cb0c"
      },
      {
       "text": "Professional internship of at least twelve weeks (may be completed during the first three semesters)",
       "quote": "a professional internship of at least twelve weeks, which is recognized by the Internship Office of the KIT Department of Mechanical Engineering. An internship certificate must be submitted for this, stating both the duration of the internship and the content. If the internship is missing, admission can be granted on the condition that it is completed during the first three semesters, at the latest by the time the master's thesis is registered.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: may be completed during the first three semesters (quote: only if missing, as condition)",
+      "summary_sha": "d48e4bbbeccb0f4c"
      },
      {
       "text": "GATE (Mechanical Engineering) or GRE required for degrees from outside the EHEA and Lisbon Convention states",
       "quote": "Persons who have completed their university degree in a country that does not belong to the European Higher Education Area (EHEA) and is not a signatory to the Lisbon Convention must also have successfully completed a test, either the Graduate Aptitude Test in Engineering (GATE, Mechanical Engineering) or the Graduate Examination Test (GRE). The following scores must have been achieved in the GRE:",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "e88abf9ec597c41a"
      },
      {
       "text": "English at least CEFR level B2 (proof required regardless of citizenship, by the end of the enrollment period at the latest)",
       "quote": "For the master's degree course in Mechanical Engineering, you need sufficient knowledge of German or English. It is sufficient to demonstrate proficiency in one of the two languages at the required level.  Your knowledge of German must be at least level C1 and your knowledge of English at least level B2 of the Common European Framework of Reference for Languages (CEFR).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: proof required regardless of citizenship; by end of enrollment period",
+      "summary_sha": "ae45a0041f56ced9"
      },
      {
       "text": "German language proof (CEFR C1) accepted: DSH-2",
       "quote": "passed German language test for university admission (DSH) with overall result DSH-2",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "7f3154ff27083b40"
      },
      {
       "text": "German language proof (CEFR C1) accepted: TestDaF level 4 in all four parts",
       "quote": "passed Test of German as a Foreign Language (TestDaF) with level 4 in all four parts of the exam",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "04c25a57f2f9b83a"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Optics and Photonics M.Sc. (taught in English)",
@@ -188,7 +232,9 @@
     "academic": {
      "text": "Bachelor's degree in Optics & Photonics, Physics, Chemistry, Electrical or Mechanical Engineering, Biology, Mathematics, Mechatronics and Computer Science or a related programme, at least three years and 180 ECTS",
      "quote": "a bachelor's degree or at least an equivalent degree in one of the following degree programs:",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: the specific list of degree programs, three years and 180 ECTS",
+     "summary_sha": "de0049723f458f42"
     },
     "china_requirement": {
      "text": "Applicants from China, Vietnam and India are required to enclose the original APS certificate in their application (KIT does not accept group APS certificates).",
@@ -201,37 +247,49 @@
      "overall": 6.5,
      "min_band": 5.5,
      "quote": "IELTS with an overall score of at least 6.5, no section below 5.5",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "209e47f0a96d81cd"
     },
     "toefl": {
      "overall": 90,
      "quote": "TOEFL iBT (internet-based) with at least 90 points",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "cb1ddd19b8fb571a"
     },
     "prerequisites": [
      {
       "text": "Minimum knowledge: Mathematics 12 credit points",
       "quote": "Mathematics: 12 credit points",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "4acf6127d3cf7d54"
      },
      {
       "text": "Minimum knowledge: Physics 12 credit points",
       "quote": "Physics: 12 credit points",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "e46e056ea6af8b57"
      },
      {
       "text": "Aptitude assessment (two stages incl. interview); at least 105 points required",
       "quote": "in addition to the above-mentioned admission requirements, the selection commission will assess your academic aptitude in a two-stage process. You must receive at least 105 points to prove your aptitude.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "0e66bc5821bf1a7b"
      },
      {
       "text": "English at least CEFR level B2 (proof required regardless of citizenship, by the end of the enrollment period at the latest)",
       "quote": "For the master's degree program in Optics & Photonics, you need sufficient knowledge of the English language. Your English language skills must correspond to at least level B2 of the Common European Framework of Reference for Languages (CEFR).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: proof required regardless of citizenship, by the end of the enrollment period at the latest",
+      "summary_sha": "72cfbdcd3179dde4"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Remote Sensing and Geoinformatics M.Sc. (taught in English)",
@@ -241,7 +299,9 @@
     "academic": {
      "text": "Bachelor's degree in a subject-related natural science, engineering, IT or geoscience programme, at least three years and 180 ECTS",
      "quote": "a bachelor's degree (or at least an equivalent degree) in a subject-related physical or natural science degree program, in Engineering or Information Technology, in particular Geodesy or Geoinformatics, or in Geosciences (e.g. environmental sciences, geoinformatics, geosciences, geodesy, remote sensing, meteorology, geoecology or similar) at a university, university of applied sciences or university of cooperative education or at a foreign university. The program must have been completed within a standard period of study of at least three years and with a minimum number of 180 ECTS credits.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b51a86bddc859d9b"
     },
     "china_requirement": {
      "text": "Applicants from China, Vietnam and India are required to enclose the original APS certificate in their application (KIT does not accept group APS certificates).",
@@ -254,27 +314,35 @@
      "overall": 6.5,
      "min_band": 5.5,
      "quote": "IELTS with an overall score of at least 6.5, no section below 5.5",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "209e47f0a96d81cd"
     },
     "toefl": {
      "overall": 90,
      "quote": "TOEFL iBT (internet-based) with at least 90 points",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "cb1ddd19b8fb571a"
     },
     "prerequisites": [
      {
       "text": "Letter of motivation (max. one DIN A4 page, in English)",
       "quote": "letter of motivation in which you explain on a maximum of one DIN A4 page in English how the master's degree program in Remote Sensing and Geoinformatics ties in with your previous personal history and how it will be useful for your future career.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "0a3fe206f7af5861"
      },
      {
       "text": "English at least CEFR level B2 (proof required regardless of citizenship, by the end of the enrollment period at the latest)",
       "quote": "For the master's degree program in Remote Sensing and Geoinformatics, you need sufficient knowledge of the English language. Your English language skills must correspond to at least level B2 of the Common European Framework of Reference for Languages (CEFR).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: proof required regardless of citizenship, by end of enrollment period",
+      "summary_sha": "0b026323e6fd5818"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Industrial Engineering and Management M.Sc. (taught in English)",
@@ -284,7 +352,9 @@
     "academic": {
      "text": "Bachelor's degree in business administration, economics, engineering, computer science, mathematics or physics, at least three years and 180 ECTS",
      "quote": "a bachelor's degree (or at least an equivalent degree) from a university, university of applied sciences, university of cooperative education or a foreign university in a business administration, economics, engineering, computer science, mathematics or physics program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: at least three years and 180 ECTS",
+     "summary_sha": "3be496439b1b2d9a"
     },
     "china_requirement": {
      "text": "Applicants from China, Vietnam and India are required to enclose the original APS certificate in their application (KIT does not accept group APS certificates).",
@@ -297,27 +367,35 @@
      "overall": 6.5,
      "min_band": 5.5,
      "quote": "IELTS with an overall score of at least 6.5, no section below 5.5",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "209e47f0a96d81cd"
     },
     "toefl": {
      "overall": 90,
      "quote": "TOEFL iBT (internet-based) with at least 90 points",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "cb1ddd19b8fb571a"
     },
     "prerequisites": [
      {
       "text": "Aptitude test required: GMAT Focus Edition at least 550 or GRE at least 315",
       "quote": "GMAT (Focus Edition) with a minimum score of 550 points or",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: GRE at least 315; aptitude test required",
+      "summary_sha": "775c849158d2b9ef"
      },
      {
       "text": "English at least CEFR level B2 (proof required regardless of citizenship, by the end of the enrollment period at the latest)",
       "quote": "For the master's degree program in Industrial Engineering and Management, you need sufficient knowledge of the English language. Your English language skills must correspond to at least level B2 of the Common European Framework of Reference for Languages (CEFR).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: proof required regardless of citizenship, by end of enrollment period",
+      "summary_sha": "17bdf9dc20781e3b"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Mechatronics and Information Technology M.Sc. (taught in English)",
@@ -327,7 +405,9 @@
     "academic": {
      "text": "Bachelor's degree in Mechatronics and Information Technology or essentially the same content, at least three years and 180 ECTS",
      "quote": "a bachelor's degree (or at least an equivalent degree) in Mechatronics and Information Technology (or a degree program with essentially the same content) from a university, university of applied sciences, university of cooperative education or a foreign university. The program must have been completed within a standard period of study of at least three years and with a minimum number of 180 ECTS credits.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "bf141be3ad14e913"
     },
     "china_requirement": {
      "text": "Applicants from China, Vietnam and India are required to enclose the original APS certificate in their application (KIT does not accept group APS certificates).",
@@ -340,32 +420,42 @@
      "overall": 6.5,
      "min_band": 5.5,
      "quote": "IELTS with an overall score of at least 6.5, no section below 5.5",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "209e47f0a96d81cd"
     },
     "toefl": {
      "overall": 90,
      "quote": "TOEFL iBT (internet-based) with at least 90 points",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "cb1ddd19b8fb571a"
     },
     "prerequisites": [
      {
       "text": "Minimum knowledge: Advanced Mathematics 21 CP",
       "quote": "Advanced Mathematics: 21 CP",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "c96f44dbcb1ed7f3"
      },
      {
       "text": "GATE or GRE required for degrees from outside the EHEA and Lisbon Convention states",
       "quote": "Persons who have completed their university degree in a country that does not belong to the European Higher Education Area (EHEA) and is not a signatory to the Lisbon Convention must have successfully completed a test, either the Graduate Aptitude Test in Engineering (GATE, Electrical Engineering or Mechanical Engineering) or the Graduate Examination Test (GRE). The following scores must have been achieved in the GRE:",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "91c37548bdeadf17"
      },
      {
       "text": "English at least CEFR level B2 (proof required regardless of citizenship, by the end of the enrollment period at the latest)",
       "quote": "For the master's degree program in Mechatronics and Information Technology, you need sufficient knowledge of the English language. Your English language skills must correspond to at least level B2 of the Common European Framework of Reference for Languages (CEFR).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: proof required regardless of citizenship, by the end of the enrollment period at the latest",
+      "summary_sha": "322f7abbc04595f1"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Water Science and Engineering M.Sc. (taught in English)",
@@ -375,7 +465,9 @@
     "academic": {
      "text": "Bachelor's degree in engineering or natural sciences (e.g. Civil or Environmental Engineering, Geoecology), at least three years and 180 ECTS",
      "quote": "a Bachelor's degree (or at least an equivalent degree) in an engineering degree program such as Civil or Environmental Engineering, Chemical or Bioengineering, in a natural sciences degree program such as Geoecology, Environmental Sciences or Geosciences (or a degree program with essentially the same content) at a university, university of applied sciences or university of cooperative education or at a foreign university. The program must have been completed within a standard period of study of at least three years and with a minimum number of 180 ECTS credits.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "094e90195dd625ac"
     },
     "china_requirement": {
      "text": "Applicants from China, Vietnam and India are required to enclose the original APS certificate in their application (KIT does not accept group APS certificates).",
@@ -388,27 +480,35 @@
      "overall": 6.5,
      "min_band": 5.5,
      "quote": "IELTS with an overall score of at least 6.5 and no section below 5.5",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "8648a77970f0ad81"
     },
     "toefl": {
      "overall": 90,
      "quote": "Test of English as Foreign Language (TOEFL) with at least 90 points in the internet-based test",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "836778c281e05a99"
     },
     "prerequisites": [
      {
       "text": "Minimum knowledge: higher mathematics at least 12 LP",
       "quote": "higher mathematics of at least 12 LP",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "5e6b76afc8cdfb24"
      },
      {
       "text": "English at least CEFR level B2 (proof required regardless of citizenship, by the end of the enrollment period at the latest)",
       "quote": "For the master's degree program in Water Science and Engineering, you need sufficient knowledge of the English language. Your English language skills must correspond to at least level B2 of the Common European Framework of Reference for Languages (CEFR).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: proof required regardless of citizenship, by the end of the enrollment period at the latest",
+      "summary_sha": "51efa67e860eb615"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Physics M.Sc. (taught in English)",
@@ -418,7 +518,9 @@
     "academic": {
      "text": "Bachelor's degree in Physics or a related programme, at least three years and 180 credit points",
      "quote": "a completed bachelor's degree or at least an equivalent degree in Physics or a related degree course with essentially the same content at a university, university of applied sciences or university of cooperative education or at a foreign university. The degree must have been completed within a standard period of study of at least three years and with a minimum number of 180 credit points (CP) in accordance with ECTS",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "1f4ff13d056a4f67"
     },
     "china_requirement": {
      "text": "Applicants from China, Vietnam and India are required to enclose the original APS certificate in their application (KIT does not accept group APS certificates).",
@@ -431,32 +533,42 @@
      "overall": 6.5,
      "min_band": 5.5,
      "quote": "IELTS with an overall score of at least 6.5, no section below 5.5",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "209e47f0a96d81cd"
     },
     "toefl": {
      "overall": 90,
      "quote": "TOEFL with at least 90 points",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "52207e323f255dbe"
     },
     "prerequisites": [
      {
       "text": "Minimum knowledge: Theoretical Physics at least 32 ECTS",
       "quote": "Theoretical Physics (Mechanics, Electrodynamics, Quantum Mechanics, Statistical Physics) amounting to at least 32 ECTS credits",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "1d6ceb2317bf26dd"
      },
      {
       "text": "Letter of motivation in German or English",
       "quote": "a letter of motivation (approx. 1000-3000 characters) in German or English, in which you explain your motivation for studying in the master's program in Physics at KIT",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "c789a55c3d4f4834"
      },
      {
       "text": "English at least CEFR level B2 (proof required regardless of citizenship, by the end of the enrollment period at the latest)",
       "quote": "For the master's degree program in Physics, you need a very good knowledge of English. Your English language skills must be at least level B2 of the Common European Framework of Reference for Languages (CEFR).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: proof required regardless of citizenship, by end of enrollment period",
+      "summary_sha": "11198e4ded240d71"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Geophysics M.Sc. (taught in English)",
@@ -466,7 +578,9 @@
     "academic": {
      "text": "Bachelor's degree in Geophysics or a related subject, at least 180 ECTS or three years",
      "quote": "A passed bachelor's degree or at least an equivalent degree from a university, university of applied sciences or university of cooperative education, whereby the course must have been completed with a minimum of 180 ECTS credits, alternatively with a standard period of study of at least three years in the subject of Geophysics or a related subject area",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c5e86e50d8a5ee05"
     },
     "china_requirement": {
      "text": "Applicants from China, Vietnam and India are required to enclose the original APS certificate in their application (KIT does not accept group APS certificates).",
@@ -479,27 +593,35 @@
      "overall": 6.5,
      "min_band": 5.5,
      "quote": "IELTS with an overall score of at least 6.5, no section below 5.5",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "209e47f0a96d81cd"
     },
     "toefl": {
      "overall": 90,
      "quote": "TOEFL iBT (internet-based) with at least 90 points",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "cb1ddd19b8fb571a"
     },
     "prerequisites": [
      {
       "text": "Minimum knowledge: Geophysics at least 20 ECTS",
       "quote": "Geophysics amounting to at least 20 ECTS credits",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "6b6348772d20a285"
      },
      {
       "text": "English at least CEFR level B2 (proof required regardless of citizenship, by the end of the enrollment period at the latest)",
       "quote": "For the master's degree program in Geophysics, you need sufficient knowledge of the English language. Your English language skills must correspond to at least level B2 of the Common European Framework of Reference for Languages (CEFR).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: regardless of citizenship, by the end of the enrollment period at the latest",
+      "summary_sha": "e1550f3e6cb71180"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Meteorology and Climate Physics M.Sc. (taught in English)",
@@ -509,7 +631,9 @@
     "academic": {
      "text": "Bachelor's degree in Meteorology or a related subject (e.g. Physics), at least 180 ECTS or three years",
      "quote": "a passed bachelor's degree or at least an equivalent degree in a degree program with essentially the same content at a university, university of applied sciences or vocational academy or at a foreign university, whereby the course must have been completed with a minimum of 180 credit points according to ECTS, alternatively with a standard period of study of at least three years in the subject of Meteorology or a related subject area (e.g. Physics, Mathematics, Geosciences).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "bc778911a4248220"
     },
     "china_requirement": {
      "text": "Applicants from China, Vietnam and India are required to enclose the original APS certificate in their application (KIT does not accept group APS certificates).",
@@ -522,28 +646,36 @@
      "overall": 6.0,
      "min_band": 5.0,
      "quote": "IELTS with an overall score of at least 6.0, no section below 5.0",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "753a964192e2d235"
     },
     "toefl": {
      "overall": 72,
      "min_band": 17,
      "quote": "TOEFL with at least 72 points, including at least the following scores in the individual sub-areas: reading (18), listening (17), speaking (20), writing (17)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: no section below 17 (reading 18, speaking 20)",
+     "summary_sha": "e280210baf1d3040"
     },
     "prerequisites": [
      {
       "text": "Minimum knowledge: Meteorology and Climate Physics at least 24 credit points",
       "quote": "Meteorology and Climate Physics amounting to at least 24 credit points",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "d825f434d29240d3"
      },
      {
       "text": "English at least CEFR level B2 (proof required regardless of citizenship, by the end of the enrollment period at the latest)",
       "quote": "For the master's degree program in Meteorology and Climate Physics, you need a very good knowledge of English. Your English language skills must be at least level B2 of the Common European Framework of Reference for Languages (CEFR).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: proof required regardless of citizenship, by the end of the enrollment period at the latest",
+      "summary_sha": "d9c9e366dc8d0a4c"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Digital Economics M.Sc. (taught in English and German)",
@@ -553,7 +685,9 @@
     "academic": {
      "text": "Bachelor's degree in Digital Economics, Industrial Engineering, Business Informatics, other economics, Computer Science, Mathematics or a related programme, at least three years and 180 ECTS",
      "quote": "a bachelor's degree (or at least an equivalent degree) in Digital Economics, Industrial Engineering, Business Informatics or another economics degree course, Computer Science, Mathematics or a degree course related to one of the aforementioned degree courses with essentially the same content at a university, university of applied sciences or university of cooperative education or at a foreign university; the course must have been completed within a standard period of study of at least three years and with a minimum number of 180 ECTS credits",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "7924c3a7dcbd379e"
     },
     "china_requirement": {
      "text": "Applicants from China, Vietnam and India are required to enclose the original APS certificate in their application (KIT does not accept group APS certificates).",
@@ -566,42 +700,56 @@
      "overall": 6.5,
      "min_band": 5.5,
      "quote": "IELTS with an overall score of at least 6.5, no section below 5.5",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "209e47f0a96d81cd"
     },
     "toefl": {
      "overall": 90,
      "quote": "TOEFL iBT (internet-based) with at least 90 points",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "cb1ddd19b8fb571a"
     },
     "prerequisites": [
      {
       "text": "Minimum knowledge: mathematics, statistics and/or econometrics 20 credit points",
       "quote": "mathematics, statistics and/or econometrics amounting to 20 credit points",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "0bfed584e118b72f"
      },
      {
       "text": "Programme requires both German (at least CEFR level C1) and English (at least level B2)",
       "quote": "For the master's degree program in Digital Economics, you need sufficient knowledge of German and English. Your German language skills must be at least level C1 and your English language skills at least level B2 of the Common European Framework of Reference for Languages (CEFR).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "a8544f4fad78fff1"
      },
      {
       "text": "English at least CEFR level B2 (proof required regardless of citizenship, by the end of the enrollment period at the latest)",
       "quote": "For the master's degree program in Digital Economics, you need sufficient knowledge of German and English. Your German language skills must be at least level C1 and your English language skills at least level B2 of the Common European Framework of Reference for Languages (CEFR).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: proof required regardless of citizenship, by the end of the enrollment period at the latest",
+      "summary_sha": "f767679ff4ba1109"
      },
      {
       "text": "German language proof (CEFR C1) accepted: DSH-2",
       "quote": "passed German language test for university admission (DSH) with overall result DSH-2",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "7f3154ff27083b40"
      },
      {
       "text": "German language proof (CEFR C1) accepted: TestDaF level 4 in all four parts",
       "quote": "passed Test of German as a Foreign Language (TestDaF) with level 4 in all four parts of the exam",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "04c25a57f2f9b83a"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Mathematics M.Sc. (taught in German or English)",
@@ -611,7 +759,9 @@
     "academic": {
      "text": "Bachelor's degree in Mathematics or essentially the same content, at least three years and 180 ECTS",
      "quote": "a bachelor's degree (or at least an equivalent degree) in Mathematics (or a degree program with essentially the same content) from a university, university of applied sciences, university of cooperative education or a foreign university. The degree must have been completed within a standard period of study of at least three years and with a minimum number of 180 ECTS credits.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "dcc16f4f3be8de26"
     },
     "china_requirement": {
      "text": "Applicants from China, Vietnam and India are required to enclose the original APS certificate in their application (KIT does not accept group APS certificates).",
@@ -624,37 +774,47 @@
      "overall": 6.5,
      "min_band": 5.5,
      "quote": "IELTS with an overall score of at least 6.5, no section below 5.5",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "209e47f0a96d81cd"
     },
     "toefl": {
      "overall": 90,
      "quote": "TOEFL iBT (internet-based) with at least 90 points",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "cb1ddd19b8fb571a"
     },
     "prerequisites": [
      {
       "text": "English at least CEFR level B2 (proof required regardless of citizenship, by the end of the enrollment period at the latest)",
       "quote": "For the master's degree program in Mathematics, you need sufficient knowledge of German or English. It is therefore sufficient to prove that you can speak one of the two languages at the required level. Your knowledge of German must be at least level C1 and your knowledge of English at least level B2 of the Common European Framework of Reference for Languages (CEFR).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: proof required regardless of citizenship, by the end of the enrollment period at the latest",
+      "summary_sha": "1281b023f6997033"
      },
      {
       "text": "German language proof (CEFR C1) accepted: DSH-2",
       "quote": "passed German language test for university admission (DSH) with overall result DSH-2",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "7f3154ff27083b40"
      },
      {
       "text": "German language proof (CEFR C1) accepted: TestDaF level 4 in all four parts",
       "quote": "passed Test of German as a Foreign Language (TestDaF) with level 4 in all four parts of the exam",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "04c25a57f2f9b83a"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   }
  ],
  "verification": {
   "programs": 13,
-  "机器核对": 13,
-  "待人工": 0
+  "机器核对": 0,
+  "待人工": 13
  }
 }

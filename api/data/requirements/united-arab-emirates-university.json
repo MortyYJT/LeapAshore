@@ -20,13 +20,17 @@
     "academic": {
      "text": "Current EdUHK MEd students who chose the research project option and met all partner university requirements are eligible.",
      "quote": "current students in the EdUHK MEd program who have chosen the research project option and have satisfied all the requirements set by the partner university are eligible.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "18fcb25c0ddfab8f"
     },
     "prerequisites": [
      {
       "text": "Must be a current student in the EdUHK MEd program and have chosen the research project option.",
       "quote": "current students in the EdUHK MEd program who have chosen the research project option and have satisfied all the requirements set by the partner university are eligible.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "486e5b40fdaeaf9e"
      }
     ]
    },
@@ -43,7 +47,9 @@
      {
       "text": "An undergraduate statistics course (otherwise a bridging course is needed)",
       "quote": "This bridging course is only needed for students who did not take an undergraduate statistics course and is a prerequisite for the STAT 520 - Foundations for Analytics",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "1fc4066bb78ce9e8"
      }
     ]
    },
@@ -123,11 +129,13 @@
      {
       "text": "An undergraduate statistics course, unless the applicant takes the bridging course STAT500.",
       "quote": "This bridging course is only needed for students who did not take an undergraduate statistics course and is a prerequisite for the \"Decision Techniques and Data Analysis (STAT 609)\" MEM course.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: names the bridging course STAT500; quote says STAT 609",
+      "summary_sha": "c29936ab8b5e4691"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Genetic Counseling",
@@ -202,13 +210,17 @@
     "academic": {
      "text": "Applicants are expected to have an undergraduate architectural or architectural engineering background, with a BSc in Architectural Engineering from UAE University or equivalent in a closely related area.",
      "quote": "Applicants are expected to have undergraduate architectural or architectural engineering backgrounds, either with a BSc degree in Architectural Engineering from UAE University or equivalent in a closely related area.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "dfff4bcbf974672d"
     },
     "prerequisites": [
      {
       "text": "Undergraduate background in architecture or architectural engineering.",
       "quote": "Applicants are expected to have undergraduate architectural or architectural engineering backgrounds",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "029b692061f85009"
      }
     ]
    },
@@ -314,13 +326,17 @@
     "academic": {
      "text": "A B.Sc. in Geology or equivalent with a cumulative GPA of 3.0 or more on a 4.0 scale.",
      "quote": "Applicants must have successfully completed a B.Sc. in Geology or equivalent, with associated cumulative GPA of 3.0 or more (on scale of 4).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "380082aa27bc6db1"
     },
     "prerequisites": [
      {
       "text": "A B.Sc. in Geology or equivalent.",
       "quote": "Applicants must have successfully completed a B.Sc. in Geology or equivalent",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f04d059bb3ad698e"
      }
     ]
    },
@@ -454,7 +470,9 @@
      {
       "text": "WATR 601 is compulsory for students who did not study fluid mechanics.",
       "quote": "WATR 601 is compulsory for students who did not study fluid mechanics",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "b71b3ca3d1c23e60"
      }
     ]
    },
@@ -470,7 +488,9 @@
     "academic": {
      "text": "A Bachelor's degree in Social Work (BSW).",
      "quote": "The Master of Social Work consists of 30 credit hours of specialized coursework and practicum for students with a Bachelor degree in Social Work (BSW).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "5972d617a2a68829"
     }
    },
    "status": "机器核对"
@@ -487,7 +507,7 @@
  ],
  "verification": {
   "programs": 45,
-  "机器核对": 7,
-  "待人工": 38
+  "机器核对": 6,
+  "待人工": 39
  }
 }

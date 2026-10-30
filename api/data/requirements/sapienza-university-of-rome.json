@@ -30,22 +30,28 @@
     "academic": {
      "text": "Three-year bachelor's degree or equivalent foreign degree; at least 90 ECTS across listed mathematics, computer science, physics, economics/statistics, engineering and related areas; admission committee assesses bachelor's final grade, grade average and relevance of the degree",
      "quote": "(RC-a) Possession of a three-year university degree or an equivalent qualification obtained abroad and deemed suitable.\n(RC-b) Acquisition of at least 90 ECTS credits in total across the following disciplinary areas:",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: admission committee assesses bachelor's final grade, grade average and relevance of the degree; the listed disciplinary areas",
+     "summary_sha": "f0b1f25779d17b07"
     },
     "prerequisites": [
      {
       "text": "English B2 or higher, shown by a B2 certificate or B2 English course credits; otherwise an English proficiency interview",
       "quote": "(RC-c) English language proficiency at B2 level or higher.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: B2 certificate or B2 English course credits; otherwise an English proficiency interview",
+      "summary_sha": "c02394c0bbb5a46d"
      },
      {
       "text": "Mathematics, probability and computer science preparation: committee treats it as satisfied with 12 ECTS in MAT/03, MAT/05 and/or MAT/09, 6 ECTS in MAT/06 and 6 ECTS in INF/01 and/or ING-INF/05 with an average grade above 24/30; otherwise a test and/or oral interview",
       "quote": "The Committee will automatically consider requirement (APP-b) satisfied for students who have obtained, with an average grade above 24/30, at least:",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: 12 ECTS in MAT/03, MAT/05 and/or MAT/09, 6 ECTS in MAT/06 and 6 ECTS in INF/01 and/or ING-INF/05; otherwise a test and/or oral interview",
+      "summary_sha": "c0f61d2568db7dc2"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Computer Science (LM-18)",
@@ -55,22 +61,28 @@
     "academic": {
      "text": "Bachelor's degree or equivalent foreign title; at least 90 credits in listed INF, ING-INF, FIS, MAT and SECS-S sectors, of which at least 72 ECTS in basic subjects and core computer science; degree in classes L-31 or L-08 with grade of at least 100/110 approved automatically, others may face an admission interview",
      "quote": "To be admitted to the Master’s Degree Programme in Computer Science, applicants must hold a Bachelor’s degree or a three-year university diploma, or any other suitable title of study obtained abroad and recognised as being equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: 90 credits in listed sectors, 72 ECTS, L-31/L-08 grade 100/110 automatic approval, interview",
+     "summary_sha": "f065caf1b9597d2d"
     },
     "prerequisites": [
      {
       "text": "English B2 or higher, evidenced by a B2-level (or higher) language certification",
       "quote": "Applicants who request the assessment of entry requirements must also demonstrate proficiency of both written and spoken English by submitting a B2-level (or higher) language certification.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "ec1d1514bf9a3c3b"
      },
      {
       "text": "At least 90 credits (CFU/ECTS) in INF/01, ING-INF/01-05, FIS/01, FIS/02, FIS/07, MAT and SECS-S/01, SECS-S/06 sectors, with at least 72 ECTS in basic subjects and core computer science",
       "quote": "In any case, applicants are required to have earned at least 90 university credits (CFU/ECTS) in the following scientific-disciplinary sectors",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: specific sector list and 72 ECTS in basic subjects and core computer science",
+      "summary_sha": "cd103623b297df6a"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Artificial Intelligence and Robotics (LM-32)",
@@ -80,17 +92,21 @@
     "academic": {
      "text": "Bachelor's degree or equivalent foreign title; at least 60 recognisable credits including at least 24 CFU in mathematics/computer science/physics sectors and at least 36 CFU in engineering sectors; selection by committee based on bachelor's grade average, relevance of curriculum, extracurricular activities and possible interview",
      "quote": "Oltre al possesso di una laurea triennale o di altro titolo di studio conseguito all'estero, riconosciuto equivalente, è richiesta una preparazione di base nelle scienze, nell’ingegneria e nell’informatica/ingegneria informatica, nella filosofia della scienza.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: 60 credits, 24 CFU math/CS/physics, 36 CFU engineering, committee selection criteria and interview",
+     "summary_sha": "df63ab73ad4e2a15"
     },
     "prerequisites": [
      {
       "text": "English B2 (CEFR) or higher; verified through a selective procedure",
       "quote": "E’ inoltre richiesto il possesso di competenze nella lingua inglese di livello non inferiore al B2 del QCER.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: verified through a selective procedure",
+      "summary_sha": "c038aa7fbab03893"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Engineering in Computer Science and Artificial Intelligence (LM-32)",
@@ -100,17 +116,21 @@
     "academic": {
      "text": "Bachelor's degree or equivalent foreign qualification; at least 60 ECTS recognisable in listed areas (at least 24 ECTS in mathematics/computer science/physics areas and at least 36 ECTS in engineering/computer science areas); committee assesses bachelor's grade point average, relevance of curriculum, extracurricular activities and possibly an interview",
      "quote": "In addition to holding a Bachelor's Degree or an equivalent foreign qualification recognized as suitable, applicants are expected to possess a solid background in the fundamental areas of science, engineering, computer science/computer engineering, and the philosophy of science.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: 60/24/36 ECTS credit thresholds and committee assessment of GPA, curriculum, extracurriculars, interview",
+     "summary_sha": "1edbf2fdfaafa12b"
     },
     "prerequisites": [
      {
       "text": "English B2 or higher (CEFR)",
       "quote": "Applicants are also required to demonstrate English language proficiency at level B2 or higher according to the Common European Framework of Reference for Languages (CEFR).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "304f90bc79ef9062"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Artificial Intelligence (LM-32, inter-university programme with a selective admission process)",
@@ -120,17 +140,21 @@
     "academic": {
      "text": "Bachelor's degree or equivalent foreign title; at least 60 credits across listed sectors; selection procedure (bachelor's grade average, relevance of curriculum, extracurricular activities, interview) with application submitted to UPF and the first 25 candidates admitted",
      "quote": "Per l'accesso al Corso di Studio è necessario sostenere una procedura selettiva di ammissione. La richiesta di ammissione deve essere presentata presso UPF",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: bachelor's degree/equivalent title, 60 credits in listed sectors, selection criteria, first 25 admitted",
+     "summary_sha": "cbd0f6eea3a2796f"
     },
     "prerequisites": [
      {
       "text": "English B2 certification or at least 3 credits of English (including pass/fail) in the bachelor's studies",
       "quote": "Inoltre gli allievi devono essere in possesso di certificazione della lingua inglese a livello B2 o aver acquisito almeno 3 crediti di lingua inglese (anche idoneità) durante il percorso di studi triennale.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "5036a4bc731ca7e1"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Cybersecurity (LM-66)",
@@ -140,22 +164,28 @@
     "academic": {
      "text": "Three-year bachelor's degree or equivalent foreign qualification; at least 44 CFU in listed sectors (18 CFU in mathematics/physics/computer science and 24 CFU in further listed sectors); admission commission assesses curriculum, extracurricular activities, English B2 and an interview",
      "quote": "Admission to the Master’s Degree in Cybersecurity requires the possession of a three-year bachelor’s degree or another equivalent university qualification obtained abroad that is deemed suitable.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: 44 CFU sector requirements, commission assessment of curriculum, extracurriculars, English B2 and interview",
+     "summary_sha": "33d3757c56abdd5a"
     },
     "prerequisites": [
      {
       "text": "English B2 level assessed by the admission commission",
       "quote": "English language proficiency at B2 level;",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: assessed by the admission commission",
+      "summary_sha": "d6c18bb94a5422c8"
      },
      {
       "text": "Knowledge of computer architectures, algorithms and data structures, programming languages, databases, computer networks and operating systems",
       "quote": "applicants must have knowledge of fundamental computer science topics, including computer architectures, algorithms and data structures, programming languages, databases, computer networks, and operating systems.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "515377ad945be64a"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Statistical Methods and Applications (LM-82)",
@@ -165,22 +195,28 @@
     "academic": {
      "text": "Three-year degree or equivalent foreign title; at least 60 credits in listed mathematics, computer science, physics, engineering, psychology, statistics and economics sectors",
      "quote": "RC-1. Possesso di una laurea o diploma universitario triennale, ovvero altro titolo di studio conseguito all'estero ritenuto idoneo.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: at least 60 credits in listed sectors",
+     "summary_sha": "0d6d625d04b47154"
     },
     "prerequisites": [
      {
       "text": "English B2 or higher, verified by a committee",
       "quote": "APP-2. Conoscenza della lingua inglese a livello B2 o superiore.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: verified by a committee",
+      "summary_sha": "57b08a65d6f899cf"
      },
      {
       "text": "Knowledge of mathematics, probability, statistics and computer science (APP-1)",
       "quote": "APP-1. Conoscenza di nozioni di Matematica",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: probability, statistics and computer science",
+      "summary_sha": "cd1d5d2c3efa431e"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Statistical Sciences (LM-82; Italian and English tracks)",
@@ -190,17 +226,21 @@
     "academic": {
      "text": "First-level degree or equivalent foreign title; at least 60 credits in listed mathematics, computer science, physics, engineering, statistics and economics sectors",
      "quote": "1. Possesso di una laurea o diploma universitario triennale, ovvero altro titolo di studio conseguito all'estero ritenuto idoneo.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: at least 60 credits in listed mathematics, computer science, physics, engineering, statistics and economics sectors",
+     "summary_sha": "6f6c8c2d07882d0e"
     },
     "prerequisites": [
      {
       "text": "English at least B1, certified",
       "quote": "4. Essere in grado di utilizzare efficacemente, in forma scritta e orale, la lingua inglese, con riferimento anche ai lessici disciplinari (livello almeno B1).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: certified",
+      "summary_sha": "6af0cfa5d516b7a4"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Economics (LM-56; Italian and English tracks)",
@@ -210,22 +250,28 @@
     "academic": {
      "text": "Three-year degree or equivalent foreign title; classes L-18 or L-33, or at least 72 CFU in listed economics, law, statistics, mathematics sectors; graduates of other classes with degree grade of at least 90/110 are exempt from the personal-preparation test; extra-EU candidates are assessed on a comparative profile evaluation",
      "quote": "Lo studente che intende iscriversi al Corso di Laurea Magistrale in Economia Politica (LM-56) deve essere in possesso della Laurea o del Diploma di Laurea triennale o di altro titolo di studio conseguito all'estero e riconosciuto idoneo in base alla normativa vigente.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: classes L-18/L-33, 72 CFU, 90/110 exemption, extra-EU comparative evaluation",
+     "summary_sha": "9df41416372fc22c"
     },
     "prerequisites": [
      {
       "text": "English at least B2 (CEF): official certificate, 3 CFU of English proficiency, or other proofs; otherwise an interview",
       "quote": "la conoscenza della lingua inglese almeno di livello B2 del CEF (Common European Framework).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: certificate, 3 CFU, other proofs, otherwise an interview",
+      "summary_sha": "4ed453a3aed8ba58"
      },
      {
       "text": "Extra-EU applicants must obtain a pre-acceptance letter via the MoveIN pre-selection platform",
       "quote": "Per ottenere la lettera di pre-accettazione, gli interessati sono tenuti a presentare la propria candidatura tramite la piattaforma MoveIN, completando la procedura di pre-selezione online.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Extra-EU applicants",
+      "summary_sha": "a5d9d073153389c7"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Health Economics (LM-56)",
@@ -235,17 +281,21 @@
     "academic": {
      "text": "Three-year degree or equivalent foreign title recognised as suitable, plus curricular requirements and personal preparation; exempt from the non-selective personal-preparation test for classes 17, 28, L-18, L-33 or degree grade of at least 90/110",
      "quote": "Per iscriversi al Corso di Laurea Magistrale in Health Economics (LM-56) è necessario aver conseguito una Laurea o un Diploma di Laurea triennale, o un titolo equivalente ottenuto all’estero e riconosciuto idoneo.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: curricular requirements, personal preparation, exemption from test, grade 90/110",
+     "summary_sha": "5a0df4907971a996"
     },
     "prerequisites": [
      {
       "text": "English at least B2, shown by CEF certification or 3 CFU of English proficiency, or other proofs",
       "quote": "la conoscenza della lingua inglese almeno di livello B2.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: CEF certification, 3 CFU of English, other proofs",
+      "summary_sha": "7020f4e4d355f46b"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Electrical Engineering (LM-28, English track Electrical Engineering for Digital Transition and Sustainable Power Systems)",
@@ -255,32 +305,42 @@
     "academic": {
      "text": "Bachelor's degree (classes L-7, L-8, L-9) or equivalent foreign title; at least 90 CFU in basic and engineering subjects; degree grade of 90/110 or higher, otherwise a written/oral admission test may be required",
      "quote": "Per l’accesso al corso di Laurea Magistrale in Ingegneria dell’Energia Elettrica è richiesto il possesso di un titolo di laurea (nelle classi L-7, L-8, L-9) o di altro titolo di studio conseguito in Italia o all’estero e riconosciuto idoneo in base alla normativa vigente.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: at least 90 CFU; degree grade 90/110 or higher; admission test may be required",
+     "summary_sha": "9c2663febbbc64af"
     },
     "prerequisites": [
      {
       "text": "English at CEFR B2 level, shown by certification or an aptitude exam",
       "quote": "E’ inoltre richiesto il possesso di una buona padronanza, in forma scritta e orale, della lingua inglese, quale quella corrispondente al B2 del CEFR",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: shown by certification or an aptitude exam",
+      "summary_sha": "71ce6917797f54b9"
      },
      {
       "text": "Foreign students applying to the English track must follow the university's international admissions procedure",
       "quote": "Gli studenti di cittadinanza straniera che intendono essere ammessi all’indirizzo Electrical Engineering for Digital Transition and Sustainable Power Systems dovranno seguire la procedura per l’ammissione di studenti internazionali prevista dall’ateneo",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "fa6b7c2c5f83b5b5"
      }
     ],
     "ielts": {
      "overall": 6,
      "quote": "• IELTS level 6 (o superiore)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "14e18ea41a774d00"
     },
     "toefl": {
      "overall": 72,
      "quote": "• TOEFL internet based 72 (o superiore)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "e9d95cbaf4c13a4c"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Control Engineering (LM-25)",
@@ -290,17 +350,21 @@
     "academic": {
      "text": "Bachelor's degree, three-year university diploma or equivalent foreign qualification; at least 96 university credits in the listed areas; mandatory verification of personal preparation by a commission",
      "quote": "hold a bachelor's degree or a three-year university diploma, or another qualification obtained abroad that is considered equivalent;",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: at least 96 university credits in the listed areas; mandatory verification of personal preparation by a commission",
+     "summary_sha": "43ad114a9edbb423"
     },
     "prerequisites": [
      {
       "text": "English B2 or higher",
       "quote": "have knowledge of English at level B2 or higher.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "34202e1da9c518ad"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Telecommunication Engineering (LM-27)",
@@ -310,22 +374,28 @@
     "academic": {
      "text": "Three-year degree or equivalent foreign title; at least 120 CFU in listed sectors, of which at least 60 in FIS, MAT and ING-INF; then a personal-preparation assessment",
      "quote": "aver conseguito una laurea o un diploma universitario di durata triennale, o altro titolo di studio equivalente acquisito all’estero e riconosciuto idoneo;",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: at least 120 CFU in listed sectors, of which at least 60 in FIS, MAT and ING-INF; personal-preparation assessment",
+     "summary_sha": "912644297265aac4"
     },
     "prerequisites": [
      {
       "text": "English B2 (CEFR) or higher, written and spoken",
       "quote": "la conoscenza della lingua inglese, in forma scritta e orale, di livello non inferiore al B2 del Quadro comune europeo di riferimento per la conoscenza delle lingue (QCER);",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "fff0679123a0c4ef"
      },
      {
       "text": "Non-EU applicants residing abroad who need a study visa must hold a pre-acceptance letter from the online pre-selection",
       "quote": "è richiesto di essere in possesso della lettera di pre-accettazione",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Non-EU applicants residing abroad who need a study visa; from the online pre-selection",
+      "summary_sha": "535d4126ffbf5664"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Finance and Insurance (LM-16; Italian and English tracks)",
@@ -335,10 +405,12 @@
     "academic": {
      "text": "Personal preparation is deemed held with a degree grade of at least 90/110 and English at least B2; otherwise assessed by interview, group test or career evaluation",
      "quote": "La preparazione personale viene considerata posseduta in presenza di un voto di laurea non inferiore a 90/110 e di conoscenza della lingua inglese a livello almeno B2",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: otherwise assessed by interview, group test or career evaluation",
+     "summary_sha": "282458b7825743da"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Business Management (LM-77; Italian and English tracks)",
@@ -348,7 +420,9 @@
     "academic": {
      "text": "Graduates of other classes with a degree grade of at least 90/110 are exempt from the personal-preparation test",
      "quote": "Sono altresì esonerati dal sostenere la prova di verifica della personale preparazione, i laureati di altre classi che abbiano conseguito un voto di laurea non inferiore a 90/110.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "1713e9f985c86bc5"
     }
    },
    "status": "机器核对"
@@ -361,22 +435,26 @@
     "academic": {
      "text": "Extra-EU requirements are verified through a comparative profile evaluation (degree, final grade, grades in characterising subjects)",
      "quote": "La verifica dei requisiti d'accesso per i candidati extra-UE avviene attraverso una valutazione comparativa del profilo",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: degree, final grade, grades in characterising subjects",
+     "summary_sha": "ebada246e843ec05"
     },
     "prerequisites": [
      {
       "text": "English at least B2, assessed by interview or career evaluation",
       "quote": "la conoscenza della lingua inglese almeno di livello B2.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: assessed by interview or career evaluation",
+      "summary_sha": "38b31020da83d94a"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   }
  ],
  "verification": {
   "programs": 16,
-  "机器核对": 16,
-  "待人工": 0
+  "机器核对": 1,
+  "待人工": 15
  }
 }

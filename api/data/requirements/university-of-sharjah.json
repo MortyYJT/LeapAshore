@@ -55,20 +55,26 @@
     "ielts": {
      "overall": 6.0,
      "quote": "Students in programs taught in English: a score of 1400 in an EmSAT English exam, 550 in TOEFL (ITP) (or its equivalence), or 6 in IELTS must be obtained.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "bdb6116ec4ef76d9"
     },
     "toefl": {
      "text": "550 in TOEFL (ITP) (or its equivalence) for programs taught in English; the page states the paper-based ITP score, not an iBT total.",
      "quote": "Students in programs taught in English: a score of 1400 in an EmSAT English exam, 550 in TOEFL (ITP) (or its equivalence), or 6 in IELTS must be obtained.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: TOEFL iBT / iBT total framing",
+     "summary_sha": "231894209aec11c1"
     },
     "academic": {
      "text": "A bachelor's degree or equivalent from a recognized university with a CGPA of 3.00 out of 4.00; students with a CGPA between 2.5 and 2.99 may be admitted conditionally.",
      "quote": "The student must hold a bachelor's degree or equivalent from a recognized university with a CGPA of 3.00 out of 4.00. Students with a CGPA between 2.5 and 2.99 may be admitted conditionally.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "42a23c841dca8a64"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Biomedical Engineering",
@@ -107,17 +113,21 @@
     "academic": {
      "text": "A bachelor's degree in engineering is expected of applicants.",
      "quote": "If you hold a bachelor's degree in engineering and your career goal is to be a manager or business leader, then the master's program in engineering management at the University of Sharjah is specially designed for you.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: expected of applicants (quote only describes who the program is designed for)",
+     "summary_sha": "f0bb276fc64397a3"
     },
     "prerequisites": [
      {
       "text": "Completing 9 credit hours is a prerequisite for the M.Sc. Seminar.",
       "quote": "Completing 9 CHs is a prerequisite for the M.Sc. Seminar (0405-591), while the completion of 15 CHs and passing the M.Sc. Seminar are prerequisites for the M.Sc. Thesis (0405-598).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "660ce05858ccec69"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Environmental Science and Engineering",
@@ -138,47 +148,63 @@
     "academic": {
      "text": "Applicants holding a Bachelor's degree in Finance are admitted directly, with no remedial courses required.",
      "quote": "Applicants holding a Bachelor’s degree in Finance are admitted directly, with no remedial courses required.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a8e8420abd2c68b2"
     },
     "prerequisites": [
      {
       "text": "Business-related background applicants must complete the remedial course Corporate Finance (0308331).",
       "quote": "1-Corporate Finance (0308331)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Business-related background applicants must complete",
+      "summary_sha": "a3baf04a6820f0b4"
      },
      {
       "text": "Business-related background applicants must complete the remedial course Investment Analysis (0308332).",
       "quote": "2-Investment Analysis (0308332)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Business-related background applicants must complete",
+      "summary_sha": "729872b078b5b83a"
      },
      {
       "text": "Non-business background applicants must complete the remedial course Financial Management (0308230).",
       "quote": "1-Financial Management (0308230)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Non-business background applicants must complete",
+      "summary_sha": "04d7a9657892dce1"
      },
      {
       "text": "Non-business background applicants must complete the remedial course Introduction to Economics (Non-Business) (0308150).",
       "quote": "2-Introduction to Economics (Non-Business) (0308150)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Non-business background applicants must complete",
+      "summary_sha": "eadefb34d22db16c"
      },
      {
       "text": "Non-business background applicants must complete the remedial course Business Statistics (1440264).",
       "quote": "3-Business Statistics (1440264)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Non-business background applicants must complete",
+      "summary_sha": "9af8c47bb545df49"
      },
      {
       "text": "Non-business background applicants must complete Corporate Finance (0308331), whose prerequisite is (0308230).",
       "quote": "4-Corporate Finance (0308331) prerequisite is (0308230)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Non-business background applicants must complete",
+      "summary_sha": "3592444f4a32f36d"
      },
      {
       "text": "Non-business background applicants must complete Investment Analysis (0308332), whose prerequisite is (0308230).",
       "quote": "5-Investment Analysis (0308332)- prerequisite is (0308230)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Non-business background applicants must complete",
+      "summary_sha": "2f303b3564580489"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master in Air and Space Law",
@@ -244,28 +270,36 @@
     "ielts": {
      "overall": 6.0,
      "quote": "6 on IELTS (Academic)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "9e1aa5a128e9c0dd"
     },
     "toefl": {
      "text": "550 on the TOEFL (PBT) taken inside the university, or 79 on the TOEFL (IBT) taken outside the university.",
      "overall": 79.0,
      "quote": "550 on the TOEFL (PBT) (should be taken inside the university), 79 on the TOEFL (IBT) (outside the university)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 79 TOEFL iBT (quote gives 79 only for IBT taken outside the university)",
+     "summary_sha": "66a9ff4bae1ae958"
     },
     "academic": {
      "text": "A bachelor's degree or equivalent from a recognized university with a CGPA of 3.00 out of 4.00; applicants with a CGPA between 2.5 and 2.99 may be admitted conditionally.",
      "quote": "The student must hold a bachelor's degree or equivalent from a recognized university with a CGPA of 3.00 out of 4.00. Students with a CGPA between 2.5 and 2.99 may be admitted conditionally.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "66e9c025db424c55"
     },
     "prerequisites": [
      {
       "text": "English language requirement: 550 TOEFL PBT (inside the university), 79 TOEFL IBT (outside the university), 6 IELTS Academic, or 1400 EmSAT.",
       "quote": "Applicants to the program should fulfill the English language requirement as follows: 550 on the TOEFL (PBT) (should be taken inside the university), 79 on the TOEFL (IBT) (outside the university) or 6 on IELTS (Academic), or 1400 EmSAT.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "d0174f4bebe93c73"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Mechanical Engineering",
@@ -277,20 +311,26 @@
     "ielts": {
      "overall": 6.0,
      "quote": "Students in programs taught in English: a score of 1400 in an EmSAT English exam, 550 in TOEFL (ITP) (or its equivalence), or 6 in IELTS must be obtained.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "bdb6116ec4ef76d9"
     },
     "toefl": {
      "text": "TOEFL (ITP) score of 550 (or its equivalence); a TOEFL (ITP) score of 530 (or its equivalence) may be admitted with conditions.",
      "quote": "Students in programs taught in English: a score of 1400 in an EmSAT English exam, 550 in TOEFL (ITP) (or its equivalence), or 6 in IELTS must be obtained.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: TOEFL iBT; 530 score with conditions",
+     "summary_sha": "66af01e6fdd626eb"
     },
     "academic": {
      "text": "A Bachelor's degree in Engineering (or a closely-related field) from a recognized college or university with an overall Bachelor's GPA of 3.00 (out of 4.0) or higher.",
      "quote": "The applicant must have a Bachelor's degree in Engineering (or a closely-related field) from a recognized college or university with an overall Bachelor's grade point average of 3.00 (out of 4.0) or higher.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "1c942ecfc66c80c4"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Applied Mathematics",
@@ -356,18 +396,24 @@
     "ielts": {
      "overall": 6.0,
      "quote": "Students in programs taught in English must obtain 550 on the TOEFL (PBT) (should be taken inside the university), 79 on the TOEFL (IBT) (outside the university) or 6 on IELTS (Academic).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "8f9b3f6d634f8de4"
     },
     "toefl": {
      "text": "79 on the TOEFL (IBT) taken outside the university; 550 on the TOEFL (PBT) taken inside the university.",
      "overall": 79.0,
      "quote": "Students in programs taught in English must obtain 550 on the TOEFL (PBT) (should be taken inside the university), 79 on the TOEFL (IBT) (outside the university) or 6 on IELTS (Academic).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "1b8a112714158d78"
     },
     "academic": {
      "text": "A bachelor's degree or equivalent from a recognized university with a CGPA of 3.00 out of 4.00; applicants with a CGPA between 2.5 and 2.99 may be admitted conditionally.",
      "quote": "The student must hold a bachelor's degree or equivalent from a recognized university with a CGPA of 3.00 out of 4.00. Students with a CGPA between 2.5 and 2.99 may be admitted conditionally.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "66e9c025db424c55"
     }
    },
    "status": "机器核对"
@@ -382,27 +428,35 @@
     "ielts": {
      "overall": 6.0,
      "quote": "Students in programs taught in English must obtain 550 in the TOEFL exam or 6 in IELTS (Academic).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "1a40c8b63502be38"
     },
     "academic": {
      "text": "A bachelor's degree or equivalent from a recognized university with a CGPA of 3.00 out of 4.00 or above.",
      "quote": "Must hold a bachelor's degree or equivalent from a recognized university with a CGPA of 3.00 out of 4.00 or above.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "43f92ebe5328ad60"
     },
     "prerequisites": [
      {
       "text": "Attendance in the bachelor's degree program must not be less than 75% of the total hours required for graduation.",
       "quote": "Attendance in the bachelor's degree program must not be less than 75% of the total hours required for graduation.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f801542e4cabe447"
      },
      {
       "text": "Applicants must pass a Departmental Placement Test.",
       "quote": "Students must pass a Departmental Placement Test.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Applicants (quote says students)",
+      "summary_sha": "5ce18b70880b941c"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Civil Engineering",
@@ -414,18 +468,24 @@
     "ielts": {
      "overall": 6.0,
      "quote": "Students in programs taught in English must obtain 550 on the TOEFL exam or 6 on IELTS.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0f9a19ed3e8e6d16"
     },
     "academic": {
      "text": "Hold a bachelor's degree or equivalent from a recognized university with a CGPA of 3.00 out of 4.00 or above.",
      "quote": "Must hold a bachelor’s degree or equivalent from a recognized university with a CGPA of 3.00 out of 4.00 or above.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "57230bd18df8efbb"
     },
     "prerequisites": [
      {
       "text": "The undergraduate degree must be in a major that qualifies the student for the master's program, particularly the Civil and Environmental Engineering program.",
       "quote": "The undergraduate degree must be obtained in a major that qualifies the student to study the master's program, particularly from the Civil and Environmental Engineering program.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "a2555164d530d336"
      }
     ]
    },
@@ -468,23 +528,31 @@
     "ielts": {
      "overall": 6.0,
      "quote": "A minimum of 550 on paper-based TOEFL or 6.0\non IELTS or its equivalence.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "7213230bea5710d2"
     },
     "toefl": {
      "text": "A minimum of 550 on paper-based TOEFL (paper-based score, not an iBT total).",
      "quote": "A minimum of 550 on paper-based TOEFL or 6.0\non IELTS or its equivalence.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d2ad7975c86c7948"
     },
     "academic": {
      "text": "A BDS degree from University of Sharjah or an equivalent qualification, with a GPA of 3.0 or above; candidates with a GPA between 2.5 and 2.9 may be given consideration.",
      "quote": "A BDS degree from University of Sharjah or an equivalent qualification, with\na GPA of 3.0 or above. Candidates with a GPA between 2.5 and 2.9 may be\ngiven consideration.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "cd6309f1aa60b933"
     },
     "prerequisites": [
      {
       "text": "A minimum of one year of post-qualification work experience.",
       "quote": "A minimum of one-year post qualification work experience",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "767e306f8182d406"
      }
     ]
    },
@@ -500,27 +568,35 @@
     "ielts": {
      "overall": 6.0,
      "quote": "A minimum of 550 on paper-based TOEFL or 6.0\non IELTS or its equivalence.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "7213230bea5710d2"
     },
     "toefl": {
      "text": "A minimum of 550 on paper-based TOEFL (paper-based score, not an iBT total).",
      "quote": "A minimum of 550 on paper-based TOEFL or 6.0\non IELTS or its equivalence.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: Minimum TOEFL iBT (quote gives paper-based TOEFL)",
+     "summary_sha": "d2ad7975c86c7948"
     },
     "academic": {
      "text": "A BDS degree from University of Sharjah or an equivalent qualification, with a GPA of 3.0 or above; candidates with a GPA between 2.5 and 2.9 may be given consideration.",
      "quote": "A BDS degree from University of Sharjah or an equivalent qualification, with a\nGPA of 3.0 or above. Candidates with a GPA between 2.5 and 2.9 may be given\nconsideration.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ceaf24760de053ef"
     },
     "prerequisites": [
      {
       "text": "A minimum of one-year post-qualification work experience.",
       "quote": "A minimum of one-year post-qualification work experience.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "a32795e33b8c21c2"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Dental Surgery in Orthodontics",
@@ -532,27 +608,35 @@
     "ielts": {
      "overall": 6.0,
      "quote": "A minimum of 550 on paper-based TOEFL or 6.0\non IELTS or its equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "bf935dbd83c8645a"
     },
     "toefl": {
      "text": "A minimum of 550 on paper-based TOEFL (paper-based score, not an iBT total).",
      "quote": "A minimum of 550 on paper-based TOEFL or 6.0\non IELTS or its equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: TOEFL iBT / iBT total framing",
+     "summary_sha": "87ef3ce0d3b80a69"
     },
     "academic": {
      "text": "A BDS degree from the University of Sharjah or an equivalent qualification, with a GPA of 3.0 or above; candidates with a GPA between 2.5 and 2.9 may be given consideration.",
      "quote": "A BDS degree from the University of Sharjah or an equivalent qualification,\nwith a GPA of 3.0 or above. Candidates with a GPA between 2.5 and 2.9 may be\ngiven consideration.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "8147a8910250900b"
     },
     "prerequisites": [
      {
       "text": "A minimum of one year of post-qualification work experience.",
       "quote": "A minimum of one-year post-qualification work experience.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "b2ec0a30c71fe774"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Dental Surgery in Pediatric Dentistry",
@@ -564,28 +648,38 @@
     "ielts": {
      "overall": 6.0,
      "quote": "Students in programs taught in English must obtain 550 on the TOEFL (PBT) (should be taken inside the university), 79 on the TOEFL (IBT) (outside the university) or 6 on IELTS (Academic).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "8f9b3f6d634f8de4"
     },
     "toefl": {
      "overall": 79.0,
      "quote": "Students in programs taught in English must obtain 550 on the TOEFL (PBT) (should be taken inside the university), 79 on the TOEFL (IBT) (outside the university) or 6 on IELTS (Academic).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b8cfd527f6d275d8"
     },
     "academic": {
      "text": "Hold a bachelor's degree or equivalent from a recognized university with a CGPA of 3.00 out of 4.00; applicants with a CGPA between 2.5 and 2.99 may be admitted conditionally.",
      "quote": "The student must hold a bachelor's degree or equivalent from a recognized university with a CGPA of 3.00 out of 4.00. Students with a CGPA between 2.5 and 2.99 may be admitted conditionally.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "e6f3bd6b5968d8f1"
     },
     "prerequisites": [
      {
       "text": "The bachelor's degree must be in a major that qualifies the student for the master's program.",
       "quote": "The degree must be in a major that qualifies the student to study the master program.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "28cafff4888c57cf"
      },
      {
       "text": "A minimum of one year of post-qualification work experience.",
       "quote": "A minimum of one-year post qualification work experience",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "767e306f8182d406"
      }
     ]
    },
@@ -601,27 +695,35 @@
     "ielts": {
      "overall": 6.0,
      "quote": "A minimum of 550 on paper based TOEFL or 6.0\non IELTS or its equivalence.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0d14325dc9d01ac9"
     },
     "toefl": {
      "text": "A minimum of 550 on paper based TOEFL (paper-based score, not an iBT total).",
      "quote": "A minimum of 550 on paper based TOEFL or 6.0\non IELTS or its equivalence.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: TOEFL iBT / paper-based score, not an iBT total",
+     "summary_sha": "3fd4483827fe7faf"
     },
     "academic": {
      "text": "A BDS degree from University of Sharjah or an equivalent qualification, with a GPA of 3.0 or above; candidates with GPA between 2.5 and 2.9 may be considered.",
      "quote": "A BDS degree from University of Sharjah or an equivalent qualification, with a\nGPA of 3.0 or above. Candidates with GPA of between 2.5 and 2.9 may be given\nconsideration.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "85068fe03ada3a5f"
     },
     "prerequisites": [
      {
       "text": "A minimum of one-year post qualification work experience.",
       "quote": "A minimum of one-year post qualification work experience",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "91d85e5be8808404"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Dental Surgery in Prosthodontics",
@@ -633,23 +735,31 @@
     "ielts": {
      "overall": 6.0,
      "quote": "A minimum of 550 on paper based TOEFL or 6.0\non IELTS or its equivalence.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0d14325dc9d01ac9"
     },
     "toefl": {
      "text": "A minimum of 550 on paper-based TOEFL (no iBT total stated).",
      "quote": "A minimum of 550 on paper based TOEFL or 6.0\non IELTS or its equivalence.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d6d5d137c0d8166f"
     },
     "academic": {
      "text": "A BDS degree from University of Sharjah or an equivalent qualification, with a GPA of 3.0 or above; candidates with GPA between 2.5 and 2.9 may be considered.",
      "quote": "A BDS degree from University of Sharjah or an equivalent qualification, with a\nGPA of 3.0 or above. Candidates with GPA of between 2.5 and 2.9 may be given\nconsideration.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "85068fe03ada3a5f"
     },
     "prerequisites": [
      {
       "text": "A minimum of one year of post-qualification work experience.",
       "quote": "A minimum of one-year post qualification work experience",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "767e306f8182d406"
      }
     ]
    },
@@ -683,13 +793,17 @@
     "academic": {
      "text": "Applicants from non-communication disciplines must study remedial courses in communication.",
      "quote": "Applicants from non-communication disciplines (such as Sociology, Political Sciences, Psychology, Arabic Language and Literature, English Language and Literature, History, Economics) need to study remedial courses in communication.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "6b9a86b8f9950807"
     },
     "prerequisites": [
      {
       "text": "Remedial courses in communication for applicants from non-communication disciplines.",
       "quote": "Applicants from non-communication disciplines (such as Sociology, Political Sciences, Psychology, Arabic Language and Literature, English Language and Literature, History, Economics) need to study remedial courses in communication.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "d4c1a7b71328478d"
      }
     ]
    },
@@ -786,7 +900,9 @@
     "academic": {
      "text": "The program accepts students from any related undergraduate program in computing or mathematics.",
      "quote": "The program will accept students from any related undergraduate program of computing or mathematics.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b541a417cd447e84"
     }
    },
    "status": "机器核对"
@@ -801,18 +917,24 @@
     "ielts": {
      "overall": 6.0,
      "quote": "A minimum of 550 in TOEFL or 6 in IELTS (or its equivalent) is required.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ee2f5dac60af82fe"
     },
     "academic": {
      "text": "Hold a Bachelor's degree from a UAE-recognized university with a minimum cumulative GPA of 3 out of 4 or its equivalent.",
      "quote": "Hold a Bachelor's degree from a UAE-recognized university with a minimum cumulative GPA of 3 out of 4 or its equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ce3a9c806e8383a2"
     },
     "prerequisites": [
      {
       "text": "Applicants should be health professionals or allied health professionals.",
       "quote": "Candidates should be health professionals or allied health professionals.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "e80866df87340a01"
      }
     ]
    },
@@ -893,7 +1015,7 @@
  ],
  "verification": {
   "programs": 59,
-  "机器核对": 17,
-  "待人工": 42
+  "机器核对": 8,
+  "待人工": 51
  }
 }

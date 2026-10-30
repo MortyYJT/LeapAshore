@@ -9,6 +9,11 @@ each. Nothing it writes is shown before `verify` has run:
 - every number the sentence states (an amount, a count, a year) is in one of its quotes; English
   number words and month names count as their numbers.
 
+Then `support_check` asks the model, once for the whole answer, whether each remaining sentence's quotes
+on their own state what it says (`app.collect.faithful`): a verbatim quote can still be the wrong
+evidence (another program's fee, "may" written as "must"). A sentence the judge does not back, or every
+sentence when the judge gives no usable answer, is removed too.
+
 A sentence that fails any check is removed, with the reason kept in the trace. When no sentence is
 left, the advisor refuses and lists the pages it read; it never states what it could not source.
 """
@@ -21,6 +26,7 @@ from pydantic import BaseModel, Field
 
 from app.agent.llm import get_chat_model
 from app.agent.passages import Passage
+from app.collect.faithful import OK, Claim, Judgement, ajudge
 from app.collect.text import normalize
 
 MIN_QUOTE_CHARS = 12
@@ -60,6 +66,7 @@ class Checked:
     passages: list[int]  # 1-based numbers of the passages it cites, in order
     ok: bool
     reasons: list[str] = field(default_factory=list)
+    quotes: list[tuple[int, str]] = field(default_factory=list)  # (passage number, quote) that passed
 
 
 @dataclass
@@ -161,6 +168,7 @@ def verify(answer: PassageAnswer, chunk_texts: list[str]) -> Verification:
         reasons: list[str] = []
         cited: list[int] = []
         quotes: list[str] = []
+        pairs: list[tuple[int, str]] = []
         # The reply adds its own markers; a marker the model wrote is not a number it states.
         text = _MARKER.sub("", sentence.text or "").strip()
         if not text:
@@ -179,14 +187,53 @@ def verify(answer: PassageAnswer, chunk_texts: list[str]) -> Verification:
             else:
                 out.quotes_passed += 1
                 quotes.append(citation.quote)
+                pairs.append((citation.passage, citation.quote))
                 if citation.passage not in cited:
                     cited.append(citation.passage)
         if not reasons:
             missing = numbers_in(text) - numbers_quoted(quotes)
             if missing:
                 reasons.append("number_not_in_quotes")
-        out.sentences.append(Checked(text=text, passages=cited, ok=not reasons, reasons=list(dict.fromkeys(reasons))))
+        out.sentences.append(Checked(text=text, passages=cited, ok=not reasons, reasons=list(dict.fromkeys(reasons)),
+                                     quotes=pairs))
     return out
+
+
+def _source(p: dict) -> str:
+    school = p.get("school") or ""
+    page = p.get("program") or p.get("title") or p.get("url") or ""
+    return f"{school}, {page}" if p.get("program") else f"{school}, school-wide page: {page}"
+
+
+def support_claims(checked: Verification, passages: list[dict]) -> list[Claim]:
+    """The kept sentences as claims for the judge, numbered from 1 in the order they are kept."""
+    return [Claim(id=i, statement=s.text, quotes=[(_source(passages[n - 1]), q) for n, q in s.quotes])
+            for i, s in enumerate(checked.kept, 1)]
+
+
+def apply_support(checked: Verification, judgement: Judgement) -> None:
+    """Remove the kept sentences the judge did not back; with no usable answer, remove them all."""
+    for i, s in enumerate(list(checked.kept), 1):
+        verdict = judgement.verdicts.get(i)
+        if verdict == OK:
+            continue
+        s.ok = False
+        s.reasons.append("support_not_checked" if verdict is None else "quote_does_not_support")
+
+
+async def support_check(question: str, checked: Verification, passages: list[dict], model) -> Judgement:
+    """Judge every sentence that passed the verbatim and number checks; drop the ones not backed."""
+    claims = support_claims(checked, passages)
+    if not claims:
+        return Judgement(verdicts={})
+    context = (f"The claims are sentences of an answer, in Chinese, to an applicant's question: {question}\n"
+               "Each quote names the page it was copied from.")
+    try:
+        judgement = await ajudge(claims, context, model)
+    except Exception as error:  # noqa: BLE001 - an unchecked sentence is not shown (fail closed)
+        judgement = Judgement(verdicts={}, error=f"{type(error).__name__}: {str(error)[:200]}")
+    apply_support(checked, judgement)
+    return judgement
 
 
 # ---- the reply -------------------------------------------------------------------------------------
@@ -216,14 +263,14 @@ def render(checked: Verification, passages: list[dict]) -> tuple[str, list[dict]
     reply += f"\n\n以上摘自学校官方页面{when}，数据待核验，请以官网最新信息为准。"
     dropped = len(checked.sentences) - len(checked.kept)
     if dropped:
-        reply += f"另有 {dropped} 句没能逐字核对到原文，已删去。"
+        reply += f"另有 {dropped} 句没能和原文核对上，已删去。"
     return reply, citations
 
 
 def refusal_after_check(passages: list[dict]) -> str:
     urls = list(dict.fromkeys(p["url"] for p in passages))[:3]
     pages = "\n".join(f"- {u}" for u in urls)
-    return ("我找到了相关的官方页面段落，但没能写出每句都能逐字核对到原文的回答，所以不作判断，"
+    return ("我找到了相关的官方页面段落，但没能写出每句都能和原文核对上的回答，所以不作判断，"
             f"以免你照着不准确的信息去申请。你可以直接查看这些官方页面：\n{pages}")
 
 

@@ -20,37 +20,47 @@
      "overall": 6.5,
      "min_band": 6.0,
      "quote": "Academic IELTS 6.5 (no band less than 6.0) or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "3eef9523a02935a3"
     },
     "academic": {
      "text": "An Australian Bachelor degree (AQF Level 7) or equivalent, or higher-level qualification from a recognised tertiary institution, for students with a cognate undergraduate background.",
      "quote": "Students with cognate UG background.\nAn Australian Bachelor degree (AQF Level 7) or equivalent, or higher-level qualification from a recognised tertiary institution.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c793ebf0b017010c"
     },
     "prerequisites": [
      {
       "text": "At least 2 years post-degree professional work experience (non-cognate background route).",
       "quote": "At least 2 years post degree professional work experience.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: non-cognate background route",
+      "summary_sha": "dfbd2c0793036d14"
      },
      {
       "text": "Five years' work experience, of which 3 years is managerial (applicants without formal qualifications).",
       "quote": "Applicants without formal qualifications are eligible to apply if they have five (5) years’ work experience (of which 3 years is managerial).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "62dbe8463c0d0619"
      },
      {
       "text": "At least 2 years post-degree professional work experience (international offshore route).",
       "quote": "Any Australian Bachelor degree (AQF Level 7) or equivalent AND At least 2 years post-degree professional work experience;",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: international offshore route",
+      "summary_sha": "cf16dd5970823aa4"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   }
  ],
  "verification": {
   "programs": 1,
-  "机器核对": 1,
-  "待人工": 0
+  "机器核对": 0,
+  "待人工": 1
  }
 }

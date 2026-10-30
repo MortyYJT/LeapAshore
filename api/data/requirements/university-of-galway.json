@@ -22,15 +22,19 @@
      "overall": 6.5,
      "min_band": 5.5,
      "quote": "an English language proficiency of IELTS score of 6.5 is required (with no less than 5.5 in any band) or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "5e33d6697fdf4b63"
     },
     "academic": {
      "text": "A Second Class Honours Level 8 primary degree in a related subject area.",
      "quote": "Candidates must normally hold at least a Second Class Honours Level 8 primary degree in a related subject area, or have relevant equivalent experiential learning.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits 'normally' and the experiential learning alternative",
+     "summary_sha": "1f2fb043c999ad44"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Electronic & Computer Engineering (ME)",
@@ -44,22 +48,28 @@
      "overall": 6.5,
      "min_band": 6.0,
      "quote": "For applicants whose first language is not English, an English language proficiency of IELTS score of 6.5 is required (with no less than 6.5 in Writing and no less than 6.0 in any other band) or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 6.5, no section below 6 (contradicts: Writing requires 6.5)",
+     "summary_sha": "fdfc65b59f5677f4"
     },
     "academic": {
      "text": "Second Class Honours, Grade 2 in a Level 8 degree in a related discipline from a recognised or third level college.",
      "quote": "Entry to the programme is open to individual who have Second Class Honours, Grade 2 in a Level 8 degree in a related discipline from a recognised or third level college",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ab4d2d7e85bd03d6"
     },
     "prerequisites": [
      {
       "text": "Degree in a related discipline (Electronic & Computer Engineering or a closely related engineering discipline).",
       "quote": "The Master of Engineering (ME) in Electronic & Computer Engineering at the University of Galway is designed for graduates who hold an honours degree in Electronic & Computer Engineering or a closely related engineering discipline.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "3bd17e30c47f8682"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Construction Innovation (MSc)",
@@ -73,22 +83,28 @@
      "overall": 6.5,
      "min_band": 6.0,
      "quote": "an English language proficiency IELTS score of 6.5 is required with no less than 6.5 in Writing and no less than 6.0 in any other band.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 6.5, no section below 6 (quote gives 6.5 in Writing, 6.0 in other bands)",
+     "summary_sha": "4a44bd6c23ea27fb"
     },
     "academic": {
      "text": "An undergraduate bachelor's degree with first or second class honours in any discipline (level 8).",
      "quote": "an undergraduate bachelor degree 1st or 2nd class honours in any discipline (level 8);",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d1cb3bcfcac62ff4"
     },
     "prerequisites": [
      {
       "text": "Five years of relevant industrial experience (for applicants with a level 7 degree or a professional qualification).",
       "quote": "along with five years of relevant industrial experience;",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: for applicants with a level 7 degree or a professional qualification",
+      "summary_sha": "4ebe08ed035f16ca"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Accounting (Master of)",
@@ -102,18 +118,24 @@
      "overall": 6.5,
      "min_band": 6.0,
      "quote": "an English language proficiency of IELTS score of 6.5 is required (with no less than 6.5 in Writing and no less than 6.0 in any other band)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "773c61d927711c7f"
     },
     "academic": {
      "text": "A H2.1 degree (NFQ Level 8 or equivalent) in Business or Commerce with a significant specialisation in Accounting.",
      "quote": "Candidates must a H2.1 degree (NFQ Level 8 or equivalent) in Business or Commerce, with a significant specialisation in Accounting.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b0ad4e4f1899ff9e"
     },
     "prerequisites": [
      {
       "text": "Full (or nearly full) exemptions from the CAP1 examinations of Chartered Accountants Ireland.",
       "quote": "Candidates must also have full (or nearly full) exemptions from the CAP1 examinations of Chartered Accountants Ireland.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "09bc4212a52d5264"
      }
     ]
    },
@@ -130,22 +152,28 @@
      "overall": 6.5,
      "min_band": 6.0,
      "quote": "For applicants whose first language is not English, an English language proficiency of IELTS score of 6.5 is required (with no less than  6.0 in any other band) or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "e9144c944a94530d"
     },
     "academic": {
      "text": "At least a Second Class Honours Level 8 primary degree in a related subject area.",
      "quote": "Candidates must hold at least a Second Class Honours Level 8 primary degree in a related subject area",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c20f4250a422b52d"
     },
     "prerequisites": [
      {
       "text": "Three years' relevant practical experience in the subject area (for applicants holding a non-honours primary degree in a related area).",
       "quote": "have three years’ relevant practical experience in the subject area.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: for applicants holding a non-honours primary degree in a related area",
+      "summary_sha": "e2a271c7dc5bd839"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Advanced Practice Midwifery (MSc)",
@@ -157,51 +185,69 @@
     "academic": {
      "text": "Have a minimum of an honours primary degree in Midwifery or equivalent.",
      "quote": "Have a minimum of an honours primary degree in Midwifery or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "82e9b6bf7f74a64f"
     },
     "deadlines": [
      {
       "label": "Closing date for receipt of applications",
       "date": "2026-06-30",
       "quote": "For this programme, June 30th 2026 is the closing date for receipt of applications.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "da8331fe82e5d689"
      }
     ],
     "prerequisites": [
      {
       "text": "Be registered as a midwife on the register of the Nursing and Midwifery Board of Ireland (NMBI).",
       "quote": "Be registered as a midwife on the register of the Nursing and Midwifery Board of Ireland (NMBI).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "639c905e9ecec0ea"
      },
      {
       "text": "Be currently employed as a midwife or nurse in the areas of practice of the planned Advanced Practice Programme.",
       "quote": "Be currently employed as a midwife or nurse and in the areas of practice that you plan to undertake your Advance Practice Programme.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "1faa4b93f6813394"
      },
      {
       "text": "Have the support of a professional mentor and a clinical mentor, including a commitment to provide 500 hours of clinical mentorship and 96 hours of prescribing mentorship.",
       "quote": "Applicants must have the support of both a professional mentor (Director of Midwifery/Nursing (DOM/N), Assistant Director of Midwifery/Nursing (ADOM/N)/Practice Manager) and clinical mentor (medical consultant or general practitioner). This includes a commitment to provide 500 hours of clinical mentorship and 96 hours of prescribing mentorship as confirmed on the completed Site Declaration Form.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "1b49f558d8d0c3be"
      },
      {
       "text": "Have a minimum of three years' recent post-registration clinical experience in nursing or midwifery (within the last five years).",
       "quote": "Have a minimum of three years’ recent post-registration clinical experience in nursing or midwifery (within the last five years);",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "6467289aa66d319c"
      },
      {
       "text": "Have the equivalent of one year full-time experience in the specific area of clinical practice in which the applicant will be prescribing and practising.",
       "quote": "Have equivalent of ‘one year’ full time experience in the specific area of clinical practice that you will be prescribing and practicing in;",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "de78c46d69ca0f1d"
      },
      {
       "text": "Possess the competencies recognised at Level 8 of the National Framework of Qualifications.",
       "quote": "Possess the competencies recognised at Level 8 of the National Framework of Qualifications;",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "fc2983b505243b17"
      },
      {
       "text": "Provide evidence of having undertaken continuing professional education.",
       "quote": "Provide evidence of having undertaken continuing professional education;",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "6d742982a60b4cad"
      }
     ]
    },
@@ -217,51 +263,69 @@
     "academic": {
      "text": "A minimum of an honour's primary degree in Nursing or equivalent.",
      "quote": "Have a minimum of an honour’s primary degree in Nursing or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "dfc5888911451148"
     },
     "deadlines": [
      {
       "label": "Closing date",
       "date": "2026-06-30",
       "quote": "For this programme, June 30th 2026 is the closing date for receipt of applications.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "5f6d5cb1a04ad90c"
      }
     ],
     "prerequisites": [
      {
       "text": "Registration as a nurse or midwife on the NMBI register.",
       "quote": "Be registered as a nurse or midwife on the register of the Nursing and Midwifery Board of Ireland (NMBI).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "6ea4df41b6b9a56f"
      },
      {
       "text": "Current employment as a nurse or midwife in the area of practice of the planned Advanced Practice Programme.",
       "quote": "Be currently employed as a nurse or midwife and in the areas of practice that you plan to undertake you Advance Practice Programme.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f8ab48aceb2104a2"
      },
      {
       "text": "Support of both a professional mentor and a clinical mentor, including a commitment to 500 hours of clinical mentorship and 96 hours of prescribing mentorship.",
       "quote": "Applicants must have the support of both a professional mentor (such as a Director of Nursing, Assistant Director of Nursing, or Practice Manager) and a clinical mentor (such as a medical consultant, general practitioner, or Registered Advanced Nurse Practitioner).This includes a commitment to provide 500 hours of clinical mentorship and 96 hours of prescribing mentorship, as confirmed on the completed *Site Declaration Form.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "090792417c7a5447"
      },
      {
       "text": "A minimum of three years' recent post-registration clinical experience in nursing or midwifery (within the last five years).",
       "quote": "Have a minimum of three years’ recent post-registration clinical experience in nursing or midwifery (within the last five years) .",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "709be0d16b56dae3"
      },
      {
       "text": "Equivalent of one year full-time experience in the specific area of clinical practice in which the applicant will prescribe and practise.",
       "quote": "Have equivalent of ‘one year’ full time experience in the specific area of clinical practice that you will be prescribing and practicing in.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "afcf28baa57dff74"
      },
      {
       "text": "Competencies recognised at Level 8 of the National Framework of Qualifications.",
       "quote": "Possess the competencies recognised at Level 8 of the National Framework of Qualifications.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f22dbe79b3c106a4"
      },
      {
       "text": "Evidence of having undertaken continuing professional education.",
       "quote": "Provide evidence of having undertaken continuing professional education.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "200f86632da9e8c2"
      }
     ]
    },
@@ -277,18 +341,24 @@
     "academic": {
      "text": "An undergraduate degree with 1st or 2nd Class Honours in any discipline, plus three years of relevant experience in agriculture, rural life, community-based projects, or similar.",
      "quote": "An undergraduate degree, 1st or 2nd Class Honours in any discipline, along with three years of relevant experience in agriculture, rural life, community-based projects, or similar; or",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "72e44d2d9eb48d74"
     },
     "prerequisites": [
      {
       "text": "Three years of relevant experience in agriculture, rural life, community-based projects, or similar (with a 1st or 2nd Class Honours degree).",
       "quote": "An undergraduate degree, 1st or 2nd Class Honours in any discipline, along with three years of relevant experience in agriculture, rural life, community-based projects, or similar; or",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "49fdf730ad606fb0"
      },
      {
       "text": "Five years of relevant experience in agriculture, rural life, community-based projects, or similar (with an Ordinary or 3rd Class Honours degree).",
       "quote": "An Ordinary or 3rd Class Honours undergraduate degree, along with five years of relevant experience in agriculture, rural life, community-based projects, or similar.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "743c48acad3e76ee"
      }
     ]
    },
@@ -305,12 +375,16 @@
      "overall": 6.5,
      "min_band": 6.0,
      "quote": "For applicants whose first language is not English, an English language proficiency of an IELTS score of 6.5 is required (with no less than 6.0 in any band) or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a9b49e165da468ba"
     },
     "academic": {
      "text": "A Second-Class Honours degree (2.2 or above) in a relevant discipline such as agricultural science, biology, environmental science, food science, biotechnology, ecology, engineering, geography, economics, or a related field.",
      "quote": "Applicants must hold a Second-Class Honours degree (2.2 or above) in a relevant discipline such as agricultural science, biology, environmental science, food science, biotechnology, ecology, engineering, geography, economics, or a related field.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "eb329dc4cd275296"
     }
    },
    "status": "机器核对"
@@ -326,19 +400,25 @@
      "overall": 6.5,
      "min_band": 6.0,
      "quote": "The minimum English language requirement for entry to this course is an overall IELTS score of 6.5, with no less than 6.0 in any component.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "4fbccde8f109b128"
     },
     "academic": {
      "text": "A Second Class Honours degree, typically an upper second class honour (2.1) or equivalent, in a relevant discipline such as psychology, psychological studies, social care or childhood development.",
      "quote": "The MSc in Applied Behaviour Analysis accepts applications from candidates who hold a Second Class Honours degree (typically an upper second class honour [2.1] or equivalent in a relevant discipline e.g., psychology, psychological studies, social care, childhood development.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "cfb74ae39f1ecaa8"
     },
     "deadlines": [
      {
       "label": "Applicants (all)",
       "date": "2027-02-28",
       "quote": "Closing date for Applicants: 28th February 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "0de1b58a22f85dea"
      }
     ]
    },
@@ -355,22 +435,28 @@
      "overall": 6.5,
      "min_band": 6.5,
      "quote": "Academic IELTS (including IELTS Online) with an overall score of 6.5 and no less than 6.5 in any component",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "9b9b0a46e3a89fc1"
     },
     "toefl": {
      "text": "TOEFL iBT or TOEFL iBT Home Edition overall 88, with Listening 20, Speaking 20, Writing 24 and Reading 19.",
      "overall": 88.0,
      "min_band": 19.0,
      "quote": "TOEFL iBT or TOEFL iBT Home Edition with an overall score of 88, including: Listening 20, Speaking 20, Writing 24, and Reading 19",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: no section below 19",
+     "summary_sha": "2d62a6407bd46216"
     },
     "academic": {
      "text": "An undergraduate degree in Nursing, Pharmacy, Physiotherapy or Medicine with a minimum of 2nd Class Honours.",
      "quote": "An undergraduate degree in Nursing, Pharmacy, Physiotherapy, Medicine with a minimum of 2nd Class Honours.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "03550091340eccc0"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Applied Multilingualism (MSc)",
@@ -383,18 +469,24 @@
      "overall": 6.5,
      "min_band": 6.5,
      "quote": "For applicants whose first language is not English, an English language proficiency of IELTS score of 6.5 is required (with no less than 6.5 in Writing and no less than 6.5 in any other band) or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b1bbd3522f8e3534"
     },
     "academic": {
      "text": "A good quality first degree at NFQ Level 8 (at least an upper second class honours) or equivalent in Arts programmes such as languages, education, psychology, sociology and political science, geography.",
      "quote": "Applicants will be expected to possess a good quality first degree at NFQ Level 8 (at least an upper second class honours degree) or an equivalent qualification from Arts programmes (e.g., languages, education, psychology, sociology and political science, geography)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c0c70eed0259abd4"
     },
     "prerequisites": [
      {
       "text": "Language proficiency equivalent to B2 level (CEFR) for applicants intending to take Advanced Language Skills modules.",
       "quote": "Applicants intending to take modules in Advanced Language Skills will have to possess language proficiency that is equivalent to B2 level according to the Common European Framework of Reference for Languages.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f390d3d6647cd2eb"
      }
     ]
    },
@@ -411,40 +503,52 @@
      "overall": 7.0,
      "min_band": 6.5,
      "quote": "All applicants, whose first language is not English, must demonstrate language competence at the level of IELTS (or equivalent qualification) of 7.0 overall, with not less than 6.5 in any component.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0e2c3236c78982e9"
     },
     "academic": {
      "text": "An undergraduate degree in Psychology at NFQ Level 8 (or equivalent) accredited by the Psychological Society of Ireland (PSI) or an equivalent qualification.",
      "quote": "Applicants should hold an undergraduate degree in Psychology at National Framework of Qualifications Level 8 (or equivalent) accredited by the Psychological Society of Ireland (PSI) or an equivalent qualification.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "860f3d415a02c7a8"
     },
     "deadlines": [
      {
       "label": "Applications close",
       "date": "2027-02-28",
       "quote": "28th February 2027.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "e817be65e5fc1f9a"
      }
     ],
     "prerequisites": [
      {
       "text": "Psychology must be the main subject, with psychology modules making up more than 50% of the course.",
       "quote": "Psychology should be the main subject: Psychology modules should make up >50% of the course.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: \"must\" (quote says should)",
+      "summary_sha": "42e7d1b770d8e733"
      },
      {
       "text": "The degree must include a broad range of psychology courses covering biological, developmental, social, individual differences and cognitive psychology, plus research methods (quantitative and qualitative).",
       "quote": "The degree should include a relatively broad range of psychology courses including the core curriculum components of:",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: specific course list (biological, developmental, social, individual differences, cognitive, research methods)",
+      "summary_sha": "fbf86ea06e2f8f72"
      },
      {
       "text": "Applicants must demonstrate research competence in practical work and in the completion of a supervised empirical research project.",
       "quote": "Applicants must demonstrate research competence in practical work and in the completion of a supervised empirical research project.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "614b66555e3eb4e7"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Art and Ecology (MA, MFA, PGDip)",
@@ -456,19 +560,25 @@
     "ielts": {
      "overall": 6.5,
      "quote": "They will be required to supply an IELTS with an overall score of 6.5 or more, unless their primary degree has been taken through English, certification of which must be supplied.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "2771355d7137b85e"
     },
     "academic": {
      "text": "A Bachelor's degree with first or upper second class honours in Fine Art.",
      "quote": "Applicants should have a Bachelors Degree with first or upper second class honours in Fine Art; or a Bachelors Degree with a major in Fine Art with a GPA or 3.50 or above; or evidence of equivalent achievement.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c900dbce3b8251a7"
     },
     "deadlines": [
      {
       "label": "2026/2027 entry year",
       "date": "2026-02-01",
       "quote": "The application deadline for the 2026/2027 entry year is February 1, 2026.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "85313654b898ee81"
      }
     ]
    },
@@ -484,28 +594,38 @@
     "academic": {
      "text": "A 2.2 honours degree (in addition to the other listed abilities).",
      "quote": "Beidh céim onóracha 2.2 chomh maith le:",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "479893eb38414eb9"
     },
     "prerequisites": [
      {
       "text": "Excellent speaking ability in the applicant's mother tongue.",
       "quote": "sárchumas labhartha ina máthairtheanga ag iarrthóirí;",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "8c9b13e6eb1c138e"
      },
      {
       "text": "Excellent comprehension ability in their working languages.",
       "quote": "sárchumas tuisceana ina dteangacha oibre;",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "d5fc35fd0d5a0f8c"
      },
      {
       "text": "Excellent communication skills.",
       "quote": "sárscileanna cumarsáide",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "81c20fdf845c57f3"
      },
      {
       "text": "Strong motivation.",
       "quote": "spreagadh láidir.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "d6675e6787115594"
      }
     ]
    },
@@ -523,22 +643,28 @@
      "overall": 6.5,
      "min_band": 6.0,
      "quote": "For applicants whose first language is not English, an English language proficiency of IELTS score of 6.5 is required (with no less than 6.5 in Writing and no less than 6.0 in any other band) or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 6.5, no section below 6 (added overall/section minimums)",
+     "summary_sha": "fdfc65b59f5677f4"
     },
     "academic": {
      "text": "At least a First Class Honours Level 8 primary degree in a related subject area.",
      "quote": "Candidates must hold at least a First Class Honours Level 8 primary degree in a related subject area",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "984e9827e7ba2a2a"
     },
     "prerequisites": [
      {
       "text": "Three years' relevant practical experience in the subject area, for applicants holding a related primary degree without honours.",
       "quote": "have three years’ relevant practical experience in the subject area.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: for applicants holding a related primary degree without honours",
+      "summary_sha": "f4cb636619c70634"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "BioInnovation (MSc/PGDip)",
@@ -552,26 +678,34 @@
      "overall": 6.5,
      "min_band": 6.0,
      "quote": "For applicants whose first language is not English, an English language proficiency of IELTS score of 6.5 is required (with no less than 6.5 in Writing and no less than 6.0 in any other band) or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fdfc65b59f5677f4"
     },
     "academic": {
      "text": "At least a Second Class Honours Level 8 primary degree in a related subject area, or a primary degree in a related area.",
      "quote": "In addition, candidates must hold at least a Second Class Honours Level 8 primary degree in a related subject area or hold a primary degree in a related area.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "4ec7ebcd6c08447e"
     },
     "deadlines": [
      {
       "label": "Applications closing date",
       "date": "2026-02-04",
       "quote": "Closing date for applications is 4th February 2026.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "255ca639fc28c5ee"
      }
     ],
     "prerequisites": [
      {
       "text": "Relevant professional experience, ideally 5-10 years, with a demonstrated track record in the applicant's field.",
       "quote": "Applicants should bring relevant professional experience to their prospective teams - ideally 5-10 years of experience and a demonstrated track record in their respective fields.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "314e2b549ad6ad77"
      }
     ]
    },
@@ -589,22 +723,28 @@
      "overall": 6.5,
      "min_band": 6.0,
      "quote": "For applicants whose first language is not English, an English language proficiency of IELTS score of 6.5 is required (with no less than 6.5 in Writing and no less than 6.0 in any other band) or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 6.5, no section below 6 (duplicated overall score and a 6.0 section minimum stated as overall)",
+     "summary_sha": "fdfc65b59f5677f4"
     },
     "academic": {
      "text": "Second Class Honours, Grade 2 (H2.2), in an accredited Level 8 engineering degree in a related discipline, or equivalent, from a recognised university or third-level college.",
      "quote": "Entry to the ME programme is open to individuals who have Second Class Honours, Grade 2 (H2.2), in an accredited Level 8 engineering degree in a related discipline, or equivalent, from a recognised university or third-level college.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "5e45e0d69f741d84"
     },
     "prerequisites": [
      {
       "text": "Undergraduate degree must satisfy the requirements for chartership under the Washington Accord.",
       "quote": "Applicants should ensure that their undergraduate degrees satisfy the requirements for chartership under the Washington Accord.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: must (quote only says applicants should ensure)",
+      "summary_sha": "09f122653b417ba3"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Biomedical Engineering (MSc)",
@@ -618,23 +758,29 @@
      "overall": 6.5,
      "min_band": 6.0,
      "quote": "For applicants whose first language is not English, an English language proficiency IELTS score of 6.5 is required with no less than 6.5 in Writing and no less than 6.0 in any other band.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 6.5, no section below 6",
+     "summary_sha": "a0ea7925f54a910b"
     },
     "academic": {
      "text": "Second Class Honours, Grade 1 (H2.1), in a Level 8 engineering degree in a related discipline, or equivalent, from a recognised university or third-level college.",
      "quote": "Entry to the MSc programme is open to individuals who have Second Class Honours, Grade 1 (H2.1), in a Level 8 engineering degree in a related discipline, or equivalent, from a recognised university or third-level college.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "384620abd9b2f2d0"
     },
     "deadlines": [
      {
       "label": "2026 intake",
       "date": "2026-07-10",
       "quote": "For 2026, applications will close on 10th July 2026.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "4656a73afcb189b7"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Biomedical Genomics (MSc)",
@@ -648,22 +794,28 @@
      "overall": 6.5,
      "min_band": 6.0,
      "quote": "For applicants whose first language is not English, an English language proficiency of IELTS score of 6.5 is required (with no less than 6.5 in Writing and no less than 6.0 in any other band) or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 6.5, no section below 6",
+     "summary_sha": "fdfc65b59f5677f4"
     },
     "academic": {
      "text": "A First or strong Second Class Honours degree (or equivalent) in a relevant discipline.",
      "quote": "Applicants must have achieved a First or strong Second Class Honours degree (or equivalent) in a relevant discipline.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0757b579d2c72e36"
     },
     "prerequisites": [
      {
       "text": "Qualifying degree subjects include biochemistry, biomedical science, genetics and biotechnology.",
       "quote": "Qualifying degrees include, but are not limited to: biochemistry, biomedical science, genetics, and biotechnology.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "90741184b5f28f22"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Biomedical Science (MSc)",
@@ -677,18 +829,24 @@
      "overall": 6.5,
      "min_band": 6.0,
      "quote": "For applicants whose first language is not English, an English language proficiency of IELTS score of 6.5 is required (with no less than 6.5 in Writing and no less than 6.0 in any other band) or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fdfc65b59f5677f4"
     },
     "academic": {
      "text": "At least a Second Class Honours Level 8 primary degree in a related biological or biomedical sciences, physical sciences or engineering subject area.",
      "quote": "Candidates must hold at least a Second Class Honours Level 8 primary degree in a related biological or biomedical sciences, physical sciences or engineering subject area",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "346049f9dbb0e6a3"
     },
     "prerequisites": [
      {
       "text": "English language proficiency for applicants whose first language is not English.",
       "quote": "For applicants whose first language is not English, an English language proficiency of IELTS score of 6.5 is required",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "6f65f221f39c2441"
      }
     ]
    },
@@ -706,18 +864,24 @@
      "overall": 6.5,
      "min_band": 6.0,
      "quote": "For applicants whose first language is not English, an English language proficiency of IELTS score of 6.5 is required (with no less than 6.5 in Writing and no less than 6.0 in any other band) or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fdfc65b59f5677f4"
     },
     "academic": {
      "text": "A Second-Class Honours degree (2.2 or above) in a relevant discipline such as biology, biotechnology, microbiology, biomedical science, biopharmaceutical science, environmental science, marine science, or a related field.",
      "quote": "Applicants must hold a Second-Class Honours degree (2.2 or above) in a relevant discipline such as biology, biotechnology, microbiology, biomedical science, biopharmaceutical science, environmental science, marine science, or a related field.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "6bb1164f5f282e68"
     },
     "prerequisites": [
      {
       "text": "The qualification should include certified skills and knowledge in molecular biology, cell biology and microbiology.",
       "quote": "Any qualification should include certified skills and knowledge in molecular biology, cell biology and microbiology.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "eaba63e26f15682a"
      }
     ]
    },
@@ -734,18 +898,24 @@
      "overall": 6.5,
      "min_band": 6.0,
      "quote": "For applicants whose first language is not English, an English language proficiency of IELTS score of 6.5 is required (with no less than 6.0 in any other band) or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a391fe301e63deda"
     },
     "academic": {
      "text": "Normally a H2.1 degree (NFQ Level 8 or equivalent).",
      "quote": "Normally a H2.1 degree (NFQ Level 8 or equivalent).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "efbab278683df3e2"
     },
     "prerequisites": [
      {
       "text": "The qualification must include an element of quantitative techniques.",
       "quote": "The qualification must include an element of quantitative techniques, for example, graduates of Business Studies, Engineering, Computer Science, other Sciences, Mathematics or other courses that have some quantitative content.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "6494162aa9ecfa9a"
      }
     ]
    },
@@ -761,28 +931,38 @@
     "academic": {
      "text": "An Honours Level 8 primary degree in Nursing.",
      "quote": "Candidates must hold an Honours Level 8 primary degree in Nursing.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "7ba1fd3894c89fd0"
     },
     "prerequisites": [
      {
       "text": "Registration with the Nursing and Midwifery Board of Ireland in the division of Nursing.",
       "quote": "Be registered with the Nursing and Midwifery Board of Ireland in the division of Nursing.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "7076f0901c7ef422"
      },
      {
       "text": "An active nursing registration with the Nursing and Midwifery Board of Ireland.",
       "quote": "Hold an active nursing registration with the Nursing and Midwifery Board of Ireland.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "efc4abf7e4daa795"
      },
      {
       "text": "A minimum of one year's post-registration experience, six months of which must be in a cancer care setting.",
       "quote": "Have a minimum of one year’s post-registration experience, six months of which must be in a cancer care setting.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "473d3aa1336e63bd"
      },
      {
       "text": "Working in an approved cancer care healthcare setting in Ireland.",
       "quote": "Be working in an approved cancer care healthcare setting in Ireland.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "28d043dea227d666"
      }
     ]
    },
@@ -800,22 +980,28 @@
      "overall": 6.5,
      "min_band": 6.0,
      "quote": "For applicants whose first language is not English, an English language proficiency of IELTS score of 6.5 is required (with no less than 6.5 in Writing and no less than 6.0 in any other band) or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 6.5, no section below 6",
+     "summary_sha": "fdfc65b59f5677f4"
     },
     "academic": {
      "text": "At least a Second Class Honours, Grade 1 degree (or equivalent) in a health care discipline or related subject area.",
      "quote": "Successful applicants will possess at least a Second Class Honours, Grade 1 degree (or equivalent) in a health care discipline or related subject area (e.g., medicine, nursing, physiotherapy, dietetics, sport and exercise science, clinical or health psychology, pharmacology, health promotion, public health, etc).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "65f1d9c25a70dc81"
     },
     "prerequisites": [
      {
       "text": "Entry to the Master's programme is conditional on achieving at least 60% in the core compulsory modules of the Postgraduate Diploma taken in Semester 1.",
       "quote": "Entry to the Master’s programme is conditional upon achieving at least 60% in the core compulsory modules of the Postgraduate Diploma that take place in Semester 1.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "c8061aea572354e3"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Cellular Manufacturing & Therapy (MSc)",
@@ -827,13 +1013,17 @@
     "academic": {
      "text": "A minimum of second class honours (or equivalent) in an undergraduate degree in medicine, pharmacy, manufacturing, biology or engineering.",
      "quote": "Students must have completed one of the following with a minimum of 2nd class honours (or equivalent): An undergraduate degree in medicine, pharmacy, manufacturing, biology, engineering.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "098c799a2e99a195"
     },
     "prerequisites": [
      {
       "text": "3+ years of practical experience in the subject area, for applicants holding a degree without Honours in a related area.",
       "quote": "Students who have a degree without Honours in a related area and have 3+ years of practical experience in the subject area will also be considered for this programme.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "13a4242163db1286"
      }
     ]
    },
@@ -850,18 +1040,24 @@
      "overall": 6.5,
      "min_band": 6.0,
      "quote": "For applicants whose first language is not English, an English language proficiency of IELTS score of 6.5 is required (with no less than 6.0 in any other band) or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a391fe301e63deda"
     },
     "academic": {
      "text": "A NQAI Level 8 degree, Second Class Honours (2:1) or equivalent, in child, youth and family studies, sociology, psychology or a cognate discipline.",
      "quote": "Applicants will require a NQAI Level 8 degree, Second Class Honours (2:1) or equivalent, in child, youth and family studies, sociology, psychology or a cognate discipline.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "e99d6135d067e8d3"
     },
     "prerequisites": [
      {
       "text": "A degree in child, youth and family studies, sociology, psychology or a cognate discipline.",
       "quote": "in child, youth and family studies, sociology, psychology or a cognate discipline",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "c673cbdebb923483"
      }
     ]
    },
@@ -879,18 +1075,24 @@
      "overall": 6.5,
      "min_band": 6.0,
      "quote": "For applicants whose first language is not English, an English language proficiency of IELTS score of 6.5 is required (with no less than 6.5 in Writing and no less than 6.0 in any other band) or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fdfc65b59f5677f4"
     },
     "academic": {
      "text": "At least a Second Class Honours, Grade 2 (H2.2) Level 8 primary degree in civil engineering accredited by Engineers Ireland.",
      "quote": "Candidates must hold at least a Second Class Honours, Grade 2 (H2.2) Level 8 primary degree in civil engineering, which is accredited by Engineers Ireland.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "49d10d90626ec5db"
     },
     "prerequisites": [
      {
       "text": "Level 8 primary degree in civil engineering accredited by Engineers Ireland.",
       "quote": "Candidates must hold at least a Second Class Honours, Grade 2 (H2.2) Level 8 primary degree in civil engineering, which is accredited by Engineers Ireland.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "6da44060afc1fe6b"
      }
     ]
    },
@@ -908,23 +1110,31 @@
      "overall": 6.5,
      "min_band": 6.0,
      "quote": "an English language proficiency of IELTS score of 6.5 is required (with no less than 6.5 in Writing and no less than 6.0 in any other band) or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "397550bf89271704"
     },
     "academic": {
      "text": "At least a Second Class Honours Level 8 primary degree in a related subject area.",
      "quote": "Candidates must hold at least a Second Class Honours Level 8 primary degree in a related subject area",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c20f4250a422b52d"
     },
     "prerequisites": [
      {
       "text": "A primary degree in a related subject area (for the non-honours route).",
       "quote": "hold a primary degree in a related area (which is acceptable to the college) without honours",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "2d0c3da765531f7d"
      },
      {
       "text": "Three years' relevant practical experience in the subject area (for the non-honours route).",
       "quote": "have three years’ relevant practical experience in the subject area.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "6214fa5f2ff894d6"
      }
     ]
    },
@@ -940,17 +1150,21 @@
     "academic": {
      "text": "An honours bachelor's degree at second class honours, grade 2, at level 8, or second class honours, grade 2, in a postgraduate programme.",
      "quote": "Bunchéim Dara hOnóracha, Grád 2 ag leibhéal 8, nó Dara hOnóracha, Grád 2 i gclár iarchéime.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "39cc38975598d039"
     },
     "prerequisites": [
      {
       "text": "Irish language at CEFR level C1, to the satisfaction of the programme's Academic Director.",
       "quote": "Éilítear caighdeán Gaeilge ag leibhéal C1 den Chomhchreat Tagartha na hEorpa um Theangacha mar bhunriachtanas iontrála.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: to the satisfaction of the programme's Academic Director",
+      "summary_sha": "21c9589817bdf7b8"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Clinical Education (MHSc)",
@@ -962,18 +1176,24 @@
     "academic": {
      "text": "Applicants must be registered healthcare professionals with at least two years' post-registration experience and be actively involved in clinical education.",
      "quote": "Applicants must be registered healthcare professionals with at least two years’ post-registration experience and be actively involved in clinical education.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "9d18390d11841f29"
     },
     "prerequisites": [
      {
       "text": "Registered healthcare professional with at least two years' post-registration experience, actively involved in clinical education.",
       "quote": "Applicants must be registered healthcare professionals with at least two years’ post-registration experience and be actively involved in clinical education.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "0e6da92c9ea019d3"
      },
      {
       "text": "General computer literacy is essential.",
       "quote": "General computer literacy is essential.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "c91aad0659ff892e"
      }
     ]
    },
@@ -990,19 +1210,25 @@
      "overall": 6.5,
      "min_band": 6.0,
      "quote": "The minimum English language requirement for entry to this course is an overall IELTS score of 6.5, with no less than 6.0 in any component.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "4fbccde8f109b128"
     },
     "academic": {
      "text": "A Second Class Honours Level 8 primary degree in a related subject area.",
      "quote": "Candidates must hold at least a Second Class Honours Level 8 primary degree in a related subject area",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "11362882e0471e82"
     },
     "deadlines": [
      {
       "label": "Applicants (2027 intake)",
       "date": "2027-02-28",
       "quote": "Closing date for applicants: 28th February 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "90635516493cb83e"
      }
     ]
    },
@@ -1018,22 +1244,28 @@
     "ielts": {
      "overall": 6.5,
      "quote": "However, if your level is below IELTS 6.5, you could do a pre-sessional course aimed at preparing you for progression to this course.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: minimum overall 6.5 (quote only mentions a pre-sessional course below IELTS 6.5)",
+     "summary_sha": "68c761600234bd50"
     },
     "academic": {
      "text": "An undergraduate degree in medicine.",
      "quote": "An undergraduate degree in medicine.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "14cf4be870879017"
     },
     "prerequisites": [
      {
       "text": "Applicants whose first language is not English, or who have not been educated through English during their two most recent years of study, must meet the University's English Language Requirements.",
       "quote": "All applicants whose first language is not English, or who have not been educated through the medium of English language during their two most recent years of study, must meet the University of Galway's English.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f5b7ead760c07a1f"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Coastal & Marine Environments: Physical Processes, Policy & Practice (MSc)",
@@ -1046,12 +1278,16 @@
      "overall": 6.5,
      "min_band": 6.0,
      "quote": "For applicants whose first language is not English, an English language proficiency of IELTS score of 6.5 is required (with no less than 6.0 in any other band) or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a391fe301e63deda"
     },
     "academic": {
      "text": "Level 8 degree with Second Class Honours or equivalent, with Second Class Honours Grade 1 or equivalent in a relevant field of study.",
      "quote": "Level 8 degree, Second Class Honours or equivalent, with Second Class Honours Grade 1 or equivalent in a relevant field of study.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "49b58df26d89d730"
     }
    },
    "status": "机器核对"
@@ -1068,28 +1304,36 @@
      "overall": 6.5,
      "min_band": 6.0,
      "quote": "Overall, entry to the MSc Adaptive Cybersecurity requires a minimum IELTS score of 6.5 overall, 6.5 in Writing and no less than 6.0 in any other band.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: no section below 6 (quote says no less than 6.0 in any other band, with 6.5 in Writing)",
+     "summary_sha": "ea9ce844f136a93a"
     },
     "toefl": {
      "text": "Overall 88, with Listening 12–19, Speaking 18–19, Writing 24–26, Reading 13–18.",
      "overall": 88.0,
      "quote": "TOEFL: Overall 88, Listening 12–19, Speaking 18–19, Writing 24–26, Reading 13–18.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "233caf8f833d9ae6"
     },
     "academic": {
      "text": "A First Class Honours (or equivalent) from a recognised university or third-level college is the minimum academic requirement.",
      "quote": "The minimum academic requirement for entry to the programme is a First Class Honours (or equivalent) from a recognised university or third-level college.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b9ca495957490b9b"
     },
     "prerequisites": [
      {
       "text": "A primary qualification and/or extensive industry experience in Computer Science or a related subject area.",
       "quote": "This programme is aimed at graduates with a primary qualification and / or extensive industry experience in Computer Science or related subject area.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: stated as a requirement; quote only says the programme is aimed at such graduates",
+      "summary_sha": "1ba3d571fda9d1dc"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Computer Science-Artificial Intelligence (MSc)",
@@ -1103,29 +1347,37 @@
      "overall": 6.5,
      "min_band": 6.0,
      "quote": "Overall, entry to the MSc Artificial Intelligence requires a minimum IELTS score of 6.5 overall, 6.5 in Writing and no less than 6.0 in any other band.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: no section below 6 (quote says no less than 6.0 in any other band, and 6.5 in Writing)",
+     "summary_sha": "2f4c7f89c5ded8b4"
     },
     "toefl": {
      "text": "Overall 88, with Listening 12–19, Speaking 18–19, Writing 24–26, Reading 13–18.",
      "overall": 88.0,
      "quote": "TOEFL: Overall 88, Listening 12–19, Speaking 18–19, Writing 24–26, Reading 13–18.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "233caf8f833d9ae6"
     },
     "academic": {
      "text": "A First Class Honours (or equivalent) primary degree from a recognised university or third-level college; a good Second Class Honours may be deemed sufficient on the Programme Director's recommendation.",
      "quote": "The minimum academic requirement for entry to the programme is a First Class Honours (or equivalent) from a recognised university or third-level college. However, a good Second Class Honours (or equivalent) can be deemed sufficient on the recommendation of the Programme Director.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fefc58aef3baba91"
     },
     "deadlines": [
      {
       "label": "EU and LATAM applicants, 2026 intake",
       "date": "2026-07-31",
       "quote": "For EU and LATAM applicants, please contact the MSc AI Programme Director, Dr Bharathi Chakravarthi, via email - bharathi.raja@universityofgalway.ie - no later than July 31st, 2026.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: application deadline (quote only says contact the director by that date)",
+      "summary_sha": "745559f4f8dec319"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Conference Interpreting (MA)",
@@ -1138,22 +1390,28 @@
      "overall": 6.5,
      "min_band": 6.0,
      "quote": "For applicants whose first language is not English, an English language proficiency of IELTS score of 6.5 is required (with no less than 6.0 in any other band) or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a391fe301e63deda"
     },
     "academic": {
      "text": "A Second Class Honours Level 8 primary degree in a related subject area.",
      "quote": "Candidates must hold at least a Second Class Honours Level 8 primary degree in a related subject area",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "11362882e0471e82"
     },
     "prerequisites": [
      {
       "text": "One of the stated language profiles (AA or AB; ABC; ACC or ACCC), with one language being English or Irish.",
       "quote": "Applicants should have one of the following language profiles and one of their languages must be either English or Irish.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: the specific profiles AA/AB, ABC, ACC/ACCC",
+      "summary_sha": "6fa0e9dc5f5d4b6d"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Corporate Finance (MSc)",
@@ -1166,18 +1424,24 @@
      "overall": 6.5,
      "min_band": 6.0,
      "quote": "For applicants whose first language is not English, an English language proficiency of IELTS score of 6.5 is required (with no less than 6.0 in any other band) or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a391fe301e63deda"
     },
     "academic": {
      "text": "A H2.1 degree (NFQ Level 8 or equivalent) in Business/Commerce including a number of quantitative subjects such as Economics or Finance.",
      "quote": "A H2.1 degree (NFQ Level 8 or equivalent) in:\n(a) Business/Commerce to include a number of quantitative subjects such as Economics or Finance",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "05e0ad23a578c42c"
     },
     "prerequisites": [
      {
       "text": "Demonstrated strong academic ability (H1 or H2.1 or equivalent) in a number of quantitative modules such as mathematics, statistics or econometrics.",
       "quote": "Applicants should have demonstrated strong academic ability (a H1 or H2.1, or equivalent) in a number of quantitative modules in their degree such as mathematics, statistics or econometrics.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "49488a126af8a9c2"
      }
     ]
    },
@@ -1194,12 +1458,16 @@
      "overall": 6.5,
      "min_band": 6.0,
      "quote": "For applicants whose first language is not English, an English language proficiency of IELTS score of 6.5 is required (with no less than 6.0 in any other band) or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a391fe301e63deda"
     },
     "academic": {
      "text": "A Second Class Honours, Grade 1, Level 8 primary degree in law or another relevant discipline such as political science, social sciences or humanities.",
      "quote": "Candidates must hold at least a Second Class Honours, Grade 1, Level 8 primary degree in in law or in another relevant discipline including political science, social sciences and humanities.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "5f50e5f96ebbdabb"
     }
    },
    "status": "机器核对"
@@ -1215,18 +1483,24 @@
      "overall": 6.5,
      "min_band": 6.0,
      "quote": "For applicants whose first language is not English, an English language proficiency of IELTS score of 6.5 is required (with no less than 6.0 in any other band) or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a391fe301e63deda"
     },
     "academic": {
      "text": "Normally a H2.1 degree (NFQ Level 8 or equivalent).",
      "quote": "Normally a H2.1 degree (NFQ Level 8 or equivalent).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "efbab278683df3e2"
     },
     "prerequisites": [
      {
       "text": "Prior exposure to information technology is required.",
       "quote": "Prior exposure to information technology is a requirement.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "d3a5d994a89f45b7"
      }
     ]
    },
@@ -1243,22 +1517,28 @@
      "overall": 6.5,
      "min_band": 6.5,
      "quote": "For applicants whose first language is not English, an English language proficiency of IELTS score of 6.5 is required (with no less than 6.5 in any one component) or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d17c16348a8e1064"
     },
     "academic": {
      "text": "At least a Second Class Honours, Grade 1 degree in an appropriate clinical or life science degree programme.",
      "quote": "Successful applicants will possess at least a Second Class Honours, Grade 1 degree in an appropriate clinical or life science degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "7c505159afa7a6ee"
     },
     "prerequisites": [
      {
       "text": "At least three years of high quality work experience in a relevant field of diabetes health, for applicants without a primary degree at the required level.",
       "quote": "at least three years of high quality work experience in a relevant field of diabetes health",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: for applicants without a primary degree at the required level",
+      "summary_sha": "032e08dc51cf08c7"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Digital Marketing (MSc)",
@@ -1271,22 +1551,28 @@
      "overall": 6.5,
      "min_band": 6.0,
      "quote": "For applicants whose first language is not English, an English language proficiency of IELTS score of 6.5 is required (with no less than 6.0 in any other band) or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a391fe301e63deda"
     },
     "academic": {
      "text": "Normally a second-class honours degree (NFQ Level 8 or equivalent) in any discipline.",
      "quote": "Normally a second-class honours degree (NFQ Level 8 or equivalent) in any discipline.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "9897c432ad15f43a"
     },
     "prerequisites": [
      {
       "text": "Three years of relevant work experience (for applicants holding a primary degree without a second-class honours degree).",
       "quote": "A primary degree with a minimum of three years relevant work experience will also be considered.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: for applicants holding a primary degree without a second-class honours degree",
+      "summary_sha": "5b4c3354f1e85a74"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Drama and Theatre Studies (MA/PDip) [full-time, part-time]",
@@ -1299,22 +1585,28 @@
      "overall": 6.5,
      "min_band": 6.0,
      "quote": "For applicants whose first language is not English, an English language proficiency of IELTS score of 6.5 is required (with no less than 6.0 in any other band) or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a391fe301e63deda"
     },
     "academic": {
      "text": "A university arts degree with a minimum standard of 2.2, or a US GPA of 3.0.",
      "quote": "A university arts degree (minimum standard 2.2, or US GPA 3.0).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "5b44adadb0e175ec"
     },
     "prerequisites": [
      {
       "text": "A writing sample of 5-6 typed pages (academic essay, creative writing or theatre reviews).",
       "quote": "Applicants to this programme must submit a writing sample of 5 - 6 typed pages.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: academic essay, creative writing or theatre reviews",
+      "summary_sha": "eaa1d2379b5f0271"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Education (Professional Master)",
@@ -1326,21 +1618,27 @@
     "academic": {
      "text": "A Level 8 degree on the National Framework of Qualifications with a minimum overall result of H2.2 (50%+).",
      "quote": "The requirement for entry is a level 8 degree on the National Framework of Qualifications (NFQ) with a minimum overall result of H2.2 (50%+).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "41651ed6342a2f36"
     },
     "deadlines": [
      {
       "label": "Applications (closing date)",
       "date": "2027-01-31",
       "quote": "Applications are open until the 31st of January 2027.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "9e33009b56716798"
      }
     ],
     "prerequisites": [
      {
       "text": "A completed Teaching Council Subject Declaration Form (SDF) for each curricular subject intended to be taught.",
       "quote": "A completed Teaching Council Subject Declaration Form (SDF) for each curricular subject they intend to teach on completion of the PME.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "bd51a7eb2ec10e48"
      }
     ]
    },
@@ -1358,15 +1656,19 @@
      "overall": 6.5,
      "min_band": 6.0,
      "quote": "an English language proficiency of IELTS score of 6.5 is required (with no less than 6.5 in Writing and no less than 6.0 in any other band) or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: no section below 6 (overall 6.5 with no section below 6)",
+     "summary_sha": "397550bf89271704"
     },
     "academic": {
      "text": "Second Class Honours, Grade 2 in a Level 8 degree in a related discipline from a recognised third level college.",
      "quote": "Entry to the programme is open to individual who have Second Class Honours, Grade 2 in a Level 8 degree in a related discipline from a recognised third level college.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "066b519ab7a6e05e"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Electronic & Computer Engineering (MSc)",
@@ -1380,22 +1682,28 @@
      "overall": 6.5,
      "min_band": 6.0,
      "quote": "an English language proficiency of IELTS score of 6.5 is required (with no less than 6.5 in Writing and no less than 6.0 in any other band)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 6.5, no section below 6",
+     "summary_sha": "773c61d927711c7f"
     },
     "academic": {
      "text": "At least a Second Class Honours Level 8 primary degree in a related subject area.",
      "quote": "Candidates must hold at least a Second Class Honours Level 8 primary degree in a related subject area",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c20f4250a422b52d"
     },
     "prerequisites": [
      {
       "text": "A degree in a related subject area (e.g. electronic, computer or electrical engineering or a closely related discipline).",
       "quote": "Applicants should normally hold a H2.1 (Second Class Honours, Grade 1) degree or equivalent in Electronic Engineering, Computer Engineering, Electrical Engineering, or a closely related discipline.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: omits H2.1 requirement; 'should normally hold' stated as degree requirement",
+      "summary_sha": "f983f6ed4299b2c7"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Energy Systems Engineering (ME)",
@@ -1409,22 +1717,28 @@
      "overall": 6.5,
      "min_band": 6.0,
      "quote": "For applicants whose first language is not English, an English language proficiency IELTS score of 6.5 is required with no less than 6.5 in Writing and no less than 6.0 in any other band.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 6.5, no section below 6 (duplicated overall score and a general section minimum)",
+     "summary_sha": "a0ea7925f54a910b"
     },
     "academic": {
      "text": "Second Class Honours, Grade 2 (H2.2), in an accredited Level 8 engineering degree in a related discipline, or equivalent, from a recognised university or third-level college, with substantial elements of energy, mechanical, electrical and/or civil engineering.",
      "quote": "Entry to the ME programme is open to individuals who have Second Class Honours, Grade 2 (H2.2), in an accredited Level 8 engineering degree in a related discipline, or equivalent, from a recognised university or third-level college, with substantial elements of energy, mechanical, electrical and/or civil engineering.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "97f49775aa1158e8"
     },
     "prerequisites": [
      {
       "text": "Degree must have substantial elements of energy, mechanical, electrical and/or civil engineering.",
       "quote": "with substantial elements of energy, mechanical, electrical and/or civil engineering",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "583521f1cb368a9f"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Energy Systems Engineering (MSc)",
@@ -1437,18 +1751,24 @@
      "overall": 6.5,
      "min_band": 6.0,
      "quote": "For applicants whose first language is not English, an English language proficiency IELTS score of 6.5 is required with no less than 6.0 in any band.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "12ae47754f24f27c"
     },
     "academic": {
      "text": "Second Class Honours (H2.1) in a Level 8 engineering degree in a related discipline, with substantial elements of energy, mechanical, electrical or civil engineering, from a recognised university or third-level college.",
      "quote": "Second Class Honours (H2.1) in a Level 8 (bachelor’s or equivalent) engineering degree in a related discipline, with substantial elements of such as energy, mechanical, electrical or civil engineering, from a recognised university or third-level college.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "791f86d8f50e3f87"
     },
     "prerequisites": [
      {
       "text": "A Level 8 engineering degree in a related discipline with substantial elements of energy, mechanical, electrical or civil engineering.",
       "quote": "Second Class Honours (H2.1) in a Level 8 (bachelor’s or equivalent) engineering degree in a related discipline, with substantial elements of such as energy, mechanical, electrical or civil engineering, from a recognised university or third-level college.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "4c257371bea7e8c1"
      }
     ]
    },
@@ -1466,22 +1786,28 @@
      "overall": 6.5,
      "min_band": 6.0,
      "quote": "an English language proficiency of IELTS score of 6.5 is required (with no less than 6.5 in Writing and no less than 6.0 in any other band) or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 6.5, no section below 6 (contradicts Writing 6.5 requirement)",
+     "summary_sha": "397550bf89271704"
     },
     "academic": {
      "text": "A Second Class Honours Level 8 primary degree in a related subject area.",
      "quote": "Candidates must hold at least a Second Class Honours Level 8 primary degree in a related subject area",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "11362882e0471e82"
     },
     "prerequisites": [
      {
       "text": "For applicants whose first language is not English: English language proficiency requirement.",
       "quote": "For applicants whose first language is not English, an English language proficiency of IELTS score of 6.5 is required",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "7c9f6f3135cb9c86"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "English (MA)",
@@ -1494,18 +1820,24 @@
      "overall": 7.0,
      "min_band": 6.5,
      "quote": "An overall IELTS score of 7.0 (or equivalent) is required, with a minimum score of 6.5 in any one component.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a9837e07f0633b18"
     },
     "academic": {
      "text": "A Level 8 degree in an Arts, Humanities or Social Sciences discipline with a minimum result of H2.2 overall and a H2.1 in English, or an equivalent international qualification (e.g., BA with minimum GPA of 3.0 for North American applicants).",
      "quote": "A Level 8 degree in an Arts, Humanities or Social Sciences discipline with a minimum result of H2.2 overall and a H2.1 in English, or an equivalent international qualification (e.g., BA with minimum GPA of 3.0 for North American applicants).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "dd86f003aa069a4a"
     },
     "prerequisites": [
      {
       "text": "A writing sample: an original academic essay of between 1000 and 3000 words.",
       "quote": "A writing sample consisting of a (preferably recent) original academic essay you have produced (between 1000-3000 words).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "8c92c81b57d0685f"
      }
     ]
    },
@@ -1523,22 +1855,28 @@
      "overall": 6.5,
      "min_band": 6.0,
      "quote": "For applicants whose first language is not English, an English language proficiency of IELTS score of 6.5 is required (with no less than 6.5 in Writing and no less than 6.0 in any other band) or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fdfc65b59f5677f4"
     },
     "academic": {
      "text": "A Second Class Honours Level 8 primary degree in a related subject area.",
      "quote": "Candidates must hold at least a Second Class Honours Level 8 primary degree in a related subject area",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "11362882e0471e82"
     },
     "prerequisites": [
      {
       "text": "Relevant practical experience in the subject area (three years) for applicants without an honours degree.",
       "quote": "have three years’ relevant practical experience in the subject area",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: for applicants without an honours degree",
+      "summary_sha": "ca88c9176dab1d3b"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Evidence-Based Future Healthcare (MSc)",
@@ -1551,22 +1889,28 @@
      "overall": 7.0,
      "min_band": 6.5,
      "quote": "A minimum overall score of 7.0 IELTS, with no less than 6.5 in any one band for international applicants",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits 'for international applicants' audience restriction",
+     "summary_sha": "6a8aa1bdc8edeaef"
     },
     "academic": {
      "text": "A 1.1 or 2.1 (or equivalent) Bachelor's honours degree in a healthcare-related field.",
      "quote": "A 1.1 (or equivalent) or 2.1 (or equivalent) Bachelor’s honours degree in a healthcare-related field*",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "80722d5706118db1"
     },
     "prerequisites": [
      {
       "text": "Relevant work experience in healthcare, including direct care in clinical settings, non-clinical roles in healthcare administration, policy or research, and community service focused on healthcare.",
       "quote": "Applicants should have relevant work experience in healthcare, including direct care for individuals or communities in clinical settings, non-clinical roles in healthcare administration, policy, or research and community service focused on healthcare.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "6d948085705343b2"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Exercise Physiology and Rehabilitation (MSc)",
@@ -1580,22 +1924,28 @@
      "overall": 6.5,
      "min_band": 6.0,
      "quote": "For applicants whose first language is not English, an English language proficiency of IELTS score of 6.5 is required (with no less than 6.5 in Writing and no less than 6.0 in any other band) or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: no section below 6 (overall 6.5 stated as section minimum)",
+     "summary_sha": "fdfc65b59f5677f4"
     },
     "academic": {
      "text": "A bachelor's degree (NFQ Level 8) in Physiotherapy, Physical Therapy or Occupational Therapy with at least an upper second-class honours (2.1).",
      "quote": "Students must have completed a bachelor’s degree (NFQ Level 8) in Physiotherapy, Physical Therapy or Occupational Therapy, with a minimum result of an upper second-class honours (2.1).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "79d9e5575e3f60ca"
     },
     "prerequisites": [
      {
       "text": "Work experience in a relevant area is an advantage.",
       "quote": "Work experience in a relevant area will be an advantage.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "b19aae9a0711b133"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Exercise Physiology and Its Application in Therapy (MSc)",
@@ -1609,22 +1959,28 @@
      "overall": 6.5,
      "min_band": 6.0,
      "quote": "an English language proficiency of IELTS score of 6.5 is required (with no less than 6.5 in Writing and no less than 6.0 in any other band)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 6.5, no section below 6",
+     "summary_sha": "773c61d927711c7f"
     },
     "academic": {
      "text": "A bachelor's degree (NFQ Level 8) in Science, Life Science, Biomedical Science, Health Sciences, Nursing or a related discipline, with a minimum result of upper second-class honours (2.1).",
      "quote": "Students must have completed a bachelor’s degree (NFQ Level 8) in Science, Life Science, Biomedical Science, Health Sciences, Nursing or related discipline, with a minimum result of an upper second-class honours (2.1).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "f84ac4577c97f606"
     },
     "prerequisites": [
      {
       "text": "Work experience in a relevant area is an advantage.",
       "quote": "Work experience in a relevant area will be an advantage.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "b19aae9a0711b133"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Family Support Studies (MA, PDip)",
@@ -1637,18 +1993,24 @@
      "overall": 6.5,
      "min_band": 6.0,
      "quote": "For applicants whose first language is not English, an English language proficiency of IELTS score of 6.5 is required (with no less than  6.0 in any other band) or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "e9144c944a94530d"
     },
     "academic": {
      "text": "A third-level qualification or a recognised professional qualification in a field broadly related to Family Support service delivery.",
      "quote": "A third-level qualification or a recognised professional qualification in a field broadly related to Family Support service delivery.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "5c39b6fba16e27c3"
     },
     "prerequisites": [
      {
       "text": "A minimum of one year work experience in health or and social services areas.",
       "quote": "Participants must have a minimum of one year work experience in health or and social services areas.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "cb8594759d009c2d"
      }
     ]
    },
@@ -1665,18 +2027,24 @@
      "overall": 7.0,
      "min_band": 6.5,
      "quote": "In cases where English is not your first language you will need to provide an IELTS test that scores a minimum grade of 7.0 overall, with no less than 6.5 in any one component.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "baa005bfc68327ce"
     },
     "academic": {
      "text": "A QQI Level 8 degree or equivalent, H2.2, GPA 3.0 or equivalent international qualification.",
      "quote": "QQI Level 8 degree or equivalent, H2.2. GPA 3.0 or equivalent international qualification.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "7dbce3898b17836d"
     },
     "prerequisites": [
      {
       "text": "A writing sample: a graded academic essay or a review essay of a recent film (1,000 words).",
       "quote": "Applicants are required to submit a writing sample, consisting of either a graded academic essay or a review essay of a recent film (1,000 words), and a personal statement with their application.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "0bb65ba6da70c20d"
      }
     ]
    },
@@ -1692,19 +2060,25 @@
     "ielts": {
      "overall": 6.5,
      "quote": "They will be required to supply an IELTS with an overall score of 6.5 or more, unless their primary degree has been taken through English, certification of which must be supplied.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "2771355d7137b85e"
     },
     "academic": {
      "text": "A Bachelor's degree with first or upper second class honours in Fine Art.",
      "quote": "Applicants should have a Bachelors Degree with first or upper second class honours in Fine Art; or a Bachelors Degree with a major in Fine Art with a GPA or 3.50 or above; or evidence of equivalent achievement.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c900dbce3b8251a7"
     },
     "deadlines": [
      {
       "label": "2026/2027 entry",
       "date": "2026-02-01",
       "quote": "The application deadline for the 2026/2027 entry year is February 1, 2026.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "45b8d950e9465896"
      }
     ]
    },
@@ -1722,28 +2096,36 @@
      "overall": 6.5,
      "min_band": 6.0,
      "quote": "Overall, entry to the MSc requires a minimum IELTS score of 6.5 overall, 6.5 in writing, with no less than 6.0 in any other band.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: no section below 6 / 6.5 overall repeated as separate requirement",
+     "summary_sha": "d9b23124ea97f9c5"
     },
     "toefl": {
      "text": "Overall 88, with Listening 12–19, Speaking 18–19, Writing 24–26, Reading 13–18.",
      "overall": 88.0,
      "quote": "TOEFL: Overall 88, Listening 12–19, Speaking 18–19, Writing 24–26, Reading 13–18.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "233caf8f833d9ae6"
     },
     "academic": {
      "text": "A First Class Honours (or equivalent) primary degree from a recognised university or third-level college, in computer science or a science/engineering programme with sufficient computing training.",
      "quote": "This MSc is targeted at high-performing graduates of Level 8 computer science programmes, or Level 8 science/engineering programmes that offer sufficient training in computing. The minimum academic requirement for entry to the programme is a First Class Honours (or equivalent) from a recognised university or third-level college.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c9c4a7e1e9a09f9e"
     },
     "prerequisites": [
      {
       "text": "A primary qualification in Computer Science or a related subject area, with a very high technical standard in the technical elements of the computing background (not a conversion course).",
       "quote": "This programme is aimed at graduates with a primary qualification in Computer Science or related subject area. It is not a conversion course, and students are expected to be already at a very high technical standard with regard to the technical elements of their computing background.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "21016e8521a8ee91"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Computer Science - Artificial Intelligence (Online) (MSc)",
@@ -1757,21 +2139,27 @@
      "overall": 6.5,
      "min_band": 6.0,
      "quote": "Overall, entry to the MSc Artificial Intelligence requires a minimum IELTS score of 6.5 overall, 6.5 in Writing and no less than 6.0 in any other band.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: no section below 6 / 6.5 overall (duplicated overall requirement not stated as section minimum)",
+     "summary_sha": "2f4c7f89c5ded8b4"
     },
     "toefl": {
      "text": "Overall 88, with Listening 12–19, Speaking 18–19, Writing 24–26, Reading 13–18.",
      "overall": 88.0,
      "quote": "TOEFL: Overall 88, Listening 12–19, Speaking 18–19, Writing 24–26, Reading 13–18.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "233caf8f833d9ae6"
     },
     "academic": {
      "text": "A strong 2.1 Level 8 (or equivalent) computer science degree.",
      "quote": "Candidates must have a strong 2.1 Level 8 (or equivalent) computer science degree or a strong 2.1 Level 8 (or equivalent) science/engineering degree that provides extensive training in computing.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "8dd4741fc6b6c710"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Business and Hospitality (MSc)",
@@ -1784,27 +2172,33 @@
      "overall": 6.5,
      "min_band": 5.5,
      "quote": "For applicants whose first language is not English, an English language proficiency of IELTS score of 6.5 is required (with no band less than 5.5) or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "6d7617f7e22838f0"
     },
     "academic": {
      "text": "A Second-Class Honours Level 8 primary degree with some relevant work experience.",
      "quote": "Candidates must hold at least a Second-Class Honours Level 8 primary degree with some relevant work experience.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "e4c6bb44d05f08cb"
     },
     "prerequisites": [
      {
       "text": "Some relevant work experience (stated as preferable but not necessary elsewhere on the page).",
       "quote": "Candidates must hold at least a Second-Class Honours Level 8 primary degree with some relevant work experience.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: stated as preferable but not necessary elsewhere on the page",
+      "summary_sha": "d59bd1eabbd8ebf0"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   }
  ],
  "verification": {
   "programs": 60,
-  "机器核对": 60,
-  "待人工": 0
+  "机器核对": 30,
+  "待人工": 30
  }
 }

@@ -20,17 +20,21 @@
     "academic": {
      "text": "An eligible Bachelor's degree from an accredited national or international post-secondary educational institution, subject to individual assessment of prior education.",
      "quote": "Admission to the Master’s programme in ‘Building Sciences and Environment’ is possible after completing an eligible Bachelor’s degree at an accredited national or international post-secondary educational institution.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: subject to individual assessment of prior education",
+     "summary_sha": "9c39c302a5c62cc4"
     },
     "prerequisites": [
      {
       "text": "Applicants must go through the selection procedure before admission.",
       "quote": "Prior to the admission, you have to go through the selection procedure.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "1191b732049c965e"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Digital Civil Engineering Science (Master)",
@@ -42,13 +46,17 @@
     "academic": {
      "text": "An eligible Bachelor's or Diploma degree from an accredited national or international post-secondary educational institution.",
      "quote": "Admission to the Master’s programme in Digital Civil Engineering Science is possible after completing an eligible Bachelor’s oder Diploma degree at an accredited national or international post-secondary educational institution.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "8c8b7b9abf1f4b7c"
     },
     "prerequisites": [
      {
       "text": "A certificate demonstrating your language skills must be submitted with the application documents.",
       "quote": "submit documents of your professional qualification (academic records, a certificate demonstrating your language skills, etc.)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "a2ccc8f81a15930b"
      }
     ]
    },
@@ -64,13 +72,17 @@
     "academic": {
      "text": "An eligible Bachelor's degree from an accredited national or international post-secondary institution, with a well-balanced set of skills in mathematics, physics, chemistry, electrical engineering and/or mechanics totalling at least 30 ECTS credits.",
      "quote": "Admission to the Master’s programme in ‘Biomedical Engineering’ is possible after completing an eligible Bachelor’s degree at an accredited national or international post-secondary educational institution. In particular, a degree programme may be considered eligible if the applicant has a well-balanced set of skills in the subjects of mathematics, physics, chemistry, electrical engineering and/or mechanics, totalling at least 30 ECTS credits.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "9039008d5923fc48"
     },
     "prerequisites": [
      {
       "text": "A well-balanced set of skills in mathematics, physics, chemistry, electrical engineering and/or mechanics totalling at least 30 ECTS credits.",
       "quote": "a well-balanced set of skills in the subjects of mathematics, physics, chemistry, electrical engineering and/or mechanics, totalling at least 30 ECTS credits",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "342a238251067279"
      }
     ]
    },
@@ -86,27 +98,35 @@
     "academic": {
      "text": "An eligible Bachelor's degree from an accredited national or international post-secondary institution.",
      "quote": "Admission to the Master’s programme in ‘Computational Science and Engineering’ is possible after completing an eligible Bachelor’s degree at an accredited national or international post-secondary educational institution.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "83f3257e220b64f8"
     },
     "prerequisites": [
      {
       "text": "At least 30 ECTS credits in Informatics, including programming languages and topics such as data structures and algorithms.",
       "quote": "In particular, a degree programme is considered eligible if it provides the following knowledge, skills, and competencies amounting to at least 30 ECTS credits in:",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Informatics, including programming languages and topics such as data structures and algorithms",
+      "summary_sha": "abac733ac097c2b5"
      },
      {
       "text": "Programming languages (at least one): C, C++, Fortran, Java, Python.",
       "quote": "Programming languages (at least one): C; C++; Fortran; Java; Python.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "9c009c453e8b21d4"
      },
      {
       "text": "Mathematics: linear algebra with eigenvalue problems, differential and integral calculus, ordinary differential equations.",
       "quote": "Linear algebra with eigenvalue problems: matrix and vector calculus; matrix inversion; solving systems of linear equations; determination of determinants, eigenvalues, and eigenvectors.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Mathematics: differential and integral calculus, ordinary differential equations",
+      "summary_sha": "aa4e193a3d8b25f5"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Embedded Computing Systems (Master)",
@@ -118,28 +138,38 @@
     "academic": {
      "text": "A TU Wien bachelor's programme in Electrical Engineering and Information Technology qualifies for admission without supplementary requirements.",
      "quote": "The following bachelor's degree programmes at TU Wien qualify for admission without supplementary requirements: Bachelor’s programme in Electrical Engineering and Information Technology",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "eca0e8e6f9cf93de"
     },
     "prerequisites": [
      {
       "text": "At least 24 ECTS credits in mathematics (algebra, analysis, probability theory and statistics).",
       "quote": "≥ 24 Mathematics (algebra, analysis, probability theory and statistics)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "4efae640fa711a3c"
      },
      {
       "text": "At least 12 ECTS credits in programming (high-level programming languages and low-level/system programming).",
       "quote": "≥ 12 Programming (high-level programming languages and low-level/system programming)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "03c0704bc1582d04"
      },
      {
       "text": "At least 16 ECTS credits in fundamentals of electrical engineering (electronic components, circuit and measurement technology, signals and systems).",
       "quote": "≥ 16 Fundamentals of Electrical Engineering (electronic components, circuit and measurement technology, signals and systems)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f7ceb0ecce4c27fa"
      },
      {
       "text": "At least 10 ECTS credits in digital systems (hardware design, computer architectures, microcomputers).",
       "quote": "≥ 10 Digital Systems (hardware design, computer architectures, microcomputers)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "9ca458999b4ab9b9"
      }
     ]
    },
@@ -155,7 +185,9 @@
     "academic": {
      "text": "An eligible Bachelor's degree from an accredited national or international post-secondary institution.",
      "quote": "Admission to the Master’s programme in ‘Information and Communication Engineering’ is possible after completing an eligible Bachelor’s degree at an accredited national or international post-secondary educational institution.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "da03f6a02b61011f"
     }
    },
    "status": "机器核对"
@@ -170,32 +202,42 @@
     "academic": {
      "text": "Graduates of the listed Bachelor's programmes (Business Informatics at TU Wien, Universität Wien or Universität Linz; Information Management at Universität Klagenfurt; Software Engineering and Management at TU Graz) are admitted without supplementary examinations.",
      "quote": "In any case, admission to the degree programme is open without supplementary examinations (i.e. consecutive admission) to graduates of the following Bachelor’s degree programmes:",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: the list of specific programmes (quote only says 'the following' without naming them)",
+     "summary_sha": "9cc6a4c40d62f2e4"
     },
     "prerequisites": [
      {
       "text": "For other bachelor's degrees: Business Informatics totalling at least 28 ECTS.",
       "quote": "Business Informatics totalling at least 28 ECTS,",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: For other bachelor's degrees",
+      "summary_sha": "e96c998f79c8ecfa"
      },
      {
       "text": "For other bachelor's degrees: Economics totalling at least 18 ECTS.",
       "quote": "Economics totalling at least 18 ECTS,",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: For other bachelor's degrees",
+      "summary_sha": "d8e79171a9984d94"
      },
      {
       "text": "For other bachelor's degrees: Information Technology totalling at least 23 ECTS.",
       "quote": "Information Technology totalling at least 23 ECTS, and",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: For other bachelor's degrees",
+      "summary_sha": "32dc70d02bf50850"
      },
      {
       "text": "For other bachelor's degrees: Structural Sciences totalling at least 18 ECTS.",
       "quote": "Structural Sciences totalling at least 18 ECTS.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: For other bachelor's degrees",
+      "summary_sha": "ae8061ec1d15612a"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Data Science (Master)",
@@ -207,33 +249,45 @@
     "academic": {
      "text": "An eligible Bachelor's degree from an accredited national or international post-secondary institution, covering algorithms and data structures, introduction to programming, algebra, calculus, statistics and probability theory.",
      "quote": "Admission to the Master’s programme in ‘Data Science’ is possible after completing an eligible Bachelor’s degree at an accredited national or international post-secondary educational institution. In particular, a degree programme is considered eligible if it covers the following subjects from the Bachelor’s programme in “Business Informatics”: algorithms and data structures, an introduction to programming, algebra, calculus, statistics and probability theory.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "102b0e3b623210e0"
     },
     "prerequisites": [
      {
       "text": "Prior study of algorithms and data structures",
       "quote": "algorithms and data structures, an introduction to programming, algebra, calculus, statistics and probability theory",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "ae7ff14893b1b42b"
      },
      {
       "text": "Prior study of an introduction to programming",
       "quote": "algorithms and data structures, an introduction to programming, algebra, calculus, statistics and probability theory",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "79aa7eb272f87294"
      },
      {
       "text": "Prior study of algebra",
       "quote": "algorithms and data structures, an introduction to programming, algebra, calculus, statistics and probability theory",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "7928f5536f142089"
      },
      {
       "text": "Prior study of calculus",
       "quote": "algorithms and data structures, an introduction to programming, algebra, calculus, statistics and probability theory",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "849028b3fda33c52"
      },
      {
       "text": "Prior study of statistics and probability theory",
       "quote": "algorithms and data structures, an introduction to programming, algebra, calculus, statistics and probability theory",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "58fbf28383263bcc"
      }
     ]
    },
@@ -249,22 +303,28 @@
     "academic": {
      "text": "An eligible Bachelor's degree from an accredited national or international post-secondary institution, with at least 120 ECTS credits in Mathematics and Computer Science, including at least 25 ECTS in mathematics, statistics and theoretical foundations of computer science and 20 ECTS in algorithms, data structures and programming.",
      "quote": "Admission to the Master’s programme in ‘Logic and Artificial Intelligence’ is possible after completing an eligible Bachelor’s degree at an accredited national or international post-secondary educational institution. In particular, a degree programme is considered eligible, provided that at least 120 ECTS credits have been completed in the subject areas of Mathematics and Computer Science, of which at least:",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: the 25 ECTS and 20 ECTS breakdowns are not in the quote",
+     "summary_sha": "d9457c1165be04fc"
     },
     "prerequisites": [
      {
       "text": "At least 25 ECTS credits in mathematics and statistics as well as the theoretical foundations of computer science.",
       "quote": "25 ECTS credits in mathematics and statistics, as well as the theoretical foundations of computer science, with knowledge, skills and competences acquired in accordance with the modules ‘Algebra and Discrete Mathematics’, ‘Analysis’, ‘Statistics and Probability Theory’, and ‘Theoretical Computer Science’ of the Bachelor’s degree programme in Informatics at TU Wien;",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "200fa59fc6059285"
      },
      {
       "text": "At least 20 ECTS credits in algorithms, data structures and programming.",
       "quote": "20 ECTS credits in algorithms, data structures and programming, covering the knowledge, skills and competences taught in the modules ‘Algorithms and Data Structures’, ‘Introduction to Programming’ and ‘Programming Paradigms’ of the Bachelor’s degree programme in Informatics at TU Wien.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "72545d2f1a9a4696"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Media and Human-Centered Computing (Master)",
@@ -276,28 +336,38 @@
     "academic": {
      "text": "An eligible Bachelor's degree from an accredited national or international post-secondary institution, with at least 90 ECTS in Computer Science and IT, including specified minimum ECTS in mathematics/statistics and theoretical foundations, algorithms/data structures/programming, technical and practical CS foundations, and Media and Human-Centred Computing.",
      "quote": "Admission to the Master’s programme in ‘Media and Human-Centered Computing’ is possible after completing an eligible Bachelor’s degree at an accredited national or international post-secondary educational institution. In particular, a degree programme is considered eligible, provided that at least 90 ECTS credits have been completed in the subject areas of Computer Science and IT, of which at least:",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a4a2f2c127c7271e"
     },
     "prerequisites": [
      {
       "text": "At least 20 ECTS in mathematics and statistics and the theoretical foundations of computer science.",
       "quote": "20 ECTS in mathematics and statistics, as well as the theoretical foundations of computer science, with knowledge, skills and competences acquired in accordance with the modules ‘Algebra and Discrete Mathematics’, ‘Analysis’, ‘Statistics’ and ‘Probability Theory’ of the Bachelor’s degree programme in Informatics at TU Wien;",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "da17a1ea51e74e2b"
      },
      {
       "text": "At least 24 ECTS in algorithms, data structures and programming.",
       "quote": "24 ECTS in algorithms, data structures and programming, with knowledge, skills and competences taught in accordance with the modules ‘Algorithms and Data Structures’ and ‘Introduction to Programming’ from the Bachelor’s programme in Informatics at TU Wien.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "0f67f1667f332351"
      },
      {
       "text": "18 ECTS from the theoretical, technical and practical foundations of Computer Science.",
       "quote": "18 ECTS from the theoretical, technical and practical foundations of Computer Science, with knowledge, skills and competences taught in accordance with the modules ‘Ways of Thinking in Computer Science’, ‘Introduction to Security’ and ‘Fundamentals of Digital Systems’ from the Bachelor’s degree programme in Informatics at TU Wien.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "79a5314aac4461de"
      },
      {
       "text": "18 ECTS from Media and Human-Centred Computing.",
       "quote": "18 ECTS from Media and Human-Centred Computing, covering the knowledge, skills and competences taught in the modules of the specialisations Human-Centred Computing and Visual Computing within the Bachelor’s programme in Informatics at TU Wien.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "95354ada0a8cb92f"
      }
     ]
    },
@@ -313,7 +383,9 @@
     "academic": {
      "text": "Completion of a relevant (Bachelor's) degree at a recognised national or international post-secondary educational institution.",
      "quote": "Admission to the Master’s programme in Medical Informatics requires the completion of a relevant (Bachelor’s) degree at a recognised national or international post-secondary educational institution.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "7592813fd1fef2d3"
     }
    },
    "status": "机器核对"
@@ -328,27 +400,35 @@
     "academic": {
      "text": "An eligible Bachelor's degree from an accredited national or international post-secondary institution, with at least 120 ECTS in Mathematics and Computer Science, including at least 20 ECTS in mathematics and statistics, 25 ECTS in algorithms, data structures and programming, and 20 ECTS in theoretical, technical and practical foundations of Computer Science.",
      "quote": "Admission to the Master’s programme in ‘Software Engineering’ is possible after completing an eligible Bachelor’s degree at an accredited national or international post-secondary educational institution. In particular, a degree programme is considered eligible, provided that at least 120 ECTS credits have been completed in the subject areas of Mathematics and Computer Science, of which at least:",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: the specific 20/25/20 ECTS breakdowns (only 'at least:' is quoted)",
+     "summary_sha": "38b9b4e257aa059e"
     },
     "prerequisites": [
      {
       "text": "At least 20 ECTS in mathematics and statistics covering algebra and discrete mathematics, analysis, and statistics and probability theory.",
       "quote": "20 ECTS in mathematics and statistics, covering the knowledge, skills and competences taught in the modules ‘Algebra and Discrete Mathematics’, ‘Analysis’ and ‘Statistics and Probability Theory’ of the Bachelor’s degree programme in Informatics at TU Wien;",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "d868e27bf8587860"
      },
      {
       "text": "At least 25 ECTS in algorithms, data structures and programming.",
       "quote": "25 ECTS in algorithms, data structures and programming, with knowledge, skills and competences corresponding to the modules ‘Algorithms and Data Structures’, ‘Database Systems’, ‘Programming Paradigms’, ‘Introduction to Programming’ and ‘Software Engineering’ from the Bachelor’s programme in Informatics at TU Wien;",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "5d789d62abac6e52"
      },
      {
       "text": "At least 20 ECTS in the theoretical, technical and practical foundations of Computer Science.",
       "quote": "20 ECTS from the theoretical, technical and practical foundations of Computer Science, with knowledge, skills and competences corresponding to the modules ‘Computer Science Thinking’, ‘Introduction to Security’, ‘Fundamentals of Digital Systems’ and ‘Theoretical Computer Science’ of the Bachelor’s degree programme in Informatics at TU Wien.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "4f3b60162a2c2136"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Visual Computing (Master)",
@@ -360,32 +440,42 @@
     "academic": {
      "text": "An eligible Bachelor's degree from an accredited national or international post-secondary institution, with at least 120 ECTS credits in Mathematics and Computer Science, including at least 20 ECTS in mathematics and statistics, 25 ECTS in algorithms, data structures and programming, 15 ECTS in theoretical, technical and practical foundations of Computer Science, and 18 ECTS in visual computing.",
      "quote": "Admission to the Master’s programme in ‘Visual Computing’ is possible after completing an eligible Bachelor’s degree at an accredited national or international post-secondary educational institution. In particular, a degree programme is considered eligible, provided that at least 120 ECTS credits have been completed in the subject areas of Mathematics and Computer Science, of which at least:",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: the specific ECTS breakdown (20/25/15/18) is not in the quote",
+     "summary_sha": "8472cda400213e82"
     },
     "prerequisites": [
      {
       "text": "At least 20 ECTS in mathematics and statistics (Algebra and Discrete Mathematics, Analysis, Statistics and Probability Theory).",
       "quote": "20 ECTS in mathematics and statistics, covering the knowledge, skills and competences taught in the modules ‘Algebra and Discrete Mathematics’, ‘Analysis’ and ‘Statistics and Probability Theory’ of the Bachelor’s degree programme in Informatics at TU Wien;",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "021cd9b9e6c8a200"
      },
      {
       "text": "At least 25 ECTS in algorithms, data structures and programming.",
       "quote": "25 ECTS in algorithms, data structures and programming, with knowledge, skills and competences acquired in line with the modules ‘Algorithms and Data Structures’, ‘Introduction to Programming’, and, for example, ‘Database Systems’, ‘Programming Paradigms’, ‘Software Engineering’, ‘Parallel Computing’ or ‘Operating Systems’ from the Bachelor’s programme in Informatics at TU Wien;",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "059f26e7554614c0"
      },
      {
       "text": "At least 15 ECTS from the theoretical, technical and practical foundations of Computer Science.",
       "quote": "15 ECTS from the theoretical, technical and practical foundations of Computer Science, with knowledge, skills and competences acquired in line with the module ‘Ways of Thinking in Computer Science’ as well as, for example, ‘Fundamentals of Digital Systems’, ‘Theoretical Computer Science’, ‘Introduction to Artificial Intelligence’ or ‘Introduction to Machine Learning’ from the Bachelor’s programme in Informatics at TU Wien;",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "65f18e6c4b4caa08"
      },
      {
       "text": "At least 18 ECTS in visual computing (Introduction to Visual Computing, Fundamentals of Computer Graphics, Fundamentals of Computer Vision).",
       "quote": "18 ECTS in visual computing, covering knowledge, skills and competences in line with the modules ‘Introduction to Visual Computing’, ‘Fundamentals of Computer Graphics’ and ‘Fundamentals of Computer Vision’ from the Bachelor’s programme in Informatics at TU Wien.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "b4a28c186096880f"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Cartography (Master)",
@@ -397,7 +487,9 @@
     "academic": {
      "text": "An eligible Bachelor's degree from an accredited national or international post-secondary institution, in Cartography, Geography, Geodesy, Geo-informatics or another relevant subject.",
      "quote": "Admission is possible after completing an eligible Bachelor’s degree at an accredited national or international post-secondary educational institution.This should be in Cartography, Geography, Geodesy, Geo-informatics or another relevant subject, which would of course include the Bachelor's Programme Geodesy and Geoinformation at TU Wien.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "be7c7a9ba3ead7c0"
     }
    },
    "status": "机器核对"
@@ -412,7 +504,9 @@
     "academic": {
      "text": "An eligible Bachelor's degree from an accredited national or international post-secondary educational institution.",
      "quote": "Admission to the Master’s programme in ‘Financial and Actuarial Mathematics’ is possible after completing an eligible Bachelor’s degree at an accredited national or international post-secondary educational institution.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "e47bd63a852bf388"
     }
    },
    "status": "机器核对"
@@ -427,7 +521,9 @@
     "academic": {
      "text": "An eligible Bachelor's degree from an accredited national or international post-secondary institution, e.g. programmes including subjects such as mathematics and physics, or computer science.",
      "quote": "Admission to the Master’s programme in ‘Geodesy and Geoinformation’ is possible after completing an eligible Bachelor’s degree (e.g.programmes that include subjects such as mathematics and physics, or computer science) at an accredited national or international post-secondary educational institution.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "658609ce74885948"
     }
    },
    "status": "机器核对"
@@ -442,7 +538,9 @@
     "academic": {
      "text": "Completion of a thematically eligible bachelor's degree at an accredited national or international university or university of applied sciences, verified by the Università degli Studi dell'Aquila.",
      "quote": "The admission to the master programme „Interdisciplinary Mathematics“ requires the completion of a thematically eligible bachelor's degree at an accredited national or international university or university of applied sciences. This qualification has to be verified by the Università degli Studi dell’Aquila.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "1807d07e57c3847c"
     }
    },
    "status": "机器核对"
@@ -457,7 +555,9 @@
     "academic": {
      "text": "An eligible Bachelor's degree from an accredited national or international post-secondary educational institution.",
      "quote": "Admission to the Master’s programme in ‘Statistics - Probability - Mathematics in Economic’ is possible after completing an eligible Bachelor’s degree at an accredited national or international post-secondary educational institution.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "88c279e7641e62c3"
     }
    },
    "status": "机器核对"
@@ -472,52 +572,70 @@
     "academic": {
      "text": "An eligible Bachelor's degree from a recognised national or international post-secondary institution; the listed eligible programmes are TU Wien Mechanical Engineering, TU Wien Mechanical Engineering - Management, TU Graz Mechanical Engineering, and TU Graz Mechanical Engineering and Business Economics.",
      "quote": "Admission to the Master’s programme in ‘Aeronautical Engineering’ is possible after completing an eligible Bachelor’s degree at a recognised national or international post-secondary educational institution.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: the listed eligible programmes (TU Wien/TU Graz Mechanical Engineering etc.)",
+     "summary_sha": "4e4a7bc2986dc49d"
     },
     "prerequisites": [
      {
       "text": "7 ECTS from Statics and Strength of Materials",
       "quote": "7 ECTS from the subject area of Statics and Strength of Materials,",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "78e9c39d4126b2af"
      },
      {
       "text": "7 ECTS from Dynamics",
       "quote": "7 ECTS from the subject area of Dynamics,",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "c3e5ed5e6d9025d6"
      },
      {
       "text": "3 ECTS from Fundamentals of Design",
       "quote": "3 ECTS from the subject area of Fundamentals of Design,",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "1682ca0c09a9eadf"
      },
      {
       "text": "6 ECTS from machine elements",
       "quote": "6 ECTS from the subject area of machine elements,",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "47c4792841f877b4"
      },
      {
       "text": "4 ECTS from fluid mechanics",
       "quote": "4 ECTS from the subject area of fluid mechanics,",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "7b5bf440fae11cc7"
      },
      {
       "text": "4 ECTS from thermodynamics",
       "quote": "4 ECTS from the subject area of thermodynamics,",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "7b742fada69a7f5d"
      },
      {
       "text": "6 ECTS from metallic and non-metallic materials",
       "quote": "6 ECTS from the subject areas of metallic and non-metallic materials,",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "c86639725c456f6d"
      },
      {
       "text": "5 ECTS as part of design exercises",
       "quote": "5 ECTS as part of design exercises.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f72f99aa3662c385"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Manufacturing and Robotics (Master)",
@@ -529,38 +647,52 @@
     "academic": {
      "text": "An eligible Bachelor's degree from an accredited national or international post-secondary educational institution.",
      "quote": "Admission to the Master’s programme in ‘Manufacturing and Robotics’ is possible after completing an eligible Bachelor’s degree at an accredited national or international post-secondary educational institution.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ef5d5f9d0c6f631b"
     },
     "prerequisites": [
      {
       "text": "6.0 ECTS credits in Advanced Mathematics",
       "quote": "6.0 ECTS credits in Advanced Mathematics",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "74534203c1117ae9"
      },
      {
       "text": "6.0 ECTS credits in Mechanics",
       "quote": "6.0 ECTS credits in Mechanics",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "8728d7e78ecb4c91"
      },
      {
       "text": "6.0 ECTS credits in Mechatronics",
       "quote": "6.0 ECTS credits in Mechatronics",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "71f10333712313cd"
      },
      {
       "text": "5.0 ECTS credits in Metallic and Non-Metallic Materials",
       "quote": "5.0 ECTS credits in Metallic and Non-Metallic Materials",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "51e3055a05be57bf"
      },
      {
       "text": "3.0 ECTS credits in Machine Elements",
       "quote": "3.0 ECTS credits in Machine Elements",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "6cd1c182c4bf9222"
      },
      {
       "text": "5.0 ECTS credits in Design Exercises",
       "quote": "5.0 ECTS credits in Design Exercises",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "106d63af64814bd1"
      }
     ]
    },
@@ -576,13 +708,17 @@
     "academic": {
      "text": "An eligible bachelor's degree from an accredited national or international post-secondary institution, providing basic knowledge in linear algebra, analysis, statistics and programming.",
      "quote": "Admission to the Master’s programme in ‘Quantum Information Science and Technology’ is possible after completing an eligible Bachelor’s degree at an accredited national or international post-secondary educational institution. A degree programme is considered eligible if it provides basic knowledge, skills and competences in the fields of linear algebra, analysis, statistics and programming.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "952af99cd239b591"
     },
     "prerequisites": [
      {
       "text": "Basic knowledge, skills and competences in linear algebra, analysis, statistics and programming.",
       "quote": "A degree programme is considered eligible if it provides basic knowledge, skills and competences in the fields of linear algebra, analysis, statistics and programming.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "e4597907e6339875"
      }
     ]
    },
@@ -598,7 +734,9 @@
     "academic": {
      "text": "An eligible Bachelor's degree from an accredited national or international post-secondary educational institution; subject-specific gaps may require supplementary examinations of up to 30 ECTS credits.",
      "quote": "Admission to the Master’s programme in ‘Technical Phyics’ is possible after completing an eligible Bachelor’s degree at an accredited national or international post-secondary educational institution. To compensate for fundamental subject-specific differences between your previous education and the level of qualifications expected at TU Wien, supplementary examinations totalling a maximum of 30 ECTS credits may be required.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "dea902d914f687b5"
     }
    },
    "status": "机器核对"
@@ -613,23 +751,31 @@
     "academic": {
      "text": "An eligible Bachelor's degree from an accredited national or international post-secondary educational institution.",
      "quote": "Admission to the Master’s programme in ‘Green Chemistry’ is possible after completing an eligible Bachelor’s degree at an accredited national or international post-secondary educational institution.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "21558bb4ced6660e"
     },
     "prerequisites": [
      {
       "text": "48 ECTS in chemistry-related subjects such as Fundamentals of Chemistry, Organic Chemistry, Physical Chemistry, Analytical Chemistry and Biochemistry.",
       "quote": "48 ECTS in their previous education in chemistry-related subjects such as Fundamentals of Chemistry, Organic Chemistry, Physical Chemistry, Analytical Chemistry and Biochemistry.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "8e39531fc3b85614"
      },
      {
       "text": "16 ECTS of laboratory practicals in Fundamentals of Chemistry, Physical Chemistry, Preparative Chemistry or Synthetic Chemistry, Analytical Chemistry or Biochemistry.",
       "quote": "16 ECTS of laboratory practicals in the areas of Fundamentals of Chemistry, Physical Chemistry, Preparative Chemistry or Synthetic Chemistry, Analytical Chemistry or Biochemistry.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "fb2dd540065b495b"
      },
      {
       "text": "A further 60 ECTS from fields closely related to chemistry or the natural sciences, such as chemical technology, process engineering, theoretical chemistry, biology, measurement technology and similar subjects.",
       "quote": "A further 60 ECTS from fields closely related to chemistry or the natural sciences, such as chemical technology, process engineering, theoretical chemistry, biology, measurement technology and similar subjects.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "7493c5500314d696"
      }
     ]
    },
@@ -645,13 +791,17 @@
     "academic": {
      "text": "An eligible Bachelor's degree from an accredited national or international post-secondary educational institution.",
      "quote": "Admission to the Master’s programme in ‘Technical Chemistry’ is possible after completing an eligible Bachelor’s degree at an accredited national or international post-secondary educational institution.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "229e7dd17c28c148"
     },
     "prerequisites": [
      {
       "text": "Supplementary examinations of up to 30 ECTS credits may be required to compensate for subject-specific differences.",
       "quote": "To compensate for fundamental subject-specific differences between your previous education and the level of qualifications expected at TU Wien, supplementary examinations totalling a maximum of 30 ECTS credits may be required.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "780afcdaaa73effa"
      }
     ]
    },
@@ -660,7 +810,7 @@
  ],
  "verification": {
   "programs": 24,
-  "机器核对": 24,
-  "待人工": 0
+  "机器核对": 17,
+  "待人工": 7
  }
 }

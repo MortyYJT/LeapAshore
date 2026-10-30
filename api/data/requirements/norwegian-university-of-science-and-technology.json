@@ -23,22 +23,28 @@
     "academic": {
      "text": "Bachelor's degree in ship design, naval architecture, marine technology or equivalent, including at least 30 ECTS credits in mathematics/statistics (discipline oriented master's, 120 ECTS).",
      "quote": "Bachelor in ship design, naval architecture, marine technology or equivalent, including at least 30 ECTS credits in mathematics/statistics.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: Bachelor's degree (quote says Bachelor); discipline oriented master's, 120 ECTS",
+     "summary_sha": "3695d65d1ee668cf"
     },
     "prerequisites": [
      {
       "text": "At least 30 ECTS credits in mathematics/statistics.",
       "quote": "including at least 30 ECTS credits in mathematics/statistics.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "da8ab1d98ea5cbfe"
      },
      {
       "text": "Two years documented, relevant experience in product development, engineering and design (experience-based degree).",
       "quote": "Two years documented, relevant experience in product development, engineering and design.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: experience-based degree",
+      "summary_sha": "e9282cf788da7934"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Product and System Engineering",
@@ -50,22 +56,28 @@
     "academic": {
      "text": "Bachelor's degree in engineering or technology (e.g. mechanical engineering, marine technology, water and environmental engineering, construction engineering, computer engineering, electrical/electronic engineering or equivalent), with an average grade equivalent to a Norwegian C and at least 30 ECTS in mathematics/statistics.",
      "quote": "Bachelor in engineering or technology (e.g mechanical engineering, marine technology, water and environmental engineering, construction engineering, computer engineering, electrical/electronic engineering or equivalent)\nAn average grade equivalent to a Norwegian C\nAt least 30 ECTS in mathematics/statistics",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "21638e2b747338f8"
     },
     "prerequisites": [
      {
       "text": "At least 30 ECTS in mathematics/statistics",
       "quote": "At least 30 ECTS in mathematics/statistics",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "89ba896e9d0a9212"
      },
      {
       "text": "Two years documented relevant experience in engineering (experience-based route)",
       "quote": "Two years documented relevant experience in engineering.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: experience-based route",
+      "summary_sha": "9c65ded1bc1451e0"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "International Business and Marketing",
@@ -77,13 +89,17 @@
     "academic": {
      "text": "A bachelor's degree in business administration, or an equivalent degree, with at least 120 ECTS credits in business administration and economics subjects.",
      "quote": "To qualify for admission, you must have a bachelor's degree in business administration, or an equivalent degree, with at least 120 ECTS credits in business administration and economics subjects.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "4387e3ab080e46ee"
     },
     "prerequisites": [
      {
       "text": "At least 120 ECTS credits in business administration and economics subjects.",
       "quote": "with at least 120 ECTS credits in business administration and economics subjects",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "09671837d9d07242"
      }
     ]
    },
@@ -108,7 +124,9 @@
     "academic": {
      "text": "A Bachelor's degree in European Studies, Humanities or Social Sciences, or an equivalent approved degree.",
      "quote": "Admission to the Master requires a Bachelor in European Studies, Humanities or Social Sciences, or equivalent approved degree.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "f34d5831ec02a5da"
     }
    },
    "status": "机器核对"
@@ -123,13 +141,17 @@
     "academic": {
      "text": "A minimum of a bachelor's degree or an equivalent completed degree of at least 180 credits, combined with a documented artistic practice.",
      "quote": "Admission to the MFA requires a minimum of a bachelor’s degree or an equivalent completed degree of at least 180 credits in combination with a documented artistic practice.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0bdf6d70323b9b76"
     },
     "prerequisites": [
      {
       "text": "Documented artistic practice.",
       "quote": "in combination with a documented artistic practice",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "000759221c3534cb"
      }
     ]
    },
@@ -146,7 +168,9 @@
      {
       "text": "Norwegian language requirements must be met, or Scandinavian language as mother tongue",
       "quote": "You have to meet the Norwegian language requirements, or have a Scandinavian language as your mother tongue, if you want to apply to any of NTNU’s degree programmes taught in Norwegian.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "4f11cd912f929d0d"
      }
     ]
    },
@@ -163,7 +187,9 @@
      {
       "text": "Norwegian language requirements must be met, or Scandinavian language as mother tongue",
       "quote": "You have to meet the Norwegian language requirements, or have a Scandinavian language as your mother tongue, if you want to apply to any of NTNU’s degree programmes taught in Norwegian.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "4f11cd912f929d0d"
      }
     ]
    },
@@ -180,11 +206,13 @@
      {
       "text": "Norwegian language requirements must be met, or Scandinavian language as mother tongue",
       "quote": "You have to meet the Norwegian language requirements, or have a Scandinavian language as your mother tongue, if you want to apply to any of NTNU’s degree programmes taught in Norwegian.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: omits that this applies only to programmes taught in Norwegian",
+      "summary_sha": "4f11cd912f929d0d"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Mechanical Engineering",
@@ -197,11 +225,13 @@
      {
       "text": "Norwegian language requirements must be met, or the applicant must have a Scandinavian language as their mother tongue.",
       "quote": "You have to meet the Norwegian language requirements, or have a Scandinavian language as your mother tongue, if you want to apply to any of NTNU’s degree programmes taught in Norwegian.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: omits that this applies only to Norwegian-taught programmes",
+      "summary_sha": "3c7beb660ab893a6"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Information Security",
@@ -213,13 +243,17 @@
     "academic": {
      "text": "A completed Bachelor's degree in engineering in computer science, software engineering, information systems, information technology, computer engineering, or a related field.",
      "quote": "Applicants must hold a completed Bachelor’s degree in engineering in computer science, software engineering, information systems, information technology, computer engineering, or a related field.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b479670f1ace332f"
     },
     "prerequisites": [
      {
       "text": "At least 80 ECTS credits in computing.",
       "quote": "A minimum overall grade of C from the Bachelor’s degree is required, as well as at least 80 ECTS credits in computing to qualify for admission to the programme.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "abce8d5acd524c63"
      }
     ]
    },
@@ -236,11 +270,13 @@
      {
       "text": "Norwegian language requirements must be met, or Scandinavian language as mother tongue",
       "quote": "You have to meet the Norwegian language requirements, or have a Scandinavian language as your mother tongue, if you want to apply to any of NTNU’s degree programmes taught in Norwegian.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: omits that this applies only to Norwegian-taught programmes",
+      "summary_sha": "4f11cd912f929d0d"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Music Performance",
@@ -252,18 +288,24 @@
     "academic": {
      "text": "Higher Education Entrance Qualification and a completed bachelor's degree comparable to a Norwegian bachelor's degree, with a specialization in performing music in classical music, jazz or similar.",
      "quote": "Admittance to the programme requires Higher Education Entrance Qualification and a completed bachelor's degree comparable to a Norwegian bachelor's degree with a specialization in performing music in classical music, jazz or similar.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "3b414557b154421b"
     },
     "prerequisites": [
      {
       "text": "Specialization in performing music in classical music, jazz or similar.",
       "quote": "with a specialization in performing music in classical music, jazz or similar",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "0612f1c3175063e1"
      },
      {
       "text": "Audition (held in week 9 for jazz and week 10 for classical).",
       "quote": "Auditions are held in week 9 (jazz) and 10 (classical).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "05bcae4cd726cb74"
      }
     ]
    },
@@ -279,7 +321,9 @@
     "academic": {
      "text": "A bachelor's degree in music technology or an equivalent degree.",
      "quote": "To be eligible for admission, you must have obtained a bachelor's degree in music technology or an equivalent degree.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "580572d7a84d3e76"
     }
    },
    "status": "机器核对"
@@ -294,7 +338,9 @@
     "academic": {
      "text": "A bachelor's degree in the social sciences.",
      "quote": "Admittance to the programme requires a bachelor's degree in the social sciences.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "09801ba07231eac7"
     }
    },
    "status": "机器核对"
@@ -318,13 +364,17 @@
     "academic": {
      "text": "A Bachelor's degree in civil, hydraulic or water resources engineering or equivalent.",
      "quote": "A Bachelor degree in civil, hydraulic or water resources engineering or equivalent",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "55f470b648f2e064"
     },
     "prerequisites": [
      {
       "text": "At least 30 ECTS in mathematics/statistics in the Bachelor's degree, including at least one course in statistics.",
       "quote": "At least 30 ECTS in mathematics/statistics in the Bachelor's degree, including at least one course in statistics",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "dcd8cb86b3dcb684"
      }
     ]
    },
@@ -340,13 +390,17 @@
     "academic": {
      "text": "A bachelor's degree in Biology including at least 80 ECTS credits of biology courses, or an equivalent 3-year education.",
      "quote": "Admission to MSBIOL requires a bachelor's degree in Biology which includes a minimum of 80 ECTS credits biology courses, or an equivalent 3-year education.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "34be2c1002935b50"
     },
     "prerequisites": [
      {
       "text": "University-level introductory courses in mathematics and statistics.",
       "quote": "In addition, applicants must have university level introductory courses in mathematics and statistics.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "ca5a0301461f1e6a"
      }
     ]
    },
@@ -362,23 +416,31 @@
     "academic": {
      "text": "A BSc in Biotechnology.",
      "quote": "BSc in Biotechnology (bioteknologi)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d2c5188cecf9772e"
     },
     "prerequisites": [
      {
       "text": "Coursework in microbiology and/or cellular and molecular biology.",
       "quote": "Microbiology and/or cellular and molecular biology",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "834a012c96f27ca7"
      },
      {
       "text": "Coursework in biochemistry.",
       "quote": "Biochemistry",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "8f3d21f42a49159a"
      },
      {
       "text": "Coursework in mathematics and statistics.",
       "quote": "Mathematics and statistics",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "e6d7ac85a4b7d5ab"
      }
     ]
    },
@@ -403,7 +465,9 @@
     "academic": {
      "text": "A BSc in Chemistry, a BSc in Biology, or a chemistry/biology-related bachelor's degree.",
      "quote": "To qualify you need to hold a BSc in Chemistry or BSc in Biology or Chemistry/Biology-related bachelor degrees.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "731e5f0ac3b85693"
     }
    },
    "status": "机器核对"
@@ -418,13 +482,17 @@
     "academic": {
      "text": "A BSc degree in Coastal, Civil, Ocean or Environmental Engineering, or in Marine sciences, Earth sciences, Oceanography or Environmental sciences, comprising at least 180 ECTS.",
      "quote": "You must hold a BSc degree in Coastal-, Civil-, Ocean- or Environmental Engineering; or BSc degree in Marine sciences, Earth sciences, Oceanography, Environmental sciences. The degree should comprise a minimum of 180 ECTS.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "41f9e5a18729507d"
     },
     "prerequisites": [
      {
       "text": "At least 30 ECTS in mathematics/statistics within the BSc degree.",
       "quote": "You must have a minimum of 30 ECTS in mathematics/statistics in your BSc degree.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "aedd2e7f5eb6cc64"
      }
     ]
    },
@@ -440,13 +508,17 @@
     "academic": {
      "text": "A BSc degree in Coastal, Civil, Ocean or Environmental Engineering, or in Marine sciences, Earth sciences, Oceanography or Environmental sciences, comprising at least 180 ECTS.",
      "quote": "You must hold a BSc degree in Coastal-, Civil-, Ocean- or Environmental Engineering; or BSc degree in Marine sciences, Earth sciences, Oceanography, Environmental sciences. The degree should comprise a minimum of 180 ECTS.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "41f9e5a18729507d"
     },
     "prerequisites": [
      {
       "text": "At least 30 ECTS in mathematics/statistics within the BSc degree.",
       "quote": "You must have a minimum of 30 ECTS in mathematics/statistics in your BSc degree.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "aedd2e7f5eb6cc64"
      }
     ]
    },
@@ -462,7 +534,9 @@
     "academic": {
      "text": "A completed bachelor's degree in mathematics, computer science/informatics, computer engineering, information technology, information systems or a closely related field.",
      "quote": "You must have completed a bachelor’s degree in mathematics, computer science/informatics, computer engineering, information technology, information systems or a closely related field to apply for this programme.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "6e7b0b6ba78741e0"
     }
    },
    "status": "机器核对"
@@ -486,23 +560,31 @@
     "academic": {
      "text": "A completed bachelor's degree in Electrification and Digitalisation, Electrical Power Engineering/Electrical Engineering with specialisation in power engineering or renewable energy with focus on electric power engineering, or equivalent.",
      "quote": "The basis for admission is a completed bachelor's degree in Electrification and Digitalisation, Electrical Power Engineering/Electrical Engineering with specialisation in power engineering or renewable energy with focus on electric power engineering or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "477c31a22e98d854"
     },
     "prerequisites": [
      {
       "text": "An average grade of C or better from the bachelor's education.",
       "quote": "An average grade of C or better is required from the bachelor's education, and at least 30 credits in mathematics including 5 credits in statistics.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "5e53b6b8ca73529c"
      },
      {
       "text": "At least 30 credits in mathematics, including 5 credits in statistics.",
       "quote": "An average grade of C or better is required from the bachelor's education, and at least 30 credits in mathematics including 5 credits in statistics.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "0c9df1d323bb72b0"
      },
      {
       "text": "A minimum of 7.5 credits in physics or physics and electromagnetism.",
       "quote": "From 2022, there is also a requirement that candidates have a minimum of 7.5 credits in physics or physics and electromagnetism.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "06db92d13c12c01b"
      }
     ]
    },
@@ -536,22 +618,28 @@
     "academic": {
      "text": "A minimum of 30 ECTS credits in mathematics and statistics in the bachelor's degree, including at least one statistics course.",
      "quote": "You must have a minimum of 30 ECTS credits in mathematics and statistics in your Bachelor's/undergraduate degree, including at least one statistics course.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "5049e637a9cbfcf1"
     },
     "prerequisites": [
      {
       "text": "At least one statistics course within the required mathematics and statistics credits.",
       "quote": "including at least one statistics course",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "5a6797a1946fca28"
      },
      {
       "text": "For Petroleum Engineering applicants with a Mechanical or Chemical Engineering degree: documented relevant work experience from the petroleum sector.",
       "quote": "if you have relevant work experience (must be documented) from the petroleum sector",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Petroleum Engineering applicants with a Mechanical or Chemical Engineering degree",
+      "summary_sha": "557ba35f24f977ab"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Geotechnics and Geohazards",
@@ -563,18 +651,24 @@
     "academic": {
      "text": "A Bachelor of Science degree in civil engineering or the equivalent.",
      "quote": "A Bachelor of Science degree in civil engineering or the equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "af1d807972d21f1d"
     },
     "prerequisites": [
      {
       "text": "A minimum of 30 ECTS credits in mathematics and statistics in the bachelor's degree, including at least one course in statistics.",
       "quote": "Have a minimum of 30 ECTS credits in mathematics and statistics in your Bachelor's/undergraduate degree, including at least one course in statistics.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "71b95b67745f6b58"
      },
      {
       "text": "Good working knowledge of English, both oral and written; a certificate of proficiency is required.",
       "quote": "A good working knowledge of English, both oral and written (Certificate of proficiency is required).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "c9b62c7a7806bff9"
      }
     ]
    },
@@ -590,13 +684,17 @@
     "academic": {
      "text": "A Bachelor's degree in Technology or Engineering.",
      "quote": "Admission to this programme is open to students with a Bachelor's degree in Technology or Engineering.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c4bad152dfa9eb91"
     },
     "prerequisites": [
      {
       "text": "At least 30 ECTS credits in mathematics and statistics in the Bachelor's degree, including at least one statistics course.",
       "quote": "In order to qualify for admission to one of NTNU's 2-year master programmes in Technology, you must have a minimum of 30 ECTS credits in mathematics and statistics in your Bachelor's/undergraduate degree, including at least one statistics course.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "bf879032e0ba1e1a"
      }
     ]
    },
@@ -621,13 +719,17 @@
     "academic": {
      "text": "Applicants must hold a bachelor's degree.",
      "quote": "Applicants must hold a bachelor’s degree, demonstrate English proficiency, and will be selected based on academic merit, relevant experience, and motivation for a career in humanitarian response.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "addceee856d2b6b7"
     },
     "prerequisites": [
      {
       "text": "English proficiency must be demonstrated.",
       "quote": "Applicants must hold a bachelor’s degree, demonstrate English proficiency, and will be selected based on academic merit, relevant experience, and motivation for a career in humanitarian response.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "6573fc7497e8c851"
      }
     ]
    },
@@ -652,18 +754,24 @@
     "academic": {
      "text": "A BSc/BEng degree in Mathematics, Natural Sciences, Engineering Sciences or Social Sciences.",
      "quote": "Applicants must hold a BSc/BEng degree within Mathematics, Natural Sciences, Engineering Sciences or Social Sciences.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "8bd6d69e53cbfbdd"
     },
     "prerequisites": [
      {
       "text": "At least 12 ECTS in mathematics and/or statistics in previous studies.",
       "quote": "Obtained at least 12 ECTS in mathematics and/or statistics during their previous studies.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "987e86c1f67e81ad"
      },
      {
       "text": "Introductory knowledge of environmental science or environmental management, from studies or professional experience.",
       "quote": "Introductory knowledge of environmental science or environmental management, either in previous studies or professional experience.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "904f80c1c075f169"
      }
     ]
    },
@@ -679,13 +787,17 @@
     "academic": {
      "text": "A completed bachelor's degree or an engineering degree, meeting the prior knowledge requirements.",
      "quote": "Applicants must hold a completed bachelor’s degree or an engineering degree and must meet the prior knowledge requirements as specified in the link below.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "3bc653228e0761c2"
     },
     "prerequisites": [
      {
       "text": "At least 80 credits in informatics.",
       "quote": "Admission further requires a minimum grade point average of C, as well as at least 80 credits in informatics.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "2852ef96834f9b46"
      }
     ]
    },
@@ -701,13 +813,17 @@
     "academic": {
      "text": "A bachelor's degree in engineering with relevant coursework in materials science and/or chemical engineering.",
      "quote": "Applicants must hold a bachelor’s degree in engineering, with relevant coursework in materials science and/or chemical engineering.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "1893649b0d75633e"
     },
     "prerequisites": [
      {
       "text": "Relevant coursework in materials science and/or chemical engineering.",
       "quote": "Applicants must hold a bachelor’s degree in engineering, with relevant coursework in materials science and/or chemical engineering.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "5c4a1c3eac9df1cf"
      }
     ]
    },
@@ -723,28 +839,38 @@
     "academic": {
      "text": "A bachelor's degree in engineering or equivalent.",
      "quote": "Admission to this programme is open to applicants with a bachelor's degree in engineering or equivalent who meet the following requirements:",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "de1b437d18fed69e"
     },
     "prerequisites": [
      {
       "text": "25 ECTS credits in mathematics.",
       "quote": "25 ECTS credits in mathematics",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "d90d0e938d53e922"
      },
      {
       "text": "5 ECTS credits in statistics.",
       "quote": "5 ECTS credits in statistics",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "975f1dd508cc0f99"
      },
      {
       "text": "7.5 ECTS credits in physics.",
       "quote": "7,5 ECTS credits in physics",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "276dbcc476b46b95"
      },
      {
       "text": "Grade point average of at least C in the bachelor's degree.",
       "quote": "Grade point average of at least C in your bachelor's degree",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "13c12f8e73c2f6f3"
      }
     ]
    },
@@ -760,13 +886,17 @@
     "academic": {
      "text": "A completed bachelor's degree in business administration, marketing, innovation, entrepreneurship, management, organizational studies or equivalent with a grade point average of at least C.",
      "quote": "Applicants must have completed a bachelor's degree in business administration, marketing, innovation, entrepreneurship, management, organizational studies or equivalent with a grade point average of at least C.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b40a9216ac762317"
     },
     "prerequisites": [
      {
       "text": "The bachelor's degree must include at least 80 ECTS in courses within business, economics, management, marketing, innovation, entrepreneurship or organizational studies.",
       "quote": "The bachelor's degree must have been completed by the start of the semester at NTNU in August and must include at least 80 ECTS in courses within business, economics, management, marketing, innovation, entrepreneurship or organizational studies.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "9239a78d5d42e40c"
      }
     ]
    },
@@ -791,13 +921,17 @@
     "academic": {
      "text": "A completed bachelor's degree with a grade point average of C or better.",
      "quote": "The basis for admission is a completed bachelor’s degree. To be admitted to the programme a grade point average of C or better from the bachelor’s degree, and a minimum of 80 credits in mathematics are required.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "de8b69bbeb790ac0"
     },
     "prerequisites": [
      {
       "text": "A minimum of 80 credits in mathematics.",
       "quote": "a minimum of 80 credits in mathematics are required",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "ef6c1e4240ed11e3"
      }
     ]
    },
@@ -813,13 +947,17 @@
     "academic": {
      "text": "Bachelor's degree (or 3-year equivalent) in biomedical science, biology, biotechnology, chemistry, medicine, or similar, with an average grade equal to or higher than the Norwegian \"C\".",
      "quote": "Bachelor's degree (or 3-year equivalent) in biomedical science, biology, biotechnology, chemistry, medicine, or similar, with an average grade equal to or higher than the Norwegian \"C\".",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "67385a4414325b62"
     },
     "prerequisites": [
      {
       "text": "A solid background in cellular and molecular biology is highly recommended.",
       "quote": "A solid background in cellular and molecular biology is highly recommended.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "36d3fe8942bdc00e"
      }
     ]
    },
@@ -835,13 +973,17 @@
     "academic": {
      "text": "A Bachelor's degree or similar qualification (at least 3 years of university study) in an area related to marine technology.",
      "quote": "The normal requirements for entry to the Master's Programmes will be a Bachelor degree or a similar qualification (at least 3 years of university study) in areas related to marine technology, such as:",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b46848c3bac99042"
     },
     "prerequisites": [
      {
       "text": "Bachelor's studies in a field related to marine technology, such as naval architecture, marine engineering, offshore engineering, ocean engineering, marine technology, or coastal or harbour engineering.",
       "quote": "Naval Architecture\nMarine Engineering\nOffshore Engineering\nOcean Engineering\nMarine Technology\nCoastal or Harbour Engineering",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "89d45b98dc042b25"
      }
     ]
    },
@@ -875,10 +1017,12 @@
     "academic": {
      "text": "A BSc/BEng degree or equivalent in an area related to marine studies, such as marine technology, marine biology, marine biochemistry or aquaculture.",
      "quote": "You will need a BSc/BEng degree or equivalent to apply for the Master in Ocean Resources in areas related to marine such as:",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: the specific example areas (marine technology, marine biology, marine biochemistry, aquaculture)",
+     "summary_sha": "4eada8815c822d04"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Physics",
@@ -890,7 +1034,9 @@
     "academic": {
      "text": "A Bachelor's degree in physics, equivalent to 180 ECTS credits.",
      "quote": "For admission to the programme, you are required to hold a Bachelor’s degree in physics, equivalent to 180 ECTS credits.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "4be4c3d7dd47a9b4"
     }
    },
    "status": "机器核对"
@@ -905,13 +1051,17 @@
     "academic": {
      "text": "A Bachelor of Engineering degree, or an equivalent degree in a specialized technical field, with a grade point average of at least C.",
      "quote": "MSPROMAN: The Master of Engineering in Project Management (sivilingeniør) requires applicants to have a Bachelor of Engineering degree, or an equivalent degree in a specialized technical field, with a grade point average of at least C.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0938449fa7f38b00"
     },
     "prerequisites": [
      {
       "text": "Strong fluency in English, as all lectures and course materials are in English.",
       "quote": "A strong fluency in English is also required as all lectures will be held in English, and all course materials will be in English.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "81c2b17ded7a0af8"
      }
     ]
    },
@@ -927,13 +1077,17 @@
     "academic": {
      "text": "A Bachelor's degree in Engineering or equivalent.",
      "quote": "A Bachelor’s degree in Engineering or equivalent, or",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "7604ac51ed95369e"
     },
     "prerequisites": [
      {
       "text": "At least 30 ECTS credits in mathematics and statistics in the Bachelor's/undergraduate degree, including one statistics course.",
       "quote": "You must also have a minimum of 30 ECTS credits in mathematics and statistics in your Bachelor's/undergraduate degree, including one statistics course.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "5cd4ffe01af58441"
      }
     ]
    },
@@ -949,13 +1103,17 @@
     "academic": {
      "text": "A BSc/BEng degree or equivalent (normally 3-4 years) in mechanical engineering, chemical engineering or equivalent.",
      "quote": "BSc/BEng degree or equivalent (normally 3-4 years) in mechanical engineering, chemical engineering or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "22bf6d7b0909912f"
     },
     "prerequisites": [
      {
       "text": "A minimum of 30 ECTS credits in mathematics and statistics in the Bachelor's/undergraduate degree.",
       "quote": "All applicants must have a minimum of 30 ECTS credits in mathematics and statistics in their Bachelor’s/undergraduate degree.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "3f77be9c17e4eea2"
      }
     ]
    },
@@ -971,23 +1129,31 @@
     "academic": {
      "text": "A Bachelor's degree in Engineering or equivalent.",
      "quote": "A Bachelor’s degree in Engineering or equivalent",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0364572ae3976355"
     },
     "prerequisites": [
      {
       "text": "A minimum of 25 ECTS credits in mathematics.",
       "quote": "A minimum of 25 ECTS credits in mathematics",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "e14186ff7d0591df"
      },
      {
       "text": "5 ECTS credits in statistics.",
       "quote": "5 ECTS credits in statistics",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "975f1dd508cc0f99"
      },
      {
       "text": "7.5 ECTS credits in physics.",
       "quote": "7,5 ECTS credits in physics",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "276dbcc476b46b95"
      }
     ]
    },
@@ -1003,23 +1169,31 @@
     "academic": {
      "text": "A Bachelor's degree in Engineering or equivalent.",
      "quote": "A Bachelor’s degree in Engineering or equivalent",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0364572ae3976355"
     },
     "prerequisites": [
      {
       "text": "A minimum of 25 ECTS credits in mathematics.",
       "quote": "A minimum of 25 ECTS credits in mathematics",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "e14186ff7d0591df"
      },
      {
       "text": "5 ECTS credits in statistics.",
       "quote": "5 ECTS credits in statistics",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "975f1dd508cc0f99"
      },
      {
       "text": "7.5 ECTS credits in physics.",
       "quote": "7,5 ECTS credits in physics",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "276dbcc476b46b95"
      }
     ]
    },
@@ -1035,7 +1209,9 @@
     "academic": {
      "text": "A 3-year Bachelor degree in Architecture, Engineering or Urban Planning.",
      "quote": "The programme is open to both international and Norwegian students with a 3-year Bachelor degree in Architecture, Engineering or Urban Planning.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "5019f4d1ba56b0f0"
     }
    },
    "status": "机器核对"
@@ -1050,23 +1226,31 @@
     "academic": {
      "text": "A bachelor's degree in acoustics, physics, electronics, civil or mechanical engineering, mathematics, robotics, programming or a related field, with a grade of C or better.",
      "quote": "Admission requires a bachelor’s in acoustics, physics, electronics, civil or mechanical engineering, mathematics, robotics, programming or related fields with a C or better.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "eac3ef2010b11bc5"
     },
     "prerequisites": [
      {
       "text": "Applicants from fields other than acoustics or physics need at least 10 ECTS in mathematics/statistics.",
       "quote": "Applicants from fields other than acoustics or physics, need at least 10 ECTS in mathematics/statistics, 5 ECTS in programming and 5 ECTS in physics/mechanics/electromagnetism/thermodynamics",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "0f12183edf41c272"
      },
      {
       "text": "Applicants from fields other than acoustics or physics need at least 5 ECTS in programming.",
       "quote": "Applicants from fields other than acoustics or physics, need at least 10 ECTS in mathematics/statistics, 5 ECTS in programming and 5 ECTS in physics/mechanics/electromagnetism/thermodynamics",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "e5f2a2ee5f293dd6"
      },
      {
       "text": "Applicants from fields other than acoustics or physics need at least 5 ECTS in physics/mechanics/electromagnetism/thermodynamics.",
       "quote": "Applicants from fields other than acoustics or physics, need at least 10 ECTS in mathematics/statistics, 5 ECTS in programming and 5 ECTS in physics/mechanics/electromagnetism/thermodynamics",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "e4136a46809e03f9"
      }
     ]
    },
@@ -1082,13 +1266,17 @@
     "academic": {
      "text": "A completed bachelor's degree with a grade point average of at least C in telematics, communication technology, computer technology, informatics, telecommunications, or equivalent programmes of study.",
      "quote": "You must have completed a bachelor’s degree with a grade point average of at least C within telematics, communication technology, computer technology, informatics, telecommunications, or equivalent programmes of study to apply for this programme.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d971e39ca5323694"
     },
     "prerequisites": [
      {
       "text": "The prerequisite education must include at least 80 credits covering mathematics/statistics, programming, and communication technology/computer networks.",
       "quote": "The prerequisite education must include at least 80 credits where mathematics/statistics, programming, and communication technology/computer networks must be covered.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "76bc677819863405"
      }
     ]
    },
@@ -1105,7 +1293,9 @@
      {
       "text": "Norwegian language requirements, or a Scandinavian language as mother tongue",
       "quote": "You have to meet the Norwegian language requirements, or have a Scandinavian language as your mother tongue, if you want to apply to any of NTNU’s degree programmes taught in Norwegian.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "683f2a4716b60cee"
      }
     ]
    },
@@ -1122,7 +1312,9 @@
      {
       "text": "Norwegian language requirements, or a Scandinavian language as mother tongue",
       "quote": "You have to meet the Norwegian language requirements, or have a Scandinavian language as your mother tongue, if you want to apply to any of NTNU’s study programmes taught in Norwegian.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "ce6d1f2e15032c43"
      }
     ]
    },
@@ -1139,7 +1331,9 @@
      {
       "text": "Norwegian language requirements, or a Scandinavian language as mother tongue",
       "quote": "You have to meet the Norwegian language requirements, or have a Scandinavian language as your mother tongue, if you want to apply to any of NTNU’s degree programmes taught in Norwegian.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "683f2a4716b60cee"
      }
     ]
    },
@@ -1156,16 +1350,18 @@
      {
       "text": "Norwegian language requirements must be met, or Scandinavian language as mother tongue",
       "quote": "You have to meet the Norwegian language requirements, or have a Scandinavian language as your mother tongue, if you want to apply to any of NTNU’s degree programmes taught in Norwegian.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: omits that this applies only to programmes taught in Norwegian",
+      "summary_sha": "4f11cd912f929d0d"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   }
  ],
  "verification": {
   "programs": 59,
-  "机器核对": 48,
-  "待人工": 11
+  "机器核对": 40,
+  "待人工": 19
  }
 }

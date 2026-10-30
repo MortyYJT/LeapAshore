@@ -172,10 +172,12 @@
     "academic": {
      "text": "An interdisciplinary bachelor's background, for example in civil engineering, biomedical engineering, electrical engineering or social sciences.",
      "quote": "The Master’s in Humanitarian Engineering is an interdisciplinary master’s programme, which means that students from many different backgrounds can join.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: bachelor's background; specific example fields (civil, biomedical, electrical engineering, social sciences)",
+     "summary_sha": "97dbc5ca06b75cef"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Industrial Design Engineering",
@@ -232,10 +234,12 @@
     "academic": {
      "text": "A Bachelor's degree in Natural or Engineering Sciences, Social Sciences, Philosophy, or another relevant discipline.",
      "quote": "If you have a Bachelor’s in Natural or Engineering Sciences, Social Sciences, Philosophy, or another relevant discipline, this Master’s is a good fit for you.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: states a required degree; quote only says it's a good fit",
+     "summary_sha": "0e8299afd98a225d"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Psychology",
@@ -312,7 +316,7 @@
  ],
  "verification": {
   "programs": 32,
-  "机器核对": 2,
-  "待人工": 30
+  "机器核对": 0,
+  "待人工": 32
  }
 }
