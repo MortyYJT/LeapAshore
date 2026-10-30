@@ -499,7 +499,7 @@ def test_pruning_an_australian_file_removes_rows_written_without_a_cricos_code(d
 
 def test_an_empty_australian_file_makes_no_second_row_for_its_school(db_session, require_db, tmp_path):
     """An Australian school's row is its CRICOS row. An empty file (a site that refused us) used to add
-    a second, empty row under the file key (`university-of-melbourne` beside `cricos-00116K`, twelve in
+    a second, empty row under the file key (`university-of-melbourne` beside `cricos-00116K`, eleven in
     production); the library lists the school from its fixture either way, so it adds nothing."""
     try:
         import_school(db_session, {**_au_file(), "programs": []}, AU_SCHOOLS, root=tmp_path)

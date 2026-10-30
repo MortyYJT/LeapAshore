@@ -181,7 +181,7 @@ def _university(session: Session, data: dict, school: dict | None, program_ids: 
 
     None for an Australian school none of whose courses is in the catalogue: its row is the CRICOS one,
     found through a course, and making one from the file key would put the school in the library twice
-    (twelve such empty rows in production, 2026-10-30).
+    (eleven such empty rows in production, 2026-10-30).
     """
     existing = session.scalars(select(Program.university_id).where(Program.id.in_(program_ids))).first()
     if existing is None and (school or {}).get("cricos_institution"):

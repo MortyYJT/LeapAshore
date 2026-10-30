@@ -148,7 +148,7 @@ def test_every_cricos_provider_of_one_institution_lands_on_one_row():
 
 def test_an_australian_file_whose_courses_have_no_catalogue_row_makes_no_school_row(db_session, require_db, tmp_path):
     """Before, a file none of whose CRICOS courses was in the catalogue made a second row for the school
-    under its file key (`deakin-university` next to `cricos-00113B`, 12 such rows in production)."""
+    under its file key (`deakin-university` next to `cricos-00113B`, 11 such rows in production)."""
     key = "test-merge-au-school"
     data = {"school_key": key, "school_name_en": NAME_EN, "country": "Australia",
             "listing_urls": ["https://merge.test/"], "programs": [{
