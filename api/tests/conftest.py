@@ -440,3 +440,11 @@ def remove_the_conversations_these_tests_create():
     with SessionLocal() as session:
         delete_threads(session, sorted(thread_ids(session) - before))
         session.commit()
+
+
+@pytest.fixture(autouse=True)
+def do_not_record_knowledge_gaps(monkeypatch):
+    """The advisor records every refusal as a knowledge gap (openspec knowledge-gaps D3). Off for the
+    suite, so the many tests that make the advisor refuse leave no gap rows in the development database;
+    `tests/test_knowledge_gaps.py` turns it on where it is the subject, and removes what it made."""
+    monkeypatch.setattr(settings, "knowledge_gaps_record", False)

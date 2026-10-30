@@ -8,13 +8,15 @@
 - expired sessions;
 - login codes older than two days (the daily rate limits only look back 24 hours);
 - advisor conversations untouched for `ADVISOR_THREAD_RETENTION_DAYS` (90), whoever they belong to
-  (openspec advisor-persistence D7).
+  (openspec advisor-persistence D7);
+- knowledge-gap reports (a refused question and its asker's hash) older than
+  `KNOWLEDGE_GAP_RETENTION_DAYS` (90); the gaps stay (openspec knowledge-gaps D5).
 
-    python -m app.cleanup --conversations-only [--apply]   # the last item alone
+    python -m app.cleanup --conversations-only [--apply]   # the last two items alone
 
 In production the Celery beat runs it daily with `--apply` (`app.worker.cleanup`, openspec/changes/
-collect-queue D12); in anonymous mode only the conversation sweep runs, since every subject is
-anonymous there.
+collect-queue D12); in anonymous mode only the conversation and report sweeps run, since every subject
+is anonymous there.
 """
 
 import argparse
@@ -28,6 +30,7 @@ from app.config import settings
 from app.db import SessionLocal
 from app.models.account import Account, AuthSession, LoginCode
 from app.models.client import Client
+from app.services import knowledge_gaps
 from app.services.accounts import delete_subject
 from app.services.conversations import delete_threads, stale_threads
 
@@ -46,12 +49,14 @@ def stale_anonymous_subjects(session: Session, now: datetime) -> list[str]:
 
 
 def sweep_conversations(session: Session, apply: bool, now: datetime | None = None) -> dict:
-    """Delete advisor conversations nobody has touched for the retention period (D7)."""
+    """Delete advisor conversations nobody has touched for the retention period (D7), and knowledge-gap
+    reports past theirs (knowledge-gaps D5): the two sweeps that run in every mode."""
     threads = stale_threads(session, now or datetime.now(UTC))
     report = {"apply": apply, "stale_conversations": len(threads)}
     if apply:
         delete_threads(session, threads)
         session.commit()
+    report.update(knowledge_gaps.sweep_reports(session, apply=apply, now=now))
     return report
 
 
@@ -70,6 +75,7 @@ def run(session: Session, apply: bool, now: datetime | None = None) -> dict:
         "stale_conversations": len(stale_threads(session, now)),
     }
     if not apply:
+        report.update(knowledge_gaps.sweep_reports(session, apply=False, now=now))
         return report
     files = 0
     for client_id in subjects:
@@ -89,7 +95,8 @@ def run(session: Session, apply: bool, now: datetime | None = None) -> dict:
     session.execute(delete(LoginCode).where(LoginCode.created_at < now - CODE_RETENTION))
     session.commit()
     report["files_removed"] = files
-    report["stale_conversations"] = sweep_conversations(session, apply=True, now=now)["stale_conversations"]
+    swept = sweep_conversations(session, apply=True, now=now)
+    report["stale_conversations"], report["old_gap_reports"] = swept["stale_conversations"], swept["old_gap_reports"]
     return report
 
 

@@ -15,6 +15,7 @@ from app.models.application import Application
 from app.models.client import Client, Profile
 from app.models.document import Document, DocumentVersion
 from app.models.task import RoadmapTask, TaskEvent
+from app.services import knowledge_gaps
 from app.services.conversations import delete_conversations, move_conversations
 from app.services.documents import storage_root
 
@@ -75,7 +76,8 @@ def merge_subject(session: Session, source_id: str, target_id: str) -> dict[str,
     """
     if source_id == target_id:
         return {}
-    counts = {"profile": 0, "applications": 0, "tasks": 0, "documents": 0, "events": 0, "conversations": 0}
+    counts = {"profile": 0, "applications": 0, "tasks": 0, "documents": 0, "events": 0, "conversations": 0,
+              "gap_reports": 0}
 
     source_profile = session.get(Profile, source_id)
     target_profile = session.get(Profile, target_id)
@@ -131,6 +133,8 @@ def merge_subject(session: Session, source_id: str, target_id: str) -> dict[str,
         update(TaskEvent).where(TaskEvent.client_id == source_id).values(client_id=target_id)
     ).rowcount
     counts["conversations"] = move_conversations(session, source_id, target_id)["moved"]
+    # Knowledge-gap reports follow the subject, so deleting the account later deletes them too.
+    counts["gap_reports"] = knowledge_gaps.rekey_reports(session, source_id, target_id)
     session.execute(delete(Client).where(Client.id == source_id))
     session.flush()
     session.expire_all()
@@ -184,6 +188,9 @@ def delete_subject(session: Session, client_id: str) -> dict[str, int]:
     if emails:
         session.execute(delete(LoginCode).where(LoginCode.email.in_(emails)))
     conversations = delete_conversations(session, client_id)
+    # The subject's knowledge-gap reports (questions and their hash) go with it; the gaps stay.
+    gap_reports = knowledge_gaps.delete_reports_of(session, client_id)
     session.commit()
     removed = _unlink_orphans(session, paths)
-    return {"files_removed": removed, "accounts": len(emails), "conversations": conversations}
+    return {"files_removed": removed, "accounts": len(emails), "conversations": conversations,
+            "gap_reports": gap_reports}

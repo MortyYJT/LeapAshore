@@ -139,7 +139,8 @@ def cleanup() -> dict:
     """The 90-day sweeps (D12; handoff "切到登录模式" step 6).
 
     Anonymous subjects are swept only in login mode: with it off every user is anonymous. Advisor
-    conversations untouched for 90 days are swept in both modes (openspec advisor-persistence D7).
+    conversations untouched for 90 days and knowledge-gap reports older than 90 days are swept in both
+    modes (openspec advisor-persistence D7, knowledge-gaps D5).
     """
     from app import cleanup as sweep
 

@@ -13,6 +13,7 @@ count and explain.
 """
 
 from langchain_core.messages import AIMessage, AnyMessage, HumanMessage, SystemMessage, ToolMessage
+from langchain_core.runnables import RunnableConfig
 from langgraph.graph import END, START, StateGraph
 from langgraph.prebuilt import ToolNode
 
@@ -23,6 +24,7 @@ from app.agent.state import AdvisorState
 from app.agent.tools import TOOLS
 from app.config import settings
 from app.db import SessionLocal
+from app.services import knowledge_gaps
 
 SYSTEM_PROMPT = """你是鱼跃彼岸的留学申请顾问，帮中国学生规划海外硕士申请。
 
@@ -78,6 +80,18 @@ async def classify_intent(state: AdvisorState) -> dict:
     }
 
 
+def _record_gap(state: AdvisorState, config: RunnableConfig | None, reason: str, *, schools=None) -> None:
+    """Record a refusal as a knowledge gap, from the gate's signals (openspec knowledge-gaps D3). Never raises."""
+    signals = (state.get("trace") or {}).get("gate_signals") or {}
+    topics = state.get("page_topics") or signals.get("topics") or []
+    knowledge_gaps.record_safely(
+        route="passages" if topics else "requirements", reason=reason, question=_last_user_text(state),
+        subject=((config or {}).get("configurable") or {}).get("client_id"),
+        schools=(signals.get("schools") or []) if schools is None else schools, fields=signals.get("fields") or [],
+        subject_words=signals.get("subject_words") or [], topics=topics,
+    )
+
+
 def route_by_intent(state: AdvisorState) -> str:
     if state.get("page_topics"):
         return "passages"
@@ -91,7 +105,7 @@ def retrieve_passages(state: AdvisorState) -> dict:
         return passages.gate(session, _last_user_text(state), topics)
 
 
-async def answer_passages(state: AdvisorState) -> dict:
+async def answer_passages(state: AdvisorState, config: RunnableConfig | None = None) -> dict:
     """Answer from the passages, then keep only the sentences whose quotes check out (D8, D9). The reply
     is sent whole, after the check: an unchecked sentence is never streamed."""
     found = state.get("passages") or []
@@ -102,6 +116,11 @@ async def answer_passages(state: AdvisorState) -> dict:
     support = await answer.support_check(_last_user_text(state), checked, found, model)
     if not checked.kept:
         text, citations = answer.refusal_after_check(found), []
+        unread = reply.error or support.error or any("support_not_checked" in s.reasons for s in checked.sentences)
+        if not unread:
+            # The model answered and nothing it wrote could be backed by the pages: a gap. A reply that
+            # could not be read, or a judge that gave no verdict, says nothing about the knowledge.
+            _record_gap(state, config, "nothing_checkable")
     else:
         text, citations = answer.render(checked, found)
     return {
@@ -113,16 +132,23 @@ async def answer_passages(state: AdvisorState) -> dict:
     }
 
 
-def retrieve_requirements(state: AdvisorState) -> dict:
+def retrieve_requirements(state: AdvisorState, config: RunnableConfig | None = None) -> dict:
     with SessionLocal() as session:
-        return evidence.gate(session, _last_user_text(state))
+        update = evidence.gate(session, _last_user_text(state))
+    missing = update.get("evidence_strong") and update["trace"]["gate_signals"].get("missing_schools")
+    if missing:
+        # Answered for the other schools; these are left out of the answer, which is a gap of its own.
+        _record_gap({**state, "trace": update["trace"], "page_topics": []}, config, "school_missing", schools=missing)
+    return update
 
 
 def evidence_gate(state: AdvisorState) -> str:
     return "strong" if state.get("evidence_strong") else "weak"
 
 
-def refuse(state: AdvisorState) -> dict:
+def refuse(state: AdvisorState, config: RunnableConfig | None = None) -> dict:
+    """Say why the gate refused, and record the refusal for review (the text promises it is recorded)."""
+    _record_gap(state, config, state.get("refusal") or "unknown")
     return {"messages": [AIMessage(content=state.get("refusal_text") or FALLBACK_REFUSAL)]}
 
 

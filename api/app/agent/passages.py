@@ -226,7 +226,7 @@ def gate(session: Session, question: str, topics: list[Topic], ranking: str | No
     found = search_passages(session, question, topics, ranking=ranking, query_vector=vector)
     signals = {"schools": found.schools, "topics": [t.key for t in topics], "fields": found.fields,
                "pages_in_school": found.pages_in_school, "pages_in_scope": found.pages_in_scope,
-               "passages": len(found.passages), "ranking": found.ranking}
+               "passages": len(found.passages), "ranking": found.ranking, "subject_words": found.subject_words}
     if not found.passages:
         reason, text = refusal(session, found)
         logger.warning("knowledge gap reason=%s query=%r signals=%s", reason, question, signals)
