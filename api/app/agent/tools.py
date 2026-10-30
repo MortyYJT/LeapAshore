@@ -125,6 +125,19 @@ def get_my_profile(config: RunnableConfig) -> str:
         return _json({f: getattr(profile, f, None) for f in fields})
 
 
+# How a tool's answer starts when it wrote something (the profile, the portfolio). The advisor tells the
+# applicant those writes stand when the turn then fails (`routers.advisor`); read-only tools, a declined
+# change and a refused one start otherwise.
+PROFILE_UPDATED = "已更新档案："
+PORTFOLIO_CHANGED = "已执行："
+
+
+def wrote(message) -> bool:
+    """Whether this tool reply is the answer of a tool that wrote something."""
+    content = getattr(message, "content", None)
+    return isinstance(content, str) and content.startswith((PROFILE_UPDATED, PORTFOLIO_CHANGED))
+
+
 @tool
 def update_my_profile(fields_json: str, config: RunnableConfig) -> str:
     """更新申请人档案（低风险，直接执行）。参数是 JSON 对象，只放用户明确说出的字段，例如
@@ -143,7 +156,7 @@ def update_my_profile(fields_json: str, config: RunnableConfig) -> str:
         for name, value in changes.items():
             setattr(profile, name, value)
         s.commit()
-    return f"已更新档案：{_json(changes)}"
+    return f"{PROFILE_UPDATED}{_json(changes)}"
 
 
 def _portfolio(session, client_id: str) -> list[Application]:
@@ -245,7 +258,7 @@ def propose_portfolio_change(
             counts = replace_applications(s, client_id, list(rows.values()))
         except InvalidApplicationPayload as exc:
             return f"未执行：{exc}"
-    return f"已执行：{summary}。变化：{_json(counts)}"
+    return f"{PORTFOLIO_CHANGED}{summary}。变化：{_json(counts)}"
 
 
 TOOLS = [search_programs, get_my_profile, update_my_profile, get_my_portfolio, propose_portfolio_change]

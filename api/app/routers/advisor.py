@@ -23,6 +23,7 @@ from app import limits
 from app.agent.checkpoint import TurnLock, thread_id
 from app.agent.graph import graph
 from app.agent.llm import UNAVAILABLE, model_configured, outage
+from app.agent.tools import wrote
 from app.config import settings
 from app.deps import get_subject, set_client_cookie, subject_cookie_header
 from app.net import client_ip
@@ -128,8 +129,8 @@ def _detached(
 # The two errors a turn can end on (the `code` of the `error` event). The model's provider not answering
 # is told apart from a fault of ours: the first passes, the second needs a fix.
 FAILED = "顾问暂时出错了，请稍后再试。"
-# Added when a tool had already run in the turn (a confirmed portfolio change, a profile update): what
-# it wrote stands, and the applicant should not do it again.
+# Added when a tool had already written in the turn (a confirmed portfolio change, a profile update):
+# what it wrote stands, and the applicant should not do it again.
 SAVED_BEFORE_OUTAGE = "这一轮里已经执行的操作已保存。"
 
 
@@ -142,7 +143,7 @@ async def _stream(graph_input, config: dict) -> AsyncIterator[str]:
         yield _event({"type": "error", "message": "顾问模型尚未配置（缺少 CHAT_API_KEY）。"})
         yield _event({"type": "done"})
         return
-    tools_ran = False
+    wrote_something = False
     try:
         # `durability="sync"`: each step's checkpoint is saved before the next step starts, so a process
         # that dies after a confirmed write leaves the thread past that write (openspec
@@ -193,7 +194,7 @@ async def _stream(graph_input, config: dict) -> AsyncIterator[str]:
                 elif node == "refuse":
                     yield _event({"type": "token", "text": update["messages"][0].content})
                 elif node == "tools":
-                    tools_ran = True
+                    wrote_something = wrote_something or any(wrote(m) for m in (update or {}).get("messages", []))
                 elif node == "main_agent":
                     msg = update["messages"][-1]
                     if isinstance(msg, AIMessage) and msg.tool_calls:
@@ -204,7 +205,7 @@ async def _stream(graph_input, config: dict) -> AsyncIterator[str]:
             # Expected while the provider is down (an account out of money answers every call with 402):
             # one line, no traceback per turn.
             logger.warning("advisor model unavailable: %s: %s", type(error).__name__, str(error)[:300])
-            message = UNAVAILABLE + (SAVED_BEFORE_OUTAGE if tools_ran else "")
+            message = UNAVAILABLE + (SAVED_BEFORE_OUTAGE if wrote_something else "")
             yield _event({"type": "error", "code": "model_unavailable", "message": message})
         else:
             logger.exception("advisor stream failed")

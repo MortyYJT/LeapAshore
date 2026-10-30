@@ -310,7 +310,7 @@
 
 - **背景**：DeepSeek 账户余额用完（−0.06 元），生产和本机每次调模型都返回 HTTP 402「Insufficient Balance」（`insufficient_balance_error`，10-30 实测）。
 - **决定**：`app/agent/llm.py` 的 `outage(error)` 把供应商的回答分两类：`account`（401、402、403，或 `insufficient_quota`：要人去充值/换 key，几分钟内不会好）和 `transient`（408、409、429、5xx、连不上、超时）；400 和答案读不出来不算不可用（是调用本身的问题）。
-  - 顾问：任何一步（意图分类、ReAct、快照 RAG 的回答和判官）遇到不可用，整轮结束，SSE 发 `{"type":"error","code":"model_unavailable","message":"顾问暂时不可用，请稍后再试。"}`；本轮已经执行过工具（确认的选校改动、资料更新）时后面加「这一轮里已经执行的操作已保存。」。其他异常是 `code: advisor_failed`、原来的「顾问暂时出错了」。HTTP 仍是 200 的流（错误发生在流里），预扣照常归还。
+  - 顾问：任何一步（意图分类、ReAct、快照 RAG 的回答和判官）遇到不可用，整轮结束，SSE 发 `{"type":"error","code":"model_unavailable","message":"顾问暂时不可用，请稍后再试。"}`；本轮已有工具真的写入（确认执行的选校改动、更新的资料；只读工具、取消或被拒的改动不算）时后面加「这一轮里已经执行的操作已保存。」。其他异常是 `code: advisor_failed`、原来的「顾问暂时出错了」。HTTP 仍是 200 的流（错误发生在流里），预扣照常归还。
   - 意图分类遇到不可用不再回退到「通用问答」（回退只会再调一次同一个供应商），直接抛；读不出来的回答仍回退。
   - 判官（快照 RAG 第二次调用）遇到不可用不再当成「没判」而拒答——那样用户看到的是「找到了页面但不作判断」，像是库里没依据，而且 P2 的知识缺口会把它记成缺口。
   - 采集队列：抽取或判官遇到 `account` 类，页面记 `deferred`、`last_error` 以 `model unavailable: ` 开头，`fetched_at` 恢复成上次的值（和预算用完同样处理：照旧到期，第二天的 beat 会再挑到），上次的结果、快照哈希不动，不写 `requirement_changes`；已经付费的抽取照记账。同时在 Redis 里设一个 1 小时的标记（`collect:model-outage`），所有 worker 在这期间到了要调模型那一步就直接 `deferred`（抓取和「没变化」的判断照做）。`transient` 类照旧重试 4 次。

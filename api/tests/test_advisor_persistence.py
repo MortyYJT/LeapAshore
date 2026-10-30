@@ -288,6 +288,35 @@ def test_a_confirm_whose_reply_hits_an_outage_keeps_the_change_written_once(serv
     assert errors(replied) == [] and "已执行" in said(replied)
 
 
+def test_a_declined_change_then_an_outage_does_not_claim_anything_was_saved(service, model, writes, program_id,
+                                                                            monkeypatch):
+    monkeypatch.setattr(graph_module, "get_chat_model", lambda **kwargs: BrokeAfterTheTool(program_id=program_id))
+    client = TestClient(app)
+    replied = answer(client, pause(client), approved=False)
+    assert errors(replied) == [UNAVAILABLE] and writes == []
+
+
+class ReadsThenBreaks(Scripted):
+    """Looks up the portfolio (a read-only tool); the provider then refuses the next call."""
+
+    def _generate(self, messages, stop=None, run_manager=None, **kwargs):
+        from tests.model_outage import status_error
+
+        if isinstance(messages[-1], ToolMessage):
+            raise status_error(402)
+        call = {"name": "get_my_portfolio", "args": {}, "id": f"call-{uuid.uuid4().hex[:8]}"}
+        return ChatResult(generations=[ChatGeneration(message=AIMessage(content="", tool_calls=[call],
+                                                                        usage_metadata=USAGE))])
+
+
+def test_a_read_only_tool_then_an_outage_does_not_claim_anything_was_saved(service, model, program_id, monkeypatch):
+    monkeypatch.setattr(graph_module, "get_chat_model", lambda **kwargs: ReadsThenBreaks(program_id=program_id))
+    response = TestClient(app).post(CHAT, json={"conversationId": "c1", "message": "我的选校有哪些"})
+    evts = events(response)
+    assert any(e["type"] == "tool" and e["name"] == "get_my_portfolio" for e in evts)
+    assert errors(evts) == [UNAVAILABLE]
+
+
 def test_a_turn_that_hit_an_outage_leaves_the_thread_usable(service, model, monkeypatch):
     from tests.model_outage import out_of_balance_model
 
