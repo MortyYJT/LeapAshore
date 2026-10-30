@@ -359,6 +359,39 @@ def test_a_discovered_page_with_a_vague_link_is_named_by_its_heading(db_session,
     assert db_session.get(CollectPage, page.id).program_name == "Master of Data Science"
 
 
+def test_a_discovered_name_with_a_card_description_is_cut_back_to_the_heading(db_session, school, client):
+    page = add_page(db_session, school, name="Master of Data Science Learn to work with data at scale, online or on campus")
+    run(db_session, school, page, budget=budget(client), fetch=fake_fetch({page.url: PAGE}),
+        extract=fake_extract({"ielts": ielts(6.5)}))
+    assert db_session.get(CollectPage, page.id).program_name == "Master of Data Science"
+
+
+def test_a_discovered_page_that_is_not_a_masters_program_costs_no_model_call(db_session, school, client):
+    page = add_page(db_session, school, name="CA10")
+    extracted = []
+    html = PAGE.replace("Master of Data Science", "CA10 - Bachelor of Arts")
+    state = run(db_session, school, page, budget=budget(client), fetch=fake_fetch({page.url: html}),
+                extract=fake_extract({"ielts": ielts(6.5)}, extracted))
+    assert state == PageState.FAILED and not extracted
+    row = db_session.get(CollectPage, page.id)
+    assert row.program_name == "CA10 - Bachelor of Arts" and "not a taught master's" in row.last_error
+
+
+def test_discovery_leaves_out_picks_that_are_not_a_masters_program(db_session, school, client):
+    listing = "https://www.example.edu.au/study/masters"
+    html = ('<a href="/mds">Master of Data Science</a><a href="/ba">Bachelor of Arts</a>'
+            '<a href="/study/masters?page=2">Postgraduate</a>')
+
+    def pick(links, info):
+        return links, {}
+
+    report = discover_school(db_session, school["key"], budget=budget(client), fetch=fake_fetch({listing: html}),
+                             pick=pick, data_dir=school["data_dir"], root=school["root"], can_render=False)
+    assert report["added"] == 1
+    names = db_session.scalars(select(CollectPage.program_name).where(CollectPage.school_key == school["key"])).all()
+    assert names == ["Master of Data Science"]
+
+
 # --- Retries in the worker -----------------------------------------------------------------------------
 
 

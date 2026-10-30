@@ -120,11 +120,12 @@ def load_schools(data_dir: Path = DATA_DIR) -> dict[str, dict]:
 def school_info(school_key: str, data_dir: Path = DATA_DIR) -> dict:
     row = load_schools(data_dir).get(school_key)
     if row:
-        return {"name": row["name_en"], "country": row.get("country")}
+        return {"name": row["name_en"], "country": row.get("country"), "listing_urls": row.get("listing_urls") or []}
     path = data_dir / f"{school_key}.json"
     if path.exists():
         data = json.loads(path.read_text(encoding="utf-8"))
-        return {"name": data["school_name_en"], "country": data.get("country")}
+        return {"name": data["school_name_en"], "country": data.get("country"),
+                "listing_urls": data.get("listing_urls") or []}
     raise KeyError(f"unknown school {school_key!r}")
 
 
@@ -199,14 +200,18 @@ def _unanswered(blocked: Blocked) -> bool:
 
 def _name_from_heading(page: CollectPage, html_path: Path) -> None:
     """A discovered page is named by its link's text; when that text names no degree ("Learn more"),
-    the page's own first heading is used instead, if it does."""
+    the page's own first heading is used instead, if it does. A link text that carries more than the
+    name (a card's description, a bare course code) is cut back to the heading (`tidy.program_name`)."""
     from app.collect.discover import HINT, page_heading
+    from app.collect.tidy import program_name
 
-    if HINT.search(page.program_name) or not html_path.exists():
+    if not html_path.exists():
         return
     heading = page_heading(html_path.read_text(encoding="utf-8"))
-    if heading and HINT.search(heading):
-        page.program_name = heading
+    name = program_name(page.program_name, heading)
+    if not HINT.search(name) and heading and HINT.search(heading):
+        name = heading
+    page.program_name = name
 
 
 def _settle(session: Session, page: CollectPage, state: str, error: str | None = None) -> str:
@@ -281,7 +286,12 @@ def collect_page(session: Session, page_id: str, *, budget: Budget, fetch=snapsh
             pass
     sha = meta["sha256"]
     if page.origin == "discovered" and page.result is None:
+        from app.collect.tidy import not_a_program
+
         _name_from_heading(page, root / page.school_key / f"{sha}.html")
+        reason = not_a_program(page.program_name, page.url, school.get("listing_urls") or [])
+        if reason:
+            return _settle(session, page, PageState.FAILED, reason)
     new_text_sha = _snapshot_text_sha(page.school_key, sha, root)
     old_sha, old_text_sha, old_fields = prior_state(page, data_dir, root)
     if sha == old_sha or (old_text_sha is not None and new_text_sha == old_text_sha):
