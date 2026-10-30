@@ -355,7 +355,12 @@ def extract_snapshot(school_key: str, sha256: str, *, program_name: str, school_
     fields, refused, result.unused = to_fields(answer["parsed"])
     program["fields"] = fields
     checked, failed = check_fields(program, school_key, school_name, country, root)
-    judgement = check_program(checked, school_name, judge_model or model)
+    try:
+        judgement = check_program(checked, school_name, judge_model or model)
+    except Exception as error:
+        # The extraction above was paid for: let the caller charge it before it retries (review of #62).
+        error.extract_usage = dict(result.usage)
+        raise
     for key, value in judgement.usage.items():
         result.usage[key] = result.usage.get(key, 0) + value
     for name, value in checked["fields"].items():

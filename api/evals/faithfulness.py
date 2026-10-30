@@ -92,6 +92,17 @@ def load_set() -> dict:
     return json.loads(SET_FILE.read_text(encoding="utf-8"))
 
 
+def stale_claims(data: dict) -> list[str]:
+    """Sampled fields whose claim, as the judge would now be asked it, differs from the one labelled.
+
+    The china_requirement wording changed after the 2026-10-30 run (review of #62): those labels are
+    about the old sentence, so a new live run needs them relabelled first.
+    """
+    from app.collect.faithful import statement
+
+    return [r["id"] for r in data.get("fields", []) if statement(r["field"], r["item"]) != r["claim"]]
+
+
 def check_labels(data: dict) -> list[str]:
     problems = []
     for kind in ("fields", "sentences"):
@@ -158,9 +169,9 @@ def run_live(budget_cny: float) -> dict:
     from app.collect.faithful import JUDGE_MAX_TOKENS, Claim, cost_cny, judge, program_context
 
     data = load_set()
-    problems = check_labels(data)
+    problems = check_labels(data) + [f"{i}: claim wording changed since labelling" for i in stale_claims(data)]
     if problems:
-        raise SystemExit("labels incomplete: " + "; ".join(problems[:5]))
+        raise SystemExit("labels incomplete or stale: " + "; ".join(problems[:5]))
     model = get_chat_model(temperature=0, max_tokens=JUDGE_MAX_TOKENS)
     usage = {"fields": defaultdict(int), "sentences": defaultdict(int)}
     calls = {"fields": [], "sentences": []}
@@ -225,8 +236,9 @@ def main(argv: list[str] | None = None) -> int:
         return 0
     if args.check:
         problems = check_labels(load_set())
-        print(json.dumps({"problems": problems}, ensure_ascii=False))
-        return 1 if problems else 0
+        stale = stale_claims(load_set())
+        print(json.dumps({"problems": problems, "stale_claims": stale}, ensure_ascii=False))
+        return 1 if problems or stale else 0
     if args.replay:
         again, same = replay(args.replay)
         print(json.dumps({"metrics": again, "same_as_recorded": same}, ensure_ascii=False))

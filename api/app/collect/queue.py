@@ -334,6 +334,11 @@ def collect_page(session: Session, page_id: str, *, budget: Budget, fetch=snapsh
         result: ExtractResult = extract(page.school_key, sha, program_name=page.program_name,
                                         school_name=school["name"], country=school["country"], url=page.url, root=root)
     except Exception as error:  # noqa: BLE001 - the model's transport (timeouts, 5xx, rate limits)
+        # The summary check failed after a paid extraction: that extraction still counts.
+        paid = cost_cny(getattr(error, "extract_usage", None) or {})
+        if paid:
+            budget.add(paid)
+            page.cost_cny = (page.cost_cny or Decimal("0")) + Decimal(str(round(paid, 6)))
         page.last_error = f"model: {type(error).__name__}: {str(error)[:300]}"
         session.commit()
         raise Transient(page.last_error) from error

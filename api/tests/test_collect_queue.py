@@ -181,6 +181,22 @@ def test_a_transient_failure_is_raised_for_a_retry(db_session, school, client, e
     assert db_session.get(CollectPage, page.id).state == PageState.QUEUED
 
 
+def test_a_summary_check_that_fails_after_a_paid_extraction_still_charges_it(db_session, school, client):
+    page = add_page(db_session, school)
+
+    def extract(*args, **kwargs):
+        error = TimeoutError("judge timed out")
+        error.extract_usage = {"input_tokens": 5000, "output_tokens": 300, "cache_read_tokens": 0}
+        raise error
+
+    spent = budget(client)
+    with pytest.raises(queue.Transient):
+        run(db_session, school, page, budget=spent, fetch=fake_fetch({page.url: PAGE}), extract=extract)
+    db_session.expire_all()
+    assert spent.spent() == pytest.approx(queue.cost_cny({"input_tokens": 5000, "output_tokens": 300}))
+    assert db_session.get(CollectPage, page.id).cost_cny > 0
+
+
 def test_a_robots_txt_that_did_not_answer_is_retried_not_blocked(db_session, school, client):
     page = add_page(db_session, school)
     error = snap.Blocked("robots.txt disallows (robots.txt itself: no answer (TimeoutError: timed out)): x")

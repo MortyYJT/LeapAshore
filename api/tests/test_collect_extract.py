@@ -246,6 +246,18 @@ def test_a_summary_the_judge_does_not_back_stays_marked_and_sends_the_program_to
     assert result.rejected == []
 
 
+def test_a_judge_that_does_not_answer_raises_with_the_paid_extraction_usage(root):
+    def refuse(request):
+        raise httpx.ConnectError("judge down")
+
+    judge = ChatOpenAI(model="deepseek-chat", base_url="https://model.test/v1", api_key="test", max_retries=0,
+                       http_client=httpx.Client(transport=httpx.MockTransport(refuse)))
+    with pytest.raises(Exception) as caught:
+        ex.extract_snapshot("example", SHA, program_name="Master of Data Science", school_name="Example University",
+                            country="Australia", model=answering(RECORDED), judge_model=judge, root=root)
+    assert caught.value.extract_usage["input_tokens"] == 2260
+
+
 def test_a_judge_that_cannot_be_read_blocks_every_summary_as_not_checked(root):
     broken = copy.deepcopy(JUDGED)
     broken["choices"][0]["message"]["tool_calls"][0]["function"]["arguments"] = "{"

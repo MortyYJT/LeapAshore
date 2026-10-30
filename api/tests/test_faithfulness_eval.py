@@ -10,7 +10,7 @@ import json
 import random
 from pathlib import Path
 
-from evals.faithfulness import SEED, SIZE, check_labels, load_set, metrics, replay
+from evals.faithfulness import SEED, SIZE, check_labels, load_set, metrics, replay, stale_claims
 
 RECORDED = Path(__file__).resolve().parents[1] / "evals" / "results" / "faithfulness-2026-10-30.json"
 
@@ -40,3 +40,11 @@ def test_the_metrics_count_not_checked_as_blocked():
     assert (m["blocked"], m["false_blocks"], m["caught"], m["not_checked"]) == (2, 1, 1, 1)
     assert m["false_block_rate"] == 0.5 and m["catch_rate"] == 1.0
     json.dumps(m)
+
+
+def test_only_the_china_fields_were_labelled_on_the_old_claim_wording():
+    """The recorded run asked about china_requirement with wording later changed; a new live run must
+    relabel exactly those rows first (`run_live` refuses until then)."""
+    data = load_set()
+    china = sorted(r["id"] for r in data["fields"] if r["field"] == "china_requirement")
+    assert stale_claims(data) == china and len(china) == 9
