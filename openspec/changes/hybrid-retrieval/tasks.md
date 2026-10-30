@@ -14,7 +14,8 @@ Branch `claude/hybrid-retrieval`.
 - [x] 1.8 Tune split: `rules` and `fts` both Recall@4 1.0 / Precision@4 0.98
 - [x] 1.9 Review fix: a country only narrows a shared school name (it dropped 港大 beside "英国")
 - [x] 2.1 Held-out once per available ranking on the final code (960ed1a); `vector`, `hybrid` wait for the key
-- [ ] 3.1 Deploy: backup, stop writers, dump, restore into `pgdata`, digests, migrate, read-only checks
+- [x] 3.1 Deploy (2026-10-30): backup, stop writers, dump, restore into `pgdata`; 28 table digests identical,
+      amcheck 0/53; migrated to `e3a9c5d17b42`; tune split in the container 1.0 / 0.98; pages 200
 - [ ] 4.1 Blocked on MortyYJT: `EMBED_API_KEY`; then backfill, held-out `vector` and `hybrid`, privacy page
 
 ## Run log
