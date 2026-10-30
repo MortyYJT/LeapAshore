@@ -23,7 +23,9 @@
     "academic": {
      "text": "A B.Sc. degree in Physical Oceanography, Meteorology, Geophysics, Physics or an equivalent subject.",
      "quote": "This research oriented four semester program is directed to students with a B.Sc. degree in Physical Oceanography, Meteorology, Geophysics, Physics or an equivalent subject",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b331d364193e4534"
     }
    },
    "status": "机器核对"
@@ -74,7 +76,9 @@
     "academic": {
      "text": "Applicants must meet the requirements described by the Campus-Center.",
      "quote": "Es gelten die im Campus-Center beschriebenen Voraussetzungen",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d2d0b096c54cdd76"
     }
    },
    "status": "机器核对"
@@ -98,52 +102,70 @@
     "academic": {
      "text": "A legally attested university degree (Bachelor's, Master's or Staatsexamen) in the India specialization: a Hamburg Bachelor \"Sprachen und Kulturen des Indischen Subkontinents und Tibets\" or a comparable degree, or a Buddhist/Religious Studies Bachelor with at least 30 ECTS in Sanskrit or Pali, or a degree with at least 45 ECTS in Buddhist Studies, Religious Studies or Indology including at least 30 ECTS in Sanskrit or Pali.",
      "quote": "Legally attested certificate of a university degree: this may be a Bachelor's degree, a Master's degree or a Licentiate (\"Staatsexamen\"). The degree can be a Bachelor \"Sprachen und Kulturen des Indischen Subkontinents und Tibets\" from the Universität Hamburg or a comparable Bachelor of a German or international academic institution.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: Buddhist/Religious Studies Bachelor with 30 ECTS Sanskrit/Pali; 45 ECTS in Buddhist Studies/Religious Studies/Indology",
+     "summary_sha": "2b14420830a826a4"
     },
     "prerequisites": [
      {
       "text": "English proficiency equivalent to CEFR B2 for all applicants whose mother tongue is not English.",
       "quote": "All applicants whose mother tongue is not English must provide:\nEvidence for proficiency in English (equivalent to B2 level of the Common European Framework of Reference for Languages [CEFR])",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f91ca4f8c6e41eb3"
      },
      {
       "text": "India specialization: at least 30 ECTS in Sanskrit or Pali language courses (or equivalent language training), otherwise a placement test must be passed.",
       "quote": "It can be a Bachelor with the specialization in Buddhist or Religious Studies as long as a minimum of 30 credit points (ECTS) for language courses in Sanskrit or Pali have been acquired.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: otherwise a placement test must be passed",
+      "summary_sha": "2e79af3386de8de3"
      },
      {
       "text": "Tibet specialization: at least 30 ECTS in Classical Tibetan language courses; native speakers of Tibetan must document at least 20 ECTS in Classical Tibetan.",
       "quote": "Candidates whose mother tongue is Tibetan will need to document at least 20 credit points (ECTS) for language courses in classical Tibetan.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: at least 30 ECTS in Classical Tibetan for general applicants",
+      "summary_sha": "941856e644e568d0"
      },
      {
       "text": "China specialization: at least 50 ECTS in Chinese language courses (not required for native speakers of Chinese) and evidence of substantial experience in reading classical Chinese.",
       "quote": "You will need a minimum of 50 credit points (ECTS) for language courses in Chinese (not necessary for applicants whose mother tongue is Chinese). Required is also evidence of substantial experience in reading classical Chinese.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "a159711cef76eeee"
      },
      {
       "text": "Japan specialization: Japanese competence via at least 50 ECTS in Japanese language courses, or 44 SWS of Japanese courses, or JLPT old level 2 (not required for native speakers of Japanese).",
       "quote": "Prove of competence in the Japanese language: You will need\n- a minimum of 50 credit points (ECTS) for language courses in Japanese, or\n- 44 semester hours per week (SWS) of Japanese language courses, or\n- you must have passed the (old) level 2 of the Japanese Language Proficieny Test (JLPT)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: not required for native speakers of Japanese",
+      "summary_sha": "2fa1b5b1c855feb8"
      },
      {
       "text": "Japan specialization: German language competence is required, as several courses are taught in German.",
       "quote": "the specialization Japan has several courses in German language so that German language competence is required for the specialization Japan",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "04d2d1d635d0d8bd"
      },
      {
       "text": "Japan specialization: applicants without a qualifying high school degree from a German-speaking institution must demonstrate German competence according to Universität Hamburg regulations.",
       "quote": "Applicants who do not hold a qualifying high school degree from a German-speaking institution are requested to demonstrate their competence in the German language according to the regulations of the Universität Hamburg.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: must demonstrate (quote says requested to)",
+      "summary_sha": "46ad191d7e5e8afe"
      },
      {
       "text": "Thailand specialization: at least 25 ECTS in Thai (not required for native speakers of Thai).",
       "quote": "Language skills: a minimum of 25 Credit points (ECTS) in Thai.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: not required for native speakers of Thai",
+      "summary_sha": "2c66fa36dd5f59d7"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Photo: unsplashMaster of ArtsKoreanistik",
@@ -164,23 +186,31 @@
     "academic": {
      "text": "A university degree (Bachelor's, Master's or Licentiate/Staatsexamen) in Southeast Asian Studies.",
      "quote": "University degree: this may be a Bachelor's degree, a Master's degree or a Licentiate (\"Staatsexamen\") in Southeast Asian Studies",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "5b82814a5e1f534f"
     },
     "prerequisites": [
      {
       "text": "At least 15 credit points in Linguistics, Literature, History, Society or Religion of Southeast Asia.",
       "quote": "A minimum of 15 Credit points are required in the fields of Linguistics, Literature, History, Society or Religion of Southeast Asia.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f09b650edc3b0689"
      },
      {
       "text": "At least 25 ECTS credit points in Bahasa Indonesia (Indonesian and Malay Studies), Thai (Thai Studies) or Vietnamese (Vietnamese Studies).",
       "quote": "Language skills: a minimum of 25 Credit points (ECTS) in Bahasa Indonesia (Indonesian and Malay Studies), in Thai (Thai Studies) or Vietnamese (Vietnamese Studies)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "3a4a790c0cbc6c99"
      },
      {
       "text": "Evidence of English proficiency equivalent to CEFR B2.",
       "quote": "Evidence for proficiency in English (equivalent to B2 level of the Common European Framework of Reference for Languages (CEFR))",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f6c5b64d7b40b89d"
      }
     ]
    },
@@ -196,23 +226,31 @@
     "academic": {
      "text": "A bachelor's degree with prior basic molecular biology and/or biochemistry knowledge and laboratory experience, e.g. in molecular biology, cell biology, biochemistry, biotechnology or biology with a molecular biology focus.",
      "quote": "Du solltest in einem Bachelorstudiengang bereits molekularbiologisches und/ oder biochemisches Grundwissen erarbeitet und Erfahrungen in Laborarbeit gesammelt haben, z.B. im Rahmen eines Bachelorprogramms in Molekularbiologie, Zellbiologie, Biochemie, Biotechnologie oder Biologie mit molekularbiologischem Schwerpunkt.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "7784665aa505b233"
     },
     "prerequisites": [
      {
       "text": "Basic molecular biology and/or biochemistry knowledge acquired in a bachelor's program",
       "quote": "Du solltest in einem Bachelorstudiengang bereits molekularbiologisches und/ oder biochemisches Grundwissen erarbeitet",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "60833abf75134f4f"
      },
      {
       "text": "Laboratory experience",
       "quote": "Erfahrungen in Laborarbeit gesammelt haben",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "ba2c9bbed6adc125"
      },
      {
       "text": "Good English skills",
       "quote": "Darüber hinaus solltest Du über gute Englischkenntnisse verfügen, da Dein Lernalltag von englischsprachigen Lehrveranstaltungen, Diskussionen, Literatur und eigenen Präsentationen in Englisch geprägt sein wird.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "c2a9f7ae30cc1354"
      }
     ]
    },
@@ -291,23 +329,31 @@
     "ielts": {
      "overall": 5.0,
      "quote": "IELTS Test Academic mit mindestens 5.0",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "52006108240bb999"
     },
     "toefl": {
      "overall": 72.0,
      "quote": "TOEFL internet-based test mit mindestens 72 Punkten",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "63b8dfaae6794863"
     },
     "academic": {
      "text": "A degree in the consecutive Bachelor's program in Chemistry at Universität Hamburg or a comparable program.",
      "quote": "Zugangsvoraussetzungen sind ein Abschluss in dem konsekutiven Bachelorstudiengang Chemie der Universität Hamburg oder einem vergleichbaren Studiengang sowie ausreichende Kenntnisse der englischen Sprache (s.u.).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a16d056c1557ad3c"
     },
     "prerequisites": [
      {
       "text": "Applicants whose first degree was not completed in a German-language program at a German-language higher education institution must additionally prove German language skills.",
       "quote": "Bewerber:innen, die ihr Erststudium nicht in einem deutschsprachigen Studiengang an einer deutschsprachigen Hochschule abgeschlossen haben, müssen zusätzlich Deutschkenntnisse nachweisen.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "5779492909511a2a"
      }
     ]
    },
@@ -323,7 +369,9 @@
     "academic": {
      "text": "A degree in Biochemistry and Molecular Biology (BCMB), MLS, Biology or Chemistry (with a biochemistry focus) from Universität Hamburg, or a comparable degree from another university, with above-average grades.",
      "quote": "Er umfasst 4 Semester und richtet sich an überdurchschnittlich gute Absolvent:inn:en der Bachelorstudiengänge Biochemie und Molekularbiologie (BCMB), MLS, Biologie bzw. Chemie (mit Schwerpunkt Biochemie) der Universität Hamburg sowie an Absolvent:inn:en vergleichbarer Studiengänge anderer Universitäten.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d640159b0f47fbd4"
     }
    },
    "status": "机器核对"
@@ -347,17 +395,21 @@
     "academic": {
      "text": "A bachelor's degree in a geographic field of study.",
      "quote": "Bachelor’s degree in a geographic field of study",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0f2ed87d0f42a1b6"
     },
     "prerequisites": [
      {
       "text": "Lectures and methodological exercises are in German, so German language proficiency is required.",
       "quote": "Language of instruction:  lectures and methodological exercises in German, supplemental literature and tutorial in English, generally English in all other cases",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: German language proficiency is required",
+      "summary_sha": "d58148a596cfc510"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science (MSc) in Geophysics",
@@ -378,17 +430,21 @@
     "academic": {
      "text": "A bachelor's degree in geosciences or a comparable natural science program.",
      "quote": "Abschluss im Bachelorstudiengang Geowissenschaften oder einem vergleichbaren naturwissenschaftlichen Studiengang",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "52e94a673d0dda81"
     },
     "prerequisites": [
      {
       "text": "Proof of the first degree and language skills (general admission requirements for all master's programs).",
       "quote": "Nachweis des Erststudiums, Sprachkenntnisse",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: general admission requirements for all master's programs",
+      "summary_sha": "7452bcb131332a1a"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Photo: UHHMaster of ArtsPublic History",
@@ -400,17 +456,21 @@
     "academic": {
      "text": "A first professionally qualifying degree from Universität Hamburg with a humanities or social science major, or a comparable degree from another internationally recognised university in history or another humanities, cultural or social science.",
      "quote": "ein erster berufsqualifizierender Abschluss der Universität Hamburg mit einem geistes- oder sozialwissenschaftlichen Hauptfach oder ein vergleichbarer Abschluss einer anderen international anerkannten Hochschule im Fach Geschichte oder einer anderen Geistes-, Kultur- oder Sozialwissenschaft.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "01899be05fbe2b7f"
     },
     "prerequisites": [
      {
       "text": "Proof of participation in a consultation interview offered by the program management, to be submitted with the application.",
       "quote": "Ein Nachweis über die Teilnahme an einem Beratungsgespräch von der Studiengangsleitung angeboten wird.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: to be submitted with the application",
+      "summary_sha": "4d400e0cfa096a21"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Photo: unsplashMaster of ArtsEuropean Master in Classical Cultures",
@@ -422,23 +482,31 @@
     "academic": {
      "text": "A subject-relevant first university degree qualifying for a profession, i.e. studies in Ancient History, Classical Archaeology or Classical Philology or similar.",
      "quote": "ein fachlich einschlägiger erster berufsqualifizierender Hochschulabschluss, d.h. ein Studium im Bereich der Alten Geschichte, der Klassischen Archäologie oder der Klassischen Philologie o.ä.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "3317b0b08ea27866"
     },
     "prerequisites": [
      {
       "text": "Knowledge of the German language (for studies in Hamburg).",
       "quote": "Kenntnisse der deutschen Sprache (bei Studium in Hamburg)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "a4aa5fce50131658"
      },
      {
       "text": "Knowledge of two further modern languages, at least one of them an official language of one of the partner universities.",
       "quote": "Kenntnisse in zwei weiteren modernen Sprachen (davon mindestens eine offizielle Sprache einer der Partneruniversitäten)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "8c2bcaa4178b9518"
      },
      {
       "text": "Proof of (Ancient) Greek or Latin language skills.",
       "quote": "Nachweis von (Alt-)Griechisch- oder Lateinkenntnissen",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "08a9f6ad0021d660"
      }
     ]
    },
@@ -454,13 +522,17 @@
     "academic": {
      "text": "A first professionally qualifying degree with history as the major subject.",
      "quote": "Zulassungsvoraussetzung für diesen Masterstudiengang (M.A.) Geschichte an der Universität Hamburg ist ein erster berufsqualifizierender Abschluss mit dem Hauptfach Geschichte.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "31d05c24db138eb9"
     },
     "prerequisites": [
      {
       "text": "Two foreign languages: at least three school years for the first and two school years for the second, or equivalent proof (CEFR level B1 and A2 respectively).",
       "quote": "Als Sprachvoraussetzung benötigen Sie zwei Fremdsprachen im Umfang von mindestens drei Schuljahren (für die erste Fremdsprache) bzw. zwei Schuljahren (für die zweite Fremdsprache) oder gleichwertige Nachweise (Niveau B1 bzw. A2 des Gemeinsamen europäischen Referenzrahmens für Sprachen).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "e334c1349387c38e"
      }
     ]
    },
@@ -476,17 +548,21 @@
     "academic": {
      "text": "A first academic university degree qualifying for a profession from a German or internationally recognised foreign university in German studies, German language and literature, German philology, history or art history.",
      "quote": "Ein erster wissenschaftlicher berufsqualifizierender Hochschulabschluss einer deutschen oder international anerkannten ausländischen Universität in den Fächern Germanistik, Deutsche Sprache und Literatur, Deutsche Philologie, Geschichtswissenschaft oder Kunstgeschichte",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "1d46a6df944e5a58"
     },
     "prerequisites": [
      {
       "text": "Proof of the first degree and language skills (general admission requirements for all master's programs).",
       "quote": "Nachweis des Erststudiums, Sprachkenntnisse",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: general admission requirements for all master's programs",
+      "summary_sha": "7452bcb131332a1a"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Photo: UHH/MicheluzziMaster of ArtsKunstgeschichte",
@@ -498,22 +574,28 @@
     "academic": {
      "text": "A first professionally qualifying degree in the bachelor's program in art history at Universität Hamburg or a comparable program at another university.",
      "quote": "Ein erster berufsqualifizierender Abschluss im Bachelorstudiengang Kunstgeschichte der Universität Hamburg oder in einem vergleichbaren Studiengang einer anderen Hochschule.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "05e37d5200d5772e"
     },
     "prerequisites": [
      {
       "text": "English language skills at reference level B1.",
       "quote": "Sprachkenntnisse in Englisch und einer weiteren modernen Fremdsprache entsprechend (Referenzniveaus B1).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: English only; quote requires English and another modern foreign language",
+      "summary_sha": "5d822488d7ac4e0f"
      },
      {
       "text": "Latin knowledge to the extent of the Kleines Latinum, which may be replaced by another foreign language at reference level B1.",
       "quote": "Lateinkenntnisse im Umfang des Kleinen Latinums. Die Lateinkenntnisse können durch eine weitere Fremdsprache (Referenzniveau B1) entsprechend ersetzt werden.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "812d6bd7f213416d"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Photo: unsplashMaster of ArtsEmpirische Kulturwissenschaft",
@@ -534,13 +616,17 @@
     "academic": {
      "text": "A first professionally qualifying degree in a bachelor's program in musicology or historical musicology, or in a comparable program.",
      "quote": "Ein erster berufsqualifizierender Abschluss im Bachelorstudiengang Musikwissenschaft oder Historische Musikwissenschaft oder in einem vergleichbaren Studiengang.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "4e9e626c4b54be7c"
     },
     "prerequisites": [
      {
       "text": "German language skills are required for enrolment.",
       "quote": "Deutschkenntnisse sind zur Einschreibung erforderlich.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "77e1f10e83af621d"
      }
     ]
    },
@@ -619,13 +705,17 @@
     "academic": {
      "text": "A first professionally qualifying university degree (at least 6 semesters) from a German or internationally recognised foreign university in Linguistics, Language Science or Philology, German as a Foreign/Second Language, or Language Teaching Research, with at least 30 credit points in core linguistics (phonetics/phonology; morphology; syntax; semantics; pragmatics).",
      "quote": "ein erster berufsqualifizierender Hochschulabschluss (min. Umfang: 6 Semester) einer deutschen oder international anerkannten ausländischen Universität in den Fächern \"Linguistik\", \"Sprachwissenschaft\" oder \"Philologie\", \"Deutsch als Fremd-/ Zweitsprache\", \"Sprachlehrforschung\" mit mindestens 30 LP aus dem Bereich der Kernlinguistik (Phonetik/Phonologie; Morphologie; Syntax; Semantik; Pragmatik).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d8e03f7c984c1218"
     },
     "prerequisites": [
      {
       "text": "At least 30 credit points in core linguistics (phonetics/phonology; morphology; syntax; semantics; pragmatics).",
       "quote": "mit mindestens 30 LP aus dem Bereich der Kernlinguistik (Phonetik/Phonologie; Morphologie; Syntax; Semantik; Pragmatik)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "b5ad2e8e8950eed2"
      }
     ]
    },
@@ -641,18 +731,24 @@
     "academic": {
      "text": "A degree in British/English/Anglophone and/or American literature and culture, as a major or a minor, from a German university.",
      "quote": "Students should have a degree in British/English/Anglophone and/or American literature and culture, either as a major or a minor, from a German university.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "3040a31d1b8d7b17"
     },
     "prerequisites": [
      {
       "text": "English proficiency at level C2 of the European Framework of Reference before starting the MA.",
       "quote": "It is expected that candidates for the program have an English proficiency level of C2 according to the European Framework of Reference before they take up their studies in our MA.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "9059514bd8af2431"
      },
      {
       "text": "Applicants who did not acquire their higher education entrance eligibility at a German-language institution must demonstrate sufficient knowledge of German.",
       "quote": "Thus, all applicants who have not acquired their higher education entrance eligibility at a German-language institution must demonstrate sufficient knowledge of the German language before they can study at Universität Hamburg.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "a49293159f357dab"
      }
     ]
    },
@@ -668,13 +764,17 @@
     "academic": {
      "text": "A scientific, professionally qualifying university degree from a German or recognised foreign university in German studies, German language and literature, German philology, German, German as a second/foreign language, or modern German literature.",
      "quote": "ein wissenschaftlicher berufsqualifizierender Hochschulabschluss einer deutschen oder anerkannten ausländischen Hochschule in den Fächern Germanistik, Deutsche Sprache und Literatur, Deutsche Philologie, Deutsch, Deutsch als Zweit-/ Fremdsprache, Neuere deutsche Literatur;",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "725c8fcf70455da8"
     },
     "prerequisites": [
      {
       "text": "For the profiles \"Ältere deutsche Literatur\", \"Theater und Medien\" and \"Interkulturelle Literatur- und Medienwissenschaft\": proof of at least 10 credit points in modules or courses of the respective area.",
       "quote": "Zugangsvoraussetzung für die Profile \"Ältere deutsche Literatur\", \"Theater und Medien\" und \"Interkulturelle Literatur- und Medienwissenschaft\" im Rahmen des Masterstudiengangs Deutschsprachige Literaturen ist der Nachweis von mindestens 10 LP in Modulen bzw. Lehrveranstaltungen des jeweiligen Bereichs.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "a26b30768a3d44a4"
      }
     ]
    },
@@ -690,13 +790,17 @@
     "academic": {
      "text": "Bachelor's degree with a major in English/American studies.",
      "quote": "Er wendet sich primär an Absolventinnen und Absolventen von Bachelorstudiengängen mit einem Hauptfach im Bereich der Anglistik/Amerikanistik",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "8e2173ffa1058ec4"
     },
     "prerequisites": [
      {
       "text": "Proof of foreign language skills: a language examination at least at level B2 (other than English) according to the CEFR.",
       "quote": "Nachweis von Fremdsprach-Kenntnissen. Absolvierung einer Sprachprüfung auf mindestens dem Niveau von B2 (außer Englisch) gemäß des \"Gemeinsamen Europäischen Referenzrahmens für Sprachen\" des Europarats.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "c01711e4f94b12e0"
      }
     ]
    },
@@ -712,13 +816,17 @@
     "academic": {
      "text": "A first qualifying degree from a German or recognised foreign higher education institution in Finnougristik/Uralistik (Hungarology, Fennistics, Estonian Studies, Finno-Ugric Studies) as a major or minor subject.",
      "quote": "ein erster berufsqualifizierender Abschluss einer deutschen oder anerkannten ausländischen Hochschule in einem der folgenden Haupt- oder Nebenfächer:\nFinnougristik/Uralistik (Hungarologie, Fennistik, Estonistik, Finnougristik)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b1802d5ce3c7894a"
     },
     "prerequisites": [
      {
       "text": "Proof of foreign language skills: a language examination at least at level B2 (English C1) according to the CEFR, not in a language that is the subject of the degree program.",
       "quote": "Nachweis von Fremdsprach-Kenntnissen. Absolvierung einer Sprachprüfung auf mindestens dem Niveau von B2 (Englisch C1) gemäß des \"Gemeinsamen Europäischen Referenzrahmens für Sprachen\" des Europarats. Die Sprachprüfung darf nicht in einer der Sprachen absolviert werden, die Gegenstand des Studienfachs ist/sind.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "c0567fb5c551f00a"
      }
     ]
    },
@@ -734,13 +842,17 @@
     "academic": {
      "text": "A first professionally qualifying university degree from a German or internationally recognised foreign university in sign language interpreting.",
      "quote": "ein erster berufsqualifizierender Hochschulabschluss einer deutschen oder international anerkannten ausländischen Hochschule im Fach Gebärdensprachdolmetschen",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "4b33e2e77f381a1d"
     },
     "prerequisites": [
      {
       "text": "Sufficient English skills at least at level B2.",
       "quote": "Als zusätzliche Qualifikationen werden ausreichende Englischkenntnisse (Niveau: mindestens B2) erwartet.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "972ee5ba50c5afe6"
      }
     ]
    },
@@ -756,17 +868,21 @@
     "academic": {
      "text": "A first professionally qualifying university degree from a German or internationally recognised foreign university in sign languages, sign language interpreting, Deaf Studies, or at least 60 credit points in one of these subjects alongside a degree in another field.",
      "quote": "Voraussetzung für eine Zulassung zum Master-Studiengang Gebärdensprachen ist ein erster berufsqualifizierender Hochschulabschluss einer deutschen oder international anerkannten ausländischen Hochschule in den Fächern Gebärdensprachen, Gebärdensprachdolmetschen, Deaf Studies oder eine Anzahl von mindestens 60 LP in einem der genannten Fächer bei Vorliegen eines Hochschulabschlusses (oder äquivalenter Leistungen) anderer Fachrichtung.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "1edff600d4804c88"
     },
     "prerequisites": [
      {
       "text": "Proof of sign language courses of at least 100 hours (special admission route); waived for native speakers.",
       "quote": "Der Nachweis von Gebärdensprachkompetenz auf dem angegebenen Niveau entfällt bei Muttersprachlichkeit.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Proof of sign language courses of at least 100 hours (special admission route)",
+      "summary_sha": "2dda38b9e0d15313"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Photo: pixabayMaster of ArtsGermanistische Linguistik",
@@ -778,13 +894,17 @@
     "academic": {
      "text": "A university degree from a German or recognised foreign higher education institution in one of the listed subjects (German studies, German language and literature, German philology, German, German as a second/foreign language, Germanic linguistics, linguistics of German, German language, linguistics, general linguistics, historical linguistics, with reference to German).",
      "quote": "Ein wissenschaftlicher Hochschulabschluss einer deutschen oder anerkannten ausländischen Hochschule in den Fächern \"Germanistik\",\"Deutsche Sprache und Literatur\", \"Deutsche Philologie\", \"Deutsch\", \"Deutsch als Zweit-/ Fremdsprache\", \"Germanistische Linguistik\", \"Linguistik des Deutschen\", \"Deutsche Sprache\" oder \"Linguistik\", \"Allgemeine Sprachwissenschaft\", \"Historische Linguistik\"; (mit Bezug auf das Deutsche),",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "98460c88f1193385"
     },
     "prerequisites": [
      {
       "text": "If the bachelor's transcript shows fewer than 30 credit points in German language/Germanic linguistics, the missing credit points must be earned in the elective area of the master's program.",
       "quote": "Werden durch ein Transcript of Records des BA-Zeugnisses weniger als 30 LP im Bereich Deutsche Sprache/Germanistische Linguistik nachgewiesen, müssen die fehlenden Leistungspunkte im Wahlbereich des MA-Studiums erworben werden.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "125e8e4169281fdf"
      }
     ]
    },
@@ -800,23 +920,31 @@
     "academic": {
      "text": "A first professionally qualifying university degree from a German or recognised foreign university in one of the subjects of Classical Philology (Latin or Greek as major or minor), Byzantine Studies (major or minor) or Modern Greek Studies (major or minor).",
      "quote": "ein erster berufsqualifizierender Hochschulabschluss einer deutschen oder anerkannten ausländischen Universität in einem der Fächer der Klassischen Philologie (Latinistik oder Gräzistik im Haupt- oder Nebenfach), Byzantinistik (Haupt- oder Nebenfach) oder Neogräzistik (Haupt- oder Nebenfach)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d21c661607776044"
     },
     "prerequisites": [
      {
       "text": "For the Latinistik profile: knowledge of Latin at the level of the Latinum and at least 22 LP in courses with Latin as source and target language (12 LP of which can be made up during the program), plus knowledge of Ancient Greek at the level of the Graecum.",
       "quote": "Für das Profil Latinistik: Kenntnisse des Lateinischen im Umfang des Latinums und mindestens 22 LP in Lehrveranstaltungen mit lateinischer Ausgangs- und Zielsprache (von denen 12 LP im Rahmen des Studiengangs durch die Wahl entsprechender Veranstaltungen nachgeholt werden können) sowie Kenntnisse des Altgriechischen im Umfang des Graecums;",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "58fb9314de62e736"
      },
      {
       "text": "For the Gräzistik profile: knowledge of Ancient Greek at the level of the Graecum and at least 22 LP in courses with Ancient Greek as source and target language (12 LP of which can be made up during the program), plus knowledge of Latin at the level of the Latinum.",
       "quote": "Für das Profil Gräzistik: Kenntnisse des Altgriechischen im Umfang des Graecums und mindestens 22 LP in Lehrveranstaltungen mit altgriechischer Ausgangs- und Zielsprache (von denen 12 LP im Rahmen des Studiengangs durch die Wahl entsprechender Veranstaltungen nachgeholt werden können) sowie Kenntnisse des Lateinischen im Umfang des Latinums;",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "64fb14a7a93f6daf"
      },
      {
       "text": "For the Byzantine and Modern Greek Philology profile: knowledge of Modern Greek in speech and writing amounting to 30 LP.",
       "quote": "Für das Profil Byzantinische und Neugriechische Philologie: Kenntnisse des Neugriechischen in Wort und Schrift im Umfang von 30 LP.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f08846c4452ff268"
      }
     ]
    },
@@ -832,18 +960,24 @@
     "academic": {
      "text": "A first university degree qualifying for a profession.",
      "quote": "Ein erster berufsqualifizierender Hochschulabschluss",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d196a06b627fffd1"
     },
     "prerequisites": [
      {
       "text": "Proof of Portuguese or Spanish language skills at level B1 (CEFR).",
       "quote": "Nachweis von Sprachkenntnissen im Portugiesischen oder Spanischen auf dem Niveau B1 (GERS)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "78ee683b2183c4ae"
      },
      {
       "text": "Proof of English language skills at level A2 (CEFR).",
       "quote": "Nachweis von Sprachkenntnissen im Englischen auf dem Niveau A2 (GERS)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "65fc78f74f68b869"
      }
     ]
    },
@@ -859,13 +993,17 @@
     "academic": {
      "text": "A first professionally qualifying degree from a German or internationally recognised foreign higher education institution in a humanities, social science or behavioural science program.",
      "quote": "ein erster berufsqualifizierender Abschluss einer deutschen oder international anerkannten ausländischen Hochschule in einem geistes-, sozial- oder verhaltenswissenschaftlichen Studiengang.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ca392167208ce34c"
     },
     "prerequisites": [
      {
       "text": "Command of modern Greek in speech and writing at level B1 of the European Reference Framework.",
       "quote": "Beherrschung des Neugriechischen in Wort und Schrift im Umfang von Niveau B1, Europäisches Referenzsystem.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "ce9c589916d29470"
      }
     ]
    },
@@ -881,17 +1019,21 @@
     "academic": {
      "text": "A bachelor's degree in media and communication studies from the Faculty of Humanities at Universität Hamburg, or a comparable bachelor's degree from another higher education institution.",
      "quote": "ein Abschluss im Bachelor-Studiengang Medien- und Kommunikationswissenschaft der Fakultät für Geisteswissenschaften an der UHH oder ein vergleichbarer Abschluss in einem Bachelorstudiengang einer anderen Hochschule",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "e442d471d0ce19c7"
     },
     "prerequisites": [
      {
       "text": "Proof of foreign language skills: a language examination at least at level B2 (English C1) according to the CEFR, in a language that is not the subject of the degree program.",
       "quote": "Nachweis von Fremdsprach-Kenntnissen. Absolvierung einer Sprachprüfung auf mindestens dem Niveau von B2 (Englisch C1) gemäß des \"Gemeinsamen Europäischen Referenzrahmens für Sprachen\" des Europarats.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: in a language that is not the subject of the degree program",
+      "summary_sha": "80bdbd09c64c0588"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Photo: pixabayMaster of ArtsOsteuropastudien",
@@ -904,11 +1046,13 @@
      {
       "text": "Proof of foreign-language skills: a language examination at least at level B2 (English C1) under the CEFR, in a language that is not a subject of the program.",
       "quote": "Nachweis von Fremdsprach-Kenntnissen. Absolvierung einer Sprachprüfung auf mindestens dem Niveau von B2 (Englisch C1) gemäß des \"Gemeinsamen Europäischen Referenzrahmens für Sprachen\" des Europarats.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: in a language that is not a subject of the program",
+      "summary_sha": "fae662e9f21f2489"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Photo: pixabayMaster of ArtsRomanische Literaturen",
@@ -920,28 +1064,38 @@
     "academic": {
      "text": "A first professionally qualifying university degree from a German or recognised foreign university in Romance philology subjects (French, Italian, Spanish, Portuguese, Catalan, Romanian).",
      "quote": "ein erster berufsqualifizierender Hochschulabschluss einer deutschen oder anerkannten ausländischen Hochschule in den Fächern der romanischen Philologie (Französisch, Italienisch, Spanisch, Portugiesisch, Katalanisch, Rumänisch),",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "45210d711b7e05f4"
     },
     "prerequisites": [
      {
       "text": "Knowledge of Spanish or French at CEFR level C1 when choosing one of these languages as the first language (single-philology or comparative profile).",
       "quote": "Sprachkenntnisse in den Sprachen Spanisch oder Französisch auf dem Niveau C1 des Gemeinsamen Europäischen Referenzrahmens für Sprachen, bei der Wahl einer dieser Sprachen sowohl im einzelphilologischen als auch im komparatistischen Profil (erste Sprache) oder",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "41a1eaffa6d23140"
      },
      {
       "text": "Knowledge of Italian or Portuguese at CEFR level B2 when choosing one of these languages as the first language (single-philology or comparative profile).",
       "quote": "Sprachkenntnisse in den Sprachen Italienisch oder Portugiesisch auf dem Niveau B2 des Gemeinsamen Europäischen Referenzrahmens für Sprachen, bei der Wahl einer dieser Sprachen sowohl im einzelphilologischen als auch im komparatistischen Profil (erste Sprache),",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "c1c7c2741a2f25f9"
      },
      {
       "text": "Knowledge of Spanish or French at CEFR level B2 when choosing one of these languages as the second language in the comparative profile.",
       "quote": "Sprachkenntnisse in den Sprachen Spanisch oder Französisch auf dem Niveau B2 des Gemeinsamen Europäischen Referenzrahmens für Sprachen, bei der Wahl einer dieser Sprachen im komparatistischen Profil (zweite Sprache) bzw.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "730ecc2d3736a4e4"
      },
      {
       "text": "Knowledge of Italian or Portuguese at CEFR level B1 in the comparative profile (second language).",
       "quote": "Sprachkenntnisse in den Sprachen Italienisch oder Portugiesisch auf dem Niveau B1 des Gemeinsamen Europäischen Referenzrahmens für Sprachen im komparatistischen Profil (zweite Sprache).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "ac3d44c3f84f4ad8"
      }
     ]
    },
@@ -957,13 +1111,17 @@
     "academic": {
      "text": "A first professionally qualifying university degree from a German or recognised foreign university in Romance linguistics subjects (French, Italian, Spanish, Portuguese, Catalan, Romanian).",
      "quote": "ein erster berufsqualifizierender Hochschulabschluss einer deutschen oder anerkannten ausländischen Hochschule in den Fächern der romanistischen Linguistik (Französisch, Italienisch, Spanisch, Portugiesisch, Katalanisch, Rumänisch),",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "13ddbfe0eb07708c"
     },
     "prerequisites": [
      {
       "text": "At least 30 credit points (LP) in one of the Romance linguistics subjects, as an alternative to a full degree in those subjects.",
       "quote": "oder wahlweise eine Anzahl von mindestens 30 LP in einem der genannten Fächer, die durch ein Transcript of Records des Bachelor-Zeugnisses nachgewiesen werden können.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "323f340ad59b4083"
      }
     ]
    },
@@ -980,7 +1138,9 @@
      {
       "text": "Proof of foreign language skills: a language examination at least at level B2 (English C1) according to the CEFR, in a language that is not one of the languages studied in the program.",
       "quote": "Nachweis von Fremdsprachen-Kenntnissen. Absolvierung einer Sprachprüfung mindestens auf dem Niveau von B2 (Englisch C1) gemäß des \"Gemeinsamen EuropÃ¤ischen Referenzrahmens für Sprachen\" des Europarats. Die Sprachprüfung darf nicht in einer der Sprachen absolviert werden, die Gegenstand des Studienfachs sind.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "06585049e64c50c8"
      }
     ]
    },
@@ -998,7 +1158,7 @@
  ],
  "verification": {
   "programs": 55,
-  "机器核对": 31,
-  "待人工": 24
+  "机器核对": 22,
+  "待人工": 33
  }
 }

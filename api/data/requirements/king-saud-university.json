@@ -23,22 +23,28 @@
     "academic": {
      "text": "Bachelor's in a listed computing discipline from KSU or a Ministry-of-Education accredited university, with the stated GPA",
      "quote": "Applicant must hold a full-time bachelor’s degree in computer science from King Saud University or any university accredited by Ministry of Education with a minimum of a 3.75/5 GPA or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: a listed computing discipline (quote says computer science)",
+     "summary_sha": "a1d9819d5d09d48b"
     },
     "toefl": {
      "overall": 53,
      "quote": "A score of at least 53 in the TOEFL-IBT test or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "22d3c9bdfe44185c"
     },
     "prerequisites": [
      {
       "text": "Admission test: General Aptitude Test / GRE quantitative",
       "quote": "A score of at least 70 in the General Aptitude Test (Quantitative Section) or at least 144 in the GRE test (Quantitative Section).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "347d8e042e5e65b5"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MSc in Artificial Intelligence (College of Computer and Information Sciences)",
@@ -48,22 +54,28 @@
     "academic": {
      "text": "Bachelor's in a listed computing discipline from KSU or a Ministry-of-Education accredited university, with the stated GPA",
      "quote": "Applicant must hold a full-time bachelor’s degree in computer science from King Saud University or any university accredited by Ministry of Education with a minimum of a 3.75/5 GPA or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: a listed computing discipline (quote says computer science only)",
+     "summary_sha": "a1d9819d5d09d48b"
     },
     "toefl": {
      "overall": 53,
      "quote": "A score of at least 53 in the TOEFL-IBT test or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "22d3c9bdfe44185c"
     },
     "prerequisites": [
      {
       "text": "Admission test: General Aptitude Test / GRE quantitative",
       "quote": "A score of at least 70 in the General Aptitude Test (Quantitative Section) or at least 144 in the GRE test (Quantitative Section).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "347d8e042e5e65b5"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MSc in Computer Engineering (College of Computer and Information Sciences)",
@@ -73,22 +85,28 @@
     "academic": {
      "text": "Bachelor's in a listed computing/engineering discipline; GPA at least 3.25/5 (computer engineering) or 3.75/5 (other disciplines)",
      "quote": "Applicant’s GPA must be at least “Average Good” (3.25/5) GPA or equivalent in computer engineering or at least “Very Good” (3.75/5) GPA or equivalent in other disciplines.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: Bachelor's in a listed computing/engineering discipline",
+     "summary_sha": "ffeb4f1df7fec91a"
     },
     "toefl": {
      "overall": 45,
      "quote": "A score of at least 45 in the TOEFL-IBT test or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ae84715edf05d63f"
     },
     "prerequisites": [
      {
       "text": "Admission test: General Aptitude Test / GRE quantitative",
       "quote": "A score of at least 80 in the General Aptitude Test (Quantitative Section) or at least 148 in the GRE test (Quantitative section).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f5eab21d405e3259"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MSc in Information Systems (College of Computer and Information Sciences)",
@@ -98,27 +116,35 @@
     "academic": {
      "text": "Bachelor's in a listed computing discipline from KSU or a Ministry-of-Education accredited university, with the stated GPA",
      "quote": "Applicant must hold a full-time bachelor’s degree in any of the following specialties: information systems, computer sciences, software engineering, computer engineering, or IT from KSU or any university accredited by Ministry of Education with a minimum of an “Above Average” (3.25/5) GPA or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "42b75ef164a31900"
     },
     "toefl": {
      "overall": 45,
      "quote": "A score of at least 45 in the TOEFL-IBT test or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ae84715edf05d63f"
     },
     "prerequisites": [
      {
       "text": "Admission test: General Aptitude Test / GRE quantitative",
       "quote": "A score of at least 70 in the General Aptitude Test (Quantitative Section) or at least 144 in the GRE test (Quantitative section).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Admission test / GRE quantitative as alternative; quote gives GAT quantitative or GRE quantitative score, not an admission test requirement",
+      "summary_sha": "e54afff4c7fdda90"
      },
      {
       "text": "Non-Saudi degree must be equalized by the Ministry of Education",
       "quote": "Applicant must hold a bachelor’s degree from a Saudi university; otherwise, the degree must be equalized from the Ministry of Education.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "6722805bdc701046"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MSc in Software Engineering (College of Computer and Information Sciences)",
@@ -128,18 +154,24 @@
     "academic": {
      "text": "Bachelor's in a listed computing discipline from KSU or a Ministry-of-Education accredited university, with the stated GPA",
      "quote": "Applicant must hold a full-time bachelor’s degree in any of the following specialties: software engineering, computer sciences, IT, computer engineering, or information systems from King Saud University or any university accredited by Ministry of Education with a minimum of a “Very Good” (3.75/5) GPA or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "91189d853b1831de"
     },
     "toefl": {
      "overall": 45,
      "quote": "A score of at least 45 in the TOEFL-IBT test or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ae84715edf05d63f"
     },
     "prerequisites": [
      {
       "text": "Admission test: General Aptitude Test / GRE quantitative",
       "quote": "A score of at least 70 in the General Aptitude Test (Quantitative Section) or at least 144 in the GRE test (Quantitative section).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "e54afff4c7fdda90"
      }
     ]
    },
@@ -153,22 +185,28 @@
     "academic": {
      "text": "Bachelor's in a listed computing discipline from KSU or a Ministry-of-Education accredited university, with the stated GPA",
      "quote": "Applicant must hold a full-time bachelor’s degree in information technology, computer science, information systems, computer engineering, or other computer disciplines from King Saud University or any university accredited by Ministry of Education with a minimum of a “Very Good” (3.75/5) GPA or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "3fa95c5e6ae49e47"
     },
     "toefl": {
      "overall": 53,
      "quote": "A score of at least 53 in the TOEFL-IBT test or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "22d3c9bdfe44185c"
     },
     "prerequisites": [
      {
       "text": "Admission test: General Aptitude Test / GRE quantitative",
       "quote": "A score of at least 70 in the General Aptitude Test (Quantitative Section) or at least 144 in the GRE test (Quantitative section).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: calls it an admission test / GRE quantitative as alternative; quote gives score thresholds for GAT quantitative or GRE quantitative",
+      "summary_sha": "e54afff4c7fdda90"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MSc in Cyber Security (College of Computer and Information Sciences)",
@@ -178,27 +216,35 @@
     "academic": {
      "text": "Bachelor's in a listed computing discipline from KSU or a Ministry-of-Education accredited university, with the stated GPA",
      "quote": "Applicant should hold a bachelor’s degree in specializations (Software Engineering, Information Systems, Information Technology, Computer Science, or Computer Engineering) from King Saud University or any other university recommended by the Ministry of Education with a minimum of a “Very Good” (3.75/5) GPA or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c0fb409a79ca32ac"
     },
     "prerequisites": [
      {
       "text": "Admission test: General Aptitude Test / GRE quantitative",
       "quote": "A score of at least 80 in the General Aptitude Test (Quantitative Section) or at least 144 in the GRE-Quantitative test.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: General Aptitude Test / GRE quantitative as admission test; omits score thresholds",
+      "summary_sha": "3fb0ade0a5682bcf"
      },
      {
       "text": "TOEFL paper-based at least 450 or equivalent",
       "quote": "A score of at least (450) in TOEFL -PBT or equivalent.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "d2cf0958f02dc031"
      },
      {
       "text": "Admission written test",
       "quote": "Applicant should pass the admission written test held by the Program Council.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "25c513dc0022bff7"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MSc in Public Administration (College of Business Administration)",
@@ -208,13 +254,17 @@
     "academic": {
      "text": "Bachelor's in public administration, administrative sciences or related, GPA at least 3.25/5",
      "quote": "Applicant must hold a full-time bachelor’s degree in public administration, administrative sciences, or other relevant disciplines, from KSU or any university accredited by Ministry of Education with at least an “Above Average” (3.25/5) GPA or equivalent; for relevant disciplines, the applicant must refer to the concerned department before starting the application process on the electronic portal.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "714b570b18f3578b"
     },
     "prerequisites": [
      {
       "text": "Departmental written examination",
       "quote": "Passing a written examination held by the department.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "d9a5956a14817a26"
      }
     ]
    },
@@ -228,12 +278,16 @@
     "academic": {
      "text": "Full-time bachelor's from a business, engineering, science or computer college, GPA at least 2.75/5 with specialty courses at least 3.75/5",
      "quote": "Applicant must hold a full-time (not distance learning) bachelor’s degree from Business Administration College, Engineering College, Science College, or Computer College, from KSU or any university accredited by Ministry of Education with a minimum of a “Good” (2.75/5) GPA or equivalent, provided that applicant’s GPA of the specialty courses at the bachelor’s stage is at least “Very Good” (3.75/5) GPA or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "4208cda60458b5b1"
     },
     "ielts": {
      "overall": 5.5,
      "quote": "A score of at least 5.5 in the Academic IELTS test or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "09f3ec1eebd243c0"
     }
    },
    "status": "机器核对"
@@ -246,22 +300,28 @@
     "academic": {
      "text": "Bachelor's in administrative or health sciences, GPA at least 2.75/5 with specialty courses at least 3.75/5",
      "quote": "Applicant must hold a bachelor’s degree with a minimum of a “Good” (2.75/5) GPA or equivalent, provided that applicant’s GPA of the specialty courses at the bachelor’s stage is at least “Very Good” (3.75/5) GPA or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: Bachelor's in administrative or health sciences (field of degree not stated)",
+     "summary_sha": "5736792339d00d59"
     },
     "toefl": {
      "overall": 51,
      "quote": "A score of at least 51 in the TOEFL-IBT test or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0aa978c2aba58bf5"
     },
     "prerequisites": [
      {
       "text": "Departmental written examination",
       "quote": "Passing written examinations held by the department.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "6efe8a5bb468c485"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MSc in Accounting (College of Business Administration)",
@@ -271,12 +331,16 @@
     "academic": {
      "text": "Bachelor's in accounting with GPA at least 3.75/5",
      "quote": "Applicant must hold a bachelor’s degree in accounting from King Saud University or any university accredited by Ministry of Education with a minimum of a “Very Good” (3.75/5) GPA or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "e4b5288f6143509f"
     },
     "ielts": {
      "overall": 5.5,
      "quote": "A score of at least 5.5 in the IELTS test or equivalent in the TOEFL-IBT test; STEP test shall not be accepted.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "3c973c2c2f957cc5"
     }
    },
    "status": "机器核对"
@@ -289,18 +353,24 @@
     "academic": {
      "text": "Bachelor's in economics or related, GPA at least 2.75/5 with specialty courses at least 3.75/5",
      "quote": "Applicant must hold a full-time bachelor’s degree in Economics, other relevant disciplines from  KSU or any university accredited by Ministry of Education with a minimum of a \"Good\" (2.75/5) or equivalent , provided that applicant’s GPA of the specialty courses at the bachelor’s stage is at least “Very Good” (3.75/5) GPA or equivalent, for relevant disciplines, the applicant must refer to the concerned department before starting the application process on the electronic portal.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "cce7bf5093afa81a"
     },
     "prerequisites": [
      {
       "text": "Departmental written examination",
       "quote": "Passing written examination held by the department.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "dfe37da5e98d8634"
      },
      {
       "text": "Arabic proficiency",
       "quote": "A mastery of spoken and written Arabic.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "34c88e8424165dfc"
      }
     ]
    },
@@ -314,18 +384,24 @@
     "academic": {
      "text": "Bachelor's in business administration (other disciplines possible), GPA at least 2.75/5 with specialty courses at least 3.75/5",
      "quote": "Applicant must hold a full-time bachelor’s degree in business administration from KSU or any university accredited by Ministry of Education with a minimum of a “Good” (2.75/5) GPA or equivalent, provided that applicant’s GPA of the specialty courses at the bachelor’s degree is at least “Very Good” (3.75/5) GPA or equivalent; applicants from other disciplines may be accepted,  for relevant disciplines, the applicant must refer to the concerned department before starting the application process on the electronic portal.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b8ada6ec1647aea8"
     },
     "toefl": {
      "overall": 61,
      "quote": "A score of at least 61 in the TOEFL-IBT test or equivalent; STEP test will not be accepted.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "da3366c8aeec471a"
     },
     "prerequisites": [
      {
       "text": "Admission test: GMAT",
       "quote": "Applicant must provide the GMAT test result report with less than five-year validity.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "1f241da72e0075b7"
      }
     ]
    },
@@ -339,15 +415,19 @@
     "academic": {
      "text": "Bachelor's with GPA at least 3.75/5 (2.75/5 accepted with 2 years' experience)",
      "quote": "Applicant must hold a bachelor’s degree from KSU or any university accredited by Ministry of Education with a minimum of a “Very Good” (3.75/5) GPA or equivalent; the department may accept a minimum of a “Good” (2.75/5) GPA or equivalent, provided that applicant has a minimum of a 2-year experience and applicant’s GPA of the specialty courses is at least “Very Good” (3.75/5) or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits that specialty-course GPA must also be 3.75/5",
+     "summary_sha": "a36c0175420aba8a"
     },
     "ielts": {
      "overall": 5.0,
      "quote": "A score of at least 5 in the IELTS test or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fc4122db88cbbd6e"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MSc in Decision Sciences (College of Business Administration)",
@@ -357,22 +437,28 @@
     "academic": {
      "text": "Bachelor's in business administration (other scientific or medical disciplines possible), GPA at least 3.25/5",
      "quote": "Applicant must hold a full-time bachelor’s degree in business administration from KSU or any university accredited by Ministry of Education with a minimum of an “above average” (3.25/5) GPA or equivalent; other scientific or medical disciplines may be accepted, for relevant disciplines, the applicant must refer to the concerned department before starting the application process on the electronic portal.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "78c6709bd619c71a"
     },
     "ielts": {
      "overall": 4.5,
      "quote": "A score of at least 4.5 in the Academic IELTS test or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "68e311786acde0a7"
     },
     "prerequisites": [
      {
       "text": "Departmental written examination",
       "quote": "Passing a written examination, when necessary, held by the program’s committee at the department.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: states the exam as a prerequisite, quote says 'when necessary'",
+      "summary_sha": "e8b720c301a53ff0"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MSc in E-Business (College of Business Administration)",
@@ -382,18 +468,24 @@
     "academic": {
      "text": "Bachelor's in business administration, IT, engineering or engineering administration",
      "quote": "Applicant must hold a bachelor’s degree from KSU or any university accredited by Ministry of Education in business administration, information technology, engineering, or engineering administration. Other disciplines relevant to information technology and business administration may be accepted as well; for relevant disciplines, the applicant must refer to the concerned department before starting the application process on the electronic portal.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "5077d535c0601070"
     },
     "toefl": {
      "overall": 51,
      "quote": "A score of at least 51 in the TOEFL-IBT test or equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0aa978c2aba58bf5"
     },
     "prerequisites": [
      {
       "text": "Minimum GPA above average (3.25/5)",
       "quote": "A minimum of an “Above Average” (3.25/5) GPA or equivalent",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "3bd5aebf3c4b6366"
      }
     ]
    },
@@ -407,17 +499,23 @@
     "academic": {
      "text": "Bachelor's in civil engineering with a very good grade (GPA 3.75/5 or 75%)",
      "quote": "Bachelor degree in Civil Engineering from a recognized institution with very good overall grade (GPA of 3.75/5 or 75% of marks or its equivalent). Official transcripts and degree certificates are required for the final admission.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "54e49ddb2b87c805"
     },
     "ielts": {
      "overall": 5.5,
      "quote": "Completion of English proficiency; TOEFL with a minimum score of 53 (Internet Base Test) or IELTS minimum score of 5.5. The score must be sent directly to the Deanship of Graduate Studies (KSU code for TOEFL is 7498 and for IELTS code is 147080).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a8f32bb801740fc7"
     },
     "toefl": {
      "overall": 53,
      "quote": "Completion of English proficiency; TOEFL with a minimum score of 53 (Internet Base Test) or IELTS minimum score of 5.5. The score must be sent directly to the Deanship of Graduate Studies (KSU code for TOEFL is 7498 and for IELTS code is 147080).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "3418fe55892d0ef8"
     }
    },
    "status": "机器核对"
@@ -425,7 +523,7 @@
  ],
  "verification": {
   "programs": 17,
-  "机器核对": 17,
-  "待人工": 0
+  "机器核对": 8,
+  "待人工": 9
  }
 }

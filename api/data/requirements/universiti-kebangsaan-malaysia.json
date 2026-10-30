@@ -38,27 +38,35 @@
     "ielts": {
      "overall": 5.0,
      "quote": "IELTS: achieving a minimum score of Band 5.0",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "da98ccb62077c107"
     },
     "toefl": {
      "overall": 60.0,
      "quote": "TOEFL: achieving a minimum score of 60 (iBT)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "1a7c9b8e2cde7175"
     },
     "academic": {
      "text": "A bachelor's degree with a minimum CGPA of 2.50 or its equivalent from any higher education institution recognized by the Senate.",
      "quote": "Bachelor’s degree with a minimum CGPA of 2.50 or its equivalent from any higher education institution recognized by the Senate;",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "82cb14f56c2b10a6"
     },
     "prerequisites": [
      {
       "text": "Five years of working experience in the related field, for applicants whose bachelor's degree does not meet the minimum CGPA of 2.50.",
       "quote": "may be accepted subject to a minimum of five (5) years of working experience in the related field",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: for applicants whose bachelor's degree does not meet the minimum CGPA of 2.50",
+      "summary_sha": "69048782a20fa3f0"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master",
@@ -106,12 +114,16 @@
     "ielts": {
      "overall": 6.0,
      "quote": "Internet Based TOEFL (minimum score of 95) or IELTS (minimum band 6.0)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "225b21437ebd995c"
     },
     "toefl": {
      "overall": 95.0,
      "quote": "Internet Based TOEFL (minimum score of 95) or IELTS (minimum band 6.0)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "05ed0be9314a12a1"
     }
    },
    "status": "机器核对"
@@ -216,27 +228,35 @@
     "academic": {
      "text": "Bachelor's Degree with Honours and a CGPA of 2.75 and above from UKM or an equivalent institution recognised by the Senate.",
      "quote": "Bachelor’s Degree with Honors and have a CGPA of 2.75 and above from Universiti Kebangsaan Malaysia or equivalent from any institution of higher learning recognized by the Senate;",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "2d51547e4b1096c8"
     },
     "prerequisites": [
      {
       "text": "At least 1 year of working experience in a related field (for CGPA 2.50-2.74 applicants).",
       "quote": "have at least 1-year working experience in a related field",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: for CGPA 2.50-2.74 applicants",
+      "summary_sha": "c198cbedec659e99"
      },
      {
       "text": "At least 5 years of working experience in a related field (for CGPA 2.00-2.49 applicants).",
       "quote": "have at least 5 years working experience in a related field",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: for CGPA 2.00-2.49 applicants",
+      "summary_sha": "a9b0a0dd590646aa"
      },
      {
       "text": "At least 5 years of working experience in the science and technology field after obtaining the degree (for CGPA 2.00-2.49 engineering/science/technology applicants).",
       "quote": "accompanying with at least 5 years of working experience in the science and technology field after obtaining the degree",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: for CGPA 2.00-2.49 engineering/science/technology applicants",
+      "summary_sha": "da1853a95c078d51"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master",
@@ -284,7 +304,9 @@
     "academic": {
      "text": "A Bachelor degree with honours in the relevant field from Universiti Kebangsaan Malaysia or any institution of higher learning recognised by the Government of Malaysia.",
      "quote": "A Bachelor degree with honours in the relevant field from Universiti Kebangsaan Malaysia or any institutions of higher learning recognized by the Government of Malaysia ;or",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "8be2dfb664502884"
     }
    },
    "status": "机器核对"
@@ -308,23 +330,31 @@
     "ielts": {
      "overall": 5.5,
      "quote": "> 5.5",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "14e1c9153962c09d"
     },
     "toefl": {
      "overall": 46.0,
      "quote": "> 46",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "e6d8dcca382144d8"
     },
     "academic": {
      "text": "A Bachelor's degree in Biological, Sciences, Physical Sciences, Chemical Sciences, Computational Sciences or Engineering, or an equivalent qualification, or relevant research experience.",
      "quote": "Bachelor’s degree in Biological, Sciences, Physical Sciences, Chemical Sciences, Computational Sciences or Engineering or other qualifications that are equivalent to the Bachelor’s degree or relevant research experiences.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d8c0a0625c6c5f97"
     },
     "prerequisites": [
      {
       "text": "International students writing their thesis or dissertation in Arabic or English must demonstrate English competency.",
       "quote": "International students who write their theses or dissertations in Arabic or English must demonstrate English competency as a condition for admission to the faculty or as a requirement for graduation.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "b51e9696c7eb0708"
      }
     ]
    },
@@ -342,7 +372,7 @@
  ],
  "verification": {
   "programs": 25,
-  "机器核对": 5,
-  "待人工": 20
+  "机器核对": 3,
+  "待人工": 22
  }
 }

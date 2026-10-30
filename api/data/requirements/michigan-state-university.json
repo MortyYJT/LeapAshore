@@ -52,7 +52,9 @@
     "academic": {
      "text": "Cumulative GPA of at least 3.2 on a 4.0 scale (general guideline)",
      "quote": "In general, applicants should have a cumulative grade point average of at least 3.2 on a 4.0 scale.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d2bda74b24abc124"
     },
     "toefl": {
      "overall": 80,
@@ -61,7 +63,9 @@
      "quote": "Regular Admission: Test taken prior to January 21, 2026: No sub score below 19 for reading, listening, and speaking No writing sub score below 22 A minimum average score of 80** Test taken after January 21, 2026: Score of 4.5 with a minimum score of 4 in reading and speaking, and a minimum score of 4.5 in listening and writing.",
      "source_sha256": "d23486b417dddcd053697719bd9d484d203cae4f9faba1abf69145dcf1b8f7a8",
      "source_url": "https://grad.msu.edu/admissions/apply/international-applicants/english-language-competency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: no section below 19 (writing must be 22)",
+     "summary_sha": "3b97b2afd4d05094"
     },
     "ielts": {
      "overall": 6.5,
@@ -69,10 +73,12 @@
      "quote": "International English Language Testing System (IELTS) Regular Admission: Minimum average score of 6.5. No subscore below 6.0.",
      "source_sha256": "d23486b417dddcd053697719bd9d484d203cae4f9faba1abf69145dcf1b8f7a8",
      "source_url": "https://grad.msu.edu/admissions/apply/international-applicants/english-language-competency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "5d4306ad59964fd7"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Artificial Intelligence (M.S.)",
@@ -82,13 +88,17 @@
     "academic": {
      "text": "Cumulative GPA of at least 3.2 on a 4.0 scale (general guideline); degree in STEM or related field",
      "quote": "In general, applicants should have a cumulative grade point average of at least 3.2 on a 4.0 scale.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: degree in STEM or related field",
+     "summary_sha": "2a2a55fb3c6c9132"
     },
     "prerequisites": [
      {
       "text": "Degree in STEM or related field with programming, algorithms, linear algebra, probability and statistics, and multivariable calculus",
       "quote": "Students are expected to have a degree in STEM or related field with experience in Computer programming (e.g., CSE 231 and CSE 232) and algorithms (e.g., CSE 331), Linear Algebra (e.g.,MTH 314), Probability and Statistics (STT 441) and Multivariable Calculus (e.g., MTH 234).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "bafd2f762dd41f50"
      }
     ],
     "toefl": {
@@ -98,7 +108,9 @@
      "quote": "Regular Admission: Test taken prior to January 21, 2026: No sub score below 19 for reading, listening, and speaking No writing sub score below 22 A minimum average score of 80** Test taken after January 21, 2026: Score of 4.5 with a minimum score of 4 in reading and speaking, and a minimum score of 4.5 in listening and writing.",
      "source_sha256": "d23486b417dddcd053697719bd9d484d203cae4f9faba1abf69145dcf1b8f7a8",
      "source_url": "https://grad.msu.edu/admissions/apply/international-applicants/english-language-competency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: no section below 19 (writing minimum is 22)",
+     "summary_sha": "3b97b2afd4d05094"
     },
     "ielts": {
      "overall": 6.5,
@@ -106,10 +118,12 @@
      "quote": "International English Language Testing System (IELTS) Regular Admission: Minimum average score of 6.5. No subscore below 6.0.",
      "source_sha256": "d23486b417dddcd053697719bd9d484d203cae4f9faba1abf69145dcf1b8f7a8",
      "source_url": "https://grad.msu.edu/admissions/apply/international-applicants/english-language-competency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "5d4306ad59964fd7"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Electrical and Computer Engineering (M.S.)",
@@ -119,21 +133,27 @@
     "academic": {
      "text": "Four-year bachelor's degree in Electrical Engineering or a closely related field",
      "quote": "Students should have a four-year bachelor's degree in Electrical Engineering or a closely related field.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: states as requirement; quote only says students should have",
+     "summary_sha": "c3c78f2cb2e0efae"
     },
     "toefl": {
      "overall": 80,
      "min_band": 19,
      "quote": "TOEFL scores of a total of 80 (19 in each category except Writing which is 22), and IELTS is 6.5 or higher.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: no section below 19 (Writing is 22)",
+     "summary_sha": "d2e73df112565147"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "TOEFL scores of a total of 80 (19 in each category except Writing which is 22), and IELTS is 6.5 or higher.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "93d4089d5f20c73d"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Mechanical Engineering (M.S.)",
@@ -143,7 +163,9 @@
     "academic": {
      "text": "B.S. in Mechanical Engineering, Engineering Mechanics, or a closely related field",
      "quote": "Applicants to M.S. programs should have earned a B.S. in Mechanical Engineering, Engineering Mechanics, or a closely related field prior to the term for which they are applying.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "655a8d7543fd4c76"
     }
    },
    "status": "机器核对"
@@ -156,7 +178,9 @@
     "academic": {
      "text": "B.S. in Mechanical Engineering, Engineering Mechanics, or a closely related field",
      "quote": "Applicants to M.S. programs should have earned a B.S. in Mechanical Engineering, Engineering Mechanics, or a closely related field prior to the term for which they are applying.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "655a8d7543fd4c76"
     }
    },
    "status": "机器核对"
@@ -169,21 +193,27 @@
     "academic": {
      "text": "GPA of at least 3.0 (out of 4.0) or equivalent from a B.S. program in civil and/or environmental engineering or a related discipline",
      "quote": "A grade point average (GPA) of at least 3.0 (out of 4.0) or equivalent from a B.S. program in civil and/or environmental engineering or a related discipline.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "6856535e101a740a"
     },
     "toefl": {
      "overall": 80,
      "min_band": 19,
      "quote": "For international applicants, a minimum score of 80 on the TOEFL (19 in each category, except writing, which is 22) or 6.5 on the IELTS 6.5.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: no section below 19 (writing is 22)",
+     "summary_sha": "2f5177a5d40f3a8f"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "For international applicants, a minimum score of 80 on the TOEFL (19 in each category, except writing, which is 22) or 6.5 on the IELTS 6.5.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "83254cfa094fd48e"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Environmental Engineering (M.S.)",
@@ -193,21 +223,27 @@
     "academic": {
      "text": "GPA of at least 3.0 (out of 4.0) or equivalent from a B.S. program in civil and/or environmental engineering or a related discipline",
      "quote": "A grade point average (GPA) of at least 3.0 (out of 4.0) or equivalent from a B.S. program in civil and/or environmental engineering or a related discipline.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "6856535e101a740a"
     },
     "toefl": {
      "overall": 80,
      "min_band": 19,
      "quote": "For international applicants, a minimum score of 80 on the TOEFL (19 in each category, except writing, which is 22) or 6.5 on the IELTS 6.5.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: no section below 19 (writing is 22)",
+     "summary_sha": "2f5177a5d40f3a8f"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "For international applicants, a minimum score of 80 on the TOEFL (19 in each category, except writing, which is 22) or 6.5 on the IELTS 6.5.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "83254cfa094fd48e"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Biomedical Engineering (M.S.)",
@@ -225,7 +261,9 @@
      {
       "text": "Students without a chemical engineering background take the 'Foundations in Chemical Engineering' collateral classes",
       "quote": "For students who do not have a background in chemical engineering, collateral classes of “Foundations in Chemical Engineering”, a program of accelerated online courses, are provided as prerequisites to the graduate study in Chemical Engineering.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "9f1c5ab98537a809"
      }
     ]
    },
@@ -249,7 +287,9 @@
       "quote": "Some Calculus and programming background (no specific language) is required.",
       "source_sha256": "d3ec8d9727fbb1c424be3bc92ba2251e8741a8b4d2fcb689e5432135c120fd5a",
       "source_url": "https://msds.msu.edu/prospective-students/",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "909d08316b93ca45"
      }
     ],
     "toefl": {
@@ -259,7 +299,9 @@
      "quote": "Regular Admission: Test taken prior to January 21, 2026: No sub score below 19 for reading, listening, and speaking No writing sub score below 22 A minimum average score of 80** Test taken after January 21, 2026: Score of 4.5 with a minimum score of 4 in reading and speaking, and a minimum score of 4.5 in listening and writing.",
      "source_sha256": "d23486b417dddcd053697719bd9d484d203cae4f9faba1abf69145dcf1b8f7a8",
      "source_url": "https://grad.msu.edu/admissions/apply/international-applicants/english-language-competency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: no section below 19 (writing minimum is 22)",
+     "summary_sha": "3b97b2afd4d05094"
     },
     "ielts": {
      "overall": 6.5,
@@ -267,10 +309,12 @@
      "quote": "International English Language Testing System (IELTS) Regular Admission: Minimum average score of 6.5. No subscore below 6.0.",
      "source_sha256": "d23486b417dddcd053697719bd9d484d203cae4f9faba1abf69145dcf1b8f7a8",
      "source_url": "https://grad.msu.edu/admissions/apply/international-applicants/english-language-competency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "5d4306ad59964fd7"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Communication (M.A.)",
@@ -281,12 +325,16 @@
      "overall": 93,
      "min_band": 21,
      "quote": "For TOEFL, your scores should be an average of 93 minimum with no sub-scores below 21. For IELTS, you should have an average score of 7 minimum.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "bd00e8fd8b6d9ba1"
     },
     "ielts": {
      "overall": 7,
      "quote": "For TOEFL, your scores should be an average of 93 minimum with no sub-scores below 21. For IELTS, you should have an average score of 7 minimum.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "39e8dd9aed482424"
     }
    },
    "status": "机器核对"
@@ -299,22 +347,26 @@
     "academic": {
      "text": "Baccalaureate degree in English or a related field; 20 semester credits in English courses with a minimum GPA of 3.50",
      "quote": "Completed a minimum of 20 semester credits in English courses, exclusive of freshman composition, with a minimum GPA of 3.50",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: Baccalaureate degree in English or a related field",
+     "summary_sha": "5aad08d9e7dd5328"
     },
     "prerequisites": [
      {
       "text": "Two years of college-level study of a foreign language",
       "quote": "Completed two years of study in a foreign language at the college level",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "23bc673ad82b0ea4"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   }
  ],
  "verification": {
   "programs": 13,
-  "机器核对": 11,
-  "待人工": 2
+  "机器核对": 4,
+  "待人工": 9
  }
 }

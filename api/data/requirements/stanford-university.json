@@ -35,32 +35,40 @@
      "quote": "Applicants from institutions outside the U.S. must hold the equivalent of a U.S. bachelor’s degree from a college or university of recognized standing.",
      "source_sha256": "52f3e3fb5cc4321b83f0504a91e9be91855a2d3d0d2a4f53da3436ffab918b62",
      "source_url": "https://ee.stanford.edu/admissions/eligibility",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: no minimum GPA; strong technical background welcome",
+     "summary_sha": "8a07a5522b027e5b"
     },
     "toefl": {
      "overall": 90,
      "quote": "Minimum Score for Admissions Consideration* 90 7",
      "source_sha256": "7da00c081fa61a4ded0c1065abb60154b7a93f04711b1fcda1409eaee017eceb",
      "source_url": "https://ee.stanford.edu/admissions/required-materials",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a009d38e667bc751"
     },
     "ielts": {
      "overall": 7,
      "quote": "Minimum Score for Admissions Consideration* 90 7",
      "source_sha256": "7da00c081fa61a4ded0c1065abb60154b7a93f04711b1fcda1409eaee017eceb",
      "source_url": "https://ee.stanford.edu/admissions/required-materials",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "f5778b08e314c8ea"
     },
     "deadlines": [
      {
       "label": "Autumn 2027-2028",
       "date": "2026-12-01",
       "quote": "December 01, 2026, 11:59pm PST Deadline for Autumn 2027-2028",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "5124b067ad6fcbae"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MS in Management Science and Engineering",
@@ -70,27 +78,35 @@
     "academic": {
      "text": "An engineering degree, or a related quantitative degree (major or minor) that includes differential calculus of several variables and linear algebra; non-U.S. applicants need the equivalent of a U.S. bachelor's degree",
      "quote": "Applicant must hold an engineering degree, or a related quantitative degree (major or minor) that includes differential calculus of several variables and linear algebra.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: non-U.S. applicants need the equivalent of a U.S. bachelor's degree",
+     "summary_sha": "cbc0bcaed8c1a3cb"
     },
     "toefl": {
      "overall": 100,
      "quote": "The minimum expected score is 100 for TOEFL or 7.5 for IELTS.",
      "source_sha256": "4e0e648fdfde25543171ade6fa12d44b05e6b83f96e48f886eaa5bdce8d75946",
      "source_url": "https://msande.stanford.edu/academics-admissions/graduate/admission",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "e21ac4c2b8324a52"
     },
     "ielts": {
      "overall": 7.5,
      "quote": "The minimum expected score is 100 for TOEFL or 7.5 for IELTS.",
      "source_sha256": "4e0e648fdfde25543171ade6fa12d44b05e6b83f96e48f886eaa5bdce8d75946",
      "source_url": "https://msande.stanford.edu/academics-admissions/graduate/admission",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "7f8633bcf84d1a6a"
     },
     "prerequisites": [
      {
       "text": "MATH 51 (or equivalent multivariable differential calculus and linear algebra) and CS 106A (or an equivalent general programming course) before beginning graduate study",
       "quote": "Applicants are expected to have completed both MATH 51 Linear Algebra, Multivariable Calculus, and Modern Applications, or an equivalent multivariable differential calculus and linear algebra course(s), and CS 106A Programming Methodology, or an equivalent general programming course, before beginning graduate study.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "d28424a2212d28db"
      }
     ],
     "deadlines": [
@@ -98,11 +114,13 @@
       "label": "Autumn 2027-2028",
       "date": "2026-12-01",
       "quote": "December 1, 2026 (11:59pm PST) Application deadline for Autumn 2027-2028",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "efad0d8b8e534df6"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MS in Statistics",
@@ -114,7 +132,9 @@
      "quote": "Applicants must hold, or expect to hold before enrollment at Stanford, a U.S. bachelor’s degree or its international equivalent from a college or university of recognized standing prior to matriculation (autumn quarter only).",
      "source_sha256": "f2ee325ac96d3d2a969d665e3904941c3144539636ff057209376be916478191",
      "source_url": "https://statistics.stanford.edu/msadmissions/external-appl",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "9047ff82036202a6"
     },
     "toefl": {
      "overall": 90,
@@ -122,35 +142,47 @@
      "scale_note": "overall is on the 0-120 scale (tests taken before 2026-01-21); the quote also states the 1-6-scale minimum (4.5) for tests taken on or after 2026-01-21",
      "source_sha256": "6b25e5fbc3161b23a1a5e5f88dd393bb2f1a478e39a42270f04346e62a74b488",
      "source_url": "https://gradadmissions.stanford.edu/apply/test-scores",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: iBT / overall 90 (quote gives 90 and 4.5 without naming test version or overall)",
+     "summary_sha": "dc1a9a0c480c1d38"
     },
     "ielts": {
      "overall": 7,
      "quote": "IELTS 7",
      "source_sha256": "6b25e5fbc3161b23a1a5e5f88dd393bb2f1a478e39a42270f04346e62a74b488",
      "source_url": "https://gradadmissions.stanford.edu/apply/test-scores",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "dd43fd6fc13736c9"
     },
     "prerequisites": [
      {
       "text": "Multivariable calculus and linear algebra",
       "quote": "Multivariable calculus and linear algebra - Geometry and algebra of vectors",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "907bde7f544dcb0a"
      },
      {
       "text": "Introductory programming",
       "quote": "Introductory programming - Introduction to the engineering of computer applications",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "40d4aaf8764b7544"
      },
      {
       "text": "Intermediate statistics",
       "quote": "Intermediate statistics - multiple regression and ANOVA",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "5cbe536c585c97a5"
      },
      {
       "text": "Introductory probability",
       "quote": "Introductory probability - Introduction to probability theory",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "138676f678491291"
      }
     ],
     "deadlines": [
@@ -158,11 +190,13 @@
       "label": "Autumn 2027-2028",
       "date": "2027-01-07",
       "quote": "The deadline to submit is January 7th, 2027 (11:59pm PST).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Autumn 2027-2028",
+      "summary_sha": "60087ec07741ecd7"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MS in Statistics (Data Science subplan)",
@@ -174,7 +208,9 @@
      "quote": "Applicants must hold, or expect to hold before enrollment at Stanford, a U.S. bachelor’s degree or its international equivalent from a college or university of recognized standing prior to matriculation (autumn quarter only).",
      "source_sha256": "f2ee325ac96d3d2a969d665e3904941c3144539636ff057209376be916478191",
      "source_url": "https://statistics.stanford.edu/msadmissions/external-appl",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "9047ff82036202a6"
     },
     "toefl": {
      "overall": 90,
@@ -182,35 +218,47 @@
      "scale_note": "overall is on the 0-120 scale (tests taken before 2026-01-21); the quote also states the 1-6-scale minimum (4.5) for tests taken on or after 2026-01-21",
      "source_sha256": "6b25e5fbc3161b23a1a5e5f88dd393bb2f1a478e39a42270f04346e62a74b488",
      "source_url": "https://gradadmissions.stanford.edu/apply/test-scores",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: iBT / overall 90 as minimum",
+     "summary_sha": "dc1a9a0c480c1d38"
     },
     "ielts": {
      "overall": 7,
      "quote": "IELTS 7",
      "source_sha256": "6b25e5fbc3161b23a1a5e5f88dd393bb2f1a478e39a42270f04346e62a74b488",
      "source_url": "https://gradadmissions.stanford.edu/apply/test-scores",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "dd43fd6fc13736c9"
     },
     "prerequisites": [
      {
       "text": "Multivariable calculus and linear algebra",
       "quote": "Multivariable Calculus and Linear Algebra - Geometry and algebra of vectors",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "ef815df011a9ea4c"
      },
      {
       "text": "Programming (C++)",
       "quote": "Programming - Abstraction and its relation to programming.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: C++",
+      "summary_sha": "760ea18c158d71bd"
      },
      {
       "text": "Intermediate statistics",
       "quote": "Intermediate Statistics - Multiple regression and ANOVA",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "ebd0a392d571e48e"
      },
      {
       "text": "Intermediate probability",
       "quote": "Intermediate Probability - Sampling distributions of sums",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "853f1c8733762864"
      }
     ],
     "deadlines": [
@@ -218,11 +266,13 @@
       "label": "Autumn 2027-2028",
       "date": "2027-01-07",
       "quote": "The deadline to submit is January 7th, 2027 (11:59pm PST).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Autumn 2027-2028 intake",
+      "summary_sha": "60087ec07741ecd7"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MS in Computational and Mathematical Engineering (General track)",
@@ -234,7 +284,9 @@
      "quote": "You must hold, or expect to hold before enrollment at Stanford, a U.S. bachelor’s degree or its international equivalent from a college or university of recognized standing.",
      "source_sha256": "4ea5d51e9e84020554b0bd60434768342c28cae68c5750f915b5444247caf90b",
      "source_url": "https://gradadmissions.stanford.edu/apply/eligibility",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "220f01503fdaa078"
     },
     "toefl": {
      "overall": 90,
@@ -242,20 +294,26 @@
      "scale_note": "overall is on the 0-120 scale (tests taken before 2026-01-21); the quote also states the 1-6-scale minimum (4.5) for tests taken on or after 2026-01-21",
      "source_sha256": "6b25e5fbc3161b23a1a5e5f88dd393bb2f1a478e39a42270f04346e62a74b488",
      "source_url": "https://gradadmissions.stanford.edu/apply/test-scores",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 90 (quote gives 90 for pre-2026 test and 4.5 for later, not an overall minimum)",
+     "summary_sha": "dc1a9a0c480c1d38"
     },
     "ielts": {
      "overall": 7,
      "quote": "IELTS 7",
      "source_sha256": "6b25e5fbc3161b23a1a5e5f88dd393bb2f1a478e39a42270f04346e62a74b488",
      "source_url": "https://gradadmissions.stanford.edu/apply/test-scores",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "dd43fd6fc13736c9"
     },
     "prerequisites": [
      {
       "text": "Recommended: strong foundation in mathematics with courses in linear algebra, numerical methods, probabilities, stochastics, real analysis/pde, and programming proficiency.",
       "quote": "Recommended background: strong foundation in mathematics with courses in linear algebra, numerical methods, probabilities, stochastics, real analysis/pde, and programming proficiency.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "700b5cb4c6423daa"
      }
     ],
     "deadlines": [
@@ -265,11 +323,13 @@
       "quote": "External Applicants Autumn Quarter 2027-28 January 29th, 2027",
       "source_sha256": "c338dc71c74d13a739721c07ba69e9975b97f589a11947ea98db2bf359b009fe",
       "source_url": "https://icme.stanford.edu/academics-admission/icme-application-deadlines",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "b42cafbe05f2fe2e"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MS in Computational and Mathematical Engineering (Data Science track)",
@@ -281,7 +341,9 @@
      "quote": "You must hold, or expect to hold before enrollment at Stanford, a U.S. bachelor’s degree or its international equivalent from a college or university of recognized standing.",
      "source_sha256": "4ea5d51e9e84020554b0bd60434768342c28cae68c5750f915b5444247caf90b",
      "source_url": "https://gradadmissions.stanford.edu/apply/eligibility",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "220f01503fdaa078"
     },
     "toefl": {
      "overall": 90,
@@ -289,20 +351,26 @@
      "scale_note": "overall is on the 0-120 scale (tests taken before 2026-01-21); the quote also states the 1-6-scale minimum (4.5) for tests taken on or after 2026-01-21",
      "source_sha256": "6b25e5fbc3161b23a1a5e5f88dd393bb2f1a478e39a42270f04346e62a74b488",
      "source_url": "https://gradadmissions.stanford.edu/apply/test-scores",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 90 as minimum TOEFL iBT (quote gives 90 for pre-2026 test and 4.5 for new test)",
+     "summary_sha": "dc1a9a0c480c1d38"
     },
     "ielts": {
      "overall": 7,
      "quote": "IELTS 7",
      "source_sha256": "6b25e5fbc3161b23a1a5e5f88dd393bb2f1a478e39a42270f04346e62a74b488",
      "source_url": "https://gradadmissions.stanford.edu/apply/test-scores",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "dd43fd6fc13736c9"
     },
     "prerequisites": [
      {
       "text": "Recommended: strong foundation in mathematics with courses in linear algebra, numerical methods, probabilities, stochastics, statistical theory, and programming proficiency in C and r.",
       "quote": "Recommended background: strong foundation in mathematics with courses in linear algebra, numerical methods, probabilities, stochastics, statistical theory, and programming proficiency in C and r.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "311244d1d3e06689"
      }
     ],
     "deadlines": [
@@ -312,11 +380,13 @@
       "quote": "External Applicants Autumn Quarter 2027-28 January 29th, 2027",
       "source_sha256": "c338dc71c74d13a739721c07ba69e9975b97f589a11947ea98db2bf359b009fe",
       "source_url": "https://icme.stanford.edu/academics-admission/icme-application-deadlines",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "b42cafbe05f2fe2e"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MS in Computational and Mathematical Engineering (Imaging Sciences track)",
@@ -328,7 +398,9 @@
      "quote": "You must hold, or expect to hold before enrollment at Stanford, a U.S. bachelor’s degree or its international equivalent from a college or university of recognized standing.",
      "source_sha256": "4ea5d51e9e84020554b0bd60434768342c28cae68c5750f915b5444247caf90b",
      "source_url": "https://gradadmissions.stanford.edu/apply/eligibility",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "220f01503fdaa078"
     },
     "toefl": {
      "overall": 90,
@@ -336,20 +408,26 @@
      "scale_note": "overall is on the 0-120 scale (tests taken before 2026-01-21); the quote also states the 1-6-scale minimum (4.5) for tests taken on or after 2026-01-21",
      "source_sha256": "6b25e5fbc3161b23a1a5e5f88dd393bb2f1a478e39a42270f04346e62a74b488",
      "source_url": "https://gradadmissions.stanford.edu/apply/test-scores",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: TOEFL iBT / overall 90 (quote gives 90 and 4.5 without naming test version or overall)",
+     "summary_sha": "dc1a9a0c480c1d38"
     },
     "ielts": {
      "overall": 7,
      "quote": "IELTS 7",
      "source_sha256": "6b25e5fbc3161b23a1a5e5f88dd393bb2f1a478e39a42270f04346e62a74b488",
      "source_url": "https://gradadmissions.stanford.edu/apply/test-scores",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "dd43fd6fc13736c9"
     },
     "prerequisites": [
      {
       "text": "Recommended: strong foundation in mathematics with courses in linear algebra, numerical methods, probabilities, stochastics, and programming proficiency in C and MATLAB.",
       "quote": "Recommended background: strong foundation in mathematics with courses in linear algebra, numerical methods, probabilities, stochastics, and programming proficiency in C and MATLAB.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "5a3d28d2ee120ce5"
      }
     ],
     "deadlines": [
@@ -359,11 +437,13 @@
       "quote": "External Applicants Autumn Quarter 2027-28 January 29th, 2027",
       "source_sha256": "c338dc71c74d13a739721c07ba69e9975b97f589a11947ea98db2bf359b009fe",
       "source_url": "https://icme.stanford.edu/academics-admission/icme-application-deadlines",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "b42cafbe05f2fe2e"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MS in Computational and Mathematical Engineering (Mathematical & Computational Finance track)",
@@ -375,7 +455,9 @@
      "quote": "You must hold, or expect to hold before enrollment at Stanford, a U.S. bachelor’s degree or its international equivalent from a college or university of recognized standing.",
      "source_sha256": "4ea5d51e9e84020554b0bd60434768342c28cae68c5750f915b5444247caf90b",
      "source_url": "https://gradadmissions.stanford.edu/apply/eligibility",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "220f01503fdaa078"
     },
     "toefl": {
      "overall": 90,
@@ -383,20 +465,26 @@
      "scale_note": "overall is on the 0-120 scale (tests taken before 2026-01-21); the quote also states the 1-6-scale minimum (4.5) for tests taken on or after 2026-01-21",
      "source_sha256": "6b25e5fbc3161b23a1a5e5f88dd393bb2f1a478e39a42270f04346e62a74b488",
      "source_url": "https://gradadmissions.stanford.edu/apply/test-scores",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: iBT / overall 90 as minimum",
+     "summary_sha": "dc1a9a0c480c1d38"
     },
     "ielts": {
      "overall": 7,
      "quote": "IELTS 7",
      "source_sha256": "6b25e5fbc3161b23a1a5e5f88dd393bb2f1a478e39a42270f04346e62a74b488",
      "source_url": "https://gradadmissions.stanford.edu/apply/test-scores",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "dd43fd6fc13736c9"
     },
     "prerequisites": [
      {
       "text": "Recommended: strong foundation in mathematics with courses in linear algebra, numerical methods, probabilities, stochastics, real analysis/pde, programming, proficiency in C , and interest in finance/internship or industry experience.",
       "quote": "Recommended background: strong foundation in mathematics with courses in linear algebra, numerical methods, probabilities, stochastics, real analysis/pde, programming, proficiency in C , and interest in finance/internship or industry experience.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "24f88e204491a20a"
      }
     ],
     "deadlines": [
@@ -406,11 +494,13 @@
       "quote": "External Applicants Autumn Quarter 2027-28 January 29th, 2027",
       "source_sha256": "c338dc71c74d13a739721c07ba69e9975b97f589a11947ea98db2bf359b009fe",
       "source_url": "https://icme.stanford.edu/academics-admission/icme-application-deadlines",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "b42cafbe05f2fe2e"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MS in Mechanical Engineering",
@@ -420,7 +510,9 @@
     "academic": {
      "text": "A Bachelor of Science degree in engineering, physics, or a comparable science program, earned or in progress; applicants who hold or are enrolled in a master's in mechanical engineering or a closely related field are not eligible",
      "quote": "Have earned, or be in the process of earning, a Bachelor of Science degree in engineering, physics, or a comparable science program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: master's holders not eligible",
+     "summary_sha": "9db78c748887b19a"
     },
     "toefl": {
      "overall": 90,
@@ -428,25 +520,31 @@
      "scale_note": "overall is on the 0-120 scale (tests taken before 2026-01-21); the quote also states the 1-6-scale minimum (4.5) for tests taken on or after 2026-01-21",
      "source_sha256": "6b25e5fbc3161b23a1a5e5f88dd393bb2f1a478e39a42270f04346e62a74b488",
      "source_url": "https://gradadmissions.stanford.edu/apply/test-scores",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: TOEFL iBT overall 90 (quote gives 90 and 4.5 without naming iBT/overall)",
+     "summary_sha": "dc1a9a0c480c1d38"
     },
     "ielts": {
      "overall": 7,
      "quote": "IELTS 7",
      "source_sha256": "6b25e5fbc3161b23a1a5e5f88dd393bb2f1a478e39a42270f04346e62a74b488",
      "source_url": "https://gradadmissions.stanford.edu/apply/test-scores",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "dd43fd6fc13736c9"
     },
     "deadlines": [
      {
       "label": "Autumn 2027-2028",
       "date": "2026-12-01",
       "quote": "Start quarter Autumn 2027-2028 Applications due December 1, 2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "349c17917c5d56de"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MS in Civil and Environmental Engineering",
@@ -458,14 +556,18 @@
      "quote": "the minimum TOEFL scores are 90 (internet-based TOEFL test)",
      "source_sha256": "14f43c83852ad8fd24468150d354d76892db4cc433b02140d9f61f1cad7cab4c",
      "source_url": "https://cee.stanford.edu/academics-admissions/graduate-admissions/frequently-asked-questions",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "91396d5501f05b9d"
     },
     "ielts": {
      "overall": 7,
      "quote": "IELTS 7",
      "source_sha256": "6b25e5fbc3161b23a1a5e5f88dd393bb2f1a478e39a42270f04346e62a74b488",
      "source_url": "https://gradadmissions.stanford.edu/apply/test-scores",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "dd43fd6fc13736c9"
     },
     "deadlines": [
      {
@@ -474,11 +576,13 @@
       "quote": "11:59pm, December 1, 2026, PST Application deadline for all PhDs. Application deadline for all Master's.",
       "source_sha256": "5290b0e95a356df1269d3f5d648400c56dcadd568613f042f7b982ced2daf0d8",
       "source_url": "https://cee.stanford.edu/academics-admissions/graduate-admissions/application-timeline-deadlines",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Autumn 2027 intake",
+      "summary_sha": "37d75f06f6c127bc"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MS in Aeronautics and Astronautics",
@@ -488,7 +592,9 @@
     "academic": {
      "text": "Equivalent of a U.S. bachelor's degree from a college or university of recognized standing; a strong technical background in engineering, physics or a comparable science is welcome",
      "quote": "Applicants from institutions outside the U.S. must hold the equivalent of a U.S. bachelor’s degree from a college or university of recognized standing.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: strong technical background in engineering, physics or comparable science is welcome",
+     "summary_sha": "917c68eb8f7782d3"
     },
     "toefl": {
      "overall": 90,
@@ -496,25 +602,31 @@
      "scale_note": "overall is on the 0-120 scale (tests taken before 2026-01-21); the quote also states the 1-6-scale minimum (4.5) for tests taken on or after 2026-01-21",
      "source_sha256": "6b25e5fbc3161b23a1a5e5f88dd393bb2f1a478e39a42270f04346e62a74b488",
      "source_url": "https://gradadmissions.stanford.edu/apply/test-scores",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: iBT / overall (quote gives TOEFL scores without naming iBT or overall)",
+     "summary_sha": "dc1a9a0c480c1d38"
     },
     "ielts": {
      "overall": 7,
      "quote": "IELTS 7",
      "source_sha256": "6b25e5fbc3161b23a1a5e5f88dd393bb2f1a478e39a42270f04346e62a74b488",
      "source_url": "https://gradadmissions.stanford.edu/apply/test-scores",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "dd43fd6fc13736c9"
     },
     "deadlines": [
      {
       "label": "Autumn 2027-28",
       "date": "2026-12-01",
       "quote": "Autumn 2027-28: December 1, 2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "e8d27861b021910b"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MS in Bioengineering",
@@ -527,21 +639,27 @@
      "scale_note": "overall is on the 0-120 scale (tests taken before 2026-01-21); the quote also states the 1-6-scale minimum (4.5) for tests taken on or after 2026-01-21",
      "source_sha256": "6b25e5fbc3161b23a1a5e5f88dd393bb2f1a478e39a42270f04346e62a74b488",
      "source_url": "https://gradadmissions.stanford.edu/apply/test-scores",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "dc1a9a0c480c1d38"
     },
     "ielts": {
      "overall": 7,
      "quote": "IELTS 7",
      "source_sha256": "6b25e5fbc3161b23a1a5e5f88dd393bb2f1a478e39a42270f04346e62a74b488",
      "source_url": "https://gradadmissions.stanford.edu/apply/test-scores",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "dd43fd6fc13736c9"
     },
     "deadlines": [
      {
       "label": "Fall 2027",
       "date": "2026-12-01",
       "quote": "The online application for Fall 2027 entry is now open. The deadline to apply is December 1, 2026.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "24e27ced76f91186"
      }
     ]
    },
@@ -558,21 +676,27 @@
      "scale_note": "overall is on the 0-120 scale (tests taken before 2026-01-21); the quote also states the 1-6-scale minimum (4.5) for tests taken on or after 2026-01-21",
      "source_sha256": "6b25e5fbc3161b23a1a5e5f88dd393bb2f1a478e39a42270f04346e62a74b488",
      "source_url": "https://gradadmissions.stanford.edu/apply/test-scores",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "dc1a9a0c480c1d38"
     },
     "ielts": {
      "overall": 7,
      "quote": "IELTS 7",
      "source_sha256": "6b25e5fbc3161b23a1a5e5f88dd393bb2f1a478e39a42270f04346e62a74b488",
      "source_url": "https://gradadmissions.stanford.edu/apply/test-scores",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "dd43fd6fc13736c9"
     },
     "deadlines": [
      {
       "label": "Fall 2027",
       "date": "2027-01-12",
       "quote": "January 12, 2027, for MS applicants",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "1fb823633092e3b1"
      }
     ]
    },
@@ -586,7 +710,9 @@
     "academic": {
      "text": "A U.S. bachelor's degree or its equivalent",
      "quote": "For admission to the GSB we require a U.S. bachelor’s degree or its equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "e88705f04c5d6f44"
     },
     "toefl": {
      "overall": 100,
@@ -594,14 +720,18 @@
      "scale_note": "overall is on the 0-120 scale (tests taken before 2026-01-21); the quote also states the minimum (5.0) for tests taken on or after 2026-01-21",
      "source_sha256": "54997a5ca595a81004e254baa9a22b15f5dcdadf3a969cc70dcf7939fa06b965",
      "source_url": "https://www.gsb.stanford.edu/programs/mba/admission/application/test-scores/english-language-proficiency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "306d84ee5f4eddac"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "IELTS (Academic) 7.0 overall band score",
      "source_sha256": "54997a5ca595a81004e254baa9a22b15f5dcdadf3a969cc70dcf7939fa06b965",
      "source_url": "https://www.gsb.stanford.edu/programs/mba/admission/application/test-scores/english-language-proficiency",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "1547478d5b3d2eca"
     },
     "deadlines": [
      {
@@ -610,7 +740,9 @@
       "quote": "Round 2 06 Jan 2027",
       "source_sha256": "d4399a5220c5a84543564efb019adcc51cb2ec35671fb98c65f177c353e826f4",
       "source_url": "https://www.gsb.stanford.edu/programs/mba/admission/deadlines",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "94012de355eef7cb"
      },
      {
       "label": "Round 3, 2026-27",
@@ -618,7 +750,9 @@
       "quote": "Round 3 07 Apr 2027",
       "source_sha256": "d4399a5220c5a84543564efb019adcc51cb2ec35671fb98c65f177c353e826f4",
       "source_url": "https://www.gsb.stanford.edu/programs/mba/admission/deadlines",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "a0efaa34b420202e"
      }
     ]
    },
@@ -634,7 +768,9 @@
      "quote": "A U.S. bachelor’s degree or equivalent is required for admission to the Stanford MSx Program.",
      "source_sha256": "f7fd19b2e4771b76ea1159fe4ec8bb36d2a21cf3332931f37298c5c712f51969",
      "source_url": "https://www.gsb.stanford.edu/programs/msx/admission/application-requirements/education",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: including international three-year bachelor degree programs; no minimum GPA",
+     "summary_sha": "2fc19b7ab3f6eac3"
     },
     "toefl": {
      "overall": 100,
@@ -642,14 +778,18 @@
      "scale_note": "overall is on the 0-120 scale (tests taken before 2026-01-21); the quote also states the minimum (5) for later tests",
      "source_sha256": "0051fc0ee0ddc649242cd1deecdccfc7d2b218bcc049193ae1fc2feddedf57f1",
      "source_url": "https://www.gsb.stanford.edu/programs/msx/admission/application-requirements/test-scores/english-proficiency-tests",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: TOEFL iBT; overall 100 (quote gives 5 for tests after Jan 21, 2026)",
+     "summary_sha": "7871fd8a01171444"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "Minimum Score Requirement: 7.0 overall band score",
      "source_sha256": "0051fc0ee0ddc649242cd1deecdccfc7d2b218bcc049193ae1fc2feddedf57f1",
      "source_url": "https://www.gsb.stanford.edu/programs/msx/admission/application-requirements/test-scores/english-proficiency-tests",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "e558b730edb15dcc"
     },
     "prerequisites": [
      {
@@ -657,7 +797,9 @@
       "quote": "You must have at least eight years of post-graduate professional work experience.",
       "source_sha256": "40917c599e7aefd90aa2e9e0db2d74671679c075f450a5d3a71d2057cfb5079b",
       "source_url": "https://www.gsb.stanford.edu/programs/msx/admission/application-requirements/professional-experience",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "d9ed3df2a4f092e4"
      }
     ],
     "deadlines": [
@@ -667,7 +809,9 @@
       "quote": "Round 2 06 Jan 2027",
       "source_sha256": "445518793409121a3a106bfcd6a85f8bdf127cc0aa0acd3785895c03ab00eb16",
       "source_url": "https://www.gsb.stanford.edu/programs/msx/admission/deadlines",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "94012de355eef7cb"
      },
      {
       "label": "Round 3, 2026-27",
@@ -675,11 +819,13 @@
       "quote": "Round 3 11 Feb 2027",
       "source_sha256": "445518793409121a3a106bfcd6a85f8bdf127cc0aa0acd3785895c03ab00eb16",
       "source_url": "https://www.gsb.stanford.edu/programs/msx/admission/deadlines",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "413f13d1ce0c13fd"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MS in Education Data Science (EDS), Graduate School of Education",
@@ -690,30 +836,38 @@
      "overall": 100,
      "quote": "The GSE requires a minimum score of 100 (Taken before January 21, 2026) or 5 (Taken on or after January 21, 2026) for TOEFL iBT or 7.5 for IELTS Academic in order to be considered for admission.",
      "scale_note": "overall is on the 0-120 scale (tests taken before 2026-01-21); the quote also states the minimum (5) for later tests",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "bda5ce073e4c361d"
     },
     "ielts": {
      "overall": 7.5,
      "quote": "The GSE requires a minimum score of 100 (Taken before January 21, 2026) or 5 (Taken on or after January 21, 2026) for TOEFL iBT or 7.5 for IELTS Academic in order to be considered for admission.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "eec99cded48257ca"
     },
     "deadlines": [
      {
       "label": "2027-2028 academic year",
       "date": "2027-01-07",
       "quote": "MA/MS application deadline: January 7, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: 2027-2028 academic year",
+      "summary_sha": "4bc6aae6b18fc9b2"
      }
     ],
     "prerequisites": [
      {
       "text": "Basic programming experience or prior coursework in programming",
       "quote": "basic programming experience or prior coursework in programming is required.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "8749f7976bdfd86d"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MS in Learning Design and Technology (LDT), Graduate School of Education",
@@ -724,19 +878,25 @@
      "overall": 100,
      "quote": "The GSE requires a minimum score of 100 (Taken before January 21, 2026) or 5 (Taken on or after January 21, 2026) for TOEFL iBT or 7.5 for IELTS Academic in order to be considered for admission.",
      "scale_note": "overall is on the 0-120 scale (tests taken before 2026-01-21); the quote also states the minimum (5) for later tests",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "bda5ce073e4c361d"
     },
     "ielts": {
      "overall": 7.5,
      "quote": "The GSE requires a minimum score of 100 (Taken before January 21, 2026) or 5 (Taken on or after January 21, 2026) for TOEFL iBT or 7.5 for IELTS Academic in order to be considered for admission.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "eec99cded48257ca"
     },
     "deadlines": [
      {
       "label": "2027-2028 academic year",
       "date": "2027-01-07",
       "quote": "MA/MS application deadline: January 7, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "4bc6aae6b18fc9b2"
      }
     ]
    },
@@ -751,23 +911,29 @@
      "overall": 100,
      "quote": "The GSE requires a minimum score of 100 (Taken before January 21, 2026) or 5 (Taken on or after January 21, 2026) for TOEFL iBT or 7.5 for IELTS Academic in order to be considered for admission.",
      "scale_note": "overall is on the 0-120 scale (tests taken before 2026-01-21); the quote also states the minimum (5) for later tests",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "bda5ce073e4c361d"
     },
     "ielts": {
      "overall": 7.5,
      "quote": "The GSE requires a minimum score of 100 (Taken before January 21, 2026) or 5 (Taken on or after January 21, 2026) for TOEFL iBT or 7.5 for IELTS Academic in order to be considered for admission.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "eec99cded48257ca"
     },
     "deadlines": [
      {
       "label": "2027-2028 academic year",
       "date": "2027-01-07",
       "quote": "MA/MS application deadline: January 7, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: 2027-2028 academic year",
+      "summary_sha": "4bc6aae6b18fc9b2"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MA in Global and Comparative Education and International Education Policy Analysis (GCE/IEPA), Graduate School of Education",
@@ -778,28 +944,34 @@
      "overall": 100,
      "quote": "The GSE requires a minimum score of 100 (Taken before January 21, 2026) or 5 (Taken on or after January 21, 2026) for TOEFL iBT or 7.5 for IELTS Academic in order to be considered for admission.",
      "scale_note": "overall is on the 0-120 scale (tests taken before 2026-01-21); the quote also states the minimum (5) for later tests",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "bda5ce073e4c361d"
     },
     "ielts": {
      "overall": 7.5,
      "quote": "The GSE requires a minimum score of 100 (Taken before January 21, 2026) or 5 (Taken on or after January 21, 2026) for TOEFL iBT or 7.5 for IELTS Academic in order to be considered for admission.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "eec99cded48257ca"
     },
     "deadlines": [
      {
       "label": "2027-2028 academic year",
       "date": "2027-01-07",
       "quote": "MA/MS application deadline: January 7, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: 2027-2028 academic year",
+      "summary_sha": "4bc6aae6b18fc9b2"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   }
  ],
  "verification": {
   "programs": 19,
-  "机器核对": 19,
-  "待人工": 0
+  "机器核对": 4,
+  "待人工": 15
  }
 }

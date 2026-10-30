@@ -21,13 +21,17 @@
       "label": "Priority Master of Science Application Deadline",
       "date": "2026-01-15",
       "quote": "January 15, 2026\nPriority Master of Science Application Deadline",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "7daf1ffe61fb2086"
      },
      {
       "label": "Regular Master of Science Application Deadline",
       "date": "2026-04-01",
       "quote": "April 1, 2026\nRegular Master of Science Application Deadline",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "b142a6e74dc7d64d"
      }
     ]
    },
@@ -88,7 +92,9 @@
     "academic": {
      "text": "A bachelor's degree in any field is required.",
      "quote": "A bachelor’s degree in any field is required.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "3d104d0c2ef02e73"
     }
    },
    "status": "机器核对"
@@ -105,36 +111,46 @@
       "label": "Spring 2027, final deadline (scholarship consideration)",
       "date": "2026-11-01",
       "quote": "Final deadline: November 1, 2026 – scholarship consideration",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Spring 2027 intake",
+      "summary_sha": "340561402cc04d8d"
      },
      {
       "label": "Fall 2027, fee waiver deadline",
       "date": "2026-12-01",
       "quote": "Fee waiver deadline: December 1, 2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Fall 2027 intake",
+      "summary_sha": "eb3d03e2a7458ade"
      },
      {
       "label": "Fall 2027, priority deadline (scholarship consideration)",
       "date": "2027-01-15",
       "quote": "Priority deadline: January 15, 2027 – scholarship consideration",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Fall 2027 intake",
+      "summary_sha": "dff36a59731b26fa"
      },
      {
       "label": "Fall 2027, final deadline",
       "date": "2027-04-01",
       "quote": "Final deadline: April 1, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Fall 2027 intake",
+      "summary_sha": "0bd8f66a5e629937"
      }
     ],
     "prerequisites": [
      {
       "text": "Intermediate level of Arabic proficiency is encouraged on entry.",
       "quote": "we encourage you to enter with an intermediate level of Arabic proficiency",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "562280dfe9927990"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master's in Asian Studies",
@@ -148,19 +164,25 @@
       "label": "Fall 2027 fee waiver deadline",
       "date": "2026-12-01",
       "quote": "Fee waiver deadline: December 1, 2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "d77b09772b0cc03b"
      },
      {
       "label": "Fall 2027 priority deadline (scholarship consideration)",
       "date": "2027-01-15",
       "quote": "Priority deadline: January 15, 2027 – scholarship consideration",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "bbf97edbe78f5cc5"
      },
      {
       "label": "Fall 2027 final deadline",
       "date": "2027-04-01",
       "quote": "Final deadline: April 1, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "5cc3b607db1fc99d"
      }
     ]
    },
@@ -169,7 +191,7 @@
  ],
  "verification": {
   "programs": 9,
-  "机器核对": 4,
-  "待人工": 5
+  "机器核对": 3,
+  "待人工": 6
  }
 }

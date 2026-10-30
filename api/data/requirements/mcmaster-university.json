@@ -47,7 +47,9 @@
     "academic": {
      "text": "Honours Bachelor's degree in Engineering, Computer Science, Mathematics or equivalent; anticipated admission range minimum B- (70-72%)",
      "quote": "Honours Bachelor’s degree in Engineering, Computer Science, Mathematics, or equivalent. Find English language requirements here. Anticipated Admission Range Min B- (70-72%)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0f700c26ee5312fc"
     },
     "ielts": {
      "overall": 6.5,
@@ -55,14 +57,18 @@
      "quote": "IELTS (Academic): minimum overall score of 6.5, with at least 5.5 in each section",
      "source_sha256": "4b56672f20923b468c42354a6e0a29b985dc96935f11f2530b9222e2695d9a3f",
      "source_url": "https://www.eng.mcmaster.ca/future-students/future-graduate-students/how-to-apply/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d7c8692c930dc62d"
     },
     "toefl": {
      "overall": 88,
      "quote": "TOEFL: Faculty of Engineering a minimum score of 88 (internet-based) or 230 on the (computer-based) or 570 (paper-based)",
      "source_sha256": "4b56672f20923b468c42354a6e0a29b985dc96935f11f2530b9222e2695d9a3f",
      "source_url": "https://www.eng.mcmaster.ca/future-students/future-graduate-students/how-to-apply/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "21205b9188dc23e4"
     },
     "deadlines": [
      {
@@ -71,7 +77,9 @@
       "quote": "Faculty of Engineering graduate programs Start term Domestic applicant deadline International applicant deadline January 2027 November 30, 2026 June 30, 2026 May 2027 March 31, 2027 October 31, 2026 September 2027 July 31, 2027 February 28, 2027",
       "source_sha256": "4b56672f20923b468c42354a6e0a29b985dc96935f11f2530b9222e2695d9a3f",
       "source_url": "https://www.eng.mcmaster.ca/future-students/future-graduate-students/how-to-apply/",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "e04709e115327018"
      },
      {
       "label": "September 2027, domestic applicants",
@@ -79,7 +87,9 @@
       "quote": "Faculty of Engineering graduate programs Start term Domestic applicant deadline International applicant deadline January 2027 November 30, 2026 June 30, 2026 May 2027 March 31, 2027 October 31, 2026 September 2027 July 31, 2027 February 28, 2027",
       "source_sha256": "4b56672f20923b468c42354a6e0a29b985dc96935f11f2530b9222e2695d9a3f",
       "source_url": "https://www.eng.mcmaster.ca/future-students/future-graduate-students/how-to-apply/",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "dea5a109571d5a03"
      }
     ]
    },
@@ -93,36 +103,46 @@
     "academic": {
      "text": "Four-year degree in a STEM discipline with at least a B average (McMaster 8.0/12) in the final two years in the relevant courses",
      "quote": "students must hold a four-year degree in a STEM discipline, with at least a B average (equivalent to a McMaster 8.0 GPA out of 12) in the final two years of study, in all courses in the discipline, or relating to the discipline, in which the applicant proposes to do graduate work.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "21ed5829e87d7744"
     },
     "ielts": {
      "overall": 6.5,
      "min_band": 5.5,
      "quote": "IELTS/TOEFL: International students are required to present a minimum IELTS score of 6.5 overall (minimum requirements 5.5 in reading and writing and 6 in listening and speaking).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: no section below 5.5 (quote gives 5.5 in reading/writing, 6 in listening/speaking)",
+     "summary_sha": "64fe9e9a0cd845e6"
     },
     "toefl": {
      "overall": 88,
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "quote": "Minimum TOEFL score is 88 (if taken before January 2026); 4.5 (if taken after January 2026).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: iBT; overall 88 without the pre-January 2026 condition",
+     "summary_sha": "e1725f9eef42662e"
     },
     "deadlines": [
      {
       "label": "September 2027, international students",
       "date": "2027-02-28",
       "quote": "January 2027 Admissions September 2027 Admissions Application Portal opens March 1, 2026 September 1, 2026 International Student Deadline July 31, 2026 February 28, 2027 Domestic Student Deadline October 31, 2026 July 31, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "53d55a3173a5ce6a"
      },
      {
       "label": "September 2027, domestic students",
       "date": "2027-07-31",
       "quote": "January 2027 Admissions September 2027 Admissions Application Portal opens March 1, 2026 September 1, 2026 International Student Deadline July 31, 2026 February 28, 2027 Domestic Student Deadline October 31, 2026 July 31, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "a303740e976a836a"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Engineering Design (MEng)",
@@ -132,36 +152,46 @@
     "academic": {
      "text": "Four-year engineering undergraduate degree with at least a B- average (McMaster 7.0/12) in the final year in the relevant courses",
      "quote": "students must hold a four-year engineering undergraduate degree or equivalent, with at least a B- average (equivalent to a McMaster 7.0 GPA out of 12) in the final year in all courses in the discipline, or relating to the discipline, in which the applicant proposes to do graduate work.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: in the relevant courses (quote says all courses in the discipline)",
+     "summary_sha": "272b637cc98d520c"
     },
     "ielts": {
      "overall": 6.5,
      "min_band": 5.5,
      "quote": "IELTS/TOEFL: International students are required to present a minimum IELTS score of 6.5 overall (minimum requirements 5.5 in reading and writing and 6 in listening and speaking).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: no section below 5.5 (quote gives 5.5 in reading/writing, 6 in listening/speaking)",
+     "summary_sha": "64fe9e9a0cd845e6"
     },
     "toefl": {
      "overall": 88,
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "quote": "Minimum TOEFL score is 88 (if taken before January 2026); 4.5 (if taken after January 2026).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "e1725f9eef42662e"
     },
     "deadlines": [
      {
       "label": "September 2027, international students",
       "date": "2027-02-28",
       "quote": "September 2027 Admissions Application Portal Opens September 1, 2026 International Student Deadline February 28, 2027 Domestic Student Deadline July 31, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "b32ce9c4afdb8788"
      },
      {
       "label": "September 2027, domestic students",
       "date": "2027-07-31",
       "quote": "September 2027 Admissions Application Portal Opens September 1, 2026 International Student Deadline February 28, 2027 Domestic Student Deadline July 31, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "9a41534d67fdb7fc"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Manufacturing Engineering (MEng)",
@@ -171,36 +201,46 @@
     "academic": {
      "text": "Degree in Engineering or Technology with at least a B average (McMaster 8.0/12) in the penultimate and final years",
      "quote": "students must hold a degree in Engineering or Technology with at least a B average (equivalent to a McMaster 8.0/12 GPA) in the penultimate and final years.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a746153df25acf2d"
     },
     "ielts": {
      "overall": 6.5,
      "min_band": 5.5,
      "quote": "IELTS/TOEFL: International students are required to present a minimum IELTS score of 6.5 overall (minimum requirements 5.5 in reading and writing and 6 in listening and speaking).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: no section below 5.5 (quote gives 5.5 in reading/writing, 6 in listening/speaking)",
+     "summary_sha": "64fe9e9a0cd845e6"
     },
     "toefl": {
      "overall": 88,
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "quote": "Minimum TOEFL score is 88 (if taken before January 2026); 4.5 (if taken after January 2026).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: iBT; overall 88 without the pre-2026 condition",
+     "summary_sha": "e1725f9eef42662e"
     },
     "deadlines": [
      {
       "label": "September 2027, international students",
       "date": "2027-02-28",
       "quote": "January 2027 Admissions September 2027 Admissions Application Portal opens March 1, 2026 September 1, 2026 International Student Deadline July 31, 2026 February 28, 2027 Domestic Student Deadline October 31, 2026 July 31, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "53d55a3173a5ce6a"
      },
      {
       "label": "September 2027, domestic students",
       "date": "2027-07-31",
       "quote": "January 2027 Admissions September 2027 Admissions Application Portal opens March 1, 2026 September 1, 2026 International Student Deadline July 31, 2026 February 28, 2027 Domestic Student Deadline October 31, 2026 July 31, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "a303740e976a836a"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Engineering and Public Policy (MEng)",
@@ -210,36 +250,46 @@
     "academic": {
      "text": "Undergraduate degree in STEM or a 4-year non-STEM degree in a public policy-related field with a B- average in the last 10 technical courses (McMaster 7.0/12)",
      "quote": "Prior degree: Students must hold an undergraduate degree in STEM or a 4-year non-STEM degree in a public policy-related field including, for example, political science, public policy, public administration or global studies with a B- average in last 10 technical courses (equivalent to a McMaster 7.0 GPA out of 12).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "11008746d61e800f"
     },
     "ielts": {
      "overall": 6.5,
      "min_band": 5.5,
      "quote": "IELTS/TOEFL: International students are required to present a minimum IELTS score of 6.5 overall (minimum requirements 5.5 in reading and writing and 6 in listening and speaking).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: no section below 5.5 (quote gives 5.5 in reading/writing, 6 in listening/speaking)",
+     "summary_sha": "64fe9e9a0cd845e6"
     },
     "toefl": {
      "overall": 88,
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "quote": "Minimum TOEFL score is 88 (if taken before January 2026); 4.5 (if taken after January 2026).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: iBT / overall 88 without the pre-January 2026 condition",
+     "summary_sha": "e1725f9eef42662e"
     },
     "deadlines": [
      {
       "label": "September 2027, international students",
       "date": "2027-02-28",
       "quote": "January 2027 Admissions September 2027 Admissions Application Portal opens March 1, 2026 September 1, 2026 International Student Deadline July 31, 2026 February 28, 2027 Domestic Student Deadline October 31, 2026 July 31, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "53d55a3173a5ce6a"
      },
      {
       "label": "September 2027, domestic students",
       "date": "2027-07-31",
       "quote": "January 2027 Admissions September 2027 Admissions Application Portal opens March 1, 2026 September 1, 2026 International Student Deadline July 31, 2026 February 28, 2027 Domestic Student Deadline October 31, 2026 July 31, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "a303740e976a836a"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Electrical and Computer Engineering (MEng)",
@@ -249,7 +299,9 @@
     "academic": {
      "text": "Honours Bachelor's degree (4 year) in Engineering, Sciences or equivalent; anticipated admission range minimum B+ (77-79%)",
      "quote": "Honours Bachelor’s Degree (4 Year) in Engineering, Sciences, or equivalent. Find English language requirements here. Anticipated Admission Range Minimum B+ (77-79%)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "584c338c6f549913"
     },
     "deadlines": [
      {
@@ -258,7 +310,9 @@
       "quote": "Faculty of Engineering graduate programs Start term Domestic applicant deadline International applicant deadline January 2027 November 30, 2026 June 30, 2026 May 2027 March 31, 2027 October 31, 2026 September 2027 July 31, 2027 February 28, 2027",
       "source_sha256": "4b56672f20923b468c42354a6e0a29b985dc96935f11f2530b9222e2695d9a3f",
       "source_url": "https://www.eng.mcmaster.ca/future-students/future-graduate-students/how-to-apply/",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "e04709e115327018"
      },
      {
       "label": "September 2027, domestic applicants",
@@ -266,7 +320,9 @@
       "quote": "Faculty of Engineering graduate programs Start term Domestic applicant deadline International applicant deadline January 2027 November 30, 2026 June 30, 2026 May 2027 March 31, 2027 October 31, 2026 September 2027 July 31, 2027 February 28, 2027",
       "source_sha256": "4b56672f20923b468c42354a6e0a29b985dc96935f11f2530b9222e2695d9a3f",
       "source_url": "https://www.eng.mcmaster.ca/future-students/future-graduate-students/how-to-apply/",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "dea5a109571d5a03"
      }
     ],
     "ielts": {
@@ -275,14 +331,18 @@
      "quote": "IELTS (Academic): minimum overall score of 6.5, with at least 5.5 in each section",
      "source_sha256": "4b56672f20923b468c42354a6e0a29b985dc96935f11f2530b9222e2695d9a3f",
      "source_url": "https://www.eng.mcmaster.ca/future-students/future-graduate-students/how-to-apply/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d7c8692c930dc62d"
     },
     "toefl": {
      "overall": 88,
      "quote": "TOEFL: Faculty of Engineering a minimum score of 88 (internet-based) or 230 on the (computer-based) or 570 (paper-based)",
      "source_sha256": "4b56672f20923b468c42354a6e0a29b985dc96935f11f2530b9222e2695d9a3f",
      "source_url": "https://www.eng.mcmaster.ca/future-students/future-graduate-students/how-to-apply/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "21205b9188dc23e4"
     }
    },
    "status": "机器核对"
@@ -295,7 +355,9 @@
     "academic": {
      "text": "Honours Bachelor's degree (or equivalent) in the relevant field",
      "quote": "Required Credentials Honours Bachelor's degree (or equivalent) in the relevant field",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fbfa4390dbb56393"
     },
     "ielts": {
      "overall": 6.5,
@@ -303,14 +365,18 @@
      "quote": "IELTS: a minimum overall score of 6.5 and a minimum of 5.5 in each section of the Academic test.",
      "source_sha256": "e40e369906625d990ef16b318594fb0267295a7eaa41efc9949c2999359d9346",
      "source_url": "https://math.mcmaster.ca/graduate/application-procedure/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "1819b499afb3fa63"
     },
     "toefl": {
      "overall": 92,
      "quote": "TOEFL: a minimum score of 92 (iBT), 580 (paper), or 237 (computer test) is required.",
      "source_sha256": "e40e369906625d990ef16b318594fb0267295a7eaa41efc9949c2999359d9346",
      "source_url": "https://math.mcmaster.ca/graduate/application-procedure/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "967066470854a01d"
     }
    },
    "status": "机器核对"
@@ -323,28 +389,38 @@
     "academic": {
      "text": "Honours (4-year) bachelor's degree in any discipline with a minimum B+ average (McMaster GPA 8.5)",
      "quote": "Honours (4-year) bachelor’s degree or equivalent in any discipline with a minimum B+ average (equivalent to a McMaster GPA of 8.5) from an accredited university.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "35a67a828fdbc931"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "Applicants must provide a valid TOEFL (minimum overall score of 92) or IELTS Academic (minimum overall score of 6.5) test",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "06c88dcc2bff0ede"
     },
     "toefl": {
      "overall": 92,
      "quote": "Applicants must provide a valid TOEFL (minimum overall score of 92) or IELTS Academic (minimum overall score of 6.5) test",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "2c76dbf325b48cb7"
     },
     "prerequisites": [
      {
       "text": "At least one university-level course each in finance or economics, mathematics and statistics",
       "quote": "Applicants must have also completed a minimum of one university-level course in each of 1) Finance or Economics, 2) Mathematics and 3) Statistics.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "ef6512c7db3cd37f"
      },
      {
       "text": "Quantitative proficiency: GMAT total 600 (10th edition) or 555 (11th edition/Focus) with quantitative percentile of at least 60%",
       "quote": "GMAT test (10th edition) with a minimum total score of 600 and a quantitative percentile of at least 60% GMAT test (11th edition/Focus Edition) with a minimum total score of 555 and a quantitative percentile of at least 60%",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "9c00d4f5fee6cb5a"
      }
     ],
     "deadlines": [
@@ -354,7 +430,9 @@
       "quote": "Round 2: November 25, 2026 (Scholarship consideration deadline)",
       "source_sha256": "5285a96796375d51d132ad1196f7192cd609f918c7e5a3ac98a8bc5d92cc8b96",
       "source_url": "https://mfin.degroote.mcmaster.ca/",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "3bd1d50fe4ba5bb6"
      },
      {
       "label": "September 2027, Round 3 (international applicants deadline)",
@@ -362,7 +440,9 @@
       "quote": "Round 3: March 14, 2027 (International applicants deadline)",
       "source_sha256": "5285a96796375d51d132ad1196f7192cd609f918c7e5a3ac98a8bc5d92cc8b96",
       "source_url": "https://mfin.degroote.mcmaster.ca/",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "5f609a5b89973f42"
      }
     ]
    },
@@ -376,23 +456,31 @@
     "academic": {
      "text": "Honours Bachelor's degree from a recognized university; recommended B average (McMaster 8.0/12) or higher",
      "quote": "Completion of an Honours Bachelor’s degree from a recognized university.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: recommended B average (McMaster 8.0/12) or higher",
+     "summary_sha": "226a62f79700e11e"
     },
     "ielts": {
      "overall": 7,
      "quote": "Academic IELTS (Overall score of 7)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "11f7100d0385e046"
     },
     "toefl": {
      "overall": 100,
      "quote": "TOEFL (Overall score of 100)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "df3b0318db9e44e6"
     },
     "prerequisites": [
      {
       "text": "Minimum of 2 years of post-graduate work experience (exceptional applicants considered with less)",
       "quote": "Minimum of 2 years of post-graduate work experience is required.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: exceptional applicants considered with less",
+      "summary_sha": "7443f09c4f50307d"
      }
     ],
     "deadlines": [
@@ -400,11 +488,13 @@
       "label": "September 2027, Round 3 (final international deadline)",
       "date": "2027-03-14",
       "quote": "Round 3: March 14, 2027 Final International Deadline",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "16ab06a562b446a9"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Economics (MA)",
@@ -414,29 +504,39 @@
     "academic": {
      "text": "Honours BA in Economics; B+ average in relevant courses in the final two years",
      "quote": "The minimum academic requirements for admission into the MA program is Honours BA in Economics. The university requires entering Master’s students to have maintained a B+ average in courses (relevant to the Master’s program they are entering) during the final two years of their undergraduate programs.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d114f056c64266af"
     },
     "ielts": {
      "overall": 6.5,
      "min_band": 5.5,
      "quote": "the minimum acceptable IELTS score is 6.5 with a minimum score of 5.5 in each category.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "969de38668d05e87"
     },
     "toefl": {
      "overall": 92,
      "quote": "The minimum acceptable TOEFL score for the Dept of Economics is 580 (237 on the computerized exam; 92 iBT)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "2a3dcb2f20513cdb"
     },
     "prerequisites": [
      {
       "text": "Advanced microeconomics and macroeconomics (at least one course in each beyond intermediate)",
       "quote": "Advanced microeconomics and macroeconomics courses (that is, at least one course in each beyond the full-year intermediate courses).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "7f8bb0cf8339dabf"
      },
      {
       "text": "One upper-level university statistics or econometrics course",
       "quote": "One upper-level (3rd year or above) university statistics or econometrics course, with econometrics preferred.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "5d3b8a56cd87925f"
      }
     ]
    },
@@ -450,34 +550,46 @@
     "academic": {
      "text": "Normally an Honours Bachelor degree in Economics or equivalent; B+ average in relevant courses in the final two years",
      "quote": "Successful applicants will normally have an Honours Bachelor degree in Economics or its equivalent. The university requires entering Master’s students to have maintained a B+ average in courses (relevant to the Master’s program they are entering) during the final two years of their undergraduate programs.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "dea3419384bf23a3"
     },
     "ielts": {
      "overall": 6.5,
      "min_band": 5.5,
      "quote": "the minimum acceptable IELTS score is 6.5 with a minimum score of 5.5 in each category.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "969de38668d05e87"
     },
     "toefl": {
      "overall": 92,
      "quote": "The minimum acceptable TOEFL score for the Dept of Economics is 580 (237 on the computerized exam; 92 iBT)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "2a3dcb2f20513cdb"
     },
     "prerequisites": [
      {
       "text": "Two courses each in microeconomic and macroeconomic theory beyond introductory economics",
       "quote": "Two courses in microeconomics theory beyond introductory economics Two courses in macroeconomic theory beyond introductory economics",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "da4f222b7330543c"
      },
      {
       "text": "A university calculus course",
       "quote": "A university calculus course",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "c36aa7b3bef7fe85"
      },
      {
       "text": "One upper-level university statistics or econometrics course",
       "quote": "One upper-level (third-year or above) university statistics or econometrics course, with econometrics preferred",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "ed7630499796e62c"
      }
     ]
    },
@@ -491,24 +603,32 @@
     "academic": {
      "text": "Four-year Honours Bachelor's degree with at least a B+ (or equivalent GPA)",
      "quote": "Successful completion a four-year Honours Bachelor’s degree with at least a B+ (or the equivalent grade point average).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "9c4cfdd81092034f"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "A minimum TOEFL (iBT) score of 100. The IELTS minimum is 7.0 overall.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "91e96410876d64a4"
     },
     "toefl": {
      "overall": 100,
      "quote": "A minimum TOEFL (iBT) score of 100.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "6290410cf10b5cee"
     },
     "deadlines": [
      {
       "label": "Fall 2027",
       "date": "2027-01-14",
       "quote": "Application cycle for admission Fall 2027 Open: September 1, 2026 Close: January 14, 2027 at 11:59 pm",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "0fb621c0da629bc5"
      }
     ]
    },
@@ -522,7 +642,9 @@
     "academic": {
      "text": "4 year undergraduate in Sciences or equivalent",
      "quote": "Required Credentials 4 year undergraduate in Sciences or equivalent",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "71db382c62a53de0"
     }
    },
    "status": "机器核对"
@@ -535,7 +657,9 @@
     "academic": {
      "text": "Honour's Bachelor degree or equivalent",
      "quote": "Required Credentials Honour's Bachelor degree or equivalent",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "255d51567d68ad98"
     }
    },
    "status": "机器核对"
@@ -543,7 +667,7 @@
  ],
  "verification": {
   "programs": 14,
-  "机器核对": 14,
-  "待人工": 0
+  "机器核对": 9,
+  "待人工": 5
  }
 }

@@ -101,17 +101,21 @@
     "academic": {
      "text": "Applicants should hold a bachelor's degree in traditional Chinese medicine.",
      "quote": "This course is suitable for those who have obtained the bachelor's degree of traditional Chinese medicine.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: should hold (quote says suitable for those who have obtained)",
+     "summary_sha": "eda0cfd7d38ff920"
     },
     "prerequisites": [
      {
       "text": "Graduates of Western medical universities must take certain basic and clinical courses of Chinese Medicine.",
       "quote": "For students graduated from Western medical universities, they need to take certain basic and clinical courses of Chinese Medicine.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "cbec953135878817"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Pharmacology in Traditional Chinese Medicine",
@@ -159,18 +163,24 @@
     "academic": {
      "text": "Hold a bachelor's degree in IT or related fields.",
      "quote": "Hold a bachelor's degree in IT or related fields.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a8fd36e53aa4c200"
     },
     "prerequisites": [
      {
       "text": "Applicants with color blindness are rejected.",
       "quote": "(Applicants with color blindness are rejected)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "95e1b484e863c47e"
      },
      {
       "text": "Proof of English proficiency is required.",
       "quote": "(Proof of English proficiency is required)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "2669869d88d68d74"
      }
     ]
    },
@@ -195,13 +205,17 @@
     "academic": {
      "text": "Hold a bachelor's degree in Mathematics, Physics, Computer, Engineering, Statistics, Economics, Biology, Medicine or related fields.",
      "quote": "Hold a bachelor's degree in Mathematics, Physics, Computer, Engineering, Statistics, Economics, Biology, Medicine or related fields.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "339b3db963bf037e"
     },
     "prerequisites": [
      {
       "text": "Proof of English proficiency is required.",
       "quote": "(Proof of English proficiency is required)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "2669869d88d68d74"
      }
     ]
    },
@@ -217,7 +231,9 @@
     "academic": {
      "text": "A bachelor's degree in computer science and technology, mathematics, statistics, information science, management science and engineering, mechanical engineering, control science and engineering, environmental science, civil engineering, electrical engineering, physics, materials science, aerospace engineering, chemistry or related disciplines.",
      "quote": "Bachelor's Degree Holders in Computer Science and Technology, Mathematics, Statistics, Information Science, Management Science and Engineering, Mechanical Engineering, Control Science and Engineering, Environmental Science, Civil Engineering, Electrical Engineering, Physics, Mechanical Engineering, Materials Science, Aerospace Engineering, Chemistry or related disciplines.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "648e4d8ae19ac24b"
     }
    },
    "status": "机器核对"
@@ -232,13 +248,17 @@
     "academic": {
      "text": "Hold a bachelor's degree in Materials Science, Chemistry, Physics, Biology, Environmental Science, Medicine, or a related field.",
      "quote": "Hold a bachelor's degree in Materials Science, Chemistry, Physics, Biology, Environmental Science, Medicine, or a related field.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "5a0fa4bf49da76ea"
     },
     "prerequisites": [
      {
       "text": "Proof of English proficiency is required.",
       "quote": "Proof of English proficiency is required",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "2f9acc384b3a41a9"
      }
     ]
    },
@@ -254,13 +274,17 @@
     "academic": {
      "text": "Applicants must hold a bachelor's degree.",
      "quote": "招生對象：具有學士學位之人士",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "aa6e13b0c43e866e"
     },
     "prerequisites": [
      {
       "text": "Students whose degree is not in law must take Criminal Law and Criminal Procedure Law as electives.",
       "quote": "* 非法學專業畢業的學生必須選修“刑法學”和“刑事訴訟法學”。",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "2e6d46d930cb8fc7"
      }
     ]
    },
@@ -276,7 +300,9 @@
     "academic": {
      "text": "Applicants must hold a bachelor's degree.",
      "quote": "招生對象：具有大學本科學歷的人士",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "f847abe0ccafb201"
     }
    },
    "status": "机器核对"
@@ -291,13 +317,17 @@
     "academic": {
      "text": "Applicants must hold a bachelor's degree in law, a bachelor's degree in management, or a bachelor's degree in a related field.",
      "quote": "招生對象：具有法學學士學位、管理專業學士及相關專業學士學位者。",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "78b160c9d24c6ea5"
     },
     "prerequisites": [
      {
       "text": "Students without a law bachelor's degree must take remedial courses in commercial law and economic law foundations after enrolment.",
       "quote": "非法學本科專業學生入學後須補修商法及經濟法基礎。",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "5a0a5ee95c74b4ee"
      }
     ]
    },
@@ -313,17 +343,21 @@
     "academic": {
      "text": "Bachelor's degree in law, economics or management.",
      "quote": "招生對象：具有法學、經濟學及管理學專業的本科畢業生；具有其他專業本科畢業生並具有法律、金融從業經驗或資格之人士。",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits that other-major graduates with legal/financial experience also qualify; states law/econ/management as the only degree",
+     "summary_sha": "832b799816527ebf"
     },
     "prerequisites": [
      {
       "text": "Legal or financial work experience or qualifications (for applicants with a degree in another field).",
       "quote": "具有其他專業本科畢業生並具有法律、金融從業經驗或資格之人士。",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "2e94270d36d375c8"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Laws",
@@ -335,7 +369,9 @@
     "academic": {
      "text": "Applicants must hold a bachelor's degree in law.",
      "quote": "招生對象：具有法學學士學位",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "58b88062ad1caaa7"
     }
    },
    "status": "机器核对"
@@ -350,7 +386,9 @@
     "academic": {
      "text": "Applicants must hold a bachelor's degree in a non-law discipline.",
      "quote": "招生對象：具有非法學學士學位者",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fdfeb8f399b96fc8"
     }
    },
    "status": "机器核对"
@@ -365,23 +403,31 @@
     "ielts": {
      "overall": 6.0,
      "quote": "IELTS 6.0 or above",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c17ad01b62f5f9b1"
     },
     "toefl": {
      "overall": 80.0,
      "quote": "TOEFL 80 or above",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "6cc9f16d4fc9c28d"
     },
     "academic": {
      "text": "A bachelor's degree in Chinese medicine and pharmacy or a related major, plus passing the relevant master's admission examinations of MUST.",
      "quote": "Anyone who has a bachelor's degree in Chinese medicine and pharmacy or related majors, and who has passed the relevant examinations for the admission of master students of Macau University of Science and Technology can enroll in this course.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "2061015002c97baa"
     },
     "prerequisites": [
      {
       "text": "English proficiency: CET-4 450 or above / CET-6 430 or above, or an equivalent English proficiency certificate.",
       "quote": "College English Test (CET-4) 450 or above / CET-6 430 or above, or TOEFL 80 or above, or IELTS 6.0 or above, or other equivalent English proficiency certificates.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "9c22fb99a49a1fe1"
      }
     ]
    },
@@ -514,13 +560,17 @@
     "academic": {
      "text": "Applicants must hold a bachelor's degree in any field of study.",
      "quote": "1.Applicants must possess a bachelor's degree in any field of study;",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "65bc354a0cf4f062"
     },
     "prerequisites": [
      {
       "text": "Proof of English proficiency is required.",
       "quote": "2.Proof of English Proficiency is required.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "51726edac7b16c92"
      }
     ]
    },
@@ -554,13 +604,17 @@
     "academic": {
      "text": "Applicants should hold a bachelor's degree in Mathematics, Physics, Computer Science, Engineering, Statistics, Economics, Biology, Medicine, or a related discipline.",
      "quote": "Applicants should hold a bachelor’s degree in Mathematics, Physics, Computer Science, Engineering, Statistics, Economics, Biology, Medicine, or a related discipline, and provide proof of English proficiency (such as CET-4/CET-6, IELTS, TOEFL etc.).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "025198ffd4a7607f"
     },
     "prerequisites": [
      {
       "text": "Proof of English proficiency (such as CET-4/CET-6, IELTS, TOEFL etc.).",
       "quote": "and provide proof of English proficiency (such as CET-4/CET-6, IELTS, TOEFL etc.)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "e1cee204b12f47ea"
      }
     ]
    },
@@ -576,13 +630,17 @@
     "academic": {
      "text": "Hold a Bachelor of Laws or higher degree.",
      "quote": "Hold a Bachelor of Laws or higher degree;",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "7113c60d1bfdac08"
     },
     "prerequisites": [
      {
       "text": "For non-law degree holders: a legal professional qualification or at least two years of legal work experience.",
       "quote": "holders of a bachelor's degree or higher in other disciplines possess a legal professional qualification or at least two years of legal work experience.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "8e90bdff22e78d3e"
      }
     ]
    },
@@ -607,17 +665,21 @@
     "academic": {
      "text": "Applicants must hold a bachelor's degree in Mathematics, Physics, Computer Science, Engineering, Statistics, Economics, Biology, Medicine, or a related discipline.",
      "quote": "Applicants should hold a bachelor’s degree in Mathematics, Physics, Computer Science, Engineering, Statistics, Economics, Biology, Medicine, or a related discipline, and provide proof of English proficiency (such as CET-4/CET-6, IELTS, TOEFL etc.).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: \"must\" (quote says \"should\")",
+     "summary_sha": "79ce57e14a99cc0c"
     },
     "prerequisites": [
      {
       "text": "Proof of English proficiency (such as CET-4/CET-6, IELTS, TOEFL etc.).",
       "quote": "provide proof of English proficiency (such as CET-4/CET-6, IELTS, TOEFL etc.)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "bbc9cdebeb407063"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Earth and Planetary Sciences",
@@ -638,13 +700,17 @@
     "academic": {
      "text": "Applicants must hold a bachelor's degree and have studied computer science, earth science, planetary science, big data science, mathematics, physics, astronomy or a related discipline.",
      "quote": "具有本科學歷，修讀計算機、地球科學、行星科學、大數據科學、數學、物理、天文學及相近學科。",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "43f79c969436e051"
     },
     "prerequisites": [
      {
       "text": "Bachelor's degree holders who have studied computer science, earth science, planetary science, big data science, mathematics, physics, astronomy or a related discipline.",
       "quote": "具有本科學歷，修讀計算機、地球科學、行星科學、大數據科學、數學、物理、天文學及相近學科。",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "0c7ead8d96464031"
      }
     ]
    },
@@ -671,7 +737,7 @@
  ],
  "verification": {
   "programs": 50,
-  "机器核对": 17,
-  "待人工": 33
+  "机器核对": 14,
+  "待人工": 36
  }
 }

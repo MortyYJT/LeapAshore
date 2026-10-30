@@ -74,7 +74,9 @@
     "academic": {
      "text": "Bachelor's degree in computer science or equivalent with 180 credit points, including at least 20 LP mathematics and 10 LP computer science",
      "quote": "The applicant must hold a Bachelor’s degree in computer science or an equivalent degree with a total of 180 credit points (LP). These must include at least 20 LP in mathematics modules and at least 10 LP in computer science modules.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "90e92d89f05b6354"
     },
     "china_requirement": {
      "text": "Applicants with certificates from China generally have to submit an APS certificate in addition to the required documents for the uni-assist VPD",
@@ -87,29 +89,39 @@
      {
       "text": "At least 5 LP in linear algebra or calculus and 5 LP in probability theory or statistics within the 20 LP mathematics",
       "quote": "The 20 LP in mathematics modules must contain at least 5 LP in linear algebra or calculus and at least 5 LP in probability theory or statistics. With regard to the required 10 LP in computer science modules, at least 5 LP must be in algorithms and at least 5 LP in a module that imparted knowledge of a higher programming language, e.g. C/ C++, Java or Python.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "57a8c0655861f8f2"
      },
      {
       "text": "Of the 10 LP computer science, at least 5 LP in algorithms and 5 LP in a higher programming language (C/C++, Java, Python)",
       "quote": "With regard to the required 10 LP in computer science modules, at least 5 LP must be in algorithms and at least 5 LP in a module that imparted knowledge of a higher programming language, e.g. C/ C++, Java or Python.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "495e491e9b5d5e0b"
      },
      {
       "text": "English at CEFR C1 required unless the degree was taught in English",
       "quote": "Any applicant who did not earn his or her university degree at an education institution where English is the language of instruction is required to prove English language skills at level C1 of the Common European Framework of Reference for Languages (CEFR).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "124c6c27b44ea20c"
      },
      {
       "text": "Applicants must complete a self-indication form as part of the application",
       "quote": "The application requires the completion of this self-indication.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "1933d613c307f840"
      },
      {
       "text": "Applicants with a foreign degree must first obtain a preliminary review documentation (VPD) from uni-assist and upload it to the FU application portal",
       "quote": "prospective students with a foreign university degree must apply for a VPD (Vorprüfungsdokumentation, preliminary review documentation) at uni-assist",
       "source_sha256": "a0cffa15c755b76d936ab596f731f73573e5bca3750345f3b9eca1809182e452",
       "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/uni-assist/index.html",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: upload it to the FU application portal",
+      "summary_sha": "2f547d51bdd70614"
      }
     ],
     "ielts": {
@@ -117,7 +129,9 @@
      "quote": "IELTS General or Academic (also online): 7.0",
      "source_sha256": "373380cfbcb87baa2011f7715b214595fca0b3e8199a0808da9a90d2840cf4ca",
      "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/sprachliche-zugangsvoraussetzungen/index.html",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "482129261ca04290"
     },
     "toefl": {
      "overall": 95,
@@ -125,10 +139,12 @@
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_sha256": "373380cfbcb87baa2011f7715b214595fca0b3e8199a0808da9a90d2840cf4ca",
      "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/sprachliche-zugangsvoraussetzungen/index.html",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 95 (quote gives 95 or 5)",
+     "summary_sha": "0a551f9f04d59bb4"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Bioinformatics (M.Sc.)",
@@ -138,7 +154,9 @@
     "academic": {
      "text": "University degree (bachelor or equivalent) of at least six semesters that qualifies to practice a profession",
      "quote": "First Degree: You need to have an university degree (bachelor or equivalent), either from Germany or an equivalent foreign degree, in a higher education program comprising at least six semesters that qualifies to practice a profession.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "9d5f478243d99e74"
     },
     "china_requirement": {
      "text": "Applicants with certificates from China generally have to submit an APS certificate in addition to the required documents for the uni-assist VPD",
@@ -151,33 +169,43 @@
      {
       "text": "English at CEFR B2 required unless the degree was taught in English",
       "quote": "Language: Either you (1) did earn your university degree at an education institution where English is the language of instruction or (2) you are required to prove English language skills at level B2 of the Common European Framework of Reference for Languages (CEFR).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "0b87aea553388b57"
      },
      {
       "text": "At least 25 credits in computer science, of which 10 in an imperative programming language and 10 in algorithms",
       "quote": "Computer Science, Bioinformatics & Programming Skills: You need at least 25 credits in computer science modules. Out of these, at least 10 credits need to be in modules in which you acquired knowledge in a imperative programming language, such as C/C++, Java or Python and at least 10 credits in the area of algorithms.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "282f90b67cfd57d2"
      },
      {
       "text": "At least 25 credits in mathematics, of which 10 in linear algebra or analysis and 10 in statistics",
       "quote": "Mathematics/Statistics: You need at least 25 credits in mathematical modules. Out of these, at least 10 credits need to be in the area of linear algebra or analysis and at least 10 credits in the area of statistics.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "98481b921787c2a7"
      },
      {
       "text": "At least 25 credits in biology/chemistry/biochemistry, of which 10 in biochemistry, molecular biology and genetics",
       "quote": "Biology/Chemistry/Biochemistry: You need at least 25 credits in this area. Out of these, at least 10 credits need to be in the area of biochemistry, molecular biology and genetics.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "98d56e29307134d2"
      },
      {
       "text": "Applicants with a foreign degree must first obtain a preliminary review documentation (VPD) from uni-assist and upload it to the FU application portal",
       "quote": "prospective students with a foreign university degree must apply for a VPD (Vorprüfungsdokumentation, preliminary review documentation) at uni-assist",
       "source_sha256": "a0cffa15c755b76d936ab596f731f73573e5bca3750345f3b9eca1809182e452",
       "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/uni-assist/index.html",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: upload it to the FU application portal",
+      "summary_sha": "2f547d51bdd70614"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Economic Systems (M.Sc.)",
@@ -187,7 +215,9 @@
     "academic": {
      "text": "Professionally qualifying bachelor's degree in economics or statistics, or another bachelor's with at least 60 ECTS in economic theory, mathematics, statistics or econometrics",
      "quote": "Professionally qualifying German or equivalent foreign university bachelor’s degree in economics or statistics or other bachelor's degree with a share of at least 60 credit points (ECTS) in economic theory, mathematics, statistics, or econometrics.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d0d9099b9c7b8e07"
     },
     "china_requirement": {
      "text": "Applicants with certificates from China generally have to submit an APS certificate in addition to the required documents for the uni-assist VPD",
@@ -200,19 +230,25 @@
      {
       "text": "English at CEFR C1 required",
       "quote": "Proof of English skills (level C1 CEFR.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "74b3c2afa68d872a"
      },
      {
       "text": "No German language skills required",
       "quote": "No German language skills required.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "15e982c023ae8608"
      },
      {
       "text": "Applicants with a foreign degree must first obtain a preliminary review documentation (VPD) from uni-assist and upload it to the FU application portal",
       "quote": "prospective students with a foreign university degree must apply for a VPD (Vorprüfungsdokumentation, preliminary review documentation) at uni-assist",
       "source_sha256": "a0cffa15c755b76d936ab596f731f73573e5bca3750345f3b9eca1809182e452",
       "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/uni-assist/index.html",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: upload it to the FU application portal",
+      "summary_sha": "2f547d51bdd70614"
      }
     ],
     "ielts": {
@@ -220,7 +256,9 @@
      "quote": "IELTS General or Academic (also online): 7.0",
      "source_sha256": "373380cfbcb87baa2011f7715b214595fca0b3e8199a0808da9a90d2840cf4ca",
      "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/sprachliche-zugangsvoraussetzungen/index.html",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "482129261ca04290"
     },
     "toefl": {
      "overall": 95,
@@ -228,10 +266,12 @@
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_sha256": "373380cfbcb87baa2011f7715b214595fca0b3e8199a0808da9a90d2840cf4ca",
      "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/sprachliche-zugangsvoraussetzungen/index.html",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0a551f9f04d59bb4"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Computational Sciences (M.Sc.)",
@@ -241,7 +281,9 @@
     "academic": {
      "text": "First degree in chemistry, physics, geological sciences, meteorology, geographical sciences, mathematics, computer science or engineering sciences, each with stated minimum credits in mathematics/physics/other",
      "quote": "The admissions requirement for the Master’s program is a first university degree in one of the following programs or the equivalent degree from a German higher education institution or one outside Germany:",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: the list of subjects and stated minimum credits in mathematics/physics/other",
+     "summary_sha": "0d3e7fa0cbd8e603"
     },
     "china_requirement": {
      "text": "Applicants with certificates from China generally have to submit an APS certificate in addition to the required documents for the uni-assist VPD",
@@ -254,23 +296,29 @@
      {
       "text": "English at CEFR B1 or equivalent required",
       "quote": "Proficiency in English (level B1 CEFR or equivalent) is required.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "e055fbd941cf5c16"
      },
      {
       "text": "German is not a prerequisite, though a pre-semester German course is recommended",
       "quote": "German proficiency is not a prerequisite for this program, however students without German knowledge may experience difficulties depending on their individual background and on their choice of Specialization area. We therefore strongly recommend a Pre-semester German course of the Language Centre of Freie Universität Berlin for interested students with limited or no German knowledge. For more information, please see here.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "5b39476f01dabc51"
      },
      {
       "text": "Applicants with a foreign degree must first obtain a preliminary review documentation (VPD) from uni-assist and upload it to the FU application portal",
       "quote": "prospective students with a foreign university degree must apply for a VPD (Vorprüfungsdokumentation, preliminary review documentation) at uni-assist",
       "source_sha256": "a0cffa15c755b76d936ab596f731f73573e5bca3750345f3b9eca1809182e452",
       "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/uni-assist/index.html",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: upload it to the FU application portal",
+      "summary_sha": "2f547d51bdd70614"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Cognitive Neuroscience (M.Sc.)",
@@ -280,7 +328,9 @@
     "academic": {
      "text": "Bachelor's degree in psychology, neuroscience, cognitive science, data science, mathematics, physics, biology, computer science, or medical licensing examination, or equivalent",
      "quote": "Bachelor`s degree in Psychology, Neuroscience, Cognitive Science, Data Science, Mathematics, Physics, Biology, Computer Science, or passing grades on both sections of the licensing examination for physicians (Ärztliche Prüfung) or equivalent other university degree.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "66c885bb0eee4792"
     },
     "china_requirement": {
      "text": "Applicants with certificates from China generally have to submit an APS certificate in addition to the required documents for the uni-assist VPD",
@@ -293,19 +343,25 @@
      {
       "text": "English at CEFR C1 required",
       "quote": "Proof of English language proficiency (CEFR Level C1)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "e1864b9589ae1126"
      },
      {
       "text": "Admission is limited (selective)",
       "quote": "The admission is limited.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "4f6ed0f6d6a197c4"
      },
      {
       "text": "Applicants with a foreign degree must first obtain a preliminary review documentation (VPD) from uni-assist and upload it to the FU application portal",
       "quote": "prospective students with a foreign university degree must apply for a VPD (Vorprüfungsdokumentation, preliminary review documentation) at uni-assist",
       "source_sha256": "a0cffa15c755b76d936ab596f731f73573e5bca3750345f3b9eca1809182e452",
       "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/uni-assist/index.html",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: upload it to the FU application portal",
+      "summary_sha": "2f547d51bdd70614"
      }
     ],
     "ielts": {
@@ -313,7 +369,9 @@
      "quote": "IELTS General or Academic (also online): 7.0",
      "source_sha256": "373380cfbcb87baa2011f7715b214595fca0b3e8199a0808da9a90d2840cf4ca",
      "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/sprachliche-zugangsvoraussetzungen/index.html",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "482129261ca04290"
     },
     "toefl": {
      "overall": 95,
@@ -321,10 +379,12 @@
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_sha256": "373380cfbcb87baa2011f7715b214595fca0b3e8199a0808da9a90d2840cf4ca",
      "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/sprachliche-zugangsvoraussetzungen/index.html",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0a551f9f04d59bb4"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Biochemistry (M.Sc.)",
@@ -334,7 +394,9 @@
     "academic": {
      "text": "First professional qualification equivalent to the FU Berlin bachelor's in Biochemistry, or an equivalent degree in biochemistry or a related life or natural science",
      "quote": "First professional qualification equivalent to the Bachelor's degree in Biochemistry from the Department of Biology, Chemistry, and Pharmacy at Freie Universität Berlin, or an equivalent German or foreign university degree in biochemistry or a related life science or natural science subject.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "94465fe05befb865"
     },
     "china_requirement": {
      "text": "Applicants with certificates from China generally have to submit an APS certificate in addition to the required documents for the uni-assist VPD",
@@ -347,33 +409,43 @@
      {
       "text": "Proof of German (DSH2) or English (IELTS 5.0; TOEFL iBT 80) for applicants whose first degree was not taught in German",
       "quote": "Proof of sufficient German (DSH2) or English Skills (IELTS 5.0; TOEFL: Paper 500 or Computer 170 or Internet 80) for all applicants whose first language is not German and who have earned their initial degree from a university (or equivalent institution) where the language of instruction is not German, which are necessary to understand courses and specialist literature.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: first degree not taught in German (quote says first language not German)",
+      "summary_sha": "3e308b7a49fbdef9"
      },
      {
       "text": "English-only study is possible with certain restrictions",
       "quote": "With certain restrictions, it is possible to complete the master’s degree program by taking classes solely in English. The necessary English language skills must as a rule be proven by exam results.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "8240b9c26fdb5d78"
      },
      {
       "text": "Applicants with a foreign degree must first obtain a preliminary review documentation (VPD) from uni-assist and upload it to the FU application portal",
       "quote": "prospective students with a foreign university degree must apply for a VPD (Vorprüfungsdokumentation, preliminary review documentation) at uni-assist",
       "source_sha256": "a0cffa15c755b76d936ab596f731f73573e5bca3750345f3b9eca1809182e452",
       "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/uni-assist/index.html",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: upload it to the FU application portal",
+      "summary_sha": "2f547d51bdd70614"
      }
     ],
     "ielts": {
      "overall": 5.0,
      "quote": "IELTS 5.0; TOEFL: Paper 500 or Computer 170 or Internet 80",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "923a63f16733b730"
     },
     "toefl": {
      "overall": 80,
      "quote": "IELTS 5.0; TOEFL: Paper 500 or Computer 170 or Internet 80",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "e72c3a4d1d7c13ae"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Chemistry (M.Sc.)",
@@ -383,7 +455,9 @@
     "academic": {
      "text": "Bachelor's degree in chemistry or equivalent with credits corresponding to the FU Berlin chemistry bachelor; applied chemistry, chemical engineering, pharmacy or biochemistry generally not equivalent",
      "quote": "Bachelor’s degree in chemistry or an equivalent degree with credits in chemistry that correspond to the bachelor’s program in chemistry at the Freie Universität Berlin. Please note that \"applied chemistry\", \"chemical engineering\" and other subjects like pharmacy or biochemistry generally are not equivalent.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b245adfa3fd5ca75"
     },
     "china_requirement": {
      "text": "Applicants with certificates from China generally have to submit an APS certificate in addition to the required documents for the uni-assist VPD",
@@ -396,33 +470,43 @@
      {
       "text": "Proof of German (DSH2) or English (IELTS 5.0; TOEFL iBT 80) for applicants whose first degree was not taught in German",
       "quote": "Proof of sufficient German (DSH2) or English Skills (IELTS 5.0; TOEFL: Paper 500 or Computer 170 or Internet 80) for all applicants whose first language is not German and who have earned their initial degree from a university (or equivalent institution) where the language of instruction is not German, which are necessary to understand courses and specialist literature.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: first degree not taught in German (quote: first language not German and degree not in German)",
+      "summary_sha": "3e308b7a49fbdef9"
      },
      {
       "text": "English-only study is possible with certain restrictions",
       "quote": "With certain restrictions, it is possible to complete the master’s degree program by taking classes solely in English. The necessary English language skills must as a rule be proven by exam results.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "8240b9c26fdb5d78"
      },
      {
       "text": "Applicants with a foreign degree must first obtain a preliminary review documentation (VPD) from uni-assist and upload it to the FU application portal",
       "quote": "prospective students with a foreign university degree must apply for a VPD (Vorprüfungsdokumentation, preliminary review documentation) at uni-assist",
       "source_sha256": "a0cffa15c755b76d936ab596f731f73573e5bca3750345f3b9eca1809182e452",
       "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/uni-assist/index.html",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: upload it to the FU application portal",
+      "summary_sha": "2f547d51bdd70614"
      }
     ],
     "ielts": {
      "overall": 5.0,
      "quote": "IELTS 5.0; TOEFL: Paper 500 or Computer 170 or Internet 80",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "923a63f16733b730"
     },
     "toefl": {
      "overall": 80,
      "quote": "IELTS 5.0; TOEFL: Paper 500 or Computer 170 or Internet 80",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "e72c3a4d1d7c13ae"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Mathematics (M.Sc.)",
@@ -432,7 +516,9 @@
     "academic": {
      "text": "Bachelor's degree in mathematics or equivalent with credits corresponding to the FU Berlin mathematics bachelor",
      "quote": "Bachelor’s degree in mathematics or an equivalent degree with a number of credit points in mathematics corresponding to that of the bachelor’s program in mathematics at Freie Universität Berlin.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b41981f98ee4c2d6"
     },
     "china_requirement": {
      "text": "Applicants with certificates from China generally have to submit an APS certificate in addition to the required documents for the uni-assist VPD",
@@ -445,33 +531,43 @@
      {
       "text": "Proof of German (DSH2) or English (B2; IELTS 5.0; TOEFL iBT 80) for applicants whose first degree was not taught in German",
       "quote": "Proof of sufficient German (DSH2) or English Skills (B2 GER; IELTS 5.0; TOEFL: Paper 500 or Computer 170 or Internet 80) for all applicants whose first language is not German and who have earned their initial degree from a university (or equivalent institution) where the language of instruction is not German, which are necessary to understand courses and specialist literature.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: first degree not taught in German (quote says first language not German and degree not in German)",
+      "summary_sha": "df5ebff2d1d57d02"
      },
      {
       "text": "English-only study is possible with certain restrictions",
       "quote": "With certain restrictions, it is possible to complete the master’s degree program by taking classes solely in English. The necessary English language skills must as a rule be proven by exam results.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "8240b9c26fdb5d78"
      },
      {
       "text": "Applicants with a foreign degree must first obtain a preliminary review documentation (VPD) from uni-assist and upload it to the FU application portal",
       "quote": "prospective students with a foreign university degree must apply for a VPD (Vorprüfungsdokumentation, preliminary review documentation) at uni-assist",
       "source_sha256": "a0cffa15c755b76d936ab596f731f73573e5bca3750345f3b9eca1809182e452",
       "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/uni-assist/index.html",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: upload it to the FU application portal",
+      "summary_sha": "2f547d51bdd70614"
      }
     ],
     "ielts": {
      "overall": 5.0,
      "quote": "IELTS 5.0; TOEFL: Paper 500 or Computer 170 or Internet 80",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "923a63f16733b730"
     },
     "toefl": {
      "overall": 80,
      "quote": "IELTS 5.0; TOEFL: Paper 500 or Computer 170 or Internet 80",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "e72c3a4d1d7c13ae"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Physics (M.Sc.)",
@@ -481,7 +577,9 @@
     "academic": {
      "text": "Bachelor's degree equivalent to the FU Berlin bachelor's in physics",
      "quote": "Bachelor’s degree equivalent to the bachelor's degree in physics of the Freie Universität Berlin.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "7a855fd186f3866c"
     },
     "china_requirement": {
      "text": "Applicants with certificates from China generally have to submit an APS certificate in addition to the required documents for the uni-assist VPD",
@@ -494,18 +592,22 @@
      {
       "text": "English at CEFR B2 required for applicants whose first language is not English and whose degree was not taught in English",
       "quote": "Proof of English language skills (level B2 CEFR) for applicants whose first language is not English and whose degree was not obtained at an institution of higher education where English was the language of instruction",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "566607e95bcd9e50"
      },
      {
       "text": "Applicants with a foreign degree must first obtain a preliminary review documentation (VPD) from uni-assist and upload it to the FU application portal",
       "quote": "prospective students with a foreign university degree must apply for a VPD (Vorprüfungsdokumentation, preliminary review documentation) at uni-assist",
       "source_sha256": "a0cffa15c755b76d936ab596f731f73573e5bca3750345f3b9eca1809182e452",
       "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/uni-assist/index.html",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: upload it to the FU application portal",
+      "summary_sha": "2f547d51bdd70614"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Planetary Sciences and Space Exploration (M.Sc.)",
@@ -515,7 +617,9 @@
     "academic": {
      "text": "Bachelor's degree or professional qualification in natural or engineering sciences with at least 60 CP in Earth sciences, biology, physics, chemistry, mathematics or computer science (incl. 8 CP physics, 10 CP mathematics/statistics)",
      "quote": "a Bachelor's degree or professional qualification from a German or comparable international institution in the natural sciences or engineering sciences,",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: at least 60 CP in Earth sciences, biology, physics, chemistry, mathematics or computer science (incl. 8 CP physics, 10 CP mathematics/statistics)",
+     "summary_sha": "98ad1a744a819f79"
     },
     "china_requirement": {
      "text": "Applicants with certificates from China generally have to submit an APS certificate in addition to the required documents for the uni-assist VPD",
@@ -528,23 +632,29 @@
      {
       "text": "English at CEFR B2 required if the degree was not taught in English",
       "quote": "for applicants who have completed their university degree at an institution where English was not the teaching language, proficiency in English to at least the B2 level of the Common European Framework of Reference for Languages (CEFR) or equivalent.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "995831a09a713178"
      },
      {
       "text": "Selection includes an interview with applicants",
       "quote": "The result of an interview with the applicants, which should provide information about their motivation and qualification for the Master's Program.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "7aa9eada971060a4"
      },
      {
       "text": "Applicants with a foreign degree must first obtain a preliminary review documentation (VPD) from uni-assist and upload it to the FU application portal",
       "quote": "prospective students with a foreign university degree must apply for a VPD (Vorprüfungsdokumentation, preliminary review documentation) at uni-assist",
       "source_sha256": "a0cffa15c755b76d936ab596f731f73573e5bca3750345f3b9eca1809182e452",
       "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/uni-assist/index.html",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: upload it to the FU application portal",
+      "summary_sha": "2f547d51bdd70614"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Archaeology of the Ancient World (M.A.)",
@@ -554,7 +664,9 @@
     "academic": {
      "text": "Bachelor's degree of 180 credit points, including at least 60 CP related to archaeology",
      "quote": "Applicants must hold a Bachelor degree or equivalent from an institution of higher education within or outside of Germany. The completed degree program should cover the equivalent of 180 credit points (CP), of which at least 60 CP should include content related to the study of archaeology.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c045eacf89daff51"
     },
     "china_requirement": {
      "text": "Applicants with certificates from China generally have to submit an APS certificate in addition to the required documents for the uni-assist VPD",
@@ -567,14 +679,18 @@
      {
       "text": "English at CEFR C1 required if the degree was not taught in English",
       "quote": "Applicants who did not complete a university degree at an institution where coursework was conducted in English must demonstrate English language skills at C1 level of the Common European Framework of Reference for Languages (CEFR) or an equivalent.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "c420b8ac0d93b0df"
      },
      {
       "text": "Applicants with a foreign degree must first obtain a preliminary review documentation (VPD) from uni-assist and upload it to the FU application portal",
       "quote": "prospective students with a foreign university degree must apply for a VPD (Vorprüfungsdokumentation, preliminary review documentation) at uni-assist",
       "source_sha256": "a0cffa15c755b76d936ab596f731f73573e5bca3750345f3b9eca1809182e452",
       "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/uni-assist/index.html",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: upload it to the FU application portal",
+      "summary_sha": "2f547d51bdd70614"
      }
     ],
     "ielts": {
@@ -582,7 +698,9 @@
      "quote": "IELTS General or Academic (also online): 7.0",
      "source_sha256": "373380cfbcb87baa2011f7715b214595fca0b3e8199a0808da9a90d2840cf4ca",
      "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/sprachliche-zugangsvoraussetzungen/index.html",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "482129261ca04290"
     },
     "toefl": {
      "overall": 95,
@@ -590,10 +708,12 @@
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_sha256": "373380cfbcb87baa2011f7715b214595fca0b3e8199a0808da9a90d2840cf4ca",
      "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/sprachliche-zugangsvoraussetzungen/index.html",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0a551f9f04d59bb4"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Critical Dance Studies (M.A.)",
@@ -603,7 +723,9 @@
     "academic": {
      "text": "First university degree from a German or comparable non-German higher education institution",
      "quote": "(1) The admission requirement for the master’s degree program is a first university degree from a German or comparable non-German institution of higher education.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "85fc6a6274d50c13"
     },
     "china_requirement": {
      "text": "Applicants with certificates from China generally have to submit an APS certificate in addition to the required documents for the uni-assist VPD",
@@ -616,14 +738,18 @@
      {
       "text": "English at CEFR C1 required if the degree was not taught in English",
       "quote": "(2) Applicants who did not complete a university degree at an institution where coursework was conducted in English must demonstrate English language skills at a level equivalent to C1 of the Common European Framework of Reference for Languages (CEFR).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "57c4e4460e59bd8a"
      },
      {
       "text": "Applicants with a foreign degree must first obtain a preliminary review documentation (VPD) from uni-assist and upload it to the FU application portal",
       "quote": "prospective students with a foreign university degree must apply for a VPD (Vorprüfungsdokumentation, preliminary review documentation) at uni-assist",
       "source_sha256": "a0cffa15c755b76d936ab596f731f73573e5bca3750345f3b9eca1809182e452",
       "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/uni-assist/index.html",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: upload it to the FU application portal",
+      "summary_sha": "2f547d51bdd70614"
      }
     ],
     "ielts": {
@@ -631,7 +757,9 @@
      "quote": "IELTS General or Academic (also online): 7.0",
      "source_sha256": "373380cfbcb87baa2011f7715b214595fca0b3e8199a0808da9a90d2840cf4ca",
      "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/sprachliche-zugangsvoraussetzungen/index.html",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "482129261ca04290"
     },
     "toefl": {
      "overall": 95,
@@ -639,10 +767,12 @@
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_sha256": "373380cfbcb87baa2011f7715b214595fca0b3e8199a0808da9a90d2840cf4ca",
      "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/sprachliche-zugangsvoraussetzungen/index.html",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0a551f9f04d59bb4"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Digital Studies of Ancient Texts (M.A.)",
@@ -652,7 +782,9 @@
     "academic": {
      "text": "First university degree of 180 ECTS, with 60 ECTS in Classical Studies and/or Digital Humanities, at least 25 of them in Akkadian, Ancient Egyptian, Coptic, Hittite or Sumerian",
      "quote": "You must hold a first university degree (e.g. a bachelor’s degree) comprising of at least 180 credit points (ECTS). 60 ECTS must have been earned in courses that are relevant to the content of the Master's program from the fields of Classical Studies and/or Digital Humanities. From those 60 ECTS at least 25 must derive from language skills in one or more of the following languages: Akkadian, Ancient Egyptian, Coptic, Hittite, Sumerian.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b03594e3b8935bb6"
     },
     "china_requirement": {
      "text": "Applicants with certificates from China generally have to submit an APS certificate in addition to the required documents for the uni-assist VPD",
@@ -665,14 +797,18 @@
      {
       "text": "English at CEFR C1 required if the degree was not taught in English",
       "quote": "Applicants who did not complete a university degree at an institution where coursework was conducted in English must demonstrate English language skills at C1 level of the Common European Framework of Reference for Languages (CEFR) or an equivalent.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "c420b8ac0d93b0df"
      },
      {
       "text": "Applicants with a foreign degree must first obtain a preliminary review documentation (VPD) from uni-assist and upload it to the FU application portal",
       "quote": "prospective students with a foreign university degree must apply for a VPD (Vorprüfungsdokumentation, preliminary review documentation) at uni-assist",
       "source_sha256": "a0cffa15c755b76d936ab596f731f73573e5bca3750345f3b9eca1809182e452",
       "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/uni-assist/index.html",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: upload it to the FU application portal",
+      "summary_sha": "2f547d51bdd70614"
      }
     ],
     "ielts": {
@@ -680,7 +816,9 @@
      "quote": "IELTS General or Academic (also online): 7.0",
      "source_sha256": "373380cfbcb87baa2011f7715b214595fca0b3e8199a0808da9a90d2840cf4ca",
      "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/sprachliche-zugangsvoraussetzungen/index.html",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "482129261ca04290"
     },
     "toefl": {
      "overall": 95,
@@ -688,10 +826,12 @@
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_sha256": "373380cfbcb87baa2011f7715b214595fca0b3e8199a0808da9a90d2840cf4ca",
      "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/sprachliche-zugangsvoraussetzungen/index.html",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0a551f9f04d59bb4"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "English Studies: Literature, Language, Culture (M.A.)",
@@ -701,7 +841,9 @@
     "academic": {
      "text": "Professionally qualifying degree in English Philology (60 CP equivalent) or in a related literary/cultural field with at least 20 CP in English Philology",
      "quote": "professionally qualifying German or an equivalent foreign degree from a higher education institution",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: English Philology degree, 60 CP, 20 CP in English Philology",
+     "summary_sha": "7e4f8b14fd4bc01b"
     },
     "china_requirement": {
      "text": "Applicants with certificates from China generally have to submit an APS certificate in addition to the required documents for the uni-assist VPD",
@@ -714,14 +856,18 @@
      {
       "text": "English at CEFR C1 required unless the degree was taught in English across all courses",
       "quote": "Proof of English language skills (level C1 CEFR) for applicants whose degree was not obtained at an institution/university where English is generally the language of instruction across all courses in all faculties.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "4cee331594ef8dc8"
      },
      {
       "text": "Applicants with a foreign degree must first obtain a preliminary review documentation (VPD) from uni-assist and upload it to the FU application portal",
       "quote": "prospective students with a foreign university degree must apply for a VPD (Vorprüfungsdokumentation, preliminary review documentation) at uni-assist",
       "source_sha256": "a0cffa15c755b76d936ab596f731f73573e5bca3750345f3b9eca1809182e452",
       "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/uni-assist/index.html",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: upload it to the FU application portal",
+      "summary_sha": "2f547d51bdd70614"
      }
     ],
     "ielts": {
@@ -729,7 +875,9 @@
      "quote": "IELTS General or Academic (also online): 7.0",
      "source_sha256": "373380cfbcb87baa2011f7715b214595fca0b3e8199a0808da9a90d2840cf4ca",
      "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/sprachliche-zugangsvoraussetzungen/index.html",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "482129261ca04290"
     },
     "toefl": {
      "overall": 95,
@@ -737,10 +885,12 @@
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_sha256": "373380cfbcb87baa2011f7715b214595fca0b3e8199a0808da9a90d2840cf4ca",
      "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/sprachliche-zugangsvoraussetzungen/index.html",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0a551f9f04d59bb4"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Geographies of Global Inequalities (M.Sc.)",
@@ -750,7 +900,9 @@
     "academic": {
      "text": "Bachelor's degree in geography or in social, cultural or regional sciences",
      "quote": "a German or equivalent foreign Bachelor degree in geography or in social, cultural or regional sciences.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "026dfff86e0b0de8"
     },
     "china_requirement": {
      "text": "Applicants with certificates from China generally have to submit an APS certificate in addition to the required documents for the uni-assist VPD",
@@ -763,19 +915,25 @@
      {
       "text": "English at CEFR C1 required unless the degree was taught in English",
       "quote": "Proof of English language skills (level C1 CEFR), unless the university degree was obtained at an educational institution where English is the language of instruction.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "68a8543dcef62996"
      },
      {
       "text": "German language skills not required",
       "quote": "German language skills are not required.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f591db2f64666d42"
      },
      {
       "text": "Applicants with a foreign degree must first obtain a preliminary review documentation (VPD) from uni-assist and upload it to the FU application portal",
       "quote": "prospective students with a foreign university degree must apply for a VPD (Vorprüfungsdokumentation, preliminary review documentation) at uni-assist",
       "source_sha256": "a0cffa15c755b76d936ab596f731f73573e5bca3750345f3b9eca1809182e452",
       "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/uni-assist/index.html",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: upload it to the FU application portal",
+      "summary_sha": "2f547d51bdd70614"
      }
     ],
     "ielts": {
@@ -783,7 +941,9 @@
      "quote": "IELTS General or Academic (also online): 7.0",
      "source_sha256": "373380cfbcb87baa2011f7715b214595fca0b3e8199a0808da9a90d2840cf4ca",
      "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/sprachliche-zugangsvoraussetzungen/index.html",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "482129261ca04290"
     },
     "toefl": {
      "overall": 95,
@@ -791,10 +951,12 @@
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_sha256": "373380cfbcb87baa2011f7715b214595fca0b3e8199a0808da9a90d2840cf4ca",
      "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/sprachliche-zugangsvoraussetzungen/index.html",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0a551f9f04d59bb4"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Global East Asia (M.A.)",
@@ -804,7 +966,9 @@
     "academic": {
      "text": "First university degree of 180 ECTS including at least 30 ECTS in East Asian Studies and/or Chinese, Japanese or Korean Studies (language courses excluded)",
      "quote": "Have a first university degree (e.g. Bachelor) of at least 180 credit points (ECTS). As part of this degree, you must have earned at least 30 ECTS in courses in East Asian Studies and/or Chinese, Japanese or Korean Studies (language courses not included).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "842860bdd799c888"
     },
     "china_requirement": {
      "text": "Applicants with certificates from China generally have to submit an APS certificate in addition to the required documents for the uni-assist VPD",
@@ -817,19 +981,25 @@
      {
       "text": "English at CEFR C1 required",
       "quote": "The master's program in Global East Asia is an English-language master's program. Applicants must demonstrate English proficiency at the C1 level (CEFR).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "ca114a3f4e24c321"
      },
      {
       "text": "Proficiency (at least CEFR B1) in Chinese, Japanese or Korean required",
       "quote": "Applicants must demonstrate proficiency in one of the following languages (at least level B1 CEFR or equivalent): Chinese, Japanese, Korean.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "7ab32bf2ba13f0a5"
      },
      {
       "text": "Applicants with a foreign degree must first obtain a preliminary review documentation (VPD) from uni-assist and upload it to the FU application portal",
       "quote": "prospective students with a foreign university degree must apply for a VPD (Vorprüfungsdokumentation, preliminary review documentation) at uni-assist",
       "source_sha256": "a0cffa15c755b76d936ab596f731f73573e5bca3750345f3b9eca1809182e452",
       "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/uni-assist/index.html",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: upload it to the FU application portal",
+      "summary_sha": "2f547d51bdd70614"
      }
     ],
     "ielts": {
@@ -837,7 +1007,9 @@
      "quote": "IELTS General or Academic (also online): 7.0",
      "source_sha256": "373380cfbcb87baa2011f7715b214595fca0b3e8199a0808da9a90d2840cf4ca",
      "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/sprachliche-zugangsvoraussetzungen/index.html",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "482129261ca04290"
     },
     "toefl": {
      "overall": 95,
@@ -845,10 +1017,12 @@
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_sha256": "373380cfbcb87baa2011f7715b214595fca0b3e8199a0808da9a90d2840cf4ca",
      "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/sprachliche-zugangsvoraussetzungen/index.html",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0a551f9f04d59bb4"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Global History (M.A.)",
@@ -858,7 +1032,9 @@
     "academic": {
      "text": "Above-average degree on par with a bachelor's in History, Regional Studies or a related field, with at least 35 credits in historical or regional courses",
      "quote": "An above average degree on par with a Bachelor in History, Regional Studies, or a related field that includes equivalent historical or regional topics (minimum of 35 credits), which can be proven with a transcript of records. In all cases, at least 35 credits must be accredited from historical or regional courses.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "cb9563573955158a"
     },
     "china_requirement": {
      "text": "Applicants with certificates from China generally have to submit an APS certificate in addition to the required documents for the uni-assist VPD",
@@ -871,14 +1047,18 @@
      {
       "text": "English at CEFR C1 or higher required",
       "quote": "The MA Global History is an English-language program. Therefore, all applicants to the program must prove that they have English skills at a C1 (CEFR) level or higher.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "b0f5202f996aa78e"
      },
      {
       "text": "Applicants with a foreign degree must first obtain a preliminary review documentation (VPD) from uni-assist and upload it to the FU application portal",
       "quote": "prospective students with a foreign university degree must apply for a VPD (Vorprüfungsdokumentation, preliminary review documentation) at uni-assist",
       "source_sha256": "a0cffa15c755b76d936ab596f731f73573e5bca3750345f3b9eca1809182e452",
       "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/uni-assist/index.html",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: upload it to the FU application portal",
+      "summary_sha": "2f547d51bdd70614"
      }
     ],
     "ielts": {
@@ -886,7 +1066,9 @@
      "quote": "IELTS General or Academic (also online): 7.0",
      "source_sha256": "373380cfbcb87baa2011f7715b214595fca0b3e8199a0808da9a90d2840cf4ca",
      "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/sprachliche-zugangsvoraussetzungen/index.html",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "482129261ca04290"
     },
     "toefl": {
      "overall": 95,
@@ -894,10 +1076,12 @@
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_sha256": "373380cfbcb87baa2011f7715b214595fca0b3e8199a0808da9a90d2840cf4ca",
      "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/sprachliche-zugangsvoraussetzungen/index.html",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0a551f9f04d59bb4"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Interdisciplinary Studies of the Middle East (M.A.)",
@@ -907,7 +1091,9 @@
     "academic": {
      "text": "First university degree of 180 ECTS with 60 ECTS in Middle East-related fields, or equivalent qualifications",
      "quote": "1. You must hold a first university degree (e.g. a bachelor’s degree) comprising of at least 180 credit points (ECTS) and you",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: 60 ECTS in Middle East-related fields, or equivalent qualifications",
+     "summary_sha": "800e719676edacce"
     },
     "china_requirement": {
      "text": "Applicants with certificates from China generally have to submit an APS certificate in addition to the required documents for the uni-assist VPD",
@@ -920,19 +1106,25 @@
      {
       "text": "Proficiency (at least CEFR B1) in Arabic, Armenian, Hebrew, Kurdish, Ottoman, Persian, Syrian-Aramaic or Turkish",
       "quote": "2. you must provide proof of proficiency (at least level B1 CEFR or equivalent) in one of the following languages: Arabic, Armenian, Hebrew, Kurdish, Ottoman, Persian, Syrian-Aramaic, or Turkish;",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "3d73d6b20b054e8c"
      },
      {
       "text": "English at CEFR C1 required unless the first degree was taught in English",
       "quote": "3. you must provide proof of excellent English language skills (at least level C1 CEFR) if you have not obtained your first university degree in a program where English is the language of instruction.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "97b612dff506aefa"
      },
      {
       "text": "Applicants with a foreign degree must first obtain a preliminary review documentation (VPD) from uni-assist and upload it to the FU application portal",
       "quote": "prospective students with a foreign university degree must apply for a VPD (Vorprüfungsdokumentation, preliminary review documentation) at uni-assist",
       "source_sha256": "a0cffa15c755b76d936ab596f731f73573e5bca3750345f3b9eca1809182e452",
       "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/uni-assist/index.html",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: upload it to the FU application portal",
+      "summary_sha": "2f547d51bdd70614"
      }
     ],
     "ielts": {
@@ -940,7 +1132,9 @@
      "quote": "IELTS General or Academic (also online): 7.0",
      "source_sha256": "373380cfbcb87baa2011f7715b214595fca0b3e8199a0808da9a90d2840cf4ca",
      "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/sprachliche-zugangsvoraussetzungen/index.html",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "482129261ca04290"
     },
     "toefl": {
      "overall": 95,
@@ -948,10 +1142,12 @@
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_sha256": "373380cfbcb87baa2011f7715b214595fca0b3e8199a0808da9a90d2840cf4ca",
      "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/sprachliche-zugangsvoraussetzungen/index.html",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0a551f9f04d59bb4"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Iranian Studies (M.A.)",
@@ -961,7 +1157,9 @@
     "academic": {
      "text": "First degree in History and Cultures of the Middle East (Iranian Studies) or an equivalent foreign degree; other listed bachelor subjects can also be accepted",
      "quote": "Applicants for the Master’s programme in Iranian Studies require a first university degree from a German university or a higher education institution outside Germany in History and Cultures of the Middle East (Concentration: Iranian Studies) or a foreign degree equivalent in content and structure to the Bachelor programme in History and Cultures of the Middle East (Concentration: Iranian Studies) of the Freie Universität Berlin.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: other listed bachelor subjects can also be accepted",
+     "summary_sha": "b73156d63adcceda"
     },
     "china_requirement": {
      "text": "Applicants with certificates from China generally have to submit an APS certificate in addition to the required documents for the uni-assist VPD",
@@ -974,14 +1172,18 @@
      {
       "text": "English at CEFR C1 required",
       "quote": "Proof of English skills (level C1 CEFR).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "271304b80dd2493e"
      },
      {
       "text": "Applicants with a foreign degree must first obtain a preliminary review documentation (VPD) from uni-assist and upload it to the FU application portal",
       "quote": "prospective students with a foreign university degree must apply for a VPD (Vorprüfungsdokumentation, preliminary review documentation) at uni-assist",
       "source_sha256": "a0cffa15c755b76d936ab596f731f73573e5bca3750345f3b9eca1809182e452",
       "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/uni-assist/index.html",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: upload it to the FU application portal",
+      "summary_sha": "2f547d51bdd70614"
      }
     ],
     "ielts": {
@@ -989,7 +1191,9 @@
      "quote": "IELTS General or Academic (also online): 7.0",
      "source_sha256": "373380cfbcb87baa2011f7715b214595fca0b3e8199a0808da9a90d2840cf4ca",
      "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/sprachliche-zugangsvoraussetzungen/index.html",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "482129261ca04290"
     },
     "toefl": {
      "overall": 95,
@@ -997,10 +1201,12 @@
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_sha256": "373380cfbcb87baa2011f7715b214595fca0b3e8199a0808da9a90d2840cf4ca",
      "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/sprachliche-zugangsvoraussetzungen/index.html",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0a551f9f04d59bb4"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "History and Societies of the Islamic World (M.A.)",
@@ -1010,7 +1216,9 @@
     "academic": {
      "text": "First university degree of 180 ECTS with at least 60 ECTS in Islamic-world studies, including 40 ECTS of Arabic language skills",
      "quote": "A first university degree (e.g., a bachelor’s degree) comprising at least 180 credit points (ECTS). A minimum of 60 ECTS must have been earned in courses relevant to the study of history and societies of the Islamic world (Islamwissenschaft). Of these 60 ECTS, at least 40 ECTS must have been earned in courses that impart written Arabic language skills up to and including the B2 level of the Common European Framework of Reference for Languages (CEFR) and oral Arabic language skills at the level B1 or an equivalent. At least 20 ECTS of the requirement must have been earned in courses focusing on other (i.e., not language skills-focused) topics relevant to the study of history and societies of the Islamic world. The Arabic language requirement can also be fulfilled in other ways, for example by providing proof that the applicant has completed secondary or tertiary education in an Arabic-speaking country. In this case, the required 60 ECTS must have been earned in courses focusing on other (i.e., not language skills-focused) topics relevant to the study of history and societies of the Islamic world.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "197805f9f1334f30"
     },
     "china_requirement": {
      "text": "Applicants with certificates from China generally have to submit an APS certificate in addition to the required documents for the uni-assist VPD",
@@ -1023,19 +1231,25 @@
      {
       "text": "English at CEFR C1 required unless the degree was taught mainly in English",
       "quote": "Applicants who have not completed a university degree at an institution where coursework was conducted mainly in English must demonstrate English language skills corresponding to the C1 level (CEFR).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "9996aa952a841eb0"
      },
      {
       "text": "German language skills not required",
       "quote": "German language skills are not required.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f591db2f64666d42"
      },
      {
       "text": "Applicants with a foreign degree must first obtain a preliminary review documentation (VPD) from uni-assist and upload it to the FU application portal",
       "quote": "prospective students with a foreign university degree must apply for a VPD (Vorprüfungsdokumentation, preliminary review documentation) at uni-assist",
       "source_sha256": "a0cffa15c755b76d936ab596f731f73573e5bca3750345f3b9eca1809182e452",
       "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/uni-assist/index.html",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: upload it to the FU application portal",
+      "summary_sha": "2f547d51bdd70614"
      }
     ],
     "ielts": {
@@ -1043,7 +1257,9 @@
      "quote": "IELTS General or Academic (also online): 7.0",
      "source_sha256": "373380cfbcb87baa2011f7715b214595fca0b3e8199a0808da9a90d2840cf4ca",
      "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/sprachliche-zugangsvoraussetzungen/index.html",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "482129261ca04290"
     },
     "toefl": {
      "overall": 95,
@@ -1051,10 +1267,12 @@
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_sha256": "373380cfbcb87baa2011f7715b214595fca0b3e8199a0808da9a90d2840cf4ca",
      "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/sprachliche-zugangsvoraussetzungen/index.html",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0a551f9f04d59bb4"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "North American Studies (M.A.)",
@@ -1064,7 +1282,9 @@
     "academic": {
      "text": "Bachelor's degree in North American studies, history, cultural studies, literature, political science, sociology, economics, or an interdisciplinary subject with at least 90 credit points in one of these subjects",
      "quote": "Bachelor’s degree or an equivalent degree in one of the following subjects: North American studies, history, cultural studies, literature, political science, sociology, economics, or in an interdisciplinary subject with at least 90 credit points in one of the aforementioned subjects.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "954eefe16bdd1343"
     },
     "china_requirement": {
      "text": "Applicants with certificates from China generally have to submit an APS certificate in addition to the required documents for the uni-assist VPD",
@@ -1077,14 +1297,18 @@
      {
       "text": "English at CEFR C1 required",
       "quote": "Proof of English skills (level C1 CEFR).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "271304b80dd2493e"
      },
      {
       "text": "Applicants with a foreign degree must first obtain a preliminary review documentation (VPD) from uni-assist and upload it to the FU application portal",
       "quote": "prospective students with a foreign university degree must apply for a VPD (Vorprüfungsdokumentation, preliminary review documentation) at uni-assist",
       "source_sha256": "a0cffa15c755b76d936ab596f731f73573e5bca3750345f3b9eca1809182e452",
       "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/uni-assist/index.html",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: upload it to the FU application portal",
+      "summary_sha": "2f547d51bdd70614"
      }
     ],
     "ielts": {
@@ -1092,7 +1316,9 @@
      "quote": "IELTS General or Academic (also online): 7.0",
      "source_sha256": "373380cfbcb87baa2011f7715b214595fca0b3e8199a0808da9a90d2840cf4ca",
      "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/sprachliche-zugangsvoraussetzungen/index.html",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "482129261ca04290"
     },
     "toefl": {
      "overall": 95,
@@ -1100,10 +1326,12 @@
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_sha256": "373380cfbcb87baa2011f7715b214595fca0b3e8199a0808da9a90d2840cf4ca",
      "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/sprachliche-zugangsvoraussetzungen/index.html",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0a551f9f04d59bb4"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Semitic Studies (M.A.)",
@@ -1113,7 +1341,9 @@
     "academic": {
      "text": "Professionally qualifying bachelor's degree with at least 60 CP in Semitic Studies or related fields",
      "quote": "A professionally qualifying Bachelor's degree (or equivalent) from a recognized university.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: at least 60 CP in Semitic Studies or related fields",
+     "summary_sha": "e2c067cbed3d5a4c"
     },
     "china_requirement": {
      "text": "Applicants with certificates from China generally have to submit an APS certificate in addition to the required documents for the uni-assist VPD",
@@ -1126,24 +1356,32 @@
      {
       "text": "At least 40 CP in a modern Semitic language (CEFR B2 or higher) or in a classical Semitic language",
       "quote": "Option A – modern Semitic languages: at least 40 CP in a modern Semitic language, e.g., Arabic (MSA), Hebrew, Amharic, Neo-Aramaic; proficiency must be equivalent to B2 level of the Common European Framework of Reference for Languages (CEFR) or higher.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: or in a classical Semitic language",
+      "summary_sha": "1c4f35a52247d52c"
      },
      {
       "text": "English at CEFR C1 required if the previous degree was not in English",
       "quote": "Applicants must provide proof of English proficiency at the C1 level (CEFR) if they did not complete their previous degree in English.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "82634fdea4f5603c"
      },
      {
       "text": "No German language skills required",
       "quote": "No German language skills are required for admission.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "0c48411b71c4ba34"
      },
      {
       "text": "Applicants with a foreign degree must first obtain a preliminary review documentation (VPD) from uni-assist and upload it to the FU application portal",
       "quote": "prospective students with a foreign university degree must apply for a VPD (Vorprüfungsdokumentation, preliminary review documentation) at uni-assist",
       "source_sha256": "a0cffa15c755b76d936ab596f731f73573e5bca3750345f3b9eca1809182e452",
       "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/uni-assist/index.html",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: upload it to the FU application portal",
+      "summary_sha": "2f547d51bdd70614"
      }
     ],
     "ielts": {
@@ -1151,7 +1389,9 @@
      "quote": "IELTS General or Academic (also online): 7.0",
      "source_sha256": "373380cfbcb87baa2011f7715b214595fca0b3e8199a0808da9a90d2840cf4ca",
      "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/sprachliche-zugangsvoraussetzungen/index.html",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "482129261ca04290"
     },
     "toefl": {
      "overall": 95,
@@ -1159,10 +1399,12 @@
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_sha256": "373380cfbcb87baa2011f7715b214595fca0b3e8199a0808da9a90d2840cf4ca",
      "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/sprachliche-zugangsvoraussetzungen/index.html",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0a551f9f04d59bb4"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Sociology - European Societies (M.A.)",
@@ -1172,7 +1414,9 @@
     "academic": {
      "text": "Bachelor's degree with at least 60 credit points in sociology, including 20 credit points in social science research methods (10 ECTS quantitative)",
      "quote": "Bachelor’s degree or equivalent degree with a sociology component of at least 60 credit points, with at least 20 credit points in social science research methods, 10 ECTS of which in quantitative methods",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "6ec2169ad2bbb3d0"
     },
     "china_requirement": {
      "text": "Applicants with certificates from China generally have to submit an APS certificate in addition to the required documents for the uni-assist VPD",
@@ -1185,14 +1429,18 @@
      {
       "text": "English at CEFR C1 required",
       "quote": "Proof of proficiency in English (level C1 CEFR).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "4491a2e84fb91e24"
      },
      {
       "text": "Applicants with a foreign degree must first obtain a preliminary review documentation (VPD) from uni-assist and upload it to the FU application portal",
       "quote": "prospective students with a foreign university degree must apply for a VPD (Vorprüfungsdokumentation, preliminary review documentation) at uni-assist",
       "source_sha256": "a0cffa15c755b76d936ab596f731f73573e5bca3750345f3b9eca1809182e452",
       "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/uni-assist/index.html",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: upload it to the FU application portal",
+      "summary_sha": "2f547d51bdd70614"
      }
     ],
     "ielts": {
@@ -1200,7 +1448,9 @@
      "quote": "IELTS General or Academic (also online): 7.0",
      "source_sha256": "373380cfbcb87baa2011f7715b214595fca0b3e8199a0808da9a90d2840cf4ca",
      "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/sprachliche-zugangsvoraussetzungen/index.html",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "482129261ca04290"
     },
     "toefl": {
      "overall": 95,
@@ -1208,10 +1458,12 @@
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "source_sha256": "373380cfbcb87baa2011f7715b214595fca0b3e8199a0808da9a90d2840cf4ca",
      "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/sprachliche-zugangsvoraussetzungen/index.html",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0a551f9f04d59bb4"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Computer Science (M.Sc.)",
@@ -1221,7 +1473,9 @@
     "academic": {
      "text": "Bachelor's degree in computer science or equivalent covering the computer science component of the FU Berlin bachelor's",
      "quote": "Bachelor’s degree in computer science or an equivalent university degree that covers the computer studies component of the bachelor’s program in computer science at Freie Universität Berlin.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "25fce8d909748c37"
     },
     "china_requirement": {
      "text": "Applicants with certificates from China generally have to submit an APS certificate in addition to the required documents for the uni-assist VPD",
@@ -1234,25 +1488,31 @@
      {
       "text": "DSH obligatory for applicants whose first language is not German and whose first degree was not taught in German; programme language is German",
       "quote": "The DSH - or German Language University Entrance Exam for Foreign Students - is obligatory for all applicants whose first language is not German and who have earned their initial degree from a university (or equivalent institution) where the language of instruction is not German.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: programme language is German",
+      "summary_sha": "29f719176df79c54"
      },
      {
       "text": "German proof at CEFR C1 (e.g. TestDaF 4/4/3/3, DSH 1) must be uploaded with the application",
       "quote": "When applying for a degree program at Freie Universitaet Berlin you have to prove at least German proficiency at level C1 CEFR by submitting one of the following certificates:",
       "source_sha256": "6cedb9e109bcdf12a9841e1447b584b2310e33841d7394a51ff6fc49ea01495e",
       "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/allgemein/deutschkenntnisse/index.html",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: e.g. TestDaF 4/4/3/3, DSH 1; must be uploaded with the application",
+      "summary_sha": "85f170294698affd"
      },
      {
       "text": "Applicants with a foreign degree must first obtain a preliminary review documentation (VPD) from uni-assist and upload it to the FU application portal",
       "quote": "prospective students with a foreign university degree must apply for a VPD (Vorprüfungsdokumentation, preliminary review documentation) at uni-assist",
       "source_sha256": "a0cffa15c755b76d936ab596f731f73573e5bca3750345f3b9eca1809182e452",
       "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/uni-assist/index.html",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: upload it to the FU application portal",
+      "summary_sha": "2f547d51bdd70614"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Economics (M.Sc.)",
@@ -1262,7 +1522,9 @@
     "academic": {
      "text": "Higher education degree with at least 42 credit points in economics, 24 in quantitative methods (6 in econometrics) and 78 in total",
      "quote": "The applicant must hold a higher education degree or professional qualification from a German or comparable non-German institution.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: 42/24/6/78 credit points in economics and quantitative methods",
+     "summary_sha": "c051aa475c0275f4"
     },
     "china_requirement": {
      "text": "Applicants with certificates from China generally have to submit an APS certificate in addition to the required documents for the uni-assist VPD",
@@ -1275,28 +1537,36 @@
      {
       "text": "English at CEFR B2 required unless the first degree was taught in English",
       "quote": "Proof of English language skills (level B2 CEFR or higher) is required for students whose first university degree is not from an institution where English is the language of instruction or for whom English is not their first language. The required level of English can usually be verified by submitting a copy of your German higher education entrance qualification (Abitur).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: unless first degree taught in English (quote also excludes first-language English speakers)",
+      "summary_sha": "f7b7d127a080cc11"
      },
      {
       "text": "German proof (DSH certificate) required for first degrees from outside Germany; most courses are in English, some in German",
       "quote": "Proof of German language skills (DSH certificate) is required for students whose first university degree is from a university outside of Germany or another equivalent institution. While the majority of our courses are taught in English, some of our courses are also held in German. Otherwise, it is quite useful to have good German language skills for the purposes of independently organizing your studies.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "0fad6a67de400aba"
      },
      {
       "text": "Alternative route for mathematics or physics graduates: 15 credit points in economics and 50 in quantitative methods",
       "quote": "If you have a university degree in mathematics or physics you can be admitted to the program if you can prove that you gained at least 15 credit points in economics and at least 50 credit points in quantitative methods (mathematics, statistics, or econometrics).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "b7d97406bf389554"
      },
      {
       "text": "Applicants with a foreign degree must first obtain a preliminary review documentation (VPD) from uni-assist and upload it to the FU application portal",
       "quote": "prospective students with a foreign university degree must apply for a VPD (Vorprüfungsdokumentation, preliminary review documentation) at uni-assist",
       "source_sha256": "a0cffa15c755b76d936ab596f731f73573e5bca3750345f3b9eca1809182e452",
       "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/uni-assist/index.html",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: upload it to the FU application portal",
+      "summary_sha": "2f547d51bdd70614"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Management & Marketing (M.Sc.)",
@@ -1306,7 +1576,9 @@
     "academic": {
      "text": "Bachelor's degree in business administration with at least 12 credit points in accounting and/or taxation and 12 in mathematics, statistics and/or empirical methods, or an equivalent degree",
      "quote": "Bachelor’s degree in business administration with a minimum of 12 credit points in accounting and/or taxation and also with a minimum of 12 credit points in mathematics, statistics, and/or empirical research methods or an equivalent degree with a minimum of 12 credit points in accounting and/or taxation and also with a minimum of 12 credit points in mathematics, statistics, and/or empirical research methods.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "174c346f512f581d"
     },
     "china_requirement": {
      "text": "Applicants with certificates from China generally have to submit an APS certificate in addition to the required documents for the uni-assist VPD",
@@ -1319,33 +1591,43 @@
      {
       "text": "English at CEFR B2 or equivalent required",
       "quote": "Proof of English language skills (level B2 CEFR) or equivalent.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "abbf19d5ee1ac065"
      },
      {
       "text": "DSH obligatory for applicants whose first language is not German and whose first degree was not taught in German",
       "quote": "The DSH - or German Language University Entrance Exam for Foreign Students - is obligatory for all applicants whose first language is not German and who have earned their initial degree from a university (or equivalent institution) where the language of instruction is not German.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "7e41a803cd9c7966"
      },
      {
       "text": "Proof of ability to treat Management/Marketing subjects with scientific methods, e.g. bachelor's thesis or a term paper of at least 12 pages",
       "quote": "Applicants are required to show the ability to treat subjects in the areas of Management and/or Marketing under supervision with scientifically sound methods. The Bachelor’s thesis or a term paper of at least 12 pages text may serve as proof of this ability. The text must be written in German or English.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "18bb04e48568eea0"
      },
      {
       "text": "Selection by points based mainly on previous degree grade and credits in required subjects",
       "quote": "In the admissions process, points are awarded for the relevant fulfillment of the selection criteria. This primarily relates to the average grade of the previous degree and the number of credit points to be demonstrated in the above-mentioned subjects. A detailed explanation of the distribution of selection points can be found in the admission regulations (German only).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "4b2f1625a4fb413c"
      },
      {
       "text": "Applicants with a foreign degree must first obtain a preliminary review documentation (VPD) from uni-assist and upload it to the FU application portal",
       "quote": "prospective students with a foreign university degree must apply for a VPD (Vorprüfungsdokumentation, preliminary review documentation) at uni-assist",
       "source_sha256": "a0cffa15c755b76d936ab596f731f73573e5bca3750345f3b9eca1809182e452",
       "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/uni-assist/index.html",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: upload it to the FU application portal",
+      "summary_sha": "2f547d51bdd70614"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Political Science (M.A.)",
@@ -1355,7 +1637,9 @@
     "academic": {
      "text": "Bachelor's degree in political science or equivalent with at least 60 credit points in political science",
      "quote": "A bachelor’s degree in political science or an equivalent degree with a minimum of 60 credit points in political science.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "2d093c63c6f0d2d1"
     },
     "china_requirement": {
      "text": "Applicants with certificates from China generally have to submit an APS certificate in addition to the required documents for the uni-assist VPD",
@@ -1368,18 +1652,22 @@
      {
       "text": "DSH obligatory for applicants whose first language is not German and whose first degree was not taught in German; programme language is German",
       "quote": "The DSH - or German Language University Entrance Exam for Foreign Students - is obligatory for all applicants whose first language is not German and who have earned their initial degree from a university (or equivalent institution) where the language of instruction is not German. You can find further information regarding the DSH following this link: www.sprachenzentrum.fu-berlin.de/sprachtests/dsh. Equivalent proficiency ceritificates can also serve as a verification of your language skills if they are in line with the “Ordnung für die Deutsche Sprachprüfung für den Hochschulzugang ausländischer Studienbewerberinnen und Studienbewerberan der Freien Universität Berlin” (www.fu-berlin.de/service/zuvdocs/amtsblatt/2014/ab042014.pdf).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: programme language is German",
+      "summary_sha": "d98f7da92d865317"
      },
      {
       "text": "Applicants with a foreign degree must first obtain a preliminary review documentation (VPD) from uni-assist and upload it to the FU application portal",
       "quote": "prospective students with a foreign university degree must apply for a VPD (Vorprüfungsdokumentation, preliminary review documentation) at uni-assist",
       "source_sha256": "a0cffa15c755b76d936ab596f731f73573e5bca3750345f3b9eca1809182e452",
       "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/uni-assist/index.html",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: upload it to the FU application portal",
+      "summary_sha": "2f547d51bdd70614"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Geological Sciences (M.Sc.)",
@@ -1389,7 +1677,9 @@
     "academic": {
      "text": "Bachelor's degree (B.Sc.) in Earth Science corresponding to the FU Berlin B.Sc. in Geological Sciences, or equivalent",
      "quote": "Bachelor’s degree (B.Sc.) in Earth Science that corresponds in quality and content to the BSc in Geological Sciences at Freie Universität Berlin, or an equivalent university degree.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "3d2dd85b057f33aa"
     },
     "china_requirement": {
      "text": "Applicants with certificates from China generally have to submit an APS certificate in addition to the required documents for the uni-assist VPD",
@@ -1402,18 +1692,22 @@
      {
       "text": "Proof of German language skills (DSH or equivalent) for applicants with a foreign degree",
       "quote": "Proof of German language skills must be provided for applicants who have completed their degree at a foreign university or equivalent institution. This can be done by passing the German language test for university entrance (DSH) or by providing evidence of an equivalent level of knowledge according to the regulations for the German language test for university entrance of foreign applicants at the Freie Universität Berlin.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "40a19e4847b8da7a"
      },
      {
       "text": "Applicants with a foreign degree must first obtain a preliminary review documentation (VPD) from uni-assist and upload it to the FU application portal",
       "quote": "prospective students with a foreign university degree must apply for a VPD (Vorprüfungsdokumentation, preliminary review documentation) at uni-assist",
       "source_sha256": "a0cffa15c755b76d936ab596f731f73573e5bca3750345f3b9eca1809182e452",
       "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/uni-assist/index.html",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: upload it to the FU application portal",
+      "summary_sha": "2f547d51bdd70614"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Public Economics (M.Sc.)",
@@ -1423,7 +1717,9 @@
     "academic": {
      "text": "Higher education degree with at least 30 credit points in economics (6 in microeconomics) and 18 in quantitative methods, 72 in total",
      "quote": "The applicant must hold a higher education degree or professional qualification from a German or comparable non-German institution.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: 30 credit points in economics, 6 in microeconomics, 18 in quantitative methods, 72 total",
+     "summary_sha": "8ec8f33e3f8ef3f0"
     },
     "china_requirement": {
      "text": "Applicants with certificates from China generally have to submit an APS certificate in addition to the required documents for the uni-assist VPD",
@@ -1436,23 +1732,29 @@
      {
       "text": "English at CEFR B2 required unless the degree was taught in English",
       "quote": "Proof of English language skills (level B2 CEFR). Applicants who have not obtained their university degree at an educational institution where English is the first language of instruction must provide proof of English language proficiency at level B2 of the Common European Framework of Reference for Languages (CEFR).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: unless the degree was taught in English (quote says first language of instruction)",
+      "summary_sha": "a3fef10f3cd0c7d3"
      },
      {
       "text": "German proof (DSH certificate) required for foreign degrees; most courses are in English, some in German",
       "quote": "Proof of German language skills (DSH certificate). Applicants who have completed their degree at a foreign university or equivalent institution or who have a degree from a German university that was not completed in German must provide proof of German language proficiency. The majority of our courses are taught in English. However, there are courses taught in German. A good knowledge of German is also required for independent study organization.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "5cd5d7d4d2ad8431"
      },
      {
       "text": "Applicants with a foreign degree must first obtain a preliminary review documentation (VPD) from uni-assist and upload it to the FU application portal",
       "quote": "prospective students with a foreign university degree must apply for a VPD (Vorprüfungsdokumentation, preliminary review documentation) at uni-assist",
       "source_sha256": "a0cffa15c755b76d936ab596f731f73573e5bca3750345f3b9eca1809182e452",
       "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/uni-assist/index.html",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: upload it to the FU application portal",
+      "summary_sha": "2f547d51bdd70614"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Finance, Accounting and Taxation (M.Sc.)",
@@ -1462,7 +1764,9 @@
     "academic": {
      "text": "Bachelor's degree in economics or law with at least 40 credit points in business taxation, public finance, accounting and economics-related law, plus 5 in microeconomics and 18 in mathematics, statistics and economic computer science, or equivalent",
      "quote": "Bachelor’s degree in economics or law with a minimum of 40 credit points in the foundations of business taxation, business and public finance, and managerial and finance accounting and in legal areas related to economics; as well as a minimum of 5 credit points in microeconomics and a minimum of 18 credit points in the foundations of mathematics (a minimum of 6 credit points), foundations of statistics (a minimum of 6 credit points), and economic computer science; or an equivalent degree.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "7982867c041cc1f1"
     },
     "china_requirement": {
      "text": "Applicants with certificates from China generally have to submit an APS certificate in addition to the required documents for the uni-assist VPD",
@@ -1475,33 +1779,41 @@
      {
       "text": "English at CEFR B2 or equivalent required",
       "quote": "Proof of English language skills (level B2 CEFR or equivalent).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "32f9463f91d54456"
      },
      {
       "text": "DSH obligatory for applicants whose first language is not German and whose first degree was not taught in German",
       "quote": "The DSH - or German Language University Entrance Exam for Foreign Students - is obligatory for all applicants whose first language is not German and who have earned their initial degree from a university (or equivalent institution) where the language of instruction is not German.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "7e41a803cd9c7966"
      },
      {
       "text": "Ability to conduct supervised work in the programme's subject areas, usually shown by a bachelor's thesis of at least 15 pages",
       "quote": "Ability to conduct supervised work on subjects in the areas of business taxation, business finance, managerial and financial accouting, auditing (and related areas with a very close connection to the areas mentioned above) usually a bachelor’s thesis or a comparable work (at least 15 pages).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "262b40ae8fd52f66"
      },
      {
       "text": "Applicants with a foreign degree must first obtain a preliminary review documentation (VPD) from uni-assist and upload it to the FU application portal",
       "quote": "prospective students with a foreign university degree must apply for a VPD (Vorprüfungsdokumentation, preliminary review documentation) at uni-assist",
       "source_sha256": "a0cffa15c755b76d936ab596f731f73573e5bca3750345f3b9eca1809182e452",
       "source_url": "https://www.fu-berlin.de/en/studium/bewerbung/master/konsekutive-masterstudiengaenge/uni-assist/index.html",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: upload it to the FU application portal",
+      "summary_sha": "2f547d51bdd70614"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   }
  ],
  "verification": {
   "programs": 30,
-  "机器核对": 30,
-  "待人工": 0
+  "机器核对": 0,
+  "待人工": 30
  }
 }

@@ -19,17 +19,21 @@
     "academic": {
      "text": "Applicants must hold a Bachelor's degree in Law (Licenciado or Graduado en Derecho) under Law 34/2006.",
      "quote": "Los admitidos en el Máster deben estar en posesión del título de Licenciado en Derecho o Graduado en Derecho conforme a la Ley 34/2006, de 30 de octubre, sobre el acceso a las profesiones de la Abogacía y la Procura.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: must hold (quote describes admitted students, not a requirement)",
+     "summary_sha": "c623ac083774ed2d"
     },
     "prerequisites": [
      {
       "text": "Non-Spanish-speaking applicants must prove at least level B2 in Spanish (DELE or equivalent).",
       "quote": "Los estudiantes cuya lengua materna no sea el español deberán acreditar como mínimo un nivel B2 del Diploma de Español como Lengua Extranjera (DELE), o equivalente",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "7657a5aecd22025e"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Doble Máster en Acceso a la Abogacía y a la Procura e Investigación Jurídica",
@@ -41,18 +45,24 @@
     "academic": {
      "text": "Hold a Bachelor's degree in Law (Licenciado/Graduado en Derecho) or an equivalent university degree meeting the requirements of article 3 of the Regulation of Law 34/2006.",
      "quote": "Estar en posesión del título de Licenciado en Derecho, Graduado en Derecho o de otro título universitario de Grado equivalente que reúna los requisitos establecidos en el artículo 3 del Reglamento de la Ley 34/2006, de 30 de octubre, sobre el acceso a las profesiones de abogado y procurador de los Tribunales, aprobado por Real Decreto 775/2011, de 3 de junio.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "71b101014909b8b0"
     },
     "prerequisites": [
      {
       "text": "English at minimum level B2 or equivalent.",
       "quote": "Idioma inglés: se deberá acreditar como mínimo un nivel B2 o equivalente.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "bbec90db7781d82d"
      },
      {
       "text": "Spanish at minimum level B2 or equivalent for applicants whose native language is not Spanish.",
       "quote": "Idioma español: En el caso de estudiantes cuya lengua materna no sea el español deberán acreditar como mínimo un nivel B2 o equivalente.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "1cb4d5c5e7c23736"
      }
     ]
    },
@@ -68,13 +78,17 @@
     "academic": {
      "text": "Primarily aimed at graduates in Physical Activity and Sport Sciences, and in Primary Education Teaching with a specialization in Physical Education.",
      "quote": "El Máster Universitario en Actividades Físicas y Deportivas para la Inclusión Social de Personas con Discapacidad, está dirigido principalmente a graduados en Ciencias de la Actividad Física y del Deporte, así como en Magisterio en Educación Primaria con la mención en Educación Física.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0fde2b64d0487df8"
     },
     "prerequisites": [
      {
       "text": "Accreditation of Spanish language knowledge at level B2, mandatory only for non-Spanish-speaking students.",
       "quote": "Acreditación de conocimiento del idioma español nivel B2 [Obligatorio únicamente para estudiantes no hispanohablantes]",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "242568b5b4a9ed5c"
      }
     ]
    },
@@ -90,32 +104,42 @@
     "academic": {
      "text": "Hold a bachelor's degree (or equivalent) in a field other than Business Administration and Management.",
      "quote": "Poseer un título de grado (o equivalente) distinto al de Administración y Dirección de Empresas",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "3c18452491d53ec2"
     },
     "prerequisites": [
      {
       "text": "Spanish at level B2 of the CEFR for applicants whose native language is not Spanish.",
       "quote": "Los estudiantes cuya lengua materna no sea el castellano deberán presentar un certificado que acredite su conocimiento al menos a un nivel B2 del MCER del Consejo de Europa.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "cc432695beb93be8"
      },
      {
       "text": "Certified knowledge of English.",
       "quote": "Acreditar el conocimiento del idioma inglés.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "b44613e89be0cd15"
      },
      {
       "text": "Certified knowledge of management computing and statistical applications.",
       "quote": "Acreditar el conocimiento de informática de gestión y aplicaciones estadísticas.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "ce1d5e3c7f825255"
      },
      {
       "text": "English at level B2 or higher of the CEFR (weighted admission criterion).",
       "quote": "Acreditación de un nivel B2 (o superior) en lengua inglesa (según el MCER del Consejo de Europa)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: weighted admission criterion",
+      "summary_sha": "5c50a4f33ca22c8d"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Máster en Análisis Económico Cuantitativo / Quantitative Economic Analysis-QuEA",
@@ -127,13 +151,17 @@
     "academic": {
      "text": "A degree in Economics, Business Administration and Management, Economics and Finance or other related degrees with a good grounding in Economic Theory, Econometrics and Mathematics.",
      "quote": "Poseer un grado en Economía, Administración y Dirección de Empresas, Economía y Finanzas u otras titulaciones afines con una buena base en asignaturas de Teoría Económica, Econometría y Matemáticas, o también un grado en Matemáticas, Física, Estadística o ingenierías.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "15610713a47db563"
     },
     "prerequisites": [
      {
       "text": "At least level B2 in English (CEFR) or equivalent.",
       "quote": "Poseer al menos nivel B2 en inglés (reconocido en el nuevo Marco Común Europeo para las Lenguas) o equivalente.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "4089112c8a324299"
      }
     ]
    },
@@ -149,18 +177,24 @@
     "academic": {
      "text": "Hold an official Spanish university degree related to the area of Physical Anthropology.",
      "quote": "Para acceder a las enseñanzas oficiales de Máster será necesario estar en posesión de un título universitario oficial español afín al Área de Conocimiento de la Antropología Física.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "e7a8de355ef0faa3"
     },
     "prerequisites": [
      {
       "text": "Admitted students without prior training in Biology or Physical Anthropology must take one or two 3-ECTS bridging subjects.",
       "quote": "los estudiantes admitidos sin formación previa en Biología o en Antropología Física deberán cursar una o dos asignaturas de 3 ECTS cada una de ellas como Complementos de Formación",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "1d63fb2d243b1ab7"
      },
      {
       "text": "Spanish language proficiency at level B2, mandatory only for non-Spanish-speaking students.",
       "quote": "Acreditación de conocimiento del idioma español nivel B2 [Obligatorio únicamente para estudiantes no hispanohablantes]",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "04d3a9b0e2e97bde"
      }
     ]
    },
@@ -176,23 +210,31 @@
     "academic": {
      "text": "Degree in anthropology or related social sciences.",
      "quote": "El máster está orientado hacia estudiantes con formación de grado en antropología o ciencias sociales afines.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "459ac80698d4a4ce"
     },
     "prerequisites": [
      {
       "text": "High level of reading comprehension of academic texts in English.",
       "quote": "Es preciso tener un nivel alto de comprensión lectora de textos académicos en inglés, y nivel superior en el manejo oral y escrito de la lengua española.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "79b1fbdd1b2c41e1"
      },
      {
       "text": "Advanced oral and written command of Spanish.",
       "quote": "Es preciso tener un nivel alto de comprensión lectora de textos académicos en inglés, y nivel superior en el manejo oral y escrito de la lengua española.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "da2ac4cbbcbe70d3"
      },
      {
       "text": "Accreditation of Spanish at level B2, compulsory only for non-Spanish-speaking students.",
       "quote": "Acreditación de conocimiento del idioma español nivel B2 [Obligatorio únicamente para estudiantes no hispanohablantes]",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "aa8c8d9985a598c3"
      }
     ]
    },
@@ -208,13 +250,17 @@
     "academic": {
      "text": "Engineers or holders of a bachelor's degree in ICT-related Engineering Areas, provided the degree contains at least 24 ECTS of mathematical fundamentals (12 ECTS calculus, 6 ECTS linear algebra, 6 ECTS probability and statistics), 12 ECTS of programming in a high-level language, 6 ECTS in signal processing and 6 ECTS in machine learning.",
      "quote": "Engineers or candidates holding a bachelor's degree in Engineering Areas related to ICT (Information and Communication Technologies), provided their degree contains at least the following contents: 24 ECTS of mathematical fundamentals in calculus (12 ECTS), linear algebra (6 ECTS), probability and statistics (6 ECTS). 12 ECTS of programming in some high‐level language. 6 ECTS in signal processing. 6 ECTS in machine learning.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c8c038ed746eb812"
     },
     "prerequisites": [
      {
       "text": "English language knowledge at minimum B2 level, accredited by a certificate or by an interview with the Master's Academic Committee for non-native speakers.",
       "quote": "Since the official language for all courses is English, knowledge of the English language at the minimum level of the B2 certificate will be required for acceptance into the Master’s programme. In case of not being English native speakers, this level of language must be accredited by a certificate or by an interview with the Master's Academic Committee.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "df937cc0491f8cab"
      }
     ]
    },
@@ -230,13 +276,17 @@
     "academic": {
      "text": "An official Spanish university degree, or a foreign degree officially accredited.",
      "quote": "Para acceder a las enseñanzas oficiales del Máster será necesario titulación universitaria oficial española, o extranjera acreditada.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "df69521e0c6d93ab"
     },
     "prerequisites": [
      {
       "text": "Spanish language proficiency at level B2, mandatory only for non-Spanish-speaking students.",
       "quote": "Acreditación de conocimiento del idioma español nivel B2 [Obligatorio únicamente para estudiantes no hispanohablantes]",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "04d3a9b0e2e97bde"
      }
     ]
    },
@@ -252,18 +302,24 @@
     "academic": {
      "text": "Applicants must hold an official university degree (Grado or equivalent) in Pedagogy, Psychopedagogy, Social Education, Early Childhood Education Teaching, Primary Education Teaching, Fine Arts, Plastic and Visual Arts, Architecture, Psychology, Psychiatry, Nursing or Occupational Therapy.",
      "quote": "Este Máster se dirige a personas con titulación universitaria oficial de Grado, o equivalente, en Pedagogía, Psicopedagogía, Educación Social, Maestro en Educación Infantil, Maestro en Educación Primaria, Bellas Artes, Artes Plásticas y Visuales, Arquitectura, Psicología, Psiquiatría, Enfermería, Terapia Ocupacional.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a5f9e1a940f8c7a0"
     },
     "prerequisites": [
      {
       "text": "Non-Spanish-speaking applicants must accredit Spanish language knowledge at level B2.",
       "quote": "Acreditación de conocimiento del idioma español nivel B2 [Obligatorio únicamente para estudiantes no hispanohablantes]",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "bdee216d578e6844"
      },
      {
       "text": "Applicants must have previously acquired basic competences in psychology, education and art.",
       "quote": "Para cursar el Máster, es necesario haber adquirido previamente competencias básicas en psicología, educación y arte.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "6219eb0732a67739"
      }
     ]
    },
@@ -279,22 +335,28 @@
     "academic": {
      "text": "Hold a degree that qualifies for the regulated profession of Maestro (Grado de Maestro/a, Diplomado/a en Magisterio), or be a graduate of EHEA or non-EHEA universities with a degree homologated to the regulated profession of Maestro by the Ministry of Education and Vocational Training.",
      "quote": "Estar en posesión de un título académico que habilite para el ejercicio de la profesión regulada de Maestro (Grado de Maestro/a, Diplomado/a en Magisterio) o Graduados en universidades del EEES o de fuera de él, con título homologado a la profesión regulada de Maestro por el Ministerio de Educación y Formación Profesional.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b265986b472217f9"
     },
     "prerequisites": [
      {
       "text": "Accredited level B2 in English according to the CEFR (FCE or CAE, or equivalent).",
       "quote": "Acreditar al menos un nivel B2 en inglés, en el Marco Común Europeo de Referencia para las Lenguas.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: FCE or CAE, or equivalent",
+      "summary_sha": "fc958fca89554467"
      },
      {
       "text": "Accredited C1 level of Spanish, compulsory for students whose first language is not Spanish.",
       "quote": "Acreditación de conocimiento del idioma español C1 [Obligatorio para estudiantes cuya primera lengua no sea el castellano]",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "42b4569bf8ba41c2"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Máster en Biodiversidad",
@@ -306,13 +368,17 @@
     "academic": {
      "text": "Hold an official higher degree (Licenciatura or Grado) related to biological sciences (Biology, Environmental Sciences, Marine Sciences, Agricultural Engineering or Forestry Engineering), with an academic profile coherent with the field of organisms and systems.",
      "quote": "Estar en posesión de un título oficial superior (Licenciatura o Grado) relacionado con las ciencias biológicas (Biología, Ciencias Ambientales, Ciencias Marinas, Ingeniería Agrícola o Ingeniería de Montes), con un perfil académico coherente con el ámbito de los organismos y sistemas.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "bede52f4972e78ae"
     },
     "prerequisites": [
      {
       "text": "Accreditation of Spanish language knowledge at level B2, mandatory only for non-Spanish-speaking students.",
       "quote": "Acreditación de conocimiento del idioma español nivel B2 [Obligatorio únicamente para estudiantes no hispanohablantes]",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "242568b5b4a9ed5c"
      }
     ]
    },
@@ -328,13 +394,17 @@
     "academic": {
      "text": "Life sciences profile: graduates in Medicine, Biology, Biochemistry and related degrees.",
      "quote": "Perfil relacionado con las ciencias de la vida, como graduados en Medicina, en Biología o en Bioquímica y titulaciones relacionadas.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "16b5172fc410b043"
     },
     "prerequisites": [
      {
       "text": "Spanish language proficiency at level B2, mandatory only for non-Spanish-speaking students.",
       "quote": "Acreditación de conocimiento del idioma español nivel B2 [Obligatorio únicamente para estudiantes no hispanohablantes]",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "04d3a9b0e2e97bde"
      }
     ]
    },
@@ -350,23 +420,31 @@
     "academic": {
      "text": "Hold a bachelor's degree in Experimental or Health Sciences: Biochemistry, Biology, Biotechnology, Medicine, Pharmacy, Veterinary Medicine, Chemistry or related fields.",
      "quote": "Para la admisión en el Máster en Biomedicina Molecular los estudiantes deben poseer una Titulación de Grado en Ciencias Experimentales o de la Salud: Licenciados o Graduados en Bioquímica, Biología, Biotecnología, Medicina, Farmacia, Veterinaria, Química o de otras carreras afines, y estar interesados en orientar su formación a una especialización en Biomedicina Molecular.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b1d2c2a9a035cda8"
     },
     "prerequisites": [
      {
       "text": "Solid foundation in Biochemistry and Molecular Biology.",
       "quote": "con una base sólida en Bioquímica y Biología Molecular",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "437f80eac8dda2c6"
      },
      {
       "text": "English level B2 or equivalent, since teaching is in English.",
       "quote": "Así mismo, dado que las enseñanzas se imparten en inglés, se requiere un nivel B2 o equivalente.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "4bc699edfae49c1c"
      },
      {
       "text": "Spanish level B2, required only for non-Spanish-speaking students.",
       "quote": "Acreditación de conocimiento del idioma español nivel B2 [Obligatorio únicamente para estudiantes no hispanohablantes]",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "98fce84d5c3a0472"
      }
     ]
    },
@@ -382,23 +460,31 @@
     "academic": {
      "text": "Hold an official Spanish university Bachelor's, Licenciatura or equivalent degree.",
      "quote": "Será necesario estar en posesión de un título universitario oficial español de Grado, Licenciado/a o equivalente.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "40f5cb3cb39ff20c"
     },
     "prerequisites": [
      {
       "text": "Bachelor's or Licenciatura degree in Experimental or Health Sciences (Biochemistry, Biology, Biotechnology, Medicine, Pharmacy, Veterinary Medicine, Chemistry or other related degrees).",
       "quote": "Titulación de acceso: Licenciatura o Grado en Ciencias Experimentales o de la Salud (Bioquímica, Biología, Biotecnología, Medicina, Farmacia, Veterinaria, Química u otras titulaciones relacionadas).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "09721c0651862157"
      },
      {
       "text": "English level B2 or equivalent.",
       "quote": "Nivel de inglés: se requiere un nivel B2 o equivalente.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "78383e497ce2a5e6"
      },
      {
       "text": "Spanish level B2, mandatory only for non-Spanish-speaking students.",
       "quote": "Acreditación de conocimiento del idioma español nivel B2 [Obligatorio únicamente para estudiantes no hispanohablantes] (3)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "fb470c7b80d536b1"
      }
     ]
    },
@@ -414,18 +500,24 @@
     "academic": {
      "text": "Applicants must hold a Bachelor's degree in Experimental or Health Sciences (Biochemistry, Biology, Biotechnology, Medicine, Pharmacy, Veterinary Science, Chemistry, Chemical Engineering, Food Science or related degrees).",
      "quote": "Para la admisión en el Máster en Biotecnología los estudiantes deben poseer una Titulación de Grado en Ciencias Experimentales o de la Salud: Licenciados o Graduados en Bioquímica, Biología, Biotecnología, Medicina, Farmacia, Veterinaria, Química, Ingeniería Química, Ciencias de la Alimentación o de otras carreras afines, y estar interesados en orientar su formación a una especialización en Biotecnología.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c398833c838a0117"
     },
     "prerequisites": [
      {
       "text": "Proof of English proficiency at level B2 or equivalent.",
       "quote": "es necesario demostrar suficiencia en lengua inglesa (nivel B2 o equivalente)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "d89100265e4d89bd"
      },
      {
       "text": "Proof of Spanish proficiency at level B2, mandatory only for non-Spanish-speaking students.",
       "quote": "Acreditación de conocimiento del idioma español nivel B2 [Obligatorio únicamente para estudiantes no hispanohablantes]",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "dd5c82684a269e70"
      }
     ]
    },
@@ -441,13 +533,17 @@
     "academic": {
      "text": "Hold an official Spanish university degree.",
      "quote": "Para acceder al Máster Universitario en Calidad y Mejora de la Educación será necesario estar en posesión de un título universitario oficial español.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c5bb8001e230f899"
     },
     "prerequisites": [
      {
       "text": "Proof of C1 level of Spanish for students whose first language is not Spanish (passing a C1-equivalent level test or an interview with the master's coordination).",
       "quote": "Como requisito imprescindible para acceder al Máster, será necesario demostrar un nivel C1 de español para los estudiantes cuya primera lengua no sea el castellano. En este último caso, se requerirá la superación de una prueba de nivel de idioma equivalente al C1 o una entrevista con la coordinación del Máster para comprobar el dominio del español",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "6c32bef4871bf0d7"
      }
     ]
    },
@@ -463,32 +559,42 @@
     "academic": {
      "text": "Graduates, licenciados or engineers in science or engineering degrees, provided they have completed at least 18 ECTS of mathematical foundations (12 ECTS in calculus and linear algebra plus 6 ECTS in probability and statistics), 6 ECTS of programming in a high-level language and 6 ECTS of machine learning foundations.",
      "quote": "Graduados, licenciados o ingenieros en titulaciones del área de las ciencias y de las ingenierías siempre que hayan cursado en su título al menos: 18 ECTS de fundamentos matemáticos (12 ECTS en cálculo y álgebra lineal + 6 ECTS en probabilidad y estadística) 6 ECTS de programación en algún lenguaje de alto nivel.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: 6 ECTS of machine learning foundations",
+     "summary_sha": "b476c7bbdc9680f9"
     },
     "prerequisites": [
      {
       "text": "At least 18 ECTS of mathematical foundations: 12 ECTS in calculus and linear algebra plus 6 ECTS in probability and statistics.",
       "quote": "18 ECTS de fundamentos matemáticos (12 ECTS en cálculo y álgebra lineal + 6 ECTS en probabilidad y estadística)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "7b365fe74763e66c"
      },
      {
       "text": "6 ECTS of programming in a high-level language (training complements required if not completed).",
       "quote": "6 ECTS de programación en algún lenguaje de alto nivel. En caso de que no se hayan cursado, deberá realizar los complementos formativos correspondientes",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "b18055247ebf818c"
      },
      {
       "text": "6 ECTS of machine learning foundations (training complements required if not completed).",
       "quote": "6 ECTS de fundamentos de aprendizaje automático. En caso de que no se hayan cursado, deberá realizar los complementos formativos correspondientes",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "8176b85a48e9f07e"
      },
      {
       "text": "Accreditation of Spanish language knowledge at level B2 or higher (for applicants whose mother tongue is not Spanish).",
       "quote": "Acreditación de conocimiento de idioma español B2 o superior (3).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: for applicants whose mother tongue is not Spanish",
+      "summary_sha": "0fa513d3e220ea67"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Máster en Ciencias Agroambientales y Agroalimentarias",
@@ -500,13 +606,17 @@
     "academic": {
      "text": "Hold a higher degree (Licenciatura or Grado) in Environmental Sciences, Chemistry, Biology, Biochemistry, Engineering (Agronomic, Environmental, Industrial...), Food Science or Pharmacy.",
      "quote": "Titulados superiores (Licenciatura o Grado) en Ciencias Ambientales, Química, Biología, Bioquímica, Ingenierías (Agronómica, Ambiental, Industrial...), Ciencias de la Alimentación y Farmacia.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "4e04f0c8a1605ed7"
     },
     "prerequisites": [
      {
       "text": "Accreditation of Spanish language knowledge at level B2, compulsory only for non-Spanish-speaking students.",
       "quote": "Acreditación de conocimiento del idioma español nivel B2 [Obligatorio únicamente para estudiantes no hispanohablantes]",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "07415df9107aa7ec"
      }
     ]
    },
@@ -522,13 +632,17 @@
     "academic": {
      "text": "Graduates in Chemistry and other related degrees in Experimental Sciences (Pharmacy, Biology, Health Biology, Biochemistry, Biotechnology, Environmental Sciences, Criminalistics and Forensic Sciences and Technologies, Food Science and Technology, Experimental Sciences, Chemical Engineering, Biomedical Engineering and Physical Engineering).",
      "quote": "Graduados/as en Química y otras titulaciones afines en Ciencias Experimentales (Farmacia, Biología, Biología Sanitaria, Bioquímica, Biotecnología, Ciencias Ambientales, Criminalística y Ciencias y Tecnologías Forenses, Ciencia y Tecnología de Alimentos, Ciencias Experimentales, Ingeniería Química, Ingeniería Biomédica e Ingeniería Física).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "8b86564591fca631"
     },
     "prerequisites": [
      {
       "text": "Accreditation of Spanish language knowledge at level B2, compulsory only for non-Spanish-speaking students.",
       "quote": "Acreditación de conocimiento del idioma español nivel B2 [Obligatorio únicamente para estudiantes no hispanohablantes]",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "07415df9107aa7ec"
      }
     ]
    },
@@ -544,42 +658,56 @@
     "academic": {
      "text": "Graduates, licenciados or engineers in science or engineering degrees, provided they have completed at least 18 ECTS of mathematical foundations, 3 ECTS of mathematics for quantum, 6 ECTS of quantum physics, 6 ECTS of high-level programming and 3 ECTS of algorithm analysis.",
      "quote": "Graduados, licenciados o ingenieros en titulaciones del área de las ciencias y de las ingenierías, siempre que hayan cursado en su título al menos: 18 ECTS de fundamentos matemáticos (algebra, cálculo y estadística).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: 3 ECTS of mathematics for quantum, 6 ECTS of quantum physics, 6 ECTS of high-level programming and 3 ECTS of algorithm analysis",
+     "summary_sha": "881bb6386d30b753"
     },
     "prerequisites": [
      {
       "text": "At least 18 ECTS of mathematical foundations (algebra, calculus and statistics).",
       "quote": "18 ECTS de fundamentos matemáticos (algebra, cálculo y estadística).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "a7bafd72dbe3fb9b"
      },
      {
       "text": "3 ECTS of mathematics for quantum; if not taken, the corresponding formative complements must be completed.",
       "quote": "3 ECTS de matemáticas para cuántica. En caso de que no se hayan cursado, deberá realizar los complementos formativos correspondientes.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "67a6924be2d02795"
      },
      {
       "text": "6 ECTS of quantum physics; if not taken, the corresponding formative complements must be completed.",
       "quote": "6 ECTS de física cuántica. En caso de que no se hayan cursado, deberá realizar los complementos formativos correspondientes.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "5b3c0d327cd75729"
      },
      {
       "text": "6 ECTS of programming in a high-level language; if not taken, the corresponding formative complements must be completed.",
       "quote": "6 ECTS de programación en algún lenguaje de alto nivel. En caso de que no se hayan cursado, deberá realizar los complementos formativos correspondientes.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "160a059345c2b362"
      },
      {
       "text": "3 ECTS of algorithm analysis; if not taken, the corresponding formative complements must be completed.",
       "quote": "3 ECTS de análisis de algoritmos. En caso de que no se hayan cursado, deberá realizar los complementos formativos correspondientes.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "68bae58427537a66"
      },
      {
       "text": "Accreditation of Spanish language knowledge at level B2, compulsory only for non-Spanish-speaking students.",
       "quote": "Acreditación de conocimiento del idioma español nivel B2 [Obligatorio únicamente para estudiantes no hispanohablantes]",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "07415df9107aa7ec"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Máster en Contabilidad, Auditoría y sus efectos en los Mercados de Capitales",
@@ -591,13 +719,17 @@
     "academic": {
      "text": "Applicants must hold a bachelor's degree (licenciatura or grado) completed before starting the course.",
      "quote": "Es requisito imprescindible haber terminado los estudios de grado (licenciatura) antes de iniciar el curso.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "32da8a0d3ea165ab"
     },
     "prerequisites": [
      {
       "text": "Accreditation of Spanish language knowledge at level B2, mandatory only for non-Spanish-speaking students.",
       "quote": "Acreditación de conocimiento del idioma español nivel B2 [Obligatorio únicamente para estudiantes no hispanohablantes]",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "242568b5b4a9ed5c"
      }
     ]
    },
@@ -613,13 +745,17 @@
     "academic": {
      "text": "Direct access for holders of a Licenciatura or Grado in Philosophy, and for graduates of Arts and Humanities, Psychology, Law, Sociology and Political Science.",
      "quote": "Pueden acceder directamente los estudiantes y profesionales que posean un título de Licenciatura o Grado en Filosofía, además de aquellos que provengan de las titulaciones de Artes y Humanidades, Psicología, Derecho, Sociología y Ciencia Política.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "2dbf2a3243a70f30"
     },
     "prerequisites": [
      {
       "text": "Accreditation of Spanish language knowledge at level B2, compulsory only for non-Spanish-speaking students.",
       "quote": "Acreditación de conocimiento del idioma español nivel B2 [Obligatorio únicamente para estudiantes no hispanohablantes]",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "07415df9107aa7ec"
      }
     ]
    },
@@ -635,27 +771,35 @@
     "academic": {
      "text": "Hold an official Spanish university degree in Political Science or a related discipline.",
      "quote": "Para acceder a las enseñanzas oficiales de este máster será necesario estar en posesión de un título universitario oficial español en Ciencia Política o en disciplinas afines.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "af0058281ac4e2aa"
     },
     "prerequisites": [
      {
       "text": "Training in Political Science, other social sciences (Law, Public Administration, Sociology, Anthropology, International Relations or Economics and Business) or other related disciplines such as History or Journalism.",
       "quote": "El Máster en Democracia y Gobierno se dirige a titulados universitarios con formación en Ciencia Política, otras ciencias sociales (Derecho, Administración Pública, Sociología, Antropología, Relaciones Internacionales o Ciencias Económicas y Empresariales) u otras disciplinas relacionadas como puedan ser Historia o Periodismo.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "55d2902325c0d8f4"
      },
      {
       "text": "English at B2 level (C1 recommended), certified or by sworn declaration.",
       "quote": "En cuanto a los conocimientos de inglés, los estudiantes deben tener un nivel B2 (preferiblemente un C1)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: certified or by sworn declaration",
+      "summary_sha": "5dda54157ae96015"
      },
      {
       "text": "Availability to attend classes.",
       "quote": "Además, deberá tener disponibilidad horaria para asistir a las clases y seminarios que, salvo excepciones, se impartirán en horario de tarde.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "c1f49bba058a590a"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Máster en Desarrollo Económico y Políticas Públicas",
@@ -667,23 +811,31 @@
     "academic": {
      "text": "Bachelor's degree in Economics, Business Administration and Management, Economics and Finance, or Law and Business Administration and Management.",
      "quote": "Título de Graduado en Economía, en Administración y Dirección de Empresas, en Economía y Finanzas o en Derecho y Administración y Dirección de Empresas.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "1381c86117e396f5"
     },
     "prerequisites": [
      {
       "text": "Basic training in microeconomics, macroeconomics, statistics and econometrics.",
       "quote": "Haber recibido formación básica en microeconomía, macroeconomía, estadística y econometría.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "d47d0e132fe2b0a1"
      },
      {
       "text": "English knowledge at level B1 of the Common European Framework of Reference for Languages.",
       "quote": "Adicionalmente, todos los estudiantes deberán acreditar un nivel de conocimientos de inglés equivalente al nivel B1 del Marco Europeo de referencia para las lenguas, ya sea mediante certificado oficial o, en su defecto, mediante una declaración jurada en la que se afirme poseer el nivel de inglés requerido.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "9831853c5aa36271"
      },
      {
       "text": "Spanish at minimum level B2 for foreign students.",
       "quote": "Conocimientos de castellano (será necesario acreditar un nivel mínimo B2 para estudiantes extranjeros).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "d8cb0c814a163ed0"
      }
     ]
    },
@@ -699,13 +851,17 @@
     "academic": {
      "text": "Priority is given to graduates in Psychology and to other same-level degrees linked to organisational analysis from social science perspectives (Economics, Law, Sociology, etc.).",
      "quote": "Tendrán prioridad en el acceso al Máster Universitario en Dirección de Recursos Humanos los actuales licenciados en Psicología (futuros graduados) así como otras formaciones del mismo nivel (licenciatura o equivalente) vinculadas al análisis organizacional desde perspectivas propias de las ciencias sociales (Economía, Derecho, Sociología, etc.).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "cc27e3a9920cc501"
     },
     "prerequisites": [
      {
       "text": "Spanish language proficiency at level B2, mandatory only for non-Spanish-speaking students.",
       "quote": "Acreditación de conocimiento del idioma español nivel B2 [Obligatorio únicamente para estudiantes no hispanohablantes]",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "04d3a9b0e2e97bde"
      }
     ]
    },
@@ -721,13 +877,17 @@
     "academic": {
      "text": "Hold a degree related to Ecology (Bachelor's or Licenciatura in Biology, Environmental Sciences, Marine Sciences, Geology, Geography or any related to Earth Sciences or Social Sciences with environmental content, or Forestry or Agricultural Engineering).",
      "quote": "Estar en posesión de alguno de los títulos relacionados con la Ecología (Licenciado o Graduado en Biología, Ciencias Ambientales, Ciencias del Mar, Geología, Geografía o cualquiera relacionada con Ciencias de la Tierra o Ciencias Sociales de contenido ambiental, así como Ingeniero de Montes o Agrónomos).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "4d3646df38ec8e59"
     },
     "prerequisites": [
      {
       "text": "Accreditation of Spanish language knowledge at level B2, compulsory only for non-Spanish-speaking students.",
       "quote": "Acreditación de conocimiento del idioma español nivel B2 [Obligatorio únicamente para estudiantes no hispanohablantes]",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "07415df9107aa7ec"
      }
     ]
    },
@@ -743,22 +903,28 @@
     "academic": {
      "text": "Hold a degree as Ingeniero Superior or Licenciado in Economics or Business Administration and Management, or equivalent.",
      "quote": "Título de Ingeniero Superior o Licenciado en Economía o Administración y Dirección de Empresas, o equivalente.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b4a36d0b43552e27"
     },
     "prerequisites": [
      {
       "text": "English language proficiency at minimum level B2.",
       "quote": "Certificados que demuestren dominio del idioma inglés (nivel mínimo B2) y del español en el caso de aquellos alumnos cuya lengua materna no sea el español (nivel mínimo C1).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f2998cf6b8244537"
      },
      {
       "text": "Spanish language proficiency at minimum level C1 for non-native Spanish speakers, accredited by official exams such as DELE and SIELE.",
       "quote": "En este caso se deberá acreditar con exámenes oficiales como DELE y SIELE.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: minimum level C1 for non-native Spanish speakers",
+      "summary_sha": "841f76fcaa9b3007"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Máster en Educación para la Justicia Social",
@@ -770,22 +936,28 @@
     "academic": {
      "text": "Hold an official Spanish university degree (Grado, Licenciado, Ingeniero, Arquitecto, Diplomado, Ingeniero Técnico, Arquitecto Técnico or equivalent).",
      "quote": "Estar en posesión de un título universitario oficial de Grado, Licenciado/a, Ingeniero/a, Arquitecto/a, Diplomado/a, Ingeniero/a Técnico/a, Arquitecto/a Técnico/a o equivalente.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "58b357298d3ad604"
     },
     "prerequisites": [
      {
       "text": "Spanish language proficiency at level B2, mandatory only for non-Spanish-speaking students.",
       "quote": "Acreditación de conocimiento del idioma español nivel B2 [Obligatorio únicamente para estudiantes no hispanohablantes]",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "04d3a9b0e2e97bde"
      },
      {
       "text": "Graduates in Psychology, Sociology, Anthropology or Social Work must take compulsory training complements: Didáctica General (6 ECTS) and Investigación, Innovación y Evaluación (6 ECTS).",
       "quote": "el estudiantado deberá cursar unos complementos de formación obligatorios, compuestos por dos asignaturas específicas del ámbito educativo (12 ECTS en total): Complemento Formativo — Didáctica General (6 ECTS) Complemento Formativo — Investigación, Innovación y Evaluación (6 ECTS)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Graduates in Psychology, Sociology, Anthropology or Social Work",
+      "summary_sha": "780b6d8a4aac5bba"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Máster en Electroquímica, Ciencia y Tecnología",
@@ -797,13 +969,17 @@
     "academic": {
      "text": "Hold an official Spanish Bachelor's degree in Science or Engineering.",
      "quote": "Estar en posesión de un título oficial español de Grado en Ciencias o Ingeniería.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ea0e995d9c70cdc6"
     },
     "prerequisites": [
      {
       "text": "Accreditation of Spanish language knowledge at level B2 (mandatory only for non-Spanish-speaking students).",
       "quote": "Acreditación de conocimiento del idioma español nivel B2 [Obligatorio únicamente para estudiantes no hispanohablantes]",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "672351f9ff2c5010"
      }
     ]
    },
@@ -819,13 +995,17 @@
     "academic": {
      "text": "Hold an official Spanish university degree as a Licenciado or Graduado in Sciences, or as an Ingeniero Técnico or Superior.",
      "quote": "Para acceder a las enseñanzas oficiales de Máster será necesario estar en posesión de un título universitario oficial español de Licenciados y Graduados en Ciencias, Ingenieros Técnicos y Superiores.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "6005006cd9785ccd"
     },
     "prerequisites": [
      {
       "text": "Accreditation of Spanish language knowledge at level B2, compulsory only for non-Spanish-speaking students.",
       "quote": "Acreditación de conocimiento del idioma español nivel B2 [Obligatorio únicamente para estudiantes no hispanohablantes] (3)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "48f13e02941de08d"
      }
     ]
    },
@@ -841,23 +1021,31 @@
     "academic": {
      "text": "A degree (Licenciatura or Grado) related to Health Sciences and related fields is recommended.",
      "quote": "Para solicitar la admisión al Máster en Epidemiología se recomienda haber cursado títulos (Licenciatura o Grado) relacionados con Ciencias de la Salud y afines.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "509dc8396319154c"
     },
     "prerequisites": [
      {
       "text": "Basic training in statistics and research methodology.",
       "quote": "Se deberá acreditar una formación básica en estadística y metodología de la investigación.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "64232195bc8a3e1b"
      },
      {
       "text": "Spanish language proficiency at level B2 (mandatory only for non-Spanish-speaking students).",
       "quote": "Acreditación de conocimiento del idioma español nivel B2 [Obligatorio únicamente para estudiantes no hispanohablantes] (3)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "2ccd507bc1afc35e"
      },
      {
       "text": "English language proficiency at level B1 (mandatory for all students).",
       "quote": "Acreditación de conocimiento del idioma inglés nivel B1 [Obligatorio para todos los  estudiantes]",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "dbe253ce3d65ff50"
      }
     ]
    },
@@ -873,18 +1061,24 @@
     "academic": {
      "text": "Hold an official Spanish university degree in Chemistry, Physics or Materials Science, or another degree from a higher education institution in the European Higher Education Area that qualifies for access to master's studies.",
      "quote": "Estar en posesión de un título universitario oficial español en Química, Física o Ciencia de los Materiales u otro expedido por una institución de educación superior perteneciente a otro Estado integrante del Espacio Europeo de Educación Superior que faculte en el mismo para el acceso a enseñanzas de máster.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c7ecadeed1c7aaa0"
     },
     "prerequisites": [
      {
       "text": "Accreditation of English language knowledge at B2 level or higher.",
       "quote": "Acreditación de conocimiento de idioma inglés B2 o superior.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "e8b2163e1b184573"
      },
      {
       "text": "For candidates from third countries, a certificate of knowledge of English and Spanish, minimum level B2.",
       "quote": "Certificado acreditativo de conocimiento de inglés y de español para candidatos de terceros países. Nivel mínimo B2.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "9f68221afbc20c3c"
      }
     ]
    },
@@ -900,13 +1094,17 @@
     "academic": {
      "text": "Priority is given to holders of a bachelor's or licenciatura degree in Psychology and Speech Therapy (Logopedia).",
      "quote": "Para acceder a esta máster tendrán prioridad las personas con un título de grado o licenciatura en Psicología y Logopedia.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "baf9082bf315e318"
     },
     "prerequisites": [
      {
       "text": "Accreditation of Spanish language proficiency at level B2, compulsory only for non-Spanish-speaking students.",
       "quote": "Acreditación de conocimiento del idioma español nivel B2 [Obligatorio únicamente para estudiantes no hispanohablantes]",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "dd26e395f5f8e604"
      }
     ]
    },
@@ -922,18 +1120,24 @@
     "academic": {
      "text": "No specific bachelor's degree is required, though prior training in social sciences and/or humanities is desirable.",
      "quote": "No exige una titulación de licenciatura/grado concreta, si bien por sus materias es deseable una formación previa en disciplinas de las ciencias sociales y/o humanas.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "76d899ba273647f6"
     },
     "prerequisites": [
      {
       "text": "Non-native Spanish speakers must prove sufficient Spanish with an official qualification or take the level test.",
       "quote": "Las clases se impartirán en español, por lo que los alumnos que no tengan esta lengua como lengua materna deberán acreditar conocimientos suficientes con titulación oficial o realizar la prueba de nivel correspondiente",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "6972dc740678a195"
      },
      {
       "text": "For subjects offered in English or Arabic, a B2 level of the European Framework must be accredited.",
       "quote": "En el caso de las asignaturas que se pudieran ofertar en inglés o árabe, será necesario acreditar un B2 del Marco de Referencia Europeo.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "e7c4732879dd5531"
      }
     ]
    },
@@ -949,17 +1153,21 @@
     "academic": {
      "text": "Applicants must be graduates or licenciados in Arts and Humanities or hold higher music studies qualifications.",
      "quote": "El Máster está destinado a licenciados y graduados en las ramas de Artes y Humanidades y Estudios superiores de Música.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: must be / requirement (quote only says the master is aimed at)",
+     "summary_sha": "e73709801d0179b8"
     },
     "prerequisites": [
      {
       "text": "Accreditation of Spanish language knowledge at level B2, compulsory only for non-Spanish-speaking students.",
       "quote": "Acreditación de conocimiento del idioma español nivel B2 [Obligatorio únicamente para estudiantes no hispanohablantes]",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "07415df9107aa7ec"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Máster en Estudios de Asia Oriental",
@@ -971,18 +1179,24 @@
     "academic": {
      "text": "Hold a bachelor's degree (licenciatura or grado) in the arts and humanities area (East Asian Studies, Philology, Philosophy, History, Art History, Humanities and Tourism).",
      "quote": "Hay que estar en posesión de una licenciatura o grado vinculada al área de arte y humanidades (Asia Oriental, Filologías, Filosofía, Historia, Historia del Arte, Humanidades y Turismo)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "1609dd4ec86b5b6d"
     },
     "prerequisites": [
      {
       "text": "All students must have oral comprehension and reading ability in English at B2 level or equivalent.",
       "quote": "Además, todos los alumnos deben tener capacidad de comprensión oral y lectora en inglés (B2 o equivalente).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "538a4be9ae0e59cf"
      },
      {
       "text": "Foreign students from non-Spanish-speaking countries must hold a Spanish certificate at B2 level or higher (DELE or SIELE).",
       "quote": "Certificado de español igual o superior al nivel B2 del Marco Europeo de Referencia de las Lenguas con los certificados DELE o SIELE [Obligatorio únicamente para estudiantes extranjeros provenientes de países no hispanohablantes]",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "2983467481b89d3d"
      }
     ]
    },
@@ -998,27 +1212,35 @@
     "academic": {
      "text": "No specific prior studies in the master's content are required.",
      "quote": "No se exigen estudios previos específicos de los contenidos del Máster.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "1672aa9bff771bba"
     },
     "prerequisites": [
      {
       "text": "Non-native Spanish speakers must certify Spanish at level B2 with DELE or SIELE certificates.",
       "quote": "los estudiantes cuya lengua materna no sea el español deben certificar un nivel de español igual o superior al nivel B2 del Marco Europeo de Referencia de las Lenguas con los certificados DELE o SIELE.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "817696eb31206915"
      },
      {
       "text": "Knowledge of ancient Greek and Latin is required to take module 2.",
       "quote": "Se requieren conocimientos de griego antiguo y latín para cursar el módulo 2.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "76b4653c319064b7"
      },
      {
       "text": "For the international double-degree itinerary: Italian B2 and a Classics degree or equivalent.",
       "quote": "Requisitos específicos: Italiano B2 y Grado de Estudios Clásicos o equivalente.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: international double-degree itinerary",
+      "summary_sha": "f0a6d636efba53f2"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Máster en Estudios Interdisciplinares de Género",
@@ -1030,13 +1252,17 @@
     "academic": {
      "text": "Hold an official Spanish university degree.",
      "quote": "Para acceder a las enseñanzas oficiales de máster será necesario estar en posesión de un título universitario oficial español.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a0c5c446df72f53b"
     },
     "prerequisites": [
      {
       "text": "Accreditation of Spanish language knowledge at level B2, compulsory only for non-Spanish-speaking students.",
       "quote": "Acreditación de conocimiento del idioma español nivel B2 [Obligatorio únicamente para estudiantes no hispanohablantes]",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "07415df9107aa7ec"
      }
     ]
    },
@@ -1052,18 +1278,24 @@
     "academic": {
      "text": "A bachelor's degree, licenciatura, or equivalent qualification.",
      "quote": "Licenciatura, Grado o titulación equivalente.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fc5dce8bbdf6947d"
     },
     "prerequisites": [
      {
       "text": "English at C1/C2 level (Advanced/Proficiency), the level required to take the program.",
       "quote": "El Máster en Estudios Literarios y Culturales Británicos y de los Países de Habla Inglesa se desarrolla íntegramente en inglés y el nivel adecuado para cursarlo es un nivel C1/C2 o Advanced/Proficiency.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "51de8a7ece55af87"
      },
      {
       "text": "An interview with the Master's Coordination Committee before enrolment, to check the applicant's English level.",
       "quote": "Previamente a la matrícula el alumno habrá de someterse a una entrevista con los miembros de la Comisión de Coordinación del Máster, en la que éstos comprobarán su nivel de lengua inglesa o harán las recomendaciones pertinentes sobre los complementos de formación que correspondan a su caso (10 o 20 créditos de asignaturas de Lengua Inglesa en el Grado de Estudios Ingleses).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "8b2e21d3dca7054f"
      }
     ]
    },
@@ -1079,18 +1311,24 @@
     "academic": {
      "text": "Graduates in disciplines with knowledge and skills suited to the current geopolitical debate (philosophers, political scientists, historians, art critics, scholars of comparative religion, lawyers, sociologists, etc.).",
      "quote": "Graduados en disciplinas con conocimientos y competencias aptas para intervenir en el debate geopolítico actual (filósofos, politólogos, historiadores, críticos de arte, estudiosos de religiones comparadas, juristas, sociólogos, etc.).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "29b48dd788846965"
     },
     "prerequisites": [
      {
       "text": "Proof of Spanish language proficiency at level B2, compulsory only for non-Spanish-speaking students.",
       "quote": "Acreditación de conocimiento del idioma español nivel B2 [Obligatorio únicamente para estudiantes no hispanohablantes]",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "b422e7a168fb4ec2"
      },
      {
       "text": "Students coming from other areas of knowledge must take a module 0 to strengthen their knowledge of Philosophy and History.",
       "quote": "Los alumnos procedentes de otras áreas de conocimiento deben cursar un módulo 0 para reforzar sus conocimientos de Filosofía e Historia.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "80263e668f4b4cba"
      }
     ]
    },
@@ -1106,18 +1344,24 @@
     "academic": {
      "text": "For the Nanophysics specialisation: graduates in Physics, Materials Science, Nanoscience and Nanotechnology or related engineering with a solid foundation in general Physics, Quantum Mechanics and Solid State Physics.",
      "quote": "podrán acceder a la especialidad de Nanofísica los graduados en Física, Ciencia de Materiales, Nanociencia y Nanotecnología o ingenierías afines con una base sólida en Física general, Mecánica cuántica y Física del Estado sólido.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "5e8f9f746ef9f6b6"
     },
     "prerequisites": [
      {
       "text": "Spanish language proficiency at level B2 (mandatory only for non-Spanish-speaking students).",
       "quote": "Acreditación de conocimiento del idioma español nivel B2 [Obligatorio únicamente para estudiantes no hispanohablantes]",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "3fb5f3c55e2a326a"
      },
      {
       "text": "English knowledge sufficient to understand spoken scientific English and to understand and write scientific texts (recommended level B2 or equivalent).",
       "quote": "los estudiantes deben tener un conocimiento de la lengua inglesa que les permita entender el inglés científico hablado, así como entender y escribir textos científicos en inglés (nivel recomendado de inglés B2 o equivalente)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "a18fe1f6b21272c5"
      }
     ]
    },
@@ -1133,23 +1377,31 @@
     "academic": {
      "text": "Degree in Physics (high preference for admission).",
      "quote": "Titulaciones con preferencia alta para el acceso:\nLicenciado en Física.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c0318f5c2ab0c3e6"
     },
     "prerequisites": [
      {
       "text": "Non-Spanish-speaking foreign applicants must prove intermediate (B2) knowledge of Spanish or English.",
       "quote": "Quienes sean extranjeros de lengua no española deberán acreditar el conocimiento de español o inglés a nivel intermedio (B2).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "0989b6be2b341594"
      },
      {
       "text": "Applicants whose degree does not fit the master's profile may be admitted if they demonstrate basic knowledge of Nuclear Physics in a personal interview.",
       "quote": "En caso de alumnos cuya titulación no se adecue al perfil del máster, estos podrían acceder al máster si demuestran los conocimientos básicos de Física Nuclear en una entrevista personal.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "63bc0e3a2a199897"
      },
      {
       "text": "Knowledge of Quantum Mechanics for graduates in Chemistry or engineers.",
       "quote": "también pueden acceder Graduados en Química o Ingenieros interesados en la Física Nuclear que tengan conocimientos de Mecánica Cuántica.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "7aa86e1f6fa72ebb"
      }
     ]
    },
@@ -1165,13 +1417,17 @@
     "academic": {
      "text": "Applicants must hold a higher degree (Licenciatura or Grado) in Physics, Chemistry, Mathematics or Engineering (in one of the listed denominations) or equivalent degrees from foreign universities.",
      "quote": "Se requiere ser titulado superior (Licenciatura o Grado) en Física, Química, Matemáticas o Ingeniería (en una de las siguientes denominaciones: Aeronáutica/Aeroespacial, Civil y Territorial, Materiales, Caminos, Canales y Puertos, Tecnologías Industriales/Industrial, Energía, Química, Marítima, Naval y Oceánico, Telecomunicación o Geomática y Topográfica) o títulos equivalentes de universidades extranjeras.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "3e032c25ad4fbd7e"
     },
     "prerequisites": [
      {
       "text": "Level B2 or equivalent knowledge of English, as required for degrees in the UAM Faculty of Science.",
       "quote": "Se requiere asimismo tener un nivel B2 o el equivalente al requerido de conocimiento de la lengua inglesa para la obtención de Grados en la Facultad de Ciencias de la UAM.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "3d03071b9d15926b"
      }
     ]
    },
@@ -1187,26 +1443,34 @@
     "academic": {
      "text": "Hold an official Spanish university degree.",
      "quote": "Con carácter general, para acceder a las enseñanzas oficiales de máster será necesario estar en posesión de un título universitario oficial español.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "4e2bf0cf1c3abc95"
     },
     "deadlines": [
      {
       "label": "Second application period, 2026",
       "date": "2026-09-01",
       "quote": "El segundo plazo de presentación de solicitudes para la admisión finaliza el 1 de septiembre de 2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "c0d6204920cbc823"
      }
     ],
     "prerequisites": [
      {
       "text": "Prove command of a foreign language at CEFR level B1.",
       "quote": "Los estudiantes deberán acreditar el dominio de una lengua extranjera equivalente al nivel B1 del Marco Común Europeo de Referencia para las Lenguas (Orden ECI/3858/2007 de 27 de diciembre).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "8c3856785f908766"
      },
      {
       "text": "Non-Spanish-speaking foreign students who studied in non-Spanish-speaking countries must prove Spanish at level B2 with an official certificate.",
       "quote": "Los estudiantes extranjeros de habla no española que hayan cursado sus estudios de acceso en países no hispanohablantes deberán acreditar su conocimiento del idioma español aportando un certificado oficial equivalente al nivel B2.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "38c8929294622e62"
      }
     ]
    },
@@ -1222,18 +1486,24 @@
     "academic": {
      "text": "Hold an official higher degree in Biology, Biotechnology, Biochemistry, Health Biology, Medicine, Environmental Sciences or related official degrees.",
      "quote": "Estar en posesión de una titulación oficial superior en Biología, Biotecnología, Bioquímica, Biología Sanitaria, Medicina, Ciencias Ambientales o títulos oficiales afines.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "14cdb3c776e3f890"
     },
     "prerequisites": [
      {
       "text": "English level equivalent to B2, sufficient to understand scientific articles.",
       "quote": "Es necesario un nivel de inglés equivalente al nivel B2, que permita, como mínimo, la correcta comprensión de artículos científicos escritos.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "5c3029578348f7bc"
      },
      {
       "text": "Spanish level B2, mandatory only for non-Spanish-speaking students.",
       "quote": "Acreditación de conocimiento del idioma español nivel B2 [Obligatorio únicamente para estudiantes no hispanohablantes]",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "b2c2de373f558206"
      }
     ]
    },
@@ -1249,13 +1519,17 @@
     "academic": {
      "text": "It is recommended to have previously studied degrees in Environmental Sciences, Chemistry, Chemical Engineering, Geology, Biology, Biochemistry, Physics, Food Science and Technology, Veterinary Medicine, or engineering specialties related to waste and resource management, or similar qualifications.",
      "quote": "Para la admisión en el Master en Gestión de Residuos y Aguas Residuales para la Recuperación de Recursos es recomendable haber cursado estudios previos en los grados de Ciencias Ambientales, Química, Ingeniería Química, Geología, Biología, Bioquímica, Física, Ciencia y Tecnología de los alimentos, Veterinaria; incluyendo también graduados en ingeniería en especialidades afines a la gestión de residuos y recursos (Agronómica, Caminos Canales y Puertos, Minas, Geológica, Tecnología industrial), u otras titulaciones similares",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "33a8b28705441d97"
     },
     "prerequisites": [
      {
       "text": "Accreditation of Spanish language knowledge at level B2, mandatory only for non-Spanish-speaking students.",
       "quote": "Acreditación de conocimiento del idioma español nivel B2 [Obligatorio únicamente para estudiantes no hispanohablantes]",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "242568b5b4a9ed5c"
      }
     ]
    },
@@ -1271,13 +1545,17 @@
     "academic": {
      "text": "Hold an official Spanish university degree, or a recognised and/or equivalent foreign one, preferably in arts and humanities (mainly Art History, Fine Arts, History, Philosophy, Architecture or Humanities).",
      "quote": "El Máster está destinado a solicitantes que han de estar en posesión de una titulación universitaria oficial española, o extranjera acreditada y/o equivalente, vinculada con preferencia al área de arte y humanidades (principalmente Historia del Arte, Bellas Artes, Historia, Filosofía, Arquitectura o Humanidades), en menor medida, a la de ciencias sociales y jurídicas (Antropología, Comunicación Audiovisual o Sociología, entre otras).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "85690dc962f48774"
     },
     "prerequisites": [
      {
       "text": "Non-native Spanish speakers must certify Spanish at level B2 or higher of the Common European Framework of Reference with DELE or SIELE certificates or another issued by an authorised official institution.",
       "quote": "los estudiantes cuya lengua materna no sea el español deben certificar un nivel de español igual o superior al nivel B2 del Marco Europeo de Referencia de las Lenguas con los certificados DELE o SIELE u otro expedido por cualquier institución oficial autorizada para ello.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "9628f68de0aa5fb2"
      }
     ]
    },
@@ -1293,13 +1571,17 @@
     "academic": {
      "text": "Graduates or licenciados in Humanities (History, Classical Philology, Archaeology, Philosophy, Art History, Geography, etc.) or in Social and Legal Sciences.",
      "quote": "Licenciados o Graduados en Humanidades (Historia, Filología Clásica, Arqueología, Filosofía, Historia del Arte, Geografía…) o en Ciencias Sociales y Jurídicas.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fdcc09d3c211c8db"
     },
     "prerequisites": [
      {
       "text": "Accreditation of Spanish language knowledge at level B2, compulsory only for non-Spanish-speaking students.",
       "quote": "Acreditación de conocimiento del idioma español nivel B2 [Obligatorio únicamente para estudiantes no hispanohablantes]",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "07415df9107aa7ec"
      }
     ]
    },
@@ -1315,13 +1597,17 @@
     "academic": {
      "text": "A degree in History, Philosophy and Letters (History specialisation), or Geography and History (History specialisation).",
      "quote": "Se trata de un Máster especialmente indicado para estudiantes que posean el título de Licenciado/a o Graduado/a: en Historia, Filosofía y Letras (especialidad Historia), Geografía e Historia (especialidad Historia).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a8a8eda72001cbd7"
     },
     "prerequisites": [
      {
       "text": "Accreditation of Spanish language knowledge at level B2, compulsory only for non-Spanish-speaking students.",
       "quote": "Acreditación de conocimiento del idioma español nivel B2 [Obligatorio únicamente para estudiantes no hispanohablantes]",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "07415df9107aa7ec"
      }
     ]
    },
@@ -1337,32 +1623,42 @@
     "academic": {
      "text": "A higher degree (licenciado or graduado) in Arts and Humanities or Social and Legal Sciences.",
      "quote": "Se requiere una titulación superior (licenciado o graduado) en las ramas de Artes y Humanidades o Ciencias Sociales y Jurídicas.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "2032563810bc9619"
     },
     "deadlines": [
      {
       "label": "First pre-registration period",
       "date": "2026-04-08",
       "quote": "El primer periodo de preinscripción se extiende hasta el 08/04/2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "bff367a3e875d3e8"
      },
      {
       "label": "Second pre-registration period",
       "date": "2026-09-01",
       "quote": "el segundo del 04/06/2026 al 01/09/2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "3f7ded90925363f3"
      }
     ],
     "prerequisites": [
      {
       "text": "Minimum level B1 or higher in English according to the CEFR.",
       "quote": "Asimismo, el estudiante debe contar con un nivel mínimo según el Marco Común Europeo de Referencia para las Lenguas (MCERL): Nivel B1 o superior en inglés.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "fb350625745df4bd"
      },
      {
       "text": "Foreign students must prove a level of Spanish equivalent to B1 of the European Framework of Reference for Languages.",
       "quote": "Los estudiantes extranjeros deberán acreditar un nivel de conocimiento de castellano equivalente al B1 del Marco Europeo de Referencia para las Lenguas.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "7c696e42ad0a5194"
      }
     ]
    },
@@ -1378,17 +1674,21 @@
     "academic": {
      "text": "Applicants must have previously acquired the competences set out in section 3 of Annex II of the cited Agreement, with training in line with section 5 of that Annex.",
      "quote": "Podrá acceder al Máster vinculado con el ejercicio de la profesión de Ingeniero en Informática, quien haya adquirido previamente las competencias que se recogen en el apartado 3 del Anexo II del presente Acuerdo",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: training in line with section 5 of that Annex",
+     "summary_sha": "fef8fa528a01cc6c"
     },
     "prerequisites": [
      {
       "text": "Accreditation of Spanish language knowledge at level B2, mandatory only for non-Spanish-speaking students.",
       "quote": "Acreditación de conocimiento del idioma español nivel B2 [Obligatorio únicamente para estudiantes no hispanohablantes]",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "242568b5b4a9ed5c"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Máster en Ingeniería Química (SIC)",
@@ -1400,13 +1700,17 @@
     "academic": {
      "text": "Hold an official Spanish university degree or an equivalent degree from another EHEA state that qualifies for master's access.",
      "quote": "siendo necesario estar en posesión de un título universitario oficial español u otro expedido por una institución de educación superior perteneciente a otro Estado integrante del Espacio Europeo de Educación Superior que faculte en el mismo para el acceso a enseñanzas de Máster.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "6e094d3cd0eb689b"
     },
     "prerequisites": [
      {
       "text": "Spanish language proficiency at level B2, mandatory only for non-Spanish-speaking students.",
       "quote": "Acreditación de conocimiento del idioma español nivel B2 [Obligatorio únicamente para estudiantes no hispanohablantes]",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "04d3a9b0e2e97bde"
      }
     ]
    },
@@ -1422,13 +1726,17 @@
     "academic": {
      "text": "Applicants must have previously acquired the competences in section 3 of the Ministerial Order for degrees enabling the profession of Ingeniero Técnico de Telecomunicación, with training in line with section 5 of that Order.",
      "quote": "Podrá acceder al Máster que habilita para el ejercicio de la profesión de Ingeniero de Telecomunicación, quien haya adquirido previamente las competencias que se recogen en el apartado 3 de la Orden Ministerial por la que se establecen los requisitos para la verificación de los títulos universitarios oficiales que habiliten para el ejercicio de la profesión de Ingeniero Técnico de Telecomunicación y su formación estar de acuerdo con la que se establece en el apartado 5 de la antes citada Orden Ministerial.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "fd6cba2e0fdddda8"
     },
     "prerequisites": [
      {
       "text": "Accreditation of Spanish language knowledge at level B2, compulsory only for non-Spanish-speaking students.",
       "quote": "Acreditación de conocimiento del idioma español nivel B2 [Obligatorio únicamente para estudiantes no hispanohablantes] (5)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "3022ad0de29257e4"
      }
     ]
    },
@@ -1444,22 +1752,28 @@
     "academic": {
      "text": "Preference is given to applicants who have completed the Degree in Early Childhood Education, Primary Education or the Double Degree in Early Childhood and Primary Education, and to practising early childhood and/or primary teachers, over other education-related degrees.",
      "quote": "Tendrán preferencia de acceso al máster quienes hayan cursado el Grado en Educación Infantil, Educación Primaria y Doble Grado en Educación Infantil y Primaria, además de docentes de Educación Infantil y/o Primaria en activo, frente a otras titulaciones afines a la Educación.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b85af33209ba7f02"
     },
     "prerequisites": [
      {
       "text": "Good oral and written command of Spanish; international applicants must provide a Spanish language certificate at level B2.",
       "quote": "La lengua a utilizar en el proceso formativo será el castellano, siendo necesario tener un buen nivel y dominio de esta lengua, tanto oral como escrito. Para la admisión de alumnado internacional, se requerirá Certificación de lengua española, nivel B2, más una entrevista personal del estudiante (en el Marco Común Europeo de Referencia para las Lenguas).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: omits the required personal interview",
+      "summary_sha": "41dbdfb0a1ba68d2"
      },
      {
       "text": "Non-Spanish-speaking students must have at least level C1 in Spanish.",
       "quote": "Para los estudiantes de habla no española se exigirá como mínimo un nivel de español C1 del Marco Común Europeo de Referencia para las Lenguas (MCERL).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "e07eac8f33339856"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Máster en Inteligencia Artificial",
@@ -1471,27 +1785,35 @@
     "academic": {
      "text": "Graduates, licenciados or engineers in science, technology, engineering and mathematics degrees, provided they have completed at least 18 ECTS in mathematical foundations (12 ECTS in calculus and linear algebra, 6 ECTS in probability and statistics) and 6 ECTS in programming in a high-level language.",
      "quote": "1. Graduados, licenciados o ingenieros en titulaciones del área de las ciencias, tecnologías, ingenierías y matemáticas, siempre que hayan cursado en su titulación al menos:​​ . 18 ECTS en fundamentos matemáticos, distribuidos en: - 12 ECTS en cálculo y álgebra lineal. - 6 ECTS en probabilidad y estadística. . 6 ECTS en programación en algún lenguaje de alto nivel.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0a8b9935fddea7c7"
     },
     "prerequisites": [
      {
       "text": "Accreditation of Spanish language knowledge at level B2 or above (for applicants whose mother tongue is not Spanish).",
       "quote": "Acreditación de conocimiento de idioma español B2 o superior (3).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: for applicants whose mother tongue is not Spanish",
+      "summary_sha": "e2b6350fe250326a"
      },
      {
       "text": "At least 18 ECTS in mathematical foundations: 12 ECTS in calculus and linear algebra and 6 ECTS in probability and statistics.",
       "quote": ". 18 ECTS en fundamentos matemáticos, distribuidos en: - 12 ECTS en cálculo y álgebra lineal. - 6 ECTS en probabilidad y estadística.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "be2ee492ced564e9"
      },
      {
       "text": "At least 6 ECTS in programming in a high-level language.",
       "quote": ". 6 ECTS en programación en algún lenguaje de alto nivel.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "4adaca6f65d07b91"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "International Master EUROSUD South European Studies",
@@ -1503,32 +1825,42 @@
     "ielts": {
      "overall": 5.5,
      "quote": "IELTS (minimum score: 5.5)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a8956e47f6db8f73"
     },
     "toefl": {
      "overall": 87.0,
      "quote": "TOEFL (minimum score: 87)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "9014bed1ca57a190"
     },
     "academic": {
      "text": "Hold an official undergraduate degree worth at least 180 ECTS credits (or equivalent) in Humanities, Social Sciences, or a closely related field.",
      "quote": "You must hold an official undergraduate degree worth at least 180 ECTS credits (or equivalent) in: Humanities (e.g. Languages, Communication, Journalism, History, Literature, Geography), Social Sciences (e.g. Political Science, International Relations, Sociology, Law, Public Administration, European Studies, Anthropology, Area Studies, Economics, Business), or a closely related field.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "5126eb88436c2cca"
     },
     "prerequisites": [
      {
       "text": "English: minimum level B2, preferred C1 (CEFR), with official proof required.",
       "quote": "English (all tracks): A good command of English is required. Minimum level B2, preferred level C1 (according to the Common European Framework of Reference for Languages – CEFR).",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: with official proof required",
+      "summary_sha": "a701a7bd07c23316"
      },
      {
       "text": "French B2 level required for Track 1 (UAM-AMU), with a TCF/DELF/DALF level B2 certificate, except for nationals of countries where French is the official language.",
       "quote": "French Track 1 (UAM-AMU): A B2 level in French is required. A TCF/DELF/DALF - level B2 certificate is required, except for nationals of countries where French is the official language.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "acf573eb5dd936a4"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Máster en Intervención Psicosocial y Comunitaria",
@@ -1540,13 +1872,17 @@
     "academic": {
      "text": "Applicants must hold, or be in a position to obtain at the time of applying, an official bachelor's or licenciatura degree in Psychology, Sociology, Anthropology, Pedagogy, Psicopedagogía, Social Work, Social Education or related degrees in the human, social and educational sciences.",
      "quote": "Estar en disposición en el momento de solicitar la admisión del correspondiente título o certificación oficial de licenciados/as o graduados/as en Psicología, Sociología, Antropología, Pedagogía, Psicopedagogía, Trabajo Social, Educación Social y titulaciones afines del ámbito de las ciencias humanas, sociales y educativas.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b8c67c60c7ace29c"
     },
     "prerequisites": [
      {
       "text": "Accreditation of Spanish language proficiency at level B2, compulsory only for non-Spanish-speaking students.",
       "quote": "Acreditación de conocimiento del idioma español nivel B2 [Obligatorio únicamente para estudiantes no hispanohablantes]",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "dd26e395f5f8e604"
      }
     ]
    },
@@ -1562,17 +1898,21 @@
     "academic": {
      "text": "University degree (graduate or licenciado) preferably in Arts and Humanities, especially History or Art History, or related degrees.",
      "quote": "El Máster está destinado, con un carácter general, a los licenciados o graduados en las ramas de conocimiento de Artes y Humanidades, especialmente a aquellos procedentes de las licenciaturas o grados en Historia e Historia del Arte, y de otras titulaciones afines.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: preferably (quote only describes the program's target audience)",
+     "summary_sha": "82b702fa04c73d78"
     },
     "prerequisites": [
      {
       "text": "Accreditation of Spanish language knowledge at level B2, compulsory only for non-Spanish-speaking students.",
       "quote": "Acreditación de conocimiento del idioma español nivel B2 [Obligatorio unicamente para estudiantes no hispanohablantes]",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "bea77f23465e0a52"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Máster en Historia del Arte en la Edad Moderna: Tradición Clásica y Mundo Globalizado",
@@ -1584,13 +1924,17 @@
     "academic": {
      "text": "Hold a bachelor's degree (licenciatura or grado) in the area of arts and humanities (Art History, History, Philology, Philosophy, Humanities).",
      "quote": "habrá que estar en posesión de una licenciatura o grado vinculada al área de arte y humanidades (Historia del Arte, Historia, Filologías, Filosofía, Humanidades)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "178c730e78a10eba"
     },
     "prerequisites": [
      {
       "text": "Non-native Spanish speakers must certify Spanish at level B2 or higher with DELE or SIELE certificates.",
       "quote": "los estudiantes cuya lengua materna no sea el español deben certificar un nivel de español igual o superior al nivel B2 del Marco Europeo de Referencia de las Lenguas con los certificados DELE o SIELE",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "a9e2ee5a534353b1"
      }
     ]
    },
@@ -1599,7 +1943,7 @@
  ],
  "verification": {
   "programs": 60,
-  "机器核对": 60,
-  "待人工": 0
+  "机器核对": 45,
+  "待人工": 15
  }
 }

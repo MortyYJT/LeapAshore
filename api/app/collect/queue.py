@@ -35,11 +35,21 @@ from sqlalchemy.orm import Session
 
 from app.collect.changes import diff_fields, has_verified_value
 from app.collect.extract import ExtractResult, extract_snapshot
+from app.collect.faithful import cost_cny
 from app.collect.ratelimit import RetryLater
 from app.collect.snapshot import SNAPSHOT_ROOT, Blocked, HttpError, snapshot
 from app.collect.text import normalize
 from app.collect.tidy import heading_of, program_name, tidy_file
-from app.collect.verify import MACHINE_CHECKED, NEEDS_HUMAN
+from app.collect.verify import (
+    LIST_FIELDS,
+    MACHINE_CHECKED,
+    NEEDS_HUMAN,
+    SUMMARY_CHECK,
+    SUMMARY_SHA,
+    program_status,
+    summary_digest,
+    summary_verdict,
+)
 from app.config import settings
 from app.models.collect import CollectPage, PageState, RequirementChange
 
@@ -58,7 +68,7 @@ THIN_PAGE_CHARS = 1500
 # `last_error` of a page whose render waits for its host's Crawl-delay, then the plain fetch's sha256.
 RENDER_PENDING = "render waits for the host's Crawl-delay; plain fetch "
 ITEM_KEYS = ("label", "date", "text", "overall", "min_band", "min_mark_211", "min_mark_other", "recommended",
-             "scale_note", "quote", "source_sha256", "source_url", "check")
+             "scale_note", "quote", "source_sha256", "source_url", "check", "summary_check", "summary_sha")
 PROGRAM_KEYS = ("cricos_code", "snapshot_sha256", "fetched_at", "rendered", "collector", "fields", "status")
 # A page is not refetched while it is in one of these states unless asked to re-collect.
 SETTLED = {PageState.DONE, PageState.UNCHANGED, PageState.BLOCKED, PageState.FAILED, PageState.NEEDS_HUMAN}
@@ -69,15 +79,6 @@ class Transient(Exception):
 
 
 # --- Money -------------------------------------------------------------------------------------------
-
-
-def cost_cny(usage: dict) -> float:
-    """The upper-bound cost of one call's reported usage, at the configured prices."""
-    hit = usage.get("cache_read_tokens", 0) or 0
-    miss = (usage.get("input_tokens", 0) or 0) - hit
-    out = usage.get("output_tokens", 0) or 0
-    return (hit * settings.collect_price_cache_hit + miss * settings.collect_price_cache_miss
-            + out * settings.collect_price_output) / 1e6
 
 
 class Budget:
@@ -333,6 +334,11 @@ def collect_page(session: Session, page_id: str, *, budget: Budget, fetch=snapsh
         result: ExtractResult = extract(page.school_key, sha, program_name=page.program_name,
                                         school_name=school["name"], country=school["country"], url=page.url, root=root)
     except Exception as error:  # noqa: BLE001 - the model's transport (timeouts, 5xx, rate limits)
+        # The summary check failed after a paid extraction: that extraction still counts.
+        paid = cost_cny(getattr(error, "extract_usage", None) or {})
+        if paid:
+            budget.add(paid)
+            page.cost_cny = (page.cost_cny or Decimal("0")) + Decimal(str(round(paid, 6)))
         page.last_error = f"model: {type(error).__name__}: {str(error)[:300]}"
         session.commit()
         raise Transient(page.last_error) from error
@@ -463,6 +469,26 @@ def _ordered(item: dict) -> dict:
     return out
 
 
+def _carry_summary_verdicts(old: dict, new: dict) -> None:
+    """Keep the summary check's verdict for every value the new result states exactly as before.
+
+    A page the queue collected before the check (or found unchanged) has a result without verdicts;
+    replacing the file's program with it must not quietly make a downgraded summary usable again.
+    """
+    judged = {}
+    for name, value in (old.get("fields") or {}).items():
+        for item in value if name in LIST_FIELDS else [value]:
+            if summary_verdict(item) is not None:
+                judged[(name, summary_digest(item))] = (item[SUMMARY_CHECK], item[SUMMARY_SHA])
+    if not judged:
+        return
+    for name, value in (new.get("fields") or {}).items():
+        for item in value if name in LIST_FIELDS else [value]:
+            if summary_verdict(item) is None and (name, summary_digest(item)) in judged:
+                item[SUMMARY_CHECK], item[SUMMARY_SHA] = judged[(name, summary_digest(item))]
+    new["status"] = program_status(new)
+
+
 def export_school(session: Session, school_key: str, data_dir: Path = DATA_DIR, out_dir: Path | None = None,
                   today: date | None = None, root: Path = SNAPSHOT_ROOT) -> dict:
     """Merge the queue's results for one school into its requirement file (D8).
@@ -507,6 +533,7 @@ def export_school(session: Session, school_key: str, data_dir: Path = DATA_DIR, 
             programs.append(program)
             added += 1
         else:
+            _carry_summary_verdicts(programs[target], program)
             programs[target] = program
             replaced += 1
     # The same rules as `python -m app.collect.tidy`, so an export does not undo a tidied file.

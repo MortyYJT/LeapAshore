@@ -38,27 +38,35 @@
     "academic": {
      "text": "Prior degree in architecture, urban and regional planning or interior design, with grade 'Good High'",
      "quote": "Appreciation Required Good High Required Profession Architecture - Urban and Regional Planning - Interior Design",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d4349a86c4470cee"
     },
     "prerequisites": [
      {
       "text": "General Aptitude Test (university graduates) minimum 65",
       "quote": "Aptitude Test (Undergraduates) Minimum 65 required",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: university graduates (quote says undergraduates)",
+      "summary_sha": "02d2add7b470b6f1"
      },
      {
       "text": "TOEFL 450 or equivalent (scale not stated)",
       "quote": "English Language Test TOEFL 450 or equivalent is required",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "a8b25b172874f3e3"
      },
      {
       "text": "Employer approval",
       "quote": "Employer Approval Wanted",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: approval required (quote says wanted)",
+      "summary_sha": "6a005b0889f008d7"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Computer Science",
@@ -98,7 +106,7 @@
  ],
  "verification": {
   "programs": 6,
-  "机器核对": 1,
-  "待人工": 5
+  "机器核对": 0,
+  "待人工": 6
  }
 }

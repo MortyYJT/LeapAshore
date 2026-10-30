@@ -5,13 +5,15 @@
 --prune also removes the programs an earlier import wrote that a file no longer lists (CRICOS rows
 and rows a portfolio names are kept).
 
-Only fields whose quote passed `verify` (`check == "ok"`) are written. A program with no verified value
-is skipped, so an empty collection never blanks a row another source describes. When a program has
+Only fields whose quote passed `verify` (`check == "ok"`) and whose summary the faithfulness check did
+not find unfaithful (`verify.usable`) are written. A program with no verified quote at all is skipped, so an empty collection never blanks a row another source describes. When a program has
 verified values, its requirement columns (English, marks, prerequisites) are replaced as one set, so
 every value on the row comes from the same collection; the academic summary and the deadlines are part
 of that set. Deadlines are compared with what is stored and rewritten only when they differ, so a rerun
 over the same files writes nothing. A program is `机器核对` when every field it
-reports passed, otherwise `待核验`. Nothing here writes `verified_at`: the page source stays
+reports is usable, otherwise `待核验`. A program whose quotes passed but whose summaries were all
+downgraded is still written: its values become unknown, so a summary found unfaithful after an earlier
+import leaves the catalogue. Nothing here writes `verified_at`: the page source stays
 `待核验` until a person reviews it, and its snapshot version stays `pending_review`.
 
 Australian programs land on their CRICOS row (`cricos-<code>`); everything else gets
@@ -34,7 +36,7 @@ from sqlalchemy.orm import Session
 
 from app.collect.fields import study_area_from_name
 from app.collect.snapshot import SNAPSHOT_ROOT
-from app.collect.verify import LIST_FIELDS, MACHINE_CHECKED
+from app.collect.verify import LIST_FIELDS, MACHINE_CHECKED, program_status, usable
 from app.models.program import Program, ProgramDeadline, ProgramPrerequisite, University
 from app.models.source import Source, SourceStatus, SourceVersion
 
@@ -90,7 +92,7 @@ def english_text(fields: dict) -> str | None:
     parts = []
     for test, label, word, form in (("ielts", "IELTS", "雅思", "{:.1f}"), ("toefl", "TOEFL iBT", "托福", "{:g}")):
         item = fields.get(test)
-        if item and passed(item) and item.get("overall") is not None:
+        if item and usable(item) and item.get("overall") is not None:
             if item.get("recommended"):
                 text = f"建议{word} {form.format(item['overall'])}"
             else:
@@ -121,7 +123,7 @@ def verified_quotes(fields: dict) -> str:
 def academic_text(fields: dict) -> str | None:
     """The collector's summary of the academic requirement, when its quote passed; otherwise unknown."""
     item = fields.get("academic")
-    if item and passed(item):
+    if item and usable(item):
         return (item.get("text") or "").strip() or None
     return None
 
@@ -141,7 +143,7 @@ def deadline_rows(pid: str, program_url: str, fields: dict) -> list[dict]:
     """
     rows = []
     for item in fields.get("deadlines", []):
-        if not passed(item):
+        if not usable(item):
             continue
         index = len(rows)
         rows.append({
@@ -170,6 +172,7 @@ def _sync_deadlines(session: Session, pid: str, wanted: list[dict]) -> None:
 
 
 def has_verified_value(fields: dict) -> bool:
+    """Whether any quote passed: the collection found something, even if no summary is usable."""
     return any(passed(item) for name, field in fields.items() for item in (field if name in LIST_FIELDS else [field]))
 
 
@@ -263,7 +266,7 @@ def import_school(session: Session, data: dict, schools: dict[str, dict], root: 
             ))
 
         china = fields.get("china_requirement") or {}
-        china_ok = passed(china) if china else False
+        china_ok = usable(china) if china else False
         values = {
             "english_requirement": english_text(fields),
             "minimum_mark": china.get("min_mark_211") if china_ok else None,
@@ -271,7 +274,7 @@ def import_school(session: Session, data: dict, schools: dict[str, dict], root: 
             "academic_requirement": academic_text(fields),
             "academic_source_url": academic_source(fields, program["url"]),
             "source_id": source.id,
-            "data_status": MACHINE_CHECKED if program.get("status") == MACHINE_CHECKED else "待核验",
+            "data_status": MACHINE_CHECKED if program_status(program) == MACHINE_CHECKED else "待核验",
         }
         row = session.get(Program, pid)
         if row is None:
@@ -291,7 +294,7 @@ def import_school(session: Session, data: dict, schools: dict[str, dict], root: 
         session.flush()
 
         prerequisites = [item["text"] if item.get("text") else item["quote"]
-                         for item in fields.get("prerequisites", []) if passed(item)]
+                         for item in fields.get("prerequisites", []) if usable(item)]
         stored = session.execute(select(ProgramPrerequisite.id, ProgramPrerequisite.label)
                                  .where(ProgramPrerequisite.program_id == pid)
                                  .order_by(ProgramPrerequisite.sort_order)).all()

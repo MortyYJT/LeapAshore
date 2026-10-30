@@ -51,6 +51,26 @@ def test_a_verbatim_quote_with_its_numbers_passes():
     assert checked.quotes == checked.quotes_passed == 3
 
 
+def test_only_checked_sentences_go_to_the_support_check_with_their_quotes_and_pages():
+    reply = PassageAnswer(sentences=[
+        sentence("学费是每年 53,000 澳元。", (1, "Tuition fees: A$53,000 per year (2027 entry).")),
+        sentence("学费是每年 99,000 澳元。", (1, "Tuition fees: A$99,000 per year")),
+        sentence("入围者 3 月参加线上面试。", (2, "invited to an online interview in March")),
+    ])
+    checked = answer.verify(reply, CHUNKS)
+    pages = [{"school": "Uni", "program": "Master of Data Science", "url": "https://u.test/mds"},
+             {"school": "Uni", "program": None, "title": "How to apply", "url": "https://u.test/apply"}]
+    claims = answer.support_claims(checked, pages)
+    assert [c.id for c in claims] == [1, 2]
+    assert claims[0].quotes == [("Uni, Master of Data Science", "Tuition fees: A$53,000 per year (2027 entry).")]
+    assert claims[1].quotes == [("Uni, school-wide page: How to apply", "invited to an online interview in March")]
+
+    from app.collect.faithful import Judgement
+    answer.apply_support(checked, Judgement(verdicts={1: "ok", 2: "unsupported: x"}))
+    assert [s.text for s in checked.kept] == ["学费是每年 53,000 澳元。"]
+    assert checked.summary()["reasons"]["quote_does_not_support"] == 1
+
+
 def test_quotes_are_compared_after_folding_spaces_quotes_and_case():
     reply = PassageAnswer(sentences=[sentence("学费按年收取。", (1, "TUITION   fees: a$53,000 per year"))])
     assert answer.verify(reply, CHUNKS).sentences[0].ok
@@ -282,25 +302,35 @@ def test_at_most_two_passages_come_from_one_page(school):
 
 
 class Answering(BaseChatModel):
-    """Returns one fixed `PassageAnswer` function call, whatever it is asked."""
+    """Returns one fixed `PassageAnswer` function call, and to the support check (`Verdicts`) the given
+    verdicts, by default backing every sentence."""
 
     arguments: dict
+    verdicts: list | None = None
+    tool: str = "PassageAnswer"
 
     @property
     def _llm_type(self) -> str:
         return "answering"
 
     def bind_tools(self, tools, **kwargs):
-        return self
+        name = getattr(tools[0], "__name__", None) or tools[0].get("name") or "PassageAnswer"
+        return self.model_copy(update={"tool": name})
 
     def _generate(self, messages, stop=None, run_manager=None, **kwargs):
-        call = {"name": "PassageAnswer", "args": self.arguments, "id": "call-1"}
+        if self.tool == "Verdicts":
+            verdicts = self.verdicts if self.verdicts is not None else [
+                {"id": i, "supported": True} for i in range(1, 20)]
+            args = {"verdicts": verdicts}
+        else:
+            args = self.arguments
+        call = {"name": self.tool, "args": args, "id": "call-1"}
         message = AIMessage(content="", tool_calls=[call],
                             usage_metadata={"input_tokens": 100, "output_tokens": 20, "total_tokens": 120})
         return ChatResult(generations=[ChatGeneration(message=message)])
 
 
-def run_turn(monkeypatch, question, arguments):
+def run_turn(monkeypatch, question, arguments, verdicts=None):
     from fastapi.testclient import TestClient
 
     from app.main import app
@@ -310,7 +340,8 @@ def run_turn(monkeypatch, question, arguments):
 
     monkeypatch.setattr(settings, "chat_api_key", "test-key")
     monkeypatch.setattr(intent, "classify", requirement)
-    monkeypatch.setattr(graph_module, "get_chat_model", lambda **kwargs: Answering(arguments=arguments))
+    monkeypatch.setattr(graph_module, "get_chat_model",
+                        lambda **kwargs: Answering(arguments=arguments, verdicts=verdicts))
     monkeypatch.setattr(settings, "advisor_subject_limits", "1000/60")
     monkeypatch.setattr(settings, "advisor_ip_limits", "1000/60")
     # Not `with TestClient(...)`: its shutdown would close the shared checkpointer pool for later tests.
@@ -332,6 +363,29 @@ def test_a_turn_shows_only_the_checked_sentences(school, monkeypatch):
     assert citations["gate"] == "pass" and len(citations["citations"]) == 1
     text = "".join(e["text"] for e in events if e["type"] == "token")
     assert "61,000" in text and "59,000" not in text and "另有 1 句" in text
+
+
+def test_a_sentence_whose_quote_does_not_back_it_is_dropped_after_the_verbatim_check(school, monkeypatch):
+    args = {"sentences": [
+        {"text": "数据科学硕士学费每年 61,000 美元。",
+         "citations": [{"passage": 1, "quote": "Tuition fee: US$61,000 per year."}]},
+        {"text": "这个学费包含住宿，每年 61,000 美元。",
+         "citations": [{"passage": 1, "quote": "Tuition fee: US$61,000 per year."}]},
+    ]}
+    verdicts = [{"id": 1, "supported": True}, {"id": 2, "supported": False, "unsupported": "包含住宿"}]
+    events = run_turn(monkeypatch, "切片检索测试大学数据科学硕士学费多少？", args, verdicts)
+    text = "".join(e["text"] for e in events if e["type"] == "token")
+    assert "数据科学硕士学费每年 61,000 美元" in text and "住宿" not in text and "另有 1 句" in text
+
+
+def test_a_support_check_without_an_answer_refuses_rather_than_show_unchecked_sentences(school, monkeypatch):
+    args = {"sentences": [{"text": "数据科学硕士学费每年 61,000 美元。",
+                           "citations": [{"passage": 1, "quote": "Tuition fee: US$61,000 per year."}]}]}
+    events = run_turn(monkeypatch, "切片检索测试大学数据科学硕士学费多少？", args, verdicts=[])
+    citations = next(e for e in events if e["type"] == "citations")
+    assert citations["gate"] == "refuse"
+    text = "".join(e["text"] for e in events if e["type"] == "token")
+    assert "不作判断" in text and "61,000" not in text
 
 
 def test_a_turn_with_nothing_checkable_refuses(school, monkeypatch):

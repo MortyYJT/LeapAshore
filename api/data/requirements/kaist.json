@@ -33,34 +33,46 @@
     "academic": {
      "text": "Bachelor's degree or equivalent standard by the start of the course for the Master's or Master's-Ph.D. programme application",
      "quote": "Bachelor’s degree or equivalent standard by the start of your course for the Master’s or Master’s-Ph.D. degree program application",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "1b6ca9fd0e24881b"
     },
     "toefl": {
      "overall": 83,
      "quote": "83 (Taken before Jan 21, 2026)\n4.5(Taken on or after Jan 21, 2026)",
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 83 (quote gives 83 and 4.5 without saying overall)",
+     "summary_sha": "f0bad2e1271a917a"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "IELTS Academic\n6.5 band",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "491871d4315a2877"
     },
     "prerequisites": [
      {
       "text": "Applicants must hold citizenship other than Korean; Korean citizens are not eligible",
       "quote": "Applicants must be citizens of countries other than Korea to be eligible for KAIST International Graduate Admissions.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Korean citizens are not eligible",
+      "summary_sha": "916baa28bf87c2d1"
      },
      {
       "text": "Alternative English tests accepted: TOEIC 720 (Listening & Reading), TEPS 326",
       "quote": "TOEIC\n720",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: TEPS 326; Listening & Reading",
+      "summary_sha": "88d50482c11106c8"
      },
      {
       "text": "English test score must be valid as of the online application deadline",
       "quote": "The scores must be valid as of the online application deadline",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "e63591324cf26936"
      }
     ],
     "deadlines": [
@@ -70,11 +82,13 @@
       "quote": "Fall 2027 Entry: January 7 - February 5, 2027",
       "source_sha256": "00a6e043e3d57b646cdfb3ef8a1550bcb3c8f69833c72d0bc047d2b4d59ce73a",
       "source_url": "https://admission.kaist.ac.kr/intl-graduate/Admission/YearlyTimelines",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "731a5ef9d07780a8"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "School of Electrical Engineering - Master's (international)",
@@ -84,23 +98,31 @@
     "academic": {
      "text": "Adequate undergraduate GPA is required (no number stated)",
      "quote": "Adequate undergraduate GPA is required to perform successful study in Master’s degree program.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "47e569561e19f24c"
     },
     "toefl": {
      "overall": 83,
      "quote": "English Creditial Minimum Requirement: IBT TOEFL 83/ TOEIC 720 / TEPS 326 / IELTS 6.5",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "3c28dea1abce50c5"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "English Creditial Minimum Requirement: IBT TOEFL 83/ TOEIC 720 / TEPS 326 / IELTS 6.5",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "2df0ee616b45818a"
     },
     "prerequisites": [
      {
       "text": "No advisor needed at application for the Master's programme, but recommended",
       "quote": "For Master’s degree program, you are not required to have an advisor at the time of application, but we highly recommend you to determine your advisor before application.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "2b37ea37d9070e02"
      }
     ]
    },
@@ -109,7 +131,7 @@
  ],
  "verification": {
   "programs": 2,
-  "机器核对": 2,
-  "待人工": 0
+  "机器核对": 1,
+  "待人工": 1
  }
 }

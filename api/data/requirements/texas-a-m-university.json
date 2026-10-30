@@ -46,35 +46,45 @@
     "academic": {
      "text": "Bachelor's degree in any major; non-US degrees must be equivalent to a 4-year US bachelor's degree",
      "quote": "The Master of International Affairs considers applicants with a bachelor’s degree from all majors.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: non-US degrees must be equivalent to a 4-year US bachelor's degree",
+     "summary_sha": "99c076860b701b6f"
     },
     "toefl": {
      "overall": 80,
      "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
      "quote": "TOEFL iBT Overall Score ≥ 80 (in person or Home Edition) taken prior to January 21, 2026, and from a test date within two years of application (Texas A&M University does not accept the MyBest TOEFL score). TOEFL iBT Overall Score ≥ 4.5 (in person or Home Edition) taken on or after January 21, 2026, and from a test date within two years of application WITH a 4.0 minimum score required on each individual skill section",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: overall 80 (omits the 4.5 score for tests on/after Jan 21, 2026)",
+     "summary_sha": "daee4858d4812b99"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "IELTS Academic Test Score ≥ 6.0 overall band (test date must be within 2 years of application)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "84676a7d6e05451e"
     },
     "deadlines": [
      {
       "label": "Fall 2027, international applicants",
       "date": "2027-01-31",
       "quote": "Application Deadline for International Applicants: January 31, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "8f50a685c3c2f0b8"
      },
      {
       "label": "Fall 2027, domestic applicants",
       "date": "2027-03-15",
       "quote": "Application Deadline for Domestic Applicants: March 15, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "5c414106e4fb95fc"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Public Service and Administration (MPSA)",
@@ -84,38 +94,48 @@
     "academic": {
      "text": "Bachelor's degree in any major; non-US degrees must be equivalent to a 4-year US bachelor's degree",
      "quote": "The Master of Public Service & Administration considers applicants with a bachelor’s degree from all majors.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: non-US degrees must be equivalent to a 4-year US bachelor's degree",
+     "summary_sha": "947874936246e258"
     },
     "toefl": {
      "overall": 80,
      "source_sha256": "02691db12e39cdcb5200128e4d0f48b39d863e0c577e82109df727762b77bff4",
      "quote": "TOEFL score of at least 80 iBT from a test within two years.",
      "source_url": "https://bush.tamu.edu/admissions/resources/international-applicants/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "78f829416eaa5bce"
     },
     "ielts": {
      "overall": 6.0,
      "source_sha256": "02691db12e39cdcb5200128e4d0f48b39d863e0c577e82109df727762b77bff4",
      "quote": "IELTS Academic overall band of at least 6.0 from a test within two years.",
      "source_url": "https://bush.tamu.edu/admissions/resources/international-applicants/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "7338860b8df33988"
     },
     "deadlines": [
      {
       "label": "Fall 2027, international applicants",
       "date": "2027-01-31",
       "quote": "Application Deadline for International Applicants: January 31, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "8f50a685c3c2f0b8"
      },
      {
       "label": "Fall 2027, domestic applicants",
       "date": "2027-04-15",
       "quote": "Application Deadline for Domestic Applicants: April 15, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "55a2d9a557c878c4"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MS Supply Chain and Analytics",
@@ -127,7 +147,9 @@
      "source_sha256": "8e282c4a899f4f268cf070aee06a20ffbe0589465f188d39f48f8e4c9b739de7",
      "quote": "Four-year undergraduate degrees are required.",
      "source_url": "https://mays.tamu.edu/graduate/masters/ms-programs/supply-chain-and-analytics/international-student-information/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: international applicants",
+     "summary_sha": "1fae718af00ebd32"
     },
     "toefl": {
      "overall": 100,
@@ -136,17 +158,21 @@
      "text": "TOEFL iBT revised scale overall 5.0 with 4.0 on each section; legacy scale minimum 100",
      "quote": "ETS introduced a revised TOEFL iBT scoring scale in early 2026. Scores on the revised scale range from 0–6 in increments of 0.5. Applicants testing under the legacy scale should refer to the ≥ 100 minimum.",
      "source_url": "https://mays.tamu.edu/graduate/masters/ms-programs/supply-chain-and-analytics/international-student-information/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: revised scale overall 5.0 with 4.0 on each section",
+     "summary_sha": "0517f38e262e0cac"
     },
     "ielts": {
      "overall": 7,
      "source_sha256": "8e282c4a899f4f268cf070aee06a20ffbe0589465f188d39f48f8e4c9b739de7",
      "quote": "IELTS score of ≥ 7",
      "source_url": "https://mays.tamu.edu/graduate/masters/ms-programs/supply-chain-and-analytics/international-student-information/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "acc6e8259bc88ac1"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MS Management Information Systems",
@@ -156,13 +182,17 @@
     "academic": {
      "text": "Four-year undergraduate degree",
      "quote": "Four-year undergraduate degree",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ccb1bbf88f28f09a"
     },
     "prerequisites": [
      {
       "text": "Completion of at least one prerequisite course; at least two completed is most competitive",
       "quote": "Completion of at least one prerequisite course; those with at least two prerequisites completed will be the most competitive",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "b5bc4a6146393aa5"
      }
     ]
    },
@@ -176,7 +206,9 @@
     "academic": {
      "text": "Primarily for students with undergraduate degrees in accounting; exceptional candidates from other disciplines may be considered",
      "quote": "The MS Accounting program is primarily designed for students who have undergraduate degrees in accounting. Exceptional candidates from other disciplines, however, may be considered for admission.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "271784484d1141ce"
     },
     "toefl": {
      "overall": 80,
@@ -184,14 +216,18 @@
      "quote": "a TOEFL iBT score of at least 80 (taken prior to January 21, 2026), a TOEFL iBT score of at least 4.5 with a minimum score of 4.0 on each individual skill section (taken on or after January 21, 2026)",
      "source_sha256": "e7a0c373860e27eccc75580fe244cad131554c0fa6856bf1bbd4118ab866cb1f",
      "source_url": "https://catalog.tamu.edu/graduate/admission/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "20e4d35b1d76621d"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "an IELTS (Academic) score of at least 6.0 overall band",
      "source_sha256": "e7a0c373860e27eccc75580fe244cad131554c0fa6856bf1bbd4118ab866cb1f",
      "source_url": "https://catalog.tamu.edu/graduate/admission/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0fb08c64a0f2fdc9"
     }
    },
    "status": "机器核对"
@@ -204,7 +240,9 @@
     "academic": {
      "text": "Completed or in-progress bachelor's degree; must meet Texas A&M admission requirements",
      "quote": "Students who have already completed or are in the process of completing a bachelor’s degree may apply for the master’s program in Marketing. All applicants must meet Texas A&M admission requirements.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "8ea6e1cfd73ab7e8"
     },
     "toefl": {
      "overall": 80,
@@ -212,14 +250,18 @@
      "quote": "a TOEFL iBT score of at least 80 (taken prior to January 21, 2026), a TOEFL iBT score of at least 4.5 with a minimum score of 4.0 on each individual skill section (taken on or after January 21, 2026)",
      "source_sha256": "e7a0c373860e27eccc75580fe244cad131554c0fa6856bf1bbd4118ab866cb1f",
      "source_url": "https://catalog.tamu.edu/graduate/admission/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "20e4d35b1d76621d"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "an IELTS (Academic) score of at least 6.0 overall band",
      "source_sha256": "e7a0c373860e27eccc75580fe244cad131554c0fa6856bf1bbd4118ab866cb1f",
      "source_url": "https://catalog.tamu.edu/graduate/admission/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0fb08c64a0f2fdc9"
     }
    },
    "status": "机器核对"
@@ -232,7 +274,9 @@
     "academic": {
      "text": "Minimum 3.0 overall GPA, less than one year of professional work experience, completed undergraduate degree before the program begins; no GRE or GMAT required",
      "quote": "Applicants to the MS Business program should have a minimum 3.0 overall grade point average, less than one-year professional work experience, and a completed undergraduate degree before the program begins. No GRE or GMAT required.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "bbde133ab2d084e0"
     }
    },
    "status": "机器核对"
@@ -247,19 +291,25 @@
       "label": "Fall 2027, priority",
       "date": "2027-02-01",
       "quote": "Priority Application Submission Deadline: Feb. 1, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "61f67496c8f4afe3"
      },
      {
       "label": "Fall 2027, international applicants",
       "date": "2027-02-15",
       "quote": "International Application Deadline: Feb. 15, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "e006f6864894ad3c"
      },
      {
       "label": "Fall 2027, final",
       "date": "2027-04-15",
       "quote": "Final Application Submission Deadline: April 15, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "a07d4a9437a289dd"
      }
     ]
    },
@@ -273,7 +323,9 @@
     "academic": {
      "text": "Completed or in-progress bachelor's degree; must meet Texas A&M admission requirements",
      "quote": "Students who have already completed or are in the process of completing a bachelor’s degree may apply for the master’s program in Entrepreneurial Leadership. All applicants must meet the Texas A&M requirements for admissions.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ddca60daa44e7a7f"
     },
     "toefl": {
      "overall": 80,
@@ -281,45 +333,59 @@
      "quote": "a TOEFL iBT score of at least 80 (taken prior to January 21, 2026), a TOEFL iBT score of at least 4.5 with a minimum score of 4.0 on each individual skill section (taken on or after January 21, 2026)",
      "source_sha256": "e7a0c373860e27eccc75580fe244cad131554c0fa6856bf1bbd4118ab866cb1f",
      "source_url": "https://catalog.tamu.edu/graduate/admission/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "20e4d35b1d76621d"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "an IELTS (Academic) score of at least 6.0 overall band",
      "source_sha256": "e7a0c373860e27eccc75580fe244cad131554c0fa6856bf1bbd4118ab866cb1f",
      "source_url": "https://catalog.tamu.edu/graduate/admission/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0fb08c64a0f2fdc9"
     },
     "deadlines": [
      {
       "label": "Fall 2027, priority",
       "date": "2026-11-15",
       "quote": "Priority Applicants Deadline: Nov. 15, 2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "494bab9a75daa9ab"
      },
      {
       "label": "Fall 2027, round 2",
       "date": "2026-12-15",
       "quote": "Round 2 Deadline: Dec. 15, 2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f1cb26797c0ce6ba"
      },
      {
       "label": "Fall 2027, round 3",
       "date": "2027-02-01",
       "quote": "Round 3 Deadline: Feb. 1, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "b7e3de4f3ade66ef"
      },
      {
       "label": "Fall 2027, final international",
       "date": "2027-02-15",
       "quote": "Final Deadline for International Applicants: Feb. 15, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "cf4999d5220120ed"
      },
      {
       "label": "Fall 2027, final US",
       "date": "2027-04-15",
       "quote": "Final Deadline for U.S. Applicants: April 15, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "3c46dd523e481764"
      }
     ]
    },
@@ -334,7 +400,9 @@
      {
       "text": "Introductory accounting, finance, microeconomics, statistics (consult advisor)",
       "quote": "Prerequisites (Consult Advisor for Details): ACCT 229/209: Introductory Accounting FINC 341/409: Finance ECON 202: Microeconomics STAT 303/302: Statistics",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "4b0835c31837444a"
      }
     ]
    },
@@ -348,7 +416,9 @@
     "academic": {
      "text": "Designed for professionals with 3+ years of work experience after an undergraduate degree",
      "quote": "Designed for professionals with 3+ years of work experience after completing an undergraduate degree",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "dc558ddf61e2d08f"
     }
    },
    "status": "机器核对"
@@ -361,7 +431,9 @@
     "academic": {
      "text": "Designed for professionals with at least two years of work experience",
      "quote": "Designed for professionals with at least two years of work experience",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "cd584bcd813ff1e2"
     }
    },
    "status": "机器核对"
@@ -376,7 +448,9 @@
      "source_sha256": "6e91536a0a83bed574e378bdbef596b7a7b25b831a7aed221ade8e4fb68a722f",
      "quote": "The University requires a minimum TOEFL score of 80.",
      "source_url": "https://artsci.tamu.edu/statistics/academics/graduate/frequently-asked-questions.html",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ec5a154c4ead7b0d"
     },
     "prerequisites": [
      {
@@ -384,7 +458,9 @@
       "source_sha256": "6e91536a0a83bed574e378bdbef596b7a7b25b831a7aed221ade8e4fb68a722f",
       "quote": "Applicants are required to have finished taking Calculus I and II, Matrix Algebra, Calculated-based Probability, and have some experience with computer programming.",
       "source_url": "https://artsci.tamu.edu/statistics/academics/graduate/frequently-asked-questions.html",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f0338b497181ef29"
      }
     ],
     "deadlines": [
@@ -392,7 +468,9 @@
       "label": "Application deadline (page heading reads 'Fall 2026')",
       "date": "2027-01-31",
       "quote": "Application Deadline for Fall 2026: January 31, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "0caec89884a2310b"
      }
     ]
    },
@@ -408,21 +486,27 @@
      "source_sha256": "f8f82692d9bfc4c15080667ac4e69743585515508217ce39a2e7d6d53e0e36c0",
      "quote": "The minimum undergraduate GPA for consideration to enter our MS program is 3.25/4.00",
      "source_url": "https://engineering.tamu.edu/aerospace/admissions-and-aid/graduate-admissions/index.html",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "6f9a0511317999c2"
     },
     "toefl": {
      "overall": 80,
      "source_sha256": "f8f82692d9bfc4c15080667ac4e69743585515508217ce39a2e7d6d53e0e36c0",
      "quote": "Required composite TOEFL score of 80 or higher.",
      "source_url": "https://engineering.tamu.edu/aerospace/admissions-and-aid/graduate-admissions/index.html",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "3ef33c222b0f09c4"
     },
     "ielts": {
      "overall": 6.0,
      "source_sha256": "f8f82692d9bfc4c15080667ac4e69743585515508217ce39a2e7d6d53e0e36c0",
      "quote": "An IELTS score of at least 6.0.",
      "source_url": "https://engineering.tamu.edu/aerospace/admissions-and-aid/graduate-admissions/index.html",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "69df140d79e70751"
     }
    },
    "status": "机器核对"
@@ -437,7 +521,9 @@
      "source_sha256": "d240a17bb68e4f31d2fb002d6d5ac174ad0dd8b42f2b648a4af3c11d2fd19c4d",
      "quote": "GPA – A 3.0 out of 4.0 is required (3.25 preferred) for all master’s programs.",
      "source_url": "https://engineering.tamu.edu/industrial/admission-and-aid/graduate-admissions/index.html",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: Bachelor's degree",
+     "summary_sha": "12f16b8280fafee0"
     },
     "prerequisites": [
      {
@@ -445,28 +531,36 @@
       "source_sha256": "d240a17bb68e4f31d2fb002d6d5ac174ad0dd8b42f2b648a4af3c11d2fd19c4d",
       "quote": "Two courses in engineering calculus",
       "source_url": "https://engineering.tamu.edu/industrial/admission-and-aid/graduate-admissions/index.html",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "9280bdabd03a8285"
      },
      {
       "text": "One course in linear algebra",
       "source_sha256": "d240a17bb68e4f31d2fb002d6d5ac174ad0dd8b42f2b648a4af3c11d2fd19c4d",
       "quote": "One course in linear algebra",
       "source_url": "https://engineering.tamu.edu/industrial/admission-and-aid/graduate-admissions/index.html",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "ef156fc0d0a7435c"
      },
      {
       "text": "One course in calculus-based probability and statistics",
       "source_sha256": "d240a17bb68e4f31d2fb002d6d5ac174ad0dd8b42f2b648a4af3c11d2fd19c4d",
       "quote": "One course in calculus-based probability and statistics",
       "source_url": "https://engineering.tamu.edu/industrial/admission-and-aid/graduate-admissions/index.html",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "57783deeecc86ee9"
      },
      {
       "text": "One course in computer programming",
       "source_sha256": "d240a17bb68e4f31d2fb002d6d5ac174ad0dd8b42f2b648a4af3c11d2fd19c4d",
       "quote": "One course in computer programming",
       "source_url": "https://engineering.tamu.edu/industrial/admission-and-aid/graduate-admissions/index.html",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "41843a34bcdb56cf"
      }
     ],
     "toefl": {
@@ -475,17 +569,21 @@
      "quote": "a TOEFL iBT score of at least 80 (taken prior to January 21, 2026), a TOEFL iBT score of at least 4.5 with a minimum score of 4.0 on each individual skill section (taken on or after January 21, 2026)",
      "source_sha256": "e7a0c373860e27eccc75580fe244cad131554c0fa6856bf1bbd4118ab866cb1f",
      "source_url": "https://catalog.tamu.edu/graduate/admission/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "20e4d35b1d76621d"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "an IELTS (Academic) score of at least 6.0 overall band",
      "source_sha256": "e7a0c373860e27eccc75580fe244cad131554c0fa6856bf1bbd4118ab866cb1f",
      "source_url": "https://catalog.tamu.edu/graduate/admission/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0fb08c64a0f2fdc9"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Engineering Systems Management - MS",
@@ -497,7 +595,9 @@
      "source_sha256": "d240a17bb68e4f31d2fb002d6d5ac174ad0dd8b42f2b648a4af3c11d2fd19c4d",
      "quote": "GPA – A 3.0 out of 4.0 is required (3.25 preferred) for all master’s programs.",
      "source_url": "https://engineering.tamu.edu/industrial/admission-and-aid/graduate-admissions/index.html",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: Bachelor's degree",
+     "summary_sha": "12f16b8280fafee0"
     },
     "prerequisites": [
      {
@@ -505,28 +605,36 @@
       "source_sha256": "d240a17bb68e4f31d2fb002d6d5ac174ad0dd8b42f2b648a4af3c11d2fd19c4d",
       "quote": "Two courses in engineering calculus",
       "source_url": "https://engineering.tamu.edu/industrial/admission-and-aid/graduate-admissions/index.html",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "9280bdabd03a8285"
      },
      {
       "text": "One course in linear algebra",
       "source_sha256": "d240a17bb68e4f31d2fb002d6d5ac174ad0dd8b42f2b648a4af3c11d2fd19c4d",
       "quote": "One course in linear algebra",
       "source_url": "https://engineering.tamu.edu/industrial/admission-and-aid/graduate-admissions/index.html",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "ef156fc0d0a7435c"
      },
      {
       "text": "One course in calculus-based probability and statistics",
       "source_sha256": "d240a17bb68e4f31d2fb002d6d5ac174ad0dd8b42f2b648a4af3c11d2fd19c4d",
       "quote": "One course in calculus-based probability and statistics",
       "source_url": "https://engineering.tamu.edu/industrial/admission-and-aid/graduate-admissions/index.html",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "57783deeecc86ee9"
      },
      {
       "text": "One course in computer programming",
       "source_sha256": "d240a17bb68e4f31d2fb002d6d5ac174ad0dd8b42f2b648a4af3c11d2fd19c4d",
       "quote": "One course in computer programming",
       "source_url": "https://engineering.tamu.edu/industrial/admission-and-aid/graduate-admissions/index.html",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "41843a34bcdb56cf"
      }
     ],
     "toefl": {
@@ -535,17 +643,21 @@
      "quote": "a TOEFL iBT score of at least 80 (taken prior to January 21, 2026), a TOEFL iBT score of at least 4.5 with a minimum score of 4.0 on each individual skill section (taken on or after January 21, 2026)",
      "source_sha256": "e7a0c373860e27eccc75580fe244cad131554c0fa6856bf1bbd4118ab866cb1f",
      "source_url": "https://catalog.tamu.edu/graduate/admission/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "20e4d35b1d76621d"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "an IELTS (Academic) score of at least 6.0 overall band",
      "source_sha256": "e7a0c373860e27eccc75580fe244cad131554c0fa6856bf1bbd4118ab866cb1f",
      "source_url": "https://catalog.tamu.edu/graduate/admission/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0fb08c64a0f2fdc9"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Nuclear Engineering - MS",
@@ -559,7 +671,9 @@
       "source_sha256": "4168cc9ad4706533d98166a9917c83eafa16a109a8d1fd5a2b74c8e5281dfe2a",
       "quote": "Fall 2027 semester: January 29, 2027",
       "source_url": "https://engineering.tamu.edu/nuclear/admissions-and-aid/graduate-admissions/index.html",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "ce73677d54b53923"
      }
     ]
    },
@@ -576,14 +690,18 @@
      "quote": "a TOEFL iBT score of at least 80 (taken prior to January 21, 2026), a TOEFL iBT score of at least 4.5 with a minimum score of 4.0 on each individual skill section (taken on or after January 21, 2026)",
      "source_sha256": "e7a0c373860e27eccc75580fe244cad131554c0fa6856bf1bbd4118ab866cb1f",
      "source_url": "https://catalog.tamu.edu/graduate/admission/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "20e4d35b1d76621d"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "an IELTS (Academic) score of at least 6.0 overall band",
      "source_sha256": "e7a0c373860e27eccc75580fe244cad131554c0fa6856bf1bbd4118ab866cb1f",
      "source_url": "https://catalog.tamu.edu/graduate/admission/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0fb08c64a0f2fdc9"
     }
    },
    "status": "机器核对"
@@ -599,14 +717,18 @@
      "quote": "a TOEFL iBT score of at least 80 (taken prior to January 21, 2026), a TOEFL iBT score of at least 4.5 with a minimum score of 4.0 on each individual skill section (taken on or after January 21, 2026)",
      "source_sha256": "e7a0c373860e27eccc75580fe244cad131554c0fa6856bf1bbd4118ab866cb1f",
      "source_url": "https://catalog.tamu.edu/graduate/admission/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "20e4d35b1d76621d"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "an IELTS (Academic) score of at least 6.0 overall band",
      "source_sha256": "e7a0c373860e27eccc75580fe244cad131554c0fa6856bf1bbd4118ab866cb1f",
      "source_url": "https://catalog.tamu.edu/graduate/admission/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0fb08c64a0f2fdc9"
     }
    },
    "status": "机器核对"
@@ -663,7 +785,7 @@
  ],
  "verification": {
   "programs": 26,
-  "机器核对": 19,
-  "待人工": 7
+  "机器核对": 14,
+  "待人工": 12
  }
 }

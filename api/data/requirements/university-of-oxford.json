@@ -43,17 +43,21 @@
       "label": "MSc entry October 2027, first deadline (earlier decisions)",
       "date": "2026-11-13",
       "quote": "Friday 13 November 2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: MSc entry October 2027, first deadline (earlier decisions)",
+      "summary_sha": "0e06ffed27bf8af5"
      },
      {
       "label": "MSc entry October 2027, second deadline",
       "date": "2027-01-07",
       "quote": "Thursday 7 January 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: MSc entry October 2027, second deadline",
+      "summary_sha": "f998e29718a3ed51"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MSc in Social Science of the Internet",
@@ -65,13 +69,17 @@
       "label": "MSc entry October 2027, first deadline (earlier decisions)",
       "date": "2026-11-13",
       "quote": "Friday 13 November 2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "0e06ffed27bf8af5"
      },
      {
       "label": "MSc entry October 2027, second deadline",
       "date": "2027-01-07",
       "quote": "Thursday 7 January 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "f998e29718a3ed51"
      }
     ]
    },
@@ -88,11 +96,13 @@
       "quote": "Whatever your background, we expect that you will be familiar with all the material listed below.",
       "source_sha256": "fed4fa3291609d14245f0471923f95eae20574667257efca6ead95f28e7bf3ef",
       "source_url": "https://www.maths.ox.ac.uk/study-here/postgraduate-study/msc-courses/msc-mathematical-modelling-and-scientific-computing/prerequisites",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: the specific list of topics (linear algebra, real analysis, etc.)",
+      "summary_sha": "753fa30dbb06adc7"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "MSc in Mathematical and Computational Finance",
@@ -102,13 +112,17 @@
     "academic": {
      "text": "Describes past students (not a stated minimum): typically top of their cohort, often holding a First Class degree or equivalent GPA",
      "quote": "Previous students typically ranked at the top of their cohort, often holding a First Class degree or equivalent GPA.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "277aa67a7c0b4a78"
     },
     "prerequisites": [
      {
       "text": "Strong foundation in probability, statistics, ordinary and partial differential equations, linear algebra, and analysis",
       "quote": "Applicants should have a strong foundation in probability, statistics, ordinary and partial differential equations, linear algebra, and analysis.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "2cad5825170fc238"
      }
     ]
    },
@@ -143,7 +157,9 @@
     "academic": {
      "text": "UK first-class or strong upper second-class undergraduate degree with honours in environmental and natural sciences, geography, social sciences or other relevant discipline (or equivalent)",
      "quote": "a first-class or strong upper second-class undergraduate degree with honours in a subject within environmental and natural sciences, geography, social sciences or other relevant discipline.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "642eb46d7d949512"
     }
    },
    "status": "机器核对"
@@ -156,15 +172,17 @@
     "academic": {
      "text": "UK first-class or strong upper second-class undergraduate degree with honours, in any discipline (or equivalent); US GPA 3.6/4.0",
      "quote": "As a minimum, you should hold or be predicted to achieve the equivalent of a UK first-class or strong upper second-class undergraduate degree with honours, in any discipline.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: US GPA 3.6/4.0",
+     "summary_sha": "e64512f3ff306a4b"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   }
  ],
  "verification": {
   "programs": 9,
-  "机器核对": 6,
-  "待人工": 3
+  "机器核对": 3,
+  "待人工": 6
  }
 }

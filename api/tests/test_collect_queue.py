@@ -181,6 +181,22 @@ def test_a_transient_failure_is_raised_for_a_retry(db_session, school, client, e
     assert db_session.get(CollectPage, page.id).state == PageState.QUEUED
 
 
+def test_a_summary_check_that_fails_after_a_paid_extraction_still_charges_it(db_session, school, client):
+    page = add_page(db_session, school)
+
+    def extract(*args, **kwargs):
+        error = TimeoutError("judge timed out")
+        error.extract_usage = {"input_tokens": 5000, "output_tokens": 300, "cache_read_tokens": 0}
+        raise error
+
+    spent = budget(client)
+    with pytest.raises(queue.Transient):
+        run(db_session, school, page, budget=spent, fetch=fake_fetch({page.url: PAGE}), extract=extract)
+    db_session.expire_all()
+    assert spent.spent() == pytest.approx(queue.cost_cny({"input_tokens": 5000, "output_tokens": 300}))
+    assert db_session.get(CollectPage, page.id).cost_cny > 0
+
+
 def test_a_robots_txt_that_did_not_answer_is_retried_not_blocked(db_session, school, client):
     page = add_page(db_session, school)
     error = snap.Blocked("robots.txt disallows (robots.txt itself: no answer (TimeoutError: timed out)): x")
@@ -517,6 +533,24 @@ def test_export_replaces_by_url_and_keeps_the_rest(db_session, school, client):
     assert data["programs"][0]["fetched_at"]
     assert data["programs"][2]["status"] == "待人工"
     assert "verified_at" not in path.read_text()
+
+
+def test_export_keeps_a_summary_verdict_for_a_value_stated_as_before(db_session, school, client):
+    from app.collect.faithful import set_summary_verdict
+
+    path = school["data_dir"] / f"{school['key']}.json"
+    downgraded = ielts(6.5)
+    set_summary_verdict(downgraded, "unsupported: recommended, not a minimum")
+    path.write_text(json.dumps({"school_key": school["key"], "school_name_en": "Example University", "programs": [
+        {"name": "Master of Data Science", "url": "https://www.example.edu.au/mds", "snapshot_sha256": "a" * 64,
+         "status": "待人工", "fields": {"ielts": downgraded}}]}))
+    page = add_page(db_session, school)
+    run(db_session, school, page, budget=budget(client), fetch=fake_fetch({page.url: PAGE}),
+        extract=fake_extract({"ielts": ielts(6.5)}))  # a result from before the check: no verdict
+    queue.export_school(db_session, school["key"], data_dir=school["data_dir"])
+    program = json.loads(path.read_text())["programs"][0]
+    assert program["fields"]["ielts"]["summary_check"] == "unsupported: recommended, not a minimum"
+    assert program["status"] == "待人工"
 
 
 def test_export_keeps_the_tidied_names_and_drops(db_session, school, client):

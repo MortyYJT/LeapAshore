@@ -48,23 +48,29 @@
      "text": "Minimum 570 paper-based, 230 computer-based, or 88 Internet-based.",
      "overall": 88.0,
      "quote": "We require a minimum score of 570 on the paper-based test, 230 on the computer-based test, or 88 on the Internet-based test.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: Minimum TOEFL iBT: overall 88 (quote gives no iBT overall 88; 88 is the Internet-based score)",
+     "summary_sha": "15f28b86e7e82198"
     },
     "academic": {
      "text": "Applicants whose native language is not English must have received a degree at an English-speaking university.",
      "quote": "Applicants whose native language is not English either must have received a degree at an English-speaking university or must submit TOEFL scores.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: must have received a degree (quote gives an alternative: degree or TOEFL)",
+     "summary_sha": "5fbaacb6352b1163"
     },
     "deadlines": [
      {
       "label": "Fall admission",
       "date": "2026-12-01",
       "quote": "The application deadline for fall admission is December 1, 2026.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "e9f07ab54704bda1"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Business and Technology",
@@ -76,27 +82,35 @@
     "academic": {
      "text": "Highly accomplished recent graduates in a STEM or quantitative social science major are encouraged to apply.",
      "quote": "Highly accomplished recent graduates in a STEM or quantitative social science major are encouraged to apply.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0c346f60e031de39"
     },
     "deadlines": [
      {
       "label": "Priority Deadline",
       "date": "2026-11-12",
       "quote": "Priority Deadline: November 12, 2026",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "800b673f7c8b8c0f"
      },
      {
       "label": "Final Application Deadline",
       "date": "2027-07-01",
       "quote": "Final Application Deadline: July 1, 2027",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "263312f26794d72c"
      }
     ],
     "prerequisites": [
      {
       "text": "1-3 years of professional work experience is valued but not required.",
       "quote": "1-3 years of professional work experience is valued, but not required.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "65ad3cffa19fe488"
      }
     ]
    },
@@ -112,27 +126,35 @@
     "ielts": {
      "overall": 7.0,
      "quote": "For international students who did not graduate from an institution in a country where English is the official language, proficiency in English must be shown by a minimum score of 89 on the TOEFL or 7 on the IELTS test.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "513646c6b6f10a7c"
     },
     "toefl": {
      "overall": 89.0,
      "quote": "For international students who did not graduate from an institution in a country where English is the official language, proficiency in English must be shown by a minimum score of 89 on the TOEFL or 7 on the IELTS test.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: TOEFL iBT (quote says TOEFL, not iBT)",
+     "summary_sha": "2d1cceb6285a755d"
     },
     "academic": {
      "text": "Graduation from an approved undergraduate program in engineering or a related scientific discipline, with a B average in undergraduate courses applicable to the student's career goals.",
      "quote": "Admission to the Master of Engineering program normally requires graduation from an approved undergraduate program in engineering or a related scientific discipline, attainment of a B average in undergraduate courses applicable to the student’s career goals, and recommendations containing favorable appraisals of professional promise and attitude.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "6b1b192e76f27649"
     },
     "prerequisites": [
      {
       "text": "Successful work experience prior to application is given consideration.",
       "quote": "A period of successful work experience prior to application to the program will also be given consideration.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "7243573ebf85ac6d"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Vanderbilt Biostatistics Graduate Program",
@@ -146,7 +168,9 @@
       "label": "Fall 2027",
       "date": "2026-12-01",
       "quote": "Interested in joining us in Fall 2027? Submit your application by December 1, 2026.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "12c8cc1ec9ae160f"
      }
     ]
    },
@@ -162,36 +186,44 @@
     "academic": {
      "text": "Bachelor's degree or equivalent in any subject, with a GPA of 3.0 or higher.",
      "quote": "Bachelor’s degree or equivalent in any subject\nGPA of 3.0 or higher",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "f511a1d53c19bbf1"
     },
     "deadlines": [
      {
       "label": "Internal candidate priority cycle (Spring start), application deadline",
       "date": "2026-09-30",
       "quote": "September 30, 2026: Application deadline",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Internal candidate priority cycle (Spring start)",
+      "summary_sha": "d7599c03057f21e7"
      },
      {
       "label": "External candidate cycle (Fall start), application deadline",
       "date": "2027-02-01",
       "quote": "February 1, 2027: Application deadline (extended)",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: External candidate cycle (Fall start); omits 'extended'",
+      "summary_sha": "fd45d0adf42a206a"
      }
     ],
     "prerequisites": [
      {
       "text": "For the 4+1 route, a major in medicine, health, and society or a related discipline.",
       "quote": "The 4+1 program is available to current Vanderbilt undergraduate students majoring in medicine, health, and society, or related disciplines.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "27a3c5ecb8e31d75"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   }
  ],
  "verification": {
   "programs": 8,
-  "机器核对": 5,
-  "待人工": 3
+  "机器核对": 2,
+  "待人工": 6
  }
 }

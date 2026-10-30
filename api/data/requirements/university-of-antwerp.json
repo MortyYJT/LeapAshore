@@ -28,13 +28,17 @@
     "academic": {
      "text": "A strong overall scientific background including basic knowledge of mathematics, physics, inorganic and organic chemistry, and the basic principles of statistics.",
      "quote": "Students who wish to register for this master should have an overall strong scientific background including basic knowledge of mathematics, physics, and inorganic and organic chemistry, as well as the basic principles of statistics.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "cca8f9b9481c5670"
     },
     "prerequisites": [
      {
       "text": "Familiarity with ecology is a necessity.",
       "quote": "More specifically, familiarity with ecology is a necessity.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "b93c4c8972b2a333"
      }
     ]
    },
@@ -96,7 +100,9 @@
      {
       "text": "At least one linguistics course and one literature course must be taken.",
       "quote": "There is only one requirement: you must take at least one linguistics course and one literature course.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "fbb6eb8f214ce7cd"
      }
     ]
    },
@@ -121,22 +127,28 @@
     "academic": {
      "text": "A strong overall scientific background including basic knowledge of mathematics, physics, inorganic and organic chemistry, and the basic principles of statistics.",
      "quote": "Students who wish to register for this master should have an overall strong scientific background including basic knowledge of mathematics, physics, and inorganic and organic chemistry, as well as the basic principles of statistics.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "cca8f9b9481c5670"
     },
     "prerequisites": [
      {
       "text": "Familiarity with ecology is a necessity.",
       "quote": "More specifically, familiarity with ecology is a necessity.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "b93c4c8972b2a333"
      },
      {
       "text": "General knowledge of plants, animals and other organisms, and understanding of the physical environment (soil, water, air).",
       "quote": "General knowledge on plants, animals and other organisms, along with an understanding of the physical environment (soil, water, air) is also extremely useful.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: states as prerequisite; quote says only 'extremely useful'",
+      "summary_sha": "6307b5bd1d542fe1"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Leading International Vaccinology Education",
@@ -157,10 +169,12 @@
     "academic": {
      "text": "Applicants should have a background in sciences.",
      "quote": "The 2-year master programme in Master of Marine and Lacustrine Science and Management (Oceans & Lakes) addresses students with a background in sciences.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: \"should have\" (requirement) for a programme that addresses students with a sciences background",
+     "summary_sha": "2e0ad7dc58c0339f"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Chemistry Language Taught in English Programme levels Master Type of course or training Academic programme",
@@ -283,7 +297,7 @@
  ],
  "verification": {
   "programs": 25,
-  "机器核对": 4,
-  "待人工": 21
+  "机器核对": 2,
+  "待人工": 23
  }
 }

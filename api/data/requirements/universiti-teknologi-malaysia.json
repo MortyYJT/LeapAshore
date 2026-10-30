@@ -41,36 +41,46 @@
     "academic": {
      "text": "Bachelor's in Computer Science or equivalent from an MQA-recognised university with CGPA at least 2.50; 2.50-2.75 subject to detailed faculty evaluation; below 2.50 needs 5 years' related work experience",
      "quote": "A minimum CGPA of 2.50; Applicants with a CGPA between 2.50 and 2.75 are subject to a detailed evaluation by the Faculty; Applicants with a CGPA below 2.50 must have at least five (5) years of working experience in a field related to Computer Science.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: Bachelor's in Computer Science or equivalent from an MQA-recognised university",
+     "summary_sha": "7b983a75d50f2256"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     },
     "prerequisites": [
      {
       "text": "Theory of Computer Science, Artificial Intelligence and Data Structures (grade B- or better) must be taken in semester 1 if not already passed, and by diploma-qualified applicants",
       "quote": "Applicants who have not taken, or who obtained a grade lower than B-, in any of the following courses during their undergraduate studies, as well as diploma-qualified applicants, are required to register for and pass these courses during their first semester of study",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Theory of Computer Science, Artificial Intelligence and Data Structures",
+      "summary_sha": "9d50f82e54522d8e"
      },
      {
       "text": "English proficiency equivalent to at least CEFR level B2",
       "quote": "Applicants must demonstrate English language proficiency equivalent to at least CEFR Level B2",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "6c0b40a6e0a272b4"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master in Data Science",
@@ -80,22 +90,28 @@
     "academic": {
      "text": "Bachelor's in Computer Science or a STEM field; CGPA 3.00 or higher direct admission; 2.75-2.99 subject to internal evaluation; below 2.75 needs 5 years' relevant work experience",
      "quote": "CGPA ≥ 3.00: Direct admission. •CGPA 2.75 – 2.99: Subject to internal evaluation. •CGPA < 2.75: Must have at least 5 years of relevant working experience.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: Bachelor's in Computer Science or a STEM field",
+     "summary_sha": "d051520c2e0602a1"
     },
     "ielts": {
      "text": "",
      "quote": "IELTS / IELTS Online: Minimum Band 6.0.",
      "overall": 6.0,
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ad96fa60a2c6e741"
     },
     "toefl": {
      "text": "",
      "quote": "TOEFL iBT / TOEFL Online: Minimum score of 60.",
      "overall": 60,
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "7bffc361c59c99a2"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master in Innovative Computing",
@@ -107,24 +123,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5 and 62.5%; below 2.50 needs 5 years' related working experience",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Cyber Security",
@@ -136,24 +158,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5 and 62.5%; below 2.50 needs 5 years' related working experience",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Informatics",
@@ -165,24 +193,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5 and 62.5%; below 2.50 needs 5 years' related working experience",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Information Security Assurance",
@@ -194,24 +228,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5 and 62.5%; below 2.50 needs 5 years' related working experience",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Software Engineering",
@@ -223,24 +263,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5, 62.5%; below 2.50 needs 5 years' related working experience; general rule for UTM master by coursework",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master in Information Technology Entrepreneurship",
@@ -250,36 +296,46 @@
     "academic": {
      "text": "Bachelor's in Computer Science or equivalent from an MQA-recognised university with CGPA at least 2.50; 2.50-2.75 subject to detailed faculty evaluation; below 2.50 needs 5 years' related work experience",
      "quote": "A minimum CGPA of 2.50; Applicants with a CGPA between 2.50 and 2.75 are subject to a detailed evaluation by the Faculty; Applicants with a CGPA below 2.50 must have at least five (5) years of working experience in a field related to Computer Science.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: Bachelor's in Computer Science or equivalent from an MQA-recognised university",
+     "summary_sha": "7b983a75d50f2256"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     },
     "prerequisites": [
      {
       "text": "Theory of Computer Science, Artificial Intelligence and Data Structures (grade B- or better) must be taken in semester 1 if not already passed, and by diploma-qualified applicants",
       "quote": "Applicants who have not taken, or who obtained a grade lower than B-, in any of the following courses during their undergraduate studies, as well as diploma-qualified applicants, are required to register for and pass these courses during their first semester of study",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Theory of Computer Science, Artificial Intelligence and Data Structures",
+      "summary_sha": "9d50f82e54522d8e"
      },
      {
       "text": "English proficiency equivalent to at least CEFR level B2",
       "quote": "Applicants must demonstrate English language proficiency equivalent to at least CEFR Level B2",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "6c0b40a6e0a272b4"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Information Technology (Information Technology Management)",
@@ -291,24 +347,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Excellent Pass Scale Working Experience CPA Scale of 4 2.75 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: 2.50-2.75 rigorous assessment; below 2.50 needs 5 years' experience",
+     "summary_sha": "32944b530b825d2c"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Business Administration",
@@ -320,22 +382,28 @@
      "quote": "Entry Requirements for Master of Business Administration (MBA) Scale Working Experience CPA 3.50 and above No Working Experience Needed CPA 3.00 ≤ 3.49 2 years working experience in the related field CPA 2.00 ≤ 2.99 5 years working experience in the related field",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "09cfc74f6b97dac7"
     },
     "ielts": {
      "text": "",
      "quote": "Minimum English requirement (For International Candidates Only) IELTS ≥ Band 6.0 / TOEFL ≥ Score 60 / MUET ≥ Band 4.0",
      "overall": 6.0,
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "52f55a724f8445a1"
     },
     "toefl": {
      "text": "",
      "quote": "Minimum English requirement (For International Candidates Only) IELTS ≥ Band 6.0 / TOEFL ≥ Score 60 / MUET ≥ Band 4.0",
      "overall": 60,
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: TOEFL iBT (quote only says TOEFL)",
+     "summary_sha": "b7f3fc80ed9470b5"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Food Processing Innovation",
@@ -345,17 +413,21 @@
     "academic": {
      "text": "Relevant bachelor's with honours; CGPA at least 2.50; CGPA 2.00-2.49 considered with at least 5 years' work experience",
      "quote": "Obtain a CGPA / CGPA of at least 2.50. For candidates with CGPA / CGPA less than 2.50 and at least 2.00, work experience of at least five (5) years will be taken into account.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: Relevant bachelor's with honours",
+     "summary_sha": "f8f2b2f856f9aec1"
     },
     "ielts": {
      "text": "",
      "quote": "International students educated in a language other than English should have an IELTS score of 6.0 (with a minimum of 5.5 in each skill) or TOEFL or equivalent.",
      "overall": 6.0,
      "min_band": 5.5,
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "208ce4775a9fae2e"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Architecture",
@@ -367,21 +439,27 @@
      "quote": "Entry Requirements for Master of Architecture Scale (Bachelor of Science in Architecture/Degree in Architecture) Working Experience in Architectural Firm CPA 3.0 – 4.0 6 months CPA 2.7 – 2.99 12 months CPA 2.5 – 2.69 24 months CPA 2.3 -2.49 36 months",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b8bd1f5d951a69ec"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     },
     "prerequisites": [
      {
@@ -389,7 +467,9 @@
       "quote": "International candidates must obtain LAM Part 1 certificate before they apply for the Master of Architecture",
       "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
       "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "5b52c85a5211f809"
      }
     ]
    },
@@ -405,24 +485,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5, 62.5%; below 2.50 needs 5 years' related working experience",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Geoinformatics",
@@ -434,24 +520,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5 and 62.5%; below 2.50 needs 5 years' related working experience",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master in Real Estate",
@@ -463,24 +555,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5 and 62.5%; below 2.50 needs 5 years' related working experience",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master in Urban and Regional Planning",
@@ -492,24 +590,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: below 2.50 needs 5 years' related working experience; equivalent 3.13/5, 62.5%",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Remote Sensing",
@@ -521,24 +625,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5 and 62.5%; below 2.50 needs 5 years' related working experience",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master in Geomatics Engineering",
@@ -550,24 +660,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5, 62.5%; below 2.50 needs 5 years' related working experience",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master in Land Administration and Development",
@@ -579,24 +695,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5, 62.5%; below 2.50 needs 5 years' related working experience",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master in Transportation Planning",
@@ -608,24 +730,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5, 62.5%; below 2.50 needs 5 years' related working experience",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master in Construction Contract Management",
@@ -637,24 +765,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5 and 62.5%; below 2.50 needs 5 years' related working experience",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master in Tourism Planning",
@@ -666,24 +800,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5, 62.5%; below 2.50 needs 5 years' related working experience",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Project Management",
@@ -693,24 +833,30 @@
     "academic": {
      "text": "Bachelor's in a science/technology field, with CGPA at least 2.50/4.00; CGPA 2.00-2.49 needs 5 years' relevant work experience",
      "quote": "ii) A Bachelor’s degree or its equivalent with a minimum CGPA of 2.50/4.00; OR iii) A Bachelor’s degree or its equivalent with a minimum CGPA of 2.00/4.00 but not achieving – a CGPA of 2.50/4.00; must have at least five (5) years of work experience in a relevant field.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: Bachelor's in a science/technology field",
+     "summary_sha": "2393ebe67b45a348"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Engineering (Structure)",
@@ -720,24 +866,30 @@
     "academic": {
      "text": "Bachelor's in a science/technology field, with CGPA at least 2.50/4.00; CGPA 2.00-2.49 needs 5 years' relevant work experience",
      "quote": "ii) A Bachelor’s degree or its equivalent with a minimum CGPA of 2.50/4.00; OR iii) A Bachelor’s degree or its equivalent with a minimum CGPA of 2.00/4.00 but not achieving – a CGPA of 2.50/4.00; must have at least five (5) years of work experience in a relevant field.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: Bachelor's in a science/technology field",
+     "summary_sha": "2393ebe67b45a348"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Engineering in Hydraulics and Hydrology",
@@ -747,20 +899,26 @@
     "academic": {
      "text": "Bachelor's in a related field with CGPA 2.50/4.00; CGPA 2.00-2.49 needs more than 5 years' related work experience",
      "quote": "Have a minimum qualification of Bachelor’s Degree with CGPA 2.50/4.00 in a related field or which is equivalent by a recognized University according to basic entry requirements. Or If the CGPA is between 2.00 – 2.49, the candidate must have more than five (5) years of work experience in a related field.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "54c2f1cc438272d0"
     },
     "ielts": {
      "text": "",
      "quote": "English language requirements (for international students): All international students applying at UTM must have an IELTS band 6 certificate or a TOEFL score of 550 (or 79 IBT) which is valid for 2 years from the date of graduation.",
      "overall": 6,
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "99bce9be8fb8c069"
     },
     "toefl": {
      "text": "",
      "quote": "English language requirements (for international students): All international students applying at UTM must have an IELTS band 6 certificate or a TOEFL score of 550 (or 79 IBT) which is valid for 2 years from the date of graduation.",
      "overall": 79,
      "scale_note": "page states 550 (paper-based) or 79 iBT; 79 is the iBT value",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "3ee5c0cf51fc7e47"
     }
    },
    "status": "机器核对"
@@ -773,21 +931,27 @@
     "academic": {
      "text": "Bachelor's in Civil Engineering or equivalent; CGPA at least 2.50; CGPA 2.00-2.49 needs 5 years' relevant work experience",
      "quote": "A Bachelor’s Degree in Civil Engineering or an equivalent qualification recognised by the University Senate; and A Bachelor’s Degree or an equivalent qualification with a minimum CGPA of 2.50; or A Bachelor’s Degree or an equivalent qualification with a CGPA of at least 2.00/4.00 but below 2.50/4.00 must have five (5) years of relevant working experience in the related field.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "5695ecab5124e152"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
    "status": "机器核对"
@@ -800,21 +964,27 @@
     "academic": {
      "text": "Bachelor's with good honours from UTM or a recognised institution; or equivalent qualification with relevant experience",
      "quote": "Bachelor degree with good honours from UTM or other institution of higher learning recognized by university senate, OR, A Bachelor degree or any other equivalent qualification; with relevant experience recognized by the University Senate.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "de8dcf5483c94002"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
    "status": "机器核对"
@@ -829,24 +999,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: CPA 3.13/5 and 62.5% equivalents; below 2.50 needs 5 years' related working experience",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Engineering (Environmental Management)",
@@ -858,24 +1034,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5 and 62.5%; below 2.50 needs 5 years' related working experience",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master in Transportation Engineering",
@@ -887,24 +1069,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5 and 62.5%; below 2.50 needs 5 years' related working experience; general rule for UTM master by coursework",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Biomedical Engineering",
@@ -914,21 +1102,27 @@
     "academic": {
      "text": "Bachelor's in engineering, science or medical disciplines; other institutions need CGPA 3.0 or equivalent, with relevant work experience if CGPA is below 3.0",
      "quote": "Other recognized Higher Learning Institution with CGPA ≥ 3.0 or equivalent. For CGPA < 3.0, relevant work experience is needed",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: Bachelor's in engineering, science or medical disciplines",
+     "summary_sha": "38cab7ea60f23c13"
     },
     "ielts": {
      "text": "",
      "quote": "An International student candidate is required to have a minimum qualification of the Test of English as a Foreign Language (TOEFL) of 550 or International English Language Test System (IELTS) of band 6.0",
      "overall": 6.0,
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "1457be3351055243"
     },
     "toefl": {
      "text": "TOEFL 550 as written on the page (score scale not named)",
      "quote": "An International student candidate is required to have a minimum qualification of the Test of English as a Foreign Language (TOEFL) of 550",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d99303b1f18e62eb"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Engineering in Wireless Communication and Network",
@@ -940,24 +1134,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5, 62.5%; below 2.50 needs 5 years' related working experience",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Engineering in Computer and Microelectronic Systems",
@@ -969,24 +1169,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5 and 62.5%; below 2.50 needs 5 years' related working experience",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Engineering in Electrical Power and Energy",
@@ -998,24 +1204,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5, 62.5%; below 2.50 needs 5 years' related working experience",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Engineering in Mechatronics and Automatic Control",
@@ -1027,24 +1239,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5 and 62.5%; below 2.50 needs 5 years' related working experience",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science (Mechanical Engineering)",
@@ -1054,27 +1272,35 @@
     "academic": {
      "text": "Four-year bachelor's in engineering or science from an MQA-recognised university with CGPA at least 2.50; 2.50-2.75 subject to faculty evaluation; below 2.50 may be considered with 5 years' engineering experience",
      "quote": "Candidates have a four-year Bachelor’s Degree or equivalent from MQA-recognized university in engineering or science with an overall grade point average,CGPA minimum of 2.50. ii) Candidates who have a CGPA between 2.50 to 2.75 are subject to rigorous evaluation at the Faculty level. iii) If the CGPA of the candidate applying for admission is less than 2.50, but has relevant professional experience in the field of engineering of at least five (5) years may be considered.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "5800fa95ce6362e6"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     },
     "prerequisites": [
      {
       "text": "Candidates with a non-engineering/science degree must take 3 Pre-Master modules (grade B- or better, CGPA 3.0)",
       "quote": "Candidates with a degree other than engineering or science must register for 3 Pre-Master modules that have been prescribed by the school/faculty at the undergraduate level and pass with a minimum grade of B- and a minimum CGPA of 3.0.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "03c6937958ac129a"
      }
     ]
    },
@@ -1088,27 +1314,35 @@
     "academic": {
      "text": "Four-year bachelor's in engineering or science from an MQA-recognised university with CGPA at least 2.50; 2.50-2.75 subject to faculty evaluation; below 2.50 may be considered with 5 years' engineering experience",
      "quote": "Candidates have a four-year Bachelor’s Degree or equivalent from MQA-recognized university in engineering or science with an overall grade point average,CGPA minimum of 2.50. ii) Candidates who have a CGPA between 2.50 to 2.75 are subject to rigorous evaluation at the Faculty level. iii) If the CGPA of the candidate applying for admission is less than 2.50, but has relevant professional experience in the field of engineering of at least five (5) years may be considered.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "5800fa95ce6362e6"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     },
     "prerequisites": [
      {
       "text": "Candidates with a non-engineering/science degree must take 3 Pre-Master modules (grade B- or better, CGPA 3.0)",
       "quote": "Candidates with a degree other than engineering or science must register for 3 Pre-Master modules that have been prescribed by the school/faculty at the undergraduate level and pass with a minimum grade of B- and a minimum CGPA of 3.0.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "03c6937958ac129a"
      }
     ]
    },
@@ -1122,31 +1356,39 @@
     "academic": {
      "text": "Bachelor's in Chemical Engineering with CPA at least 2.75/4.0; 2.50-2.74 subject to rigorous assessment; 2.00-2.49 needs 5 years' related work experience",
      "quote": "Candidate must hold a Bachelor Degree in Chemical Engineering with Cumulative Point Average (CPA) of at least 2.75/4.0 or equivalent from Universiti Teknologi Malaysia or any other Institutions of Higher Learning recognized by the Senate. In the case where CPA between 2.74 and 2.50, it is subject to rigorous internal assessment. While for CPA between 2.49 and 2.0, 5 years working experience in the related field is required.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b9e5e7c127ca2df0"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     },
     "prerequisites": [
      {
       "text": "Other engineering/science degree holders (CPA 2.75/4.0) must pass: Mass balance, Chemical Reactions Engineering, Chemical Engineering Thermodynamics, Numerical Methods, Transport Processes and Unit Operations",
       "quote": "must pass all courses as listed below: – Mass balance – Chemical Reactions Engineering – Chemical Engineering Thermodynamics – Numerical Methods – Transport Processes and Unit Operations",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Other engineering/science degree holders (CPA 2.75/4.0)",
+      "summary_sha": "409ae876ee6aaf93"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master in Petroleum Engineering",
@@ -1158,24 +1400,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5, 62.5%; below 2.50 needs 5 years' related working experience",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Gas Engineering and Management",
@@ -1185,21 +1433,27 @@
     "academic": {
      "text": "Bachelor's degree with good honours in engineering, science or technology",
      "quote": "Entry requirement for Master of Gas Engineering and Management A Bachelor’s Degree with good honours in engineering, science or technology.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "89af549ad9dccf43"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
    "status": "机器核对"
@@ -1214,24 +1468,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5 and 62.5%; below 2.50 needs 5 years' related working experience",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Occupational Safety and Health",
@@ -1243,24 +1503,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5, 62.5%; below 2.50 needs 5 years' related working experience",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Management (Technology Management)",
@@ -1272,24 +1538,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Excellent Pass Scale Working Experience CPA Scale of 4 2.75 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: 2.50-2.75 internal assessment; below 2.50 needs 5 years' experience; mixed mode general rule",
+     "summary_sha": "32944b530b825d2c"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Forensic Science",
@@ -1299,17 +1571,23 @@
     "academic": {
      "text": "Bachelor of Science in chemistry or related fields with CPA 3.0 or higher; CPA 2.7 with 1 year's related experience; CPA 2.5 with 2 years' related experience",
      "quote": "Bachelor of Science (Chemistry, Industrial Chemistry, Forensic Science, Applied Science, Health Science or related courses) with CPA ≥ 3.0 from any institution of higher learning recognized by the Senate OR Bachelor of Science (Chemistry, Industrial Chemistry, Forensic Science, Applied Science, Health Science or related courses) or equivalent and recognized with CPA ≥ 2.7 and work experience for at least ONE year in related field OR Bachelor of Science (Chemistry, Industrial Chemistry, Forensic Science, Applied Science, Health Science or related courses) or equivalent and recognized with CPA ≥ 2.5 and work experience for at least TWO years in related field.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "cbe80603bc254e6a"
     },
     "ielts": {
      "text": "IELTS band 6 or TOEFL 550 (79 iBT) exempts the student from UTM English courses",
      "quote": "Students with a TOEFL score of 550 (or 79 IBT) or IELTS Band 6 will be enrolled in the faculty program without undergoing UTM English Courses.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "5ee3ef54a01086c9"
     },
     "toefl": {
      "text": "TOEFL 550 (79 iBT) or IELTS band 6 exempts the student from UTM English courses",
      "quote": "Students with a TOEFL score of 550 (or 79 IBT) or IELTS Band 6 will be enrolled in the faculty program without undergoing UTM English Courses.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b0f32f8822195ff9"
     }
    },
    "status": "机器核对"
@@ -1324,24 +1602,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Excellent Pass Scale Working Experience CPA Scale of 4 2.75 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: 2.50-2.75 internal assessment; below 2.50 needs 5 years' experience; no experience needed as general rule",
+     "summary_sha": "32944b530b825d2c"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science (Biotechnology)",
@@ -1351,16 +1635,20 @@
     "academic": {
      "text": "Bachelor's in the field with CGPA 2.75 or higher; CGPA 2.50-2.74 subject to rigorous internal assessment; CGPA 2.00-2.49 needs 5 years' relevant work experience plus rigorous internal assessment",
      "quote": "A bachelor’s degree in the field or related fields with a minimum CGPA of 2.75 or equivalent, as accepted by the HEP Senate; or A bachelor’s degree in the field or related fields or equivalent with a minimum CGPA of 2.50 and not meeting CGPA of 2.75, can be accepted subject to rigorous internal assessment; or A bachelor’s degree in the field or related fields or equivalent with a minimum CGPA of 2.00 and not meeting CGPA 2.50, can be accepted subject to a minimum of 5 years working experience in the relevant field and rigorous internal assessment.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b86a328da812860e"
     },
     "toefl": {
      "text": "",
      "quote": "Student with TOEFL score if 60 and above can enroll at faculty",
      "overall": 60,
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: TOEFL iBT (quote only says TOEFL score)",
+     "summary_sha": "13d871db989324e7"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Physics",
@@ -1370,31 +1658,39 @@
     "academic": {
      "text": "Bachelor's in Physics (or related field with panel approval); CGPA 3.00 or higher needs no experience; 2.70-2.99 needs 2 years; 2.50-2.69 needs 4 years; 2.30-2.49 needs 6 years of work experience",
      "quote": "Bachelor’s Degree CGPA Working Experience ≥ 3.00 N/A 2.70 – 2.99 2 years 2.50 – 2.69 4 years 2.30 – 2.49 6 years",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: Bachelor's in Physics (or related field with panel approval)",
+     "summary_sha": "cd05ff8f3d0887b6"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     },
     "prerequisites": [
      {
       "text": "At least six Physics courses of 3 credit hours each, with grade C+ or higher in each",
       "quote": "The candidate must have completed a minimum of six (6) Physics courses, with a minimum of 3 credit hours for each course and achieved a minimum grade of C+ or higher for each of these core Physics courses.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "a3b8c2159ad5c7b7"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Mathematics",
@@ -1404,19 +1700,25 @@
     "academic": {
      "text": "Bachelor's degree with good honours from UTM or another recognised institution; or equivalent qualification with relevant experience",
      "quote": "A Bachelor’s Degree with good honours from Universiti Teknologi Malaysia or any other institution of higher learning recognised by the Senate; or A qualification equivalent to a Bachelor’s Degree and experience in the relevant field recognised by the Senate.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c840942be81b151c"
     },
     "ielts": {
      "text": "",
      "quote": "IELTS Band 6.0 and above",
      "overall": 6.0,
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "da0b7d036f997138"
     },
     "toefl": {
      "text": "",
      "quote": "TOEFL iBT score of 60 and above",
      "overall": 60,
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "cabe79e876afc8df"
     }
    },
    "status": "机器核对"
@@ -1431,24 +1733,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Excellent Pass Scale Working Experience CPA Scale of 4 2.75 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: 2.50-2.75 internal assessment; below 2.50 needs 5 years' experience; mixed mode general rule",
+     "summary_sha": "32944b530b825d2c"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master in Science, Technology and Innovation Policy",
@@ -1460,24 +1768,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5 and 62.5%; below 2.50 needs 5 years' related working experience",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Human Resource Development",
@@ -1489,24 +1803,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent scores 3.13/5 and 62.5%; below 2.50 needs 5 years' related working experience; general rule for UTM master by coursework",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Language in Communication and Digital Culture",
@@ -1518,24 +1838,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5 and 62.5%; below 2.50 needs 5 years' related working experience",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master in Islamic Studies",
@@ -1547,24 +1873,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5, 62.5%; below 2.50 needs 5 years' related working experience; UTM master by coursework general rule",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Education (Chemistry)",
@@ -1576,24 +1908,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5 and 62.5%; below 2.50 needs 5 years' related working experience",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Education (Management and Administration)",
@@ -1605,24 +1943,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5 and 62.5%; below 2.50 needs 5 years' related working experience",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Education (Guidance and Counselling)",
@@ -1634,24 +1978,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5 and 62.5%; below 2.50 needs 5 years' related working experience",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Education (Curriculum and Instruction)",
@@ -1663,24 +2013,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5 and 62.5%; below 2.50 needs 5 years' related working experience",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Education (Education and Development)",
@@ -1692,24 +2048,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5 and 62.5%; below 2.50 needs 5 years' related working experience",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Education (Educational Psychology)",
@@ -1721,24 +2083,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5 and 62.5%; below 2.50 needs 5 years' related working experience; general rule for UTM master by coursework",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Education (Educational Technology)",
@@ -1750,24 +2118,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5, 62.5%; below 2.50 needs 5 years' related working experience",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Education (Measurement and Evaluation)",
@@ -1779,24 +2153,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5 and 62.5%; below 2.50 needs 5 years' related working experience",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Education (Physics)",
@@ -1808,24 +2188,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5 and 62.5%; below 2.50 needs 5 years' related working experience",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Education (Mathematics)",
@@ -1837,24 +2223,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5 and 62.5%; below 2.50 needs 5 years' related working experience",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Education (Technical and Vocational Education)",
@@ -1866,24 +2258,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: below 2.50 needs 5 years' related working experience; 3.13/5 and 62.5% equivalents",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Education Teaching English as a Second Language (TESL)",
@@ -1895,24 +2293,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5 and 62.5%; below 2.50 needs 5 years' related working experience",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 7.0,
      "quote": "International English Language Testing System (IELTS) Overall band 7.0",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b45ef40a606a7481"
     },
     "toefl": {
      "overall": 95,
      "quote": "TOEFL (TOEFL iBT / TOEFL iBT HOME EDITION) Overall Score 95",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a5e2a2a87ab0800e"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master in Disaster Risk Management",
@@ -1922,21 +2326,27 @@
     "academic": {
      "text": "Bachelor's degree with good honours from UTM or a recognised institution with CPA 2.5 or above; CPA 2.0-2.49 with 5 years' work experience",
      "quote": "Minimum requirements: A Bachelor’s Degree with good honours from Universiti Teknologi Malaysia or any other institutions of higher learning recognised by the Senate (UK NARIC), And CPA 2.5 or above, Or 2.0 ≦ CPA ≦ 2.49 with 5 years working experiences.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d53f39bf38eb676b"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
    "status": "机器核对"
@@ -1949,21 +2359,27 @@
     "academic": {
      "text": "Bachelor's in science, technology or engineering with CGPA at least 2.5/4.00; other degrees or CGPA below 2.5 need 5 years' related work experience",
      "quote": "Bachelor Degree in Science, Technology or Engineering or related field with minimum CGPA of 2.5/4.00 from institutions of higher learning recognized by the UTM senate (UK NARIC). For other degree than those mentioned above or CGPA of less than 2.5/4.0, minimum working experience of five years in the related field is required.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "74c58520e6454f28"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
    "status": "机器核对"
@@ -1976,21 +2392,27 @@
     "academic": {
      "text": "Bachelor's degree with good honours from UTM or a recognised institution with CPA 2.5 or above; CPA 2.0-2.49 with 5 years' work experience",
      "quote": "Minimum requirements: A Bachelor’s Degree with good honours from Universiti Teknologi Malaysia or any other institutions of any higher learning recognised by the Senate (UK NARIC), And CPA 2.5 or above, Or 2.0 ≦ CPA ≦ 2.49 with 5 years working experiences.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "9adcc44dd10ef976"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
    "status": "机器核对"
@@ -2003,21 +2425,27 @@
     "academic": {
      "text": "Bachelor's in engineering, science, computer science or mathematics with good honours, or equivalent with relevant experience",
      "quote": "A Bachelor’s Degree in Engineering, or Science, or Computer Science, or Mathematics with good honours from Universiti Teknologi Malaysia or any other institution of higher learning recognised by the Senate; OR A qualification equivalent to a Bachelor’s Degree as per above area and experience in the relevant field recognised by the Senate.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ef2849c33d1647cf"
     },
     "ielts": {
      "text": "",
      "quote": "Additional requirement for International Applicant an English Certificate of IELTS with the minimum band of 6.0 OR TOEFL with the minimum score of 550.",
      "overall": 6.0,
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: omits that it applies to international applicants only",
+     "summary_sha": "da432081e4807f1c"
     },
     "toefl": {
      "text": "TOEFL 550 as written on the page (score scale not named)",
      "quote": "Additional requirement for International Applicant an English Certificate of IELTS with the minimum band of 6.0 OR TOEFL with the minimum score of 550.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b7daf2a04352b7df"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science (Sustainable Urban Design)",
@@ -2027,21 +2455,27 @@
     "academic": {
      "text": "Bachelor's in architecture, urban and regional planning, landscape architecture or related built-environment fields with CGPA at least 2.50; other fields need CGPA 2.50 and 5 years' work experience",
      "quote": "A Bachelor’s Degree in Architecture, Urban and Regional Planning, Landscape Architecture, or other related fields in the built environment and design with a minimum CGPA of 2.50, recognized by UTM. OR A Bachelor’s Degree in other fields with a minimum CGPA of 2.50 AND at least five (5) years of work experience in the built environment and design field.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "eadab1f2e67ca9ae"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
    "status": "机器核对"
@@ -2056,24 +2490,30 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Excellent Pass Scale Working Experience CPA Scale of 4 2.75 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: 2.50-2.75 internal assessment; below 2.50 needs 5 years' experience",
+     "summary_sha": "32944b530b825d2c"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master in Occupational Safety and Health Management",
@@ -2085,31 +2525,39 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5, 62.5%; below 2.50 needs 5 years' related working experience",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     },
     "prerequisites": [
      {
       "text": "Four-year bachelor's degree in engineering or sciences recognised by the university",
       "quote": "The normal requirement for admission to the programme is a four-year bachelor degree recognized by the university in either engineering or sciences.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "152fd4d83541967a"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Computer Systems Engineering",
@@ -2121,31 +2569,39 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5 and 62.5%; below 2.50 needs 5 years' related working experience",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     },
     "prerequisites": [
      {
       "text": "Four-year bachelor's degree in engineering or sciences recognised by the university",
       "quote": "The normal requirement for admission to the programme is a four-year bachelor degree recognized by the university in either engineering or sciences.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "152fd4d83541967a"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science in Business Intelligence and Analytics",
@@ -2157,31 +2613,39 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: below 2.50 needs 5 years' related working experience; 3.13/5, 62.5% equivalents",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     },
     "prerequisites": [
      {
       "text": "Four-year bachelor's degree in engineering or sciences recognised by the university",
       "quote": "The normal requirement for admission to the programme is a four-year bachelor degree recognized by the university in either engineering or sciences.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "152fd4d83541967a"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science (Engineering Business Management)",
@@ -2193,31 +2657,39 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5, 62.5%; below 2.50 needs 5 years' related working experience",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     },
     "prerequisites": [
      {
       "text": "Four-year bachelor's degree in engineering or sciences recognised by the university",
       "quote": "The normal requirement for admission to the programme is a four-year bachelor degree recognized by the university in either engineering or sciences.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "152fd4d83541967a"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science (Engineering Design)",
@@ -2229,31 +2701,39 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5, 62.5%; below 2.50 needs 5 years' related working experience",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     },
     "prerequisites": [
      {
       "text": "Four-year bachelor's degree in engineering or sciences recognised by the university",
       "quote": "The normal requirement for admission to the programme is a four-year bachelor degree recognized by the university in either engineering or sciences.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "152fd4d83541967a"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Professional Science",
@@ -2265,31 +2745,39 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: below 2.50 needs 5 years' related working experience; equivalent 3.13/5, 62.5%",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     },
     "prerequisites": [
      {
       "text": "Four-year bachelor's degree in engineering or sciences recognised by the university",
       "quote": "The normal requirement for admission to the programme is a four-year bachelor degree recognized by the university in either engineering or sciences.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "152fd4d83541967a"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science (Systems Engineering)",
@@ -2301,31 +2789,39 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5, 62.5%; below 2.50 needs 5 years' related working experience",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     },
     "prerequisites": [
      {
       "text": "Four-year bachelor's degree in engineering or sciences recognised by the university",
       "quote": "The normal requirement for admission to the programme is a four-year bachelor degree recognized by the university in either engineering or sciences.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "152fd4d83541967a"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master of Science (Sustainable Infrastructure)",
@@ -2337,36 +2833,44 @@
      "quote": "Obtained Bachelor degree with the following grade First Class Second Class Upper Second Class Lower Excellent Pass Scale Working Experience CPA Scale of 4 2.50 or higher No Working Experience Needed",
      "source_sha256": "10fb424edd3e91d26a39d34dd51309ee5e640caf54a4848b7a9c8910510f0e32",
      "source_url": "https://admission.utm.my/int-pg-entry-requirements/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: equivalent 3.13/5, 62.5%; below 2.50 needs 5 years' related working experience",
+     "summary_sha": "82e47c15e2c78612"
     },
     "ielts": {
      "overall": 6.0,
      "quote": "International English Language Testing System IELTS (ACADEMIC) Required band and score Admission Status / Decision Overall band 6.0 Student can enroll at Faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "ba4c333971f65ceb"
     },
     "toefl": {
      "overall": 60,
      "quote": "TOEFL (TOEFL iBT/ TOEFL iBT HOME EDITION) Required band and score Admission Status / Decision Overall Score 60 Student can enroll at faculty",
      "source_sha256": "c3113927ca06336e17d24522b11577c3017e4e63d3014e717aa200ee7bc737a0",
      "source_url": "https://admission.utm.my/english-language-requirements-3/",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b6c15af1e6f95311"
     },
     "prerequisites": [
      {
       "text": "Four-year bachelor's degree in engineering or sciences recognised by the university",
       "quote": "The normal requirement for admission to the programme is a four-year bachelor degree recognized by the university in either engineering or sciences.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "152fd4d83541967a"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   }
  ],
  "verification": {
   "programs": 79,
-  "机器核对": 79,
-  "待人工": 0
+  "机器核对": 13,
+  "待人工": 66
  }
 }

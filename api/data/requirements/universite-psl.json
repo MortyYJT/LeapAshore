@@ -33,10 +33,12 @@
     "academic": {
      "text": "Four-year degree (BAC+4, 240 ECTS) or equivalent in computer science or applied mathematics with a focus on computer science and algorithmic thinking, or last year of engineering school",
      "quote": "Students who have completed a BAC+4 degree (a four-year degree worth 240 ECTS) or equivalent at Dauphine - PSL or another university or institution of higher education in one of the following disciplines: computer science, applied mathematics with a focus on computer science and algorithmic thinking",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: or last year of engineering school",
+     "summary_sha": "283a948b06471146"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master Computer Science, Year 2: IASD - Computer science track (apprenticeship)",
@@ -46,10 +48,12 @@
     "academic": {
      "text": "Four-year degree (BAC+4, 240 ECTS) or equivalent in computer science or applied mathematics with a focus on computer science and algorithmic thinking, or last year of engineering school",
      "quote": "Students who have completed a BAC+4 degree (a four-year degree worth 240 ECTS) or equivalent at Dauphine - PSL or another university or institution of higher education in one of the following disciplines: computer science, applied mathematics with a focus on computer science and algorithmic thinking",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: last year of engineering school",
+     "summary_sha": "283a948b06471146"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master Computer Science, Year 2: Modeling, Optimization, Decision and Organization (MODO)",
@@ -59,7 +63,9 @@
     "academic": {
      "text": "Four-year degree (BAC+4, 240 ECTS) or equivalent in mathematics, computer science or management economics (with training in operational research or quantitative techniques)",
      "quote": "Students who have completed a BAC+4 degree (a four-year degree worth 240 ECTS) or equivalent at Dauphine or another university or institution of higher education in one of the following disciplines: mathematics, computer science, management economics (with training in operational research or quantitative techniques)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "bac7dde487e6a7e6"
     }
    },
    "status": "机器核对"
@@ -72,7 +78,9 @@
     "academic": {
      "text": "Three-year degree (BAC+3, 180 ECTS) or equivalent in computer science, mathematics, management or economics (with options in operational research, quantitative techniques or computer science)",
      "quote": "Holders of a BAC+3 degree (180 ECTS credits) or equivalent from Dauphine, a university, business school, engineering school or other higher education establishment in the following fields: computer science, mathematics, management or economics (with options in operational research or quantitative techniques or computer science).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "05d9a4a2b17bc1cc"
     }
    },
    "status": "机器核对"
@@ -85,7 +93,9 @@
     "academic": {
      "text": "Four-year degree (BAC+4, 240 ECTS) or equivalent in applied mathematics",
      "quote": "Students who have completed a BAC+4 degree (a four-year degree worth 240 ECTS credits) or equivalent at Dauphine or another university or institution of higher education in applied mathematics",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "75084d0ee801f15f"
     }
    },
    "status": "机器核对"
@@ -98,7 +108,9 @@
     "academic": {
      "text": "Bachelor's degree (180 ECTS) or equivalent in science or mathematics",
      "quote": "Holders of a bachelor's degree (180 ECTS credits) or equivalent from Dauphine, a university, or another higher education institution in the following fields: science, mathematics.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "8279172edda8205f"
     }
    },
    "status": "机器核对"
@@ -111,28 +123,38 @@
     "academic": {
      "text": "Bachelor's degree (180 ECTS) from a university, or an equivalent IEP, Grande Ecole or Grand Etablissement diploma, in France or abroad",
      "quote": "Applicants should have obtained a bachelor's degree (Graduate degree equivalent to 180 ECTS) from a university, or a diploma from an IEP (Institute of Political Studies), Grande Ecole, or Grand Etablissement recognized as equivalent, in France or abroad.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "a766531133f1fe5d"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "TOEFL iBT (minimum score 90), IELTS (minimum score 6.5), or Cambridge Certificate (C1)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b3019866c41c94c9"
     },
     "toefl": {
      "overall": 90,
      "quote": "TOEFL iBT (minimum score 90), IELTS (minimum score 6.5), or Cambridge Certificate (C1)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "2fc146a39c1457b1"
     },
     "prerequisites": [
      {
       "text": "Applicants who completed most of their studies outside the EU must submit both a GRE score (minimum 160 in verbal and 160 in quantitative) and an English proficiency test (TOEFL iBT 90, IELTS 6.5 or Cambridge C1), all less than three years old",
       "quote": "For students who have completed most of their studies outside the EU, this must be attested by both a GRE score (minimum scores of 160 in verbal and quantitative sections) and a test of English proficiency, such as TOEFL iBT (minimum score 90), IELTS (minimum score 6.5), or Cambridge Certificate (C1). All test results should be less than three years old.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "55f4740ff88d47c3"
      },
      {
       "text": "Applicants from an EU university must attest English with one of TOEFL iBT 90, IELTS 6.5, Cambridge C1 or GRE 160 in both verbal and quantitative, all less than three years old",
       "quote": "For students from an EU university, this must be attested by one of the following test results: TOEFL iBT (minimum score 90), IELTS (minimum score 6.5), Cambridge Certificate (C1), or GRE (minimum scores of 160 in both verbal and quantitative sections), all less than three years old.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "62f862c66b6c5956"
      }
     ]
    },
@@ -146,28 +168,38 @@
     "academic": {
      "text": "Postgraduate degree (Master 1 level, 60 ECTS) from Dauphine-PSL or another university in France or abroad, or an equivalent IEP, Grande Ecole or Grand Etablissement diploma",
      "quote": "Applicants should hold a postgraduate degree (Master degree equivalent to 60 ECTS), from either the Master 1 in Quantitative Economics or another Master at Université Paris-Dauphine-PSL, or another university in France or abroad; or an equivalent diploma from an Institute of Political Studies (IEP), a Grande Ecole in business or engineering, or an equivalent recognized Grand Etablissement, in France or abroad.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "427f280029239920"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "TOEFL iBT (minimum score 90), IELTS (minimum score 6.5), or Cambridge Certificate (C1)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b3019866c41c94c9"
     },
     "toefl": {
      "overall": 90,
      "quote": "TOEFL iBT (minimum score 90), IELTS (minimum score 6.5), or Cambridge Certificate (C1)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "2fc146a39c1457b1"
     },
     "prerequisites": [
      {
       "text": "Applicants who completed most of their studies outside the EU must submit both a GRE score (minimum 160 in verbal and 160 in quantitative) and an English proficiency test (TOEFL iBT 90, IELTS 6.5 or Cambridge C1), all less than three years old",
       "quote": "For students who have completed most of their studies outside the EU, this must be attested by both a GRE score (minimum scores of 160 in verbal and quantitative sections) and a test of English proficiency, such as TOEFL iBT (minimum score 90), IELTS (minimum score 6.5), or Cambridge Certificate (C1). All test results should be less than three years old.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "55f4740ff88d47c3"
      },
      {
       "text": "Applicants from an EU university must attest English with one of TOEFL iBT 90, IELTS 6.5, Cambridge C1 or GRE 160 in both verbal and quantitative, all less than three years old",
       "quote": "For students from an EU university, this must be attested by one of the following test results: TOEFL iBT (minimum score 90), IELTS (minimum score 6.5), Cambridge Certificate (C1), or GRE (minimum scores of 160 in both verbal and quantitative sections), all less than three years old.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "62f862c66b6c5956"
      }
     ]
    },
@@ -181,32 +213,42 @@
     "academic": {
      "text": "Postgraduate degree (Master 1 level, 60 ECTS) from Dauphine-PSL or another university in France or abroad, or an equivalent IEP, Grande Ecole or Grand Etablissement diploma",
      "quote": "Applicants should hold a postgraduate degree (Master degree equivalent to 60 ECTS), from either the Master 1 in Quantitative Economics or another Master at Université Paris-Dauphine-PSL, or another university in France or abroad; or an equivalent diploma from an Institute of Political Studies (IEP), a Grande Ecole in business or engineering, or an equivalent recognized Grand Etablissement, in France or abroad.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: Master 1 level; omits 'in business or engineering' and 'in France or abroad' for the Grande Ecole/Grand Etablissement; 'another university' vs Master 1 in Quantitative Economics",
+     "summary_sha": "427f280029239920"
     },
     "ielts": {
      "overall": 6.5,
      "quote": "TOEFL iBT (minimum score 90), IELTS (minimum score 6.5), or Cambridge Certificate (C1)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b3019866c41c94c9"
     },
     "toefl": {
      "overall": 90,
      "quote": "TOEFL iBT (minimum score 90), IELTS (minimum score 6.5), or Cambridge Certificate (C1)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "2fc146a39c1457b1"
     },
     "prerequisites": [
      {
       "text": "Applicants who completed most of their studies outside the EU must submit both a GRE score (minimum 160 in verbal and 160 in quantitative) and an English proficiency test (TOEFL iBT 90, IELTS 6.5 or Cambridge C1), all less than three years old",
       "quote": "For students who have completed most of their studies outside the EU, this must be attested by both a GRE score (minimum scores of 160 in verbal and quantitative sections) and a test of English proficiency, such as TOEFL iBT (minimum score 90), IELTS (minimum score 6.5), or Cambridge Certificate (C1). All test results should be less than three years old.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "55f4740ff88d47c3"
      },
      {
       "text": "Applicants from an EU university must attest English with one of TOEFL iBT 90, IELTS 6.5, Cambridge C1 or GRE 160 in both verbal and quantitative, all less than three years old",
       "quote": "For students from an EU university, this must be attested by one of the following test results: TOEFL iBT (minimum score 90), IELTS (minimum score 6.5), Cambridge Certificate (C1), or GRE (minimum scores of 160 in both verbal and quantitative sections), all less than three years old.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "62f862c66b6c5956"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master Social Sciences of the Economy, Year 1: Economics and Societies",
@@ -216,13 +258,17 @@
     "academic": {
      "text": "Three-year degree (BAC+3, 180 ECTS) or equivalent in economics, social sciences, management or engineering (including environmental science)",
      "quote": "Students who have completed a BAC+3 degree (a three-year degree worth 180 ECTS) or equivalent at Dauphine or another university or institution of higher education in one of the following disciplines: economics, social sciences, management, or engineering (including environmental science).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "917f8cbb547dbd3a"
     },
     "prerequisites": [
      {
       "text": "Fluent enough in English to read for courses and understand lectures in English (no test score stated)",
       "quote": "Students should be fluent enough in English to read for courses and understand lectures in English.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "4282ceb33b79a7c2"
      }
     ]
    },
@@ -236,22 +282,28 @@
     "academic": {
      "text": "Four-year degree (BAC+4, 240 ECTS) or equivalent from Dauphine, another university, a Grande Ecole or an equally prestigious institute, with a multidisciplinary background in economics and one other social science",
      "quote": "Students who have completed a BAC+4 degree (a four-year degree worth 240 ECTS credits) or equivalent at Dauphine or another university, “Grand École” specializing in business or engineering, or another equally prestigious institute of higher education.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: multidisciplinary background in economics and one other social science",
+     "summary_sha": "6b257e154422f979"
     },
     "toefl": {
      "overall": 90,
      "quote": "Students whose fluency in English is the equivalent of a TOEFL score of 90.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: Minimum TOEFL iBT overall 90 (quote only says equivalent fluency)",
+     "summary_sha": "ce6b0d66cd0e84d2"
     },
     "prerequisites": [
      {
       "text": "Ten-page research proposal attached to the application",
       "quote": "Students with a ten-page research proposal, which they should attach to their application.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "25bd8c3046f6f886"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master Finance, Year 1",
@@ -261,13 +313,17 @@
     "academic": {
      "text": "Three-year degree (BAC+3, 180 ECTS) in management, applied economics or applied mathematics, or a degree from a business or engineering Grande Ecole, ENS or an equally prestigious institution",
      "quote": "Students with a BAC+3 (equivalent to 180 ECTS credits) in management, applied economics, or applied mathematics, or a degree from a Grande Ecole specializing in business or engineering, or from ENS or an equally prestigious institution.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "1bd89312fb833e25"
     },
     "prerequisites": [
      {
       "text": "English-language fluency (semester abroad and internship recommended)",
       "quote": "English-language fluency. Semester abroad and internship recommended.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "23fa5cc813900ca4"
      }
     ]
    },
@@ -281,17 +337,21 @@
     "academic": {
      "text": "Bachelor's degree or Bachelor of Science in economics, management or math from a business or engineering school (Grande Ecole track), ENS, or an equivalent elite institution",
      "quote": "Students holding a Bachelor's degree or a Bachelor of Science in Economics, Management, or Math from a business or engineering school (Grande Ecole track), ENS, or an equivalent elite institution of higher education.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "3204b53033b63739"
     },
     "prerequisites": [
      {
       "text": "TOEFL iBT required (taken in the last two years), no minimum score stated; GMAT or GRE strongly recommended",
       "quote": "TOEFL iBT required (taken in the last two years), GMAT or GRE strongly recommended",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: no minimum score stated",
+      "summary_sha": "0731ea72b0bb2b54"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master Finance, Year 2: Financial Markets (203)",
@@ -301,22 +361,28 @@
     "academic": {
      "text": "Master 1 in Finance at Dauphine with required courses passed, or Dauphine students majoring in economics, management or mathematics, or non-Dauphine students holding or completing a Master's degree (MSc)",
      "quote": "Who are non-Dauphine students holding or completing a Master’s degree (MSc).",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: Master 1 in Finance at Dauphine with required courses passed, or Dauphine students majoring in economics, management or mathematics",
+     "summary_sha": "409fd167c5c2bccd"
     },
     "prerequisites": [
      {
       "text": "Minimum of 6 months of professional experience (internship) in financial markets or quantitative asset management",
       "quote": "All candidates must have a minimum of 6 months of professional experience (internship) in financial markets or quantitative asset management.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "b497b473c0de3166"
      },
      {
       "text": "TOEFL iBT results no more than two years old, not requested for English native speakers; TOEIC not accepted; GMAT or GRE highly recommended",
       "quote": "TOEFL iBT results dating back no more than two years(not requested for English native speakers). TOEIC not accepted.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: GMAT or GRE highly recommended",
+      "summary_sha": "4ade4b0abb5961a2"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master Finance, Year 2: Research in Finance",
@@ -326,17 +392,21 @@
     "academic": {
      "text": "First year of a Master (240 ECTS or equivalent) in management, economics, econometrics, mathematics, computer science or similar fields",
      "quote": "Students who have successfully completed the first year of a Master (240 ECTS or equivalent)",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: in management, economics, econometrics, mathematics, computer science or similar fields",
+     "summary_sha": "9ce91513c5cae5e6"
     },
     "prerequisites": [
      {
       "text": "Research statement in English of at most 7 pages, references included",
       "quote": "Applicants will be required to write a research statement, in English, that should not be longer than 7 pages, references included.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "ff1dbd8fa0b7efd1"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master Finance, Year 2: Asset Management (222)",
@@ -346,17 +416,21 @@
     "academic": {
      "text": "Four-year degree (BAC+4, 240 ECTS) or equivalent at a university, business or engineering school, in finance, economics, or mathematics/computer science",
      "quote": "Students who have completed a BAC+4 degree (four-year university degree worth 240 ECTS credits) or the equivalent at a university, business or engineering school, or another institution of institution of higher education",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: in finance, economics, or mathematics/computer science",
+     "summary_sha": "5f91f970da39e1d8"
     },
     "prerequisites": [
      {
       "text": "Results of one English test (IELTS, TOEFL-IBT, TOEIC or Cambridge English) included with the application; no elimination round",
       "quote": "Include the results of one of the three following English tests: IELTS, TOEFL-IBT, TOEIC, Cambridge English. There is no elimination round.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: one of the three (lists four tests)",
+      "summary_sha": "27e35d2ec0a99a9e"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master Finance, Year 2: Auditing and Financial Advising (229)",
@@ -366,10 +440,12 @@
     "academic": {
      "text": "Four-year degree (BAC+4, 240 ECTS) or equivalent; graduates in management, finance, economics, accounting, law, applied mathematics or business informatics, or from an IEP or business/engineering Grande Ecole",
      "quote": "Students who have completed a BAC+4 degree (a four-year degree worth 240 ECTS credits) or equivalent at Dauphine or another university or institution of higher education",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: specific fields of study and IEP/Grande Ecole graduates",
+     "summary_sha": "527e2d67a25d5134"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master Finance, Year 2: Corporate Finance and Financial Engineering (225)",
@@ -379,7 +455,9 @@
     "academic": {
      "text": "Completed a four-year degree (BAC+4, 240 ECTS) or equivalent at Dauphine or another university or higher education institution",
      "quote": "Students who have completed a BAC+4 degree (a four-year degree worth 240 ECTS credits) or equivalent at Dauphine or another university or institution of higher education",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "22ac13f097a69ad1"
     }
    },
    "status": "机器核对"
@@ -392,10 +470,12 @@
     "academic": {
      "text": "Four-year degree (BAC+4, 240 ECTS) or equivalent; graduates in economics, management, finance or law, or from a business/engineering grande ecole or IEP",
      "quote": "Completed a BAC+4 degree (four-year university degree worth 240 ECTS credits), or the equivalent from a university or institution of institution of higher education",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: graduates in economics, management, finance or law, or from a business/engineering grande ecole or IEP",
+     "summary_sha": "29139d792fcae8e5"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master Finance, Year 2: Investment Banking and Markets (268)",
@@ -405,17 +485,21 @@
     "academic": {
      "text": "Four-year degree (BAC+4, 240 ECTS) or equivalent; finance, economics, econometrics or mathematics with honors, or a business or engineering Grande Ecole",
      "quote": "Completed a BAC+4 degree (four-year university degree worth 240 ECTS credits), or the equivalent from a university or institution of institution of higher education",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: finance, economics, econometrics or mathematics with honors, or a business or engineering Grande Ecole",
+     "summary_sha": "36ca10241c6f75df"
     },
     "prerequisites": [
      {
       "text": "A good TOEFL or TOEIC score is a plus (recommended, no score stated)",
       "quote": "A good TOEFL or TOEIC score is a plus.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "e934a764818d1f9e"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master Finance, Year 2: Real Estate Management (246)",
@@ -425,13 +509,17 @@
     "academic": {
      "text": "Completed a four-year degree (BAC+4, 240 ECTS) or equivalent at Dauphine or another university or higher education institution",
      "quote": "Students who have completed a BAC+4 degree (a four-year degree worth 240 ECTS credits) or equivalent at Dauphine or another university or institution of higher education",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "22ac13f097a69ad1"
     },
     "prerequisites": [
      {
       "text": "TOEIC test or equivalent test certifying at least a B2 level",
       "quote": "TOEIC test or equivalent test certifying at least a B2 level",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "c77c63183ae81f7e"
      }
     ]
    },
@@ -445,13 +533,17 @@
     "academic": {
      "text": "Four-year degree (BAC+4, 240 ECTS) or equivalent at Dauphine, another university, a business grande ecole, an IEP or another institution in France or abroad",
      "quote": "Students who have completed a BAC+4 degree (a four-year degree worth 240 ECTS credits) or equivalent at Dauphine or another university, a grande ecole specializing in business, an Institut d'Etudes Politiques, or another institution of higher education in France or abroad",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d8ea63c277ee6dc2"
     },
     "prerequisites": [
      {
       "text": "Applicants with insufficient training in economics must take a refresher course before the school year begins",
       "quote": "If a candidate does not have sufficient training in economics, they will be required to take a refresher course before the school year begins.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "42b95094fb5f5084"
      }
     ]
    },
@@ -465,10 +557,12 @@
     "academic": {
      "text": "Four-year degree (BAC+4, 240 ECTS) or equivalent in management science, economic science or applied mathematics for social sciences; or third year at a partner engineering school",
      "quote": "Students who have completed a BAC+4 degree (a four-year degree worth 240 ECTS credits) or equivalent at Dauphine, another university, a business school, an institute of political studies, an engineering school, or another institution of higher education in one of the following disciplines: management science, economic science, applied mathematics for social sciences.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: or third year at a partner engineering school",
+     "summary_sha": "06685779b10469e9"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master Information Systems, Networks and Digital Technology, Year 2: Telecommunications and Media Management (226)",
@@ -478,13 +572,17 @@
     "academic": {
      "text": "Completed a four-year degree (BAC+4, 240 ECTS) or equivalent at Dauphine or another university or higher education institution",
      "quote": "Students who have completed a BAC+4 degree (a four-year degree worth 240 ECTS credits) or equivalent at Dauphine or another university or institution of higher education",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "22ac13f097a69ad1"
     },
     "prerequisites": [
      {
       "text": "French-language test for non-Francophone students",
       "quote": "A French-language test for non-Francophone students.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "0eb4ce3c35965ce4"
      }
     ]
    },
@@ -498,22 +596,28 @@
     "academic": {
      "text": "Four-year degree (BAC+4, 240 ECTS) or equivalent in economics, economic sciences, management science, political science or engineering sciences; knowledge of economic theory and quantitative methods required",
      "quote": "Students who have completed a BAC+4 degree (a four-year degree worth 240 ECTS credits) or equivalent at Dauphine or another university or institute of higher education",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: fields of study (economics, management, political science, engineering) and required knowledge of economic theory and quantitative methods",
+     "summary_sha": "34a3dc0c03ceecde"
     },
     "prerequisites": [
      {
       "text": "International students should have DALF C1-level French",
       "quote": "International students should have DALF C1-level French skills.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "75c51d846a7a0668"
      },
      {
       "text": "High level of English and French (no test score stated)",
       "quote": "High level of English and French.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "1bfecb91552b0128"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master International Affairs and Development, Year 2: International Economic Expertise",
@@ -523,22 +627,28 @@
     "academic": {
      "text": "Four-year degree (BAC+4, 240 ECTS) or equivalent in economics, social sciences or management science; IEP or business Grande Ecole graduates",
      "quote": "Students who have completed a BAC+4 degree (a four-year degree worth 240 ECTS credits) or equivalent at Dauphine or another university or institute of higher education",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: in economics, social sciences or management science; IEP or business Grande Ecole graduates",
+     "summary_sha": "6e886c063f24f7f2"
     },
     "prerequisites": [
      {
       "text": "International students should have DALF C1-level French",
       "quote": "International students should have DALF C1-level French skills.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "75c51d846a7a0668"
      },
      {
       "text": "Fluency in English required (no test score stated)",
       "quote": "Fluency in English required.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "ce19fac9f90184e0"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master International Affairs and Development, Year 2: International Affairs (212)",
@@ -548,17 +658,21 @@
     "academic": {
      "text": "Four-year degree (BAC+4, 240 ECTS) or equivalent at a university, engineering school or other higher education institution, in management, applied economics, social sciences, political science, law or engineering sciences",
      "quote": "Students who have completed a BAC+4 degree (a four-year degree worth 240 ECTS credits) or equivalent at a university, an engineering school, or another institution of higher education.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: fields of study (management, applied economics, social sciences, political science, law, engineering sciences)",
+     "summary_sha": "0c3a0b2de1c14333"
     },
     "prerequisites": [
      {
       "text": "English test and interviews for shortlisted candidates",
       "quote": "English test and interviews with shortlisted candidates from 8am.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "d7427122c4f36c99"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master International Affairs and Development, Year 2: International Supply Chain (217)",
@@ -568,17 +682,21 @@
     "academic": {
      "text": "Four-year degree (BAC+4, 240 ECTS) or equivalent (apprenticeship training), in management science, economic sciences, applied economics, MASS, MIAGE, mathematics and statistics, or an engineering/business grande ecole diploma",
      "quote": "Students who have completed a BAC+4 degree (a four-year degree worth 240 ECTS credits) or equivalent at Dauphine or another university or institution of higher education",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: specific fields of study (management science, economics, MASS, MIAGE, etc.) and apprenticeship training",
+     "summary_sha": "12f28e605eb3f0bc"
     },
     "prerequisites": [
      {
       "text": "Apprenticeship track: candidate must be under 30 on December 1",
       "quote": "Be under 30 on December 1.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: apprenticeship track",
+      "summary_sha": "5e59fe322a9f9b24"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master Management and Organizations, Year 2: Business Transformation (MEM 227)",
@@ -588,17 +706,21 @@
     "academic": {
      "text": "Four-year degree (BAC+4, 240 ECTS) or equivalent in management or social sciences; BBA holders are not admitted to Year 2",
      "quote": "Have graduated with a BAC+4 degree (a four-year degree worth 240 ECTS credits) or equivalent from Dauphine or another university or institution of higher education in the following areas: management, social sciences",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: BBA holders are not admitted to Year 2",
+     "summary_sha": "3aaf39d12f1dbda9"
     },
     "prerequisites": [
      {
       "text": "English level required for the double diploma with LUISS: TOEFL iBT 90, level C1 or equivalent TOEIC",
       "quote": "Level of English required for the Double-Diploma with LUISS: TOEFL IBT 90, Level C1 or equivalent TOIEC",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "0f870e39cc16fd4b"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master Management and Organizations, Year 2: Business Consulting and Digital Organization (128)",
@@ -608,17 +730,21 @@
     "academic": {
      "text": "Four-year degree (BAC+4, 240 ECTS) or equivalent in management, finance, social science and humanities; IEP, business or engineering school, or ENS degree",
      "quote": "Students who have completed a BAC+4 degree (four-year university degree worth 240 ECTS credits), or the equivalent at a university or institution of higher learning.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: in management, finance, social science and humanities; IEP, business or engineering school, or ENS degree",
+     "summary_sha": "bcb7f17ddde7fe85"
     },
     "prerequisites": [
      {
       "text": "English-language fluency (no test score stated)",
       "quote": "English-language fluency.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "b91b3310f9b96d1d"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master Management and Organizations, Year 2: Management in the Global South (294)",
@@ -628,7 +754,9 @@
     "academic": {
      "text": "Four-year degree (BAC+4, 240 ECTS) or equivalent at Dauphine, another university, an engineering school or another institution of higher education",
      "quote": "Students who have completed a BAC+4 degree (a four-year degree worth 240 ECTS credits) or equivalent at Dauphine, another university, an engineering school, or another institution of higher education",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "7389d06a8ecb4cc7"
     }
    },
    "status": "机器核对"
@@ -641,17 +769,21 @@
     "academic": {
      "text": "Four-year degree (BAC+4, 240 ECTS) or equivalent in management or economics, or a five-year degree (BAC+5, 300 ECTS) in France or abroad",
      "quote": "Students who have completed a BAC+4 degree (a four-year degree worth 240 ECTS credits) or equivalent at Dauphine or another university, a business or engineering school, an Institut d'Etudes Politiques, or another institution of higher education in France or abroad in the following areas: management, economics",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: five-year degree (BAC+5, 300 ECTS)",
+     "summary_sha": "70ab328981f42d44"
     },
     "prerequisites": [
      {
       "text": "Fluency in English required; candidates lacking it but otherwise strong may be admitted and must improve before the school year begins",
       "quote": "Fluency in English required",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: candidates lacking it may be admitted and must improve before the school year begins",
+      "summary_sha": "1575462322fd6109"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master Research in Management, Year 1",
@@ -661,7 +793,9 @@
     "academic": {
      "text": "Three-year degree (BAC+3, 180 ECTS) or a recognized equivalent in management, social sciences, economics, or other fields upon review",
      "quote": "Students with a BAC+3 (equivalent to 180 ECTS credits) or a recognized equivalent diploma in management, social sciences, economics, or other fields upon review of the application.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c1f8be8d2248d47e"
     }
    },
    "status": "机器核对"
@@ -674,13 +808,17 @@
     "academic": {
      "text": "Three-year degree (BAC+3, 180 ECTS) or equivalent in the field of management",
      "quote": "Students who have completed a BAC+3 degree (a three-year degree worth 180 ECTS) or equivalent at Dauphine or another university or institution of higher education in the field of management.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "b143185cb3e9a54e"
     },
     "prerequisites": [
      {
       "text": "Courses taken in general and financial accounting, management accounting, and finance",
       "quote": "applicants must have taken courses in general and financial accounting, management accounting, and finance.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "4fe1daeb9a4b6773"
      }
     ]
    },
@@ -694,18 +832,24 @@
     "academic": {
      "text": "Bachelor's degree (BSc or BEng) with solid basic education in fundamental physics and mathematics for M1; direct M2 entry with 60 validated M1 ECTS in a compatible field",
      "quote": "The Master’s in Fundamental Physics (first year, M1)  is available to students with Bachelor’s degrees (Bachelor of Science or Bachelor of Engineering) who have received a solid basic education in fundamental physics and mathematics.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: direct M2 entry with 60 validated M1 ECTS in a compatible field",
+     "summary_sha": "31275f339f8a6cf5"
     },
     "prerequisites": [
      {
       "text": "English: taught in English, C1 level required for admission",
       "quote": "The Master’s program is taught in English, and a C1 level is required for admission to the ICFP program.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "2dcbf9286c7aeff6"
      },
      {
       "text": "Strong background in quantum physics and statistical physics expected",
       "quote": "Candidates are expected to have a strong background in quantum physics and statistical physics.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "79eea086779d9a53"
      }
     ],
     "deadlines": [
@@ -713,11 +857,13 @@
       "label": "Master 1 (M1) application, 2027/2028 intake",
       "date": "2027-01-21",
       "quote": "January 21, 2027: Application deadline",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Master 1 (M1) application, 2027/2028 intake",
+      "summary_sha": "c94c8f3a2bdea98d"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Master Quantum Engineering (ENS, ESPCI, Chimie ParisTech, Mines Paris, Observatoire de Paris - PSL)",
@@ -727,27 +873,33 @@
     "academic": {
      "text": "M1: B.Sc in Physics, Physics-Chemistry, Engineering science etc.; M2: M1 level (240 ECTS) in Physics, Physics-Chemistry, Engineering science etc.",
      "quote": "B.Sc in Physics, Physics-Chemistry, Engineering science etc.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: M2: M1 level (240 ECTS) requirement",
+     "summary_sha": "cf771d3a0d1ceee4"
     },
     "prerequisites": [
      {
       "text": "Minimum English level B2/C1 required; programme taught in English (C1 recommended)",
       "quote": "A minimum level of English B2/C1 is required.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: programme taught in English (C1 recommended)",
+      "summary_sha": "72103e62041a18de"
      },
      {
       "text": "Excellent background in Physics and Mathematics is required",
       "quote": "Excellent background in Physics and Mathematics is required.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "63e82170459a27ba"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   }
  ],
  "verification": {
   "programs": 36,
-  "机器核对": 36,
-  "待人工": 0
+  "机器核对": 15,
+  "待人工": 21
  }
 }

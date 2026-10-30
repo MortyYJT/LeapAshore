@@ -1,0 +1,70 @@
+{
+ "school_name_en": "The University of Texas at Austin",
+ "program": {
+  "name": "Master of Science in Computer Science (MSCS)",
+  "url": "https://www.cs.utexas.edu/graduate/apply",
+  "snapshot_sha256": "fa71b277e5da88299ba0204dc9aa379055dd4d584089171fe7b6b4d5a677dbdf",
+  "fields": {
+   "academic": {
+    "text": "Bachelor's degree or comparable foreign degree; GPA of 3.0 or higher on a 4.0 scale in upper-division courses and any graduate work",
+    "quote": "To be eligible for admission, you’ll need a GPA of 3.0 or higher (on a 4.0 scale) in upper-division courses and any graduate work you’ve completed.",
+    "check": "ok"
+   },
+   "toefl": {
+    "overall": 79,
+    "quote": "TOEFL: 79 (120 scale) or 4 (6-point scale) internet-based test",
+    "scale_note": "TOEFL stated on 0-120 and 1-6 scales",
+    "source_sha256": "f481517327b8759b4de11bd9674e75d124be85f58b6c638cadf85b8c6425c27b",
+    "source_url": "https://graduate.utexas.edu/admissions/apply/international",
+    "check": "ok"
+   },
+   "ielts": {
+    "overall": 6.5,
+    "quote": "IELTS: An overall band of 6.5 on the Academic Examination",
+    "source_sha256": "f481517327b8759b4de11bd9674e75d124be85f58b6c638cadf85b8c6425c27b",
+    "source_url": "https://graduate.utexas.edu/admissions/apply/international",
+    "check": "ok"
+   }
+  },
+  "status": "机器核对"
+ },
+ "response": {
+  "id": "a4695e27-186c-471a-9463-d6b1f88ccbec",
+  "object": "chat.completion",
+  "created": 1793347221,
+  "model": "deepseek-flash",
+  "choices": [
+   {
+    "index": 0,
+    "message": {
+     "role": "assistant",
+     "content": "",
+     "tool_calls": [
+      {
+       "index": 0,
+       "id": "call_00_QX9gyYDI178OBG1oTMYo9019",
+       "type": "function",
+       "function": {
+        "name": "Verdicts",
+        "arguments": "{\"verdicts\": [{\"id\": 1, \"supported\": false, \"unsupported\": \"Bachelor's degree or comparable foreign degree\"}, {\"id\": 2, \"supported\": true}, {\"id\": 3, \"supported\": true}]}"
+       }
+      }
+     ]
+    },
+    "logprobs": null,
+    "finish_reason": "tool_calls"
+   }
+  ],
+  "usage": {
+   "prompt_tokens": 1028,
+   "completion_tokens": 82,
+   "total_tokens": 1110,
+   "prompt_tokens_details": {
+    "cached_tokens": 894
+   },
+   "prompt_cache_hit_tokens": 894,
+   "prompt_cache_miss_tokens": 134
+  },
+  "system_fingerprint": "bc19ba97cbe016479903222bb1578db6"
+ }
+}

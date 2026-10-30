@@ -32,14 +32,18 @@
      "quote": "2) English Proficiency: TOEFL iBT 80, TEPS 551, IELTS 6.0 or higher",
      "source_sha256": "74f1c5ca84c8049b33d0dde9fd2092374f6f066a9750aa85dcce312582240772",
      "source_url": "https://en.snu.ac.kr/admission/overview/faq/admission",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d39b2537518a9f5a"
     },
     "toefl": {
      "overall": 80,
      "quote": "2) English Proficiency: TOEFL iBT 80, TEPS 551, IELTS 6.0 or higher",
      "source_sha256": "74f1c5ca84c8049b33d0dde9fd2092374f6f066a9750aa85dcce312582240772",
      "source_url": "https://en.snu.ac.kr/admission/overview/faq/admission",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "1116314a1dcf3336"
     },
     "prerequisites": [
      {
@@ -47,14 +51,18 @@
       "quote": "1) Korean Proficiency: TOPIK level 3 or higher",
       "source_sha256": "74f1c5ca84c8049b33d0dde9fd2092374f6f066a9750aa85dcce312582240772",
       "source_url": "https://en.snu.ac.kr/admission/overview/faq/admission",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: alternative to English proficiency; either proof of Korean or English is required",
+      "summary_sha": "34fdba85377e9b99"
      },
      {
       "text": "Either proof of Korean or English proficiency is required; SNU Korean Language Center Level 4 or higher is also accepted as Korean proof",
       "quote": "Either proof of Korean or English proficiency is required for the application.",
       "source_sha256": "74f1c5ca84c8049b33d0dde9fd2092374f6f066a9750aa85dcce312582240772",
       "source_url": "https://en.snu.ac.kr/admission/overview/faq/admission",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: SNU Korean Language Center Level 4 or higher is also accepted",
+      "summary_sha": "c33ed1e9bfb93198"
      }
     ],
     "deadlines": [
@@ -64,11 +72,13 @@
       "quote": "Online Application: Monday, July 6, 2026, 10:00 - Thursday, July 9, 2026, 17:00 (KST)",
       "source_sha256": "0c7d0978ad008abb74ef13d9cbac24b4711ef61a1a9a80a0dca70310e82a3fa9",
       "source_url": "https://en.snu.ac.kr/admission/overview/notice?md=v&bbsidx=172490",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "ad1e486d93ba0e7a"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Full-time MBA, Graduate School of Business (SNU MBA) - 2027 admission",
@@ -78,18 +88,24 @@
     "academic": {
      "text": "International applicants must have completed the whole of their education abroad, equivalent to Korea's 12 years of schooling plus the undergraduate degree; work experience is not required",
      "quote": "the entire year of your education, equivalent to Korea’s 12 years of education (elementary, middle, and high school) in addition to the undergraduate degree, should be completed abroad.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: work experience is not required",
+     "summary_sha": "3f0b318ee47eb999"
     },
     "prerequisites": [
      {
       "text": "No work experience required",
       "quote": "No. Candidates without job experience are also eligible to apply.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "0432d8e60fd959c1"
      },
      {
       "text": "English test scores are exempt for applicants with a bachelor's or higher degree from an institution in a country where English is the official language; otherwise applicants must promise to take the TEPS special exam run by SNU Language Education Institute",
       "quote": "you are exempted from the requirement to submit the test scores.",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: bachelor's or higher degree from an English-speaking country; promise to take TEPS special exam",
+      "summary_sha": "dd9a9f014646ba68"
      }
     ],
     "deadlines": [
@@ -97,11 +113,13 @@
       "label": "2027 Full-time MBA, online application closes",
       "date": "2027-03-12",
       "quote": "February 25, 2027 (Thur) 10:00 ~ March 12 (Fri), 2027 17:00",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "7e133c167c29b2c7"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Graduate School of Public Administration (GSPA), Master's Program - international admission",
@@ -120,7 +138,7 @@
  ],
  "verification": {
   "programs": 4,
-  "机器核对": 2,
-  "待人工": 2
+  "机器核对": 0,
+  "待人工": 4
  }
 }

@@ -89,7 +89,9 @@
     "academic": {
      "text": "Bachelor graduates with a degree in computer science, mathematics, physics, or engineering with an advanced level of English; no German certificate needed",
      "quote": "The program is aimed at Bachelor graduates with a degree in computer science, mathematics, physics, or engineering with an advanced level of English.",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: no German certificate needed",
+     "summary_sha": "83b70b69fadd34e0"
     },
     "china_requirement": {
      "text": "Applicants from China and India must upload an APS certificate; the university will not issue an admission letter without it",
@@ -103,14 +105,18 @@
      "quote": "language certificate (European Language Level English B2 or equivalent or TOEFL iBT with score 90 or better out of 120 or IELTS with score 6.5 or better).",
      "source_sha256": "ccf85d5f0a5a7db829c585d656ebcce64b7c8627337b33b567400639c9700635",
      "source_url": "https://mastersc.iwr.uni-heidelberg.de/application-admission/how-to-apply",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d2aea03b10c571bc"
     },
     "toefl": {
      "overall": 90,
      "quote": "language certificate (European Language Level English B2 or equivalent or TOEFL iBT with score 90 or better out of 120 or IELTS with score 6.5 or better).",
      "source_sha256": "ccf85d5f0a5a7db829c585d656ebcce64b7c8627337b33b567400639c9700635",
      "source_url": "https://mastersc.iwr.uni-heidelberg.de/application-admission/how-to-apply",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "c9a9d79064a11f69"
     },
     "prerequisites": [
      {
@@ -118,25 +124,31 @@
       "quote": "list/table of prior modules in a) mathematics and b) computer science (separated) in a university program listing name of the module, credits, grade",
       "source_sha256": "ccf85d5f0a5a7db829c585d656ebcce64b7c8627337b33b567400639c9700635",
       "source_url": "https://mastersc.iwr.uni-heidelberg.de/application-admission/how-to-apply",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "dca8d7f336d78949"
      },
      {
       "text": "Bachelor education should already contain core mathematics and computer science topics (the FAQ lists them in a table)",
       "quote": "As a guideline the following topics should be present from the bachelor education, secondary teaching:",
       "source_sha256": "d1c84a7aeac544387cedf4a0cb1c675b287163af51ca29104b96cf31b6fd3cd5",
       "source_url": "https://mastersc.iwr.uni-heidelberg.de/application-admission/faq-application",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: the FAQ lists them in a table",
+      "summary_sha": "33fbee412f1171b8"
      },
      {
       "text": "A German language certificate is not needed",
       "quote": "No, a German language certificate is not needed to apply.",
       "source_sha256": "d1c84a7aeac544387cedf4a0cb1c675b287163af51ca29104b96cf31b6fd3cd5",
       "source_url": "https://mastersc.iwr.uni-heidelberg.de/application-admission/faq-application",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "34bcc3cd443cdaca"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Economics (M.Sc.)",
@@ -148,21 +160,27 @@
      "quote": "The grade point average of the first academic degree has to be at least 2.7 or better, on a German grading system from 1.0 (highest grade) to 4.0 (lowest passing grade, 5.0 not passed). Applicants with a lower grade point average than 2.7 won’t be accepted.",
      "source_sha256": "972642bec568749808462775f0b02797236e1fef970e46be19dc32aabd91b0f4",
      "source_url": "https://www.awi.uni-heidelberg.de/en/academics/msc-economics",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: first degree in Economics / 40% Economics / six semesters / natural-science minor 35 ECTS",
+     "summary_sha": "83176a03de616867"
     },
     "ielts": {
      "min_band": 6.0,
      "quote": "International English Language Test System (IELTS) with a result of 6,5 or better. No band below 6.0.",
      "source_sha256": "972642bec568749808462775f0b02797236e1fef970e46be19dc32aabd91b0f4",
      "source_url": "https://www.awi.uni-heidelberg.de/en/academics/msc-economics",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "f6507c0fc5ef0ed9"
     },
     "toefl": {
      "overall": 90,
      "quote": "Test of English as a Foreign Language (TOEFL) with at least 570 paper-based or 230 computer-based or 90 internet-based TOEFL-Test Points",
      "source_sha256": "972642bec568749808462775f0b02797236e1fef970e46be19dc32aabd91b0f4",
      "source_url": "https://www.awi.uni-heidelberg.de/en/academics/msc-economics",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "79388f6f623251cd"
     },
     "prerequisites": [
      {
@@ -170,25 +188,31 @@
       "quote": "The prospective student has to have a first university degree in a study program in Economics or with at least 40% in Economics with a minimum of six semesters. Students of natural sciences (mathematics, physics, informatics, or statistics) have to have a minor in Economics with at least 35 ECTS.",
       "source_sha256": "972642bec568749808462775f0b02797236e1fef970e46be19dc32aabd91b0f4",
       "source_url": "https://www.awi.uni-heidelberg.de/en/academics/msc-economics",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "466286f4f97487f1"
      },
      {
       "text": "IELTS 6.5 or better (written 6,5 on the page), no band below 6.0",
       "quote": "International English Language Test System (IELTS) with a result of 6,5 or better. No band below 6.0.",
       "source_sha256": "972642bec568749808462775f0b02797236e1fef970e46be19dc32aabd91b0f4",
       "source_url": "https://www.awi.uni-heidelberg.de/en/academics/msc-economics",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "b38758ad0eb4569e"
      },
      {
       "text": "English certificates must not be older than four years; German is not required; an exchange semester does not replace the English certificate",
       "quote": "The documents must not have been issued more than four years ago. German language skills do not have to be proven.",
       "source_sha256": "972642bec568749808462775f0b02797236e1fef970e46be19dc32aabd91b0f4",
       "source_url": "https://www.awi.uni-heidelberg.de/en/academics/msc-economics",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: exchange semester does not replace the English certificate",
+      "summary_sha": "5596fd1dc348b7fa"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Molecular Biosciences (M.Sc.)",
@@ -200,7 +224,9 @@
      "quote": "We welcome applications from students who have earned, or expect to earn, a relevant bachelor's degree with a grade above average (Guidelines: German system: minimum 2.4; UK system: 2.1 or better.)",
      "source_sha256": "0a1dca60428c98805a57f24e5123e865f12bc2c09333b3b9dcfbc2775288ae81",
      "source_url": "https://www.bio.uni-heidelberg.de/en/study-and-teaching/study-programmes/master-of-science-molecular-biosciences/application",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: generally in the biological sciences",
+     "summary_sha": "0beba7de081e4540"
     },
     "china_requirement": {
      "text": "APS certificate required for degrees from China, Vietnam or India, and must be submitted by the application deadline",
@@ -214,7 +240,9 @@
      "quote": "a) a Test of English as a Foreign Language (TOEFL) with at least 570 paper-based TOEFL-Test or 230 computer-based TOEFL-Test or 90 internet-based TOEFL-Test.",
      "source_sha256": "0ddec4d7df1e4403b48dff26e6177bdf2fb4cba43f012eee0d7c3af167aad053",
      "source_url": "https://www.bio.uni-heidelberg.de/en/faq",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "06aa2b50daa43da1"
     },
     "prerequisites": [
      {
@@ -222,14 +250,18 @@
       "quote": "b) an International English Language Test System with at least 6,5",
       "source_sha256": "0ddec4d7df1e4403b48dff26e6177bdf2fb4cba43f012eee0d7c3af167aad053",
       "source_url": "https://www.bio.uni-heidelberg.de/en/faq",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Cambridge CAE, bachelor thesis in English, English interview if shortlisted",
+      "summary_sha": "ca6f31d6f4ab7e97"
      },
      {
       "text": "Only English is required, no German language certificate",
       "quote": "Only English is required to join the program.",
       "source_sha256": "0ddec4d7df1e4403b48dff26e6177bdf2fb4cba43f012eee0d7c3af167aad053",
       "source_url": "https://www.bio.uni-heidelberg.de/en/faq",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "38680e19b1c52e66"
      }
     ],
     "deadlines": [
@@ -239,11 +271,13 @@
       "quote": "The deadline for the next round of selection is March 15, 2027.",
       "source_sha256": "0a1dca60428c98805a57f24e5123e865f12bc2c09333b3b9dcfbc2775288ae81",
       "source_url": "https://www.bio.uni-heidelberg.de/en/study-and-teaching/study-programmes/master-of-science-molecular-biosciences/application",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Winter semester 2027 intake, portal opens in February",
+      "summary_sha": "79e06ded026f1f40"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Translational Medical Research (M.Sc.)",
@@ -255,7 +289,9 @@
      "quote": "Bachelor degree at least equivalent to a European undergraduate degree of 240 ECTS (usually at least four years) with above-average grades. The degree needs to be in medicine or the life sciences (e.g. biology, biochemistry, pharmaceutical sciences, biomedical sciences, genetics, molecular biology, biotechnology or closely related fields). Bioscientific and/or medical content must make up at least 60% of the curriculum studied.",
      "source_sha256": "2d1a3121f8700f71f25629ddd1fb7dcee4fe7a2c7a4e9b88dbc18b5dae47d754",
      "source_url": "https://www.umm.uni-heidelberg.de/medical-faculty-mannheim/master-programmes/translational-medical-research-master/application",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "0443df7cdf15625b"
     },
     "china_requirement": {
      "text": "APS approval is mandatory for applicants with education in China, Vietnam or India",
@@ -270,7 +306,9 @@
      "quote": "IELTS – Academic: Minimum overall score of 6.5, with a minimum of 6.0 in each section",
      "source_sha256": "2d1a3121f8700f71f25629ddd1fb7dcee4fe7a2c7a4e9b88dbc18b5dae47d754",
      "source_url": "https://www.umm.uni-heidelberg.de/medical-faculty-mannheim/master-programmes/translational-medical-research-master/application",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "2b1ce92d7bc13768"
     },
     "toefl": {
      "overall": 92,
@@ -278,7 +316,9 @@
      "quote": "TOEFL iBT (Internet-Based Test): Minimum overall score of 92,  with a minimum of 21 in each section",
      "source_sha256": "2d1a3121f8700f71f25629ddd1fb7dcee4fe7a2c7a4e9b88dbc18b5dae47d754",
      "source_url": "https://www.umm.uni-heidelberg.de/medical-faculty-mannheim/master-programmes/translational-medical-research-master/application",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "8b95ba669a2c7421"
     },
     "prerequisites": [
      {
@@ -286,25 +326,31 @@
       "quote": "Proof of practical experience in basic bioscientific laboratory methods of at least 1 ECTS credit (~30h), if this is not clear from your transcript of records.",
       "source_sha256": "2d1a3121f8700f71f25629ddd1fb7dcee4fe7a2c7a4e9b88dbc18b5dae47d754",
       "source_url": "https://www.umm.uni-heidelberg.de/medical-faculty-mannheim/master-programmes/translational-medical-research-master/application",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: unless waived by a basic laboratory course at the start of the programme",
+      "summary_sha": "80cc3404e7aeec24"
      },
      {
       "text": "Two letters of recommendation, CV and motivation letter in English are required",
       "quote": "Please note that only complete applications will be considered. This includes proof of English language proficiency according to the examination regulations plus two recommendation letters that have to arrive before the deadline (March 15).",
       "source_sha256": "2d1a3121f8700f71f25629ddd1fb7dcee4fe7a2c7a4e9b88dbc18b5dae47d754",
       "source_url": "https://www.umm.uni-heidelberg.de/medical-faculty-mannheim/master-programmes/translational-medical-research-master/application",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: CV and motivation letter in English",
+      "summary_sha": "97d17907c3df76ef"
      },
      {
       "text": "Only IELTS Academic and non-institutional TOEFL are accepted; scores must be less than two years old",
       "quote": "IELTS and TOEFL scores must be less than two years old (this rule does not apply to CAE and CPE certificates).",
       "source_sha256": "2d1a3121f8700f71f25629ddd1fb7dcee4fe7a2c7a4e9b88dbc18b5dae47d754",
       "source_url": "https://www.umm.uni-heidelberg.de/medical-faculty-mannheim/master-programmes/translational-medical-research-master/application",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Only IELTS Academic and non-institutional TOEFL are accepted",
+      "summary_sha": "4fcc15ee83ce087a"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Data and Computer Science (M.Sc.)",
@@ -317,11 +363,13 @@
       "quote": "Our master’s degree program in Data and Computer Science is access-restricted with regard to requirements and qualifications, including a proof of English language proficiency and successful completion of some core Computer Science courses, as detailed below.",
       "source_sha256": "9644cdb3841e317eaf333169bfb6239790178a515c58698b422a2e6c0db21af9",
       "source_url": "https://www.informatik.uni-heidelberg.de/studium/master/dacs/application",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: details in the German-only admission regulations PDF",
+      "summary_sha": "171e1b3a5c6cc964"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Physics (M.Sc.)",
@@ -334,7 +382,9 @@
       "quote": "Der Masterstudiengang wird grundsätzlich in englischer Sprache angeboten.",
       "source_sha256": "6b3edf2c807d8626fb2641b9a203b6345ccac24a659851ea1448502500f3f471",
       "source_url": "https://www.physik.uni-heidelberg.de/studium/master",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "48f8dd6d69a69d1e"
      }
     ]
    },
@@ -357,10 +407,12 @@
      "quote": "Applicants must hold an above-average Bachelor’s degree in one of the focus disciplines or a closely related field.",
      "source_sha256": "7b32c5b7656e6934b6d7d8829a59505e144c7a0790dc86b62d9b08d5b0f40638",
      "source_url": "https://www.sai.uni-heidelberg.de/de/node/478",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: other disciplines may be considered with significant academic or professional expertise",
+     "summary_sha": "b6acbb8a1342f8f3"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Mathematics of Machine Learning and Data Science (M.Sc.)",
@@ -372,14 +424,18 @@
      "quote": "You can only be admitted if you have a Bachelor of Science in Mathematics (or scientific computing, physics, etc.) asserting a sufficiently broad mathematical education, which requires a final grade <= 2.3.",
      "source_sha256": "ec253bdd1a06a8749f83050bab2f627314ae5fb50f14991eee920a9ce650155c",
      "source_url": "https://www.mathinf.uni-heidelberg.de/en/studies/programs/master-mmlds",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "d52accb8a66b74c2"
     },
     "toefl": {
      "overall": 72,
      "quote": "TOEFL test, score >= 532 paper-based; score >= 72 if internet-based",
      "source_sha256": "ec253bdd1a06a8749f83050bab2f627314ae5fb50f14991eee920a9ce650155c",
      "source_url": "https://www.mathinf.uni-heidelberg.de/en/studies/programs/master-mmlds",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "4e1979eafb467d28"
     },
     "prerequisites": [
      {
@@ -387,18 +443,22 @@
       "quote": "International English Language Test System (IELTS Academic), score >= 5,5.",
       "source_sha256": "ec253bdd1a06a8749f83050bab2f627314ae5fb50f14991eee920a9ce650155c",
       "source_url": "https://www.mathinf.uni-heidelberg.de/en/studies/programs/master-mmlds",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "unsupported: Cambridge scale 160 or an English-language bachelor",
+      "summary_sha": "0c2045d7196a89df"
      },
      {
       "text": "Knowledge in selected core areas of mathematics and sufficient English proficiency must be proven",
       "quote": "You need to provide proof of knowledge in selected core areas of Mathematics and of sufficient proficiency in English.",
       "source_sha256": "ec253bdd1a06a8749f83050bab2f627314ae5fb50f14991eee920a9ce650155c",
       "source_url": "https://www.mathinf.uni-heidelberg.de/en/studies/programs/master-mmlds",
-      "check": "ok"
+      "check": "ok",
+      "summary_check": "ok",
+      "summary_sha": "c57bcce7df54ff95"
      }
     ]
    },
-   "status": "机器核对"
+   "status": "待人工"
   },
   {
    "name": "Mathematics (M.Sc.)",
@@ -410,7 +470,9 @@
      "quote": "Above-average academic achievements in a successfully completed Bachelor degree program in Mathematics or else in a degree program with essentially the same content at a domestic or foreign university with a standard study period of at least three academic years or an equivalent degree.",
      "source_sha256": "2c54c6e7e098b795dd1ee2ce85e075bc2ccb80a6d43d598c25ee244f11501c6d",
      "source_url": "https://www.mathinf.uni-heidelberg.de/en/studies/study-mathematics-in-heidelberg/master-mathematics",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "ok",
+     "summary_sha": "db8e5ad551757205"
     }
    },
    "status": "机器核对"
@@ -425,15 +487,17 @@
      "quote": "We are looking for highly motivated students with a Bachelor or a comparable undergraduate degree in chemistry, physics, biochemistry, biophysics, biotechnology, materials science, engineering or related subjects",
      "source_sha256": "d06bdb611a947fd9311e072638d33573a9fa36e9c4dc44d588e8e896338619ff",
      "source_url": "https://mattertolife.maxplanckschools.org/direct-track-master-phase",
-     "check": "ok"
+     "check": "ok",
+     "summary_check": "unsupported: taught entirely in English",
+     "summary_sha": "e43219c63d4260a9"
     }
    },
-   "status": "机器核对"
+   "status": "待人工"
   }
  ],
  "verification": {
   "programs": 11,
-  "机器核对": 10,
-  "待人工": 1
+  "机器核对": 2,
+  "待人工": 9
  }
 }

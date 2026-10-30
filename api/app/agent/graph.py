@@ -95,8 +95,11 @@ async def answer_passages(state: AdvisorState) -> dict:
     """Answer from the passages, then keep only the sentences whose quotes check out (D8, D9). The reply
     is sent whole, after the check: an unchecked sentence is never streamed."""
     found = state.get("passages") or []
-    reply = await answer.generate(_last_user_text(state), found, model=get_chat_model(temperature=0))
+    model = get_chat_model(temperature=0)
+    reply = await answer.generate(_last_user_text(state), found, model=model)
     checked = answer.verify(reply.answer, [p["text"] for p in found])
+    # Whether each quote backs its sentence: one more call, only when a sentence is left to show.
+    support = await answer.support_check(_last_user_text(state), checked, found, model)
     if not checked.kept:
         text, citations = answer.refusal_after_check(found), []
     else:
@@ -105,7 +108,8 @@ async def answer_passages(state: AdvisorState) -> dict:
         "messages": [AIMessage(content=text)],
         "citations": citations,
         "trace": {"citation_check": checked.summary(), "answered": bool(checked.kept),
-                  **({"answer_error": reply.error} if reply.error else {})},
+                  **({"answer_error": reply.error} if reply.error else {}),
+                  **({"support_error": support.error} if support.error else {})},
     }
 
 

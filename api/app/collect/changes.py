@@ -15,7 +15,7 @@ its snapshot is kept, and otherwise the quotes are compared with each other inst
 """
 
 from app.collect.text import normalize
-from app.collect.verify import FIELD_NAMES, LIST_FIELDS, NUMERIC_KEYS
+from app.collect.verify import FIELD_NAMES, LIST_FIELDS, NUMERIC_KEYS, SUMMARY_CHECK, SUMMARY_SHA
 
 
 def _passed(item) -> bool:
@@ -24,7 +24,7 @@ def _passed(item) -> bool:
 
 def _public(item: dict) -> dict:
     """The item as it is recorded in a change row: without the check bookkeeping."""
-    return {key: value for key, value in item.items() if key != "check"}
+    return {key: value for key, value in item.items() if key not in ("check", SUMMARY_CHECK, SUMMARY_SHA)}
 
 
 def _quote(item: dict) -> str:
