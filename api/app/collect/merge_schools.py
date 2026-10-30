@@ -63,6 +63,13 @@ def merge(session: Session, keep: str, duplicates: list[str]) -> dict:
     missing = [uid for uid in wanted if uid not in found]
     if missing:
         raise ValueError(f"no university {', '.join(missing)}")
+    # Programs an import wrote (ids without `cricos-`) belong to one requirement file, and
+    # `importer --prune` deletes a school's programs its file does not list: two rows that each hold
+    # such programs are two files' schools, and one row for both would let a prune delete the other's.
+    imported = {uid for uid in wanted if session.scalar(select(func.count()).select_from(Program).where(
+        Program.university_id == uid, Program.id.not_like("cricos-%")))}
+    if len(imported) > 1:
+        raise ValueError(f"{', '.join(sorted(imported))} each hold imported programs; not merged")
     kept = found[keep]
     report = {"keep": keep, "merged": list(duplicates), "programs_moved": 0, "snapshot_pages_moved": 0,
               "sources_repointed": 0}

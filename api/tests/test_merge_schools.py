@@ -40,28 +40,28 @@ def schools(db_session, require_db):
     db_session.flush()
     db_session.add_all([
         Program(id="test-merge-p0", university_id=KEEP, name="P0", data_status="机器核对", source_id=source_id),
-        Program(id="test-merge-p1", university_id=DUP, name="P1", data_status="机器核对", source_id=source_id),
-        Program(id="test-merge-p2", university_id=DUP, name="P2", data_status="机器核对", source_id=source_id),
+        Program(id="cricos-test-merge-p1", university_id=DUP, name="P1", data_status="机器核对", source_id=source_id),
+        Program(id="cricos-test-merge-p2", university_id=DUP, name="P2", data_status="机器核对", source_id=source_id),
     ])
     db_session.flush()
     db_session.add(SnapshotPage(id=str(uuid.uuid4()), url="https://merge.test/fees", school_key="test-merge",
                                 university_id=DUP, program_id=None, snapshot_sha256="d" * 64,
                                 content_sha256="e" * 64, title="Fees", chunker="t", chunk_count=0))
-    db_session.add(Application(id=str(uuid.uuid4()), client_id=client.id, program_id="test-merge-p1", tier="稳"))
+    db_session.add(Application(id=str(uuid.uuid4()), client_id=client.id, program_id="cricos-test-merge-p1", tier="稳"))
     phase, material = f"test-phase-{uuid.uuid4().hex[:8]}", f"test-material-{uuid.uuid4().hex[:8]}"
     db_session.add(RoadmapPhase(key=phase, title="测试阶段", offset_days=30, sort_order=0))
     db_session.flush()
     db_session.add(MaterialTemplate(key=material, phase=phase, title="测试材料", applies_to="all", sort_order=0))
     db_session.flush()
     db_session.add(RoadmapTask(id=str(uuid.uuid4()), client_id=client.id, material_key=material,
-                               program_id="test-merge-p1", phase=phase))
+                               program_id="cricos-test-merge-p1", phase=phase))
     db_session.commit()
     yield client.id
     db_session.rollback()
     db_session.execute(delete(RoadmapTask).where(RoadmapTask.client_id == client.id))
     db_session.execute(delete(Application).where(Application.client_id == client.id))
     db_session.execute(delete(SnapshotPage).where(SnapshotPage.url == "https://merge.test/fees"))
-    db_session.execute(delete(Program).where(Program.id.like("test-merge-%")))
+    db_session.execute(delete(Program).where(Program.id.like("%test-merge-%")))
     db_session.execute(delete(Source).where(Source.id == source_id))
     db_session.execute(delete(University).where(University.id.in_([KEEP, DUP, EMPTY])))
     db_session.execute(delete(Client).where(Client.id == client.id))
@@ -84,12 +84,12 @@ def test_merging_moves_programs_pages_and_sources_and_deletes_only_the_duplicate
                       "sources_repointed": 1}
     assert db_session.get(University, DUP) is None and db_session.get(University, EMPTY) is None
     assert set(db_session.scalars(select(Program.id).where(Program.university_id == KEEP))) == {
-        "test-merge-p0", "test-merge-p1", "test-merge-p2"}
+        "test-merge-p0", "cricos-test-merge-p1", "cricos-test-merge-p2"}
     assert db_session.scalar(select(SnapshotPage.university_id).where(SnapshotPage.url == "https://merge.test/fees")) == KEEP
     assert db_session.scalar(select(Source.publisher).where(Source.url == "https://merge.test/mds")) == KEEP
     # What the applicant wrote names programs, whose ids did not change.
-    assert db_session.scalar(select(Application.program_id).where(Application.client_id == client_id)) == "test-merge-p1"
-    assert db_session.scalar(select(RoadmapTask.program_id).where(RoadmapTask.client_id == client_id)) == "test-merge-p1"
+    assert db_session.scalar(select(Application.program_id).where(Application.client_id == client_id)) == "cricos-test-merge-p1"
+    assert db_session.scalar(select(RoadmapTask.program_id).where(RoadmapTask.client_id == client_id)) == "cricos-test-merge-p1"
     # The kept row takes what it lacked from the duplicate and keeps what it had.
     kept = db_session.get(University, KEEP)
     assert (kept.official_url, kept.city, kept.name) == ("https://merge.test/", "Toowoomba", "合并测试大学")
@@ -112,12 +112,24 @@ def test_a_merge_that_makes_no_sense_is_refused_before_touching_anything(db_sess
     assert db_session.get(University, DUP) is not None
 
 
+def test_two_rows_that_each_hold_imported_programs_are_not_merged(db_session, schools):
+    """A prune of one file would then delete the other file's programs (review of #63)."""
+    source_id = db_session.scalar(select(Program.source_id).where(Program.id == "cricos-test-merge-p1"))
+    db_session.add_all([Program(id="test-merge-imported-a", university_id=KEEP, name="A", source_id=source_id),
+                        Program(id="test-merge-imported-b", university_id=DUP, name="B", source_id=source_id)])
+    db_session.commit()
+    with pytest.raises(ValueError, match="imported programs"):
+        merge(db_session, KEEP, [DUP])
+    db_session.rollback()
+    assert db_session.get(University, DUP) is not None
+
+
 def test_without_apply_the_command_only_reports(db_session, schools, capsys):
     assert main([KEEP, DUP]) == 0
     assert '"programs_moved": 2' in capsys.readouterr().out
     db_session.expire_all()
     assert db_session.get(University, DUP) is not None
-    assert db_session.scalar(select(Program.university_id).where(Program.id == "test-merge-p1")) == DUP
+    assert db_session.scalar(select(Program.university_id).where(Program.id == "cricos-test-merge-p1")) == DUP
 
 
 # ---- not again ----------------------------------------------------------------------------------------
