@@ -3,7 +3,7 @@
     GET  /api/admin/me
     GET  /api/admin/verification?status=unverified|verified|all&q=&limit=&offset=
     GET  /api/admin/verification/{source_id}
-    POST /api/admin/verification/{source_id}/verify  {"contentSha256": "<the version read>"}
+    POST /api/admin/verification/{source_id}/verify  {"contentSha256": "<the version read>", "digest": "<the view's>"}
     POST /api/admin/verification/{source_id}/revoke
     GET  /api/admin/knowledge-gaps?status=open|recollect_queued|dismissed|all
     GET  /api/admin/knowledge-gaps/{id}
@@ -40,6 +40,8 @@ class ReviewIn(BaseModel):
 
 class VerifyIn(BaseModel):
     content_sha256: str = Field(alias="contentSha256", pattern=r"^[0-9a-f]{64}$")
+    # The reading view's `digest`: what was shown, so a change while the admin read is refused.
+    digest: str = Field(pattern=r"^[0-9a-f]{64}$")
 
 
 def _refused(error: Refused) -> HTTPException:
@@ -77,7 +79,7 @@ def show_page(source_id: str, _: Annotated[Account, Depends(require_admin)],
 def verify_page(source_id: str, body: VerifyIn, admin: Annotated[Account, Depends(require_admin)],
                 session: Annotated[Session, Depends(get_session)]) -> dict:
     try:
-        return sv.verify(session, source_id, body.content_sha256, admin)
+        return sv.verify(session, source_id, body.content_sha256, body.digest, admin)
     except Refused as error:
         raise _refused(error) from None
 

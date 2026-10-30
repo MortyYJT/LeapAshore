@@ -12,6 +12,8 @@ come from the version's `body_text` (one `[field] quote (出处: url)` per line,
 and from `program_deadlines`.
 """
 
+import hashlib
+import json
 import re
 import uuid
 from datetime import UTC, datetime
@@ -31,7 +33,7 @@ from app.services.refusals import Refused
 NO_SUCH_PAGE = "没有这个页面，或它没有导入过的采集版本。"
 ALREADY_VERIFIED = "这个页面已经核验过；要重新核验，先撤销。"
 NOT_VERIFIED = "这个页面还没有核验，没有可撤销的。"
-VERSION_CHANGED = "页面在你打开后有了新版本，请刷新后重新阅读。"
+VERSION_CHANGED = "页面或它的值在你打开后变了，请刷新后重新阅读。"
 NO_SNAPSHOT = "没有这一版的快照正文，不能确认核验。"
 
 STATUSES = ("unverified", "verified", "all")
@@ -147,21 +149,33 @@ def _history(session: Session, source_id: str) -> list[dict]:
             for v, email in rows]
 
 
+def _programs(session: Session, source: Source, version: SourceVersion) -> tuple[list[Program], list[dict]]:
+    rows = list(session.scalars(
+        select(Program).where(Program.source_id == source.id)
+        .options(selectinload(Program.university), selectinload(Program.prerequisites),
+                 selectinload(Program.deadlines))
+        .order_by(Program.name_en, Program.id)
+        .execution_options(populate_existing=True)))
+    quotes = parse_quotes(version.body_text)
+    return rows, [{
+        "id": p.id, "name": p.name, "nameEn": p.name_en, "school": p.university.name if p.university else None,
+        "dataStatus": p.data_status, "fields": _fields(p, quotes, source.url),
+    } for p in rows]
+
+
+def _digest(version: SourceVersion, programs: list[dict]) -> str:
+    """What the admin was shown: the snapshot and every value and quote. A confirmation names it, so a
+    re-import that changed a value while they read (same snapshot) is refused rather than confirmed."""
+    shown = json.dumps({"sha": version.content_sha256, "programs": programs}, sort_keys=True, ensure_ascii=False)
+    return hashlib.sha256(shown.encode("utf-8")).hexdigest()
+
+
 def detail(session: Session, source_id: str) -> dict:
     source = session.get(Source, source_id)
     version = _latest_version(session, source_id) if source else None
     if source is None or version is None:
         raise Refused(404, NO_SUCH_PAGE)
-    rows = list(session.scalars(
-        select(Program).where(Program.source_id == source_id)
-        .options(selectinload(Program.university), selectinload(Program.prerequisites),
-                 selectinload(Program.deadlines))
-        .order_by(Program.name_en, Program.id)))
-    quotes = parse_quotes(version.body_text)
-    programs = [{
-        "id": p.id, "name": p.name, "nameEn": p.name_en, "school": p.university.name if p.university else None,
-        "dataStatus": p.data_status, "fields": _fields(p, quotes, source.url),
-    } for p in rows]
+    rows, programs = _programs(session, source, version)
     pages = _pages(session, source.url, programs, rows, version.content_sha256)
     ready = bool(pages[0]["matchesVersion"] and pages[0]["text"])
     return {
@@ -172,6 +186,7 @@ def detail(session: Session, source_id: str) -> dict:
         "programs": programs,
         "pages": pages,
         "canVerify": source.verified_at is None and ready,
+        "digest": _digest(version, programs),
         "history": _history(session, source_id),
     }
 
@@ -232,13 +247,16 @@ def _locked(session: Session, source_id: str) -> tuple[Source, SourceVersion]:
     return source, version
 
 
-def verify(session: Session, source_id: str, content_sha256: str, account: Account) -> dict:
-    """Confirm the page at the version the admin read. Writes `verified_at` and who and when."""
+def verify(session: Session, source_id: str, content_sha256: str, digest: str, account: Account) -> dict:
+    """Confirm the page at the version the admin read. Writes `verified_at` and who and when.
+
+    `digest` is the reading view's: under the page's lock (which the importer takes too) the view is
+    rebuilt, and anything that changed since the admin opened it refuses the confirmation."""
     source, version = _locked(session, source_id)
     refusal = None
     if source.verified_at is not None:
         refusal = Refused(409, ALREADY_VERIFIED)
-    elif version.content_sha256 != content_sha256:
+    elif version.content_sha256 != content_sha256 or _digest(version, _programs(session, source, version)[1]) != digest:
         refusal = Refused(409, VERSION_CHANGED)
     elif not _snapshot_ready(session, source.url, content_sha256):
         refusal = Refused(409, NO_SNAPSHOT)

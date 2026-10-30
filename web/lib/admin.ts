@@ -45,6 +45,8 @@ export interface PageDetail {
   programs: { id: string; name: string; nameEn: string | null; school: string | null; dataStatus: string; fields: FieldView[] }[];
   pages: SnapshotView[];
   canVerify: boolean;
+  /** What the view showed; the confirmation sends it back. */
+  digest: string;
   history: { action: "verify" | "revoke"; at: string; by: string | null; contentSha256: string }[];
 }
 
@@ -124,10 +126,11 @@ export function fetchVerificationPage(sourceId: string) {
   return call<PageDetail>(`/api/admin/verification/${encodeURIComponent(sourceId)}`);
 }
 
-export function verifyPage(sourceId: string, contentSha256: string) {
-  return call<PageDetail>(`/api/admin/verification/${encodeURIComponent(sourceId)}/verify`, {
+/** Confirm what was read: the version and the view's digest, so a change while reading is refused. */
+export function verifyPage(detail: PageDetail) {
+  return call<PageDetail>(`/api/admin/verification/${encodeURIComponent(detail.source.id)}/verify`, {
     method: "POST",
-    body: JSON.stringify({ contentSha256 }),
+    body: JSON.stringify({ contentSha256: detail.version.contentSha256, digest: detail.digest }),
   });
 }
 

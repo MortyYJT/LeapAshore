@@ -1,18 +1,19 @@
 """The admin's verification entry (openspec source-verification): who may, what it shows, what it writes,
 and the database guard that refuses every other way of setting `sources.verified_at`."""
 
+import json
 import threading
 import uuid
 from datetime import UTC, date, datetime
 
 import pytest
-from sqlalchemy import delete, func, select, text
+from sqlalchemy import delete, event, func, select, text
 from sqlalchemy.exc import DBAPIError
 
 from app import roles
 from app.collect.importer import import_school, program_id_for, source_id_for
 from app.config import settings
-from app.db import SessionLocal
+from app.db import SessionLocal, engine
 from app.models.account import Account
 from app.models.client import Client
 from app.models.program import Program, ProgramDeadline, ProgramPrerequisite, University
@@ -104,6 +105,14 @@ def admin(login_mode):  # noqa: F811
     return account(login_mode, admin=True)
 
 
+def confirm(client, source_id: str, sha: str = SHA, digest: str | None = None):
+    """Confirm as the page does: with the digest of the view just read, unless one is given."""
+    if digest is None:
+        shown = client.get(f"{ADMIN}/{source_id}")
+        digest = shown.json()["digest"] if shown.status_code == 200 else "0" * 64
+    return client.post(f"{ADMIN}/{source_id}/verify", json={"contentSha256": sha, "digest": digest})
+
+
 def source_row(source_id: str) -> Source:
     with SessionLocal() as s:
         return s.get(Source, source_id)
@@ -117,7 +126,7 @@ def test_every_admin_route_is_refused_in_anonymous_mode(page, monkeypatch):
     client = new_client()
     for method, path in (("get", "/api/admin/me"), ("get", ADMIN), ("get", f"{ADMIN}/{page['source']}"),
                          ("post", f"{ADMIN}/{page['source']}/verify"), ("post", f"{ADMIN}/{page['source']}/revoke")):
-        response = getattr(client, method)(path, **({"json": {"contentSha256": SHA}} if method == "post" else {}))
+        response = getattr(client, method)(path, **({"json": {"contentSha256": SHA, "digest": "0" * 64}} if method == "post" else {}))
         assert response.status_code == 403, (path, response.status_code)
     assert source_row(page["source"]).verified_at is None
 
@@ -127,7 +136,7 @@ def test_without_a_session_401_and_as_an_applicant_403(page, login_mode):  # noq
     applicant = account(login_mode, admin=False)
     assert applicant.get("/api/admin/me").status_code == 403
     assert applicant.get(f"{ADMIN}/{page['source']}").status_code == 403
-    assert applicant.post(f"{ADMIN}/{page['source']}/verify", json={"contentSha256": SHA}).status_code == 403
+    assert applicant.post(f"{ADMIN}/{page['source']}/verify", json={"contentSha256": SHA, "digest": "0" * 64}).status_code == 403
     assert source_row(page["source"]).verified_at is None
 
 
@@ -176,7 +185,7 @@ def test_an_unknown_or_unimported_page_is_404(admin):
 
 
 def test_confirming_the_version_read_marks_the_page_verified_and_records_who(admin, page):
-    response = admin.post(f"{ADMIN}/{page['source']}/verify", json={"contentSha256": SHA})
+    response = confirm(admin, page['source'], SHA)
     assert response.status_code == 200, response.text
     body = response.json()
     assert body["source"]["status"] == "已核验" and body["source"]["verifiedAt"]
@@ -190,26 +199,26 @@ def test_confirming_the_version_read_marks_the_page_verified_and_records_who(adm
     served = new_client().get("/api/programs", params={"ids": page["program"]}).json()
     assert served[0]["source"]["status"] == "已核验"
     # A second confirmation is refused rather than overwriting the first moment.
-    assert admin.post(f"{ADMIN}/{page['source']}/verify", json={"contentSha256": SHA}).status_code == 409
+    assert confirm(admin, page['source'], SHA).status_code == 409
 
 
 def test_a_confirmation_of_another_version_is_refused(admin, page):
-    response = admin.post(f"{ADMIN}/{page['source']}/verify", json={"contentSha256": NEWER})
+    response = confirm(admin, page['source'], NEWER)
     assert response.status_code == 409
     with SessionLocal() as s:
         s.add(SourceVersion(id=str(uuid.uuid4()), source_id=page["source"], version_no=2, content_sha256=NEWER))
         s.commit()
     # The page changed after the admin opened it: the sha they read is no longer the latest.
-    assert admin.post(f"{ADMIN}/{page['source']}/verify", json={"contentSha256": SHA}).status_code == 409
+    assert confirm(admin, page['source'], SHA).status_code == 409
     # And the new version has no snapshot to read yet.
     assert admin.get(f"{ADMIN}/{page['source']}").json()["canVerify"] is False
-    assert admin.post(f"{ADMIN}/{page['source']}/verify", json={"contentSha256": NEWER}).status_code == 409
+    assert confirm(admin, page['source'], NEWER).status_code == 409
     assert source_row(page["source"]).verified_at is None
 
 
 def test_a_withdrawal_returns_the_page_to_unverified_and_keeps_the_history(admin, page):
     assert admin.post(f"{ADMIN}/{page['source']}/revoke").status_code == 409  # nothing to withdraw
-    admin.post(f"{ADMIN}/{page['source']}/verify", json={"contentSha256": SHA})
+    confirm(admin, page['source'], SHA)
     body = admin.post(f"{ADMIN}/{page['source']}/revoke").json()
     assert body["source"]["status"] == "待核验" and body["source"]["verifiedAt"] is None
     assert [h["action"] for h in body["history"]] == ["revoke", "verify"]
@@ -217,7 +226,7 @@ def test_a_withdrawal_returns_the_page_to_unverified_and_keeps_the_history(admin
 
 
 def test_deleting_the_admin_keeps_the_fact_and_drops_who(admin, page):
-    admin.post(f"{ADMIN}/{page['source']}/verify", json={"contentSha256": SHA})
+    confirm(admin, page['source'], SHA)
     with SessionLocal() as s:
         client_id = s.scalar(select(Account.client_id).where(Account.id == admin.account_id))
         s.execute(delete(Client).where(Client.id == client_id))  # how an account is deleted
@@ -286,7 +295,7 @@ def test_a_confirmation_row_unlocks_only_an_admins_date_in_the_same_transaction(
 
 
 def test_clearing_the_date_is_always_allowed(admin, page):
-    admin.post(f"{ADMIN}/{page['source']}/verify", json={"contentSha256": SHA})
+    confirm(admin, page['source'], SHA)
     with SessionLocal() as s:
         s.execute(text("UPDATE sources SET status = '待核验', verified_at = NULL WHERE id = :id"), {"id": page["source"]})
         s.commit()
@@ -338,7 +347,7 @@ def imported(admin, tmp_path):
 
 
 def test_reimporting_the_same_page_keeps_the_confirmation_and_new_content_withdraws_it(admin, imported):
-    assert admin.post(f"{ADMIN}/{imported['source']}/verify", json={"contentSha256": SHA}).status_code == 200
+    assert confirm(admin, imported['source'], SHA).status_code == 200
     stamped = source_row(imported["source"]).verified_at
     with SessionLocal() as s:
         import_school(s, importer_file(SHA), imported["schools"], root=imported["root"])
@@ -356,7 +365,7 @@ def latest_sha(source_id: str) -> str:
 
 
 def test_a_value_read_again_from_the_same_snapshot_withdraws_the_confirmation(admin, imported):
-    assert admin.post(f"{ADMIN}/{imported['source']}/verify", json={"contentSha256": SHA}).status_code == 200
+    assert confirm(admin, imported['source'], SHA).status_code == 200
     with SessionLocal() as s:
         import_school(s, importer_file(SHA, overall=6.5), imported["schools"], root=imported["root"])
     assert source_row(imported["source"]).verified_at is None
@@ -367,7 +376,7 @@ def test_a_page_back_on_an_older_snapshot_gets_it_as_its_latest_version_and_is_w
         import_school(s, importer_file(NEWER), imported["schools"], root=imported["root"])
         s.execute(text("UPDATE snapshot_pages SET snapshot_sha256 = :sha WHERE url = :url"), {"sha": NEWER, "url": URL})
         s.commit()
-    assert admin.post(f"{ADMIN}/{imported['source']}/verify", json={"contentSha256": NEWER}).status_code == 200
+    assert confirm(admin, imported['source'], NEWER).status_code == 200
     with SessionLocal() as s:
         import_school(s, importer_file(SHA), imported["schools"], root=imported["root"])
     assert source_row(imported["source"]).verified_at is None and latest_sha(imported["source"]) == SHA
@@ -384,7 +393,7 @@ def test_a_confirmation_waits_for_an_import_holding_the_page_and_then_sees_its_n
     with SessionLocal() as importer:
         importer.scalar(select(Source).where(Source.id == page["source"]).with_for_update())
         worker = threading.Thread(target=lambda: result.setdefault(
-            "status", admin.post(f"{ADMIN}/{page['source']}/verify", json={"contentSha256": SHA}).status_code))
+            "status", confirm(admin, page['source'], SHA).status_code))
         worker.start()
         worker.join(1.0)
         assert worker.is_alive(), "the confirmation did not wait for the import's lock"
@@ -418,3 +427,58 @@ def test_an_import_waits_for_a_confirmation_in_progress_and_then_withdraws_it(ad
     worker.join(15)
     assert "report" in result
     assert source_row(imported["source"]).verified_at is None and latest_sha(imported["source"]) == NEWER
+
+
+def test_a_value_changed_while_the_admin_read_refuses_the_confirmation(admin, page):
+    """Review of PR #69: same snapshot, a re-import changed a value between reading and confirming."""
+    digest = admin.get(f"{ADMIN}/{page['source']}").json()["digest"]
+    with SessionLocal() as s:
+        s.get(Program, page["program"]).english_requirement = "IELTS 6.5"
+        s.commit()
+    assert confirm(admin, page["source"], SHA, digest).status_code == 409
+    assert source_row(page["source"]).verified_at is None
+    assert confirm(admin, page["source"], SHA).status_code == 200  # read again, then confirmed
+
+
+def test_a_same_snapshot_re_extraction_refreshes_the_quotes_shown(admin, imported):
+    """Review of PR #69: the version's quotes follow a re-import of the same snapshot."""
+    changed = importer_file(SHA)
+    changed["programs"][0]["fields"]["ielts"]["quote"] = "IELTS 7.0 overall, no band below 6.5"
+    with SessionLocal() as s:
+        import_school(s, changed, imported["schools"], root=imported["root"])
+    fields = {f["key"]: f for f in admin.get(f"{ADMIN}/{imported['source']}").json()["programs"][0]["fields"]}
+    assert fields["english"]["quotes"][0]["text"] == "IELTS 7.0 overall, no band below 6.5"
+    with SessionLocal() as s:
+        assert s.scalar(select(func.count()).select_from(SourceVersion)
+                        .where(SourceVersion.source_id == imported["source"])) == 1
+
+
+def test_two_programs_on_one_page_share_one_body_and_a_rerun_writes_nothing(imported):
+    two = importer_file(SHA)
+    second = json.loads(json.dumps(two["programs"][0]))
+    second["name"] = "MSc Importer (Part-time)"
+    second["fields"]["ielts"]["quote"] = "Part-time: IELTS 7.0 overall"
+    two["programs"].append(second)
+    try:
+        with SessionLocal() as s:
+            import_school(s, two, imported["schools"], root=imported["root"])
+        with SessionLocal() as s:
+            body = s.scalar(select(SourceVersion.body_text).where(SourceVersion.source_id == imported["source"]))
+            assert "[ielts] IELTS 7.0 overall" in body and "[ielts] Part-time: IELTS 7.0 overall" in body
+        writes = []
+
+        def record(conn, cursor, statement, parameters, context, executemany):  # noqa: ARG001
+            if statement.lstrip().upper().startswith(("INSERT", "UPDATE", "DELETE")):
+                writes.append(statement.split("(")[0][:80])
+
+        event.listen(engine, "after_cursor_execute", record)
+        try:
+            with SessionLocal() as s:
+                import_school(s, two, imported["schools"], root=imported["root"])
+        finally:
+            event.remove(engine, "after_cursor_execute", record)
+        assert writes == []
+    finally:
+        with SessionLocal() as s:
+            s.execute(delete(Program).where(Program.id == program_id_for(KEY, second)))
+            s.commit()

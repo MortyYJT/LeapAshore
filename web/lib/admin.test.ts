@@ -32,6 +32,7 @@ function detail(overrides: Partial<PageDetail> = {}): PageDetail {
     programs: [],
     pages: [{ url: "https://x.edu/msc", own: true, title: null, snapshotSha256: "a".repeat(64), fetchedAt: null, matchesVersion: true, text: "x" }],
     canVerify: true,
+    digest: "d".repeat(64),
     history: [],
     ...overrides,
   };

@@ -39,7 +39,13 @@ The importer withdraws a confirmation whenever what the page serves changes (rev
 snapshot that is not the latest version (new, or an older one coming back, which is appended as the new
 latest version so the quotes shown match the values), or a different value read from the same snapshot
 (a better extraction). It locks the page row for its transaction, as `verify` does, so a confirmation
-cannot land between the importer's check and its new version.
+cannot land between the importer's check and its new version. The same snapshot read again also
+refreshes the latest version's quotes (one body per page, merged from every program the file lists on
+it, so a rerun writes nothing).
+
+A confirmation carries the reading view's `digest` (the snapshot sha and every value and quote shown);
+`verify` rebuilds the view under the page's lock and refuses (409) when it differs, so a value changed by
+an import while the admin was reading is never confirmed unseen.
 
 ### D4. A database guard: a trigger, not column privileges
 

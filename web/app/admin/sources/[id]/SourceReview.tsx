@@ -126,7 +126,7 @@ export function SourceReview({ id }: { id: string }) {
                   <Button
                     variant="primary"
                     disabled={!gate.enabled || !read || busy}
-                    onClick={() => act(() => verifyPage(detail.source.id, detail.version.contentSha256))}
+                    onClick={() => act(() => verifyPage(detail))}
                   >
                     确认核验
                   </Button>

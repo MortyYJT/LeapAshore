@@ -110,8 +110,8 @@ def english_text(fields: dict) -> str | None:
     return "；".join(parts) or None
 
 
-def verified_quotes(fields: dict) -> str:
-    """The verified quotes, one per line; a quote from a shared page names that page."""
+def quote_lines(fields: dict) -> list[str]:
+    """The verified quotes, one entry each; a quote from a shared page names that page."""
     lines = []
     for name, field in fields.items():
         for item in field if name in LIST_FIELDS else [field]:
@@ -120,7 +120,27 @@ def verified_quotes(fields: dict) -> str:
                 if item.get("source_sha256"):
                     line += f" (出处: {item.get('source_url') or 'sha256 ' + item['source_sha256']})"
                 lines.append(line)
-    return "\n".join(lines)
+    return lines
+
+
+def verified_quotes(fields: dict) -> str:
+    """The verified quotes, one per line."""
+    return "\n".join(quote_lines(fields))
+
+
+def page_bodies(programs: list[dict]) -> dict[str, str | None]:
+    """Each page's `body_text`: the verified quotes of every program the file lists on it, in file order.
+
+    One page can carry several programs (62 urls, 2026-10-30) and one version stores one body, so it holds
+    all of theirs; built from the whole file, a rerun writes the same text whatever the order.
+    """
+    merged: dict[str, list[str]] = {}
+    for program in programs:
+        lines = merged.setdefault(program["url"], [])
+        for line in quote_lines(program.get("fields", {})):
+            if line not in lines:
+                lines.append(line)
+    return {url: "\n".join(lines) or None for url, lines in merged.items()}
 
 
 def academic_text(fields: dict) -> str | None:
@@ -252,6 +272,7 @@ def import_school(session: Session, data: dict, schools: dict[str, dict], root: 
     if university_id is None:
         return {**report, "no_catalogue_row": len(programs)}
     added = updated = 0
+    bodies = page_bodies(programs)
     for program, pid in zip(programs, ids):
         fields = program.get("fields", {})
         if not has_verified_value(fields):
@@ -275,10 +296,15 @@ def import_school(session: Session, data: dict, schools: dict[str, dict], root: 
             session.flush()
         # The latest version is the snapshot the catalogue's values come from. A page that went back to an
         # older snapshot gets that snapshot as a new latest version, rather than keeping a newer one's quotes.
-        latest = session.scalar(select(SourceVersion.content_sha256).where(SourceVersion.source_id == source.id)
+        latest = session.scalar(select(SourceVersion).where(SourceVersion.source_id == source.id)
                                 .order_by(SourceVersion.version_no.desc()).limit(1))
-        changed = latest != program["snapshot_sha256"]
-        if changed:
+        new_snapshot = latest is None or latest.content_sha256 != program["snapshot_sha256"]
+        changed = new_snapshot
+        if not new_snapshot and latest.body_text != bodies[program["url"]]:
+            # The same snapshot read again (a better extraction): the quotes shown with the values follow.
+            latest.body_text = bodies[program["url"]]
+            changed = True
+        if new_snapshot:
             if source.status != SourceStatus.UNVERIFIED or source.verified_at is not None:
                 # A person verified an older version of this page; the new content is not covered by
                 # that review, so the page goes back to unverified until someone looks again.
@@ -290,7 +316,7 @@ def import_school(session: Session, data: dict, schools: dict[str, dict], root: 
                 requested_url=meta.get("requested_url", program["url"]), final_url=meta.get("final_url"),
                 fetched_at=datetime.fromisoformat(fetched) if fetched else None,
                 content_type=meta.get("content_type"), content_sha256=program["snapshot_sha256"],
-                body_text=verified_quotes(fields) or None,
+                body_text=bodies[program["url"]],
             ))
 
         china = fields.get("china_requirement") or {}
@@ -315,8 +341,10 @@ def import_school(session: Session, data: dict, schools: dict[str, dict], root: 
             changed = True
         else:
             for column, value in values.items():
-                changed = changed or not _same(getattr(row, column), value)
-                setattr(row, column, value)
+                # Set only what differs: a float mark set onto its equal decimal would still be an UPDATE.
+                if not _same(getattr(row, column), value):
+                    changed = True
+                    setattr(row, column, value)
             # A row that already has a study area keeps it: a CRICOS row's comes from the official field.
             if row.field is None:
                 row.field = study_area_from_name(row.name_en or row.name)
