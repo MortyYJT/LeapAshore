@@ -176,9 +176,16 @@ def has_verified_value(fields: dict) -> bool:
     return any(passed(item) for name, field in fields.items() for item in (field if name in LIST_FIELDS else [field]))
 
 
-def _university(session: Session, data: dict, school: dict | None, program_ids: list[str]) -> str:
-    """The university row for this school; Australian ones already exist from the CRICOS seed."""
+def _university(session: Session, data: dict, school: dict | None, program_ids: list[str]) -> str | None:
+    """The university row for this school; Australian ones already exist from the CRICOS seed.
+
+    None for an Australian school none of whose courses is in the catalogue: its row is the CRICOS one,
+    found through a course, and making one from the file key would put the school in the library twice
+    (twelve such empty rows in production, 2026-10-30).
+    """
     existing = session.scalars(select(Program.university_id).where(Program.id.in_(program_ids))).first()
+    if existing is None and (school or {}).get("cricos_institution"):
+        return None
     key = existing or data["school_key"]
     row = session.get(University, key)
     if row is not None and row.country in COUNTRY_ZH:
@@ -228,6 +235,8 @@ def import_school(session: Session, data: dict, schools: dict[str, dict], root: 
             return report  # every course lacks its code: no row to find the school by, none to make
     ids = [program_id_for(key, p) for p in programs]
     university_id = _university(session, data, schools.get(key), ids)
+    if university_id is None:
+        return {**report, "no_catalogue_row": len(programs)}
     added = updated = 0
     for program, pid in zip(programs, ids):
         fields = program.get("fields", {})
@@ -334,6 +343,8 @@ def prune_school(session: Session, data: dict, schools: dict[str, dict]) -> dict
     if skipped and not ids:
         return {"school": key, "pruned": 0, "kept_in_portfolios": []}  # no CRICOS row to find the school by
     university_id = _university(session, data, schools.get(key), sorted(ids))
+    if university_id is None:
+        return {"school": key, "pruned": 0, "kept_in_portfolios": []}
     stale = [pid for pid in session.scalars(select(Program.id).where(Program.university_id == university_id))
              if not pid.startswith("cricos-") and pid not in ids]
     held = set(session.scalars(select(Application.program_id).where(Application.program_id.in_(stale)))) if stale else set()

@@ -86,7 +86,17 @@ def load_providers(path: Path = PROVIDERS_FILE) -> dict[str, dict]:
     return json.loads(path.read_text(encoding="utf-8"))["providers"]
 
 
+# An institution that holds more than one CRICOS provider code is one school: its courses land on the
+# row of its first code. Two rows with one name split a school's programs and made the advisor's page
+# ingest refuse to guess between them (University of Southern Queensland in production, 2026-10-30).
+PROVIDER_ALIASES = {
+    "02225M": "00244B",  # University of Southern Queensland
+    "02475D": "00124K",  # Victoria University
+}
+
+
 def university_id(provider: str) -> str:
+    provider = PROVIDER_ALIASES.get(provider, provider)
     return UNIVERSITY_IDS.get(provider, f"cricos-{provider}")
 
 
@@ -115,7 +125,7 @@ def _ensure_source(session: Session) -> Source:
 
 def _ensure_universities(session: Session, courses: list[dict], providers: dict[str, dict]) -> int:
     added = 0
-    for provider in sorted({course["provider"] for course in courses}):
+    for provider in sorted({PROVIDER_ALIASES.get(course["provider"], course["provider"]) for course in courses}):
         if session.get(University, university_id(provider)) is not None:
             continue
         identity = providers.get(provider, {})

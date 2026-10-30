@@ -345,11 +345,10 @@
    "question": "墨尔本大学的雅思要求是多少",
    "intent": "官方要求核验",
    "schools": [
-    "cricos-00116K",
-    "university-of-melbourne"
+    "cricos-00116K"
    ],
    "answerable": false,
-   "note": "只有 CRICOS 项目名，没有采到录取要求",
+   "note": "只有 CRICOS 项目名，没有采到录取要求；10-30 同名空行 university-of-melbourne 已并进 cricos-00116K，从 schools 去掉",
    "split": "tune"
   },
   {
