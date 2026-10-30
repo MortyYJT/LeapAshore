@@ -1,10 +1,45 @@
+import httpx
+import openai
 from langchain_openai import ChatOpenAI
 
 from app.config import settings
 
+# What the applicant is told when the model's provider cannot answer (an outage, below).
+UNAVAILABLE = "顾问暂时不可用，请稍后再试。"
+
+# The provider refused the account: out of money (DeepSeek answers 402 "Insufficient Balance"), a key
+# revoked or not allowed. Nothing changes until a person acts, so retrying within minutes is pointless.
+ACCOUNT = "account"
+# The provider could not answer this time: rate-limited, overloaded, timed out, unreachable.
+TRANSIENT = "transient"
+_ACCOUNT_STATUSES = {401, 402, 403}
+_TRANSIENT_STATUSES = {408, 409, 429}
+
 
 class ModelNotConfigured(RuntimeError):
     """Raised when the advisor is asked to answer but no chat key is set."""
+
+
+def outage(error: BaseException | None) -> str | None:
+    """`ACCOUNT` or `TRANSIENT` when `error` (or an error it was raised from) is the chat provider not
+    answering, else None: a bad request or an unreadable answer is a fault of the call, not an outage.
+
+    OpenAI-style providers use 429 with the code ``insufficient_quota`` for an exhausted account.
+    """
+    seen: set[int] = set()
+    while error is not None and id(error) not in seen:
+        seen.add(id(error))
+        if isinstance(error, openai.APIStatusError):
+            code = error.code if isinstance(getattr(error, "code", None), str) else ""
+            if error.status_code in _ACCOUNT_STATUSES or code == "insufficient_quota":
+                return ACCOUNT
+            if error.status_code in _TRANSIENT_STATUSES or error.status_code >= 500:
+                return TRANSIENT
+            return None
+        if isinstance(error, (openai.APIConnectionError, httpx.TransportError)):
+            return TRANSIENT
+        error = error.__cause__ or error.__context__
+    return None
 
 
 def model_configured() -> bool:

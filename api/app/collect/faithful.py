@@ -24,6 +24,7 @@ Nothing here writes `verified_at`.
 """
 
 import argparse
+import copy
 import json
 import sys
 import threading
@@ -35,6 +36,7 @@ from pathlib import Path
 from langchain_core.language_models import BaseChatModel
 from pydantic import BaseModel, Field
 
+from app.agent.llm import ACCOUNT, outage
 from app.collect.verify import (
     LIST_FIELDS,
     SUMMARY_CHECK,
@@ -366,7 +368,7 @@ def backfill(paths: list[Path], budget_cny: float, concurrency: int = 8, model_f
     lock = threading.Lock()
     totals = {"programs": 0, "claims": 0, "blocked": 0, "not_checked": 0, "files_written": 0,
               "usage": {"input_tokens": 0, "output_tokens": 0, "cache_read_tokens": 0}, "models": set(),
-              "stopped_at_budget": False}
+              "stopped_at_budget": False, "stopped_at_model_unavailable": None}
     spent = [0.0]
 
     def make_model():
@@ -378,20 +380,33 @@ def backfill(paths: list[Path], budget_cny: float, concurrency: int = 8, model_f
 
     model = make_model()
 
-    def one(program: dict, school_name: str) -> None:
+    def one(program: dict, school_name: str) -> bool:
+        """Judge one program; True when its verdicts were recorded. A failure leaves it as it was."""
         with lock:
             if spent[0] >= budget_cny:
                 totals["stopped_at_budget"] = True
-                return
+                return False
+            if totals["stopped_at_model_unavailable"]:
+                return False
+        # Judged on a copy, so a call that fails leaves no half-written verdicts behind.
+        work = copy.deepcopy(program)
         for attempt in range(3):
             try:
-                result = check_program(program, school_name, model)
+                result = check_program(work, school_name, model)
                 break
             except Exception as error:  # noqa: BLE001 - transport errors: wait and try again, then leave it unjudged
+                if outage(error) == ACCOUNT:
+                    # Out of money or a refused key: every further call would fail the same way.
+                    with lock:
+                        totals["stopped_at_model_unavailable"] = (
+                            totals["stopped_at_model_unavailable"] or f"{type(error).__name__}: {str(error)[:200]}")
+                    return False
                 if attempt == 2:
                     log(json.dumps({"program": program.get("name"), "error": str(error)[:200]}, ensure_ascii=False))
-                    return
+                    return False
                 time.sleep(5 * (attempt + 1))
+        program.clear()
+        program.update(work)
         with lock:
             spent[0] += cost_cny(result.usage)
             totals["programs"] += 1
@@ -407,18 +422,23 @@ def backfill(paths: list[Path], budget_cny: float, concurrency: int = 8, model_f
                     totals["not_checked"] += 1
                 elif verdict != OK:
                     totals["blocked"] += 1
+        return True
 
     with ThreadPoolExecutor(max_workers=concurrency) as pool:
         for path in paths:
             if spent[0] >= budget_cny:
                 totals["stopped_at_budget"] = True
                 break
+            if totals["stopped_at_model_unavailable"]:
+                break
             data = json.loads(path.read_text(encoding="utf-8"))
             todo = [p for p in data["programs"] if program_claims(p)[0] or program_claims(p)[2]]
             if not todo:
                 continue
             totals["claims"] += sum(len(program_claims(p)[0]) for p in todo)
-            list(pool.map(lambda p: one(p, data["school_name_en"]), todo))
+            judged = list(pool.map(lambda p: one(p, data["school_name_en"]), todo))
+            if not any(judged):
+                continue
             _summarise(data)
             path.write_text(json.dumps(data, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
             totals["files_written"] += 1

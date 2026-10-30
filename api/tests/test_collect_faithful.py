@@ -318,6 +318,22 @@ def test_the_backfill_stops_sending_once_the_budget_is_spent(tmp_path):
     assert SUMMARY_CHECK not in untouched["programs"][0]["fields"]["academic"]
 
 
+def test_the_backfill_stops_at_once_when_the_account_is_refused(tmp_path, monkeypatch):
+    """2026-10-30: the balance ran out mid-run and every later call was a 402, each tried three times."""
+    from tests.model_outage import out_of_balance_model
+
+    paths = school_files(tmp_path, copies=3)
+    before = [p.read_text(encoding="utf-8") for p in paths]
+    calls, slept = [], []
+    monkeypatch.setattr(fa.time, "sleep", slept.append)
+    totals = fa.backfill(paths, budget_cny=1.0, concurrency=1, model_factory=lambda: out_of_balance_model(calls),
+                         log=lambda _: None)
+    assert totals["stopped_at_model_unavailable"].startswith("APIStatusError") and "402" in totals["stopped_at_model_unavailable"]
+    assert len(calls) == 1 and slept == [] and totals["programs"] == 0
+    # No value is marked "not checked" because the account was out of money: every file is as it was.
+    assert [p.read_text(encoding="utf-8") for p in paths] == before
+
+
 def test_forgetting_a_field_makes_its_values_unjudged_and_usable_again(tmp_path):
     paths = school_files(tmp_path, copies=1)
     fa.backfill(paths, budget_cny=1.0, model_factory=lambda: answering(UT["response"]), log=lambda _: None)
