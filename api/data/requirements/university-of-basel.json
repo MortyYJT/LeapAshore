@@ -1,0 +1,829 @@
+{
+ "school_key": "university-of-basel",
+ "school_name_en": "University of Basel",
+ "country": "Switzerland",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-30",
+ "listing_urls": [
+  "https://www.unibas.ch/en/Studies/Before-My-Studies/Degree-Programs.html?degree=master"
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.unibas.ch/en/Studies/Before-My-Studies/Degree-Programs/Degree-Programs.html?study=Physik-MSc&degree=master",
+  "https://www.unibas.ch/en/Studies/Before-My-Studies/Degree-Programs/Degree-Programs.html?study=Chemie-MSc&degree=master",
+  "https://www.unibas.ch/en/Studies/Before-My-Studies/Degree-Programs/Degree-Programs.html?study=Infection-Biology&degree=master",
+  "https://www.unibas.ch/en/Studies/Before-My-Studies/Degree-Programs/Degree-Programs.html?study=Changing-Societies-MA&degree=master",
+  "https://www.unibas.ch/en/Studies/Before-My-Studies/Degree-Programs/Degree-Programs.html?study=Soziologie-MA&degree=master",
+  "https://www.unibas.ch/en/Studies/Before-My-Studies/Degree-Programs/Degree-Programs.html?study=Rechtswissenschaft-MLaw&degree=master",
+  "https://www.unibas.ch/en/Studies/Before-My-Studies/Degree-Programs/Degree-Programs.html?study=Wirtschaftsrecht&degree=master",
+  "https://www.unibas.ch/en/Studies/Before-My-Studies/Degree-Programs/Degree-Programs.html?study=Digital-Humanities&degree=master",
+  "https://www.unibas.ch/en/Studies/Before-My-Studies/Degree-Programs/Degree-Programs.html?study=Physics-of-Life&degree=master",
+  "https://www.unibas.ch/en/Studies/Before-My-Studies/Degree-Programs/Degree-Programs.html?study=Plant-Science&degree=master",
+  "https://www.unibas.ch/en/Studies/Before-My-Studies/Degree-Programs/Degree-Programs.html?study=Ecology&degree=master",
+  "https://www.unibas.ch/en/Studies/Before-My-Studies/Degree-Programs/Degree-Programs.html?study=Pflegewissenschaft&degree=master"
+ ],
+ "notes": "Capped at 20 programmes. Most programme pages refer admission details to study-plan PDFs whose text the snapshot tool cannot extract, so academic falls back to the university master's admission page (sections 16/18) and deadlines to the central application-deadline page; no official English test scores (only a recommended C1 level) or China-specific page were found.",
+ "programs": [
+  {
+   "name": "Computer Science / Informatik (Master)",
+   "url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Degree-Programs/Degree-Programs.html?study=Computer-Science-MSc&degree=master",
+   "snapshot_sha256": "083d9cff33839db7d8343a406f97afbccdc079f2a3fa1e83eb60db6df804825b",
+   "fields": {
+    "academic": {
+     "text": "BSc in Computer Science (Basel); other Swiss or foreign degrees from recognised institutions need approval by the Faculty of Science examination commission",
+     "quote": "Bachelor of Science in Computer Science from the University of Basel. Other Swiss or foreign degrees from an education institution recognized by the University of Basel require approval by the examination commission of the Faculty of Science.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Non-Swiss degree must entitle the holder to admission to the chosen master's programme in the issuing system",
+      "quote": "Section 18 The access to a master’s degree program with a bachelor’s degree or a degree of equal value from a non-Swiss higher education institution recognized by the University of Basel is only granted if the degree entitles the holder to be admitted to the chosen master’s degree program at a university in the issuing higher education system. Confirmation of university admission may be required. Section 16 applies equally.",
+      "source_sha256": "1e88e9f6aa1860e075c0f4e8763f84f341fe5cb136e579fd485446b4574f96d5",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Application-Admission/Admission/Admission-to-the-master-s-studies.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring Semester 2027 (degree from a foreign institution)",
+      "date": "2026-11-30",
+      "quote": "with a degree from a foreign higher education institution (special deadlines below) Semester Spring Semester 2027 Sign up until 30 Nov 2026",
+      "source_sha256": "bd97b0fe1ce3348d6603a3bcdd4e1ad1b3932e352e85b260d3ae18461aa8d68c",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Dates-Events/Deadlines/Application.html",
+      "check": "ok"
+     },
+     {
+      "label": "Fall Semester 2027 (degree from a foreign institution)",
+      "date": "2027-04-30",
+      "quote": "with a degree from a foreign higher education institution (special deadlines below) Semester Fall Semester 2027 Sign up until 30 Apr 2027",
+      "source_sha256": "bd97b0fe1ce3348d6603a3bcdd4e1ad1b3932e352e85b260d3ae18461aa8d68c",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Dates-Events/Deadlines/Application.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Data Science (Master)",
+   "url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Degree-Programs/Degree-Programs.html?study=Data-Science&degree=master",
+   "snapshot_sha256": "c9585dd9ec6eb922c06a81650d9f8c5844e2ca24542e5754399fea331363f2ff",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree with 180 credit points from an institution recognised by the University of Basel; programme study regulations may add requirements",
+     "quote": "Section 16 Admission to a master’s degree program requires a bachelor’s degree with 180 credit points from a higher education institution recognized by the University of Basel.",
+     "source_sha256": "1e88e9f6aa1860e075c0f4e8763f84f341fe5cb136e579fd485446b4574f96d5",
+     "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Application-Admission/Admission/Admission-to-the-master-s-studies.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Non-Swiss degree must entitle the holder to admission to the chosen master's programme in the issuing system",
+      "quote": "Section 18 The access to a master’s degree program with a bachelor’s degree or a degree of equal value from a non-Swiss higher education institution recognized by the University of Basel is only granted if the degree entitles the holder to be admitted to the chosen master’s degree program at a university in the issuing higher education system. Confirmation of university admission may be required. Section 16 applies equally.",
+      "source_sha256": "1e88e9f6aa1860e075c0f4e8763f84f341fe5cb136e579fd485446b4574f96d5",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Application-Admission/Admission/Admission-to-the-master-s-studies.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring Semester 2027 (degree from a foreign institution)",
+      "date": "2026-11-30",
+      "quote": "with a degree from a foreign higher education institution (special deadlines below) Semester Spring Semester 2027 Sign up until 30 Nov 2026",
+      "source_sha256": "bd97b0fe1ce3348d6603a3bcdd4e1ad1b3932e352e85b260d3ae18461aa8d68c",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Dates-Events/Deadlines/Application.html",
+      "check": "ok"
+     },
+     {
+      "label": "Fall Semester 2027 (degree from a foreign institution)",
+      "date": "2027-04-30",
+      "quote": "with a degree from a foreign higher education institution (special deadlines below) Semester Fall Semester 2027 Sign up until 30 Apr 2027",
+      "source_sha256": "bd97b0fe1ce3348d6603a3bcdd4e1ad1b3932e352e85b260d3ae18461aa8d68c",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Dates-Events/Deadlines/Application.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Business and Technology (Master)",
+   "url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Degree-Programs/Degree-Programs.html?study=Business-and-Technology&degree=master",
+   "snapshot_sha256": "c017355af230c5e2ed1e2d41d38a5b49e65478c516f393337aa4270f1a2200cc",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree with 180 credit points from an institution recognised by the University of Basel; programme study regulations may add requirements",
+     "quote": "Section 16 Admission to a master’s degree program requires a bachelor’s degree with 180 credit points from a higher education institution recognized by the University of Basel.",
+     "source_sha256": "1e88e9f6aa1860e075c0f4e8763f84f341fe5cb136e579fd485446b4574f96d5",
+     "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Application-Admission/Admission/Admission-to-the-master-s-studies.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Non-Swiss degree must entitle the holder to admission to the chosen master's programme in the issuing system",
+      "quote": "Section 18 The access to a master’s degree program with a bachelor’s degree or a degree of equal value from a non-Swiss higher education institution recognized by the University of Basel is only granted if the degree entitles the holder to be admitted to the chosen master’s degree program at a university in the issuing higher education system. Confirmation of university admission may be required. Section 16 applies equally.",
+      "source_sha256": "1e88e9f6aa1860e075c0f4e8763f84f341fe5cb136e579fd485446b4574f96d5",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Application-Admission/Admission/Admission-to-the-master-s-studies.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring Semester 2027 (degree from a foreign institution)",
+      "date": "2026-11-30",
+      "quote": "with a degree from a foreign higher education institution (special deadlines below) Semester Spring Semester 2027 Sign up until 30 Nov 2026",
+      "source_sha256": "bd97b0fe1ce3348d6603a3bcdd4e1ad1b3932e352e85b260d3ae18461aa8d68c",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Dates-Events/Deadlines/Application.html",
+      "check": "ok"
+     },
+     {
+      "label": "Fall Semester 2027 (degree from a foreign institution)",
+      "date": "2027-04-30",
+      "quote": "with a degree from a foreign higher education institution (special deadlines below) Semester Fall Semester 2027 Sign up until 30 Apr 2027",
+      "source_sha256": "bd97b0fe1ce3348d6603a3bcdd4e1ad1b3932e352e85b260d3ae18461aa8d68c",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Dates-Events/Deadlines/Application.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Finance and Money (Master)",
+   "url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Degree-Programs/Degree-Programs.html?study=Finance-and-Money-MSc&degree=master",
+   "snapshot_sha256": "62a3b4d55128a57c13caa268360250ed8783390f015b25ed555a71333cec07a1",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree with 180 credit points from an institution recognised by the University of Basel; programme study regulations may add requirements",
+     "quote": "Section 16 Admission to a master’s degree program requires a bachelor’s degree with 180 credit points from a higher education institution recognized by the University of Basel.",
+     "source_sha256": "1e88e9f6aa1860e075c0f4e8763f84f341fe5cb136e579fd485446b4574f96d5",
+     "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Application-Admission/Admission/Admission-to-the-master-s-studies.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Non-Swiss degree must entitle the holder to admission to the chosen master's programme in the issuing system",
+      "quote": "Section 18 The access to a master’s degree program with a bachelor’s degree or a degree of equal value from a non-Swiss higher education institution recognized by the University of Basel is only granted if the degree entitles the holder to be admitted to the chosen master’s degree program at a university in the issuing higher education system. Confirmation of university admission may be required. Section 16 applies equally.",
+      "source_sha256": "1e88e9f6aa1860e075c0f4e8763f84f341fe5cb136e579fd485446b4574f96d5",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Application-Admission/Admission/Admission-to-the-master-s-studies.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring Semester 2027 (degree from a foreign institution)",
+      "date": "2026-11-30",
+      "quote": "with a degree from a foreign higher education institution (special deadlines below) Semester Spring Semester 2027 Sign up until 30 Nov 2026",
+      "source_sha256": "bd97b0fe1ce3348d6603a3bcdd4e1ad1b3932e352e85b260d3ae18461aa8d68c",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Dates-Events/Deadlines/Application.html",
+      "check": "ok"
+     },
+     {
+      "label": "Fall Semester 2027 (degree from a foreign institution)",
+      "date": "2027-04-30",
+      "quote": "with a degree from a foreign higher education institution (special deadlines below) Semester Fall Semester 2027 Sign up until 30 Apr 2027",
+      "source_sha256": "bd97b0fe1ce3348d6603a3bcdd4e1ad1b3932e352e85b260d3ae18461aa8d68c",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Dates-Events/Deadlines/Application.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Economics and Public Policy (Master)",
+   "url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Degree-Programs/Degree-Programs.html?study=Economics-and-Public-Policy&degree=master",
+   "snapshot_sha256": "242fed3d15226c2144065344dc72ecd9cc4d0a1565b46cd9659cf8b45ce8c8ad",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree with 180 credit points from an institution recognised by the University of Basel; programme study regulations may add requirements",
+     "quote": "Section 16 Admission to a master’s degree program requires a bachelor’s degree with 180 credit points from a higher education institution recognized by the University of Basel.",
+     "source_sha256": "1e88e9f6aa1860e075c0f4e8763f84f341fe5cb136e579fd485446b4574f96d5",
+     "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Application-Admission/Admission/Admission-to-the-master-s-studies.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Non-Swiss degree must entitle the holder to admission to the chosen master's programme in the issuing system",
+      "quote": "Section 18 The access to a master’s degree program with a bachelor’s degree or a degree of equal value from a non-Swiss higher education institution recognized by the University of Basel is only granted if the degree entitles the holder to be admitted to the chosen master’s degree program at a university in the issuing higher education system. Confirmation of university admission may be required. Section 16 applies equally.",
+      "source_sha256": "1e88e9f6aa1860e075c0f4e8763f84f341fe5cb136e579fd485446b4574f96d5",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Application-Admission/Admission/Admission-to-the-master-s-studies.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring Semester 2027 (degree from a foreign institution)",
+      "date": "2026-11-30",
+      "quote": "with a degree from a foreign higher education institution (special deadlines below) Semester Spring Semester 2027 Sign up until 30 Nov 2026",
+      "source_sha256": "bd97b0fe1ce3348d6603a3bcdd4e1ad1b3932e352e85b260d3ae18461aa8d68c",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Dates-Events/Deadlines/Application.html",
+      "check": "ok"
+     },
+     {
+      "label": "Fall Semester 2027 (degree from a foreign institution)",
+      "date": "2027-04-30",
+      "quote": "with a degree from a foreign higher education institution (special deadlines below) Semester Fall Semester 2027 Sign up until 30 Apr 2027",
+      "source_sha256": "bd97b0fe1ce3348d6603a3bcdd4e1ad1b3932e352e85b260d3ae18461aa8d68c",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Dates-Events/Deadlines/Application.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "International and Monetary Economics (MIME) (Master)",
+   "url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Degree-Programs/Degree-Programs.html?study=International-and-Monetary-Economics_MA&degree=master",
+   "snapshot_sha256": "c9b60adf5f162d04e187a947384afb7639499716b3fec259a01ef3fad6f9161a",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree with 180 credit points from an institution recognised by the University of Basel; programme study regulations may add requirements",
+     "quote": "Section 16 Admission to a master’s degree program requires a bachelor’s degree with 180 credit points from a higher education institution recognized by the University of Basel.",
+     "source_sha256": "1e88e9f6aa1860e075c0f4e8763f84f341fe5cb136e579fd485446b4574f96d5",
+     "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Application-Admission/Admission/Admission-to-the-master-s-studies.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Non-Swiss degree must entitle the holder to admission to the chosen master's programme in the issuing system",
+      "quote": "Section 18 The access to a master’s degree program with a bachelor’s degree or a degree of equal value from a non-Swiss higher education institution recognized by the University of Basel is only granted if the degree entitles the holder to be admitted to the chosen master’s degree program at a university in the issuing higher education system. Confirmation of university admission may be required. Section 16 applies equally.",
+      "source_sha256": "1e88e9f6aa1860e075c0f4e8763f84f341fe5cb136e579fd485446b4574f96d5",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Application-Admission/Admission/Admission-to-the-master-s-studies.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring Semester 2027 (degree from a foreign institution)",
+      "date": "2026-11-30",
+      "quote": "with a degree from a foreign higher education institution (special deadlines below) Semester Spring Semester 2027 Sign up until 30 Nov 2026",
+      "source_sha256": "bd97b0fe1ce3348d6603a3bcdd4e1ad1b3932e352e85b260d3ae18461aa8d68c",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Dates-Events/Deadlines/Application.html",
+      "check": "ok"
+     },
+     {
+      "label": "Fall Semester 2027 (degree from a foreign institution)",
+      "date": "2027-04-30",
+      "quote": "with a degree from a foreign higher education institution (special deadlines below) Semester Fall Semester 2027 Sign up until 30 Apr 2027",
+      "source_sha256": "bd97b0fe1ce3348d6603a3bcdd4e1ad1b3932e352e85b260d3ae18461aa8d68c",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Dates-Events/Deadlines/Application.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Actuarial Science (Master)",
+   "url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Degree-Programs/Degree-Programs.html?study=Actuarial-Science&degree=master",
+   "snapshot_sha256": "dcbca1a4b1c9d54016570434afcb7c2ba83c5c5d874ba111c72a9e898d79f0da",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree with 180 credit points from an institution recognised by the University of Basel; programme study regulations may add requirements",
+     "quote": "Section 16 Admission to a master’s degree program requires a bachelor’s degree with 180 credit points from a higher education institution recognized by the University of Basel.",
+     "source_sha256": "1e88e9f6aa1860e075c0f4e8763f84f341fe5cb136e579fd485446b4574f96d5",
+     "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Application-Admission/Admission/Admission-to-the-master-s-studies.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Non-Swiss degree must entitle the holder to admission to the chosen master's programme in the issuing system",
+      "quote": "Section 18 The access to a master’s degree program with a bachelor’s degree or a degree of equal value from a non-Swiss higher education institution recognized by the University of Basel is only granted if the degree entitles the holder to be admitted to the chosen master’s degree program at a university in the issuing higher education system. Confirmation of university admission may be required. Section 16 applies equally.",
+      "source_sha256": "1e88e9f6aa1860e075c0f4e8763f84f341fe5cb136e579fd485446b4574f96d5",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Application-Admission/Admission/Admission-to-the-master-s-studies.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall Semester 2027 (degree from a foreign institution)",
+      "date": "2027-04-30",
+      "quote": "with a degree from a foreign higher education institution (special deadlines below) Semester Fall Semester 2027 Sign up until 30 Apr 2027",
+      "source_sha256": "bd97b0fe1ce3348d6603a3bcdd4e1ad1b3932e352e85b260d3ae18461aa8d68c",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Dates-Events/Deadlines/Application.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Wirtschaftswissenschaften (Business and Economics) (Master)",
+   "url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Degree-Programs/Degree-Programs.html?study=Wirtschaftswissenschaften-MSc&degree=master",
+   "snapshot_sha256": "4d9f9aae6b2fa67c290d60f11c3c63843a99b2d46ff2e6ce2f2e503d2e7a192a",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree with 180 credit points from an institution recognised by the University of Basel; programme study regulations may add requirements",
+     "quote": "Section 16 Admission to a master’s degree program requires a bachelor’s degree with 180 credit points from a higher education institution recognized by the University of Basel.",
+     "source_sha256": "1e88e9f6aa1860e075c0f4e8763f84f341fe5cb136e579fd485446b4574f96d5",
+     "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Application-Admission/Admission/Admission-to-the-master-s-studies.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Non-Swiss degree must entitle the holder to admission to the chosen master's programme in the issuing system",
+      "quote": "Section 18 The access to a master’s degree program with a bachelor’s degree or a degree of equal value from a non-Swiss higher education institution recognized by the University of Basel is only granted if the degree entitles the holder to be admitted to the chosen master’s degree program at a university in the issuing higher education system. Confirmation of university admission may be required. Section 16 applies equally.",
+      "source_sha256": "1e88e9f6aa1860e075c0f4e8763f84f341fe5cb136e579fd485446b4574f96d5",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Application-Admission/Admission/Admission-to-the-master-s-studies.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring Semester 2027 (degree from a foreign institution)",
+      "date": "2026-11-30",
+      "quote": "with a degree from a foreign higher education institution (special deadlines below) Semester Spring Semester 2027 Sign up until 30 Nov 2026",
+      "source_sha256": "bd97b0fe1ce3348d6603a3bcdd4e1ad1b3932e352e85b260d3ae18461aa8d68c",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Dates-Events/Deadlines/Application.html",
+      "check": "ok"
+     },
+     {
+      "label": "Fall Semester 2027 (degree from a foreign institution)",
+      "date": "2027-04-30",
+      "quote": "with a degree from a foreign higher education institution (special deadlines below) Semester Fall Semester 2027 Sign up until 30 Apr 2027",
+      "source_sha256": "bd97b0fe1ce3348d6603a3bcdd4e1ad1b3932e352e85b260d3ae18461aa8d68c",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Dates-Events/Deadlines/Application.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Epidemiology (Master)",
+   "url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Degree-Programs/Degree-Programs.html?study=Epidemiology&degree=master",
+   "snapshot_sha256": "58ad8d7daa95d96c9253d9682a6cd8cac615d07da77c4741a4c0affda58a80af",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree with 180 credit points from an institution recognised by the University of Basel; programme study regulations may add requirements",
+     "quote": "Section 16 Admission to a master’s degree program requires a bachelor’s degree with 180 credit points from a higher education institution recognized by the University of Basel.",
+     "source_sha256": "1e88e9f6aa1860e075c0f4e8763f84f341fe5cb136e579fd485446b4574f96d5",
+     "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Application-Admission/Admission/Admission-to-the-master-s-studies.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Non-Swiss degree must entitle the holder to admission to the chosen master's programme in the issuing system",
+      "quote": "Section 18 The access to a master’s degree program with a bachelor’s degree or a degree of equal value from a non-Swiss higher education institution recognized by the University of Basel is only granted if the degree entitles the holder to be admitted to the chosen master’s degree program at a university in the issuing higher education system. Confirmation of university admission may be required. Section 16 applies equally.",
+      "source_sha256": "1e88e9f6aa1860e075c0f4e8763f84f341fe5cb136e579fd485446b4574f96d5",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Application-Admission/Admission/Admission-to-the-master-s-studies.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall Semester 2027 (degree from a foreign institution)",
+      "date": "2027-04-30",
+      "quote": "with a degree from a foreign higher education institution (special deadlines below) Semester Fall Semester 2027 Sign up until 30 Apr 2027",
+      "source_sha256": "bd97b0fe1ce3348d6603a3bcdd4e1ad1b3932e352e85b260d3ae18461aa8d68c",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Dates-Events/Deadlines/Application.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Educational Sciences (Master)",
+   "url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Degree-Programs/Degree-Programs.html?study=Educational-Sciences&degree=master",
+   "snapshot_sha256": "6e5ae89b604d75ac1a9ccdaaa8d1f625b6ac8a66c2ffa8fa362eea7207415c52",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree with 180 credit points from an institution recognised by the University of Basel; programme study regulations may add requirements",
+     "quote": "Section 16 Admission to a master’s degree program requires a bachelor’s degree with 180 credit points from a higher education institution recognized by the University of Basel.",
+     "source_sha256": "1e88e9f6aa1860e075c0f4e8763f84f341fe5cb136e579fd485446b4574f96d5",
+     "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Application-Admission/Admission/Admission-to-the-master-s-studies.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Non-Swiss degree must entitle the holder to admission to the chosen master's programme in the issuing system",
+      "quote": "Section 18 The access to a master’s degree program with a bachelor’s degree or a degree of equal value from a non-Swiss higher education institution recognized by the University of Basel is only granted if the degree entitles the holder to be admitted to the chosen master’s degree program at a university in the issuing higher education system. Confirmation of university admission may be required. Section 16 applies equally.",
+      "source_sha256": "1e88e9f6aa1860e075c0f4e8763f84f341fe5cb136e579fd485446b4574f96d5",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Application-Admission/Admission/Admission-to-the-master-s-studies.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring Semester 2027 (degree from a foreign institution)",
+      "date": "2026-11-30",
+      "quote": "with a degree from a foreign higher education institution (special deadlines below) Semester Spring Semester 2027 Sign up until 30 Nov 2026",
+      "source_sha256": "bd97b0fe1ce3348d6603a3bcdd4e1ad1b3932e352e85b260d3ae18461aa8d68c",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Dates-Events/Deadlines/Application.html",
+      "check": "ok"
+     },
+     {
+      "label": "Fall Semester 2027 (degree from a foreign institution)",
+      "date": "2027-04-30",
+      "quote": "with a degree from a foreign higher education institution (special deadlines below) Semester Fall Semester 2027 Sign up until 30 Apr 2027",
+      "source_sha256": "bd97b0fe1ce3348d6603a3bcdd4e1ad1b3932e352e85b260d3ae18461aa8d68c",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Dates-Events/Deadlines/Application.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Biomedical Engineering (Master)",
+   "url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Degree-Programs/Degree-Programs.html?study=Biomedical-Engineering-MSc&degree=master",
+   "snapshot_sha256": "3be49bc00f6c9e7de1142821b835555e26f04167b551ea0ae8828629418a803e",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree with 180 credit points from an institution recognised by the University of Basel; programme study regulations may add requirements",
+     "quote": "Section 16 Admission to a master’s degree program requires a bachelor’s degree with 180 credit points from a higher education institution recognized by the University of Basel.",
+     "source_sha256": "1e88e9f6aa1860e075c0f4e8763f84f341fe5cb136e579fd485446b4574f96d5",
+     "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Application-Admission/Admission/Admission-to-the-master-s-studies.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Non-Swiss degree must entitle the holder to admission to the chosen master's programme in the issuing system",
+      "quote": "Section 18 The access to a master’s degree program with a bachelor’s degree or a degree of equal value from a non-Swiss higher education institution recognized by the University of Basel is only granted if the degree entitles the holder to be admitted to the chosen master’s degree program at a university in the issuing higher education system. Confirmation of university admission may be required. Section 16 applies equally.",
+      "source_sha256": "1e88e9f6aa1860e075c0f4e8763f84f341fe5cb136e579fd485446b4574f96d5",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Application-Admission/Admission/Admission-to-the-master-s-studies.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall Semester 2027 (degree from a foreign institution)",
+      "date": "2027-04-30",
+      "quote": "with a degree from a foreign higher education institution (special deadlines below) Semester Fall Semester 2027 Sign up until 30 Apr 2027",
+      "source_sha256": "bd97b0fe1ce3348d6603a3bcdd4e1ad1b3932e352e85b260d3ae18461aa8d68c",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Dates-Events/Deadlines/Application.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Drug Sciences (Master)",
+   "url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Degree-Programs/Degree-Programs.html?study=Drug-Sciences&degree=master",
+   "snapshot_sha256": "6089e9568000973bcb7e354525d52344b0d288832c35326b4098d69a019a16a1",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree with 180 credit points from an institution recognised by the University of Basel; programme study regulations may add requirements",
+     "quote": "Section 16 Admission to a master’s degree program requires a bachelor’s degree with 180 credit points from a higher education institution recognized by the University of Basel.",
+     "source_sha256": "1e88e9f6aa1860e075c0f4e8763f84f341fe5cb136e579fd485446b4574f96d5",
+     "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Application-Admission/Admission/Admission-to-the-master-s-studies.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Non-Swiss degree must entitle the holder to admission to the chosen master's programme in the issuing system",
+      "quote": "Section 18 The access to a master’s degree program with a bachelor’s degree or a degree of equal value from a non-Swiss higher education institution recognized by the University of Basel is only granted if the degree entitles the holder to be admitted to the chosen master’s degree program at a university in the issuing higher education system. Confirmation of university admission may be required. Section 16 applies equally.",
+      "source_sha256": "1e88e9f6aa1860e075c0f4e8763f84f341fe5cb136e579fd485446b4574f96d5",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Application-Admission/Admission/Admission-to-the-master-s-studies.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall Semester 2027 (degree from a foreign institution)",
+      "date": "2027-04-30",
+      "quote": "with a degree from a foreign higher education institution (special deadlines below) Semester Fall Semester 2027 Sign up until 30 Apr 2027",
+      "source_sha256": "bd97b0fe1ce3348d6603a3bcdd4e1ad1b3932e352e85b260d3ae18461aa8d68c",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Dates-Events/Deadlines/Application.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Sustainable Development (Master)",
+   "url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Degree-Programs/Degree-Programs.html?study=Sustainable-Development&degree=master",
+   "snapshot_sha256": "9cb0348a0f1be73533073c2bb3896ad39742c09d206d338f444193c0f203d08b",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree with 180 credit points from an institution recognised by the University of Basel; programme study regulations may add requirements",
+     "quote": "Section 16 Admission to a master’s degree program requires a bachelor’s degree with 180 credit points from a higher education institution recognized by the University of Basel.",
+     "source_sha256": "1e88e9f6aa1860e075c0f4e8763f84f341fe5cb136e579fd485446b4574f96d5",
+     "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Application-Admission/Admission/Admission-to-the-master-s-studies.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Non-Swiss degree must entitle the holder to admission to the chosen master's programme in the issuing system",
+      "quote": "Section 18 The access to a master’s degree program with a bachelor’s degree or a degree of equal value from a non-Swiss higher education institution recognized by the University of Basel is only granted if the degree entitles the holder to be admitted to the chosen master’s degree program at a university in the issuing higher education system. Confirmation of university admission may be required. Section 16 applies equally.",
+      "source_sha256": "1e88e9f6aa1860e075c0f4e8763f84f341fe5cb136e579fd485446b4574f96d5",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Application-Admission/Admission/Admission-to-the-master-s-studies.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring Semester 2027 (degree from a foreign institution)",
+      "date": "2026-11-30",
+      "quote": "with a degree from a foreign higher education institution (special deadlines below) Semester Spring Semester 2027 Sign up until 30 Nov 2026",
+      "source_sha256": "bd97b0fe1ce3348d6603a3bcdd4e1ad1b3932e352e85b260d3ae18461aa8d68c",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Dates-Events/Deadlines/Application.html",
+      "check": "ok"
+     },
+     {
+      "label": "Fall Semester 2027 (degree from a foreign institution)",
+      "date": "2027-04-30",
+      "quote": "with a degree from a foreign higher education institution (special deadlines below) Semester Fall Semester 2027 Sign up until 30 Apr 2027",
+      "source_sha256": "bd97b0fe1ce3348d6603a3bcdd4e1ad1b3932e352e85b260d3ae18461aa8d68c",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Dates-Events/Deadlines/Application.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "European Global Studies (Master)",
+   "url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Degree-Programs/Degree-Programs.html?study=European-Global-Studies&degree=master",
+   "snapshot_sha256": "f6e6793acf1f6e78c214760bd6bbf59183b02bdcd752fd8233da7100f3ab70b6",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree with 180 credit points from an institution recognised by the University of Basel; programme study regulations may add requirements",
+     "quote": "Section 16 Admission to a master’s degree program requires a bachelor’s degree with 180 credit points from a higher education institution recognized by the University of Basel.",
+     "source_sha256": "1e88e9f6aa1860e075c0f4e8763f84f341fe5cb136e579fd485446b4574f96d5",
+     "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Application-Admission/Admission/Admission-to-the-master-s-studies.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Non-Swiss degree must entitle the holder to admission to the chosen master's programme in the issuing system",
+      "quote": "Section 18 The access to a master’s degree program with a bachelor’s degree or a degree of equal value from a non-Swiss higher education institution recognized by the University of Basel is only granted if the degree entitles the holder to be admitted to the chosen master’s degree program at a university in the issuing higher education system. Confirmation of university admission may be required. Section 16 applies equally.",
+      "source_sha256": "1e88e9f6aa1860e075c0f4e8763f84f341fe5cb136e579fd485446b4574f96d5",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Application-Admission/Admission/Admission-to-the-master-s-studies.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring Semester 2027 (degree from a foreign institution)",
+      "date": "2026-11-30",
+      "quote": "with a degree from a foreign higher education institution (special deadlines below) Semester Spring Semester 2027 Sign up until 30 Nov 2026",
+      "source_sha256": "bd97b0fe1ce3348d6603a3bcdd4e1ad1b3932e352e85b260d3ae18461aa8d68c",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Dates-Events/Deadlines/Application.html",
+      "check": "ok"
+     },
+     {
+      "label": "Fall Semester 2027 (degree from a foreign institution)",
+      "date": "2027-04-30",
+      "quote": "with a degree from a foreign higher education institution (special deadlines below) Semester Fall Semester 2027 Sign up until 30 Apr 2027",
+      "source_sha256": "bd97b0fe1ce3348d6603a3bcdd4e1ad1b3932e352e85b260d3ae18461aa8d68c",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Dates-Events/Deadlines/Application.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Psychologie (Master)",
+   "url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Degree-Programs/Degree-Programs.html?study=Psychologie-MSc&degree=master",
+   "snapshot_sha256": "e5f823363f9bbe934f0adb6064cffbacd304d52606d58a3e58ffc150f0e8cebc",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree with 180 credit points from an institution recognised by the University of Basel; programme study regulations may add requirements",
+     "quote": "Section 16 Admission to a master’s degree program requires a bachelor’s degree with 180 credit points from a higher education institution recognized by the University of Basel.",
+     "source_sha256": "1e88e9f6aa1860e075c0f4e8763f84f341fe5cb136e579fd485446b4574f96d5",
+     "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Application-Admission/Admission/Admission-to-the-master-s-studies.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Non-Swiss degree must entitle the holder to admission to the chosen master's programme in the issuing system",
+      "quote": "Section 18 The access to a master’s degree program with a bachelor’s degree or a degree of equal value from a non-Swiss higher education institution recognized by the University of Basel is only granted if the degree entitles the holder to be admitted to the chosen master’s degree program at a university in the issuing higher education system. Confirmation of university admission may be required. Section 16 applies equally.",
+      "source_sha256": "1e88e9f6aa1860e075c0f4e8763f84f341fe5cb136e579fd485446b4574f96d5",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Application-Admission/Admission/Admission-to-the-master-s-studies.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring Semester 2027 (degree from a foreign institution)",
+      "date": "2026-11-30",
+      "quote": "with a degree from a foreign higher education institution (special deadlines below) Semester Spring Semester 2027 Sign up until 30 Nov 2026",
+      "source_sha256": "bd97b0fe1ce3348d6603a3bcdd4e1ad1b3932e352e85b260d3ae18461aa8d68c",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Dates-Events/Deadlines/Application.html",
+      "check": "ok"
+     },
+     {
+      "label": "Fall Semester 2027 (degree from a foreign institution)",
+      "date": "2027-04-30",
+      "quote": "with a degree from a foreign higher education institution (special deadlines below) Semester Fall Semester 2027 Sign up until 30 Apr 2027",
+      "source_sha256": "bd97b0fe1ce3348d6603a3bcdd4e1ad1b3932e352e85b260d3ae18461aa8d68c",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Dates-Events/Deadlines/Application.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Mathematik (Master)",
+   "url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Degree-Programs/Degree-Programs.html?study=Mathematik-MSc&degree=master",
+   "snapshot_sha256": "4321c5ed9d8126988f4b3f675c1f1d92ff1a135e5dd8fe9c1b25fd61a05ee6b1",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree with 180 credit points from an institution recognised by the University of Basel; programme study regulations may add requirements",
+     "quote": "Section 16 Admission to a master’s degree program requires a bachelor’s degree with 180 credit points from a higher education institution recognized by the University of Basel.",
+     "source_sha256": "1e88e9f6aa1860e075c0f4e8763f84f341fe5cb136e579fd485446b4574f96d5",
+     "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Application-Admission/Admission/Admission-to-the-master-s-studies.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Non-Swiss degree must entitle the holder to admission to the chosen master's programme in the issuing system",
+      "quote": "Section 18 The access to a master’s degree program with a bachelor’s degree or a degree of equal value from a non-Swiss higher education institution recognized by the University of Basel is only granted if the degree entitles the holder to be admitted to the chosen master’s degree program at a university in the issuing higher education system. Confirmation of university admission may be required. Section 16 applies equally.",
+      "source_sha256": "1e88e9f6aa1860e075c0f4e8763f84f341fe5cb136e579fd485446b4574f96d5",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Application-Admission/Admission/Admission-to-the-master-s-studies.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Fall Semester 2027 (degree from a foreign institution)",
+      "date": "2027-04-30",
+      "quote": "with a degree from a foreign higher education institution (special deadlines below) Semester Fall Semester 2027 Sign up until 30 Apr 2027",
+      "source_sha256": "bd97b0fe1ce3348d6603a3bcdd4e1ad1b3932e352e85b260d3ae18461aa8d68c",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Dates-Events/Deadlines/Application.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Molecular Biology (Master)",
+   "url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Degree-Programs/Degree-Programs.html?study=Molecular-Biology&degree=master",
+   "snapshot_sha256": "d6a3df10fd3ab10e4d3ce8955e25e19295f013163490550294f6149c1c68c0ee",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree with 180 credit points from an institution recognised by the University of Basel; programme study regulations may add requirements",
+     "quote": "Section 16 Admission to a master’s degree program requires a bachelor’s degree with 180 credit points from a higher education institution recognized by the University of Basel.",
+     "source_sha256": "1e88e9f6aa1860e075c0f4e8763f84f341fe5cb136e579fd485446b4574f96d5",
+     "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Application-Admission/Admission/Admission-to-the-master-s-studies.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Non-Swiss degree must entitle the holder to admission to the chosen master's programme in the issuing system",
+      "quote": "Section 18 The access to a master’s degree program with a bachelor’s degree or a degree of equal value from a non-Swiss higher education institution recognized by the University of Basel is only granted if the degree entitles the holder to be admitted to the chosen master’s degree program at a university in the issuing higher education system. Confirmation of university admission may be required. Section 16 applies equally.",
+      "source_sha256": "1e88e9f6aa1860e075c0f4e8763f84f341fe5cb136e579fd485446b4574f96d5",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Application-Admission/Admission/Admission-to-the-master-s-studies.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring Semester 2027 (degree from a foreign institution)",
+      "date": "2026-11-30",
+      "quote": "with a degree from a foreign higher education institution (special deadlines below) Semester Spring Semester 2027 Sign up until 30 Nov 2026",
+      "source_sha256": "bd97b0fe1ce3348d6603a3bcdd4e1ad1b3932e352e85b260d3ae18461aa8d68c",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Dates-Events/Deadlines/Application.html",
+      "check": "ok"
+     },
+     {
+      "label": "Fall Semester 2027 (degree from a foreign institution)",
+      "date": "2027-04-30",
+      "quote": "with a degree from a foreign higher education institution (special deadlines below) Semester Fall Semester 2027 Sign up until 30 Apr 2027",
+      "source_sha256": "bd97b0fe1ce3348d6603a3bcdd4e1ad1b3932e352e85b260d3ae18461aa8d68c",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Dates-Events/Deadlines/Application.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Nanosciences (Master)",
+   "url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Degree-Programs/Degree-Programs.html?study=Nanowissenschaften-MSc&degree=master",
+   "snapshot_sha256": "970b1ce9f617420eca23c862c6f6f5580dc4a2307dc27e48918eab8931731652",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree with 180 credit points from an institution recognised by the University of Basel; programme study regulations may add requirements",
+     "quote": "Section 16 Admission to a master’s degree program requires a bachelor’s degree with 180 credit points from a higher education institution recognized by the University of Basel.",
+     "source_sha256": "1e88e9f6aa1860e075c0f4e8763f84f341fe5cb136e579fd485446b4574f96d5",
+     "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Application-Admission/Admission/Admission-to-the-master-s-studies.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Non-Swiss degree must entitle the holder to admission to the chosen master's programme in the issuing system",
+      "quote": "Section 18 The access to a master’s degree program with a bachelor’s degree or a degree of equal value from a non-Swiss higher education institution recognized by the University of Basel is only granted if the degree entitles the holder to be admitted to the chosen master’s degree program at a university in the issuing higher education system. Confirmation of university admission may be required. Section 16 applies equally.",
+      "source_sha256": "1e88e9f6aa1860e075c0f4e8763f84f341fe5cb136e579fd485446b4574f96d5",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Application-Admission/Admission/Admission-to-the-master-s-studies.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring Semester 2027 (degree from a foreign institution)",
+      "date": "2026-11-30",
+      "quote": "with a degree from a foreign higher education institution (special deadlines below) Semester Spring Semester 2027 Sign up until 30 Nov 2026",
+      "source_sha256": "bd97b0fe1ce3348d6603a3bcdd4e1ad1b3932e352e85b260d3ae18461aa8d68c",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Dates-Events/Deadlines/Application.html",
+      "check": "ok"
+     },
+     {
+      "label": "Fall Semester 2027 (degree from a foreign institution)",
+      "date": "2027-04-30",
+      "quote": "with a degree from a foreign higher education institution (special deadlines below) Semester Fall Semester 2027 Sign up until 30 Apr 2027",
+      "source_sha256": "bd97b0fe1ce3348d6603a3bcdd4e1ad1b3932e352e85b260d3ae18461aa8d68c",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Dates-Events/Deadlines/Application.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Political Science – Inequality, Power, Conflict (Master)",
+   "url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Degree-Programs/Degree-Programs.html?study=Politikwissenschaft-MA&degree=master",
+   "snapshot_sha256": "bfdf389a5ea562cf714e2fdbbcec22cc309c82498a99bcbc5398dd84377156f7",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree with 180 credit points from an institution recognised by the University of Basel; programme study regulations may add requirements",
+     "quote": "Section 16 Admission to a master’s degree program requires a bachelor’s degree with 180 credit points from a higher education institution recognized by the University of Basel.",
+     "source_sha256": "1e88e9f6aa1860e075c0f4e8763f84f341fe5cb136e579fd485446b4574f96d5",
+     "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Application-Admission/Admission/Admission-to-the-master-s-studies.html",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Non-Swiss degree must entitle the holder to admission to the chosen master's programme in the issuing system",
+      "quote": "Section 18 The access to a master’s degree program with a bachelor’s degree or a degree of equal value from a non-Swiss higher education institution recognized by the University of Basel is only granted if the degree entitles the holder to be admitted to the chosen master’s degree program at a university in the issuing higher education system. Confirmation of university admission may be required. Section 16 applies equally.",
+      "source_sha256": "1e88e9f6aa1860e075c0f4e8763f84f341fe5cb136e579fd485446b4574f96d5",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Application-Admission/Admission/Admission-to-the-master-s-studies.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring Semester 2027 (degree from a foreign institution)",
+      "date": "2026-11-30",
+      "quote": "with a degree from a foreign higher education institution (special deadlines below) Semester Spring Semester 2027 Sign up until 30 Nov 2026",
+      "source_sha256": "bd97b0fe1ce3348d6603a3bcdd4e1ad1b3932e352e85b260d3ae18461aa8d68c",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Dates-Events/Deadlines/Application.html",
+      "check": "ok"
+     },
+     {
+      "label": "Fall Semester 2027 (degree from a foreign institution)",
+      "date": "2027-04-30",
+      "quote": "with a degree from a foreign higher education institution (special deadlines below) Semester Fall Semester 2027 Sign up until 30 Apr 2027",
+      "source_sha256": "bd97b0fe1ce3348d6603a3bcdd4e1ad1b3932e352e85b260d3ae18461aa8d68c",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Dates-Events/Deadlines/Application.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Medienwissenschaft (Master)",
+   "url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Degree-Programs/Degree-Programs.html?study=Medienwissenschaft-MA&degree=master",
+   "snapshot_sha256": "98d905dedd47e4214fed3899be06ef1f8252c735f4d395aa1ed2f3bbef3b5ee6",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's in the subject (or equivalent studies) from an institution recognised by the University of Basel",
+     "quote": "Eine Zulassung ohne Auflagen erfolgt in der Regel mit einem Bachelorabschluss im Studienfach Medienwissenschaft der Universität Basel oder mit dem Nachweis von gleichwertigen Studienleistungen, erbracht an einer von der Universität Basel anerkannten Hochschule.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Non-Swiss degree must entitle the holder to admission to the chosen master's programme in the issuing system",
+      "quote": "Section 18 The access to a master’s degree program with a bachelor’s degree or a degree of equal value from a non-Swiss higher education institution recognized by the University of Basel is only granted if the degree entitles the holder to be admitted to the chosen master’s degree program at a university in the issuing higher education system. Confirmation of university admission may be required. Section 16 applies equally.",
+      "source_sha256": "1e88e9f6aa1860e075c0f4e8763f84f341fe5cb136e579fd485446b4574f96d5",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Application-Admission/Admission/Admission-to-the-master-s-studies.html",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "Spring Semester 2027 (degree from a foreign institution)",
+      "date": "2026-11-30",
+      "quote": "with a degree from a foreign higher education institution (special deadlines below) Semester Spring Semester 2027 Sign up until 30 Nov 2026",
+      "source_sha256": "bd97b0fe1ce3348d6603a3bcdd4e1ad1b3932e352e85b260d3ae18461aa8d68c",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Dates-Events/Deadlines/Application.html",
+      "check": "ok"
+     },
+     {
+      "label": "Fall Semester 2027 (degree from a foreign institution)",
+      "date": "2027-04-30",
+      "quote": "with a degree from a foreign higher education institution (special deadlines below) Semester Fall Semester 2027 Sign up until 30 Apr 2027",
+      "source_sha256": "bd97b0fe1ce3348d6603a3bcdd4e1ad1b3932e352e85b260d3ae18461aa8d68c",
+      "source_url": "https://www.unibas.ch/en/Studies/Before-My-Studies/Dates-Events/Deadlines/Application.html",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 20,
+  "机器核对": 20,
+  "待人工": 0
+ }
+}

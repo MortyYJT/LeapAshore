@@ -1,0 +1,104 @@
+{
+ "school_key": "king-abdulaziz-university",
+ "school_name_en": "King Abdulaziz University (KAU)",
+ "country": "Saudi Arabia",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-30",
+ "listing_urls": [
+  "https://kau.edu.sa/faculty/en/cis/programs",
+  "https://kau.edu.sa/faculty/en/engineering/programs",
+  "https://kau.edu.sa/faculty/en/economics-administration/programs",
+  "https://kau.edu.sa/en/page/general-masters-programs"
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://kau.edu.sa/programs/professional-master-in-artificial-intelligence-254",
+  "https://kau.edu.sa/programs/executive-master-in-cybersecurity-255",
+  "https://kau.edu.sa/programs/executive-master-in-human-resource-management",
+  "https://kau.edu.sa/programs/executive-master-in-internal-auditing",
+  "https://kau.edu.sa/programs/executive-master-in-public-policy"
+ ],
+ "blocked": [
+  {
+   "url": "https://graduatestudies.kau.edu.sa/Content-306-EN-263865",
+   "reason": "host does not resolve (DNS), robots.txt unreachable"
+  },
+  {
+   "url": "https://fcit.kau.edu.sa/Default-611-EN",
+   "reason": "TLS error, robots.txt unreachable"
+  }
+ ],
+ "notes": "Per-program admission requirements on kau.edu.sa/en/page/general-masters-programs exist only inside embedded script data (Arabic) and do not appear in the page text even when rendered, and program pages state no admission requirements, so five programs go to the human queue; the general rules page (Arabic) requires non-Saudi applicants to hold an official graduate scholarship, a bachelor's graded at least 'Good', and a General Aptitude Test score of 65.",
+ "programs": [
+  {
+   "name": "Master of Architecture",
+   "url": "https://kau.edu.sa/faculty/en/architecture-planning/page-legacy/department-of-architecture-master",
+   "snapshot_sha256": "085d4c91e96a24014724f52a63ef6bccd21661d17072d1bb26fcf4d93db0fa9d",
+   "fields": {
+    "academic": {
+     "text": "Prior degree in architecture, urban and regional planning or interior design, with grade 'Good High'",
+     "quote": "Appreciation Required Good High Required Profession Architecture - Urban and Regional Planning - Interior Design",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "General Aptitude Test (university graduates) minimum 65",
+      "quote": "Aptitude Test (Undergraduates) Minimum 65 required",
+      "check": "ok"
+     },
+     {
+      "text": "TOEFL 450 or equivalent (scale not stated)",
+      "quote": "English Language Test TOEFL 450 or equivalent is required",
+      "check": "ok"
+     },
+     {
+      "text": "Employer approval",
+      "quote": "Employer Approval Wanted",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Computer Science",
+   "url": "https://kau.edu.sa/en/programs/master-of-science-in-computer-science-279",
+   "snapshot_sha256": "7901bf6b75d5dc17f374517a027f3a123df5c0d657f1af34169876bf0c748ae6",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Master of Science in Information Systems",
+   "url": "https://kau.edu.sa/en/programs/master-of-science-in-information-systems-277",
+   "snapshot_sha256": "94b6c42046aa7ec88d4b188fe40e2c580fbdc6d312be50a790a8059d13093e0b",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Master of Science in Information Technology",
+   "url": "https://kau.edu.sa/en/programs/master-of-science-in-information-technology-275",
+   "snapshot_sha256": "fff0e583e130fd2d72c82df87108ac4cb05b6d03ed1b49d549c32056d384dc3e",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Master of Science in Aeronautical Engineering",
+   "url": "https://kau.edu.sa/en/programs/master-of-science-in-aeronautical-engineering",
+   "snapshot_sha256": "fc6fa2cf44275292359771427d9d7a7a5991cbc44888cc2f9f53bfff35e32dac",
+   "fields": {},
+   "status": "待人工"
+  },
+  {
+   "name": "Master of Science in Chemical Engineering",
+   "url": "https://kau.edu.sa/en/programs/master-of-science-in-chemical-engineering",
+   "snapshot_sha256": "c2ebca96ae75063fde37ca76c07ea533f60d6c6a93e69240584822c0cb6c145b",
+   "fields": {},
+   "status": "待人工"
+  }
+ ],
+ "verification": {
+  "programs": 6,
+  "机器核对": 1,
+  "待人工": 5
+ }
+}

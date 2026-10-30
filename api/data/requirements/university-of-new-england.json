@@ -1,0 +1,278 @@
+{
+ "school_key": "university-of-new-england",
+ "school_name_en": "University of New England",
+ "country": "Australia",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-30",
+ "listing_urls": [
+  "https://www.une.edu.au/study/study-options/postgraduate"
+ ],
+ "blocked": [
+  {
+   "url": "https://www.une.edu.au/study/study-options/postgraduate",
+   "reason": "robots.txt disallows (robots.txt itself: HTTP 403); www.une.edu.au closed"
+  }
+ ],
+ "complete": true,
+ "remaining_urls": [],
+ "notes": "www.une.edu.au returns HTTP 403 for robots.txt, so course pages and the English language requirements page were not fetched; programs come from the official 2027 UNE Course Handbook (handbook.une.edu.au, rendered), which states academic rules and CRICOS codes but no IELTS/TOEFL scores or deadlines. Skipped from the CRICOS checklist: Master of Teaching (Secondary) (2027 handbook: open only to Australian Temporary Residents studying online) and Master of Urban and Regional Planning (2027 handbook lists only international online entry and no CRICOS code); the second CRICOS codes for Master of Computer Science (096384G) and Master of Laws (079197G) are not shown in the 2027 handbook.",
+ "programs": [
+  {
+   "name": "Master of Computer Science",
+   "url": "https://handbook.une.edu.au/courses/2027/MCOSC",
+   "cricos_code": "012207G",
+   "snapshot_sha256": "cd66f43d505d8ee2eba1bdc6c1868a457aa38665828f9c20c1501294bcc1102f",
+   "fields": {
+    "academic": {
+     "text": "Bachelor (AQF 7 or overseas equivalent) in a relevant discipline (Rule A); AQF 8 in a relevant discipline for Rule B",
+     "quote": "Rule A: You have completed a Bachelor qualification (AQF Level 7 or overseas equivalent) in a relevant discipline.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Assumed knowledge: Java or C++ programming",
+      "quote": "By applying for this course, we assume that you have sound knowledge of the programming language Java or C++.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Data Science",
+   "url": "https://handbook.une.edu.au/courses/2027/MDSC",
+   "cricos_code": "096381K",
+   "snapshot_sha256": "647c6fc9c9a93b58e851898669fc41f01a849444291330bbde8eaf24c67360c4",
+   "fields": {
+    "academic": {
+     "text": "Bachelor (AQF 7 or overseas equivalent) in any discipline (Rule A)",
+     "quote": "Rule A: You have completed a Bachelor qualification (AQF Level 7 or overseas equivalent) in any discipline.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Artificial Intelligence",
+   "url": "https://handbook.une.edu.au/courses/2027/MAI",
+   "cricos_code": "114671B",
+   "snapshot_sha256": "d3385fa45b1f4d5d0989153f995a4b330d9ae883bcb06199de5b8037bfce6d1c",
+   "fields": {
+    "academic": {
+     "text": "Bachelor or above (AQF 7, 8 or 9 or overseas equivalent) in any discipline (Rule A)",
+     "quote": "You can apply for this course if you have completed a Bachelor qualification or above (AQF Level 7, 8 or 9 or overseas equivalent) in any discipline.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Information Technology",
+   "url": "https://handbook.une.edu.au/courses/2027/MIT",
+   "cricos_code": "047297A",
+   "snapshot_sha256": "56fee5bbfb624eeccc45fbb51d011014a72507323adf59f0a151af3c83227b5f",
+   "fields": {
+    "academic": {
+     "text": "Bachelor from an overseas institution in any discipline, full-time at UNE Sydney (Rule D); or bachelor in a relevant discipline (Rule B)",
+     "quote": "Rule D: You have completed a Bachelor qualification from an overseas institution in any discipline. You must be studying full-time at the UNE Sydney campus on a fee-paying basis.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Cybersecurity",
+   "url": "https://handbook.une.edu.au/courses/2027/MCS",
+   "cricos_code": "113711G",
+   "snapshot_sha256": "6866108de6169467a906e49383056ad7527cf7baaf8d166bd20e367cbdd418f2",
+   "fields": {
+    "academic": {
+     "text": "Bachelor or above (AQF 7, 8 or 9 or overseas equivalent) in a relevant discipline (Rule A)",
+     "quote": "Rule A: You have completed a Bachelor qualification or above (AQF Level 7, 8 or 9 or overseas equivalent) in a relevant discipline.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Cybersecurity and Computing",
+   "url": "https://handbook.une.edu.au/courses/2027/MCCSC",
+   "cricos_code": "113710H",
+   "snapshot_sha256": "2a174fe857e92d25433f3069563d8e7a641a6e04a1bc2d0c0bf7c7a8dd540f4c",
+   "fields": {
+    "academic": {
+     "text": "Bachelor or above (AQF 7, 8 or 9 or overseas equivalent) in any discipline (Rule A)",
+     "quote": "Rule A: You have completed a Bachelor qualification or above (AQF Level 7, 8 or 9 or overseas equivalent) in any discipline.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Administration (International)",
+   "url": "https://handbook.une.edu.au/courses/2027/MBAI",
+   "cricos_code": "0100352",
+   "snapshot_sha256": "91594c683e1864ea5875013cc6bb15a5731617a13cb66539c70df561e896e6b8",
+   "fields": {
+    "academic": {
+     "text": "Bachelor or higher (or overseas equivalent) in any discipline (Rule A)",
+     "quote": "Rule A: You have completed ONE of the following qualifications (or their overseas equivalents) in any discipline:",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Economics",
+   "url": "https://handbook.une.edu.au/courses/2027/MECCW",
+   "cricos_code": "064590K",
+   "snapshot_sha256": "04f760ca59908a41aa904ccb784820677ae7f1cb110e0529aaf2c4ffb9c0a2fa",
+   "fields": {
+    "academic": {
+     "text": "Bachelor (AQF 7 or overseas equivalent) in any discipline (Rule A)",
+     "quote": "Rule A: You have completed a Bachelor qualification (AQF Level 7 or overseas equivalent) in any discipline.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Professional Accounting",
+   "url": "https://handbook.une.edu.au/courses/2027/MPA",
+   "cricos_code": "084073K",
+   "snapshot_sha256": "63166ea38a0d0665e05f7e412a44810db87506d62b9523bc03429f9ffca923ae",
+   "fields": {
+    "academic": {
+     "text": "Bachelor or higher qualification (or overseas equivalent) (Rule C)",
+     "quote": "Rule C: You have completed ONE of the following qualifications (or their overseas equivalents):",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Economic and Regional Development",
+   "url": "https://handbook.une.edu.au/courses/2027/MECRD",
+   "cricos_code": "074877A",
+   "snapshot_sha256": "6273ea85fd295e251767eba35b59877b745d9b971283300db315a64ddaaf20a2",
+   "fields": {
+    "academic": {
+     "text": "Bachelor (AQF 7 or overseas equivalent) in any discipline (Rule A)",
+     "quote": "Rule A: You have completed a Bachelor qualification (AQF Level 7 or overseas equivalent) in any discipline.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Laws",
+   "url": "https://handbook.une.edu.au/courses/2027/MLAWCW",
+   "cricos_code": "084919B",
+   "snapshot_sha256": "33326ae50056e46b6a1ebe1f63863eb7e9d48f431f06c497ee6dc4003226fc83",
+   "fields": {
+    "academic": {
+     "text": "Bachelor of Laws or Juris Doctor (or overseas equivalent) (Rule B)",
+     "quote": "Rule B: You have completed a Bachelor of Laws (AQF Level 7) or Juris Doctor (AQF Level 9) or overseas equivalents.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Scientific Studies",
+   "url": "https://handbook.une.edu.au/courses/2027/MSCST",
+   "cricos_code": "000441G",
+   "snapshot_sha256": "867d9a2a2a33c69110e7ac435d62de812276b68f84962d6ff4963343ed513d55",
+   "fields": {
+    "academic": {
+     "text": "Bachelor (AQF 7 or overseas equivalent) in a relevant science discipline with a minimum GPA of 5.0 and the major's minimum knowledge requirements",
+     "quote": "Rule A: You have completed a Bachelor qualification (AQF Level 7 or overseas equivalent) in a relevant discipline* with a minimum Grade Point Average (GPA) of 5.0 AND you meet the minimum knowledge requirements for your preferred major.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Environmental Science and Management",
+   "url": "https://handbook.une.edu.au/courses/2027/MESCM",
+   "cricos_code": "000446C",
+   "snapshot_sha256": "2241a7c769397cbbadd2914dea0a768d3e5961de0d11efba82b07a49d4fd9612",
+   "fields": {
+    "academic": {
+     "text": "Bachelor (AQF 7 or overseas equivalent) in any discipline (Rule C)",
+     "quote": "Rule C: You have a Bachelor qualification (AQF Level 7 or overseas equivalent) in any discipline.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Agriculture",
+   "url": "https://handbook.une.edu.au/courses/2027/MSCAG",
+   "cricos_code": "000450G",
+   "snapshot_sha256": "0b3d1a1d2f6ac8a5003c08770d6d3c268e8e4a9a6e49a5300fface8d6001feda",
+   "fields": {
+    "academic": {
+     "text": "Bachelor (AQF 7 or overseas equivalent) in any discipline (Rule A)",
+     "quote": "Rule A: You have completed a Bachelor qualification (AQF Level 7 or overseas equivalent) in any discipline.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts",
+   "url": "https://handbook.une.edu.au/courses/2027/MA",
+   "cricos_code": "111164A",
+   "snapshot_sha256": "6e681a1d18b5a942d2f86ece9788af6a0a3afdf83e8a9fa4496d28bed52f5b37",
+   "fields": {
+    "academic": {
+     "text": "Bachelor (AQF 7 or overseas equivalent) in any discipline (Rule A)",
+     "quote": "Rule A: You have completed a Bachelor qualification (AQF Level 7 or overseas equivalent) in any discipline.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Social Work (Qualifying)",
+   "url": "https://handbook.une.edu.au/courses/2027/MSW",
+   "cricos_code": "084828E",
+   "snapshot_sha256": "c76ece7ec92ab7ba21e1ea1564b4db3c2c9f69cf6ce03eacaf975cba32f5319a",
+   "fields": {
+    "academic": {
+     "text": "Three-year undergraduate qualification (AQF 7 or overseas equivalent) in a discipline other than Social Work (Rule A)",
+     "quote": "Rule A: You have completed a three-year undergraduate qualification (AQF Level 7 or overseas equivalent) from a recognised tertiary institution in a discipline other than Social Work.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "48 credit points (one full-time year) in a Social Science discipline",
+      "quote": "Your degree must include 48 credit points (1 year of full-time study, or part-time equivalent) in any Social Science discipline.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Nursing Practice (Preregistration)",
+   "url": "https://handbook.une.edu.au/courses/2027/MNPP",
+   "cricos_code": "117406F",
+   "snapshot_sha256": "ee7c481a171bdd3818d480a2b66f47f1e9aa7af8d3e7976bbf9f9e2a7493f195",
+   "fields": {
+    "academic": {
+     "text": "Bachelor (AQF 7 or overseas equivalent) or higher, not currently registered as a nurse in Australia (Rule A)",
+     "quote": "Rule A: You have completed a Bachelor qualification (AQF Level 7 or overseas equivalent) or higher, AND you are not currently registered to practice as a nurse in Australia.",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 17,
+  "机器核对": 17,
+  "待人工": 0
+ }
+}

@@ -1,0 +1,55 @@
+{
+ "school_key": "university-of-macau",
+ "school_name_en": "University of Macau",
+ "country": "Macau SAR",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-30",
+ "listing_urls": [
+  "https://grs.um.edu.mo/index.php/prospective-students/master-postgraduate-certificate-diploma-programmes/",
+  "https://grs.um.edu.mo/index.php/current-students/postgraduate-programmes/"
+ ],
+ "blocked": [
+  {
+   "url": "https://grs.um.edu.mo/index.php/prospective-students/master-postgraduate-certificate-diploma-programmes/",
+   "reason": "robots.txt itself: HTTP 503 (keep-out)"
+  },
+  {
+   "url": "https://gao.um.edu.mo/international_admission/",
+   "reason": "robots.txt itself: HTTP 503 (keep-out)"
+  },
+  {
+   "url": "https://fba.um.edu.mo/pgraduate/act/",
+   "reason": "robots.txt itself: HTTP 503 (keep-out)"
+  },
+  {
+   "url": "https://fed.um.edu.mo/degree-programmes/master-of-arts-in-teaching-english-to-speakers-of-other-languages-programme-tesol/",
+   "reason": "robots.txt itself: HTTP 503 (keep-out)"
+  },
+  {
+   "url": "https://fst.um.edu.mo/",
+   "reason": "robots.txt itself: HTTP 503 (keep-out)"
+  },
+  {
+   "url": "https://www.um.edu.mo/",
+   "reason": "robots.txt itself: HTTP 503 (keep-out)"
+  },
+  {
+   "url": "https://cds.ici.um.edu.mo/programme/admission-requirements/",
+   "reason": "robots.txt itself: HTTP 503 (keep-out)"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://grs.um.edu.mo/index.php/prospective-students/master-postgraduate-certificate-diploma-programmes/",
+  "https://fba.um.edu.mo/pgraduate/act/",
+  "https://fed.um.edu.mo/degree-programmes/master-of-arts-in-teaching-english-to-speakers-of-other-languages-programme-tesol/",
+  "https://cds.ici.um.edu.mo/programme/admission-requirements/"
+ ],
+ "notes": "Every um.edu.mo host tried (grs, gao, fba, fed, fst, www, cds.ici) answered robots.txt with HTTP 503 on 2026-10-29 and again on 2026-10-30, so the snapshot tool treats them as keep-out; no page was fetched and no program recorded. Retry later; the requirements are mostly in PDFs on grs.um.edu.mo, which the snapshot tool does not extract.",
+ "programs": [],
+ "verification": {
+  "programs": 0,
+  "机器核对": 0,
+  "待人工": 0
+ }
+}

@@ -1,0 +1,33 @@
+{
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-30",
+ "complete": false,
+ "programs": [],
+ "school_key": "university-of-geneva",
+ "school_name_en": "University of Geneva",
+ "country": "Switzerland",
+ "listing_urls": [
+  "https://masters.unige.ch/",
+  "https://masters.unige.ch/interdisciplinary-masters",
+  "https://www.unige.ch/bachelor-master/en/"
+ ],
+ "blocked": [
+  {
+   "url": "https://www.unige.ch/bachelor-master/en/",
+   "reason": "human-verification CAPTCHA served (plain and rendered fetch)"
+  },
+  {
+   "url": "https://masters.unige.ch/",
+   "reason": "redirects to www.unige.ch, which serves a CAPTCHA"
+  }
+ ],
+ "remaining_urls": [
+  "https://www.unige.ch/bachelor-master/en/"
+ ],
+ "notes": "www.unige.ch (where masters.unige.ch redirects) answers every fetch, rendered or not, with a human-verification CAPTCHA; we do not solve challenges, so no programme page was collected.",
+ "verification": {
+  "programs": 0,
+  "机器核对": 0,
+  "待人工": 0
+ }
+}

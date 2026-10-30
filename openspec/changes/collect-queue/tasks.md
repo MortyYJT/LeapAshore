@@ -97,3 +97,28 @@ Spend is the upper bound at DeepSeek's peak price; `python -m app.collect.queue 
   4,722 deadlines / 2,728 programs / 119 schools (324 past), academic 6,806, `verified_at` 0; user
   tables unchanged by md5. Beat has not run `recollect_due` yet (first run 10-31 04:07 Beijing);
   `collect_pages` and `requirement_changes` are empty in production.
+- 10-30 round 2 for the 39 schools with no file (owner's instruction: Claude subagents, not the
+  DeepSeek API; DeepSeek spend for this round 0). Brief: the README's "Brief for a collecting agent",
+  at most 20 programs per school this round, Australian programs only with a CRICOS code. Skipped
+  because their host refused us within 30 days (not retried): TU Berlin, UAB, ACU, HKMU, Tung Wah.
+  Batches of three: (1) Leiden, Aalto, Basel (2) TU/e, UB, Geneva (3) TU Dresden, KSU, KAU (4) CEU,
+  Minnesota, Milan (5) Deakin, Griffith, QUT (6) Newcastle, Swinburne, CDU (7) UM, Lingnan, CityU
+  Macau (8) MPU, Macao Tourism, Kiang Wu (9) ECU, JCU, Murdoch (10) UNE, UTAS (11) Centennial,
+  Gratia, Nang Yan, UOW College HK, Macau Millennium. A successor: a school whose file exists is done
+  or partial (`complete`, `remaining_urls`).
+- 10-30 round 2 result: 34 files (16 with programs), 252 programs, 235 machine-checked, every
+  Australian one with its CRICOS code. With programs: Leiden 20, Basel 20, Milan 20 (apply.unimi.it;
+  www 403), CEU 20 (its study guide host; www's robots.txt disallows "Leap", a bad-bot list entry our
+  user agent matches), CDU 20 (stable course URLs), Minnesota 19 (school sub-sites; most hosts 403),
+  Swinburne 19, ECU 19, TU Dresden 18, Murdoch 18, KSU 17, UNE 17 (handbook; www robots 403), CityU
+  Macau 10, KAU 6, Barcelona 5, Kiang Wu 4. Refused or nothing to collect: TU/e, Geneva (CAPTCHA),
+  Aalto (HTTP 406), Deakin, Griffith, QUT, Newcastle, JCU, UTAS, Lingnan (robots.txt 403), UM
+  (robots.txt 503), MPU, Macao Tourism, CityU www (robots.txt TLS failure), five colleges with no
+  master's of their own (Centennial, Gratia, Nang Yan, UOW College HK, Macau Millennium). All files
+  `complete: false` where the 20-program cap stopped them. DeepSeek spend for round 2: 0 (total for
+  this item stays 36.37 CNY). Files now: 282 with a file, 250 with programs, 9,035 programs, 7,611
+  machine-checked. Local import: 「有要求」 7,545, deadlines 4,763 / 2,754 programs / 123 schools,
+  academic 7,039, `verified_at` 0; advisor tune Recall@4 1.0, Precision@4 0.98.
+- Review of PR #54 (fresh context, scripted checks over all 34 files + snapshot spot checks): one
+  problem, fixed: Swinburne's 19 programs all cited a generic China page ("for example ... 60 per
+  cent") that no program page links to; the field was removed (no mark was set, counts unchanged).

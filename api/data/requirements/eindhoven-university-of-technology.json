@@ -1,0 +1,31 @@
+{
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-30",
+ "complete": false,
+ "programs": [],
+ "school_key": "eindhoven-university-of-technology",
+ "school_name_en": "Eindhoven University of Technology",
+ "country": "Netherlands",
+ "listing_urls": [
+  "https://www.tue.nl/en/education/degree-programs/master-programs"
+ ],
+ "blocked": [
+  {
+   "url": "https://www.tue.nl/en/education/degree-programs/master-programs",
+   "reason": "robots.txt itself answers HTTP 403"
+  },
+  {
+   "url": "https://educationguide.tue.nl/",
+   "reason": "robots.txt itself answers HTTP 403"
+  }
+ ],
+ "remaining_urls": [
+  "https://www.tue.nl/en/education/degree-programs/master-programs"
+ ],
+ "notes": "Every official TU/e host tried (www.tue.nl, educationguide.tue.nl) refuses its robots.txt with HTTP 403, so no programme page could be fetched.",
+ "verification": {
+  "programs": 0,
+  "机器核对": 0,
+  "待人工": 0
+ }
+}

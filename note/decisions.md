@@ -235,3 +235,9 @@
   - 评估集调参组两条标签随数据改：t28（McGill 原来 0 个项目，现在有，加 `name: comput`）、t33（浸会原来没采，现在传媒艺术类只有 Creative Writing 一个项目有要求，标成可答）。报数组（heldout）没动：h08（悉大建筑）标签和库不一致是 PR #48 引入学术要求口径后就有的，留给 P1「混合检索」照实处理。
 - **理由**：TASKS.md P1 第二条；MortyYJT 2026-10-30 授权 AI 自主决定。
 - **待 MortyYJT 复核**：保留 13 个站点按 2 秒抓到的数据是否可以；Alberta 用 Acalog 平台域名；t33 把 Creative Writing 算作「传媒硕士」的答案。
+
+## 2026-10-30 采集第二轮：Claude 子代理、每校 20 个项目（Claude 自主（待 MortyYJT 复核））
+
+- MortyYJT 指示：本机的采集和抽取改用 Claude 子代理，不调 DeepSeek API；生产 beat 仍用 DeepSeek（服务器上跑不了子代理）。
+- Claude 自主：第二轮每校最多 20 个项目（优先计算机/数据、工程、商科、经济、教育、公卫、法律、传媒），文件标 `complete: false` 和 `remaining_urls`，以后接着采；三校一批，避免子代理上下文溢出。
+- Claude 自主：30 天内拒绝过我们的 5 所（TU Berlin、UAB、ACU、HKMU、东华学院）这一轮不再去问；主站拒绝时用同校其他官方主机（规则 3 允许，主机自己的 robots.txt 由快照工具检查），CEU、米兰、明尼苏达、UNE、澳门城市大学是这样采的。

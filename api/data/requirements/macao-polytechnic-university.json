@@ -1,0 +1,38 @@
+{
+ "school_key": "macao-polytechnic-university",
+ "school_name_en": "Macao Polytechnic University",
+ "country": "Macau SAR",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-30",
+ "listing_urls": [
+  "https://www.mpu.edu.mo/postgraduate/en/master_list.php"
+ ],
+ "blocked": [
+  {
+   "url": "https://www.mpu.edu.mo/postgraduate/en/master_list.php",
+   "reason": "redirected to mpusite.mpu.edu.mo, whose robots.txt answers HTTP 403 (treated as disallow)"
+  },
+  {
+   "url": "https://www.mpu.edu.mo/esce/en/master_fda.php",
+   "reason": "redirected to mpusite.mpu.edu.mo, whose robots.txt answers HTTP 403 (treated as disallow)"
+  },
+  {
+   "url": "https://www.mpu.edu.mo/en/study",
+   "reason": "new www.mpu.edu.mo site is client-rendered (empty text) and --render timed out (60 s)"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.mpu.edu.mo/esca/en/master_sbdit.php",
+  "https://www.mpu.edu.mo/esca/en/master_ei.php",
+  "https://www.mpu.edu.mo/esce/en/master_fda.php",
+  "https://www.mpu.edu.mo/escsd/en/master_sspe.php"
+ ],
+ "notes": "All programme and listing pages redirect to mpusite.mpu.edu.mo, whose robots.txt returns 403, so the tool refuses them; the new Next.js pages on www.mpu.edu.mo have no server text and rendering times out. No programmes collected; needs a human or a later retry.",
+ "programs": [],
+ "verification": {
+  "programs": 0,
+  "机器核对": 0,
+  "待人工": 0
+ }
+}

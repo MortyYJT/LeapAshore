@@ -1,0 +1,166 @@
+{
+ "school_key": "universitat-de-barcelona",
+ "school_name_en": "Universitat de Barcelona",
+ "country": "Spain",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-30",
+ "listing_urls": [
+  "https://web.ub.edu/en/web/estudis/masters-postgraduate-dregrees-finder",
+  "https://www.ub.edu/study-at-the-ub/en"
+ ],
+ "blocked": [
+  {
+   "url": "https://web.ub.edu/en/web/estudis/masters-postgraduate-dregrees-finder",
+   "reason": "HTTP 403"
+  },
+  {
+   "url": "https://www.ub.edu/web/ub/en/estudis/oferta_formativa/master_universitari/fitxa/N/M0802/requisitsdacces/index.html",
+   "reason": "redirects to web.ub.edu, which refused with HTTP 403"
+  },
+  {
+   "url": "https://datascience.ub.edu/course/master-in-fundamental-principles-of-data-science",
+   "reason": "robots.txt unreachable (TLS certificate verification failed)"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://web.ub.edu/en/web/estudis/masters-postgraduate-dregrees-finder"
+ ],
+ "notes": "The UB studies portal web.ub.edu (all programme pages, and the old www.ub.edu/web/ub portal which redirects there) refuses us with HTTP 403, so only programmes with their own faculty sites on www.ub.edu were collected. The Data Science admission page still announces the 2022-23 application period and may be outdated; its deadline was left out.",
+ "programs": [
+  {
+   "name": "MSc in Economics",
+   "url": "https://www.ub.edu/school-economics/master-in-economics/",
+   "snapshot_sha256": "8e6f4c996e1cf436a10126a73ca453cfe7c342f06d945ea72ccbb877c7c3c096",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's in Economics, Business, or a mathematically strong discipline (Mathematics, Physics, Engineering) with a satisfactory average grade",
+     "quote": "A Bachelor’s degree in Economics, Business, or another discipline with strong mathematical foundations, such as Mathematics, Physics, or Engineering, and have obtained a satisfactory average grade.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English at CEFR B2 or above",
+      "quote": "Proficiency in English: B2 level or above in the Common European Framework of Reference for Languages, or its equivalent.",
+      "check": "ok"
+     }
+    ],
+    "deadlines": [
+     {
+      "label": "2027-2028 academic year",
+      "date": "2027-06-08",
+      "quote": "Applications for the 2027-2028 academic year will open from December 1, 2026, to June 8, 2027.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in International Business",
+   "url": "https://www.ub.edu/business-school/msc-in-international-business/",
+   "snapshot_sha256": "c2681c1825afff6270a6e6951c4df7b3c4e69eaf83b0f17a018b7cb3f9f35e0f",
+   "fields": {
+    "academic": {
+     "text": "Official degree in Business Management or a related field (International Business, Business Administration, Economics, Law and International Relations, engineering)",
+     "quote": "An official degree in Business Management or related field (International Business, Business Administration and Management, Economics, Law and International Relations, as well as engineers).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "quote": "Only the following officially recognized English Certificates will be accepted: Cambridge C1 Advanced (CAE), Cambridge Linguaskill (level C1), TOEFL iBT 95-113 (Codi C086), IELTS Academic 6.5-7.0.",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 95,
+     "quote": "Only the following officially recognized English Certificates will be accepted: Cambridge C1 Advanced (CAE), Cambridge Linguaskill (level C1), TOEFL iBT 95-113 (Codi C086), IELTS Academic 6.5-7.0.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English at CEFR C1 (exempt for native speakers or degree taught in an English-speaking country)",
+      "quote": "Proof of proficiency in English. Candidates will have to prove at least a C1 Level or equivalent**. Applicants are exempt from documenting English certificate if they are native speakers or hold a university degree taught in an English speaking country",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "MSc in Business Research",
+   "url": "https://www.ub.edu/business-school/msc-in-business-research/",
+   "snapshot_sha256": "6eb8490e1508bde9d420c7d0b0bde43d9fedc6dfc723f4c4971c101173d3be58",
+   "fields": {
+    "academic": {
+     "text": "Official degree from a Spanish university, an EHEA institution, or a legalised/officially recognised non-EHEA degree",
+     "quote": "3. An official degree issued by a higher education institution outside the EHEA that has been legalised  or that carries official recognition.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 4.0,
+     "recommended": true,
+     "quote": "*Minimum level recommended for Certificates:\nB1 in English/Spanish\nPremilinary English Test with Merit (PET pass)\nTOEFL iBT 42-71 (Code C086)\nIELTS 4.0",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English and Spanish at least B1 (taught 55% Spanish, 45% English)",
+      "quote": "Candidates will have to prove at least a B1 Level or equivalent* of English/Spanish.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Executive MBA",
+   "url": "https://www.ub.edu/business-school/executive-mba/",
+   "snapshot_sha256": "7687f6c3e0aba7aa6c0d98c98899aa080cb4132929ae45dc940d1592e1aa99ac",
+   "fields": {
+    "academic": {
+     "text": "An official degree",
+     "quote": "To be considered for the MBA programme, applicants must have:\nAn official degree;",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "At least three years of full-time relevant work experience",
+      "quote": "At least three years of full-time working experience in relevant positions;",
+      "check": "ok"
+     },
+     {
+      "text": "Good command of Spanish (programme taught in Spanish)",
+      "quote": "A good command of Spanish;",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master in Fundamental Principles of Data Science",
+   "url": "https://www.ub.edu/datascience/master/admission.html",
+   "snapshot_sha256": "19500e1547103bafb080c9e146357f73b5b7ecac6895efad06699f03f1fbbbf1",
+   "fields": {
+    "academic": {
+     "text": "Non-EHEA bachelor's in Computer Science, Mathematics, Physics, Statistics or other engineering fields, with Coordination Committee approval (with bridging courses)",
+     "quote": "Applicants in possession of a non-EHEA bachelor’s degree in Computer Science, Mathematics, Physics, Statistics or an equivalent official degree with approval from the Coordination Committee (with bridging courses).",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Official English qualification at CEFR B2",
+      "quote": "Since the degree is taught in English, applicants must be in possession of an official English language qualification equivalent to level B2.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 5,
+  "机器核对": 5,
+  "待人工": 0
+ }
+}

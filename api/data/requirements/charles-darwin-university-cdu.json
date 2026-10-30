@@ -1,0 +1,574 @@
+{
+ "school_key": "charles-darwin-university-cdu",
+ "school_name_en": "Charles Darwin University (CDU)",
+ "country": "Australia",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-30",
+ "listing_urls": [
+  "https://www.cdu.edu.au/course-search?search=master",
+  "https://www.cdu.edu.au/course-search?search=accounting",
+  "https://www.cdu.edu.au/course-search?search=software",
+  "https://www.cdu.edu.au/course-search?search=policy"
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.cdu.edu.au/study/course/master-health-research-shres1",
+  "https://www.cdu.edu.au/study/course/master-dietetics-sdiet1",
+  "https://www.cdu.edu.au/study/course/master-occupational-therapy-socth2",
+  "https://www.cdu.edu.au/study/course/master-psychology-clinical-spsyc2",
+  "https://www.cdu.edu.au/study/course/master-speech-pathology-ssph01",
+  "https://www.cdu.edu.au/study/course/master-clinical-audiology-saud02",
+  "https://www.cdu.edu.au/study/course/master-physiotherapy-spty01",
+  "https://www.cdu.edu.au/study/course/master-public-healthmaster-health-research-bphhr1"
+ ],
+ "notes": "Course pages at www.cdu.edu.au/study/course/<slug>-<code> replace the session-bound APEX links; entry requirements load with JavaScript, so pages were rendered. CDU's international entry-requirements page gives country figures only for secondary school, so no China master's figure is recorded.",
+ "programs": [
+  {
+   "name": "Master of Information Technology (Artificial Intelligence)",
+   "url": "https://www.cdu.edu.au/study/course/master-information-technology-artificial-intelligence-sitai1",
+   "cricos_code": "113894F",
+   "snapshot_sha256": "17199a786287743f9071dda9d3873fdf1c382f406b1982c846350be0c8c60354",
+   "fields": {
+    "academic": {
+     "text": "Recognised bachelor degree or equivalent international qualification",
+     "quote": "Successful completion of a recognised bachelor degree or equivalent international qualification.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "International postgraduate requirement CDU ELICOS - English for Academic Purposes Successful completion of EAP004 International English Language Testing System (IELTS) Academic test Overall minimum: 6.5 No band below: 6.0",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "Test of English as a Foreign Language (TOEFL) Overall minimum: 79 Minimum writing score: 21",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Information Technology (Cyber Security)",
+   "url": "https://www.cdu.edu.au/study/course/master-information-technology-cyber-security-sitcs3",
+   "cricos_code": "116327B",
+   "snapshot_sha256": "f95c8bf6cb08744a3c6a7b1254373400f215e0bd748267f956fbc88a870951f6",
+   "fields": {
+    "academic": {
+     "text": "Recognised bachelor degree or equivalent international qualification",
+     "quote": "Successful completion of a recognised bachelor degree or equivalent international qualification.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "International postgraduate requirement CDU ELICOS - English for Academic Purposes Successful completion of EAP004 International English Language Testing System (IELTS) Academic test Overall minimum: 6.5 No band below: 6.0",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "Test of English as a Foreign Language (TOEFL) Overall minimum: 79 Minimum writing score: 21",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Information Technology (Information Systems)",
+   "url": "https://www.cdu.edu.au/study/course/master-information-technology-information-systems-sitis4",
+   "cricos_code": "116328A",
+   "snapshot_sha256": "1ab53f1c9620b9de80bd1363d70a2b673ea2be6432c51fffa3877a9731a157b7",
+   "fields": {
+    "academic": {
+     "text": "Recognised bachelor degree or equivalent international qualification",
+     "quote": "Successful completion of a recognised bachelor degree or equivalent international qualification.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "International postgraduate requirement CDU ELICOS - English for Academic Purposes Successful completion of EAP004 International English Language Testing System (IELTS) Academic test Overall minimum: 6.5 No band below: 6.0",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "Test of English as a Foreign Language (TOEFL) Overall minimum: 79 Minimum writing score: 21",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Information Technology (Software Engineering)",
+   "url": "https://www.cdu.edu.au/study/course/master-information-technology-software-engineering-sitse2",
+   "cricos_code": "116324E",
+   "snapshot_sha256": "a384f00eaef05d068356cd3dbcc9b680eb831eafae40a31f6abb67150b2bcb32",
+   "fields": {
+    "academic": {
+     "text": "Recognised bachelor degree or equivalent international qualification",
+     "quote": "Successful completion of a recognised Bachelor degree or equivalent international qualification.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "International postgraduate requirement CDU ELICOS - English for Academic Purposes Successful completion of EAP004 International English Language Testing System (IELTS) Academic test Overall minimum: 6.5 No band below: 6.0",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "Test of English as a Foreign Language (TOEFL) Overall minimum: 79 Minimum writing score: 21",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Administration",
+   "url": "https://www.cdu.edu.au/study/course/master-business-administration-sbua01",
+   "cricos_code": "118254J",
+   "snapshot_sha256": "3c32cc83d96a8ee7739533d3aba281471d5f4e5043c588bd041d8541eba3807e",
+   "fields": {
+    "academic": {
+     "text": "Recognised bachelor degree, graduate certificate, graduate diploma or master's degree, or equivalent international qualification",
+     "quote": "Successful completion of a recognised bachelor degree, graduate certificate, graduate diploma or master's degree or equivalent international qualification in any field.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "International postgraduate requirement CDU ELICOS - English for Academic Purposes Successful completion of EAP004 International English Language Testing System (IELTS) Academic test Overall minimum: 6.5 No band below: 6.0",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "Test of English as a Foreign Language (TOEFL) Overall minimum: 79 Minimum writing score: 21",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Administration (Professional Practice)",
+   "url": "https://www.cdu.edu.au/study/course/master-business-administration-professional-practice-sbuap1",
+   "cricos_code": "118255H",
+   "snapshot_sha256": "f4ec434f0723f6f39d804f4fb83b830a3ea33d1c324cb067a57fdf3e72f1f82a",
+   "fields": {
+    "academic": {
+     "text": "Recognised bachelor degree, graduate certificate, graduate diploma or master's degree, or equivalent international qualification",
+     "quote": "Successful completion of a recognised bachelor degree, graduate certificate, graduate diploma or master's degree or equivalent international qualification in any field.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "International postgraduate requirement CDU ELICOS - English for Academic Purposes Successful completion of EAP004 International English Language Testing System (IELTS) Academic test Overall minimum: 6.5 No band below: 6.0",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "Test of English as a Foreign Language (TOEFL) Overall minimum: 79 Minimum writing score: 21",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Professional Accounting",
+   "url": "https://www.cdu.edu.au/study/course/master-professional-accounting-spacc1",
+   "cricos_code": "085265E",
+   "snapshot_sha256": "91c6d108787f73a4c1a607e58295aa14f698a8c6db86ca1dee29e0b614e00b6a",
+   "fields": {
+    "academic": {
+     "text": "Recognised bachelor degree, graduate certificate, graduate diploma or master's degree, or equivalent international qualification",
+     "quote": "Successful completion of a recognised bachelor degree, graduate diploma, masters degree, or equivalent international qualification. Applicants who have completed the Graduate Certificate in Accounting Studies are also eligible for entry.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Applicants who previously completed an accounting degree in Australia are not eligible",
+      "quote": "Applicants who have previously completed an accounting degree within Australia are not eligible to apply.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "International postgraduate requirement CDU ELICOS - English for Academic Purposes Successful completion of EAP004 International English Language Testing System (IELTS) Academic test Overall minimum: 6.5 No band below: 6.0",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "Test of English as a Foreign Language (TOEFL) Overall minimum: 79 Minimum writing score: 21",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Data Science",
+   "url": "https://www.cdu.edu.au/study/course/master-data-science-sdasc3",
+   "cricos_code": "116326C",
+   "snapshot_sha256": "19ee136edeb7e840aa9e27c5de425c623ce0c39fceddfac89b05f0b6f31bea56",
+   "fields": {
+    "academic": {
+     "text": "Recognised bachelor degree or equivalent international qualification",
+     "quote": "Successful completion of a recognised bachelor degree or equivalent international qualification.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "International postgraduate requirement CDU ELICOS - English for Academic Purposes Successful completion of EAP004 International English Language Testing System (IELTS) Academic test Overall minimum: 6.5 No band below: 6.0",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "Test of English as a Foreign Language (TOEFL) Overall minimum: 79 Minimum writing score: 21",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Project Management",
+   "url": "https://www.cdu.edu.au/study/course/master-project-management-sprjm1",
+   "cricos_code": "112673E",
+   "snapshot_sha256": "c9fed8a4e03ded99c9e7a4386b7995600dd04ff27fd38eb01870ce200ea70121",
+   "fields": {
+    "academic": {
+     "text": "Recognised bachelor degree, graduate certificate, graduate diploma or master's degree, or equivalent international qualification",
+     "quote": "Successful completion of a recognised bachelor degree, graduate certificate, graduate diploma, master's degree, or equivalent international qualification.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "International postgraduate requirement CDU ELICOS - English for Academic Purposes Successful completion of EAP004 International English Language Testing System (IELTS) Academic test Overall minimum: 6.5 No band below: 6.0",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "Test of English as a Foreign Language (TOEFL) Overall minimum: 79 Minimum writing score: 21",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Professional Accounting (Professional Practice)",
+   "url": "https://www.cdu.edu.au/study/course/master-professional-accounting-professional-practice-spapp1",
+   "cricos_code": "107553M",
+   "snapshot_sha256": "4d5e535dab1e167b966ca21898147db3f7b99800ed2dcc43f62b408d43ef6721",
+   "fields": {
+    "academic": {
+     "text": "Recognised bachelor degree, graduate certificate, graduate diploma or master's degree, or equivalent international qualification",
+     "quote": "Successful completion of a recognised bachelor degree, graduate diploma, masters degree, or equivalent international qualification. Applicants who have completed the Graduate Certificate in Accounting Studies are also eligible for entry.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Applicants who previously completed an accounting degree in Australia are not eligible",
+      "quote": "Applicants who have previously completed an accounting degree within Australia are not eligible to apply.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "International postgraduate requirement CDU ELICOS - English for Academic Purposes Successful completion of EAP004 International English Language Testing System (IELTS) Academic test Overall minimum: 6.5 No band below: 6.0",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "Test of English as a Foreign Language (TOEFL) Overall minimum: 79 Minimum writing score: 21",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering",
+   "url": "https://www.cdu.edu.au/study/course/master-engineering-sengg2",
+   "cricos_code": "118196C",
+   "snapshot_sha256": "e825cd164f267af485ec9cbf33a788bbe87c985af93e81c410be7d174443aa99",
+   "fields": {
+    "academic": {
+     "text": "Recognised bachelor degree in science, engineering or technology (or any bachelor plus CDU maths/physics bridging), with maths equivalent to SMA101/SMA102",
+     "quote": "a recognised bachelor degree in science, engineering, technology or equivalent international qualification; and",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Mathematics equivalent to CDU SMA101 Mathematics 1A and SMA102 Mathematics 1B",
+      "quote": "studies of mathematics equivalent to SMA101 Mathematics 1A and SMA102 Mathematics 1B of Charles Darwin University.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "International postgraduate requirement CDU ELICOS - English for Academic Purposes Successful completion of EAP004 International English Language Testing System (IELTS) Academic test Overall minimum: 6.5 No band below: 6.0",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "Test of English as a Foreign Language (TOEFL) Overall minimum: 79 Minimum writing score: 21",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Health",
+   "url": "https://www.cdu.edu.au/study/course/master-public-health-spubh1",
+   "cricos_code": "0101051",
+   "snapshot_sha256": "e6b5666c14ccf4d261726c1b589fd8179097c6af4fd376a83d28230fc2693948",
+   "fields": {
+    "academic": {
+     "text": "Bachelor degree (or higher) in a related area, or a bachelor plus honours/graduate diploma/master's in a non-related area",
+     "quote": "- a recognised bachelor degree, graduate certificate, graduate diploma or master degree in a related area;",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Related areas: public health, health sciences, primary health care, medicine or social sciences",
+      "quote": "Related areas include: disciplines of public health, health sciences, primary health care, medicine or the social sciences.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "International postgraduate requirement CDU ELICOS - English for Academic Purposes Successful completion of EAP004 International English Language Testing System (IELTS) Academic test Overall minimum: 6.5 No band below: 6.0",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "Test of English as a Foreign Language (TOEFL) Overall minimum: 79 Minimum writing score: 21",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Education",
+   "url": "https://www.cdu.edu.au/study/course/master-education-sedu01",
+   "cricos_code": "108261D",
+   "snapshot_sha256": "0f1053fc5140fc77ed8637e323560492ac3475719cb1f298de0848994f31aee8",
+   "fields": {
+    "academic": {
+     "text": "Recognised bachelor degree, graduate certificate, graduate diploma or master's degree, or equivalent international qualification",
+     "quote": "Successful completion of a recognised bachelor degree, graduate certificate, graduate diploma or master's degree or equivalent international qualification.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "International postgraduate requirement CDU ELICOS - English for Academic Purposes Successful completion of EAP004 International English Language Testing System (IELTS) Academic test Overall minimum: 6.5 No band below: 6.0",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "Test of English as a Foreign Language (TOEFL) Overall minimum: 79 Minimum writing score: 21",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Teaching Secondary",
+   "url": "https://www.cdu.edu.au/study/course/master-teaching-secondary-stchs1",
+   "cricos_code": "110623J",
+   "snapshot_sha256": "b957d9b48a4489bcdab2e2f28cba4ed9a602f5344c30a8757ab5306a2aa0b67e",
+   "fields": {
+    "academic": {
+     "text": "Bachelor degree with a major sequence (6 units) in a secondary teaching area",
+     "quote": "Successful completion of a recognised bachelor degree or equivalent international qualification comprising a major sequence (6 units) in areas such as:",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 7.0,
+     "quote": "International postgraduate requirement CDU ELICOS - English for Academic Purposes Not accepted for this course International English Language Testing System (IELTS) Academic test Overall minimum: 7.0 No band below: 7.0",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 94,
+     "quote": "Test of English as a Foreign Language (TOEFL) Overall minimum: 94 Minimum speaking score: 23",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Teaching Primary",
+   "url": "https://www.cdu.edu.au/study/course/master-teaching-primary-stchp1",
+   "cricos_code": "110625G",
+   "snapshot_sha256": "af8ffa567c287193705285ecf9ba8aea53cfd5687350699d7553cadd045e6e26",
+   "fields": {
+    "academic": {
+     "text": "Bachelor degree with at least one year of full-time-equivalent study in an area relevant to the primary curriculum",
+     "quote": "Successful completion of a recognised bachelor degree or equivalent international qualification with at least one-year equivalent full-time study in an area relevant to primary curriculum, such as art, music, technologies, English, health and physical education, mathematics, science or humanities and social sciences (e.g. history and geography).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 7.0,
+     "quote": "International postgraduate requirement CDU ELICOS - English for Academic Purposes Not accepted for this course International English Language Testing System (IELTS) Academic test Overall minimum: 7.0 No band below: 7.0",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 94,
+     "quote": "Test of English as a Foreign Language (TOEFL) Overall minimum: 94 Minimum speaking score: 23",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Applied Linguistics",
+   "url": "https://www.cdu.edu.au/study/course/master-applied-linguistics-sappl1",
+   "cricos_code": "116332E",
+   "snapshot_sha256": "b9976f3e837f725628fdaf7cc6f5fd219a1e483db26856d46e8468e2eac8d769",
+   "fields": {
+    "academic": {
+     "text": "Recognised bachelor degree, graduate certificate, graduate diploma or master's degree, or equivalent international qualification",
+     "quote": "Successful completion of a recognised bachelor degree, graduate certificate, graduate diploma, master's degree, or equivalent international qualification.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "International postgraduate requirement CDU ELICOS - English for Academic Purposes Successful completion of EAP004 International English Language Testing System (IELTS) Academic test Overall minimum: 6.5 No band below: 6.0",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "Test of English as a Foreign Language (TOEFL) Overall minimum: 79 Minimum writing score: 21",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Environmental Management",
+   "url": "https://www.cdu.edu.au/study/course/master-environmental-management-senvm1",
+   "cricos_code": "075071J",
+   "snapshot_sha256": "212b5ba1b1116d84240dac4ec0d83f753a4731e9f133182d75701d42e839ff4b",
+   "fields": {
+    "academic": {
+     "text": "Bachelor degree in a related field, or an unrelated bachelor plus a related graduate diploma",
+     "quote": "a recognised bachelor degree or equivalent international qualification in a related field; or",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Related fields: biological/earth/environmental science, environmental engineering, geography, GIS or sustainability",
+      "quote": "Related fields include: biological science, earth science, environmental engineering, environmental science, geography, geographic information or sustainability studies.",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "International postgraduate requirement CDU ELICOS - English for Academic Purposes Successful completion of EAP004 International English Language Testing System (IELTS) Academic test Overall minimum: 6.5 No band below: 6.0",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "Test of English as a Foreign Language (TOEFL) Overall minimum: 79 Minimum writing score: 21",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Architecture",
+   "url": "https://www.cdu.edu.au/study/course/master-architecture-sarch1",
+   "cricos_code": "118201M",
+   "snapshot_sha256": "97b1c9b8ddfe5c216f8d5b072712080014458c441a9bae82eab43b9e05122afe",
+   "fields": {
+    "academic": {
+     "text": "Recognised bachelor degree in architecture, plus a GPA of 4.5 or six months' professional architecture experience in Australia",
+     "quote": "Successful completion of a recognised bachelor degree in architecture or equivalent international qualification, and either:",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "GPA of at least 4.5 in the architecture bachelor degree (scale not stated), or six months' post-degree architecture work in Australia",
+      "quote": "A GPA of at least-4.5-from the eligible bachelor degree in Architecture; or",
+      "check": "ok"
+     }
+    ],
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "International postgraduate requirement CDU ELICOS - English for Academic Purposes Successful completion of EAP004 International English Language Testing System (IELTS) Academic test Overall minimum: 6.5 No band below: 6.0",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "Test of English as a Foreign Language (TOEFL) Overall minimum: 79 Minimum writing score: 21",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Arts (Coursework)",
+   "url": "https://www.cdu.edu.au/study/course/master-arts-coursework-sarts2",
+   "cricos_code": "116336A",
+   "snapshot_sha256": "bbbb576d9093a0bd02dc96ea05ce686fa2a4b38e6b6769140e00574ddd8b6ed8",
+   "fields": {
+    "academic": {
+     "text": "Recognised bachelor degree, graduate certificate, graduate diploma or master's degree, or equivalent international qualification",
+     "quote": "Successful completion of a recognised bachelor degree, graduate certificate, graduate diploma, master's degree, or equivalent international qualification.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "International postgraduate requirement CDU ELICOS - English for Academic Purposes Successful completion of EAP004 International English Language Testing System (IELTS) Academic test Overall minimum: 6.5 No band below: 6.0",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "Test of English as a Foreign Language (TOEFL) Overall minimum: 79 Minimum writing score: 21",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Public Policy",
+   "url": "https://www.cdu.edu.au/study/course/master-public-policy-sppol2",
+   "cricos_code": "110626F",
+   "snapshot_sha256": "8468c84e5b70089cbdd5877365d3b798752721ff50109043181cd9e5f9a9b987",
+   "fields": {
+    "academic": {
+     "text": "Recognised bachelor degree, graduate certificate, graduate diploma or master's degree, or equivalent international qualification",
+     "quote": "Successful completion of a recognised bachelor degree, graduate certificate, graduate diploma, masters degree or equivalent international qualification.",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "International postgraduate requirement CDU ELICOS - English for Academic Purposes Successful completion of EAP004 International English Language Testing System (IELTS) Academic test Overall minimum: 6.5 No band below: 6.0",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 79,
+     "quote": "Test of English as a Foreign Language (TOEFL) Overall minimum: 79 Minimum writing score: 21",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 20,
+  "机器核对": 20,
+  "待人工": 0
+ }
+}

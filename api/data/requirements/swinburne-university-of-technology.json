@@ -1,0 +1,447 @@
+{
+ "school_key": "swinburne-university-of-technology",
+ "school_name_en": "Swinburne University of Technology",
+ "country": "Australia",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-30",
+ "listing_urls": [
+  "https://www.swinburne.edu.au/courses/find-a-course/information-technology",
+  "https://www.swinburne.edu.au/courses/find-a-course/business",
+  "https://www.swinburne.edu.au/courses/find-a-course/engineering"
+ ],
+ "china_page": {
+  "url": "https://www.swinburne.edu.au/international-students/countries/china/",
+  "sha256": "587cbf23884ef1c733f38a6cd15197cde6651dac3c0dc70bf27bdad56d050f4c"
+ },
+ "complete": false,
+ "remaining_urls": [
+  "https://www.swinburne.edu.au/courses/find-a-course/design",
+  "https://www.swinburne.edu.au/courses/find-a-course/built-environment-architecture",
+  "https://www.swinburne.edu.au/courses/find-a-course/education",
+  "https://www.swinburne.edu.au/courses/find-a-course/health",
+  "https://www.swinburne.edu.au/courses/find-a-course/science",
+  "https://www.swinburne.edu.au/courses/find-a-course/law",
+  "https://www.swinburne.edu.au/courses/find-a-course/media-communication"
+ ],
+ "notes": "Program pages were found by URL pattern (/course/postgraduate/<slug>/) because the find-a-course listings load their course lists with JavaScript; 19 of the 100 CRICOS masters collected; remaining_urls lists the field listings (JavaScript-loaded) still to work through. The China page gives one 60 per cent figure for all PRC universities, kept as text only.",
+ "programs": [
+  {
+   "name": "Master of Information Technology",
+   "url": "https://www.swinburne.edu.au/course/postgraduate/master-of-information-technology/",
+   "cricos_code": "001742J",
+   "snapshot_sha256": "ab4db3f007871b64b361825e32ca737310bf9b413cef7b028bd5bb3ca0c10931",
+   "fields": {
+    "academic": {
+     "text": "Bachelor degree (or higher) in any discipline, or IT graduate certificate/diploma, or the Postgraduate Qualifying Program",
+     "quote": "a bachelor degree (or higher award) in any discipline from a recognised higher education institution or equivalent; or",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS overall band of 6.5 (Academic Module) with no individual band below 6.0",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Information Technology (Professional Computing)",
+   "url": "https://www.swinburne.edu.au/course/postgraduate/master-of-information-technology-professional-computing/",
+   "cricos_code": "061755G",
+   "snapshot_sha256": "b99175433cf441ef429f7425d7a31b829ad6b52a0418e99485845af374c98fbc",
+   "fields": {
+    "academic": {
+     "text": "Recognised bachelor degree in an IT-related discipline (or IT graduate certificate/diploma)",
+     "quote": "A recognised bachelor degree in an information technology related discipline",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS overall band of 6.5 (Academic Module) with no individual band below 6.0",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Bachelor covering programming, web system development, database and computer systems",
+      "quote": "Related discipline includes covering at least the fundamental knowledge of computer programming, web system development, database, and computer systems",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Data Science",
+   "url": "https://www.swinburne.edu.au/course/postgraduate/master-of-data-science/",
+   "cricos_code": "099117B",
+   "snapshot_sha256": "349986b5dde5c8b2c4b267070718bfb0f9048229ccb5f3e079664faabe5fa02a",
+   "fields": {
+    "academic": {
+     "text": "Bachelor degree (or higher) in any discipline, or data science graduate certificate/diploma, or the Postgraduate Qualifying Program",
+     "quote": "A completed bachelor's degree (or higher award) in any discipline",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS overall band of 6.5 (Academic Module) with no individual band below 6.0",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Cybersecurity",
+   "url": "https://www.swinburne.edu.au/course/postgraduate/master-of-cyber-security/",
+   "cricos_code": "098492J",
+   "snapshot_sha256": "bffd522601fc11434994b8d5829691536a9d55713b7c4da50f2bc7f9dc0a9264",
+   "fields": {
+    "academic": {
+     "text": "Bachelor degree (or higher) in any discipline, or cyber security graduate certificate/diploma, or the Postgraduate Qualifying Program",
+     "quote": "A completed bachelor's degree (or higher award) in any discipline, or",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS overall band of 6.5 (Academic Module) with no individual band below 6.0",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Information Systems",
+   "url": "https://www.swinburne.edu.au/course/postgraduate/master-of-business-information-systems/",
+   "cricos_code": "092700K",
+   "snapshot_sha256": "ab66b031f9bb36ae071922831aebe56cf31a318d74e20997a5b0c5e5c67901db",
+   "fields": {
+    "academic": {
+     "text": "Bachelor degree (or higher) in any discipline, or five years' relevant work experience, or the Postgraduate Qualifying Program",
+     "quote": "completed a bachelor degree (or higher award) in any discipline from a recognised higher education institution or equivalent",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS overall band of 6.5 (Academic Module) with no individual band below 6.0",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Engineering Science",
+   "url": "https://www.swinburne.edu.au/course/postgraduate/master-of-engineering-science/",
+   "cricos_code": "097335G",
+   "snapshot_sha256": "5beaf43a53b31b69fa9803b14be64af0302e380989ff47dbe5194785a67cd7d3",
+   "fields": {
+    "academic": {
+     "text": "Four-year Bachelor of Engineering (or Honours) in an approved cognate field, or equivalent",
+     "quote": "a Bachelor of Engineering or a Bachelor of Engineering (Honours) degree* (minimum four years of full-time study) in an approved cognate field, or",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS overall band of 6.5 (Academic Module) with no individual band below 6.0",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Professional Engineering",
+   "url": "https://www.swinburne.edu.au/course/postgraduate/master-of-professional-engineering/",
+   "cricos_code": "085866B",
+   "snapshot_sha256": "c599ac3749a55a135b7513959dc2ec524ba240978e57582453333e25e48e394e",
+   "fields": {
+    "academic": {
+     "text": "Bachelor of Engineering (or Honours), or engineering graduate certificate/diploma after a BEng, or equivalent",
+     "quote": "A Bachelor of Engineering degree, or",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS overall band of 6.5 (Academic Module) with no individual band below 6.0",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Business Administration",
+   "url": "https://www.swinburne.edu.au/course/postgraduate/master-of-business-administration/",
+   "cricos_code": "102648M",
+   "snapshot_sha256": "8d8352a6cecc26fc3ec18a492a8034abfac3bb379313c52b54164bc13ec9153e",
+   "fields": {
+    "academic": {
+     "text": "Bachelor degree (or higher) in any discipline, or the Postgraduate Qualifying Program",
+     "quote": "a bachelor degree (or higher award) in any discipline from a recognised higher education institution or equivalent or",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS overall band of 6.5 (Academic Module) with no individual band below 6.0",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Finance",
+   "url": "https://www.swinburne.edu.au/course/postgraduate/master-of-finance/",
+   "cricos_code": "102233A",
+   "snapshot_sha256": "7019dce30ea0ee7a9c1973c44b6bb059c66fe859904530ef0d5459c587fdb218",
+   "fields": {
+    "academic": {
+     "text": "Bachelor degree (or higher) in any discipline, or the Postgraduate Qualifying Program, or a finance graduate certificate/diploma",
+     "quote": "Bachelor degree (or higher award) in any discipline from a recognised higher education institution or equivalent or",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS overall band of 6.5 (Academic Module) with no individual band below 6.0",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Professional Accounting",
+   "url": "https://www.swinburne.edu.au/course/postgraduate/master-of-professional-accounting/",
+   "cricos_code": "116706B",
+   "snapshot_sha256": "51b131e0765494bf3c42c819ed6841b65af3afc0b1f25d08d3a0ae572cb52185",
+   "fields": {
+    "academic": {
+     "text": "Recognised bachelor degree in any discipline, or Graduate Certificate of Professional Accounting, or the Postgraduate Qualifying Program",
+     "quote": "a recognised bachelor degree in any discipline or",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS overall band of 6.5 (Academic Module) with no individual band below 6.0",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Marketing",
+   "url": "https://www.swinburne.edu.au/course/postgraduate/master-of-marketing/",
+   "cricos_code": "102652D",
+   "snapshot_sha256": "f1864bb2e87b942cf4580e20c59031942513abc7f489de510fcb894c9571ce6d",
+   "fields": {
+    "academic": {
+     "text": "Bachelor degree (or higher) in any discipline, or the Postgraduate Qualifying Program",
+     "quote": "a bachelor degree (or higher award) in any discipline from a recognised higher education institution or equivalent or",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS overall band of 6.5 (Academic Module) with no individual band below 6.0",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Project Management",
+   "url": "https://www.swinburne.edu.au/course/postgraduate/master-of-project-management/",
+   "cricos_code": "102653C",
+   "snapshot_sha256": "d2cde1f2fe41e10bad92f19bd4c7d5dcf3615e20400b9df6497bc7191650b9b6",
+   "fields": {
+    "academic": {
+     "text": "Bachelor degree (or higher) in any discipline, or the Postgraduate Qualifying Program",
+     "quote": "completed a bachelor degree (or higher award) in any discipline from a recognised higher education institution or equivalent",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS overall band of 6.5 (Academic Module) with no individual band below 6.0",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Human Resource Management",
+   "url": "https://www.swinburne.edu.au/course/postgraduate/master-of-human-resource-management/",
+   "cricos_code": "102651E",
+   "snapshot_sha256": "0bcd767f92e17feeb1749c17edde1d6d6791226181a1ecff3eae59a4d5981b34",
+   "fields": {
+    "academic": {
+     "text": "Bachelor degree (or higher) in any discipline, or the Postgraduate Qualifying Program",
+     "quote": "completed a bachelor degree (or higher award) in any discipline from a recognised higher education institution or equivalent",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS overall band of 6.5 (Academic Module) with no individual band below 6.0",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Media and Communication",
+   "url": "https://www.swinburne.edu.au/course/postgraduate/master-of-media-and-communication/",
+   "cricos_code": "093362D",
+   "snapshot_sha256": "b0a080f97ab9e97ac215f1a8294a7a48848b2acc2f148ccc8ec5f87e58ce23cd",
+   "fields": {
+    "academic": {
+     "text": "Recognised three-year bachelor degree, or a cognate AQF level 8 qualification, or the Postgraduate Qualifying Program",
+     "quote": "A recognised three-year Bachelor degree or",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS overall band of 6.5 (Academic Module) with no individual band below 6.0",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Educational Leadership",
+   "url": "https://www.swinburne.edu.au/course/postgraduate/master-of-educational-leadership/",
+   "cricos_code": "117595G",
+   "snapshot_sha256": "6f50bdea123d860e5883b747643228b1ad9139039e6fb2aa00895a76fc032407",
+   "fields": {
+    "academic": {
+     "text": "Four-year bachelor honours degree in any discipline, or three-year bachelor plus 2 years cognate work experience, or a higher award",
+     "quote": "A Bachelor Honours degree (minimum 4 years of full-time study) in any discipline, or",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS overall band of 6.5 (Academic Module) with no individual band below 6.0",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Construction and Infrastructure Management",
+   "url": "https://www.swinburne.edu.au/course/postgraduate/master-of-construction-and-infrastructure-management/",
+   "cricos_code": "088131F",
+   "snapshot_sha256": "e51c4b7e6e41658f1cb3edc4db659e69aa6b93a0b1ee5e636d9f9d46567178a7",
+   "fields": {
+    "academic": {
+     "text": "Bachelor (or higher) in an approved discipline (engineering, building, architecture, quantity surveying, construction management etc.)",
+     "quote": "Bachelor (or higher award) in an approved discipline* from a recognised higher education institution or equivalent degree",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS overall band of 6.5 (Academic Module) with no individual band below 6.0",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Approved disciplines: civil/construction engineering, building, architecture, quantity surveying, construction management or related",
+      "quote": "* Engineering (Civil or Construction); Building; Architecture; Quantity Surveying; Construction Management; other related engineering/ technology disciplines assessed to be appropriate.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Supply Chain Innovation",
+   "url": "https://www.swinburne.edu.au/course/postgraduate/master-of-supply-chain-innovation/",
+   "cricos_code": "102654B",
+   "snapshot_sha256": "2085363c2a563106c0dba7d1760b47c5cc373bdf8d5aef39e848cae6e519391a",
+   "fields": {
+    "academic": {
+     "text": "Bachelor degree (or higher) in any discipline, or the Postgraduate Qualifying Program",
+     "quote": "completed a bachelor degree (or higher award) in any discipline from a recognised higher education institution or equivalent",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS overall band of 6.5 (Academic Module) with no individual band below 6.0",
+     "check": "ok"
+    }
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Teaching (Secondary)",
+   "url": "https://www.swinburne.edu.au/course/postgraduate/master-of-teaching-secondary/",
+   "cricos_code": "0100750",
+   "snapshot_sha256": "c64a188ec764583882a61fe1fc21acf45c964e55d456d49b7f939a8fd30c496d",
+   "fields": {
+    "academic": {
+     "text": "Bachelor degree with a major in one approved secondary teaching area and a minor in another",
+     "quote": "Applicants require a bachelor degree or equivalent qualification that includes at least a major study in one approved secondary teaching area (equivalent to one year full time equivalent study) and a minor in at least one other recognised teaching area (equivalent to half a year of full time equivalent study).",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 7.0,
+     "min_band": 7.0,
+     "quote": "IELTS (Academic Module): Overall 7.0 with no individual band below 7.0 and a score of no less than 7.5 in speaking and listening; or",
+     "check": "ok"
+    },
+    "toefl": {
+     "overall": 94,
+     "quote": "TOEFL iBT: minimum score 94 (no less than 25 in reading, 27 in listening, 25 in speaking, 27 in writing)",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Casper results considered",
+      "quote": "Admission to this course will consider both academic and Casper results",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Architecture",
+   "url": "https://www.swinburne.edu.au/course/postgraduate/master-of-architecture/",
+   "cricos_code": "098495F",
+   "snapshot_sha256": "ff8f8c70d5ee54747e521e68672630066a85f154a2f7756381c1f547f848685d",
+   "fields": {
+    "academic": {
+     "text": "A three-year undergraduate architectural course (Swinburne or other)",
+     "quote": "successful completion of another 3-year undergraduate architectural course",
+     "check": "ok"
+    },
+    "ielts": {
+     "overall": 6.5,
+     "min_band": 6.0,
+     "quote": "IELTS overall band of 6.5 (Academic Module) with no individual band below 6.0",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "Portfolio (10-20 pages) and personal statement",
+      "quote": "a pre-selection kit requiring submission of an on-line portfolio (between 10 and 20 pages), a personal statement and university transcripts **",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 19,
+  "机器核对": 19,
+  "待人工": 0
+ }
+}

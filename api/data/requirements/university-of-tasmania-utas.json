@@ -1,0 +1,29 @@
+{
+ "school_key": "university-of-tasmania-utas",
+ "school_name_en": "University of Tasmania (UTas)",
+ "country": "Australia",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-30",
+ "listing_urls": [
+  "https://www.utas.edu.au/courses/postgraduate"
+ ],
+ "blocked": [
+  {
+   "url": "https://www.utas.edu.au/courses/postgraduate",
+   "reason": "robots.txt disallows (robots.txt itself: HTTP 403)"
+  },
+  {
+   "url": "https://www.amc.edu.au/",
+   "reason": "redirected to https://www.utas.edu.au/amc, which robots.txt disallows (robots.txt itself: HTTP 403)"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [],
+ "notes": "Every UTas course page lives on www.utas.edu.au, whose robots.txt returns HTTP 403, so the host is closed to us; no separate official handbook host was found and the Australian Maritime College site redirects to the same host. No programs collected.",
+ "programs": [],
+ "verification": {
+  "programs": 0,
+  "机器核对": 0,
+  "待人工": 0
+ }
+}

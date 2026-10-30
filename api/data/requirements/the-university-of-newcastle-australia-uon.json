@@ -1,0 +1,34 @@
+{
+ "school_key": "the-university-of-newcastle-australia-uon",
+ "school_name_en": "The University of Newcastle, Australia (UON)",
+ "country": "Australia",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-30",
+ "listing_urls": [
+  "https://www.newcastle.edu.au/degrees"
+ ],
+ "blocked": [
+  {
+   "url": "https://www.newcastle.edu.au/degrees",
+   "reason": "robots.txt itself answers HTTP 403, so the snapshot tool treats the whole host as disallowed"
+  },
+  {
+   "url": "https://handbook.newcastle.edu.au/program/2026/40177",
+   "reason": "robots.txt disallows / for all user agents except named search engines"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.newcastle.edu.au/degrees/master-information-technology",
+  "https://www.newcastle.edu.au/degrees/master-of-data-science-and-artificial-intelligence",
+  "https://www.newcastle.edu.au/degrees/master-international-business",
+  "https://www.newcastle.edu.au/degrees/master-education"
+ ],
+ "notes": "Both official hosts that publish degree requirements (www.newcastle.edu.au and handbook.newcastle.edu.au) keep us out via robots.txt, so no program page could be snapshotted; no programs recorded.",
+ "programs": [],
+ "verification": {
+  "programs": 0,
+  "机器核对": 0,
+  "待人工": 0
+ }
+}

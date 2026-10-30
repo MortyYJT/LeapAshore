@@ -1,0 +1,500 @@
+{
+ "school_key": "university-of-milan",
+ "school_name_en": "University of Milan",
+ "country": "Italy",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-30",
+ "listing_urls": [
+  "https://apply.unimi.it/institutions/institution/1-university-milan"
+ ],
+ "blocked": [
+  {
+   "url": "https://www.unimi.it/en/education/masters-degree-programmes",
+   "reason": "robots.txt itself returns HTTP 403 (keep out)"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://apply.unimi.it/courses/course/15-cultural-intellectual-and-visual-history",
+  "https://apply.unimi.it/courses/course/47-pharmaceutical-biotechnology",
+  "https://apply.unimi.it/courses/course/59-theatre-arts-literatures-international-studies-intermediality",
+  "https://apply.unimi.it/courses/course/64-crops-and-plant-sciences",
+  "https://apply.unimi.it/courses/course/79-animal-husbandry-sciences-and-technologies",
+  "https://apply.unimi.it/courses/course/80-lin-languages-and-cultures-international-communication-and-cooperation",
+  "https://apply.unimi.it/courses/course/88-psychology-healthcare",
+  "https://apply.unimi.it/courses/course/91-clinical-and-experimental-neuropsychology",
+  "https://apply.unimi.it/courses/course/94-breeding-and-welfare-companions-animals",
+  "https://apply.unimi.it/courses/course/95-medical-biotechnology",
+  "https://apply.unimi.it/courses/course/96-pharmaceutical-chemistry-and-technology",
+  "https://apply.unimi.it/courses/course/72-publishing-and-communication-fashion-cultures",
+  "https://apply.unimi.it/courses/course/14-cosmetic-industrial-science"
+ ],
+ "notes": "www.unimi.it refuses us (robots.txt 403), so programmes come from the university's official international application portal apply.unimi.it (DreamApply). English requirements are stated as CEFR levels only (no IELTS/TOEFL scores), and deadlines load only after choosing an applicant category, so none were recorded. Capped at 20 master's programmes; the institution listing on apply.unimi.it may not show every course.",
+ "programs": [
+  {
+   "name": "Master's Degree in Data Science for Economics and Health",
+   "url": "https://apply.unimi.it/courses/course/13-data-science-economics-and-health",
+   "snapshot_sha256": "1644e865495475d2fbd47bbd98641c66f0de3c03c66d4577929910747a69708b",
+   "fields": {
+    "academic": {
+     "text": "Any bachelor's degree with at least 30 ECTS in computer science/mathematics, economics/statistics and medical statistics",
+     "quote": "No matter the first-cycle degree (i.e. a Bachelor’s degree) they hold, all applicants must have earned at least 30 credits (ECTS) in certain basic study fields covered by the degree programme, namely computer science and mathematics, economics and statistics, medical statistics.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English at CEFR B2 or higher",
+      "quote": "A B2 or higher level of proficiency in English is required for admission.",
+      "check": "ok"
+     },
+     {
+      "text": "Online admission test of background knowledge",
+      "quote": "All applicants must take an online admission test assessing their background knowledge.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's Degree in Human-Centered Artificial Intelligence",
+   "url": "https://apply.unimi.it/courses/course/16-human-centered-artificial-intelligence",
+   "snapshot_sha256": "75efb47361e679f531638dcf603c1faea570f4458c06167ec6c16812cfc0abef",
+   "fields": {
+    "academic": {
+     "text": "Foreign bachelor's degree assessed for closeness to the Italian requirement (30 ECTS incl. 12 in informatics/maths/statistics and 12 in philosophy/psychology/physiology/law)",
+     "quote": "As a general rule, the Admission Board is looking for applicants with a first-cycle degree as close as possible to those required for graduates from Italian universities.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English at CEFR B2 or higher",
+      "quote": "A B2 or higher level of proficiency in English is required for admission.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's Degree in Management of Human Resources: People, Data and Intelligent Technologies",
+   "url": "https://apply.unimi.it/courses/course/18-management-human-resources-people-data-and-intelligent-technologies",
+   "snapshot_sha256": "7196771f06669bd08318596fbc8673af9e60a09309ba9c1087de1f5d4d15703e",
+   "fields": {
+    "academic": {
+     "text": "Foreign bachelor's degree in economics, political science or broadly related subjects, assessed against the Italian requirement",
+     "quote": "As a general rule, the Admission Board is looking for applicants with a first-cycle degree as close as possible to those required of students with an Italian university degree, i.e. in fields related to economics, political science, or other broadly related subjects (from history to industrial engineering, from management to mathematics, from philosophy to sociology, etc.).",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English at CEFR B2 or higher",
+      "quote": "A B2 or higher level of proficiency in English is required for admission.",
+      "check": "ok"
+     },
+     {
+      "text": "Online admission test of background knowledge",
+      "quote": "All applicants must take an online admission test assessing their background knowledge in some core areas (organisation theories and individual-organisation relationship, research methodology/ descriptive statistics, labour economics, labour law).",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's Degree in Finance and Economics (MEF)",
+   "url": "https://apply.unimi.it/courses/course/24-mef-finance-and-economics",
+   "snapshot_sha256": "c3fb942a15fd47987cfb8b1220fe5cb11e2fe570682725295e891949f1939375",
+   "fields": {
+    "academic": {
+     "text": "Foreign bachelor's degree in economics, business management or related fields, assessed against the Italian requirement",
+     "quote": "As a general rule, the Admission Board is looking for applicants with a first-cycle degree as close as possible to those required of students with an Italian university degree, i.e. in fields related to economics, business management, statistics etc. Please note that the Admission Board may ask you to provide further documents to assess your prior academic studies.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English at CEFR B2 or higher",
+      "quote": "A B2 or higher level of proficiency in English is required for admission.",
+      "check": "ok"
+     },
+     {
+      "text": "Online admission test of background knowledge",
+      "quote": "All applicants must take an online admission test assessing their background knowledge.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's Degree in Management of Innovation and Entrepreneurship (MIE)",
+   "url": "https://apply.unimi.it/courses/course/25-mie-management-innovation-and-entrepreneurship",
+   "snapshot_sha256": "a1d910dc949804b570d736c85c18705017614ff1df2c882580a9f7c45dbe76e0",
+   "fields": {
+    "academic": {
+     "text": "Foreign bachelor's degree in business, management, economics or related fields, assessed against the Italian requirement",
+     "quote": "As a general rule, the Admission Board is looking for applicants with a first-cycle degree as close as possible to those required of students with an Italian university degree, i.e. in fields related to business, management, economics, mathematics, statistics, etc.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English at CEFR B2 or higher",
+      "quote": "A B2 or higher level of proficiency in English is required for admission.",
+      "check": "ok"
+     },
+     {
+      "text": "Online admission test of background knowledge",
+      "quote": "All applicants must take an online admission test assessing their background knowledge.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's Degree in Business Administration, Law and Corporate Governance",
+   "url": "https://apply.unimi.it/courses/course/48-business-administration-law-and-corporate-governance",
+   "snapshot_sha256": "9470558f0b348cd9720fde0d2d077948190dbf804209aaa3267da820db383c87",
+   "fields": {
+    "academic": {
+     "text": "Foreign bachelor's degree in business administration, economics, management or law; at least 45 ECTS in core subjects",
+     "quote": "As a general rule, the Admission Board is looking for applicants with a first-cycle degree as close as possible to those required of graduates from Italian universities, i.e. in fields related to business administration, economics, management and law.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English and Italian at CEFR B1 or higher",
+      "quote": "A B1 (or higher) level of proficiency in both English and Italian is required for admission.",
+      "check": "ok"
+     },
+     {
+      "text": "Multiple-choice admission test (30 questions, pass mark 18)",
+      "quote": "The minimum passing score is 18.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's Degree in Computer Science",
+   "url": "https://apply.unimi.it/courses/course/60-computer-science",
+   "snapshot_sha256": "61813d40acf86c42d0c25ca244fa229fca711d587ca7c660eca5e11559d0b3c4",
+   "fields": {
+    "academic": {
+     "text": "Foreign bachelor's degree in computer science, mathematics or related fields, assessed against the Italian requirement (48 ECTS informatics + 12 ECTS maths)",
+     "quote": "As a general rule, the Admission Board is looking for applicants with a first-cycle degree as close as possible to that required of students with an Italian degree, i.e. in fields related to computer science, mathematics, etc. Please note that the Admission Board may ask you to provide further documents to assess your prior academic studies, and possibly invite you to an interview, should it deem it necessary.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "No strict language requirement; courses in Italian and English",
+      "quote": "There are no strict language proficiency requirements for admission to the programme.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's Degree in Law and Sustainable Development",
+   "url": "https://apply.unimi.it/courses/course/17-law-and-sustainable-development",
+   "snapshot_sha256": "777108f635ffc4394447a1b8641c9a6875e5c751e84c716922ddf8db042014fa",
+   "fields": {
+    "academic": {
+     "text": "Foreign bachelor's degree in law, economics, political science or related fields, assessed against the Italian requirement",
+     "quote": "As a general rule, the Admission Board is looking for applicants with a first-cycle degree as close as possible to those required of graduates from Italian universities, i.e. in fields related to law, economics, political science or international relations.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English at CEFR C1 or higher",
+      "quote": "A C1 or higher level of proficiency in English is required for admission.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's Degree in Public and Corporate Communication (COM)",
+   "url": "https://apply.unimi.it/courses/course/84-public-and-corporate-communication",
+   "snapshot_sha256": "1be2d940a2076b20a6784420a6220e02a7b7c5c8d02e647e85265714a68c070c",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree in a listed subject, or at least 50 ECTS across psychology, philosophy, economics, statistics, political science, sociology etc.",
+     "quote": "Applicants holding other Bachelor’s degrees are also eligible, provided that they have obtained at least 50 ECTS in a wide range of academic fields (psychology, philosophy, economics, statistics, political science, sociology, etc.), which are also specified at the above-mentioned link.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English at CEFR B2 or higher",
+      "quote": "A B2 or higher level of proficiency in English is required for admission.",
+      "check": "ok"
+     },
+     {
+      "text": "Non-EU visa applicants are assessed on academic CV and bachelor's degree score, without the test",
+      "quote": "Applicants who need a visa to study in Italy (i.e. non-EU applicants residing outside Italy) will not have to sit the admission test, as they will be assessed solely on the basis of their academic CV and their Bachelor’s degree score.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's Degree in Migration Studies and New Societies",
+   "url": "https://apply.unimi.it/courses/course/26-migration-studies-and-new-societies",
+   "snapshot_sha256": "82e40570bcfa5be2208ff46ca106ea5521198bc7234847f156f8cdb077a42a27",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree with competence in at least two of political science, economics/statistics, law",
+     "quote": "Applicants to this Master’s degree programme are required to hold a first-cycle degree (i.e. a Bachelor’s degree) and demonstrate adequate competence in at least two of the following fields: political science, economics and statistics, or law.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English at CEFR B2 or higher",
+      "quote": "A B2 or higher level of proficiency in English is required for admission.",
+      "check": "ok"
+     },
+     {
+      "text": "Online interview for applicants meeting the requirements",
+      "quote": "Applicants who meet the curricular and language requirements will be invited to an online interview.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's Degree in Molecular Biotechnology and Bioinformatics",
+   "url": "https://apply.unimi.it/courses/course/27-molecular-biotechnology-and-bioinformatics",
+   "snapshot_sha256": "29673e1d1e061a2596d5d35e9d1ac983c351f0c214eaabb286578be0386fed96",
+   "fields": {
+    "academic": {
+     "text": "Foreign bachelor's degree covering biochemistry, molecular biology, genetics, microbiology, maths, physics, chemistry, computer science and statistics",
+     "quote": "This means that you are expected to have adequate knowledge in all the following areas: biochemistry, molecular biology, genetics, microbiology, mathematics, physics, chemistry, computer science and statistics.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English at CEFR B2 or higher",
+      "quote": "A B2 or higher level of proficiency in English is required for admission.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's Degree in Biomedical Omics",
+   "url": "https://apply.unimi.it/courses/course/19-biomedical-omics",
+   "snapshot_sha256": "43d3a1afec00f22c45d29d855fcc97af4e2a3b92432814cc0ab7c75dabbc9532",
+   "fields": {
+    "academic": {
+     "text": "Foreign bachelor's degree in biotechnology, biology, chemistry or pharmaceutical sciences",
+     "quote": "As a general rule, the Admission Board is looking for applicants with a first-cycle degree as close as possible to those required of graduates from Italian universities, i.e. in biotechnology, biology, chemistry or pharmaceutical sciences.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English at CEFR B2 or higher",
+      "quote": "A B2 or higher level of proficiency in English is required for admission.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's Degree in Sustainable Natural Resource Management (MSc SNRM)",
+   "url": "https://apply.unimi.it/courses/course/11-sustainable-natural-resource-management",
+   "snapshot_sha256": "77ce07ca70ba16a61a204172c3a7834692cc3f69b7f32aa86659d49c9048b054",
+   "fields": {
+    "academic": {
+     "text": "Foreign bachelor's degree in agriculture, forestry, ecology, environmental management, geography or landscape planning",
+     "quote": "As a general rule, the Admission Board is looking for applicants with a first-cycle degree in fields related to agriculture, forestry, ecology, environmental management, geography, and landscape planning.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English at CEFR B2 or higher",
+      "quote": "A B2 or higher level of proficiency in English is required for admission.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's Degree in Valorization and Sustainable Development of Mountain Areas",
+   "url": "https://apply.unimi.it/courses/course/33-valorization-and-sustainable-development-mountain-areas",
+   "snapshot_sha256": "70d5000c62998c0f47059061676e844839587cb98c196ef906b2357f7e3c6c00",
+   "fields": {
+    "academic": {
+     "text": "Foreign bachelor's degree in agriculture, forestry, environmental management or related fields, assessed against the Italian requirement",
+     "quote": "As a general rule, the Admission Board is looking for applicants with a first-cycle degree as close as possible to those required of graduates from Italian universities, i.e. in fields related to agriculture, forestry, environmental management, etc.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English at CEFR B2 or higher",
+      "quote": "A B2 or higher level of proficiency in English is required for admission.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Environmental and Food Economics (MSc EFE)",
+   "url": "https://apply.unimi.it/courses/course/22-environmental-and-food-economics",
+   "snapshot_sha256": "42d5ea2bbd19747f247128565239cac05237d67d6e76acbc1667d08178bb53b8",
+   "fields": {
+    "academic": {
+     "text": "Any bachelor's degree with minimum ECTS in maths/statistics, economics and business administration (listed in prerequisites)",
+     "quote": "No matter what Bachelor’s degree they hold, all applicants must have earned:",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English at CEFR B2 or higher",
+      "quote": "A B2 or higher level of proficiency in English is required for admission.",
+      "check": "ok"
+     },
+     {
+      "text": "At least 6 ECTS in mathematics and statistics",
+      "quote": "At least 6 ECTS (or equivalent) in the area of mathematics and statistics",
+      "check": "ok"
+     },
+     {
+      "text": "At least 6 ECTS in economics or agricultural economics",
+      "quote": "At least 6 ECTS (or equivalent) in the area of economics or agricultural economics",
+      "check": "ok"
+     },
+     {
+      "text": "At least 6 ECTS in business administration and management",
+      "quote": "At least 6 ECTS (or equivalent) in the area of business administration and management",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's Degree in Global Politics and Society (GPS)",
+   "url": "https://apply.unimi.it/courses/course/35-gps-global-politics-and-society",
+   "snapshot_sha256": "144d02eadce8f39857a03b7bba518d484eaa746cecf8b258a66a2e4ef1e0e30f",
+   "fields": {
+    "academic": {
+     "text": "Foreign bachelor's degree assessed for closeness to the listed Italian classes (philosophy, languages, law, economics, political science, sociology, statistics, history, etc.)",
+     "quote": "As a general rule, the Admission Board is looking for applicants with a first-cycle degree as close as possible to those required of students with an Italian university degree, i.e. in fields related to political science, sociology, economics or other broadly related subjects (from history to legal studies, philosophy, etc.).",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English at CEFR B2 or higher",
+      "quote": "A B2 or higher level of proficiency in English is required for admission.",
+      "check": "ok"
+     },
+     {
+      "text": "Online admission test of background knowledge",
+      "quote": "All applicants must take an online admission test assessing their background knowledge.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Food Science and Technology",
+   "url": "https://apply.unimi.it/courses/course/63-food-science-and-technology",
+   "snapshot_sha256": "e52f5d5c750e3f6fce430e5ba462467a8d4ac467e6d6bb381ecd397c90e6802c",
+   "fields": {
+    "academic": {
+     "text": "Foreign bachelor's degree in food science and technology in a broad sense",
+     "quote": "As a general rule, the Admission Board is looking for applicants with a first-cycle degree as close as possible to that required of graduates from Italian universities, i.e. in fields related to food science and technology in a broad sense.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English at CEFR B1 or higher",
+      "quote": "A B1 or higher level of proficiency in English is required for admission.",
+      "check": "ok"
+     },
+     {
+      "text": "Interview or exam for applicants with a foreign degree",
+      "quote": "Applicants with a foreign degree and applicants with an Italian degree but a GPA under 21/30 (or a final degree mark lower than 80/100) will be invited to an interview or exam to prove their background knowledge of the food industry and food-related subjects.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's Degree in Safety Assessment of Xenobiotics and Biotechnological Products",
+   "url": "https://apply.unimi.it/courses/course/31-safety-assessment-xenobiotics-and-biotechnological-products",
+   "snapshot_sha256": "7afdd234ba1c627fd37ec3ec66974f673bbecb4e9e86f1fe16ebccd37450601b",
+   "fields": {
+    "academic": {
+     "text": "Foreign bachelor's degree showing knowledge of biology, chemistry, biochemistry, pharmacology, toxicology and physiology",
+     "quote": "This means that you will have to demonstrate sufficient knowledge and understanding in the areas of biology, chemistry, biochemistry, pharmacology, toxicology and physiology.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English at CEFR B2 or higher",
+      "quote": "A B2 or higher level of proficiency in English is required for admission.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master's Degree in Medical Biotechnology and Molecular Medicine",
+   "url": "https://apply.unimi.it/courses/course/90-medical-biotechnology-and-molecular-medicine",
+   "snapshot_sha256": "0cc62fa83c7b1bec5bc5fdd05967b712c18466269185b9975c559e136b3f1d3d",
+   "fields": {
+    "academic": {
+     "text": "Bachelor's degree with at least 50 ECTS in specific medicine-related subjects",
+     "quote": "The programme accepts applications from Bachelor’s graduates who have obtained at least 50 ECTS credits in specific medicine-related subjects, which are listed on the University’s website.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English at CEFR B2 or higher",
+      "quote": "A B2 or higher level of proficiency in English is required for admission.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  },
+  {
+   "name": "Master of Science in Biotechnology for the Bioeconomy (MSc BforB)",
+   "url": "https://apply.unimi.it/courses/course/20-bforb-biotechnology-bioeconomy",
+   "snapshot_sha256": "96437f29598dc4cc04907255105c286a1ab4a68a6350857536f07c303f81b0f7",
+   "fields": {
+    "academic": {
+     "text": "Foreign bachelor's degree with basic sciences and biotechnology-related subjects, assessed against the Italian requirement",
+     "quote": "As a general rule, the Admission Board seeks applicants with a first-cycle degree as close as possible to those required of graduates from Italian universities.",
+     "check": "ok"
+    },
+    "prerequisites": [
+     {
+      "text": "English at CEFR B2 or higher",
+      "quote": "A B2 or higher level of proficiency in English is required for admission.",
+      "check": "ok"
+     }
+    ]
+   },
+   "status": "机器核对"
+  }
+ ],
+ "verification": {
+  "programs": 20,
+  "机器核对": 20,
+  "待人工": 0
+ }
+}

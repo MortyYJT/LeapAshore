@@ -1,0 +1,25 @@
+{
+ "school_key": "deakin-university",
+ "school_name_en": "Deakin University",
+ "country": "Australia",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-30",
+ "listing_urls": [
+  "https://handbook.deakin.edu.au/courses-search/allcourses.php"
+ ],
+ "blocked": [
+  {
+   "url": "https://www.deakin.edu.au/course/master-data-science-international",
+   "reason": "robots.txt returns HTTP 403 (whole host www.deakin.edu.au treated as disallowed)"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [],
+ "notes": "All Deakin course pages with entry requirements live on www.deakin.edu.au, whose robots.txt answers HTTP 403, so the host is closed to us. The official handbook (handbook.deakin.edu.au) is reachable and lists CRICOS codes, but its course pages (e.g. S777 Master of Data Science, M750 Master of Finance) carry no entry, English or deadline requirements, so no program was recorded.",
+ "programs": [],
+ "verification": {
+  "programs": 0,
+  "机器核对": 0,
+  "待人工": 0
+ }
+}

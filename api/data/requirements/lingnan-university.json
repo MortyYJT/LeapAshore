@@ -1,0 +1,30 @@
+{
+ "school_key": "lingnan-university",
+ "school_name_en": "Lingnan University",
+ "country": "Hong Kong SAR",
+ "collector": "claude-code-subagent",
+ "collected_at": "2026-10-30",
+ "listing_urls": [
+  "https://www.ln.edu.hk/sgs/programmes-on-offer"
+ ],
+ "blocked": [
+  {
+   "url": "https://www.ln.edu.hk/robots.txt",
+   "reason": "HTTP 403 on robots.txt: the whole host is keep-out"
+  }
+ ],
+ "complete": false,
+ "remaining_urls": [
+  "https://www.ln.edu.hk/sgs/programmes-on-offer",
+  "https://www.ln.edu.hk/fb/tpo/academic-programmes/macc/admission-requirements",
+  "https://www.ln.edu.hk/socsc/postgraduate-programme",
+  "https://www.ln.edu.hk/sgs/ihem/admission"
+ ],
+ "notes": "www.ln.edu.hk returns HTTP 403 for robots.txt, which closes the whole host; every taught postgraduate page found is on that host (apply.ln.edu.hk is only the application system), so nothing was fetched.",
+ "programs": [],
+ "verification": {
+  "programs": 0,
+  "机器核对": 0,
+  "待人工": 0
+ }
+}
