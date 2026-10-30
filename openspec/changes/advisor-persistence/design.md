@@ -43,7 +43,11 @@ only, so a conversation is reachable while its tab is open; a reload starts a ne
   carries the interrupt's `id`; a confirm that sends `interruptId` resumes exactly that interrupt
   (`Command(resume={id: answer})`) and is refused when it is no longer the pending one, so a late
   repeat cannot approve a newer change. Without the id (a page loaded before this change) it behaves as
-  before. Order in `/confirm`: pending? → lock → pending again? → admit (token caps) → run; the lock is
+  before. LangGraph gives every `interrupt` in one step the step's id, and a step that pauses twice
+  hands the first answer to whichever parallel tool call asks first, so `main_agent` keeps only the
+  first `propose_portfolio_change` of a reply (`one_change_per_step`); the model proposes the next one
+  after seeing the first one's outcome, in a new step with a new id (found in review: two changes in one
+  reply shared an id, and a late repeat of the first card approved the second). Order in `/confirm`: pending? → lock → pending again? → admit (token caps) → run; the lock is
   released on every exit, including a 429/503 from admission. Chat turns take no lock (they are
   window-limited and write nothing that needs confirming).
 - **D6 Prune after every turn.** LangGraph stores a new copy of the message list for every step, so a

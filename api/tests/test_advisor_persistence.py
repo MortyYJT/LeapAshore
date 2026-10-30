@@ -371,6 +371,79 @@ def test_an_answer_naming_another_change_is_not_taken(service, model, writes):
     assert writes == []
 
 
+class TwoAtOnce(Scripted):
+    """Proposes adding A and B in one message; then, after any tool reply, proposes B if it is not in
+    the portfolio yet, and otherwise says it is done."""
+
+    second: str
+
+    def _generate(self, messages, stop=None, run_manager=None, **kwargs):
+        def call(program: str) -> dict:
+            return {
+                "name": "propose_portfolio_change",
+                "args": {"program_id": program, "action": "add", "tier": "稳"},
+                "id": f"call-{uuid.uuid4().hex[:8]}",
+            }
+
+        last = messages[-1]
+        done = " ".join(m.content for m in messages if isinstance(m, ToolMessage))
+        if not isinstance(last, ToolMessage):
+            reply = AIMessage(content="", tool_calls=[call(self.program_id), call(self.second)], usage_metadata=USAGE)
+        elif done.count("已执行") < 2 and "用户取消" not in last.content:
+            reply = AIMessage(content="", tool_calls=[call(self.second)], usage_metadata=USAGE)
+        else:
+            reply = AIMessage(content=f"好的。{last.content}", usage_metadata=USAGE)
+        return ChatResult(generations=[ChatGeneration(message=reply)])
+
+
+def test_two_changes_in_one_reply_are_confirmed_one_at_a_time(service, model, writes, monkeypatch, program_id):
+    """A late repeat of the first card must not approve the second change (review of PR #56)."""
+    with SessionLocal() as s:
+        second = s.scalars(select(Program.id).order_by(Program.id).offset(1).limit(1)).one()
+    both = TwoAtOnce(program_id=program_id, second=second)
+    monkeypatch.setattr(graph_module, "get_chat_model", lambda **kwargs: both)
+    client = TestClient(app)
+    first = pause(client)
+    subject = client.cookies.get(COOKIE_NAME)
+    assert program_id in str(first) or "加入" in first["summary"]
+
+    replied = answer(client, first)
+    following = [e for e in replied if e["type"] == "confirm"]
+    assert len(following) == 1, replied
+    assert following[0]["id"] != first["id"]
+    assert portfolio(subject) == [(program_id, "稳")] and writes == [subject]
+
+    late = answer(client, first)
+    assert errors(late) == ["没有待确认的操作，可能已经处理过或已过期。"]
+    assert portfolio(subject) == [(program_id, "稳")] and writes == [subject]
+
+    assert "已执行" in said(answer(client, following[0]))
+    assert portfolio(subject) == sorted([(program_id, "稳"), (second, "稳")])
+    assert writes == [subject, subject]
+
+
+def test_only_the_first_portfolio_change_of_a_reply_is_kept():
+    from app.agent.graph import one_change_per_step
+
+    def call(name: str, n: int) -> dict:
+        return {"name": name, "args": {}, "id": f"c{n}"}
+
+    reply = AIMessage(
+        content="",
+        tool_calls=[
+            call("update_my_profile", 1),
+            call("propose_portfolio_change", 2),
+            call("propose_portfolio_change", 3),
+        ],
+        additional_kwargs={"tool_calls": [{"id": "c1"}, {"id": "c2"}, {"id": "c3"}]},
+    )
+    kept = one_change_per_step(reply)
+    assert [c["id"] for c in kept.tool_calls] == ["c1", "c2"]
+    assert "tool_calls" not in kept.additional_kwargs
+    plain = AIMessage(content="", tool_calls=[call("propose_portfolio_change", 1)])
+    assert one_change_per_step(plain) is plain
+
+
 # ---------------------------------------------------------------------------------------------------
 # A paused change abandoned for a new message
 # ---------------------------------------------------------------------------------------------------
@@ -464,7 +537,12 @@ def test_conversations_untouched_for_ninety_days_are_swept(monkeypatch):
     with SessionLocal() as s:
         report = sweep_conversations(s, apply=False)
         assert report["stale_conversations"] >= 1 and old in threads_of(s, subject)
-    # The beat's task runs the conversation sweep in anonymous mode too.
+    # The beat's task runs the conversation sweep in anonymous mode too. The real query runs, but only
+    # this test's threads are deleted: the development database is shared.
+    from app import cleanup
+
+    real = cleanup.stale_threads
+    monkeypatch.setattr(cleanup, "stale_threads", lambda s, now: [t for t in real(s, now) if t.startswith(subject)])
     result = worker.cleanup()
     assert "skipped" in result and result["stale_conversations"] >= 1
     with SessionLocal() as s:

@@ -109,13 +109,35 @@ def with_unanswered_calls_closed(messages: list[AnyMessage]) -> list[AnyMessage]
     return out
 
 
+CONFIRMED_TOOL = "propose_portfolio_change"
+
+
+def one_change_per_step(reply: AIMessage) -> AIMessage:
+    """Keep only the first portfolio change of a reply that asks for several at once.
+
+    Every `interrupt` in one step shares the step's id, and a step that pauses twice hands the first
+    answer to whichever of its parallel tool calls asks first. One change per step gives each confirm
+    card its own id and its own answer (openspec advisor-persistence D5). The dropped calls never reach
+    the history, so the model sees the first change's outcome and proposes the next one itself.
+    """
+    calls = [c for c in reply.tool_calls if c["name"] == CONFIRMED_TOOL]
+    if len(calls) < 2:
+        return reply
+    dropped = {c["id"] for c in calls[1:]}
+    # The raw OpenAI calls would otherwise be sent back alongside the kept ones.
+    extra = {k: v for k, v in reply.additional_kwargs.items() if k != "tool_calls"}
+    return reply.model_copy(
+        update={"tool_calls": [c for c in reply.tool_calls if c["id"] not in dropped], "additional_kwargs": extra}
+    )
+
+
 async def main_agent(state: AdvisorState) -> dict:
     system = SYSTEM_PROMPT
     if state.get("evidence"):
         system += EVIDENCE_HINT + state["evidence"]
     model = get_chat_model(streaming=True).bind_tools(TOOLS)
     history = with_unanswered_calls_closed(state["messages"])
-    reply = await model.ainvoke([SystemMessage(content=system), *history])
+    reply = one_change_per_step(await model.ainvoke([SystemMessage(content=system), *history]))
     return {"messages": [reply], "steps": state.get("steps", 0) + 1}
 
 

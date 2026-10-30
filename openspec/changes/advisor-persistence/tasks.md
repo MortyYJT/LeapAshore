@@ -11,5 +11,6 @@ Branch `claude/pg-checkpointer`.
 - [x] 1.7 Deletion, merge and 90-day sweep cover threads; beat sweeps threads in anonymous mode
 - [x] 1.8 Prune to the latest checkpoint after each turn; paused change survives it
 - [x] 1.9 Unanswered tool calls closed for the model
+- [x] 1.10 Review fix: one portfolio change per model reply (shared interrupt id); sweep test scoped
 - [x] 2.1 Web: `confirm` id sent back; privacy page
 - [ ] 3.1 Deploy: backup, migrate, read-only checks, one real advisor turn
