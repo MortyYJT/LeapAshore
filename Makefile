@@ -99,7 +99,7 @@ api-test: check-venv  ## Run the backend tests in the project-local venv
 api-dev:  ## Start the backend dev server on :8000
 	cd api && .venv/bin/uvicorn app.main:app --reload --port 8000
 
-# The collection queue (openspec/changes/collect-queue) from the venv, where Chrome can render pages.
+# The collection queue (openspec/changes/archive/2026-10-30-collect-queue) from the venv, where Chrome can render pages.
 worker:  ## Run a collection-queue worker (Celery) against the local Redis and database
 	cd api && .venv/bin/celery -A app.worker worker --pool threads --concurrency 4 --loglevel INFO
 

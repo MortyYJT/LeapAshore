@@ -1,4 +1,4 @@
-"""Which requirement of a page changed between two collections (openspec/changes/collect-queue, D7).
+"""Which requirement of a page changed between two collections (openspec/changes/archive/2026-10-30-collect-queue, D7).
 
 Only values whose quote passed `verify` (`check == "ok"`) are compared, and what is compared is what
 the page states, not how the model worded or cut it:

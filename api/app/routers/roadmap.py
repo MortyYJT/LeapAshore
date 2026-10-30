@@ -98,7 +98,7 @@ def read_roadmap(
     # phase order and can be stale on a row a human edited, so the stable identity is what this
     # orders by and the consumer places the rows against the definition it already has.
     # In login mode a logged-out visitor sees the definition alone: the sample roadmap is public,
-    # the task rows are not (openspec/changes/account-login, D8).
+    # the task rows are not (openspec/changes/archive/2026-10-30-account-login, D8).
     tasks = (
         list(
             session.execute(

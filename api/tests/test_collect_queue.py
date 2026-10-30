@@ -1,4 +1,4 @@
-"""The collection queue (openspec/changes/collect-queue): politeness, retries, dedupe, change records,
+"""The collection queue (openspec/changes/archive/2026-10-30-collect-queue): politeness, retries, dedupe, change records,
 the budget, export and discovery. No network and no model: fetch and extract are stand-ins that write
 snapshot files the way the real snapshot tool does."""
 

@@ -1,4 +1,4 @@
-"""Email-code login (openspec/changes/account-login, spec account-auth)."""
+"""Email-code login (openspec/changes/archive/2026-10-30-account-login, spec account-auth)."""
 
 from concurrent.futures import ThreadPoolExecutor
 from datetime import UTC, datetime, timedelta

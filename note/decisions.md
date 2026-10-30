@@ -134,7 +134,7 @@
 
 ## 2026-10-30 账号与登录：邮箱验证码 + 服务端会话，登录模式用开关（Claude 自主（待 MortyYJT 复核））
 
-- **决定**：设计全文在 `openspec/changes/account-login/design.md`。要点：
+- **决定**：设计全文在 `openspec/changes/archive/2026-10-30-account-login/design.md`。要点：
   - 账号只拥有一个数据主体（`accounts.client_id` → `clients`），所有用户表仍按 `client_id`；登录后请求解析成账号的主体。没选「每张表加 account_id」：要改所有查询和迁移数据，换来的东西主体间接层都能表达。
   - 登录模式是开关 `AUTH_ENABLED`，代码默认关；`make api-dev-bg` 本机打开；生产 compose 设 `APP_ENV=production`，生产在登录模式下没有 SMTP 配置就拒绝启动，日志发信后端在生产拒绝发送。所以先部署代码是安全的，SES 配好再开。
   - 限流先放 PostgreSQL（Redis 在下一条才来）：发码用按邮箱的 advisory lock，校验用 `FOR UPDATE`，首次登录用 `INSERT … ON CONFLICT (email) DO NOTHING`。每邮箱每天 10 次、每 IP 每天 30 次（环境变量可调）；新码作废旧码，所以一个邮箱一次只能猜一个码，一天最多 50 次。
@@ -220,7 +220,7 @@
 
 ## 2026-10-30 采集队列：Celery 只负责跑，状态在表里；队列不写目录库（Claude 自主（待 MortyYJT 复核））
 
-- **决定**（设计见 `openspec/changes/collect-queue/`）：
+- **决定**（设计见 `openspec/changes/archive/2026-10-30-collect-queue/`）：
   - 每个页面一个 Celery 任务；队列状态和每页最近一次结果放在新表 `collect_pages`，哪处要求变了记进 `requirement_changes`（Alembic `6afe86aaf7b6`，只加表）。broker 丢消息不丢进度：`python -m app.collect.queue resume` 重发。
   - 限速：Redis 里按主机的令牌桶（容量 1、每 2 秒一个，和快照工具原来的间隔一样），所有 worker 共用，`www.x` 和 `x` 算同一个；要等 10 秒以上就把任务以 countdown 放回队列，不占 worker。命令行快照工具仍用原来的文件锁。
   - 403/429、robots.txt 拒绝、已记录的拒绝：记下、不重试。超时、连接错误、5xx、模型传输错误：指数退避（60 秒起翻倍，封顶 1 小时，抖动），最多 4 次后记 `failed`。
@@ -256,7 +256,7 @@
 
 ## 2026-10-30 顾问对话存进 PG：Alembic 建表、确认按线程加锁、90 天不用就删（Claude 自主（待 MortyYJT 复核））
 
-- **决定**（设计全文 `openspec/changes/advisor-persistence/design.md`）：
+- **决定**（设计全文 `openspec/changes/archive/2026-10-30-advisor-persistence/design.md`）：
   - 用 `langgraph-checkpoint-postgres==3.2.0` 的同步 `PostgresSaver` + 自己的小连接池（最多 2 个），异步方法丢到线程里跑。没用 `AsyncPostgresSaver`：它绑死创建时的事件循环，uvicorn、测试客户端（每个请求一个循环）、Celery worker 是三个不同的循环。
   - **表由 Alembic 建**（`c4e8a1d2f6b9`，抄库里 0–9 号迁移的 SQL，并在 `checkpoint_migrations` 记成已执行），不在启动时调 `setup()`。理由：CI 和生产容器本来就跑 `alembic upgrade head`，表结构只有一个主人；`setup()` 建的表 Alembic 看不见，autogenerate 还会提议删掉它们（`env.py` 已排除这四张表）。库版本钉死，测试比对库的迁移条数和摘要，升级库时如果多了迁移会测试失败，要求另写一个只加不删的 revision。
   - 「只写一次」：确认请求先拿该线程的 PG advisory lock（单独连接，整轮持有，进程死了锁随连接释放），拿到后重读一次暂停状态；`confirm` 事件带中断 `id`，前端确认时带回，名字对不上就不执行；每一步存档用 `durability="sync"`；模型一次回复里提多个组合改动时只留第一个（LangGraph 同一步的中断共用一个 id，多个并行的确认会串答案）。写入本身是幂等的（工具按当前组合重算整份目标再整体替换）。
@@ -333,7 +333,7 @@
 
 ## 2026-10-30 知识缺口审核队列（P2 第一条）（Claude 自主（待 MortyYJT 复核））
 
-- **决定**：设计见 `openspec/changes/knowledge-gaps/`。两张表：`knowledge_gaps`（一个缺口一行：路线、原因、学校、方向、学科词、页面主题、累计次数、审核状态；不含个人信息，长期保留）和 `knowledge_gap_reports`（每次拒答一行：提问原文前 500 字 + 提问人摘要 + 时间）。同一缺口按门槛自己的信号合并（路线|原因|学校|方向|学科词|主题 的 sha256；没认出学校时再加上折叠后的问题原文），不用模型、不做模糊匹配，审核人能看懂为什么合并。
+- **决定**：设计见 `openspec/changes/archive/2026-10-30-knowledge-gaps/`。两张表：`knowledge_gaps`（一个缺口一行：路线、原因、学校、方向、学科词、页面主题、累计次数、审核状态；不含个人信息，长期保留）和 `knowledge_gap_reports`（每次拒答一行：提问原文前 500 字 + 提问人摘要 + 时间）。同一缺口按门槛自己的信号合并（路线|原因|学校|方向|学科词|主题 的 sha256；没认出学校时再加上折叠后的问题原文），不用模型、不做模糊匹配，审核人能看懂为什么合并。
 - **记录哪些**：两个门槛的拒答、快照 RAG 答了但一句都核对不上（模型回答读不出来或判官没给判决时不记，那是模型的问题）、多校问题里被略过的学校（`school_missing`）。模型不可用（PR #65）整轮结束，不会记成缺口。记录失败只记日志，不影响回答。
 - **提问人只存哈希**：`HMAC-SHA256(KNOWLEDGE_GAP_HASH_KEY, "knowledge-gap-reporter\n" + 主体 id)`；主体 id 是匿名 cookie 标识或登录模式下账号的主体 id，不用账号 id、邮箱、IP。密钥只在服务器 `deploy/.env`（部署时 Claude 在服务器上随机生成，没进仓库）；没配密钥时**不存提问记录**（存了也没法在注销时找到并删除；审查 #67 指出），只给缺口计数加一。每个主体一个哈希（不是每个缺口一个），这样删除只要一条查询；代价是同一人的几条提问能归到一起（提问原文本来也能）。
 - **注销和 90 天**：删除主体（注销、90 天匿名清理）时同一事务删掉它的提问记录；匿名并入账号时把记录改挂到账号的哈希上；提问记录 90 天后由每日清理删除（两种模式都跑）。**缺口行保留**（只有学校、方向、次数，不是个人数据），删掉提问记录后统计次数不变。换密钥会让旧记录无法关联，它们照样 90 天后删除。

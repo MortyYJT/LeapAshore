@@ -1,4 +1,4 @@
-"""The collection queue: one task per official page (openspec/changes/collect-queue).
+"""The collection queue: one task per official page (openspec/changes/archive/2026-10-30-collect-queue).
 
     python -m app.collect.queue status
     python -m app.collect.queue discover <school_key>... [--budget backfill --cap 100] [--sync]

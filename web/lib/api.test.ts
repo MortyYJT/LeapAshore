@@ -2,7 +2,7 @@
 // rollback rule that decides what a failed save restores.
 //
 // `fetch` is stubbed here, so these run without the backend. The request path itself is covered end
-// to end by scripts/e2e-walkthrough.cjs, which drives the real server through the real cookie.
+// to end by scripts/walkthrough.cjs, which drives the real server through the real cookie.
 
 import { test } from "node:test";
 import assert from "node:assert/strict";

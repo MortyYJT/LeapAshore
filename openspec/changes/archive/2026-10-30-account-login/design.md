@@ -129,7 +129,7 @@ advisor's in-memory threads whose id starts with the client id are dropped too.
 days, expired sessions, and login codes older than 2 days; without `--apply` it only reports. `last_seen_at`
 is touched (at most once a day) whenever `load_or_create_profile` runs. Celery beat arrives in P1, so the
 schedule is a host cron entry
-(`17 3 * * * cd ~/offerpilot/deploy && sudo docker compose -f compose.prod.yaml exec -T api python -m app.cleanup --apply`),
+(`17 3 * * * cd ~/leapashore/deploy && sudo docker compose -f compose.prod.yaml exec -T api python -m app.cleanup --apply`),
 installed when production switches to login mode — before that every subject is anonymous and nothing could
 have been claimed.
 

@@ -1,4 +1,4 @@
-"""Anonymous data at first login (openspec/changes/account-login, D7; spec anonymous-merge)."""
+"""Anonymous data at first login (openspec/changes/archive/2026-10-30-account-login, D7; spec anonymous-merge)."""
 
 import uuid
 from decimal import Decimal

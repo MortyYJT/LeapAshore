@@ -1,4 +1,4 @@
-"""Delivering the login code (openspec/changes/account-login, D2 and D12).
+"""Delivering the login code (openspec/changes/archive/2026-10-30-account-login, D2 and D12).
 
 Two backends, chosen by `MAIL_BACKEND`:
 

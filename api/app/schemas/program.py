@@ -1,8 +1,7 @@
 """The program catalogue schema, and with it the contract the frontend reads.
 
-`web/lib/programs.ts` is the other half of that contract. Task 8 replaces that hardcoded array
-with this endpoint's response, so the keys here have to be the names `web/lib/types.ts` already
-declares for `Program` and `SourceCitation`.
+The frontend reads this endpoint's response directly, so the keys here have to be the names
+`web/lib/types.ts` declares for `Program` and `SourceCitation`.
 
 Two names deliberately do not go through the camelCase alias generator, because their snake_case
 form would not become the key the frontend reads: `id` would stay `id` where the frontend reads

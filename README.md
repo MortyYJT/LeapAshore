@@ -7,8 +7,8 @@
 
 | Entry | What to try |
 | --- | --- |
-| [`/assess`](https://leapashore.mortyyjt.site/assess) | One-page background assessment, saved to the server |
-| [`/assess/result`](https://leapashore.mortyyjt.site/assess/result) | Every program with a stated requirement in your field, tiered 保底 / 稳妥 / 冲刺 / 不满足, with what to check on the official page |
+| [`/tiers`](https://leapashore.mortyyjt.site/tiers) | Fill four facts (undergraduate school, mark, field, English score), then every program with a stated requirement in your field, tiered 保底 / 稳妥 / 冲刺 / 不满足, with what to check on the official page |
+| [`/portfolio`](https://leapashore.mortyyjt.site/portfolio) | The programs you chose, with the first choice marked |
 | [`/roadmap`](https://leapashore.mortyyjt.site/roadmap) | The timeline from today to the intake: suggested dates dashed, unrecorded deadlines hollow |
 | [`/schools`](https://leapashore.mortyyjt.site/schools) | 287 schools by QS rank, with how many programs each has collected |
 | [`/programs`](https://leapashore.mortyyjt.site/programs) | Search the collected programs; each cites its official page |
@@ -17,7 +17,7 @@
 Things to ask the advisor:
 
 - `悉尼大学计算机硕士要什么均分和雅思？` — retrieval, evidence gate, numbered citations to the official page
-- `乌得勒支大学数据科学硕士要什么条件？` — the gate refuses: that school is not collected yet
+- `杜伦大学数据科学硕士要什么条件？` — the gate refuses: no requirement has been collected for that school (its site refuses our crawler)
 - `我是武汉大学计算机专业，均分 85，雅思 7.0` — the agent writes the profile (low-risk write, runs at once)
 - `把蒙纳士人工智能硕士加进我的选校组合，作为冲刺` — the agent proposes the change and waits for a confirm click
 
@@ -88,8 +88,8 @@ Code: [api/app/agent/](api/app/agent/).
 | Australian master's programs (2,920) | CRICOS, data.gov.au, CC BY 2.5 AU | Real, attributed, dated |
 | Chinese institutions (3,167) and tier tags | Public lists | Real; known gaps recorded in the fixture |
 | Overseas schools (287) | QS World University Rankings 2027 top 300 in the 29 countries and regions in scope (241) + 46 for regional coverage | Real |
-| Admission requirements (9,035 programs at 250 schools) | Official course pages, each quote checked against a saved snapshot | **Machine-checked (机器核对)** for 7,611; the other 1,424 have no value that passed the check and are not imported. 3,560 of the programs (114 schools) were collected by the collection queue on 2026-10-30 (one page each, extracted by the advisor's model and checked the same way); 252 more (16 schools) by Claude subagents in a second round the same day; the rest by collecting agents. None human-verified yet. An Australian program is imported only onto its CRICOS catalogue row, so 65 machine-checked Australian programs whose CRICOS code is not known are not imported (3 Curtin rows written by an earlier import stay). In the site's catalogue, 7,543 of the 7,549 machine-checked programs state a requirement the program page shows (English, a mark, a prerequisite, an academic requirement or a deadline; 7,039 carry an academic requirement); the other 6 have only English notes without a score, which are not stored. The catalogue's 「有要求」 count is 7,545: those 7,543 plus 2 hand-entered 待核验 placeholders (production, 2026-10-30) |
-| Deadlines | Official pages, each quote checked against a saved snapshot | **Imported, machine-checked**: 4,763 dates for 2,754 programs at 123 schools (2026-10-30). Each is shown with its source page; one before today's Beijing date is labelled 已截止 (324 on 2026-10-30) and never drawn as a future date. A date entered on a portfolio row is never overwritten by the import |
+| Admission requirements (9,035 programs at 250 schools in the collection files) | Official course pages, each quote checked against a saved snapshot, each summary checked against its quote by a model judge | 3,560 of the programs (114 schools) were collected by the collection queue on 2026-10-30 (one page each, extracted by the advisor's model); 252 more (16 schools) by Claude subagents in a second round the same day; the rest by collecting agents. A value is imported only if its quote passed the snapshot check and the judge did not find its summary unfaithful. In the files 4,162 programs are **machine-checked (机器核对)** (every value passed) and 4,873 need a person (no value found, or some value failed a check); their passing values are still imported. In production 4,115 programs are machine-checked and 7,374 state a requirement (English, a mark, a prerequisite, an academic requirement or a deadline; 「有要求」), including 2 hand-entered 待核验 placeholders (production, 2026-10-30). None is human-verified yet. An Australian program is imported only onto its CRICOS catalogue row, so machine-checked Australian programs whose CRICOS code is not known are not imported |
+| Deadlines | Official pages, checked the same way | **Imported**: 3,555 dates for 1,947 programs at 111 schools (production, 2026-10-30). Each is shown with its source page; one before today's Beijing date is labelled 已截止 (289 on 2026-10-30) and never drawn as a future date. A date entered on a portfolio row is never overwritten by the import |
 
 These rules exist because an earlier version of this product generated a plausible verification
 date and an official-looking threshold with no source. Do not undo them.
@@ -105,7 +105,8 @@ date and an official-looking threshold with no source. Do not undo them.
 | Layer | Choice |
 | --- | --- |
 | Frontend | Next.js 16, React 19, TypeScript, Tailwind CSS 4 |
-| Backend | FastAPI, SQLAlchemy 2, Alembic, PostgreSQL 16 |
+| Backend | FastAPI, SQLAlchemy 2, Alembic, PostgreSQL 16 (pgvector image) |
+| Collection queue | Celery, Redis |
 | Agent | LangGraph 1.2, LangChain OpenAI adapter, any OpenAI-compatible model |
 | Deploy | Docker Compose, Caddy |
 
@@ -136,27 +137,33 @@ The API container applies migrations and runs the idempotent seeds on start.
 Done:
 
 - Onboarding, portfolio picker, six-phase roadmap with material checklists
-- School and program libraries, background assessment with rule-by-rule tiers
+- School and program libraries, a tiers page with rule-by-rule tiers
 - Material library: upload, versions, archive, download (size limit, type sniffed from bytes)
-- Advisor agent: intent routing, evidence gate, ReAct tools, confirm-before-write, streamed replies
+- Advisor agent: intent routing, evidence gate, ReAct tools, confirm-before-write, streamed replies,
+  conversations kept in PostgreSQL, rate limits and daily token quotas
+- Advisor answers about tuition, references and interviews from saved page snapshots, every sentence
+  checked against verbatim quotes
+- Requirement collection: snapshot each official page, check every quote against it, judge every
+  summary against its quote, import only what passed; a Celery queue re-collects pages every 30 days
+- Knowledge-gap queue for refused questions, and an admin page for verifying an official page by hand
+- Email-code accounts (built; off in production, see below)
 - Production deployment over HTTPS
-- Requirement collection: snapshot each official page, check every quote against it, import only what passed
 
 Not yet:
 
 - Requirements are collected for 250 of the 287 schools; the other 37 refused our crawler (robots.txt
   or HTTP 403), had no listing the queue could read, or have no taught master's list, and show 待采集
   (to be collected). Many program pages state their requirements on a separate page the queue does not
-  follow yet, so 1,424 collected programs have no requirement. Requirements published only in PDFs are
+  follow yet, so many collected programs have no requirement. Requirements published only in PDFs are
   not read yet
 - No requirement has been verified by a person (`verified_at` is empty everywhere)
-- Conversations live in an in-memory checkpointer and are lost on restart (a Postgres checkpointer is
-  a schema change and needs its own migration)
-- Knowledge gaps go to the log, not to a review queue
+- The summary judge has not yet judged 125 programs and 2,278 Chinese-applicant requirements (the
+  model account ran out of credit)
+- Retrieval ranks by full text only; the vector half of hybrid retrieval waits for an embedding key
 - The router and gate evaluation set (`api/evals/`, 80 questions: 50 tuning, 30 held out) is
   labelled by AI, not by a person
 - Email-code accounts are built but switched off in production until outgoing mail is set up; the live
-  site still ties the profile to an anonymous cookie
+  site still ties the profile to an anonymous cookie, so the admin pages cannot be used there yet
 
 ## Project records
 
